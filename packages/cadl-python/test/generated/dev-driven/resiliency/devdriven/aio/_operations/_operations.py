@@ -100,7 +100,7 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
     async def post_model(
         self,
         mode: Union[str, _models.Mode],
-        input: Union[_models.Input, JSON],
+        input: _models.Input,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -113,7 +113,28 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
          before returning to users. Known values are: "raw" and "model". Required.
         :type mode: str or ~resiliency.devdriven.models.Mode
         :param input: Please put {'hello': 'world!'}. Required.
-        :type input: ~resiliency.devdriven.models.Input or JSON
+        :type input: ~resiliency.devdriven.models.Input
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: Product. The Product is compatible with MutableMapping
+        :rtype: ~resiliency.devdriven.models.Product
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def post_model(
+        self, mode: Union[str, _models.Mode], input: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Product:
+        """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
+        take a model instead, and put in 'model' as mode.
+
+        :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
+         with the raw body, and 'model' if you are going to convert the raw body to a customized body
+         before returning to users. Known values are: "raw" and "model". Required.
+        :type mode: str or ~resiliency.devdriven.models.Mode
+        :param input: Please put {'hello': 'world!'}. Required.
+        :type input: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -154,7 +175,8 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
          before returning to users. Known values are: "raw" and "model". Required.
         :type mode: str or ~resiliency.devdriven.models.Mode
-        :param input: Please put {'hello': 'world!'}. Is either a model type or a IO type. Required.
+        :param input: Please put {'hello': 'world!'}. Is one of the following types: model, JSON, IO
+         Required.
         :type input: ~resiliency.devdriven.models.Input or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.

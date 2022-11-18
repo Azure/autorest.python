@@ -29,10 +29,15 @@ from .. import models as _models
 from ..._serialization import Serializer
 from .._vendor import MultiapiServiceClientMixinABC, _convert_request
 
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -194,6 +199,23 @@ class OperationGroupOneOperations:
 
     @overload
     def test_two(
+        self, parameter_one: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.ModelThree:
+        """TestTwo should be in OperationGroupOneOperations. Takes in ModelThree and ouputs ModelThree.
+
+        :param parameter_one: A ModelThree parameter. Default value is None.
+        :type parameter_one: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: ModelThree or the result of cls(response)
+        :rtype: ~multiapidataplane.v3.models.ModelThree
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def test_two(
         self, parameter_one: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.ModelThree:
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelThree and ouputs ModelThree.
@@ -211,13 +233,13 @@ class OperationGroupOneOperations:
 
     @distributed_trace
     def test_two(
-        self, parameter_one: Optional[Union[_models.ModelThree, IO]] = None, **kwargs: Any
+        self, parameter_one: Optional[Union[_models.ModelThree, JSON, IO]] = None, **kwargs: Any
     ) -> _models.ModelThree:
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelThree and ouputs ModelThree.
 
-        :param parameter_one: A ModelThree parameter. Is either a model type or a IO type. Default
-         value is None.
-        :type parameter_one: ~multiapidataplane.v3.models.ModelThree or IO
+        :param parameter_one: A ModelThree parameter. Is one of the following types: model, JSON, IO
+         Default value is None.
+        :type parameter_one: ~multiapidataplane.v3.models.ModelThree or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

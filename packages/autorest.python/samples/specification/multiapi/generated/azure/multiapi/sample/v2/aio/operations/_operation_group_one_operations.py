@@ -29,10 +29,15 @@ from ..._vendor import _convert_request
 from ...operations._operation_group_one_operations import build_test_three_request, build_test_two_request
 from .._vendor import MultiapiServiceClientMixinABC
 
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -75,6 +80,23 @@ class OperationGroupOneOperations:
 
     @overload
     async def test_two(
+        self, parameter_one: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.ModelTwo:
+        """TestTwo should be in OperationGroupOneOperations. Takes in ModelTwo and ouputs ModelTwo.
+
+        :param parameter_one: A ModelTwo parameter. Default value is None.
+        :type parameter_one: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: ModelTwo or the result of cls(response)
+        :rtype: ~azure.multiapi.sample.v2.models.ModelTwo
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def test_two(
         self, parameter_one: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.ModelTwo:
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelTwo and ouputs ModelTwo.
@@ -92,13 +114,13 @@ class OperationGroupOneOperations:
 
     @distributed_trace_async
     async def test_two(
-        self, parameter_one: Optional[Union[_models.ModelTwo, IO]] = None, **kwargs: Any
+        self, parameter_one: Optional[Union[_models.ModelTwo, JSON, IO]] = None, **kwargs: Any
     ) -> _models.ModelTwo:
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelTwo and ouputs ModelTwo.
 
-        :param parameter_one: A ModelTwo parameter. Is either a model type or a IO type. Default value
-         is None.
-        :type parameter_one: ~azure.multiapi.sample.v2.models.ModelTwo or IO
+        :param parameter_one: A ModelTwo parameter. Is one of the following types: model, JSON, IO
+         Default value is None.
+        :type parameter_one: ~azure.multiapi.sample.v2.models.ModelTwo or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

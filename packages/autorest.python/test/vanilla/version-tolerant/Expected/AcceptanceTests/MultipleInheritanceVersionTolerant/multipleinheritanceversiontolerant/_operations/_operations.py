@@ -274,6 +274,20 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         """
 
     @overload
+    def put_horse(self, horse: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
+        """Put a horse with name 'General' and isAShowHorse false.
+
+        :param horse: Put a horse with name 'General' and isAShowHorse false. Required.
+        :type horse: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: str
+        :rtype: str
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
     def put_horse(self, horse: IO, *, content_type: str = "application/json", **kwargs: Any) -> str:
         """Put a horse with name 'General' and isAShowHorse false.
 
@@ -288,12 +302,12 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         """
 
     @distributed_trace
-    def put_horse(self, horse: Union[JSON, IO], **kwargs: Any) -> str:
+    def put_horse(self, horse: Union[JSON, JSON, IO], **kwargs: Any) -> str:
         """Put a horse with name 'General' and isAShowHorse false.
 
-        :param horse: Put a horse with name 'General' and isAShowHorse false. Is either a model type or
-         a IO type. Required.
-        :type horse: JSON or IO
+        :param horse: Put a horse with name 'General' and isAShowHorse false. Is one of the following
+         types: model, JSON, IO Required.
+        :type horse: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -430,6 +444,20 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         """
 
     @overload
+    def put_pet(self, pet: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
+        """Put a pet with name 'Butter'.
+
+        :param pet: Put a pet with name 'Butter'. Required.
+        :type pet: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: str
+        :rtype: str
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
     def put_pet(self, pet: IO, *, content_type: str = "application/json", **kwargs: Any) -> str:
         """Put a pet with name 'Butter'.
 
@@ -444,11 +472,12 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         """
 
     @distributed_trace
-    def put_pet(self, pet: Union[JSON, IO], **kwargs: Any) -> str:
+    def put_pet(self, pet: Union[JSON, JSON, IO], **kwargs: Any) -> str:
         """Put a pet with name 'Butter'.
 
-        :param pet: Put a pet with name 'Butter'. Is either a model type or a IO type. Required.
-        :type pet: JSON or IO
+        :param pet: Put a pet with name 'Butter'. Is one of the following types: model, JSON, IO
+         Required.
+        :type pet: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -587,6 +616,20 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         """
 
     @overload
+    def put_feline(self, feline: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
+        """Put a feline who hisses and doesn't meow.
+
+        :param feline: Put a feline who hisses and doesn't meow. Required.
+        :type feline: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: str
+        :rtype: str
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
     def put_feline(self, feline: IO, *, content_type: str = "application/json", **kwargs: Any) -> str:
         """Put a feline who hisses and doesn't meow.
 
@@ -601,12 +644,12 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         """
 
     @distributed_trace
-    def put_feline(self, feline: Union[JSON, IO], **kwargs: Any) -> str:
+    def put_feline(self, feline: Union[JSON, JSON, IO], **kwargs: Any) -> str:
         """Put a feline who hisses and doesn't meow.
 
-        :param feline: Put a feline who hisses and doesn't meow. Is either a model type or a IO type.
-         Required.
-        :type feline: JSON or IO
+        :param feline: Put a feline who hisses and doesn't meow. Is one of the following types: model,
+         JSON, IO Required.
+        :type feline: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -750,6 +793,21 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         """
 
     @overload
+    def put_cat(self, cat: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
+        """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
+
+        :param cat: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
+         Required.
+        :type cat: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: str
+        :rtype: str
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
     def put_cat(self, cat: IO, *, content_type: str = "application/json", **kwargs: Any) -> str:
         """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
@@ -765,12 +823,12 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         """
 
     @distributed_trace
-    def put_cat(self, cat: Union[JSON, IO], **kwargs: Any) -> str:
+    def put_cat(self, cat: Union[JSON, JSON, IO], **kwargs: Any) -> str:
         """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
         :param cat: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true. Is
-         either a model type or a IO type. Required.
-        :type cat: JSON or IO
+         one of the following types: model, JSON, IO Required.
+        :type cat: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -918,6 +976,22 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         """
 
     @overload
+    def put_kitten(self, kitten: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
+        """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
+        true.
+
+        :param kitten: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
+         eatsMiceYet is true. Required.
+        :type kitten: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: str
+        :rtype: str
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
     def put_kitten(self, kitten: IO, *, content_type: str = "application/json", **kwargs: Any) -> str:
         """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
         true.
@@ -934,13 +1008,13 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         """
 
     @distributed_trace
-    def put_kitten(self, kitten: Union[JSON, IO], **kwargs: Any) -> str:
+    def put_kitten(self, kitten: Union[JSON, JSON, IO], **kwargs: Any) -> str:
         """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
         true.
 
         :param kitten: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
-         eatsMiceYet is true. Is either a model type or a IO type. Required.
-        :type kitten: JSON or IO
+         eatsMiceYet is true. Is one of the following types: model, JSON, IO Required.
+        :type kitten: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

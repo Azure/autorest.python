@@ -30,10 +30,13 @@ def add_body_param_type(code_model: Dict[str, Any], body_parameter: Dict[str, An
         and not body_parameter["type"].get("xmlMetadata")
         and not any(t for t in ["flattened", "groupedBy"] if body_parameter.get(t))
     ):
+        origin_type = body_parameter["type"]["type"]
         body_parameter["type"] = {
             "type": "combined",
             "types": [body_parameter["type"], KNOWN_TYPES["binary"]],
         }
+        if origin_type == "model":
+            body_parameter["type"]["types"].insert(1, KNOWN_TYPES["any-object"])
         code_model["types"].append(body_parameter["type"])
 
 

@@ -1286,6 +1286,22 @@ class EnumOperations:
 
     @overload
     def put_referenced_constant(  # pylint: disable=inconsistent-return-statements
+        self, enum_string_body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Sends value 'green-color' from a constant.
+
+        :param enum_string_body: enum string body. Required.
+        :type enum_string_body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def put_referenced_constant(  # pylint: disable=inconsistent-return-statements
         self, enum_string_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Sends value 'green-color' from a constant.
@@ -1302,12 +1318,13 @@ class EnumOperations:
 
     @distributed_trace
     def put_referenced_constant(  # pylint: disable=inconsistent-return-statements
-        self, enum_string_body: Union[JSON, IO], **kwargs: Any
+        self, enum_string_body: Union[JSON, JSON, IO], **kwargs: Any
     ) -> None:
         """Sends value 'green-color' from a constant.
 
-        :param enum_string_body: enum string body. Is either a model type or a IO type. Required.
-        :type enum_string_body: JSON or IO
+        :param enum_string_body: enum string body. Is one of the following types: model, JSON, IO
+         Required.
+        :type enum_string_body: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

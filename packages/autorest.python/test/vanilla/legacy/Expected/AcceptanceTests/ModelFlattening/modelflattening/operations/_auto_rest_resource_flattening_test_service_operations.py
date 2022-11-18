@@ -27,10 +27,15 @@ from .. import models as _models
 from .._serialization import Serializer
 from .._vendor import AutoRestResourceFlatteningTestServiceMixinABC, _convert_request, _format_url_section
 
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -718,6 +723,24 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
     @overload
     def put_resource_collection(  # pylint: disable=inconsistent-return-statements
+        self, resource_complex_object: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put External Resource as a ResourceCollection.
+
+        :param resource_complex_object: External Resource as a ResourceCollection to put. Default value
+         is None.
+        :type resource_complex_object: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def put_resource_collection(  # pylint: disable=inconsistent-return-statements
         self, resource_complex_object: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put External Resource as a ResourceCollection.
@@ -736,13 +759,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
     @distributed_trace
     def put_resource_collection(  # pylint: disable=inconsistent-return-statements
-        self, resource_complex_object: Optional[Union[_models.ResourceCollection, IO]] = None, **kwargs: Any
+        self, resource_complex_object: Optional[Union[_models.ResourceCollection, JSON, IO]] = None, **kwargs: Any
     ) -> None:
         """Put External Resource as a ResourceCollection.
 
-        :param resource_complex_object: External Resource as a ResourceCollection to put. Is either a
-         model type or a IO type. Default value is None.
-        :type resource_complex_object: ~modelflattening.models.ResourceCollection or IO
+        :param resource_complex_object: External Resource as a ResourceCollection to put. Is one of the
+         following types: model, JSON, IO Default value is None.
+        :type resource_complex_object: ~modelflattening.models.ResourceCollection or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -876,6 +899,23 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
     @overload
     def put_simple_product(
+        self, simple_body_product: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.SimpleProduct:
+        """Put Simple Product with client flattening true on the model.
+
+        :param simple_body_product: Simple body product to put. Default value is None.
+        :type simple_body_product: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: SimpleProduct or the result of cls(response)
+        :rtype: ~modelflattening.models.SimpleProduct
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def put_simple_product(
         self, simple_body_product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.SimpleProduct:
         """Put Simple Product with client flattening true on the model.
@@ -893,13 +933,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
     @distributed_trace
     def put_simple_product(
-        self, simple_body_product: Optional[Union[_models.SimpleProduct, IO]] = None, **kwargs: Any
+        self, simple_body_product: Optional[Union[_models.SimpleProduct, JSON, IO]] = None, **kwargs: Any
     ) -> _models.SimpleProduct:
         """Put Simple Product with client flattening true on the model.
 
-        :param simple_body_product: Simple body product to put. Is either a model type or a IO type.
-         Default value is None.
-        :type simple_body_product: ~modelflattening.models.SimpleProduct or IO
+        :param simple_body_product: Simple body product to put. Is one of the following types: model,
+         JSON, IO Default value is None.
+        :type simple_body_product: ~modelflattening.models.SimpleProduct or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

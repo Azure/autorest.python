@@ -39,10 +39,15 @@ from ...operations._multiapi_service_client_operations import (
 )
 from .._vendor import MultiapiServiceClientMixinABC
 
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -105,7 +110,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
     test_one.metadata = {"url": "/multiapi/testOneEndpoint"}
 
     async def _test_lro_initial(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, JSON, IO]] = None, **kwargs: Any
     ) -> Optional[_models.Product]:
         error_map = {
             401: ClientAuthenticationError,
@@ -192,6 +197,31 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
     @overload
     async def begin_test_lro(
+        self, product: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
+    ) -> AsyncLROPoller[_models.Product]:
+        """Put in whatever shape of Product you want, will return a Product with id equal to 100.
+
+        :param product: Product to put. Default value is None.
+        :type product: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
+         this operation to not poll, or pass in your own initialized polling object for a personal
+         polling strategy.
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of AsyncLROPoller that returns either Product or the result of
+         cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~multiapicredentialdefaultpolicy.v1.models.Product]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def begin_test_lro(
         self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
@@ -217,12 +247,13 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
     @distributed_trace_async
     async def begin_test_lro(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, JSON, IO]] = None, **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
-        :param product: Product to put. Is either a model type or a IO type. Default value is None.
-        :type product: ~multiapicredentialdefaultpolicy.v1.models.Product or IO
+        :param product: Product to put. Is one of the following types: model, JSON, IO Default value is
+         None.
+        :type product: ~multiapicredentialdefaultpolicy.v1.models.Product or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

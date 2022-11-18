@@ -28,10 +28,15 @@ from .. import models as _models
 from ..._serialization import Serializer
 from .._vendor import MultiapiServiceClientMixinABC, _convert_request
 
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -118,6 +123,23 @@ class OperationGroupOneOperations:
 
     @overload
     def test_two(
+        self, parameter_one: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.ModelTwo:
+        """TestTwo should be in OperationGroupOneOperations. Takes in ModelTwo and ouputs ModelTwo.
+
+        :param parameter_one: A ModelTwo parameter. Default value is None.
+        :type parameter_one: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: ModelTwo or the result of cls(response)
+        :rtype: ~multiapicredentialdefaultpolicy.v2.models.ModelTwo
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def test_two(
         self, parameter_one: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.ModelTwo:
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelTwo and ouputs ModelTwo.
@@ -134,12 +156,14 @@ class OperationGroupOneOperations:
         """
 
     @distributed_trace
-    def test_two(self, parameter_one: Optional[Union[_models.ModelTwo, IO]] = None, **kwargs: Any) -> _models.ModelTwo:
+    def test_two(
+        self, parameter_one: Optional[Union[_models.ModelTwo, JSON, IO]] = None, **kwargs: Any
+    ) -> _models.ModelTwo:
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelTwo and ouputs ModelTwo.
 
-        :param parameter_one: A ModelTwo parameter. Is either a model type or a IO type. Default value
-         is None.
-        :type parameter_one: ~multiapicredentialdefaultpolicy.v2.models.ModelTwo or IO
+        :param parameter_one: A ModelTwo parameter. Is one of the following types: model, JSON, IO
+         Default value is None.
+        :type parameter_one: ~multiapicredentialdefaultpolicy.v2.models.ModelTwo or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

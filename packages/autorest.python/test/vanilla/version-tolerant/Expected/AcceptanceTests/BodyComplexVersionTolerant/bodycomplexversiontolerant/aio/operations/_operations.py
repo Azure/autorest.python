@@ -196,6 +196,22 @@ class BasicOperations:
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Please put {id: 2, name: 'abc', color: 'Magenta'}.
+
+        :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Required.
+        :type complex_body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_valid(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
@@ -212,13 +228,13 @@ class BasicOperations:
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, JSON, IO], **kwargs: Any
     ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
-        :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Is either a model type
-         or a IO type. Required.
-        :type complex_body: JSON or IO
+        :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Is one of the following
+         types: model, JSON, IO Required.
+        :type complex_body: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -608,6 +624,22 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_int(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put complex types with integer properties.
+
+        :param complex_body: Please put -1 and 2. Required.
+        :type complex_body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_int(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with integer properties.
@@ -624,12 +656,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_int(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types with integer properties.
 
-        :param complex_body: Please put -1 and 2. Is either a model type or a IO type. Required.
-        :type complex_body: JSON or IO
+        :param complex_body: Please put -1 and 2. Is one of the following types: model, JSON, IO
+         Required.
+        :type complex_body: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -764,6 +797,22 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_long(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put complex types with long properties.
+
+        :param complex_body: Please put 1099511627775 and -999511627788. Required.
+        :type complex_body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_long(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with long properties.
@@ -780,13 +829,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_long(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types with long properties.
 
-        :param complex_body: Please put 1099511627775 and -999511627788. Is either a model type or a IO
-         type. Required.
-        :type complex_body: JSON or IO
+        :param complex_body: Please put 1099511627775 and -999511627788. Is one of the following types:
+         model, JSON, IO Required.
+        :type complex_body: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -921,6 +970,22 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_float(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put complex types with float properties.
+
+        :param complex_body: Please put 1.05 and -0.003. Required.
+        :type complex_body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_float(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with float properties.
@@ -937,12 +1002,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_float(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types with float properties.
 
-        :param complex_body: Please put 1.05 and -0.003. Is either a model type or a IO type. Required.
-        :type complex_body: JSON or IO
+        :param complex_body: Please put 1.05 and -0.003. Is one of the following types: model, JSON, IO
+         Required.
+        :type complex_body: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1080,6 +1146,23 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_double(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put complex types with double properties.
+
+        :param complex_body: Please put 3e-100 and
+         -0.000000000000000000000000000000000000000000000000000000005. Required.
+        :type complex_body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_double(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with double properties.
@@ -1097,14 +1180,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_double(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
-         -0.000000000000000000000000000000000000000000000000000000005. Is either a model type or a IO
-         type. Required.
-        :type complex_body: JSON or IO
+         -0.000000000000000000000000000000000000000000000000000000005. Is one of the following types:
+         model, JSON, IO Required.
+        :type complex_body: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1239,6 +1322,22 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_bool(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put complex types with bool properties.
+
+        :param complex_body: Please put true and false. Required.
+        :type complex_body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_bool(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with bool properties.
@@ -1255,12 +1354,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_bool(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types with bool properties.
 
-        :param complex_body: Please put true and false. Is either a model type or a IO type. Required.
-        :type complex_body: JSON or IO
+        :param complex_body: Please put true and false. Is one of the following types: model, JSON, IO
+         Required.
+        :type complex_body: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1397,6 +1497,22 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_string(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put complex types with string properties.
+
+        :param complex_body: Please put 'goodrequest', '', and null. Required.
+        :type complex_body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_string(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with string properties.
@@ -1413,13 +1529,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_string(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types with string properties.
 
-        :param complex_body: Please put 'goodrequest', '', and null. Is either a model type or a IO
-         type. Required.
-        :type complex_body: JSON or IO
+        :param complex_body: Please put 'goodrequest', '', and null. Is one of the following types:
+         model, JSON, IO Required.
+        :type complex_body: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1554,6 +1670,22 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_date(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put complex types with date properties.
+
+        :param complex_body: Please put '0001-01-01' and '2016-02-29'. Required.
+        :type complex_body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_date(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with date properties.
@@ -1570,13 +1702,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_date(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types with date properties.
 
-        :param complex_body: Please put '0001-01-01' and '2016-02-29'. Is either a model type or a IO
-         type. Required.
-        :type complex_body: JSON or IO
+        :param complex_body: Please put '0001-01-01' and '2016-02-29'. Is one of the following types:
+         model, JSON, IO Required.
+        :type complex_body: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1712,6 +1844,23 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_date_time(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put complex types with datetime properties.
+
+        :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'.
+         Required.
+        :type complex_body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_date_time(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with datetime properties.
@@ -1729,13 +1878,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_date_time(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types with datetime properties.
 
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'. Is
-         either a model type or a IO type. Required.
-        :type complex_body: JSON or IO
+         one of the following types: model, JSON, IO Required.
+        :type complex_body: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1871,6 +2020,23 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put complex types with datetimeRfc1123 properties.
+
+        :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
+         GMT'. Required.
+        :type complex_body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with datetimeRfc1123 properties.
@@ -1888,13 +2054,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types with datetimeRfc1123 properties.
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
-         GMT'. Is either a model type or a IO type. Required.
-        :type complex_body: JSON or IO
+         GMT'. Is one of the following types: model, JSON, IO Required.
+        :type complex_body: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -2027,6 +2193,22 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_duration(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put complex types with duration properties.
+
+        :param complex_body: Please put 'P123DT22H14M12.011S'. Required.
+        :type complex_body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_duration(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with duration properties.
@@ -2043,13 +2225,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_duration(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types with duration properties.
 
-        :param complex_body: Please put 'P123DT22H14M12.011S'. Is either a model type or a IO type.
-         Required.
-        :type complex_body: JSON or IO
+        :param complex_body: Please put 'P123DT22H14M12.011S'. Is one of the following types: model,
+         JSON, IO Required.
+        :type complex_body: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -2183,6 +2365,23 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_byte(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put complex types with byte properties.
+
+        :param complex_body: Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8 F7 F6).
+         Required.
+        :type complex_body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_byte(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with byte properties.
@@ -2200,13 +2399,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_byte(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types with byte properties.
 
         :param complex_body: Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8 F7 F6). Is
-         either a model type or a IO type. Required.
-        :type complex_body: JSON or IO
+         one of the following types: model, JSON, IO Required.
+        :type complex_body: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -2362,6 +2561,23 @@ class ArrayOperations:
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put complex types with array property.
+
+        :param complex_body: Please put an array with 4 items: "1, 2, 3, 4", "", null, "&S#$(*Y", "The
+         quick brown fox jumps over the lazy dog". Required.
+        :type complex_body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_valid(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with array property.
@@ -2379,13 +2595,14 @@ class ArrayOperations:
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types with array property.
 
         :param complex_body: Please put an array with 4 items: "1, 2, 3, 4", "", null, "&S#$(*Y", "The
-         quick brown fox jumps over the lazy dog". Is either a model type or a IO type. Required.
-        :type complex_body: JSON or IO
+         quick brown fox jumps over the lazy dog". Is one of the following types: model, JSON, IO
+         Required.
+        :type complex_body: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -2522,6 +2739,22 @@ class ArrayOperations:
 
     @overload
     async def put_empty(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put complex types with array property which is empty.
+
+        :param complex_body: Please put an empty array. Required.
+        :type complex_body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_empty(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with array property which is empty.
@@ -2538,12 +2771,13 @@ class ArrayOperations:
 
     @distributed_trace_async
     async def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types with array property which is empty.
 
-        :param complex_body: Please put an empty array. Is either a model type or a IO type. Required.
-        :type complex_body: JSON or IO
+        :param complex_body: Please put an empty array. Is one of the following types: model, JSON, IO
+         Required.
+        :type complex_body: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -2756,6 +2990,23 @@ class DictionaryOperations:
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put complex types with dictionary property.
+
+        :param complex_body: Please put a dictionary with 5 key-value pairs: "txt":"notepad",
+         "bmp":"mspaint", "xls":"excel", "exe":"", "":null. Required.
+        :type complex_body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_valid(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with dictionary property.
@@ -2773,14 +3024,14 @@ class DictionaryOperations:
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types with dictionary property.
 
         :param complex_body: Please put a dictionary with 5 key-value pairs: "txt":"notepad",
-         "bmp":"mspaint", "xls":"excel", "exe":"", "":null. Is either a model type or a IO type.
-         Required.
-        :type complex_body: JSON or IO
+         "bmp":"mspaint", "xls":"excel", "exe":"", "":null. Is one of the following types: model, JSON,
+         IO Required.
+        :type complex_body: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -2917,6 +3168,22 @@ class DictionaryOperations:
 
     @overload
     async def put_empty(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put complex types with dictionary property which is empty.
+
+        :param complex_body: Please put an empty dictionary. Required.
+        :type complex_body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_empty(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with dictionary property which is empty.
@@ -2933,13 +3200,13 @@ class DictionaryOperations:
 
     @distributed_trace_async
     async def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types with dictionary property which is empty.
 
-        :param complex_body: Please put an empty dictionary. Is either a model type or a IO type.
-         Required.
-        :type complex_body: JSON or IO
+        :param complex_body: Please put an empty dictionary. Is one of the following types: model,
+         JSON, IO Required.
+        :type complex_body: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -3226,6 +3493,24 @@ class InheritanceOperations:
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put complex types that extend others.
+
+        :param complex_body: Please put a siamese with id=2, name="Siameee", color=green,
+         breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and
+         the 2nd one named "Tomato" with id=-1 and food="french fries". Required.
+        :type complex_body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_valid(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that extend others.
@@ -3244,15 +3529,15 @@ class InheritanceOperations:
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types that extend others.
 
         :param complex_body: Please put a siamese with id=2, name="Siameee", color=green,
          breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and
-         the 2nd one named "Tomato" with id=-1 and food="french fries". Is either a model type or a IO
-         type. Required.
-        :type complex_body: JSON or IO
+         the 2nd one named "Tomato" with id=-1 and food="french fries". Is one of the following types:
+         model, JSON, IO Required.
+        :type complex_body: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -3542,6 +3827,54 @@ class PolymorphismOperations:
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put complex types that are polymorphic.
+
+        :param complex_body: Please put a salmon that looks like this:
+         {
+                 'fishtype':'Salmon',
+                 'location':'alaska',
+                 'iswild':true,
+                 'species':'king',
+                 'length':1.0,
+                 'siblings':[
+                   {
+                     'fishtype':'Shark',
+                     'age':6,
+                     'birthday': '2012-01-05T01:00:00Z',
+                     'length':20.0,
+                     'species':'predator',
+                   },
+                   {
+                     'fishtype':'Sawshark',
+                     'age':105,
+                     'birthday': '1900-01-05T01:00:00Z',
+                     'length':10.0,
+                     'picture': new Buffer([255, 255, 255, 255, 254]).toString('base64'),
+                     'species':'dangerous',
+                   },
+                   {
+                     'fishtype': 'goblin',
+                     'age': 1,
+                     'birthday': '2015-08-08T00:00:00Z',
+                     'length': 30.0,
+                     'species': 'scary',
+                     'jawsize': 5
+                   }
+                 ]
+               };. Required.
+        :type complex_body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_valid(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic.
@@ -3590,7 +3923,7 @@ class PolymorphismOperations:
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic.
 
@@ -3626,8 +3959,8 @@ class PolymorphismOperations:
                      'jawsize': 5
                    }
                  ]
-               };. Is either a model type or a IO type. Required.
-        :type complex_body: JSON or IO
+               };. Is one of the following types: model, JSON, IO Required.
+        :type complex_body: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -4020,6 +4353,23 @@ class PolymorphismOperations:
 
     @overload
     async def put_complicated(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
+        additional properties.
+
+        :param complex_body: Required.
+        :type complex_body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_complicated(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
@@ -4037,13 +4387,13 @@ class PolymorphismOperations:
 
     @distributed_trace_async
     async def put_complicated(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
         additional properties.
 
-        :param complex_body: Is either a model type or a IO type. Required.
-        :type complex_body: JSON or IO
+        :param complex_body: Is one of the following types: model, JSON, IO Required.
+        :type complex_body: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -4153,6 +4503,43 @@ class PolymorphismOperations:
 
     @overload
     async def put_missing_discriminator(
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> JSON:
+        """Put complex types that are polymorphic, omitting the discriminator.
+
+        :param complex_body: Required.
+        :type complex_body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+                # The response is polymorphic. The following are possible polymorphic responses based
+                  off discriminator "fishtype":
+
+                # JSON input template for discriminator value "smart_salmon":
+                fish = {
+                    "fishtype": "smart_salmon",
+                    "length": 0.0,  # Required.
+                    "college_degree": "str",  # Optional.
+                    "iswild": bool,  # Optional.
+                    "location": "str",  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # response body for status code(s): 200
+                response == salmon
+        """
+
+    @overload
+    async def put_missing_discriminator(
         self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """Put complex types that are polymorphic, omitting the discriminator.
@@ -4189,11 +4576,11 @@ class PolymorphismOperations:
         """
 
     @distributed_trace_async
-    async def put_missing_discriminator(self, complex_body: Union[JSON, IO], **kwargs: Any) -> JSON:
+    async def put_missing_discriminator(self, complex_body: Union[JSON, JSON, IO], **kwargs: Any) -> JSON:
         """Put complex types that are polymorphic, omitting the discriminator.
 
-        :param complex_body: Is either a model type or a IO type. Required.
-        :type complex_body: JSON or IO
+        :param complex_body: Is one of the following types: model, JSON, IO Required.
+        :type complex_body: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -4380,6 +4767,49 @@ class PolymorphismOperations:
 
     @overload
     async def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
+        request should not be allowed from the client.
+
+        :param complex_body: Please attempt put a sawshark that looks like this, the client should not
+         allow this data to be sent:
+         {
+             "fishtype": "sawshark",
+             "species": "snaggle toothed",
+             "length": 18.5,
+             "age": 2,
+             "birthday": "2013-06-01T01:00:00Z",
+             "location": "alaska",
+             "picture": base64(FF FF FF FF FE),
+             "siblings": [
+                 {
+                     "fishtype": "shark",
+                     "species": "predator",
+                     "birthday": "2012-01-05T01:00:00Z",
+                     "length": 20,
+                     "age": 6
+                 },
+                 {
+                     "fishtype": "sawshark",
+                     "species": "dangerous",
+                     "picture": base64(FF FF FF FF FE),
+                     "length": 10,
+                     "age": 105
+                 }
+             ]
+         }. Required.
+        :type complex_body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
@@ -4423,7 +4853,7 @@ class PolymorphismOperations:
 
     @distributed_trace_async
     async def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
         request should not be allowed from the client.
@@ -4454,8 +4884,8 @@ class PolymorphismOperations:
                      "age": 105
                  }
              ]
-         }. Is either a model type or a IO type. Required.
-        :type complex_body: JSON or IO
+         }. Is one of the following types: model, JSON, IO Required.
+        :type complex_body: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -4765,6 +5195,74 @@ class PolymorphicrecursiveOperations:
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put complex types that are polymorphic and have recursive references.
+
+        :param complex_body: Please put a salmon that looks like this:
+         {
+             "fishtype": "salmon",
+             "species": "king",
+             "length": 1,
+             "age": 1,
+             "location": "alaska",
+             "iswild": true,
+             "siblings": [
+                 {
+                     "fishtype": "shark",
+                     "species": "predator",
+                     "length": 20,
+                     "age": 6,
+                     "siblings": [
+                         {
+                             "fishtype": "salmon",
+                             "species": "coho",
+                             "length": 2,
+                             "age": 2,
+                             "location": "atlantic",
+                             "iswild": true,
+                             "siblings": [
+                                 {
+                                     "fishtype": "shark",
+                                     "species": "predator",
+                                     "length": 20,
+                                     "age": 6
+                                 },
+                                 {
+                                     "fishtype": "sawshark",
+                                     "species": "dangerous",
+                                     "length": 10,
+                                     "age": 105
+                                 }
+                             ]
+                         },
+                         {
+                             "fishtype": "sawshark",
+                             "species": "dangerous",
+                             "length": 10,
+                             "age": 105
+                         }
+                     ]
+                 },
+                 {
+                     "fishtype": "sawshark",
+                     "species": "dangerous",
+                     "length": 10,
+                     "age": 105
+                 }
+             ]
+         }. Required.
+        :type complex_body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_valid(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic and have recursive references.
@@ -4833,7 +5331,7 @@ class PolymorphicrecursiveOperations:
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic and have recursive references.
 
@@ -4889,8 +5387,8 @@ class PolymorphicrecursiveOperations:
                      "age": 105
                  }
              ]
-         }. Is either a model type or a IO type. Required.
-        :type complex_body: JSON or IO
+         }. Is one of the following types: model, JSON, IO Required.
+        :type complex_body: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -5043,6 +5541,22 @@ class ReadonlypropertyOperations:
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put complex types that have readonly properties.
+
+        :param complex_body: Required.
+        :type complex_body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_valid(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that have readonly properties.
@@ -5059,12 +5573,12 @@ class ReadonlypropertyOperations:
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, JSON, IO], **kwargs: Any
     ) -> None:
         """Put complex types that have readonly properties.
 
-        :param complex_body: Is either a model type or a IO type. Required.
-        :type complex_body: JSON or IO
+        :param complex_body: Is one of the following types: model, JSON, IO Required.
+        :type complex_body: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

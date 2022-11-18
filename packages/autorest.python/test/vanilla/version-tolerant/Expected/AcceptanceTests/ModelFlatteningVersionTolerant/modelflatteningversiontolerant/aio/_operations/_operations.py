@@ -680,6 +680,23 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
     @overload
     async def put_resource_collection(  # pylint: disable=inconsistent-return-statements
+        self, resource_complex_object: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put External Resource as a ResourceCollection.
+
+        :param resource_complex_object: External Resource as a ResourceCollection to put. Default value
+         is None.
+        :type resource_complex_object: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_resource_collection(  # pylint: disable=inconsistent-return-statements
         self, resource_complex_object: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put External Resource as a ResourceCollection.
@@ -697,13 +714,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
     @distributed_trace_async
     async def put_resource_collection(  # pylint: disable=inconsistent-return-statements
-        self, resource_complex_object: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, resource_complex_object: Optional[Union[JSON, JSON, IO]] = None, **kwargs: Any
     ) -> None:
         """Put External Resource as a ResourceCollection.
 
-        :param resource_complex_object: External Resource as a ResourceCollection to put. Is either a
-         model type or a IO type. Default value is None.
-        :type resource_complex_object: JSON or IO
+        :param resource_complex_object: External Resource as a ResourceCollection to put. Is one of the
+         following types: model, JSON, IO Default value is None.
+        :type resource_complex_object: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -931,6 +948,43 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
     @overload
     async def put_simple_product(
+        self, simple_body_product: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
+    ) -> JSON:
+        """Put Simple Product with client flattening true on the model.
+
+        :param simple_body_product: Simple body product to put. Default value is None.
+        :type simple_body_product: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "base_product_id": "str",  # Unique identifier representing a specific
+                      product for a given latitude & longitude. For example, uberX in San Francisco
+                      will have a different product_id than uberX in Los Angeles. Required.
+                    "base_product_description": "str",  # Optional. Description of product.
+                    "details": {
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
+                        "max_product_display_name": "str",  # Display name of product.
+                          Required.
+                        "max_product_image": {
+                            "@odata.value": "str",  # Optional. URL value.
+                            "generic_value": "str"  # Optional. Generic URL value.
+                        }
+                    }
+                }
+        """
+
+    @overload
+    async def put_simple_product(
         self, simple_body_product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """Put Simple Product with client flattening true on the model.
@@ -967,12 +1021,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         """
 
     @distributed_trace_async
-    async def put_simple_product(self, simple_body_product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:
+    async def put_simple_product(
+        self, simple_body_product: Optional[Union[JSON, JSON, IO]] = None, **kwargs: Any
+    ) -> JSON:
         """Put Simple Product with client flattening true on the model.
 
-        :param simple_body_product: Simple body product to put. Is either a model type or a IO type.
-         Default value is None.
-        :type simple_body_product: JSON or IO
+        :param simple_body_product: Simple body product to put. Is one of the following types: model,
+         JSON, IO Default value is None.
+        :type simple_body_product: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1112,6 +1168,43 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
     @overload
     async def post_flattened_simple_product(
+        self, simple_body_product: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
+    ) -> JSON:
+        """Put Flattened Simple Product with client flattening true on the parameter.
+
+        :param simple_body_product: Simple body product to post. Default value is None.
+        :type simple_body_product: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "base_product_id": "str",  # Unique identifier representing a specific
+                      product for a given latitude & longitude. For example, uberX in San Francisco
+                      will have a different product_id than uberX in Los Angeles. Required.
+                    "base_product_description": "str",  # Optional. Description of product.
+                    "details": {
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
+                        "max_product_display_name": "str",  # Display name of product.
+                          Required.
+                        "max_product_image": {
+                            "@odata.value": "str",  # Optional. URL value.
+                            "generic_value": "str"  # Optional. Generic URL value.
+                        }
+                    }
+                }
+        """
+
+    @overload
+    async def post_flattened_simple_product(
         self, simple_body_product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """Put Flattened Simple Product with client flattening true on the parameter.
@@ -1149,13 +1242,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
     @distributed_trace_async
     async def post_flattened_simple_product(
-        self, simple_body_product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, simple_body_product: Optional[Union[JSON, JSON, IO]] = None, **kwargs: Any
     ) -> JSON:
         """Put Flattened Simple Product with client flattening true on the parameter.
 
-        :param simple_body_product: Simple body product to post. Is either a model type or a IO type.
-         Default value is None.
-        :type simple_body_product: JSON or IO
+        :param simple_body_product: Simple body product to post. Is one of the following types: model,
+         JSON, IO Default value is None.
+        :type simple_body_product: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1304,6 +1397,50 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     async def put_simple_product_with_grouping(
         self,
         name: str,
+        simple_body_product: Optional[JSON] = None,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> JSON:
+        """Put Simple Product with client flattening true on the model.
+
+        :param name: Product name with value 'groupproduct'. Required.
+        :type name: str
+        :param simple_body_product: Simple body product to put. Default value is None.
+        :type simple_body_product: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "base_product_id": "str",  # Unique identifier representing a specific
+                      product for a given latitude & longitude. For example, uberX in San Francisco
+                      will have a different product_id than uberX in Los Angeles. Required.
+                    "base_product_description": "str",  # Optional. Description of product.
+                    "details": {
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
+                        "max_product_display_name": "str",  # Display name of product.
+                          Required.
+                        "max_product_image": {
+                            "@odata.value": "str",  # Optional. URL value.
+                            "generic_value": "str"  # Optional. Generic URL value.
+                        }
+                    }
+                }
+        """
+
+    @overload
+    async def put_simple_product_with_grouping(
+        self,
+        name: str,
         simple_body_product: Optional[IO] = None,
         *,
         content_type: str = "application/json",
@@ -1346,15 +1483,15 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
     @distributed_trace_async
     async def put_simple_product_with_grouping(
-        self, name: str, simple_body_product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, name: str, simple_body_product: Optional[Union[JSON, JSON, IO]] = None, **kwargs: Any
     ) -> JSON:
         """Put Simple Product with client flattening true on the model.
 
         :param name: Product name with value 'groupproduct'. Required.
         :type name: str
-        :param simple_body_product: Simple body product to put. Is either a model type or a IO type.
-         Default value is None.
-        :type simple_body_product: JSON or IO
+        :param simple_body_product: Simple body product to put. Is one of the following types: model,
+         JSON, IO Default value is None.
+        :type simple_body_product: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

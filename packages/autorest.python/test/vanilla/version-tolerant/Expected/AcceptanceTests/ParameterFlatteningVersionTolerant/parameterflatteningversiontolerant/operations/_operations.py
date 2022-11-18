@@ -107,6 +107,26 @@ class AvailabilitySetsOperations:
 
     @overload
     def update(  # pylint: disable=inconsistent-return-statements
+        self, resource_group_name: str, avset: str, tags: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Updates the tags for an availability set.
+
+        :param resource_group_name: The name of the resource group. Required.
+        :type resource_group_name: str
+        :param avset: The name of the storage availability set. Required.
+        :type avset: str
+        :param tags: The tags. Required.
+        :type tags: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def update(  # pylint: disable=inconsistent-return-statements
         self, resource_group_name: str, avset: str, tags: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Updates the tags for an availability set.
@@ -127,7 +147,7 @@ class AvailabilitySetsOperations:
 
     @distributed_trace
     def update(  # pylint: disable=inconsistent-return-statements
-        self, resource_group_name: str, avset: str, tags: Union[JSON, IO], **kwargs: Any
+        self, resource_group_name: str, avset: str, tags: Union[JSON, JSON, IO], **kwargs: Any
     ) -> None:
         """Updates the tags for an availability set.
 
@@ -135,8 +155,8 @@ class AvailabilitySetsOperations:
         :type resource_group_name: str
         :param avset: The name of the storage availability set. Required.
         :type avset: str
-        :param tags: The tags. Is either a model type or a IO type. Required.
-        :type tags: JSON or IO
+        :param tags: The tags. Is one of the following types: model, JSON, IO Required.
+        :type tags: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

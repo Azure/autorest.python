@@ -191,6 +191,34 @@ class PetOperations:
         """
 
     @overload
+    def add_pet(
+        self, pet_param: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
+    ) -> JSON:
+        """add pet.
+
+        :param pet_param: pet param. Default value is None.
+        :type pet_param: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: JSON object
+        :rtype: JSON
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
+                    "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
+                      Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+                      "Saturday", and "Sunday".
+                    "name": "str"  # Optional. name.
+                }
+        """
+
+    @overload
     def add_pet(self, pet_param: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any) -> JSON:
         """add pet.
 
@@ -217,11 +245,12 @@ class PetOperations:
         """
 
     @distributed_trace
-    def add_pet(self, pet_param: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:
+    def add_pet(self, pet_param: Optional[Union[JSON, JSON, IO]] = None, **kwargs: Any) -> JSON:
         """add pet.
 
-        :param pet_param: pet param. Is either a model type or a IO type. Default value is None.
-        :type pet_param: JSON or IO
+        :param pet_param: pet param. Is one of the following types: model, JSON, IO Default value is
+         None.
+        :type pet_param: JSON or JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
