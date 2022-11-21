@@ -9,7 +9,6 @@
 # regenerated.
 # --------------------------------------------------------------------------
 from ._serialization import Serializer, Deserializer
-import sys
 from typing import Any, IO, Iterable, Optional, Union
 
 from azure.core.paging import ItemPaged
@@ -17,26 +16,18 @@ from azure.core.polling import LROPoller
 
 from . import models as _models
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-
-JSON = MutableMapping[str, Any] # pylint: disable=unsubscriptable-object
-
 
 class MultiapiServiceClientOperationsMixin(object):
 
     def begin_test_lro(
         self,
-        product: Optional[Union[_models.Product, JSON, IO]] = None,
+        product: Optional[Union[_models.Product, IO]] = None,
         **kwargs: Any
     ) -> LROPoller[_models.Product]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
-        :param product: Product to put. Is one of the following types: model, JSON, IO Default value is
-         None.
-        :type product: ~multiapinoasync.v1.models.Product or JSON or IO
+        :param product: Product to put. Is either a model type or a IO type. Default value is None.
+        :type product: ~multiapinoasync.v1.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

@@ -28,15 +28,10 @@ from azure.core.utils import case_insensitive_dict
 from .. import models as _models
 from .._vendor import _convert_request
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -223,23 +218,6 @@ class BasicOperations:
 
     @overload
     def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """Please put {id: 2, name: 'abc', color: 'Magenta'}.
-
-        :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Required.
-        :type complex_body: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def put_valid(  # pylint: disable=inconsistent-return-statements
         self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
@@ -257,13 +235,13 @@ class BasicOperations:
 
     @distributed_trace
     def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.Basic, JSON, IO], **kwargs: Any
+        self, complex_body: Union[_models.Basic, IO], **kwargs: Any
     ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
-        :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Is one of the following
-         types: model, JSON, IO Required.
-        :type complex_body: ~bodycomplex.models.Basic or JSON or IO
+        :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Is either a model type
+         or a IO type. Required.
+        :type complex_body: ~bodycomplex.models.Basic or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

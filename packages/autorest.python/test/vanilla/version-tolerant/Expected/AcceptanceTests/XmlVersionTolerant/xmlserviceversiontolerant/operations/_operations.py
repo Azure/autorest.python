@@ -26,15 +26,10 @@ from azure.core.utils import case_insensitive_dict
 from .. import models as _models
 from .._serialization import Serializer
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -1912,23 +1907,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def json_input(  # pylint: disable=inconsistent-return-statements
-        self, properties: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
-        number 42.
-
-        :param properties: Required.
-        :type properties: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def json_input(  # pylint: disable=inconsistent-return-statements
         self, properties: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
@@ -1946,13 +1924,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def json_input(  # pylint: disable=inconsistent-return-statements
-        self, properties: Union[_models.JSONInput, JSON, IO], **kwargs: Any
+        self, properties: Union[_models.JSONInput, IO], **kwargs: Any
     ) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
         number 42.
 
-        :param properties: Is one of the following types: model, JSON, IO Required.
-        :type properties: ~xmlserviceversiontolerant.models.JSONInput or JSON or IO
+        :param properties: Is either a model type or a IO type. Required.
+        :type properties: ~xmlserviceversiontolerant.models.JSONInput or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

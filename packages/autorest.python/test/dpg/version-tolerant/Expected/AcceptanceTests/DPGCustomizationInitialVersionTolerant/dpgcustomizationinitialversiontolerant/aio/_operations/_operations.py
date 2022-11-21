@@ -141,35 +141,6 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         """
 
     @overload
-    async def post_model(
-        self, mode: str, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> JSON:
-        """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
-        take a model instead, and put in 'model' as mode.
-
-        :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
-         with the raw body, and 'model' if you are going to convert the raw body to a customized body
-         before returning to users. Required.
-        :type mode: str
-        :param input: Please put {'hello': 'world!'}. Required.
-        :type input: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: JSON object
-        :rtype: JSON
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "received": "str"  # Required. Known values are: "raw" and "model".
-                }
-        """
-
-    @overload
     async def post_model(self, mode: str, input: IO, *, content_type: str = "application/json", **kwargs: Any) -> JSON:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
@@ -197,7 +168,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         """
 
     @distributed_trace_async
-    async def post_model(self, mode: str, input: Union[JSON, JSON, IO], **kwargs: Any) -> JSON:
+    async def post_model(self, mode: str, input: Union[JSON, IO], **kwargs: Any) -> JSON:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
 
@@ -205,9 +176,8 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
          before returning to users. Required.
         :type mode: str
-        :param input: Please put {'hello': 'world!'}. Is one of the following types: model, JSON, IO
-         Required.
-        :type input: JSON or JSON or IO
+        :param input: Please put {'hello': 'world!'}. Is either a model type or a IO type. Required.
+        :type input: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

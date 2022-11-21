@@ -314,62 +314,6 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         self,
         resource_group_name: str,
         id: int,
-        body: Optional[JSON] = None,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> JSON:
-        """Validates body parameters on the method. See swagger for details.
-
-        :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
-         Required.
-        :type resource_group_name: str
-        :param id: Required int multiple of 10 from 100 to 1000. Required.
-        :type id: int
-        :param body: Default value is None.
-        :type body: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: JSON object
-        :rtype: JSON
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "child": {
-                        "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Required.
-                        "count": 0  # Optional. Count.
-                    },
-                    "constChild": {
-                        "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Required.
-                        "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2. Required.
-                    },
-                    "constInt": 0,  # Default value is 0. Constant int. Required.
-                    "constString": "constant",  # Default value is "constant". Constant string.
-                      Required.
-                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
-                    "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
-                      "constant_string_as_enum". Constant string as Enum.
-                    "display_names": [
-                        "str"  # Optional. Non required array of unique items from 0 to 6
-                          elements.
-                    ],
-                    "image": "str"  # Optional. Image URL representing the product.
-                }
-        """
-
-    @overload
-    def validation_of_body(
-        self,
-        resource_group_name: str,
-        id: int,
         body: Optional[IO] = None,
         *,
         content_type: str = "application/json",
@@ -423,7 +367,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
     @distributed_trace
     def validation_of_body(
-        self, resource_group_name: str, id: int, body: Optional[Union[JSON, JSON, IO]] = None, **kwargs: Any
+        self, resource_group_name: str, id: int, body: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> JSON:
         """Validates body parameters on the method. See swagger for details.
 
@@ -432,8 +376,8 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000. Required.
         :type id: int
-        :param body: Is one of the following types: model, JSON, IO Default value is None.
-        :type body: JSON or JSON or IO
+        :param body: Is either a model type or a IO type. Default value is None.
+        :type body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -649,54 +593,6 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
     @overload
     def post_with_constant_in_body(
-        self, body: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
-    ) -> JSON:
-        """post_with_constant_in_body.
-
-        :param body: Default value is None.
-        :type body: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword constant_param: Default value is "constant". Note that overriding this default value
-         may result in unsupported behavior.
-        :paramtype constant_param: str
-        :return: JSON object
-        :rtype: JSON
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "child": {
-                        "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Required.
-                        "count": 0  # Optional. Count.
-                    },
-                    "constChild": {
-                        "constProperty": "constant",  # Default value is "constant". Constant
-                          string. Required.
-                        "constProperty2": "constant2"  # Default value is "constant2".
-                          Constant string2. Required.
-                    },
-                    "constInt": 0,  # Default value is 0. Constant int. Required.
-                    "constString": "constant",  # Default value is "constant". Constant string.
-                      Required.
-                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
-                    "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
-                      "constant_string_as_enum". Constant string as Enum.
-                    "display_names": [
-                        "str"  # Optional. Non required array of unique items from 0 to 6
-                          elements.
-                    ],
-                    "image": "str"  # Optional. Image URL representing the product.
-                }
-        """
-
-    @overload
-    def post_with_constant_in_body(
         self, body: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """post_with_constant_in_body.
@@ -744,11 +640,11 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         """
 
     @distributed_trace
-    def post_with_constant_in_body(self, body: Optional[Union[JSON, JSON, IO]] = None, **kwargs: Any) -> JSON:
+    def post_with_constant_in_body(self, body: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:
         """post_with_constant_in_body.
 
-        :param body: Is one of the following types: model, JSON, IO Default value is None.
-        :type body: JSON or JSON or IO
+        :param body: Is either a model type or a IO type. Default value is None.
+        :type body: JSON or IO
         :keyword constant_param: Default value is "constant". Note that overriding this default value
          may result in unsupported behavior.
         :paramtype constant_param: str

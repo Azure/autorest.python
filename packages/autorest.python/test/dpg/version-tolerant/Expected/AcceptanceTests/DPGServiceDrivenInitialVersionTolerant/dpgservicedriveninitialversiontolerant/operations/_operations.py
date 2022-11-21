@@ -324,21 +324,6 @@ class ParamsOperations:
         """
 
     @overload
-    def post_parameters(self, parameter: JSON, *, content_type: str = "application/json", **kwargs: Any) -> JSON:
-        """POST a JSON.
-
-        :param parameter: I am a body parameter. My only valid JSON entry is { url:
-         "http://example.org/myimage.jpeg" }. Required.
-        :type parameter: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: JSON
-        :rtype: JSON
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
     def post_parameters(self, parameter: IO, *, content_type: str = "application/json", **kwargs: Any) -> JSON:
         """POST a JSON.
 
@@ -354,12 +339,12 @@ class ParamsOperations:
         """
 
     @distributed_trace
-    def post_parameters(self, parameter: Union[JSON, JSON, IO], **kwargs: Any) -> JSON:
+    def post_parameters(self, parameter: Union[JSON, IO], **kwargs: Any) -> JSON:
         """POST a JSON.
 
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
-         "http://example.org/myimage.jpeg" }. Is one of the following types: model, JSON, IO Required.
-        :type parameter: JSON or JSON or IO
+         "http://example.org/myimage.jpeg" }. Is either a model type or a IO type. Required.
+        :type parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

@@ -72,7 +72,7 @@ def build_polling_paging_example_basic_paging_request(**kwargs: Any) -> HttpRequ
 
 
 class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
-    def _basic_polling_initial(self, product: Optional[Union[JSON, JSON, IO]] = None, **kwargs: Any) -> Optional[JSON]:
+    def _basic_polling_initial(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> Optional[JSON]:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -173,40 +173,6 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
 
     @overload
     def begin_basic_polling(
-        self, product: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
-    ) -> CustomPoller[JSON]:
-        """A simple polling operation.
-
-        :param product: Product to put. Default value is None.
-        :type product: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be CustomDefaultPollingMethod. Pass in
-         False for this operation to not poll, or pass in your own initialized polling object for a
-         personal polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.PollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
-        :return: An instance of CustomPoller that returns JSON object
-        :rtype: ~my.library.CustomPoller[JSON]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
-                    }
-                }
-        """
-
-    @overload
-    def begin_basic_polling(
         self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> CustomPoller[JSON]:
         """A simple polling operation.
@@ -240,12 +206,11 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
         """
 
     @distributed_trace
-    def begin_basic_polling(self, product: Optional[Union[JSON, JSON, IO]] = None, **kwargs: Any) -> CustomPoller[JSON]:
+    def begin_basic_polling(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> CustomPoller[JSON]:
         """A simple polling operation.
 
-        :param product: Product to put. Is one of the following types: model, JSON, IO Default value is
-         None.
-        :type product: JSON or JSON or IO
+        :param product: Product to put. Is either a model type or a IO type. Default value is None.
+        :type product: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

@@ -20,7 +20,11 @@ from .. import YamlUpdatePlugin, YamlUpdatePluginAutorest
 from .._utils import parse_args, get_body_type_for_description, JSON_REGEXP, KNOWN_TYPES
 
 
-def add_body_param_type(code_model: Dict[str, Any], body_parameter: Dict[str, Any]):
+def add_body_param_type(
+    code_model: Dict[str, Any],
+    body_parameter: Dict[str, Any],
+    models_mode: Optional[str],
+):
     if (
         body_parameter
         and body_parameter["type"]["type"] in ("model", "dict", "list")
@@ -35,7 +39,7 @@ def add_body_param_type(code_model: Dict[str, Any], body_parameter: Dict[str, An
             "type": "combined",
             "types": [body_parameter["type"], KNOWN_TYPES["binary"]],
         }
-        if origin_type == "model":
+        if origin_type == "model" and models_mode == "dpg":
             body_parameter["type"]["types"].insert(1, KNOWN_TYPES["any-object"])
         code_model["types"].append(body_parameter["type"])
 
@@ -206,6 +210,12 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
     def version_tolerant(self) -> bool:
         return self.options.get("version-tolerant", True)
 
+    @property
+    def models_mode(self) -> Optional[str]:
+        return self.options.get(
+            "models-mode", "dpg" if self.options.get("cadl_file") else None
+        )
+
     def get_operation_updater(
         self, yaml_data: Dict[str, Any]
     ) -> Callable[[Dict[str, Any], Dict[str, Any]], None]:
@@ -247,7 +257,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             response["discriminator"] = "operation"
         if body_parameter and not is_overload:
             # if we have a JSON body, we add a binary overload
-            add_body_param_type(code_model, body_parameter)
+            add_body_param_type(code_model, body_parameter, self.models_mode)
             add_overloads_for_body_param(yaml_data)
 
     def _update_lro_operation_helper(self, yaml_data: Dict[str, Any]) -> None:
@@ -378,6 +388,7 @@ class PreProcessPluginAutorest(YamlUpdatePluginAutorest, PreProcessPlugin):
         options = {
             "version-tolerant": self._autorestapi.get_boolean_value("version-tolerant"),
             "azure-arm": self._autorestapi.get_boolean_value("azure-arm"),
+            "models-mode": self._autorestapi.get_value("models-mode"),
         }
         return {k: v for k, v in options.items() if v is not None}
 

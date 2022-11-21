@@ -900,33 +900,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def get_single_pages_with_body_params(
-        self, parameters: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> Iterable[JSON]:
-        """A paging operation that finishes on the first call with body params without a nextlink.
-
-        :param parameters: put {'name': 'body'} to pass the test. Required.
-        :type parameters: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: An iterator like instance of JSON object
-        :rtype: ~azure.core.paging.ItemPaged[JSON]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
-                    }
-                }
-        """
-
-    @overload
-    def get_single_pages_with_body_params(
         self, parameters: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> Iterable[JSON]:
         """A paging operation that finishes on the first call with body params without a nextlink.
@@ -953,12 +926,12 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace
-    def get_single_pages_with_body_params(self, parameters: Union[JSON, JSON, IO], **kwargs: Any) -> Iterable[JSON]:
+    def get_single_pages_with_body_params(self, parameters: Union[JSON, IO], **kwargs: Any) -> Iterable[JSON]:
         """A paging operation that finishes on the first call with body params without a nextlink.
 
-        :param parameters: put {'name': 'body'} to pass the test. Is one of the following types: model,
-         JSON, IO Required.
-        :type parameters: JSON or JSON or IO
+        :param parameters: put {'name': 'body'} to pass the test. Is either a model type or a IO type.
+         Required.
+        :type parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

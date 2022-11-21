@@ -688,23 +688,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def post_required_integer_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
-        client library should throw before the request is sent.
-
-        :param body_parameter: Required.
-        :type body_parameter: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    async def post_required_integer_property(  # pylint: disable=inconsistent-return-statements
         self, body_parameter: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
@@ -722,13 +705,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post_required_integer_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Union[JSON, JSON, IO], **kwargs: Any
+        self, body_parameter: Union[JSON, IO], **kwargs: Any
     ) -> None:
         """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
-        :param body_parameter: Is one of the following types: model, JSON, IO Required.
-        :type body_parameter: JSON or JSON or IO
+        :param body_parameter: Is either a model type or a IO type. Required.
+        :type body_parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -806,22 +789,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def post_optional_integer_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
-
-        :param body_parameter: Default value is None.
-        :type body_parameter: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    async def post_optional_integer_property(  # pylint: disable=inconsistent-return-statements
         self, body_parameter: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
@@ -838,12 +805,12 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post_optional_integer_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[Union[JSON, JSON, IO]] = None, **kwargs: Any
+        self, body_parameter: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
 
-        :param body_parameter: Is one of the following types: model, JSON, IO Default value is None.
-        :type body_parameter: JSON or JSON or IO
+        :param body_parameter: Is either a model type or a IO type. Default value is None.
+        :type body_parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1118,23 +1085,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def post_required_string_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
-        client library should throw before the request is sent.
-
-        :param body_parameter: Required.
-        :type body_parameter: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    async def post_required_string_property(  # pylint: disable=inconsistent-return-statements
         self, body_parameter: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
@@ -1152,13 +1102,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post_required_string_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Union[JSON, JSON, IO], **kwargs: Any
+        self, body_parameter: Union[JSON, IO], **kwargs: Any
     ) -> None:
         """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
-        :param body_parameter: Is one of the following types: model, JSON, IO Required.
-        :type body_parameter: JSON or JSON or IO
+        :param body_parameter: Is either a model type or a IO type. Required.
+        :type body_parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1236,22 +1186,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def post_optional_string_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
-
-        :param body_parameter: Default value is None.
-        :type body_parameter: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    async def post_optional_string_property(  # pylint: disable=inconsistent-return-statements
         self, body_parameter: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
@@ -1268,12 +1202,12 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post_optional_string_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[Union[JSON, JSON, IO]] = None, **kwargs: Any
+        self, body_parameter: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
 
-        :param body_parameter: Is one of the following types: model, JSON, IO Default value is None.
-        :type body_parameter: JSON or JSON or IO
+        :param body_parameter: Is either a model type or a IO type. Default value is None.
+        :type body_parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1447,23 +1381,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def post_required_class_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """Test explicitly required complex object. Please put null and the client library should throw
-        before the request is sent.
-
-        :param body_parameter: Required.
-        :type body_parameter: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    async def post_required_class_parameter(  # pylint: disable=inconsistent-return-statements
         self, body_parameter: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required complex object. Please put null and the client library should throw
@@ -1481,13 +1398,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post_required_class_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Union[JSON, JSON, IO], **kwargs: Any
+        self, body_parameter: Union[JSON, IO], **kwargs: Any
     ) -> None:
         """Test explicitly required complex object. Please put null and the client library should throw
         before the request is sent.
 
-        :param body_parameter: Is one of the following types: model, JSON, IO Required.
-        :type body_parameter: JSON or JSON or IO
+        :param body_parameter: Is either a model type or a IO type. Required.
+        :type body_parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1566,22 +1483,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def post_optional_class_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """Test explicitly optional complex object. Please put null.
-
-        :param body_parameter: Default value is None.
-        :type body_parameter: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    async def post_optional_class_parameter(  # pylint: disable=inconsistent-return-statements
         self, body_parameter: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional complex object. Please put null.
@@ -1598,12 +1499,12 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post_optional_class_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[Union[JSON, JSON, IO]] = None, **kwargs: Any
+        self, body_parameter: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional complex object. Please put null.
 
-        :param body_parameter: Is one of the following types: model, JSON, IO Default value is None.
-        :type body_parameter: JSON or JSON or IO
+        :param body_parameter: Is either a model type or a IO type. Default value is None.
+        :type body_parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1688,23 +1589,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def post_required_class_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
-        and the client library should throw before the request is sent.
-
-        :param body_parameter: Required.
-        :type body_parameter: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    async def post_required_class_property(  # pylint: disable=inconsistent-return-statements
         self, body_parameter: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
@@ -1722,13 +1606,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post_required_class_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Union[JSON, JSON, IO], **kwargs: Any
+        self, body_parameter: Union[JSON, IO], **kwargs: Any
     ) -> None:
         """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
         and the client library should throw before the request is sent.
 
-        :param body_parameter: Is one of the following types: model, JSON, IO Required.
-        :type body_parameter: JSON or JSON or IO
+        :param body_parameter: Is either a model type or a IO type. Required.
+        :type body_parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1809,22 +1693,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def post_optional_class_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
-
-        :param body_parameter: Default value is None.
-        :type body_parameter: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    async def post_optional_class_property(  # pylint: disable=inconsistent-return-statements
         self, body_parameter: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
@@ -1841,12 +1709,12 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post_optional_class_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[Union[JSON, JSON, IO]] = None, **kwargs: Any
+        self, body_parameter: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
 
-        :param body_parameter: Is one of the following types: model, JSON, IO Default value is None.
-        :type body_parameter: JSON or JSON or IO
+        :param body_parameter: Is either a model type or a IO type. Default value is None.
+        :type body_parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -2134,23 +2002,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def post_required_array_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
-        client library should throw before the request is sent.
-
-        :param body_parameter: Required.
-        :type body_parameter: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    async def post_required_array_property(  # pylint: disable=inconsistent-return-statements
         self, body_parameter: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
@@ -2168,13 +2019,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post_required_array_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Union[JSON, JSON, IO], **kwargs: Any
+        self, body_parameter: Union[JSON, IO], **kwargs: Any
     ) -> None:
         """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
-        :param body_parameter: Is one of the following types: model, JSON, IO Required.
-        :type body_parameter: JSON or JSON or IO
+        :param body_parameter: Is either a model type or a IO type. Required.
+        :type body_parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -2254,22 +2105,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def post_optional_array_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
-
-        :param body_parameter: Default value is None.
-        :type body_parameter: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    async def post_optional_array_property(  # pylint: disable=inconsistent-return-statements
         self, body_parameter: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
@@ -2286,12 +2121,12 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post_optional_array_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[Union[JSON, JSON, IO]] = None, **kwargs: Any
+        self, body_parameter: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
 
-        :param body_parameter: Is one of the following types: model, JSON, IO Default value is None.
-        :type body_parameter: JSON or JSON or IO
+        :param body_parameter: Is either a model type or a IO type. Default value is None.
+        :type body_parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

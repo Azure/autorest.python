@@ -28,15 +28,10 @@ from azure.core.utils import case_insensitive_dict
 from .. import models as _models
 from .._vendor import AutoRestValidationTestMixinABC, _convert_request, _format_url_section
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -236,34 +231,6 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         self,
         resource_group_name: str,
         id: int,
-        body: Optional[JSON] = None,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.Product:
-        """Validates body parameters on the method. See swagger for details.
-
-        :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
-         Required.
-        :type resource_group_name: str
-        :param id: Required int multiple of 10 from 100 to 1000. Required.
-        :type id: int
-        :param body: Default value is None.
-        :type body: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Product or the result of cls(response)
-        :rtype: ~validation.models.Product
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def validation_of_body(
-        self,
-        resource_group_name: str,
-        id: int,
         body: Optional[IO] = None,
         *,
         content_type: str = "application/json",
@@ -289,7 +256,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
     @distributed_trace
     def validation_of_body(
-        self, resource_group_name: str, id: int, body: Optional[Union[_models.Product, JSON, IO]] = None, **kwargs: Any
+        self, resource_group_name: str, id: int, body: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> _models.Product:
         """Validates body parameters on the method. See swagger for details.
 
@@ -298,8 +265,8 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000. Required.
         :type id: int
-        :param body: Is one of the following types: model, JSON, IO Default value is None.
-        :type body: ~validation.models.Product or JSON or IO
+        :param body: Is either a model type or a IO type. Default value is None.
+        :type body: ~validation.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -441,26 +408,6 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
     @overload
     def post_with_constant_in_body(
-        self, body: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.Product:
-        """post_with_constant_in_body.
-
-        :param body: Default value is None.
-        :type body: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword constant_param: Default value is "constant". Note that overriding this default value
-         may result in unsupported behavior.
-        :paramtype constant_param: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Product or the result of cls(response)
-        :rtype: ~validation.models.Product
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def post_with_constant_in_body(
         self, body: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Product:
         """post_with_constant_in_body.
@@ -481,12 +428,12 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
     @distributed_trace
     def post_with_constant_in_body(
-        self, body: Optional[Union[_models.Product, JSON, IO]] = None, **kwargs: Any
+        self, body: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> _models.Product:
         """post_with_constant_in_body.
 
-        :param body: Is one of the following types: model, JSON, IO Default value is None.
-        :type body: ~validation.models.Product or JSON or IO
+        :param body: Is either a model type or a IO type. Default value is None.
+        :type body: ~validation.models.Product or IO
         :keyword constant_param: Default value is "constant". Note that overriding this default value
          may result in unsupported behavior.
         :paramtype constant_param: str

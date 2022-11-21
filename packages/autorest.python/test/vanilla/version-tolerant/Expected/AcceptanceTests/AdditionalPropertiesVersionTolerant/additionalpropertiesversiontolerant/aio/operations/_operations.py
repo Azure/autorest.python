@@ -93,32 +93,6 @@ class PetsOperations:
 
     @overload
     async def create_ap_true(
-        self, create_parameters: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> JSON:
-        """Create a Pet which contains more properties than what is defined.
-
-        :param create_parameters: Required.
-        :type create_parameters: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: JSON object
-        :rtype: JSON
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "id": 0,  # Required.
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
-                }
-        """
-
-    @overload
-    async def create_ap_true(
         self, create_parameters: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """Create a Pet which contains more properties than what is defined.
@@ -144,11 +118,11 @@ class PetsOperations:
         """
 
     @distributed_trace_async
-    async def create_ap_true(self, create_parameters: Union[JSON, JSON, IO], **kwargs: Any) -> JSON:
+    async def create_ap_true(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is one of the following types: model, JSON, IO Required.
-        :type create_parameters: JSON or JSON or IO
+        :param create_parameters: Is either a model type or a IO type. Required.
+        :type create_parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -254,33 +228,6 @@ class PetsOperations:
 
     @overload
     async def create_cat_ap_true(
-        self, create_parameters: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> JSON:
-        """Create a CatAPTrue which contains more properties than what is defined.
-
-        :param create_parameters: Required.
-        :type create_parameters: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: JSON object
-        :rtype: JSON
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "id": 0,  # Required.
-                    "friendly": bool,  # Optional.
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
-                }
-        """
-
-    @overload
-    async def create_cat_ap_true(
         self, create_parameters: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """Create a CatAPTrue which contains more properties than what is defined.
@@ -307,11 +254,11 @@ class PetsOperations:
         """
 
     @distributed_trace_async
-    async def create_cat_ap_true(self, create_parameters: Union[JSON, JSON, IO], **kwargs: Any) -> JSON:
+    async def create_cat_ap_true(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
         """Create a CatAPTrue which contains more properties than what is defined.
 
-        :param create_parameters: Is one of the following types: model, JSON, IO Required.
-        :type create_parameters: JSON or JSON or IO
+        :param create_parameters: Is either a model type or a IO type. Required.
+        :type create_parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -416,32 +363,6 @@ class PetsOperations:
 
     @overload
     async def create_ap_object(
-        self, create_parameters: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> JSON:
-        """Create a Pet which contains more properties than what is defined.
-
-        :param create_parameters: Required.
-        :type create_parameters: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: JSON object
-        :rtype: JSON
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "id": 0,  # Required.
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
-                }
-        """
-
-    @overload
-    async def create_ap_object(
         self, create_parameters: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """Create a Pet which contains more properties than what is defined.
@@ -467,11 +388,11 @@ class PetsOperations:
         """
 
     @distributed_trace_async
-    async def create_ap_object(self, create_parameters: Union[JSON, JSON, IO], **kwargs: Any) -> JSON:
+    async def create_ap_object(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is one of the following types: model, JSON, IO Required.
-        :type create_parameters: JSON or JSON or IO
+        :param create_parameters: Is either a model type or a IO type. Required.
+        :type create_parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -575,32 +496,6 @@ class PetsOperations:
 
     @overload
     async def create_ap_string(
-        self, create_parameters: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> JSON:
-        """Create a Pet which contains more properties than what is defined.
-
-        :param create_parameters: Required.
-        :type create_parameters: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: JSON object
-        :rtype: JSON
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "id": 0,  # Required.
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
-                }
-        """
-
-    @overload
-    async def create_ap_string(
         self, create_parameters: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """Create a Pet which contains more properties than what is defined.
@@ -626,11 +521,11 @@ class PetsOperations:
         """
 
     @distributed_trace_async
-    async def create_ap_string(self, create_parameters: Union[JSON, JSON, IO], **kwargs: Any) -> JSON:
+    async def create_ap_string(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is one of the following types: model, JSON, IO Required.
-        :type create_parameters: JSON or JSON or IO
+        :param create_parameters: Is either a model type or a IO type. Required.
+        :type create_parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -734,32 +629,6 @@ class PetsOperations:
 
     @overload
     async def create_ap_in_properties(
-        self, create_parameters: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> JSON:
-        """Create a Pet which contains more properties than what is defined.
-
-        :param create_parameters: Required.
-        :type create_parameters: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: JSON object
-        :rtype: JSON
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "id": 0,  # Required.
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
-                }
-        """
-
-    @overload
-    async def create_ap_in_properties(
         self, create_parameters: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """Create a Pet which contains more properties than what is defined.
@@ -785,11 +654,11 @@ class PetsOperations:
         """
 
     @distributed_trace_async
-    async def create_ap_in_properties(self, create_parameters: Union[JSON, JSON, IO], **kwargs: Any) -> JSON:
+    async def create_ap_in_properties(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is one of the following types: model, JSON, IO Required.
-        :type create_parameters: JSON or JSON or IO
+        :param create_parameters: Is either a model type or a IO type. Required.
+        :type create_parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -901,36 +770,6 @@ class PetsOperations:
 
     @overload
     async def create_ap_in_properties_with_ap_string(
-        self, create_parameters: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> JSON:
-        """Create a Pet which contains more properties than what is defined.
-
-        :param create_parameters: Required.
-        :type create_parameters: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: JSON object
-        :rtype: JSON
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "@odata.location": "str",  # Required.
-                    "id": 0,  # Required.
-                    "additionalProperties": {
-                        "str": 0.0  # Optional. Dictionary of :code:`<number>`.
-                    },
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
-                }
-        """
-
-    @overload
-    async def create_ap_in_properties_with_ap_string(
         self, create_parameters: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """Create a Pet which contains more properties than what is defined.
@@ -960,13 +799,11 @@ class PetsOperations:
         """
 
     @distributed_trace_async
-    async def create_ap_in_properties_with_ap_string(
-        self, create_parameters: Union[JSON, JSON, IO], **kwargs: Any
-    ) -> JSON:
+    async def create_ap_in_properties_with_ap_string(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is one of the following types: model, JSON, IO Required.
-        :type create_parameters: JSON or JSON or IO
+        :param create_parameters: Is either a model type or a IO type. Required.
+        :type create_parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
