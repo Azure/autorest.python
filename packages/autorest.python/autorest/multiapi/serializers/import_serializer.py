@@ -193,10 +193,4 @@ class FileImportSerializer:
                 _get_import_clauses(typing_imports_dict, "\n    ")
             )
 
-        type_definitions = ""
-        for k, v in self._get_imports_dict(
-            baseline_typing_section=TypingSection.TYPE_DEFINITION,
-            add_conditional_typing=False,
-        ).items():
-            type_definitions += f"\n\n{k} = {v['sync_definition']}"
-        return regular_imports + typing_imports + type_definitions
+        return regular_imports + typing_imports

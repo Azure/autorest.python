@@ -20,10 +20,8 @@ class ImportType(str, Enum):
 
 class TypingSection(str, Enum):
     REGULAR = "regular"  # this import is always a typing import
-    # is a typing import when we're dealing with files that py2 will use, else regular
-    CONDITIONAL = "conditional"
+    CONDITIONAL = "conditional"  # is a typing import when we're dealing with files that py2 will use, else regular
     TYPING = "typing"  # never a typing import
-    TYPE_DEFINITION = "type_definition"  # for type_definitions
 
 
 class MsrestImportType(Enum):
@@ -253,11 +251,6 @@ class FileImport:
             retval.setdefault(i.typing_section, dict()).setdefault(
                 i.import_type, dict()
             ).setdefault(i.module_name, set()).add(name_import)
-        if self.type_definitions:
-            retval[TypingSection.TYPE_DEFINITION] = {  # type: ignore
-                k: vars(v) for k, v in self.type_definitions.items()  # type: ignore
-            }
-
         return retval
 
     def add_msrest_import(

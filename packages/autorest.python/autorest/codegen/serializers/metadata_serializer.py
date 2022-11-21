@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import functools
 import json
-from typing import List, Optional, Set, Tuple, Dict, Union, Iterable
+from typing import List, Optional, Set, Tuple, Dict, Union
 from jinja2 import Environment
 from ..models import (
     OperationGroup,
@@ -55,22 +55,17 @@ def _json_serialize_imports(
         for import_type_key, import_type_value in typing_section_value.items():
             json_package_name_dictionary = {}
             for package_name, name_imports in import_type_value.items():
-                if isinstance(name_imports, str):
-                    json_package_name_dictionary[package_name] = name_imports
-                elif isinstance(name_imports, Iterable):
-                    name_import_ordered_list = []
-                    if name_imports:
-                        name_import_ordered_list = list(name_imports)
-                        name_import_ordered_list.sort(
-                            key=lambda e: e[0]  # type: ignore
-                            if isinstance(e, (list, tuple))
-                            else e
-                            if isinstance(e, str)
-                            else ""
-                        )
-                    json_package_name_dictionary[
-                        package_name
-                    ] = name_import_ordered_list
+                name_import_ordered_list = []
+                if name_imports:
+                    name_import_ordered_list = list(name_imports)
+                    name_import_ordered_list.sort(
+                        key=lambda e: "".join(e)  # type: ignore
+                        if isinstance(e, (list, tuple))
+                        else e
+                        if isinstance(e, str)
+                        else ""
+                    )
+                json_package_name_dictionary[package_name] = name_import_ordered_list
             json_import_type_dictionary[import_type_key] = json_package_name_dictionary
         json_serialize_imports[typing_section_key] = json_import_type_dictionary
     return json.dumps(json_serialize_imports)
@@ -93,8 +88,7 @@ def _mixin_imports(
 class MetadataSerializer:
     def __init__(self, code_model: CodeModel, env: Environment) -> None:
         self.code_model = code_model
-        # we only do one client for multiapi
-        self.client = self.code_model.clients[0]
+        self.client = self.code_model.clients[0]  # we only do one client for multiapi
         self.env = env
 
     def _choose_api_version(self) -> Tuple[str, List[str]]:

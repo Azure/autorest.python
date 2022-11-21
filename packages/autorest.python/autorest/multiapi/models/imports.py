@@ -18,10 +18,8 @@ class ImportType(str, Enum):
 
 class TypingSection(str, Enum):
     REGULAR = "regular"  # this import is always a typing import
-    # is a typing import when we're dealing with files that py2 will use, else regular
-    CONDITIONAL = "conditional"
+    CONDITIONAL = "conditional"  # is a typing import when we're dealing with files that py2 will use, else regular
     TYPING = "typing"  # never a typing import
-    TYPE_DEFINITION = "type_definition"  # for type_definitions
 
 
 class FileImport:
@@ -174,11 +172,6 @@ class FileImport:
         for typing_section, import_type_dict in file_import.imports.items():
             for import_type, package_list in import_type_dict.items():
                 for package_name, module_list in package_list.items():
-                    if isinstance(module_list, str):
-                        self._imports.setdefault(typing_section, dict()).setdefault(
-                            import_type, dict()
-                        )[package_name] = module_list
-                        continue
                     for module_name in module_list:
                         self._add_import(
                             package_name, import_type, module_name, typing_section
