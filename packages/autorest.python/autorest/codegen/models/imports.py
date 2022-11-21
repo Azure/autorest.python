@@ -254,8 +254,8 @@ class FileImport:
                 i.import_type, dict()
             ).setdefault(i.module_name, set()).add(name_import)
         if self.type_definitions:
-            retval[TypingSection.TYPE_DEFINITION] = {  # type: ignore
-                k: vars(v) for k, v in self.type_definitions.items()
+            retval[TypingSection.TYPE_DEFINITION] = {
+                k: vars(v) for k, v in self.type_definitions.items()  # type: ignore
             }
 
         return retval
