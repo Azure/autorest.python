@@ -5,13 +5,12 @@
 # Licensed under the MIT License. See License.txt in the project root for license information.
 # --------------------------------------------------------------------------------------------
 
-# This script is used to execute pyright within a tox environment. Depending on which package is being executed against,
+# This script is used to execute apiview generation within a tox environment. Depending on which package is being executed against,
 # a failure may be suppressed.
 
 from subprocess import check_call, CalledProcessError
 import os
 import logging
-import sys
 from pathlib import Path
 import argparse
 from multiprocessing import Pool
@@ -19,27 +18,27 @@ logging.getLogger().setLevel(logging.INFO)
 
 root_dir = os.path.abspath(os.path.join(os.path.abspath(__file__), "..", "..", ".."))
 
-def _single_dir_pyright(mod):
-    inner_class = next(d for d in mod.iterdir() if d.is_dir() and not str(d).endswith("egg-info"))
+def _single_dir_apiview(mod):
+    # inner_dirs = next(d for d in mod.iterdir() if d.is_dir() and not str(d).endswith("egg-info"))
     try:
         check_call(
             [
-                sys.executable,
-                "-m",
-                "pyright",
-                str(inner_class.absolute()),
+                "apistubgen",
+                "--pkg-path",
+                str(mod.absolute()),
             ]
         )
         return True
+        #   $_.FullName
     except CalledProcessError as e:
         logging.error(
-            "{} exited with pyright error {}".format(inner_class.stem, e.returncode)
+            "{} exited with apiview generation error {}".format(mod.stem, e.returncode)
         )
         return False
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Run pyright against target folder. Add a local custom plugin to the path prior to execution. "
+        description="Run apiview generation against target folder. Add a local custom plugin to the path prior to execution. "
     )
     parser.add_argument(
         "-t",
@@ -53,8 +52,7 @@ if __name__ == "__main__":
         "--generator",
         dest="generator",
         help="The generator we're using. Can be 'legacy', 'version-tolerant'.",
-        required=False,
-        default=None
+        required=True,
     )
     parser.add_argument(
         "-f",
@@ -66,19 +64,16 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    pkg_dir = Path(root_dir) / Path("packages/autorest.python") / Path("test") / Path(args.test_folder)
-    if args.generator:
-        pkg_dir /= Path(args.generator)
-    pkg_dir /= Path("Expected") / Path("AcceptanceTests")
+    pkg_dir = Path(root_dir) / Path("packages/autorest.python") / Path("test") / Path(args.test_folder) / Path(args.generator) / Path("Expected") / Path("AcceptanceTests")
     dirs = [d for d in pkg_dir.iterdir() if d.is_dir()]
     if args.file_name:
         dirs = [d for d in dirs if d.stem.lower() == args.file_name.lower()]
     if len(dirs) > 1:
         with Pool() as pool:
-            result = pool.map(_single_dir_pyright, dirs)
+            result = pool.map(_single_dir_apiview, dirs)
         response = all(result)
     else:
-        response = _single_dir_pyright(dirs[0])
+        response = _single_dir_apiview(dirs[0])
     if not response:
         logging.error(
             "Linting fails"
