@@ -10,6 +10,7 @@ import pytest
 from pathlib import Path
 
 def start_server_process():
+    return
     path = Path(os.path.dirname(__file__)) / Path("../../node_modules/@azure-tools/cadl-ranch-specs")
     os.chdir(path.resolve())
     cmd = "cadl-ranch serve ./http --coverageFile ./cadl-ranch-coverage-python.json"
@@ -18,6 +19,7 @@ def start_server_process():
     return subprocess.Popen(cmd, shell=True, preexec_fn=os.setsid)
 
 def terminate_server_process(process):
+    return
     if os.name == 'nt':
         process.kill()
     else:

@@ -726,6 +726,7 @@ class Serializer(object):
                 data = [self.serialize_data(d, internal_data_type, **kwargs) if d is not None else "" for d in data]
                 if not kwargs.get("skip_quote", False):
                     data = [quote(str(d), safe="") for d in data]
+                kwargs["div"] = kwargs.get("div", ",")
                 return str(self.serialize_iter(data, internal_data_type, **kwargs))
 
             # Not a list, regular serialization
