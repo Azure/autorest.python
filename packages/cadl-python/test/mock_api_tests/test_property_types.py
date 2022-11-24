@@ -81,3 +81,16 @@ def test_datetime_model(client):
 def test_never_model(client: TypesClient):
     assert client.never.get() == models.NeverProperty()
     client.never.put(models.NeverProperty())
+
+
+def test_model_deserialization(client: TypesClient):
+    body = models.ModelProperty(property={"property": "hello"})
+    assert body.property.property == body["property"]["property"]
+    resp = client.model.get()
+    assert resp.property.property == resp["property"]["property"]
+
+    body = models.CollectionsModelProperty(property=[{'property': 'hello'}, {'property': 'world'}])
+    assert body.property[0].property == body["property"][0]["property"]
+    resp = client.collections_model.get()
+    assert resp.property[1].property == resp["property"][1]["property"]
+    

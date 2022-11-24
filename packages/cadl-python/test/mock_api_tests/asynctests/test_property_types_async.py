@@ -85,3 +85,15 @@ async def test_datetime_model(client):
 async def test_never_model(client: TypesClient):
     assert await client.never.get() == models.NeverProperty()
     await client.never.put(models.NeverProperty())
+
+@pytest.mark.asyncio
+async def test_model_deserialization(client: TypesClient):
+    body = models.ModelProperty(property={"property": "hello"})
+    assert body.property.property == body["property"]["property"]
+    resp = await client.model.get()
+    assert resp.property.property == resp["property"]["property"]
+
+    body = models.CollectionsModelProperty(property=[{'property': 'hello'}, {'property': 'world'}])
+    assert body.property[0].property == body["property"][0]["property"]
+    resp = await client.collections_model.get()
+    assert resp.property[1].property == resp["property"][1]["property"]
