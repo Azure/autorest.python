@@ -53,8 +53,7 @@ if __name__ == "__main__":
         "--generator",
         dest="generator",
         help="The generator we're using. Can be 'legacy', 'version-tolerant'.",
-        required=False,
-        default=None
+        required=True,
     )
     parser.add_argument(
         "-f",
