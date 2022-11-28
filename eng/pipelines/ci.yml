@@ -73,13 +73,6 @@ jobs:
             pythonCodeChecks: true
             pythonFolderName: autorest
             regenerate: true
-            # generatedFolders:
-            #   - $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/azure/legacy/Expected/AcceptanceTests
-            #   - $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/azure/version-tolerant/Expected/AcceptanceTests
-            #   - $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/dpg/version-tolerant/Expected/AcceptanceTests
-            #   - $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/multiapi/Expected/AcceptanceTests
-            #   - $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/vanilla/legacy/Expected/AcceptanceTests
-            #   - $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/vanilla/version-tolerant/Expected/AcceptanceTests
 
       - script: |
           pip install pip==20.2
@@ -243,6 +236,11 @@ jobs:
             installCadlRanch: true
             folderName: "cadl-python"
             regenerate: true
+
+      - script: |
+          pip install pip==20.2
+          pip install tox coverage
+        displayName: "Install Env Specific Reqs in Target PyVersion $(PythonVersion)"
 
       - script: tox -e ci
         displayName: 'Execute Mock API tests - Python $(PythonVersion)'
