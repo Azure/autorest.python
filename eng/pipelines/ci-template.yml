@@ -6,7 +6,6 @@ parameters:
     pythonCodeChecks: false
     pythonFolderName: ""
     regenerate: false
-    generatedFolders: []
 
 steps:
     - checkout: self
@@ -89,10 +88,10 @@ steps:
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
       condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
 
-    # - script: inv regenerate
-    #   displayName: "Regenerate Code"
-    #   workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
-    #   condition: and(succeeded(), ${{ parameters.regenerate }})
+    - script: inv regenerate
+      displayName: "Regenerate Code"
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
+      condition: and(succeeded(), ${{ parameters.regenerate }})
 
     - script: node ./eng/scripts/check-for-changed-files.js
       displayName: Fail on regeneration diff

@@ -41,6 +41,14 @@ if __name__ == "__main__":
         description="Run apiview generation against target folder. Add a local custom plugin to the path prior to execution. "
     )
     parser.add_argument(
+        "-p",
+        "--package",
+        dest="package",
+        help="The specific which package to verify, autorest.python or cadl-python. Optional.",
+        required=False,
+        default="autorest.python",
+    )
+    parser.add_argument(
         "-t",
         "--test-folder",
         dest="test_folder",
@@ -61,10 +69,22 @@ if __name__ == "__main__":
         help="The specific file name if you only want to run one file. Optional.",
         required=False,
     )
+    parser.add_argument(
+        "-s",
+        "--subfolder",
+        dest="subfolder",
+        help="The specific sub folder to validate, default to Expected/AcceptanceTests. Optional.",
+        required=False,
+        default="Expected/AcceptanceTests",
+    )
 
     args = parser.parse_args()
 
-    pkg_dir = Path(root_dir) / Path("packages/autorest.python") / Path("test") / Path(args.test_folder) / Path(args.generator) / Path("Expected") / Path("AcceptanceTests")
+    pkg_dir = Path(root_dir) / Path(f"packages/{args.package}") / Path("test") / Path(args.test_folder)
+    if args.generator:
+        pkg_dir /= Path(args.generator)
+    if args.subfolder:
+        pkg_dir /= Path(args.subfolder)
     dirs = [d for d in pkg_dir.iterdir() if d.is_dir()]
     if args.file_name:
         dirs = [d for d in dirs if d.stem.lower() == args.file_name.lower()]

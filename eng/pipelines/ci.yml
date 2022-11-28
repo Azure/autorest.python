@@ -243,12 +243,15 @@ jobs:
             installCadlRanch: true
             folderName: "cadl-python"
             regenerate: true
-            generatedFolders:
-              - $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/test/generated
 
       - script: tox -e ci
         displayName: 'Execute Mock API tests - Python $(PythonVersion)'
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/test/mock_api_tests
+
+      - script: tox -e apiview
+        displayName: 'Validate cadl-python APIView - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.11'))
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/test
 
       - script: cadl-ranch check-coverage http/
         displayName: Check Coverage
