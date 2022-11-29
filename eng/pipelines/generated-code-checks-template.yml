@@ -2,11 +2,11 @@ parameters:
     pythonVersion: ""
     folderName: ""
 
-steps:
-    - variables:
-        pythonCodeChecks: contains(${{ parameters.folderName }}, "version-tolerant")
-        testFolder: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/${{ parameters.folderName }}
+variables:
+    pythonCodeChecks: contains(${{ parameters.folderName }}, "version-tolerant")
+    testFolder: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/${{ parameters.folderName }}
 
+steps:
     - script: tox -e ci
       displayName: Execute ${{ parameters.folderName }} tests - Python ${{ parameters.pythonVersion }}
       workingDirectory: testFolder
