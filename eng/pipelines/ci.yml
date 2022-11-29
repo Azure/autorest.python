@@ -174,7 +174,7 @@ jobs:
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/multiapi
 
       - script: tox -e apiview
-        displayName: 'Validate version-tolerant "dpg" APIView - Python $(PythonVersion)'
+        displayName: 'Validate multiapi APIView - Python $(PythonVersion)'
         condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.11'))
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/multiapi
 
