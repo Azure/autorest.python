@@ -19,22 +19,26 @@ logging.getLogger().setLevel(logging.INFO)
 root_dir = os.path.abspath(os.path.join(os.path.abspath(__file__), "..", "..", ".."))
 
 def _single_dir_apiview(mod):
-    # inner_dirs = next(d for d in mod.iterdir() if d.is_dir() and not str(d).endswith("egg-info"))
-    try:
-        check_call(
-            [
-                "apistubgen",
-                "--pkg-path",
-                str(mod.absolute()),
-            ]
-        )
+    loop = 0
+    while True:
+        try:
+            check_call(
+                [
+                    "apistubgen",
+                    "--pkg-path",
+                    str(mod.absolute()),
+                ]
+            )
+        except CalledProcessError as e:
+            if loop>= 2:    # retry for maximum 3 times because sometimes the apistubgen has transient failure.
+                logging.error(
+                    "{} exited with apiview generation error {}".format(mod.stem, e.returncode)
+                )
+                return False
+            else:
+                continue
         return True
-        #   $_.FullName
-    except CalledProcessError as e:
-        logging.error(
-            "{} exited with apiview generation error {}".format(mod.stem, e.returncode)
-        )
-        return False
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -96,6 +100,6 @@ if __name__ == "__main__":
         response = _single_dir_apiview(dirs[0])
     if not response:
         logging.error(
-            "Linting fails"
+            "APIView validation fails"
         )
         exit(1)
