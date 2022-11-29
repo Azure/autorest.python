@@ -21,12 +21,12 @@ steps:
 
     - script: tox -e lint
       displayName: Lint ${{ parameters.folderName }}
-      condition: and(succeeded(), eq(${{ parameters.pythonVersion }}, '3.7'), in("${{ parameters.folderName }}", "version-tolerant"))
+      condition: and(succeeded(), eq(${{ parameters.pythonVersion }}, '3.7'), contains(${{ parameters.folderName }}, "version-tolerant"))
 
     - script: tox -e mypy
       displayName: Mypy ${{ parameters.folderName }}
-      condition: and(succeeded(), eq(${{ parameters.pythonVersion }}, '3.11'), in("${{ parameters.folderName }}", "version-tolerant"))
+      condition: and(succeeded(), eq(${{ parameters.pythonVersion }}, '3.11'), contains(${{ parameters.folderName }}, "version-tolerant"))
 
     - script: tox -e pyright
       displayName: Pyright ${{ parameters.folderName }}
-      condition: and(succeeded(), eq(${{ parameters.pythonVersion }}, '3.10'), in("${{ parameters.folderName }}", "version-tolerant"))
+      condition: and(succeeded(), eq(${{ parameters.pythonVersion }}, '3.10'), contains(${{ parameters.folderName }}, "version-tolerant"))
