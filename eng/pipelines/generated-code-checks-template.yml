@@ -1,7 +1,7 @@
 parameters:
     pythonVersion: ""
     folderName: ""
-    pythonCodeChecks: and(succeeded(), in(${{ parameters.folderName }}, "version-tolerant"))
+    pythonCodeChecks: and(succeeded(), )
 
 steps:
     - checkout: self
@@ -21,12 +21,12 @@ steps:
 
     - script: tox -e lint
       displayName: Lint ${{ parameters.folderName }}
-      condition: and(succeeded(), eq(${{ parameters.pythonVersion }}, '3.7'), ${{ parameters.pythonCodeChecks }})
+      condition: and(succeeded(), eq(${{ parameters.pythonVersion }}, '3.7'), in(${{ parameters.folderName }}, "version-tolerant"))
 
     - script: tox -e mypy
       displayName: Mypy ${{ parameters.folderName }}
-      condition: and(succeeded(), eq(${{ parameters.pythonVersion }}, '3.11'), ${{ parameters.pythonCodeChecks }})
+      condition: and(succeeded(), eq(${{ parameters.pythonVersion }}, '3.11'), in(${{ parameters.folderName }}, "version-tolerant"))
 
     - script: tox -e pyright
       displayName: Pyright ${{ parameters.folderName }}
-      condition: and(succeeded(), eq(${{ parameters.pythonVersion }}, '3.10'), ${{ parameters.pythonCodeChecks }})
+      condition: and(succeeded(), eq(${{ parameters.pythonVersion }}, '3.10'), in(${{ parameters.folderName }}, "version-tolerant"))
