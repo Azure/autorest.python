@@ -80,23 +80,23 @@ jobs:
         displayName: "Install Env Specific Reqs in Target PyVersion $(PythonVersion)"
       - template: generated-code-checks-template.yml
         parameters:
-            pythonVersion: variables['PythonVersion']
+            pythonVersion: ${{ variables.PythonVersion }}
             folderName: "azure/legacy"
       - template: generated-code-checks-template.yml
         parameters:
-            pythonVersion: variables['PythonVersion']
+            pythonVersion: ${{ variables.PythonVersion }}
             folderName: "azure/version-tolerant"
       - template: generated-code-checks-template.yml
         parameters:
-            pythonVersion: variables['PythonVersion']
+            pythonVersion: ${{ variables.PythonVersion }}
             folderName: "vanilla/legacy"
       - template: generated-code-checks-template.yml
         parameters:
-            pythonVersion: variables['PythonVersion']
+            pythonVersion: ${{ variables.PythonVersion }}
             folderName: "vanilla/version-tolerant"
       - template: generated-code-checks-template.yml
         parameters:
-            pythonVersion: variables['PythonVersion']
+            pythonVersion: ${{ variables.PythonVersion }}
             folderName: "dpg/version-tolerant"
       - script: tox -e ci
         displayName: 'Execute "multiapi" Tests - Python $(PythonVersion)'
