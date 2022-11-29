@@ -82,6 +82,7 @@ jobs:
         parameters:
             pythonVersion: variables['PythonVersion']
             folderName: "azure/legacy"
+            pythonCodeChecks: False
       - template: generated-code-checks-template.yml
         parameters:
             pythonVersion: variables['PythonVersion']
@@ -90,6 +91,7 @@ jobs:
         parameters:
             pythonVersion: variables['PythonVersion']
             folderName: "vanilla/legacy"
+            pythonCodeChecks: False
       - template: generated-code-checks-template.yml
         parameters:
             pythonVersion: variables['PythonVersion']
