@@ -1,0 +1,35 @@
+parameters:
+    pythonVersion: ""
+    folderName: ""
+
+variables:
+    testFolder: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/${{ parameters.folderName }}
+    pythonCodeChecks: and(failed(), in(folderName, "legacy"))
+
+steps:
+    - checkout: self
+    - checkout: azure-sdk-tools
+    - template: eng/common/testproxy/test-proxy-tool.yml@azure-sdk-tools
+      parameters:
+          TestProxy: true
+          templateRoot: azure-sdk-tools
+
+    - script: cd $(testFolder)
+
+    - script: tox -e ci
+      displayName: Execute ${{ parameters.folderName }} tests - Python ${{ parameters.pythonVersion }}
+
+    - script: tox -e apiview
+      displayName: ApiView ${{ parameters.folderName }}
+
+    - script: tox -e lint
+      displayName: Lint ${{ parameters.folderName }}
+      condition: and(succeeded(), eq(${{ parameters.pythonVersion }}, '3.7'), $(pythonCodeChecks))
+
+    - script: tox -e mypy
+      displayName: Mypy ${{ parameters.folderName }}
+      condition: and(succeeded(), eq(${{ parameters.pythonVersion }}, '3.11'), $(pythonCodeChecks))
+
+    - script: tox -e pyright
+      displayName: Pyright ${{ parameters.folderName }}
+      condition: and(succeeded(), eq(${{ parameters.pythonVersion }}, '3.10'), $(pythonCodeChecks))
