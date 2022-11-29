@@ -1,29 +1,28 @@
 parameters:
     pythonVersion: ""
     folderName: ""
-    testFolder: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/${{ parameters.folderName }}
     pythonCodeChecks: true
 
 steps:
     - script: tox -e ci
       displayName: Execute ${{ parameters.folderName }} tests - Python ${{ parameters.pythonVersion }}
-      workingDirectory: ${{ parameters.testFolder }}
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/${{ parameters.folderName }}
 
     - script: tox -e apiview
       displayName: ApiView ${{ parameters.folderName }}
-      workingDirectory: ${{ parameters.testFolder }}
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/${{ parameters.folderName }}
 
     - script: tox -e lint
       displayName: Lint ${{ parameters.folderName }}
       condition: and(succeeded(), eq(${{ parameters.pythonVersion }}, '3.7'), ${{ parameters.pythonCodeChecks }})
-      workingDirectory: ${{ parameters.testFolder }}
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/${{ parameters.folderName }}
 
     - script: tox -e mypy
       displayName: Mypy ${{ parameters.folderName }}
       condition: and(succeeded(), eq(${{ parameters.pythonVersion }}, '3.11'), ${{ parameters.pythonCodeChecks }})
-      workingDirectory: ${{ parameters.testFolder }}
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/${{ parameters.folderName }}
 
     - script: tox -e pyright
       displayName: Pyright ${{ parameters.folderName }}
       condition: and(succeeded(), eq(${{ parameters.pythonVersion }}, '3.10'), ${{ parameters.pythonCodeChecks }})
-      workingDirectory: ${{ parameters.testFolder }}
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/${{ parameters.folderName }}
