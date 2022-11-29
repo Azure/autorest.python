@@ -1,31 +1,29 @@
 parameters:
     pythonVersion: ""
     folderName: ""
-
-variables:
-    pythonCodeChecks: contains(${{ parameters.folderName }}, "version-tolerant")
     testFolder: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/${{ parameters.folderName }}
+    pythonCodeChecks: true
 
 steps:
     - script: tox -e ci
       displayName: Execute ${{ parameters.folderName }} tests - Python ${{ parameters.pythonVersion }}
-      workingDirectory: testFolder
+      workingDirectory: ${{ parameters.testFolder }}
 
     - script: tox -e apiview
       displayName: ApiView ${{ parameters.folderName }}
-      workingDirectory: testFolder
+      workingDirectory: ${{ parameters.testFolder }}
 
     - script: tox -e lint
       displayName: Lint ${{ parameters.folderName }}
-      condition: and(succeeded(), eq(${{ parameters.pythonVersion }}, '3.7'), $(pythonCodeChecks))
-      workingDirectory: testFolder
+      condition: and(succeeded(), eq(${{ parameters.pythonVersion }}, '3.7'), ${{ parameters.pythonCodeChecks }})
+      workingDirectory: ${{ parameters.testFolder }}
 
     - script: tox -e mypy
       displayName: Mypy ${{ parameters.folderName }}
-      condition: and(succeeded(), eq(${{ parameters.pythonVersion }}, '3.11'), $(pythonCodeChecks))
-      workingDirectory: testFolder
+      condition: and(succeeded(), eq(${{ parameters.pythonVersion }}, '3.11'), ${{ parameters.pythonCodeChecks }})
+      workingDirectory: ${{ parameters.testFolder }}
 
     - script: tox -e pyright
       displayName: Pyright ${{ parameters.folderName }}
-      condition: and(succeeded(), eq(${{ parameters.pythonVersion }}, '3.10'), $(pythonCodeChecks))
-      workingDirectory: testFolder
+      condition: and(succeeded(), eq(${{ parameters.pythonVersion }}, '3.10'), ${{ parameters.pythonCodeChecks }})
+      workingDirectory: ${{ parameters.testFolder }}
