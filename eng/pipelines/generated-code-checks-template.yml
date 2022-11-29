@@ -1,10 +1,7 @@
 parameters:
     pythonVersion: ""
     folderName: ""
-
-variables:
-    testFolder: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/${{ parameters.folderName }}
-    pythonCodeChecks: and(failed(), in(folderName, "legacy"))
+    pythonCodeChecks: and(succeeded(), in(${{ parameters.folderName }}, "version-tolerant"))
 
 steps:
     - checkout: self
@@ -14,7 +11,7 @@ steps:
           TestProxy: true
           templateRoot: azure-sdk-tools
 
-    - script: cd $(testFolder)
+    - script: cd $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/${{ parameters.folderName }}
 
     - script: tox -e ci
       displayName: Execute ${{ parameters.folderName }} tests - Python ${{ parameters.pythonVersion }}
@@ -24,12 +21,12 @@ steps:
 
     - script: tox -e lint
       displayName: Lint ${{ parameters.folderName }}
-      condition: and(succeeded(), eq(${{ parameters.pythonVersion }}, '3.7'), $(pythonCodeChecks))
+      condition: and(succeeded(), eq(${{ parameters.pythonVersion }}, '3.7'), ${{ parameters.pythonCodeChecks }})
 
     - script: tox -e mypy
       displayName: Mypy ${{ parameters.folderName }}
-      condition: and(succeeded(), eq(${{ parameters.pythonVersion }}, '3.11'), $(pythonCodeChecks))
+      condition: and(succeeded(), eq(${{ parameters.pythonVersion }}, '3.11'), ${{ parameters.pythonCodeChecks }})
 
     - script: tox -e pyright
       displayName: Pyright ${{ parameters.folderName }}
-      condition: and(succeeded(), eq(${{ parameters.pythonVersion }}, '3.10'), $(pythonCodeChecks))
+      condition: and(succeeded(), eq(${{ parameters.pythonVersion }}, '3.10'), ${{ parameters.pythonCodeChecks }})
