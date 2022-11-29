@@ -70,6 +70,12 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
             "Can not generate version tolerant with --client-side-validation. "
         )
 
+    if not (options["azure_arm"] or options["version_tolerant"]):
+        _LOGGER.warning(
+            "You are generating with options that would not allow the SDK to be shipped as an official Azure SDK. "
+            "Please read https://aka.ms/azsdk/dpcodegen for more details."
+        )
+
 
 _LOGGER = logging.getLogger(__name__)
 
