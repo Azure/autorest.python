@@ -4,13 +4,6 @@ parameters:
     pythonCodeChecks: true
 
 steps:
-    - checkout: self
-    - checkout: azure-sdk-tools
-    - template: eng/common/testproxy/test-proxy-tool.yml@azure-sdk-tools
-      parameters:
-          TestProxy: true
-          templateRoot: azure-sdk-tools
-
     - script: cd $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/${{ parameters.folderName }}
 
     - script: tox -e ci
