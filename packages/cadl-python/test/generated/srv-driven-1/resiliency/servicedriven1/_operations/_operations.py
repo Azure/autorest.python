@@ -281,13 +281,33 @@ class ServiceDriven1ClientOperationsMixin(ServiceDriven1ClientMixinABC):
 
     @overload
     def post_parameters(
-        self, parameter: Union[_models.PostInput, JSON], *, content_type: str = "application/json", **kwargs: Any
+        self, parameter: _models.PostInput, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Message:
         """POST a JSON.
 
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
          "http://example.org/myimage.jpeg" }. Required.
-        :type parameter: ~resiliency.servicedriven1.models.PostInput or JSON
+        :type parameter: ~resiliency.servicedriven1.models.PostInput
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword content_type_path: Default value is "json". Note that overriding this default value
+         may result in unsupported behavior.
+        :paramtype content_type_path: str
+        :return: Message. The Message is compatible with MutableMapping
+        :rtype: ~resiliency.servicedriven1.models.Message
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def post_parameters(
+        self, parameter: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Message:
+        """POST a JSON.
+
+        :param parameter: I am a body parameter. My only valid JSON entry is { url:
+         "http://example.org/myimage.jpeg" }. Required.
+        :type parameter: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -324,7 +344,7 @@ class ServiceDriven1ClientOperationsMixin(ServiceDriven1ClientMixinABC):
         """POST a JSON.
 
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
-         "http://example.org/myimage.jpeg" }. Is either a model type or a IO type. Required.
+         "http://example.org/myimage.jpeg" }. Is one of the following types: model, JSON, IO Required.
         :type parameter: ~resiliency.servicedriven1.models.PostInput or JSON or IO
         :keyword content_type_path: Default value is "json". Note that overriding this default value
          may result in unsupported behavior.

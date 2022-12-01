@@ -192,3 +192,7 @@ class BaseType(BaseModel, ABC):  # pylint: disable=too-many-public-methods
     def serialization_constraints(self) -> List[str]:
         """Whether there are any serialization constraints when serializing this type."""
         return []
+
+    @property
+    def type_description(self) -> str:
+        return self.type  # type: ignore

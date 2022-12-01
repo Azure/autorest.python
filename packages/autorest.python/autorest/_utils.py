@@ -96,6 +96,7 @@ KNOWN_TYPES: Dict[str, Dict[str, Any]] = {
     "string": {"type": "string"},
     "binary": {"type": "binary"},
     "anydict": {"type": "dict", "elementType": {"type": "any"}},
+    "any-object": {"type": "any-object"},
 }
 
 JSON_REGEXP = re.compile(r"^(application|text)/(.+\+)?json$")

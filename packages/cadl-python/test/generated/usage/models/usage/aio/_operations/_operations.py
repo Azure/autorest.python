@@ -45,12 +45,28 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class UsageClientOperationsMixin(UsageClientMixinABC):
     @overload
     async def input(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.InputRecord, JSON], *, content_type: str = "application/json", **kwargs: Any
+        self, input: _models.InputRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """input.
 
         :param input: Required.
-        :type input: ~models.usage.models.InputRecord or JSON
+        :type input: ~models.usage.models.InputRecord
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def input(  # pylint: disable=inconsistent-return-statements
+        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """input.
+
+        :param input: Required.
+        :type input: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -81,7 +97,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
     ) -> None:
         """input.
 
-        :param input: Is either a model type or a IO type. Required.
+        :param input: Is one of the following types: model, JSON, IO Required.
         :type input: ~models.usage.models.InputRecord or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -178,12 +194,28 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
 
     @overload
     async def input_and_output(
-        self, body: Union[_models.InputOutputRecord, JSON], *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.InputOutputRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.InputOutputRecord:
         """input_and_output.
 
         :param body: Required.
-        :type body: ~models.usage.models.InputOutputRecord or JSON
+        :type body: ~models.usage.models.InputOutputRecord
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: InputOutputRecord. The InputOutputRecord is compatible with MutableMapping
+        :rtype: ~models.usage.models.InputOutputRecord
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def input_and_output(
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.InputOutputRecord:
+        """input_and_output.
+
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -214,7 +246,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
     ) -> _models.InputOutputRecord:
         """input_and_output.
 
-        :param body: Is either a model type or a IO type. Required.
+        :param body: Is one of the following types: model, JSON, IO Required.
         :type body: ~models.usage.models.InputOutputRecord or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.

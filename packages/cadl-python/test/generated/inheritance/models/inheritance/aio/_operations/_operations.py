@@ -51,12 +51,28 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
     @overload
     async def post_valid(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.Siamese, JSON], *, content_type: str = "application/json", **kwargs: Any
+        self, input: _models.Siamese, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """post_valid.
 
         :param input: Required.
-        :type input: ~models.inheritance.models.Siamese or JSON
+        :type input: ~models.inheritance.models.Siamese
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def post_valid(  # pylint: disable=inconsistent-return-statements
+        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """post_valid.
+
+        :param input: Required.
+        :type input: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -87,7 +103,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
     ) -> None:
         """post_valid.
 
-        :param input: Is either a model type or a IO type. Required.
+        :param input: Is one of the following types: model, JSON, IO Required.
         :type input: ~models.inheritance.models.Siamese or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -184,12 +200,26 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
 
     @overload
     async def put_valid(
-        self, input: Union[_models.Siamese, JSON], *, content_type: str = "application/json", **kwargs: Any
+        self, input: _models.Siamese, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Siamese:
         """put_valid.
 
         :param input: Required.
-        :type input: ~models.inheritance.models.Siamese or JSON
+        :type input: ~models.inheritance.models.Siamese
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: Siamese. The Siamese is compatible with MutableMapping
+        :rtype: ~models.inheritance.models.Siamese
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_valid(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> _models.Siamese:
+        """put_valid.
+
+        :param input: Required.
+        :type input: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -216,7 +246,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
     async def put_valid(self, input: Union[_models.Siamese, JSON, IO], **kwargs: Any) -> _models.Siamese:
         """put_valid.
 
-        :param input: Is either a model type or a IO type. Required.
+        :param input: Is one of the following types: model, JSON, IO Required.
         :type input: ~models.inheritance.models.Siamese or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -317,12 +347,28 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
 
     @overload
     async def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.Fish, JSON], *, content_type: str = "application/json", **kwargs: Any
+        self, input: _models.Fish, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put_model.
 
         :param input: Required.
-        :type input: ~models.inheritance.models.Fish or JSON
+        :type input: ~models.inheritance.models.Fish
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_model(  # pylint: disable=inconsistent-return-statements
+        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """put_model.
+
+        :param input: Required.
+        :type input: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -353,7 +399,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
     ) -> None:
         """put_model.
 
-        :param input: Is either a model type or a IO type. Required.
+        :param input: Is one of the following types: model, JSON, IO Required.
         :type input: ~models.inheritance.models.Fish or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -450,12 +496,28 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
 
     @overload
     async def put_recursive_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.Fish, JSON], *, content_type: str = "application/json", **kwargs: Any
+        self, input: _models.Fish, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put_recursive_model.
 
         :param input: Required.
-        :type input: ~models.inheritance.models.Fish or JSON
+        :type input: ~models.inheritance.models.Fish
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_recursive_model(  # pylint: disable=inconsistent-return-statements
+        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """put_recursive_model.
+
+        :param input: Required.
+        :type input: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -486,7 +548,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
     ) -> None:
         """put_recursive_model.
 
-        :param input: Is either a model type or a IO type. Required.
+        :param input: Is one of the following types: model, JSON, IO Required.
         :type input: ~models.inheritance.models.Fish or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
