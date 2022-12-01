@@ -51,12 +51,8 @@ class CombinedType(BaseType):
         self, *, is_operation_file: bool  # pylint: disable=unused-argument
     ) -> str:
         if len(self.types) == 2:
-            return (
-                f"Is either a {self.types[0].type} type or a {self.types[1].type} type."
-            )
-        return (
-            f"Is one of the following types: {', '.join([t.type for t in self.types])}"
-        )
+            return f"Is either a {self.types[0].type_description} type or a {self.types[1].type_description} type."
+        return f"Is one of the following types: {', '.join([t.type_description for t in self.types])}"
 
     def docstring_text(self, **kwargs: Any) -> str:
         return " or ".join(t.docstring_text(**kwargs) for t in self.types)

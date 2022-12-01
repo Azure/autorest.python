@@ -199,6 +199,10 @@ class AnyObjectType(PrimitiveType):
         file_import.define_mutable_mapping_type()
         return file_import
 
+    @property
+    def type_description(self) -> str:
+        return "JSON"
+
 
 class NumberType(PrimitiveType):  # pylint: disable=abstract-method
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:

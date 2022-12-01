@@ -88,12 +88,28 @@ class ReadonlyPropertiesClientOperationsMixin(ReadonlyPropertiesClientMixinABC):
 
     @overload
     async def set_optional_property_model(
-        self, input: Union[_models.RoundTripModel, JSON], *, content_type: str = "application/json", **kwargs: Any
+        self, input: _models.RoundTripModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.RoundTripModel:
         """set_optional_property_model.
 
         :param input: Required.
-        :type input: ~readonlyproperties.models.RoundTripModel or JSON
+        :type input: ~readonlyproperties.models.RoundTripModel
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: RoundTripModel. The RoundTripModel is compatible with MutableMapping
+        :rtype: ~readonlyproperties.models.RoundTripModel
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def set_optional_property_model(
+        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.RoundTripModel:
+        """set_optional_property_model.
+
+        :param input: Required.
+        :type input: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -124,7 +140,7 @@ class ReadonlyPropertiesClientOperationsMixin(ReadonlyPropertiesClientMixinABC):
     ) -> _models.RoundTripModel:
         """set_optional_property_model.
 
-        :param input: Is either a model type or a IO type. Required.
+        :param input: Is one of the following types: model, JSON, IO Required.
         :type input: ~readonlyproperties.models.RoundTripModel or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
