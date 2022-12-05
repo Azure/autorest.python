@@ -85,6 +85,11 @@ jobs:
 
       - script: tox -e ci
         displayName: 'Execute version-tolerant "azure" Tests - Python $(PythonVersion)'
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/azure/version-tolerant
+
+      - script: tox -e apiview
+        displayName: 'Validate legacy "azure" APIView - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.11'))
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/azure/legacy
 
       - script: tox -e lint
@@ -102,13 +107,18 @@ jobs:
         condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.10'))
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/azure/version-tolerant
 
-      - script: tox -e pyright
-        displayName: 'Pyright version-tolerant "azure" Tests - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.10'))
+      - script: tox -e apiview
+        displayName: 'Validate version-tolerant "azure" APIView - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.11'))
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/azure/version-tolerant
 
       - script: tox -e ci
         displayName: 'Execute legacy "vanilla" Tests - Python $(PythonVersion)'
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/vanilla/legacy
+        
+      - script: tox -e apiview
+        displayName: 'Validate legacy "vanilla" APIView - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.11'))
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/vanilla/legacy
 
       - script: tox -e ci
@@ -130,9 +140,9 @@ jobs:
         condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.10'))
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/vanilla/version-tolerant
 
-      - script: tox -e pyright
-        displayName: 'Pyright version-tolerant "vanilla" Tests - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.10'))
+      - script: tox -e apiview
+        displayName: 'Validate version-tolerant "vanilla" APIView - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.11'))
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/vanilla/version-tolerant
 
       - script: tox -e ci
@@ -154,13 +164,18 @@ jobs:
         condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.10'))
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/dpg/version-tolerant
 
-      - script: tox -e pyright
-        displayName: 'Pyright version-tolerant "dpg" Tests - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.10'))
+      - script: tox -e apiview
+        displayName: 'Validate version-tolerant "dpg" APIView - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.11'))
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/dpg/version-tolerant
 
       - script: tox -e ci
         displayName: 'Execute "multiapi" Tests - Python $(PythonVersion)'
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/multiapi
+
+      - script: tox -e apiview
+        displayName: 'Validate multiapi APIView - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.11'))
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/multiapi
 
       - script: |
@@ -222,9 +237,19 @@ jobs:
             folderName: "cadl-python"
             regenerate: true
 
+      - script: |
+          pip install pip==20.2
+          pip install tox coverage
+        displayName: "Install Env Specific Reqs in Target PyVersion $(PythonVersion)"
+
       - script: tox -e ci
         displayName: 'Execute Mock API tests - Python $(PythonVersion)'
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/test/mock_api_tests
+
+      - script: tox -e apiview
+        displayName: 'Validate cadl-python APIView - Python $(PythonVersion)'
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.11'))
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/test
 
       - script: cadl-ranch check-coverage http/
         displayName: Check Coverage

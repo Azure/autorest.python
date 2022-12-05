@@ -523,12 +523,28 @@ class BooleanOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BooleanProperty, JSON], *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.BooleanProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: ~models.property.types.models.BooleanProperty or JSON
+        :type body: ~models.property.types.models.BooleanProperty
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """put.
+
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -559,7 +575,7 @@ class BooleanOperations:
     ) -> None:
         """put.
 
-        :param body: Is either a model type or a IO type. Required.
+        :param body: Is one of the following types: model, JSON, IO Required.
         :type body: ~models.property.types.models.BooleanProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -674,12 +690,28 @@ class StringOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringProperty, JSON], *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.StringProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: ~models.property.types.models.StringProperty or JSON
+        :type body: ~models.property.types.models.StringProperty
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """put.
+
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -710,7 +742,7 @@ class StringOperations:
     ) -> None:
         """put.
 
-        :param body: Is either a model type or a IO type. Required.
+        :param body: Is one of the following types: model, JSON, IO Required.
         :type body: ~models.property.types.models.StringProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -825,12 +857,28 @@ class BytesOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BytesProperty, JSON], *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.BytesProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: ~models.property.types.models.BytesProperty or JSON
+        :type body: ~models.property.types.models.BytesProperty
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """put.
+
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -861,7 +909,7 @@ class BytesOperations:
     ) -> None:
         """put.
 
-        :param body: Is either a model type or a IO type. Required.
+        :param body: Is one of the following types: model, JSON, IO Required.
         :type body: ~models.property.types.models.BytesProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -976,12 +1024,28 @@ class IntOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IntProperty, JSON], *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.IntProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: ~models.property.types.models.IntProperty or JSON
+        :type body: ~models.property.types.models.IntProperty
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """put.
+
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1012,7 +1076,7 @@ class IntOperations:
     ) -> None:
         """put.
 
-        :param body: Is either a model type or a IO type. Required.
+        :param body: Is one of the following types: model, JSON, IO Required.
         :type body: ~models.property.types.models.IntProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1127,12 +1191,28 @@ class FloatOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.FloatProperty, JSON], *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.FloatProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: ~models.property.types.models.FloatProperty or JSON
+        :type body: ~models.property.types.models.FloatProperty
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """put.
+
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1163,7 +1243,7 @@ class FloatOperations:
     ) -> None:
         """put.
 
-        :param body: Is either a model type or a IO type. Required.
+        :param body: Is one of the following types: model, JSON, IO Required.
         :type body: ~models.property.types.models.FloatProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1278,12 +1358,28 @@ class DatetimeOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DatetimeProperty, JSON], *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.DatetimeProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: ~models.property.types.models.DatetimeProperty or JSON
+        :type body: ~models.property.types.models.DatetimeProperty
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """put.
+
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1314,7 +1410,7 @@ class DatetimeOperations:
     ) -> None:
         """put.
 
-        :param body: Is either a model type or a IO type. Required.
+        :param body: Is one of the following types: model, JSON, IO Required.
         :type body: ~models.property.types.models.DatetimeProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1429,12 +1525,28 @@ class DurationOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DurationProperty, JSON], *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.DurationProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: ~models.property.types.models.DurationProperty or JSON
+        :type body: ~models.property.types.models.DurationProperty
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """put.
+
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1465,7 +1577,7 @@ class DurationOperations:
     ) -> None:
         """put.
 
-        :param body: Is either a model type or a IO type. Required.
+        :param body: Is one of the following types: model, JSON, IO Required.
         :type body: ~models.property.types.models.DurationProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1580,12 +1692,28 @@ class EnumOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.EnumProperty, JSON], *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.EnumProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: ~models.property.types.models.EnumProperty or JSON
+        :type body: ~models.property.types.models.EnumProperty
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """put.
+
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1616,7 +1744,7 @@ class EnumOperations:
     ) -> None:
         """put.
 
-        :param body: Is either a model type or a IO type. Required.
+        :param body: Is one of the following types: model, JSON, IO Required.
         :type body: ~models.property.types.models.EnumProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1731,16 +1859,28 @@ class ExtensibleEnumOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[_models.ExtensibleEnumProperty, JSON],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, body: _models.ExtensibleEnumProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: ~models.property.types.models.ExtensibleEnumProperty or JSON
+        :type body: ~models.property.types.models.ExtensibleEnumProperty
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """put.
+
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1771,7 +1911,7 @@ class ExtensibleEnumOperations:
     ) -> None:
         """put.
 
-        :param body: Is either a model type or a IO type. Required.
+        :param body: Is one of the following types: model, JSON, IO Required.
         :type body: ~models.property.types.models.ExtensibleEnumProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1886,12 +2026,28 @@ class ModelOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ModelProperty, JSON], *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.ModelProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: ~models.property.types.models.ModelProperty or JSON
+        :type body: ~models.property.types.models.ModelProperty
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """put.
+
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1922,7 +2078,7 @@ class ModelOperations:
     ) -> None:
         """put.
 
-        :param body: Is either a model type or a IO type. Required.
+        :param body: Is one of the following types: model, JSON, IO Required.
         :type body: ~models.property.types.models.ModelProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -2038,16 +2194,28 @@ class CollectionsStringOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[_models.CollectionsStringProperty, JSON],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, body: _models.CollectionsStringProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: ~models.property.types.models.CollectionsStringProperty or JSON
+        :type body: ~models.property.types.models.CollectionsStringProperty
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """put.
+
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2078,7 +2246,7 @@ class CollectionsStringOperations:
     ) -> None:
         """put.
 
-        :param body: Is either a model type or a IO type. Required.
+        :param body: Is one of the following types: model, JSON, IO Required.
         :type body: ~models.property.types.models.CollectionsStringProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -2193,16 +2361,28 @@ class CollectionsIntOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[_models.CollectionsIntProperty, JSON],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, body: _models.CollectionsIntProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: ~models.property.types.models.CollectionsIntProperty or JSON
+        :type body: ~models.property.types.models.CollectionsIntProperty
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """put.
+
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2233,7 +2413,7 @@ class CollectionsIntOperations:
     ) -> None:
         """put.
 
-        :param body: Is either a model type or a IO type. Required.
+        :param body: Is one of the following types: model, JSON, IO Required.
         :type body: ~models.property.types.models.CollectionsIntProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -2349,16 +2529,28 @@ class CollectionsModelOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[_models.CollectionsModelProperty, JSON],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, body: _models.CollectionsModelProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: ~models.property.types.models.CollectionsModelProperty or JSON
+        :type body: ~models.property.types.models.CollectionsModelProperty
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """put.
+
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2389,7 +2581,7 @@ class CollectionsModelOperations:
     ) -> None:
         """put.
 
-        :param body: Is either a model type or a IO type. Required.
+        :param body: Is one of the following types: model, JSON, IO Required.
         :type body: ~models.property.types.models.CollectionsModelProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -2505,16 +2697,28 @@ class DictionaryStringOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[_models.DictionaryStringProperty, JSON],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, body: _models.DictionaryStringProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: ~models.property.types.models.DictionaryStringProperty or JSON
+        :type body: ~models.property.types.models.DictionaryStringProperty
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """put.
+
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2545,7 +2749,7 @@ class DictionaryStringOperations:
     ) -> None:
         """put.
 
-        :param body: Is either a model type or a IO type. Required.
+        :param body: Is one of the following types: model, JSON, IO Required.
         :type body: ~models.property.types.models.DictionaryStringProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -2660,12 +2864,28 @@ class NeverOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.NeverProperty, JSON], *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.NeverProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: ~models.property.types.models.NeverProperty or JSON
+        :type body: ~models.property.types.models.NeverProperty
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """put.
+
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2696,7 +2916,7 @@ class NeverOperations:
     ) -> None:
         """put.
 
-        :param body: Is either a model type or a IO type. Required.
+        :param body: Is one of the following types: model, JSON, IO Required.
         :type body: ~models.property.types.models.NeverProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
