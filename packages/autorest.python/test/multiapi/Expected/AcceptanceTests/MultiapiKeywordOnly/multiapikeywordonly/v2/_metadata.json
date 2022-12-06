@@ -1,0 +1,114 @@
+{
+    "chosen_version": "2.0.0",
+    "total_api_version_list": ["2.0.0"],
+    "client": {
+        "name": "MultiapiCustomBaseUrlServiceClient",
+        "filename": "_multiapi_custom_base_url_service_client",
+        "description": "Service client for multiapi custom base url testing.",
+        "host_value": null,
+        "parameterized_host_template": "\u0027{Endpoint}/multiapiCustomBaseUrl/v2\u0027",
+        "azure_arm": false,
+        "has_lro_operations": false,
+        "client_side_validation": false,
+        "sync_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Optional\"]}}, \"regular\": {\"azurecore\": {\"azure.core\": [\"PipelineClient\"], \"azure.profiles\": [\"KnownProfiles\", \"ProfileDefinition\"], \"azure.profiles.multiapiclient\": [\"MultiApiClientMixin\"]}, \"local\": {\"._configuration\": [\"MultiapiCustomBaseUrlServiceClientConfiguration\"], \".._serialization\": [\"Deserializer\", \"Serializer\"], \"._operations_mixin\": [\"MultiapiCustomBaseUrlServiceClientOperationsMixin\"]}}, \"typing\": {\"azurecore\": {\"azure.core.credentials\": [\"TokenCredential\"]}}}",
+        "async_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Optional\"]}}, \"regular\": {\"azurecore\": {\"azure.core\": [\"AsyncPipelineClient\"], \"azure.profiles\": [\"KnownProfiles\", \"ProfileDefinition\"], \"azure.profiles.multiapiclient\": [\"MultiApiClientMixin\"]}, \"local\": {\"._configuration\": [\"MultiapiCustomBaseUrlServiceClientConfiguration\"], \"..._serialization\": [\"Deserializer\", \"Serializer\"], \"._operations_mixin\": [\"MultiapiCustomBaseUrlServiceClientOperationsMixin\"]}}, \"typing\": {\"azurecore\": {\"azure.core.credentials_async\": [\"AsyncTokenCredential\"]}}}"
+    },
+    "global_parameters": {
+        "sync": {
+            "credential": {
+                "signature": "credential: \"TokenCredential\",",
+                "description": "Credential needed for the client to connect to Azure. Required.",
+                "docstring_type": "~azure.core.credentials.TokenCredential",
+                "required": true,
+                "method_location": "positional"
+            },
+            "endpoint": {
+                "signature": "endpoint: str,",
+                "description": "Pass in https://localhost:3000. Required.",
+                "docstring_type": "str",
+                "required": true,
+                "method_location": "positional"
+            }
+        },
+        "async": {
+            "credential": {
+                "signature": "credential: \"AsyncTokenCredential\",",
+                "description": "Credential needed for the client to connect to Azure. Required.",
+                "docstring_type": "~azure.core.credentials_async.AsyncTokenCredential",
+                "required": true
+            },
+            "endpoint": {
+                "signature": "endpoint: str,",
+                "description": "Pass in https://localhost:3000. Required.",
+                "docstring_type": "str",
+                "required": true
+            }
+        },
+        "constant": {
+        },
+        "call": "credential, endpoint",
+        "service_client_specific": {
+            "sync": {
+                "api_version": {
+                    "signature": "api_version: Optional[str]=None,",
+                    "description": "API version to use if no profile is provided, or if missing in profile.",
+                    "docstring_type": "str",
+                    "required": false,
+                    "method_location": "keywordOnly"
+                },
+                "profile": {
+                    "signature": "profile: KnownProfiles=KnownProfiles.default,",
+                    "description": "A profile definition, from KnownProfiles to dict.",
+                    "docstring_type": "azure.profiles.KnownProfiles",
+                    "required": false,
+                    "method_location": "keywordOnly"
+                }
+            },
+            "async": {
+                "api_version": {
+                    "signature": "api_version: Optional[str] = None,",
+                    "description": "API version to use if no profile is provided, or if missing in profile.",
+                    "docstring_type": "str",
+                    "required": false,
+                    "method_location": "keywordOnly"
+                },
+                "profile": {
+                    "signature": "profile: KnownProfiles = KnownProfiles.default,",
+                    "description": "A profile definition, from KnownProfiles to dict.",
+                    "docstring_type": "azure.profiles.KnownProfiles",
+                    "required": false,
+                    "method_location": "keywordOnly"
+                }
+            }
+        }
+    },
+    "config": {
+        "credential": true,
+        "credential_scopes": [],
+        "credential_call_sync": "policies.BearerTokenCredentialPolicy(self.credential, *self.credential_scopes, **kwargs)",
+        "credential_call_async": "policies.AsyncBearerTokenCredentialPolicy(self.credential, *self.credential_scopes, **kwargs)",
+        "sync_imports": "{\"regular\": {\"azurecore\": {\"azure.core.configuration\": [\"Configuration\"], \"azure.core.pipeline\": [\"policies\"]}, \"local\": {\"._version\": [\"VERSION\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"typing\": {\"azurecore\": {\"azure.core.credentials\": [\"TokenCredential\"]}}}",
+        "async_imports": "{\"regular\": {\"azurecore\": {\"azure.core.configuration\": [\"Configuration\"], \"azure.core.pipeline\": [\"policies\"]}, \"local\": {\".._version\": [\"VERSION\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"typing\": {\"azurecore\": {\"azure.core.credentials_async\": [\"AsyncTokenCredential\"]}}}"
+    },
+    "operation_groups": {
+    },
+    "operation_mixins": {
+        "sync_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"regular\": {\"local\": {\".\": [[\"models\", \"_models\"]]}}}",
+        "async_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"regular\": {\"local\": {\"..\": [[\"models\", \"_models\"]]}}}",
+        "operations": {
+            "test" : {
+                "sync": {
+                    "signature": "def test(  # pylint: disable=inconsistent-return-statements\n    self,\n    *,\n    id: int,\n    **kwargs: Any\n) -\u003e None:\n",
+                    "doc": "\"\"\"Should be a mixin operation. Put in 2 for the required parameter and have the correct api\nversion of 2.0.0 to pass.\n\n:keyword id: An int parameter. Put in 2 to pass. Required.\n:paramtype id: int\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: None or the result of cls(response)\n:rtype: None\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
+                    "call": "id=id, **kwargs"
+                },
+                "async": {
+                    "coroutine": true,
+                    "signature": "async def test(  # pylint: disable=inconsistent-return-statements\n    self,\n    *,\n    id: int,\n    **kwargs: Any\n) -\u003e None:\n",
+                    "doc": "\"\"\"Should be a mixin operation. Put in 2 for the required parameter and have the correct api\nversion of 2.0.0 to pass.\n\n:keyword id: An int parameter. Put in 2 to pass. Required.\n:paramtype id: int\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: None or the result of cls(response)\n:rtype: None\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
+                    "call": "id=id, **kwargs"
+                }
+            }
+        }
+    }
+}
