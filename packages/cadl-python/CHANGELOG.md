@@ -1,5 +1,15 @@
 # Release History
 
+## 2022-12-05 - 0.4.12
+
+**Bug Fixes**
+
+- Fix submodel deserialization #1594
+
+**Other Changes**
+
+- Add additional overload for model input #1589
+
 ## 2022-11-17 - 0.4.10
 
 **Bug Fixes**
