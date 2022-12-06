@@ -15,38 +15,38 @@
     },
     "global_parameters": {
         "sync": {
+            "endpoint": {
+                "signature": "endpoint: str,",
+                "description": "Pass in https://localhost:3000. Required.",
+                "docstring_type": "str",
+                "required": true,
+                "method_location": "positional"
+            },
             "credential": {
                 "signature": "credential: \"TokenCredential\",",
                 "description": "Credential needed for the client to connect to Azure. Required.",
                 "docstring_type": "~azure.core.credentials.TokenCredential",
                 "required": true,
                 "method_location": "positional"
-            },
+            }
+        },
+        "async": {
             "endpoint": {
                 "signature": "endpoint: str,",
                 "description": "Pass in https://localhost:3000. Required.",
                 "docstring_type": "str",
-                "required": true,
-                "method_location": "positional"
-            }
-        },
-        "async": {
+                "required": true
+            },
             "credential": {
                 "signature": "credential: \"AsyncTokenCredential\",",
                 "description": "Credential needed for the client to connect to Azure. Required.",
                 "docstring_type": "~azure.core.credentials_async.AsyncTokenCredential",
                 "required": true
-            },
-            "endpoint": {
-                "signature": "endpoint: str,",
-                "description": "Pass in https://localhost:3000. Required.",
-                "docstring_type": "str",
-                "required": true
             }
         },
         "constant": {
         },
-        "call": "credential, endpoint",
+        "call": "endpoint, credential",
         "service_client_specific": {
             "sync": {
                 "api_version": {

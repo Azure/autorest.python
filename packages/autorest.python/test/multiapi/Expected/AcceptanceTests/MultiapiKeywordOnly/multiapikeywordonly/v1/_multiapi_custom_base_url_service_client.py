@@ -27,19 +27,19 @@ class MultiapiCustomBaseUrlServiceClient(
 ):  # pylint: disable=client-accepts-api-version-keyword
     """Service client for multiapi custom base url testing.
 
-    :param credential: Credential needed for the client to connect to Azure. Required.
-    :type credential: ~azure.core.credentials.TokenCredential
     :param endpoint: Pass in https://localhost:3000. Required.
     :type endpoint: str
+    :param credential: Credential needed for the client to connect to Azure. Required.
+    :type credential: ~azure.core.credentials.TokenCredential
     :keyword api_version: Api Version. Default value is "1.0.0". Note that overriding this default
      value may result in unsupported behavior.
     :paramtype api_version: str
     """
 
-    def __init__(self, credential: "TokenCredential", endpoint: str, **kwargs: Any) -> None:
+    def __init__(self, endpoint: str, credential: "TokenCredential", **kwargs: Any) -> None:
         _endpoint = "{Endpoint}/multiapiCustomBaseUrl/v1"
         self._config = MultiapiCustomBaseUrlServiceClientConfiguration(
-            credential=credential, endpoint=endpoint, **kwargs
+            endpoint=endpoint, credential=credential, **kwargs
         )
         self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 

@@ -25,26 +25,26 @@ class MultiapiCustomBaseUrlServiceClientConfiguration(Configuration):
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param credential: Credential needed for the client to connect to Azure. Required.
-    :type credential: ~azure.core.credentials.TokenCredential
     :param endpoint: Pass in https://localhost:3000. Required.
     :type endpoint: str
+    :param credential: Credential needed for the client to connect to Azure. Required.
+    :type credential: ~azure.core.credentials.TokenCredential
     """
 
     def __init__(
         self,
-        credential: "TokenCredential",
         endpoint: str,
+        credential: "TokenCredential",
         **kwargs: Any
     ):
-        if credential is None:
-            raise ValueError("Parameter 'credential' must not be None.")
         if endpoint is None:
             raise ValueError("Parameter 'endpoint' must not be None.")
+        if credential is None:
+            raise ValueError("Parameter 'credential' must not be None.")
         super(MultiapiCustomBaseUrlServiceClientConfiguration, self).__init__(**kwargs)
 
-        self.credential = credential
         self.endpoint = endpoint
+        self.credential = credential
         self.credential_scopes = kwargs.pop('credential_scopes', [])
         kwargs.setdefault('sdk_moniker', 'multiapikeywordonly/{}'.format(VERSION))
         self._configure(**kwargs)

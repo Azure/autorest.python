@@ -30,26 +30,26 @@ class MultiapiCustomBaseUrlServiceClientConfiguration(Configuration):  # pylint:
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param credential: Credential needed for the client to connect to Azure. Required.
-    :type credential: ~azure.core.credentials.TokenCredential
     :param endpoint: Pass in https://localhost:3000. Required.
     :type endpoint: str
+    :param credential: Credential needed for the client to connect to Azure. Required.
+    :type credential: ~azure.core.credentials.TokenCredential
     :keyword api_version: Api Version. Default value is "1.0.0". Note that overriding this default
      value may result in unsupported behavior.
     :paramtype api_version: str
     """
 
-    def __init__(self, credential: "TokenCredential", endpoint: str, **kwargs: Any) -> None:
+    def __init__(self, endpoint: str, credential: "TokenCredential", **kwargs: Any) -> None:
         super(MultiapiCustomBaseUrlServiceClientConfiguration, self).__init__(**kwargs)
         api_version: Literal["1.0.0"] = kwargs.pop("api_version", "1.0.0")
 
-        if credential is None:
-            raise ValueError("Parameter 'credential' must not be None.")
         if endpoint is None:
             raise ValueError("Parameter 'endpoint' must not be None.")
+        if credential is None:
+            raise ValueError("Parameter 'credential' must not be None.")
 
-        self.credential = credential
         self.endpoint = endpoint
+        self.credential = credential
         self.api_version = api_version
         self.credential_scopes = kwargs.pop("credential_scopes", [])
         kwargs.setdefault("sdk_moniker", "multiapikeywordonly/{}".format(VERSION))
