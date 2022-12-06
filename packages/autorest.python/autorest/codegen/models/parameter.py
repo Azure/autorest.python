@@ -37,10 +37,10 @@ class ParameterLocation(str, Enum):
     OTHER = "other"
 
 
-class ParameterMethodLocation(Enum):
-    POSITIONAL = auto()
-    KEYWORD_ONLY = auto()
-    KWARG = auto()
+class ParameterMethodLocation(str, Enum):
+    POSITIONAL = "positional"
+    KEYWORD_ONLY = "keywordOnly"
+    KWARG = "kwarg"
 
 
 class ParameterDelimeter(str, Enum):

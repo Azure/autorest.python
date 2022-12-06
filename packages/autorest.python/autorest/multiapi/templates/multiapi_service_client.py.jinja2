@@ -1,18 +1,14 @@
 {% macro method_signature() %}
 def __init__(
     self,
-    {% for parameter in code_model.global_parameters.parameters %}
-        {% if parameter.required %}
-    {{ parameter.signature(async_mode) }}
-        {% endif %}
+    {% for pos in positional_params %}
+    {{ pos }}
     {% endfor %}
-    {% for parameter in code_model.global_parameters.parameters %}
-        {% if not parameter.required %}
-    {{ parameter.signature(async_mode) }}
-        {% endif %}
-    {% endfor %}
-    {% for parameter in code_model.global_parameters.service_client_specific_global_parameters %}
-    {{ parameter.signature(async_mode) }}
+    {% if keyword_only_params %}
+    *,
+    {% endif %}
+    {% for ko in keyword_only_params %}
+    {{ ko }}
     {% endfor %}
     **kwargs: Any
 ){{" -> None" if async_mode else "" }}:{% endmacro %}
