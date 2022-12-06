@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import abc
-from enum import Enum, auto
+from enum import Enum
 
 from typing import (
     Dict,
