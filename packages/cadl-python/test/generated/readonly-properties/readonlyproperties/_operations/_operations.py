@@ -199,7 +199,7 @@ class ReadonlyPropertiesClientOperationsMixin(ReadonlyPropertiesClientMixinABC):
         if isinstance(input, (IO, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder)
+            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_readonly_properties_set_optional_property_model_request(
             content_type=content_type,

@@ -173,6 +173,7 @@ REDEFINED_BUILTINS = [  # we don't pad, but we need to do lint ignores
     "min",
     "max",
     "filter",
+    "property",
 ]
 
 BUILTIN_PACKAGES = [

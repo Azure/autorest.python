@@ -28,7 +28,7 @@
     """
 
     {% if model.is_polymorphic %}
-    __mapping__ = {}
+    __mapping__: Dict[str, _model_base.Model] = {}
     {% endif %}
     {% for p in serializer.get_properties_to_declare(model)%}
         {% for line in serializer.declare_property(p) %}
@@ -55,7 +55,7 @@
         ...
 
     {% endif %}
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):{{ '# pylint: disable=useless-super-delegation' if not serializer.initialize_properties(model) else '' }}
         super().__init__(*args, **kwargs)
     {% for initialize_property in serializer.initialize_properties(model) %}
         {{ initialize_property }}

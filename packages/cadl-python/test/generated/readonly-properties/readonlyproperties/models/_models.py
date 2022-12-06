@@ -77,7 +77,7 @@ class OutputModel(_model_base.Model):
     optional_readonly_int_list: Optional[List[int]] = rest_field(name="optionalReadonlyIntList", readonly=True)
     """Optional readonly int collection. """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -109,7 +109,7 @@ class ReadonlyModel(_model_base.Model):
         """
         ...
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -166,5 +166,5 @@ class RoundTripModel(_model_base.Model):
     optional_readonly_int_list: Optional[List[int]] = rest_field(name="optionalReadonlyIntList", readonly=True)
     """Optional readonly int collection. """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)

@@ -48,7 +48,7 @@ class Message(_model_base.Model):
         """
         ...
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -80,5 +80,5 @@ class PostInput(_model_base.Model):
         """
         ...
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)

@@ -211,7 +211,7 @@ class BooleanOperations:
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_boolean_put_request(
             content_type=content_type,
@@ -378,7 +378,7 @@ class StringOperations:
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_string_put_request(
             content_type=content_type,
@@ -545,7 +545,7 @@ class BytesOperations:
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_bytes_put_request(
             content_type=content_type,
@@ -712,7 +712,7 @@ class IntOperations:
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_int_put_request(
             content_type=content_type,
@@ -879,7 +879,7 @@ class FloatOperations:
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_float_put_request(
             content_type=content_type,
@@ -1046,7 +1046,7 @@ class DatetimeOperations:
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_datetime_put_request(
             content_type=content_type,
@@ -1213,7 +1213,7 @@ class DurationOperations:
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_duration_put_request(
             content_type=content_type,
@@ -1380,7 +1380,7 @@ class EnumOperations:
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_enum_put_request(
             content_type=content_type,
@@ -1547,7 +1547,7 @@ class ExtensibleEnumOperations:
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_extensible_enum_put_request(
             content_type=content_type,
@@ -1714,7 +1714,7 @@ class ModelOperations:
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_model_put_request(
             content_type=content_type,
@@ -1882,7 +1882,7 @@ class CollectionsStringOperations:
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_collections_string_put_request(
             content_type=content_type,
@@ -2049,7 +2049,7 @@ class CollectionsIntOperations:
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_collections_int_put_request(
             content_type=content_type,
@@ -2217,7 +2217,7 @@ class CollectionsModelOperations:
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_collections_model_put_request(
             content_type=content_type,
@@ -2385,7 +2385,7 @@ class DictionaryStringOperations:
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_dictionary_string_put_request(
             content_type=content_type,
@@ -2552,7 +2552,7 @@ class NeverOperations:
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_never_put_request(
             content_type=content_type,

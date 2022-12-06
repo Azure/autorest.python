@@ -41,7 +41,7 @@ class BooleanProperty(_model_base.Model):
     def __init__(
         self,
         *,
-        property: bool,
+        property: bool,  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -53,7 +53,7 @@ class BooleanProperty(_model_base.Model):
         """
         ...
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -73,7 +73,7 @@ class BytesProperty(_model_base.Model):
     def __init__(
         self,
         *,
-        property: bytes,
+        property: bytes,  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -85,7 +85,7 @@ class BytesProperty(_model_base.Model):
         """
         ...
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -105,7 +105,7 @@ class CollectionsIntProperty(_model_base.Model):
     def __init__(
         self,
         *,
-        property: List[int],
+        property: List[int],  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -117,7 +117,7 @@ class CollectionsIntProperty(_model_base.Model):
         """
         ...
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -137,7 +137,7 @@ class CollectionsModelProperty(_model_base.Model):
     def __init__(
         self,
         *,
-        property: List["_models.InnerModel"],
+        property: List["_models.InnerModel"],  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -149,7 +149,7 @@ class CollectionsModelProperty(_model_base.Model):
         """
         ...
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -169,7 +169,7 @@ class CollectionsStringProperty(_model_base.Model):
     def __init__(
         self,
         *,
-        property: List[str],
+        property: List[str],  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -181,7 +181,7 @@ class CollectionsStringProperty(_model_base.Model):
         """
         ...
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -201,7 +201,7 @@ class DatetimeProperty(_model_base.Model):
     def __init__(
         self,
         *,
-        property: datetime.datetime,
+        property: datetime.datetime,  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -213,7 +213,7 @@ class DatetimeProperty(_model_base.Model):
         """
         ...
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -233,7 +233,7 @@ class DictionaryStringProperty(_model_base.Model):
     def __init__(
         self,
         *,
-        property: Dict[str, str],
+        property: Dict[str, str],  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -245,7 +245,7 @@ class DictionaryStringProperty(_model_base.Model):
         """
         ...
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -265,7 +265,7 @@ class DurationProperty(_model_base.Model):
     def __init__(
         self,
         *,
-        property: datetime.timedelta,
+        property: datetime.timedelta,  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -277,7 +277,7 @@ class DurationProperty(_model_base.Model):
         """
         ...
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -297,7 +297,7 @@ class EnumProperty(_model_base.Model):
     def __init__(
         self,
         *,
-        property: Union[str, "_models.InnerEnum"],
+        property: Union[str, "_models.InnerEnum"],  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -309,7 +309,7 @@ class EnumProperty(_model_base.Model):
         """
         ...
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -329,7 +329,7 @@ class ExtensibleEnumProperty(_model_base.Model):
     def __init__(
         self,
         *,
-        property: Union[str, "_models.InnerExtensibleEnum"],
+        property: Union[str, "_models.InnerExtensibleEnum"],  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -341,7 +341,7 @@ class ExtensibleEnumProperty(_model_base.Model):
         """
         ...
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -361,7 +361,7 @@ class FloatProperty(_model_base.Model):
     def __init__(
         self,
         *,
-        property: float,
+        property: float,  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -373,7 +373,7 @@ class FloatProperty(_model_base.Model):
         """
         ...
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -393,7 +393,7 @@ class InnerModel(_model_base.Model):
     def __init__(
         self,
         *,
-        property: str,
+        property: str,  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -405,7 +405,7 @@ class InnerModel(_model_base.Model):
         """
         ...
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -425,7 +425,7 @@ class IntProperty(_model_base.Model):
     def __init__(
         self,
         *,
-        property: int,
+        property: int,  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -437,7 +437,7 @@ class IntProperty(_model_base.Model):
         """
         ...
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -457,7 +457,7 @@ class ModelProperty(_model_base.Model):
     def __init__(
         self,
         *,
-        property: "_models.InnerModel",
+        property: "_models.InnerModel",  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -469,14 +469,14 @@ class ModelProperty(_model_base.Model):
         """
         ...
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
 class NeverProperty(_model_base.Model):
     """Model with a property never. (This property should not be included)."""
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -496,7 +496,7 @@ class StringProperty(_model_base.Model):
     def __init__(
         self,
         *,
-        property: str,
+        property: str,  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -508,5 +508,5 @@ class StringProperty(_model_base.Model):
         """
         ...
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)

@@ -9,7 +9,7 @@
 
 import datetime
 import sys
-from typing import Any, List, Mapping, Optional, overload
+from typing import Any, List, Mapping, Optional, TYPE_CHECKING, overload
 
 from .. import _model_base
 from .._model_base import rest_field
@@ -18,6 +18,10 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from .. import models as _models
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 
@@ -36,7 +40,7 @@ class BytesProperty(_model_base.Model):
     def __init__(
         self,
         *,
-        property: Optional[bytes] = None,
+        property: Optional[bytes] = None,  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -48,7 +52,7 @@ class BytesProperty(_model_base.Model):
         """
         ...
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -66,7 +70,7 @@ class CollectionsByteProperty(_model_base.Model):
     def __init__(
         self,
         *,
-        property: Optional[List[bytes]] = None,
+        property: Optional[List[bytes]] = None,  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -78,7 +82,7 @@ class CollectionsByteProperty(_model_base.Model):
         """
         ...
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -96,7 +100,7 @@ class CollectionsModelProperty(_model_base.Model):
     def __init__(
         self,
         *,
-        property: Optional[List["_models.StringProperty"]] = None,
+        property: Optional[List["_models.StringProperty"]] = None,  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -108,7 +112,7 @@ class CollectionsModelProperty(_model_base.Model):
         """
         ...
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -126,7 +130,7 @@ class DatetimeProperty(_model_base.Model):
     def __init__(
         self,
         *,
-        property: Optional[datetime.datetime] = None,
+        property: Optional[datetime.datetime] = None,  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -138,7 +142,7 @@ class DatetimeProperty(_model_base.Model):
         """
         ...
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -156,7 +160,7 @@ class DurationProperty(_model_base.Model):
     def __init__(
         self,
         *,
-        property: Optional[datetime.timedelta] = None,
+        property: Optional[datetime.timedelta] = None,  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -168,7 +172,7 @@ class DurationProperty(_model_base.Model):
         """
         ...
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -205,7 +209,7 @@ class RequiredAndOptionalProperty(_model_base.Model):
         """
         ...
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -224,7 +228,7 @@ class StringProperty(_model_base.Model):
     def __init__(
         self,
         *,
-        property: Optional[str] = None,
+        property: Optional[str] = None,  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -236,5 +240,5 @@ class StringProperty(_model_base.Model):
         """
         ...
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)

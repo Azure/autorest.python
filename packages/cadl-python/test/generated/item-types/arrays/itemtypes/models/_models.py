@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 
 import sys
-from typing import Any, List, Mapping, Optional, overload
+from typing import Any, List, Mapping, Optional, TYPE_CHECKING, overload
 
 from .. import _model_base
 from .._model_base import rest_field
@@ -17,6 +17,10 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from .. import models as _models
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 
@@ -39,7 +43,7 @@ class InnerModel(_model_base.Model):
     def __init__(
         self,
         *,
-        property: str,
+        property: str,  # pylint: disable=redefined-builtin
         children: Optional[List["_models.InnerModel"]] = None,
     ):
         ...
@@ -52,5 +56,5 @@ class InnerModel(_model_base.Model):
         """
         ...
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
