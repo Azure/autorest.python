@@ -88,7 +88,7 @@ class {{ code_model.client.name }}({% if code_model.operation_mixin_group.mixin_
             raise ValueError("API version {} is not available".format(api_version))
         {% endif %}
         self._config = {{ code_model.client.name }}Configuration({{ code_model.global_parameters.call }}{{ ", " if code_model.global_parameters.call }}**kwargs)
-        self._client = {{ async_prefix }}{{ code_model.client.pipeline_client }}(base_url=base_url, config=self._config, **kwargs)
+        self._client = {{ async_prefix }}{{ code_model.client.pipeline_client }}(base_url={{ code_model.host_variable_name }}, config=self._config, **kwargs)
         super({{ code_model.client.name }}, self).__init__(
             api_version=api_version,
             profile=profile
