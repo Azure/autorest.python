@@ -30,7 +30,7 @@ steps:
       displayName: Install autorest
       condition: and(succeeded(), ${{ parameters.installAutorest }})
 
-    - script: npm install -g @cadl-lang/compiler
+    - script: npm install -g @cadl-lang/compiler@0.37.0
       displayName: Install Cadl
       condition: and(succeeded(), ${{ parameters.installCadl }})
 
