@@ -42,9 +42,9 @@
     "get-autorest-python-path.cjs"
   ],
   "peerDependencies": {
-    "@cadl-lang/versioning": "~0.10.0",
-    "@cadl-lang/rest": "~0.19.0",
-    "@azure-tools/cadl-azure-core": "~0.9.0"
+    "@cadl-lang/versioning": "~0.38.0",
+    "@cadl-lang/rest": "~0.38.0",
+    "@azure-tools/cadl-azure-core": "~0.24.0"
   },
   "dependencies": {
     "js-yaml": "~4.1.0",
