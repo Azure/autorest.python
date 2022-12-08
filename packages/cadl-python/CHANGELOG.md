@@ -1,5 +1,12 @@
 # Release History
 
+
+## 2022-12-07 - 0.4.12
+
+**Other Changes**
+
+- Update python generator dependency
+
 ## 2022-12-05 - 0.4.11
 
 **Bug Fixes**
