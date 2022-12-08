@@ -23,8 +23,8 @@ from ._models import ModelProperty
 from ._models import NeverProperty
 from ._models import StringProperty
 
+from ._enums import FixedInnerEnum
 from ._enums import InnerEnum
-from ._enums import InnerExtensibleEnum
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
@@ -46,8 +46,8 @@ __all__ = [
     "ModelProperty",
     "NeverProperty",
     "StringProperty",
+    "FixedInnerEnum",
     "InnerEnum",
-    "InnerExtensibleEnum",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()
