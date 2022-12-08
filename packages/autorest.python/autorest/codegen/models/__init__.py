@@ -154,7 +154,6 @@ def build_type(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseType:
     except KeyError:
         # Not created yet, let's create it and add it to the index
         pass
-    yaml_data["type"]
     if yaml_data["type"] == "model":
         # need to special case model to avoid recursion
         response = ModelType(yaml_data, code_model)
