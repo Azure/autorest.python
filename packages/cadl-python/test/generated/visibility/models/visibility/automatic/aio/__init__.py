@@ -6,12 +6,18 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from enum import Enum
-from azure.core import CaseInsensitiveEnumMeta
+from ._client import AutomaticClient
 
+try:
+    from ._patch import __all__ as _patch_all
+    from ._patch import *  # pylint: disable=unused-wildcard-import
+except ImportError:
+    _patch_all = []
+from ._patch import patch_sdk as _patch_sdk
 
-class ContentTypePathType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Type of ContentTypePathType."""
+__all__ = [
+    "AutomaticClient",
+]
+__all__.extend([p for p in _patch_all if p not in __all__])
 
-    JSON = "json"
-    JPEG = "jpeg"
+_patch_sdk()

@@ -17,7 +17,8 @@ from .._model_base import rest_field
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -287,17 +288,17 @@ class EnumProperty(_model_base.Model):
     All required parameters must be populated in order to send to Azure.
 
     :ivar property: Property. Required. Known values are: "ValueOne" and "ValueTwo".
-    :vartype property: str or ~models.property.types.models.InnerEnum
+    :vartype property: str or ~models.property.types.models.FixedInnerEnum
     """
 
-    property: Union[str, "_models.InnerEnum"] = rest_field()
+    property: Union[str, "_models.FixedInnerEnum"] = rest_field()
     """Property. Required. Known values are: \"ValueOne\" and \"ValueTwo\"."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Union[str, "_models.InnerEnum"],  # pylint: disable=redefined-builtin
+        property: Union[str, "_models.FixedInnerEnum"],  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -319,10 +320,10 @@ class ExtensibleEnumProperty(_model_base.Model):
     All required parameters must be populated in order to send to Azure.
 
     :ivar property: Property. Required. Known values are: "ValueOne" and "ValueTwo".
-    :vartype property: str or ~models.property.types.models.InnerExtensibleEnum
+    :vartype property: str or ~models.property.types.models.InnerEnum
     """
 
-    property: Union[str, "_models.InnerExtensibleEnum"] = rest_field()
+    property: Union[str, "_models.InnerEnum"] = rest_field()
     """Property. Required. Known values are: \"ValueOne\" and \"ValueTwo\"."""
 
     @overload
@@ -333,7 +334,7 @@ class ExtensibleEnumProperty(_model_base.Model):
     ):
         ...
 
-    @overload
+    @ overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
         :param mapping: raw JSON to initialize the model.
@@ -357,7 +358,7 @@ class FloatProperty(_model_base.Model):
     property: float = rest_field()
     """Property. Required. """
 
-    @overload
+    @ overload
     def __init__(
         self,
         *,
@@ -365,7 +366,7 @@ class FloatProperty(_model_base.Model):
     ):
         ...
 
-    @overload
+    @ overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
         :param mapping: raw JSON to initialize the model.
@@ -389,7 +390,7 @@ class InnerModel(_model_base.Model):
     property: str = rest_field()
     """Required string property. Required. """
 
-    @overload
+    @ overload
     def __init__(
         self,
         *,
@@ -397,7 +398,7 @@ class InnerModel(_model_base.Model):
     ):
         ...
 
-    @overload
+    @ overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
         :param mapping: raw JSON to initialize the model.
@@ -421,7 +422,7 @@ class IntProperty(_model_base.Model):
     property: int = rest_field()
     """Property. Required. """
 
-    @overload
+    @ overload
     def __init__(
         self,
         *,
@@ -429,7 +430,7 @@ class IntProperty(_model_base.Model):
     ):
         ...
 
-    @overload
+    @ overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
         :param mapping: raw JSON to initialize the model.
@@ -453,7 +454,7 @@ class ModelProperty(_model_base.Model):
     property: "_models.InnerModel" = rest_field()
     """Property. Required. """
 
-    @overload
+    @ overload
     def __init__(
         self,
         *,
@@ -461,7 +462,7 @@ class ModelProperty(_model_base.Model):
     ):
         ...
 
-    @overload
+    @ overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
         :param mapping: raw JSON to initialize the model.
@@ -492,7 +493,7 @@ class StringProperty(_model_base.Model):
     property: str = rest_field()
     """Property. Required. """
 
-    @overload
+    @ overload
     def __init__(
         self,
         *,
@@ -500,7 +501,7 @@ class StringProperty(_model_base.Model):
     ):
         ...
 
-    @overload
+    @ overload
     def __init__(self, mapping: Mapping[str, Any]):
         """
         :param mapping: raw JSON to initialize the model.

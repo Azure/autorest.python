@@ -114,7 +114,7 @@ class Product(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class LROProduct(Product):
+class LroProduct(Product):
     """Final response from LRO call.
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
