@@ -16,8 +16,7 @@ from .._model_base import rest_field
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    # type: ignore  # pylint: disable=ungrouped-imports
-    from typing import MutableMapping
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 
@@ -51,5 +50,5 @@ class VisibilityModel(_model_base.Model):
     delete_prop: bool = rest_field(name="deleteProp", readonly=True)
     """Required bool, illustrating a delete property. Required. """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)

@@ -39,12 +39,10 @@ from .._vendor import AutomaticClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    # type: ignore  # pylint: disable=ungrouped-imports
-    from typing import MutableMapping
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest,
-                                              AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
 class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
@@ -122,8 +120,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.VisibilityModel] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -131,7 +128,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         if isinstance(input, (IO, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder)
+            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_automatic_get_model_request(
             content_type=content_type,
@@ -148,8 +145,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            map_error(status_code=response.status_code,
-                      response=response, error_map=error_map)
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
         deserialized = _deserialize(_models.VisibilityModel, response.json())
@@ -227,8 +223,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -236,7 +231,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         if isinstance(input, (IO, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder)
+            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_automatic_head_model_request(
             content_type=content_type,
@@ -253,8 +248,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            map_error(status_code=response.status_code,
-                      response=response, error_map=error_map)
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
         if cls:
@@ -335,8 +329,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -344,7 +337,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         if isinstance(input, (IO, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder)
+            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_automatic_put_model_request(
             content_type=content_type,
@@ -361,8 +354,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            map_error(status_code=response.status_code,
-                      response=response, error_map=error_map)
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
         if cls:
@@ -442,8 +434,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -451,7 +442,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         if isinstance(input, (IO, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder)
+            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_automatic_patch_model_request(
             content_type=content_type,
@@ -468,8 +459,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            map_error(status_code=response.status_code,
-                      response=response, error_map=error_map)
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
         if cls:
@@ -549,8 +539,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -558,7 +547,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         if isinstance(input, (IO, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder)
+            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_automatic_post_model_request(
             content_type=content_type,
@@ -575,8 +564,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            map_error(status_code=response.status_code,
-                      response=response, error_map=error_map)
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
         if cls:
@@ -656,8 +644,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -665,7 +652,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         if isinstance(input, (IO, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder)
+            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_automatic_delete_model_request(
             content_type=content_type,
@@ -682,8 +669,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            map_error(status_code=response.status_code,
-                      response=response, error_map=error_map)
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
         if cls:

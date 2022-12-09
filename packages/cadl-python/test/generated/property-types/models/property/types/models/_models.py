@@ -17,8 +17,7 @@ from .._model_base import rest_field
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    # type: ignore  # pylint: disable=ungrouped-imports
-    from typing import MutableMapping
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -298,7 +297,7 @@ class EnumProperty(_model_base.Model):
     def __init__(
         self,
         *,
-        property: Union[str, "_models.FixedInnerEnum"],
+        property: Union[str, "_models.FixedInnerEnum"],  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -330,7 +329,7 @@ class ExtensibleEnumProperty(_model_base.Model):
     def __init__(
         self,
         *,
-        property: Union[str, "_models.InnerEnum"],
+        property: Union[str, "_models.InnerEnum"],  # pylint: disable=redefined-builtin
     ):
         ...
 
