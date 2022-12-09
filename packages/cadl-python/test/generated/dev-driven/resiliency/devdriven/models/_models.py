@@ -40,9 +40,6 @@ class CustomPageProduct(_model_base.Model):
     next_link: Optional[str] = rest_field(name="nextLink")
     """The link to the next page of items. """
 
-    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
 
 class Input(_model_base.Model):
     """Input to LRO call.

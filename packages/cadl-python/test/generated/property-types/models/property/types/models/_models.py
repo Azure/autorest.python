@@ -476,8 +476,7 @@ class ModelProperty(_model_base.Model):
 class NeverProperty(_model_base.Model):
     """Model with a property never. (This property should not be included)."""
 
-    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
+    pass
 
 
 class StringProperty(_model_base.Model):

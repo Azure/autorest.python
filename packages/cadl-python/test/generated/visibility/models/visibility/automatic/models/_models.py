@@ -49,6 +49,3 @@ class VisibilityModel(_model_base.Model):
     """Required int32[], illustrating a update property. Required. """
     delete_prop: bool = rest_field(name="deleteProp", readonly=True)
     """Required bool, illustrating a delete property. Required. """
-
-    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
