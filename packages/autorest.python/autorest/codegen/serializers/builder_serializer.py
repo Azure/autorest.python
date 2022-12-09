@@ -1313,6 +1313,8 @@ class _PagingOperationSerializer(
                 f"    deserialized: {response.serialization_type} = ({pylint_disable}"
             )
             retval.append(f"        {deserialized})")
+        else:
+            retval.append(f"    deserialized = {deserialized}")
         item_name = builder.item_name
         list_of_elem = (
             f".{item_name}"
