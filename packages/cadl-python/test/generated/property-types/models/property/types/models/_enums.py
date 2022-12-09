@@ -10,7 +10,7 @@ from enum import Enum
 from azure.core import CaseInsensitiveEnumMeta
 
 
-class InnerEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class FixedInnerEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Enum that will be used as a property for model EnumProperty. Non-extensible."""
 
     #: First value.
@@ -19,7 +19,7 @@ class InnerEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     VALUE_TWO = "ValueTwo"
 
 
-class InnerExtensibleEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class InnerEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Enum that will be used as a property for model EnumProperty. Non-extensible."""
 
     #: First value.

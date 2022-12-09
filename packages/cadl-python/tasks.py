@@ -31,8 +31,10 @@ def regenerate(c, name=None, debug=False):
   ]
   if name:
     specs = [s for s in specs if name.lower() in s.stem.lower()]
+  for spec in specs:
+    Path(f"{PLUGIN_DIR}/test/generated/{spec.name}").mkdir(parents=True, exist_ok=True)
   _run_cadl([
-    f"cadl compile {spec} --emit={PLUGIN_DIR}/dist/src/index.js --output-path={PLUGIN_DIR}/test/generated/{spec.name}{' --debug' if debug else ''}"
+    f"cadl compile {spec} --emit={PLUGIN_DIR}/dist/src/index.js --output-dir={PLUGIN_DIR}/test/generated/{spec.name}{' --debug' if debug else ''}"
     for spec in specs
   ])
 

@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from ._models import Input
-from ._models import LROProduct
+from ._models import LroProduct
 from ._models import Product
 
 from ._enums import Mode
@@ -17,7 +17,7 @@ from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
     "Input",
-    "LROProduct",
+    "LroProduct",
     "Product",
     "Mode",
 ]

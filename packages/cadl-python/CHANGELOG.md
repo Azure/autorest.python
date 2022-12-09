@@ -1,5 +1,10 @@
 # Release History
 
+## 2022-12-08 - 0.4.13
+
+**Other Changes**
+
+- Bump cadl library dependencies #1608
 
 ## 2022-12-07 - 0.4.12
 

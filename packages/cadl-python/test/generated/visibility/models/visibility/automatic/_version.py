@@ -6,12 +6,4 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from enum import Enum
-from azure.core import CaseInsensitiveEnumMeta
-
-
-class ContentTypePathType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Type of ContentTypePathType."""
-
-    JSON = "json"
-    JPEG = "jpeg"
+VERSION = "1.0.0b1"
