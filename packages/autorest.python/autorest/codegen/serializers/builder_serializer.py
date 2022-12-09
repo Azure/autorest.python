@@ -1301,6 +1301,7 @@ class _PagingOperationSerializer(
                 deserialize_type = f'"{response.serialization_type}"'
                 pylint_disable = ""
             deserialized = f"self._deserialize(\n    {deserialize_type}, pipeline_response{pylint_disable}\n)"
+            retval.append(f"    deserialized = {deserialized}")
         elif self.code_model.options["models_mode"] == "dpg":
             pylint_disable = (
                 "  # pylint: disable=protected-access\n"
@@ -1308,12 +1309,10 @@ class _PagingOperationSerializer(
                 else ""
             )
             deserialized = f"_deserialize({response.serialization_type}{pylint_disable}, pipeline_response)"
-        deserialized_annotation = (
-            f": {response.serialization_type}"
-            if self.code_model.options["models_mode"] == "dpg"
-            else ""
-        )
-        retval.append(f"    deserialized{deserialized_annotation} = {deserialized}")
+            retval.append(
+                f"    deserialized: {response.serialization_type} = ({pylint_disable}"
+            )
+            retval.append(f"        {deserialized})")
         item_name = builder.item_name
         list_of_elem = (
             f".{item_name}"

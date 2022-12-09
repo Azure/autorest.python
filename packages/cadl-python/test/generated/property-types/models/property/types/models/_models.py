@@ -476,8 +476,6 @@ class ModelProperty(_model_base.Model):
 class NeverProperty(_model_base.Model):
     """Model with a property never. (This property should not be included)."""
 
-    pass
-
 
 class StringProperty(_model_base.Model):
     """Model with a string property.

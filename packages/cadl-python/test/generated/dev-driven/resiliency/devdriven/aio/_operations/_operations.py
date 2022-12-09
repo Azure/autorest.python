@@ -271,7 +271,7 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
             return request
 
         async def extract_data(pipeline_response):
-            deserialized: _models._models.CustomPageProduct = _deserialize(
+            deserialized: _models._models.CustomPageProduct = _deserialize(  # pylint: disable=protected-access
                 _models._models.CustomPageProduct, pipeline_response  # pylint: disable=protected-access
             )
             list_of_elem = deserialized.value

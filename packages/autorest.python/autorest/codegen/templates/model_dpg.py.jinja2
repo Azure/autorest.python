@@ -62,6 +62,4 @@
     {% for initialize_property in initialize_properties %}
         {{ initialize_property }}
     {% endfor %}
-    {% elif not model.is_polymorphic and not serializer.get_properties_to_declare(model) %}
-    pass
     {% endif %}

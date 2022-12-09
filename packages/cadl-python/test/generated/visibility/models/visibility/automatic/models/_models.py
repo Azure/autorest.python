@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 
 import sys
-from typing import Any, List, Mapping, overload
+from typing import Any, List
 
 from .. import _model_base
 from .._model_base import rest_field
