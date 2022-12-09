@@ -947,9 +947,8 @@ function emitUnion(program: Program, type: Union): Record<string, any> {
         } else if (type.node.parent.kind === SyntaxKind.ModelProperty) {
             const parent = type.node.parent as any;
             if (parent.id.sv) {
-                enumName = capitalize(parent.id.sv) + "Type"
+                enumName = capitalize(parent.id.sv) + "Type";
             }
-
         }
     }
     return {
