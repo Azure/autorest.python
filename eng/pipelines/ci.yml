@@ -76,7 +76,7 @@ jobs:
 
       - script: |
           pip install pip==20.2
-          pip install tox coverage
+          pip install tox==3.27.1 coverage
         displayName: "Install Env Specific Reqs in Target PyVersion $(PythonVersion)"
 
       - script: tox -e ci
@@ -239,7 +239,7 @@ jobs:
 
       - script: |
           pip install pip==20.2
-          pip install tox coverage
+          pip install tox==3.27.1 coverage
         displayName: "Install Env Specific Reqs in Target PyVersion $(PythonVersion)"
 
       - script: tox -e ci

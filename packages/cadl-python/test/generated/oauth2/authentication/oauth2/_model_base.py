@@ -309,7 +309,7 @@ class _MyMutableMapping(MutableMapping):
         except KeyError:
             return default
 
-    @typing.overload
+    @typing.overload  # type: ignore
     def pop(self, key: str) -> typing.Any:  # pylint: disable=no-member
         ...
 
@@ -331,7 +331,7 @@ class _MyMutableMapping(MutableMapping):
     def update(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         self._data.update(*args, **kwargs)
 
-    @typing.overload
+    @typing.overload  # type: ignore
     def setdefault(self, key: str) -> typing.Any:
         ...
 
@@ -461,7 +461,7 @@ class Model(_MyMutableMapping):
         return mapped_cls._deserialize(data)  # pylint: disable=protected-access
 
 
-def _get_deserialize_callable_from_annotation(  # pylint: disable=too-many-return-statements
+def _get_deserialize_callable_from_annotation(  # pylint: disable=too-many-return-statements, too-many-statements
     annotation: typing.Any,
     module: typing.Optional[str],
 ) -> typing.Optional[typing.Callable[[typing.Any], typing.Any]]:
@@ -610,20 +610,22 @@ def _deserialize_with_callable(
     try:
         if value is None:
             return None
-        if deserializer and isinstance(deserializer, CaseInsensitiveEnumMeta):
+        if deserializer is None:
+            return value
+        if isinstance(deserializer, CaseInsensitiveEnumMeta):
             try:
                 return deserializer(value)
             except ValueError:
                 # for unknown value, return raw value
                 return value
         if isinstance(deserializer, type) and issubclass(deserializer, Model):
-            return deserializer._deserialize(value)
-        return deserializer(value) if deserializer else value  # type: ignore
+            return deserializer._deserialize(value)  # type: ignore
+        return deserializer(value)
     except Exception as e:
         raise DeserializationError() from e
 
 
-def _deserialize(deserializer: typing.Any, value: typing.Any, module: typing.Optional[str] = None):
+def _deserialize(deserializer: typing.Any, value: typing.Any, module: typing.Optional[str] = None) -> typing.Any:
     if isinstance(value, PipelineResponse):
         value = value.http_response.json()
     deserializer = _get_deserialize_callable_from_annotation(deserializer, module)

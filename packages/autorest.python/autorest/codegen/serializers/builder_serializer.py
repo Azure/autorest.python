@@ -1308,7 +1308,12 @@ class _PagingOperationSerializer(
                 else ""
             )
             deserialized = f"_deserialize({response.serialization_type}{pylint_disable}, pipeline_response)"
-        retval.append(f"    deserialized = {deserialized}")
+        deserialized_annotation = (
+            f": {response.serialization_type}"
+            if self.code_model.options["models_mode"] == "dpg"
+            else ""
+        )
+        retval.append(f"    deserialized{deserialized_annotation} = {deserialized}")
         item_name = builder.item_name
         list_of_elem = (
             f".{item_name}"
@@ -1510,7 +1515,7 @@ class _LROOperationSerializer(_OperationSerializer[LROOperationType]):
                 " # type: ignore"
                 if builder.lro_response
                 and builder.lro_response.type
-                and not self.code_model.options["models_mode"]
+                and self.code_model.options["models_mode"] != "msrest"
                 else "",
             )
         )
