@@ -681,7 +681,7 @@ function emitModel(program: Program, type: Model): Record<string, any> {
     if (type.baseModel) {
         baseModel = getType(program, type.baseModel);
     }
-    const modelName = getName(program, type);
+    const modelName = getName(program, type) || getEffectiveSchemaType(program, type).name;
     return {
         type: "model",
         name: modelName,
