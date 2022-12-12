@@ -681,7 +681,7 @@ function emitModel(program: Program, type: Model): Record<string, any> {
     if (type.baseModel) {
         baseModel = getType(program, type.baseModel);
     }
-    const modelName = getName(program, type);
+    const modelName = getName(program, type) || getEffectiveSchemaType(program, type).name;
     return {
         type: "model",
         name: modelName,
@@ -775,9 +775,11 @@ function emitStdScalar(scalar: Scalar & { name: IntrinsicScalarName }): Record<s
         case "uint16":
         case "uint32":
         case "uint64":
+        case "integer":
             return { type: "integer" };
         case "float32":
         case "float64":
+        case "float":
             return { type: "float" };
         case "uri":
         case "url":
@@ -793,9 +795,7 @@ function emitStdScalar(scalar: Scalar & { name: IntrinsicScalarName }): Record<s
             return { type: "time" };
         case "duration":
             return { type: "duration" };
-        case "integer":
         case "numeric":
-        case "float":
             return {}; // Waiting on design for more precise type https://github.com/microsoft/cadl/issues/1260
         default:
             return {};
@@ -905,28 +905,28 @@ function capitalize(name: string): string {
 
 function emitUnion(program: Program, type: Union): Record<string, any> {
     const nonNullOptions = [...type.variants.values()].map((x) => x.type).filter((t) => !isNullType(t));
-    let optionType: string;
-    const kind = nonNullOptions[0].kind;
-    switch (kind) {
-        case "String":
-            optionType = "string";
-            break;
-        case "Number":
-            optionType = "integer";
-            break;
-        case "Boolean":
-            optionType = "boolean";
-            break;
-        case "Scalar":
-            if (nonNullOptions.length === 1) {
-                return getType(program, nonNullOptions[0]);
-            } else {
-                throw Error("Can't do union in this case");
-            }
-        default:
-            throw Error(`Can't do union for ${kind}`);
+
+    const notLiteral = (t: Type): boolean => ["Boolean", "Number", "String"].indexOf(t.kind) < 0;
+    if (nonNullOptions.length > 1) {
+        if (nonNullOptions.every(notLiteral)) {
+            // Generate as CombinedType if non of the options is Literal.
+            const unionName = `MyCombinedType`;
+            return {
+                name: unionName,
+                snakeCaseName: camelToSnakeCase(unionName),
+                description: `Type of ${unionName}`,
+                isPublic: false,
+                type: "combined",
+                types: nonNullOptions.map((x) => emitType(program, x)),
+                xmlMetadata: {},
+            };
+        } else if (nonNullOptions.some(notLiteral)) {
+            // Can't generate if this union is a mixed up of literals and sub-types
+            throw Error(`Can't do union for ${JSON.stringify(nonNullOptions)}`);
+        }
     }
 
+    // Geneate Union of Literals as Python Enum
     const values: Record<string, any>[] = [];
     for (const option of nonNullOptions) {
         const value = emitType(program, option)["value"];
