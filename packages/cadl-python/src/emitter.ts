@@ -908,7 +908,7 @@ function emitUnion(program: Program, type: Union): Record<string, any> {
 
     const isLiteral = (t: Type): boolean => ["Boolean", "Number", "String"].indexOf(t.kind) >= 0;
     if (nonNullOptions.length > 1) {
-        if (nonNullOptions.every(x => !isLiteral(x))) {
+        if (nonNullOptions.every((x) => !isLiteral(x))) {
             // Generate as CombinedType if non of the options is Literal.
             const unionName = `MyCombinedType`;
             return {
@@ -917,38 +917,16 @@ function emitUnion(program: Program, type: Union): Record<string, any> {
                 description: `Type of ${unionName}`,
                 isPublic: false,
                 type: "combined",
-                types: nonNullOptions.map(x => emitType(program, x)),
+                types: nonNullOptions.map((x) => emitType(program, x)),
                 xmlMetadata: {},
-            }
-        }
-        else if (nonNullOptions.some(isLiteral)) {
+            };
+        } else if (nonNullOptions.some(isLiteral)) {
             // Can't generate if this union is a mixed up of literals and sub-types
             throw Error(`Can't do union for ${JSON.stringify(nonNullOptions)}`);
         }
     }
 
-    let optionType: string;
-    const kind = nonNullOptions[0].kind;
-    switch (kind) {
-        case "String":
-            optionType = "string";
-            break;
-        case "Number":
-            optionType = "integer";
-            break;
-        case "Boolean":
-            optionType = "boolean";
-            break;
-        case "Scalar":
-            if (nonNullOptions.length === 1) {
-                return getType(program, nonNullOptions[0]);
-            } else {
-                throw Error("Can't do union in this case");
-            }
-        default:
-            throw Error(`Can't do union for ${kind}`);
-    }
-
+    // Geneate Union of Literals as Python Enum
     const values: Record<string, any>[] = [];
     for (const option of nonNullOptions) {
         const value = emitType(program, option)["value"];
