@@ -906,9 +906,9 @@ function capitalize(name: string): string {
 function emitUnion(program: Program, type: Union): Record<string, any> {
     const nonNullOptions = [...type.variants.values()].map((x) => x.type).filter((t) => !isNullType(t));
 
-    const isLiteral = (t: Type): boolean => ["Boolean", "Number", "String"].indexOf(t.kind) >= 0;
+    const notLiteral = (t: Type): boolean => ["Boolean", "Number", "String"].indexOf(t.kind) < 0;
     if (nonNullOptions.length > 1) {
-        if (nonNullOptions.every((x) => !isLiteral(x))) {
+        if (nonNullOptions.every(notLiteral)) {
             // Generate as CombinedType if non of the options is Literal.
             const unionName = `MyCombinedType`;
             return {
@@ -920,7 +920,7 @@ function emitUnion(program: Program, type: Union): Record<string, any> {
                 types: nonNullOptions.map((x) => emitType(program, x)),
                 xmlMetadata: {},
             };
-        } else if (nonNullOptions.some(isLiteral)) {
+        } else if (nonNullOptions.some(notLiteral)) {
             // Can't generate if this union is a mixed up of literals and sub-types
             throw Error(`Can't do union for ${JSON.stringify(nonNullOptions)}`);
         }
