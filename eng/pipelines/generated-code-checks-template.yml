@@ -1,27 +1,27 @@
 parameters:
-    pythonVersion: ""
     folderName: ""
 
 steps:
     - script: tox -e ci
-      displayName: Execute ${{ parameters.folderName }} tests - Python ${{ parameters.pythonVersion }}
+      displayName: Execute ${{ parameters.folderName }} tests - Python $(PythonVersion)
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/${{ parameters.folderName }}
+
+    - script: tox -e lint
+      displayName: Lint ${{ parameters.folderName }} - Python $(PythonVersion)
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/${{ parameters.folderName }}
+      condition: and(eq(variables['PythonVersion'], '3.7'), contains( '${{ parameters.folderName }}', 'version-tolerant'))
+
+    - script: tox -e mypy
+      displayName: Mypy ${{ parameters.folderName }} - Python $(PythonVersion)
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/${{ parameters.folderName }}
+      condition: and(eq(variables['PythonVersion'], '3.11'), contains('${{ parameters.folderName }}', 'version-tolerant'))
+
+    - script: tox -e pyright
+      displayName: Pyright ${{ parameters.folderName }} - Python $(PythonVersion)
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/${{ parameters.folderName }}
+      condition: and(eq(variables['PythonVersion'], '3.10'), contains('${{ parameters.folderName }}', 'version-tolerant'))
 
     - script: tox -e apiview
-      displayName: ApiView ${{ parameters.folderName }}
+      displayName: ApiView ${{ parameters.folderName }} - Python $(PythonVersion)
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/${{ parameters.folderName }}
-
-    - ${{ if and(eq(parameters.pythonVersion, '3.7'), contains(parameters.folderName, 'version-tolerant')) }}:
-        - script: tox -e lint
-          displayName: Lint ${{ parameters.folderName }}
-          workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/${{ parameters.folderName }}
-
-    - ${{ if and(eq(parameters.pythonVersion, '3.11'), contains(parameters.folderName, 'version-tolerant')) }}:
-        - script: tox -e mypy
-          displayName: Mypy ${{ parameters.folderName }}
-          workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/${{ parameters.folderName }}
-
-    - ${{ if and(eq(parameters.pythonVersion, '3.10'), contains(parameters.folderName, 'version-tolerant')) }}:
-        - script: tox -e pyright
-          displayName: Pyright ${{ parameters.folderName }}
-          workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/${{ parameters.folderName }}
+      condition: eq(variables['PythonVersion'], '3.11')
