@@ -325,6 +325,9 @@ function emitBodyParameter(
     } else {
         type = getType(program, bodyType);
     }
+    if (type.type === "model" && type.name === "") {
+        type.name = capitalize(operation.name) + "Request";
+    }
 
     return {
         contentTypes,
