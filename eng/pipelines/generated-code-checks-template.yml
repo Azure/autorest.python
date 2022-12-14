@@ -10,17 +10,17 @@ steps:
     - script: tox -e lint
       displayName: Lint ${{ parameters.folderName }} - Python $(PythonVersion)
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}/test/${{ parameters.folderName }}
-      condition: and(eq(variables['PythonVersion'], '3.7'), or(contains( '${{ parameters.folderName }}', 'version-tolerant'), eq('${{parameters.package}}', 'cadl-python'))
+      condition: and(eq(variables['PythonVersion'], '3.7'), or(contains( '${{ parameters.folderName }}', 'version-tolerant'), eq('${{parameters.package}}', 'cadl-python')))
 
     - script: tox -e mypy
       displayName: Mypy ${{ parameters.folderName }} - Python $(PythonVersion)
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}/test/${{ parameters.folderName }}
-      condition: and(eq(variables['PythonVersion'], '3.11'), or(contains('${{ parameters.folderName }}', 'version-tolerant'), eq('${{parameters.package}}', 'cadl-python'))
+      condition: and(eq(variables['PythonVersion'], '3.11'), or(contains('${{ parameters.folderName }}', 'version-tolerant'), eq('${{parameters.package}}', 'cadl-python')))
 
     - script: tox -e pyright
       displayName: Pyright ${{ parameters.folderName }} - Python $(PythonVersion)
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}/test/${{ parameters.folderName }}
-      condition: and(eq(variables['PythonVersion'], '3.10'), or(contains('${{ parameters.folderName }}', 'version-tolerant'), eq('${{parameters.package}}', 'cadl-python'))
+      condition: and(eq(variables['PythonVersion'], '3.10'), or(contains('${{ parameters.folderName }}', 'version-tolerant'), eq('${{parameters.package}}', 'cadl-python')))
 
     - script: tox -e apiview
       displayName: ApiView ${{ parameters.folderName }} - Python $(PythonVersion)
