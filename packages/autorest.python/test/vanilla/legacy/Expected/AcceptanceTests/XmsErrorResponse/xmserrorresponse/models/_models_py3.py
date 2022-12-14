@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
+from typing import Any, Optional
 
 from .. import _serialization
 
@@ -23,7 +23,7 @@ class Animal(_serialization.Model):
         "ani_type": {"key": "aniType", "type": "str"},
     }
 
-    def __init__(self, *, ani_type: Optional[str] = None, **kwargs):
+    def __init__(self, *, ani_type: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword ani_type:
         :paramtype ani_type: str
@@ -43,7 +43,7 @@ class BaseError(_serialization.Model):
         "some_base_prop": {"key": "someBaseProp", "type": "str"},
     }
 
-    def __init__(self, *, some_base_prop: Optional[str] = None, **kwargs):
+    def __init__(self, *, some_base_prop: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword some_base_prop:
         :paramtype some_base_prop: str
@@ -80,7 +80,7 @@ class NotFoundErrorBase(BaseError):
 
     _subtype_map = {"what_not_found": {"AnimalNotFound": "AnimalNotFound", "InvalidResourceLink": "LinkNotFound"}}
 
-    def __init__(self, *, some_base_prop: Optional[str] = None, reason: Optional[str] = None, **kwargs):
+    def __init__(self, *, some_base_prop: Optional[str] = None, reason: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword some_base_prop:
         :paramtype some_base_prop: str
@@ -124,8 +124,8 @@ class AnimalNotFound(NotFoundErrorBase):
         some_base_prop: Optional[str] = None,
         reason: Optional[str] = None,
         name: Optional[str] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword some_base_prop:
         :paramtype some_base_prop: str
@@ -171,8 +171,8 @@ class LinkNotFound(NotFoundErrorBase):
         some_base_prop: Optional[str] = None,
         reason: Optional[str] = None,
         what_sub_address: Optional[str] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword some_base_prop:
         :paramtype some_base_prop: str
@@ -206,7 +206,7 @@ class Pet(Animal):
         "name": {"key": "name", "type": "str"},
     }
 
-    def __init__(self, *, ani_type: Optional[str] = None, **kwargs):
+    def __init__(self, *, ani_type: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword ani_type:
         :paramtype ani_type: str
@@ -226,7 +226,7 @@ class PetAction(_serialization.Model):
         "action_response": {"key": "actionResponse", "type": "str"},
     }
 
-    def __init__(self, *, action_response: Optional[str] = None, **kwargs):
+    def __init__(self, *, action_response: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword action_response: action feedback.
         :paramtype action_response: str
@@ -263,7 +263,9 @@ class PetActionError(PetAction):
 
     _subtype_map = {"error_type": {"PetSadError": "PetSadError"}}
 
-    def __init__(self, *, action_response: Optional[str] = None, error_message: Optional[str] = None, **kwargs):
+    def __init__(
+        self, *, action_response: Optional[str] = None, error_message: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """
         :keyword action_response: action feedback.
         :paramtype action_response: str
@@ -312,8 +314,8 @@ class PetSadError(PetActionError):
         action_response: Optional[str] = None,
         error_message: Optional[str] = None,
         reason: Optional[str] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword action_response: action feedback.
         :paramtype action_response: str
@@ -363,8 +365,8 @@ class PetHungryOrThirstyError(PetSadError):
         error_message: Optional[str] = None,
         reason: Optional[str] = None,
         hungry_or_thirsty: Optional[str] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword action_response: action feedback.
         :paramtype action_response: str

@@ -64,7 +64,6 @@ class MediaTypesSharedMixin:
         else:
             _json = message
             content_type = content_type or "application/json"
-
         request = build_body_three_types_request(
             content_type=content_type,
             json=_json,
@@ -82,15 +81,12 @@ class MediaTypesSharedMixin:
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
-
         if response.content:
             deserialized = response.json()
         else:
             deserialized = None
-
         if cls:
             return cls(pipeline_response, cast(str, deserialized), {})
-
         return cast(str, deserialized)
 
 

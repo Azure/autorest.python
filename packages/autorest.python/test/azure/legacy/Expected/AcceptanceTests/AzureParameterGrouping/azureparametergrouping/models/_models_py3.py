@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 
 import sys
-from typing import Optional
+from typing import Any, Optional
 
 import msrest.serialization
 
@@ -32,7 +32,7 @@ class Error(msrest.serialization.Model):
         "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
+    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword status:
         :paramtype status: int
@@ -58,7 +58,7 @@ class FirstParameterGroup(msrest.serialization.Model):
         "query_one": {"key": "query-one", "type": "int"},
     }
 
-    def __init__(self, *, header_one: Optional[str] = None, query_one: int = 30, **kwargs):
+    def __init__(self, *, header_one: Optional[str] = None, query_one: int = 30, **kwargs: Any) -> None:
         """
         :keyword header_one:
         :paramtype header_one: str
@@ -85,8 +85,12 @@ class Grouper(msrest.serialization.Model):
     }
 
     def __init__(
-        self, *, grouped_constant: Optional[Literal["foo"]] = None, grouped_parameter: Optional[str] = None, **kwargs
-    ):
+        self,
+        *,
+        grouped_constant: Optional[Literal["foo"]] = None,
+        grouped_parameter: Optional[str] = None,
+        **kwargs: Any
+    ) -> None:
         """
         :keyword grouped_constant: A grouped parameter that is a constant. Default value is "foo".
         :paramtype grouped_constant: str
@@ -112,7 +116,7 @@ class ParameterGroupingPostMultiParamGroupsSecondParamGroup(msrest.serialization
         "query_two": {"key": "query-two", "type": "int"},
     }
 
-    def __init__(self, *, header_two: Optional[str] = None, query_two: int = 30, **kwargs):
+    def __init__(self, *, header_two: Optional[str] = None, query_two: int = 30, **kwargs: Any) -> None:
         """
         :keyword header_two:
         :paramtype header_two: str
@@ -138,7 +142,7 @@ class ParameterGroupingPostOptionalParameters(msrest.serialization.Model):
         "query": {"key": "query", "type": "int"},
     }
 
-    def __init__(self, *, custom_header: Optional[str] = None, query: int = 30, **kwargs):
+    def __init__(self, *, custom_header: Optional[str] = None, query: int = 30, **kwargs: Any) -> None:
         """
         :keyword custom_header:
         :paramtype custom_header: str
@@ -177,7 +181,9 @@ class ParameterGroupingPostRequiredParameters(msrest.serialization.Model):
         "body": {"key": "body", "type": "int"},
     }
 
-    def __init__(self, *, path: str, body: int, custom_header: Optional[str] = None, query: int = 30, **kwargs):
+    def __init__(
+        self, *, path: str, body: int, custom_header: Optional[str] = None, query: int = 30, **kwargs: Any
+    ) -> None:
         """
         :keyword custom_header:
         :paramtype custom_header: str
@@ -209,7 +215,7 @@ class ParameterGroupingPostReservedWordsParameters(msrest.serialization.Model):
         "accept": {"key": "accept", "type": "str"},
     }
 
-    def __init__(self, *, from_property: Optional[str] = None, accept: Optional[str] = None, **kwargs):
+    def __init__(self, *, from_property: Optional[str] = None, accept: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword from_property: 'from' is a reserved word. Pass in 'bob' to pass.
         :paramtype from_property: str

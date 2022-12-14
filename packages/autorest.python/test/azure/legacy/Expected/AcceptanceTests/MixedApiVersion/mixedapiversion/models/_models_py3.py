@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
+from typing import Any, Optional
 
 from .. import _serialization
 
@@ -39,7 +39,7 @@ class Error(_serialization.Model):
 
     constant_id = 1
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
+    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword status:
         :paramtype status: int
@@ -68,7 +68,7 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(_serialization.Model):
         "foo_client_request_id": {"key": "foo-client-request-id", "type": "str"},
     }
 
-    def __init__(self, *, foo_client_request_id: str, **kwargs):
+    def __init__(self, *, foo_client_request_id: str, **kwargs: Any) -> None:
         """
         :keyword foo_client_request_id: The fooRequestId. Required.
         :paramtype foo_client_request_id: str
@@ -92,8 +92,12 @@ class OdataFilter(_serialization.Model):
     }
 
     def __init__(
-        self, *, id: Optional[int] = None, name: Optional[str] = None, **kwargs  # pylint: disable=redefined-builtin
-    ):
+        self,
+        *,
+        id: Optional[int] = None,  # pylint: disable=redefined-builtin
+        name: Optional[str] = None,
+        **kwargs: Any
+    ) -> None:
         """
         :keyword id:
         :paramtype id: int

@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
+from typing import Any, Optional
 
 from .. import _serialization
 
@@ -26,7 +26,7 @@ class Error(_serialization.Model):
         "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
+    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword status:
         :paramtype status: int
@@ -63,7 +63,7 @@ class RefColorConstant(_serialization.Model):
 
     color_constant = "green-color"
 
-    def __init__(self, *, field1: Optional[str] = None, **kwargs):
+    def __init__(self, *, field1: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword field1: Sample string.
         :paramtype field1: str
