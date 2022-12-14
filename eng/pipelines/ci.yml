@@ -166,29 +166,9 @@ jobs:
           pip install tox==3.27.1 coverage
         displayName: "Install Env Specific Reqs in Target PyVersion $(PythonVersion)"
 
-      - script: tox -e ci
-        displayName: 'Execute Mock API tests - Python $(PythonVersion)'
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/test/mock_api_tests
-
-      - script: tox -e lint
-        displayName: 'Lint cadl-python Tests - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.7'))
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/test
-
-      - script: tox -e mypy
-        displayName: 'Mypy cadl-python Tests - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.11'))
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/test
-
-      - script: tox -e pyright
-        displayName: 'Pyright cadl-python Tests - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.11'))
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/test
-
-      - script: tox -e apiview
-        displayName: 'Validate cadl-python APIView - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.11'))
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/test
+      - template: generated-code-checks-template.yml
+        parameters:
+            package: "cadl-python"
 
       - script: cadl-ranch check-coverage http/
         displayName: Check Coverage
