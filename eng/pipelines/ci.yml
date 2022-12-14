@@ -78,97 +78,21 @@ jobs:
           pip install pip==20.2
           pip install tox==3.27.1 coverage
         displayName: "Install Env Specific Reqs in Target PyVersion $(PythonVersion)"
-
-      - script: tox -e ci
-        displayName: 'Execute legacy "azure" Tests - Python $(PythonVersion)'
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/azure/legacy
-
-      - script: tox -e ci
-        displayName: 'Execute version-tolerant "azure" Tests - Python $(PythonVersion)'
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/azure/version-tolerant
-
-      - script: tox -e apiview
-        displayName: 'Validate legacy "azure" APIView - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.11'))
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/azure/legacy
-
-      - script: tox -e lint
-        displayName: 'Lint version-tolerant "azure" Tests - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.7'))
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/azure/version-tolerant
-
-      - script: tox -e mypy
-        displayName: 'Mypy version-tolerant "azure" Tests - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.11'))
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/azure/version-tolerant
-
-      - script: tox -e pyright
-        displayName: 'Pyright version-tolerant "azure" Tests - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.10'))
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/azure/version-tolerant
-
-      - script: tox -e apiview
-        displayName: 'Validate version-tolerant "azure" APIView - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.11'))
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/azure/version-tolerant
-
-      - script: tox -e ci
-        displayName: 'Execute legacy "vanilla" Tests - Python $(PythonVersion)'
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/vanilla/legacy
-        
-      - script: tox -e apiview
-        displayName: 'Validate legacy "vanilla" APIView - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.11'))
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/vanilla/legacy
-
-      - script: tox -e ci
-        displayName: 'Execute version-tolerant "vanilla" Tests - Python $(PythonVersion)'
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/vanilla/version-tolerant
-
-      - script: tox -e lint
-        displayName: 'Lint version-tolerant "vanilla" Tests - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.7'))
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/vanilla/version-tolerant
-
-      - script: tox -e mypy
-        displayName: 'Mypy version-tolerant "vanilla" Tests - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.11'))
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/vanilla/version-tolerant
-
-      - script: tox -e pyright
-        displayName: 'Pyright version-tolerant "vanilla" Tests - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.10'))
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/vanilla/version-tolerant
-
-      - script: tox -e apiview
-        displayName: 'Validate version-tolerant "vanilla" APIView - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.11'))
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/vanilla/version-tolerant
-
-      - script: tox -e ci
-        displayName: 'Execute version-tolerant update "dpg" Tests - Python $(PythonVersion)'
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/dpg/version-tolerant
-
-      - script: tox -e lint
-        displayName: 'Lint version-tolerant "dpg" Tests - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.7'))
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/dpg/version-tolerant
-
-      - script: tox -e mypy
-        displayName: 'Mypy version-tolerant "dpg" Tests - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.11'))
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/dpg/version-tolerant
-
-      - script: tox -e pyright
-        displayName: 'Pyright version-tolerant "dpg" Tests - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.10'))
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/dpg/version-tolerant
-
-      - script: tox -e apiview
-        displayName: 'Validate version-tolerant "dpg" APIView - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.11'))
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/dpg/version-tolerant
-
+      - template: generated-code-checks-template.yml
+        parameters:
+            folderName: "azure/legacy"
+      - template: generated-code-checks-template.yml
+        parameters:
+            folderName: "azure/version-tolerant"
+      - template: generated-code-checks-template.yml
+        parameters:
+            folderName: "vanilla/legacy"
+      - template: generated-code-checks-template.yml
+        parameters:
+            folderName: "vanilla/version-tolerant"
+      - template: generated-code-checks-template.yml
+        parameters:
+            folderName: "dpg/version-tolerant"
       - script: tox -e ci
         displayName: 'Execute "multiapi" Tests - Python $(PythonVersion)'
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/multiapi
