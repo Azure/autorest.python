@@ -1,5 +1,11 @@
 # Release History
 
+## 2022-12-15 - 0.4.14
+
+**Bug Fixes**
+
+- Generate anonymous models and aliases as JSON objects  #1619
+
 ## 2022-12-08 - 0.4.13
 
 **Other Changes**

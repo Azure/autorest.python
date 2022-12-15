@@ -326,6 +326,10 @@ function emitBodyParameter(
         type = getType(program, bodyType);
     }
 
+    if (type.type === "model" && type.name === "") {
+        type.name = capitalize(operation.name) + "Request";
+    }
+
     return {
         contentTypes,
         type,
@@ -691,6 +695,7 @@ function emitModel(program: Program, type: Model): Record<string, any> {
         properties: properties,
         addedOn: getAddedOnVersion(program, type),
         snakeCaseName: modelName ? camelToSnakeCase(modelName) : modelName,
+        base: modelName === "" ? "json" : "dpg",
     };
 }
 
