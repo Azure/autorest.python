@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 
-from autorest.codegen.models import CodeModel, ModelType
+from autorest.codegen.models import CodeModel, DPGModelType
 
 
 def get_code_model():
@@ -32,7 +32,7 @@ def get_code_model():
 
 
 def get_object_schema(name, base_models):
-    return ModelType(
+    return DPGModelType(
         yaml_data={"name": name, "type": "model", "snakeCaseName": name},
         code_model=get_code_model(),
         parents=base_models,
