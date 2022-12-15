@@ -61,8 +61,8 @@ class Error(_serialization.Model):
         target: Optional[str] = None,
         details: Optional[List["_models.Error"]] = None,
         innererror: Optional["_models.InnerError"] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword additional_properties: Unmatched properties from the message are deserialized to this
          collection.
@@ -110,7 +110,9 @@ class ErrorResponse(_serialization.Model):
         "error": {"key": "error", "type": "Error"},
     }
 
-    def __init__(self, *, error: "_models.Error", additional_properties: Optional[Dict[str, Any]] = None, **kwargs):
+    def __init__(
+        self, *, error: "_models.Error", additional_properties: Optional[Dict[str, Any]] = None, **kwargs: Any
+    ) -> None:
         """
         :keyword additional_properties: Unmatched properties from the message are deserialized to this
          collection.
@@ -162,8 +164,8 @@ class InnerError(_serialization.Model):
         message: str,
         additional_properties: Optional[Dict[str, Any]] = None,
         innererror: Optional["_models.InnerError"] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword additional_properties: Unmatched properties from the message are deserialized to this
          collection.
@@ -205,7 +207,7 @@ class SecretResponse(_serialization.Model):
         "value": {"key": "value", "type": "str"},
     }
 
-    def __init__(self, *, key: str, value: str, **kwargs):
+    def __init__(self, *, key: str, value: str, **kwargs: Any) -> None:
         """
         :keyword key: The secret key. Required.
         :paramtype key: str

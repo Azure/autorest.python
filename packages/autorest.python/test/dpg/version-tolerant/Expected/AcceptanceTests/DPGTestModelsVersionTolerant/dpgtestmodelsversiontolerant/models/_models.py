@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import List, Optional, TYPE_CHECKING, Union
+from typing import Any, List, Optional, TYPE_CHECKING, Union
 
 from .. import _serialization
 
@@ -33,7 +33,7 @@ class Input(_serialization.Model):
         "hello": {"key": "hello", "type": "str"},
     }
 
-    def __init__(self, *, hello: str, **kwargs):
+    def __init__(self, *, hello: str, **kwargs: Any) -> None:
         """
         :keyword hello: Required.
         :paramtype hello: str
@@ -59,7 +59,7 @@ class Product(_serialization.Model):
         "received": {"key": "received", "type": "str"},
     }
 
-    def __init__(self, *, received: Union[str, "_models.ProductReceived"], **kwargs):
+    def __init__(self, *, received: Union[str, "_models.ProductReceived"], **kwargs: Any) -> None:
         """
         :keyword received: Required. Known values are: "raw" and "model".
         :paramtype received: str or ~dpgtestmodelsversiontolerant.models.ProductReceived
@@ -89,7 +89,9 @@ class LROProduct(Product):
         "provisioning_state": {"key": "provisioningState", "type": "str"},
     }
 
-    def __init__(self, *, received: Union[str, "_models.ProductReceived"], provisioning_state: str, **kwargs):
+    def __init__(
+        self, *, received: Union[str, "_models.ProductReceived"], provisioning_state: str, **kwargs: Any
+    ) -> None:
         """
         :keyword received: Required. Known values are: "raw" and "model".
         :paramtype received: str or ~dpgtestmodelsversiontolerant.models.ProductReceived
@@ -114,7 +116,9 @@ class ProductResult(_serialization.Model):
         "next_link": {"key": "nextLink", "type": "str"},
     }
 
-    def __init__(self, *, values: Optional[List["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs):
+    def __init__(
+        self, *, values: Optional[List["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """
         :keyword values:
         :paramtype values: list[~dpgtestmodelsversiontolerant.models.Product]

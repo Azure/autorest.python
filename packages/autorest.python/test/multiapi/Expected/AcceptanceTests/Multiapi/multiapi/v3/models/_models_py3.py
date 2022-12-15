@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import List, Optional
+from typing import Any, List, Optional
 
 from ... import _serialization
 
@@ -26,7 +26,7 @@ class Error(_serialization.Model):
         "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
+    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword status:
         :paramtype status: int
@@ -49,7 +49,7 @@ class ModelThree(_serialization.Model):
         "optional_property": {"key": "optionalProperty", "type": "str"},
     }
 
-    def __init__(self, *, optional_property: Optional[str] = None, **kwargs):
+    def __init__(self, *, optional_property: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword optional_property:
         :paramtype optional_property: str
@@ -73,8 +73,8 @@ class PagingResult(_serialization.Model):
     }
 
     def __init__(
-        self, *, values: Optional[List["_models.ModelThree"]] = None, next_link: Optional[str] = None, **kwargs
-    ):
+        self, *, values: Optional[List["_models.ModelThree"]] = None, next_link: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """
         :keyword values:
         :paramtype values: list[~multiapi.v3.models.ModelThree]
@@ -101,7 +101,7 @@ class SourcePath(_serialization.Model):
         "source": {"key": "source", "type": "str"},
     }
 
-    def __init__(self, *, source: Optional[str] = None, **kwargs):
+    def __init__(self, *, source: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword source: File source path.
         :paramtype source: str

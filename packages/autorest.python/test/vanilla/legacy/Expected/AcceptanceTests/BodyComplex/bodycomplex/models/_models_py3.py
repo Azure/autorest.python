@@ -28,7 +28,7 @@ class ArrayWrapper(msrest.serialization.Model):
         "array": {"key": "array", "type": "[str]"},
     }
 
-    def __init__(self, *, array: Optional[List[str]] = None, **kwargs):
+    def __init__(self, *, array: Optional[List[str]] = None, **kwargs: Any) -> None:
         """
         :keyword array:
         :paramtype array: list[str]
@@ -61,8 +61,8 @@ class Basic(msrest.serialization.Model):
         id: Optional[int] = None,  # pylint: disable=redefined-builtin
         name: Optional[str] = None,
         color: Optional[Union[str, "_models.CMYKColors"]] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword id: Basic Id.
         :paramtype id: int
@@ -92,7 +92,7 @@ class BooleanWrapper(msrest.serialization.Model):
         "field_false": {"key": "field_false", "type": "bool"},
     }
 
-    def __init__(self, *, field_true: Optional[bool] = None, field_false: Optional[bool] = None, **kwargs):
+    def __init__(self, *, field_true: Optional[bool] = None, field_false: Optional[bool] = None, **kwargs: Any) -> None:
         """
         :keyword field_true:
         :paramtype field_true: bool
@@ -115,7 +115,7 @@ class ByteWrapper(msrest.serialization.Model):
         "field": {"key": "field", "type": "bytearray"},
     }
 
-    def __init__(self, *, field: Optional[bytes] = None, **kwargs):
+    def __init__(self, *, field: Optional[bytes] = None, **kwargs: Any) -> None:
         """
         :keyword field:
         :paramtype field: bytes
@@ -139,8 +139,12 @@ class Pet(msrest.serialization.Model):
     }
 
     def __init__(
-        self, *, id: Optional[int] = None, name: Optional[str] = None, **kwargs  # pylint: disable=redefined-builtin
-    ):
+        self,
+        *,
+        id: Optional[int] = None,  # pylint: disable=redefined-builtin
+        name: Optional[str] = None,
+        **kwargs: Any
+    ) -> None:
         """
         :keyword id:
         :paramtype id: int
@@ -179,8 +183,8 @@ class Cat(Pet):
         name: Optional[str] = None,
         color: Optional[str] = None,
         hates: Optional[List["_models.Dog"]] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword id:
         :paramtype id: int
@@ -229,8 +233,13 @@ class Fish(msrest.serialization.Model):
     _subtype_map = {"fishtype": {"salmon": "Salmon", "shark": "Shark"}}
 
     def __init__(
-        self, *, length: float, species: Optional[str] = None, siblings: Optional[List["_models.Fish"]] = None, **kwargs
-    ):
+        self,
+        *,
+        length: float,
+        species: Optional[str] = None,
+        siblings: Optional[List["_models.Fish"]] = None,
+        **kwargs: Any
+    ) -> None:
         """
         :keyword species:
         :paramtype species: str
@@ -295,8 +304,8 @@ class Shark(Fish):
         species: Optional[str] = None,
         siblings: Optional[List["_models.Fish"]] = None,
         age: Optional[int] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword species:
         :paramtype species: str
@@ -357,8 +366,8 @@ class Cookiecuttershark(Shark):
         species: Optional[str] = None,
         siblings: Optional[List["_models.Fish"]] = None,
         age: Optional[int] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword species:
         :paramtype species: str
@@ -389,7 +398,9 @@ class Datetimerfc1123Wrapper(msrest.serialization.Model):
         "now": {"key": "now", "type": "rfc-1123"},
     }
 
-    def __init__(self, *, field: Optional[datetime.datetime] = None, now: Optional[datetime.datetime] = None, **kwargs):
+    def __init__(
+        self, *, field: Optional[datetime.datetime] = None, now: Optional[datetime.datetime] = None, **kwargs: Any
+    ) -> None:
         """
         :keyword field:
         :paramtype field: ~datetime.datetime
@@ -415,7 +426,9 @@ class DatetimeWrapper(msrest.serialization.Model):
         "now": {"key": "now", "type": "iso-8601"},
     }
 
-    def __init__(self, *, field: Optional[datetime.datetime] = None, now: Optional[datetime.datetime] = None, **kwargs):
+    def __init__(
+        self, *, field: Optional[datetime.datetime] = None, now: Optional[datetime.datetime] = None, **kwargs: Any
+    ) -> None:
         """
         :keyword field:
         :paramtype field: ~datetime.datetime
@@ -441,7 +454,9 @@ class DateWrapper(msrest.serialization.Model):
         "leap": {"key": "leap", "type": "date"},
     }
 
-    def __init__(self, *, field: Optional[datetime.date] = None, leap: Optional[datetime.date] = None, **kwargs):
+    def __init__(
+        self, *, field: Optional[datetime.date] = None, leap: Optional[datetime.date] = None, **kwargs: Any
+    ) -> None:
         """
         :keyword field:
         :paramtype field: ~datetime.date
@@ -464,7 +479,7 @@ class DictionaryWrapper(msrest.serialization.Model):
         "default_program": {"key": "defaultProgram", "type": "{str}"},
     }
 
-    def __init__(self, *, default_program: Optional[Dict[str, str]] = None, **kwargs):
+    def __init__(self, *, default_program: Optional[Dict[str, str]] = None, **kwargs: Any) -> None:
         """
         :keyword default_program: Dictionary of :code:`<string>`.
         :paramtype default_program: dict[str, str]
@@ -496,8 +511,8 @@ class Dog(Pet):
         id: Optional[int] = None,  # pylint: disable=redefined-builtin
         name: Optional[str] = None,
         food: Optional[str] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword id:
         :paramtype id: int
@@ -535,7 +550,7 @@ class DotFish(msrest.serialization.Model):
 
     _subtype_map = {"fish_type": {"DotSalmon": "DotSalmon"}}
 
-    def __init__(self, *, species: Optional[str] = None, **kwargs):
+    def __init__(self, *, species: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword species:
         :paramtype species: str
@@ -572,8 +587,8 @@ class DotFishMarket(msrest.serialization.Model):
         salmons: Optional[List["_models.DotSalmon"]] = None,
         sample_fish: Optional["_models.DotFish"] = None,
         fishes: Optional[List["_models.DotFish"]] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword sample_salmon:
         :paramtype sample_salmon: ~bodycomplex.models.DotSalmon
@@ -618,8 +633,13 @@ class DotSalmon(DotFish):
     }
 
     def __init__(
-        self, *, species: Optional[str] = None, location: Optional[str] = None, iswild: Optional[bool] = None, **kwargs
-    ):
+        self,
+        *,
+        species: Optional[str] = None,
+        location: Optional[str] = None,
+        iswild: Optional[bool] = None,
+        **kwargs: Any
+    ) -> None:
         """
         :keyword species:
         :paramtype species: str
@@ -661,8 +681,8 @@ class DoubleWrapper(msrest.serialization.Model):
         field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose: Optional[
             float
         ] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword field1:
         :paramtype field1: float
@@ -690,7 +710,7 @@ class DurationWrapper(msrest.serialization.Model):
         "field": {"key": "field", "type": "duration"},
     }
 
-    def __init__(self, *, field: Optional[datetime.timedelta] = None, **kwargs):
+    def __init__(self, *, field: Optional[datetime.timedelta] = None, **kwargs: Any) -> None:
         """
         :keyword field:
         :paramtype field: ~datetime.timedelta
@@ -713,7 +733,7 @@ class Error(msrest.serialization.Model):
         "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
+    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword status:
         :paramtype status: int
@@ -739,7 +759,7 @@ class FloatWrapper(msrest.serialization.Model):
         "field2": {"key": "field2", "type": "float"},
     }
 
-    def __init__(self, *, field1: Optional[float] = None, field2: Optional[float] = None, **kwargs):
+    def __init__(self, *, field1: Optional[float] = None, field2: Optional[float] = None, **kwargs: Any) -> None:
         """
         :keyword field1:
         :paramtype field1: float
@@ -801,8 +821,8 @@ class Goblinshark(Shark):
         age: Optional[int] = None,
         jawsize: Optional[int] = None,
         color: Union[str, "_models.GoblinSharkColor"] = "gray",
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword species:
         :paramtype species: str
@@ -839,7 +859,7 @@ class IntWrapper(msrest.serialization.Model):
         "field2": {"key": "field2", "type": "int"},
     }
 
-    def __init__(self, *, field1: Optional[int] = None, field2: Optional[int] = None, **kwargs):
+    def __init__(self, *, field1: Optional[int] = None, field2: Optional[int] = None, **kwargs: Any) -> None:
         """
         :keyword field1:
         :paramtype field1: int
@@ -865,7 +885,7 @@ class LongWrapper(msrest.serialization.Model):
         "field2": {"key": "field2", "type": "int"},
     }
 
-    def __init__(self, *, field1: Optional[int] = None, field2: Optional[int] = None, **kwargs):
+    def __init__(self, *, field1: Optional[int] = None, field2: Optional[int] = None, **kwargs: Any) -> None:
         """
         :keyword field1:
         :paramtype field1: int
@@ -905,7 +925,7 @@ class MyBaseType(msrest.serialization.Model):
 
     _subtype_map = {"kind": {"Kind1": "MyDerivedType"}}
 
-    def __init__(self, *, prop_b1: Optional[str] = None, prop_bh1: Optional[str] = None, **kwargs):
+    def __init__(self, *, prop_b1: Optional[str] = None, prop_bh1: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword prop_b1:
         :paramtype prop_b1: str
@@ -945,8 +965,13 @@ class MyDerivedType(MyBaseType):
     }
 
     def __init__(
-        self, *, prop_b1: Optional[str] = None, prop_bh1: Optional[str] = None, prop_d1: Optional[str] = None, **kwargs
-    ):
+        self,
+        *,
+        prop_b1: Optional[str] = None,
+        prop_bh1: Optional[str] = None,
+        prop_d1: Optional[str] = None,
+        **kwargs: Any
+    ) -> None:
         """
         :keyword prop_b1:
         :paramtype prop_b1: str
@@ -980,7 +1005,7 @@ class ReadonlyObj(msrest.serialization.Model):
         "size": {"key": "size", "type": "int"},
     }
 
-    def __init__(self, *, size: Optional[int] = None, **kwargs):
+    def __init__(self, *, size: Optional[int] = None, **kwargs: Any) -> None:
         """
         :keyword size:
         :paramtype size: int
@@ -1036,8 +1061,8 @@ class Salmon(Fish):
         siblings: Optional[List["_models.Fish"]] = None,
         location: Optional[str] = None,
         iswild: Optional[bool] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword species:
         :paramtype species: str
@@ -1102,8 +1127,8 @@ class Sawshark(Shark):
         siblings: Optional[List["_models.Fish"]] = None,
         age: Optional[int] = None,
         picture: Optional[bytes] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword species:
         :paramtype species: str
@@ -1154,8 +1179,8 @@ class Siamese(Cat):
         color: Optional[str] = None,
         hates: Optional[List["_models.Dog"]] = None,
         breed: Optional[str] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword id:
         :paramtype id: int
@@ -1222,8 +1247,8 @@ class SmartSalmon(Salmon):
         iswild: Optional[bool] = None,
         additional_properties: Optional[Dict[str, Any]] = None,
         college_degree: Optional[str] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword species:
         :paramtype species: str
@@ -1265,8 +1290,8 @@ class StringWrapper(msrest.serialization.Model):
     }
 
     def __init__(
-        self, *, field: Optional[str] = None, empty: Optional[str] = None, null: Optional[str] = None, **kwargs
-    ):
+        self, *, field: Optional[str] = None, empty: Optional[str] = None, null: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """
         :keyword field:
         :paramtype field: str

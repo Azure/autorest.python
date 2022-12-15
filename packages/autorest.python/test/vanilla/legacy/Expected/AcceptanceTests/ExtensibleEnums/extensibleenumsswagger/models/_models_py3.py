@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 from .. import _serialization
 
@@ -46,8 +46,8 @@ class Pet(_serialization.Model):
         int_enum: Union[str, "_models.IntEnum"],
         name: Optional[str] = None,
         days_of_week: Union[str, "_models.DaysOfWeekExtensibleEnum"] = "Friday",
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword name: name.
         :paramtype name: str

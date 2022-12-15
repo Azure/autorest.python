@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
+from typing import Any, Optional
 
 from .. import _serialization
 
@@ -27,7 +27,7 @@ class SourcePath(_serialization.Model):
         "source": {"key": "source", "type": "str"},
     }
 
-    def __init__(self, *, source: Optional[str] = None, **kwargs):
+    def __init__(self, *, source: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword source: File source path.
         :paramtype source: str
