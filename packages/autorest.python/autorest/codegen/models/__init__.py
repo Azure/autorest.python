@@ -159,9 +159,9 @@ def build_type(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseType:
         if yaml_data["base"] == "json":
             model_type = JSONModelType
         elif yaml_data["base"] == "dpg":
-            model_type = DPGModelType
+            model_type = DPGModelType  # type: ignore
         else:
-            model_type = MsrestModelType
+            model_type = MsrestModelType  # type: ignore
         response = model_type(yaml_data, code_model)
         code_model.types_map[yaml_id] = response
         response.fill_instance_from_yaml(yaml_data, code_model)
