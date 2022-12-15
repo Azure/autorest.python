@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
+from typing import Any, Optional
 
 from .. import _serialization
 
@@ -26,7 +26,7 @@ class Error(_serialization.Model):
         "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
+    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword status:
         :paramtype status: int
@@ -52,7 +52,7 @@ class Product(_serialization.Model):
         "string": {"key": "string", "type": "str"},
     }
 
-    def __init__(self, *, integer: Optional[int] = None, string: Optional[str] = None, **kwargs):
+    def __init__(self, *, integer: Optional[int] = None, string: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword integer:
         :paramtype integer: int
