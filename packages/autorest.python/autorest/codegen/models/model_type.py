@@ -4,7 +4,13 @@
 # license information.
 # --------------------------------------------------------------------------
 from collections import OrderedDict
-from typing import Any, Dict, List, Optional, TYPE_CHECKING, cast, Literal
+from typing import Any, Dict, List, Optional, TYPE_CHECKING, cast
+import sys
+
+if sys.version_info >= (3, 8):
+    from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
+else:
+    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 
 from autorest.codegen.models.utils import add_to_pylint_disable
 from .base import BaseType
