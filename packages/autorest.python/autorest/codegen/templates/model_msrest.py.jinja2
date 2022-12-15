@@ -65,8 +65,8 @@
         {% for param_signature in serializer.init_line(model) %}
         {{ param_signature }}
         {% endfor %}
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
     {% if model.properties %}
         {% for p in model.properties %}

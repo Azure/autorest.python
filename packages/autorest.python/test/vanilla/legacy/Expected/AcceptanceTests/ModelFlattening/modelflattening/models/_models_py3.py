@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 
 import sys
-from typing import Dict, List, Optional, TYPE_CHECKING
+from typing import Any, Dict, List, Optional, TYPE_CHECKING
 
 from .. import _serialization
 
@@ -44,7 +44,7 @@ class BaseProduct(_serialization.Model):
         "description": {"key": "base_product_description", "type": "str"},
     }
 
-    def __init__(self, *, product_id: str, description: Optional[str] = None, **kwargs):
+    def __init__(self, *, product_id: str, description: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword product_id: Unique identifier representing a specific product for a given latitude &
          longitude. For example, uberX in San Francisco will have a different product_id than uberX in
@@ -81,8 +81,8 @@ class Error(_serialization.Model):
         status: Optional[int] = None,
         message: Optional[str] = None,
         parent_error: Optional["_models.Error"] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword status:
         :paramtype status: int
@@ -128,7 +128,7 @@ class Resource(_serialization.Model):
         "name": {"key": "name", "type": "str"},
     }
 
-    def __init__(self, *, tags: Optional[Dict[str, str]] = None, location: Optional[str] = None, **kwargs):
+    def __init__(self, *, tags: Optional[Dict[str, str]] = None, location: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword tags: Dictionary of :code:`<string>`.
         :paramtype tags: dict[str, str]
@@ -197,8 +197,8 @@ class FlattenedProduct(Resource):
         p_name: Optional[str] = None,
         type_properties_type: Optional[str] = None,
         provisioning_state: Optional[str] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword tags: Dictionary of :code:`<string>`.
         :paramtype tags: dict[str, str]
@@ -270,8 +270,8 @@ class FlattenParameterGroup(_serialization.Model):
         capacity: Optional[Literal["Large"]] = None,
         generic_value: Optional[str] = None,
         odata_value: Optional[str] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword name: Product name with value 'groupproduct'. Required.
         :paramtype name: str
@@ -314,7 +314,7 @@ class GenericUrl(_serialization.Model):
         "generic_value": {"key": "generic_value", "type": "str"},
     }
 
-    def __init__(self, *, generic_value: Optional[str] = None, **kwargs):
+    def __init__(self, *, generic_value: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword generic_value: Generic URL value.
         :paramtype generic_value: str
@@ -337,7 +337,9 @@ class ProductUrl(GenericUrl):
         "odata_value": {"key": "@odata\\.value", "type": "str"},
     }
 
-    def __init__(self, *, generic_value: Optional[str] = None, odata_value: Optional[str] = None, **kwargs):
+    def __init__(
+        self, *, generic_value: Optional[str] = None, odata_value: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """
         :keyword generic_value: Generic URL value.
         :paramtype generic_value: str
@@ -359,7 +361,7 @@ class ProductWrapper(_serialization.Model):
         "value": {"key": "property.value", "type": "str"},
     }
 
-    def __init__(self, *, value: Optional[str] = None, **kwargs):
+    def __init__(self, *, value: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword value: the product value.
         :paramtype value: str
@@ -391,8 +393,8 @@ class ResourceCollection(_serialization.Model):
         productresource: Optional["_models.FlattenedProduct"] = None,
         arrayofresources: Optional[List["_models.FlattenedProduct"]] = None,
         dictionaryofresources: Optional[Dict[str, "_models.FlattenedProduct"]] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword productresource: Flattened product.
         :paramtype productresource: ~modelflattening.models.FlattenedProduct
@@ -450,8 +452,8 @@ class SimpleProduct(BaseProduct):
         capacity: Optional[Literal["Large"]] = None,
         generic_value: Optional[str] = None,
         odata_value: Optional[str] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword product_id: Unique identifier representing a specific product for a given latitude &
          longitude. For example, uberX in San Francisco will have a different product_id than uberX in
@@ -486,7 +488,7 @@ class WrappedProduct(_serialization.Model):
         "value": {"key": "value", "type": "str"},
     }
 
-    def __init__(self, *, value: Optional[str] = None, **kwargs):
+    def __init__(self, *, value: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword value: the product value.
         :paramtype value: str

@@ -283,11 +283,11 @@ class ModelType(
             file_import.add_submodule_import(
                 relative_path, "models", ImportType.LOCAL, alias="_models"
             )
-        if self.code_model.options["models_mode"] == "msrest":
-            return file_import
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
+        if self.code_model.options["models_mode"] == "msrest":
+            return file_import
         file_import.define_mutable_mapping_type()
         if self.is_xml:
             file_import.add_submodule_import(

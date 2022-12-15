@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import List, Optional, TYPE_CHECKING, Union
+from typing import Any, List, Optional, TYPE_CHECKING, Union
 
 from .. import _serialization
 
@@ -27,7 +27,7 @@ class BodyParam(_serialization.Model):
         "name": {"key": "name", "type": "str"},
     }
 
-    def __init__(self, *, name: Optional[str] = None, **kwargs):
+    def __init__(self, *, name: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword name:
         :paramtype name: str
@@ -57,7 +57,7 @@ class CustomParameterGroup(_serialization.Model):
         "tenant": {"key": "tenant", "type": "str"},
     }
 
-    def __init__(self, *, api_version: str, tenant: str, **kwargs):
+    def __init__(self, *, api_version: str, tenant: str, **kwargs: Any) -> None:
         """
         :keyword api_version: Sets the api version to use. Required.
         :paramtype api_version: str
@@ -84,8 +84,8 @@ class OdataProductResult(_serialization.Model):
     }
 
     def __init__(
-        self, *, values: Optional[List["_models.Product"]] = None, odata_next_link: Optional[str] = None, **kwargs
-    ):
+        self, *, values: Optional[List["_models.Product"]] = None, odata_next_link: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """
         :keyword values:
         :paramtype values: list[~azure.packagemode.batch.paging.models.Product]
@@ -109,7 +109,7 @@ class OperationResult(_serialization.Model):
         "status": {"key": "status", "type": "str"},
     }
 
-    def __init__(self, *, status: Optional[Union[str, "_models.OperationResultStatus"]] = None, **kwargs):
+    def __init__(self, *, status: Optional[Union[str, "_models.OperationResultStatus"]] = None, **kwargs: Any) -> None:
         """
         :keyword status: The status of the request. Known values are: "Succeeded", "Failed",
          "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
@@ -135,7 +135,7 @@ class PagingGetMultiplePagesLroOptions(_serialization.Model):
         "timeout": {"key": "timeout", "type": "int"},
     }
 
-    def __init__(self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs):
+    def __init__(self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any) -> None:
         """
         :keyword maxresults: Sets the maximum number of items to return in the response.
         :paramtype maxresults: int
@@ -163,7 +163,7 @@ class PagingGetMultiplePagesOptions(_serialization.Model):
         "timeout": {"key": "timeout", "type": "int"},
     }
 
-    def __init__(self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs):
+    def __init__(self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any) -> None:
         """
         :keyword maxresults: Sets the maximum number of items to return in the response.
         :paramtype maxresults: int
@@ -200,7 +200,7 @@ class PagingGetMultiplePagesWithOffsetOptions(_serialization.Model):
         "timeout": {"key": "timeout", "type": "int"},
     }
 
-    def __init__(self, *, offset: int, maxresults: Optional[int] = None, timeout: int = 30, **kwargs):
+    def __init__(self, *, offset: int, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any) -> None:
         """
         :keyword maxresults: Sets the maximum number of items to return in the response.
         :paramtype maxresults: int
@@ -231,7 +231,7 @@ class PagingGetOdataMultiplePagesOptions(_serialization.Model):
         "timeout": {"key": "timeout", "type": "int"},
     }
 
-    def __init__(self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs):
+    def __init__(self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any) -> None:
         """
         :keyword maxresults: Sets the maximum number of items to return in the response.
         :paramtype maxresults: int
@@ -255,7 +255,7 @@ class Product(_serialization.Model):
         "properties": {"key": "properties", "type": "ProductProperties"},
     }
 
-    def __init__(self, *, properties: Optional["_models.ProductProperties"] = None, **kwargs):
+    def __init__(self, *, properties: Optional["_models.ProductProperties"] = None, **kwargs: Any) -> None:
         """
         :keyword properties:
         :paramtype properties: ~azure.packagemode.batch.paging.models.ProductProperties
@@ -279,8 +279,12 @@ class ProductProperties(_serialization.Model):
     }
 
     def __init__(
-        self, *, id: Optional[int] = None, name: Optional[str] = None, **kwargs  # pylint: disable=redefined-builtin
-    ):
+        self,
+        *,
+        id: Optional[int] = None,  # pylint: disable=redefined-builtin
+        name: Optional[str] = None,
+        **kwargs: Any
+    ) -> None:
         """
         :keyword id:
         :paramtype id: int
@@ -306,7 +310,9 @@ class ProductResult(_serialization.Model):
         "next_link": {"key": "nextLink", "type": "str"},
     }
 
-    def __init__(self, *, values: Optional[List["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs):
+    def __init__(
+        self, *, values: Optional[List["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """
         :keyword values:
         :paramtype values: list[~azure.packagemode.batch.paging.models.Product]
@@ -332,7 +338,9 @@ class ProductResultValue(_serialization.Model):
         "next_link": {"key": "nextLink", "type": "str"},
     }
 
-    def __init__(self, *, value: Optional[List["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs):
+    def __init__(
+        self, *, value: Optional[List["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """
         :keyword value:
         :paramtype value: list[~azure.packagemode.batch.paging.models.Product]
@@ -358,7 +366,9 @@ class ProductResultValueWithXMSClientName(_serialization.Model):
         "next_link": {"key": "nextLink", "type": "str"},
     }
 
-    def __init__(self, *, indexes: Optional[List["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs):
+    def __init__(
+        self, *, indexes: Optional[List["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """
         :keyword indexes:
         :paramtype indexes: list[~azure.packagemode.batch.paging.models.Product]

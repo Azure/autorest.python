@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 
 import datetime
-from typing import Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Dict, List, Optional, TYPE_CHECKING, Union
 
 from .. import _serialization
 
@@ -42,7 +42,7 @@ class AccessPolicy(_serialization.Model):
         "permission": {"key": "Permission", "type": "str"},
     }
 
-    def __init__(self, *, start: datetime.datetime, expiry: datetime.datetime, permission: str, **kwargs):
+    def __init__(self, *, start: datetime.datetime, expiry: datetime.datetime, permission: str, **kwargs: Any) -> None:
         """
         :keyword start: the date-time the policy is active. Required.
         :paramtype start: ~datetime.datetime
@@ -71,7 +71,9 @@ class AppleBarrel(_serialization.Model):
         "bad_apples": {"key": "BadApples", "type": "[str]", "xml": {"wrapped": True, "itemsName": "Apple"}},
     }
 
-    def __init__(self, *, good_apples: Optional[List[str]] = None, bad_apples: Optional[List[str]] = None, **kwargs):
+    def __init__(
+        self, *, good_apples: Optional[List[str]] = None, bad_apples: Optional[List[str]] = None, **kwargs: Any
+    ) -> None:
         """
         :keyword good_apples:
         :paramtype good_apples: list[str]
@@ -107,8 +109,8 @@ class Banana(_serialization.Model):
         name: Optional[str] = None,
         flavor: Optional[str] = None,
         expiration: Optional[datetime.datetime] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword name:
         :paramtype name: str
@@ -164,8 +166,8 @@ class Blob(_serialization.Model):
         snapshot: str,
         properties: "_models.BlobProperties",
         metadata: Optional[Dict[str, str]] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword name: Required.
         :paramtype name: str
@@ -203,7 +205,7 @@ class BlobPrefix(_serialization.Model):
         "name": {"key": "Name", "type": "str"},
     }
 
-    def __init__(self, *, name: str, **kwargs):
+    def __init__(self, *, name: str, **kwargs: Any) -> None:
         """
         :keyword name: Required.
         :paramtype name: str
@@ -345,8 +347,8 @@ class BlobProperties(_serialization.Model):  # pylint: disable=too-many-instance
         access_tier: Optional[Union[str, "_models.AccessTier"]] = None,
         access_tier_inferred: Optional[bool] = None,
         archive_status: Optional[Union[str, "_models.ArchiveStatus"]] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword last_modified: Required.
         :paramtype last_modified: ~datetime.datetime
@@ -458,8 +460,8 @@ class Blobs(_serialization.Model):
         *,
         blob_prefix: Optional[List["_models.BlobPrefix"]] = None,
         blob: Optional[List["_models.Blob"]] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword blob_prefix:
         :paramtype blob_prefix: list[~xmlservice.models.BlobPrefix]
@@ -482,7 +484,7 @@ class ComplexTypeNoMeta(_serialization.Model):
         "id": {"key": "ID", "type": "str"},
     }
 
-    def __init__(self, *, id: Optional[str] = None, **kwargs):  # pylint: disable=redefined-builtin
+    def __init__(self, *, id: Optional[str] = None, **kwargs: Any) -> None:  # pylint: disable=redefined-builtin
         """
         :keyword id: The id of the res.
         :paramtype id: str
@@ -503,7 +505,7 @@ class ComplexTypeWithMeta(_serialization.Model):
     }
     _xml_map = {"name": "XMLComplexTypeWithMeta"}
 
-    def __init__(self, *, id: Optional[str] = None, **kwargs):  # pylint: disable=redefined-builtin
+    def __init__(self, *, id: Optional[str] = None, **kwargs: Any) -> None:  # pylint: disable=redefined-builtin
         """
         :keyword id: The id of the res.
         :paramtype id: str
@@ -542,8 +544,8 @@ class Container(_serialization.Model):
         name: str,
         properties: "_models.ContainerProperties",
         metadata: Optional[Dict[str, str]] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword name: Required.
         :paramtype name: str
@@ -601,8 +603,8 @@ class ContainerProperties(_serialization.Model):
         lease_state: Optional[Union[str, "_models.LeaseStateType"]] = None,
         lease_duration: Optional[Union[str, "_models.LeaseDurationType"]] = None,
         public_access: Optional[Union[str, "_models.PublicAccessType"]] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword last_modified: Required.
         :paramtype last_modified: ~datetime.datetime
@@ -680,8 +682,8 @@ class CorsRule(_serialization.Model):
         allowed_headers: str,
         exposed_headers: str,
         max_age_in_seconds: int,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword allowed_origins: The origin domains that are permitted to make a request against the
          storage service via CORS. The origin domain is the domain from which the request originates.
@@ -724,7 +726,7 @@ class Error(_serialization.Model):
         "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
+    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword status:
         :paramtype status: int
@@ -747,7 +749,7 @@ class JSONInput(_serialization.Model):
         "id": {"key": "id", "type": "int"},
     }
 
-    def __init__(self, *, id: Optional[int] = None, **kwargs):  # pylint: disable=redefined-builtin
+    def __init__(self, *, id: Optional[int] = None, **kwargs: Any) -> None:  # pylint: disable=redefined-builtin
         """
         :keyword id:
         :paramtype id: int
@@ -767,7 +769,7 @@ class JSONOutput(_serialization.Model):
         "id": {"key": "id", "type": "int"},
     }
 
-    def __init__(self, *, id: Optional[int] = None, **kwargs):  # pylint: disable=redefined-builtin
+    def __init__(self, *, id: Optional[int] = None, **kwargs: Any) -> None:  # pylint: disable=redefined-builtin
         """
         :keyword id:
         :paramtype id: int
@@ -832,8 +834,8 @@ class ListBlobsResponse(_serialization.Model):
         blobs: "_models.Blobs",
         next_marker: str,
         service_endpoint: Optional[str] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword service_endpoint:
         :paramtype service_endpoint: str
@@ -908,8 +910,8 @@ class ListContainersResponse(_serialization.Model):
         next_marker: str,
         marker: Optional[str] = None,
         containers: Optional[List["_models.Container"]] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword service_endpoint: Required.
         :paramtype service_endpoint: str
@@ -974,8 +976,8 @@ class Logging(_serialization.Model):
         read: bool,
         write: bool,
         retention_policy: "_models.RetentionPolicy",
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword version: The version of Storage Analytics to configure. Required.
         :paramtype version: str
@@ -1030,8 +1032,8 @@ class Metrics(_serialization.Model):
         version: Optional[str] = None,
         include_apis: Optional[bool] = None,
         retention_policy: Optional["_models.RetentionPolicy"] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword version: The version of Storage Analytics to configure.
         :paramtype version: str
@@ -1061,7 +1063,7 @@ class ModelWithByteProperty(_serialization.Model):
         "bytes": {"key": "Bytes", "type": "bytearray"},
     }
 
-    def __init__(self, *, bytes: Optional[bytes] = None, **kwargs):
+    def __init__(self, *, bytes: Optional[bytes] = None, **kwargs: Any) -> None:
         """
         :keyword bytes:
         :paramtype bytes: bytes
@@ -1081,7 +1083,7 @@ class ModelWithUrlProperty(_serialization.Model):
         "url": {"key": "Url", "type": "str"},
     }
 
-    def __init__(self, *, url: Optional[str] = None, **kwargs):
+    def __init__(self, *, url: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword url:
         :paramtype url: str
@@ -1105,7 +1107,7 @@ class ObjectWithXMsTextProperty(_serialization.Model):
     }
     _xml_map = {"name": "Data"}
 
-    def __init__(self, *, language: Optional[str] = None, content: Optional[str] = None, **kwargs):
+    def __init__(self, *, language: Optional[str] = None, content: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword language: Returned value should be 'english'.
         :paramtype language: str
@@ -1140,7 +1142,7 @@ class RetentionPolicy(_serialization.Model):
         "days": {"key": "Days", "type": "int"},
     }
 
-    def __init__(self, *, enabled: bool, days: Optional[int] = None, **kwargs):
+    def __init__(self, *, enabled: bool, days: Optional[int] = None, **kwargs: Any) -> None:
         """
         :keyword enabled: Indicates whether a retention policy is enabled for the storage service.
          Required.
@@ -1169,8 +1171,12 @@ class RootWithRefAndMeta(_serialization.Model):
     }
 
     def __init__(
-        self, *, ref_to_model: Optional["_models.ComplexTypeWithMeta"] = None, something: Optional[str] = None, **kwargs
-    ):
+        self,
+        *,
+        ref_to_model: Optional["_models.ComplexTypeWithMeta"] = None,
+        something: Optional[str] = None,
+        **kwargs: Any
+    ) -> None:
         """
         :keyword ref_to_model: XML will use XMLComplexTypeWithMeta.
         :paramtype ref_to_model: ~xmlservice.models.ComplexTypeWithMeta
@@ -1197,8 +1203,12 @@ class RootWithRefAndNoMeta(_serialization.Model):
     }
 
     def __init__(
-        self, *, ref_to_model: Optional["_models.ComplexTypeNoMeta"] = None, something: Optional[str] = None, **kwargs
-    ):
+        self,
+        *,
+        ref_to_model: Optional["_models.ComplexTypeNoMeta"] = None,
+        something: Optional[str] = None,
+        **kwargs: Any
+    ) -> None:
         """
         :keyword ref_to_model: XML will use RefToModel.
         :paramtype ref_to_model: ~xmlservice.models.ComplexTypeNoMeta
@@ -1233,8 +1243,8 @@ class SignedIdentifier(_serialization.Model):
     _xml_map = {"name": "SignedIdentifier"}
 
     def __init__(
-        self, *, id: str, access_policy: "_models.AccessPolicy", **kwargs  # pylint: disable=redefined-builtin
-    ):
+        self, *, id: str, access_policy: "_models.AccessPolicy", **kwargs: Any  # pylint: disable=redefined-builtin
+    ) -> None:
         """
         :keyword id: a unique id. Required.
         :paramtype id: str
@@ -1265,8 +1275,13 @@ class Slide(_serialization.Model):
     _xml_map = {"name": "slide"}
 
     def __init__(
-        self, *, type: Optional[str] = None, title: Optional[str] = None, items: Optional[List[str]] = None, **kwargs
-    ):
+        self,
+        *,
+        type: Optional[str] = None,
+        title: Optional[str] = None,
+        items: Optional[List[str]] = None,
+        **kwargs: Any
+    ) -> None:
         """
         :keyword type:
         :paramtype type: str
@@ -1309,8 +1324,8 @@ class Slideshow(_serialization.Model):
         date: Optional[str] = None,
         author: Optional[str] = None,
         slides: Optional[List["_models.Slide"]] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword title:
         :paramtype title: str
@@ -1367,8 +1382,8 @@ class StorageServiceProperties(_serialization.Model):
         cors: Optional[List["_models.CorsRule"]] = None,
         default_service_version: Optional[str] = None,
         delete_retention_policy: Optional["_models.RetentionPolicy"] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword logging: Azure Analytics Logging settings.
         :paramtype logging: ~xmlservice.models.Logging
