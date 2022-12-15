@@ -23,7 +23,6 @@ from .._utils import parse_args, get_body_type_for_description, JSON_REGEXP, KNO
 def add_body_param_type(
     code_model: Dict[str, Any],
     body_parameter: Dict[str, Any],
-    models_mode: Optional[str],
 ):
     if (
         body_parameter
@@ -258,7 +257,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             response["discriminator"] = "operation"
         if body_parameter and not is_overload:
             # if we have a JSON body, we add a binary overload
-            add_body_param_type(code_model, body_parameter, self.models_mode)
+            add_body_param_type(code_model, body_parameter)
             add_overloads_for_body_param(yaml_data)
 
     def _update_lro_operation_helper(self, yaml_data: Dict[str, Any]) -> None:

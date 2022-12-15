@@ -12,6 +12,7 @@ from .constant_type import ConstantType
 from .property import Property
 from .imports import FileImport, ImportType, TypingSection
 
+
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
 else:
@@ -39,7 +40,7 @@ def _get_properties(type: "ModelType", properties: List[Property]) -> List[Prope
     return properties
 
 
-class ModelType(
+class ModelType(  # pylint: disable=abstract-method
     BaseType
 ):  # pylint: disable=too-many-instance-attributes, too-many-public-methods
     """Represents a class ready to be serialized in Python.
@@ -284,7 +285,7 @@ class JSONModelType(ModelType):
         return file_import
 
 
-class GeneratedModelType(ModelType):
+class GeneratedModelType(ModelType):  # pylint: disable=abstract-method
     def type_annotation(self, **kwargs: Any) -> str:
         is_operation_file = kwargs.pop("is_operation_file", False)
         retval = f"_models.{self.name}"
