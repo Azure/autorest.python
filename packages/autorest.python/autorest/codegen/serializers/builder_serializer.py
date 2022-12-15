@@ -314,9 +314,6 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
 
     def _json_input_example_template(self, builder: BuilderType) -> List[str]:
         template: List[str] = []
-        if self.code_model.options["models_mode"]:
-            # No input template if we have models
-            return template
         if (
             not builder.parameters.has_body
             or builder.parameters.body_parameter.flattened
@@ -329,6 +326,15 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
 
         body_param = builder.parameters.body_parameter
         if not isinstance(body_param.type, (ListType, DictionaryType, ModelType)):
+            return template
+
+        if (
+            isinstance(body_param.type, (ListType, DictionaryType))
+            and self.code_model.options["models_mode"]
+        ):
+            return template
+
+        if isinstance(body_param.type, ModelType) and body_param.type.base != "json":
             return template
 
         polymorphic_subtypes: List[ModelType] = []

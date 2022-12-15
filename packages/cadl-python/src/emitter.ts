@@ -691,6 +691,7 @@ function emitModel(program: Program, type: Model): Record<string, any> {
         properties: properties,
         addedOn: getAddedOnVersion(program, type),
         snakeCaseName: modelName ? camelToSnakeCase(modelName) : modelName,
+        base: modelName === "" ? "json" : "dpg",
     };
 }
 

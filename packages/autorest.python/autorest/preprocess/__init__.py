@@ -35,11 +35,12 @@ def add_body_param_type(
         and not any(t for t in ["flattened", "groupedBy"] if body_parameter.get(t))
     ):
         origin_type = body_parameter["type"]["type"]
+        is_dpg_model = body_parameter["type"].get("base") == "dpg"
         body_parameter["type"] = {
             "type": "combined",
             "types": [body_parameter["type"], KNOWN_TYPES["binary"]],
         }
-        if origin_type == "model" and models_mode == "dpg":
+        if origin_type == "model" and is_dpg_model:
             body_parameter["type"]["types"].insert(1, KNOWN_TYPES["any-object"])
         code_model["types"].append(body_parameter["type"])
 

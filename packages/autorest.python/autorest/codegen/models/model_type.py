@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from collections import OrderedDict
-from typing import Any, Dict, List, Optional, TYPE_CHECKING, cast
+from typing import Any, Dict, List, Optional, TYPE_CHECKING, cast, Literal
 
 from autorest.codegen.models.utils import add_to_pylint_disable
 from .base import BaseType
@@ -44,6 +44,8 @@ class ModelType(
     :type properties: dict(str, str)
     """
 
+    base: Literal["msrest", "dpg", "json"]
+
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -73,15 +75,6 @@ class ModelType(
         return self.yaml_data.get("isXml", False)
 
     @property
-    def serialization_type(self) -> str:
-        if self.code_model.options["models_mode"] == "msrest":
-            private_model_path = f"_models.{self.code_model.models_filename}."
-            return f"{'' if self.is_public else private_model_path}{self.name}"
-        if self.code_model.options["models_mode"] == "dpg":
-            return f"{'' if self.is_public else '_models.'}_models.{self.name}"
-        return "object"
-
-    @property
     def msrest_deserialization_key(self) -> str:
         return self.name
 
@@ -89,27 +82,8 @@ class ModelType(
     def is_polymorphic(self) -> bool:
         return any(p.is_polymorphic for p in self.properties)
 
-    def type_annotation(self, **kwargs: Any) -> str:
-        if self.code_model.options["models_mode"]:
-            is_operation_file = kwargs.pop("is_operation_file", False)
-            retval = f"_models.{self.name}"
-            if not self.is_public:
-                retval = f"{self.code_model.models_filename}.{retval}"
-            return retval if is_operation_file else f'"{retval}"'
-        return "ET.Element" if self.is_xml else "JSON"
-
-    def docstring_type(self, **kwargs: Any) -> str:
-        if self.code_model.options["models_mode"]:
-            return f"~{self.code_model.namespace}.models.{self.name}"
-        return "ET.Element" if self.is_xml else "JSON"
-
     def description(self, *, is_operation_file: bool = False) -> str:
         return "" if is_operation_file else self.yaml_data.get("description", self.name)
-
-    def docstring_text(self, **kwargs: Any) -> str:
-        if self.code_model.options["models_mode"]:
-            return self.name
-        return "XML Element" if self.is_xml else "JSON object"
 
     def get_declaration(self, value: Any) -> str:
         return f"{self.name}()"
@@ -253,15 +227,6 @@ class ModelType(
             return None
 
     @property
-    def instance_check_template(self) -> str:
-        models_mode = self.code_model.options["models_mode"]
-        if models_mode == "msrest":
-            return "isinstance({}, msrest.Model)"
-        if models_mode == "dpg":
-            return "isinstance({}, _model_base.Model)"
-        return "isinstance({}, MutableMapping)"
-
-    @property
     def pylint_disable(self) -> str:
         retval: str = ""
         if len(self.properties) > 10:
@@ -277,20 +242,87 @@ class ModelType(
 
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
-        relative_path = kwargs.pop("relative_path", None)
-        if self.code_model.options["models_mode"] and relative_path:
-            # add import for models in operations file
-            file_import.add_submodule_import(
-                relative_path, "models", ImportType.LOCAL, alias="_models"
-            )
-        if self.code_model.options["models_mode"] == "msrest":
-            return file_import
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
+        return file_import
+
+
+class JSONModelType(ModelType):
+    base = "json"
+
+    def type_annotation(self, **kwargs: Any) -> str:
+        return "ET.Element" if self.is_xml else "JSON"
+
+    @property
+    def serialization_type(self) -> str:
+        return "object"
+
+    def docstring_type(self, **kwargs: Any) -> str:
+        return "ET.Element" if self.is_xml else "JSON"
+
+    def docstring_text(self, **kwargs: Any) -> str:
+        return "XML Element" if self.is_xml else "JSON object"
+
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, MutableMapping)"
+
+    def imports(self, **kwargs: Any) -> FileImport:
+        file_import = super().imports(**kwargs)
         file_import.define_mutable_mapping_type()
         if self.is_xml:
             file_import.add_submodule_import(
                 "xml.etree", "ElementTree", ImportType.STDLIB, alias="ET"
             )
         return file_import
+
+
+class GeneratedModelType(ModelType):
+    def type_annotation(self, **kwargs: Any) -> str:
+        is_operation_file = kwargs.pop("is_operation_file", False)
+        retval = f"_models.{self.name}"
+        if not self.is_public:
+            retval = f"{self.code_model.models_filename}.{retval}"
+        return retval if is_operation_file else f'"{retval}"'
+
+    def docstring_type(self, **kwargs: Any) -> str:
+        return f"~{self.code_model.namespace}.models.{self.name}"
+
+    def docstring_text(self, **kwargs: Any) -> str:
+        return self.name
+
+    def imports(self, **kwargs: Any) -> FileImport:
+        file_import = super().imports(**kwargs)
+        relative_path = kwargs.pop("relative_path", None)
+        if relative_path:
+            # add import for models in operations file
+            file_import.add_submodule_import(
+                relative_path, "models", ImportType.LOCAL, alias="_models"
+            )
+        return file_import
+
+
+class MsrestModelType(GeneratedModelType):
+    base = "msrest"
+
+    @property
+    def serialization_type(self) -> str:
+        private_model_path = f"_models.{self.code_model.models_filename}."
+        return f"{'' if self.is_public else private_model_path}{self.name}"
+
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, msrest.Model)"
+
+
+class DPGModelType(GeneratedModelType):
+    base = "dpg"
+
+    @property
+    def serialization_type(self) -> str:
+        return f"{'' if self.is_public else '_models.'}_models.{self.name}"
+
+    @property
+    def instance_check_template(self) -> str:
+        return "isinstance({}, _model_base.Model)"
