@@ -6,17 +6,17 @@
 from collections import OrderedDict
 from typing import Any, Dict, List, Optional, TYPE_CHECKING, cast
 import sys
+from autorest.codegen.models.utils import add_to_pylint_disable
+from .base import BaseType
+from .constant_type import ConstantType
+from .property import Property
+from .imports import FileImport, ImportType, TypingSection
 
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 
-from autorest.codegen.models.utils import add_to_pylint_disable
-from .base import BaseType
-from .constant_type import ConstantType
-from .property import Property
-from .imports import FileImport, ImportType, TypingSection
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
