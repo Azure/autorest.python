@@ -18,10 +18,11 @@ steps:
       displayName: "Install Node.js 16.x"
       inputs:
           versionSpec: "16.x"
+
     - task: UsePythonVersion@0
-      displayName: "Use Python 3.7"
+      displayName: "Use Python $(PythonVersion)"
       inputs:
-          versionSpec: 3.7
+          versionSpec: $(PythonVersion)
 
     - script: npm install -g pnpm
       displayName: Install pnpm
@@ -97,11 +98,6 @@ steps:
       displayName: Fail on regeneration diff
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
       condition: and(succeeded(), ${{ parameters.regenerate }})
-
-    - task: UsePythonVersion@0
-      displayName: "Use Python $(PythonVersion)"
-      inputs:
-          versionSpec: $(PythonVersion)
 
     - script: |
           pnpm pack
