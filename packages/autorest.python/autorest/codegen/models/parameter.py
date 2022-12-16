@@ -254,7 +254,7 @@ class BodyParameter(_BodyParameterBase):
         return False
 
     @property
-    def has_json_model_type(self) -> str:
+    def has_json_model_type(self) -> bool:
         return BodyParameter._has_json_model_type(self.type)
 
     @classmethod
