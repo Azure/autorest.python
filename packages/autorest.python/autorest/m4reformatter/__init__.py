@@ -143,6 +143,7 @@ def create_model(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     base["name"] = yaml_data["language"]["default"]["name"]
     base["description"] = yaml_data["language"]["default"]["description"]
     base["isXml"] = "xml" in yaml_data.get("serializationFormats", [])
+    base["base"] = "msrest"
     return base
 
 

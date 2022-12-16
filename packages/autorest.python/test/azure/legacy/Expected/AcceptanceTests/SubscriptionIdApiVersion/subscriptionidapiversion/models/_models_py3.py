@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
+from typing import Any, Optional
 
 from .. import _serialization
 
@@ -26,7 +26,7 @@ class Error(_serialization.Model):
         "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(self, *, code: Optional[int] = None, message: Optional[str] = None, **kwargs):
+    def __init__(self, *, code: Optional[int] = None, message: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword code:
         :paramtype code: int
@@ -52,7 +52,7 @@ class SampleResourceGroup(_serialization.Model):
         "location": {"key": "location", "type": "str"},
     }
 
-    def __init__(self, *, name: Optional[str] = None, location: Optional[str] = None, **kwargs):
+    def __init__(self, *, name: Optional[str] = None, location: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword name: resource group name 'testgroup101'.
         :paramtype name: str

@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 from .. import _serialization
 
@@ -59,8 +59,8 @@ class Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicatio
         pet_age: int,
         name: Optional[str] = None,
         status: Optional[str] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword pet_type: Can take a value of dog, or cat, or fish. Required. Known values are: "dog",
          "cat", and "fish".
@@ -115,7 +115,7 @@ class PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApp
 
     grant_type = "access_token"
 
-    def __init__(self, *, service: str, aad_access_token: str, **kwargs):
+    def __init__(self, *, service: str, aad_access_token: str, **kwargs: Any) -> None:
         """
         :keyword service: Indicates the name of your Azure container registry. Required.
         :paramtype service: str

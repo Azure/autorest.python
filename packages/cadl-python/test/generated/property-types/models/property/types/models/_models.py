@@ -8,21 +8,14 @@
 # --------------------------------------------------------------------------
 
 import datetime
-import sys
 from typing import Any, Dict, List, Mapping, TYPE_CHECKING, Union, overload
 
 from .. import _model_base
 from .._model_base import rest_field
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 
 class BooleanProperty(_model_base.Model):
@@ -287,17 +280,17 @@ class EnumProperty(_model_base.Model):
     All required parameters must be populated in order to send to Azure.
 
     :ivar property: Property. Required. Known values are: "ValueOne" and "ValueTwo".
-    :vartype property: str or ~models.property.types.models.InnerEnum
+    :vartype property: str or ~models.property.types.models.FixedInnerEnum
     """
 
-    property: Union[str, "_models.InnerEnum"] = rest_field()
+    property: Union[str, "_models.FixedInnerEnum"] = rest_field()
     """Property. Required. Known values are: \"ValueOne\" and \"ValueTwo\"."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Union[str, "_models.InnerEnum"],
+        property: Union[str, "_models.FixedInnerEnum"],
     ):
         ...
 
@@ -319,17 +312,17 @@ class ExtensibleEnumProperty(_model_base.Model):
     All required parameters must be populated in order to send to Azure.
 
     :ivar property: Property. Required. Known values are: "ValueOne" and "ValueTwo".
-    :vartype property: str or ~models.property.types.models.InnerExtensibleEnum
+    :vartype property: str or ~models.property.types.models.InnerEnum
     """
 
-    property: Union[str, "_models.InnerExtensibleEnum"] = rest_field()
+    property: Union[str, "_models.InnerEnum"] = rest_field()
     """Property. Required. Known values are: \"ValueOne\" and \"ValueTwo\"."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Union[str, "_models.InnerExtensibleEnum"],
+        property: Union[str, "_models.InnerEnum"],
     ):
         ...
 

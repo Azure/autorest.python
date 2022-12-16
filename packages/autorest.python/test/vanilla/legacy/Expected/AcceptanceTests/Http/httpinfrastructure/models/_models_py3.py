@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
+from typing import Any, Optional
 
 from .. import _serialization
 
@@ -23,7 +23,7 @@ class MyException(_serialization.Model):
         "status_code": {"key": "statusCode", "type": "str"},
     }
 
-    def __init__(self, *, status_code: Optional[str] = None, **kwargs):
+    def __init__(self, *, status_code: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword status_code:
         :paramtype status_code: str
@@ -46,7 +46,9 @@ class B(MyException):
         "text_status_code": {"key": "textStatusCode", "type": "str"},
     }
 
-    def __init__(self, *, status_code: Optional[str] = None, text_status_code: Optional[str] = None, **kwargs):
+    def __init__(
+        self, *, status_code: Optional[str] = None, text_status_code: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """
         :keyword status_code:
         :paramtype status_code: str
@@ -68,7 +70,7 @@ class C(_serialization.Model):
         "http_code": {"key": "httpCode", "type": "str"},
     }
 
-    def __init__(self, *, http_code: Optional[str] = None, **kwargs):
+    def __init__(self, *, http_code: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword http_code:
         :paramtype http_code: str
@@ -88,7 +90,7 @@ class D(_serialization.Model):
         "http_status_code": {"key": "httpStatusCode", "type": "str"},
     }
 
-    def __init__(self, *, http_status_code: Optional[str] = None, **kwargs):
+    def __init__(self, *, http_status_code: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword http_status_code:
         :paramtype http_status_code: str
@@ -111,7 +113,7 @@ class Error(_serialization.Model):
         "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
+    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword status:
         :paramtype status: int

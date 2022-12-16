@@ -48,8 +48,8 @@ class PetAPTrue(_serialization.Model):
         id: int,  # pylint: disable=redefined-builtin
         additional_properties: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword additional_properties: Unmatched properties from the message are deserialized to this
          collection.
@@ -106,8 +106,8 @@ class CatAPTrue(PetAPTrue):
         additional_properties: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         friendly: Optional[bool] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword additional_properties: Unmatched properties from the message are deserialized to this
          collection.
@@ -137,7 +137,7 @@ class Error(_serialization.Model):
         "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
+    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword status:
         :paramtype status: int
@@ -184,8 +184,8 @@ class PetAPInProperties(_serialization.Model):
         id: int,  # pylint: disable=redefined-builtin
         name: Optional[str] = None,
         additional_properties: Optional[Dict[str, float]] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword id: Required.
         :paramtype id: int
@@ -246,8 +246,8 @@ class PetAPInPropertiesWithAPString(_serialization.Model):
         additional_properties: Optional[Dict[str, str]] = None,
         name: Optional[str] = None,
         additional_properties1: Optional[Dict[str, float]] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword additional_properties: Unmatched properties from the message are deserialized to this
          collection.
@@ -306,8 +306,8 @@ class PetAPObject(_serialization.Model):
         id: int,  # pylint: disable=redefined-builtin
         additional_properties: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword additional_properties: Unmatched properties from the message are deserialized to this
          collection.
@@ -360,8 +360,8 @@ class PetAPString(_serialization.Model):
         id: int,  # pylint: disable=redefined-builtin
         additional_properties: Optional[Dict[str, str]] = None,
         name: Optional[str] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword additional_properties: Unmatched properties from the message are deserialized to this
          collection.

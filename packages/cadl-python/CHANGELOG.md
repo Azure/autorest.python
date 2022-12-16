@@ -1,5 +1,23 @@
 # Release History
 
+## 2022-12-15 - 0.4.14
+
+**Bug Fixes**
+
+- Generate anonymous models and aliases as JSON objects  #1619
+
+## 2022-12-08 - 0.4.13
+
+**Other Changes**
+
+- Bump cadl library dependencies #1608
+
+## 2022-12-07 - 0.4.12
+
+**Other Changes**
+
+- Update python generator dependency
+
 ## 2022-12-05 - 0.4.11
 
 **Bug Fixes**

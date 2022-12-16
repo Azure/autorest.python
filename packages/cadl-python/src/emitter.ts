@@ -4,14 +4,11 @@ import {
     Enum,
     getDoc,
     getFriendlyName,
-    getIntrinsicModelName,
     getMaxLength,
     getMaxValue,
     getMinLength,
     getMinValue,
     getPattern,
-    getServiceNamespace,
-    getServiceNamespaceString,
     getSummary,
     getVisibility,
     ignoreDiagnostics,
@@ -29,6 +26,21 @@ import {
     getDiscriminator,
     Operation,
     isKey,
+    Scalar,
+    IntrinsicScalarName,
+    isStringType,
+    getPropertyType,
+    isNumericType,
+    getFormat,
+    getMinItems,
+    getMaxItems,
+    getNamespaceFullName,
+    EmitContext,
+    listServices,
+    Union,
+    isNullType,
+    SyntaxKind,
+    emitFile,
 } from "@cadl-lang/compiler";
 import {
     getAuthentication,
@@ -71,11 +83,12 @@ interface CredentialType {
 }
 
 export interface EmitterOptions {
-    "basic-setup-py": boolean;
-    "package-version": string;
-    "package-name": string;
-    "output-dir": string;
-    "package-mode": string;
+    "basic-setup-py"?: boolean;
+    "package-version"?: string;
+    "package-name"?: string;
+    "output-dir"?: string;
+    "package-mode"?: string;
+    "debug"?: boolean;
 }
 
 const EmitterOptionsSchema: JSONSchemaType<EmitterOptions> = {
@@ -87,6 +100,7 @@ const EmitterOptionsSchema: JSONSchemaType<EmitterOptions> = {
         "package-name": { type: "string", nullable: true },
         "output-dir": { type: "string", nullable: true },
         "package-mode": { type: "string", nullable: true },
+        "debug": { type: "boolean", nullable: true },
     },
     required: [],
 };
@@ -104,31 +118,33 @@ export const $lib = createCadlLibrary({
     },
 });
 
-export async function $onEmit(program: Program, options: EmitterOptions) {
-    const resolvedOptions = { ...defaultOptions, ...options };
-    const yamlMap = createYamlEmitter(program);
+export async function $onEmit(context: EmitContext<EmitterOptions>) {
+    const program = context.program;
+    const resolvedOptions = { ...defaultOptions, ...context.options };
+
     const root = process.cwd();
-    const outputFolder = resolvedOptions["output-dir"] ?? program.compilerOptions.outputDir!;
-    const yamlPath = resolvePath(outputFolder, "output.yaml");
+    const outputDir = context.emitterOutputDir;
+    const yamlMap = createYamlEmitter(program);
+    const yamlPath = resolvePath(outputDir, "output.yaml");
     const commandArgs = [
         `${root}/node_modules/@autorest/python/run-python3.js`,
         `${root}/node_modules/@autorest/python/run_cadl.py`,
-        `--output-folder=${outputFolder}`,
+        `--output-folder=${outputDir}`,
         `--cadl-file=${yamlPath}`,
     ];
     for (const [key, value] of Object.entries(resolvedOptions)) {
         commandArgs.push(`--${key}=${value}`);
     }
-    if (
-        program.compilerOptions.trace?.includes("*") ||
-        program.compilerOptions.trace?.includes("@azure-tools/cadl-python") ||
-        program.compilerOptions.trace?.includes("@azure-tools/cadl-python.*")
-    ) {
+    if (resolvedOptions.debug) {
         commandArgs.push("--debug");
     }
     if (!program.compilerOptions.noEmit && !program.hasError()) {
         // TODO: change behavior based off of https://github.com/microsoft/cadl/issues/401
-        await program.host.writeFile(yamlPath, dump(yamlMap));
+        await emitFile(program, {
+            path: yamlPath,
+            content: dump(yamlMap),
+            newLine: "lf",
+        });
         execFileSync(process.execPath, commandArgs);
     }
     if (program.compilerOptions.trace === undefined) {
@@ -152,12 +168,12 @@ const simpleTypesMap = new Map<string, Record<string, any>>();
 const endpointPathParameters: Record<string, any>[] = [];
 let apiVersionParam: Record<string, any> | undefined = undefined;
 
-function isSimpleType(program: Program, modelTypeProperty: ModelProperty | undefined): boolean {
+function isSimpleType(program: Program, type: Type | CredentialType | undefined): boolean {
     // these decorators can only work for simple type(int/string/float, etc)
-    if (modelTypeProperty) {
+    if (type && (type.kind === "Scalar" || type.kind === "ModelProperty")) {
         const funcs = [getMinValue, getMaxValue, getMinLength, getMaxLength, getPattern];
         for (const func of funcs) {
-            if (func(program, modelTypeProperty)) {
+            if (func(program, type)) {
                 return true;
             }
         }
@@ -224,28 +240,16 @@ function getEffectiveSchemaType(program: Program, type: Model): Model {
     return type;
 }
 
-function getType(
-    program: Program,
-    type: Type | CredentialType,
-    modelTypeProperty: ModelProperty | undefined = undefined,
-): any {
+function getType(program: Program, type: Type | CredentialType): any {
     // don't cache simple type(string, int, etc) since decorators may change the result
-    const enableCache = !isSimpleType(program, modelTypeProperty);
+    const enableCache = !isSimpleType(program, type);
     if (enableCache) {
         const cached = typesMap.get(type);
         if (cached) {
             return cached;
         }
-        if (type.kind === "Model") {
-            const modelName = getName(program, type);
-            for (const key of typesMap.keys()) {
-                if (key.kind === "Model" && getName(program, key) === modelName) {
-                    return typesMap.get(key);
-                }
-            }
-        }
     }
-    let newValue = emitType(program, type, modelTypeProperty);
+    let newValue = emitType(program, type);
     if (enableCache) {
         typesMap.set(type, newValue);
         if (type.kind === "Model") {
@@ -320,10 +324,14 @@ function emitBodyParameter(
     const resourceOperation = getResourceOperation(program, operation);
     if (resourceOperation) {
         type = getType(program, resourceOperation.resourceType);
-    } else if (params.bodyParameter) {
-        type = getType(program, params.bodyParameter.type, params.bodyParameter);
+    } else if (params.body) {
+        type = getType(program, params.body.type);
     } else {
         type = getType(program, bodyType);
+    }
+
+    if (type.type === "model" && type.name === "") {
+        type.name = capitalize(operation.name) + "Request";
     }
 
     return {
@@ -342,7 +350,7 @@ function emitParameter(
     implementation: string,
 ): Record<string, any> {
     const base = emitParamBase(program, parameter.param);
-    let type = getType(program, parameter.param.type, parameter.param);
+    let type = getType(program, parameter.param.type);
     let clientDefaultValue = undefined;
     if (parameter.name.toLowerCase() === "content-type" && type["type"] === "constant") {
         /// We don't want constant types for content types, so we make sure if it's
@@ -471,7 +479,7 @@ function emitResponse(
         // temporary logic. It can be removed after compiler optimize the response
         const candidate = ["ResourceOkResponse", "ResourceCreatedResponse", "AcceptedResponse"];
         const originType = innerResponse.body.type as Model;
-        if (innerResponse.body.type.kind == "Model" && candidate.find((e) => e === originType.name)) {
+        if (innerResponse.body.type.kind === "Model" && candidate.find((e) => e === originType.name)) {
             const modelType = getEffectiveSchemaType(program, originType);
             type = getType(program, modelType);
         } else {
@@ -587,12 +595,12 @@ function emitBasicOperation(program: Program, operation: Operation, operationGro
     }
 
     let bodyParameter: Record<string, any> | undefined;
-    if (httpOperation.parameters.bodyType === undefined) {
+    if (httpOperation.parameters.body === undefined) {
         bodyParameter = undefined;
     } else {
         bodyParameter = emitBodyParameter(
             program,
-            httpOperation.parameters.bodyType,
+            httpOperation.parameters.body.type,
             httpOperation.parameters,
             operation,
         );
@@ -620,35 +628,6 @@ function emitBasicOperation(program: Program, operation: Operation, operationGro
     };
 }
 
-function emitString(program: Program, modelTypeProperty: ModelProperty | undefined): Record<string, any> {
-    let maxLength = undefined;
-    let minLength = undefined;
-    let pattern = undefined;
-    if (modelTypeProperty) {
-        maxLength = getMaxLength(program, modelTypeProperty);
-        minLength = getMinLength(program, modelTypeProperty);
-        pattern = getPattern(program, modelTypeProperty);
-    }
-    if (!(maxLength || minLength || pattern)) {
-        return KnownTypes.string;
-    }
-    return { minLength, maxLength, pattern, type: "string" };
-}
-
-function emitNumber(type: string, program: Program, modelTypeProperty: ModelProperty | undefined): Record<string, any> {
-    let minimum = undefined;
-    let maximum = undefined;
-    if (modelTypeProperty) {
-        minimum = getMinValue(program, modelTypeProperty);
-        maximum = getMaxValue(program, modelTypeProperty);
-    }
-
-    if (!(maximum || minimum)) {
-        return { type };
-    }
-    return { minimum, maximum, type };
-}
-
 function isReadOnly(program: Program, type: ModelProperty): boolean {
     const visibility = getVisibility(program, type);
     if (visibility) {
@@ -663,14 +642,14 @@ function emitProperty(program: Program, property: ModelProperty): Record<string,
     const propertyDefaultKind = property.default?.kind;
     if (
         property.default &&
-        (propertyDefaultKind === "Number" || propertyDefaultKind === "String" || propertyDefaultKind == "Boolean")
+        (propertyDefaultKind === "Number" || propertyDefaultKind === "String" || propertyDefaultKind === "Boolean")
     ) {
         clientDefaultValue = property.default.value;
     }
     return {
         clientName: camelToSnakeCase(property.name),
         restApiName: property.name,
-        type: getType(program, property.type, property),
+        type: getType(program, property.type),
         optional: property.optional,
         description: getDocStr(program, property),
         addedOn: getAddedOnVersion(program, property),
@@ -692,22 +671,7 @@ function getName(program: Program, type: Model): string {
     }
 }
 
-function emitModel(program: Program, type: Model, modelTypeProperty: ModelProperty | undefined): Record<string, any> {
-    if (type.indexer) {
-        if (isNeverType(type.indexer.key)) {
-        } else {
-            const name = getIntrinsicModelName(program, type.indexer.key);
-            const elementType = type.indexer.value!;
-            if (name === "string") {
-                if (elementType.kind === "Intrinsic") {
-                }
-                return { type: "dict", elementType: getType(program, type.indexer.value!) };
-            } else if (name === "integer") {
-                return { type: "list", elementType: getType(program, type.indexer.value!) };
-            }
-        }
-    }
-
+function emitModel(program: Program, type: Model): Record<string, any> {
     for (const decorator of type.decorators) {
         if (decorator.decorator.name === "$knownValues") {
             for (const arg of decorator.args) {
@@ -719,54 +683,24 @@ function emitModel(program: Program, type: Model, modelTypeProperty: ModelProper
             }
         }
     }
-    const name = getIntrinsicModelName(program, type);
-    switch (name) {
-        case "bytes":
-            return { type: "byte-array", format: "byte" };
-        case "int8":
-        case "int16":
-        case "int32":
-        case "int64":
-        case "safeint":
-        case "uint8":
-        case "uint16":
-        case "uint32":
-        case "uint64":
-            return emitNumber("integer", program, modelTypeProperty);
-        case "float32":
-        case "float64":
-            return emitNumber("float", program, modelTypeProperty);
-        case "string":
-            return emitString(program, modelTypeProperty);
-        case "boolean":
-            return { type: "boolean" };
-        case "plainDate":
-            return { type: "date" };
-        case "zonedDateTime":
-            return { type: "datetime", format: "date-time" };
-        case "plainTime":
-            return { type: "time" };
-        case "duration":
-            return { type: "duration" };
-        default:
-            // Now we know it's a defined model
-            const properties: Record<string, any>[] = [];
-            let baseModel = undefined;
-            if (type.baseModel) {
-                baseModel = getType(program, type.baseModel);
-            }
-            const modelName = getName(program, type);
-            return {
-                type: "model",
-                name: modelName,
-                description: getDocStr(program, type),
-                parents: baseModel ? [baseModel] : [],
-                discriminatedSubtypes: {},
-                properties: properties,
-                addedOn: getAddedOnVersion(program, type),
-                snakeCaseName: modelName ? camelToSnakeCase(modelName) : modelName,
-            };
+    // Now we know it's a defined model
+    const properties: Record<string, any>[] = [];
+    let baseModel = undefined;
+    if (type.baseModel) {
+        baseModel = getType(program, type.baseModel);
     }
+    const modelName = getName(program, type) || getEffectiveSchemaType(program, type).name;
+    return {
+        type: "model",
+        name: modelName,
+        description: getDocStr(program, type),
+        parents: baseModel ? [baseModel] : [],
+        discriminatedSubtypes: {},
+        properties: properties,
+        addedOn: getAddedOnVersion(program, type),
+        snakeCaseName: modelName ? camelToSnakeCase(modelName) : modelName,
+        base: modelName === "" ? "json" : "dpg",
+    };
 }
 
 function intOrFloat(value: number): string {
@@ -837,11 +771,131 @@ function emitCredential(auth: HttpAuth): Record<string, any> {
     return credential_type;
 }
 
-function emitType(
+function emitStdScalar(scalar: Scalar & { name: IntrinsicScalarName }): Record<string, any> {
+    switch (scalar.name) {
+        case "bytes":
+            return { type: "byte-array", format: "byte" };
+        case "int8":
+        case "int16":
+        case "int32":
+        case "int64":
+        case "safeint":
+        case "uint8":
+        case "uint16":
+        case "uint32":
+        case "uint64":
+        case "integer":
+            return { type: "integer" };
+        case "float32":
+        case "float64":
+        case "float":
+            return { type: "float" };
+        case "uri":
+        case "url":
+        case "string":
+            return { type: "string" };
+        case "boolean":
+            return { type: "boolean" };
+        case "plainDate":
+            return { type: "date" };
+        case "zonedDateTime":
+            return { type: "datetime", format: "date-time" };
+        case "plainTime":
+            return { type: "time" };
+        case "duration":
+            return { type: "duration" };
+        case "numeric":
+            return {}; // Waiting on design for more precise type https://github.com/microsoft/cadl/issues/1260
+        default:
+            return {};
+    }
+}
+
+function applyIntrinsicDecorators(
     program: Program,
-    type: Type | CredentialType,
-    modelTypeProperty: ModelProperty | undefined = undefined,
+    type: Scalar | ModelProperty,
+    result: Record<string, any>,
 ): Record<string, any> {
+    const newResult = { ...result };
+    const docStr = getDoc(program, type);
+    const isString = isStringType(program, getPropertyType(type));
+    const isNumeric = isNumericType(program, getPropertyType(type));
+
+    if (!result.description && docStr) {
+        newResult.description = docStr;
+    }
+
+    const formatStr = getFormat(program, type);
+    if (isString && !result.format && formatStr) {
+        newResult.format = formatStr;
+    }
+
+    const pattern = getPattern(program, type);
+    if (isString && !result.pattern && pattern) {
+        newResult.pattern = pattern;
+    }
+
+    const minLength = getMinLength(program, type);
+    if (isString && !result.minLength && minLength !== undefined) {
+        newResult.minLength = minLength;
+    }
+
+    const maxLength = getMaxLength(program, type);
+    if (isString && !result.maxLength && maxLength !== undefined) {
+        newResult.maxLength = maxLength;
+    }
+
+    const minValue = getMinValue(program, type);
+    if (isNumeric && !result.minimum && minValue !== undefined) {
+        newResult.minimum = minValue;
+    }
+
+    const maxValue = getMaxValue(program, type);
+    if (isNumeric && !result.maximum && maxValue !== undefined) {
+        newResult.maximum = maxValue;
+    }
+
+    const minItems = getMinItems(program, type);
+    if (!result.minItems && minItems !== undefined) {
+        newResult.minItems = minItems;
+    }
+
+    const maxItems = getMaxItems(program, type);
+    if (!result.maxItems && maxItems !== undefined) {
+        newResult.maxItems = maxItems;
+    }
+    return newResult;
+}
+
+function emitScalar(program: Program, scalar: Scalar): Record<string, any> {
+    let result: Record<string, any> = {};
+    if (program.checker.isStdType(scalar)) {
+        result = emitStdScalar(scalar);
+    } else if (scalar.baseScalar) {
+        result = emitScalar(program, scalar.baseScalar);
+    }
+    return applyIntrinsicDecorators(program, scalar, result);
+}
+
+function emitListOrDict(program: Program, type: Model): Record<string, any> | undefined {
+    if (type.indexer !== undefined) {
+        if (isNeverType(type.indexer.key)) {
+        } else {
+            const name = type.indexer.key.name;
+            const elementType = type.indexer.value!;
+            if (name === "string") {
+                if (elementType.kind === "Intrinsic") {
+                }
+                return { type: "dict", elementType: getType(program, type.indexer.value!) };
+            } else if (name === "integer") {
+                return { type: "list", elementType: getType(program, type.indexer.value!) };
+            }
+        }
+    }
+    return undefined;
+}
+
+function mapCadlType(program: Program, type: Type): any {
     switch (type.kind) {
         case "Number":
             return constantType(type.value, intOrFloat(type.value));
@@ -850,41 +904,104 @@ function emitType(
         case "Boolean":
             return constantType(type.value, "boolean");
         case "Model":
-            return emitModel(program, type, modelTypeProperty);
-        case "Enum":
-            return emitEnum(program, type);
-        case "Credential":
-            return emitCredential(type.scheme);
-        case "Intrinsic":
-            return { type: "any" };
-        case "Union":
-            const values: Record<string, any>[] = [];
-            for (const option of type.options) {
-                const value = emitType(program, option)["value"];
-                values.push({
-                    description: "",
-                    name: camelToSnakeCase(value).toUpperCase(),
-                    value: value,
-                });
-            }
-            const enumName = modelTypeProperty ? capitalize(modelTypeProperty.name) + "Type" : "MyEnum";
-            return {
-                name: enumName,
-                snakeCaseName: camelToSnakeCase(enumName),
-                description: modelTypeProperty ? `Type of ${modelTypeProperty.name}.` : "n/a",
-                isPublic: false,
-                type: "enum",
-                valueType: emitType(program, type.options[0])["valueType"],
-                values: values,
-                xmlMetadata: {},
-            };
-        default:
-            throw Error(`Not supported ${type.kind}`);
+            return emitListOrDict(program, type);
     }
 }
 
 function capitalize(name: string): string {
     return name[0].toUpperCase() + name.slice(1);
+}
+
+function emitUnion(program: Program, type: Union): Record<string, any> {
+    const nonNullOptions = [...type.variants.values()].map((x) => x.type).filter((t) => !isNullType(t));
+
+    const notLiteral = (t: Type): boolean => ["Boolean", "Number", "String"].indexOf(t.kind) < 0;
+    if (nonNullOptions.length > 1) {
+        if (nonNullOptions.every(notLiteral)) {
+            // Generate as CombinedType if non of the options is Literal.
+            const unionName = `MyCombinedType`;
+            return {
+                name: unionName,
+                snakeCaseName: camelToSnakeCase(unionName),
+                description: `Type of ${unionName}`,
+                isPublic: false,
+                type: "combined",
+                types: nonNullOptions.map((x) => emitType(program, x)),
+                xmlMetadata: {},
+            };
+        } else if (nonNullOptions.some(notLiteral)) {
+            // Can't generate if this union is a mixed up of literals and sub-types
+            throw Error(`Can't do union for ${JSON.stringify(nonNullOptions)}`);
+        }
+    }
+
+    // Geneate Union of Literals as Python Enum
+    const values: Record<string, any>[] = [];
+    for (const option of nonNullOptions) {
+        const value = emitType(program, option)["value"];
+        values.push({
+            description: "",
+            name: camelToSnakeCase(value).toUpperCase(),
+            value: value,
+        });
+    }
+    let enumName = "MyEnum";
+    if (
+        type.node &&
+        type.node.parent &&
+        [SyntaxKind.ModelStatement, SyntaxKind.ModelProperty].includes(type.node.parent.kind)
+    ) {
+        if (type.node.parent.kind === SyntaxKind.ModelStatement) {
+            enumName = capitalize(type.node.parent.id.sv);
+        } else if (type.node.parent.kind === SyntaxKind.ModelProperty) {
+            const parent = type.node.parent as any;
+            if (parent.id.sv) {
+                enumName = capitalize(parent.id.sv) + "Type";
+            }
+        }
+    }
+    return {
+        name: enumName,
+        snakeCaseName: camelToSnakeCase(enumName),
+        description: `Type of ${enumName}`,
+        isPublic: false,
+        type: "enum",
+        valueType: emitType(program, nonNullOptions[0])["valueType"],
+        values: values,
+        xmlMetadata: {},
+    };
+}
+
+function emitType(program: Program, type: Type | CredentialType): Record<string, any> {
+    if (type.kind === "Credential") {
+        return emitCredential(type.scheme);
+    }
+    const builtinType = mapCadlType(program, type);
+    if (builtinType !== undefined) {
+        // add in description elements for types derived from primitive types (SecureString, etc.)
+        const doc = getDoc(program, type);
+        if (doc) {
+            builtinType.description = doc;
+        }
+        return builtinType;
+    }
+
+    switch (type.kind) {
+        case "Intrinsic":
+            return { type: "any" };
+        case "Model":
+            return emitModel(program, type);
+        case "Scalar":
+            return emitScalar(program, type);
+        case "Union":
+            return emitUnion(program, type);
+        case "UnionVariant":
+            return {};
+        case "Enum":
+            return emitEnum(program, type);
+        default:
+            throw Error(`Not supported ${type.kind}`);
+    }
 }
 
 function emitOperationGroups(program: Program, client: Client): Record<string, any>[] {
@@ -1060,11 +1177,19 @@ function emitClients(program: Program, namespace: string): Record<string, any>[]
     return retval;
 }
 
+function getServiceNamespace(program: Program): Namespace {
+    return listServices(program)[0].type;
+}
+
+function getServiceNamespaceString(program: Program): string {
+    return getNamespaceFullName(getServiceNamespace(program)).toLowerCase();
+}
+
 function getNamespace(program: Program, clientName: string): string {
     // We get client namespaces from the client name. If there's a dot, we add that to the namespace
     const submodule = clientName.split(".").slice(0, -1).join(".").toLowerCase();
     if (!submodule) {
-        return getServiceNamespaceString(program)!.toLowerCase();
+        return getServiceNamespaceString(program).toLowerCase();
     }
     return submodule;
 }
@@ -1078,12 +1203,7 @@ function getNamespaces(program: Program): Set<string> {
 }
 
 function createYamlEmitter(program: Program) {
-    const serviceNamespace = getServiceNamespace(program);
-    if (serviceNamespace === undefined) {
-        throw Error("Can not emit yaml for a namespace that doesn't exist.");
-    }
-
-    const serviceNamespaceString = getServiceNamespaceString(program)!.toLowerCase();
+    const serviceNamespaceString = getServiceNamespaceString(program);
     // Get types
     const codeModel: Record<string, any> = {
         namespace: serviceNamespaceString,

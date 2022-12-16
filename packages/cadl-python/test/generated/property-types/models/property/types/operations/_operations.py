@@ -479,7 +479,7 @@ class BooleanOperations:
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.BooleanProperty:
-        """get.
+        """Get call.
 
         :return: BooleanProperty. The BooleanProperty is compatible with MutableMapping
         :rtype: ~models.property.types.models.BooleanProperty
@@ -525,9 +525,9 @@ class BooleanOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: _models.BooleanProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: ~models.property.types.models.BooleanProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -541,9 +541,9 @@ class BooleanOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -557,9 +557,9 @@ class BooleanOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -573,9 +573,9 @@ class BooleanOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: Union[_models.BooleanProperty, JSON, IO], **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Is one of the following types: model, JSON, IO Required.
+        :param body: body. Is one of the following types: model, JSON, IO Required.
         :type body: ~models.property.types.models.BooleanProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -646,7 +646,7 @@ class StringOperations:
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.StringProperty:
-        """get.
+        """Get call.
 
         :return: StringProperty. The StringProperty is compatible with MutableMapping
         :rtype: ~models.property.types.models.StringProperty
@@ -692,9 +692,9 @@ class StringOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: _models.StringProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: ~models.property.types.models.StringProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -708,9 +708,9 @@ class StringOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -724,9 +724,9 @@ class StringOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -740,9 +740,9 @@ class StringOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: Union[_models.StringProperty, JSON, IO], **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Is one of the following types: model, JSON, IO Required.
+        :param body: body. Is one of the following types: model, JSON, IO Required.
         :type body: ~models.property.types.models.StringProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -813,7 +813,7 @@ class BytesOperations:
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.BytesProperty:
-        """get.
+        """Get call.
 
         :return: BytesProperty. The BytesProperty is compatible with MutableMapping
         :rtype: ~models.property.types.models.BytesProperty
@@ -859,9 +859,9 @@ class BytesOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: _models.BytesProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: ~models.property.types.models.BytesProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -875,9 +875,9 @@ class BytesOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -891,9 +891,9 @@ class BytesOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -907,9 +907,9 @@ class BytesOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: Union[_models.BytesProperty, JSON, IO], **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Is one of the following types: model, JSON, IO Required.
+        :param body: body. Is one of the following types: model, JSON, IO Required.
         :type body: ~models.property.types.models.BytesProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -980,7 +980,7 @@ class IntOperations:
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.IntProperty:
-        """get.
+        """Get call.
 
         :return: IntProperty. The IntProperty is compatible with MutableMapping
         :rtype: ~models.property.types.models.IntProperty
@@ -1026,9 +1026,9 @@ class IntOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: _models.IntProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: ~models.property.types.models.IntProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -1042,9 +1042,9 @@ class IntOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -1058,9 +1058,9 @@ class IntOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -1074,9 +1074,9 @@ class IntOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: Union[_models.IntProperty, JSON, IO], **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Is one of the following types: model, JSON, IO Required.
+        :param body: body. Is one of the following types: model, JSON, IO Required.
         :type body: ~models.property.types.models.IntProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1147,7 +1147,7 @@ class FloatOperations:
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.FloatProperty:
-        """get.
+        """Get call.
 
         :return: FloatProperty. The FloatProperty is compatible with MutableMapping
         :rtype: ~models.property.types.models.FloatProperty
@@ -1193,9 +1193,9 @@ class FloatOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: _models.FloatProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: ~models.property.types.models.FloatProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -1209,9 +1209,9 @@ class FloatOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -1225,9 +1225,9 @@ class FloatOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -1241,9 +1241,9 @@ class FloatOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: Union[_models.FloatProperty, JSON, IO], **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Is one of the following types: model, JSON, IO Required.
+        :param body: body. Is one of the following types: model, JSON, IO Required.
         :type body: ~models.property.types.models.FloatProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1314,7 +1314,7 @@ class DatetimeOperations:
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.DatetimeProperty:
-        """get.
+        """Get call.
 
         :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
         :rtype: ~models.property.types.models.DatetimeProperty
@@ -1360,9 +1360,9 @@ class DatetimeOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: _models.DatetimeProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: ~models.property.types.models.DatetimeProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -1376,9 +1376,9 @@ class DatetimeOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -1392,9 +1392,9 @@ class DatetimeOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -1408,9 +1408,9 @@ class DatetimeOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: Union[_models.DatetimeProperty, JSON, IO], **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Is one of the following types: model, JSON, IO Required.
+        :param body: body. Is one of the following types: model, JSON, IO Required.
         :type body: ~models.property.types.models.DatetimeProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1481,7 +1481,7 @@ class DurationOperations:
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.DurationProperty:
-        """get.
+        """Get call.
 
         :return: DurationProperty. The DurationProperty is compatible with MutableMapping
         :rtype: ~models.property.types.models.DurationProperty
@@ -1527,9 +1527,9 @@ class DurationOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: _models.DurationProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: ~models.property.types.models.DurationProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -1543,9 +1543,9 @@ class DurationOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -1559,9 +1559,9 @@ class DurationOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -1575,9 +1575,9 @@ class DurationOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: Union[_models.DurationProperty, JSON, IO], **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Is one of the following types: model, JSON, IO Required.
+        :param body: body. Is one of the following types: model, JSON, IO Required.
         :type body: ~models.property.types.models.DurationProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1648,7 +1648,7 @@ class EnumOperations:
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.EnumProperty:
-        """get.
+        """Get call.
 
         :return: EnumProperty. The EnumProperty is compatible with MutableMapping
         :rtype: ~models.property.types.models.EnumProperty
@@ -1694,9 +1694,9 @@ class EnumOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: _models.EnumProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: ~models.property.types.models.EnumProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -1710,9 +1710,9 @@ class EnumOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -1726,9 +1726,9 @@ class EnumOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -1742,9 +1742,9 @@ class EnumOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: Union[_models.EnumProperty, JSON, IO], **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Is one of the following types: model, JSON, IO Required.
+        :param body: body. Is one of the following types: model, JSON, IO Required.
         :type body: ~models.property.types.models.EnumProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1815,7 +1815,7 @@ class ExtensibleEnumOperations:
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.ExtensibleEnumProperty:
-        """get.
+        """Get call.
 
         :return: ExtensibleEnumProperty. The ExtensibleEnumProperty is compatible with MutableMapping
         :rtype: ~models.property.types.models.ExtensibleEnumProperty
@@ -1861,9 +1861,9 @@ class ExtensibleEnumOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: _models.ExtensibleEnumProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: ~models.property.types.models.ExtensibleEnumProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -1877,9 +1877,9 @@ class ExtensibleEnumOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -1893,9 +1893,9 @@ class ExtensibleEnumOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -1909,9 +1909,9 @@ class ExtensibleEnumOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: Union[_models.ExtensibleEnumProperty, JSON, IO], **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Is one of the following types: model, JSON, IO Required.
+        :param body: body. Is one of the following types: model, JSON, IO Required.
         :type body: ~models.property.types.models.ExtensibleEnumProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1982,7 +1982,7 @@ class ModelOperations:
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.ModelProperty:
-        """get.
+        """Get call.
 
         :return: ModelProperty. The ModelProperty is compatible with MutableMapping
         :rtype: ~models.property.types.models.ModelProperty
@@ -2028,9 +2028,9 @@ class ModelOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: _models.ModelProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: ~models.property.types.models.ModelProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -2044,9 +2044,9 @@ class ModelOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -2060,9 +2060,9 @@ class ModelOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -2076,9 +2076,9 @@ class ModelOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: Union[_models.ModelProperty, JSON, IO], **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Is one of the following types: model, JSON, IO Required.
+        :param body: body. Is one of the following types: model, JSON, IO Required.
         :type body: ~models.property.types.models.ModelProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -2149,7 +2149,7 @@ class CollectionsStringOperations:
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.CollectionsStringProperty:
-        """get.
+        """Get call.
 
         :return: CollectionsStringProperty. The CollectionsStringProperty is compatible with
          MutableMapping
@@ -2196,9 +2196,9 @@ class CollectionsStringOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: _models.CollectionsStringProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: ~models.property.types.models.CollectionsStringProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -2212,9 +2212,9 @@ class CollectionsStringOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -2228,9 +2228,9 @@ class CollectionsStringOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -2244,9 +2244,9 @@ class CollectionsStringOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: Union[_models.CollectionsStringProperty, JSON, IO], **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Is one of the following types: model, JSON, IO Required.
+        :param body: body. Is one of the following types: model, JSON, IO Required.
         :type body: ~models.property.types.models.CollectionsStringProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -2317,7 +2317,7 @@ class CollectionsIntOperations:
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.CollectionsIntProperty:
-        """get.
+        """Get call.
 
         :return: CollectionsIntProperty. The CollectionsIntProperty is compatible with MutableMapping
         :rtype: ~models.property.types.models.CollectionsIntProperty
@@ -2363,9 +2363,9 @@ class CollectionsIntOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: _models.CollectionsIntProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: ~models.property.types.models.CollectionsIntProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -2379,9 +2379,9 @@ class CollectionsIntOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -2395,9 +2395,9 @@ class CollectionsIntOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -2411,9 +2411,9 @@ class CollectionsIntOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: Union[_models.CollectionsIntProperty, JSON, IO], **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Is one of the following types: model, JSON, IO Required.
+        :param body: body. Is one of the following types: model, JSON, IO Required.
         :type body: ~models.property.types.models.CollectionsIntProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -2484,7 +2484,7 @@ class CollectionsModelOperations:
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.CollectionsModelProperty:
-        """get.
+        """Get call.
 
         :return: CollectionsModelProperty. The CollectionsModelProperty is compatible with
          MutableMapping
@@ -2531,9 +2531,9 @@ class CollectionsModelOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: _models.CollectionsModelProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: ~models.property.types.models.CollectionsModelProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -2547,9 +2547,9 @@ class CollectionsModelOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -2563,9 +2563,9 @@ class CollectionsModelOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -2579,9 +2579,9 @@ class CollectionsModelOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: Union[_models.CollectionsModelProperty, JSON, IO], **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Is one of the following types: model, JSON, IO Required.
+        :param body: body. Is one of the following types: model, JSON, IO Required.
         :type body: ~models.property.types.models.CollectionsModelProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -2652,7 +2652,7 @@ class DictionaryStringOperations:
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.DictionaryStringProperty:
-        """get.
+        """Get call.
 
         :return: DictionaryStringProperty. The DictionaryStringProperty is compatible with
          MutableMapping
@@ -2699,9 +2699,9 @@ class DictionaryStringOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: _models.DictionaryStringProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: ~models.property.types.models.DictionaryStringProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -2715,9 +2715,9 @@ class DictionaryStringOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -2731,9 +2731,9 @@ class DictionaryStringOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -2747,9 +2747,9 @@ class DictionaryStringOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: Union[_models.DictionaryStringProperty, JSON, IO], **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Is one of the following types: model, JSON, IO Required.
+        :param body: body. Is one of the following types: model, JSON, IO Required.
         :type body: ~models.property.types.models.DictionaryStringProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -2820,7 +2820,7 @@ class NeverOperations:
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.NeverProperty:
-        """get.
+        """Get call.
 
         :return: NeverProperty. The NeverProperty is compatible with MutableMapping
         :rtype: ~models.property.types.models.NeverProperty
@@ -2866,9 +2866,9 @@ class NeverOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: _models.NeverProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: ~models.property.types.models.NeverProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -2882,9 +2882,9 @@ class NeverOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -2898,9 +2898,9 @@ class NeverOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Required.
+        :param body: body. Required.
         :type body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -2914,9 +2914,9 @@ class NeverOperations:
     def put(  # pylint: disable=inconsistent-return-statements
         self, body: Union[_models.NeverProperty, JSON, IO], **kwargs: Any
     ) -> None:
-        """put.
+        """Put operation.
 
-        :param body: Is one of the following types: model, JSON, IO Required.
+        :param body: body. Is one of the following types: model, JSON, IO Required.
         :type body: ~models.property.types.models.NeverProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
