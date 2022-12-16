@@ -400,7 +400,10 @@ function emitContentTypeParameter(
     };
 }
 
-function emitFlattenedParameter(bodyParameter: Record<string, any>, property: Record<string, any>): Record<string, any> {
+function emitFlattenedParameter(
+    bodyParameter: Record<string, any>,
+    property: Record<string, any>,
+): Record<string, any> {
     return {
         checkClientInput: false,
         clientDefaultValue: null,
@@ -417,8 +420,8 @@ function emitFlattenedParameter(bodyParameter: Record<string, any>, property: Re
         optional: property["optional"],
         restApiName: null,
         skipUrlEncoding: false,
-        type: property["type"]
-    }
+        type: property["type"],
+    };
 }
 
 function getConstantType(key: string): Record<string, any> {
