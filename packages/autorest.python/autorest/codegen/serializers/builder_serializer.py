@@ -155,7 +155,7 @@ def _serialize_json_model_body(body_parameter: BodyParameter) -> List[str]:
             "This method can't be called if the operation doesn't need parameter flattening"
         )
 
-    retval.append("if {body_parameter.client_name} is None:")
+    retval.append(f"if {body_parameter.client_name} is None:")
     parameter_string = ", \n".join(
         f'"{property_name}": {parameter_name}'
         for property_name, parameter_name in body_parameter.property_to_parameter_name.items()
