@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, List
+from typing import List
 
 from .. import _model_base
 from .._model_base import rest_field
