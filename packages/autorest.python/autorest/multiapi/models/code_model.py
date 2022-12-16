@@ -73,6 +73,8 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
 
     @property
     def host_variable_name(self) -> str:
+        if self.client.parameterized_host_template_to_api_version:
+            return "base_url"
         params = (
             self.global_parameters.parameters
             + self.global_parameters.service_client_specific_global_parameters

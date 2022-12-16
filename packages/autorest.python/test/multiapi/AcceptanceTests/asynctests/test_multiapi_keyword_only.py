@@ -25,7 +25,7 @@
 # --------------------------------------------------------------------------
 import pytest
 from async_generator import yield_, async_generator
-from multiapicustombaseurl.aio import MultiapiCustomBaseUrlServiceClient
+from multiapikeywordonly.aio import MultiapiCustomBaseUrlServiceClient
 
 @pytest.fixture
 @async_generator
