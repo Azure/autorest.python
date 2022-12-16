@@ -958,6 +958,7 @@ class _OperationSerializer(
         if (
             builder.parameters.has_body
             and builder.parameters.body_parameter.has_json_model_type
+            and any(p.in_flattened_body for p in builder.parameters.parameters)
         ):
             retval.extend(_serialize_json_model_body(builder.parameters.body_parameter))
         if builder.overloads:
