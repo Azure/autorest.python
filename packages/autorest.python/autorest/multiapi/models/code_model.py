@@ -73,7 +73,10 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
 
     @property
     def host_variable_name(self) -> str:
-        params = self.global_parameters.parameters + self.global_parameters.service_client_specific_global_parameters
+        params = (
+            self.global_parameters.parameters
+            + self.global_parameters.service_client_specific_global_parameters
+        )
         try:
             return next(p for p in params if p.name in ["endpoint", "base_url"]).name
         except StopIteration:
