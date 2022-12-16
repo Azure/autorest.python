@@ -449,7 +449,7 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
         if isinstance(parameter, (IO, bytes)):
             _content = parameter
         else:
-            _content = json.dumps(parameter, cls=AzureJSONEncoder)
+            _content = json.dumps(parameter, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_service_driven2_post_parameters_request(
             content_type_path=content_type_path,
@@ -480,7 +480,7 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
     @distributed_trace
     @api_version_validation(
         method_added_on="1.1.0",
-    )
+    )  # pylint: disable=inconsistent-return-statements
     def delete_parameters(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Delete something.
          Initially the path exists but there is no delete method. After evolution this is a new method

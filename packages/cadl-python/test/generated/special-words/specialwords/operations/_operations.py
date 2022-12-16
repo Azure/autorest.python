@@ -406,7 +406,7 @@ class ModelOperations:
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_model_put_request(
             content_type=content_type,

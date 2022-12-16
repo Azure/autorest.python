@@ -247,13 +247,6 @@ class ModelType(  # pylint: disable=abstract-method
             retval = add_to_pylint_disable(retval, "too-many-locals")
         return retval
 
-    def imports(self, **kwargs: Any) -> FileImport:
-        file_import = FileImport()
-        file_import.add_submodule_import(
-            "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
-        )
-        return file_import
-
 
 class JSONModelType(ModelType):
     base = "json"
@@ -276,7 +269,10 @@ class JSONModelType(ModelType):
         return "isinstance({}, MutableMapping)"
 
     def imports(self, **kwargs: Any) -> FileImport:
-        file_import = super().imports(**kwargs)
+        file_import = FileImport()
+        file_import.add_submodule_import(
+            "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
+        )
         file_import.define_mutable_mapping_type()
         if self.is_xml:
             file_import.add_submodule_import(
@@ -321,6 +317,13 @@ class MsrestModelType(GeneratedModelType):
     @property
     def instance_check_template(self) -> str:
         return "isinstance({}, msrest.Model)"
+
+    def imports(self, **kwargs: Any) -> FileImport:
+        file_import = super().imports(**kwargs)
+        file_import.add_submodule_import(
+            "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
+        )
+        return file_import
 
 
 class DPGModelType(GeneratedModelType):

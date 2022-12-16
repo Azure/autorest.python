@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 
 import sys
-from typing import Any, Mapping, overload
+from typing import Any, Dict, Mapping, overload
 
 from .. import _model_base
 from .._model_base import rest_discriminator, rest_field
@@ -31,7 +31,7 @@ class BaseModel(_model_base.Model):
     :vartype model_kind: str
     """
 
-    __mapping__ = {}
+    __mapping__: Dict[str, _model_base.Model] = {}
     model_kind: Literal[None] = rest_discriminator(name="model.kind")
     """Required. Default value is None."""
 
@@ -53,7 +53,7 @@ class DerivedModel(BaseModel, discriminator="derived"):
     :vartype for_property: str
     """
 
-    model_kind: Literal["derived"] = rest_discriminator(name="model.kind")
+    model_kind: Literal["derived"] = rest_discriminator(name="model.kind")  # type: ignore
     """Required. Default value is \"derived\"."""
     derived_name: str = rest_field(name="derived.name")
     """Required. """

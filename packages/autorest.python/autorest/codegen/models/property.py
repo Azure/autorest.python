@@ -129,13 +129,25 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         retval.update(self.type.validation or {})
         return retval or None
 
-    def imports(self, **kwargs) -> FileImport:
-        from .model_type import ModelType
+    @staticmethod
+    def contain_model_type(t: BaseType) -> bool:
+        from . import ListType, DictionaryType, ModelType
 
+        if isinstance(t, ModelType):
+            return True
+        if isinstance(t, ListType):
+            return Property.contain_model_type(t.element_type)
+        if isinstance(t, DictionaryType):
+            return Property.contain_model_type(t.element_type)
+        if isinstance(t, ConstantType):
+            return Property.contain_model_type(t.value_type)
+        return False
+
+    def imports(self, **kwargs) -> FileImport:
         file_import = self.type.imports(**kwargs, is_operation_file=False)
         if self.optional and self.client_default_value is None:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
-        if isinstance(self.type, ModelType):
+        if self.contain_model_type(self.type):
             file_import.add_submodule_import(
                 "..",
                 "models",
