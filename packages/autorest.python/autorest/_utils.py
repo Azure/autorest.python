@@ -77,7 +77,13 @@ def parse_args(
         return value
 
     unknown_args_ret = {
-        ua.strip("--").split("=")[0]: _get_value(ua.strip("--").split("=")[1])
+        ua.strip("--").split("=", maxsplit=1)[  # pylint: disable=bad-str-strip-call
+            0
+        ]: _get_value(
+            ua.strip("--").split("=", maxsplit=1)[  # pylint: disable=bad-str-strip-call
+                1
+            ]
+        )
         for ua in unknown_args
     }
     return args, unknown_args_ret

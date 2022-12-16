@@ -22,7 +22,7 @@ class AutorestRender(m2r2.RestRenderer):
     in the description/summary.
     """
 
-    def inline_html(self, html: str) -> str:  # pylint: disable=no-self-use
+    def inline_html(self, html: str) -> str:
         """Do not render inline HTML with a role definition."""
         return f":code:`{html}`"
 

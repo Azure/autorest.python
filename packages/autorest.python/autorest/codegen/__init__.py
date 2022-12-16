@@ -186,7 +186,7 @@ class CodeGenerator(Plugin):
 
     def get_yaml(self) -> Dict[str, Any]:
         # cadl file doesn't have to be relative to output folder
-        with open(self.options["cadl_file"], "r") as fd:
+        with open(self.options["cadl_file"], "r", encoding="utf-16") as fd:
             return yaml.safe_load(fd.read())
 
     def get_serializer(self, code_model: CodeModel):

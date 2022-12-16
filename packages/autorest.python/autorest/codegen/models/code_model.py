@@ -172,8 +172,8 @@ class CodeModel:  # pylint: disable=too-many-public-methods
         """
         try:
             return next(type for id, type in self.types_map.items() if id == schema_id)
-        except StopIteration:
-            raise KeyError(f"Couldn't find schema with id {schema_id}")
+        except StopIteration as exc:
+            raise KeyError(f"Couldn't find schema with id {schema_id}") from exc
 
     @property
     def model_types(self) -> List[ModelType]:

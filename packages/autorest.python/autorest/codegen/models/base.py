@@ -52,9 +52,7 @@ class BaseType(BaseModel, ABC):  # pylint: disable=too-many-public-methods
     ) -> "BaseType":
         return cls(yaml_data=yaml_data, code_model=code_model)
 
-    def imports(  # pylint: disable=no-self-use
-        self, **kwargs  # pylint: disable=unused-argument
-    ) -> FileImport:
+    def imports(self, **kwargs) -> FileImport:  # pylint: disable=unused-argument
         return FileImport()
 
     def imports_for_multiapi(self, **kwargs: Any) -> FileImport:
@@ -91,7 +89,7 @@ class BaseType(BaseModel, ABC):  # pylint: disable=too-many-public-methods
         if self.xml_metadata.get("namespace", False):
             attrs_list.append(f"'ns': '{self.xml_metadata['namespace']}'")
         if self.xml_metadata.get("text"):
-            attrs_list.append(f"'text': True")
+            attrs_list.append("'text': True")
         return ", ".join(attrs_list)
 
     @property
@@ -106,7 +104,6 @@ class BaseType(BaseModel, ABC):  # pylint: disable=too-many-public-methods
         If list: '[str]'
         If dict: '{str}'
         """
-        ...
         raise NotImplementedError()
 
     @property
@@ -121,12 +118,10 @@ class BaseType(BaseModel, ABC):  # pylint: disable=too-many-public-methods
     @abstractmethod
     def description(self, *, is_operation_file: bool) -> str:
         """The description"""
-        ...
 
     @abstractmethod
     def docstring_text(self, **kwargs: Any) -> str:
         """The names used in rtype documentation"""
-        ...
 
     @abstractmethod
     def docstring_type(self, **kwargs: Any) -> str:
@@ -134,7 +129,6 @@ class BaseType(BaseModel, ABC):  # pylint: disable=too-many-public-methods
 
         Special case for enum, for instance: 'str or ~namespace.EnumName'
         """
-        ...
 
     @abstractmethod
     def type_annotation(self, **kwargs: Any) -> str:
@@ -142,7 +136,6 @@ class BaseType(BaseModel, ABC):  # pylint: disable=too-many-public-methods
 
         Special case for enum, for instance: Union[str, "EnumName"]
         """
-        ...
 
     @property
     def validation(self) -> Optional[Dict[str, Any]]:
@@ -153,7 +146,7 @@ class BaseType(BaseModel, ABC):  # pylint: disable=too-many-public-methods
         """
         return None
 
-    def get_declaration(self, value: Any) -> str:  # pylint: disable=no-self-use
+    def get_declaration(self, value: Any) -> str:
         """Return the current value from YAML as a Python string that represents the constant.
 
         Example, if schema is "bytearray" and value is "foo",
@@ -175,9 +168,8 @@ class BaseType(BaseModel, ABC):  # pylint: disable=too-many-public-methods
         description: Optional[str] = None,
     ) -> Any:
         """Template of what this schema would look like as JSON input"""
-        ...
 
-    def get_polymorphic_subtypes(  # pylint: disable=no-self-use
+    def get_polymorphic_subtypes(
         self, polymorphic_subtypes: List["ModelType"]  # pylint: disable=unused-argument
     ) -> None:
         return None
@@ -186,7 +178,6 @@ class BaseType(BaseModel, ABC):  # pylint: disable=too-many-public-methods
     @abstractmethod
     def instance_check_template(self) -> str:
         """Template of what an instance check of a variable for this type would look like"""
-        ...
 
     @property
     def serialization_constraints(self) -> List[str]:
