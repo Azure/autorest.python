@@ -143,6 +143,7 @@ def create_model(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     base["name"] = yaml_data["language"]["default"]["name"]
     base["description"] = yaml_data["language"]["default"]["description"]
     base["isXml"] = "xml" in yaml_data.get("serializationFormats", [])
+    base["base"] = "msrest"
     return base
 
 
@@ -421,6 +422,12 @@ class M4Reformatter(
     @property
     def legacy(self) -> bool:
         return not (self.version_tolerant or self.low_level_client)
+
+    @property
+    def only_path_and_body_parameters_positional(self) -> bool:
+        return self.version_tolerant or bool(
+            self._autorestapi.get_boolean_value("only-path-and-body-params-positional")
+        )
 
     @property
     def default_optional_constants_to_none(self) -> bool:
@@ -951,7 +958,11 @@ class M4Reformatter(
             if name == "$host":
                 # I am the non-parameterized endpoint. Modify name based off of flag
 
-                client_name = "base_url" if self.legacy else "endpoint"
+                client_name = (
+                    "endpoint"
+                    if self.only_path_and_body_parameters_positional
+                    else "base_url"
+                )
                 global_parameter["language"]["default"]["description"] = "Service URL."
             elif (
                 global_parameter.get("origin") == "modelerfour:synthesized/api-version"
@@ -1082,7 +1093,7 @@ class M4Reformatter(
             "skipUrlEncoding": True,
             "inOverload": False,
         }
-        if self.version_tolerant or self.low_level_client:
+        if self.only_path_and_body_parameters_positional:
             parameters.append(credential)
         else:
             parameters.insert(0, credential)

@@ -4,13 +4,13 @@
 # license information.
 # --------------------------------------------------------------------------
 from pathlib import Path
-from typing import Any, Optional, Union
+from typing import Any, Optional, Union, List
 from jinja2 import PackageLoader, Environment
 
 from .import_serializer import FileImportSerializer
 
 from ...jsonrpc import AutorestAPI
-from ..models import CodeModel
+from ..models import CodeModel, GlobalParameter
 from ... import ReaderAndWriter, ReaderAndWriterAutorest
 
 __all__ = [
@@ -24,6 +24,15 @@ _FILE_TO_TEMPLATE = {
     "models": "multiapi_models.py.jinja2",
     "operations_mixin": "multiapi_operations_mixin.py.jinja2",
 }
+
+
+def _method_signature_helper(
+    parameters: List[GlobalParameter], async_mode: bool
+) -> List[str]:
+    return [
+        p.signature(async_mode)
+        for p in sorted(parameters, key=lambda p: p.required, reverse=True)
+    ]
 
 
 def _get_file_path(filename: str, async_mode: bool) -> Path:
@@ -48,8 +57,26 @@ class MultiAPISerializer(ReaderAndWriter):  # pylint: disable=abstract-method
     def _serialize_helper(self, code_model: CodeModel, async_mode: bool) -> None:
         def _render_template(file: str, **kwargs: Any) -> str:
             template = self.env.get_template(_FILE_TO_TEMPLATE[file])
+            all_params = (
+                code_model.global_parameters.parameters
+                + code_model.global_parameters.service_client_specific_global_parameters
+            )
+            positional_params = [
+                p for p in all_params if p.method_location == "positional"
+            ]
+            keyword_only_params = [
+                p for p in all_params if p.method_location == "keywordOnly"
+            ]
             return template.render(
-                code_model=code_model, async_mode=async_mode, **kwargs
+                code_model=code_model,
+                async_mode=async_mode,
+                positional_params=_method_signature_helper(
+                    positional_params, async_mode
+                ),
+                keyword_only_params=_method_signature_helper(
+                    keyword_only_params, async_mode
+                ),
+                **kwargs
             )
 
         # serialize init file

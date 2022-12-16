@@ -40,6 +40,7 @@ import {
     Union,
     isNullType,
     SyntaxKind,
+    emitFile,
 } from "@cadl-lang/compiler";
 import {
     getAuthentication,
@@ -87,6 +88,7 @@ export interface EmitterOptions {
     "package-name"?: string;
     "output-dir"?: string;
     "package-mode"?: string;
+    "debug"?: boolean;
 }
 
 const EmitterOptionsSchema: JSONSchemaType<EmitterOptions> = {
@@ -98,6 +100,7 @@ const EmitterOptionsSchema: JSONSchemaType<EmitterOptions> = {
         "package-name": { type: "string", nullable: true },
         "output-dir": { type: "string", nullable: true },
         "package-mode": { type: "string", nullable: true },
+        "debug": { type: "boolean", nullable: true },
     },
     required: [],
 };
@@ -118,29 +121,30 @@ export const $lib = createCadlLibrary({
 export async function $onEmit(context: EmitContext<EmitterOptions>) {
     const program = context.program;
     const resolvedOptions = { ...defaultOptions, ...context.options };
-    const yamlMap = createYamlEmitter(program);
+
     const root = process.cwd();
-    const outputFolder = resolvedOptions["output-dir"] ?? program.compilerOptions.outputDir!;
-    const yamlPath = resolvePath(outputFolder, "output.yaml");
+    const outputDir = context.emitterOutputDir;
+    const yamlMap = createYamlEmitter(program);
+    const yamlPath = resolvePath(outputDir, "output.yaml");
     const commandArgs = [
         `${root}/node_modules/@autorest/python/run-python3.js`,
         `${root}/node_modules/@autorest/python/run_cadl.py`,
-        `--output-folder=${outputFolder}`,
+        `--output-folder=${outputDir}`,
         `--cadl-file=${yamlPath}`,
     ];
     for (const [key, value] of Object.entries(resolvedOptions)) {
         commandArgs.push(`--${key}=${value}`);
     }
-    if (
-        program.compilerOptions.trace?.includes("*") ||
-        program.compilerOptions.trace?.includes("@azure-tools/cadl-python") ||
-        program.compilerOptions.trace?.includes("@azure-tools/cadl-python.*")
-    ) {
+    if (resolvedOptions.debug) {
         commandArgs.push("--debug");
     }
     if (!program.compilerOptions.noEmit && !program.hasError()) {
         // TODO: change behavior based off of https://github.com/microsoft/cadl/issues/401
-        await program.host.writeFile(yamlPath, dump(yamlMap));
+        await emitFile(program, {
+            path: yamlPath,
+            content: dump(yamlMap),
+            newLine: "lf",
+        });
         execFileSync(process.execPath, commandArgs);
     }
     if (program.compilerOptions.trace === undefined) {
@@ -324,6 +328,10 @@ function emitBodyParameter(
         type = getType(program, params.body.type);
     } else {
         type = getType(program, bodyType);
+    }
+
+    if (type.type === "model" && type.name === "") {
+        type.name = capitalize(operation.name) + "Request";
     }
 
     return {
@@ -691,6 +699,7 @@ function emitModel(program: Program, type: Model): Record<string, any> {
         properties: properties,
         addedOn: getAddedOnVersion(program, type),
         snakeCaseName: modelName ? camelToSnakeCase(modelName) : modelName,
+        base: modelName === "" ? "json" : "dpg",
     };
 }
 

@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import abc
-from enum import Enum, auto
+from enum import Enum
 
 from typing import (
     Dict,
@@ -37,10 +37,10 @@ class ParameterLocation(str, Enum):
     OTHER = "other"
 
 
-class ParameterMethodLocation(Enum):
-    POSITIONAL = auto()
-    KEYWORD_ONLY = auto()
-    KWARG = auto()
+class ParameterMethodLocation(str, Enum):
+    POSITIONAL = "positional"
+    KEYWORD_ONLY = "keywordOnly"
+    KWARG = "kwarg"
 
 
 class ParameterDelimeter(str, Enum):

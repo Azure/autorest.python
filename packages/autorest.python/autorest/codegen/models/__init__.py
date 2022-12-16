@@ -9,7 +9,7 @@ from .base import BaseModel
 from .base_builder import BaseBuilder
 from .code_model import CodeModel
 from .client import Client
-from .model_type import ModelType
+from .model_type import ModelType, JSONModelType, DPGModelType, MsrestModelType
 from .dictionary_type import DictionaryType
 from .list_type import ListType
 from .combined_type import CombinedType
@@ -156,7 +156,13 @@ def build_type(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseType:
         pass
     if yaml_data["type"] == "model":
         # need to special case model to avoid recursion
-        response = ModelType(yaml_data, code_model)
+        if yaml_data["base"] == "json" or not code_model.options["models_mode"]:
+            model_type = JSONModelType
+        elif yaml_data["base"] == "dpg":
+            model_type = DPGModelType  # type: ignore
+        else:
+            model_type = MsrestModelType  # type: ignore
+        response = model_type(yaml_data, code_model)
         code_model.types_map[yaml_id] = response
         response.fill_instance_from_yaml(yaml_data, code_model)
     else:

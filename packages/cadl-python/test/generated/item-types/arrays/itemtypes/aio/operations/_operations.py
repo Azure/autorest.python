@@ -8,7 +8,6 @@
 # --------------------------------------------------------------------------
 import datetime
 import json
-import sys
 from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
@@ -48,13 +47,8 @@ from ...operations._operations import (
     build_unknown_value_put_request,
 )
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 
 class Int32ValueOperations:
@@ -184,7 +178,7 @@ class Int32ValueOperations:
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_int32_value_put_request(
             content_type=content_type,
@@ -335,7 +329,7 @@ class Int64ValueOperations:
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_int64_value_put_request(
             content_type=content_type,
@@ -486,7 +480,7 @@ class BooleanValueOperations:
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_boolean_value_put_request(
             content_type=content_type,
@@ -637,7 +631,7 @@ class StringValueOperations:
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_string_value_put_request(
             content_type=content_type,
@@ -788,7 +782,7 @@ class Float32ValueOperations:
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_float32_value_put_request(
             content_type=content_type,
@@ -939,7 +933,7 @@ class DatetimeValueOperations:
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_datetime_value_put_request(
             content_type=content_type,
@@ -1090,7 +1084,7 @@ class DurationValueOperations:
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_duration_value_put_request(
             content_type=content_type,
@@ -1241,7 +1235,7 @@ class UnknownValueOperations:
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_unknown_value_put_request(
             content_type=content_type,
@@ -1392,7 +1386,7 @@ class ModelValueOperations:
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_model_value_put_request(
             content_type=content_type,

@@ -208,14 +208,19 @@ class DpgModelSerializer(_ModelSerializer):
             ImportType.LOCAL,
             TypingSection.REGULAR,
         )
-        file_import.add_submodule_import("typing", "overload", ImportType.STDLIB)
-        file_import.add_submodule_import("typing", "Mapping", ImportType.STDLIB)
-        file_import.add_submodule_import("typing", "Any", ImportType.STDLIB)
 
         for model in self.code_model.model_types:
             file_import.merge(model.imports(is_operation_file=False))
             for prop in model.properties:
                 file_import.merge(prop.imports())
+            if model.is_polymorphic:
+                file_import.add_submodule_import("typing", "Dict", ImportType.STDLIB)
+            if model.is_public and self.init_line(model):
+                file_import.add_submodule_import(
+                    "typing", "overload", ImportType.STDLIB
+                )
+                file_import.add_submodule_import("typing", "Mapping", ImportType.STDLIB)
+                file_import.add_submodule_import("typing", "Any", ImportType.STDLIB)
         return file_import
 
     def declare_model(self, model: ModelType) -> str:
@@ -256,9 +261,14 @@ class DpgModelSerializer(_ModelSerializer):
             args.append(f"default={prop.client_default_value_declaration}")
 
         field = "rest_discriminator" if prop.is_discriminator else "rest_field"
+        type_ignore = (
+            prop.is_discriminator
+            and prop.is_discriminator
+            and cast(ConstantType, prop.type).value
+        )
         ret = [
             f"{prop.client_name}: {prop.type_annotation()} ="
-            f' {field}({", ".join(args)})'
+            f' {field}({", ".join(args)}){"  # type: ignore" if type_ignore else ""}'
         ]
         comment = prop.description(is_operation_file=False).replace('"', '\\"')
         if comment:

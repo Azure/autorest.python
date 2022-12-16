@@ -7,17 +7,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import sys
-from typing import Any, List, Mapping, overload
+from typing import List
 
 from .. import _model_base
 from .._model_base import rest_field
-
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 
 class VisibilityModel(_model_base.Model):
@@ -49,6 +42,3 @@ class VisibilityModel(_model_base.Model):
     """Required int32[], illustrating a update property. Required. """
     delete_prop: bool = rest_field(name="deleteProp", readonly=True)
     """Required bool, illustrating a delete property. Required. """
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
