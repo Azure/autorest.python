@@ -351,7 +351,9 @@ class Parameter(_ParameterBase):
         return bool(self.rest_api_name) and self.rest_api_name.lower() == "content-type"
 
     @property
-    def method_location(self) -> ParameterMethodLocation:
+    def method_location(
+        self,
+    ) -> ParameterMethodLocation:  # pylint: disable=too-many-return-statements
         if not self.in_method_signature:
             raise ValueError(f"Parameter '{self.client_name}' is not in the method.")
         if self.code_model.options["models_mode"] == "dpg" and self.in_flattened_body:
