@@ -5,10 +5,12 @@
 # --------------------------------------------------------------------------
 from .code_model import CodeModel
 from .imports import ImportType, FileImport, TypingSection
+from .global_parameter import GlobalParameter
 
 __all__ = [
     "CodeModel",
     "FileImport",
     "ImportType",
     "TypingSection",
+    "GlobalParameter",
 ]
