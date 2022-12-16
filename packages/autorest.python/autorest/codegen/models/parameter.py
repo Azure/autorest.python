@@ -22,6 +22,8 @@ from .base import BaseModel
 from .base import BaseType
 from .constant_type import ConstantType
 from .utils import add_to_description
+from .combined_type import CombinedType
+from .model_type import JSONModelType
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -241,6 +243,20 @@ class BodyParameter(_BodyParameterBase):
     def default_content_type(self) -> str:
         return self.yaml_data["defaultContentType"]
 
+    @staticmethod
+    def _has_json_model_type(t: BaseType) -> bool:
+        if isinstance(t, JSONModelType):
+            return True
+        if isinstance(t, CombinedType):
+            for sub_t in t.types:
+                if BodyParameter._has_json_model_type(sub_t):
+                    return True
+        return False
+
+    @property
+    def has_json_model_type(self) -> str:
+        return BodyParameter._has_json_model_type(self.type)
+
     @classmethod
     def from_yaml(
         cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
@@ -314,6 +330,7 @@ class Parameter(_ParameterBase):
         self.in_overload: bool = self.yaml_data["inOverload"]
         self.in_overriden: bool = self.yaml_data.get("inOverriden", False)
         self.delimiter: Optional[ParameterDelimeter] = self.yaml_data.get("delimiter")
+        self.in_flattened_body: bool = self.yaml_data.get("inFlattenedBody", False)
 
     @property
     def in_method_signature(self) -> bool:
@@ -337,6 +354,8 @@ class Parameter(_ParameterBase):
     def method_location(self) -> ParameterMethodLocation:
         if not self.in_method_signature:
             raise ValueError(f"Parameter '{self.client_name}' is not in the method.")
+        if self.code_model.options["models_mode"] == "dpg" and self.in_flattened_body:
+            return ParameterMethodLocation.KEYWORD_ONLY
         if self.grouper:
             return ParameterMethodLocation.POSITIONAL
         if self.constant:
