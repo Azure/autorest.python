@@ -555,6 +555,8 @@ def regenerate_multiapi(c, debug=False, swagger_name="test"):
         "test/multiapi/specification/multiapicustombaseurl/README.md",
         # create multiapi client with security definition (package-name=multapisecurity)
         "test/multiapi/specification/multiapisecurity/README.md",
+        # create multiapi client with keyword only params
+        "test/multiapi/specification/multiapikeywordonly/README.md",
     ]
 
     cmds = [_multiapi_command_line(

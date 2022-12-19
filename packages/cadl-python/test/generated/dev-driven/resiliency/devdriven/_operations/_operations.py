@@ -279,7 +279,7 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         if isinstance(input, (IO, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder)
+            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_dev_driven_post_model_request(
             mode=mode,
@@ -346,7 +346,9 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
             return request
 
         def extract_data(pipeline_response):
-            deserialized = _deserialize(_models._models.CustomPageProduct, pipeline_response)
+            deserialized: _models._models.CustomPageProduct = _deserialize(  # pylint: disable=protected-access
+                _models._models.CustomPageProduct, pipeline_response  # pylint: disable=protected-access
+            )
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore

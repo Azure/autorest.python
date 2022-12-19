@@ -17,6 +17,7 @@ class GlobalParameter:
         self.global_parameter_metadata_sync = global_parameter_metadata_sync
         self.global_parameter_metadata_async = global_parameter_metadata_async
         self.required = global_parameter_metadata_sync["required"]
+        self.method_location = global_parameter_metadata_sync["method_location"]
 
     def _global_parameter_metadata(self, async_mode: bool) -> Dict[str, Any]:
         if async_mode:

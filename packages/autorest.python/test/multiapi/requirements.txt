@@ -11,6 +11,7 @@ async_generator;python_full_version>="3.5.2"
 -e ./Expected/AcceptanceTests/MultiapiWithSubmodule
 -e ./Expected/AcceptanceTests/MultiapiNoAsync
 -e ./Expected/AcceptanceTests/MultiapiCredentialDefaultPolicy
+-e ./Expected/AcceptanceTests/MultiapiKeywordOnly
 -e ./Expected/AcceptanceTests/MultiapiDataPlane
 -e ./Expected/AcceptanceTests/MultiapiCustomBaseUrl
 -e ./Expected/AcceptanceTests/MultiapiSecurity

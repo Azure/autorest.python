@@ -205,7 +205,7 @@ def _api_version_validation(builder: OperationType) -> str:
         retval.append(f"    params_added_on={dict(params_added_on)},")
     if retval:
         retval_str = "\n".join(retval)
-        return f"@api_version_validation(\n{retval_str}\n)"
+        return f"@api_version_validation(\n{retval_str}\n){builder.pylint_disable}"
     return ""
 
 
@@ -710,7 +710,10 @@ class _OperationSerializer(
                 f"'{body_param.type.serialization_type}'{is_xml_cmd}{serialization_ctxt_cmd})"
             )
         elif self.code_model.options["models_mode"] == "dpg":
-            create_body_call = f"_{body_kwarg_name} = json.dumps({body_param.client_name}, cls=AzureJSONEncoder)"
+            create_body_call = (
+                f"_{body_kwarg_name} = json.dumps({body_param.client_name}, "
+                "cls=AzureJSONEncoder)  # type: ignore"
+            )
         else:
             create_body_call = f"_{body_kwarg_name} = {body_param.client_name}"
         if body_param.optional:
@@ -1331,11 +1334,20 @@ class _PagingOperationSerializer(
                 deserialize_type = f'"{response.serialization_type}"'
                 pylint_disable = ""
             deserialized = f"self._deserialize(\n    {deserialize_type}, pipeline_response{pylint_disable}\n)"
+            retval.append(f"    deserialized = {deserialized}")
         elif self.code_model.options["models_mode"] == "dpg":
-            deserialized = (
-                f"_deserialize({response.serialization_type}, pipeline_response)"
+            pylint_disable = (
+                "  # pylint: disable=protected-access\n"
+                if isinstance(response.type, ModelType) and not response.type.is_public
+                else ""
             )
-        retval.append(f"    deserialized = {deserialized}")
+            deserialized = f"_deserialize({response.serialization_type}{pylint_disable}, pipeline_response)"
+            retval.append(
+                f"    deserialized: {response.serialization_type} = ({pylint_disable}"
+            )
+            retval.append(f"        {deserialized})")
+        else:
+            retval.append(f"    deserialized = {deserialized}")
         item_name = builder.item_name
         list_of_elem = (
             f".{item_name}"
@@ -1537,7 +1549,7 @@ class _LROOperationSerializer(_OperationSerializer[LROOperationType]):
                 " # type: ignore"
                 if builder.lro_response
                 and builder.lro_response.type
-                and not self.code_model.options["models_mode"]
+                and self.code_model.options["models_mode"] != "msrest"
                 else "",
             )
         )

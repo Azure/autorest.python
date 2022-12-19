@@ -1,5 +1,11 @@
 # Release History
 
+## 2022-12-16 - 0.4.15
+
+**Bug Fixes**
+
+- Fix requirement on presence of `cadl-output` folder #1622 
+
 ## 2022-12-15 - 0.4.14
 
 **Bug Fixes**

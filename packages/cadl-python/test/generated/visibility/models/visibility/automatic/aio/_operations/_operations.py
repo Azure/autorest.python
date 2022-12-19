@@ -128,7 +128,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         if isinstance(input, (IO, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder)
+            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_automatic_get_model_request(
             content_type=content_type,
@@ -231,7 +231,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         if isinstance(input, (IO, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder)
+            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_automatic_head_model_request(
             content_type=content_type,
@@ -337,7 +337,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         if isinstance(input, (IO, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder)
+            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_automatic_put_model_request(
             content_type=content_type,
@@ -442,7 +442,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         if isinstance(input, (IO, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder)
+            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_automatic_patch_model_request(
             content_type=content_type,
@@ -547,7 +547,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         if isinstance(input, (IO, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder)
+            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_automatic_post_model_request(
             content_type=content_type,
@@ -652,7 +652,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         if isinstance(input, (IO, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder)
+            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_automatic_delete_model_request(
             content_type=content_type,
