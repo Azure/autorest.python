@@ -40,13 +40,14 @@ min-similarity-lines=10
 # The invalid-name checker must be **enabled** for these hints to be used.
 include-naming-hint=yes
 
-module-naming-style=lowercase (keep short; underscores are discouraged)
-const-naming-style=UPPER_CASE_WITH_UNDERSCORES
-class-naming-style=CapitalizedWords
-class-attribute-naming-style=lower_case_with_underscores
-attr-naming-style=lower_case_with_underscores
-method-naming-style=lower_case_with_underscores
-function-naming-style=lower_case_with_underscores
-argument-naming-style=lower_case_with_underscores
-variable-naming-style=lower_case_with_underscores
-inlinevar-naming-style=lower_case_with_underscores (short is OK)
+# keep short; underscores are discouraged
+module-naming-style=snake_case
+const-naming-style=UPPER_CASE
+class-naming-style=PascalCase
+class-attribute-naming-style=snake_case
+attr-naming-style=snake_case
+method-naming-style=snake_case
+function-naming-style=snake_case
+argument-naming-style=snake_case
+variable-naming-style=snake_case
+inlinevar-naming-style=snake_case
