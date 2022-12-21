@@ -101,7 +101,7 @@ def _timedelta_as_isostr(td: timedelta) -> str:
 def _datetime_as_isostr(dt: typing.Union[datetime, date, time, timedelta]) -> str:
     """Converts a datetime.(datetime|date|time|timedelta) object into an ISO 8601 formatted string
 
-    :param timedelta td: The date object to convert
+    :param timedelta dt: The date object to convert
     :rtype: str
     :return: ISO8601 version of this datetime
     """
@@ -176,7 +176,7 @@ class AzureJSONEncoder(JSONEncoder):
             return super(AzureJSONEncoder, self).default(o)
 
 
-_VALID_DATE = re.compile(r"\d{4}[-]\d{2}[-]\d{2}T\d{2}:\d{2}:\d{2}" r"\.?\d*Z?[-+]?[\d{2}]?:?[\d{2}]?")
+_VALID_DATE = re.compile(r"\d{4}[-]\d{2}[-]\d{2}T\d{2}:\d{2}:\d{2}" + r"\.?\d*Z?[-+]?[\d{2}]?:?[\d{2}]?")
 
 
 def _deserialize_datetime(attr: typing.Union[str, datetime]) -> datetime:
