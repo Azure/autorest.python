@@ -37,7 +37,7 @@ def _single_dir_pyright(mod):
         )
         return True
     except CalledProcessError as e:
-        logging.error(
+        logging.exception(
             "{} exited with pyright error {}".format(
                 inner_class.stem, e.returncode)
         )
