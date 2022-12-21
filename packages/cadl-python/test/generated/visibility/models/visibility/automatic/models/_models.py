@@ -1,4 +1,4 @@
-﻿# coding=utf-8
+# coding=utf-8
 # pylint: disable=too-many-lines
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.

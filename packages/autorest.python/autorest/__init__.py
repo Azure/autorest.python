@@ -53,7 +53,7 @@ class ReaderAndWriter:
         file_folder = Path(filename).parent
         if not Path.is_dir(self.output_folder / file_folder):
             Path.mkdir(self.output_folder / file_folder, parents=True)
-        with open(self.output_folder / Path(filename), "w", encoding="utf-8-sig") as fd:
+        with open(self.output_folder / Path(filename), "w", encoding="utf-8") as fd:
             fd.write(file_content)
 
     def list_file(self) -> List[str]:
