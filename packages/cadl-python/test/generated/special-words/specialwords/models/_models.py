@@ -1,4 +1,4 @@
-# coding=utf-8
+﻿# coding=utf-8
 # pylint: disable=too-many-lines
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -75,7 +75,6 @@ class DerivedModel(BaseModel, discriminator="derived"):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
