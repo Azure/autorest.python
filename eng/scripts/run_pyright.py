@@ -31,7 +31,7 @@ def _single_dir_pyright(mod):
                 "-m",
                 "pyright",
                 "-p",
-                config_file_dir,
+                str(config_file_dir),
                 str(inner_class.absolute()),
             ]
         )
