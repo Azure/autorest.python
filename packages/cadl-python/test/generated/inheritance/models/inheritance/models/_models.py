@@ -49,7 +49,6 @@ class Pet(_model_base.Model):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
@@ -84,7 +83,6 @@ class Cat(Pet):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
@@ -124,7 +122,6 @@ class Fish(_model_base.Model):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -168,7 +165,6 @@ class Shark(Fish, discriminator="shark"):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -206,7 +202,6 @@ class GoblinShark(Shark, discriminator="goblin"):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -254,7 +249,6 @@ class Salmon(Fish, discriminator="salmon"):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -291,7 +285,6 @@ class SawShark(Shark, discriminator="saw"):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -330,7 +323,6 @@ class Siamese(Cat):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)

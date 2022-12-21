@@ -75,7 +75,6 @@ class DerivedModel(BaseModel, discriminator="derived"):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

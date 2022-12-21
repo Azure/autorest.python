@@ -137,7 +137,9 @@ class ClientSerializer:
                 f" = {_get_client_models_value(model_dict_name)}"
             )
             if add_private_models and self.client.code_model.model_types:
-                update_dict = f"{{k: v for k, v in _models.__dict__.items() if isinstance(v, type)}}"
+                update_dict = (
+                    "{k: v for k, v in _models.__dict__.items() if isinstance(v, type)}"
+                )
                 retval.append(f"client_models.update({update_dict})")
         client_models_str = "client_models" if is_msrest_model else ""
         retval.append(f"self._serialize = Serializer({client_models_str})")
@@ -221,7 +223,7 @@ class ClientSerializer:
     def _rest_request_example(self, async_mode: bool) -> List[str]:
         retval = [">>> from azure.core.rest import HttpRequest"]
         retval.append('>>> request = HttpRequest("GET", "https://www.example.org/")')
-        retval.append(f"<HttpRequest [GET], url: 'https://www.example.org/'>")
+        retval.append("<HttpRequest [GET], url: 'https://www.example.org/'>")
         retval.extend(self._example_make_call(async_mode))
         return retval
 
@@ -236,9 +238,9 @@ class ClientSerializer:
         retval.append(
             "For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request"
         )
-        retval.append(f"")
+        retval.append("")
         retval.append(":param request: The network request you want to make. Required.")
-        retval.append(f":type request: ~azure.core.rest.HttpRequest")
+        retval.append(":type request: ~azure.core.rest.HttpRequest")
         retval.append(
             ":keyword bool stream: Whether the response payload will be streamed. Defaults to False."
         )

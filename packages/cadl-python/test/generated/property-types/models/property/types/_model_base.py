@@ -18,7 +18,6 @@ from collections.abc import MutableMapping
 from datetime import datetime, date, time, timedelta, timezone
 from json import JSONEncoder
 import isodate
-from azure.core.utils._utils import _FixedOffset
 from azure.core.exceptions import DeserializationError
 from azure.core import CaseInsensitiveEnumMeta
 from azure.core.pipeline import PipelineResponse
@@ -43,11 +42,17 @@ A falsy sentinel object which is supposed to be used to specify attributes
 with no data. This gets serialized to `null` on the wire.
 """
 
+TZ_UTC = timezone.utc
+
 
 def _timedelta_as_isostr(td: timedelta) -> str:
     """Converts a datetime.timedelta object into an ISO 8601 formatted string, e.g. 'P4DT12H30M05S'
 
     Function adapted from the Tin Can Python project: https://github.com/RusticiSoftware/TinCanPython
+
+    :param timedelta td: The timedelta to convert
+    :rtype: str
+    :return: ISO8601 version of this timedelta
     """
 
     # Split seconds to larger units
@@ -95,7 +100,12 @@ def _timedelta_as_isostr(td: timedelta) -> str:
 
 
 def _datetime_as_isostr(dt: typing.Union[datetime, date, time, timedelta]) -> str:
-    """Converts a datetime.(datetime|date|time|timedelta) object into an ISO 8601 formatted string"""
+    """Converts a datetime.(datetime|date|time|timedelta) object into an ISO 8601 formatted string
+
+    :param timedelta dt: The date object to convert
+    :rtype: str
+    :return: ISO8601 version of this datetime
+    """
     # First try datetime.datetime
     if hasattr(dt, "year") and hasattr(dt, "hour"):
         dt = typing.cast(datetime, dt)
@@ -114,12 +124,6 @@ def _datetime_as_isostr(dt: typing.Union[datetime, date, time, timedelta]) -> st
     except AttributeError:
         dt = typing.cast(timedelta, dt)
         return _timedelta_as_isostr(dt)
-
-
-try:
-    TZ_UTC = timezone.utc
-except ImportError:
-    TZ_UTC = _FixedOffset(0)  # type: ignore
 
 
 def _serialize_bytes(o) -> str:
@@ -176,7 +180,7 @@ class AzureJSONEncoder(JSONEncoder):
             return super(AzureJSONEncoder, self).default(o)
 
 
-_VALID_DATE = re.compile(r"\d{4}[-]\d{2}[-]\d{2}T\d{2}:\d{2}:\d{2}" r"\.?\d*Z?[-+]?[\d{2}]?:?[\d{2}]?")
+_VALID_DATE = re.compile(r"\d{4}[-]\d{2}[-]\d{2}T\d{2}:\d{2}:\d{2}" + r"\.?\d*Z?[-+]?[\d{2}]?:?[\d{2}]?")
 
 
 def _deserialize_datetime(attr: typing.Union[str, datetime]) -> datetime:
@@ -184,6 +188,7 @@ def _deserialize_datetime(attr: typing.Union[str, datetime]) -> datetime:
 
     :param str attr: response string to be deserialized.
     :rtype: ~datetime.datetime
+    :returns: The datetime object from that input
     """
     if isinstance(attr, datetime):
         # i'm already deserialized
@@ -214,7 +219,8 @@ def _deserialize_datetime(attr: typing.Union[str, datetime]) -> datetime:
 def _deserialize_date(attr: typing.Union[str, date]) -> date:
     """Deserialize ISO-8601 formatted string into Date object.
     :param str attr: response string to be deserialized.
-    :rtype: Date
+    :rtype: date
+    :returns: The date object from that input
     """
     # This must NOT use defaultmonth/defaultday. Using None ensure this raises an exception.
     if isinstance(attr, date):
@@ -227,6 +233,7 @@ def _deserialize_time(attr: typing.Union[str, time]) -> time:
 
     :param str attr: response string to be deserialized.
     :rtype: datetime.time
+    :returns: The time object from that input
     """
     if isinstance(attr, time):
         return attr

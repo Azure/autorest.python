@@ -26,17 +26,17 @@ class LocalAutorestAPI(AutorestAPI):
             reachable_files = []
         self._reachable_files = reachable_files
         self._output_folder = Path(output_folder)
-        self.values: Dict[str, Optional[str]] = dict()
+        self.values: Dict[str, Optional[str]] = {}
 
     def write_file(self, filename: Union[str, Path], file_content: str) -> None:
         _LOGGER.debug("Writing file: %s", filename)
-        with (self._output_folder / Path(filename)).open("w") as fd:
+        with (self._output_folder / Path(filename)).open("w", encoding="utf-8") as fd:
             fd.write(file_content)
         _LOGGER.debug("Written file: %s", filename)
 
     def read_file(self, filename: Union[str, Path]) -> str:
         _LOGGER.debug("Reading file: %s", filename)
-        with (self._output_folder / Path(filename)).open("r") as fd:
+        with (self._output_folder / Path(filename)).open("r", encoding="utf-8") as fd:
             return fd.read()
 
     def list_inputs(self) -> List[str]:

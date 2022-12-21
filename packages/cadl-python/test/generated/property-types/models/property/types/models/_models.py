@@ -44,7 +44,6 @@ class BooleanProperty(_model_base.Model):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
@@ -76,7 +75,6 @@ class BytesProperty(_model_base.Model):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
@@ -108,7 +106,6 @@ class CollectionsIntProperty(_model_base.Model):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
@@ -140,7 +137,6 @@ class CollectionsModelProperty(_model_base.Model):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
@@ -172,7 +168,6 @@ class CollectionsStringProperty(_model_base.Model):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
@@ -204,7 +199,6 @@ class DatetimeProperty(_model_base.Model):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
@@ -236,7 +230,6 @@ class DictionaryStringProperty(_model_base.Model):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
@@ -268,7 +261,6 @@ class DurationProperty(_model_base.Model):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
@@ -300,7 +292,6 @@ class EnumProperty(_model_base.Model):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
@@ -332,7 +323,6 @@ class ExtensibleEnumProperty(_model_base.Model):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
@@ -364,7 +354,6 @@ class FloatProperty(_model_base.Model):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
@@ -396,7 +385,6 @@ class InnerModel(_model_base.Model):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
@@ -428,7 +416,6 @@ class IntProperty(_model_base.Model):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
@@ -460,7 +447,6 @@ class ModelProperty(_model_base.Model):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
@@ -496,7 +482,6 @@ class StringProperty(_model_base.Model):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)

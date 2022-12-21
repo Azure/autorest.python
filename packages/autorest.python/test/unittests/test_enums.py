@@ -4,7 +4,6 @@
 # license information.
 # --------------------------------------------------------------------------
 from enum import Enum, EnumMeta
-from six import with_metaclass
 
 
 class _CaseInsensitiveEnumMeta(EnumMeta):
@@ -24,7 +23,7 @@ class _CaseInsensitiveEnumMeta(EnumMeta):
             raise AttributeError(name)
 
 
-class EnumsWithCallableNames(with_metaclass(_CaseInsensitiveEnumMeta, str, Enum)):
+class EnumsWithCallableNames(str, Enum, metaclass=_CaseInsensitiveEnumMeta):
     """Gets the unit of measurement."""
 
     COUNT = "count"
