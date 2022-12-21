@@ -358,7 +358,7 @@ class Model(object):
         ] = attribute_transformer,
         **kwargs: Any
     ) -> JSON:
-        """Return a dict that can be JSONify using json.dump.
+        """Return a dict that can be serialized using json.dump.
 
         Advanced usage might optionally use a callback as parameter:
 
@@ -652,8 +652,7 @@ class Serializer(object):
                             serialized.append(local_node)  # type: ignore
                     else:  # JSON
                         for k in reversed(keys):  # type: ignore
-                            unflattened = {k: new_attr}
-                            new_attr = unflattened
+                            new_attr = {k: new_attr}
 
                         _new_attr = new_attr
                         _serialized = serialized
@@ -1497,7 +1496,7 @@ class Deserializer(object):
         Once classification has been determined, initialize object.
 
         :param str target: The target object type to deserialize to.
-        :param str/dict data: The response data to deseralize.
+        :param str/dict data: The response data to deserialize.
         """
         if target is None:
             return None, None
@@ -1522,7 +1521,7 @@ class Deserializer(object):
         a deserialization error.
 
         :param str target_obj: The target object type to deserialize to.
-        :param str/dict data: The response data to deseralize.
+        :param str/dict data: The response data to deserialize.
         :param str content_type: Swagger "produces" if available.
         """
         try:
