@@ -89,7 +89,6 @@ interface CredentialTypeUnion {
 
 type EmitterType = Type | CredentialType | CredentialTypeUnion;
 
-
 export interface EmitterOptions {
     "basic-setup-py"?: boolean;
     "package-version"?: string;
@@ -1129,13 +1128,12 @@ function emitCredentialParam(program: Program, namespace: Namespace): Record<str
         }
         if (credential_types.length > 0) {
             let type: EmitterType;
-            if(credential_types.length === 1) {
+            if (credential_types.length === 1) {
                 type = credential_types[0];
-            }
-            else {
+            } else {
                 type = {
                     kind: "CredentialTypeUnion",
-                    types: credential_types
+                    types: credential_types,
                 };
             }
             return {
