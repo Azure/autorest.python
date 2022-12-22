@@ -782,6 +782,7 @@ function emitCredential(auth: HttpAuth): Record<string, any> {
 
 function emitCredentialUnion(cred_types: CredentialTypeUnion): Record<string, any> {
     const result: Record<string, any> = {};
+    // Export as CombinedType, which is already a Union Type in autorest codegen
     result.type = "combined";
     result.types = [];
     for (const cred_type of cred_types.types) {
@@ -1133,7 +1134,6 @@ function emitCredentialParam(program: Program, namespace: Namespace): Record<str
                 type = credential_types[0];
             }
             else {
-                // See CombinedType in autorest
                 type = {
                     kind: "CredentialTypeUnion",
                     types: credential_types
