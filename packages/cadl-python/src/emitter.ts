@@ -20,7 +20,6 @@ import {
     Program,
     resolvePath,
     Type,
-    BaseType,
     getEffectiveModelType,
     JSONSchemaType,
     createCadlLibrary,
