@@ -31,7 +31,7 @@ class BlackScriptPlugin(Plugin):  # pylint: disable=abstract-method
 
     def process(self) -> bool:
         # apply format_file on every file in the output folder
-        list(map(self.format_file, [Path(f) for f in self.list_file()]))
+        list(map(self.format_file, [Path(f) for f in self.list_file() if "__pycache__" not in f]))
         return True
 
     def format_file(self, file: Path) -> None:
