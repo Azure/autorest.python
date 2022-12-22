@@ -4,11 +4,11 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from extensibleenums import models, aio
+from enums.extensible import models, aio
 
 @pytest.fixture
 async def client():
-    async with aio.ExtensibleEnumsClient() as client:
+    async with aio.ExtensibleClient() as client:
         yield client
 
 @pytest.mark.asyncio
