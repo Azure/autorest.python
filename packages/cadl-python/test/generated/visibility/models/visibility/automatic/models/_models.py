@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import List
+from typing import Any, List, Mapping, overload
 
 from .. import _model_base
 from .._model_base import rest_field
@@ -34,11 +34,32 @@ class VisibilityModel(_model_base.Model):
 
     read_prop: str = rest_field(name="readProp", readonly=True)
     """Required string, illustrating a readonly property. Required. """
-    query_prop: int = rest_field(name="queryProp", readonly=True)
+    query_prop: int = rest_field(name="queryProp")
     """Required int32, illustrating a query property. Required. """
-    create_prop: List[str] = rest_field(name="createProp", readonly=True)
+    create_prop: List[str] = rest_field(name="createProp")
     """Required string[], illustrating a create property. Required. """
-    update_prop: List[int] = rest_field(name="updateProp", readonly=True)
+    update_prop: List[int] = rest_field(name="updateProp")
     """Required int32[], illustrating a update property. Required. """
-    delete_prop: bool = rest_field(name="deleteProp", readonly=True)
+    delete_prop: bool = rest_field(name="deleteProp")
     """Required bool, illustrating a delete property. Required. """
+
+    @overload
+    def __init__(
+        self,
+        *,
+        query_prop: int,
+        create_prop: List[str],
+        update_prop: List[int],
+        delete_prop: bool,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
