@@ -37,13 +37,14 @@ class UnionClientConfiguration(Configuration):  # pylint: disable=too-many-insta
             raise ValueError("Parameter 'credential' must not be None.")
 
         self.credential = credential
+        self.credential_scopes = kwargs.pop("credential_scopes", ["https://security.microsoft.com/.default"])
         kwargs.setdefault("sdk_moniker", "unionclient/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _infer_policy(self, **kwargs):
         if isinstance(self.credential, AzureKeyCredential):
             return policies.AzureKeyCredentialPolicy(self.credential, "x-ms-api-key", **kwargs)
-        if isinstance(self.credential, "TokenCredential"):
+        if hasattr(self.credential, "get_token"):
             return policies.BearerTokenCredentialPolicy(self.credential, *self.credential_scopes, **kwargs)
         else:
             raise TypeError(f"Unsupported credential: {self.credential}")
