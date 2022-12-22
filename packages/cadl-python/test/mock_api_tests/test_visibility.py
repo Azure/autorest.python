@@ -32,7 +32,7 @@ def test_patch(client):
     )
     client.patch_model(body)
 
-def test_put(client):
+def test_post(client):
     body = models.VisibilityModel(
         create_prop=["foo", "bar"],
     )

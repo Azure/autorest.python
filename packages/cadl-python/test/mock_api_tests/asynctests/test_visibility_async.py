@@ -37,7 +37,7 @@ async def test_patch(client):
     await client.patch_model(body)
 
 @pytest.mark.asyncio
-async def test_put(client):
+async def test_post(client):
     body = models.VisibilityModel(
         create_prop=["foo", "bar"],
     )
