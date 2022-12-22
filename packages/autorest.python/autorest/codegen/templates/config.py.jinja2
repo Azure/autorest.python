@@ -23,12 +23,12 @@ class {{ client.name }}Configuration(Configuration):  # pylint: disable=too-many
         {{ op_tools.serialize(serializer.set_constants()) | indent(8) -}}
 {% endif %}
 {% if client.credential %}
-    {% set cred_scopes = client.credential.type.policy.credential_scopes if client.credential.type.policy is defined and client.credential.type.policy.credential_scopes is defined %}
+    {% set cred_scopes = client.credential.type if client.credential.type.policy is defined and client.credential.type.policy.credential_scopes is defined %}
     {% if not cred_scopes %}
-        {% set cred_scopes = (client.credential.type.types | selectattr("policy.credential_scopes") | first).policy.credential_scopes if client.credential.type.types is defined %}
+        {% set cred_scopes = client.credential.type.types | selectattr("policy.credential_scopes") | first if client.credential.type.types is defined %}
     {% endif %}
     {% if cred_scopes %}
-        self.credential_scopes = kwargs.pop('credential_scopes', {{ cred_scopes }})
+        self.credential_scopes = kwargs.pop('credential_scopes', {{ cred_scopes.policy.credential_scopes }})
     {% endif %}
 {% endif %}
         kwargs.setdefault('sdk_moniker', '{{ client.config.sdk_moniker }}/{}'.format(VERSION))
