@@ -40,8 +40,7 @@ class {{ client.name }}Configuration(Configuration):  # pylint: disable=too-many
         if {{ cred_type.instance_check_template.format("self.credential") }}:
             return {{ cred_type.policy.call(async_mode) }}
     {% endfor %}
-        else:
-            raise TypeError(f"Unsupported credential: {self.credential}")
+        raise TypeError(f"Unsupported credential: {self.credential}")
 {% endif %}
 
     def _configure(

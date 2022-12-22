@@ -46,8 +46,7 @@ class UnionClientConfiguration(Configuration):  # pylint: disable=too-many-insta
             return policies.AzureKeyCredentialPolicy(self.credential, "x-ms-api-key", **kwargs)
         if hasattr(self.credential, "get_token"):
             return policies.AsyncBearerTokenCredentialPolicy(self.credential, *self.credential_scopes, **kwargs)
-        else:
-            raise TypeError(f"Unsupported credential: {self.credential}")
+        raise TypeError(f"Unsupported credential: {self.credential}")
 
     def _configure(self, **kwargs: Any) -> None:
         self.user_agent_policy = kwargs.get("user_agent_policy") or policies.UserAgentPolicy(**kwargs)
