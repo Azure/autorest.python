@@ -71,3 +71,13 @@ async def test_oauth2_invalid(oauth2_client):
     with pytest.raises(HttpResponseError) as ex:
         await client.invalid(enforce_https=False)
     assert ex.value.status_code == 403
+
+@pytest.mark.asyncio
+async def test_union_keyvalid(api_key_client):
+    client = api_key_client(UnionClient)
+    await client.valid_key()
+
+@pytest.mark.asyncio
+async def test_union_tokenvalid(oauth2_client):
+    client = oauth2_client(UnionClient)
+    await client.valid_token(enforce_https=False)

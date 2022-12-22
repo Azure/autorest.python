@@ -67,3 +67,11 @@ def test_oauth2_invalid(oauth2_client):
     with pytest.raises(HttpResponseError) as ex:
         client.invalid(enforce_https=False)
     assert ex.value.status_code == 403
+
+def test_union_keyvalid(api_key_client):
+    client = api_key_client(UnionClient)
+    client.valid_key()
+
+def test_union_tokenvalid(oauth2_client):
+    client = oauth2_client(UnionClient)
+    client.valid_token(enforce_https=False)
