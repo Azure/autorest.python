@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Union
+from typing import Any
 
 from azure.core import PipelineClient
 from azure.core.credentials import AzureKeyCredential
@@ -21,13 +21,11 @@ from ._serialization import Deserializer, Serializer
 class ApiKeyClient(ApiKeyClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates clients generated with ApiKey authentication.
 
-    :param credential: Credential needed for the client to connect to Azure. Is either a Key type
-     or a Key type. Required.
-    :type credential: ~azure.core.credentials.AzureKeyCredential or
-     ~azure.core.credentials.AzureKeyCredential
+    :param credential: Credential needed for the client to connect to Azure. Required.
+    :type credential: ~azure.core.credentials.AzureKeyCredential
     """
 
-    def __init__(self, credential: Union[AzureKeyCredential, AzureKeyCredential], **kwargs: Any) -> None:
+    def __init__(self, credential: AzureKeyCredential, **kwargs: Any) -> None:
         _endpoint = "http://localhost:3000"
         self._config = ApiKeyClientConfiguration(credential=credential, **kwargs)
         self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)

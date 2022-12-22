@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, Union
+from typing import Any
 
 from azure.core.configuration import Configuration
 from azure.core.credentials import AzureKeyCredential
@@ -21,13 +21,11 @@ class ApiKeyClientConfiguration(Configuration):  # pylint: disable=too-many-inst
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param credential: Credential needed for the client to connect to Azure. Is either a Key type
-     or a Key type. Required.
-    :type credential: ~azure.core.credentials.AzureKeyCredential or
-     ~azure.core.credentials.AzureKeyCredential
+    :param credential: Credential needed for the client to connect to Azure. Required.
+    :type credential: ~azure.core.credentials.AzureKeyCredential
     """
 
-    def __init__(self, credential: Union[AzureKeyCredential, AzureKeyCredential], **kwargs: Any) -> None:
+    def __init__(self, credential: AzureKeyCredential, **kwargs: Any) -> None:
         super(ApiKeyClientConfiguration, self).__init__(**kwargs)
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
@@ -35,14 +33,6 @@ class ApiKeyClientConfiguration(Configuration):  # pylint: disable=too-many-inst
         self.credential = credential
         kwargs.setdefault("sdk_moniker", "apikeyclient/{}".format(VERSION))
         self._configure(**kwargs)
-
-    def _infer_policy(self, **kwargs):
-        if isinstance(self.credential, AzureKeyCredential):
-            return policies.AzureKeyCredentialPolicy(self.credential, "x-ms-api-key", **kwargs)
-        if isinstance(self.credential, AzureKeyCredential):
-            return policies.AzureKeyCredentialPolicy(self.credential, "x-ms-second-api-key", **kwargs)
-        else:
-            raise TypeError(f"Unsupported credential: {self.credential}")
 
     def _configure(self, **kwargs: Any) -> None:
         self.user_agent_policy = kwargs.get("user_agent_policy") or policies.UserAgentPolicy(**kwargs)
@@ -55,4 +45,4 @@ class ApiKeyClientConfiguration(Configuration):  # pylint: disable=too-many-inst
         self.redirect_policy = kwargs.get("redirect_policy") or policies.RedirectPolicy(**kwargs)
         self.authentication_policy = kwargs.get("authentication_policy")
         if self.credential and not self.authentication_policy:
-            self.authentication_policy = self._infer_policy(**kwargs)
+            self.authentication_policy = policies.AzureKeyCredentialPolicy(self.credential, "x-ms-api-key", **kwargs)
