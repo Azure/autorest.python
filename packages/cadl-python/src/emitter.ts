@@ -636,9 +636,11 @@ function emitBasicOperation(program: Program, operation: Operation, operationGro
 }
 
 function isReadOnly(program: Program, type: ModelProperty): boolean {
+    // https://microsoft.github.io/cadl/standard-library/rest/operations#automatic-visibility
+    // Only "read" should be readOnly
     const visibility = getVisibility(program, type);
     if (visibility) {
-        return !visibility.includes("write");
+        return visibility.includes("read");
     } else {
         return false;
     }
