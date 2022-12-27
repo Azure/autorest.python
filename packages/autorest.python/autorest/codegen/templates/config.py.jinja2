@@ -22,11 +22,26 @@ class {{ client.name }}Configuration(Configuration):  # pylint: disable=too-many
 {% if serializer.set_constants() %}
         {{ op_tools.serialize(serializer.set_constants()) | indent(8) -}}
 {% endif %}
-{% if client.credential and client.credential.type.policy.credential_scopes is defined %}
-        self.credential_scopes = kwargs.pop('credential_scopes', {{ client.credential.type.policy.credential_scopes }})
+{% if client.credential %}
+    {% set cred_scopes = client.credential.type if client.credential.type.policy is defined and client.credential.type.policy.credential_scopes is defined %}
+    {% if not cred_scopes %}
+        {% set cred_scopes = client.credential.type.types | selectattr("policy.credential_scopes") | first if client.credential.type.types is defined %}
+    {% endif %}
+    {% if cred_scopes %}
+        self.credential_scopes = kwargs.pop('credential_scopes', {{ cred_scopes.policy.credential_scopes }})
+    {% endif %}
 {% endif %}
         kwargs.setdefault('sdk_moniker', '{{ client.config.sdk_moniker }}/{}'.format(VERSION))
         self._configure(**kwargs)
+
+{% if client.credential and client.credential.type.types is defined %}
+    def _infer_policy(self, **kwargs):
+    {% for cred_type in client.credential.type.types %}
+        if {{ cred_type.instance_check_template.format("self.credential") }}:
+            return {{ cred_type.policy.call(async_mode) }}
+    {% endfor %}
+        raise TypeError(f"Unsupported credential: {self.credential}")
+{% endif %}
 
     def _configure(
         self,
@@ -41,12 +56,16 @@ class {{ client.name }}Configuration(Configuration):  # pylint: disable=too-many
         self.custom_hook_policy = kwargs.get('custom_hook_policy') or policies.CustomHookPolicy(**kwargs)
         self.redirect_policy = kwargs.get('redirect_policy') or policies.{{ keywords.async_class }}RedirectPolicy(**kwargs)
         self.authentication_policy = kwargs.get('authentication_policy')
-        {% if client.credential %}
-        {# only adding this if credential_scopes is not passed during code generation #}
-        {% if client.credential.type.policy.credential_scopes is defined and client.credential.type.policy.credential_scopes | length == 0 %}
+        {% if client.credential and client.credential.type.policy is defined %}
+            {# only adding this if credential_scopes is not passed during code generation #}
+            {% if client.credential.type.policy.credential_scopes is defined and client.credential.type.policy.credential_scopes | length == 0 %}
         if not self.credential_scopes and not self.authentication_policy:
             raise ValueError("You must provide either credential_scopes or authentication_policy as kwargs")
-        {% endif %}
+            {% endif %}
         if self.credential and not self.authentication_policy:
             self.authentication_policy = {{ client.credential.type.policy.call(async_mode) }}
+        {% endif %}
+        {% if client.credential and client.credential.type.types is defined %}
+        if self.credential and not self.authentication_policy:
+            self.authentication_policy = self._infer_policy(**kwargs)
         {% endif %}

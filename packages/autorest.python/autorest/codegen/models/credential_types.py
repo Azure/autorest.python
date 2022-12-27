@@ -187,7 +187,7 @@ class TokenCredentialType(
 
     @property
     def instance_check_template(self) -> str:
-        return "hasattr({}, get_token)"
+        return "hasattr({}, 'get_token')"
 
 
 class AzureKeyCredentialType(
