@@ -53,7 +53,7 @@
     "@azure-tools/cadl-dpg": "~0.24.0"
   },
   "devDependencies": {
-    "@types/mocha": "~9.1.0",
+    "@types/mocha": "~10.0.1",
     "@types/node": "^18.7.16",
     "@types/js-yaml": "~4.0.1",
     "@cadl-lang/rest": "~0.38.0",
