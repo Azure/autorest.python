@@ -52,6 +52,5 @@ setup(
         "pyyaml",
         "m2r2",
         "black",
-        "docutils<0.19", # m2r2 fails with docutils 0.19
     ],
 )
