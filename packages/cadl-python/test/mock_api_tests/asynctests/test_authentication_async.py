@@ -8,11 +8,20 @@ from azure.core.credentials import AzureKeyCredential, AccessToken
 from azure.core.exceptions import HttpResponseError
 from authentication.apikey.aio import ApiKeyClient
 from authentication.oauth2.aio import OAuth2Client
+from authentication.union.aio import UnionClient
+
+
+# Utilities functions
 
 @pytest.fixture
 async def api_key_client():
-    async with ApiKeyClient(AzureKeyCredential("valid-key")) as client:
-        yield client
+    client = None
+    def _build_client(client_type):
+        client = client_type(AzureKeyCredential("valid-key"))
+        return client
+    yield _build_client
+    if client:
+        await client.close()
 
 def generate_token(*scopes) -> AccessToken:
     return AccessToken(token=''.join(scopes), expires_on=1800)
@@ -27,26 +36,48 @@ def token_credential():
 
 @pytest.fixture
 async def oauth2_client(token_credential):
-    async with OAuth2Client(token_credential) as client:
-        yield client
+    client = None
+    def _build_client(client_type):
+        client = client_type(token_credential)
+        return client
+    yield _build_client
+    if client:
+        await client.close()
+
+
+# Tests
 
 @pytest.mark.asyncio
 async def test_api_key_valid(api_key_client):
-    await api_key_client.valid()
+    client = api_key_client(ApiKeyClient)
+    await client.valid()
 
 @pytest.mark.asyncio
 async def test_api_key_invalid(api_key_client):
+    client = api_key_client(ApiKeyClient)
     with pytest.raises(HttpResponseError) as ex:
-        await api_key_client.invalid()
+        await client.invalid()
     assert ex.value.status_code == 403
     assert ex.value.reason == "Forbidden"
 
 @pytest.mark.asyncio
 async def test_oauth2_valid(oauth2_client):
-    await oauth2_client.valid(enforce_https=False)
+    client = oauth2_client(OAuth2Client)
+    await client.valid(enforce_https=False)
 
 @pytest.mark.asyncio
 async def test_oauth2_invalid(oauth2_client):
+    client = oauth2_client(OAuth2Client)
     with pytest.raises(HttpResponseError) as ex:
-        await oauth2_client.invalid(enforce_https=False)
+        await client.invalid(enforce_https=False)
     assert ex.value.status_code == 403
+
+@pytest.mark.asyncio
+async def test_union_keyvalid(api_key_client):
+    client = api_key_client(UnionClient)
+    await client.valid_key()
+
+@pytest.mark.asyncio
+async def test_union_tokenvalid(oauth2_client):
+    client = oauth2_client(UnionClient)
+    await client.valid_token(enforce_https=False)

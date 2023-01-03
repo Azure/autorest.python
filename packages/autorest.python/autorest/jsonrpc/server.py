@@ -84,15 +84,15 @@ def main() -> None:
     ):
         try:
             import ptvsd  # pylint: disable=import-outside-toplevel
-        except ImportError:
+        except ImportError as exc:
             raise SystemExit(
                 "Please pip install ptvsd in order to use VSCode debugging"
-            )
+            ) from exc
 
         # 5678 is the default attach port in the VS Code debug configurations
         ptvsd.enable_attach(address=("localhost", 5678), redirect_output=True)
         ptvsd.wait_for_attach()
-        breakpoint()  # pylint: disable=undefined-variable
+        breakpoint()  # pylint: disable=undefined-variable,forgotten-debug-statement
 
     _LOGGER.debug("Starting JSON RPC server")
 

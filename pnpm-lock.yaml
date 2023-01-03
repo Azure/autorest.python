@@ -37,7 +37,7 @@ importers:
       '@azure-tools/cadl-azure-core': ~0.24.0
       '@azure-tools/cadl-dpg': ~0.24.0
       '@azure-tools/cadl-ranch-expect': ~0.1.13
-      '@azure-tools/cadl-ranch-specs': ~0.5.2
+      '@azure-tools/cadl-ranch-specs': ~0.6.2
       '@cadl-lang/compiler': ~0.38.0
       '@cadl-lang/eslint-config-cadl': ~0.5.0
       '@cadl-lang/openapi': ~0.38.0
@@ -61,7 +61,7 @@ importers:
     devDependencies:
       '@azure-tools/cadl-azure-core': 0.24.0_nko3gy7xiiqlzxounegquahor4
       '@azure-tools/cadl-ranch-expect': 0.1.13_nko3gy7xiiqlzxounegquahor4
-      '@azure-tools/cadl-ranch-specs': 0.5.2_qbwtpa6wtynbtw2zmntur7s24q
+      '@azure-tools/cadl-ranch-specs': 0.6.2_qbwtpa6wtynbtw2zmntur7s24q
       '@cadl-lang/eslint-config-cadl': 0.5.0_prettier@2.7.1
       '@cadl-lang/openapi': 0.38.0_nko3gy7xiiqlzxounegquahor4
       '@cadl-lang/rest': 0.38.0_@cadl-lang+compiler@0.38.0
@@ -122,7 +122,7 @@ packages:
       morgan: 1.10.0
       picocolors: 1.0.0
       winston: 3.8.2
-      yargs: 17.5.1
+      yargs: 17.6.2
     transitivePeerDependencies:
       - '@types/express'
       - supports-color
@@ -151,8 +151,8 @@ packages:
       '@cadl-lang/rest': 0.38.0_@cadl-lang+compiler@0.38.0
     dev: true
 
-  /@azure-tools/cadl-ranch-specs/0.5.2_qbwtpa6wtynbtw2zmntur7s24q:
-    resolution: {integrity: sha512-LlMN5jB1wlJzE9O1ghL4pRSuDNyuywsoNi6buLIEeI7cFlbGaqGK9fiWoXfNuJDKgTFk24V2i0vBa3zW0zyVhA==}
+  /@azure-tools/cadl-ranch-specs/0.6.2_qbwtpa6wtynbtw2zmntur7s24q:
+    resolution: {integrity: sha512-YVTF2ZhX1n4Yw6vkHsUcxQ5IQXv5OxUZ39Mw06mx05hbjvt2W8XX6/paI7Of4WTPb81fCt+hdPiktfCPIVs8KA==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       '@azure-tools/cadl-azure-core': ~0.24.0
@@ -162,7 +162,7 @@ packages:
       '@cadl-lang/versioning': ~0.38.0
     dependencies:
       '@azure-tools/cadl-azure-core': 0.24.0_nko3gy7xiiqlzxounegquahor4
-      '@azure-tools/cadl-ranch': 0.2.10
+      '@azure-tools/cadl-ranch': 0.2.11
       '@azure-tools/cadl-ranch-api': 0.1.10
       '@azure-tools/cadl-ranch-expect': 0.1.13_nko3gy7xiiqlzxounegquahor4
       '@cadl-lang/compiler': 0.38.0
@@ -174,8 +174,8 @@ packages:
       - supports-color
     dev: true
 
-  /@azure-tools/cadl-ranch/0.2.10:
-    resolution: {integrity: sha512-OWdR1n0cIO0ISQEIoS0RWSQ7pNPIAnFBpZby4cY/cE1zXxcGsQoh37P4amoaR83emnCh2RSC1NqTJaKBEZDh3A==}
+  /@azure-tools/cadl-ranch/0.2.11:
+    resolution: {integrity: sha512-SvmXIKZqi+5bvP062alnlwwmz0/L81haPlfJWh9Nrwv/IEOHJ5YpzuITXyXLnoNf6LNfC1bWJ7JsHH73DR+gYA==}
     engines: {node: '>=16.0.0'}
     hasBin: true
     dependencies:

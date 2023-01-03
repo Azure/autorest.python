@@ -74,10 +74,10 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
                 for p in cast(ModelType, response.type).properties
                 if p.rest_api_name == rest_api_name
             )
-        except StopIteration:
+        except StopIteration as exc:
             raise ValueError(
                 f"Can't find a matching property in response for {rest_api_name}"
-            )
+            ) from exc
 
     def get_pager(self, async_mode: bool) -> str:
         return self.responses[0].get_pager(async_mode)

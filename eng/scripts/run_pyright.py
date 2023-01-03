@@ -8,10 +8,11 @@
 # This script is used to execute pyright within a tox environment. Depending on which package is being executed against,
 # a failure may be suppressed.
 
-from subprocess import check_call, CalledProcessError
+from subprocess import check_output, CalledProcessError
 import os
 import logging
 import sys
+import time
 from pathlib import Path
 import argparse
 from multiprocessing import Pool
@@ -24,24 +25,32 @@ config_file_dir = Path(root_dir) / Path("packages/autorest.python")
 def _single_dir_pyright(mod):
     inner_class = next(d for d in mod.iterdir() if d.is_dir()
                        and not str(d).endswith("egg-info"))
-    try:
-        check_call(
-            [
-                sys.executable,
-                "-m",
-                "pyright",
-                "-p",
-                config_file_dir,
-                str(inner_class.absolute()),
-            ]
-        )
-        return True
-    except CalledProcessError as e:
-        logging.error(
-            "{} exited with pyright error {}".format(
-                inner_class.stem, e.returncode)
-        )
-        return False
+    retries = 3
+    while retries:
+        try:
+            check_output(
+                [
+                    sys.executable,
+                    "-m",
+                    "pyright",
+                    "-p",
+                    str(config_file_dir),
+                    str(inner_class.absolute()),
+                ]
+            )
+            return True
+        except CalledProcessError as e:
+            logging.exception(
+                "{} exited with pyright error {}".format(
+                    inner_class.stem, e.returncode)
+            )
+            logging.error(f"PyRight stdout:\n{e.stdout}\n===========")
+            logging.error(f"PyRight stderr:\n{e.stderr}\n===========")
+            # PyRight has shown to randomly failed with a 217, retry the same folder 3 times should help
+            retries -= 1
+            time.sleep(5)
+
+    return False
 
 
 if __name__ == "__main__":

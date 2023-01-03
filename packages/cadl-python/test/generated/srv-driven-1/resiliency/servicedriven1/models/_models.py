@@ -39,7 +39,6 @@ class Message(_model_base.Model):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
@@ -71,7 +70,6 @@ class PostInput(_model_base.Model):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)

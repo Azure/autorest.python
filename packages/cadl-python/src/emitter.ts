@@ -82,6 +82,13 @@ interface CredentialType {
     scheme: HttpAuth;
 }
 
+interface CredentialTypeUnion {
+    kind: "CredentialTypeUnion";
+    types: CredentialType[];
+}
+
+type EmitterType = Type | CredentialType | CredentialTypeUnion;
+
 export interface EmitterOptions {
     "basic-setup-py"?: boolean;
     "package-version"?: string;
@@ -163,12 +170,12 @@ function camelToSnakeCase(name: string): string {
     return camelToSnakeCaseRe(name[0].toLowerCase() + name.slice(1));
 }
 
-const typesMap = new Map<Type | CredentialType, Record<string, any>>();
+const typesMap = new Map<EmitterType, Record<string, any>>();
 const simpleTypesMap = new Map<string, Record<string, any>>();
 const endpointPathParameters: Record<string, any>[] = [];
 let apiVersionParam: Record<string, any> | undefined = undefined;
 
-function isSimpleType(program: Program, type: Type | CredentialType | undefined): boolean {
+function isSimpleType(program: Program, type: EmitterType | undefined): boolean {
     // these decorators can only work for simple type(int/string/float, etc)
     if (type && (type.kind === "Scalar" || type.kind === "ModelProperty")) {
         const funcs = [getMinValue, getMaxValue, getMinLength, getMaxLength, getPattern];
@@ -240,7 +247,7 @@ function getEffectiveSchemaType(program: Program, type: Model): Model {
     return type;
 }
 
-function getType(program: Program, type: Type | CredentialType): any {
+function getType(program: Program, type: EmitterType): any {
     // don't cache simple type(string, int, etc) since decorators may change the result
     const enableCache = !isSimpleType(program, type);
     if (enableCache) {
@@ -660,9 +667,11 @@ function emitBasicOperation(program: Program, operation: Operation, operationGro
 }
 
 function isReadOnly(program: Program, type: ModelProperty): boolean {
+    // https://microsoft.github.io/cadl/standard-library/rest/operations#automatic-visibility
+    // Only "read" should be readOnly
     const visibility = getVisibility(program, type);
     if (visibility) {
-        return !visibility.includes("write");
+        return visibility.includes("read");
     } else {
         return false;
     }
@@ -800,6 +809,18 @@ function emitCredential(auth: HttpAuth): Record<string, any> {
         };
     }
     return credential_type;
+}
+
+function emitCredentialUnion(cred_types: CredentialTypeUnion): Record<string, any> {
+    const result: Record<string, any> = {};
+    // Export as CombinedType, which is already a Union Type in autorest codegen
+    result.type = "combined";
+    result.types = [];
+    for (const cred_type of cred_types.types) {
+        result.types.push(emitCredential(cred_type.scheme));
+    }
+
+    return result;
 }
 
 function emitStdScalar(scalar: Scalar & { name: IntrinsicScalarName }): Record<string, any> {
@@ -1003,9 +1024,12 @@ function emitUnion(program: Program, type: Union): Record<string, any> {
     };
 }
 
-function emitType(program: Program, type: Type | CredentialType): Record<string, any> {
+function emitType(program: Program, type: EmitterType): Record<string, any> {
     if (type.kind === "Credential") {
         return emitCredential(type.scheme);
+    }
+    if (type.kind === "CredentialTypeUnion") {
+        return emitCredentialUnion(type);
     }
     const builtinType = mapCadlType(program, type);
     if (builtinType !== undefined) {
@@ -1125,27 +1149,37 @@ function emitServerParams(program: Program, namespace: Namespace): Record<string
 function emitCredentialParam(program: Program, namespace: Namespace): Record<string, any> | undefined {
     const auth = getAuthentication(program, namespace);
     if (auth) {
+        const credential_types: CredentialType[] = [];
         for (const option of auth.options) {
             for (const scheme of option.schemes) {
                 const type: CredentialType = {
                     kind: "Credential",
                     scheme: scheme,
                 };
-                const credential_type = getType(program, type);
-                if (credential_type) {
-                    return {
-                        type: credential_type,
-                        optional: false,
-                        description: "Credential needed for the client to connect to Azure.",
-                        clientName: "credential",
-                        location: "other",
-                        restApiName: "credential",
-                        implementation: "Client",
-                        skipUrlEncoding: true,
-                        inOverload: false,
-                    };
-                }
+                credential_types.push(type);
             }
+        }
+        if (credential_types.length > 0) {
+            let type: EmitterType;
+            if (credential_types.length === 1) {
+                type = credential_types[0];
+            } else {
+                type = {
+                    kind: "CredentialTypeUnion",
+                    types: credential_types,
+                };
+            }
+            return {
+                type: getType(program, type),
+                optional: false,
+                description: "Credential needed for the client to connect to Azure.",
+                clientName: "credential",
+                location: "other",
+                restApiName: "credential",
+                implementation: "Client",
+                skipUrlEncoding: true,
+                inOverload: false,
+            };
         }
     }
     return undefined;

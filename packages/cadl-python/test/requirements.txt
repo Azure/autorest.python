@@ -6,7 +6,9 @@ azure-core==1.24.0
 -e ./generated/api-key
 -e ./generated/dev-driven
 -e ./generated/dictionary
--e ./generated/extensible-enums
+-e ./generated/extensible
+-e ./generated/fixed
+-e ./generated/union
 -e ./generated/hello
 -e ./generated/inheritance
 -e ./generated/item-types

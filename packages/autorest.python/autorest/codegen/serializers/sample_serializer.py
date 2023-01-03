@@ -65,7 +65,7 @@ class SampleSerializer:
 
     def _client_params(self) -> Dict[str, Any]:
         # client params
-        special_param = dict()
+        special_param = {}
         credential_type = getattr(self.code_model.clients[0].credential, "type", None)
         if isinstance(credential_type, TokenCredentialType):
             special_param.update({"credential": "DefaultAzureCredential()"})
@@ -79,14 +79,10 @@ class SampleSerializer:
             for p in self.code_model.clients[0].parameters.positional
             if not (p.optional or p.client_default_value)
         ]
-        cls = lambda x: f'"{x}"'
         client_params = {
             p.client_name: special_param.get(
                 p.client_name,
-                cls(
-                    self.sample["parameters"].get(p.rest_api_name)
-                    or p.client_name.upper()
-                ),
+                f'"{self.sample["parameters"].get(p.rest_api_name) or p.client_name.upper()}"',
             )
             for p in params_positional
         }

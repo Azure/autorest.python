@@ -155,8 +155,10 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
                 for rb in self.request_builders
                 if id(rb.yaml_data) == request_builder_id
             )
-        except StopIteration:
-            raise KeyError(f"No request builder with id {request_builder_id} found.")
+        except StopIteration as exc:
+            raise KeyError(
+                f"No request builder with id {request_builder_id} found."
+            ) from exc
 
     def _imports_shared(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
@@ -207,20 +209,16 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
     def has_lro_operations(self) -> bool:
         """Are there any LRO operations in this SDK?"""
         return any(
-            [
-                operation.operation_type in ("lro", "lropaging")
-                for operation_group in self.operation_groups
-                for operation in operation_group.operations
-            ]
+            operation.operation_type in ("lro", "lropaging")
+            for operation_group in self.operation_groups
+            for operation in operation_group.operations
         )
 
     @property
     def has_operations(self) -> bool:
         return any(
-            [
-                bool(operation_group.operations)
-                for operation_group in self.operation_groups
-            ]
+            bool(operation_group.operations)
+            for operation_group in self.operation_groups
         )
 
     def format_lro_operations(self) -> None:

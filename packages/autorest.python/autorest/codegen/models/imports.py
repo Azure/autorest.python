@@ -228,7 +228,7 @@ class FileImport:
                     ],
                 ],
             ],
-        ] = dict()
+        ] = {}
         for i in self.imports:
             name_import: Optional[
                 Union[
@@ -248,8 +248,8 @@ class FileImport:
                     name_import = (i.submodule_name, i.alias)
                 else:
                     name_import = i.submodule_name
-            retval.setdefault(i.typing_section, dict()).setdefault(
-                i.import_type, dict()
+            retval.setdefault(i.typing_section, {}).setdefault(
+                i.import_type, {}
             ).setdefault(i.module_name, set()).add(name_import)
         return retval
 

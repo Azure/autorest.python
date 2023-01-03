@@ -85,7 +85,7 @@ class FileImport:
                 ],
             ],
         ] = (
-            imports or dict()
+            imports or {}
         )
 
     def _add_import(
@@ -123,8 +123,8 @@ class FileImport:
             ]
         ] = None
         name_input = convert_list_to_tuple(name_import)
-        self._imports.setdefault(typing_section, dict()).setdefault(
-            import_type, dict()
+        self._imports.setdefault(typing_section, {}).setdefault(
+            import_type, {}
         ).setdefault(from_section, set()).add(name_input)
 
     def add_submodule_import(
