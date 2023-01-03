@@ -1,5 +1,5 @@
 -e .
-tox==3.27.1  # Got some problem with 4.x
+tox==4.1.3  # Got some problem with 4.x
 invoke
 colorama
 pylint==2.15.8
