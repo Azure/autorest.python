@@ -1,16 +1,15 @@
 # Release History
 
-## 2023-01-XX - 0.4.16
+## 2023-01-XX - 0.4.15
+
+**Other Changes**
+
+- Support multiple authentication  #1626
 
 **Bug Fixes**
 
+- Fix requirement on presence of `cadl-output` folder #1622
 - Fix import relative path for subnamespace  #1649
-
-## 2022-12-16 - 0.4.15
-
-**Bug Fixes**
-
-- Fix requirement on presence of `cadl-output` folder #1622 
 
 ## 2022-12-15 - 0.4.14
 
