@@ -1,5 +1,11 @@
 # Release History
 
+## 2023-01-XX - 0.4.16
+
+**Bug Fixes**
+
+- Fix import relative path for subnamespace  #1649
+
 ## 2022-12-16 - 0.4.15
 
 **Bug Fixes**
