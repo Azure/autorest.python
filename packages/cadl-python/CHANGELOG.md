@@ -9,7 +9,7 @@
 **Bug Fixes**
 
 - Fix requirement on presence of `cadl-output` folder #1622
-- Fix import relative path for subnamespace  #1649
+- Fix import and _vendor for subnamespace  #1649
 
 ## 2022-12-15 - 0.4.14
 
