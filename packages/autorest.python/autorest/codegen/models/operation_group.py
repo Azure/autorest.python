@@ -76,7 +76,9 @@ class OperationGroup(BaseModel):
     def imports(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
 
-        relative_path = "..." if async_mode else ".."
+        relative_path = ("..." if async_mode else "..") + (
+            "." if self.client.is_subclient else ""
+        )
         for operation in self.operations:
             file_import.merge(
                 operation.imports(async_mode, relative_path=relative_path)
