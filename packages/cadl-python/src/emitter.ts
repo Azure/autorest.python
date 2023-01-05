@@ -18,8 +18,6 @@ import {
     ModelProperty,
     Namespace,
     Program,
-    resolvePath,
-    Type,
     getEffectiveModelType,
     JSONSchemaType,
     createCadlLibrary,
@@ -41,6 +39,8 @@ import {
     isNullType,
     SyntaxKind,
     emitFile,
+    Type,
+    getKnownValues,
 } from "@cadl-lang/compiler";
 import {
     getAuthentication,
@@ -53,14 +53,13 @@ import {
     HttpAuth,
     HttpOperationParameter,
     HttpOperationParameters,
+    HttpOperationRequestBody,
     HttpOperationResponse,
     HttpOperationResponseContent,
     HttpServer,
     isStatusCode,
 } from "@cadl-lang/rest/http";
 import { getAddedOn } from "@cadl-lang/versioning";
-import { execFileSync } from "child_process";
-import { dump } from "js-yaml";
 import {
     Client,
     listClients,
@@ -68,8 +67,15 @@ import {
     listOperationsInOperationGroup,
     isApiVersion,
     getDefaultApiVersion,
+    getClientNamespaceString,
+    createDpgContext,
+    DpgContext,
 } from "@azure-tools/cadl-dpg";
 import { getResourceOperation } from "@cadl-lang/rest";
+import { execAsync, resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+import { dump } from "js-yaml";
 
 interface HttpServerParameter {
     type: "endpointPath";
@@ -129,13 +135,13 @@ export async function $onEmit(context: EmitContext<EmitterOptions>) {
     const program = context.program;
     const resolvedOptions = { ...defaultOptions, ...context.options };
 
-    const root = process.cwd();
+    const root = await resolveModuleRoot(program, "@autorest/python", dirname(fileURLToPath(import.meta.url)));
     const outputDir = context.emitterOutputDir;
-    const yamlMap = createYamlEmitter(program);
-    const yamlPath = resolvePath(outputDir, "output.yaml");
+    const yamlMap = emitCodeModel(context);
+    const yamlPath = await saveCodeModelAsYaml("cadl-python-yaml-map", yamlMap);
     const commandArgs = [
-        `${root}/node_modules/@autorest/python/run-python3.js`,
-        `${root}/node_modules/@autorest/python/run_cadl.py`,
+        `${root}/run-python3.js`,
+        `${root}/run_cadl.py`,
         `--output-folder=${outputDir}`,
         `--cadl-file=${yamlPath}`,
     ];
@@ -146,16 +152,7 @@ export async function $onEmit(context: EmitContext<EmitterOptions>) {
         commandArgs.push("--debug");
     }
     if (!program.compilerOptions.noEmit && !program.hasError()) {
-        // TODO: change behavior based off of https://github.com/microsoft/cadl/issues/401
-        await emitFile(program, {
-            path: yamlPath,
-            content: dump(yamlMap),
-            newLine: "lf",
-        });
-        execFileSync(process.execPath, commandArgs);
-    }
-    if (program.compilerOptions.trace === undefined) {
-        await program.host.rm(yamlPath);
+        await execAsync(process.execPath, commandArgs);
     }
 }
 
@@ -288,7 +285,14 @@ function getAddedOnVersion(p: Program, t: Type): string | undefined {
     return getAddedOn(p as any, t as any)?.value;
 }
 
-function emitParamBase(program: Program, parameter: ModelProperty | Type): Record<string, any> {
+type ParamBase = {
+    optional: boolean;
+    description: string;
+    addedOn: string | undefined;
+    clientName: string;
+    inOverload: boolean;
+};
+function emitParamBase(program: Program, parameter: ModelProperty | Type): ParamBase {
     let optional: boolean;
     let name: string;
     let description: string = "";
@@ -313,17 +317,17 @@ function emitParamBase(program: Program, parameter: ModelProperty | Type): Recor
     };
 }
 
-function emitBodyParameter(
-    program: Program,
-    bodyType: Type,
-    params: HttpOperationParameters,
-    operation: Operation,
-): Record<string, any> {
-    const base = emitParamBase(program, params.bodyParameter ?? bodyType);
-    const contentTypeParam = params.parameters.find((p) => p.type === "header" && p.name === "content-type");
-    const contentTypes = contentTypeParam
-        ? ignoreDiagnostics(getContentTypes(contentTypeParam.param))
-        : ["application/json"];
+type BodyParameter = ParamBase & {
+    contentTypes: string[];
+    type: Type;
+    restApiName: string;
+    location: "body";
+    defaultContentType: string;
+};
+
+function emitBodyParameter(program: Program, body: HttpOperationRequestBody, operation: Operation): BodyParameter {
+    const base = emitParamBase(program, body.parameter ?? body.type);
+    const contentTypes = body.contentTypes ?? ["application/json"];
     if (contentTypes.length !== 1) {
         throw Error("Currently only one kind of content-type!");
     }
@@ -331,10 +335,8 @@ function emitBodyParameter(
     const resourceOperation = getResourceOperation(program, operation);
     if (resourceOperation) {
         type = getType(program, resourceOperation.resourceType);
-    } else if (params.body) {
-        type = getType(program, params.body.type);
     } else {
-        type = getType(program, bodyType);
+        type = getType(program, body.type);
     }
 
     if (type.type === "model" && type.name === "") {
@@ -344,10 +346,11 @@ function emitBodyParameter(
     return {
         contentTypes,
         type,
-        restApiName: params.bodyParameter?.name ?? "body",
+        restApiName: body.parameter?.name ?? "body",
         location: "body",
         ...base,
-        defaultContentType: contentTypes.includes("application/json") ? "application/json" : contentTypes[0],
+        defaultContentType:
+            body.parameter?.default ?? contentTypes.includes("application/json") ? "application/json" : contentTypes[0],
     };
 }
 
@@ -605,12 +608,7 @@ function emitBasicOperation(program: Program, operation: Operation, operationGro
     if (httpOperation.parameters.body === undefined) {
         bodyParameter = undefined;
     } else {
-        bodyParameter = emitBodyParameter(
-            program,
-            httpOperation.parameters.body.type,
-            httpOperation.parameters,
-            operation,
-        );
+        bodyParameter = emitBodyParameter(program, httpOperation.parameters.body, operation);
         if (parameters.filter((e) => e.restApiName.toLowerCase() === "content-type").length === 0) {
             parameters.push(emitContentTypeParameter(bodyParameter, isOverload, isOverriden));
         }
@@ -681,17 +679,6 @@ function getName(program: Program, type: Model): string {
 }
 
 function emitModel(program: Program, type: Model): Record<string, any> {
-    for (const decorator of type.decorators) {
-        if (decorator.decorator.name === "$knownValues") {
-            for (const arg of decorator.args) {
-                if (typeof arg.value === "object" && arg.value.kind === "Enum") {
-                    const enumResult = emitEnum(program, arg.value);
-                    enumResult["name"] = type.name;
-                    return enumResult;
-                }
-            }
-        }
-    }
     // Now we know it's a defined model
     const properties: Record<string, any>[] = [];
     let baseModel = undefined;
@@ -1186,11 +1173,12 @@ function getApiVersionParameter(program: Program): Record<string, any> | void {
     }
 }
 
-function emitClients(program: Program, namespace: string): Record<string, any>[] {
+function emitClients(context: DpgContext, namespace: string): Record<string, any>[] {
+    const program = context.program;
     const clients = listClients(program);
     const retval: Record<string, any>[] = [];
     for (const client of clients) {
-        if (getNamespace(program, client.name) !== namespace) {
+        if (getNamespace(context, client.name) !== namespace) {
             continue;
         }
         const server = getServerHelper(program, client.service);
@@ -1215,39 +1203,36 @@ function getServiceNamespace(program: Program): Namespace {
     return listServices(program)[0].type;
 }
 
-function getServiceNamespaceString(program: Program): string {
-    return getNamespaceFullName(getServiceNamespace(program)).toLowerCase();
-}
-
-function getNamespace(program: Program, clientName: string): string {
+function getNamespace(context: DpgContext, clientName: string): string {
     // We get client namespaces from the client name. If there's a dot, we add that to the namespace
     const submodule = clientName.split(".").slice(0, -1).join(".").toLowerCase();
     if (!submodule) {
-        return getServiceNamespaceString(program).toLowerCase();
+        return getClientNamespaceString(context)!;
     }
     return submodule;
 }
 
-function getNamespaces(program: Program): Set<string> {
+function getNamespaces(context: DpgContext): Set<string> {
     const namespaces = new Set<string>();
-    for (const client of listClients(program)) {
-        namespaces.add(getNamespace(program, client.name));
+    for (const client of listClients(context.program)) {
+        namespaces.add(getNamespace(context, client.name));
     }
     return namespaces;
 }
 
-function createYamlEmitter(program: Program) {
-    const serviceNamespaceString = getServiceNamespaceString(program);
+function emitCodeModel(context: EmitContext<EmitterOptions>) {
+    const dpgContext = createDpgContext(context);
+    const clientNamespaceString = getClientNamespaceString(dpgContext);
     // Get types
     const codeModel: Record<string, any> = {
-        namespace: serviceNamespaceString,
+        namespace: clientNamespaceString,
         subnamespaceToClients: {},
     };
-    for (const namespace of getNamespaces(program)) {
-        if (namespace === serviceNamespaceString) {
-            codeModel["clients"] = emitClients(program, namespace);
+    for (const namespace of getNamespaces(dpgContext)) {
+        if (namespace === clientNamespaceString) {
+            codeModel["clients"] = emitClients(dpgContext, namespace);
         } else {
-            codeModel["subnamespaceToClients"][namespace] = emitClients(program, namespace);
+            codeModel["subnamespaceToClients"][namespace] = emitClients(dpgContext, namespace);
         }
     }
     codeModel["types"] = [...typesMap.values(), ...Object.values(KnownTypes), ...simpleTypesMap.values()];
