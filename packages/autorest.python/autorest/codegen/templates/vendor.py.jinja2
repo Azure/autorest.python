@@ -26,7 +26,7 @@ def _format_url_section(template, **kwargs):
             template = "/".join(components)
 {% endif %}
 {% if code_model.need_mixin_abc %}
-    {% for client in code_model.clients | selectattr("has_mixin") %}
+    {% for client in clients | selectattr("has_mixin") %}
 
 class {{ client.name }}MixinABC(ABC):
     """DO NOT use this class. It is for internal typing use only."""

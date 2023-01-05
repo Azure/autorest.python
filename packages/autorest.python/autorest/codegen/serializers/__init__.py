@@ -462,7 +462,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
         if self.code_model.need_vendored_code(async_mode=False):
             self.write_file(
                 namespace_path / Path("_vendor.py"),
-                general_serializer.serialize_vendor_file(),
+                general_serializer.serialize_vendor_file(clients),
             )
 
         self._serialize_and_write_version_file(namespace_path, general_serializer)
@@ -521,7 +521,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
         if self.code_model.need_vendored_code(async_mode=True):
             self.write_file(
                 aio_path / Path("_vendor.py"),
-                aio_general_serializer.serialize_vendor_file(),
+                aio_general_serializer.serialize_vendor_file(clients),
             )
 
     def _serialize_and_write_metadata(
