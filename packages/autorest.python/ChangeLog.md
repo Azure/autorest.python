@@ -16,6 +16,10 @@
 
 - Document Enum items with """ pair #1655
 
+**New Features**
+
+- Flatten JSONModelType body properties as operation parameters #1623
+
 ### 2022-12-16 - 6.2.13
 
 | Library                                                                 | Min Version |

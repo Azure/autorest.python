@@ -31,6 +31,8 @@ from ..models import (
     MultipartBodyParameter,
     Property,
     RequestBuilderType,
+    JSONModelType,
+    CombinedType,
 )
 from .parameter_serializer import ParameterSerializer, PopKwargType
 from . import utils
@@ -143,6 +145,25 @@ def _serialize_flattened_body(body_parameter: BodyParameter) -> List[str]:
     retval.append(
         f"{body_parameter.client_name} = _models.{model_type.name}({parameter_string})"
     )
+    return retval
+
+
+def _serialize_json_model_body(body_parameter: BodyParameter) -> List[str]:
+    retval: List[str] = []
+    if not body_parameter.property_to_parameter_name:
+        raise ValueError(
+            "This method can't be called if the operation doesn't need parameter flattening"
+        )
+
+    retval.append(f"if {body_parameter.client_name} is None:")
+    parameter_string = ", \n".join(
+        f'"{property_name}": {parameter_name}'
+        for property_name, parameter_name in body_parameter.property_to_parameter_name.items()
+    )
+    model_type = cast(ModelType, body_parameter.type)
+    if isinstance(model_type, CombinedType):
+        model_type = next(t for t in model_type.types if isinstance(t, JSONModelType))
+    retval.append(f"    {body_parameter.client_name} = {{{parameter_string}}}")
     return retval
 
 
@@ -928,6 +949,12 @@ class _OperationSerializer(
         if builder.parameters.has_body and builder.parameters.body_parameter.flattened:
             # unflatten before passing to request builder as well
             retval.extend(_serialize_flattened_body(builder.parameters.body_parameter))
+        if (
+            builder.parameters.has_body
+            and builder.parameters.body_parameter.has_json_model_type
+            and any(p.in_flattened_body for p in builder.parameters.parameters)
+        ):
+            retval.extend(_serialize_json_model_body(builder.parameters.body_parameter))
         if builder.overloads:
             # we are only dealing with two overloads. If there are three, we generate an abstract operation
             retval.extend(self._initialize_overloads(builder, is_paging=is_paging))
