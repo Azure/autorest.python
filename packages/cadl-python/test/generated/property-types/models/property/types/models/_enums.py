@@ -13,16 +13,16 @@ from azure.core import CaseInsensitiveEnumMeta
 class FixedInnerEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Enum that will be used as a property for model EnumProperty. Non-extensible."""
 
-    #: First value.
     VALUE_ONE = "ValueOne"
-    #: Second value.
+    """First value."""
     VALUE_TWO = "ValueTwo"
+    """Second value."""
 
 
 class InnerEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Enum that will be used as a property for model EnumProperty. Non-extensible."""
 
-    #: First value.
     VALUE_ONE = "ValueOne"
-    #: Second value.
+    """First value."""
     VALUE_TWO = "ValueTwo"
+    """Second value."""

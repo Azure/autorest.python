@@ -12,6 +12,10 @@
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
 | `typing-extensions` dep of generated code (If generating with constants) | `4.0.1`     |
 
+**Bug Fixes**
+
+- Document Enum items with """ pair #1655
+
 **New Features**
 
 - Flatten JSONModelType body properties as operation parameters #1623

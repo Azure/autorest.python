@@ -13,40 +13,40 @@ from azure.core import CaseInsensitiveEnumMeta
 class ContentType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Content type for upload."""
 
-    #: Content Type 'application/pdf'
     APPLICATION_PDF = "application/pdf"
-    #: Content Type 'image/jpeg'
+    """Content Type 'application/pdf'"""
     IMAGE_JPEG = "image/jpeg"
-    #: Content Type 'image/png'
+    """Content Type 'image/jpeg'"""
     IMAGE_PNG = "image/png"
-    #: Content Type 'image/tiff'
+    """Content Type 'image/png'"""
     IMAGE_TIFF = "image/tiff"
+    """Content Type 'image/tiff'"""
 
 
 class ContentType1(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Content type for upload."""
 
-    #: Content Type 'application/json'
     APPLICATION_JSON = "application/json"
-    #: Content Type 'application/octet-stream'
+    """Content Type 'application/json'"""
     APPLICATION_OCTET_STREAM = "application/octet-stream"
+    """Content Type 'application/octet-stream'"""
 
 
 class ContentType2(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Content type for upload."""
 
-    #: Content Type 'application/json'
     APPLICATION_JSON = "application/json"
-    #: Content Type 'application/octet-stream'
+    """Content Type 'application/json'"""
     APPLICATION_OCTET_STREAM = "application/octet-stream"
-    #: Content Type 'text/plain'
+    """Content Type 'application/octet-stream'"""
     TEXT_PLAIN = "text/plain"
+    """Content Type 'text/plain'"""
 
 
 class ContentType3(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Content type for upload."""
 
-    #: Content Type 'application/json'
     APPLICATION_JSON = "application/json"
-    #: Content Type 'text/plain'
+    """Content Type 'application/json'"""
     TEXT_PLAIN = "text/plain"
+    """Content Type 'text/plain'"""
