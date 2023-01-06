@@ -5,6 +5,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import List, cast
+
 
 def raise_if_not_implemented(cls, abstract_methods):
     not_implemented = [f for f in abstract_methods if not callable(getattr(cls, f, None))]

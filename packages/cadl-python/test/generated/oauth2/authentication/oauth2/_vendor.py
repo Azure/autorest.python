@@ -6,7 +6,7 @@
 # --------------------------------------------------------------------------
 
 from abc import ABC
-from typing import List, TYPE_CHECKING, cast
+from typing import TYPE_CHECKING
 
 from ._configuration import OAuth2ClientConfiguration
 

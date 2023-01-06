@@ -6,7 +6,7 @@
 # --------------------------------------------------------------------------
 
 from abc import ABC
-from typing import TYPE_CHECKING
+from typing import List, TYPE_CHECKING, cast
 
 from azure.core.pipeline.transport import HttpRequest
 
