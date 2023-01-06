@@ -5,6 +5,7 @@
 **Other Changes**
 
 - Support multiple authentication  #1626
+- Flatten JSONModelType body properties as operation parameters #1623
 
 **Bug Fixes**
 
