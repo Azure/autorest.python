@@ -1,6 +1,6 @@
 # Release History
 
-## 2023-01-XX - 0.4.15
+## 2023-01-06 - 0.4.15
 
 **Other Changes**
 
