@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, TYPE_CHECKING, Union
+from typing import Any
 
 from azure.core import PipelineClient
 from azure.core.credentials import AzureKeyCredential
@@ -17,21 +17,15 @@ from ._configuration import UnionClientConfiguration
 from ._operations import UnionClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from azure.core.credentials import TokenCredential
-
 
 class UnionClient(UnionClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates clients generated with ApiKey and OAuth2 authentication.
 
-    :param credential: Credential needed for the client to connect to Azure. Is either a Key type
-     or a OAuth2 type. Required.
-    :type credential: ~azure.core.credentials.AzureKeyCredential or
-     ~azure.core.credentials.TokenCredential
+    :param credential: Credential needed for the client to connect to Azure. Required.
+    :type credential: ~azure.core.credentials.AzureKeyCredential
     """
 
-    def __init__(self, credential: Union[AzureKeyCredential, "TokenCredential"], **kwargs: Any) -> None:
+    def __init__(self, credential: AzureKeyCredential, **kwargs: Any) -> None:
         _endpoint = "http://localhost:3000"
         self._config = UnionClientConfiguration(credential=credential, **kwargs)
         self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)

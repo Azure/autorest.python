@@ -38,7 +38,7 @@ import logging
 import re
 import sys
 import codecs
-from typing import Dict, Any, cast, Optional, Union, AnyStr, IO, Mapping, Callable, TypeVar, MutableMapping, Type
+from typing import Dict, Any, cast, Optional, Union, AnyStr, IO, Mapping, Callable, TypeVar, MutableMapping, Type, List
 
 try:
     from urllib import quote  # type: ignore
@@ -545,7 +545,7 @@ class Serializer(object):
             "[]": self.serialize_iter,
             "{}": self.serialize_dict,
         }
-        self.dependencies = dict(classes) if classes else {}
+        self.dependencies: Dict[str, Type] = dict(classes) if classes else {}
         self.key_transformer = full_restapi_key_transformer
         self.client_side_validation = True
 
@@ -666,8 +666,8 @@ class Serializer(object):
         """
 
         # Just in case this is a dict
-        internal_data_type = data_type.strip("[]{}")
-        internal_data_type = self.dependencies.get(internal_data_type, None)
+        internal_data_type_str = data_type.strip("[]{}")
+        internal_data_type = self.dependencies.get(internal_data_type_str, None)
         try:
             is_xml_model_serialization = kwargs["is_xml"]
         except KeyError:
@@ -1171,7 +1171,8 @@ def rest_key_extractor(attr, attr_desc, data):
     working_data = data
 
     while "." in key:
-        dict_keys = _FLATTEN.split(key)
+        # Need the cast, as for some reasons "split" is typed as list[str | Any]
+        dict_keys = cast(List[str], _FLATTEN.split(key))
         if len(dict_keys) == 1:
             key = _decode_attribute_map_key(dict_keys[0])
             break
@@ -1362,7 +1363,7 @@ class Deserializer(object):
             "duration": (isodate.Duration, datetime.timedelta),
             "iso-8601": (datetime.datetime),
         }
-        self.dependencies = dict(classes) if classes else {}
+        self.dependencies: Dict[str, Type] = dict(classes) if classes else {}
         self.key_extractors = [rest_key_extractor, xml_key_extractor]
         # Additional properties only works if the "rest_key_extractor" is used to
         # extract the keys. Making it to work whatever the key extractor is too much

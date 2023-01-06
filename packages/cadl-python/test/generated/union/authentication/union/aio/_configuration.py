@@ -6,17 +6,13 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, TYPE_CHECKING, Union
+from typing import Any
 
 from azure.core.configuration import Configuration
 from azure.core.credentials import AzureKeyCredential
 from azure.core.pipeline import policies
 
 from .._version import VERSION
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from azure.core.credentials_async import AsyncTokenCredential
 
 
 class UnionClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
@@ -25,28 +21,18 @@ class UnionClientConfiguration(Configuration):  # pylint: disable=too-many-insta
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param credential: Credential needed for the client to connect to Azure. Is either a Key type
-     or a OAuth2 type. Required.
-    :type credential: ~azure.core.credentials.AzureKeyCredential or
-     ~azure.core.credentials_async.AsyncTokenCredential
+    :param credential: Credential needed for the client to connect to Azure. Required.
+    :type credential: ~azure.core.credentials.AzureKeyCredential
     """
 
-    def __init__(self, credential: Union[AzureKeyCredential, "AsyncTokenCredential"], **kwargs: Any) -> None:
+    def __init__(self, credential: AzureKeyCredential, **kwargs: Any) -> None:
         super(UnionClientConfiguration, self).__init__(**kwargs)
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
 
         self.credential = credential
-        self.credential_scopes = kwargs.pop("credential_scopes", ["https://security.microsoft.com/.default"])
         kwargs.setdefault("sdk_moniker", "unionclient/{}".format(VERSION))
         self._configure(**kwargs)
-
-    def _infer_policy(self, **kwargs):
-        if isinstance(self.credential, AzureKeyCredential):
-            return policies.AzureKeyCredentialPolicy(self.credential, "x-ms-api-key", **kwargs)
-        if hasattr(self.credential, "get_token"):
-            return policies.AsyncBearerTokenCredentialPolicy(self.credential, *self.credential_scopes, **kwargs)
-        raise TypeError(f"Unsupported credential: {self.credential}")
 
     def _configure(self, **kwargs: Any) -> None:
         self.user_agent_policy = kwargs.get("user_agent_policy") or policies.UserAgentPolicy(**kwargs)
@@ -59,4 +45,4 @@ class UnionClientConfiguration(Configuration):  # pylint: disable=too-many-insta
         self.redirect_policy = kwargs.get("redirect_policy") or policies.AsyncRedirectPolicy(**kwargs)
         self.authentication_policy = kwargs.get("authentication_policy")
         if self.credential and not self.authentication_policy:
-            self.authentication_policy = self._infer_policy(**kwargs)
+            self.authentication_policy = policies.AzureKeyCredentialPolicy(self.credential, "x-ms-api-key", **kwargs)
