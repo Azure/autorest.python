@@ -13,11 +13,11 @@ from azure.core import CaseInsensitiveEnumMeta
 class ContentType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Content type for upload."""
 
-    #: Content Type 'application/pdf'
     APPLICATION_PDF = "application/pdf"
-    #: Content Type 'image/jpeg'
+    """Content Type 'application/pdf'"""
     IMAGE_JPEG = "image/jpeg"
-    #: Content Type 'image/png'
+    """Content Type 'image/jpeg'"""
     IMAGE_PNG = "image/png"
-    #: Content Type 'image/tiff'
+    """Content Type 'image/png'"""
     IMAGE_TIFF = "image/tiff"
+    """Content Type 'image/tiff'"""

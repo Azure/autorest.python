@@ -414,6 +414,30 @@ function emitContentTypeParameter(
     };
 }
 
+function emitFlattenedParameter(
+    bodyParameter: Record<string, any>,
+    property: Record<string, any>,
+): Record<string, any> {
+    return {
+        checkClientInput: false,
+        clientDefaultValue: null,
+        clientName: property.clientName,
+        delimiter: null,
+        description: property.description,
+        implementation: "Method",
+        inDocstring: true,
+        inFlattenedBody: true,
+        inOverload: false,
+        inOverriden: false,
+        isApiVersion: bodyParameter["isApiVersion"],
+        location: "other",
+        optional: property["optional"],
+        restApiName: null,
+        skipUrlEncoding: false,
+        type: property["type"],
+    };
+}
+
 function getConstantType(key: string): Record<string, any> {
     const cache = simpleTypesMap.get(key);
     if (cache) {
@@ -611,6 +635,13 @@ function emitBasicOperation(program: Program, operation: Operation, operationGro
         bodyParameter = emitBodyParameter(program, httpOperation.parameters.body, operation);
         if (parameters.filter((e) => e.restApiName.toLowerCase() === "content-type").length === 0) {
             parameters.push(emitContentTypeParameter(bodyParameter, isOverload, isOverriden));
+        }
+        if (bodyParameter.type.type == "model" && bodyParameter.type.base == "json") {
+            bodyParameter["propertyToParameterName"] = {};
+            for (const property of bodyParameter.type.properties) {
+                bodyParameter["propertyToParameterName"][property["restApiName"]] = property["clientName"];
+                parameters.push(emitFlattenedParameter(bodyParameter, property));
+            }
         }
     }
     const name = camelToSnakeCase(operation.name);

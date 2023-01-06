@@ -1,10 +1,16 @@
 # Release History
 
-## 2022-12-16 - 0.4.15
+## 2023-01-06 - 0.4.15
+
+**Other Changes**
+
+- Support multiple authentication  #1626
+- Flatten JSONModelType body properties as operation parameters #1623
 
 **Bug Fixes**
 
-- Fix requirement on presence of `cadl-output` folder #1622 
+- Fix requirement on presence of `cadl-output` folder #1622
+- Fix import and _vendor for subnamespace  #1649
 
 ## 2022-12-15 - 0.4.14
 
