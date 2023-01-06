@@ -327,7 +327,10 @@ type BodyParameter = ParamBase & {
 
 function emitBodyParameter(program: Program, body: HttpOperationRequestBody, operation: Operation): BodyParameter {
     const base = emitParamBase(program, body.parameter ?? body.type);
-    const contentTypes = body.contentTypes ?? ["application/json"];
+    let contentTypes = body.contentTypes;
+    if (contentTypes.length === 0) {
+        contentTypes = ["application/json"];
+    }
     if (contentTypes.length !== 1) {
         throw Error("Currently only one kind of content-type!");
     }
@@ -1238,7 +1241,7 @@ function getNamespace(context: DpgContext, clientName: string): string {
     // We get client namespaces from the client name. If there's a dot, we add that to the namespace
     const submodule = clientName.split(".").slice(0, -1).join(".").toLowerCase();
     if (!submodule) {
-        return getClientNamespaceString(context)!;
+        return getClientNamespaceString(context)!.toLowerCase();
     }
     return submodule;
 }
