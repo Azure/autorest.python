@@ -98,7 +98,7 @@ class GeneralSerializer:
             imports=FileImportSerializer(imports),
         )
 
-    def serialize_vendor_file(self) -> str:
+    def serialize_vendor_file(self, clients: List[Client]) -> str:
         template = self.env.get_template("vendor.py.jinja2")
 
         # configure imports
@@ -132,7 +132,7 @@ class GeneralSerializer:
                 MsrestImportType.SerializerDeserializer,
                 TypingSection.TYPING,
             )
-            for client in self.code_model.clients:
+            for client in clients:
                 file_import.add_submodule_import(
                     "._configuration",
                     f"{client.name}Configuration",
@@ -145,6 +145,7 @@ class GeneralSerializer:
                 file_import,
             ),
             async_mode=self.async_mode,
+            clients=clients,
         )
 
     def serialize_config_file(self, clients: List[Client]) -> str:
