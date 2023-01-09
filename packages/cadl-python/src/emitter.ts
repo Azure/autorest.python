@@ -52,7 +52,7 @@ import {
     HttpOperationResponseContent,
     HttpServer,
     isStatusCode,
-    HttpOperation
+    HttpOperation,
 } from "@cadl-lang/rest/http";
 import { getAddedOn } from "@cadl-lang/versioning";
 import {
@@ -321,33 +321,22 @@ type BodyParameter = ParamBase & {
     defaultContentType: string;
 };
 
-function getBodyType(
-    program: Program,
-    route: HttpOperation
-): Type {
+function getBodyType(program: Program, route: HttpOperation): Type {
     let bodyModel = route.parameters.body?.type;
     if (bodyModel && bodyModel.kind === "Model" && route.operation) {
-        const resourceType = getResourceOperation(
-            program,
-            route.operation
-        )?.resourceType;
+        const resourceType = getResourceOperation(program, route.operation)?.resourceType;
         if (resourceType && route.responses && route.responses.length > 0) {
             const resp = route.responses[0];
             if (resp && resp.responses && resp.responses.length > 0) {
                 const responseBody = resp.responses[0]?.body;
                 if (responseBody?.type?.kind === "Model") {
-                    const bodyTypeInResponse = getEffectiveSchemaType(
-                        program,
-                        responseBody.type
-                    );
+                    const bodyTypeInResponse = getEffectiveSchemaType(program, responseBody.type);
                     // response body type is reosurce type, and request body type (if templated) contains resource type
                     if (
                         bodyTypeInResponse === resourceType &&
                         bodyModel.templateArguments &&
                         bodyModel.templateArguments.some((it) => {
-                            return it.kind === "Model" || it.kind === "Union"
-                                ? it === bodyTypeInResponse
-                                : false;
+                            return it.kind === "Model" || it.kind === "Union" ? it === bodyTypeInResponse : false;
                         })
                     ) {
                         bodyModel = resourceType;
