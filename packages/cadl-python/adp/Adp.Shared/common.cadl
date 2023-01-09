@@ -1,5 +1,0 @@
-import "./models.cadl";
-import "./operations.cadl";
-import "./classification/models.cadl";
-
-import "./azure-core-foundations-extensions.cadl";
