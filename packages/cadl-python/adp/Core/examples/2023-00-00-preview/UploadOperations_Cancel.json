@@ -1,0 +1,49 @@
+{
+  "operationId": "UploadOperations_Cancel",
+  "title": "Initiates the process of cancelling the upload.",
+  "parameters": {
+    "api-version": "2023-00-00-preview",
+    "uploadId": "00000000-0000-0000-0000-000000000002",
+    "operation-id": "00000000-0000-0000-0000-000000000123"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "externalPackageId": "string",
+        "discoveryId": "00000000-0000-0000-0000-000000000001",
+        "manifestUri": "https://some-storage-account/path/manifest.json",
+        "resourceEndpoint": "https://some-workspace/some-resource",
+        "status": "Cancelled",
+        "etag": "string"
+      }
+    },
+    "202": {
+      "headers": {
+        "location": "https://workspace-name-hash.workspaces.region.adp.azure.com/path-to-resource/00000000-0000-0000-0000-000000000321?api-version=2023-00-00-preview",
+        "operation-location": "https://workspace-name-hash.workspaces.region.adp.azure.com/operations/00000000-0000-0000-0000-000000000123?api-version=2023-00-00-preview"
+      },
+      "body": {
+        "operationId": "00000000-0000-0000-0000-000000000123",
+        "status": "Created",
+        "finalResultLocation": "https://workspace-name-hash.workspaces.region.adp.azure.com/path-to-resource/00000000-0000-0000-0000-000000000321?api-version=2023-00-00-preview",
+        "etag": "sha256",
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": []
+        }
+      }
+    },
+    "default": {
+      "body": {
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": []
+        }
+      }
+    }
+  }
+}

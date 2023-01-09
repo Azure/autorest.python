@@ -1,0 +1,29 @@
+{
+  "operationId": "MeasurementMetadataOperations_Get",
+  "title": "Get measurement metadata.",
+  "parameters": {
+    "api-version": "2023-00-00-preview",
+    "measurementId": "00000000-0000-0000-0000-000000000003"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "metadata": {
+          "additionalProp1": "string",
+          "additionalProp2": "string",
+          "additionalProp3": "string"
+        }
+      }
+    },
+    "default": {
+      "body": {
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": []
+        }
+      }
+    }
+  }
+}

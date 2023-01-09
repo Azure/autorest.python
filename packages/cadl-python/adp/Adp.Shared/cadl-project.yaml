@@ -1,0 +1,29 @@
+# Custom parameters for ADP Core project
+# Allows composition of the output directory for each emitter
+parameters:
+  api-kind: 
+    default: "data-plane"
+  api-version-kind: 
+    default: "preview"
+  api-namespace: 
+    default: "Adp.Shared"
+
+output-dir: "{project-root}"
+
+emit:
+  - "@azure-tools/cadl-autorest"
+  - "@azure-tools/cadl-csharp"
+
+options:
+  "@azure-tools/cadl-autorest":
+    emitter-output-dir: "{output-dir}/../{api-kind}/{api-namespace}/{api-version-kind}"
+    output-file: adp-shared-api.json
+    examples-directory: ./examples
+
+  "@azure-tools/cadl-csharp":
+    emitter-output-dir: "{output-dir}/../../../../../clients/Shared/Clients.Shared.vDraftCompliant"
+    library-name: "Azure.Adp.Clients.Shared.vDraftCompliant"
+    namespace: "Microsoft.Azure.Adp.Clients.Shared.vDraftCompliant"
+    clear-output-folder: true
+    new-project: false  
+    model-namespace: true

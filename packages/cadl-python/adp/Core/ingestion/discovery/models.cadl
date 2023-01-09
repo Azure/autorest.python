@@ -1,0 +1,138 @@
+using Cadl.Rest;
+using Azure.Core;
+
+namespace Adp.Core.Ingestion.Discovery;
+
+@doc("Internal - the model for internal use")
+model DiscoveryIdentifier {
+  @doc("The discovery identifier.")
+  @key
+  @minLength(1)
+  @maxLength(36)
+  discoveryId: string;
+}
+
+@doc("Discovery resource creation parameters.")
+@withVisibility("create")
+@withoutOmittedProperties("discoveryId")
+model DiscoveryCreationParameters {
+  ...Discovery;
+}
+
+@doc("A discovery resource.")
+@resource("discoveries")
+model Discovery {
+  ...DiscoveryIdentifier;
+
+  @doc("ID of the external package (for example, the disk which contained data) which was used upon the creation of upload")
+  @visibility("read", "create")
+  externalPackageId?: string;
+
+  @doc("""
+  SAS signed URI for accessing the discovery manifest file on Azure Storage.
+  This URI expires in 24 hours.
+  """)
+  @visibility("read", "update")
+  manifestUri?: Cadl.url;
+
+  @doc("The discovery status.")
+  @visibility("read", "update")
+  status?: DiscoveryStatus;
+  ...Azure.Core.Foundations.Extensions.CustomEtagProperty;
+}
+
+@doc("A discovery special file resource.")
+@resource("specialFilesUploadInfo")
+@parentResource(Discovery)
+model DiscoverySpecialFile {
+  @doc("Client file name.")
+  @key
+  clientFileName: string;
+
+  @doc("File name on storage.")
+  fileUri: string;
+}
+
+@doc("A discovery upload resource.")
+@resource("uploads")
+@parentResource(Discovery)
+model DiscoveryUpload {
+  @doc("Upload identifier.")
+  @key
+  @minLength(1)
+  @maxLength(36)
+  uploadId: string;
+
+  @doc("""
+  SAS signed URI for downloading the manifest file from Azure Storage.
+  The manifest file contains list of all files in the group.
+  This URI expires in 24 hours.
+  """)
+  manifestUri: url;
+  ...CommonResourceEndpoint;
+}
+
+@doc("Describes the list of special files to be uploaded")
+model DiscoverySpecialFilesResponse {
+  ...DiscoveryIdentifier;
+
+  @doc("List of the special files")
+  files: FileUploadInformation[];
+}
+
+@doc("Known discovery error codes.")
+enum DiscoveryOperationErrorCode {
+  @doc("The operation has succeeded")
+  Succeeded: "Succeeded",
+
+  @doc("Discovery manifest file doesn't exist")
+  DiscoveryManifestNotFound: "DiscoveryManifestNotFound",
+
+  @doc("Invalid discovery manifest format")
+  InvalidDiscoveryManifestFormat: "InvalidDiscoveryManifestFormat",
+
+  @doc("The special file doesn't exist")
+  SpecialFileNotFound: "SpecialFileNotFound",
+
+  @doc("The special file has an invalid format")
+  InvalidSpecialFileFormat: "InvalidSpecialFileFormat",
+
+  @doc("Data pool doesn't exist")
+  DataPoolDoesNotExist: "DataPoolDoesNotExist",
+
+  @doc("Workspace doesn't exist")
+  WorkspaceDoesNotExist: "WorkspaceDoesNotExist",
+
+  @doc("Invalid disk structure")
+  InvalidDiskFolderStructure: "InvalidDiskFolderStructure",
+
+  @doc("The operation has failed with an unexpected error")
+  Unknown: "Unknown",
+}
+
+@doc("The status of the discovery")
+enum DiscoveryStatus {
+  @doc("The discovery process has been initiated")
+  Created: "Created",
+
+  @doc("The system is analyzing the discovery manifest file uploaded by the client and generating the upload information for uploading special files.")
+  GeneratingSpecialFilesUploadInfo: "GeneratingSpecialFilesUploadInfo",
+
+  @doc("The system has analyzed the discovery manifest file and generated the upload information for uploading special files.")
+  GeneratedSpecialFilesUploadInfo: "GeneratedSpecialFilesUploadInfo",
+
+  @doc("The system is processing the special files uploaded by the client")
+  Completing: "Completing",
+
+  @doc("The system has finished the analysis of special files")
+  Completed: "Completed",
+
+  @doc("The system is cancelling the discovery process")
+  Aborting: "Aborting",
+
+  @doc("The discovery process has been aborted")
+  Aborted: "Aborted",
+
+  @doc("The discovery process has been failed")
+  Failed: "Failed",
+}

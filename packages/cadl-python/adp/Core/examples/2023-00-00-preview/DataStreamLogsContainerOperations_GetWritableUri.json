@@ -1,0 +1,16 @@
+{
+  "operationId": "DataStreamLogsContainerOperations_GetWritableUri",
+  "title": "Returns SAS signed URI of the data-stream logs folder that allow uploading log files to Azure Storage.\nThe SAS token expires in 24 hours.",
+  "parameters": {
+    "measurementId": "00000000-0000-0000-0000-000000000003",
+    "dataStreamId": "00000000-0000-0000-0000-000000000005",
+    "api-version": "2023-00-00-preview"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "logFolderUri": "https://some-storage-account/some-path/logs"
+      }
+    }
+  }
+}

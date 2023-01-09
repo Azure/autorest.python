@@ -1,0 +1,276 @@
+import "@cadl-lang/rest";
+import "@cadl-lang/openapi";
+import "@azure-tools/cadl-autorest";
+import "@azure-tools/cadl-azure-core";
+import "@azure-tools/cadl-dpg";
+
+import "./main.cadl";
+
+using Azure.DPG;
+using Cadl.Rest.Private;
+
+namespace Adp.Sdk.DotNet.Core {
+  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+  @client({
+    name: "CoreClient",
+    service: Adp.Core,
+  })
+  interface Core
+    extends Adp.Sdk.DotNet.Internal.LongRunningOperation,
+      Adp.Sdk.DotNet.Internal.Discovery,
+      Adp.Sdk.DotNet.Internal.Upload,
+      Adp.Sdk.DotNet.Internal.ClassificationSchema,
+      Adp.Sdk.DotNet.Internal.Measurement,
+      Adp.Sdk.DotNet.Internal.MeasurementClassification,
+      Adp.Sdk.DotNet.Internal.DataStream,
+      Adp.Sdk.DotNet.Internal.DataStreamClassification {}
+}
+
+namespace Adp.Sdk.DotNet.Internal {
+  interface LongRunningOperation {
+    @convenienceAPI
+    getLongRunning is Adp.Shared.LongRunningOperations.getStatus;
+  }
+
+  interface ClassificationSchema {
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    getClassificationSchema is Adp.Core.ClassificationSchema.ClassificationSchemaOperations.get;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    createClassificationSchema is Adp.Core.ClassificationSchema.ClassificationSchemaOperations.create;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    deleteClassificationSchema is Adp.Core.ClassificationSchema.ClassificationSchemaOperations.delete;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    getClassificationSchemas is Adp.Core.ClassificationSchema.ClassificationSchemaOperations.getAll;
+  }
+
+  interface Discovery {
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    createOrReplaceDiscovery is Adp.Core.Ingestion.Discovery.DiscoveryOperations.createOrReplace;
+
+    @convenienceAPI
+    getDiscovery is Adp.Core.Ingestion.Discovery.DiscoveryOperations.get;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    @actionSegment("complete")
+    completeDiscovery is Adp.Core.Ingestion.Discovery.DiscoveryOperations.complete;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    @actionSegment("cancel")
+    cancelDiscovery is Adp.Core.Ingestion.Discovery.DiscoveryOperations.cancel;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    @actionSegment("listWritableUris")
+    getDiscoverySpecialFileUploadLocations is Adp.Core.Ingestion.Discovery.DiscoverySpecialFileOperations.listWritableUris;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    @actionSegment("generate")
+    generateDiscoverySpecialFileUploadLocations is Adp.Core.Ingestion.Discovery.DiscoverySpecialFileOperations.generate;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    getAllDiscoveryUploads is Adp.Core.Ingestion.Discovery.DiscoveryResultUploadOperations.list;
+  }
+
+  interface Upload {
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    createOrReplaceUpload is Adp.Core.Ingestion.Upload.UploadOperations.createOrReplace;
+
+    @convenienceAPI
+    getUpload is Adp.Core.Ingestion.Upload.UploadOperations.get;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    @actionSegment("complete")
+    completeUpload is Adp.Core.Ingestion.Upload.UploadOperations.complete;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    @actionSegment("cancel")
+    cancelUpload is Adp.Core.Ingestion.Upload.UploadOperations.cancel;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    @actionSegment("generate")
+    generateUploadSpecialFiles is Adp.Core.Ingestion.Upload.UploadSpecialFileOperations.generate;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    @actionSegment("listWritableUris")
+    getUploadSpecialFiles is Adp.Core.Ingestion.Upload.UploadSpecialFileOperations.listWritableUris;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    @actionSegment("generate")
+    generateUploadDataFiles is Adp.Core.Ingestion.Upload.UploadDataFileOperations.generate;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    @actionSegment("listWritableUris")
+    getUploadDataFiles is Adp.Core.Ingestion.Upload.UploadDataFileOperations.listWritableUris;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    listMeasurements is Adp.Core.Ingestion.Upload.UploadResultMeasurementOperations.getAll;
+  }
+
+  interface Measurement {
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    getMeasurement is Adp.Core.Measurement.MeasurementOperations.get;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    deleteMeasurement is Adp.Core.Measurement.MeasurementOperations.delete;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    getMeasurements is Adp.Core.Measurement.MeasurementOperations.getAll;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    @actionSegment("queryMeasurementsWithMetadata")
+    getMeasurementsWithMetadata is Adp.Core.Measurement.MeasurementOperations.queryMeasurementsWithMetadata;
+
+    @convenienceAPI
+    @actionSegment("findByIds")
+    getMeasurementsByIds is Adp.Core.Measurement.MeasurementOperations.findByIds;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    getMeasurementMetadata is Adp.Core.Measurement.MeasurementMetadataOperations.get;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    getMeasurementProcessingResults is Adp.Core.Measurement.MeasurementProcessingResultsOperations.get;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    getMeasurementStateMachine is Adp.Core.Measurement.MeasurementStateMachineOperations.get;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    getMeasurementStateMachines is Adp.Core.Measurement.MeasurementStateMachineOperations.getAll;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    @actionSegment("act")
+    actMeasurementStateMachine is Adp.Core.Measurement.MeasurementStateMachineOperations.act;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    getMeasurementMetadataSchemaFileInfo is Adp.Core.Measurement.MeasurementMetadataSchemaFileInfoOperations.get;
+  }
+
+  interface MeasurementClassification {
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    getMeasurementClassification is Adp.Core.Measurement.Classification.MeasurementClassificationOperations.get;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    getMeasurementClassifications is Adp.Core.Measurement.Classification.MeasurementClassificationOperations.getAll;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    deleteMeasurementClassification is Adp.Core.Measurement.Classification.MeasurementClassificationOperations.delete;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    createMeasurementClassification is Adp.Core.Measurement.Classification.MeasurementClassificationOperations.create;
+  }
+
+  interface DataStream {
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    createDataStream is Adp.Core.DataStream.DataStreamOperations.create;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    getDataStream is Adp.Core.DataStream.DataStreamOperations.get;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    getAllDataStream is Adp.Core.DataStream.DataStreamOperations.getAll;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    @actionSegment("clearContent")
+    clearContentOfDataStream is Adp.Core.DataStream.DataStreamOperations.clearContent;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    @actionSegment("stageFiles")
+    stageFilesForDataStream is Adp.Core.DataStream.DataStreamOperations.stageFiles;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    @actionSegment("complete")
+    completeDataStream is Adp.Core.DataStream.DataStreamOperations.complete;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    @actionSegment("fail")
+    failDataStream is Adp.Core.DataStream.DataStreamOperations.fail;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    @actionSegment("findByTags")
+    getDataStreamsByTags is Adp.Core.DataStream.DataStreamOperations.findByTags;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    @actionSegment("findByLineage")
+    getDataStreamsByLineage is Adp.Core.DataStream.DataStreamOperations.findByLineage;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    @actionSegment("getLineageGraphsByLineage")
+    getDataStreamLineageGraphsByLineage is Adp.Core.DataStream.DataStreamOperations.getLineageGraphsByLineage;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    createOrReplaceDataStreamStorage is Adp.Core.DataStream.DataStreamStorageOperations.createOrReplace;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    @actionSegment("getWithWritableUris")
+    getDataStreamStorage is Adp.Core.DataStream.DataStreamStorageOperations.getWithWritableUris;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    createOrReplaceDataStreamTags is Adp.Core.DataStream.DataStreamTagsOperations.createOrReplace;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    getDataStreamTags is Adp.Core.DataStream.DataStreamTagsOperations.get;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    @actionSegment("generate")
+    generateDataStreamFiles is Adp.Core.DataStream.DataStreamFileOperations.generate;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    getDataStreamFiles is Adp.Core.DataStream.DataStreamFileOperations.getAll;
+
+    #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+    @convenienceAPI
+    @actionSegment("getWritableUri")
+    getDataStreamLogsContainerLocation is Adp.Core.DataStream.DataStreamLogsContainerOperations.getWritableUri;
+  }
+
+  interface DataStreamClassification {}
+}

@@ -1,0 +1,41 @@
+{
+  "operationId": "ListSampleClassifications",
+  "title": "List classification instances for specific sample resource. Supports paging.",
+  "parameters": {
+    "api-version": "2023-00-00-preview",
+    "sampleId": "00000000-0000-0000-0000-000000000001",
+    "maxpagesize": 100
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "value": [
+          {
+            "schemaName": "sample_classification_schema_1",
+            "classificationObject": "{\"key_1\": \"value_1\"}",
+            "eTag": "some_SHA256_hash"
+          },
+          {
+            "schemaName": "sample_classification_schema_2",
+            "classificationObject": "{\"key_2\": \"value_2\"}",
+            "eTag": "some_SHA256_hash"
+          },
+          {
+            "schemaName": "sample_classification_schema_3",
+            "classificationObject": "{\"key_3\": \"value_3\"}",
+            "eTag": "some_SHA256_hash"
+          }
+        ],
+        "nextLink": "link"
+      }
+    },
+    "default": {
+      "body": {
+        "error": {
+          "code": "Error code",
+          "message": "Error message"
+        }
+      }
+    }
+  }
+}

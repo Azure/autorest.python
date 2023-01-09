@@ -1,0 +1,182 @@
+{
+  "name": "@cadl-api-spec/adp-core",
+  "version": "0.1.0",
+  "description": "ADP Core API",
+  "private": true,
+  "main": "index.js",
+  "cadlMain": "client.cadl",
+  "config": {
+    "verbose": " -Verbose",
+    "CoreOutputDirectory": "../data-plane/Adp.Core",
+    "CorePublicOutputFile": "preview/2023-00-00-preview/adp-core-api.json",
+    "PublicClientPath": "../generated/clients/Core/Clients.Core.vDraftCompliant",
+    "PublicClientNamespace": "Microsoft.Azure.Adp.Core.Clients.vDraftCompliant",
+    "PublishCorePublicOutputFileName": "../../../../draftcompliant/apispec.core.2023-00-00-draftcompliant.json",
+    "AutorestManifestFile": "../src/scripts/autorest.md",
+    "RepositoryRootDirectory": "../../../../../../.."
+  },
+  "scripts": {
+    "lint": "cadl compile . --warn-as-error --import @cadl-lang/library-linter --no-emit",
+    "format": "npm run _formatCadl && npm run _formatJs",
+    "validate": "npm run _validateOpenApiSpec && npm run _validateExamples",
+    "build": "npm run format && npx cadl compile . && npm run validate",
+    "publish": "pwsh ../src/scripts/publish.ps1 %npm_package_config_verbose% -SourceOpenApiSpecPath %npm_package_config_CoreOutputDirectory%/%npm_package_config_CorePublicOutputFile% -OutputOpenApiSpecPath %npm_package_config_PublishCorePublicOutputFileName%",
+    "check-version-mismatch": "syncpack list-mismatches",
+    "fix-version-mismatch": "syncpack fix-mismatches",
+    "_refreshVSToken": "vsts-npm-auth -config %npm_package_config_RepositoryRootDirectory%/.npmrc",
+    "_validateOpenApiSpec": "pwsh ../src/scripts/validate-spec.ps1 -OpenApiSpecFile %npm_package_config_CoreOutputDirectory%/%npm_package_config_CorePublicOutputFile%",
+    "_validateExamples": "pwsh ../src/scripts/validate-examples.ps1 -OpenApiSpecFile %npm_package_config_CoreOutputDirectory%/%npm_package_config_CorePublicOutputFile%",
+    "_compile": "pwsh ../src/scripts/compile.ps1 -IsPublicApi -InputCadl . -OutputPath %npm_package_config_CoreOutputDirectory% -OutputFile %npm_package_config_CorePublicOutputFile%",
+    "_generateClientWithAutoRest": "pwsh ../src/scripts/generate-autorest-client.ps1 -UseLatestAutoRestVersion -InputOpenApiSpecFile %npm_package_config_CoreOutputDirectory%/%npm_package_config_CorePublicOutputFile% -OutputPath %npm_package_config_PublicClientPath%/generated -Namespace %npm_package_config_PublicClientNamespace% -AutorestManifestFile %npm_package_config_AutorestManifestFile%",
+    "_generateExamples": "pwsh ../src/scripts/generate-examples.ps1 -OpenApiSpecFile %npm_package_config_CoreOutputDirectory%/%npm_package_config_CorePublicOutputFile%",
+    "_formatCadl": "npx cadl format --pretty ./**/*.cadl",
+    "_formatJs": "prettier --write \"**/*.+(js|json)\""
+  },
+  "keywords": [],
+  "author": "Microsoft Corporation",
+  "license": "MIT",
+  "peerDependencies": {
+    "@cadl-api-spec/adp-shared": "../Adp.Shared"
+  },
+  "devDependencies": {
+    "@azure-tools/cadl-autorest": "~0.24.0",
+    "@azure-tools/cadl-azure-core": "~0.24.0",
+    "@azure-tools/cadl-csharp": "^0.1.11-beta.20221229.1",
+    "@azure-tools/cadl-dpg": "~0.24.0",
+    "@cadl-lang/compiler": "0.38.5",
+    "@cadl-lang/library-linter": "~0.38.0",
+    "@cadl-lang/openapi": "~0.38.0",
+    "@cadl-lang/openapi3": "~0.38.0",
+    "@cadl-lang/rest": "0.38.0",
+    "@cadl-lang/versioning": "~0.38.0",
+    "avocado": "1.0.0",
+    "prettier": "^2.7.1",
+    "syncpack": "^8.2.4"
+  },
+  "syncpack": {
+    "workspace": false,
+    "source": [
+      "./package.json",
+      "../*/package.json"
+    ],
+    "versionGroups": [
+      {
+        "dependencies": [
+          "@cadl-lang/openapi"
+        ],
+        "packages": [
+          "**"
+        ],
+        "pinVersion": "~0.38.0"
+      },
+      {
+        "dependencies": [
+          "@cadl-lang/openapi3"
+        ],
+        "packages": [
+          "**"
+        ],
+        "pinVersion": "~0.38.0"
+      },
+      {
+        "dependencies": [
+          "@cadl-lang/rest"
+        ],
+        "packages": [
+          "**"
+        ],
+        "pinVersion": "0.38.0"
+      },
+      {
+        "dependencies": [
+          "@cadl-lang/versioning"
+        ],
+        "packages": [
+          "**"
+        ],
+        "pinVersion": "~0.38.0"
+      },
+      {
+        "dependencies": [
+          "@azure-tools/cadl-autorest"
+        ],
+        "packages": [
+          "**"
+        ],
+        "pinVersion": "~0.24.0"
+      },
+      {
+        "dependencies": [
+          "@azure-tools/cadl-azure-core"
+        ],
+        "packages": [
+          "**"
+        ],
+        "pinVersion": "~0.24.0"
+      },
+      {
+        "dependencies": [
+          "@cadl-lang/compiler"
+        ],
+        "packages": [
+          "**"
+        ],
+        "pinVersion": "0.38.5"
+      },
+      {
+        "dependencies": [
+          "@azure-tools/cadl-dpg"
+        ],
+        "packages": [
+          "**"
+        ],
+        "pinVersion": "~0.24.0"
+      },
+      {
+        "dependencies": [
+          "@azure-tools/cadl-csharp"
+        ],
+        "packages": [
+          "**"
+        ],
+        "pinVersion": "0.1.11-beta.20221229.1"
+      },
+      {
+        "dependencies": [
+          "avocado"
+        ],
+        "packages": [
+          "**"
+        ],
+        "pinVersion": "1.0.0"
+      },
+      {
+        "dependencies": [
+          "prettier"
+        ],
+        "packages": [
+          "**"
+        ],
+        "pinVersion": "^2.7.1"
+      },
+      {
+        "dependencies": [
+          "syncpack"
+        ],
+        "packages": [
+          "**"
+        ],
+        "pinVersion": "^8.2.4"
+      },
+      {
+        "dependencies": [
+          "@cadl-lang/library-linter"
+        ],
+        "packages": [
+          "**"
+        ],
+        "pinVersion": "~0.38.0"
+      }
+    ]
+  }
+}

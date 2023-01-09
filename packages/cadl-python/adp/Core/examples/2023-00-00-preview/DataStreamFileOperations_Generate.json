@@ -1,0 +1,38 @@
+{
+  "operationId": "DataStreamFileOperations_Generate",
+  "title": "Initiates the process of generating SAS signed URIs for accessing the data-stream files.",
+  "parameters": {
+    "measurementId": "00000000-0000-0000-0000-000000000003",
+    "dataStreamId": "00000000-0000-0000-0000-000000000005",
+    "operation-id": "00000000-0000-0000-0000-000000000123",
+    "api-version": "2023-00-00-preview"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "clientFileName": "foo.dat",
+        "fileUri": "https://some-workspace/manifest.json",
+        "externalTimeStamp": "2022-10-26T06:20:36.367Z",
+        "size": 27
+      }
+    },
+    "202": {
+      "headers": {
+        "location": "https://workspace-name-hash.workspaces.region.adp.azure.com/path-to-resource/00000000-0000-0000-0000-000000000321?api-version=2023-00-00-preview",
+        "operation-location": "https://workspace-name-hash.workspaces.region.adp.azure.com/operations/00000000-0000-0000-0000-000000000123?api-version=2023-00-00-preview"
+      },
+      "body": {
+        "operationId": "string",
+        "status": "Created",
+        "finalResultLocation": "https://workspace-name-hash.workspaces.region.adp.azure.com/path-to-resource/00000000-0000-0000-0000-000000000321?api-version=2023-00-00-preview",
+        "etag": "sha256",
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": []
+        }
+      }
+    }
+  }
+}

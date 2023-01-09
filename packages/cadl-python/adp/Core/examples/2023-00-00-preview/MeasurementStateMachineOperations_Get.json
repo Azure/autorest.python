@@ -1,0 +1,30 @@
+{
+  "operationId": "MeasurementStateMachineOperations_Get",
+  "title": "Returns the the state machine instance for the measurement.",
+  "parameters": {
+    "measurementId": "00000000-0000-0000-0000-000000000003",
+    "api-version": "2023-00-00-preview",
+    "id": "1"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "id": "string",
+        "type": "string",
+        "availableActionNames": [
+          "string"
+        ]
+      }
+    },
+    "default": {
+      "body": {
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": []
+        }
+      }
+    }
+  }
+}

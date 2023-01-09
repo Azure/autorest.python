@@ -1,0 +1,39 @@
+{
+  "operationId": "DataStreamTagsOperations_CreateOrReplace",
+  "title": "Create or replace all tags at once.",
+  "parameters": {
+    "measurementId": "00000000-0000-0000-0000-000000000003",
+    "dataStreamId": "00000000-0000-0000-0000-000000000005",
+    "api-version": "2023-00-00-preview",
+    "body": {
+      "tags": [
+        {
+          "key": "foo",
+          "value": "foo"
+        }
+      ]
+    }
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "tags": [
+          {
+            "key": "foo",
+            "value": "foo"
+          }
+        ]
+      }
+    },
+    "201": {
+      "body": {
+        "tags": [
+          {
+            "key": "foo",
+            "value": "foo"
+          }
+        ]
+      }
+    }
+  }
+}

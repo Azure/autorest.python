@@ -1,0 +1,42 @@
+{
+  "operationId": "CreateSample",
+  "title": "Create Sample resource using long-running operation (LRO).",
+  "parameters": {
+    "api-version": "2023-00-00-preview",
+    "operationId": "client-operation-id",
+    "resource": {
+      "id": "00000000-0000-0000-0000-000000000001",
+      "state": "Inactive",
+      "labels": [
+        "some",
+        "labels"
+      ]
+    }
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "id": "00000000-0000-0000-0000-000000000001",
+        "state": "Inactive",
+        "labels": [
+          "some",
+          "labels"
+        ]
+      }
+    },
+    "202": {
+      "headers": {
+        "location": "https://workspace-name-hash.workspaces.region.adp.azure.com/operations/client-operation-id/result?api-version=2023-00-00-preview",
+        "operation-location": "https://workspace-name-hash.workspaces.region.adp.azure.com/operations/client-operation-id?api-version=2023-00-00-preview"
+      }
+    },
+    "default": {
+      "body": {
+        "error": {
+          "code": "Error code",
+          "message": "Error message"
+        }
+      }
+    }
+  }
+}

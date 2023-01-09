@@ -1,0 +1,35 @@
+{
+  "operationId": "UploadDataFileOperations_GetAll",
+  "title": "Returns SAS signed URIs for reading data files from Azure Storage.",
+  "parameters": {
+    "api-version": "2023-00-00-preview",
+    "uploadId": "00000000-0000-0000-0000-000000000002"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "value": [
+          {
+            "clientFileName": "file-1.ext",
+            "fileUri": "https://somewhere/file-1.ext"
+          },
+          {
+            "clientFileName": "file-2.ext",
+            "fileUri": "https://somewhere/file-2.ext"
+          }
+        ],
+        "nextLink": "https://workspace/path-to-collection?continuationToken=123"
+      }
+    },
+    "default": {
+      "body": {
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": []
+        }
+      }
+    }
+  }
+}

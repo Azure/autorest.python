@@ -1,0 +1,24 @@
+{
+  "operationId": "DataStreamFileOperations_GetAll",
+  "title": "Returns SAS signed URIs for reading special files from Azure Storage.",
+  "parameters": {
+    "measurementId": "00000000-0000-0000-0000-000000000003",
+    "dataStreamId": "00000000-0000-0000-0000-000000000005",
+    "api-version": "2023-00-00-preview"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "value": [
+          {
+            "clientFileName": "foo.dat",
+            "fileUri": "https://some-storage-account/path-to/foo.dat",
+            "externalTimeStamp": "2022-10-26T06:20:36.367Z",
+            "size": 27
+          }
+        ],
+        "nextLink": "https://microsoft.com/a"
+      }
+    }
+  }
+}

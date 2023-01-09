@@ -1,0 +1,38 @@
+{
+  "operationId": "MeasurementProcessingResultsOperations_Get",
+  "title": "Returns the measurement processing result.",
+  "parameters": {
+    "measurementId": "00000000-0000-0000-0000-000000000003",
+    "api-version": "2023-00-00-preview"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "validationPassed": true,
+        "results": [
+          {
+            "ruleCategory": "string",
+            "ruleName": "string",
+            "details": {
+              "additionalProp1": "string",
+              "additionalProp2": "string",
+              "additionalProp3": "string"
+            },
+            "validationPassed": true,
+            "validationError": "string"
+          }
+        ]
+      }
+    },
+    "default": {
+      "body": {
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": []
+        }
+      }
+    }
+  }
+}

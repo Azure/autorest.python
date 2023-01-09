@@ -1,0 +1,40 @@
+{
+  "operationId": "DataStreamStorageOperations_GetWithWritableUris",
+  "title": "Returns the data-stream storage resource with SAS signed URIs that allow uploading to Azure Storage.\nThe SAS token expires in 24 hours.",
+  "parameters": {
+    "measurementId": "00000000-0000-0000-0000-000000000003",
+    "dataStreamId": "00000000-0000-0000-0000-000000000005",
+    "api-version": "2023-00-00-preview"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "type": "shardedStorage",
+        "rollingInformation": {
+          "strategy": "Time",
+          "unit": "Seconds",
+          "value": 0
+        },
+        "manifestUri": "https://storage-account/path-to-manifest/manifest.json",
+        "dataFolderUri": "https://storage-account/path-to-data-folder",
+        "shards": [
+          {
+            "shardFolderUri": "https://storage-account/path-to-shard",
+            "manifestFileUri": "https://storage-account/path-to-shard/manifest.json"
+          }
+        ],
+        "etag": "string"
+      }
+    },
+    "default": {
+      "body": {
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": []
+        }
+      }
+    }
+  }
+}

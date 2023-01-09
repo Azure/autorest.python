@@ -1,0 +1,39 @@
+{
+  "operationId": "DiscoveryOperations_CreateOrReplace",
+  "title": "Creates a new ingestion discovery instance.",
+  "parameters": {
+    "api-version": "2023-00-00-preview",
+    "discoveryId": "00000000-0000-0000-0000-000000000001",
+    "externalPackageId": "string"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "discoveryId": "00000000-0000-0000-0000-000000000001",
+        "externalPackageId": "string",
+        "manifestUri": "https://some-workspace/manifest.json",
+        "status": "Created",
+        "etag": "string"
+      }
+    },
+    "201": {
+      "body": {
+        "discoveryId": "00000000-0000-0000-0000-000000000001",
+        "externalPackageId": "string",
+        "manifestUri": "https://some-workspace/manifest.json",
+        "status": "Created",
+        "etag": "string"
+      }
+    },
+    "default": {
+      "body": {
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": []
+        }
+      }
+    }
+  }
+}

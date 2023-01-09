@@ -1,0 +1,79 @@
+{
+  "operationId": "DataStreamOperations_Create",
+  "title": "Creates new data-stream resource.",
+  "parameters": {
+    "measurementId": "00000000-0000-0000-0000-000000000003",
+    "api-version": "2023-00-00-preview",
+    "operation-id": "00000000-0000-0000-0000-000000000123",
+    "body": {
+      "lineage": {
+        "producerMetadata": {
+          "key3673": "ubarvd"
+        },
+        "inputs": [
+          {
+            "sourceDataStreamId": "dyskkgbidtjjpvldsddght",
+            "channels": [
+              "ncjmpikffluh"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "dataStreamId": "00000000-0000-0000-0000-000000000005",
+        "resourceEndpoint": "https://some-workspace/some-resource",
+        "lineage": {
+          "producerMetadata": {
+            "some-key": "some-value"
+          },
+          "inputs": [
+            {
+              "sourceDataStreamId": "some source id",
+              "channels": [
+                "some channel"
+              ]
+            }
+          ]
+        },
+        "status": "Created",
+        "type": "System",
+        "etag": "string"
+      }
+    },
+    "202": {
+      "headers": {
+        "location": "https://workspace-name-hash.workspaces.region.adp.azure.com/path-to-resource/00000000-0000-0000-0000-000000000321?api-version=2023-00-00-preview",
+        "operation-location": "https://workspace-name-hash.workspaces.region.adp.azure.com/operations/00000000-0000-0000-0000-000000000123?api-version=2023-00-00-preview"
+      },
+      "body": {
+        "operationId": "string",
+        "status": "Created",
+        "finalResultLocation": "https://workspace-name-hash.workspaces.region.adp.azure.com/path-to-resource/00000000-0000-0000-0000-000000000321?api-version=2023-00-00-preview",
+        "etag": "sha256",
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": [],
+          "innererror": {
+            "code": "kc"
+          }
+        }
+      }
+    },
+    "default": {
+      "body": {
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": []
+        }
+      }
+    }
+  }
+}

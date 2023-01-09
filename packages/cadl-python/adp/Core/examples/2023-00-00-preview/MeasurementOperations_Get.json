@@ -1,0 +1,33 @@
+{
+  "operationId": "MeasurementOperations_Get",
+  "title": "Get measurement by ID.",
+  "parameters": {
+    "api-version": "2023-00-00-preview",
+    "measurementId": "00000000-0000-0000-0000-000000000003"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "measurementId": "00000000-0000-0000-0000-000000000003",
+        "location": "string",
+        "ingestTimestampUtc": "2022-10-26T06:26:04.277Z",
+        "resourceEndpoint": "https://some-workspace/some-resource",
+        "externalPackageId": "string",
+        "uploadId": "00000000-0000-0000-0000-000000000002",
+        "discoveryId": "00000000-0000-0000-0000-000000000001",
+        "recordTimestampUtc": "2022-10-26T06:26:04.277Z",
+        "etag": "string"
+      }
+    },
+    "default": {
+      "body": {
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": []
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "operationId": "LongRunningOperations_GetStatus",
+  "title": "Get status of the long running operation. (LRO)",
+  "parameters": {
+    "api-version": "2023-00-00-preview",
+    "operationId": "00000000-0000-0000-0000-000000000001"
+  },
+  "responses": {
+    "200": {
+      "headers": {
+        "Retry-After": 5
+      },
+      "body": {
+        "operationId": "00000000-0000-0000-0000-000000000001",
+        "status": "Failed",
+        "finalResultLocation": "https://workspace-name-hash.workspaces.region.adp.azure.com/path-to-resource/00000000-0000-0000-0000-000000000321?api-version=2023-00-00-preview",
+        "etag": "sha256",
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": []
+        }
+      }
+    },
+    "default": {
+      "body": {
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": []
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,92 @@
+using Cadl.Http;
+using Cadl.Rest;
+using Azure.Core;
+using Azure.Core.Foundations.Extensions;
+using OpenAPI;
+using Autorest;
+
+namespace Adp.Core.Ingestion.Upload;
+
+@tag("Upload")
+interface UploadOperations {
+  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom operation."
+  @doc("Creates a new ingestion upload instance.")
+  createOrReplace is CustomResourceCreateOrReplace<
+    Upload,
+    CustomBodyWrapper<UploadCreationParameters>
+  >;
+
+  @doc("Get discovery by ID.")
+  get is ResourceRead<Upload>;
+
+  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+  @doc("Initiates the process of completing the upload and creating the measurements.")
+  @extension("x-ms-long-running-operation", true)
+  @asyncOperationOptions("location")
+  @pollingOperation(LongRunningOperationStatus)
+  complete is CustomLongRunningResourceAction<Upload, {}>;
+
+  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+  @doc("Initiates the process of cancelling the upload.")
+  @extension("x-ms-long-running-operation", true)
+  @asyncOperationOptions("location")
+  @pollingOperation(LongRunningOperationStatus)
+  cancel is CustomLongRunningResourceAction<Upload, {}>;
+}
+
+@tag("Upload")
+interface UploadSpecialFileOperations {
+  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+  @doc("Initiates the process of generating SAS signed URIs for uploading special files for the upload.")
+  @extension("x-ms-long-running-operation", true)
+  @asyncOperationOptions("location")
+  @pollingOperation(LongRunningOperationStatus)
+  generate is CustomLongRunningResourceCollectionAction<
+    UploadSpecialFile,
+    {},
+    UploadSpecialFile
+  >;
+
+  @doc("""
+  List special files details for the upload resource.
+  Returns SAS signed URI that allows uploading special files to Azure Storage.
+  This URI expires in 24 hours.
+  """)
+  listWritableUris is ResourceCollectionAction<
+    UploadSpecialFile,
+    {},
+    Page<UploadSpecialFile>
+  >;
+}
+
+@tag("Upload")
+interface UploadDataFileOperations {
+  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom LRO response template the LRO actions."
+  @doc("Initiates the process of allocating the data files.")
+  @extension("x-ms-long-running-operation", true)
+  @asyncOperationOptions("location")
+  @pollingOperation(LongRunningOperationStatus)
+  generate is CustomLongRunningResourceCollectionAction<
+    UploadDataFile,
+    {},
+    UploadDataFile
+  >;
+
+  @doc("""
+  List special files details for the upload resource.
+  Returns SAS signed URI that allows uploading data files to Azure Storage.
+  This URI expires in 24 hours.
+  """)
+  listWritableUris is ResourceCollectionAction<
+    UploadDataFile,
+    {},
+    Page<UploadDataFile>
+  >;
+}
+
+@tag("Upload")
+interface UploadResultMeasurementOperations {
+  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom resource list operation."
+  @doc("List of the measurement identifiers that have been created by the upload.")
+  getAll is CustomResourceList<UploadResultMeasurement>;
+}

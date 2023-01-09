@@ -1,0 +1,27 @@
+{
+  "operationId": "MeasurementMetadataFileInfoOperations_Get",
+  "title": "Returns SAS signed URI to an existing metadata file with `read` permissions\nand the eTag of that file in response header.\nThis URI expires in 24 hours.",
+  "parameters": {
+    "api-version": "2023-00-00-preview",
+    "measurementId": "00000000-0000-0000-0000-000000000003",
+    "intent": "write"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "metadataFileName": "metadata.json",
+        "metadataFileUri": "https://some-storage-account/path/metadata.json"
+      }
+    },
+    "default": {
+      "body": {
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": []
+        }
+      }
+    }
+  }
+}

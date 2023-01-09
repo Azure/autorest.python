@@ -1,0 +1,27 @@
+{
+  "operationId": "MeasurementMetadataFileInfoOperations_GetWritableUri",
+  "title": "Returns SAS signed URI that allows uploading temporary measurement metadata file to Azure Storage.\nThis URI expires in 24 hours.",
+  "parameters": {
+    "api-version": "2023-00-00-preview",
+    "measurementId": "00000000-0000-0000-0000-000000000003",
+    "intent": "write"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "metadataFileName": "metadata.json",
+        "metadataFileUri": "https://some-storage-account/path/metadata.json"
+      }
+    },
+    "default": {
+      "body": {
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": []
+        }
+      }
+    }
+  }
+}

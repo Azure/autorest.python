@@ -1,0 +1,40 @@
+{
+  "operationId": "SetLabelsWithPatch",
+  "title": "Set labels for a specific sample resource.",
+  "parameters": {
+    "api-version": "2023-00-00-preview",
+    "sampleId": "sample123",
+    "labels": [
+      "list",
+      "of",
+      "new",
+      "labels",
+      "after",
+      "patch"
+    ]
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "id": "00000000-0000-0000-0000-000000000001",
+        "state": "Active",
+        "labels": [
+          "list",
+          "of",
+          "new",
+          "labels",
+          "after",
+          "patch"
+        ]
+      }
+    },
+    "default": {
+      "body": {
+        "error": {
+          "code": "Error code",
+          "message": "Error message"
+        }
+      }
+    }
+  }
+}

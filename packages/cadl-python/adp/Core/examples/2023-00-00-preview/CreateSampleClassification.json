@@ -1,0 +1,34 @@
+{
+  "operationId": "CreateSampleClassification",
+  "title": "Create classification schema instance for specific sample resource using long-running operation (LRO).",
+  "parameters": {
+    "api-version": "2023-00-00-preview",
+    "operationId": "client-operation-id",
+    "sampleId": "00000000-0000-0000-0000-000000000001",
+    "schemaName": "unique_name",
+    "classificationObject": "{\n  \"record_country\": \"Israel\",\n  \"record_city\": \"Tel-Aviv\",\n  \"record_date\": \"2020-07-05T14:14:24.2695988+03:00\"\n}"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "schemaName": "unique_name",
+        "classificationObject": "{\n  \"record_country\": \"Israel\",\n  \"record_city\": \"Tel-Aviv\",\n  \"record_date\": \"2020-07-05T14:14:24.2695988+03:00\"\n}",
+        "eTag": "some_SHA256_hash"
+      }
+    },
+    "202": {
+      "headers": {
+        "location": "https://workspace-name-hash.workspaces.region.adp.azure.com/operations/client-operation-id/result?api-version=2023-00-00-preview",
+        "operation-location": "https://workspace-name-hash.workspaces.region.adp.azure.com/operations/client-operation-id?api-version=2023-00-00-preview"
+      }
+    },
+    "default": {
+      "body": {
+        "error": {
+          "code": "Error code",
+          "message": "Error message"
+        }
+      }
+    }
+  }
+}

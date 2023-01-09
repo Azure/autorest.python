@@ -1,0 +1,28 @@
+{
+  "operationId": "GetSampleById",
+  "title": "Get specific Sample resource.",
+  "parameters": {
+    "api-version": "2023-00-00-preview",
+    "sampleId": "00000000-0000-0000-0000-000000000001"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "id": "00000000-0000-0000-0000-000000000001",
+        "state": "Inactive",
+        "labels": [
+          "some",
+          "labels"
+        ]
+      }
+    },
+    "default": {
+      "body": {
+        "error": {
+          "code": "Error code",
+          "message": "Error message"
+        }
+      }
+    }
+  }
+}

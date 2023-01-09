@@ -1,0 +1,67 @@
+{
+  "operationId": "DataStreamOperations_GetAll",
+  "title": "Lists the existing data-streams.",
+  "parameters": {
+    "measurementId": "00000000-0000-0000-0000-000000000003",
+    "api-version": "2023-00-00-preview"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "value": [
+          {
+            "dataStreamId": "00000000-0000-0000-0000-000000000005",
+            "resourceEndpoint": "https://some-workspace/some-resource",
+            "lineage": {
+              "producerMetadata": {
+                "some-key": "some-value"
+              },
+              "inputs": [
+                {
+                  "sourceDataStreamId": "00000000-0000-0000-0000-000000000004",
+                  "channels": [
+                    "audio"
+                  ]
+                }
+              ]
+            },
+            "status": "Created",
+            "type": "System",
+            "etag": "string"
+          },
+          {
+            "dataStreamId": "00000000-0000-0000-0000-000000000006",
+            "resourceEndpoint": "https://some-workspace/some-resource",
+            "lineage": {
+              "producerMetadata": {
+                "some-key": "some-value"
+              },
+              "inputs": [
+                {
+                  "sourceDataStreamId": "00000000-0000-0000-0000-000000000005",
+                  "channels": [
+                    "audio"
+                  ]
+                }
+              ]
+            },
+            "status": "Created",
+            "type": "System",
+            "etag": "string"
+          }
+        ],
+        "nextLink": "https://some-workspace/measurements/00000000-0000-0000-0000-000000000003/dataStreams?continuationToken=123"
+      }
+    },
+    "default": {
+      "body": {
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": []
+        }
+      }
+    }
+  }
+}

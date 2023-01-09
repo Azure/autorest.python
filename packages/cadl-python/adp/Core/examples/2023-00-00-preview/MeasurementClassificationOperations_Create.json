@@ -1,0 +1,48 @@
+{
+  "operationId": "MeasurementClassificationOperations_Create",
+  "title": "Assigns classification to the measurement.",
+  "parameters": {
+    "api-version": "2023-00-00-preview",
+    "operationId": "client-operation-id",
+    "measurementId": "00000000-0000-0000-0000-000000000003",
+    "schemaName": "unique_schema_name",
+    "classificationObject": "{\"description\": \"Classification instance (JSON schema as string).\"}"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "schemaName": "unique_schema_name",
+        "classificationObject": "{\"description\": \"Classification instance (JSON schema as string).\"}",
+        "etag": "string"
+      }
+    },
+    "202": {
+      "headers": {
+        "Location": "https://workspace-name-hash.workspaces.region.adp.azure.com/operations/client-operation-id/result?api-version=2023-00-00-preview",
+        "Operation-Location": "https://workspace-name-hash.workspaces.region.adp.azure.com/operations/client-operation-id?api-version=2023-00-00-preview"
+      },
+      "body": {
+        "operationId": "string",
+        "status": "Created",
+        "finalResultLocation": "https://workspace-name-hash.workspaces.region.adp.azure.com/path-to-resource/00000000-0000-0000-0000-000000000321?api-version=2023-00-00-preview",
+        "etag": "sha256",
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": []
+        }
+      }
+    },
+    "default": {
+      "body": {
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": []
+        }
+      }
+    }
+  }
+}

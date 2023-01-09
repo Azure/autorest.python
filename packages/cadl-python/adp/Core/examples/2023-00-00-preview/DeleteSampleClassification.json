@@ -1,0 +1,26 @@
+{
+  "operationId": "DeleteSampleClassification",
+  "title": "Delete the Classification assignment from specific sample resource using long-running operation (LRO).",
+  "parameters": {
+    "api-version": "2023-00-00-preview",
+    "sampleId": "00000000-0000-0000-0000-000000000001",
+    "schemaName": "unique_name"
+  },
+  "responses": {
+    "204": {},
+    "202": {
+      "headers": {
+        "location": "https://workspace-name-hash.workspaces.region.adp.azure.com/path-to-resource/00000000-0000-0000-0000-000000000321?api-version=2023-00-00-preview",
+        "operation-location": "https://workspace-name-hash.workspaces.region.adp.azure.com/operations/00000000-0000-0000-0000-000000000123?api-version=2023-00-00-preview"
+      }
+    },
+    "default": {
+      "body": {
+        "error": {
+          "code": "Error code",
+          "message": "Error message"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "operationId": "DiscoveryResultUploadOperations_List",
+  "title": "List upload detail for the discovery resource.",
+  "parameters": {
+    "api-version": "2023-00-00-preview",
+    "discoveryId": "00000000-0000-0000-0000-000000000001",
+    "operation-id": "string"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "value": [
+          {
+            "uploadId": "00000000-0000-0000-0000-000000000002",
+            "manifestUri": "https://some-storage-account/path/manifest.json",
+            "resourceEndpoint": "https://some-workspace/some-resource"
+          },
+          {
+            "uploadId": "00000000-0000-0000-0000-000000000003",
+            "manifestUri": "https://some-storage-account/path/manifest.json",
+            "resourceEndpoint": "https://some-workspace/some-resource"
+          }
+        ],
+        "nextLink": "https://workspace/path-to-collection?continuationToken=123"
+      }
+    },
+    "default": {
+      "body": {
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": []
+        }
+      }
+    }
+  }
+}

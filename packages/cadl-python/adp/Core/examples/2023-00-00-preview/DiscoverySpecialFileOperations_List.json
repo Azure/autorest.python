@@ -1,0 +1,36 @@
+{
+  "operationId": "DiscoverySpecialFileOperations_List",
+  "title": "List special files details for the discovery resource.\nReturns SAS signed URI that allows reading special files from Azure Storage.\nThis URI expires in 24 hours.",
+  "parameters": {
+    "api-version": "2023-00-00-preview",
+    "discoveryId": "00000000-0000-0000-0000-000000000001",
+    "operation-id": "string"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "value": [
+          {
+            "clientFileName": "file-1.ext",
+            "fileUri": "https://some-storage-account/path/special-file-1.ext"
+          },
+          {
+            "clientFileName": "file-2.ext",
+            "fileUri": "https://some-storage-account/path/special-file-2.ext"
+          }
+        ],
+        "nextLink": "https://workspace/path-to-collection?continuationToken=123"
+      }
+    },
+    "default": {
+      "body": {
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": []
+        }
+      }
+    }
+  }
+}

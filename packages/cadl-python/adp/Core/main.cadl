@@ -1,0 +1,17 @@
+import "../Adp.Shared/common.cadl";
+
+import "./ingestion";
+import "./classification";
+import "./measurement";
+
+import "./models.cadl";
+import "./operations.cadl";
+
+using Cadl.Http;
+
+@service({
+  title: "Adp",
+  version: "2023-00-00-preview",
+})
+@useAuth(OAuth2Auth<[ImplicitAuthorizationFlow]>)
+namespace Adp.Core;
