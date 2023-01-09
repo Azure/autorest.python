@@ -2,7 +2,7 @@
 tox==4.2.6  # Got some problem with 4.x
 invoke
 colorama
-pylint==2.15.8
+pylint==2.15.10
 pytest
 ptvsd
 mypy
