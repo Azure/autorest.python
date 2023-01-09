@@ -36,7 +36,8 @@ def _single_dir_pyright(mod):
                     "-p",
                     str(config_file_dir),
                     str(inner_class.absolute()),
-                ]
+                ],
+                text=True
             )
             return True
         except CalledProcessError as e:
