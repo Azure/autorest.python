@@ -70,5 +70,4 @@ def python_run(venv_context, module, command=None, *, additional_dir="."):
         )
     except subprocess.CalledProcessError as err:
         print(err)
-        print("in subprocess error")
         sys.exit(1)

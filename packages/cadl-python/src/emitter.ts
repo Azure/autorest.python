@@ -32,19 +32,15 @@ import {
     getFormat,
     getMinItems,
     getMaxItems,
-    getNamespaceFullName,
     EmitContext,
     listServices,
     Union,
     isNullType,
     SyntaxKind,
-    emitFile,
     Type,
-    getKnownValues,
 } from "@cadl-lang/compiler";
 import {
     getAuthentication,
-    getContentTypes,
     getHeaderFieldName,
     getHttpOperation,
     getPathParamName,
@@ -52,7 +48,6 @@ import {
     getServers,
     HttpAuth,
     HttpOperationParameter,
-    HttpOperationParameters,
     HttpOperationRequestBody,
     HttpOperationResponse,
     HttpOperationResponseContent,
@@ -76,6 +71,7 @@ import { execAsync, resolveModuleRoot, saveCodeModelAsYaml } from "./external-pr
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { dump } from "js-yaml";
+import { execFileSync } from "child_process";
 
 interface HttpServerParameter {
     type: "endpointPath";
@@ -152,7 +148,7 @@ export async function $onEmit(context: EmitContext<EmitterOptions>) {
         commandArgs.push("--debug");
     }
     if (!program.compilerOptions.noEmit && !program.hasError()) {
-        await execAsync(process.execPath, commandArgs);
+        execFileSync(process.execPath, commandArgs);
     }
 }
 
