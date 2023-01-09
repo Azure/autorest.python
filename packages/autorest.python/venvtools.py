@@ -56,7 +56,7 @@ def create_venv_with_package(packages):
             subprocess.check_call(pip_call + packages)
         yield myenv
 
-def python_run(venv_context, module, command=None, *, additional_dir=".", error_ok=False):
+def python_run(venv_context, module, command=None, *, additional_dir="."):
     try:
         cmd_line= [
             venv_context.env_exe,
@@ -70,5 +70,4 @@ def python_run(venv_context, module, command=None, *, additional_dir=".", error_
         )
     except subprocess.CalledProcessError as err:
         print(err)
-        if not error_ok:
-            sys.exit(1)
+        sys.exit(1)

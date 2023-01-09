@@ -32,19 +32,15 @@ import {
     getFormat,
     getMinItems,
     getMaxItems,
-    getNamespaceFullName,
     EmitContext,
     listServices,
     Union,
     isNullType,
     SyntaxKind,
-    emitFile,
     Type,
-    getKnownValues,
 } from "@cadl-lang/compiler";
 import {
     getAuthentication,
-    getContentTypes,
     getHeaderFieldName,
     getHttpOperation,
     getPathParamName,
@@ -52,7 +48,6 @@ import {
     getServers,
     HttpAuth,
     HttpOperationParameter,
-    HttpOperationParameters,
     HttpOperationRequestBody,
     HttpOperationResponse,
     HttpOperationResponseContent,
@@ -72,10 +67,11 @@ import {
     DpgContext,
 } from "@azure-tools/cadl-dpg";
 import { getResourceOperation } from "@cadl-lang/rest";
-import { execAsync, resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
+import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { dump } from "js-yaml";
+import { execFileSync } from "child_process";
 
 interface HttpServerParameter {
     type: "endpointPath";
@@ -152,7 +148,7 @@ export async function $onEmit(context: EmitContext<EmitterOptions>) {
         commandArgs.push("--debug");
     }
     if (!program.compilerOptions.noEmit && !program.hasError()) {
-        await execAsync(process.execPath, commandArgs);
+        execFileSync(process.execPath, commandArgs);
     }
 }
 
@@ -1256,7 +1252,7 @@ function getNamespaces(context: DpgContext): Set<string> {
 
 function emitCodeModel(context: EmitContext<EmitterOptions>) {
     const dpgContext = createDpgContext(context);
-    const clientNamespaceString = getClientNamespaceString(dpgContext);
+    const clientNamespaceString = getClientNamespaceString(dpgContext)?.toLowerCase();
     // Get types
     const codeModel: Record<string, any> = {
         namespace: clientNamespaceString,
