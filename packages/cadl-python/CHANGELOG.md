@@ -1,5 +1,11 @@
 # Release History
 
+## 2023-01-xx - 0.xx.xx
+
+**Bug Fixes**
+
+- Fix body type for spread model. #1659
+
 ## 2023-01-06 - 0.4.15
 
 **Other Changes**
