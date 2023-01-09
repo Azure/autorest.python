@@ -32,19 +32,15 @@ import {
     getFormat,
     getMinItems,
     getMaxItems,
-    getNamespaceFullName,
     EmitContext,
     listServices,
     Union,
     isNullType,
     SyntaxKind,
-    emitFile,
     Type,
-    getKnownValues,
 } from "@cadl-lang/compiler";
 import {
     getAuthentication,
-    getContentTypes,
     getHeaderFieldName,
     getHttpOperation,
     getPathParamName,
@@ -52,12 +48,11 @@ import {
     getServers,
     HttpAuth,
     HttpOperationParameter,
-    HttpOperationParameters,
-    HttpOperationRequestBody,
     HttpOperationResponse,
     HttpOperationResponseContent,
     HttpServer,
     isStatusCode,
+    HttpOperation
 } from "@cadl-lang/rest/http";
 import { getAddedOn } from "@cadl-lang/versioning";
 import {
@@ -247,15 +242,16 @@ function getEffectiveSchemaType(program: Program, type: Model): Model {
 function getType(program: Program, type: EmitterType): any {
     // don't cache simple type(string, int, etc) since decorators may change the result
     const enableCache = !isSimpleType(program, type);
+    const effectiveModel = type.kind === "Model" ? getEffectiveSchemaType(program, type) : type;
     if (enableCache) {
-        const cached = typesMap.get(type);
+        const cached = typesMap.get(effectiveModel);
         if (cached) {
             return cached;
         }
     }
     let newValue = emitType(program, type);
     if (enableCache) {
-        typesMap.set(type, newValue);
+        typesMap.set(effectiveModel, newValue);
         if (type.kind === "Model") {
             // need to do properties after insertion to avoid infinite recursion
             for (const property of type.properties.values()) {
@@ -325,7 +321,50 @@ type BodyParameter = ParamBase & {
     defaultContentType: string;
 };
 
-function emitBodyParameter(program: Program, body: HttpOperationRequestBody, operation: Operation): BodyParameter {
+function getBodyType(
+    program: Program,
+    route: HttpOperation
+): Type {
+    let bodyModel = route.parameters.body?.type;
+    if (bodyModel && bodyModel.kind === "Model" && route.operation) {
+        const resourceType = getResourceOperation(
+            program,
+            route.operation
+        )?.resourceType;
+        if (resourceType && route.responses && route.responses.length > 0) {
+            const resp = route.responses[0];
+            if (resp && resp.responses && resp.responses.length > 0) {
+                const responseBody = resp.responses[0]?.body;
+                if (responseBody?.type?.kind === "Model") {
+                    const bodyTypeInResponse = getEffectiveSchemaType(
+                        program,
+                        responseBody.type
+                    );
+                    // response body type is reosurce type, and request body type (if templated) contains resource type
+                    if (
+                        bodyTypeInResponse === resourceType &&
+                        bodyModel.templateArguments &&
+                        bodyModel.templateArguments.some((it) => {
+                            return it.kind === "Model" || it.kind === "Union"
+                                ? it === bodyTypeInResponse
+                                : false;
+                        })
+                    ) {
+                        bodyModel = resourceType;
+                    }
+                }
+            }
+        }
+        if (resourceType && bodyModel.name === "") {
+            bodyModel = resourceType;
+        }
+    }
+    return bodyModel!;
+}
+
+function emitBodyParameter(program: Program, httpOperation: HttpOperation): BodyParameter {
+    const params = httpOperation.parameters;
+    const body = params.body!;
     const base = emitParamBase(program, body.parameter ?? body.type);
     let contentTypes = body.contentTypes;
     if (contentTypes.length === 0) {
@@ -334,16 +373,10 @@ function emitBodyParameter(program: Program, body: HttpOperationRequestBody, ope
     if (contentTypes.length !== 1) {
         throw Error("Currently only one kind of content-type!");
     }
-    let type;
-    const resourceOperation = getResourceOperation(program, operation);
-    if (resourceOperation) {
-        type = getType(program, resourceOperation.resourceType);
-    } else {
-        type = getType(program, body.type);
-    }
+    const type = getType(program, getBodyType(program, httpOperation));
 
     if (type.type === "model" && type.name === "") {
-        type.name = capitalize(operation.name) + "Request";
+        type.name = capitalize(httpOperation.operation.name) + "Request";
     }
 
     return {
@@ -635,7 +668,7 @@ function emitBasicOperation(program: Program, operation: Operation, operationGro
     if (httpOperation.parameters.body === undefined) {
         bodyParameter = undefined;
     } else {
-        bodyParameter = emitBodyParameter(program, httpOperation.parameters.body, operation);
+        bodyParameter = emitBodyParameter(program, httpOperation);
         if (parameters.filter((e) => e.restApiName.toLowerCase() === "content-type").length === 0) {
             parameters.push(emitContentTypeParameter(bodyParameter, isOverload, isOverriden));
         }
@@ -1256,7 +1289,8 @@ function getNamespaces(context: DpgContext): Set<string> {
 
 function emitCodeModel(context: EmitContext<EmitterOptions>) {
     const dpgContext = createDpgContext(context);
-    const clientNamespaceString = getClientNamespaceString(dpgContext);
+    let clientNamespaceString = getClientNamespaceString(dpgContext);
+    if (clientNamespaceString) clientNamespaceString = clientNamespaceString.toLowerCase();
     // Get types
     const codeModel: Record<string, any> = {
         namespace: clientNamespaceString,
