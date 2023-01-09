@@ -67,7 +67,7 @@ import {
     DpgContext,
 } from "@azure-tools/cadl-dpg";
 import { getResourceOperation } from "@cadl-lang/rest";
-import { execAsync, resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
+import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { dump } from "js-yaml";
@@ -1252,7 +1252,7 @@ function getNamespaces(context: DpgContext): Set<string> {
 
 function emitCodeModel(context: EmitContext<EmitterOptions>) {
     const dpgContext = createDpgContext(context);
-    const clientNamespaceString = getClientNamespaceString(dpgContext);
+    const clientNamespaceString = getClientNamespaceString(dpgContext)?.toLowerCase();
     // Get types
     const codeModel: Record<string, any> = {
         namespace: clientNamespaceString,
