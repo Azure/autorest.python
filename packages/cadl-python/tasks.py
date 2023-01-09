@@ -50,7 +50,7 @@ def _run_cadl(cmds):
 
 def _run_single_cadl(cmd):
   result = run(cmd, warn=True)
-  if result.ok or result.return_code is None:
+  if result.ok:
     print(Fore.GREEN + f'Call "{cmd}" done with success')
     return True
   print(Fore.RED + f'Call "{cmd}" failed with {result.return_code}\n{result.stdout}\n{result.stderr}')
