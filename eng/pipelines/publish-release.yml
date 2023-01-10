@@ -56,5 +56,5 @@ steps:
 
     - script: |
           pnpm config set //registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)
-          NPM_AUTH_TOKEN="$(azure-sdk-npm-token)" pnpm -r publish --access public --no-git-checks
+          pnpm -r publish --access public --no-git-checks --always-auth=true
       displayName: Publish packages
