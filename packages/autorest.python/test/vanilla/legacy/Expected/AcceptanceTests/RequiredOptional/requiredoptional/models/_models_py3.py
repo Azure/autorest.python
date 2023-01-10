@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import List, Optional, TYPE_CHECKING
+from typing import Any, List, Optional, TYPE_CHECKING
 
 import msrest.serialization
 
@@ -27,7 +27,7 @@ class ArrayOptionalWrapper(msrest.serialization.Model):
         "value": {"key": "value", "type": "[str]"},
     }
 
-    def __init__(self, *, value: Optional[List[str]] = None, **kwargs):
+    def __init__(self, *, value: Optional[List[str]] = None, **kwargs: Any) -> None:
         """
         :keyword value:
         :paramtype value: list[str]
@@ -53,7 +53,7 @@ class ArrayWrapper(msrest.serialization.Model):
         "value": {"key": "value", "type": "[str]"},
     }
 
-    def __init__(self, *, value: List[str], **kwargs):
+    def __init__(self, *, value: List[str], **kwargs: Any) -> None:
         """
         :keyword value: Required.
         :paramtype value: list[str]
@@ -73,7 +73,7 @@ class ClassOptionalWrapper(msrest.serialization.Model):
         "value": {"key": "value", "type": "Product"},
     }
 
-    def __init__(self, *, value: Optional["_models.Product"] = None, **kwargs):
+    def __init__(self, *, value: Optional["_models.Product"] = None, **kwargs: Any) -> None:
         """
         :keyword value:
         :paramtype value: ~requiredoptional.models.Product
@@ -99,7 +99,7 @@ class ClassWrapper(msrest.serialization.Model):
         "value": {"key": "value", "type": "Product"},
     }
 
-    def __init__(self, *, value: "_models.Product", **kwargs):
+    def __init__(self, *, value: "_models.Product", **kwargs: Any) -> None:
         """
         :keyword value: Required.
         :paramtype value: ~requiredoptional.models.Product
@@ -122,7 +122,7 @@ class Error(msrest.serialization.Model):
         "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
+    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword status:
         :paramtype status: int
@@ -145,7 +145,7 @@ class IntOptionalWrapper(msrest.serialization.Model):
         "value": {"key": "value", "type": "int"},
     }
 
-    def __init__(self, *, value: Optional[int] = None, **kwargs):
+    def __init__(self, *, value: Optional[int] = None, **kwargs: Any) -> None:
         """
         :keyword value:
         :paramtype value: int
@@ -171,7 +171,7 @@ class IntWrapper(msrest.serialization.Model):
         "value": {"key": "value", "type": "int"},
     }
 
-    def __init__(self, *, value: int, **kwargs):
+    def __init__(self, *, value: int, **kwargs: Any) -> None:
         """
         :keyword value: Required.
         :paramtype value: int
@@ -200,7 +200,9 @@ class Product(msrest.serialization.Model):
         "name": {"key": "name", "type": "str"},
     }
 
-    def __init__(self, *, id: int, name: Optional[str] = None, **kwargs):  # pylint: disable=redefined-builtin
+    def __init__(
+        self, *, id: int, name: Optional[str] = None, **kwargs: Any  # pylint: disable=redefined-builtin
+    ) -> None:
         """
         :keyword id: Required.
         :paramtype id: int
@@ -223,7 +225,7 @@ class StringOptionalWrapper(msrest.serialization.Model):
         "value": {"key": "value", "type": "str"},
     }
 
-    def __init__(self, *, value: Optional[str] = None, **kwargs):
+    def __init__(self, *, value: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword value:
         :paramtype value: str
@@ -249,7 +251,7 @@ class StringWrapper(msrest.serialization.Model):
         "value": {"key": "value", "type": "str"},
     }
 
-    def __init__(self, *, value: str, **kwargs):
+    def __init__(self, *, value: str, **kwargs: Any) -> None:
         """
         :keyword value: Required.
         :paramtype value: str

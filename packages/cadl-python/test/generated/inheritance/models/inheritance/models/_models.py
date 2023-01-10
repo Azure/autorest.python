@@ -13,10 +13,6 @@ from typing import Any, Dict, List, Mapping, Optional, TYPE_CHECKING, overload
 from .. import _model_base
 from .._model_base import rest_discriminator, rest_field
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
 else:
@@ -25,7 +21,6 @@ else:
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 
 class Pet(_model_base.Model):
@@ -54,9 +49,8 @@ class Pet(_model_base.Model):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -89,9 +83,8 @@ class Cat(Pet):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -109,7 +102,7 @@ class Fish(_model_base.Model):
     :vartype kind: str
     """
 
-    __mapping__ = {}
+    __mapping__: Dict[str, _model_base.Model] = {}
     age: int = rest_field()
     """Required. """
     kind: Literal[None] = rest_discriminator(name="kind")
@@ -129,7 +122,6 @@ class Fish(_model_base.Model):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -153,8 +145,8 @@ class Shark(Fish, discriminator="shark"):
     :vartype sharktype: str
     """
 
-    __mapping__ = {}
-    kind: Literal["shark"] = rest_discriminator(name="kind")
+    __mapping__: Dict[str, _model_base.Model] = {}
+    kind: Literal["shark"] = rest_discriminator(name="kind")  # type: ignore
     """Required. Default value is \"shark\"."""
     sharktype: Literal[None] = rest_discriminator(name="sharktype")
     """Required. Default value is None."""
@@ -173,7 +165,6 @@ class Shark(Fish, discriminator="shark"):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -194,7 +185,7 @@ class GoblinShark(Shark, discriminator="goblin"):
     :vartype sharktype: str
     """
 
-    sharktype: Literal["goblin"] = rest_discriminator(name="sharktype")
+    sharktype: Literal["goblin"] = rest_discriminator(name="sharktype")  # type: ignore
     """Required. Default value is \"goblin\"."""
 
     @overload
@@ -211,7 +202,6 @@ class GoblinShark(Shark, discriminator="goblin"):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -236,7 +226,7 @@ class Salmon(Fish, discriminator="salmon"):
     :vartype partner: ~models.inheritance.models.Fish
     """
 
-    kind: Literal["salmon"] = rest_discriminator(name="kind")
+    kind: Literal["salmon"] = rest_discriminator(name="kind")  # type: ignore
     """Required. Default value is \"salmon\"."""
     friends: Optional[List["_models.Fish"]] = rest_field()
     hate: Optional[Dict[str, "_models.Fish"]] = rest_field()
@@ -259,7 +249,6 @@ class Salmon(Fish, discriminator="salmon"):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -279,7 +268,7 @@ class SawShark(Shark, discriminator="saw"):
     :vartype sharktype: str
     """
 
-    sharktype: Literal["saw"] = rest_discriminator(name="sharktype")
+    sharktype: Literal["saw"] = rest_discriminator(name="sharktype")  # type: ignore
     """Required. Default value is \"saw\"."""
 
     @overload
@@ -296,7 +285,6 @@ class SawShark(Shark, discriminator="saw"):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -335,7 +323,6 @@ class Siamese(Cat):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)

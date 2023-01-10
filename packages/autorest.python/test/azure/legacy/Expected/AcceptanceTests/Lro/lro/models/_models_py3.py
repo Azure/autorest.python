@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Dict, Optional, TYPE_CHECKING, Union
+from typing import Any, Dict, Optional, TYPE_CHECKING, Union
 
 from .. import _serialization
 
@@ -36,8 +36,8 @@ class OperationResult(_serialization.Model):
         *,
         status: Optional[Union[str, "_models.OperationResultStatus"]] = None,
         error: Optional["_models.OperationResultError"] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword status: The status of the request. Known values are: "Succeeded", "Failed",
          "canceled", "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
@@ -65,7 +65,7 @@ class OperationResultError(_serialization.Model):
         "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(self, *, code: Optional[int] = None, message: Optional[str] = None, **kwargs):
+    def __init__(self, *, code: Optional[int] = None, message: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword code: The error code for an operation failure.
         :paramtype code: int
@@ -108,7 +108,7 @@ class Resource(_serialization.Model):
         "name": {"key": "name", "type": "str"},
     }
 
-    def __init__(self, *, tags: Optional[Dict[str, str]] = None, location: Optional[str] = None, **kwargs):
+    def __init__(self, *, tags: Optional[Dict[str, str]] = None, location: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword tags: Dictionary of :code:`<string>`.
         :paramtype tags: dict[str, str]
@@ -168,8 +168,8 @@ class Product(Resource):
         tags: Optional[Dict[str, str]] = None,
         location: Optional[str] = None,
         provisioning_state: Optional[str] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword tags: Dictionary of :code:`<string>`.
         :paramtype tags: dict[str, str]
@@ -198,8 +198,12 @@ class Sku(_serialization.Model):
     }
 
     def __init__(
-        self, *, name: Optional[str] = None, id: Optional[str] = None, **kwargs  # pylint: disable=redefined-builtin
-    ):
+        self,
+        *,
+        name: Optional[str] = None,
+        id: Optional[str] = None,  # pylint: disable=redefined-builtin
+        **kwargs: Any
+    ) -> None:
         """
         :keyword name:
         :paramtype name: str
@@ -228,7 +232,7 @@ class SubResource(_serialization.Model):
         "id": {"key": "id", "type": "str"},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs: Any) -> None:
         """ """
         super().__init__(**kwargs)
         self.id = None
@@ -260,7 +264,7 @@ class SubProduct(SubResource):
         "provisioning_state_values": {"key": "properties.provisioningStateValues", "type": "str"},
     }
 
-    def __init__(self, *, provisioning_state: Optional[str] = None, **kwargs):
+    def __init__(self, *, provisioning_state: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword provisioning_state:
         :paramtype provisioning_state: str

@@ -1,5 +1,51 @@
 # Release History
 
+## 2023-01-09 - 0.4.16
+
+**Bug Fixes**
+
+- Fix body type for spread model. #1659
+
+## 2023-01-06 - 0.4.15
+
+**Other Changes**
+
+- Support multiple authentication  #1626
+- Flatten JSONModelType body properties as operation parameters #1623
+
+**Bug Fixes**
+
+- Fix requirement on presence of `cadl-output` folder #1622
+- Fix import and _vendor for subnamespace  #1649
+
+## 2022-12-15 - 0.4.14
+
+**Bug Fixes**
+
+- Generate anonymous models and aliases as JSON objects  #1619
+
+## 2022-12-08 - 0.4.13
+
+**Other Changes**
+
+- Bump cadl library dependencies #1608
+
+## 2022-12-07 - 0.4.12
+
+**Other Changes**
+
+- Update python generator dependency
+
+## 2022-12-05 - 0.4.11
+
+**Bug Fixes**
+
+- Fix submodel deserialization #1594
+
+**Other Changes**
+
+- Add additional overload for model input #1589
+
 ## 2022-11-17 - 0.4.10
 
 **Bug Fixes**

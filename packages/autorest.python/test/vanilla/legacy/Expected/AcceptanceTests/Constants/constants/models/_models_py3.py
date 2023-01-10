@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 
 import sys
-from typing import Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 from .. import _serialization
 
@@ -34,8 +34,11 @@ class ModelAsStringNoRequiredOneValueDefault(_serialization.Model):
     }
 
     def __init__(
-        self, *, parameter: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultEnum"]] = None, **kwargs
-    ):
+        self,
+        *,
+        parameter: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultEnum"]] = None,
+        **kwargs: Any
+    ) -> None:
         """
         :keyword parameter: "value1"
         :paramtype parameter: str or ~constants.models.ModelAsStringNoRequiredOneValueDefaultEnum
@@ -59,8 +62,8 @@ class ModelAsStringNoRequiredOneValueNoDefault(_serialization.Model):
         self,
         *,
         parameter: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueNoDefaultEnum"]] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword parameter: "value1"
         :paramtype parameter: str or ~constants.models.ModelAsStringNoRequiredOneValueNoDefaultEnum
@@ -81,8 +84,11 @@ class ModelAsStringNoRequiredTwoValueDefault(_serialization.Model):
     }
 
     def __init__(
-        self, *, parameter: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultEnum"]] = None, **kwargs
-    ):
+        self,
+        *,
+        parameter: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultEnum"]] = None,
+        **kwargs: Any
+    ) -> None:
         """
         :keyword parameter: Known values are: "value1" and "value2".
         :paramtype parameter: str or ~constants.models.ModelAsStringNoRequiredTwoValueDefaultEnum
@@ -106,8 +112,8 @@ class ModelAsStringNoRequiredTwoValueNoDefault(_serialization.Model):
         self,
         *,
         parameter: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueNoDefaultEnum"]] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword parameter: Known values are: "value1" and "value2".
         :paramtype parameter: str or ~constants.models.ModelAsStringNoRequiredTwoValueNoDefaultEnum
@@ -133,7 +139,9 @@ class ModelAsStringRequiredOneValueDefault(_serialization.Model):
         "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(self, *, parameter: Union[str, "_models.ModelAsStringRequiredOneValueDefaultEnum"], **kwargs):
+    def __init__(
+        self, *, parameter: Union[str, "_models.ModelAsStringRequiredOneValueDefaultEnum"], **kwargs: Any
+    ) -> None:
         """
         :keyword parameter: Required. "value1"
         :paramtype parameter: str or ~constants.models.ModelAsStringRequiredOneValueDefaultEnum
@@ -159,7 +167,9 @@ class ModelAsStringRequiredOneValueNoDefault(_serialization.Model):
         "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(self, *, parameter: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultEnum"], **kwargs):
+    def __init__(
+        self, *, parameter: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultEnum"], **kwargs: Any
+    ) -> None:
         """
         :keyword parameter: Required. "value1"
         :paramtype parameter: str or ~constants.models.ModelAsStringRequiredOneValueNoDefaultEnum
@@ -185,7 +195,9 @@ class ModelAsStringRequiredTwoValueDefault(_serialization.Model):
         "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(self, *, parameter: Union[str, "_models.ModelAsStringRequiredTwoValueDefaultEnum"], **kwargs):
+    def __init__(
+        self, *, parameter: Union[str, "_models.ModelAsStringRequiredTwoValueDefaultEnum"], **kwargs: Any
+    ) -> None:
         """
         :keyword parameter: Required. Known values are: "value1" and "value2".
         :paramtype parameter: str or ~constants.models.ModelAsStringRequiredTwoValueDefaultEnum
@@ -211,7 +223,9 @@ class ModelAsStringRequiredTwoValueNoDefault(_serialization.Model):
         "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(self, *, parameter: Union[str, "_models.ModelAsStringRequiredTwoValueNoDefaultEnum"], **kwargs):
+    def __init__(
+        self, *, parameter: Union[str, "_models.ModelAsStringRequiredTwoValueNoDefaultEnum"], **kwargs: Any
+    ) -> None:
         """
         :keyword parameter: Required. Known values are: "value1" and "value2".
         :paramtype parameter: str or ~constants.models.ModelAsStringRequiredTwoValueNoDefaultEnum
@@ -231,7 +245,7 @@ class NoModelAsStringNoRequiredOneValueDefault(_serialization.Model):
         "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(self, *, parameter: Optional[Literal["value1"]] = None, **kwargs):
+    def __init__(self, *, parameter: Optional[Literal["value1"]] = None, **kwargs: Any) -> None:
         """
         :keyword parameter: Default value is "value1".
         :paramtype parameter: str
@@ -251,7 +265,7 @@ class NoModelAsStringNoRequiredOneValueNoDefault(_serialization.Model):
         "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(self, *, parameter: Optional[Literal["value1"]] = None, **kwargs):
+    def __init__(self, *, parameter: Optional[Literal["value1"]] = None, **kwargs: Any) -> None:
         """
         :keyword parameter: Default value is "value1".
         :paramtype parameter: str
@@ -275,8 +289,8 @@ class NoModelAsStringNoRequiredTwoValueDefault(_serialization.Model):
         self,
         *,
         parameter: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultEnum"]] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword parameter: Known values are: "value1" and "value2".
         :paramtype parameter: str or ~constants.models.NoModelAsStringNoRequiredTwoValueDefaultEnum
@@ -300,8 +314,8 @@ class NoModelAsStringNoRequiredTwoValueNoDefault(_serialization.Model):
         self,
         *,
         parameter: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueNoDefaultEnum"]] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword parameter: Known values are: "value1" and "value2".
         :paramtype parameter: str or ~constants.models.NoModelAsStringNoRequiredTwoValueNoDefaultEnum
@@ -331,7 +345,7 @@ class NoModelAsStringRequiredOneValueDefault(_serialization.Model):
 
     parameter = "value1"
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs: Any) -> None:
         """ """
         super().__init__(**kwargs)
 
@@ -357,7 +371,7 @@ class NoModelAsStringRequiredOneValueNoDefault(_serialization.Model):
 
     parameter = "value1"
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs: Any) -> None:
         """ """
         super().__init__(**kwargs)
 
@@ -379,7 +393,9 @@ class NoModelAsStringRequiredTwoValueDefault(_serialization.Model):
         "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(self, *, parameter: Union[str, "_models.NoModelAsStringRequiredTwoValueDefaultEnum"], **kwargs):
+    def __init__(
+        self, *, parameter: Union[str, "_models.NoModelAsStringRequiredTwoValueDefaultEnum"], **kwargs: Any
+    ) -> None:
         """
         :keyword parameter: Required. Known values are: "value1" and "value2".
         :paramtype parameter: str or ~constants.models.NoModelAsStringRequiredTwoValueDefaultEnum
@@ -405,7 +421,9 @@ class NoModelAsStringRequiredTwoValueNoDefault(_serialization.Model):
         "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(self, *, parameter: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultEnum"], **kwargs):
+    def __init__(
+        self, *, parameter: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultEnum"], **kwargs: Any
+    ) -> None:
         """
         :keyword parameter: Required. Known values are: "value1" and "value2".
         :paramtype parameter: str or ~constants.models.NoModelAsStringRequiredTwoValueNoDefaultEnum

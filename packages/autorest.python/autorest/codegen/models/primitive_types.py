@@ -133,7 +133,7 @@ class BinaryIteratorType(PrimitiveType):
 
     @property
     def default_template_representation_declaration(self) -> str:
-        return self.get_declaration(f"Iterator[bytes]")
+        return self.get_declaration("Iterator[bytes]")
 
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()

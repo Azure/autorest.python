@@ -28,7 +28,7 @@
     """
 
     {% if model.is_polymorphic %}
-    __mapping__ = {}
+    __mapping__: Dict[str, _model_base.Model] = {}
     {% endif %}
     {% for p in serializer.get_properties_to_declare(model)%}
         {% for line in serializer.declare_property(p) %}
@@ -52,11 +52,13 @@
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     {% endif %}
-    def __init__(self, *args, **kwargs):
+    {% set initialize_properties = serializer.initialize_properties(model) %}
+    {% if model.is_public and serializer.init_line(model) or initialize_properties %}
+    def __init__(self, *args, **kwargs):{{ '# pylint: disable=useless-super-delegation' if not initialize_properties else '' }}
         super().__init__(*args, **kwargs)
-    {% for initialize_property in serializer.initialize_properties(model) %}
+    {% for initialize_property in initialize_properties %}
         {{ initialize_property }}
     {% endfor %}
+    {% endif %}

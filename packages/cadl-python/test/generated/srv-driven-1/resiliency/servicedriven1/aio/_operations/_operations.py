@@ -290,7 +290,7 @@ class ServiceDriven1ClientOperationsMixin(ServiceDriven1ClientMixinABC):
         if isinstance(parameter, (IO, bytes)):
             _content = parameter
         else:
-            _content = json.dumps(parameter, cls=AzureJSONEncoder)
+            _content = json.dumps(parameter, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_service_driven1_post_parameters_request(
             content_type_path=content_type_path,

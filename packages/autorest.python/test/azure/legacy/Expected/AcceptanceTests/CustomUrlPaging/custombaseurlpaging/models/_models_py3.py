@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import List, Optional, TYPE_CHECKING
+from typing import Any, List, Optional, TYPE_CHECKING
 
 from .. import _serialization
 
@@ -30,7 +30,7 @@ class Error(_serialization.Model):
         "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
+    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword status:
         :paramtype status: int
@@ -53,7 +53,7 @@ class Product(_serialization.Model):
         "properties": {"key": "properties", "type": "ProductProperties"},
     }
 
-    def __init__(self, *, properties: Optional["_models.ProductProperties"] = None, **kwargs):
+    def __init__(self, *, properties: Optional["_models.ProductProperties"] = None, **kwargs: Any) -> None:
         """
         :keyword properties:
         :paramtype properties: ~custombaseurlpaging.models.ProductProperties
@@ -77,8 +77,12 @@ class ProductProperties(_serialization.Model):
     }
 
     def __init__(
-        self, *, id: Optional[int] = None, name: Optional[str] = None, **kwargs  # pylint: disable=redefined-builtin
-    ):
+        self,
+        *,
+        id: Optional[int] = None,  # pylint: disable=redefined-builtin
+        name: Optional[str] = None,
+        **kwargs: Any
+    ) -> None:
         """
         :keyword id:
         :paramtype id: int
@@ -104,7 +108,9 @@ class ProductResult(_serialization.Model):
         "next_link": {"key": "nextLink", "type": "str"},
     }
 
-    def __init__(self, *, values: Optional[List["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs):
+    def __init__(
+        self, *, values: Optional[List["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """
         :keyword values:
         :paramtype values: list[~custombaseurlpaging.models.Product]

@@ -204,7 +204,7 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         if isinstance(input, (IO, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder)
+            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_dev_driven_post_model_request(
             mode=mode,
@@ -271,7 +271,9 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = _deserialize(_models._models.CustomPageProduct, pipeline_response)
+            deserialized: _models._models.CustomPageProduct = _deserialize(  # pylint: disable=protected-access
+                _models._models.CustomPageProduct, pipeline_response  # pylint: disable=protected-access
+            )
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
@@ -294,7 +296,7 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace_async
-    async def lro(self, mode: Union[str, _models.Mode], **kwargs: Any) -> _models.LROProduct:
+    async def lro(self, mode: Union[str, _models.Mode], **kwargs: Any) -> _models.LroProduct:
         """Long running put request that will either return to end users a final payload of a raw body, or
         a final payload of a model after the SDK has grown up.
 
@@ -302,8 +304,8 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
          before returning to users. Known values are: "raw" and "model". Required.
         :type mode: str or ~resiliency.devdriven.models.Mode
-        :return: LROProduct. The LROProduct is compatible with MutableMapping
-        :rtype: ~resiliency.devdriven.models.LROProduct
+        :return: LroProduct. The LroProduct is compatible with MutableMapping
+        :rtype: ~resiliency.devdriven.models.LroProduct
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -317,7 +319,7 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.LROProduct] = kwargs.pop("cls", None)
+        cls: ClsType[_models.LroProduct] = kwargs.pop("cls", None)
 
         request = build_dev_driven_lro_request(
             mode=mode,
@@ -336,7 +338,7 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.LROProduct, response.json())
+        deserialized = _deserialize(_models.LroProduct, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

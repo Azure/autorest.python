@@ -98,7 +98,7 @@ class GeneralSerializer:
             imports=FileImportSerializer(imports),
         )
 
-    def serialize_vendor_file(self) -> str:
+    def serialize_vendor_file(self, clients: List[Client]) -> str:
         template = self.env.get_template("vendor.py.jinja2")
 
         # configure imports
@@ -109,6 +109,10 @@ class GeneralSerializer:
                 "HttpRequest",
                 ImportType.AZURECORE,
             )
+
+        if self.code_model.need_format_url and not self.async_mode:
+            file_import.add_submodule_import("typing", "List", ImportType.STDLIB)
+            file_import.add_submodule_import("typing", "cast", ImportType.STDLIB)
 
         if self.code_model.need_mixin_abc:
             file_import.add_submodule_import(
@@ -128,7 +132,7 @@ class GeneralSerializer:
                 MsrestImportType.SerializerDeserializer,
                 TypingSection.TYPING,
             )
-            for client in self.code_model.clients:
+            for client in clients:
                 file_import.add_submodule_import(
                     "._configuration",
                     f"{client.name}Configuration",
@@ -141,6 +145,7 @@ class GeneralSerializer:
                 file_import,
             ),
             async_mode=self.async_mode,
+            clients=clients,
         )
 
     def serialize_config_file(self, clients: List[Client]) -> str:

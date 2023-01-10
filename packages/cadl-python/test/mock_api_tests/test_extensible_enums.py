@@ -4,11 +4,11 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from extensibleenums import ExtensibleEnumsClient, models
+from enums.extensible import ExtensibleClient, models
 
 @pytest.fixture
 def client():
-    with ExtensibleEnumsClient() as client:
+    with ExtensibleClient() as client:
         yield client
 
 def test_known_value(client):

@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
+from typing import Any, Optional
 
 from .. import _serialization
 
@@ -26,7 +26,7 @@ class Feline(_serialization.Model):
         "hisses": {"key": "hisses", "type": "bool"},
     }
 
-    def __init__(self, *, meows: Optional[bool] = None, hisses: Optional[bool] = None, **kwargs):
+    def __init__(self, *, meows: Optional[bool] = None, hisses: Optional[bool] = None, **kwargs: Any) -> None:
         """
         :keyword meows:
         :paramtype meows: bool
@@ -55,7 +55,7 @@ class Pet(_serialization.Model):
         "name": {"key": "name", "type": "str"},
     }
 
-    def __init__(self, *, name: str, **kwargs):
+    def __init__(self, *, name: str, **kwargs: Any) -> None:
         """
         :keyword name: Required.
         :paramtype name: str
@@ -97,8 +97,8 @@ class Cat(Pet, Feline):
         meows: Optional[bool] = None,
         hisses: Optional[bool] = None,
         likes_milk: Optional[bool] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword meows:
         :paramtype meows: bool
@@ -130,7 +130,7 @@ class Error(_serialization.Model):
         "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
+    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword status:
         :paramtype status: int
@@ -162,7 +162,7 @@ class Horse(Pet):
         "is_a_show_horse": {"key": "isAShowHorse", "type": "bool"},
     }
 
-    def __init__(self, *, name: str, is_a_show_horse: Optional[bool] = None, **kwargs):
+    def __init__(self, *, name: str, is_a_show_horse: Optional[bool] = None, **kwargs: Any) -> None:
         """
         :keyword name: Required.
         :paramtype name: str
@@ -210,8 +210,8 @@ class Kitten(Cat):
         hisses: Optional[bool] = None,
         likes_milk: Optional[bool] = None,
         eats_mice_yet: Optional[bool] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword meows:
         :paramtype meows: bool

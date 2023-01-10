@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 
 import sys
-from typing import List, Optional, TYPE_CHECKING
+from typing import Any, List, Optional, TYPE_CHECKING
 
 import msrest.serialization
 
@@ -46,7 +46,7 @@ class ChildProduct(msrest.serialization.Model):
 
     const_property = "constant"
 
-    def __init__(self, *, count: Optional[int] = None, **kwargs):
+    def __init__(self, *, count: Optional[int] = None, **kwargs: Any) -> None:
         """
         :keyword count: Count.
         :paramtype count: int
@@ -81,7 +81,7 @@ class ConstantProduct(msrest.serialization.Model):
     const_property = "constant"
     const_property2 = "constant2"
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs: Any) -> None:
         """ """
         super().__init__(**kwargs)
 
@@ -104,8 +104,8 @@ class Error(msrest.serialization.Model):
     }
 
     def __init__(
-        self, *, code: Optional[int] = None, message: Optional[str] = None, fields: Optional[str] = None, **kwargs
-    ):
+        self, *, code: Optional[int] = None, message: Optional[str] = None, fields: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """
         :keyword code:
         :paramtype code: int
@@ -179,8 +179,8 @@ class Product(msrest.serialization.Model):
         capacity: Optional[int] = None,
         image: Optional[str] = None,
         const_string_as_enum: Optional[Literal["constant_string_as_enum"]] = None,
-        **kwargs
-    ):
+        **kwargs: Any
+    ) -> None:
         """
         :keyword display_names: Non required array of unique items from 0 to 6 elements.
         :paramtype display_names: list[str]

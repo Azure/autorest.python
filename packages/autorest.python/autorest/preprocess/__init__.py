@@ -23,7 +23,6 @@ from .._utils import parse_args, get_body_type_for_description, JSON_REGEXP, KNO
 def add_body_param_type(
     code_model: Dict[str, Any],
     body_parameter: Dict[str, Any],
-    models_mode: Optional[str],
 ):
     if (
         body_parameter
@@ -35,11 +34,12 @@ def add_body_param_type(
         and not any(t for t in ["flattened", "groupedBy"] if body_parameter.get(t))
     ):
         origin_type = body_parameter["type"]["type"]
+        is_dpg_model = body_parameter["type"].get("base") == "dpg"
         body_parameter["type"] = {
             "type": "combined",
             "types": [body_parameter["type"], KNOWN_TYPES["binary"]],
         }
-        if origin_type == "model" and models_mode == "dpg":
+        if origin_type == "model" and is_dpg_model:
             body_parameter["type"]["types"].insert(1, KNOWN_TYPES["any-object"])
         code_model["types"].append(body_parameter["type"])
 
@@ -60,13 +60,21 @@ def update_overload_section(
                     overload_h["type"] = original_h["type"]
 
 
-def add_overload(yaml_data: Dict[str, Any], body_type: Dict[str, Any]):
+def add_overload(
+    yaml_data: Dict[str, Any], body_type: Dict[str, Any], for_flatten_params=False
+):
     overload = copy.deepcopy(yaml_data)
     overload["isOverload"] = True
     overload["bodyParameter"]["type"] = body_type
 
     overload["overloads"] = []
 
+    if for_flatten_params:
+        overload["bodyParameter"]["flattened"] = True
+    else:
+        overload["parameters"] = [
+            p for p in overload["parameters"] if not p.get("inFlattenedBody")
+        ]
     # for yaml sync, we need to make sure all of the responses, parameters, and exceptions' types have the same yaml id
     for overload_p, original_p in zip(overload["parameters"], yaml_data["parameters"]):
         overload_p["type"] = original_p["type"]
@@ -107,6 +115,10 @@ def add_overloads_for_body_param(yaml_data: Dict[str, Any]) -> None:
         ):
             continue
         yaml_data["overloads"].append(add_overload(yaml_data, body_type))
+        if body_type.get("type") == "model" and body_type.get("base") == "json":
+            yaml_data["overloads"].append(
+                add_overload(yaml_data, body_type, for_flatten_params=True)
+            )
     content_type_param = next(
         p for p in yaml_data["parameters"] if p["restApiName"].lower() == "content-type"
     )
@@ -162,9 +174,9 @@ def update_parameter(yaml_data: Dict[str, Any]) -> None:
     if yaml_data.get("propertyToParameterName"):
         # need to create a new one with padded keys and values
         yaml_data["propertyToParameterName"] = {
-            pad_reserved_words(prop, PadType.PROPERTY)
-            .lower(): pad_reserved_words(param_name, PadType.PARAMETER)
-            .lower()
+            pad_reserved_words(prop, PadType.PROPERTY): pad_reserved_words(
+                param_name, PadType.PARAMETER
+            )
             for prop, param_name in yaml_data["propertyToParameterName"].items()
         }
 
@@ -257,7 +269,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             response["discriminator"] = "operation"
         if body_parameter and not is_overload:
             # if we have a JSON body, we add a binary overload
-            add_body_param_type(code_model, body_parameter, self.models_mode)
+            add_body_param_type(code_model, body_parameter)
             add_overloads_for_body_param(yaml_data)
 
     def _update_lro_operation_helper(self, yaml_data: Dict[str, Any]) -> None:

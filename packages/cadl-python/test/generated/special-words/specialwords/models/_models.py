@@ -8,20 +8,15 @@
 # --------------------------------------------------------------------------
 
 import sys
-from typing import Any, Mapping, overload
+from typing import Any, Dict, Mapping, overload
 
 from .. import _model_base
 from .._model_base import rest_discriminator, rest_field
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 
 class BaseModel(_model_base.Model):
@@ -36,7 +31,7 @@ class BaseModel(_model_base.Model):
     :vartype model_kind: str
     """
 
-    __mapping__ = {}
+    __mapping__: Dict[str, _model_base.Model] = {}
     model_kind: Literal[None] = rest_discriminator(name="model.kind")
     """Required. Default value is None."""
 
@@ -58,7 +53,7 @@ class DerivedModel(BaseModel, discriminator="derived"):
     :vartype for_property: str
     """
 
-    model_kind: Literal["derived"] = rest_discriminator(name="model.kind")
+    model_kind: Literal["derived"] = rest_discriminator(name="model.kind")  # type: ignore
     """Required. Default value is \"derived\"."""
     derived_name: str = rest_field(name="derived.name")
     """Required. """
@@ -80,7 +75,6 @@ class DerivedModel(BaseModel, discriminator="derived"):
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
         """
-        ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

@@ -8,16 +8,25 @@ from azure.core.credentials import AzureKeyCredential, AccessToken
 from azure.core.exceptions import HttpResponseError
 from authentication.apikey import ApiKeyClient
 from authentication.oauth2 import OAuth2Client
+from authentication.union import UnionClient
+
+
+# Utilities functions
 
 @pytest.fixture
 def api_key_client():
-    with ApiKeyClient(AzureKeyCredential("valid-key")) as client:
-        yield client
+    client = None
+    def _build_client(client_type):
+        client = client_type(AzureKeyCredential("valid-key"))
+        return client
+    yield _build_client
+    if client:
+        client.close()
 
 def generate_token(*scopes) -> AccessToken:
     return AccessToken(token=''.join(scopes), expires_on=1800)
 
-@pytest.fixture()
+@pytest.fixture
 def token_credential():
     class FakeCredential:
         @staticmethod
@@ -27,22 +36,42 @@ def token_credential():
 
 @pytest.fixture
 def oauth2_client(token_credential):
-    with OAuth2Client(token_credential) as client:
-        yield client
+    client = None
+    def _build_client(client_type):
+        client = client_type(token_credential)
+        return client
+    yield _build_client
+    if client:
+        client.close()
+
+
+# Tests
 
 def test_api_key_valid(api_key_client):
-    api_key_client.valid()
+    client = api_key_client(ApiKeyClient)
+    client.valid()
 
 def test_api_key_invalid(api_key_client):
+    client = api_key_client(ApiKeyClient)
     with pytest.raises(HttpResponseError) as ex:
-        api_key_client.invalid()
+        client.invalid()
     assert ex.value.status_code == 403
     assert ex.value.reason == "Forbidden"
 
 def test_oauth2_valid(oauth2_client):
-    oauth2_client.valid(enforce_https=False)
+    client = oauth2_client(OAuth2Client)
+    client.valid(enforce_https=False)
 
 def test_oauth2_invalid(oauth2_client):
+    client = oauth2_client(OAuth2Client)
     with pytest.raises(HttpResponseError) as ex:
-        oauth2_client.invalid(enforce_https=False)
+        client.invalid(enforce_https=False)
     assert ex.value.status_code == 403
+
+def test_union_keyvalid(api_key_client):
+    client = api_key_client(UnionClient)
+    client.valid_key()
+
+def test_union_tokenvalid(oauth2_client):
+    client = oauth2_client(UnionClient)
+    client.valid_token(enforce_https=False)

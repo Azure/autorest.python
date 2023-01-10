@@ -48,7 +48,7 @@ def create(
 
 
 def python_run(  # pylint: disable=inconsistent-return-statements
-    venv_context, module, command, directory=_ROOT_DIR, *, error_ok=False
+    venv_context, module, command, directory=_ROOT_DIR
 ) -> Optional[str]:
     try:
         cmd_line = [
@@ -64,10 +64,11 @@ def python_run(  # pylint: disable=inconsistent-return-statements
             stdout=False,
         )
         if module == "get_all":
-            with open(f"{command[1]}/.temp_folder/patched.txt", "r") as f:
+            with open(
+                f"{command[1]}/.temp_folder/patched.txt", "r", encoding="utf-8-sig"
+            ) as f:
                 return f.read()
     except subprocess.CalledProcessError as err:
         print(err)
-        if not error_ok:
-            sys.exit(1)
+        sys.exit(1)
     return None

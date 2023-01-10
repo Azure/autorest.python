@@ -40,9 +40,10 @@ def regenerate(c, name=None, debug=False):
   ]
   if name:
     specs = [s for s in specs if name.lower() in s.stem.lower()]
-
-  cmds = [
-    f"cadl compile {spec} --emit={PLUGIN_DIR}/dist/src/index.js --output-path={PLUGIN_DIR}/test/generated/{spec.name}{' --debug' if debug else ''}"
+  for spec in specs:
+    Path(f"{PLUGIN_DIR}/test/generated/{spec.name}").mkdir(parents=True, exist_ok=True)
+  _run_cadl([
+    f"cadl compile {spec} --emit={PLUGIN_DIR}/dist/src/index.js --output-dir={PLUGIN_DIR}/test/generated/{spec.name}{' --debug' if debug else ''}"
     for spec in specs
   ]
   if not name:
@@ -62,10 +63,10 @@ def _run_cadl(cmds):
 
 def _run_single_cadl(cmd):
   result = run(cmd, warn=True)
-  if result.ok or result.return_code is None:
+  if result.ok:
     print(Fore.GREEN + f'Call "{cmd}" done with success')
     return True
   print(Fore.RED + f'Call "{cmd}" failed with {result.return_code}\n{result.stdout}\n{result.stderr}')
-  output_folder = re.findall(r"--output-path=([^\s]+)", cmd)[0]
+  output_folder = re.findall(r"--output-dir=([^\s]+)", cmd)[0]
   shutil.rmtree(output_folder, ignore_errors=True)
   return False

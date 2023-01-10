@@ -1,4 +1,4 @@
 invoke
 colorama
 debugpy
-tox
+tox==3.27.1

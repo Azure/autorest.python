@@ -73,15 +73,21 @@ class LROOperationBase(OperationBase[LROResponseType]):
                 response = next(
                     r for r in responses_with_bodies if 200 in r.status_codes
                 )
-            except StopIteration:
+            except StopIteration as exc:
                 raise ValueError(
-                    f"Your swagger is invalid because you have multiple response schemas for LRO"
+                    "Your swagger is invalid because you have multiple response schemas for LRO"
                     + f" method {self.name} and none of them have a 200 status code."
-                )
+                ) from exc
 
         elif num_response_schemas:
             response = responses_with_bodies[0]
         return response
+
+    def response_type_annotation(self, **kwargs) -> str:
+        lro_response = self.lro_response or next(iter(self.responses), None)
+        if lro_response:
+            return lro_response.type_annotation(**kwargs)
+        return "None"
 
     def cls_type_annotation(self, *, async_mode: bool) -> str:
         """We don't want the poller to show up in ClsType, so we call super() on resposne type annotation"""
@@ -128,8 +134,8 @@ class LROOperationBase(OperationBase[LROResponseType]):
             return file_import
         if async_mode:
             file_import.add_submodule_import(
-                f"azure.core.tracing.decorator_async",
-                f"distributed_trace_async",
+                "azure.core.tracing.decorator_async",
+                "distributed_trace_async",
                 ImportType.AZURECORE,
             )
         file_import.add_submodule_import(

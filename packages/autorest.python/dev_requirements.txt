@@ -1,11 +1,11 @@
 -e .
-tox
+tox==3.27.1  # Got some problem with 4.x
 invoke
 colorama
-pylint==2.4.4
+pylint==2.15.10
 pytest
 ptvsd
 mypy
-pyright==1.1.274
+pyright==1.1.287
 black
 types-PyYAML

@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import IO, List, Optional
+from typing import Any, IO, List, Optional
 
 from .. import _serialization
 
@@ -26,7 +26,7 @@ class Error(_serialization.Model):
         "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs):
+    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword status:
         :paramtype status: int
@@ -59,7 +59,7 @@ class Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDat
         "file_name": {"key": "fileName", "type": "str"},
     }
 
-    def __init__(self, *, file_content: IO, file_name: str, **kwargs):
+    def __init__(self, *, file_content: IO, file_name: str, **kwargs: Any) -> None:
         """
         :keyword file_content: File to upload. Required.
         :paramtype file_content: IO
@@ -89,7 +89,7 @@ class Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDa
         "file_content": {"key": "fileContent", "type": "[IO]"},
     }
 
-    def __init__(self, *, file_content: List[IO], **kwargs):
+    def __init__(self, *, file_content: List[IO], **kwargs: Any) -> None:
         """
         :keyword file_content: Files to upload. Required.
         :paramtype file_content: list[IO]
