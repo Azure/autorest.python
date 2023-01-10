@@ -267,7 +267,8 @@ def _get_model(module_name: str, model_name: str):
     module_end = module_name.rsplit(".", 1)[0]
     module = sys.modules[module_end]
     models.update({k: v for k, v in module.__dict__.items() if isinstance(v, type)})
-    model_name = model_name.split(".")[-1]
+    if isinstance(model_name, str):
+        model_name = model_name.split(".")[-1]
     if model_name not in models:
         return model_name
     return models[model_name]
@@ -469,14 +470,15 @@ class Model(_MyMutableMapping):
 
 
 def _get_deserialize_callable_from_annotation(  # pylint: disable=too-many-return-statements, too-many-statements
-    annotation: typing.Any,
-    module: typing.Optional[str],
+    annotation: typing.Any, module: typing.Optional[str], rf: "_RestField" = None
 ) -> typing.Optional[typing.Callable[[typing.Any], typing.Any]]:
     if not annotation or annotation in [int, float]:
         return None
 
     try:
         if module and _is_model(_get_model(module, annotation)):
+            if rf:
+                rf._is_model = True
 
             def _deserialize_model(model_deserializer: typing.Optional[typing.Callable], obj):
                 if _is_model(obj):
@@ -518,7 +520,7 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=too-many-retur
         if any(a for a in annotation.__args__ if a == type(None)):
 
             if_obj_deserializer = _get_deserialize_callable_from_annotation(
-                next(a for a in annotation.__args__ if a != type(None)), module
+                next(a for a in annotation.__args__ if a != type(None)), module, rf
             )
 
             def _deserialize_with_optional(if_obj_deserializer: typing.Optional[typing.Callable], obj):
@@ -541,8 +543,8 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=too-many-retur
 
     try:
         if annotation._name == "Dict":
-            key_deserializer = _get_deserialize_callable_from_annotation(annotation.__args__[0], module)
-            value_deserializer = _get_deserialize_callable_from_annotation(annotation.__args__[1], module)
+            key_deserializer = _get_deserialize_callable_from_annotation(annotation.__args__[0], module, rf)
+            value_deserializer = _get_deserialize_callable_from_annotation(annotation.__args__[1], module, rf)
 
             def _deserialize_dict(
                 key_deserializer: typing.Optional[typing.Callable],
@@ -578,10 +580,10 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=too-many-retur
                     )
 
                 entry_deserializers = [
-                    _get_deserialize_callable_from_annotation(dt, module) for dt in annotation.__args__
+                    _get_deserialize_callable_from_annotation(dt, module, rf) for dt in annotation.__args__
                 ]
                 return functools.partial(_deserialize_multiple_sequence, entry_deserializers)
-            deserializer = _get_deserialize_callable_from_annotation(annotation.__args__[0], module)
+            deserializer = _get_deserialize_callable_from_annotation(annotation.__args__[0], module, rf)
 
             def _deserialize_sequence(
                 deserializer: typing.Optional[typing.Callable],
@@ -686,7 +688,7 @@ class _RestField:
     def _get_deserialize_callable_from_annotation(
         self, annotation: typing.Any
     ) -> typing.Optional[typing.Callable[[typing.Any], typing.Any]]:
-        return _get_deserialize_callable_from_annotation(annotation, self._module)
+        return _get_deserialize_callable_from_annotation(annotation, self._module, self)
 
 
 def rest_field(
