@@ -35,19 +35,16 @@ steps:
           tox -e ci
       displayName: Execute Autorest Azure Version Tolerant Tests
       workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
-
     - script: |
           cd $(AutorestTestFolder)/vanilla/version-tolerant
           tox -e ci
       displayName: Execute Autorest Vanilla Version Tolerant Tests
       workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
-
     - script: |
           cd $(AutorestTestFolder)/dpg/version-tolerant
           tox -e ci
       displayName: Execute Autorest DPG Version Tolerant Tests
       workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
-
     - script: |
           cd test/mock_api_tests
           tox -e ci
@@ -56,5 +53,5 @@ steps:
 
     - script: |
           pnpm config set //registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)
-          NPM_AUTH_TOKEN="$(azure-sdk-npm-token)" pnpm -r publish --access public --no-git-checks
+          pnpm -r publish --access public --no-git-checks
       displayName: Publish packages
