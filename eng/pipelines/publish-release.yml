@@ -24,7 +24,7 @@ steps:
 
     - script: |
           pnpm config set //registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)
-          pnpm -r publish --access public --no-git-checks --always-auth=true
+          pnpm -r publish --access public --no-git-checks
       displayName: Publish packages
     - publish: /home/vsts/.npm/_logs
       artifact: NPMLogs
