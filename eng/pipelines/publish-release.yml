@@ -10,7 +10,9 @@ variables:
     AutorestTestFolder: "$(Build.SourcesDirectory)/packages/autorest.python/test/"
 
 steps:
-    - script: npm install -g pnpm
+    - script: |
+        npm install -g pnpm
+        pnpm --version
       displayName: Install PNPM
 
     - script: npm install -g @azure-tools/cadl-ranch
