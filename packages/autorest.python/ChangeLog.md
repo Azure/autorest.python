@@ -1,6 +1,6 @@
 # Release History
 
-### 2023-01-XX - 6.2.16
+### 2023-01-11 - 6.2.16
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -15,8 +15,9 @@
 **New Features**
 
 - Support `azure.core.serialization.NULL` in msrest model #1669
+- Support `azure.core.serialization.NULL` in dpg model serialization #1669
 
-### 2023-01-09 - 6.2.15
+### 2023-01-069 - 6.2.15
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
