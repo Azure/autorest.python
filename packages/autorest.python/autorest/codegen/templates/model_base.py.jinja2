@@ -21,6 +21,7 @@ import isodate
 from azure.core.exceptions import DeserializationError
 from azure.core import CaseInsensitiveEnumMeta
 from azure.core.pipeline import PipelineResponse
+from azure.core.serialization import NULL as AzureCoreNull
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -157,6 +158,8 @@ class AzureJSONEncoder(JSONEncoder):
             return {k: v for k, v in o.items() if k not in readonly_props}
         if isinstance(o, (bytes, bytearray)):
             return base64.b64encode(o).decode()
+        if o is AzureCoreNull:
+            return None
         try:
             return super(AzureJSONEncoder, self).default(o)
         except TypeError:
