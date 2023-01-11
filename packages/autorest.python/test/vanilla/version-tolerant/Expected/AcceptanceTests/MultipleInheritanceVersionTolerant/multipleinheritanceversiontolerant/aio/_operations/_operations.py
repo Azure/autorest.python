@@ -153,6 +153,15 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         :return: str
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                horse = {
+                    "name": "str",  # Required.
+                    "isAShowHorse": bool  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -308,6 +317,14 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         :return: str
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                pet = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -466,6 +483,15 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         :return: str
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                feline = {
+                    "hisses": bool,  # Optional.
+                    "meows": bool  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -630,6 +656,17 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         :return: str
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                cat = {
+                    "name": "str",  # Required.
+                    "hisses": bool,  # Optional.
+                    "likesMilk": bool,  # Optional.
+                    "meows": bool  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -800,6 +837,18 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         :return: str
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                kitten = {
+                    "name": "str",  # Required.
+                    "eatsMiceYet": bool,  # Optional.
+                    "hisses": bool,  # Optional.
+                    "likesMilk": bool,  # Optional.
+                    "meows": bool  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,

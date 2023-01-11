@@ -280,6 +280,14 @@ class ParamsOperations:
         :return: JSON
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                parameter = {
+                    "url": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,

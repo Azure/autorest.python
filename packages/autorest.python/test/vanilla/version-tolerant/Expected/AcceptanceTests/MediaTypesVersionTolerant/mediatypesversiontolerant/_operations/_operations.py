@@ -199,6 +199,14 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         :return: str
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "source": "str"  # Optional. File source path.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -317,6 +325,14 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "source": "str"  # Optional. File source path.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,

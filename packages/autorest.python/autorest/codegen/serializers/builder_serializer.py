@@ -334,12 +334,9 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
         ):
             # No input template if now body parameter
             return template
-        if builder.overloads:
-            # if there's overloads, we do the json input example template on the overload
-            return template
 
         body_param = builder.parameters.body_parameter
-        if not isinstance(body_param.type, (ListType, DictionaryType, ModelType)):
+        if not isinstance(body_param.type, (ListType, DictionaryType, ModelType, CombinedType)):
             return template
 
         if (
@@ -350,9 +347,17 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
 
         if isinstance(body_param.type, ModelType) and body_param.type.base != "json":
             return template
+        
+        json_type = body_param.type
+        if isinstance(body_param.type, CombinedType):
+            sub_json_types = [ sub_type for sub_type in body_param.type.types if isinstance(sub_type, ModelType) and sub_type.base == "json"]
+            if not sub_json_types:
+                return template
+            else:
+                json_type = sub_json_types[0]
 
         polymorphic_subtypes: List[ModelType] = []
-        body_param.type.get_polymorphic_subtypes(polymorphic_subtypes)
+        json_type.get_polymorphic_subtypes(polymorphic_subtypes)
         if polymorphic_subtypes:
             # we just assume one kind of polymorphic body for input
             discriminator_name = cast(
@@ -376,7 +381,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
             "# JSON input template you can fill out and use as your body input."
         )
         json_template = _json_dumps_template(
-            body_param.type.get_json_template_representation(),
+            json_type.get_json_template_representation(),
         )
         template.extend(
             f"{builder.parameters.body_parameter.client_name} = {json_template}".splitlines()

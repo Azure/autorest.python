@@ -133,6 +133,13 @@ class PetsOperations:
         Example:
             .. code-block:: python
 
+                # JSON input template you can fill out and use as your body input.
+                create_parameters = {
+                    "id": 0,  # Required.
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
+                }
+
                 # response body for status code(s): 200
                 response == {
                     "id": 0,  # Required.
@@ -269,6 +276,14 @@ class PetsOperations:
         Example:
             .. code-block:: python
 
+                # JSON input template you can fill out and use as your body input.
+                create_parameters = {
+                    "id": 0,  # Required.
+                    "friendly": bool,  # Optional.
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
+                }
+
                 # response body for status code(s): 200
                 response == {
                     "id": 0,  # Required.
@@ -403,6 +418,13 @@ class PetsOperations:
         Example:
             .. code-block:: python
 
+                # JSON input template you can fill out and use as your body input.
+                create_parameters = {
+                    "id": 0,  # Required.
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
+                }
+
                 # response body for status code(s): 200
                 response == {
                     "id": 0,  # Required.
@@ -536,6 +558,13 @@ class PetsOperations:
         Example:
             .. code-block:: python
 
+                # JSON input template you can fill out and use as your body input.
+                create_parameters = {
+                    "id": 0,  # Required.
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
+                }
+
                 # response body for status code(s): 200
                 response == {
                     "id": 0,  # Required.
@@ -668,6 +697,13 @@ class PetsOperations:
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                create_parameters = {
+                    "id": 0,  # Required.
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -813,6 +849,17 @@ class PetsOperations:
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                create_parameters = {
+                    "@odata.location": "str",  # Required.
+                    "id": 0,  # Required.
+                    "additionalProperties": {
+                        "str": 0.0  # Optional. Dictionary of :code:`<number>`.
+                    },
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
+                }
 
                 # response body for status code(s): 200
                 response == {
