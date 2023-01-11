@@ -53,6 +53,7 @@ import {
     HttpServer,
     isStatusCode,
     HttpOperation,
+    isHeader,
 } from "@cadl-lang/rest/http";
 import { getAddedOn } from "@cadl-lang/versioning";
 import {
@@ -256,7 +257,7 @@ function getType(program: Program, type: EmitterType): any {
         if (type.kind === "Model") {
             // need to do properties after insertion to avoid infinite recursion
             for (const property of type.properties.values()) {
-                if (isStatusCode(program, property) || isNeverType(property.type)) {
+                if (isStatusCode(program, property) || isNeverType(property.type) || isHeader(program, property)) {
                     continue;
                 }
                 newValue.properties.push(emitProperty(program, property));
