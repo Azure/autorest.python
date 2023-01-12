@@ -63,6 +63,7 @@ class BaseBuilder(
         self.is_overload: bool = yaml_data["isOverload"]
         self.api_versions: List[str] = yaml_data["apiVersions"]
         self.added_on: Optional[str] = yaml_data.get("addedOn")
+        self.external_docs: Optional[Dict[str, Any]] = yaml_data.get("externalDocs")
 
         if code_model.options["version_tolerant"] and yaml_data.get("abstract"):
             _LOGGER.warning(
