@@ -87,6 +87,7 @@ class _ParameterBase(
         self.added_on: Optional[str] = self.yaml_data.get("addedOn")
         self.is_api_version: bool = self.yaml_data.get("isApiVersion", False)
         self.in_overload: bool = self.yaml_data.get("inOverload", False)
+        self.need_unset: bool = False
 
     @property
     def constant(self) -> bool:
@@ -209,8 +210,10 @@ class _ParameterBase(
         type_annot = self.type_annotation(async_mode=async_mode)
         if self.client_default_value is not None or self.optional:
             return f"{self.client_name}: {type_annot} = {self.client_default_value_declaration},"
-        if not self.in_overload and (
-            self.in_flattened_body or getattr(self, "has_json_model_type", False)
+        if (
+            not self.in_overload
+            and self.need_unset
+            and (self.in_flattened_body or getattr(self, "has_json_model_type", False))
         ):
             return f"{self.client_name}: {type_annot} = _Unset,"
         return f"{self.client_name}: {type_annot},"

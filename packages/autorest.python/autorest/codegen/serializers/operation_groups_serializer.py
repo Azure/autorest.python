@@ -69,7 +69,8 @@ class OperationGroupsSerializer:
             for operation in operation_group.operations:
                 if is_json_model_type(operation.parameters):
                     unset = "_Unset: Any = object()"
-                    break
+                    for p in operation.parameters.parameters:
+                        p.need_unset = True
 
         template = self.env.get_or_select_template(
             "operation_groups_container.py.jinja2"
