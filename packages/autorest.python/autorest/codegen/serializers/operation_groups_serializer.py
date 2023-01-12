@@ -16,7 +16,11 @@ from ..models import (
     Client,
 )
 from .import_serializer import FileImportSerializer
-from .builder_serializer import get_operation_serializer, RequestBuilderSerializer
+from .builder_serializer import (
+    get_operation_serializer,
+    RequestBuilderSerializer,
+    is_json_model_type,
+)
 
 
 class OperationGroupsSerializer:
@@ -60,6 +64,12 @@ class OperationGroupsSerializer:
                     async_mode=self.async_mode,
                 )
             )
+        unset = ""
+        for operation_group in operation_groups:
+            for operation in operation_group.operations:
+                if is_json_model_type(operation.parameters):
+                    unset = "_Unset: Any = object()"
+                    break
 
         template = self.env.get_or_select_template(
             "operation_groups_container.py.jinja2"
@@ -83,4 +93,5 @@ class OperationGroupsSerializer:
                 async_mode=False,
             ),
             get_request_builders=self._get_request_builders,
+            unset=unset,
         )

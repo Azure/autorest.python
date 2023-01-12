@@ -86,6 +86,7 @@ class _ParameterBase(
         self.check_client_input: bool = self.yaml_data.get("checkClientInput", False)
         self.added_on: Optional[str] = self.yaml_data.get("addedOn")
         self.is_api_version: bool = self.yaml_data.get("isApiVersion", False)
+        self.in_overload: bool = self.yaml_data.get("inOverload", False)
 
     @property
     def constant(self) -> bool:
@@ -208,6 +209,10 @@ class _ParameterBase(
         type_annot = self.type_annotation(async_mode=async_mode)
         if self.client_default_value is not None or self.optional:
             return f"{self.client_name}: {type_annot} = {self.client_default_value_declaration},"
+        if not self.in_overload and (
+            self.in_flattened_body or getattr(self, "has_json_model_type", False)
+        ):
+            return f"{self.client_name}: {type_annot} = _Unset,"
         return f"{self.client_name}: {type_annot},"
 
 
@@ -327,10 +332,8 @@ class Parameter(_ParameterBase):
         self.implementation: str = yaml_data["implementation"]
         self.skip_url_encoding: bool = self.yaml_data.get("skipUrlEncoding", False)
         self.explode: bool = self.yaml_data.get("explode", False)
-        self.in_overload: bool = self.yaml_data["inOverload"]
         self.in_overriden: bool = self.yaml_data.get("inOverriden", False)
         self.delimiter: Optional[ParameterDelimeter] = self.yaml_data.get("delimiter")
-        self.in_flattened_body: bool = self.yaml_data.get("inFlattenedBody", False)
 
     @property
     def in_method_signature(self) -> bool:

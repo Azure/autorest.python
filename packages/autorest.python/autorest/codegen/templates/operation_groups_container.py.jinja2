@@ -5,6 +5,7 @@
 # coding=utf-8
 {{ code_model.options['license_header'] }}
 {{ imports }}
+{{ unset }}
 
 {% if code_model.options["builders_visibility"] == "embedded" and not async_mode %}
 {{ op_tools.declare_serializer(code_model) }}
