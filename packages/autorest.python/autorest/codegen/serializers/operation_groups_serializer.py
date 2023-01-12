@@ -69,6 +69,7 @@ class OperationGroupsSerializer:
             for operation in operation_group.operations:
                 if is_json_model_type(operation.parameters):
                     unset = "_Unset: Any = object()"
+                    operation.parameters.body_parameter.need_unset = True
                     for p in operation.parameters.parameters:
                         p.need_unset = True
 
