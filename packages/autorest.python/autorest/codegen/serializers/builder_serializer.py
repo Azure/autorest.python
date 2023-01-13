@@ -336,7 +336,9 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
             return template
 
         body_param = builder.parameters.body_parameter
-        if not isinstance(body_param.type, (ListType, DictionaryType, ModelType, CombinedType)):
+        if not isinstance(
+            body_param.type, (ListType, DictionaryType, ModelType, CombinedType)
+        ):
             return template
 
         if (
@@ -347,10 +349,14 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
 
         if isinstance(body_param.type, ModelType) and body_param.type.base != "json":
             return template
-        
+
         json_type = body_param.type
         if isinstance(body_param.type, CombinedType):
-            sub_json_types = [ sub_type for sub_type in body_param.type.types if isinstance(sub_type, ModelType) and sub_type.base == "json"]
+            sub_json_types = [
+                sub_type
+                for sub_type in body_param.type.types
+                if isinstance(sub_type, ModelType) and sub_type.base == "json"
+            ]
             if not sub_json_types:
                 return template
             else:
