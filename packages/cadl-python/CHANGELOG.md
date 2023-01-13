@@ -1,5 +1,11 @@
 # Release History
 
+## 2023-01-11 - 0.4.17
+
+**Other Changes**
+
+- Hide header properties in DPG models #1668
+
 ## 2023-01-09 - 0.4.16
 
 **Bug Fixes**
