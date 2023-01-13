@@ -359,8 +359,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
             ]
             if not sub_json_types:
                 return template
-            else:
-                json_type = sub_json_types[0]
+            json_type = sub_json_types[0]
 
         polymorphic_subtypes: List[ModelType] = []
         json_type.get_polymorphic_subtypes(polymorphic_subtypes)
