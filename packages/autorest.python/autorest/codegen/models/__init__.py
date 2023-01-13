@@ -6,7 +6,7 @@
 import logging
 from typing import Any, Dict, Union
 from .base import BaseModel
-from .base_builder import BaseBuilder, ParameterListType
+from .base_builder import BaseBuilder
 from .code_model import CodeModel
 from .client import Client
 from .model_type import ModelType, JSONModelType, DPGModelType, MsrestModelType
@@ -116,7 +116,6 @@ __all__ = [
     "CredentialType",
     "ClientParameter",
     "ConfigParameter",
-    "ParameterListType",
 ]
 
 TYPE_TO_OBJECT = {

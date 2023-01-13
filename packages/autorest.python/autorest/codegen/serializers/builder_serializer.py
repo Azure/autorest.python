@@ -33,10 +33,10 @@ from ..models import (
     RequestBuilderType,
     JSONModelType,
     CombinedType,
-    ParameterListType,
 )
 from .parameter_serializer import ParameterSerializer, PopKwargType
 from . import utils
+from ..models.parameter_list import has_json_model_type
 
 T = TypeVar("T")
 OrderedSet = Dict[T, None]
@@ -208,14 +208,6 @@ def _api_version_validation(builder: OperationType) -> str:
         retval_str = "\n".join(retval)
         return f"@api_version_validation(\n{retval_str}\n){builder.pylint_disable}"
     return ""
-
-
-def is_json_model_type(parameters: ParameterListType) -> bool:
-    return (
-        parameters.has_body
-        and parameters.body_parameter.has_json_model_type
-        and any(p.in_flattened_body for p in parameters.parameters)
-    )
 
 
 class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-method
@@ -958,7 +950,9 @@ class _OperationSerializer(
         if builder.parameters.has_body and builder.parameters.body_parameter.flattened:
             # unflatten before passing to request builder as well
             retval.extend(_serialize_flattened_body(builder.parameters.body_parameter))
-        if is_json_model_type(builder.parameters):
+        if builder.parameters.has_body and has_json_model_type(
+            builder.parameters.body_parameter, builder.parameters.parameters
+        ):
             retval.extend(_serialize_json_model_body(builder.parameters.body_parameter))
         if builder.overloads:
             # we are only dealing with two overloads. If there are three, we generate an abstract operation

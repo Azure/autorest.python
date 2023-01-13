@@ -4,6 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 
+
 DEFAULT_HEADER_TEXT = (
     "Copyright (c) Microsoft Corporation. All rights reserved.\n"
     "Licensed under the MIT License. See License.txt in the project root for license information.\n"

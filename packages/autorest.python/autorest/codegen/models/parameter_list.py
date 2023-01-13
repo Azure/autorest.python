@@ -73,6 +73,14 @@ def _sort(params):
     )
 
 
+def has_json_model_type(
+    body_parameter: BodyParameterType, parameters: List[ParameterType]
+) -> bool:
+    return body_parameter.has_json_model_type and any(
+        p.in_flattened_body for p in parameters
+    )
+
+
 class _ParameterListBase(
     MutableSequence, Generic[ParameterType, BodyParameterType]
 ):  # pylint: disable=too-many-public-methods
@@ -297,6 +305,16 @@ class _ParameterListBase(
             body_parameter = cls.body_parameter_creator()(
                 yaml_data["bodyParameter"], code_model
             )
+        if (
+            body_parameter
+            and not body_parameter.in_overload
+            and has_json_model_type(body_parameter, parameters)
+        ):
+            if body_parameter.has_json_model_type:
+                body_parameter.need_unset = True
+            for parameter in parameters:
+                if parameter.in_flattened_body:
+                    parameter.need_unset = True
         return cls(
             yaml_data,
             code_model,

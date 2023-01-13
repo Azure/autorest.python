@@ -96,8 +96,8 @@ def add_overload(
         content_types = "'" + "', '".join(content_types) + "'"
         content_type_param["description"] += f" Known values are: {content_types}."
     overload["bodyParameter"]["inOverload"] = True
-    for parameter in overload["parameters"]:
-        parameter["inOverload"] = True
+    # for parameter in overload["parameters"]:
+    #     parameter["inOverload"] = True
     return overload
 
 
