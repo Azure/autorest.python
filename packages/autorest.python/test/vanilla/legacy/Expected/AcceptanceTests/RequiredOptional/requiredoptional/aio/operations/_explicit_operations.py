@@ -1213,7 +1213,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """Test explicitly required array. Please put null and the client library should throw before the
         request is sent.
 
-        :param body_parameter: Is either a list type or a IO type. Required.
+        :param body_parameter: Is either a [str] type or a IO type. Required.
         :type body_parameter: list[str] or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1312,7 +1312,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional array. Please put null.
 
-        :param body_parameter: Is either a list type or a IO type. Default value is None.
+        :param body_parameter: Is either a [str] type or a IO type. Default value is None.
         :type body_parameter: list[str] or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.

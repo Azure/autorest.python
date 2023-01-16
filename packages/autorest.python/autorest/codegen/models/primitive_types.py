@@ -68,6 +68,10 @@ class PrimitiveType(BaseType):  # pylint: disable=abstract-method
     def default_template_representation_declaration(self) -> str:
         return self.get_declaration(self.docstring_type())
 
+    @property
+    def type_description(self) -> str:
+        return self.type_annotation()
+
 
 class BooleanType(PrimitiveType):
     @property

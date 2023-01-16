@@ -153,3 +153,7 @@ class ListType(BaseType):
             )
         file_import.merge(self.element_type.imports(**kwargs))
         return file_import
+
+    @property
+    def type_description(self) -> str:
+        return f"[{self.element_type.type_description}]"

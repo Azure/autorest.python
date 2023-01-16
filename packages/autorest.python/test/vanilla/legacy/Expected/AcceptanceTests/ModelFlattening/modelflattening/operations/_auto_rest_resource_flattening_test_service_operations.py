@@ -263,7 +263,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> None:
         """Put External Resource as an Array.
 
-        :param resource_array: External Resource as an Array to put. Is either a list type or a IO
+        :param resource_array: External Resource as an Array to put. Is either a [model] type or a IO
          type. Default value is None.
         :type resource_array: list[~modelflattening.models.Resource] or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
@@ -423,7 +423,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
 
-        :param resource_array: External Resource as an Array to put. Is either a list type or a IO
+        :param resource_array: External Resource as an Array to put. Is either a [model] type or a IO
          type. Default value is None.
         :type resource_array: list[~modelflattening.models.WrappedProduct] or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
@@ -581,8 +581,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> None:
         """Put External Resource as a Dictionary.
 
-        :param resource_dictionary: External Resource as a Dictionary to put. Is either a dict type or
-         a IO type. Default value is None.
+        :param resource_dictionary: External Resource as a Dictionary to put. Is either a {model} type
+         or a IO type. Default value is None.
         :type resource_dictionary: dict[str, ~modelflattening.models.FlattenedProduct] or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
