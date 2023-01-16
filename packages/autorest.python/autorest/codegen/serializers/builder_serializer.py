@@ -157,14 +157,20 @@ def _serialize_json_model_body(body_parameter: BodyParameter) -> List[str]:
         )
 
     retval.append(f"if {body_parameter.client_name} is _Unset:")
-    parameter_string = ", \n".join(
-        f'"{property_name}": {parameter_name}'
-        for property_name, parameter_name in body_parameter.property_to_parameter_name.items()
-    )
+    retval.append(f"    {body_parameter.client_name} = dict()")
     model_type = cast(ModelType, body_parameter.type)
     if isinstance(model_type, CombinedType):
         model_type = next(t for t in model_type.types if isinstance(t, JSONModelType))
-    retval.append(f"    {body_parameter.client_name} = {{{parameter_string}}}")
+    for (
+        property_name,
+        parameter_name,
+    ) in body_parameter.property_to_parameter_name.items():
+        retval.append(
+            f"    if {parameter_name} is not None and {parameter_name} is not _Unset:"
+        )
+        retval.append(
+            f'        {body_parameter.client_name}["{property_name}"] = {parameter_name}'
+        )
     return retval
 
 
