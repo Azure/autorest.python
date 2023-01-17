@@ -589,7 +589,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     ) -> LROPoller[_models.Product]:
         """Long running put request, service returns a 400 to the initial request.
 
-        :param product: Product to put. Is either a model type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -767,7 +767,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
         201 response code.
 
-        :param product: Product to put. Is either a model type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -947,7 +947,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
         201 response code.
 
-        :param product: Product to put. Is either a model type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1130,7 +1130,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         """Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the
         endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-        :param product: Product to put. Is either a model type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1588,7 +1588,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     ) -> LROPoller[None]:
         """Long running post request, service returns a 400 with no error body.
 
-        :param product: Product to put. Is either a model type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1757,7 +1757,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     ) -> LROPoller[None]:
         """Long running post request, service returns a 202 with a location header.
 
-        :param product: Product to put. Is either a model type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1932,7 +1932,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         """Long running post request, service returns a 202 to the initial request Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
-        :param product: Product to put. Is either a model type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -2107,7 +2107,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     ) -> LROPoller[_models.Product]:
         """Long running put request, service returns a 201 to the initial request with no payload.
 
-        :param product: Product to put. Is either a model type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -2291,7 +2291,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Is either a model type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -2483,7 +2483,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Is either a model type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -2849,7 +2849,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         """Long running post request, service returns a 202 to the initial request, without a location
         header.
 
-        :param product: Product to put. Is either a model type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -3027,7 +3027,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Is either a model type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -3201,7 +3201,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         """Long running put request, service returns a 200 to the initial request, with an entity that is
         not a valid json.
 
-        :param product: Product to put. Is either a model type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -3385,7 +3385,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
         header is invalid.
 
-        :param product: Product to put. Is either a model type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -3579,7 +3579,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Is either a model type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -4055,7 +4055,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         """Long running post request, service returns a 202 to the initial request, with invalid
         'Location' and 'Retry-After' headers.
 
-        :param product: Product to put. Is either a model type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -4233,7 +4233,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
         header is invalid.
 
-        :param product: Product to put. Is either a model type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -4413,7 +4413,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Is either a model type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.

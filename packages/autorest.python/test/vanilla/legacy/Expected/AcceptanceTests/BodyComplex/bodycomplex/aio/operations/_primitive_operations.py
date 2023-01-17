@@ -163,7 +163,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with integer properties.
 
-        :param complex_body: Please put -1 and 2. Is either a model type or a IO type. Required.
+        :param complex_body: Please put -1 and 2. Is either a IntWrapper type or a IO type. Required.
         :type complex_body: ~bodycomplex.models.IntWrapper or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -312,8 +312,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with long properties.
 
-        :param complex_body: Please put 1099511627775 and -999511627788. Is either a model type or a IO
-         type. Required.
+        :param complex_body: Please put 1099511627775 and -999511627788. Is either a LongWrapper type
+         or a IO type. Required.
         :type complex_body: ~bodycomplex.models.LongWrapper or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -462,7 +462,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with float properties.
 
-        :param complex_body: Please put 1.05 and -0.003. Is either a model type or a IO type. Required.
+        :param complex_body: Please put 1.05 and -0.003. Is either a FloatWrapper type or a IO type.
+         Required.
         :type complex_body: ~bodycomplex.models.FloatWrapper or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -614,8 +615,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
-         -0.000000000000000000000000000000000000000000000000000000005. Is either a model type or a IO
-         type. Required.
+         -0.000000000000000000000000000000000000000000000000000000005. Is either a DoubleWrapper type or
+         a IO type. Required.
         :type complex_body: ~bodycomplex.models.DoubleWrapper or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -764,7 +765,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with bool properties.
 
-        :param complex_body: Please put true and false. Is either a model type or a IO type. Required.
+        :param complex_body: Please put true and false. Is either a BooleanWrapper type or a IO type.
+         Required.
         :type complex_body: ~bodycomplex.models.BooleanWrapper or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -913,8 +915,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with string properties.
 
-        :param complex_body: Please put 'goodrequest', '', and null. Is either a model type or a IO
-         type. Required.
+        :param complex_body: Please put 'goodrequest', '', and null. Is either a StringWrapper type or
+         a IO type. Required.
         :type complex_body: ~bodycomplex.models.StringWrapper or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1063,8 +1065,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with date properties.
 
-        :param complex_body: Please put '0001-01-01' and '2016-02-29'. Is either a model type or a IO
-         type. Required.
+        :param complex_body: Please put '0001-01-01' and '2016-02-29'. Is either a DateWrapper type or
+         a IO type. Required.
         :type complex_body: ~bodycomplex.models.DateWrapper or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1216,7 +1218,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Put complex types with datetime properties.
 
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'. Is
-         either a model type or a IO type. Required.
+         either a DatetimeWrapper type or a IO type. Required.
         :type complex_body: ~bodycomplex.models.DatetimeWrapper or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1368,7 +1370,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Put complex types with datetimeRfc1123 properties.
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
-         GMT'. Is either a model type or a IO type. Required.
+         GMT'. Is either a Datetimerfc1123Wrapper type or a IO type. Required.
         :type complex_body: ~bodycomplex.models.Datetimerfc1123Wrapper or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.

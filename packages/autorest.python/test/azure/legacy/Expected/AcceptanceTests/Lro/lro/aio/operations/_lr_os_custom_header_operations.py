@@ -187,7 +187,7 @@ class LROsCustomHeaderOperations:
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
         Azure-AsyncOperation header for operation status.
 
-        :param product: Product to put. Is either a model type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -382,7 +382,7 @@ class LROsCustomHeaderOperations:
         entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
         returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-        :param product: Product to put. Is either a model type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -560,7 +560,7 @@ class LROsCustomHeaderOperations:
         all requests. Long running post request, service returns a 202 to the initial request, with
         'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
-        :param product: Product to put. Is either a model type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -741,7 +741,7 @@ class LROsCustomHeaderOperations:
         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
         Azure-AsyncOperation header for operation status.
 
-        :param product: Product to put. Is either a model type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.

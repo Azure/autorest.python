@@ -295,6 +295,10 @@ class GeneratedModelType(ModelType):  # pylint: disable=abstract-method
     def docstring_text(self, **kwargs: Any) -> str:
         return self.name
 
+    @property
+    def type_description(self) -> str:
+        return self.name
+
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = super().imports(**kwargs)
         relative_path = kwargs.pop("relative_path", None)

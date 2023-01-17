@@ -111,7 +111,7 @@ class AvailabilitySetsOperations:
         :type resource_group_name: str
         :param avset: The name of the storage availability set. Required.
         :type avset: str
-        :param tags: The tags. Is either a model type or a IO type. Required.
+        :param tags: The tags. Is either a JSON type or a IO type. Required.
         :type tags: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.

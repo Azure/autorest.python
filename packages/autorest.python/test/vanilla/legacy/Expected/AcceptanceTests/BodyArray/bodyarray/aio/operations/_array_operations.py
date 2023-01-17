@@ -1853,7 +1853,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
-        :param array_body: Is either a [enum] type or a IO type. Required.
+        :param array_body: Is either a [Union[str, "_models.FooEnum"]] type or a IO type. Required.
         :type array_body: list[str or ~bodyarray.models.FooEnum] or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -2002,7 +2002,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
-        :param array_body: Is either a [enum] type or a IO type. Required.
+        :param array_body: Is either a [Union[str, "_models.Enum1"]] type or a IO type. Required.
         :type array_body: list[str or ~bodyarray.models.Enum1] or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -3718,7 +3718,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3,
         'string': '4'}, {'integer': 5, 'string': '6'}].
 
-        :param array_body: Is either a [model] type or a IO type. Required.
+        :param array_body: Is either a [Product] type or a IO type. Required.
         :type array_body: list[~bodyarray.models.Product] or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -4422,7 +4422,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
         'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
-        :param array_body: Is either a [{str}] type or a IO type. Required.
+        :param array_body: Is either a [{str: str}] type or a IO type. Required.
         :type array_body: list[dict[str, str]] or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.

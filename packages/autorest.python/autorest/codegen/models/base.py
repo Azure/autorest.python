@@ -186,4 +186,4 @@ class BaseType(BaseModel, ABC):  # pylint: disable=too-many-public-methods
 
     @property
     def type_description(self) -> str:
-        return self.type  # type: ignore
+        return self.type_annotation()

@@ -187,7 +187,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
     def analyze_body(self, input: Optional[Union[_models.SourcePath, IO]] = None, **kwargs: Any) -> str:
         """Analyze body, that could be different media types.
 
-        :param input: Input parameter. Is either a model type or a IO type. Default value is None.
+        :param input: Input parameter. Is either a SourcePath type or a IO type. Default value is None.
         :type input: ~mediatypes.models.SourcePath or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Default value is None.
@@ -296,7 +296,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
         type.
 
-        :param input: Input parameter. Is either a model type or a IO type. Default value is None.
+        :param input: Input parameter. Is either a SourcePath type or a IO type. Default value is None.
         :type input: ~mediatypes.models.SourcePath or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Default value is None.

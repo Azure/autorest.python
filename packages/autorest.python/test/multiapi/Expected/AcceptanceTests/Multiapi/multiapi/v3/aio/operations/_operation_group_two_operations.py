@@ -97,7 +97,7 @@ class OperationGroupTwoOperations:
     ) -> None:
         """TestFour should be in OperationGroupTwoOperations.
 
-        :param input: Input parameter. Is either a model type or a IO type. Default value is None.
+        :param input: Input parameter. Is either a SourcePath type or a IO type. Default value is None.
         :type input: ~multiapi.v3.models.SourcePath or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Default value is None.

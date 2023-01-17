@@ -132,4 +132,4 @@ class DictionaryType(BaseType):
 
     @property
     def type_description(self) -> str:
-        return f"{{{self.element_type.type_description}}}"
+        return f"{{str: {self.element_type.type_description}}}"

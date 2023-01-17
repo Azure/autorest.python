@@ -111,7 +111,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         .. seealso::
            - http://tempuri.org
 
-        :param resource_array: External Resource as an Array to put. Is either a [model] type or a IO
+        :param resource_array: External Resource as an Array to put. Is either a [JSON] type or a IO
          type. Default value is None.
         :type resource_array: list[JSON] or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
@@ -302,7 +302,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         .. seealso::
            - http://tempuri.org
 
-        :param resource_array: External Resource as an Array to put. Is either a [model] type or a IO
+        :param resource_array: External Resource as an Array to put. Is either a [JSON] type or a IO
          type. Default value is None.
         :type resource_array: list[JSON] or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
@@ -497,8 +497,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         .. seealso::
            - http://tempuri.org
 
-        :param resource_dictionary: External Resource as a Dictionary to put. Is either a {model} type
-         or a IO type. Default value is None.
+        :param resource_dictionary: External Resource as a Dictionary to put. Is either a {str: JSON}
+         type or a IO type. Default value is None.
         :type resource_dictionary: dict[str, JSON] or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -747,7 +747,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
            - http://tempuri.org
 
         :param resource_complex_object: External Resource as a ResourceCollection to put. Is either a
-         model type or a IO type. Default value is None.
+         JSON type or a IO type. Default value is None.
         :type resource_complex_object: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1027,7 +1027,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         .. seealso::
            - http://tempuri.org
 
-        :param simple_body_product: Simple body product to put. Is either a model type or a IO type.
+        :param simple_body_product: Simple body product to put. Is either a JSON type or a IO type.
          Default value is None.
         :type simple_body_product: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
@@ -1219,7 +1219,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         .. seealso::
            - http://tempuri.org
 
-        :param simple_body_product: Simple body product to post. Is either a model type or a IO type.
+        :param simple_body_product: Simple body product to post. Is either a JSON type or a IO type.
          Default value is None.
         :type simple_body_product: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
@@ -1427,7 +1427,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
         :param name: Product name with value 'groupproduct'. Required.
         :type name: str
-        :param simple_body_product: Simple body product to put. Is either a model type or a IO type.
+        :param simple_body_product: Simple body product to put. Is either a JSON type or a IO type.
          Default value is None.
         :type simple_body_product: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.

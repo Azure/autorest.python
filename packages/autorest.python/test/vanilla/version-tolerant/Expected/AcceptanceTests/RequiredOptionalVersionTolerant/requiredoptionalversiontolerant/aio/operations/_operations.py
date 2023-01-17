@@ -710,7 +710,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
-        :param body_parameter: Is either a model type or a IO type. Required.
+        :param body_parameter: Is either a JSON type or a IO type. Required.
         :type body_parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -809,7 +809,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
 
-        :param body_parameter: Is either a model type or a IO type. Default value is None.
+        :param body_parameter: Is either a JSON type or a IO type. Default value is None.
         :type body_parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1107,7 +1107,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
-        :param body_parameter: Is either a model type or a IO type. Required.
+        :param body_parameter: Is either a JSON type or a IO type. Required.
         :type body_parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1206,7 +1206,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
 
-        :param body_parameter: Is either a model type or a IO type. Default value is None.
+        :param body_parameter: Is either a JSON type or a IO type. Default value is None.
         :type body_parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1403,7 +1403,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """Test explicitly required complex object. Please put null and the client library should throw
         before the request is sent.
 
-        :param body_parameter: Is either a model type or a IO type. Required.
+        :param body_parameter: Is either a JSON type or a IO type. Required.
         :type body_parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1503,7 +1503,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional complex object. Please put null.
 
-        :param body_parameter: Is either a model type or a IO type. Default value is None.
+        :param body_parameter: Is either a JSON type or a IO type. Default value is None.
         :type body_parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1611,7 +1611,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
         and the client library should throw before the request is sent.
 
-        :param body_parameter: Is either a model type or a IO type. Required.
+        :param body_parameter: Is either a JSON type or a IO type. Required.
         :type body_parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1713,7 +1713,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
 
-        :param body_parameter: Is either a model type or a IO type. Default value is None.
+        :param body_parameter: Is either a JSON type or a IO type. Default value is None.
         :type body_parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -2024,7 +2024,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
-        :param body_parameter: Is either a model type or a IO type. Required.
+        :param body_parameter: Is either a JSON type or a IO type. Required.
         :type body_parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -2125,7 +2125,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
 
-        :param body_parameter: Is either a model type or a IO type. Default value is None.
+        :param body_parameter: Is either a JSON type or a IO type. Default value is None.
         :type body_parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
