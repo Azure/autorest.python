@@ -165,6 +165,11 @@ def _serialize_json_model_body(body_parameter: BodyParameter) -> List[str]:
     if isinstance(model_type, CombinedType):
         model_type = next(t for t in model_type.types if isinstance(t, JSONModelType))
     retval.append(f"    {body_parameter.client_name} = {{{parameter_string}}}")
+    retval.append(f"    {body_parameter.client_name} =  {{")
+    retval.append(
+        f"        k: v for k, v in {body_parameter.client_name}.items() if v is not None"
+    )
+    retval.append("    }")
     return retval
 
 

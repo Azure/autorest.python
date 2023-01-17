@@ -66,7 +66,7 @@ def add_overload(
     overload = copy.deepcopy(yaml_data)
     overload["isOverload"] = True
     overload["bodyParameter"]["type"] = body_type
-
+    overload["bodyParameter"]["defaultToUnsetSentinel"] = False
     overload["overloads"] = []
 
     if for_flatten_params:
@@ -98,6 +98,7 @@ def add_overload(
     overload["bodyParameter"]["inOverload"] = True
     for parameter in overload["parameters"]:
         parameter["inOverload"] = True
+        parameter["defaultToUnsetSentinel"] = False
     return overload
 
 
