@@ -546,6 +546,7 @@ class M4Reformatter(
             "isOverload": is_overload,
             "apiVersions": _get_api_versions(yaml_data.get("apiVersions", [])),
             "abstract": abstract,
+            "externalDocs": yaml_data.get("externalDocs"),
         }
 
     def get_operation_creator(

@@ -552,6 +552,10 @@ class _OperationSerializer(
             retval.append(".. warning::")
             retval.append("    This method is deprecated")
             retval.append("")
+        if builder.external_docs and builder.external_docs.get("url"):
+            retval.append(".. seealso::")
+            retval.append(f"   - {builder.external_docs['url']}")
+            retval.append("")
         return retval
 
     @property
