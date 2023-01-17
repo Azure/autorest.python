@@ -12,9 +12,14 @@
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
 | `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
 
-**Other Changes**
+**New Features**
+
+- Generate M4 externalDocs in Sphinx operation doc #1676
+
+**Bug Fixes**
 
 - Fix JSON template description #1679
+
 
 ### 2023-01-11 - 6.2.16
 
