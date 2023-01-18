@@ -272,7 +272,7 @@ class ParamsOperations:
         """POST a JSON or a JPEG.
 
         :param parameter: I am a body parameter with a new content type. My only valid JSON entry is {
-         url: "http://example.org/myimage.jpeg" }. Is either a model type or a IO type. Required.
+         url: "http://example.org/myimage.jpeg" }. Is either a JSON type or a IO type. Required.
         :type parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'image/jpeg'. Default value is None.

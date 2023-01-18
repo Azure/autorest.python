@@ -1,6 +1,6 @@
 # Release History
 
-### 2023-01-xx - 6.2.xx
+### 2023-xx-xx - 6.2.xx
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -15,6 +15,11 @@
 **New Features**
 
 - Generate M4 externalDocs in Sphinx operation doc #1676
+
+**Bug Fixes**
+
+- Fix JSON template description #1679
+
 
 ### 2023-01-11 - 6.2.16
 

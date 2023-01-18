@@ -1306,7 +1306,7 @@ class EnumOperations:
     ) -> None:
         """Sends value 'green-color' from a constant.
 
-        :param enum_string_body: enum string body. Is either a model type or a IO type. Required.
+        :param enum_string_body: enum string body. Is either a JSON type or a IO type. Required.
         :type enum_string_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.

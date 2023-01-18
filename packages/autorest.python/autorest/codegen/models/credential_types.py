@@ -162,6 +162,10 @@ class TokenCredentialType(
             return '"AsyncTokenCredential"'
         return '"TokenCredential"'
 
+    @property
+    def type_description(self) -> str:
+        return "TokenCredential"
+
     def docstring_type(self, **kwargs: Any) -> str:
         if kwargs.get("async_mode"):
             return "~azure.core.credentials_async.AsyncTokenCredential"

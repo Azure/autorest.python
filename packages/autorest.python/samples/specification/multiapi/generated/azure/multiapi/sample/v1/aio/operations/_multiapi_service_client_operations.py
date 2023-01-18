@@ -221,7 +221,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
     ) -> AsyncLROPoller[_models.Product]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
-        :param product: Product to put. Is either a model type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
         :type product: ~azure.multiapi.sample.v1.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.

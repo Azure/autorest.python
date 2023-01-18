@@ -94,7 +94,7 @@ class PetsOperations:
     async def create_ap_true(self, create_parameters: Union[_models.PetAPTrue, IO], **kwargs: Any) -> _models.PetAPTrue:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is either a model type or a IO type. Required.
+        :param create_parameters: Is either a PetAPTrue type or a IO type. Required.
         :type create_parameters: ~additionalproperties.models.PetAPTrue or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -197,7 +197,7 @@ class PetsOperations:
     ) -> _models.CatAPTrue:
         """Create a CatAPTrue which contains more properties than what is defined.
 
-        :param create_parameters: Is either a model type or a IO type. Required.
+        :param create_parameters: Is either a CatAPTrue type or a IO type. Required.
         :type create_parameters: ~additionalproperties.models.CatAPTrue or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -300,7 +300,7 @@ class PetsOperations:
     ) -> _models.PetAPObject:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is either a model type or a IO type. Required.
+        :param create_parameters: Is either a PetAPObject type or a IO type. Required.
         :type create_parameters: ~additionalproperties.models.PetAPObject or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -403,7 +403,7 @@ class PetsOperations:
     ) -> _models.PetAPString:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is either a model type or a IO type. Required.
+        :param create_parameters: Is either a PetAPString type or a IO type. Required.
         :type create_parameters: ~additionalproperties.models.PetAPString or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -506,7 +506,7 @@ class PetsOperations:
     ) -> _models.PetAPInProperties:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is either a model type or a IO type. Required.
+        :param create_parameters: Is either a PetAPInProperties type or a IO type. Required.
         :type create_parameters: ~additionalproperties.models.PetAPInProperties or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -613,7 +613,8 @@ class PetsOperations:
     ) -> _models.PetAPInPropertiesWithAPString:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is either a model type or a IO type. Required.
+        :param create_parameters: Is either a PetAPInPropertiesWithAPString type or a IO type.
+         Required.
         :type create_parameters: ~additionalproperties.models.PetAPInPropertiesWithAPString or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.

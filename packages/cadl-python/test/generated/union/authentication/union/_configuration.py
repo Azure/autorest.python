@@ -25,8 +25,8 @@ class UnionClientConfiguration(Configuration):  # pylint: disable=too-many-insta
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param credential: Credential needed for the client to connect to Azure. Is either a Key type
-     or a OAuth2 type. Required.
+    :param credential: Credential needed for the client to connect to Azure. Is either a
+     AzureKeyCredential type or a TokenCredential type. Required.
     :type credential: ~azure.core.credentials.AzureKeyCredential or
      ~azure.core.credentials.TokenCredential
     """

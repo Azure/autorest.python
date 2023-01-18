@@ -378,7 +378,7 @@ class ModelOperations:
     ) -> None:
         """put.
 
-        :param body: Is one of the following types: model, JSON, IO Required.
+        :param body: Is one of the following types: BaseModel, JSON, IO Required.
         :type body: ~specialwords.models.BaseModel or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.

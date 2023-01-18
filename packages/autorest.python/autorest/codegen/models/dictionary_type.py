@@ -129,3 +129,7 @@ class DictionaryType(BaseType):
     @property
     def instance_check_template(self) -> str:
         return "isinstance({}, dict)"
+
+    @property
+    def type_description(self) -> str:
+        return f"{{str: {self.element_type.type_description}}}"

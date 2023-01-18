@@ -384,7 +384,7 @@ class Int32ValueOperations:
     def put(self, body: Union[List[int], IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """put.
 
-        :param body: Is either a list type or a IO type. Required.
+        :param body: Is either a [int] type or a IO type. Required.
         :type body: list[int] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -533,7 +533,7 @@ class Int64ValueOperations:
     def put(self, body: Union[List[int], IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """put.
 
-        :param body: Is either a list type or a IO type. Required.
+        :param body: Is either a [int] type or a IO type. Required.
         :type body: list[int] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -682,7 +682,7 @@ class BooleanValueOperations:
     def put(self, body: Union[List[bool], IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """put.
 
-        :param body: Is either a list type or a IO type. Required.
+        :param body: Is either a [bool] type or a IO type. Required.
         :type body: list[bool] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -831,7 +831,7 @@ class StringValueOperations:
     def put(self, body: Union[List[str], IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """put.
 
-        :param body: Is either a list type or a IO type. Required.
+        :param body: Is either a [str] type or a IO type. Required.
         :type body: list[str] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -982,7 +982,7 @@ class Float32ValueOperations:
     ) -> None:
         """put.
 
-        :param body: Is either a list type or a IO type. Required.
+        :param body: Is either a [float] type or a IO type. Required.
         :type body: list[float] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1133,7 +1133,7 @@ class DatetimeValueOperations:
     ) -> None:
         """put.
 
-        :param body: Is either a list type or a IO type. Required.
+        :param body: Is either a [datetime.datetime] type or a IO type. Required.
         :type body: list[~datetime.datetime] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1284,7 +1284,7 @@ class DurationValueOperations:
     ) -> None:
         """put.
 
-        :param body: Is either a list type or a IO type. Required.
+        :param body: Is either a [datetime.timedelta] type or a IO type. Required.
         :type body: list[~datetime.timedelta] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1433,7 +1433,7 @@ class UnknownValueOperations:
     def put(self, body: Union[List[Any], IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """put.
 
-        :param body: Is either a list type or a IO type. Required.
+        :param body: Is either a [Any] type or a IO type. Required.
         :type body: list[any] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1584,7 +1584,7 @@ class ModelValueOperations:
     ) -> None:
         """put.
 
-        :param body: Is either a list type or a IO type. Required.
+        :param body: Is either a [InnerModel] type or a IO type. Required.
         :type body: list[~arrays.itemtypes.models.InnerModel] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.

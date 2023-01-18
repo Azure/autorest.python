@@ -25,8 +25,8 @@ if TYPE_CHECKING:
 class UnionClient(UnionClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates clients generated with ApiKey and OAuth2 authentication.
 
-    :param credential: Credential needed for the client to connect to Azure. Is either a Key type
-     or a OAuth2 type. Required.
+    :param credential: Credential needed for the client to connect to Azure. Is either a
+     AzureKeyCredential type or a TokenCredential type. Required.
     :type credential: ~azure.core.credentials.AzureKeyCredential or
      ~azure.core.credentials.TokenCredential
     """

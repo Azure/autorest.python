@@ -295,7 +295,7 @@ class PolymorphicrecursiveOperations:
                      "age": 105
                  }
              ]
-         }. Is either a model type or a IO type. Required.
+         }. Is either a Fish type or a IO type. Required.
         :type complex_body: ~bodycomplex.models.Fish or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
