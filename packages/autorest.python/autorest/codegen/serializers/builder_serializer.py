@@ -34,9 +34,9 @@ from ..models import (
     JSONModelType,
     CombinedType,
     ParameterListType,
-    ParameterType,
 )
 from .parameter_serializer import ParameterSerializer, PopKwargType
+from ..models.parameter_list import ParameterType
 from . import utils
 
 T = TypeVar("T")
@@ -161,7 +161,11 @@ def _serialize_json_model_body(
 
     retval.append(f"if {body_parameter.client_name} is _Unset:")
     for p in parameters:
-        if "_Unset" in p.method_signature(False):
+        if (
+            p.client_default_value is None
+            and not p.optional
+            and p.default_to_unset_sentinel
+        ):
             retval.append(f"    if {p.client_name} is _Unset:")
             retval.append(
                 f"            raise TypeError('missing required argument: {p.client_name}')"
