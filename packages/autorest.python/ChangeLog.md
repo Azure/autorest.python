@@ -1,6 +1,6 @@
 # Release History
 
-### 2023-01-XX - 6.2.17
+### 2023-01-xx - 6.2.xx
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -14,6 +14,7 @@
 
 **New Features**
 
+- Generate M4 externalDocs in Sphinx operation doc #1676
 - Add `--default-api-version` to support `--generate-sample` for mutliapi package  #1681
 
 ### 2023-01-11 - 6.2.16

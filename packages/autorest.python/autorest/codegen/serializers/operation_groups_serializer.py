@@ -16,7 +16,10 @@ from ..models import (
     Client,
 )
 from .import_serializer import FileImportSerializer
-from .builder_serializer import get_operation_serializer, RequestBuilderSerializer
+from .builder_serializer import (
+    get_operation_serializer,
+    RequestBuilderSerializer,
+)
 
 
 class OperationGroupsSerializer:
