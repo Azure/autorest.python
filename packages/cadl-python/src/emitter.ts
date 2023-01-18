@@ -462,6 +462,7 @@ function emitFlattenedParameter(
         restApiName: null,
         skipUrlEncoding: false,
         type: property["type"],
+        defaultToUnsetSentinel: true,
     };
 }
 
@@ -663,8 +664,11 @@ function emitBasicOperation(program: Program, operation: Operation, operationGro
         if (parameters.filter((e) => e.restApiName.toLowerCase() === "content-type").length === 0) {
             parameters.push(emitContentTypeParameter(bodyParameter, isOverload, isOverriden));
         }
-        if (bodyParameter.type.type == "model" && bodyParameter.type.base == "json") {
+        if (bodyParameter.type.type === "model" && bodyParameter.type.base === "json") {
             bodyParameter["propertyToParameterName"] = {};
+            if (!isOverload) {
+                bodyParameter.defaultToUnsetSentinel = true;
+            }
             for (const property of bodyParameter.type.properties) {
                 bodyParameter["propertyToParameterName"][property["restApiName"]] = property["clientName"];
                 parameters.push(emitFlattenedParameter(bodyParameter, property));
