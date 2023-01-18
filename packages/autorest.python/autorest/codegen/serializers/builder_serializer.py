@@ -31,7 +31,6 @@ from ..models import (
     MultipartBodyParameter,
     Property,
     RequestBuilderType,
-    JSONModelType,
     CombinedType,
 )
 from .parameter_serializer import ParameterSerializer, PopKwargType
@@ -162,7 +161,7 @@ def _serialize_json_model_body(body_parameter: BodyParameter) -> List[str]:
     )
     model_type = cast(ModelType, body_parameter.type)
     if isinstance(model_type, CombinedType):
-        model_type = next(t for t in model_type.types if isinstance(t, JSONModelType))
+        model_type = model_type.json_subtype
     retval.append(f"    {body_parameter.client_name} = {{{parameter_string}}}")
     return retval
 
@@ -352,14 +351,9 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
 
         json_type = body_param.type
         if isinstance(body_param.type, CombinedType):
-            sub_json_types = [
-                sub_type
-                for sub_type in body_param.type.types
-                if isinstance(sub_type, ModelType) and sub_type.base == "json"
-            ]
-            if not sub_json_types:
+            json_type = body_param.type.json_subtype
+            if json_type is None:
                 return template
-            json_type = sub_json_types[0]
 
         polymorphic_subtypes: List[ModelType] = []
         json_type.get_polymorphic_subtypes(polymorphic_subtypes)

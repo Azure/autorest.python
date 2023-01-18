@@ -10,7 +10,7 @@ from .base import BaseType
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
-    from .model_type import ModelType
+    from .model_type import ModelType, JSONModelType
 
 
 class CombinedType(BaseType):
@@ -111,3 +111,20 @@ class CombinedType(BaseType):
             code_model,
             [build_type(t, code_model) for t in yaml_data["types"]],
         )
+
+    @staticmethod
+    def _get_json_model_type(t: BaseType) -> Optional["JSONModelType"]:
+        if isinstance(t, "JSONModelType"):
+            return t
+        if isinstance(t, CombinedType):
+            try:
+                return next(
+                    CombinedType._get_json_model_type(sub_t) for sub_t in t.types
+                )
+            except StopIteration:
+                pass
+        return None
+
+    @property
+    def json_subtype(self) -> Optional["JSONModelType"]:
+        return CombinedType._get_json_model_type(self)
