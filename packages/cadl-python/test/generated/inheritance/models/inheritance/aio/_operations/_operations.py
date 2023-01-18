@@ -103,7 +103,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
     ) -> None:
         """post_valid.
 
-        :param input: Is one of the following types: model, JSON, IO Required.
+        :param input: Is one of the following types: Siamese, JSON, IO Required.
         :type input: ~models.inheritance.models.Siamese or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -246,7 +246,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
     async def put_valid(self, input: Union[_models.Siamese, JSON, IO], **kwargs: Any) -> _models.Siamese:
         """put_valid.
 
-        :param input: Is one of the following types: model, JSON, IO Required.
+        :param input: Is one of the following types: Siamese, JSON, IO Required.
         :type input: ~models.inheritance.models.Siamese or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -399,7 +399,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
     ) -> None:
         """put_model.
 
-        :param input: Is one of the following types: model, JSON, IO Required.
+        :param input: Is one of the following types: Fish, JSON, IO Required.
         :type input: ~models.inheritance.models.Fish or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -548,7 +548,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
     ) -> None:
         """put_recursive_model.
 
-        :param input: Is one of the following types: model, JSON, IO Required.
+        :param input: Is one of the following types: Fish, JSON, IO Required.
         :type input: ~models.inheritance.models.Fish or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.

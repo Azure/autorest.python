@@ -1584,7 +1584,7 @@ class ModelValueOperations:
     ) -> None:
         """put.
 
-        :param body: Is either a [model] type or a IO type. Required.
+        :param body: Is either a [InnerModel] type or a IO type. Required.
         :type body: list[~arrays.itemtypes.models.InnerModel] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.

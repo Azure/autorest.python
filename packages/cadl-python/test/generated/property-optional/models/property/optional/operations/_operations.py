@@ -591,7 +591,7 @@ class StringOperations:
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: model, JSON, IO Required.
+        :param body: Is one of the following types: StringProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.StringProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -696,7 +696,7 @@ class StringOperations:
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: model, JSON, IO Required.
+        :param body: Is one of the following types: StringProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.StringProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -907,7 +907,7 @@ class BytesOperations:
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: model, JSON, IO Required.
+        :param body: Is one of the following types: BytesProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.BytesProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1012,7 +1012,7 @@ class BytesOperations:
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: model, JSON, IO Required.
+        :param body: Is one of the following types: BytesProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.BytesProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1223,7 +1223,7 @@ class DatetimeOperations:
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: model, JSON, IO Required.
+        :param body: Is one of the following types: DatetimeProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.DatetimeProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1328,7 +1328,7 @@ class DatetimeOperations:
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: model, JSON, IO Required.
+        :param body: Is one of the following types: DatetimeProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.DatetimeProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1539,7 +1539,7 @@ class DurationOperations:
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: model, JSON, IO Required.
+        :param body: Is one of the following types: DurationProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.DurationProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1644,7 +1644,7 @@ class DurationOperations:
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: model, JSON, IO Required.
+        :param body: Is one of the following types: DurationProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.DurationProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1855,7 +1855,7 @@ class CollectionsByteOperations:
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: model, JSON, IO Required.
+        :param body: Is one of the following types: CollectionsByteProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.CollectionsByteProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1960,7 +1960,7 @@ class CollectionsByteOperations:
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: model, JSON, IO Required.
+        :param body: Is one of the following types: CollectionsByteProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.CollectionsByteProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -2173,7 +2173,7 @@ class CollectionsModelOperations:
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: model, JSON, IO Required.
+        :param body: Is one of the following types: CollectionsModelProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.CollectionsModelProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -2278,7 +2278,7 @@ class CollectionsModelOperations:
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: model, JSON, IO Required.
+        :param body: Is one of the following types: CollectionsModelProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.CollectionsModelProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -2491,7 +2491,7 @@ class RequiredAndOptionalOperations:
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: model, JSON, IO Required.
+        :param body: Is one of the following types: RequiredAndOptionalProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.RequiredAndOptionalProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -2596,7 +2596,7 @@ class RequiredAndOptionalOperations:
     ) -> None:
         """Put a body with only required properties.
 
-        :param body: Is one of the following types: model, JSON, IO Required.
+        :param body: Is one of the following types: RequiredAndOptionalProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.RequiredAndOptionalProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.

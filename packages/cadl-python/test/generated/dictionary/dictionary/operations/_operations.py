@@ -414,7 +414,7 @@ class Int32ValueOperations:
     ) -> None:
         """put.
 
-        :param body: Is either a {int} type or a IO type. Required.
+        :param body: Is either a {str: int} type or a IO type. Required.
         :type body: dict[str, int] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -565,7 +565,7 @@ class Int64ValueOperations:
     ) -> None:
         """put.
 
-        :param body: Is either a {int} type or a IO type. Required.
+        :param body: Is either a {str: int} type or a IO type. Required.
         :type body: dict[str, int] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -716,7 +716,7 @@ class BooleanValueOperations:
     ) -> None:
         """put.
 
-        :param body: Is either a {bool} type or a IO type. Required.
+        :param body: Is either a {str: bool} type or a IO type. Required.
         :type body: dict[str, bool] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -867,7 +867,7 @@ class StringValueOperations:
     ) -> None:
         """put.
 
-        :param body: Is either a {str} type or a IO type. Required.
+        :param body: Is either a {str: str} type or a IO type. Required.
         :type body: dict[str, str] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1018,7 +1018,7 @@ class Float32ValueOperations:
     ) -> None:
         """put.
 
-        :param body: Is either a {float} type or a IO type. Required.
+        :param body: Is either a {str: float} type or a IO type. Required.
         :type body: dict[str, float] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1169,7 +1169,7 @@ class DatetimeValueOperations:
     ) -> None:
         """put.
 
-        :param body: Is either a {datetime.datetime} type or a IO type. Required.
+        :param body: Is either a {str: datetime.datetime} type or a IO type. Required.
         :type body: dict[str, ~datetime.datetime] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1320,7 +1320,7 @@ class DurationValueOperations:
     ) -> None:
         """put.
 
-        :param body: Is either a {datetime.timedelta} type or a IO type. Required.
+        :param body: Is either a {str: datetime.timedelta} type or a IO type. Required.
         :type body: dict[str, ~datetime.timedelta] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1471,7 +1471,7 @@ class UnknownValueOperations:
     ) -> None:
         """put.
 
-        :param body: Is either a {Any} type or a IO type. Required.
+        :param body: Is either a {str: Any} type or a IO type. Required.
         :type body: dict[str, any] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1622,7 +1622,7 @@ class ModelValueOperations:
     ) -> None:
         """put.
 
-        :param body: Is either a {model} type or a IO type. Required.
+        :param body: Is either a {str: InnerModel} type or a IO type. Required.
         :type body: dict[str, ~dictionary.models.InnerModel] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1773,7 +1773,7 @@ class RecursiveModelValueOperations:
     ) -> None:
         """put.
 
-        :param body: Is either a {model} type or a IO type. Required.
+        :param body: Is either a {str: InnerModel} type or a IO type. Required.
         :type body: dict[str, ~dictionary.models.InnerModel] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.

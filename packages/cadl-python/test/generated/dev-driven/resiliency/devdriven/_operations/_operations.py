@@ -250,7 +250,7 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
          before returning to users. Known values are: "raw" and "model". Required.
         :type mode: str or ~resiliency.devdriven.models.Mode
-        :param input: Please put {'hello': 'world!'}. Is one of the following types: model, JSON, IO
+        :param input: Please put {'hello': 'world!'}. Is one of the following types: Input, JSON, IO
          Required.
         :type input: ~resiliency.devdriven.models.Input or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default

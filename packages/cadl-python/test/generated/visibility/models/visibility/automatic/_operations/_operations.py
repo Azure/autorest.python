@@ -179,7 +179,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
     def get_model(self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any) -> _models.VisibilityModel:
         """get_model.
 
-        :param input: Is one of the following types: model, JSON, IO Required.
+        :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
         :type input: ~models.visibility.automatic.models.VisibilityModel or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -282,7 +282,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
     def head_model(self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any) -> bool:
         """head_model.
 
-        :param input: Is one of the following types: model, JSON, IO Required.
+        :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
         :type input: ~models.visibility.automatic.models.VisibilityModel or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -388,7 +388,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
     ) -> None:
         """put_model.
 
-        :param input: Is one of the following types: model, JSON, IO Required.
+        :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
         :type input: ~models.visibility.automatic.models.VisibilityModel or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -493,7 +493,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
     ) -> None:
         """patch_model.
 
-        :param input: Is one of the following types: model, JSON, IO Required.
+        :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
         :type input: ~models.visibility.automatic.models.VisibilityModel or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -598,7 +598,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
     ) -> None:
         """post_model.
 
-        :param input: Is one of the following types: model, JSON, IO Required.
+        :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
         :type input: ~models.visibility.automatic.models.VisibilityModel or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -703,7 +703,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
     ) -> None:
         """delete_model.
 
-        :param input: Is one of the following types: model, JSON, IO Required.
+        :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
         :type input: ~models.visibility.automatic.models.VisibilityModel or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.

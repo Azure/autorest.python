@@ -141,7 +141,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
     ) -> None:
         """input.
 
-        :param input: Is one of the following types: model, JSON, IO Required.
+        :param input: Is one of the following types: InputRecord, JSON, IO Required.
         :type input: ~models.usage.models.InputRecord or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -290,7 +290,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
     ) -> _models.InputOutputRecord:
         """input_and_output.
 
-        :param body: Is one of the following types: model, JSON, IO Required.
+        :param body: Is one of the following types: InputOutputRecord, JSON, IO Required.
         :type body: ~models.usage.models.InputOutputRecord or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
