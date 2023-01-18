@@ -34,6 +34,7 @@ from ..models import (
     JSONModelType,
     CombinedType,
     ParameterListType,
+    ParameterType,
 )
 from .parameter_serializer import ParameterSerializer, PopKwargType
 from . import utils
@@ -149,7 +150,9 @@ def _serialize_flattened_body(body_parameter: BodyParameter) -> List[str]:
     return retval
 
 
-def _serialize_json_model_body(body_parameter: BodyParameter) -> List[str]:
+def _serialize_json_model_body(
+    body_parameter: BodyParameter, parameters: List[ParameterType]
+) -> List[str]:
     retval: List[str] = []
     if not body_parameter.property_to_parameter_name:
         raise ValueError(
@@ -157,6 +160,12 @@ def _serialize_json_model_body(body_parameter: BodyParameter) -> List[str]:
         )
 
     retval.append(f"if {body_parameter.client_name} is _Unset:")
+    for p in parameters:
+        if "_Unset" in p.method_signature(False):
+            retval.append(f"    if {p.client_name} is _Unset:")
+            retval.append(
+                f"            raise TypeError('missing required argument: {p.client_name}')"
+            )
     parameter_string = ", \n".join(
         f'"{property_name}": {parameter_name}'
         for property_name, parameter_name in body_parameter.property_to_parameter_name.items()
@@ -968,7 +977,11 @@ class _OperationSerializer(
             # unflatten before passing to request builder as well
             retval.extend(_serialize_flattened_body(builder.parameters.body_parameter))
         if is_json_model_type(builder.parameters):
-            retval.extend(_serialize_json_model_body(builder.parameters.body_parameter))
+            retval.extend(
+                _serialize_json_model_body(
+                    builder.parameters.body_parameter, builder.parameters.parameters
+                )
+            )
         if builder.overloads:
             # we are only dealing with two overloads. If there are three, we generate an abstract operation
             retval.extend(self._initialize_overloads(builder, is_paging=is_paging))

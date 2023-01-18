@@ -50,6 +50,7 @@ from .property import Property
 from .operation_group import OperationGroup
 from .response import Response
 from .parameter_list import (
+    ParameterType,
     ParameterList,
     ClientGlobalParameterList,
     ConfigGlobalParameterList,
@@ -117,6 +118,7 @@ __all__ = [
     "ClientParameter",
     "ConfigParameter",
     "ParameterListType",
+    "ParameterType",
 ]
 
 TYPE_TO_OBJECT = {
