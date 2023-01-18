@@ -32,6 +32,7 @@ from ..models import (
     Property,
     RequestBuilderType,
     CombinedType,
+    ParameterListType,
 )
 from .parameter_serializer import ParameterSerializer, PopKwargType
 from . import utils
@@ -154,7 +155,7 @@ def _serialize_json_model_body(body_parameter: BodyParameter) -> List[str]:
             "This method can't be called if the operation doesn't need parameter flattening"
         )
 
-    retval.append(f"if {body_parameter.client_name} is None:")
+    retval.append(f"if {body_parameter.client_name} is _Unset:")
     parameter_string = ", \n".join(
         f'"{property_name}": {parameter_name}'
         for property_name, parameter_name in body_parameter.property_to_parameter_name.items()
@@ -163,6 +164,11 @@ def _serialize_json_model_body(body_parameter: BodyParameter) -> List[str]:
     if isinstance(model_type, CombinedType):
         model_type = model_type.json_subtype
     retval.append(f"    {body_parameter.client_name} = {{{parameter_string}}}")
+    retval.append(f"    {body_parameter.client_name} =  {{")
+    retval.append(
+        f"        k: v for k, v in {body_parameter.client_name}.items() if v is not None"
+    )
+    retval.append("    }")
     return retval
 
 
@@ -206,6 +212,14 @@ def _api_version_validation(builder: OperationType) -> str:
         retval_str = "\n".join(retval)
         return f"@api_version_validation(\n{retval_str}\n){builder.pylint_disable}"
     return ""
+
+
+def is_json_model_type(parameters: ParameterListType) -> bool:
+    return (
+        parameters.has_body
+        and parameters.body_parameter.has_json_model_type
+        and any(p.in_flattened_body for p in parameters.parameters)
+    )
 
 
 class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-method
@@ -555,6 +569,10 @@ class _OperationSerializer(
         if builder.deprecated:
             retval.append(".. warning::")
             retval.append("    This method is deprecated")
+            retval.append("")
+        if builder.external_docs and builder.external_docs.get("url"):
+            retval.append(".. seealso::")
+            retval.append(f"   - {builder.external_docs['url']}")
             retval.append("")
         return retval
 
@@ -953,11 +971,7 @@ class _OperationSerializer(
         if builder.parameters.has_body and builder.parameters.body_parameter.flattened:
             # unflatten before passing to request builder as well
             retval.extend(_serialize_flattened_body(builder.parameters.body_parameter))
-        if (
-            builder.parameters.has_body
-            and builder.parameters.body_parameter.has_json_model_type
-            and any(p.in_flattened_body for p in builder.parameters.parameters)
-        ):
+        if is_json_model_type(builder.parameters):
             retval.extend(_serialize_json_model_body(builder.parameters.body_parameter))
         if builder.overloads:
             # we are only dealing with two overloads. If there are three, we generate an abstract operation
