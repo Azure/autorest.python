@@ -1242,6 +1242,14 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_parameter = {
+                    "value": 0  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1341,6 +1349,14 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_parameter = {
+                    "value": 0  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1639,6 +1655,14 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_parameter = {
+                    "value": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1738,6 +1762,14 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_parameter = {
+                    "value": "str"  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1935,6 +1967,15 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_parameter = {
+                    "id": 0,  # Required.
+                    "name": "str"  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2035,6 +2076,15 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_parameter = {
+                    "id": 0,  # Required.
+                    "name": "str"  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2143,6 +2193,17 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_parameter = {
+                    "value": {
+                        "id": 0,  # Required.
+                        "name": "str"  # Optional. Required.
+                    }
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2245,6 +2306,17 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_parameter = {
+                    "value": {
+                        "id": 0,  # Required.
+                        "name": "str"  # Optional.
+                    }
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2556,6 +2628,16 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_parameter = {
+                    "value": [
+                        "str"  # Required.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2657,6 +2739,16 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_parameter = {
+                    "value": [
+                        "str"  # Optional.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,

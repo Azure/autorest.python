@@ -1020,6 +1020,18 @@ class BasicOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "color": "str",  # Optional. Known values are: "cyan", "Magenta", "YELLOW",
+                      and "blacK".
+                    "id": 0,  # Optional. Basic Id.
+                    "name": "str"  # Optional. Name property with a very long description that
+                      does not fit on a single line and a line break.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1431,6 +1443,15 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "field1": 0,  # Optional.
+                    "field2": 0  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1588,6 +1609,15 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "field1": 0,  # Optional.
+                    "field2": 0  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1744,6 +1774,15 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "field1": 0.0,  # Optional.
+                    "field2": 0.0  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1906,6 +1945,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "field1": 0.0,  # Optional.
+                "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose":
+                      0.0  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2062,6 +2111,15 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "field_false": bool,  # Optional.
+                    "field_true": bool  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2221,6 +2279,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "empty": "str",  # Optional.
+                    "field": "str",  # Optional.
+                    "null": "str"  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2378,6 +2446,15 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "field": "2020-02-20",  # Optional.
+                    "leap": "2020-02-20"  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2537,6 +2614,15 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "field": "2020-02-20 00:00:00",  # Optional.
+                    "now": "2020-02-20 00:00:00"  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2696,6 +2782,15 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "field": "2020-02-20 00:00:00",  # Optional.
+                    "now": "2020-02-20 00:00:00"  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2851,6 +2946,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "field": "1 day, 0:00:00"  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3008,6 +3111,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "field": bytes("bytes", encoding="utf-8")  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3187,6 +3298,16 @@ class ArrayOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "array": [
+                        "str"  # Optional.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3345,6 +3466,16 @@ class ArrayOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "array": [
+                        "str"  # Optional.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3582,6 +3713,16 @@ class DictionaryOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "defaultProgram": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    }
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3741,6 +3882,16 @@ class DictionaryOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "defaultProgram": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    }
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -4054,6 +4205,24 @@ class InheritanceOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "breed": "str",  # Optional.
+                    "color": "str",  # Optional.
+                    "hates": [
+                        {
+                            "food": "str",  # Optional.
+                            "id": 0,  # Optional.
+                            "name": "str"  # Optional.
+                        }
+                    ],
+                    "id": 0,  # Optional.
+                    "name": "str"  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -4429,6 +4598,68 @@ class PolymorphismOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "fishtype":
+
+                # JSON input template for discriminator value "smart_salmon":
+                fish = {
+                    "fishtype": "smart_salmon",
+                    "length": 0.0,  # Required.
+                    "college_degree": "str",  # Optional.
+                    "iswild": bool,  # Optional.
+                    "location": "str",  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template for discriminator value "cookiecuttershark":
+                fish = {
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "cookiecuttershark",
+                    "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template for discriminator value "goblin":
+                fish = {
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "goblin",
+                    "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
+                    "color": "gray",  # Optional. Default value is "gray". Colors possible. Known
+                      values are: "pink", "gray", "brown", "RED", and "red".
+                    "jawsize": 0,  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template for discriminator value "sawshark":
+                fish = {
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "sawshark",
+                    "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
+                    "picture": bytes("bytes", encoding="utf-8"),  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = fish
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -4845,6 +5076,28 @@ class PolymorphismOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "fishtype":
+
+                # JSON input template for discriminator value "smart_salmon":
+                fish = {
+                    "fishtype": "smart_salmon",
+                    "length": 0.0,  # Required.
+                    "college_degree": "str",  # Optional.
+                    "iswild": bool,  # Optional.
+                    "location": "str",  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = salmon
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -4998,6 +5251,25 @@ class PolymorphismOperations:
 
         Example:
             .. code-block:: python
+
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "fishtype":
+
+                # JSON input template for discriminator value "smart_salmon":
+                fish = {
+                    "fishtype": "smart_salmon",
+                    "length": 0.0,  # Required.
+                    "college_degree": "str",  # Optional.
+                    "iswild": bool,  # Optional.
+                    "location": "str",  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = salmon
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "fishtype":
 
@@ -5257,6 +5529,68 @@ class PolymorphismOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "fishtype":
+
+                # JSON input template for discriminator value "smart_salmon":
+                fish = {
+                    "fishtype": "smart_salmon",
+                    "length": 0.0,  # Required.
+                    "college_degree": "str",  # Optional.
+                    "iswild": bool,  # Optional.
+                    "location": "str",  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template for discriminator value "cookiecuttershark":
+                fish = {
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "cookiecuttershark",
+                    "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template for discriminator value "goblin":
+                fish = {
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "goblin",
+                    "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
+                    "color": "gray",  # Optional. Default value is "gray". Colors possible. Known
+                      values are: "pink", "gray", "brown", "RED", and "red".
+                    "jawsize": 0,  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template for discriminator value "sawshark":
+                fish = {
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "sawshark",
+                    "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
+                    "picture": bytes("bytes", encoding="utf-8"),  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = fish
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -5692,6 +6026,68 @@ class PolymorphicrecursiveOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "fishtype":
+
+                # JSON input template for discriminator value "smart_salmon":
+                fish = {
+                    "fishtype": "smart_salmon",
+                    "length": 0.0,  # Required.
+                    "college_degree": "str",  # Optional.
+                    "iswild": bool,  # Optional.
+                    "location": "str",  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template for discriminator value "cookiecuttershark":
+                fish = {
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "cookiecuttershark",
+                    "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template for discriminator value "goblin":
+                fish = {
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "goblin",
+                    "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
+                    "color": "gray",  # Optional. Default value is "gray". Colors possible. Known
+                      values are: "pink", "gray", "brown", "RED", and "red".
+                    "jawsize": 0,  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template for discriminator value "sawshark":
+                fish = {
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "sawshark",
+                    "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
+                    "picture": bytes("bytes", encoding="utf-8"),  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = fish
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -5866,6 +6262,15 @@ class ReadonlypropertyOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "id": "str",  # Optional.
+                    "size": 0  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,

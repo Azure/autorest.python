@@ -143,6 +143,16 @@ class AvailabilitySetsOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                tags = {
+                    "tags": {
+                        "str": "str"  # A description about the set of tags. Required.
+                    }
+                }
         """
         error_map = {
             401: ClientAuthenticationError,

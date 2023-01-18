@@ -31,7 +31,6 @@ from ..models import (
     MultipartBodyParameter,
     Property,
     RequestBuilderType,
-    JSONModelType,
     CombinedType,
     ParameterListType,
 )
@@ -162,8 +161,8 @@ def _serialize_json_model_body(body_parameter: BodyParameter) -> List[str]:
         for property_name, parameter_name in body_parameter.property_to_parameter_name.items()
     )
     model_type = cast(ModelType, body_parameter.type)
-    if isinstance(model_type, CombinedType):
-        model_type = next(t for t in model_type.types if isinstance(t, JSONModelType))
+    if isinstance(model_type, CombinedType) and model_type.json_subtype:
+        model_type = model_type.json_subtype
     retval.append(f"    {body_parameter.client_name} = {{{parameter_string}}}")
     retval.append(f"    {body_parameter.client_name} =  {{")
     retval.append(
@@ -348,12 +347,11 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
         ):
             # No input template if now body parameter
             return template
-        if builder.overloads:
-            # if there's overloads, we do the json input example template on the overload
-            return template
 
         body_param = builder.parameters.body_parameter
-        if not isinstance(body_param.type, (ListType, DictionaryType, ModelType)):
+        if not isinstance(
+            body_param.type, (ListType, DictionaryType, ModelType, CombinedType)
+        ):
             return template
 
         if (
@@ -365,8 +363,14 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
         if isinstance(body_param.type, ModelType) and body_param.type.base != "json":
             return template
 
+        json_type = body_param.type
+        if isinstance(body_param.type, CombinedType):
+            if body_param.type.json_subtype is None:
+                return template
+            json_type = body_param.type.json_subtype
+
         polymorphic_subtypes: List[ModelType] = []
-        body_param.type.get_polymorphic_subtypes(polymorphic_subtypes)
+        json_type.get_polymorphic_subtypes(polymorphic_subtypes)
         if polymorphic_subtypes:
             # we just assume one kind of polymorphic body for input
             discriminator_name = cast(
@@ -390,7 +394,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
             "# JSON input template you can fill out and use as your body input."
         )
         json_template = _json_dumps_template(
-            body_param.type.get_json_template_representation(),
+            json_type.get_json_template_representation(),
         )
         template.extend(
             f"{builder.parameters.body_parameter.client_name} = {json_template}".splitlines()

@@ -7,6 +7,7 @@ from typing import Any, Dict, List, Optional, TYPE_CHECKING
 import re
 from autorest.codegen.models.imports import FileImport, ImportType
 from .base import BaseType
+from .model_type import JSONModelType
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -111,3 +112,20 @@ class CombinedType(BaseType):
             code_model,
             [build_type(t, code_model) for t in yaml_data["types"]],
         )
+
+    @staticmethod
+    def _get_json_model_type(t: BaseType) -> Optional[JSONModelType]:
+        if isinstance(t, JSONModelType):
+            return t
+        if isinstance(t, CombinedType):
+            try:
+                return next(
+                    CombinedType._get_json_model_type(sub_t) for sub_t in t.types
+                )
+            except StopIteration:
+                pass
+        return None
+
+    @property
+    def json_subtype(self) -> Optional[JSONModelType]:
+        return CombinedType._get_json_model_type(self)

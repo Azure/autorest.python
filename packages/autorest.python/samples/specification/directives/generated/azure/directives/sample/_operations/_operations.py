@@ -228,6 +228,14 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
         Example:
             .. code-block:: python
 
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
+                }
+
                 # response body for status code(s): 200
                 response == {
                     "properties": {

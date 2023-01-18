@@ -159,6 +159,13 @@ class StorageAccountsOperations:
         Example:
             .. code-block:: python
 
+                # JSON input template you can fill out and use as your body input.
+                account_name = {
+                    "name": "str",  # Required.
+                    "type": "Microsoft.Storage/storageAccounts"  # Optional. Default value is
+                      "Microsoft.Storage/storageAccounts".
+                }
+
                 # response body for status code(s): 200
                 response == {
                     "message": "str",  # Optional. Gets an error message explaining the Reason
@@ -553,6 +560,22 @@ class StorageAccountsOperations:
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                parameters = {
+                    "location": "str",  # Resource location. Required.
+                    "id": "str",  # Optional. Resource Id.
+                    "name": "str",  # Optional. Resource name.
+                    "properties": {
+                        "accountType": "str"  # Optional. Gets or sets the account type.
+                          Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
+                          "Standard_RAGRS", and "Premium_LRS".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Resource tags.
+                    },
+                    "type": "str"  # Optional. Resource type.
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -1118,6 +1141,31 @@ class StorageAccountsOperations:
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                parameters = {
+                    "location": "str",  # Resource location. Required.
+                    "id": "str",  # Optional. Resource Id.
+                    "name": "str",  # Optional. Resource name.
+                    "properties": {
+                        "accountType": "str",  # Optional. Gets or sets the account type.
+                          Note that StandardZRS and PremiumLRS accounts cannot be changed to other
+                          account types, and other account types cannot be changed to StandardZRS or
+                          PremiumLRS. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
+                          "Standard_RAGRS", and "Premium_LRS".
+                        "customDomain": {
+                            "name": "str",  # Optional. Gets or sets the custom domain
+                              name. Name is the CNAME source.
+                            "useSubDomain": bool  # Optional. Indicates whether indirect
+                              CName validation is enabled. Default value is false. This should only be
+                              set on updates.
+                        }
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Resource tags.
+                    },
+                    "type": "str"  # Optional. Resource type.
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -1702,6 +1750,11 @@ class StorageAccountsOperations:
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                regenerate_key = {
+                    "keyName": "str"  # Optional. Known values are: "key1" and "key2".
+                }
 
                 # response body for status code(s): 200
                 response == {

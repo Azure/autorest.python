@@ -388,6 +388,32 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         Example:
             .. code-block:: python
 
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "child": {
+                        "constProperty": "constant",  # Default value is "constant". Constant
+                          string. Required.
+                        "count": 0  # Optional. Count.
+                    },
+                    "constChild": {
+                        "constProperty": "constant",  # Default value is "constant". Constant
+                          string. Required.
+                        "constProperty2": "constant2"  # Default value is "constant2".
+                          Constant string2. Required.
+                    },
+                    "constInt": 0,  # Default value is 0. Constant int. Required.
+                    "constString": "constant",  # Default value is "constant". Constant string.
+                      Required.
+                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
+                    "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
+                      "constant_string_as_enum". Constant string as Enum.
+                    "display_names": [
+                        "str"  # Optional. Non required array of unique items from 0 to 6
+                          elements.
+                    ],
+                    "image": "str"  # Optional. Image URL representing the product.
+                }
+
                 # response body for status code(s): 200
                 response == {
                     "child": {
@@ -657,6 +683,32 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "child": {
+                        "constProperty": "constant",  # Default value is "constant". Constant
+                          string. Required.
+                        "count": 0  # Optional. Count.
+                    },
+                    "constChild": {
+                        "constProperty": "constant",  # Default value is "constant". Constant
+                          string. Required.
+                        "constProperty2": "constant2"  # Default value is "constant2".
+                          Constant string2. Required.
+                    },
+                    "constInt": 0,  # Default value is 0. Constant int. Required.
+                    "constString": "constant",  # Default value is "constant". Constant string.
+                      Required.
+                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
+                    "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
+                      "constant_string_as_enum". Constant string as Enum.
+                    "display_names": [
+                        "str"  # Optional. Non required array of unique items from 0 to 6
+                          elements.
+                    ],
+                    "image": "str"  # Optional. Image URL representing the product.
+                }
 
                 # response body for status code(s): 200
                 response == {

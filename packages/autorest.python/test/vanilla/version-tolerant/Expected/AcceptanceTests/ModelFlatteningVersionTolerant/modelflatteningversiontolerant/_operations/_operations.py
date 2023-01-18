@@ -930,6 +930,75 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                resource_complex_object = {
+                    "arrayofresources": [
+                        {
+                            "id": "str",  # Optional. Resource Id.
+                            "location": "str",  # Optional. Resource Location.
+                            "name": "str",  # Optional. Resource Name.
+                            "properties": {
+                                "p.name": "str",  # Optional.
+                                "provisioningState": "str",  # Optional.
+                                "provisioningStateValues": "str",  # Optional. Known
+                                  values are: "Succeeded", "Failed", "canceled", "Accepted",
+                                  "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
+                                  and "OK".
+                                "type": "str"  # Optional.
+                            },
+                            "tags": {
+                                "str": "str"  # Optional. Dictionary of
+                                  :code:`<string>`.
+                            },
+                            "type": "str"  # Optional. Resource Type.
+                        }
+                    ],
+                    "dictionaryofresources": {
+                        "str": {
+                            "id": "str",  # Optional. Resource Id.
+                            "location": "str",  # Optional. Resource Location.
+                            "name": "str",  # Optional. Resource Name.
+                            "properties": {
+                                "p.name": "str",  # Optional. Dictionary of
+                                  :code:`<FlattenedProduct>`.
+                                "provisioningState": "str",  # Optional. Dictionary
+                                  of :code:`<FlattenedProduct>`.
+                                "provisioningStateValues": "str",  # Optional. Known
+                                  values are: "Succeeded", "Failed", "canceled", "Accepted",
+                                  "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
+                                  and "OK".
+                                "type": "str"  # Optional. Dictionary of
+                                  :code:`<FlattenedProduct>`.
+                            },
+                            "tags": {
+                                "str": "str"  # Optional. Dictionary of
+                                  :code:`<string>`.
+                            },
+                            "type": "str"  # Optional. Resource Type.
+                        }
+                    },
+                    "productresource": {
+                        "id": "str",  # Optional. Resource Id.
+                        "location": "str",  # Optional. Resource Location.
+                        "name": "str",  # Optional. Resource Name.
+                        "properties": {
+                            "p.name": "str",  # Optional. Flattened product.
+                            "provisioningState": "str",  # Optional. Flattened product.
+                            "provisioningStateValues": "str",  # Optional. Known values
+                              are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                              "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                            "type": "str"  # Optional. Flattened product.
+                        },
+                        "tags": {
+                            "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        },
+                        "type": "str"  # Optional. Resource Type.
+                    }
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1215,6 +1284,24 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         Example:
             .. code-block:: python
 
+                # JSON input template you can fill out and use as your body input.
+                simple_body_product = {
+                    "base_product_id": "str",  # Unique identifier representing a specific
+                      product for a given latitude & longitude. For example, uberX in San Francisco
+                      will have a different product_id than uberX in Los Angeles. Required.
+                    "base_product_description": "str",  # Optional. Description of product.
+                    "details": {
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
+                        "max_product_display_name": "str",  # Display name of product.
+                          Required.
+                        "max_product_image": {
+                            "@odata.value": "str",  # Optional. URL value.
+                            "generic_value": "str"  # Optional. Generic URL value.
+                        }
+                    }
+                }
+
                 # response body for status code(s): 200
                 response == {
                     "base_product_id": "str",  # Unique identifier representing a specific
@@ -1406,6 +1493,24 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                simple_body_product = {
+                    "base_product_id": "str",  # Unique identifier representing a specific
+                      product for a given latitude & longitude. For example, uberX in San Francisco
+                      will have a different product_id than uberX in Los Angeles. Required.
+                    "base_product_description": "str",  # Optional. Description of product.
+                    "details": {
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
+                        "max_product_display_name": "str",  # Display name of product.
+                          Required.
+                        "max_product_image": {
+                            "@odata.value": "str",  # Optional. URL value.
+                            "generic_value": "str"  # Optional. Generic URL value.
+                        }
+                    }
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -1614,6 +1719,24 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                simple_body_product = {
+                    "base_product_id": "str",  # Unique identifier representing a specific
+                      product for a given latitude & longitude. For example, uberX in San Francisco
+                      will have a different product_id than uberX in Los Angeles. Required.
+                    "base_product_description": "str",  # Optional. Description of product.
+                    "details": {
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
+                        "max_product_display_name": "str",  # Display name of product.
+                          Required.
+                        "max_product_image": {
+                            "@odata.value": "str",  # Optional. URL value.
+                            "generic_value": "str"  # Optional. Generic URL value.
+                        }
+                    }
+                }
 
                 # response body for status code(s): 200
                 response == {

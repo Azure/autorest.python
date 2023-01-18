@@ -326,6 +326,23 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         Example:
             .. code-block:: python
 
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+
                 # response body for status code(s): 200
                 response == {
                     "id": "str",  # Optional. Resource Id.
@@ -579,6 +596,23 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -842,6 +876,23 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
 
                 # response body for status code(s): 200, 201
                 response == {
@@ -1108,6 +1159,23 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         Example:
             .. code-block:: python
 
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+
                 # response body for status code(s): 200, 202
                 response == {
                     "id": "str",  # Optional. Resource Id.
@@ -1354,6 +1422,23 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
 
                 # response body for status code(s): 201
                 response == {
@@ -1729,6 +1814,23 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         Example:
             .. code-block:: python
 
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+
                 # response body for status code(s): 200
                 response == {
                     "id": "str",  # Optional. Resource Id.
@@ -1978,6 +2080,23 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
 
                 # response body for status code(s): 202
                 response == {
@@ -2238,6 +2357,23 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         Example:
             .. code-block:: python
 
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+
                 # response body for status code(s): 200, 201
                 response == {
                     "id": "str",  # Optional. Resource Id.
@@ -2489,6 +2625,23 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -2749,6 +2902,23 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         Example:
             .. code-block:: python
 
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+
                 # response body for status code(s): 200, 201
                 response == {
                     "id": "str",  # Optional. Resource Id.
@@ -3001,6 +3171,23 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         Example:
             .. code-block:: python
 
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+
                 # response body for status code(s): 200
                 response == {
                     "id": "str",  # Optional. Resource Id.
@@ -3250,6 +3437,23 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
 
                 # response body for status code(s): 202
                 response == {
@@ -3512,6 +3716,23 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -3778,6 +3999,23 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         Example:
             .. code-block:: python
 
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+
                 # response body for status code(s): 200
                 response == {
                     "id": "str",  # Optional. Resource Id.
@@ -4040,6 +4278,23 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -4306,6 +4561,23 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         Example:
             .. code-block:: python
 
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+
                 # response body for status code(s): 200
                 response == {
                     "id": "str",  # Optional. Resource Id.
@@ -4569,6 +4841,23 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         Example:
             .. code-block:: python
 
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+
                 # response body for status code(s): 201
                 response == {
                     "id": "str",  # Optional. Resource Id.
@@ -4785,6 +5074,12 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         Example:
             .. code-block:: python
 
+                # JSON input template you can fill out and use as your body input.
+                sku = {
+                    "id": "str",  # Optional.
+                    "name": "str"  # Optional.
+                }
+
                 # response body for status code(s): 202
                 response == {
                     "id": "str",  # Optional.
@@ -4979,6 +5274,12 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                sku = {
+                    "id": "str",  # Optional.
+                    "name": "str"  # Optional.
+                }
 
                 # response body for status code(s): 202
                 response == {
@@ -5189,6 +5490,17 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Sub Resource Id.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    }
+                }
 
                 # response body for status code(s): 202
                 response == {
@@ -5409,6 +5721,17 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Sub Resource Id.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    }
+                }
 
                 # response body for status code(s): 202
                 response == {
@@ -6955,6 +7278,26 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns None
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -7183,6 +7526,23 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
 
                 # response body for status code(s): 202
                 response == {
@@ -7800,6 +8160,23 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         Example:
             .. code-block:: python
 
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+
                 # response body for status code(s): 200
                 response == {
                     "id": "str",  # Optional. Resource Id.
@@ -8062,6 +8439,23 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         Example:
             .. code-block:: python
 
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+
                 # response body for status code(s): 200
                 response == {
                     "id": "str",  # Optional. Resource Id.
@@ -8273,6 +8667,26 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns None
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -8462,6 +8876,26 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns None
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -8716,6 +9150,23 @@ class LRORetrysOperations:
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
 
                 # response body for status code(s): 200, 201
                 response == {
@@ -8975,6 +9426,23 @@ class LRORetrysOperations:
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -9491,6 +9959,26 @@ class LRORetrysOperations:
         :return: An instance of AsyncLROPoller that returns None
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -9680,6 +10168,26 @@ class LRORetrysOperations:
         :return: An instance of AsyncLROPoller that returns None
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -9926,6 +10434,23 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
 
                 # response body for status code(s): 200, 201
                 response == {
@@ -10183,6 +10708,23 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         Example:
             .. code-block:: python
 
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+
                 # response body for status code(s): 200, 201
                 response == {
                     "id": "str",  # Optional. Resource Id.
@@ -10439,6 +10981,23 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         Example:
             .. code-block:: python
 
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+
                 # response body for status code(s): 200, 201
                 response == {
                     "id": "str",  # Optional. Resource Id.
@@ -10694,6 +11253,23 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -11166,6 +11742,26 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns None
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -11346,6 +11942,26 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns None
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -11532,6 +12148,26 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns None
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -11762,6 +12398,23 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
 
                 # response body for status code(s): 200, 201
                 response == {
@@ -12021,6 +12674,23 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -12287,6 +12957,23 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -12672,6 +13359,26 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns None
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -12861,6 +13568,26 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns None
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -13089,6 +13816,23 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -13348,6 +14092,23 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -13614,6 +14375,23 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -14094,6 +14872,26 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns None
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -14283,6 +15081,26 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns None
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -14472,6 +15290,26 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :return: An instance of AsyncLROPoller that returns None
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -14729,6 +15567,23 @@ class LROsCustomHeaderOperations:
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -14999,6 +15854,23 @@ class LROsCustomHeaderOperations:
         Example:
             .. code-block:: python
 
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
+
                 # response body for status code(s): 200, 201
                 response == {
                     "id": "str",  # Optional. Resource Id.
@@ -15207,6 +16079,26 @@ class LROsCustomHeaderOperations:
         :return: An instance of AsyncLROPoller that returns None
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -15399,6 +16291,26 @@ class LROsCustomHeaderOperations:
         :return: An instance of AsyncLROPoller that returns None
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "id": "str",  # Optional. Resource Id.
+                    "location": "str",  # Optional. Resource Location.
+                    "name": "str",  # Optional. Resource Name.
+                    "properties": {
+                        "provisioningState": "str",  # Optional.
+                        "provisioningStateValues": "str"  # Optional. Known values are:
+                          "Succeeded", "Failed", "canceled", "Accepted", "Creating", "Created",
+                          "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    },
+                    "type": "str"  # Optional. Resource Type.
+                }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}

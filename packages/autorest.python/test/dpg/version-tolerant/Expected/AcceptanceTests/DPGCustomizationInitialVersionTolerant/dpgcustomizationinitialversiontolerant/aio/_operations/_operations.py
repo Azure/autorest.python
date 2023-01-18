@@ -188,6 +188,11 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         Example:
             .. code-block:: python
 
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "hello": "str"  # Required.
+                }
+
                 # response body for status code(s): 200
                 response == {
                     "received": "str"  # Required. Known values are: "raw" and "model".

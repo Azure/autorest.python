@@ -942,6 +942,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         Example:
             .. code-block:: python
 
+                # JSON input template you can fill out and use as your body input.
+                parameters = {
+                    "name": "str"  # Optional.
+                }
+
                 # response body for status code(s): 200
                 response == {
                     "properties": {

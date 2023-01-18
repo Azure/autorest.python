@@ -251,19 +251,11 @@ class BodyParameter(_ParameterBase):
     def default_content_type(self) -> str:
         return self.yaml_data["defaultContentType"]
 
-    @staticmethod
-    def _has_json_model_type(t: BaseType) -> bool:
-        if isinstance(t, JSONModelType):
-            return True
-        if isinstance(t, CombinedType):
-            for sub_t in t.types:
-                if BodyParameter._has_json_model_type(sub_t):
-                    return True
-        return False
-
     @property
     def has_json_model_type(self) -> bool:
-        return BodyParameter._has_json_model_type(self.type)
+        if isinstance(self.type, CombinedType):
+            return self.type.json_subtype is not None
+        return isinstance(self.type, JSONModelType)
 
     @classmethod
     def from_yaml(
