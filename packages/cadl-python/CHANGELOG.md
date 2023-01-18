@@ -1,5 +1,11 @@
 # Release History
 
+## 2023-01-18 - 0.4.18
+
+**Bug Fixes**
+
+- Fix generation for overloads with splatted out body arguments #1684, #1685
+
 ## 2023-01-11 - 0.4.17
 
 **Other Changes**
