@@ -7,10 +7,11 @@ from typing import Any, Dict, List, Optional, TYPE_CHECKING
 import re
 from autorest.codegen.models.imports import FileImport, ImportType
 from .base import BaseType
+from .model_type import JSONModelType
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
-    from .model_type import ModelType, JSONModelType
+    from .model_type import ModelType
 
 
 class CombinedType(BaseType):
@@ -113,8 +114,8 @@ class CombinedType(BaseType):
         )
 
     @staticmethod
-    def _get_json_model_type(t: BaseType) -> Optional["JSONModelType"]:
-        if isinstance(t, "JSONModelType"):
+    def _get_json_model_type(t: BaseType) -> Optional[JSONModelType]:
+        if isinstance(t, JSONModelType):
             return t
         if isinstance(t, CombinedType):
             try:
@@ -126,5 +127,5 @@ class CombinedType(BaseType):
         return None
 
     @property
-    def json_subtype(self) -> Optional["JSONModelType"]:
+    def json_subtype(self) -> Optional[JSONModelType]:
         return CombinedType._get_json_model_type(self)
