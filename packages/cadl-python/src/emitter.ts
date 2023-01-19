@@ -38,6 +38,7 @@ import {
     isNullType,
     SyntaxKind,
     Type,
+    createProjectedNameProgram
 } from "@cadl-lang/compiler";
 import {
     getAuthentication,
@@ -706,6 +707,20 @@ function isReadOnly(program: Program, type: ModelProperty): boolean {
     }
 }
 
+function getProjectedClientName(program: Program, property: ModelProperty) {
+    const pythonProgramView = createProjectedNameProgram(program, "python");
+    const pythonProjectedName = pythonProgramView.getProjectedName(property);
+    if (pythonProjectedName != property.name) return pythonProjectedName;
+
+    const clientProgramView = createProjectedNameProgram(program, "client");
+    return clientProgramView.getProjectedName(property);
+}
+
+function getProjectedJsonName(program: Program, property: ModelProperty) {
+    const jsonProgramView = createProjectedNameProgram(program, "json");
+    return jsonProgramView.getProjectedName(property);
+}
+
 function emitProperty(program: Program, property: ModelProperty): Record<string, any> {
     let clientDefaultValue = undefined;
     const propertyDefaultKind = property.default?.kind;
@@ -716,8 +731,8 @@ function emitProperty(program: Program, property: ModelProperty): Record<string,
         clientDefaultValue = property.default.value;
     }
     return {
-        clientName: camelToSnakeCase(property.name),
-        restApiName: property.name,
+        clientName: camelToSnakeCase(getProjectedClientName(program, property)),
+        restApiName: getProjectedJsonName(program, property),
         type: getType(program, property.type),
         optional: property.optional,
         description: getDocStr(program, property),
