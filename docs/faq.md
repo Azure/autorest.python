@@ -15,5 +15,5 @@
 
 
 <!-- LINKS -->
-[min_dependencies]: https://github.com/Azure/autorest.python/blob/autorestv3/docs/client/initializing.md#minimum-dependencies-of-your-client
+[min_dependencies]: https://github.com/Azure/autorest.python/blob/main/docs/client/initializing.md#minimum-dependencies-of-your-client
 [autorest_npm]: https://www.npmjs.com/package/@autorest/python

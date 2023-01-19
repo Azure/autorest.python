@@ -11,13 +11,13 @@ Here are our samples for common generation scenarios
 |Generating with [`AzureKeyCredential`][azure_key_credential] | [readme.md][azure_key_credential_readme] | [generated][azure_key_credential_generated]
 
 <!-- LINKS -->
-[basic_readme]: https://github.com/Azure/autorest.python/blob/autorestv3/packages/autorest.python/samples/specification/basic/readme.md
-[basic_generated]: https://github.com/Azure/autorest.python/tree/autorestv3/packages/autorest.python/samples/specification/basic/generated
+[basic_readme]: https://github.com/Azure/autorest.python/blob/main/packages/autorest.python/samples/specification/basic/readme.md
+[basic_generated]: https://github.com/Azure/autorest.python/tree/main/packages/autorest.python/samples/specification/basic/generated
 [mgmt]: https://docs.microsoft.com/azure/azure-resource-manager/management/control-plane-and-data-plane#control-plane
-[mgmt_readme]: https://github.com/Azure/autorest.python/blob/autorestv3/packages/autorest.python/samples/specification/management/readme.md
-[mgmt_generated]: https://github.com/Azure/autorest.python/tree/autorestv3/packages/autorest.python/samples/specification/management/generated
-[multiapi_readme]: https://github.com/Azure/autorest.python/blob/autorestv3/packages/autorest.python/samples/specification/multiapi/readme.md
-[multiapi_generated]: https://github.com/Azure/autorest.python/tree/autorestv3/packages/autorest.python/samples/specification/multiapi/generated
+[mgmt_readme]: https://github.com/Azure/autorest.python/blob/main/packages/autorest.python/samples/specification/management/readme.md
+[mgmt_generated]: https://github.com/Azure/autorest.python/tree/main/packages/autorest.python/samples/specification/management/generated
+[multiapi_readme]: https://github.com/Azure/autorest.python/blob/main/packages/autorest.python/samples/specification/multiapi/readme.md
+[multiapi_generated]: https://github.com/Azure/autorest.python/tree/main/packages/autorest.python/samples/specification/multiapi/generated
 [azure_key_credential]: https://docs.microsoft.com/python/api/azure-core/azure.core.credentials.azurekeycredential?view=azure-python
-[azure_key_credential_readme]: https://github.com/Azure/autorest.python/blob/autorestv3/packages/autorest.python/samples/specification/azure_key_credential/readme.md
-[azure_key_credential_generated]: https://github.com/Azure/autorest.python/tree/autorestv3/packages/autorest.python/samples/specification/azure_key_credential/generated
+[azure_key_credential_readme]: https://github.com/Azure/autorest.python/blob/main/packages/autorest.python/samples/specification/azure_key_credential/readme.md
+[azure_key_credential_generated]: https://github.com/Azure/autorest.python/tree/main/packages/autorest.python/samples/specification/azure_key_credential/generated
