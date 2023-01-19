@@ -1,5 +1,11 @@
 # Release History
 
+## 2023-01-19 - 0.4.19
+
+**Other Changes**
+
+- Bump CADL dependencies to 0.39.0 #1691
+
 ## 2023-01-18 - 0.4.18
 
 **Bug Fixes**
