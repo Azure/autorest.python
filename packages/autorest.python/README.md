@@ -215,5 +215,5 @@ help-content:
 
 <!-- LINKS -->
 
-[python_docs]: https://github.com/Azure/autorest.python/tree/autorestv3/docs/readme.md
+[python_docs]: https://github.com/Azure/autorest.python/tree/main/docs/readme.md
 [main_docs]: https://github.com/Azure/autorest/tree/master/docs

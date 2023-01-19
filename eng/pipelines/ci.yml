@@ -1,12 +1,12 @@
 trigger:
   branches:
     include:
-      - autorestv3
+      - main
 
 pr:
   branches:
     include:
-      - autorestv3
+      - main
 
 resources:
   repositories:
