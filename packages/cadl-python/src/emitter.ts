@@ -38,7 +38,7 @@ import {
     isNullType,
     SyntaxKind,
     Type,
-    createProjectedNameProgram
+    createProjectedNameProgram,
 } from "@cadl-lang/compiler";
 import {
     getAuthentication,
