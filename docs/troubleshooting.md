@@ -49,4 +49,4 @@ Once this has been successfully added, all that's needed is to add flag `--pytho
 [autorest_issues]: https://github.com/Azure/autorest/issues
 [autorest_python_issues]: https://github.com/Azure/autorest.python/issues
 [main_debugging]: https://github.com/Azure/autorest/tree/master/docs/troubleshooting.md#debugging
-[autorest_python_repo]: https://github.com/Azure/autorest.python/tree/autorestv3
+[autorest_python_repo]: https://github.com/Azure/autorest.python/tree/main

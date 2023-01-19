@@ -163,4 +163,4 @@ For a full directives config example, see our [sample][sample_directives]
 
 [item_paged_docs]: https://docs.microsoft.com/python/api/azure-core/azure.core.paging.itempaged?view=azure-python
 [async_item_paged_docs]: https://docs.microsoft.com/python/api/azure-core/azure.core.async_paging.asyncitempaged?view=azure-python
-[sample_directives]: https://github.com/Azure/autorest.python/blob/autorestv3/packages/autorest.python/samples/specification/directives/readme.md
+[sample_directives]: https://github.com/Azure/autorest.python/blob/main/packages/autorest.python/samples/specification/directives/readme.md
