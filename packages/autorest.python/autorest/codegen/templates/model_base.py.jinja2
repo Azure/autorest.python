@@ -280,7 +280,7 @@ def _get_model(module_name: str, model_name: str):
 _UNSET = object()
 
 
-class _MyMutableMapping(MutableMapping[str, typing.Any]):
+class _MyMutableMapping(MutableMapping[str, typing.Any]):  # pylint: disable=unsubscriptable-object
     def __init__(self, data: typing.Dict[str, typing.Any]) -> None:
         self._data = copy.deepcopy(data)
 
@@ -400,7 +400,7 @@ def _create_value(rf: typing.Optional["_RestField"], value: typing.Any) -> typin
     return _deserialize(rf._type, value) if (rf and rf._is_model) else _serialize(value)
 
 
-class Model(_MyMutableMapping):  # pylint: disable=unsubscriptable-object
+class Model(_MyMutableMapping):
     _is_model = True
 
     def __init__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
@@ -452,9 +452,7 @@ class Model(_MyMutableMapping):  # pylint: disable=unsubscriptable-object
     def __init_subclass__(cls, discriminator: typing.Optional[str] = None) -> None:
         for base in cls.__bases__:
             if hasattr(base, "__mapping__"):  # pylint: disable=no-member
-                base.__mapping__[  # pylint: disable=no-member  # type: ignore[attr-defined]
-                    discriminator or cls.__name__
-                ] = cls
+                base.__mapping__[discriminator or cls.__name__] = cls  # type: ignore  # pylint: disable=no-member
 
     @classmethod
     def _get_discriminator(cls) -> typing.Optional[str]:
