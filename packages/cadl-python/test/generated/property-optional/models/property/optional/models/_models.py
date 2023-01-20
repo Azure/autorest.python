@@ -44,7 +44,7 @@ class BytesProperty(_model_base.Model):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -73,7 +73,7 @@ class CollectionsByteProperty(_model_base.Model):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -102,7 +102,7 @@ class CollectionsModelProperty(_model_base.Model):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -131,7 +131,7 @@ class DatetimeProperty(_model_base.Model):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -160,7 +160,7 @@ class DurationProperty(_model_base.Model):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -196,7 +196,7 @@ class RequiredAndOptionalProperty(_model_base.Model):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -226,5 +226,5 @@ class StringProperty(_model_base.Model):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
