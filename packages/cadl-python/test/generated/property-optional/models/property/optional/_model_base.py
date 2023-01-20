@@ -14,7 +14,6 @@ import base64
 import re
 import copy
 import typing
-from collections.abc import MutableMapping
 from datetime import datetime, date, time, timedelta, timezone
 from json import JSONEncoder
 import isodate
@@ -22,6 +21,11 @@ from azure.core.exceptions import DeserializationError
 from azure.core import CaseInsensitiveEnumMeta
 from azure.core.pipeline import PipelineResponse
 from azure.core.serialization import NULL as AzureCoreNull
+
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping
 
 _LOGGER = logging.getLogger(__name__)
 
