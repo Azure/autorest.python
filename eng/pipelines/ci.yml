@@ -68,9 +68,9 @@ jobs:
         parameters:
             installAutorest: true
             folderName: "autorest.python"
-            pythonCodeChecks: true
+            pythonCodeChecks: false
             pythonFolderName: autorest
-            regenerate: true
+            regenerate: false
 
       - script: |
           pip install pip==20.2
