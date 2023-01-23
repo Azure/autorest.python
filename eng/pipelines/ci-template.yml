@@ -14,6 +14,7 @@ steps:
       parameters:
           TestProxy: true
           templateRoot: azure-sdk-tools
+          rootFolder: $(Build.SourcesDirectory)/azure-sdk-for-python
     - task: NodeTool@0
       displayName: "Install Node.js 16.x"
       inputs:
