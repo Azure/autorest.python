@@ -81,7 +81,8 @@ jobs:
               git clone https://github.com/Azure/azure-sdk-for-python.git --depth=1 --branch main
             displayName: "Clone python repo"
           - script: |
-              mv -f $(Build.SourcesDirectory)/azure-sdk-for-python/{.,}* $(Build.SourcesDirectory)
+              mv $(Build.SourcesDirectory)/azure-sdk-for-python/* .
+              mv $(Build.SourcesDirectory)/azure-sdk-for-python/.git .
             displayName: Move azure-sdk-for-python files up a level
 
           - script: |
