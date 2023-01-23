@@ -1,5 +1,11 @@
 # Release History
 
+## 2023-01-23 - 0.4.20
+
+**Other Changes**
+
+- Make DPG models type complete #1689
+
 ## 2023-01-19 - 0.4.19
 
 **Other Changes**
