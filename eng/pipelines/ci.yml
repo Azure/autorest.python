@@ -80,8 +80,11 @@ jobs:
           - script: |
               git clone https://github.com/Azure/azure-sdk-for-python.git --depth=1 --branch main
             displayName: "Clone python repo"
-          - script: mv $(Build.SourcesDirectory)/azure-sdk-for-python/sdk .
-            displayName: Move sdk folder up a level
+          - script: |
+              mv $(Build.SourcesDirectory)/azure-sdk-for-python/sdk .
+              mv $(Build.SourcesDirectory)/azure-sdk-for-python/eng .
+              mv $(Build.SourcesDirectory)/azure-sdk-for-python/tools .
+            displayName: Move sdk and eng folder up a level
 
           - script: |
               pip install tox-monorepo
