@@ -65,5 +65,5 @@ class DPGClient(DPGClientOperationsMixin):  # pylint: disable=client-accepts-api
         self._client.__enter__()
         return self
 
-    def __exit__(self, *exc_details) -> None:
+    def __exit__(self, *exc_details: Any) -> None:
         self._client.__exit__(*exc_details)
