@@ -2,3 +2,4 @@
 pyright==1.1.287
 pylint==2.15.10
 tox==3.27.1  # Got some problem with 4.x
+mypy==0.931
