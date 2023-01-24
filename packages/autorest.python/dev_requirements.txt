@@ -1,6 +1,5 @@
 -e .
 -r ../../eng/requirements.txt
-tox==3.27.1  # Got some problem with 4.x
 invoke
 colorama
 pytest
