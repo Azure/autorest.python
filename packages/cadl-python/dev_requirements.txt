@@ -1,4 +1,4 @@
+-r ../../eng/requirements.txt
 invoke
 colorama
 debugpy
-tox==3.27.1
