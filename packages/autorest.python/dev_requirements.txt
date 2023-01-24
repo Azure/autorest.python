@@ -4,6 +4,5 @@ invoke
 colorama
 pytest
 ptvsd
-mypy==0.991
 black
 types-PyYAML
