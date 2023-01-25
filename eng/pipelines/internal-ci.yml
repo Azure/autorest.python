@@ -21,7 +21,7 @@ steps:
           installCadlRanch: true
           folderName: "cadl-python"
           regenerate: true
-    - script: tox -e ci
+    - script: tox run -e ci
       displayName: Mock Api Tests
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/test/mock_api_tests
 

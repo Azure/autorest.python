@@ -52,7 +52,7 @@ steps:
 
   - script: |
       cd $(TestFolder)/azure
-      tox -e ci
+      tox run -e ci
     displayName: 'Execute "azure" Tests - Python $(PythonVersion)'
 
   - script: |

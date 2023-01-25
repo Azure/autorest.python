@@ -32,22 +32,22 @@ steps:
 
     - script: |
           cd $(AutorestTestFolder)/azure/version-tolerant
-          tox -e ci
+          tox run -e ci
       displayName: Execute Autorest Azure Version Tolerant Tests
       workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
     - script: |
           cd $(AutorestTestFolder)/vanilla/version-tolerant
-          tox -e ci
+          tox run -e ci
       displayName: Execute Autorest Vanilla Version Tolerant Tests
       workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
     - script: |
           cd $(AutorestTestFolder)/dpg/version-tolerant
-          tox -e ci
+          tox run -e ci
       displayName: Execute Autorest DPG Version Tolerant Tests
       workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
     - script: |
           cd test/mock_api_tests
-          tox -e ci
+          tox run -e ci
       displayName: Execute Cadl Tests
       workingDirectory: $(Build.SourcesDirectory)/packages/cadl-python/
 
