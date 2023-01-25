@@ -25,8 +25,6 @@ parameters:
   - name: VerificationPackages
     type: object
     default:
-    - name: azure-messaging-webpubsubservice
-      service: webpubsub
     - name: azure-storage-blob
       service: storage
     - name: azure-storage-queue
@@ -78,6 +76,7 @@ jobs:
           pip install pip==20.2
           pip install tox==3.27.1 coverage
         displayName: "Install Env Specific Reqs in Target PyVersion $(PythonVersion)"
+
       - template: generated-code-checks-template.yml
         parameters:
             folderName: "azure/legacy"
@@ -110,23 +109,26 @@ jobs:
 
       - ${{ if eq(ne(variables['Build.Reason'], 'PullRequest'), 'True') }}:
           - script: |
-              git clone https://github.com/Azure/azure-sdk-for-python.git --depth=1 --branch main $(Build.SourcesDirectory)/regenerated/
+              git clone https://github.com/Azure/azure-sdk-for-python.git --depth=1 --branch main
             displayName: "Clone python repo"
+          - script: |
+              mv $(Build.SourcesDirectory)/azure-sdk-for-python/* .
+              mv $(Build.SourcesDirectory)/azure-sdk-for-python/.git .
+            displayName: Move azure-sdk-for-python files up a level
 
           - script: |
               pip install tox-monorepo
             displayName: "Prepare environment"
-            workingDirectory: "$(Build.SourcesDirectory)/regenerated/"
 
           - ${{ each package in parameters.VerificationPackages }}:
               - script: |
                   autorest ./swagger/README.md --use=$(Build.SourcesDirectory)/autorest.python/packages/autorest.python --modelerfour.seal-single-value-enum-by-default
                 displayName: "Regenerate target package ${{ package.name }}"
-                workingDirectory: "$(Build.SourcesDirectory)/regenerated/sdk/${{ package.service }}/${{ package.name }}"
+                workingDirectory: "$(Build.SourcesDirectory)/sdk/${{ package.service }}/${{ package.name }}"
               - script: |
                   tox -e whl -c ../../../eng/tox/tox.ini
                 displayName: "Run tests for ${{ package.name }}"
-                workingDirectory: "$(Build.SourcesDirectory)/regenerated/sdk/${{ package.service }}/${{ package.name }}"
+                workingDirectory: "$(Build.SourcesDirectory)/sdk/${{ package.service }}/${{ package.name }}"
   - job: "Cadl_Python_CI"
     displayName: "Run Cadl Python CI Checks"
 

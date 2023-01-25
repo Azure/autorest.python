@@ -4,6 +4,5 @@ invoke
 colorama
 pytest
 ptvsd
-mypy
 black
 types-PyYAML
