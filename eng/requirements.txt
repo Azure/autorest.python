@@ -1,4 +1,5 @@
 # This is for CI requirements or dev only
 pyright==1.1.287
 pylint==2.15.10
-tox==4.3.5  # Got some problem with 4.x
+tox==4.3.5
+mypy==0.991

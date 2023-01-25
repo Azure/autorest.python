@@ -473,7 +473,7 @@ class Model(_MyMutableMapping):
 
 
 def _get_deserialize_callable_from_annotation(  # pylint: disable=too-many-return-statements, too-many-statements
-        annotation: typing.Any, module: typing.Optional[str], rf: "_RestField" = None
+        annotation: typing.Any, module: typing.Optional[str], rf: typing.Optional["_RestField"] = None
     ) -> typing.Optional[typing.Callable[[typing.Any], typing.Any]]:
         if not annotation or annotation in [int, float]:
             return None
@@ -624,8 +624,8 @@ def _deserialize_with_callable(deserializer: typing.Optional[typing.Callable[[ty
                 # for unknown value, return raw value
                 return value
         if isinstance(deserializer, type) and issubclass(deserializer, Model):
-            return deserializer._deserialize(value)  # type: ignore
-        return deserializer(value)
+            return deserializer._deserialize(value)
+        return typing.cast(typing.Callable[[typing.Any], typing.Any], deserializer)(value)
     except Exception as e:
         raise DeserializationError() from e
 
