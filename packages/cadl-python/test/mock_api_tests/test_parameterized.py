@@ -9,7 +9,7 @@ from server.parameterized import ParameterizedClient
 
 @pytest.fixture
 def client():
-    with ParameterizedClient() as client:
+    with ParameterizedClient(endpoint="http://localhost:3000") as client:
         yield client
 
 
