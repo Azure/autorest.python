@@ -182,7 +182,7 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
     ) -> AsyncCustomPoller[JSON]:
         """A simple polling operation.
 
-        :param product: Product to put. Is either a model type or a IO type. Default value is None.
+        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
         :type product: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -200,6 +200,14 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
+                }
 
                 # response body for status code(s): 200
                 response == {

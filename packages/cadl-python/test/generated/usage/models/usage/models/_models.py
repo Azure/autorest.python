@@ -40,7 +40,7 @@ class InputOutputRecord(_model_base.Model):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -71,7 +71,7 @@ class InputRecord(_model_base.Model):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -102,5 +102,5 @@ class OutputRecord(_model_base.Model):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)

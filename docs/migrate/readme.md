@@ -40,4 +40,4 @@ code for this, and you can see our [tracing docs][tracing_docs] for more informa
 [mypy]: https://mypy.readthedocs.io/en/stable/introduction.html
 [open_census]: https://opencensus.io/
 [open_telemetry]: https://opentelemetry.io/
-[tracing_docs]: https://github.com/Azure/autorest.python/blob/autorestv3/docs/client/tracing.md
+[tracing_docs]: https://github.com/Azure/autorest.python/blob/main/docs/client/tracing.md

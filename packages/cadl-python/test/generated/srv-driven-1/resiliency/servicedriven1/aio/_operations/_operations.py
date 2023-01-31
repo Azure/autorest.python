@@ -258,7 +258,8 @@ class ServiceDriven1ClientOperationsMixin(ServiceDriven1ClientMixinABC):
         """POST a JSON.
 
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
-         "http://example.org/myimage.jpeg" }. Is one of the following types: model, JSON, IO Required.
+         "http://example.org/myimage.jpeg" }. Is one of the following types: PostInput, JSON, IO
+         Required.
         :type parameter: ~resiliency.servicedriven1.models.PostInput or JSON or IO
         :keyword content_type_path: Default value is "json". Note that overriding this default value
          may result in unsupported behavior.

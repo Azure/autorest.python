@@ -575,7 +575,7 @@ class BooleanOperations:
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: model, JSON, IO Required.
+        :param body: body. Is one of the following types: BooleanProperty, JSON, IO Required.
         :type body: ~models.property.types.models.BooleanProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -742,7 +742,7 @@ class StringOperations:
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: model, JSON, IO Required.
+        :param body: body. Is one of the following types: StringProperty, JSON, IO Required.
         :type body: ~models.property.types.models.StringProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -909,7 +909,7 @@ class BytesOperations:
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: model, JSON, IO Required.
+        :param body: body. Is one of the following types: BytesProperty, JSON, IO Required.
         :type body: ~models.property.types.models.BytesProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1076,7 +1076,7 @@ class IntOperations:
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: model, JSON, IO Required.
+        :param body: body. Is one of the following types: IntProperty, JSON, IO Required.
         :type body: ~models.property.types.models.IntProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1243,7 +1243,7 @@ class FloatOperations:
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: model, JSON, IO Required.
+        :param body: body. Is one of the following types: FloatProperty, JSON, IO Required.
         :type body: ~models.property.types.models.FloatProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1410,7 +1410,7 @@ class DatetimeOperations:
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: model, JSON, IO Required.
+        :param body: body. Is one of the following types: DatetimeProperty, JSON, IO Required.
         :type body: ~models.property.types.models.DatetimeProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1577,7 +1577,7 @@ class DurationOperations:
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: model, JSON, IO Required.
+        :param body: body. Is one of the following types: DurationProperty, JSON, IO Required.
         :type body: ~models.property.types.models.DurationProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1744,7 +1744,7 @@ class EnumOperations:
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: model, JSON, IO Required.
+        :param body: body. Is one of the following types: EnumProperty, JSON, IO Required.
         :type body: ~models.property.types.models.EnumProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1911,7 +1911,7 @@ class ExtensibleEnumOperations:
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: model, JSON, IO Required.
+        :param body: body. Is one of the following types: ExtensibleEnumProperty, JSON, IO Required.
         :type body: ~models.property.types.models.ExtensibleEnumProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -2078,7 +2078,7 @@ class ModelOperations:
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: model, JSON, IO Required.
+        :param body: body. Is one of the following types: ModelProperty, JSON, IO Required.
         :type body: ~models.property.types.models.ModelProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -2246,7 +2246,7 @@ class CollectionsStringOperations:
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: model, JSON, IO Required.
+        :param body: body. Is one of the following types: CollectionsStringProperty, JSON, IO Required.
         :type body: ~models.property.types.models.CollectionsStringProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -2413,7 +2413,7 @@ class CollectionsIntOperations:
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: model, JSON, IO Required.
+        :param body: body. Is one of the following types: CollectionsIntProperty, JSON, IO Required.
         :type body: ~models.property.types.models.CollectionsIntProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -2581,7 +2581,7 @@ class CollectionsModelOperations:
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: model, JSON, IO Required.
+        :param body: body. Is one of the following types: CollectionsModelProperty, JSON, IO Required.
         :type body: ~models.property.types.models.CollectionsModelProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -2749,7 +2749,7 @@ class DictionaryStringOperations:
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: model, JSON, IO Required.
+        :param body: body. Is one of the following types: DictionaryStringProperty, JSON, IO Required.
         :type body: ~models.property.types.models.DictionaryStringProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -2916,7 +2916,7 @@ class NeverOperations:
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: model, JSON, IO Required.
+        :param body: body. Is one of the following types: NeverProperty, JSON, IO Required.
         :type body: ~models.property.types.models.NeverProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.

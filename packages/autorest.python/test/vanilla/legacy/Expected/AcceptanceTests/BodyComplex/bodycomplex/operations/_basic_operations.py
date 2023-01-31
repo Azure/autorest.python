@@ -239,7 +239,7 @@ class BasicOperations:
     ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
-        :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Is either a model type
+        :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Is either a Basic type
          or a IO type. Required.
         :type complex_body: ~bodycomplex.models.Basic or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.

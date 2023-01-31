@@ -376,7 +376,7 @@ class PolymorphismOperations:
                      'jawsize': 5
                    }
                  ]
-               };. Is either a model type or a IO type. Required.
+               };. Is either a Fish type or a IO type. Required.
         :type complex_body: ~bodycomplex.models.Fish or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -683,7 +683,7 @@ class PolymorphismOperations:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
         additional properties.
 
-        :param complex_body: Is either a model type or a IO type. Required.
+        :param complex_body: Is either a Salmon type or a IO type. Required.
         :type complex_body: ~bodycomplex.models.Salmon or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -780,7 +780,7 @@ class PolymorphismOperations:
     def put_missing_discriminator(self, complex_body: Union[_models.Salmon, IO], **kwargs: Any) -> _models.Salmon:
         """Put complex types that are polymorphic, omitting the discriminator.
 
-        :param complex_body: Is either a model type or a IO type. Required.
+        :param complex_body: Is either a Salmon type or a IO type. Required.
         :type complex_body: ~bodycomplex.models.Salmon or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -964,7 +964,7 @@ class PolymorphismOperations:
                      "age": 105
                  }
              ]
-         }. Is either a model type or a IO type. Required.
+         }. Is either a Fish type or a IO type. Required.
         :type complex_body: ~bodycomplex.models.Fish or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.

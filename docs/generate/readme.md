@@ -7,5 +7,5 @@ Most of the information you'll need to generate a Python client can be found in 
 
 <!-- LINKS -->
 [general]: https://github.com/Azure/autorest/tree/master/docs/generate/readme.md
-[multiapi]: https://github.com/Azure/autorest.python/blob/autorestv3/docs/generate/multiapi.md
-[directives]: https://github.com/Azure/autorest.python/blob/autorestv3/docs/generate/directives.md
+[multiapi]: https://github.com/Azure/autorest.python/blob/main/docs/generate/multiapi.md
+[directives]: https://github.com/Azure/autorest.python/blob/main/docs/generate/directives.md

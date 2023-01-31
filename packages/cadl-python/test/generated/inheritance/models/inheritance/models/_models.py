@@ -50,7 +50,7 @@ class Pet(_model_base.Model):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -84,7 +84,7 @@ class Cat(Pet):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
 
@@ -123,7 +123,7 @@ class Fish(_model_base.Model):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
         self.kind: Literal[None] = None
 
@@ -166,7 +166,7 @@ class Shark(Fish, discriminator="shark"):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
         self.kind: Literal["shark"] = "shark"
         self.sharktype: Literal[None] = None
@@ -203,7 +203,7 @@ class GoblinShark(Shark, discriminator="goblin"):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
         self.sharktype: Literal["goblin"] = "goblin"
 
@@ -250,7 +250,7 @@ class Salmon(Fish, discriminator="salmon"):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
         self.kind: Literal["salmon"] = "salmon"
 
@@ -286,7 +286,7 @@ class SawShark(Shark, discriminator="saw"):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
         self.sharktype: Literal["saw"] = "saw"
 
@@ -324,5 +324,5 @@ class Siamese(Cat):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args, **kwargs):  # pylint: disable=useless-super-delegation
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)

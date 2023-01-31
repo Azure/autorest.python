@@ -421,7 +421,8 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
         :param content_type_path: Known values are: "json" and "jpeg". Required.
         :type content_type_path: str or ~resiliency.servicedriven2.models.ContentTypePathType
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
-         "http://example.org/myimage.jpeg" }. Is one of the following types: model, JSON, IO Required.
+         "http://example.org/myimage.jpeg" }. Is one of the following types: PostInput, JSON, IO
+         Required.
         :type parameter: ~resiliency.servicedriven2.models.PostInput or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.

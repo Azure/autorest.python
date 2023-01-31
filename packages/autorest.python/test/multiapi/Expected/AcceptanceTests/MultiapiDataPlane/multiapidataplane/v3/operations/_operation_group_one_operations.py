@@ -215,7 +215,7 @@ class OperationGroupOneOperations:
     ) -> _models.ModelThree:
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelThree and ouputs ModelThree.
 
-        :param parameter_one: A ModelThree parameter. Is either a model type or a IO type. Default
+        :param parameter_one: A ModelThree parameter. Is either a ModelThree type or a IO type. Default
          value is None.
         :type parameter_one: ~multiapidataplane.v3.models.ModelThree or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.

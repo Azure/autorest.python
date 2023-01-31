@@ -139,7 +139,7 @@ class PetOperations:
     async def add_pet(self, pet_param: Optional[Union[_models.Pet, IO]] = None, **kwargs: Any) -> _models.Pet:
         """add pet.
 
-        :param pet_param: pet param. Is either a model type or a IO type. Default value is None.
+        :param pet_param: pet param. Is either a Pet type or a IO type. Default value is None.
         :type pet_param: ~extensibleenumsswagger.models.Pet or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.

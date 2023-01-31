@@ -147,12 +147,12 @@ a pager that pages through the final lists of data.
 [operation_group_example]: https://github.com/Azure/azure-rest-api-specs/blob/master/specification/batch/data-plane/Microsoft.Batch/stable/2020-09-01.12.0/BatchService.json#L64
 [mixin_example]: https://github.com/Azure/autorest/blob/master/docs/openapi/examples/pets.json#L20
 [pets_swagger]: https://github.com/Azure/autorest/blob/master/docs/openapi/examples/pets.json
-[initializing]: https://github.com/Azure/autorest.python/blob/autorestv3/docs/client/initializing.md
+[initializing]: https://github.com/Azure/autorest.python/blob/main/docs/client/initializing.md
 [lro_poller]:  https://docs.microsoft.com/python/api/azure-core/azure.core.polling.lropoller?view=azure-python
-[custom_poller]: https://github.com/Azure/autorest.python/blob/autorestv3/docs/generate/directives.md#generate-with-a-custom-poller
+[custom_poller]: https://github.com/Azure/autorest.python/blob/main/docs/generate/directives.md#generate-with-a-custom-poller
 [example_swagger]: https://github.com/Azure/autorest/blob/master/docs/openapi/examples/pollingPaging.json
 [poller_guidelines]: https://azure.github.io/azure-sdk/python_design.html#service-operations
 [async_lro_poller]: https://docs.microsoft.com/python/api/azure-core/azure.core.polling.asynclropoller?view=azure-python
 [item_paged]: https://docs.microsoft.com/python/api/azure-core/azure.core.paging.itempaged?view=azure-python
-[custom_pager]: https://github.com/Azure/autorest.python/blob/autorestv3/docs/generate/directives.md#generate-with-a-custom-pager
+[custom_pager]: https://github.com/Azure/autorest.python/blob/main/docs/generate/directives.md#generate-with-a-custom-pager
 [async_item_paged]: https://docs.microsoft.com/python/api/azure-core/azure.core.async_paging.asyncitempaged?view=azure-python

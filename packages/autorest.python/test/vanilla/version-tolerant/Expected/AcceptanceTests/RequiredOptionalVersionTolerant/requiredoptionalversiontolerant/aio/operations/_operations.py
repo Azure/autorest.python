@@ -710,7 +710,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
-        :param body_parameter: Is either a model type or a IO type. Required.
+        :param body_parameter: Is either a JSON type or a IO type. Required.
         :type body_parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -718,6 +718,14 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_parameter = {
+                    "value": 0  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -809,7 +817,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
 
-        :param body_parameter: Is either a model type or a IO type. Default value is None.
+        :param body_parameter: Is either a JSON type or a IO type. Default value is None.
         :type body_parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -817,6 +825,14 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_parameter = {
+                    "value": 0  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1107,7 +1123,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
-        :param body_parameter: Is either a model type or a IO type. Required.
+        :param body_parameter: Is either a JSON type or a IO type. Required.
         :type body_parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1115,6 +1131,14 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_parameter = {
+                    "value": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1206,7 +1230,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
 
-        :param body_parameter: Is either a model type or a IO type. Default value is None.
+        :param body_parameter: Is either a JSON type or a IO type. Default value is None.
         :type body_parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1214,6 +1238,14 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_parameter = {
+                    "value": "str"  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1403,7 +1435,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """Test explicitly required complex object. Please put null and the client library should throw
         before the request is sent.
 
-        :param body_parameter: Is either a model type or a IO type. Required.
+        :param body_parameter: Is either a JSON type or a IO type. Required.
         :type body_parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1411,6 +1443,15 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_parameter = {
+                    "id": 0,  # Required.
+                    "name": "str"  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1503,7 +1544,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional complex object. Please put null.
 
-        :param body_parameter: Is either a model type or a IO type. Default value is None.
+        :param body_parameter: Is either a JSON type or a IO type. Default value is None.
         :type body_parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1511,6 +1552,15 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_parameter = {
+                    "id": 0,  # Required.
+                    "name": "str"  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1611,7 +1661,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
         and the client library should throw before the request is sent.
 
-        :param body_parameter: Is either a model type or a IO type. Required.
+        :param body_parameter: Is either a JSON type or a IO type. Required.
         :type body_parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1619,6 +1669,17 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_parameter = {
+                    "value": {
+                        "id": 0,  # Required.
+                        "name": "str"  # Optional. Required.
+                    }
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1713,7 +1774,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
 
-        :param body_parameter: Is either a model type or a IO type. Default value is None.
+        :param body_parameter: Is either a JSON type or a IO type. Default value is None.
         :type body_parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1721,6 +1782,17 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_parameter = {
+                    "value": {
+                        "id": 0,  # Required.
+                        "name": "str"  # Optional.
+                    }
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1818,7 +1890,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """Test explicitly required array. Please put null and the client library should throw before the
         request is sent.
 
-        :param body_parameter: Is either a list type or a IO type. Required.
+        :param body_parameter: Is either a [str] type or a IO type. Required.
         :type body_parameter: list[str] or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1917,7 +1989,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional array. Please put null.
 
-        :param body_parameter: Is either a list type or a IO type. Default value is None.
+        :param body_parameter: Is either a [str] type or a IO type. Default value is None.
         :type body_parameter: list[str] or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -2024,7 +2096,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
-        :param body_parameter: Is either a model type or a IO type. Required.
+        :param body_parameter: Is either a JSON type or a IO type. Required.
         :type body_parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -2032,6 +2104,16 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_parameter = {
+                    "value": [
+                        "str"  # Required.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2125,7 +2207,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
 
-        :param body_parameter: Is either a model type or a IO type. Default value is None.
+        :param body_parameter: Is either a JSON type or a IO type. Default value is None.
         :type body_parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -2133,6 +2215,16 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body_parameter = {
+                    "value": [
+                        "str"  # Optional.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,

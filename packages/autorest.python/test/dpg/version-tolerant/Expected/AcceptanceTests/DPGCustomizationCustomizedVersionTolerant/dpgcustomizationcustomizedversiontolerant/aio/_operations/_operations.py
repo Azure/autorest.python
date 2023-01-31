@@ -176,7 +176,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
          before returning to users. Required.
         :type mode: str
-        :param input: Please put {'hello': 'world!'}. Is either a model type or a IO type. Required.
+        :param input: Please put {'hello': 'world!'}. Is either a JSON type or a IO type. Required.
         :type input: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -187,6 +187,11 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "hello": "str"  # Required.
+                }
 
                 # response body for status code(s): 200
                 response == {
