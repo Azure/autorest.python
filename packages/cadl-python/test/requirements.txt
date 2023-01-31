@@ -13,6 +13,7 @@ azure-core==1.24.0
 -e ./generated/inheritance
 -e ./generated/item-types
 -e ./generated/oauth2
+-e ./generated/parameterized
 -e ./generated/property-optional
 -e ./generated/property-types
 -e ./generated/special-words
