@@ -382,10 +382,11 @@ function emitBodyParameter(program: Program, httpOperation: HttpOperation): Body
 }
 
 function emitParameter(
-    program: Program,
+    context: DpgContext,
     parameter: HttpOperationParameter | HttpServerParameter,
     implementation: string,
 ): Record<string, any> {
+    const program = context.program;
     const base = emitParamBase(program, parameter.param);
     let type = getType(program, parameter.param.type);
     let clientDefaultValue = undefined;
@@ -407,8 +408,8 @@ function emitParameter(
         clientDefaultValue = paramMap.type.value;
     }
 
-    if (isApiVersion(program, parameter as HttpOperationParameter)) {
-        const defaultApiVersion = getDefaultApiVersion(program, getServiceNamespace(program));
+    if (isApiVersion(context, parameter as HttpOperationParameter)) {
+        const defaultApiVersion = getDefaultApiVersion(context, getServiceNamespace(program));
         paramMap.type = defaultApiVersion ? getConstantType(defaultApiVersion.value) : KnownTypes.string;
         paramMap.implementation = "Client";
         paramMap.in_docstring = false;
@@ -563,17 +564,17 @@ function emitResponse(
     };
 }
 
-function emitOperation(program: Program, operation: Operation, operationGroupName: string): Record<string, any> {
-    const lro = isLro(program, operation);
-    const paging = getPagedResult(program, operation);
+function emitOperation(context: DpgContext, operation: Operation, operationGroupName: string): Record<string, any> {
+    const lro = isLro(context.program, operation);
+    const paging = getPagedResult(context.program, operation);
     if (lro && paging) {
-        return emitLroPagingOperation(program, operation, operationGroupName);
+        return emitLroPagingOperation(context, operation, operationGroupName);
     } else if (paging) {
-        return emitPagingOperation(program, operation, operationGroupName);
+        return emitPagingOperation(context, operation, operationGroupName);
     } else if (lro) {
-        return emitLroOperation(program, operation, operationGroupName);
+        return emitLroOperation(context, operation, operationGroupName);
     }
-    return emitBasicOperation(program, operation, operationGroupName);
+    return emitBasicOperation(context, operation, operationGroupName);
 }
 
 function addLroInformation(emittedOperation: Record<string, any>) {
@@ -591,30 +592,31 @@ function addPagingInformation(program: Program, operation: Operation, emittedOpe
 }
 
 function emitLroPagingOperation(
-    program: Program,
+    context: DpgContext,
     operation: Operation,
     operationGroupName: string,
 ): Record<string, any> {
-    const emittedOperation = emitBasicOperation(program, operation, operationGroupName);
+    const emittedOperation = emitBasicOperation(context, operation, operationGroupName);
     addLroInformation(emittedOperation);
-    addPagingInformation(program, operation, emittedOperation);
+    addPagingInformation(context.program, operation, emittedOperation);
     emittedOperation["discriminator"] = "lropaging";
     return emittedOperation;
 }
 
-function emitLroOperation(program: Program, operation: Operation, operationGroupName: string): Record<string, any> {
-    const emittedOperation = emitBasicOperation(program, operation, operationGroupName);
+function emitLroOperation(context: DpgContext, operation: Operation, operationGroupName: string): Record<string, any> {
+    const emittedOperation = emitBasicOperation(context, operation, operationGroupName);
     addLroInformation(emittedOperation);
     return emittedOperation;
 }
 
-function emitPagingOperation(program: Program, operation: Operation, operationGroupName: string): Record<string, any> {
-    const emittedOperation = emitBasicOperation(program, operation, operationGroupName);
-    addPagingInformation(program, operation, emittedOperation);
+function emitPagingOperation(context: DpgContext, operation: Operation, operationGroupName: string): Record<string, any> {
+    const emittedOperation = emitBasicOperation(context, operation, operationGroupName);
+    addPagingInformation(context.program, operation, emittedOperation);
     return emittedOperation;
 }
 
-function emitBasicOperation(program: Program, operation: Operation, operationGroupName: string): Record<string, any> {
+function emitBasicOperation(context: DpgContext, operation: Operation, operationGroupName: string): Record<string, any> {
+    const program = context.program;
     // Set up parameters for operation
     const parameters: Record<string, any>[] = [];
     if (endpointPathParameters) {
@@ -624,8 +626,8 @@ function emitBasicOperation(program: Program, operation: Operation, operationGro
     }
     const httpOperation = ignoreDiagnostics(getHttpOperation(program, operation));
     for (const param of httpOperation.parameters.parameters) {
-        const emittedParam = emitParameter(program, param, "Method");
-        if (isApiVersion(program, param) && apiVersionParam === undefined) {
+        const emittedParam = emitParameter(context, param, "Method");
+        if (isApiVersion(context, param) && apiVersionParam === undefined) {
             apiVersionParam = emittedParam;
         }
         parameters.push(emittedParam);
@@ -1077,13 +1079,13 @@ function emitType(program: Program, type: EmitterType): Record<string, any> {
     }
 }
 
-function emitOperationGroups(program: Program, client: Client): Record<string, any>[] {
+function emitOperationGroups(context: DpgContext, client: Client): Record<string, any>[] {
     const operationGroups: Record<string, any>[] = [];
-    for (const operationGroup of listOperationGroups(program, client)) {
+    for (const operationGroup of listOperationGroups(context, client)) {
         const operations: Record<string, any>[] = [];
         const name = operationGroup.type.name;
-        for (const operation of listOperationsInOperationGroup(program, operationGroup)) {
-            operations.push(emitOperation(program, operation, name));
+        for (const operation of listOperationsInOperationGroup(context, operationGroup)) {
+            operations.push(emitOperation(context, operation, name));
         }
         operationGroups.push({
             className: name,
@@ -1092,8 +1094,8 @@ function emitOperationGroups(program: Program, client: Client): Record<string, a
         });
     }
     const clientOperations: Record<string, any>[] = [];
-    for (const operation of listOperationsInOperationGroup(program, client)) {
-        clientOperations.push(emitOperation(program, operation, ""));
+    for (const operation of listOperationsInOperationGroup(context, client)) {
+        clientOperations.push(emitOperation(context, operation, ""));
     }
     if (clientOperations.length > 0) {
         operationGroups.push({
@@ -1113,8 +1115,8 @@ function getServerHelper(program: Program, namespace: Namespace): HttpServer | u
     return servers[0];
 }
 
-function emitServerParams(program: Program, namespace: Namespace): Record<string, any>[] {
-    const server = getServerHelper(program, namespace);
+function emitServerParams(context: DpgContext, namespace: Namespace): Record<string, any>[] {
+    const server = getServerHelper(context.program, namespace);
     if (server === undefined) {
         return [
             {
@@ -1138,9 +1140,9 @@ function emitServerParams(program: Program, namespace: Namespace): Record<string
                 name: param.name,
                 param: param,
             };
-            const emittedParameter = emitParameter(program, serverParameter, "Client");
+            const emittedParameter = emitParameter(context, serverParameter, "Client");
             endpointPathParameters.push(emittedParameter);
-            if (isApiVersion(program, serverParameter as any) && apiVersionParam == undefined) {
+            if (isApiVersion(context, serverParameter as any) && apiVersionParam == undefined) {
                 apiVersionParam = emittedParameter;
                 continue;
             }
@@ -1203,17 +1205,17 @@ function emitCredentialParam(program: Program, namespace: Namespace): Record<str
     return undefined;
 }
 
-function emitGlobalParameters(program: Program, namespace: Namespace): Record<string, any>[] {
-    const clientParameters = emitServerParams(program, namespace);
-    const credentialParam = emitCredentialParam(program, namespace);
+function emitGlobalParameters(context: DpgContext, namespace: Namespace): Record<string, any>[] {
+    const clientParameters = emitServerParams(context, namespace);
+    const credentialParam = emitCredentialParam(context.program, namespace);
     if (credentialParam) {
         clientParameters.push(credentialParam);
     }
     return clientParameters;
 }
 
-function getApiVersionParameter(program: Program): Record<string, any> | void {
-    const version = getDefaultApiVersion(program, getServiceNamespace(program));
+function getApiVersionParameter(context: DpgContext): Record<string, any> | void {
+    const version = getDefaultApiVersion(context, getServiceNamespace(context.program));
     if (apiVersionParam) {
         return apiVersionParam;
     } else if (version !== undefined) {
@@ -1237,7 +1239,7 @@ function getApiVersionParameter(program: Program): Record<string, any> | void {
 
 function emitClients(context: DpgContext, namespace: string): Record<string, any>[] {
     const program = context.program;
-    const clients = listClients(program);
+    const clients = listClients(context);
     const retval: Record<string, any>[] = [];
     for (const client of clients) {
         if (getNamespace(context, client.name) !== namespace) {
@@ -1247,12 +1249,12 @@ function emitClients(context: DpgContext, namespace: string): Record<string, any
         const emittedClient = {
             name: client.name.split(".").at(-1),
             description: getDocStr(program, client.type),
-            parameters: emitGlobalParameters(program, client.service),
-            operationGroups: emitOperationGroups(program, client),
+            parameters: emitGlobalParameters(context, client.service),
+            operationGroups: emitOperationGroups(context, client),
             url: server ? server.url : "",
             apiVersions: [],
         };
-        const emittedApiVersionParam = getApiVersionParameter(program);
+        const emittedApiVersionParam = getApiVersionParameter(context);
         if (emittedApiVersionParam) {
             emittedClient.parameters.push(emittedApiVersionParam);
         }
@@ -1276,7 +1278,7 @@ function getNamespace(context: DpgContext, clientName: string): string {
 
 function getNamespaces(context: DpgContext): Set<string> {
     const namespaces = new Set<string>();
-    for (const client of listClients(context.program)) {
+    for (const client of listClients(context)) {
         namespaces.add(getNamespace(context, client.name));
     }
     return namespaces;
