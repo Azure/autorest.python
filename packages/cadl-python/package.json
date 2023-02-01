@@ -50,7 +50,7 @@
     "js-yaml": "~4.1.0",
     "@autorest/python": "workspace:^",
     "@cadl-lang/compiler": "~0.39.0",
-    "@azure-tools/cadl-dpg": "~0.25.0"
+    "@azure-tools/cadl-dpg": "0.26.0-dev.7"
   },
   "devDependencies": {
     "@types/mocha": "~9.1.0",
