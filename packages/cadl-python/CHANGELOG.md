@@ -1,5 +1,11 @@
 # Release History
 
+## 2023-01-31 - 0.4.22
+
+**Other Changes**
+
+- Update codegen dependency
+
 ## 2023-01-27 - 0.4.21
 
 **Other Changes**
