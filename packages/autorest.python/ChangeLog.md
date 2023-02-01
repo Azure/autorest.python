@@ -45,6 +45,7 @@
 **New Features**
 
 - Generate M4 externalDocs in Sphinx operation doc #1676
+- Add `--default-api-version` to support `--generate-sample` for mutliapi package  #1681
 
 **Bug Fixes**
 
