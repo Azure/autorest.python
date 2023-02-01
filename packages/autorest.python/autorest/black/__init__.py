@@ -40,7 +40,11 @@ class BlackScriptPlugin(Plugin):  # pylint: disable=abstract-method
         return True
 
     def format_file(self, file: Path) -> None:
-        file_content = self.read_file(file)
+        try:
+            file_content = self.read_file(file)
+        except Exception:  # pylint: disable=broad-except
+            # we don't want to fail on black trying to format a file we can't read
+            return
         if not file.suffix == ".py":
             self.write_file(file, file_content)
             return
