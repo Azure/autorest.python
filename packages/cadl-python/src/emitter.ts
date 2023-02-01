@@ -529,7 +529,7 @@ function isAzureCoreErrorType(t?: Type): boolean {
     ) {
         t = t.namespace;
     }
-    return namespaces.length == 0;
+    return namespaces.length === 0;
 }
 
 function emitResponse(
@@ -1142,7 +1142,7 @@ function emitServerParams(context: DpgContext, namespace: Namespace): Record<str
             };
             const emittedParameter = emitParameter(context, serverParameter, "Client");
             endpointPathParameters.push(emittedParameter);
-            if (isApiVersion(context, serverParameter as any) && apiVersionParam == undefined) {
+            if (isApiVersion(context, serverParameter as any) && apiVersionParam === undefined) {
                 apiVersionParam = emittedParameter;
                 continue;
             }

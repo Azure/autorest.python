@@ -35,7 +35,7 @@ importers:
     specifiers:
       '@autorest/python': workspace:^
       '@azure-tools/cadl-azure-core': ~0.25.0
-      '@azure-tools/cadl-dpg': 0.26.0-dev.5
+      '@azure-tools/cadl-dpg': 0.26.0-dev.7
       '@azure-tools/cadl-ranch-expect': ~0.1.15
       '@azure-tools/cadl-ranch-specs': ~0.6.6
       '@cadl-lang/compiler': ~0.39.0
@@ -55,7 +55,7 @@ importers:
       typescript: ^4.8.3
     dependencies:
       '@autorest/python': link:../autorest.python
-      '@azure-tools/cadl-dpg': 0.26.0-dev.5_5amtcsnro2dkqgugylxpqr5pa4
+      '@azure-tools/cadl-dpg': 0.26.0-dev.7_5amtcsnro2dkqgugylxpqr5pa4
       '@cadl-lang/compiler': 0.39.0
       js-yaml: 4.1.0
     devDependencies:
@@ -99,8 +99,8 @@ packages:
       '@cadl-lang/rest': 0.39.0_@cadl-lang+compiler@0.39.0
     dev: true
 
-  /@azure-tools/cadl-dpg/0.26.0-dev.5_5amtcsnro2dkqgugylxpqr5pa4:
-    resolution: {integrity: sha512-iYxNO7PoM5Zfcf2f0hTEpvJ1eN0+Bj7dQSQ+wvNQJwcXiY1eHRVeqDLedW+ykSFADXDiBxP6PiJtyGIZLm8cRQ==}
+  /@azure-tools/cadl-dpg/0.26.0-dev.7_5amtcsnro2dkqgugylxpqr5pa4:
+    resolution: {integrity: sha512-Fxur6Ir6rcsT4kysGpMcWvgUdFZ2UL95/wfIwt7MDvyvpoqUPc2udLqZXa2cxPzLEguhsXlbZ3N4utbP5d1nKA==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       '@cadl-lang/compiler': '>=0.39.0'
