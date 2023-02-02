@@ -44,7 +44,9 @@ class BlackScriptPlugin(Plugin):  # pylint: disable=abstract-method
             file_content = self.read_file(file)
         except Exception as e:  # pylint: disable=broad-except
             if file.suffix != ".py":
-                _LOGGER.warn(f"Can not read file {file.name}, not blacking this file")
+                _LOGGER.warning(
+                    "Can not read file %s, not blacking this file", file.name
+                )
                 return
             raise e  # still want to raise if we fail reading a py file
         if file.suffix != ".py":
