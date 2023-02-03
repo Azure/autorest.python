@@ -150,7 +150,7 @@ __all__ = ["OperationGroup"]
 
 ### Change Client Behavior
 
-In this example, we change the default authentication policy for a client.
+In this example, we add our own special token, and change the authentication policy behavior for a client.
 
 In this `_patch.py` file:
 
@@ -167,26 +167,40 @@ azure-sdk
 ```
 
 ```python
-from ._service_client import ServiceClient as ServiceClientGenerated
+from typing import Union
+
 from azure.core.pipeline import PipelineRequest
 from azure.core.pipeline.policies import SansIOHTTPPolicy
+from azure.core.credentials import TokenCredential
+
+from ._service_client import ServiceClient as ServiceClientGenerated
+
+class MyCredential:
+
+    def __init__(self, subscription_key: str) -> None:
+        self.subscription_key = subscription_key
+
 
 class MyAuthenticationPolicy(SansIOHTTPPolicy):
 
-    def __init__(self, key: str):
-        self.key = key
+    def __init__(self, credential: MyCredential):
+        self.credential = credential
 
     def on_request(self, request: PipelineRequest):
-        request.http_request.headers["Authorization"] = f"My key is {self.key}"
+        request.http_request.headers["Authorization"] = f"My subscription key is {self.credential.subscription_key}"
         return super().on_request(request)
 
 class ServiceClient(ServiceClientGenerated):
 
-    def __init__(self, endpoint: str, credential: str, **kwargs):
+    def __init__(self, endpoint: str, credential: Union[TokenCredential, MyCredential], **kwargs):
+        if isinstance(credential, MyCredential):
+            # if it's our credential, we default to our authentication policy.
+            # Otherwise, we use the default
+            if not kwargs.get("authentication_policy"):
+                kwargs["authentication_policy"] = MyAuthenticationPolicy(credential)
         super().__init__(
             endpoint=endpoint,
             credential=credential,
-            authentication_policy=kwargs.pop("authentication_policy", MyAuthenticationPolicy(credential)),
             **kwargs
         )
 
