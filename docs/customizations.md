@@ -177,8 +177,9 @@ from ._service_client import ServiceClient as ServiceClientGenerated
 
 class MyCredential:
 
-    def __init__(self, subscription_key: str) -> None:
-        self.subscription_key = subscription_key
+    def __init__(self, key: str, region: str) -> None:
+        self.key = key
+        self.region = region
 
 
 class MyAuthenticationPolicy(SansIOHTTPPolicy):
@@ -187,7 +188,8 @@ class MyAuthenticationPolicy(SansIOHTTPPolicy):
         self.credential = credential
 
     def on_request(self, request: PipelineRequest):
-        request.http_request.headers["Authorization"] = f"My subscription key is {self.credential.subscription_key}"
+        request.http_request.headers["Ocp-Apim-Subscription-Key"] = self.credential.key
+        request.http_request.headers["Ocp-Apim-Subscription-Region"] = self.credential.region
         return super().on_request(request)
 
 class ServiceClient(ServiceClientGenerated):
