@@ -187,10 +187,9 @@ class MyAuthenticationPolicy(SansIOHTTPPolicy):
     def __init__(self, credential: MyCredential):
         self.credential = credential
 
-    def on_request(self, request: PipelineRequest):
+    def on_request(self, request: PipelineRequest) -> None:
         request.http_request.headers["Ocp-Apim-Subscription-Key"] = self.credential.key
         request.http_request.headers["Ocp-Apim-Subscription-Region"] = self.credential.region
-        return super().on_request(request)
 
 class ServiceClient(ServiceClientGenerated):
 
