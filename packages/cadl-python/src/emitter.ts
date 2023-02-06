@@ -241,9 +241,13 @@ function getEffectiveSchemaType(program: Program, type: Model): Model {
     return type;
 }
 
-function getType(program: Program, type: EmitterType): any {
+function getType(
+    program: Program,
+    type: EmitterType,
+    enableCache: boolean = true,
+    modelProperty: ModelProperty | undefined = undefined,
+): any {
     // don't cache simple type(string, int, etc) since decorators may change the result
-    const enableCache = !isSimpleType(program, type);
     const effectiveModel = type.kind === "Model" ? getEffectiveSchemaType(program, type) : type;
     if (enableCache) {
         const cached = typesMap.get(effectiveModel);
@@ -266,6 +270,9 @@ function getType(program: Program, type: EmitterType): any {
             handleDiscriminator(program, type, newValue);
         }
     } else {
+        if (modelProperty) {
+            newValue = applyIntrinsicDecorators(program, modelProperty, newValue);
+        }
         const key = dump(newValue, { sortKeys: true });
         const value = simpleTypesMap.get(key);
         if (value) {
@@ -387,7 +394,8 @@ function emitParameter(
     implementation: string,
 ): Record<string, any> {
     const base = emitParamBase(program, parameter.param);
-    let type = getType(program, parameter.param.type);
+    const enableCached = parameter.type === "query" && isSimpleType(program, parameter.param) ? false : true;
+    let type = getType(program, parameter.param.type, enableCached, parameter.param);
     let clientDefaultValue = undefined;
     if (parameter.name.toLowerCase() === "content-type" && type["type"] === "constant") {
         /// We don't want constant types for content types, so we make sure if it's
