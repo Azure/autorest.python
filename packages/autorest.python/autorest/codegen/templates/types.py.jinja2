@@ -4,5 +4,5 @@
 
 {{ imports }}
 {% for nu in code_model.named_unions %}
-nu.name = nu.type_annotation()
+{{nu.name}} = {{nu.type_definition()}}
 {% endfor %}

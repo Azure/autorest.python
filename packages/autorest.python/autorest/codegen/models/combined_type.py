@@ -63,6 +63,14 @@ class CombinedType(BaseType):
         return " or ".join(t.docstring_type(**kwargs) for t in self.types)
 
     def type_annotation(self, **kwargs: Any) -> str:
+        if self.name:
+            ret = f"_types.{self.name}"
+            if kwargs.get("is_operation_file"):
+                ret = f'"{ret}"'
+            return ret
+        return self.type_definition(**kwargs)
+
+    def type_definition(self, **kwargs: Any) -> str:
         """The python type used for type annotation
 
         Special case for enum, for instance: Union[str, "EnumName"]

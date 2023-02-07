@@ -11,6 +11,7 @@ from ..models import ModelType, CodeModel
 from ..models.imports import FileImport, TypingSection, ImportType
 from .import_serializer import FileImportSerializer
 
+
 class TypesSerializer(ABC):
     def __init__(self, code_model: CodeModel, env: Environment) -> None:
         self.code_model = code_model
@@ -18,15 +19,21 @@ class TypesSerializer(ABC):
 
     def imports(self) -> FileImport:
         file_import = FileImport()
+        if self.code_model.named_unions:
+            file_import.add_submodule_import(
+                "typing",
+                "Union",
+                ImportType.STDLIB,
+            )
         for nu in self.code_model.named_unions:
             if any(isinstance(t, ModelType) for t in nu.types):
                 file_import.add_submodule_import(
-                        ".",
-                        "models",
-                        ImportType.LOCAL,
-                        TypingSection.TYPING,
-                        alias="_models",
-                    )
+                    ".",
+                    "models",
+                    ImportType.LOCAL,
+                    TypingSection.TYPING,
+                    alias="_models",
+                )
         return file_import
 
     def serialize(self) -> str:
@@ -37,5 +44,3 @@ class TypesSerializer(ABC):
             imports=FileImportSerializer(self.imports()),
             serializer=self,
         )
-
-  

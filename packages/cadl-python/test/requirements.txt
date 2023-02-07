@@ -9,6 +9,7 @@ azure-core==1.24.0
 -e ./generated/extensible
 -e ./generated/fixed
 -e ./generated/union
+-e ./generated/unions
 -e ./generated/hello
 -e ./generated/inheritance
 -e ./generated/item-types

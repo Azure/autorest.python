@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, Optional, TYPE_CHECKING, List
+from typing import Any, Dict, Optional, TYPE_CHECKING, List, Callable
 
 from .base import BaseModel
 from .constant_type import ConstantType
@@ -130,32 +130,45 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         return retval or None
 
     @staticmethod
-    def contain_model_type(t: BaseType) -> bool:
-        from . import ListType, DictionaryType, ModelType, CombinedType
+    def contain_target(t: BaseType, check_target: Callable[[BaseType], bool]) -> bool:
+        from . import ListType, DictionaryType, CombinedType
 
-        if isinstance(t, ModelType):
+        if check_target(t):
             return True
         if isinstance(t, ListType):
-            return Property.contain_model_type(t.element_type)
+            return Property.contain_target(t.element_type, check_target)
         if isinstance(t, DictionaryType):
-            return Property.contain_model_type(t.element_type)
+            return Property.contain_target(t.element_type, check_target)
         if isinstance(t, ConstantType):
-            return Property.contain_model_type(t.value_type)
-        if isinstance(t, CombinedType):
-            return any(Property.contain_model_type(sub_type) for sub_type in t.types)
+            return Property.contain_target(t.value_type, check_target)
+        if isinstance(t, CombinedType) and not t.name:
+            return any(
+                Property.contain_target(sub_type, check_target) for sub_type in t.types
+            )
         return False
 
     def imports(self, **kwargs) -> FileImport:
+        from . import CombinedType, ModelType
+
         file_import = self.type.imports(**kwargs, is_operation_file=False)
         if self.optional and self.client_default_value is None:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
-        if self.contain_model_type(self.type):
+        if self.contain_target(self.type, lambda t: isinstance(t, ModelType)):
             file_import.add_submodule_import(
                 "..",
                 "models",
                 ImportType.LOCAL,
                 TypingSection.TYPING,
                 alias="_models",
+            )
+        if self.contain_target(
+            self.type, lambda t: isinstance(self.type, CombinedType) and self.type.name
+        ):
+            file_import.add_submodule_import(
+                "..",
+                "_types",
+                ImportType.LOCAL,
+                TypingSection.TYPING,
             )
         if self.code_model.options["models_mode"] == "dpg":
             file_import.add_submodule_import(

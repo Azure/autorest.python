@@ -37,6 +37,7 @@ from .parameter import (
 from .parameter_list import ParameterList
 from .model_type import ModelType
 from .request_builder import OverloadedRequestBuilder, RequestBuilder
+from .combined_type import CombinedType
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -403,6 +404,15 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         )
         if self.overloads:
             file_import.add_submodule_import("typing", "overload", ImportType.STDLIB)
+
+        for param_or_resp in [*self.parameters, *self.responses]:
+            if isinstance(param_or_resp.type, CombinedType) and param_or_resp.type.name:
+                file_import.add_submodule_import(
+                    "..",
+                    "_types",
+                    ImportType.LOCAL,
+                    TypingSection.TYPING,
+                )
         return file_import
 
     def get_response_from_status(
