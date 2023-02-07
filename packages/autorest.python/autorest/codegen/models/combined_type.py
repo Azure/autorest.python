@@ -29,6 +29,7 @@ class CombinedType(BaseType):
     ) -> None:
         super().__init__(yaml_data, code_model)
         self.types = types  # the types that this type is combining
+        self.name = yaml_data.get("name")
 
     @property
     def serialization_type(self) -> str:

@@ -7,7 +7,7 @@ from typing import List, Dict, Any, Set, Union
 
 from .base import BaseType
 from .enum_type import EnumType
-from .model_type import ModelType
+from .model_type import ModelType, CombinedType
 from .client import Client
 from .request_builder import RequestBuilder, OverloadedRequestBuilder
 from .constant_type import ConstantType
@@ -72,6 +72,9 @@ class CodeModel:  # pylint: disable=too-many-public-methods
         if self.options["models_mode"] and self.model_types:
             self.sort_model_types()
         self.is_subnamespace = is_subnamespace
+        self.named_unions: List[CombinedType] = [
+                t for t in self.types_map.values() if isinstance(t, CombinedType) and t.name
+            ]
 
     @property
     def has_operations(self) -> bool:
