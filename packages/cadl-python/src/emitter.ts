@@ -996,7 +996,7 @@ function emitUnion(program: Program, type: Union): Record<string, any> {
                 description: `Type of ${unionName}`,
                 isPublic: false,
                 type: "combined",
-                types: nonNullOptions.map((x) => emitType(program, x)),
+                types: nonNullOptions.map((x) => getType(program, x)),
                 xmlMetadata: {},
             };
         } else if (nonNullOptions.some(notLiteral)) {

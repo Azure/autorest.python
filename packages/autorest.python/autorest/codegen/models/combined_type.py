@@ -66,7 +66,6 @@ class CombinedType(BaseType):
 
         Special case for enum, for instance: Union[str, "EnumName"]
         """
-        kwargs["is_operation_file"] = True
         inside_types = [type.type_annotation(**kwargs) for type in self.types]
 
         # If the inside types has been a Union, peel first and then re-union

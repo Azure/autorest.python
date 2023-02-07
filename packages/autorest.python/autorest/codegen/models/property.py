@@ -131,7 +131,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
 
     @staticmethod
     def contain_model_type(t: BaseType) -> bool:
-        from . import ListType, DictionaryType, ModelType
+        from . import ListType, DictionaryType, ModelType, CombinedType
 
         if isinstance(t, ModelType):
             return True
@@ -141,6 +141,8 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
             return Property.contain_model_type(t.element_type)
         if isinstance(t, ConstantType):
             return Property.contain_model_type(t.value_type)
+        if isinstance(t, CombinedType):
+            return any(Property.contain_model_type(sub_type) for sub_type in t.types)
         return False
 
     def imports(self, **kwargs) -> FileImport:
