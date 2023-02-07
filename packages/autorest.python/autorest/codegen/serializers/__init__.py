@@ -195,7 +195,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                 )
         if self.code_model.named_unions:
             self.write_file(
-                namespace_path / Path(f"_types.py"),
+                namespace_path / Path("_types.py"),
                 TypesSerializer(code_model=self.code_model, env=env).serialize(),
             )
 

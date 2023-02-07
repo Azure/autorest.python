@@ -3,16 +3,13 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import List, cast
-from abc import ABC, abstractmethod
-
 from jinja2 import Environment
 from ..models import ModelType, CodeModel
 from ..models.imports import FileImport, TypingSection, ImportType
 from .import_serializer import FileImportSerializer
 
 
-class TypesSerializer(ABC):
+class TypesSerializer:
     def __init__(self, code_model: CodeModel, env: Environment) -> None:
         self.code_model = code_model
         self.env = env
