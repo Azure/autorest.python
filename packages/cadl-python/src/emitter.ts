@@ -610,13 +610,21 @@ function emitLroOperation(context: DpgContext, operation: Operation, operationGr
     return emittedOperation;
 }
 
-function emitPagingOperation(context: DpgContext, operation: Operation, operationGroupName: string): Record<string, any> {
+function emitPagingOperation(
+    context: DpgContext,
+    operation: Operation,
+    operationGroupName: string,
+): Record<string, any> {
     const emittedOperation = emitBasicOperation(context, operation, operationGroupName);
     addPagingInformation(context, operation, emittedOperation);
     return emittedOperation;
 }
 
-function emitBasicOperation(context: DpgContext, operation: Operation, operationGroupName: string): Record<string, any> {
+function emitBasicOperation(
+    context: DpgContext,
+    operation: Operation,
+    operationGroupName: string,
+): Record<string, any> {
     // Set up parameters for operation
     const parameters: Record<string, any>[] = [];
     if (endpointPathParameters) {
