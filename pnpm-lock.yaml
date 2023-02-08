@@ -34,15 +34,15 @@ importers:
   packages/cadl-python:
     specifiers:
       '@autorest/python': workspace:^
-      '@azure-tools/cadl-azure-core': ~0.25.0
-      '@azure-tools/cadl-dpg': ~0.25.0
+      '@azure-tools/cadl-azure-core': ~0.26.0
+      '@azure-tools/cadl-dpg': ~0.26.0
       '@azure-tools/cadl-ranch-expect': ~0.1.15
       '@azure-tools/cadl-ranch-specs': ~0.6.6
-      '@cadl-lang/compiler': ~0.39.0
+      '@cadl-lang/compiler': ~0.40.0
       '@cadl-lang/eslint-config-cadl': ~0.5.0
-      '@cadl-lang/openapi': ~0.39.0
-      '@cadl-lang/rest': ~0.39.0
-      '@cadl-lang/versioning': ~0.39.0
+      '@cadl-lang/openapi': ~0.40.0
+      '@cadl-lang/rest': ~0.40.0
+      '@cadl-lang/versioning': ~0.40.0
       '@types/js-yaml': ~4.0.1
       '@types/mocha': ~9.1.0
       '@types/node': ^18.7.16
@@ -55,17 +55,17 @@ importers:
       typescript: ^4.8.3
     dependencies:
       '@autorest/python': link:../autorest.python
-      '@azure-tools/cadl-dpg': 0.25.0_5amtcsnro2dkqgugylxpqr5pa4
-      '@cadl-lang/compiler': 0.39.0
+      '@azure-tools/cadl-dpg': 0.26.0_hptrsc5c6rcq4yfinfjfsau7y4
+      '@cadl-lang/compiler': 0.40.0
       js-yaml: 4.1.0
     devDependencies:
-      '@azure-tools/cadl-azure-core': 0.25.0_5amtcsnro2dkqgugylxpqr5pa4
-      '@azure-tools/cadl-ranch-expect': 0.1.15_5amtcsnro2dkqgugylxpqr5pa4
-      '@azure-tools/cadl-ranch-specs': 0.6.6_z2cshgskba76bwihuv2yuay47u
+      '@azure-tools/cadl-azure-core': 0.26.0_hptrsc5c6rcq4yfinfjfsau7y4
+      '@azure-tools/cadl-ranch-expect': 0.1.15_hptrsc5c6rcq4yfinfjfsau7y4
+      '@azure-tools/cadl-ranch-specs': 0.6.6_bubsmks4nedsyzyx32n7umxcs4
       '@cadl-lang/eslint-config-cadl': 0.5.0_prettier@2.7.1
-      '@cadl-lang/openapi': 0.39.0_5amtcsnro2dkqgugylxpqr5pa4
-      '@cadl-lang/rest': 0.39.0_@cadl-lang+compiler@0.39.0
-      '@cadl-lang/versioning': 0.39.0
+      '@cadl-lang/openapi': 0.40.0_hptrsc5c6rcq4yfinfjfsau7y4
+      '@cadl-lang/rest': 0.40.0_@cadl-lang+compiler@0.40.0
+      '@cadl-lang/versioning': 0.40.0
       '@types/js-yaml': 4.0.5
       '@types/mocha': 9.1.1
       '@types/node': 18.7.16
@@ -87,27 +87,27 @@ packages:
       semver: 7.3.7
     dev: false
 
-  /@azure-tools/cadl-azure-core/0.25.0_5amtcsnro2dkqgugylxpqr5pa4:
-    resolution: {integrity: sha512-V3yhJ9mUKntAt2AVm4f/sR91H/wWD8CMLUPQm2GwgSe/Fkv9fc4qE6qnE4QUxPGYJUgYeDXYv12qRN2eLId9sA==}
+  /@azure-tools/cadl-azure-core/0.26.0_hptrsc5c6rcq4yfinfjfsau7y4:
+    resolution: {integrity: sha512-PYmG/cp+QhyjuQa0jwTkkPp487d500FmPUB5rhjjx+OG080322d+uLeS9tx25dEq3GRoehEnF80qkupBjZBr1g==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@cadl-lang/compiler': ~0.39.0
-      '@cadl-lang/rest': ~0.39.0
+      '@cadl-lang/compiler': ~0.40.0
+      '@cadl-lang/rest': ~0.40.0
     dependencies:
-      '@cadl-lang/compiler': 0.39.0
-      '@cadl-lang/lint': 0.39.0_@cadl-lang+compiler@0.39.0
-      '@cadl-lang/rest': 0.39.0_@cadl-lang+compiler@0.39.0
+      '@cadl-lang/compiler': 0.40.0
+      '@cadl-lang/lint': 0.40.0_@cadl-lang+compiler@0.40.0
+      '@cadl-lang/rest': 0.40.0_@cadl-lang+compiler@0.40.0
     dev: true
 
-  /@azure-tools/cadl-dpg/0.25.0_5amtcsnro2dkqgugylxpqr5pa4:
-    resolution: {integrity: sha512-T4txhl86WH4se3gklRBNBmy81w7C1fY/fkuRLQGgycBqZ1BEOkn7UpExh90alrGs7eNT8YzWcgh9lO1HWn1BQA==}
+  /@azure-tools/cadl-dpg/0.26.0_hptrsc5c6rcq4yfinfjfsau7y4:
+    resolution: {integrity: sha512-/F40cUDwKZVPj+dBWxdZ3rXwiqs0kGV6ra/LcNoqK+M+nacd48R4L0512izfJbm8KqFen8yh9jfVC8xQfB6bJg==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@cadl-lang/compiler': ~0.39.0
-      '@cadl-lang/rest': ~0.39.0
+      '@cadl-lang/compiler': ~0.40.0
+      '@cadl-lang/rest': ~0.40.0
     dependencies:
-      '@cadl-lang/compiler': 0.39.0
-      '@cadl-lang/rest': 0.39.0_@cadl-lang+compiler@0.39.0
+      '@cadl-lang/compiler': 0.40.0
+      '@cadl-lang/rest': 0.40.0_@cadl-lang+compiler@0.40.0
     dev: false
 
   /@azure-tools/cadl-ranch-api/0.1.11:
@@ -151,7 +151,18 @@ packages:
       '@cadl-lang/rest': 0.39.0_@cadl-lang+compiler@0.39.0
     dev: true
 
-  /@azure-tools/cadl-ranch-specs/0.6.6_z2cshgskba76bwihuv2yuay47u:
+  /@azure-tools/cadl-ranch-expect/0.1.15_hptrsc5c6rcq4yfinfjfsau7y4:
+    resolution: {integrity: sha512-QS9kOUtwmhkkXJ8N+drmC09t2u9xXZS8vr8NFMbNDLb9l6z6n2XXA3FgCuuREUN0J6lKi3J0Qgu3OpaBoq4/GQ==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      '@cadl-lang/compiler': ~0.39.0
+      '@cadl-lang/rest': ~0.39.0
+    dependencies:
+      '@cadl-lang/compiler': 0.40.0
+      '@cadl-lang/rest': 0.40.0_@cadl-lang+compiler@0.40.0
+    dev: true
+
+  /@azure-tools/cadl-ranch-specs/0.6.6_bubsmks4nedsyzyx32n7umxcs4:
     resolution: {integrity: sha512-cqP5JvisH8IgGQ+/Qprwj4h0AY+SX7kPPY0ynhHB5h8RrGdg+oFD9n9xgVw+Ka/9k8Jgf/hhZLRltzUPtZkoBQ==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
@@ -161,13 +172,13 @@ packages:
       '@cadl-lang/rest': ~0.39.0
       '@cadl-lang/versioning': ~0.39.0
     dependencies:
-      '@azure-tools/cadl-azure-core': 0.25.0_5amtcsnro2dkqgugylxpqr5pa4
+      '@azure-tools/cadl-azure-core': 0.26.0_hptrsc5c6rcq4yfinfjfsau7y4
       '@azure-tools/cadl-ranch': 0.2.15
       '@azure-tools/cadl-ranch-api': 0.1.11
-      '@azure-tools/cadl-ranch-expect': 0.1.15_5amtcsnro2dkqgugylxpqr5pa4
-      '@cadl-lang/compiler': 0.39.0
-      '@cadl-lang/rest': 0.39.0_@cadl-lang+compiler@0.39.0
-      '@cadl-lang/versioning': 0.39.0
+      '@azure-tools/cadl-ranch-expect': 0.1.15_hptrsc5c6rcq4yfinfjfsau7y4
+      '@cadl-lang/compiler': 0.40.0
+      '@cadl-lang/rest': 0.40.0_@cadl-lang+compiler@0.40.0
+      '@cadl-lang/versioning': 0.40.0
     transitivePeerDependencies:
       - '@types/express'
       - encoding
@@ -424,6 +435,28 @@ packages:
       vscode-languageserver: 8.0.2
       vscode-languageserver-textdocument: 1.0.5
       yargs: 17.6.2
+    dev: true
+
+  /@cadl-lang/compiler/0.40.0:
+    resolution: {integrity: sha512-4u/Dnm39Ma+8wH0SDu7ya1+2oBRDiNByiRoijwyScHRec26UWLyWvHMvvU89ISU6O8Vwtq0bpmbD7FeJTnlbHw==}
+    engines: {node: '>=16.0.0'}
+    hasBin: true
+    dependencies:
+      '@babel/code-frame': 7.18.6
+      ajv: 8.11.2
+      change-case: 4.1.2
+      globby: 13.1.2
+      js-yaml: 4.1.0
+      mkdirp: 1.0.4
+      mustache: 4.2.0
+      node-fetch: 3.2.8
+      node-watch: 0.7.3
+      picocolors: 1.0.0
+      prettier: 2.8.3
+      prompts: 2.4.2
+      vscode-languageserver: 8.0.2
+      vscode-languageserver-textdocument: 1.0.5
+      yargs: 17.6.2
 
   /@cadl-lang/eslint-config-cadl/0.5.0_prettier@2.7.1:
     resolution: {integrity: sha512-H8vM1K/8zyV7lQpT8XPf6VYMz52cil8DUVawdq3JkGrnunLC7woPhzr2Sl9uPg6e9vsiqRi9ZUmB51MIEaO1gA==}
@@ -442,24 +475,24 @@ packages:
       - supports-color
     dev: true
 
-  /@cadl-lang/lint/0.39.0_@cadl-lang+compiler@0.39.0:
-    resolution: {integrity: sha512-qaWnOYH68ppEDI4jWhPMk6gUIs7t/VYREAjvjniwjc5IYhHPFz5hzFUjmZOAp1az9bxJVwBVtGp1pSB8LFgXCQ==}
+  /@cadl-lang/lint/0.40.0_@cadl-lang+compiler@0.40.0:
+    resolution: {integrity: sha512-V/V5Msuurhb7kVZsvuAKVAHq4twmC5YC5k/t7YJWETOowFXepgIneWJPH2TDyyzO9WqJjqRJVRXPTrTuKuNFsA==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@cadl-lang/compiler': ~0.39.0
+      '@cadl-lang/compiler': ~0.40.0
     dependencies:
-      '@cadl-lang/compiler': 0.39.0
+      '@cadl-lang/compiler': 0.40.0
     dev: true
 
-  /@cadl-lang/openapi/0.39.0_5amtcsnro2dkqgugylxpqr5pa4:
-    resolution: {integrity: sha512-N/NlryVdaFKzzSdbLeko09M5s2aNEnZsMXHYCMCb9b0HLeJJ/cR/nCulTxCoNO1VMN5VWdSaohBtle4EHS/HSw==}
+  /@cadl-lang/openapi/0.40.0_hptrsc5c6rcq4yfinfjfsau7y4:
+    resolution: {integrity: sha512-M2/Pb5AyZd2O5ycYBIoIf4bufip7bCUTMt3gdom1ss6726APbG1fxx98HPcTbXXx0oA+SuqEXtz8k9eaUGLadQ==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@cadl-lang/compiler': ~0.39.0
-      '@cadl-lang/rest': ~0.39.0
+      '@cadl-lang/compiler': ~0.40.0
+      '@cadl-lang/rest': ~0.40.0
     dependencies:
-      '@cadl-lang/compiler': 0.39.0
-      '@cadl-lang/rest': 0.39.0_@cadl-lang+compiler@0.39.0
+      '@cadl-lang/compiler': 0.40.0
+      '@cadl-lang/rest': 0.40.0_@cadl-lang+compiler@0.40.0
     dev: true
 
   /@cadl-lang/prettier-plugin-cadl/0.38.0:
@@ -475,12 +508,21 @@ packages:
       '@cadl-lang/compiler': ~0.39.0
     dependencies:
       '@cadl-lang/compiler': 0.39.0
+    dev: true
 
-  /@cadl-lang/versioning/0.39.0:
-    resolution: {integrity: sha512-mMmqHTo/Cwssb5Y1qC5Fb4rPkyt7JPK+bWT8KH/oprdG3MOJSemyeEIxQtkId3oBdHZiQHG7T9IN80Dks3GE/A==}
+  /@cadl-lang/rest/0.40.0_@cadl-lang+compiler@0.40.0:
+    resolution: {integrity: sha512-WfGq6lN87adRKsKd3XtztvOLXHzyFlDRQiEcXKfnwXia37zVwK355KX39P1RimQ9mpDsmXaGG4ETkdUSWvXe7w==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      '@cadl-lang/compiler': ~0.40.0
+    dependencies:
+      '@cadl-lang/compiler': 0.40.0
+
+  /@cadl-lang/versioning/0.40.0:
+    resolution: {integrity: sha512-HK/jw0kxo/6RwbnR7nPyCj2kJ94uZbBhEmS08ms+fX4UB4nDNBXqXFwMwgftVZ2qdS9xEkRhLqpVYfEPzlFBJw==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@cadl-lang/compiler': 0.39.0
+      '@cadl-lang/compiler': 0.40.0
     dev: true
 
   /@colors/colors/1.5.0:
