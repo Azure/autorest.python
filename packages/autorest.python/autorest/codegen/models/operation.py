@@ -37,7 +37,6 @@ from .parameter import (
 from .parameter_list import ParameterList
 from .model_type import ModelType
 from .request_builder import OverloadedRequestBuilder, RequestBuilder
-from .combined_type import CombinedType
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
