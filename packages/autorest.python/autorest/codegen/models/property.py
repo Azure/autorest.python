@@ -162,7 +162,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
                 alias="_models",
             )
         if self.contain_target(
-            self.type, lambda t: isinstance(self.type, CombinedType) and self.type.name
+            self.type, lambda t: bool(isinstance(self.type, CombinedType) and self.type.name)
         ):
             file_import.add_submodule_import(
                 "..",

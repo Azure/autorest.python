@@ -404,15 +404,6 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         )
         if self.overloads:
             file_import.add_submodule_import("typing", "overload", ImportType.STDLIB)
-
-        for param_or_resp in [*self.parameters, *self.responses]:
-            if isinstance(param_or_resp.type, CombinedType) and param_or_resp.type.name:
-                file_import.add_submodule_import(
-                    "..",
-                    "_types",
-                    ImportType.LOCAL,
-                    TypingSection.TYPING,
-                )
         return file_import
 
     def get_response_from_status(
