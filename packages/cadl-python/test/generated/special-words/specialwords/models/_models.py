@@ -35,7 +35,7 @@ class BaseModel(_model_base.Model):
     model_kind: Literal[None] = rest_discriminator(name="model.kind")
     """Required. Default value is None."""
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
         self.model_kind: Literal[None] = None
 
@@ -76,6 +76,6 @@ class DerivedModel(BaseModel, discriminator="derived"):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
         self.model_kind: Literal["derived"] = "derived"

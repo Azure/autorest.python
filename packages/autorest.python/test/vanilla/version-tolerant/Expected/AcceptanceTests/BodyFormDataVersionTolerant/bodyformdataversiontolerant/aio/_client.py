@@ -68,5 +68,5 @@ class AutoRestSwaggerBATFormDataService:  # pylint: disable=client-accepts-api-v
         await self._client.__aenter__()
         return self
 
-    async def __aexit__(self, *exc_details) -> None:
+    async def __aexit__(self, *exc_details: Any) -> None:
         await self._client.__aexit__(*exc_details)

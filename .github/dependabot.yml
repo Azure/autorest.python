@@ -14,8 +14,18 @@ updates:
     commit-message:
       prefix: "pip prod"
       prefix-development: "pip dev"
-      include: "scope"      
-            
+      include: "scope"
+  - package-ecosystem: "pip" # See documentation for possible values
+    directory: "/eng/" # Location of package manifests
+    schedule:
+      interval: "weekly"
+    # Include a list of updated dependencies
+    # with a prefix determined by the dependency group
+    commit-message:
+      prefix: "pip prod"
+      prefix-development: "pip dev"
+      include: "scope"
+
 #  - package-ecosystem: "pnpm" # https://github.com/dependabot/dependabot-core/issues/1736
 #    directory: "/packages/cadl-python/" # Location of package manifests
 #    schedule:
@@ -25,4 +35,4 @@ updates:
 #    commit-message:
 #      prefix: "npm prod"
 #      prefix-development: "npm dev"
-#      include: "scope"      
+#      include: "scope"

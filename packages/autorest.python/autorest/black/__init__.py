@@ -13,7 +13,7 @@ from black.report import NothingChanged
 from .. import Plugin, PluginAutorest
 from .._utils import parse_args
 
-logging.getLogger("blib2to3").setLevel(logging.ERROR)
+_LOGGER = logging.getLogger("blib2to3")
 
 _BLACK_MODE = black.Mode()  # pyright: ignore [reportPrivateImportUsage]
 _BLACK_MODE.line_length = 120
@@ -40,8 +40,16 @@ class BlackScriptPlugin(Plugin):  # pylint: disable=abstract-method
         return True
 
     def format_file(self, file: Path) -> None:
-        file_content = self.read_file(file)
-        if not file.suffix == ".py":
+        try:
+            file_content = self.read_file(file)
+        except Exception as e:  # pylint: disable=broad-except
+            if file.suffix != ".py":
+                _LOGGER.warning(
+                    "Can not read file %s, not blacking this file", file.name
+                )
+                return
+            raise e  # still want to raise if we fail reading a py file
+        if file.suffix != ".py":
             self.write_file(file, file_content)
             return
         try:

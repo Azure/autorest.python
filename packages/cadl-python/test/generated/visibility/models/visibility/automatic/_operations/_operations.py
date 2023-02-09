@@ -48,7 +48,7 @@ def build_automatic_get_model_request(**kwargs: Any) -> HttpRequest:
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/models/visibility"
+    _url = "/models/visibility/automatic"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -63,7 +63,7 @@ def build_automatic_head_model_request(**kwargs: Any) -> HttpRequest:
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
-    _url = "/models/visibility"
+    _url = "/models/visibility/automatic"
 
     # Construct headers
     if content_type is not None:
@@ -77,7 +77,7 @@ def build_automatic_put_model_request(**kwargs: Any) -> HttpRequest:
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
-    _url = "/models/visibility"
+    _url = "/models/visibility/automatic"
 
     # Construct headers
     if content_type is not None:
@@ -91,7 +91,7 @@ def build_automatic_patch_model_request(**kwargs: Any) -> HttpRequest:
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
-    _url = "/models/visibility"
+    _url = "/models/visibility/automatic"
 
     # Construct headers
     if content_type is not None:
@@ -105,7 +105,7 @@ def build_automatic_post_model_request(**kwargs: Any) -> HttpRequest:
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
-    _url = "/models/visibility"
+    _url = "/models/visibility/automatic"
 
     # Construct headers
     if content_type is not None:
@@ -119,7 +119,7 @@ def build_automatic_delete_model_request(**kwargs: Any) -> HttpRequest:
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
-    _url = "/models/visibility"
+    _url = "/models/visibility/automatic"
 
     # Construct headers
     if content_type is not None:
