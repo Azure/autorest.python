@@ -8,8 +8,9 @@
 # --------------------------------------------------------------------------
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
+from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -21,12 +22,20 @@ from azure.core.exceptions import (
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
+from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._model_base import AzureJSONEncoder, _deserialize
-from ..._operations._operations import build_core_create_or_update_request
+from ..._operations._operations import (
+    build_core_create_or_replace_request,
+    build_core_create_or_update_request,
+    build_core_delete_request,
+    build_core_export_request,
+    build_core_get_request,
+    build_core_list_request,
+)
 from .._vendor import CoreClientMixinABC
 
 if sys.version_info >= (3, 9):
@@ -161,6 +170,348 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
 
         if response.status_code == 201:
             deserialized = _deserialize(_models.User, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    async def create_or_replace(
+        self, id: int, resource: _models.User, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.User:
+        """Adds a user or repalces a user's fields.
+
+        Creates or repalces a User.
+
+        :param id: The user's id. Required.
+        :type id: int
+        :param resource: The resource instance. Required.
+        :type resource: ~_specs_.azure.core.models.User
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: User. The User is compatible with MutableMapping
+        :rtype: ~_specs_.azure.core.models.User
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def create_or_replace(
+        self, id: int, resource: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.User:
+        """Adds a user or repalces a user's fields.
+
+        Creates or repalces a User.
+
+        :param id: The user's id. Required.
+        :type id: int
+        :param resource: The resource instance. Required.
+        :type resource: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: User. The User is compatible with MutableMapping
+        :rtype: ~_specs_.azure.core.models.User
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def create_or_replace(
+        self, id: int, resource: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.User:
+        """Adds a user or repalces a user's fields.
+
+        Creates or repalces a User.
+
+        :param id: The user's id. Required.
+        :type id: int
+        :param resource: The resource instance. Required.
+        :type resource: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: User. The User is compatible with MutableMapping
+        :rtype: ~_specs_.azure.core.models.User
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def create_or_replace(self, id: int, resource: Union[_models.User, JSON, IO], **kwargs: Any) -> _models.User:
+        """Adds a user or repalces a user's fields.
+
+        Creates or repalces a User.
+
+        :param id: The user's id. Required.
+        :type id: int
+        :param resource: The resource instance. Is one of the following types: User, JSON, IO Required.
+        :type resource: ~_specs_.azure.core.models.User or JSON or IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :return: User. The User is compatible with MutableMapping
+        :rtype: ~_specs_.azure.core.models.User
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.User] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(resource, (IO, bytes)):
+            _content = resource
+        else:
+            _content = json.dumps(resource, cls=AzureJSONEncoder)  # type: ignore
+
+        request = build_core_create_or_replace_request(
+            id=id,
+            api_version=self._config.api_version,
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200, 201]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if response.status_code == 200:
+            deserialized = _deserialize(_models.User, response.json())
+
+        if response.status_code == 201:
+            deserialized = _deserialize(_models.User, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @distributed_trace_async
+    async def get(self, id: int, **kwargs: Any) -> _models.User:
+        """Gets a user.
+
+        Gets a User.
+
+        :param id: The user's id. Required.
+        :type id: int
+        :return: User. The User is compatible with MutableMapping
+        :rtype: ~_specs_.azure.core.models.User
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.User] = kwargs.pop("cls", None)
+
+        request = build_core_get_request(
+            id=id,
+            api_version=self._config.api_version,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        deserialized = _deserialize(_models.User, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @distributed_trace
+    def list(self, **kwargs: Any) -> AsyncIterable["_models.User"]:
+        """Lists all users.
+
+        Lists all Users.
+
+        :return: An iterator like instance of User. The User is compatible with MutableMapping
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~_specs_.azure.core.models.User]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models._models.CustomPageUser] = kwargs.pop("cls", None)  # pylint: disable=protected-access
+
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        def prepare_request(next_link=None):
+            if not next_link:
+
+                request = build_core_list_request(
+                    api_version=self._config.api_version,
+                    headers=_headers,
+                    params=_params,
+                )
+                request.url = self._client.format_url(request.url)
+
+            else:
+                request = HttpRequest("GET", next_link)
+                request.url = self._client.format_url(request.url)
+
+            return request
+
+        async def extract_data(pipeline_response):
+            deserialized: _models._models.CustomPageUser = _deserialize(  # pylint: disable=protected-access
+                _models._models.CustomPageUser, pipeline_response  # pylint: disable=protected-access
+            )
+            list_of_elem = deserialized.value
+            if cls:
+                list_of_elem = cls(list_of_elem)  # type: ignore
+            return deserialized.next_link or None, AsyncList(list_of_elem)
+
+        async def get_next(next_link=None):
+            request = prepare_request(next_link)
+
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+                request, stream=False, **kwargs
+            )
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
+
+            return pipeline_response
+
+        return AsyncItemPaged(get_next, extract_data)
+
+    @distributed_trace_async
+    async def delete(self, id: int, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """Deletes a user.
+
+        Deletes a User.
+
+        :param id: The user's id. Required.
+        :type id: int
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        request = build_core_delete_request(
+            id=id,
+            api_version=self._config.api_version,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    @distributed_trace_async
+    async def export(self, id: int, *, format: str, **kwargs: Any) -> _models.User:
+        """Exports a user.
+
+        Exports a User.
+
+        :param id: The user's id. Required.
+        :type id: int
+        :keyword format: The format of the data. Required.
+        :paramtype format: str
+        :return: User. The User is compatible with MutableMapping
+        :rtype: ~_specs_.azure.core.models.User
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.User] = kwargs.pop("cls", None)
+
+        request = build_core_export_request(
+            id=id,
+            format=format,
+            api_version=self._config.api_version,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            request, stream=False, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        deserialized = _deserialize(_models.User, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
