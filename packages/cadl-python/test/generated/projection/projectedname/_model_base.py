@@ -29,8 +29,7 @@ else:
 
 _LOGGER = logging.getLogger(__name__)
 
-__all__ = ["NULL", "AzureJSONEncoder", "Model",
-           "rest_field", "rest_discriminator"]
+__all__ = ["NULL", "AzureJSONEncoder", "Model", "rest_field", "rest_discriminator"]
 
 
 class _Null(object):
@@ -188,8 +187,7 @@ class AzureJSONEncoder(JSONEncoder):
             return super(AzureJSONEncoder, self).default(o)
 
 
-_VALID_DATE = re.compile(
-    r"\d{4}[-]\d{2}[-]\d{2}T\d{2}:\d{2}:\d{2}" + r"\.?\d*Z?[-+]?[\d{2}]?:?[\d{2}]?")
+_VALID_DATE = re.compile(r"\d{4}[-]\d{2}[-]\d{2}T\d{2}:\d{2}:\d{2}" + r"\.?\d*Z?[-+]?[\d{2}]?:?[\d{2}]?")
 
 
 def _deserialize_datetime(attr: typing.Union[str, datetime]) -> datetime:
@@ -272,12 +270,10 @@ _DESERIALIZE_MAPPING = {
 
 
 def _get_model(module_name: str, model_name: str):
-    models = {k: v for k, v in sys.modules[module_name].__dict__.items(
-    ) if isinstance(v, type)}
+    models = {k: v for k, v in sys.modules[module_name].__dict__.items() if isinstance(v, type)}
     module_end = module_name.rsplit(".", 1)[0]
     module = sys.modules[module_end]
-    models.update(
-        {k: v for k, v in module.__dict__.items() if isinstance(v, type)})
+    models.update({k: v for k, v in module.__dict__.items() if isinstance(v, type)})
     if isinstance(model_name, str):
         model_name = model_name.split(".")[-1]
     if model_name not in models:
@@ -414,8 +410,7 @@ class Model(_MyMutableMapping):
     def __init__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         class_name = self.__class__.__name__
         if len(args) > 1:
-            raise TypeError(
-                f"{class_name}.__init__() takes 2 positional arguments but {len(args) + 1} were given")
+            raise TypeError(f"{class_name}.__init__() takes 2 positional arguments but {len(args) + 1} were given")
         dict_to_pass = {
             rest_field._rest_name: rest_field._default
             for rest_field in self._attr_to_rest_field.values()
@@ -423,18 +418,14 @@ class Model(_MyMutableMapping):
         }
         if args:
             dict_to_pass.update(
-                {k: _create_value(_get_rest_field(
-                    self._attr_to_rest_field, k), v) for k, v in args[0].items()}
+                {k: _create_value(_get_rest_field(self._attr_to_rest_field, k), v) for k, v in args[0].items()}
             )
         else:
-            non_attr_kwargs = [
-                k for k in kwargs if k not in self._attr_to_rest_field]
+            non_attr_kwargs = [k for k in kwargs if k not in self._attr_to_rest_field]
             if non_attr_kwargs:
                 # actual type errors only throw the first wrong keyword arg they see, so following that.
-                raise TypeError(
-                    f"{class_name}.__init__() got an unexpected keyword argument '{non_attr_kwargs[0]}'")
-            dict_to_pass.update({self._attr_to_rest_field[k]._rest_name: _serialize(
-                v) for k, v in kwargs.items()})
+                raise TypeError(f"{class_name}.__init__() got an unexpected keyword argument '{non_attr_kwargs[0]}'")
+            dict_to_pass.update({self._attr_to_rest_field[k]._rest_name: _serialize(v) for k, v in kwargs.items()})
         super().__init__(dict_to_pass)
 
     def copy(self) -> "Model":
@@ -442,8 +433,7 @@ class Model(_MyMutableMapping):
 
     def __new__(cls, *args: typing.Any, **kwargs: typing.Any) -> "Model":  # pylint: disable=unused-argument
         # we know the last three classes in mro are going to be 'Model', 'dict', and 'object'
-        # ignore model, dict, and object parents, and reverse the mro order
-        mros = cls.__mro__[:-3][::-1]
+        mros = cls.__mro__[:-3][::-1]  # ignore model, dict, and object parents, and reverse the mro order
         attr_to_rest_field: typing.Dict[str, _RestField] = {  # map attribute name to rest_field property
             k: v for mro_class in mros for k, v in mro_class.__dict__.items() if k[0] != "_" and hasattr(v, "_type")
         }
@@ -456,20 +446,17 @@ class Model(_MyMutableMapping):
         for attr, rf in attr_to_rest_field.items():
             rf._module = cls.__module__
             if not rf._type:
-                rf._type = rf._get_deserialize_callable_from_annotation(
-                    annotations.get(attr, None))
+                rf._type = rf._get_deserialize_callable_from_annotation(annotations.get(attr, None))
             if not rf._rest_name_input:
                 rf._rest_name_input = attr
-        cls._attr_to_rest_field: typing.Dict[str, _RestField] = dict(
-            attr_to_rest_field.items())
+        cls._attr_to_rest_field: typing.Dict[str, _RestField] = dict(attr_to_rest_field.items())
 
         return super().__new__(cls)  # pylint: disable=no-value-for-parameter
 
     def __init_subclass__(cls, discriminator: typing.Optional[str] = None) -> None:
         for base in cls.__bases__:
             if hasattr(base, "__mapping__"):  # pylint: disable=no-member
-                # type: ignore  # pylint: disable=no-member
-                base.__mapping__[discriminator or cls.__name__] = cls
+                base.__mapping__[discriminator or cls.__name__] = cls  # type: ignore  # pylint: disable=no-member
 
     @classmethod
     def _get_discriminator(cls) -> typing.Optional[str]:
@@ -483,8 +470,7 @@ class Model(_MyMutableMapping):
         if not hasattr(cls, "__mapping__"):  # pylint: disable=no-member
             return cls(data)
         discriminator = cls._get_discriminator()
-        mapped_cls = cls.__mapping__.get(
-            data.get(discriminator), cls)  # pylint: disable=no-member
+        mapped_cls = cls.__mapping__.get(data.get(discriminator), cls)  # pylint: disable=no-member
         if mapped_cls == cls:
             return cls(data)
         return mapped_cls._deserialize(data)  # pylint: disable=protected-access
@@ -515,8 +501,7 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=too-many-retur
         if sys.version_info >= (3, 8):
             from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
         else:
-            # type: ignore  # pylint: disable=ungrouped-imports
-            from typing_extensions import Literal
+            from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 
         if annotation.__origin__ == Literal:
             return None
@@ -542,8 +527,7 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=too-many-retur
         if any(a for a in annotation.__args__ if a == type(None)):
 
             if_obj_deserializer = _get_deserialize_callable_from_annotation(
-                next(a for a in annotation.__args__ if a !=
-                     type(None)), module, rf
+                next(a for a in annotation.__args__ if a != type(None)), module, rf
             )
 
             def _deserialize_with_optional(if_obj_deserializer: typing.Optional[typing.Callable], obj):
@@ -566,10 +550,8 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=too-many-retur
 
     try:
         if annotation._name == "Dict":
-            key_deserializer = _get_deserialize_callable_from_annotation(
-                annotation.__args__[0], module, rf)
-            value_deserializer = _get_deserialize_callable_from_annotation(
-                annotation.__args__[1], module, rf)
+            key_deserializer = _get_deserialize_callable_from_annotation(annotation.__args__[0], module, rf)
+            value_deserializer = _get_deserialize_callable_from_annotation(annotation.__args__[1], module, rf)
 
             def _deserialize_dict(
                 key_deserializer: typing.Optional[typing.Callable],
@@ -608,8 +590,7 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=too-many-retur
                     _get_deserialize_callable_from_annotation(dt, module, rf) for dt in annotation.__args__
                 ]
                 return functools.partial(_deserialize_multiple_sequence, entry_deserializers)
-            deserializer = _get_deserialize_callable_from_annotation(
-                annotation.__args__[0], module, rf)
+            deserializer = _get_deserialize_callable_from_annotation(annotation.__args__[0], module, rf)
 
             def _deserialize_sequence(
                 deserializer: typing.Optional[typing.Callable],
@@ -663,8 +644,7 @@ def _deserialize_with_callable(
 def _deserialize(deserializer: typing.Any, value: typing.Any, module: typing.Optional[str] = None) -> typing.Any:
     if isinstance(value, PipelineResponse):
         value = value.http_response.json()
-    deserializer = _get_deserialize_callable_from_annotation(
-        deserializer, module)
+    deserializer = _get_deserialize_callable_from_annotation(deserializer, module)
     return _deserialize_with_callable(deserializer, value)
 
 
