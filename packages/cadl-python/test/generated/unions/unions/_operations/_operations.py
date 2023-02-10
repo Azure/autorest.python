@@ -69,12 +69,12 @@ def build_unions_send_int_array_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_unions_send_installation1_request(**kwargs: Any) -> HttpRequest:
+def build_unions_send_first_named_union_value_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
-    _url = "/unions/installation1"
+    _url = "/unions/model1"
 
     # Construct headers
     if content_type is not None:
@@ -83,12 +83,12 @@ def build_unions_send_installation1_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_unions_send_installation2_request(**kwargs: Any) -> HttpRequest:
+def build_unions_send_second_named_union_value_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
-    _url = "/unions/installation2"
+    _url = "/unions/model2"
 
     # Construct headers
     if content_type is not None:
@@ -100,12 +100,12 @@ def build_unions_send_installation2_request(**kwargs: Any) -> HttpRequest:
 class UnionsClientOperationsMixin(UnionsClientMixinABC):
     @overload
     def send_int(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.WrapperModel1, *, content_type: str = "application/json", **kwargs: Any
+        self, input: _models.ModelWithSimpleUnionProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send_int.
 
         :param input: Required.
-        :type input: ~unions.models.WrapperModel1
+        :type input: ~unions.models.ModelWithSimpleUnionProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -148,12 +148,12 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
 
     @distributed_trace
     def send_int(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.WrapperModel1, JSON, IO], **kwargs: Any
+        self, input: Union[_models.ModelWithSimpleUnionProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """send_int.
 
-        :param input: Is one of the following types: WrapperModel1, JSON, IO Required.
-        :type input: ~unions.models.WrapperModel1 or JSON or IO
+        :param input: Is one of the following types: ModelWithSimpleUnionProperty, JSON, IO Required.
+        :type input: ~unions.models.ModelWithSimpleUnionProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -205,12 +205,12 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
 
     @overload
     def send_int_array(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.WrapperModel1, *, content_type: str = "application/json", **kwargs: Any
+        self, input: _models.ModelWithSimpleUnionProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send_int_array.
 
         :param input: Required.
-        :type input: ~unions.models.WrapperModel1
+        :type input: ~unions.models.ModelWithSimpleUnionProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -253,12 +253,12 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
 
     @distributed_trace
     def send_int_array(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.WrapperModel1, JSON, IO], **kwargs: Any
+        self, input: Union[_models.ModelWithSimpleUnionProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """send_int_array.
 
-        :param input: Is one of the following types: WrapperModel1, JSON, IO Required.
-        :type input: ~unions.models.WrapperModel1 or JSON or IO
+        :param input: Is one of the following types: ModelWithSimpleUnionProperty, JSON, IO Required.
+        :type input: ~unions.models.ModelWithSimpleUnionProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -309,13 +309,13 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
             return cls(pipeline_response, None, {})
 
     @overload
-    def send_installation1(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.WrapperModel2, *, content_type: str = "application/json", **kwargs: Any
+    def send_first_named_union_value(  # pylint: disable=inconsistent-return-statements
+        self, input: _models.ModelWithNamedUnionProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """send_installation1.
+        """send_first_named_union_value.
 
         :param input: Required.
-        :type input: ~unions.models.WrapperModel2
+        :type input: ~unions.models.ModelWithNamedUnionProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -325,10 +325,10 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
         """
 
     @overload
-    def send_installation1(  # pylint: disable=inconsistent-return-statements
+    def send_first_named_union_value(  # pylint: disable=inconsistent-return-statements
         self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """send_installation1.
+        """send_first_named_union_value.
 
         :param input: Required.
         :type input: JSON
@@ -341,10 +341,10 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
         """
 
     @overload
-    def send_installation1(  # pylint: disable=inconsistent-return-statements
+    def send_first_named_union_value(  # pylint: disable=inconsistent-return-statements
         self, input: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """send_installation1.
+        """send_first_named_union_value.
 
         :param input: Required.
         :type input: IO
@@ -357,13 +357,13 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
         """
 
     @distributed_trace
-    def send_installation1(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.WrapperModel2, JSON, IO], **kwargs: Any
+    def send_first_named_union_value(  # pylint: disable=inconsistent-return-statements
+        self, input: Union[_models.ModelWithNamedUnionProperty, JSON, IO], **kwargs: Any
     ) -> None:
-        """send_installation1.
+        """send_first_named_union_value.
 
-        :param input: Is one of the following types: WrapperModel2, JSON, IO Required.
-        :type input: ~unions.models.WrapperModel2 or JSON or IO
+        :param input: Is one of the following types: ModelWithNamedUnionProperty, JSON, IO Required.
+        :type input: ~unions.models.ModelWithNamedUnionProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -392,7 +392,7 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
 
-        request = build_unions_send_installation1_request(
+        request = build_unions_send_first_named_union_value_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -414,13 +414,13 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
             return cls(pipeline_response, None, {})
 
     @overload
-    def send_installation2(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.WrapperModel2, *, content_type: str = "application/json", **kwargs: Any
+    def send_second_named_union_value(  # pylint: disable=inconsistent-return-statements
+        self, input: _models.ModelWithNamedUnionProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """send_installation2.
+        """send_second_named_union_value.
 
         :param input: Required.
-        :type input: ~unions.models.WrapperModel2
+        :type input: ~unions.models.ModelWithNamedUnionProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -430,10 +430,10 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
         """
 
     @overload
-    def send_installation2(  # pylint: disable=inconsistent-return-statements
+    def send_second_named_union_value(  # pylint: disable=inconsistent-return-statements
         self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """send_installation2.
+        """send_second_named_union_value.
 
         :param input: Required.
         :type input: JSON
@@ -446,10 +446,10 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
         """
 
     @overload
-    def send_installation2(  # pylint: disable=inconsistent-return-statements
+    def send_second_named_union_value(  # pylint: disable=inconsistent-return-statements
         self, input: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """send_installation2.
+        """send_second_named_union_value.
 
         :param input: Required.
         :type input: IO
@@ -462,13 +462,13 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
         """
 
     @distributed_trace
-    def send_installation2(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.WrapperModel2, JSON, IO], **kwargs: Any
+    def send_second_named_union_value(  # pylint: disable=inconsistent-return-statements
+        self, input: Union[_models.ModelWithNamedUnionProperty, JSON, IO], **kwargs: Any
     ) -> None:
-        """send_installation2.
+        """send_second_named_union_value.
 
-        :param input: Is one of the following types: WrapperModel2, JSON, IO Required.
-        :type input: ~unions.models.WrapperModel2 or JSON or IO
+        :param input: Is one of the following types: ModelWithNamedUnionProperty, JSON, IO Required.
+        :type input: ~unions.models.ModelWithNamedUnionProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -497,7 +497,7 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
 
-        request = build_unions_send_installation2_request(
+        request = build_unions_send_second_named_union_value_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

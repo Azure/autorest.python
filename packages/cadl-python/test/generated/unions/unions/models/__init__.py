@@ -6,21 +6,21 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._models import BaseInstallation
-from ._models import Installation1
-from ._models import Installation2
-from ._models import WrapperModel1
-from ._models import WrapperModel2
+from ._models import BaseModel
+from ._models import Model1
+from ._models import Model2
+from ._models import ModelWithNamedUnionProperty
+from ._models import ModelWithSimpleUnionProperty
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "BaseInstallation",
-    "Installation1",
-    "Installation2",
-    "WrapperModel1",
-    "WrapperModel2",
+    "BaseModel",
+    "Model1",
+    "Model2",
+    "ModelWithNamedUnionProperty",
+    "ModelWithSimpleUnionProperty",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()

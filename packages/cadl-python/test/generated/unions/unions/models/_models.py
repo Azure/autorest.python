@@ -17,7 +17,7 @@ if TYPE_CHECKING:
     from .. import _types
 
 
-class BaseInstallation(_model_base.Model):
+class BaseModel(_model_base.Model):
     """This is a base model.
 
     All required parameters must be populated in order to send to Azure.
@@ -48,7 +48,7 @@ class BaseInstallation(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class Installation1(BaseInstallation):
+class Model1(BaseModel):
     """The first one of the unioned model type.
 
     All required parameters must be populated in order to send to Azure.
@@ -82,7 +82,7 @@ class Installation1(BaseInstallation):
         super().__init__(*args, **kwargs)
 
 
-class Installation2(BaseInstallation):
+class Model2(BaseModel):
     """The second one of the unioned model type.
 
     All required parameters must be populated in order to send to Azure.
@@ -116,8 +116,39 @@ class Installation2(BaseInstallation):
         super().__init__(*args, **kwargs)
 
 
-class WrapperModel1(_model_base.Model):
-    """WrapperModel1.
+class ModelWithNamedUnionProperty(_model_base.Model):
+    """ModelWithNamedUnionProperty.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar named_union: Required. Is either a Model1 type or a Model2 type.
+    :vartype named_union: ~unions.models.Model1 or ~unions.models.Model2
+    """
+
+    named_union: "_types.MyNamedUnion" = rest_field(name="namedUnion")
+    """Required. Is either a Model1 type or a Model2 type."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        named_union: "_types.MyNamedUnion",
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class ModelWithSimpleUnionProperty(_model_base.Model):
+    """ModelWithSimpleUnionProperty.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -133,37 +164,6 @@ class WrapperModel1(_model_base.Model):
         self,
         *,
         simple_union: Union[int, List[int]],
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class WrapperModel2(_model_base.Model):
-    """WrapperModel2.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar named_union: Required. Is either a Installation1 type or a Installation2 type.
-    :vartype named_union: ~unions.models.Installation1 or ~unions.models.Installation2
-    """
-
-    named_union: "_types.MyNamedUnion" = rest_field(name="namedUnion")
-    """Required. Is either a Installation1 type or a Installation2 type."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        named_union: "_types.MyNamedUnion",
     ):
         ...
 
