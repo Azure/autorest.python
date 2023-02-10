@@ -67,6 +67,7 @@ import {
     createDpgContext,
     DpgContext,
     getPropertyNames,
+    getLibraryName,
 } from "@azure-tools/cadl-dpg";
 import { getResourceOperation } from "@cadl-lang/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
@@ -686,7 +687,7 @@ function emitBasicOperation(
             }
         }
     }
-    const name = camelToSnakeCase(operation.name);
+    const name = camelToSnakeCase(getLibraryName(context, operation));
     return {
         name: name,
         description: getDocStr(context, operation),
@@ -744,10 +745,11 @@ function getName(context: DpgContext, type: Model): string {
     if (friendlyName) {
         return friendlyName;
     } else {
+        const modelName = getLibraryName(context, type);
         if (type.templateArguments && type.templateArguments.length > 0) {
-            return type.name + type.templateArguments.map((it) => (it.kind === "Model" ? it.name : "")).join("");
+            return modelName + type.templateArguments.map((it) => (it.kind === "Model" ? it.name : "")).join("");
         } else {
-            return type.name;
+            return modelName;
         }
     }
 }
