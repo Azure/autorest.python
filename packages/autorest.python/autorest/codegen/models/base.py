@@ -191,5 +191,7 @@ class BaseType(BaseModel, ABC):  # pylint: disable=too-many-public-methods
     def contain_target(self, check_target: Callable[["BaseType"], bool]) -> bool:
         return check_target(self) or self._contain_target(check_target)
 
-    def _contain_target(self, check_target: Callable[["BaseType"], bool]) -> bool:
+    def _contain_target(
+        self, check_target: Callable[["BaseType"], bool]
+    ) -> bool:  # pylint: disable=unused-argument
         return False
