@@ -23,14 +23,7 @@ class TypesSerializer:
                 ImportType.STDLIB,
             )
         for nu in self.code_model.named_unions:
-            if any(isinstance(t, ModelType) for t in nu.types):
-                file_import.add_submodule_import(
-                    ".",
-                    "models",
-                    ImportType.LOCAL,
-                    TypingSection.TYPING,
-                    alias="_models",
-                )
+            file_import.merge(nu.imports(relative_path=".", model_typing=True))
         return file_import
 
     def serialize(self) -> str:
