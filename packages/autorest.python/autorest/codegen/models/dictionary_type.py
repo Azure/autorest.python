@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, Optional, TYPE_CHECKING, List
+from typing import Any, Dict, Optional, TYPE_CHECKING, List, Callable
 from .base import BaseType
 from .imports import FileImport, ImportType, TypingSection
 
@@ -133,3 +133,6 @@ class DictionaryType(BaseType):
     @property
     def type_description(self) -> str:
         return f"{{str: {self.element_type.type_description}}}"
+
+    def _contain_target(self, check_target: Callable[["BaseType"], bool]) -> bool:
+        return self.element_type.contain_target(check_target)

@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, TYPE_CHECKING, List, Optional
+from typing import Any, Dict, TYPE_CHECKING, List, Optional, Callable
 from abc import ABC, abstractmethod
 from .imports import FileImport
 
@@ -187,3 +187,9 @@ class BaseType(BaseModel, ABC):  # pylint: disable=too-many-public-methods
     @property
     def type_description(self) -> str:
         return self.type_annotation()
+
+    def contain_target(self, check_target: Callable[["BaseType"], bool]) -> bool:
+        return check_target(self) or self._contain_target(check_target)
+
+    def _contain_target(self, check_target: Callable[["BaseType"], bool]) -> bool:
+        return False

@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, Optional, TYPE_CHECKING
+from typing import Any, Dict, List, Optional, TYPE_CHECKING, Callable
 import re
 from autorest.codegen.models.imports import FileImport, ImportType
 from .base import BaseType
@@ -135,3 +135,8 @@ class CombinedType(BaseType):
     @property
     def json_subtype(self) -> Optional[JSONModelType]:
         return CombinedType._get_json_model_type(self)
+
+    def _contain_target(self, check_target: Callable[["BaseType"], bool]) -> bool:
+        return not self.name and any(
+            sub_type.contain_target(check_target) for sub_type in self.types
+        )
