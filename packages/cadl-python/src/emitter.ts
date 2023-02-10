@@ -66,6 +66,7 @@ import {
     getClientNamespaceString,
     createDpgContext,
     DpgContext,
+    getPropertyNames,
 } from "@azure-tools/cadl-dpg";
 import { getResourceOperation } from "@cadl-lang/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
@@ -725,9 +726,10 @@ function emitProperty(context: DpgContext, property: ModelProperty): Record<stri
     ) {
         clientDefaultValue = property.default.value;
     }
+    const [clientName, jsonName] = getPropertyNames(context, property);
     return {
-        clientName: camelToSnakeCase(property.name),
-        restApiName: property.name,
+        clientName: camelToSnakeCase(clientName),
+        restApiName: jsonName,
         type: getType(context, property.type),
         optional: property.optional,
         description: getDocStr(context, property),
