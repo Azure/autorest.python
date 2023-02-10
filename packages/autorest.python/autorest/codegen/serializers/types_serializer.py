@@ -4,8 +4,8 @@
 # license information.
 # --------------------------------------------------------------------------
 from jinja2 import Environment
-from ..models import ModelType, CodeModel
-from ..models.imports import FileImport, TypingSection, ImportType
+from ..models import CodeModel
+from ..models.imports import FileImport, ImportType
 from .import_serializer import FileImportSerializer
 
 
