@@ -18,17 +18,17 @@ class Project(_model_base.Model):
 
     :ivar produced_by: Only valid value is 'DPG'.
     :vartype produced_by: str
-    :ivar builtfrom: Only valid value is 'DPG'.
-    :vartype builtfrom: str
-    :ivar was_made_for: Only valid value is 'customers'.
-    :vartype was_made_for: str
+    :ivar created_by: Only valid value is 'DPG'.
+    :vartype created_by: str
+    :ivar made_for_python: Only valid value is 'customers'.
+    :vartype made_for_python: str
     """
 
-    produced_by: Optional[str] = rest_field(name="producedBy")
+    produced_by: Optional[str] = rest_field(name="codegen")
     """Only valid value is 'DPG'. """
-    builtfrom: Optional[str] = rest_field()
+    created_by: Optional[str] = rest_field(name="builtfrom")
     """Only valid value is 'DPG'. """
-    was_made_for: Optional[str] = rest_field(name="wasMadeFor")
+    made_for_python: Optional[str] = rest_field(name="wasMadeFor")
     """Only valid value is 'customers'. """
 
     @overload
@@ -36,8 +36,8 @@ class Project(_model_base.Model):
         self,
         *,
         produced_by: Optional[str] = None,
-        builtfrom: Optional[str] = None,
-        was_made_for: Optional[str] = None,
+        created_by: Optional[str] = None,
+        made_for_python: Optional[str] = None,
     ):
         ...
 
