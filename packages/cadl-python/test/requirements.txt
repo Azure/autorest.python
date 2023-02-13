@@ -23,3 +23,4 @@ azure-core==1.24.0
 -e ./generated/lro-basic
 -e ./generated/usage
 -e ./generated/visibility
+-e ./generated/core
