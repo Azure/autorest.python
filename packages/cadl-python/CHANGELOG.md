@@ -1,5 +1,11 @@
 # Release History
 
+## 2023-02-xx - 0.4.xx
+
+**Other Changes**
+
+- Support cadl @projectedName on operation/model/property.  #1687
+
 ## 2023-02-08 - 0.4.23
 
 **Other Changes**
