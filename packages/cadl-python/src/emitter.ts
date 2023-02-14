@@ -68,6 +68,7 @@ import {
     DpgContext,
     getPropertyNames,
     getLibraryName,
+    getAllModels,
 } from "@azure-tools/cadl-dpg";
 import { getResourceOperation } from "@cadl-lang/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
@@ -170,6 +171,7 @@ const typesMap = new Map<EmitterType, Record<string, any>>();
 const simpleTypesMap = new Map<string, Record<string, any>>();
 const endpointPathParameters: Record<string, any>[] = [];
 let apiVersionParam: Record<string, any> | undefined = undefined;
+let allModels = new Set<Model>();
 
 function isSimpleType(context: DpgContext, type: EmitterType | undefined): boolean {
     // these decorators can only work for simple type(int/string/float, etc)
@@ -248,7 +250,13 @@ function getType(context: DpgContext, type: EmitterType): any {
     // don't cache simple type(string, int, etc) since decorators may change the result
     const program = context.program;
     const enableCache = !isSimpleType(context, type);
-    const effectiveModel = type.kind === "Model" ? getEffectiveSchemaType(context, type) : type;
+    let effectiveModel = type;
+    if (type.kind === "Model") {
+        effectiveModel = getEffectiveSchemaType(context, type);
+        if (!allModels.has(effectiveModel) && !emitListOrDict(context, type)) {
+            // throw Error(`Can't generate model ${effectiveModel.name}!`);
+        }
+    }
     if (enableCache) {
         const cached = typesMap.get(effectiveModel);
         if (cached) {
@@ -1303,6 +1311,7 @@ function emitCodeModel(context: EmitContext<EmitterOptions>) {
         namespace: clientNamespaceString,
         subnamespaceToClients: {},
     };
+    allModels = new Set(Array.from(getAllModels(dpgContext, true)));
     for (const namespace of getNamespaces(dpgContext)) {
         if (namespace === clientNamespaceString) {
             codeModel["clients"] = emitClients(dpgContext, namespace);
