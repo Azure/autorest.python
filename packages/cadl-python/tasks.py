@@ -21,7 +21,15 @@ if not hasattr(inspect, 'getargspec'):
 init()
 
 PLUGIN_DIR = Path(os.path.dirname(__file__))
+PLUGIN = (PLUGIN_DIR / "dist/src/index.js").as_posix()
 CADL_RANCH_DIR = PLUGIN_DIR / Path("node_modules/@azure-tools/cadl-ranch-specs")
+CADL_PROJECT = {
+    "hello": {"package-name": "azure-hello"}
+}
+
+def _add_options(spec):
+    name = spec.stem.lower()
+    return "".join([f" --options=\'{PLUGIN}.{k}={v}\' " for k, v in CADL_PROJECT[name].items()]) if name in CADL_PROJECT else ""
 
 @task
 def regenerate(c, name=None, debug=False):
@@ -34,7 +42,7 @@ def regenerate(c, name=None, debug=False):
   for spec in specs:
     Path(f"{PLUGIN_DIR}/test/generated/{spec.name}").mkdir(parents=True, exist_ok=True)
   _run_cadl([
-    f"cadl compile {spec} --emit={PLUGIN_DIR}/dist/src/index.js --output-dir={PLUGIN_DIR}/test/generated/{spec.name}{' --debug' if debug else ''}"
+    f"cadl compile {spec} --emit={PLUGIN} {_add_options(spec)} --output-dir={PLUGIN_DIR}/test/generated/{spec.name}{' --debug' if debug else ''}"
     for spec in specs
   ])
 
