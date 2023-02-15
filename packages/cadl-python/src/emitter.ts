@@ -406,6 +406,13 @@ function emitParameter(
         implementation: implementation,
         skipUrlEncoding: parameter.type === "endpointPath",
     };
+    if (type.type == "list" && (parameter.type == "query" || parameter.type == "header")) {
+        if (parameter.format == "csv") {
+            paramMap["delimiter"] = "comma";
+        } else {
+            paramMap["explode"] = true;
+        }
+    }
 
     if (paramMap.type.type === "constant") {
         clientDefaultValue = paramMap.type.value;
