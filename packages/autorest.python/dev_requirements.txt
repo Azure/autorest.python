@@ -4,5 +4,5 @@ invoke
 colorama
 pytest
 ptvsd
-black
+black==22.12.0
 types-PyYAML

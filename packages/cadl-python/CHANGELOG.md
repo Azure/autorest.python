@@ -1,5 +1,23 @@
 # Release History
 
+## 2023-02-14 - 0.4.24
+
+**Other Changes**
+
+- Support cadl @projectedName on operation/model/property.  #1687
+
+## 2023-02-08 - 0.4.23
+
+**Other Changes**
+
+- Bump Cadl dependency to `0.40.0`  #1736
+
+## 2023-02-01 - 0.4.22
+
+**Other Changes**
+
+- Update codegen dependency
+
 ## 2023-01-27 - 0.4.21
 
 **Other Changes**

@@ -66,6 +66,8 @@ import {
     getClientNamespaceString,
     createDpgContext,
     DpgContext,
+    getPropertyNames,
+    getLibraryName,
 } from "@azure-tools/cadl-dpg";
 import { getResourceOperation } from "@cadl-lang/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
@@ -169,12 +171,12 @@ const simpleTypesMap = new Map<string, Record<string, any>>();
 const endpointPathParameters: Record<string, any>[] = [];
 let apiVersionParam: Record<string, any> | undefined = undefined;
 
-function isSimpleType(program: Program, type: EmitterType | undefined): boolean {
+function isSimpleType(context: DpgContext, type: EmitterType | undefined): boolean {
     // these decorators can only work for simple type(int/string/float, etc)
     if (type && (type.kind === "Scalar" || type.kind === "ModelProperty")) {
         const funcs = [getMinValue, getMaxValue, getMinLength, getMaxLength, getPattern];
         for (const func of funcs) {
-            if (func(program, type)) {
+            if (func(context.program, type)) {
                 return true;
             }
         }
@@ -182,11 +184,11 @@ function isSimpleType(program: Program, type: EmitterType | undefined): boolean 
     return false;
 }
 
-function getDocStr(program: Program, target: Type): string {
-    return getDoc(program, target) ?? "";
+function getDocStr(context: DpgContext, target: Type): string {
+    return getDoc(context.program, target) ?? "";
 }
 
-function isLro(program: Program, operation: Operation): boolean {
+function isLro(operation: Operation): boolean {
     for (const decorator of operation.decorators) {
         if (decorator.decorator.name === "$pollingOperation") {
             return true;
@@ -195,12 +197,12 @@ function isLro(program: Program, operation: Operation): boolean {
     return false;
 }
 
-function handleDiscriminator(program: Program, type: Model, model: Record<string, any>) {
-    const discriminator = getDiscriminator(program, type);
+function handleDiscriminator(context: DpgContext, type: Model, model: Record<string, any>) {
+    const discriminator = getDiscriminator(context.program, type);
     if (discriminator) {
         let discriminatorProperty;
         for (const childModel of type.derivedModels) {
-            const modelType = getType(program, childModel);
+            const modelType = getType(context, childModel);
             for (const property of modelType.properties) {
                 if (property.restApiName === discriminator.propertyName) {
                     modelType.discriminatorValue = property.type.value;
@@ -225,7 +227,8 @@ function handleDiscriminator(program: Program, type: Model, model: Record<string
     }
 }
 
-function getEffectiveSchemaType(program: Program, type: Model): Model {
+function getEffectiveSchemaType(context: DpgContext, type: Model): Model {
+    const program = context.program;
     function isSchemaProperty(property: ModelProperty) {
         const headerInfo = getHeaderFieldName(program, property);
         const queryInfo = getQueryParamName(program, property);
@@ -241,17 +244,18 @@ function getEffectiveSchemaType(program: Program, type: Model): Model {
     return type;
 }
 
-function getType(program: Program, type: EmitterType): any {
+function getType(context: DpgContext, type: EmitterType): any {
     // don't cache simple type(string, int, etc) since decorators may change the result
-    const enableCache = !isSimpleType(program, type);
-    const effectiveModel = type.kind === "Model" ? getEffectiveSchemaType(program, type) : type;
+    const program = context.program;
+    const enableCache = !isSimpleType(context, type);
+    const effectiveModel = type.kind === "Model" ? getEffectiveSchemaType(context, type) : type;
     if (enableCache) {
         const cached = typesMap.get(effectiveModel);
         if (cached) {
             return cached;
         }
     }
-    let newValue = emitType(program, type);
+    let newValue = emitType(context, type);
     if (enableCache) {
         typesMap.set(effectiveModel, newValue);
         if (type.kind === "Model") {
@@ -260,10 +264,10 @@ function getType(program: Program, type: EmitterType): any {
                 if (isStatusCode(program, property) || isNeverType(property.type) || isHeader(program, property)) {
                     continue;
                 }
-                newValue.properties.push(emitProperty(program, property));
+                newValue.properties.push(emitProperty(context, property));
             }
             // need to do discriminator outside `emitModel` to avoid infinite recursion
-            handleDiscriminator(program, type, newValue);
+            handleDiscriminator(context, type, newValue);
         }
     } else {
         const key = dump(newValue, { sortKeys: true });
@@ -279,8 +283,8 @@ function getType(program: Program, type: EmitterType): any {
 }
 
 // To pass the yaml dump
-function getAddedOnVersion(p: Program, t: Type): string | undefined {
-    return getAddedOn(p as any, t as any)?.value;
+function getAddedOnVersion(context: DpgContext, t: Type): string | undefined {
+    return getAddedOn(context.program as any, t as any)?.value;
 }
 
 type ParamBase = {
@@ -290,7 +294,7 @@ type ParamBase = {
     clientName: string;
     inOverload: boolean;
 };
-function emitParamBase(program: Program, parameter: ModelProperty | Type): ParamBase {
+function emitParamBase(context: DpgContext, parameter: ModelProperty | Type): ParamBase {
     let optional: boolean;
     let name: string;
     let description: string = "";
@@ -299,8 +303,8 @@ function emitParamBase(program: Program, parameter: ModelProperty | Type): Param
     if (parameter.kind === "ModelProperty") {
         optional = parameter.optional;
         name = parameter.name;
-        description = getDocStr(program, parameter);
-        addedOn = getAddedOnVersion(program, parameter);
+        description = getDocStr(context, parameter);
+        addedOn = getAddedOnVersion(context, parameter);
     } else {
         optional = false;
         name = "body";
@@ -323,16 +327,16 @@ type BodyParameter = ParamBase & {
     defaultContentType: string;
 };
 
-function getBodyType(program: Program, route: HttpOperation): Type {
+function getBodyType(context: DpgContext, route: HttpOperation): Type {
     let bodyModel = route.parameters.body?.type;
     if (bodyModel && bodyModel.kind === "Model" && route.operation) {
-        const resourceType = getResourceOperation(program, route.operation)?.resourceType;
+        const resourceType = getResourceOperation(context.program, route.operation)?.resourceType;
         if (resourceType && route.responses && route.responses.length > 0) {
             const resp = route.responses[0];
             if (resp && resp.responses && resp.responses.length > 0) {
                 const responseBody = resp.responses[0]?.body;
                 if (responseBody?.type?.kind === "Model") {
-                    const bodyTypeInResponse = getEffectiveSchemaType(program, responseBody.type);
+                    const bodyTypeInResponse = getEffectiveSchemaType(context, responseBody.type);
                     // response body type is reosurce type, and request body type (if templated) contains resource type
                     if (
                         bodyTypeInResponse === resourceType &&
@@ -353,10 +357,10 @@ function getBodyType(program: Program, route: HttpOperation): Type {
     return bodyModel!;
 }
 
-function emitBodyParameter(program: Program, httpOperation: HttpOperation): BodyParameter {
+function emitBodyParameter(context: DpgContext, httpOperation: HttpOperation): BodyParameter {
     const params = httpOperation.parameters;
     const body = params.body!;
-    const base = emitParamBase(program, body.parameter ?? body.type);
+    const base = emitParamBase(context, body.parameter ?? body.type);
     let contentTypes = body.contentTypes;
     if (contentTypes.length === 0) {
         contentTypes = ["application/json"];
@@ -364,7 +368,7 @@ function emitBodyParameter(program: Program, httpOperation: HttpOperation): Body
     if (contentTypes.length !== 1) {
         throw Error("Currently only one kind of content-type!");
     }
-    const type = getType(program, getBodyType(program, httpOperation));
+    const type = getType(context, getBodyType(context, httpOperation));
 
     if (type.type === "model" && type.name === "") {
         type.name = capitalize(httpOperation.operation.name) + "Request";
@@ -382,12 +386,12 @@ function emitBodyParameter(program: Program, httpOperation: HttpOperation): Body
 }
 
 function emitParameter(
-    program: Program,
+    context: DpgContext,
     parameter: HttpOperationParameter | HttpServerParameter,
     implementation: string,
 ): Record<string, any> {
-    const base = emitParamBase(program, parameter.param);
-    let type = getType(program, parameter.param.type);
+    const base = emitParamBase(context, parameter.param);
+    let type = getType(context, parameter.param.type);
     let clientDefaultValue = undefined;
     if (parameter.name.toLowerCase() === "content-type" && type["type"] === "constant") {
         /// We don't want constant types for content types, so we make sure if it's
@@ -402,13 +406,20 @@ function emitParameter(
         implementation: implementation,
         skipUrlEncoding: parameter.type === "endpointPath",
     };
+    if (type.type == "list" && (parameter.type == "query" || parameter.type == "header")) {
+        if (parameter.format == "csv") {
+            paramMap["delimiter"] = "comma";
+        } else {
+            paramMap["explode"] = true;
+        }
+    }
 
     if (paramMap.type.type === "constant") {
         clientDefaultValue = paramMap.type.value;
     }
 
-    if (isApiVersion(program, parameter as HttpOperationParameter)) {
-        const defaultApiVersion = getDefaultApiVersion(program, getServiceNamespace(program));
+    if (isApiVersion(context, parameter as HttpOperationParameter)) {
+        const defaultApiVersion = getDefaultApiVersion(context, getServiceNamespace(context));
         paramMap.type = defaultApiVersion ? getConstantType(defaultApiVersion.value) : KnownTypes.string;
         paramMap.implementation = "Client";
         paramMap.in_docstring = false;
@@ -483,7 +494,7 @@ function getConstantType(key: string): Record<string, any> {
     return type;
 }
 
-function emitAcceptParameter(program: Program, inOverload: boolean, inOverriden: boolean): Record<string, any> {
+function emitAcceptParameter(inOverload: boolean, inOverriden: boolean): Record<string, any> {
     return {
         checkClientInput: false,
         clientDefaultValue: "application/json",
@@ -504,14 +515,14 @@ function emitAcceptParameter(program: Program, inOverload: boolean, inOverriden:
     };
 }
 
-function emitResponseHeaders(program: Program, headers?: Record<string, ModelProperty>): Record<string, any>[] {
+function emitResponseHeaders(context: DpgContext, headers?: Record<string, ModelProperty>): Record<string, any>[] {
     const retval: Record<string, any>[] = [];
     if (!headers) {
         return retval;
     }
     for (const [key, value] of Object.entries(headers)) {
         retval.push({
-            type: getType(program, value.type),
+            type: getType(context, value.type),
             restApiName: key,
         });
     }
@@ -528,11 +539,11 @@ function isAzureCoreErrorType(t?: Type): boolean {
     ) {
         t = t.namespace;
     }
-    return namespaces.length == 0;
+    return namespaces.length === 0;
 }
 
 function emitResponse(
-    program: Program,
+    context: DpgContext,
     response: HttpOperationResponse,
     innerResponse: HttpOperationResponseContent,
 ): Record<string, any> {
@@ -542,10 +553,10 @@ function emitResponse(
         const candidate = ["ResourceOkResponse", "ResourceCreatedResponse", "AcceptedResponse"];
         const originType = innerResponse.body.type as Model;
         if (innerResponse.body.type.kind === "Model" && candidate.find((e) => e === originType.name)) {
-            const modelType = getEffectiveSchemaType(program, originType);
-            type = getType(program, modelType);
+            const modelType = getEffectiveSchemaType(context, originType);
+            type = getType(context, modelType);
         } else {
-            type = getType(program, innerResponse.body.type);
+            type = getType(context, innerResponse.body.type);
         }
     }
     const statusCodes = [];
@@ -555,34 +566,34 @@ function emitResponse(
         statusCodes.push(parseInt(response.statusCode));
     }
     return {
-        headers: emitResponseHeaders(program, innerResponse.headers),
+        headers: emitResponseHeaders(context, innerResponse.headers),
         statusCodes: statusCodes,
-        addedOn: getAddedOnVersion(program, response.type),
+        addedOn: getAddedOnVersion(context, response.type),
         discriminator: "basic",
         type: type,
     };
 }
 
-function emitOperation(program: Program, operation: Operation, operationGroupName: string): Record<string, any> {
-    const lro = isLro(program, operation);
-    const paging = getPagedResult(program, operation);
+function emitOperation(context: DpgContext, operation: Operation, operationGroupName: string): Record<string, any> {
+    const lro = isLro(operation);
+    const paging = getPagedResult(context.program, operation);
     if (lro && paging) {
-        return emitLroPagingOperation(program, operation, operationGroupName);
+        return emitLroPagingOperation(context, operation, operationGroupName);
     } else if (paging) {
-        return emitPagingOperation(program, operation, operationGroupName);
+        return emitPagingOperation(context, operation, operationGroupName);
     } else if (lro) {
-        return emitLroOperation(program, operation, operationGroupName);
+        return emitLroOperation(context, operation, operationGroupName);
     }
-    return emitBasicOperation(program, operation, operationGroupName);
+    return emitBasicOperation(context, operation, operationGroupName);
 }
 
 function addLroInformation(emittedOperation: Record<string, any>) {
     emittedOperation["discriminator"] = "lro";
 }
 
-function addPagingInformation(program: Program, operation: Operation, emittedOperation: Record<string, any>) {
+function addPagingInformation(context: DpgContext, operation: Operation, emittedOperation: Record<string, any>) {
     emittedOperation["discriminator"] = "paging";
-    const pagedResult = getPagedResult(program, operation);
+    const pagedResult = getPagedResult(context.program, operation);
     if (pagedResult === undefined) {
         throw Error("Trying to add paging information, but not paging metadata for this operation");
     }
@@ -591,30 +602,38 @@ function addPagingInformation(program: Program, operation: Operation, emittedOpe
 }
 
 function emitLroPagingOperation(
-    program: Program,
+    context: DpgContext,
     operation: Operation,
     operationGroupName: string,
 ): Record<string, any> {
-    const emittedOperation = emitBasicOperation(program, operation, operationGroupName);
+    const emittedOperation = emitBasicOperation(context, operation, operationGroupName);
     addLroInformation(emittedOperation);
-    addPagingInformation(program, operation, emittedOperation);
+    addPagingInformation(context, operation, emittedOperation);
     emittedOperation["discriminator"] = "lropaging";
     return emittedOperation;
 }
 
-function emitLroOperation(program: Program, operation: Operation, operationGroupName: string): Record<string, any> {
-    const emittedOperation = emitBasicOperation(program, operation, operationGroupName);
+function emitLroOperation(context: DpgContext, operation: Operation, operationGroupName: string): Record<string, any> {
+    const emittedOperation = emitBasicOperation(context, operation, operationGroupName);
     addLroInformation(emittedOperation);
     return emittedOperation;
 }
 
-function emitPagingOperation(program: Program, operation: Operation, operationGroupName: string): Record<string, any> {
-    const emittedOperation = emitBasicOperation(program, operation, operationGroupName);
-    addPagingInformation(program, operation, emittedOperation);
+function emitPagingOperation(
+    context: DpgContext,
+    operation: Operation,
+    operationGroupName: string,
+): Record<string, any> {
+    const emittedOperation = emitBasicOperation(context, operation, operationGroupName);
+    addPagingInformation(context, operation, emittedOperation);
     return emittedOperation;
 }
 
-function emitBasicOperation(program: Program, operation: Operation, operationGroupName: string): Record<string, any> {
+function emitBasicOperation(
+    context: DpgContext,
+    operation: Operation,
+    operationGroupName: string,
+): Record<string, any> {
     // Set up parameters for operation
     const parameters: Record<string, any>[] = [];
     if (endpointPathParameters) {
@@ -622,10 +641,10 @@ function emitBasicOperation(program: Program, operation: Operation, operationGro
             parameters.push(param);
         }
     }
-    const httpOperation = ignoreDiagnostics(getHttpOperation(program, operation));
+    const httpOperation = ignoreDiagnostics(getHttpOperation(context.program, operation));
     for (const param of httpOperation.parameters.parameters) {
-        const emittedParam = emitParameter(program, param, "Method");
-        if (isApiVersion(program, param) && apiVersionParam === undefined) {
+        const emittedParam = emitParameter(context, param, "Method");
+        if (isApiVersion(context, param) && apiVersionParam === undefined) {
             apiVersionParam = emittedParam;
         }
         parameters.push(emittedParam);
@@ -638,14 +657,14 @@ function emitBasicOperation(program: Program, operation: Operation, operationGro
     const isOverriden: boolean = false;
     for (const response of httpOperation.responses) {
         for (const innerResponse of response.responses) {
-            const emittedResponse = emitResponse(program, response, innerResponse);
+            const emittedResponse = emitResponse(context, response, innerResponse);
             if (
                 emittedResponse["type"] &&
                 parameters.filter((e) => e.restApiName.toLowerCase() === "accept").length === 0
             ) {
-                parameters.push(emitAcceptParameter(program, isOverload, isOverriden));
+                parameters.push(emitAcceptParameter(isOverload, isOverriden));
             }
-            if (isErrorModel(program, response.type)) {
+            if (isErrorModel(context.program, response.type)) {
                 // * is valid status code in cadl but invalid for autorest.python
                 if (response.statusCode === "*") {
                     exceptions.push(emittedResponse);
@@ -660,7 +679,7 @@ function emitBasicOperation(program: Program, operation: Operation, operationGro
     if (httpOperation.parameters.body === undefined) {
         bodyParameter = undefined;
     } else {
-        bodyParameter = emitBodyParameter(program, httpOperation);
+        bodyParameter = emitBodyParameter(context, httpOperation);
         if (parameters.filter((e) => e.restApiName.toLowerCase() === "content-type").length === 0) {
             parameters.push(emitContentTypeParameter(bodyParameter, isOverload, isOverriden));
         }
@@ -675,11 +694,11 @@ function emitBasicOperation(program: Program, operation: Operation, operationGro
             }
         }
     }
-    const name = camelToSnakeCase(operation.name);
+    const name = camelToSnakeCase(getLibraryName(context, operation));
     return {
         name: name,
-        description: getDocStr(program, operation),
-        summary: getSummary(program, operation),
+        description: getDocStr(context, operation),
+        summary: getSummary(context.program, operation),
         url: httpOperation.path,
         method: httpOperation.verb.toUpperCase(),
         parameters: parameters,
@@ -687,18 +706,18 @@ function emitBasicOperation(program: Program, operation: Operation, operationGro
         responses: responses,
         exceptions: exceptions,
         groupName: operationGroupName,
-        addedOn: getAddedOnVersion(program, operation),
+        addedOn: getAddedOnVersion(context, operation),
         discriminator: "basic",
         isOverload: false,
         overloads: [],
-        apiVersions: [getAddedOnVersion(program, operation)],
+        apiVersions: [getAddedOnVersion(context, operation)],
     };
 }
 
-function isReadOnly(program: Program, type: ModelProperty): boolean {
+function isReadOnly(context: DpgContext, type: ModelProperty): boolean {
     // https://microsoft.github.io/cadl/standard-library/rest/operations#automatic-visibility
     // Only "read" should be readOnly
-    const visibility = getVisibility(program, type);
+    const visibility = getVisibility(context.program, type);
     if (visibility) {
         return visibility.includes("read");
     } else {
@@ -706,7 +725,7 @@ function isReadOnly(program: Program, type: ModelProperty): boolean {
     }
 }
 
-function emitProperty(program: Program, property: ModelProperty): Record<string, any> {
+function emitProperty(context: DpgContext, property: ModelProperty): Record<string, any> {
     let clientDefaultValue = undefined;
     const propertyDefaultKind = property.default?.kind;
     if (
@@ -715,47 +734,49 @@ function emitProperty(program: Program, property: ModelProperty): Record<string,
     ) {
         clientDefaultValue = property.default.value;
     }
+    const [clientName, jsonName] = getPropertyNames(context, property);
     return {
-        clientName: camelToSnakeCase(property.name),
-        restApiName: property.name,
-        type: getType(program, property.type),
+        clientName: camelToSnakeCase(clientName),
+        restApiName: jsonName,
+        type: getType(context, property.type),
         optional: property.optional,
-        description: getDocStr(program, property),
-        addedOn: getAddedOnVersion(program, property),
-        readonly: isReadOnly(program, property) || isKey(program, property),
+        description: getDocStr(context, property),
+        addedOn: getAddedOnVersion(context, property),
+        readonly: isReadOnly(context, property) || isKey(context.program, property),
         clientDefaultValue: clientDefaultValue,
     };
 }
 
-function getName(program: Program, type: Model): string {
-    const friendlyName = getFriendlyName(program, type);
+function getName(context: DpgContext, type: Model): string {
+    const friendlyName = getFriendlyName(context.program, type);
     if (friendlyName) {
         return friendlyName;
     } else {
+        const modelName = getLibraryName(context, type);
         if (type.templateArguments && type.templateArguments.length > 0) {
-            return type.name + type.templateArguments.map((it) => (it.kind === "Model" ? it.name : "")).join("");
+            return modelName + type.templateArguments.map((it) => (it.kind === "Model" ? it.name : "")).join("");
         } else {
-            return type.name;
+            return modelName;
         }
     }
 }
 
-function emitModel(program: Program, type: Model): Record<string, any> {
+function emitModel(context: DpgContext, type: Model): Record<string, any> {
     // Now we know it's a defined model
     const properties: Record<string, any>[] = [];
     let baseModel = undefined;
     if (type.baseModel) {
-        baseModel = getType(program, type.baseModel);
+        baseModel = getType(context, type.baseModel);
     }
-    const modelName = getName(program, type) || getEffectiveSchemaType(program, type).name;
+    const modelName = getName(context, type) || getEffectiveSchemaType(context, type).name;
     return {
         type: "model",
         name: modelName,
-        description: getDocStr(program, type),
+        description: getDocStr(context, type),
         parents: baseModel ? [baseModel] : [],
         discriminatedSubtypes: {},
         properties: properties,
-        addedOn: getAddedOnVersion(program, type),
+        addedOn: getAddedOnVersion(context, type),
         snakeCaseName: modelName ? camelToSnakeCase(modelName) : modelName,
         base: modelName === "" ? "json" : "dpg",
     };
@@ -772,20 +793,20 @@ function enumName(name: string): string {
     return camelToSnakeCase(name).toUpperCase();
 }
 
-function emitEnum(program: Program, type: Enum): Record<string, any> {
+function emitEnum(context: DpgContext, type: Enum): Record<string, any> {
     const enumValues = [];
     for (const m of type.members.values()) {
         enumValues.push({
             name: enumName(m.name),
             value: m.value ?? m.name,
-            description: getDocStr(program, m),
+            description: getDocStr(context, m),
         });
     }
 
     return {
         type: "enum",
         name: type.name,
-        description: getDocStr(program, type),
+        description: getDocStr(context, type),
         valueType: { type: enumMemberType(type.members.values().next().value) },
         values: enumValues,
     };
@@ -860,7 +881,6 @@ function emitStdScalar(scalar: Scalar & { name: IntrinsicScalarName }): Record<s
         case "float64":
         case "float":
             return { type: "float" };
-        case "uri":
         case "url":
         case "string":
             return { type: "string" };
@@ -882,10 +902,11 @@ function emitStdScalar(scalar: Scalar & { name: IntrinsicScalarName }): Record<s
 }
 
 function applyIntrinsicDecorators(
-    program: Program,
+    context: DpgContext,
     type: Scalar | ModelProperty,
     result: Record<string, any>,
 ): Record<string, any> {
+    const program = context.program;
     const newResult = { ...result };
     const docStr = getDoc(program, type);
     const isString = isStringType(program, getPropertyType(type));
@@ -937,17 +958,17 @@ function applyIntrinsicDecorators(
     return newResult;
 }
 
-function emitScalar(program: Program, scalar: Scalar): Record<string, any> {
+function emitScalar(context: DpgContext, scalar: Scalar): Record<string, any> {
     let result: Record<string, any> = {};
-    if (program.checker.isStdType(scalar)) {
+    if (context.program.checker.isStdType(scalar)) {
         result = emitStdScalar(scalar);
     } else if (scalar.baseScalar) {
-        result = emitScalar(program, scalar.baseScalar);
+        result = emitScalar(context, scalar.baseScalar);
     }
-    return applyIntrinsicDecorators(program, scalar, result);
+    return applyIntrinsicDecorators(context, scalar, result);
 }
 
-function emitListOrDict(program: Program, type: Model): Record<string, any> | undefined {
+function emitListOrDict(context: DpgContext, type: Model): Record<string, any> | undefined {
     if (type.indexer !== undefined) {
         if (isNeverType(type.indexer.key)) {
         } else {
@@ -956,16 +977,16 @@ function emitListOrDict(program: Program, type: Model): Record<string, any> | un
             if (name === "string") {
                 if (elementType.kind === "Intrinsic") {
                 }
-                return { type: "dict", elementType: getType(program, type.indexer.value!) };
+                return { type: "dict", elementType: getType(context, type.indexer.value!) };
             } else if (name === "integer") {
-                return { type: "list", elementType: getType(program, type.indexer.value!) };
+                return { type: "list", elementType: getType(context, type.indexer.value!) };
             }
         }
     }
     return undefined;
 }
 
-function mapCadlType(program: Program, type: Type): any {
+function mapCadlType(context: DpgContext, type: Type): any {
     switch (type.kind) {
         case "Number":
             return constantType(type.value, intOrFloat(type.value));
@@ -974,7 +995,7 @@ function mapCadlType(program: Program, type: Type): any {
         case "Boolean":
             return constantType(type.value, "boolean");
         case "Model":
-            return emitListOrDict(program, type);
+            return emitListOrDict(context, type);
     }
 }
 
@@ -982,7 +1003,7 @@ function capitalize(name: string): string {
     return name[0].toUpperCase() + name.slice(1);
 }
 
-function emitUnion(program: Program, type: Union): Record<string, any> {
+function emitUnion(context: DpgContext, type: Union): Record<string, any> {
     const nonNullOptions = [...type.variants.values()].map((x) => x.type).filter((t) => !isNullType(t));
 
     const notLiteral = (t: Type): boolean => ["Boolean", "Number", "String"].indexOf(t.kind) < 0;
@@ -996,7 +1017,7 @@ function emitUnion(program: Program, type: Union): Record<string, any> {
                 description: `Type of ${unionName}`,
                 isPublic: false,
                 type: "combined",
-                types: nonNullOptions.map((x) => emitType(program, x)),
+                types: nonNullOptions.map((x) => emitType(context, x)),
                 xmlMetadata: {},
             };
         } else if (nonNullOptions.some(notLiteral)) {
@@ -1008,7 +1029,7 @@ function emitUnion(program: Program, type: Union): Record<string, any> {
     // Geneate Union of Literals as Python Enum
     const values: Record<string, any>[] = [];
     for (const option of nonNullOptions) {
-        const value = emitType(program, option)["value"];
+        const value = emitType(context, option)["value"];
         values.push({
             description: "",
             name: camelToSnakeCase(value).toUpperCase(),
@@ -1036,23 +1057,23 @@ function emitUnion(program: Program, type: Union): Record<string, any> {
         description: `Type of ${enumName}`,
         isPublic: false,
         type: "enum",
-        valueType: emitType(program, nonNullOptions[0])["valueType"],
+        valueType: emitType(context, nonNullOptions[0])["valueType"],
         values: values,
         xmlMetadata: {},
     };
 }
 
-function emitType(program: Program, type: EmitterType): Record<string, any> {
+function emitType(context: DpgContext, type: EmitterType): Record<string, any> {
     if (type.kind === "Credential") {
         return emitCredential(type.scheme);
     }
     if (type.kind === "CredentialTypeUnion") {
         return emitCredentialUnion(type);
     }
-    const builtinType = mapCadlType(program, type);
+    const builtinType = mapCadlType(context, type);
     if (builtinType !== undefined) {
         // add in description elements for types derived from primitive types (SecureString, etc.)
-        const doc = getDoc(program, type);
+        const doc = getDoc(context.program, type);
         if (doc) {
             builtinType.description = doc;
         }
@@ -1063,27 +1084,27 @@ function emitType(program: Program, type: EmitterType): Record<string, any> {
         case "Intrinsic":
             return { type: "any" };
         case "Model":
-            return emitModel(program, type);
+            return emitModel(context, type);
         case "Scalar":
-            return emitScalar(program, type);
+            return emitScalar(context, type);
         case "Union":
-            return emitUnion(program, type);
+            return emitUnion(context, type);
         case "UnionVariant":
             return {};
         case "Enum":
-            return emitEnum(program, type);
+            return emitEnum(context, type);
         default:
             throw Error(`Not supported ${type.kind}`);
     }
 }
 
-function emitOperationGroups(program: Program, client: Client): Record<string, any>[] {
+function emitOperationGroups(context: DpgContext, client: Client): Record<string, any>[] {
     const operationGroups: Record<string, any>[] = [];
-    for (const operationGroup of listOperationGroups(program, client)) {
+    for (const operationGroup of listOperationGroups(context, client)) {
         const operations: Record<string, any>[] = [];
         const name = operationGroup.type.name;
-        for (const operation of listOperationsInOperationGroup(program, operationGroup)) {
-            operations.push(emitOperation(program, operation, name));
+        for (const operation of listOperationsInOperationGroup(context, operationGroup)) {
+            operations.push(emitOperation(context, operation, name));
         }
         operationGroups.push({
             className: name,
@@ -1092,8 +1113,8 @@ function emitOperationGroups(program: Program, client: Client): Record<string, a
         });
     }
     const clientOperations: Record<string, any>[] = [];
-    for (const operation of listOperationsInOperationGroup(program, client)) {
-        clientOperations.push(emitOperation(program, operation, ""));
+    for (const operation of listOperationsInOperationGroup(context, client)) {
+        clientOperations.push(emitOperation(context, operation, ""));
     }
     if (clientOperations.length > 0) {
         operationGroups.push({
@@ -1105,16 +1126,16 @@ function emitOperationGroups(program: Program, client: Client): Record<string, a
     return operationGroups;
 }
 
-function getServerHelper(program: Program, namespace: Namespace): HttpServer | undefined {
-    const servers = getServers(program, namespace);
+function getServerHelper(context: DpgContext, namespace: Namespace): HttpServer | undefined {
+    const servers = getServers(context.program, namespace);
     if (servers === undefined) {
         return undefined;
     }
     return servers[0];
 }
 
-function emitServerParams(program: Program, namespace: Namespace): Record<string, any>[] {
-    const server = getServerHelper(program, namespace);
+function emitServerParams(context: DpgContext, namespace: Namespace): Record<string, any>[] {
+    const server = getServerHelper(context, namespace);
     if (server === undefined) {
         return [
             {
@@ -1138,9 +1159,9 @@ function emitServerParams(program: Program, namespace: Namespace): Record<string
                 name: param.name,
                 param: param,
             };
-            const emittedParameter = emitParameter(program, serverParameter, "Client");
+            const emittedParameter = emitParameter(context, serverParameter, "Client");
             endpointPathParameters.push(emittedParameter);
-            if (isApiVersion(program, serverParameter as any) && apiVersionParam == undefined) {
+            if (isApiVersion(context, serverParameter as any) && apiVersionParam === undefined) {
                 apiVersionParam = emittedParameter;
                 continue;
             }
@@ -1164,8 +1185,8 @@ function emitServerParams(program: Program, namespace: Namespace): Record<string
     }
 }
 
-function emitCredentialParam(program: Program, namespace: Namespace): Record<string, any> | undefined {
-    const auth = getAuthentication(program, namespace);
+function emitCredentialParam(context: DpgContext, namespace: Namespace): Record<string, any> | undefined {
+    const auth = getAuthentication(context.program, namespace);
     if (auth) {
         const credential_types: CredentialType[] = [];
         for (const option of auth.options) {
@@ -1188,7 +1209,7 @@ function emitCredentialParam(program: Program, namespace: Namespace): Record<str
                 };
             }
             return {
-                type: getType(program, type),
+                type: getType(context, type),
                 optional: false,
                 description: "Credential needed for the client to connect to Azure.",
                 clientName: "credential",
@@ -1203,17 +1224,17 @@ function emitCredentialParam(program: Program, namespace: Namespace): Record<str
     return undefined;
 }
 
-function emitGlobalParameters(program: Program, namespace: Namespace): Record<string, any>[] {
-    const clientParameters = emitServerParams(program, namespace);
-    const credentialParam = emitCredentialParam(program, namespace);
+function emitGlobalParameters(context: DpgContext, namespace: Namespace): Record<string, any>[] {
+    const clientParameters = emitServerParams(context, namespace);
+    const credentialParam = emitCredentialParam(context, namespace);
     if (credentialParam) {
         clientParameters.push(credentialParam);
     }
     return clientParameters;
 }
 
-function getApiVersionParameter(program: Program): Record<string, any> | void {
-    const version = getDefaultApiVersion(program, getServiceNamespace(program));
+function getApiVersionParameter(context: DpgContext): Record<string, any> | void {
+    const version = getDefaultApiVersion(context, getServiceNamespace(context));
     if (apiVersionParam) {
         return apiVersionParam;
     } else if (version !== undefined) {
@@ -1236,23 +1257,22 @@ function getApiVersionParameter(program: Program): Record<string, any> | void {
 }
 
 function emitClients(context: DpgContext, namespace: string): Record<string, any>[] {
-    const program = context.program;
-    const clients = listClients(program);
+    const clients = listClients(context);
     const retval: Record<string, any>[] = [];
     for (const client of clients) {
         if (getNamespace(context, client.name) !== namespace) {
             continue;
         }
-        const server = getServerHelper(program, client.service);
+        const server = getServerHelper(context, client.service);
         const emittedClient = {
             name: client.name.split(".").at(-1),
-            description: getDocStr(program, client.type),
-            parameters: emitGlobalParameters(program, client.service),
-            operationGroups: emitOperationGroups(program, client),
+            description: getDocStr(context, client.type),
+            parameters: emitGlobalParameters(context, client.service),
+            operationGroups: emitOperationGroups(context, client),
             url: server ? server.url : "",
             apiVersions: [],
         };
-        const emittedApiVersionParam = getApiVersionParameter(program);
+        const emittedApiVersionParam = getApiVersionParameter(context);
         if (emittedApiVersionParam) {
             emittedClient.parameters.push(emittedApiVersionParam);
         }
@@ -1261,8 +1281,8 @@ function emitClients(context: DpgContext, namespace: string): Record<string, any
     return retval;
 }
 
-function getServiceNamespace(program: Program): Namespace {
-    return listServices(program)[0].type;
+function getServiceNamespace(context: DpgContext): Namespace {
+    return listServices(context.program)[0].type;
 }
 
 function getNamespace(context: DpgContext, clientName: string): string {
@@ -1276,7 +1296,7 @@ function getNamespace(context: DpgContext, clientName: string): string {
 
 function getNamespaces(context: DpgContext): Set<string> {
     const namespaces = new Set<string>();
-    for (const client of listClients(context.program)) {
+    for (const client of listClients(context)) {
         namespaces.add(getNamespace(context, client.name));
     }
     return namespaces;

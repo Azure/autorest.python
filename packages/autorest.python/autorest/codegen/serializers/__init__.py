@@ -125,7 +125,6 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
             self.code_model.options["show_operations"]
             and self.code_model.has_operations
             and self.code_model.options["generate_sample"]
-            and not self.code_model.options["multiapi"]
         ):
             self._serialize_and_write_sample(env, namespace_path)
 
@@ -549,6 +548,12 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
         for client in self.code_model.clients:
             for op_group in client.operation_groups:
                 for operation in op_group.operations:
+                    if (
+                        self.code_model.options["multiapi"]
+                        and operation.api_versions[0]
+                        != self.code_model.options["default_api_version"]
+                    ):
+                        continue
                     samples = operation.yaml_data["samples"]
                     if not samples or operation.name.startswith("_"):
                         continue
