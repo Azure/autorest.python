@@ -9,12 +9,12 @@
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "coreclient"
+PACKAGE_NAME = "collectionformatclient"
 version = "1.0.0b1"
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="CoreClient",
+    description="CollectionFormatClient",
     author_email="",
     url="",
     keywords="azure, azure sdk",
@@ -23,9 +23,8 @@ setup(
     install_requires=[
         "isodate<1.0.0,>=0.6.1",
         "azure-core<2.0.0,>=1.24.0",
-        "typing-extensions>=4.3.0; python_version<'3.8.0'",
     ],
     long_description="""\
-    Illustrates bodies templated with Azure Core.
+    Test for collectionFormat.
     """,
 )

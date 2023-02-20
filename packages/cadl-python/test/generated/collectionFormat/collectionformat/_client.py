@@ -12,23 +12,19 @@ from typing import Any
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 
-from ._configuration import CoreClientConfiguration
-from ._operations import CoreClientOperationsMixin
+from ._configuration import CollectionFormatClientConfiguration
+from ._operations import CollectionFormatClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class CoreClient(CoreClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
-    """Illustrates bodies templated with Azure Core.
-
-    :keyword api_version: The API version to use for this operation. Default value is
-     "2022-12-01-preview". Note that overriding this default value may result in unsupported
-     behavior.
-    :paramtype api_version: str
-    """
+class CollectionFormatClient(
+    CollectionFormatClientOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
+    """Test for collectionFormat."""
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
-        self._config = CoreClientConfiguration(**kwargs)
+        self._config = CollectionFormatClientConfiguration(**kwargs)
         self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
@@ -60,7 +56,7 @@ class CoreClient(CoreClientOperationsMixin):  # pylint: disable=client-accepts-a
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "CoreClient":
+    def __enter__(self) -> "CollectionFormatClient":
         self._client.__enter__()
         return self
 
