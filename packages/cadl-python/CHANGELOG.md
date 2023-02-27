@@ -1,5 +1,11 @@
 # Release History
 
+## 2023-02-15 - 0.4.25
+
+**Other Changes**
+
+- Support `@collectionFormat` for queries and headers.  #1748
+
 ## 2023-02-14 - 0.4.24
 
 **Other Changes**
