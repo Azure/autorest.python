@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from hello import HelloClient
+from azure.hello import HelloClient
 
 @pytest.fixture
 def client():

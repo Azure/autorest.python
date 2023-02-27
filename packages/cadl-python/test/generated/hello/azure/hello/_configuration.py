@@ -24,7 +24,7 @@ class HelloClientConfiguration(Configuration):  # pylint: disable=too-many-insta
     def __init__(self, **kwargs: Any) -> None:
         super(HelloClientConfiguration, self).__init__(**kwargs)
 
-        kwargs.setdefault("sdk_moniker", "helloclient/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "hello/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:
