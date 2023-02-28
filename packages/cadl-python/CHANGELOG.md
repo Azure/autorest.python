@@ -1,5 +1,11 @@
 # Release History
 
+## 2023-0x-xx - 0.x.x
+
+**Other Changes**
+
+- Support nullable type generation.  #1758
+
 ## 2023-02-15 - 0.4.25
 
 **Other Changes**
