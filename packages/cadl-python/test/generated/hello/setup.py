@@ -9,12 +9,12 @@
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "helloclient"
+PACKAGE_NAME = "azure-hello"
 version = "1.0.0b1"
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="HelloClient",
+    description="azure-hello",
     author_email="",
     url="",
     keywords="azure, azure sdk",
