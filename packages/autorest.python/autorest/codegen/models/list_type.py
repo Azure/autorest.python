@@ -158,5 +158,5 @@ class ListType(BaseType):
     def type_description(self) -> str:
         return f"[{self.element_type.type_description}]"
 
-    def _contain_target(self, check_target: Callable[["BaseType"], bool]) -> bool:
-        return self.element_type.contain_target(check_target)
+    def contain_target(self, check_target: Callable[["BaseType"], bool]) -> bool:
+        return check_target(self) or self.element_type.contain_target(check_target)

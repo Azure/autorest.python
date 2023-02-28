@@ -136,7 +136,9 @@ class CombinedType(BaseType):
     def json_subtype(self) -> Optional[JSONModelType]:
         return CombinedType._get_json_model_type(self)
 
-    def _contain_target(self, check_target: Callable[["BaseType"], bool]) -> bool:
-        return not self.name and any(
-            sub_type.contain_target(check_target) for sub_type in self.types
+    def contain_target(self, check_target: Callable[["BaseType"], bool]) -> bool:
+        return (
+            check_target(self)
+            or not self.name
+            and any(sub_type.contain_target(check_target) for sub_type in self.types)
         )

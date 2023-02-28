@@ -155,5 +155,5 @@ class ConstantType(BaseType):
     def instance_check_template(self) -> str:
         return self.value_type.instance_check_template
 
-    def _contain_target(self, check_target: Callable[["BaseType"], bool]) -> bool:
-        return self.value_type.contain_target(check_target)
+    def contain_target(self, check_target: Callable[["BaseType"], bool]) -> bool:
+        return check_target(self) or self.value_type.contain_target(check_target)
