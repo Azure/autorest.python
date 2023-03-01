@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, Optional, Union, TYPE_CHECKING, List, Callable
+from typing import Any, Dict, Optional, Union, TYPE_CHECKING, List
 from .base import BaseType
 from .imports import FileImport, ImportType, TypingSection
 

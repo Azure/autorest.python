@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, Any, Optional, TYPE_CHECKING, Callable
+from typing import Dict, Any, Optional, TYPE_CHECKING
 from .base import BaseType
 from .imports import FileImport, ImportType, TypingSection
 from .primitive_types import IntegerType, BinaryType, StringType, BooleanType

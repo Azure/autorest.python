@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, TYPE_CHECKING, List, Optional, Callable
+from typing import Any, Dict, TYPE_CHECKING, List, Optional
 from abc import ABC, abstractmethod
 from .imports import FileImport
 

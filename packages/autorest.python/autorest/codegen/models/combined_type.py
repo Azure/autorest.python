@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, Optional, TYPE_CHECKING, Callable
+from typing import Any, Dict, List, Optional, TYPE_CHECKING
 import re
 from autorest.codegen.models.imports import FileImport, ImportType, TypingSection
 from .base import BaseType
