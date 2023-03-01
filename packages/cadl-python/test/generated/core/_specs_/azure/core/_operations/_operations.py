@@ -34,6 +34,10 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+if sys.version_info >= (3, 8):
+    from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
+else:
+    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -42,11 +46,14 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_core_create_or_update_request(id: int, *, api_version: str, **kwargs: Any) -> HttpRequest:
+def build_core_create_or_update_request(id: int, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    api_version: Literal["2022-12-01-preview"] = kwargs.pop(
+        "api_version", _params.pop("api-version", "2022-12-01-preview")
+    )
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -68,11 +75,14 @@ def build_core_create_or_update_request(id: int, *, api_version: str, **kwargs: 
     return HttpRequest(method="PATCH", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_core_create_or_replace_request(id: int, *, api_version: str, **kwargs: Any) -> HttpRequest:
+def build_core_create_or_replace_request(id: int, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    api_version: Literal["2022-12-01-preview"] = kwargs.pop(
+        "api_version", _params.pop("api-version", "2022-12-01-preview")
+    )
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -94,10 +104,13 @@ def build_core_create_or_replace_request(id: int, *, api_version: str, **kwargs:
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_core_get_request(id: int, *, api_version: str, **kwargs: Any) -> HttpRequest:
+def build_core_get_request(id: int, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
+    api_version: Literal["2022-12-01-preview"] = kwargs.pop(
+        "api_version", _params.pop("api-version", "2022-12-01-preview")
+    )
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -117,10 +130,13 @@ def build_core_get_request(id: int, *, api_version: str, **kwargs: Any) -> HttpR
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_core_list_request(*, api_version: str, **kwargs: Any) -> HttpRequest:
+def build_core_list_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
+    api_version: Literal["2022-12-01-preview"] = kwargs.pop(
+        "api_version", _params.pop("api-version", "2022-12-01-preview")
+    )
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -135,9 +151,12 @@ def build_core_list_request(*, api_version: str, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_core_delete_request(id: int, *, api_version: str, **kwargs: Any) -> HttpRequest:
+def build_core_delete_request(id: int, **kwargs: Any) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
+    api_version: Literal["2022-12-01-preview"] = kwargs.pop(
+        "api_version", _params.pop("api-version", "2022-12-01-preview")
+    )
     # Construct URL
     _url = "/azure/core/users/{id}"
     path_format_arguments = {
@@ -152,10 +171,13 @@ def build_core_delete_request(id: int, *, api_version: str, **kwargs: Any) -> Ht
     return HttpRequest(method="DELETE", url=_url, params=_params, **kwargs)
 
 
-def build_core_export_request(id: int, *, format: str, api_version: str, **kwargs: Any) -> HttpRequest:
+def build_core_export_request(id: int, *, format: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
+    api_version: Literal["2022-12-01-preview"] = kwargs.pop(
+        "api_version", _params.pop("api-version", "2022-12-01-preview")
+    )
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -276,8 +298,8 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
 
         request = build_core_create_or_update_request(
             id=id,
-            api_version=self._config.api_version,
             content_type=content_type,
+            api_version=self._config.api_version,
             content=_content,
             headers=_headers,
             params=_params,
@@ -405,8 +427,8 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
 
         request = build_core_create_or_replace_request(
             id=id,
-            api_version=self._config.api_version,
             content_type=content_type,
+            api_version=self._config.api_version,
             content=_content,
             headers=_headers,
             params=_params,

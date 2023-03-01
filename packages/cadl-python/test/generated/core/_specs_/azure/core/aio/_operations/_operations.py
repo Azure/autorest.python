@@ -147,8 +147,8 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
 
         request = build_core_create_or_update_request(
             id=id,
-            api_version=self._config.api_version,
             content_type=content_type,
+            api_version=self._config.api_version,
             content=_content,
             headers=_headers,
             params=_params,
@@ -276,8 +276,8 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
 
         request = build_core_create_or_replace_request(
             id=id,
-            api_version=self._config.api_version,
             content_type=content_type,
+            api_version=self._config.api_version,
             content=_content,
             headers=_headers,
             params=_params,
