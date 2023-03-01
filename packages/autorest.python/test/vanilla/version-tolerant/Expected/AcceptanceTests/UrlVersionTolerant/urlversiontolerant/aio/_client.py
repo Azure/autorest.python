@@ -46,7 +46,7 @@ class AutoRestUrlTestService:  # pylint: disable=client-accepts-api-version-keyw
         self._config = AutoRestUrlTestServiceConfiguration(
             global_string_path=global_string_path, global_string_query=global_string_query, **kwargs
         )
-        self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
+        self._client: "AsyncPipelineClient" = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

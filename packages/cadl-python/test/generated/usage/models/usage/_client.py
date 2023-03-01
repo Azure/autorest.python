@@ -23,7 +23,7 @@ class UsageClient(UsageClientOperationsMixin):  # pylint: disable=client-accepts
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
         self._config = UsageClientConfiguration(**kwargs)
-        self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
+        self._client: "PipelineClient" = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

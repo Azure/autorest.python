@@ -49,7 +49,7 @@ class AutoRestRequiredOptionalTestService:  # pylint: disable=client-accepts-api
             optional_global_query=optional_global_query,
             **kwargs
         )
-        self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
+        self._client: "AsyncPipelineClient" = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

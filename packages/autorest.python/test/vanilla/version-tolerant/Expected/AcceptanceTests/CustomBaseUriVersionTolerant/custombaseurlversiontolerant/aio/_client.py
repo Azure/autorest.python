@@ -32,7 +32,7 @@ class AutoRestParameterizedHostTestClient:  # pylint: disable=client-accepts-api
     ) -> None:
         _endpoint = "http://{accountName}{host}"
         self._config = AutoRestParameterizedHostTestClientConfiguration(host=host, **kwargs)
-        self._client = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
+        self._client: "AsyncPipelineClient" = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

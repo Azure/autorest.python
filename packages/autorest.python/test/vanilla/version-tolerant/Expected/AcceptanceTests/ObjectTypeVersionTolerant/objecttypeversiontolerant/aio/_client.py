@@ -28,7 +28,7 @@ class ObjectTypeClient(ObjectTypeClientOperationsMixin):  # pylint: disable=clie
         self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = ObjectTypeClientConfiguration(**kwargs)
-        self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
+        self._client: "AsyncPipelineClient" = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
