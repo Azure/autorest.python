@@ -78,7 +78,7 @@ class AutoRestAzureSpecialParametersTestClient:  # pylint: disable=client-accept
         self._config = AutoRestAzureSpecialParametersTestClientConfiguration(
             subscription_id=subscription_id, credential=credential, **kwargs
         )
-        self._client = AsyncARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
+        self._client: AsyncARMPipelineClient = AsyncARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

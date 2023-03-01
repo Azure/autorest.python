@@ -41,7 +41,7 @@ class AutoRestPagingTestService:  # pylint: disable=client-accepts-api-version-k
         self, credential: "AsyncTokenCredential", *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = AutoRestPagingTestServiceConfiguration(credential=credential, **kwargs)
-        self._client = AsyncARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
+        self._client: AsyncARMPipelineClient = AsyncARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

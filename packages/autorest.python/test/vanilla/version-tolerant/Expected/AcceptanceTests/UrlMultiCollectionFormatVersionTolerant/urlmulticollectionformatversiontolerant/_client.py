@@ -30,7 +30,7 @@ class AutoRestUrlMutliCollectionFormatTestService:  # pylint: disable=client-acc
         self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = AutoRestUrlMutliCollectionFormatTestServiceConfiguration(**kwargs)
-        self._client: "PipelineClient" = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
+        self._client: PipelineClient = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

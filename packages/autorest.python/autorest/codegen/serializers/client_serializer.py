@@ -110,7 +110,7 @@ class ClientSerializer:
     def initialize_pipeline_client(self, async_mode: bool) -> str:
         pipeline_client_name = self.client.pipeline_class(async_mode)
         return (
-            f'self._client: "{pipeline_client_name}" = {pipeline_client_name}(base_url={self.host_variable_name}, '
+            f"self._client: {pipeline_client_name} = {pipeline_client_name}(base_url={self.host_variable_name}, "
             "config=self._config, **kwargs)"
         )
 

@@ -31,7 +31,7 @@ class OAuth2Client(OAuth2ClientOperationsMixin):  # pylint: disable=client-accep
     def __init__(self, credential: "AsyncTokenCredential", **kwargs: Any) -> None:
         _endpoint = "http://localhost:3000"
         self._config = OAuth2ClientConfiguration(credential=credential, **kwargs)
-        self._client: "AsyncPipelineClient" = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

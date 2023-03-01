@@ -35,7 +35,7 @@ class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-key
 
     def __init__(self, credential: AzureKeyCredential, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = AutoRestHeadTestServiceConfiguration(credential=credential, **kwargs)
-        self._client: "ARMPipelineClient" = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
+        self._client: ARMPipelineClient = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models: Dict[str, Any] = {}
         self._serialize = Serializer(client_models)

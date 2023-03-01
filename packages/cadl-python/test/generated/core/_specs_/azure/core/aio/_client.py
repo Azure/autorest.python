@@ -29,7 +29,7 @@ class CoreClient(CoreClientOperationsMixin):  # pylint: disable=client-accepts-a
     ) -> None:
         _endpoint = "http://localhost:3000"
         self._config = CoreClientConfiguration(api_version=api_version, **kwargs)
-        self._client: "AsyncPipelineClient" = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

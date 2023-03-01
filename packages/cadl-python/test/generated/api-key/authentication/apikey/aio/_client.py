@@ -28,7 +28,7 @@ class ApiKeyClient(ApiKeyClientOperationsMixin):  # pylint: disable=client-accep
     def __init__(self, credential: AzureKeyCredential, **kwargs: Any) -> None:
         _endpoint = "http://localhost:3000"
         self._config = ApiKeyClientConfiguration(credential=credential, **kwargs)
-        self._client: "AsyncPipelineClient" = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

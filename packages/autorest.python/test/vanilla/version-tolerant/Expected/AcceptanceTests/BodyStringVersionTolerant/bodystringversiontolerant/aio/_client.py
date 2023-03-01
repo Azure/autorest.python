@@ -32,7 +32,7 @@ class AutoRestSwaggerBATService:  # pylint: disable=client-accepts-api-version-k
         self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = AutoRestSwaggerBATServiceConfiguration(**kwargs)
-        self._client: "AsyncPipelineClient" = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

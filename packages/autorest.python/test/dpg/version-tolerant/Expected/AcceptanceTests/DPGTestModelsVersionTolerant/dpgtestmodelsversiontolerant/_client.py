@@ -31,7 +31,7 @@ class DPGClient(DPGClientOperationsMixin):  # pylint: disable=client-accepts-api
         self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = DPGClientConfiguration(**kwargs)
-        self._client: "PipelineClient" = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
+        self._client: PipelineClient = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in _models._models.__dict__.items() if isinstance(v, type)}
         client_models.update({k: v for k, v in _models.__dict__.items() if isinstance(v, type)})

@@ -29,7 +29,7 @@ class MediaTypesClient(MediaTypesClientOperationsMixin):  # pylint: disable=clie
     ) -> None:
         super().__init__()
         self._config = MediaTypesClientConfiguration(**kwargs)
-        self._client: "PipelineClient" = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
+        self._client: PipelineClient = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
