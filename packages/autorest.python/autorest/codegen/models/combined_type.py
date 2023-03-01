@@ -3,9 +3,9 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, Optional, TYPE_CHECKING, Callable
+from typing import Any, Dict, List, Optional, TYPE_CHECKING
 import re
-from autorest.codegen.models.imports import FileImport, ImportType
+from autorest.codegen.models.imports import FileImport, ImportType, TypingSection
 from .base import BaseType
 from .model_type import JSONModelType
 
@@ -102,6 +102,14 @@ class CombinedType(BaseType):
 
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
+        if self.name and not kwargs.get("is_types_file"):
+            file_import.add_submodule_import(
+                kwargs.get("relative_path"),
+                "_types",
+                ImportType.LOCAL,
+                TypingSection.TYPING,
+            )
+            return file_import
         for type in self.types:
             file_import.merge(type.imports(**kwargs))
         file_import.add_submodule_import("typing", "Union", ImportType.STDLIB)
@@ -135,10 +143,3 @@ class CombinedType(BaseType):
     @property
     def json_subtype(self) -> Optional[JSONModelType]:
         return CombinedType._get_json_model_type(self)
-
-    def contain_target(self, check_target: Callable[["BaseType"], bool]) -> bool:
-        return (
-            check_target(self)
-            or not self.name
-            and any(sub_type.contain_target(check_target) for sub_type in self.types)
-        )

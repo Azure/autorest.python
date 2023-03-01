@@ -23,7 +23,9 @@ class TypesSerializer:
                 ImportType.STDLIB,
             )
         for nu in self.code_model.named_unions:
-            file_import.merge(nu.imports(relative_path=".", model_typing=True))
+            file_import.merge(
+                nu.imports(relative_path=".", model_typing=True, is_types_file=True)
+            )
         return file_import
 
     def serialize(self) -> str:

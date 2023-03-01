@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, Any, Optional, TYPE_CHECKING, Callable
+from typing import Dict, Any, Optional, TYPE_CHECKING
 from .base import BaseType
 from .imports import FileImport, ImportType, TypingSection
 from .primitive_types import IntegerType, BinaryType, StringType, BooleanType
@@ -154,6 +154,3 @@ class ConstantType(BaseType):
     @property
     def instance_check_template(self) -> str:
         return self.value_type.instance_check_template
-
-    def contain_target(self, check_target: Callable[["BaseType"], bool]) -> bool:
-        return check_target(self) or self.value_type.contain_target(check_target)
