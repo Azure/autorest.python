@@ -104,7 +104,7 @@ class CombinedType(BaseType):
         file_import = FileImport()
         if self.name and not kwargs.get("is_types_file"):
             file_import.add_submodule_import(
-                kwargs.get("relative_path"),
+                kwargs.pop("relative_path"),
                 "_types",
                 ImportType.LOCAL,
                 TypingSection.TYPING,

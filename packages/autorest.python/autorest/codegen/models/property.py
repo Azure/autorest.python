@@ -8,7 +8,7 @@ from typing import Any, Dict, Optional, TYPE_CHECKING, List
 from .base import BaseModel
 from .constant_type import ConstantType
 from .base import BaseType
-from .imports import FileImport, ImportType, TypingSection
+from .imports import FileImport, ImportType
 from .utils import add_to_description, add_to_pylint_disable
 
 if TYPE_CHECKING:
@@ -130,8 +130,6 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         return retval or None
 
     def imports(self, **kwargs) -> FileImport:
-        from . import CombinedType, ModelType
-
         file_import = self.type.imports(
             **kwargs, is_operation_file=False, relative_path="..", model_typing=True
         )
