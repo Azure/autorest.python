@@ -133,6 +133,3 @@ class DictionaryType(BaseType):
     @property
     def type_description(self) -> str:
         return f"{{str: {self.element_type.type_description}}}"
-
-    def contain_target(self, check_target: Callable[["BaseType"], bool]) -> bool:
-        return check_target(self) or self.element_type.contain_target(check_target)

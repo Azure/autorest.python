@@ -132,26 +132,11 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
     def imports(self, **kwargs) -> FileImport:
         from . import CombinedType, ModelType
 
-        file_import = self.type.imports(**kwargs, is_operation_file=False)
+        file_import = self.type.imports(
+            **kwargs, is_operation_file=False, relative_path="..", model_typing=True
+        )
         if self.optional and self.client_default_value is None:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
-        if self.type.contain_target(lambda t: isinstance(t, ModelType)):
-            file_import.add_submodule_import(
-                "..",
-                "models",
-                ImportType.LOCAL,
-                TypingSection.TYPING,
-                alias="_models",
-            )
-        if self.type.contain_target(
-            lambda t: bool(isinstance(self.type, CombinedType) and self.type.name),
-        ):
-            file_import.add_submodule_import(
-                "..",
-                "_types",
-                ImportType.LOCAL,
-                TypingSection.TYPING,
-            )
         if self.code_model.options["models_mode"] == "dpg":
             file_import.add_submodule_import(
                 ".._model_base",
