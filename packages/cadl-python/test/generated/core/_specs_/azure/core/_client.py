@@ -20,15 +20,15 @@ from ._serialization import Deserializer, Serializer
 class CoreClient(CoreClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates bodies templated with Azure Core.
 
-    :param api_version: The API version to use for this operation. Required.
-    :type api_version: str
+    :keyword api_version: The API version to use for this operation. Default value is
+     "2022-12-01-preview". Note that overriding this default value may result in unsupported
+     behavior.
+    :paramtype api_version: str
     """
 
-    def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
-        self, api_version: str, **kwargs: Any
-    ) -> None:
+    def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
-        self._config = CoreClientConfiguration(api_version=api_version, **kwargs)
+        self._config = CoreClientConfiguration(**kwargs)
         self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()

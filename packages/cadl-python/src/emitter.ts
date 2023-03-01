@@ -155,6 +155,7 @@ export async function $onEmit(context: EmitContext<EmitterOptions>) {
 }
 
 function camelToSnakeCase(name: string): string {
+    if (!name) return name;
     const camelToSnakeCaseRe = (str: string) =>
         str
             .replace(/\s+/g, "_")
@@ -1012,14 +1013,14 @@ function emitUnion(context: DpgContext, type: Union): Record<string, any> {
             return emitType(context, nonNullOptions[0]);
         }
         // Generate as CombinedType if non of the options is Literal.
-        const unionName = `MyCombinedType`;
+        const unionName = type.name;
         return {
             name: unionName,
-            snakeCaseName: camelToSnakeCase(unionName),
+            snakeCaseName: camelToSnakeCase(unionName || ""),
             description: `Type of ${unionName}`,
             isPublic: false,
             type: "combined",
-            types: nonNullOptions.map((x) => emitType(context, x)),
+            types: nonNullOptions.map((x) => getType(context, x)),
             xmlMetadata: {},
         };
     } else if (nonNullOptions.some(notLiteral)) {

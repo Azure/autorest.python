@@ -1,5 +1,21 @@
 # Release History
 
+### 2023-xx-xx - 6.x.x
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.9.2`     |
+| `@autorest/modelerfour`                                                 | `4.24.3`    |
+| `azure-core` dep of generated code                                      | `1.24.0`    |
+| `isodate` dep of generated code                                         | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+
+**New Features**
+
+- Generate named union type in _types.py  #1733
+
 ### 2023-02-01 - 6.4.0
 
 | Library                                                                 | Min Version |
