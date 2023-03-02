@@ -29,7 +29,7 @@ class ParameterizedClient(ParameterizedClientOperationsMixin):  # pylint: disabl
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = ParameterizedClientConfiguration(endpoint=endpoint, **kwargs)
-        self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
+        self._client: PipelineClient = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

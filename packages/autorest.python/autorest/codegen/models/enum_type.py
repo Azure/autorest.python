@@ -195,7 +195,13 @@ class EnumType(BaseType):
         if self.code_model.options["models_mode"] and relative_path and self.enable_render:
             # add import for enums in operations file
             file_import.add_submodule_import(
-                relative_path, "models", ImportType.LOCAL, alias="_models"
+                relative_path,
+                "models",
+                ImportType.LOCAL,
+                alias="_models",
+                typing_section=TypingSection.TYPING
+                if kwargs.get("model_typing")
+                else TypingSection.REGULAR,
             )
         return file_import
 

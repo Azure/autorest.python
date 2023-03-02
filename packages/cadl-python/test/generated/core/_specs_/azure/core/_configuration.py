@@ -6,12 +6,18 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+import sys
 from typing import Any
 
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from ._version import VERSION
+
+if sys.version_info >= (3, 8):
+    from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
+else:
+    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 
 
 class CoreClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
@@ -20,14 +26,15 @@ class CoreClientConfiguration(Configuration):  # pylint: disable=too-many-instan
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param api_version: The API version to use for this operation. Required.
-    :type api_version: str
+    :keyword api_version: The API version to use for this operation. Default value is
+     "2022-12-01-preview". Note that overriding this default value may result in unsupported
+     behavior.
+    :paramtype api_version: str
     """
 
-    def __init__(self, api_version: str, **kwargs: Any) -> None:
+    def __init__(self, **kwargs: Any) -> None:
         super(CoreClientConfiguration, self).__init__(**kwargs)
-        if api_version is None:
-            raise ValueError("Parameter 'api_version' must not be None.")
+        api_version: Literal["2022-12-01-preview"] = kwargs.pop("api_version", "2022-12-01-preview")
 
         self.api_version = api_version
         kwargs.setdefault("sdk_moniker", "coreclient/{}".format(VERSION))

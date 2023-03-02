@@ -9,7 +9,7 @@ from _specs_.azure.core.aio import CoreClient
 
 @pytest.fixture
 async def client():
-    async with CoreClient(api_version="") as client:
+    async with CoreClient() as client:
         yield client
 
 

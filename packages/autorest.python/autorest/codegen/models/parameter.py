@@ -17,7 +17,7 @@ from typing import (
     Generic,
 )
 
-from .imports import FileImport, ImportType
+from .imports import FileImport, ImportType, TypingSection
 from .base import BaseModel
 from .base import BaseType
 from .constant_type import ConstantType
@@ -164,6 +164,13 @@ class _ParameterBase(
                 f"{'.' if async_mode else ''}.._validation",
                 "api_version_validation",
                 ImportType.LOCAL,
+            )
+        if isinstance(self.type, CombinedType) and self.type.name:
+            file_import.add_submodule_import(
+                "..",
+                "_types",
+                ImportType.LOCAL,
+                TypingSection.TYPING,
             )
         return file_import
 

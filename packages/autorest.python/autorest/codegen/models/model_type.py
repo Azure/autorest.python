@@ -303,9 +303,15 @@ class GeneratedModelType(ModelType):  # pylint: disable=abstract-method
         file_import = super().imports(**kwargs)
         relative_path = kwargs.pop("relative_path", None)
         if relative_path:
-            # add import for models in operations file
+            # add import for models in operations or _types file
             file_import.add_submodule_import(
-                relative_path, "models", ImportType.LOCAL, alias="_models"
+                relative_path,
+                "models",
+                ImportType.LOCAL,
+                alias="_models",
+                typing_section=TypingSection.TYPING
+                if kwargs.get("model_typing")
+                else TypingSection.REGULAR,
             )
         return file_import
 

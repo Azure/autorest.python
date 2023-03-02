@@ -8,7 +8,7 @@ from _specs_.azure.core import CoreClient
 
 @pytest.fixture
 def client():
-    with CoreClient(api_version="") as client:
+    with CoreClient() as client:
         yield client
 
 def test_create_or_update(client):
