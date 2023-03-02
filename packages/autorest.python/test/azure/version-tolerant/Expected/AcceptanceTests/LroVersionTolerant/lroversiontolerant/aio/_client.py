@@ -44,7 +44,7 @@ class AutoRestLongRunningOperationTestService:  # pylint: disable=client-accepts
         self, credential: "AsyncTokenCredential", *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = AutoRestLongRunningOperationTestServiceConfiguration(credential=credential, **kwargs)
-        self._client = AsyncARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
+        self._client: AsyncARMPipelineClient = AsyncARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

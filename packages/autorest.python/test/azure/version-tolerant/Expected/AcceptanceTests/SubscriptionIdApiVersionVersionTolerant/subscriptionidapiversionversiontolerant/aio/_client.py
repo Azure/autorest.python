@@ -48,7 +48,7 @@ class MicrosoftAzureTestUrl:  # pylint: disable=client-accepts-api-version-keywo
         self._config = MicrosoftAzureTestUrlConfiguration(
             subscription_id=subscription_id, credential=credential, **kwargs
         )
-        self._client = AsyncARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
+        self._client: AsyncARMPipelineClient = AsyncARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

@@ -1,10 +1,11 @@
 # Release History
 
-## 2023-0x-xx - 0.x.x
+## 2023-03-01 - 0.5.0
 
-**Other Changes**
+**New Features**
 
 - Support nullable type generation.  #1758
+- Generate named union type in _types.py  #1733
 
 ## 2023-02-15 - 0.4.25
 

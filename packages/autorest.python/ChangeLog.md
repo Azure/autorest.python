@@ -1,6 +1,6 @@
 # Release History
 
-### 2023-xx-xx - 6.x.x
+### 2023-03-01 - 6.4.1
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -12,9 +12,9 @@
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
 | `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
 
-**New Features**
+**Bug Fixes**
 
-- Generate named union type in _types.py  #1733
+- Make internal pipeline client typing compatible with latest-in-main azure-core #1765
 
 ### 2023-02-01 - 6.4.0
 

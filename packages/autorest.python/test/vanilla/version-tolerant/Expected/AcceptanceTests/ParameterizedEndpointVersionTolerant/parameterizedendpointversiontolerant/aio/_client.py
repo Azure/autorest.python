@@ -31,7 +31,7 @@ class ParmaterizedEndpointClient(
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = ParmaterizedEndpointClientConfiguration(endpoint=endpoint, **kwargs)
-        self._client = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
