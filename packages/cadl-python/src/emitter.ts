@@ -38,6 +38,8 @@ import {
     isNullType,
     SyntaxKind,
     Type,
+    getOverloads,
+    getOverloadedOperation,
 } from "@cadl-lang/compiler";
 import {
     getAuthentication,
@@ -365,9 +367,9 @@ function emitBodyParameter(context: DpgContext, httpOperation: HttpOperation): B
     if (contentTypes.length === 0) {
         contentTypes = ["application/json"];
     }
-    if (contentTypes.length !== 1) {
-        throw Error("Currently only one kind of content-type!");
-    }
+    // if (contentTypes.length !== 1) {
+    //     throw Error("Currently only one kind of content-type!");
+    // }
     const type = getType(context, getBodyType(context, httpOperation));
 
     if (type.type === "model" && type.name === "") {
@@ -381,7 +383,7 @@ function emitBodyParameter(context: DpgContext, httpOperation: HttpOperation): B
         location: "body",
         ...base,
         defaultContentType:
-            body.parameter?.default ?? contentTypes.includes("application/json") ? "application/json" : contentTypes[0],
+            body.parameter?.default ?? contentTypes.length > 1 ? "" : contentTypes[0],
     };
 }
 
@@ -393,11 +395,15 @@ function emitParameter(
     const base = emitParamBase(context, parameter.param);
     let type = getType(context, parameter.param.type);
     let clientDefaultValue = undefined;
-    if (parameter.name.toLowerCase() === "content-type" && type["type"] === "constant") {
-        /// We don't want constant types for content types, so we make sure if it's
-        /// a constant, we make it not constant
-        clientDefaultValue = type["value"];
-        type = type["valueType"];
+    if (parameter.name.toLowerCase() === "content-type") {
+        if (type["type"] === "constant") {
+            /// We don't want constant types for content types, so we make sure if it's
+            /// a constant, we make it not constant
+            clientDefaultValue = type["value"];
+            type = type["valueType"];
+        }
+        // we don't want to generate enum model for content types
+        type["isLiteral"] = true;
     }
     const paramMap: Record<string, any> = {
         restApiName: parameter.name,
@@ -633,6 +639,7 @@ function emitBasicOperation(
     context: DpgContext,
     operation: Operation,
     operationGroupName: string,
+    isOverload: boolean = false,
 ): Record<string, any> {
     // Set up parameters for operation
     const parameters: Record<string, any>[] = [];
@@ -653,7 +660,6 @@ function emitBasicOperation(
     // Set up responses for operation
     const responses: Record<string, any>[] = [];
     const exceptions: Record<string, any>[] = [];
-    const isOverload: boolean = false;
     const isOverriden: boolean = false;
     for (const response of httpOperation.responses) {
         for (const innerResponse of response.responses) {
@@ -695,6 +701,13 @@ function emitBasicOperation(
         }
     }
     const name = camelToSnakeCase(getLibraryName(context, operation));
+    const overloads: Record<string, any>[] = [];
+    const overload_operations = getOverloads(context.program, operation);
+    if (overload_operations) {
+        for (const overload_operation of overload_operations) {
+            overloads.push(emitBasicOperation(context, overload_operation, operationGroupName, true))
+        }
+    }
     return {
         name: name,
         description: getDocStr(context, operation),
@@ -708,8 +721,8 @@ function emitBasicOperation(
         groupName: operationGroupName,
         addedOn: getAddedOnVersion(context, operation),
         discriminator: "basic",
-        isOverload: false,
-        overloads: [],
+        isOverload: isOverload,
+        overloads: overloads,
         apiVersions: [getAddedOnVersion(context, operation)],
     };
 }
@@ -1103,8 +1116,12 @@ function emitOperationGroups(context: DpgContext, client: Client): Record<string
     for (const operationGroup of listOperationGroups(context, client)) {
         const operations: Record<string, any>[] = [];
         const name = operationGroup.type.name;
-        for (const operation of listOperationsInOperationGroup(context, operationGroup)) {
-            operations.push(emitOperation(context, operation, name));
+        const temp = listOperationsInOperationGroup(context, operationGroup);
+        for (const operation of temp) {
+            const x = getOverloadedOperation(context.program, operation)
+            if (!x) {
+                operations.push(emitOperation(context, operation, name));
+            }
         }
         operationGroups.push({
             className: name,
@@ -1113,8 +1130,12 @@ function emitOperationGroups(context: DpgContext, client: Client): Record<string
         });
     }
     const clientOperations: Record<string, any>[] = [];
-    for (const operation of listOperationsInOperationGroup(context, client)) {
-        clientOperations.push(emitOperation(context, operation, ""));
+    const all_operation = listOperationsInOperationGroup(context, client);
+    for (const operation of all_operation) {
+        const x = getOverloadedOperation(context.program, operation)
+        if (!x) {
+            clientOperations.push(emitOperation(context, operation, ""));
+        }
     }
     if (clientOperations.length > 0) {
         operationGroups.push({

@@ -271,7 +271,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             self.update_operation(code_model, overload, is_overload=True)
         for response in yaml_data.get("responses", []):
             response["discriminator"] = "operation"
-        if body_parameter and not is_overload:
+        if body_parameter and not is_overload and len(yaml_data.get("overloads", [])) == 0:
             # if we have a JSON body, we add a binary overload
             add_body_param_type(code_model, body_parameter)
             add_overloads_for_body_param(yaml_data)

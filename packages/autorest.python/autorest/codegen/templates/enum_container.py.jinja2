@@ -5,5 +5,7 @@ from enum import Enum
 from azure.core import CaseInsensitiveEnumMeta
 
 {% for enum in code_model.enums | sort %}
+{% if enum.enable_render %}
 {% include "enum.py.jinja2" %}
+{% endif %}
 {% endfor %}

@@ -195,7 +195,7 @@ class CodeModel:  # pylint: disable=too-many-public-methods
     @property
     def enums(self) -> List[EnumType]:
         """All of the enums"""
-        return [t for t in self.types_map.values() if isinstance(t, EnumType)]
+        return [t for t in self.types_map.values() if isinstance(t, EnumType) and t.enable_render]
 
     def _sort_model_types_helper(
         self,
