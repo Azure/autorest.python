@@ -1362,12 +1362,13 @@ class _PagingOperationSerializer(
             deserialized = f"self._deserialize(\n    {deserialize_type}, pipeline_response{pylint_disable}\n)"
             retval.append(f"    deserialized = {deserialized}")
         elif self.code_model.options["models_mode"] == "dpg":
+            # we don't want to generate paging models for DPG
             pylint_disable = (
                 "  # pylint: disable=protected-access\n"
                 if isinstance(response.type, ModelType) and not response.type.is_public
                 else ""
             )
-            deserialized = f"_deserialize({response.serialization_type}{pylint_disable}, pipeline_response)"
+            retval.append(f"    deserialized = {deserialized}")
             retval.append(
                 f"    deserialized: {response.serialization_type} = ({pylint_disable}"
             )
@@ -1377,7 +1378,7 @@ class _PagingOperationSerializer(
         item_name = builder.item_name
         list_of_elem = (
             f".{item_name}"
-            if self.code_model.options["models_mode"]
+            if self.code_model.options["models_mode"] == "msrest"
             else f'["{item_name}"]'
         )
         retval.append(f"    list_of_elem = deserialized{list_of_elem}")
@@ -1387,7 +1388,7 @@ class _PagingOperationSerializer(
         continuation_token_name = builder.continuation_token_name
         if not continuation_token_name:
             cont_token_property = "None"
-        elif self.code_model.options["models_mode"]:
+        elif self.code_model.options["models_mode"] == "msrest":
             cont_token_property = f"deserialized.{continuation_token_name} or None"
         else:
             cont_token_property = (

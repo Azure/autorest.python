@@ -546,13 +546,12 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
             return request
 
         def extract_data(pipeline_response):
-            deserialized: _models._models.CustomPageUser = _deserialize(  # pylint: disable=protected-access
-                _models._models.CustomPageUser, pipeline_response  # pylint: disable=protected-access
-            )
-            list_of_elem = deserialized.value
+            response = pipeline_response.http_response.json()
+            next_link = response["nextLink"]
+            list_of_elem = _deserialize(_models._models.User, pipeline_response)
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.next_link or None, iter(list_of_elem)
+            return next_link or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
