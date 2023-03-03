@@ -41,6 +41,7 @@ from .request_builder import OverloadedRequestBuilder, RequestBuilder
 if TYPE_CHECKING:
     from .code_model import CodeModel
     from .client import Client
+    from . import OperationType
 
 ResponseType = TypeVar(
     "ResponseType",
@@ -63,7 +64,6 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         exceptions: List[Response],
         *,
         overloads: Optional[List["Operation"]] = None,
-        public: bool = True,
     ) -> None:
         super().__init__(
             code_model=code_model,
@@ -75,10 +75,13 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         )
         self.overloads: List["Operation"] = overloads or []
         self.responses = responses
-        self.public = public
         self.request_builder = request_builder
         self.deprecated = False
         self.exceptions = exceptions
+        self.is_lro_initial_operation: bool = self.yaml_data.get(
+            "isLroInitialOperation", False
+        )
+        self.include_documentation: bool = not self.is_lro_initial_operation
 
     @property
     def operation_type(self) -> str:
@@ -437,6 +440,10 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         return any(r.is_stream_response for r in self.responses)
 
     @classmethod
+    def get_request_builder(cls, yaml_data: Dict[str, Any], client: "Client"):
+        return client.lookup_request_builder(id(yaml_data))
+
+    @classmethod
     def from_yaml(
         cls,
         yaml_data: Dict[str, Any],
@@ -444,7 +451,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         client: "Client",
     ):
         name = yaml_data["name"]
-        request_builder = client.lookup_request_builder(id(yaml_data))
+        request_builder = cls.get_request_builder(yaml_data, client)
         responses = [
             cast(ResponseType, get_response(r, code_model))
             for r in yaml_data["responses"]
@@ -507,7 +514,7 @@ class Operation(OperationBase[Response]):
 
 def get_operation(
     yaml_data: Dict[str, Any], code_model: "CodeModel", client: "Client"
-) -> OperationBase:
+) -> "OperationType":
     if yaml_data["discriminator"] == "lropaging":
         from .lro_paging_operation import LROPagingOperation as OperationCls
     elif yaml_data["discriminator"] == "lro":

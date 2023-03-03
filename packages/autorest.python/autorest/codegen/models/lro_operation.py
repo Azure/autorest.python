@@ -14,6 +14,7 @@ from .parameter_list import ParameterList
 if TYPE_CHECKING:
     from .code_model import CodeModel
     from .client import Client
+    from . import OperationType
 
 LROResponseType = TypeVar(
     "LROResponseType", bound=Union[LROResponse, LROPagingResponse]
@@ -33,7 +34,6 @@ class LROOperationBase(OperationBase[LROResponseType]):
         exceptions: List[Response],
         *,
         overloads: Optional[List[Operation]] = None,
-        public: bool = True,
     ) -> None:
         super().__init__(
             code_model=code_model,
@@ -45,10 +45,22 @@ class LROOperationBase(OperationBase[LROResponseType]):
             responses=responses,
             exceptions=exceptions,
             overloads=overloads,
-            public=public,
         )
         self.name = "begin_" + self.name
         self.lro_options: Dict[str, Any] = self.yaml_data.get("lroOptions", {})
+        self._initial_operation: Optional["OperationType"] = None
+
+    @property
+    def initial_operation(self) -> "OperationType":
+        if not self._initial_operation:
+            raise ValueError(
+                "You need to first call client.link_lro_initial_operations before accessing"
+            )
+        return self._initial_operation
+
+    @initial_operation.setter
+    def initial_operation(self, val: "OperationType") -> None:
+        self._initial_operation = val
 
     @property
     def operation_type(self) -> str:
@@ -124,4 +136,6 @@ class LROOperationBase(OperationBase[LROResponseType]):
 
 
 class LROOperation(LROOperationBase[LROResponse]):
-    ...
+    @classmethod
+    def get_request_builder(cls, yaml_data: Dict[str, Any], client: "Client"):
+        return client.lookup_request_builder(id(yaml_data["initialOperation"]))

@@ -587,8 +587,9 @@ function emitOperation(context: DpgContext, operation: Operation, operationGroup
     return emitBasicOperation(context, operation, operationGroupName);
 }
 
-function addLroInformation(emittedOperation: Record<string, any>) {
+function addLroInformation(emittedOperation: Record<string, any>, initialOperation: Record<string, any>) {
     emittedOperation["discriminator"] = "lro";
+    emittedOperation["initialOperation"] = initialOperation
 }
 
 function addPagingInformation(context: DpgContext, operation: Operation, emittedOperation: Record<string, any>) {
@@ -601,6 +602,14 @@ function addPagingInformation(context: DpgContext, operation: Operation, emitted
     emittedOperation["continuationTokenName"] = pagedResult.nextLinkPath;
 }
 
+function getLroInitialOperation(context: DpgContext, operation: Operation, operationGroupName: string): Record<string, any> {
+    const initialOperation = emitBasicOperation(context, operation, operationGroupName)[0];
+    initialOperation["name"] = `_${initialOperation["name"]}_initial`;
+    initialOperation["isLroInitialOperation"] = true;
+    initialOperation["wantTracing"] = false;
+    return initialOperation
+}
+
 function emitLroPagingOperation(
     context: DpgContext,
     operation: Operation,
@@ -608,7 +617,8 @@ function emitLroPagingOperation(
 ): Record<string, any>[] {
     const retval: Record<string, any>[] = [];
     for (const emittedOperation of emitBasicOperation(context, operation, operationGroupName)) {
-        addLroInformation(emittedOperation);
+        const initialOperation = getLroInitialOperation(context, operation, operationGroupName);
+        addLroInformation(emittedOperation, initialOperation);
         addPagingInformation(context, operation, emittedOperation);
         emittedOperation["discriminator"] = "lropaging";
         retval.push(emittedOperation);
@@ -623,10 +633,9 @@ function emitLroOperation(
 ): Record<string, any>[] {
     const retval = [];
     for (const emittedOperation of emitBasicOperation(context, operation, operationGroupName)) {
-        const initialOperation = JSON.parse(JSON.stringify(emittedOperation));
-        initialOperation["wantTracing"] = false;
-        initialOperation["name"] += "_initial"
-        addLroInformation(emittedOperation);
+        const initialOperation = getLroInitialOperation(context, operation, operationGroupName);
+        addLroInformation(emittedOperation, initialOperation);
+        retval.push(initialOperation);
         retval.push(emittedOperation);
     }
     return retval;

@@ -1477,7 +1477,7 @@ class _LROOperationSerializer(_OperationSerializer[LROOperationType]):
         )
         retval.append("if cont_token is None:")
         retval.append(
-            f"    raw_result = {self._call_method}self.{builder.name}("
+            f"    raw_result = {self._call_method}self.{builder.initial_operation.name}("
             f"{''  if builder.lro_response and builder.lro_response.type else '  # type: ignore'}"
         )
         retval.extend(
