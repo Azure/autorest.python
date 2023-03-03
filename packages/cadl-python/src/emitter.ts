@@ -623,6 +623,9 @@ function emitLroOperation(
 ): Record<string, any>[] {
     const retval = [];
     for (const emittedOperation of emitBasicOperation(context, operation, operationGroupName)) {
+        const initialOperation = JSON.parse(JSON.stringify(emittedOperation));
+        initialOperation["wantTracing"] = false;
+        initialOperation["name"] += "_initial"
         addLroInformation(emittedOperation);
         retval.push(emittedOperation);
     }
@@ -725,6 +728,7 @@ function emitBasicOperation(
             isOverload: false,
             overloads: [],
             apiVersions: [getAddedOnVersion(context, operation)],
+            wantTracing: true,
         },
     ];
 }

@@ -72,7 +72,6 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
                 OperationGroup.from_yaml(op_group, code_model, self)
                 for op_group in self.yaml_data.get("operationGroups", [])
             ]
-            self.format_lro_operations()
 
     def _build_request_builders(
         self,
@@ -221,19 +220,6 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             for operation_group in self.operation_groups
         )
 
-    def format_lro_operations(self) -> None:
-        """Adds operations and attributes needed for LROs.
-        If there are LRO functions in here, will add initial LRO function. Will also set the return
-        type of the LRO operation
-        """
-        for operation_group in self.operation_groups:
-            i = 0
-            while i < len(operation_group.operations):
-                operation = operation_group.operations[i]
-                if operation.operation_type in ("lro", "lropaging"):
-                    operation_group.operations.insert(i, operation.initial_operation)  # type: ignore
-                    i += 1
-                i += 1
 
     @property
     def need_request_converter(self) -> bool:

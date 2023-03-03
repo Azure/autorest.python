@@ -64,7 +64,6 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         *,
         overloads: Optional[List["Operation"]] = None,
         public: bool = True,
-        want_tracing: bool = True,
     ) -> None:
         super().__init__(
             code_model=code_model,
@@ -73,7 +72,6 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             name=name,
             parameters=parameters,
             overloads=overloads,
-            want_tracing=want_tracing,
         )
         self.overloads: List["Operation"] = overloads or []
         self.responses = responses
@@ -470,7 +468,6 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             overloads=overloads,
             responses=responses,
             exceptions=exceptions,
-            want_tracing=not yaml_data["isOverload"],
         )
 
 

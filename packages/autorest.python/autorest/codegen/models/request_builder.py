@@ -50,11 +50,11 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
             name=name,
             parameters=parameters,
             overloads=overloads,
-            want_tracing=False,
         )
         self.overloads: List["RequestBuilder"] = overloads or []
         self.url: str = yaml_data["url"]
         self.method: str = yaml_data["method"]
+        self.want_tracing = False
 
     def response_type_annotation(self, **kwargs) -> str:
         return "HttpRequest"

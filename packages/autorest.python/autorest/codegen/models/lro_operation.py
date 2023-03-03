@@ -34,7 +34,6 @@ class LROOperationBase(OperationBase[LROResponseType]):
         *,
         overloads: Optional[List[Operation]] = None,
         public: bool = True,
-        want_tracing: bool = True,
     ) -> None:
         super().__init__(
             code_model=code_model,
@@ -47,7 +46,6 @@ class LROOperationBase(OperationBase[LROResponseType]):
             exceptions=exceptions,
             overloads=overloads,
             public=public,
-            want_tracing=want_tracing,
         )
         self.name = "begin_" + self.name
         self.lro_options: Dict[str, Any] = self.yaml_data.get("lroOptions", {})
@@ -92,26 +90,6 @@ class LROOperationBase(OperationBase[LROResponseType]):
     def cls_type_annotation(self, *, async_mode: bool) -> str:
         """We don't want the poller to show up in ClsType, so we call super() on resposne type annotation"""
         return f"ClsType[{Response.type_annotation(self.responses[0], async_mode=async_mode)}]"
-
-    @property
-    def initial_operation(self) -> Operation:
-        """Initial operation that creates the first call for LRO polling"""
-        return Operation(
-            yaml_data=self.yaml_data,
-            code_model=self.code_model,
-            client=self.client,
-            request_builder=self.client.lookup_request_builder(id(self.yaml_data)),
-            name=self.name[5:] + "_initial",
-            overloads=self.overloads,
-            parameters=self.parameters,
-            responses=[
-                Response(r.yaml_data, self.code_model, headers=r.headers, type=r.type)
-                for r in self.responses
-            ],
-            exceptions=self.exceptions,
-            public=False,
-            want_tracing=False,
-        )
 
     def get_poller(self, async_mode: bool) -> str:
         return self.responses[0].get_poller(async_mode)
