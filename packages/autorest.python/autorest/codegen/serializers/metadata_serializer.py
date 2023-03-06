@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import functools
 import json
-from typing import List, Optional, Set, Tuple, Dict, Union
+from typing import List, Optional, Set, Tuple, Dict, Union, Any
 from jinja2 import Environment
 from ..models import (
     OperationGroup,
@@ -16,6 +16,12 @@ from ..models import (
     CodeModel,
 )
 from .builder_serializer import get_operation_serializer
+
+
+def _to_string(data: Union[Tuple[Any], List[Any]], str) -> str:
+    if isinstance(data, (list, tuple)):
+        return "".join([_to_string(item) for item in data])
+    return str(data)
 
 
 def _json_serialize_imports(
@@ -59,7 +65,7 @@ def _json_serialize_imports(
                 if name_imports:
                     name_import_ordered_list = list(name_imports)
                     name_import_ordered_list.sort(
-                        key=lambda e: "".join(e)  # type: ignore
+                        key=lambda e: _to_string(e)  # type: ignore
                         if isinstance(e, (list, tuple))
                         else e
                         if isinstance(e, str)
