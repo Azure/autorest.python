@@ -400,7 +400,7 @@ function emitParameter(
             type = type["valueType"];
         }
         // we don't want to generate enum model for content types
-        type["isLiteral"] = true;
+        type["enableGenerate"] = false;
     }
     const paramMap: Record<string, any> = {
         restApiName: parameter.name,

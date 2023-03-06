@@ -189,5 +189,5 @@ class BaseType(BaseModel, ABC):  # pylint: disable=too-many-public-methods
         return self.type_annotation()
 
     @property
-    def enable_render(self) -> bool:  # pylint: disable=unused-argument
+    def enable_generate(self) -> bool:  # pylint: disable=unused-argument
         return True

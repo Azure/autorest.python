@@ -202,7 +202,7 @@ class CodeModel:  # pylint: disable=too-many-public-methods
         return [
             t
             for t in self.types_map.values()
-            if isinstance(t, EnumType) and t.enable_render
+            if isinstance(t, EnumType) and t.enable_generate
         ]
 
     def _sort_model_types_helper(
