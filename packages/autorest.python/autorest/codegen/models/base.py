@@ -45,6 +45,7 @@ class BaseType(BaseModel, ABC):  # pylint: disable=too-many-public-methods
         self.api_versions: List[str] = yaml_data.get(
             "apiVersions", []
         )  # api versions this type is in.
+        self.enable_generate: bool = yaml_data.get("enableGenerate", True)
 
     @classmethod
     def from_yaml(
@@ -187,7 +188,3 @@ class BaseType(BaseModel, ABC):  # pylint: disable=too-many-public-methods
     @property
     def type_description(self) -> str:
         return self.type_annotation()
-
-    @property
-    def enable_generate(self) -> bool:  # pylint: disable=unused-argument
-        return True

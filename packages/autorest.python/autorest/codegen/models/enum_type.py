@@ -68,7 +68,6 @@ class EnumType(BaseType):
         self.name: str = yaml_data["name"]
         self.values = values
         self.value_type = value_type
-        self.enable_generate = yaml_data.get("enableGenerate", True)
 
     def __lt__(self, other):
         return self.name.lower() < other.name.lower()
@@ -208,7 +207,3 @@ class EnumType(BaseType):
                 else TypingSection.REGULAR,
             )
         return file_import
-
-    @property
-    def enable_generate(self) -> bool:
-        return self.enable_generate
