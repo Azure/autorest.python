@@ -192,7 +192,11 @@ class EnumType(BaseType):
             self.value_type.imports(is_operation_file=is_operation_file, **kwargs)
         )
         relative_path = kwargs.pop("relative_path", None)
-        if self.code_model.options["models_mode"] and relative_path and self.enable_render:
+        if (
+            self.code_model.options["models_mode"]
+            and relative_path
+            and self.enable_render
+        ):
             # add import for enums in operations file
             file_import.add_submodule_import(
                 relative_path,

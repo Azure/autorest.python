@@ -4,21 +4,6 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        { 
-            "name": "multicontenttype",
-            "request": "launch",
-            "cwd": "${workspaceFolder}/packages/cadl-python",
-            "runtimeArgs": ["compile", "multicontenttype/.", "--emit", "@azure-tools/cadl-python"],
-            "runtimeExecutable": "cadl",
-            "skipFiles": ["<node_internals>/**"],
-            "type": "node",
-            "outFiles": [
-              "${workspaceFolder}/packages/*/dist/**/*.js",
-              "${workspaceFolder}/packages/*/dist-dev/**/*.js",
-              "${workspaceFolder}/core/packages/*/dist/**/*.js",
-              "${workspaceFolder}/core/packages/*/dist-dev/**/*.js"
-            ]
-        },
         {
             "name": "Generate cadl",
             "request": "launch",

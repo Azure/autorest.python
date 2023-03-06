@@ -367,9 +367,6 @@ function emitBodyParameter(context: DpgContext, httpOperation: HttpOperation): B
     if (contentTypes.length === 0) {
         contentTypes = ["application/json"];
     }
-    // if (contentTypes.length !== 1) {
-    //     throw Error("Currently only one kind of content-type!");
-    // }
     const type = getType(context, getBodyType(context, httpOperation));
 
     if (type.type === "model" && type.name === "") {
@@ -382,8 +379,7 @@ function emitBodyParameter(context: DpgContext, httpOperation: HttpOperation): B
         restApiName: body.parameter?.name ?? "body",
         location: "body",
         ...base,
-        defaultContentType:
-            body.parameter?.default ?? contentTypes.length > 1 ? "" : contentTypes[0],
+        defaultContentType: body.parameter?.default ?? contentTypes.length > 1 ? "" : contentTypes[0],
     };
 }
 
@@ -706,7 +702,7 @@ function emitBasicOperation(
     const overload_operations = getOverloads(context.program, operation);
     if (overload_operations) {
         for (const overload_operation of overload_operations) {
-            overloads.push(emitBasicOperation(context, overload_operation, operationGroupName, true))
+            overloads.push(emitBasicOperation(context, overload_operation, operationGroupName, true));
         }
         for (const overload of overloads) {
             overload.name = name;
@@ -1128,10 +1124,8 @@ function emitOperationGroups(context: DpgContext, client: Client): Record<string
     for (const operationGroup of listOperationGroups(context, client)) {
         const operations: Record<string, any>[] = [];
         const name = operationGroup.type.name;
-        const temp = listOperationsInOperationGroup(context, operationGroup);
-        for (const operation of temp) {
-            const x = getOverloadedOperation(context.program, operation)
-            if (!x) {
+        for (const operation of listOperationsInOperationGroup(context, operationGroup)) {
+            if (!getOverloadedOperation(context.program, operation)) {
                 operations.push(emitOperation(context, operation, name));
             }
         }
@@ -1142,10 +1136,8 @@ function emitOperationGroups(context: DpgContext, client: Client): Record<string
         });
     }
     const clientOperations: Record<string, any>[] = [];
-    const all_operation = listOperationsInOperationGroup(context, client);
-    for (const operation of all_operation) {
-        const x = getOverloadedOperation(context.program, operation)
-        if (!x) {
+    for (const operation of listOperationsInOperationGroup(context, client)) {
+        if (!getOverloadedOperation(context.program, operation)) {
             clientOperations.push(emitOperation(context, operation, ""));
         }
     }

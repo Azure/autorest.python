@@ -737,7 +737,9 @@ class _OperationSerializer(
                 f"_{body_kwarg_name} = self._serialize.body({body_param.client_name}, "
                 f"'{body_param.type.serialization_type}'{is_xml_cmd}{serialization_ctxt_cmd})"
             )
-        elif self.code_model.options["models_mode"] == "dpg" and isinstance(body_param.type, (ModelType, AnyObjectType)):
+        elif self.code_model.options["models_mode"] == "dpg" and isinstance(
+            body_param.type, (ModelType, AnyObjectType)
+        ):
             create_body_call = (
                 f"_{body_kwarg_name} = json.dumps({body_param.client_name}, "
                 "cls=AzureJSONEncoder)  # type: ignore"
@@ -785,10 +787,14 @@ class _OperationSerializer(
             retval.extend(self._serialize_body_parameter(builder))
         return retval
 
-    def _initial_overloads_equally(self, builder: OperationType, same_content_type: bool) -> List[str]:
+    def _initial_overloads_equally(
+        self, builder: OperationType, same_content_type: bool
+    ) -> List[str]:
         retval: List[str] = []
         for idx, overload in enumerate(builder.overloads):
-            if builder.has_native_overload and isinstance(overload.parameters.body_parameter.type, ByteArraySchema):
+            if builder.has_native_overload and isinstance(
+                overload.parameters.body_parameter.type, ByteArraySchema
+            ):
                 continue
             if_statement = "if" if idx == 0 else "elif"
             body_param = overload.parameters.body_parameter
@@ -863,7 +869,9 @@ class _OperationSerializer(
                         (
                             o
                             for o in builder.overloads
-                            if not isinstance(o.parameters.body_parameter.type, BinaryType)
+                            if not isinstance(
+                                o.parameters.body_parameter.type, BinaryType
+                            )
                         )
                     ),
                 )
@@ -879,10 +887,17 @@ class _OperationSerializer(
                         f'"{other_overload.parameters.body_parameter.default_content_type}"'
                     )
             except StopIteration:
-                retval.extend(self._initial_overloads_equally(builder, same_content_type))
+                retval.extend(
+                    self._initial_overloads_equally(builder, same_content_type)
+                )
         else:
             retval.extend(self._initial_overloads_equally(builder, same_content_type))
-            retval.extend(["else:", f'    raise TypeError("unrecognized type for {builder.parameters.body_parameter.client_name}")'])
+            retval.extend(
+                [
+                    "else:",
+                    f'    raise TypeError("unrecognized type for {builder.parameters.body_parameter.client_name}")',
+                ]
+            )
         return retval
 
     def _create_request_builder_call(

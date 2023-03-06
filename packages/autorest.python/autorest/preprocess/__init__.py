@@ -135,11 +135,13 @@ def add_overloads_for_body_param(yaml_data: Dict[str, Any]) -> None:
     content_type_param["optional"] = True
 
 
-def add_overloads_for_native_overloads(code_model: Dict[str, Any],yaml_data: Dict[str, Any]) -> None:
+def add_overloads_for_native_overloads(
+    code_model: Dict[str, Any], yaml_data: Dict[str, Any]
+) -> None:
     if yaml_data["bodyParameter"]["type"]["type"] == "combined":
         combined_type = yaml_data["bodyParameter"]["type"]
     else:
-        combined_type = {"type":"combined", "types": []}
+        combined_type = {"type": "combined", "types": []}
         code_model["types"].append(combined_type)
     binary_overload = None
     model_overload = None
@@ -148,7 +150,11 @@ def add_overloads_for_native_overloads(code_model: Dict[str, Any],yaml_data: Dic
         if body_type["type"] == "byte-array" and not binary_overload:
             combined_type["types"].append(KNOWN_TYPES["binary"])
             binary_overload = add_overload(overload, KNOWN_TYPES["binary"])
-        elif body_type["type"] == "model" and body_type["base"] == "dpg" and not model_overload:
+        elif (
+            body_type["type"] == "model"
+            and body_type["base"] == "dpg"
+            and not model_overload
+        ):
             combined_type["types"].append(KNOWN_TYPES["any-object"])
             model_overload = add_overload(overload, KNOWN_TYPES["any-object"])
             if not binary_overload:
@@ -158,6 +164,7 @@ def add_overloads_for_native_overloads(code_model: Dict[str, Any],yaml_data: Dic
         yaml_data["overloads"].append(model_overload)
     if binary_overload:
         yaml_data["overloads"].insert(0, binary_overload)
+
 
 def _remove_paging_maxpagesize(yaml_data: Dict[str, Any]) -> None:
     # we don't expose maxpagesize for version tolerant generation
@@ -424,12 +431,6 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                 self.update_operation_groups(yaml_data, client)
         if yaml_data.get("namespace"):
             yaml_data["namespace"] = pad_builtin_namespaces(yaml_data["namespace"])
-        
-        # import yaml
-        # from pathlib import Path
-        # file = "D:\\dev1\\cadl_flags.yaml"
-        # with open(str(Path(file)), "w") as fw:
-        #     fw.write(yaml.safe_dump(yaml_data))
 
 
 class PreProcessPluginAutorest(YamlUpdatePluginAutorest, PreProcessPlugin):
