@@ -295,7 +295,6 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             self.update_operation(code_model, overload, is_overload=True)
         for response in yaml_data.get("responses", []):
             response["discriminator"] = "operation"
-        # if body_parameter and not is_overload and len(yaml_data.get("overloads", [])) == 0:
         if body_parameter and not is_overload:
             if yaml_data.get("hasNativeOverload", False):
                 add_overloads_for_native_overloads(code_model, yaml_data)
@@ -426,11 +425,11 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         if yaml_data.get("namespace"):
             yaml_data["namespace"] = pad_builtin_namespaces(yaml_data["namespace"])
         
-        import yaml
-        from pathlib import Path
-        file = "D:\\dev1\\cadl_flags.yaml"
-        with open(str(Path(file)), "w") as fw:
-            fw.write(yaml.safe_dump(yaml_data))
+        # import yaml
+        # from pathlib import Path
+        # file = "D:\\dev1\\cadl_flags.yaml"
+        # with open(str(Path(file)), "w") as fw:
+        #     fw.write(yaml.safe_dump(yaml_data))
 
 
 class PreProcessPluginAutorest(YamlUpdatePluginAutorest, PreProcessPlugin):
