@@ -453,6 +453,8 @@ class StringOperations:
     def get_all(self, **kwargs: Any) -> _models.StringProperty:
         """Get models that will return all properties in the model.
 
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: StringProperty. The StringProperty is compatible with MutableMapping
         :rtype: ~models.property.optional.models.StringProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -477,7 +479,7 @@ class StringOperations:
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -497,6 +499,8 @@ class StringOperations:
     def get_default(self, **kwargs: Any) -> _models.StringProperty:
         """Get models that will return the default object.
 
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: StringProperty. The StringProperty is compatible with MutableMapping
         :rtype: ~models.property.optional.models.StringProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -521,7 +525,7 @@ class StringOperations:
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -548,6 +552,8 @@ class StringOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -564,6 +570,8 @@ class StringOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -580,6 +588,8 @@ class StringOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -596,6 +606,8 @@ class StringOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -630,7 +642,7 @@ class StringOperations:
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -653,6 +665,8 @@ class StringOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -669,6 +683,8 @@ class StringOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -685,6 +701,8 @@ class StringOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -701,6 +719,8 @@ class StringOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -735,7 +755,7 @@ class StringOperations:
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -769,6 +789,8 @@ class BytesOperations:
     def get_all(self, **kwargs: Any) -> _models.BytesProperty:
         """Get models that will return all properties in the model.
 
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: BytesProperty. The BytesProperty is compatible with MutableMapping
         :rtype: ~models.property.optional.models.BytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -793,7 +815,7 @@ class BytesOperations:
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -813,6 +835,8 @@ class BytesOperations:
     def get_default(self, **kwargs: Any) -> _models.BytesProperty:
         """Get models that will return the default object.
 
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: BytesProperty. The BytesProperty is compatible with MutableMapping
         :rtype: ~models.property.optional.models.BytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -837,7 +861,7 @@ class BytesOperations:
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -864,6 +888,8 @@ class BytesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -880,6 +906,8 @@ class BytesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -896,6 +924,8 @@ class BytesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -912,6 +942,8 @@ class BytesOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -946,7 +978,7 @@ class BytesOperations:
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -969,6 +1001,8 @@ class BytesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -985,6 +1019,8 @@ class BytesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1001,6 +1037,8 @@ class BytesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1017,6 +1055,8 @@ class BytesOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1051,7 +1091,7 @@ class BytesOperations:
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1085,6 +1125,8 @@ class DatetimeOperations:
     def get_all(self, **kwargs: Any) -> _models.DatetimeProperty:
         """Get models that will return all properties in the model.
 
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
         :rtype: ~models.property.optional.models.DatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1109,7 +1151,7 @@ class DatetimeOperations:
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1129,6 +1171,8 @@ class DatetimeOperations:
     def get_default(self, **kwargs: Any) -> _models.DatetimeProperty:
         """Get models that will return the default object.
 
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
         :rtype: ~models.property.optional.models.DatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1153,7 +1197,7 @@ class DatetimeOperations:
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1180,6 +1224,8 @@ class DatetimeOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1196,6 +1242,8 @@ class DatetimeOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1212,6 +1260,8 @@ class DatetimeOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1228,6 +1278,8 @@ class DatetimeOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1262,7 +1314,7 @@ class DatetimeOperations:
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1285,6 +1337,8 @@ class DatetimeOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1301,6 +1355,8 @@ class DatetimeOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1317,6 +1373,8 @@ class DatetimeOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1333,6 +1391,8 @@ class DatetimeOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1367,7 +1427,7 @@ class DatetimeOperations:
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1401,6 +1461,8 @@ class DurationOperations:
     def get_all(self, **kwargs: Any) -> _models.DurationProperty:
         """Get models that will return all properties in the model.
 
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: DurationProperty. The DurationProperty is compatible with MutableMapping
         :rtype: ~models.property.optional.models.DurationProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1425,7 +1487,7 @@ class DurationOperations:
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1445,6 +1507,8 @@ class DurationOperations:
     def get_default(self, **kwargs: Any) -> _models.DurationProperty:
         """Get models that will return the default object.
 
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: DurationProperty. The DurationProperty is compatible with MutableMapping
         :rtype: ~models.property.optional.models.DurationProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1469,7 +1533,7 @@ class DurationOperations:
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1496,6 +1560,8 @@ class DurationOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1512,6 +1578,8 @@ class DurationOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1528,6 +1596,8 @@ class DurationOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1544,6 +1614,8 @@ class DurationOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1578,7 +1650,7 @@ class DurationOperations:
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1601,6 +1673,8 @@ class DurationOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1617,6 +1691,8 @@ class DurationOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1633,6 +1709,8 @@ class DurationOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1649,6 +1727,8 @@ class DurationOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1683,7 +1763,7 @@ class DurationOperations:
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1717,6 +1797,8 @@ class CollectionsByteOperations:
     def get_all(self, **kwargs: Any) -> _models.CollectionsByteProperty:
         """Get models that will return all properties in the model.
 
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: CollectionsByteProperty. The CollectionsByteProperty is compatible with MutableMapping
         :rtype: ~models.property.optional.models.CollectionsByteProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1741,7 +1823,7 @@ class CollectionsByteOperations:
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1761,6 +1843,8 @@ class CollectionsByteOperations:
     def get_default(self, **kwargs: Any) -> _models.CollectionsByteProperty:
         """Get models that will return the default object.
 
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: CollectionsByteProperty. The CollectionsByteProperty is compatible with MutableMapping
         :rtype: ~models.property.optional.models.CollectionsByteProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1785,7 +1869,7 @@ class CollectionsByteOperations:
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1812,6 +1896,8 @@ class CollectionsByteOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1828,6 +1914,8 @@ class CollectionsByteOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1844,6 +1932,8 @@ class CollectionsByteOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1860,6 +1950,8 @@ class CollectionsByteOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1894,7 +1986,7 @@ class CollectionsByteOperations:
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1917,6 +2009,8 @@ class CollectionsByteOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1933,6 +2027,8 @@ class CollectionsByteOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1949,6 +2045,8 @@ class CollectionsByteOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1965,6 +2063,8 @@ class CollectionsByteOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1999,7 +2099,7 @@ class CollectionsByteOperations:
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2033,6 +2133,8 @@ class CollectionsModelOperations:
     def get_all(self, **kwargs: Any) -> _models.CollectionsModelProperty:
         """Get models that will return all properties in the model.
 
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: CollectionsModelProperty. The CollectionsModelProperty is compatible with
          MutableMapping
         :rtype: ~models.property.optional.models.CollectionsModelProperty
@@ -2058,7 +2160,7 @@ class CollectionsModelOperations:
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2078,6 +2180,8 @@ class CollectionsModelOperations:
     def get_default(self, **kwargs: Any) -> _models.CollectionsModelProperty:
         """Get models that will return the default object.
 
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: CollectionsModelProperty. The CollectionsModelProperty is compatible with
          MutableMapping
         :rtype: ~models.property.optional.models.CollectionsModelProperty
@@ -2103,7 +2207,7 @@ class CollectionsModelOperations:
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2130,6 +2234,8 @@ class CollectionsModelOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2146,6 +2252,8 @@ class CollectionsModelOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2162,6 +2270,8 @@ class CollectionsModelOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2178,6 +2288,8 @@ class CollectionsModelOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2212,7 +2324,7 @@ class CollectionsModelOperations:
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2235,6 +2347,8 @@ class CollectionsModelOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2251,6 +2365,8 @@ class CollectionsModelOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2267,6 +2383,8 @@ class CollectionsModelOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2283,6 +2401,8 @@ class CollectionsModelOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2317,7 +2437,7 @@ class CollectionsModelOperations:
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2351,6 +2471,8 @@ class RequiredAndOptionalOperations:
     def get_all(self, **kwargs: Any) -> _models.RequiredAndOptionalProperty:
         """Get models that will return all properties in the model.
 
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: RequiredAndOptionalProperty. The RequiredAndOptionalProperty is compatible with
          MutableMapping
         :rtype: ~models.property.optional.models.RequiredAndOptionalProperty
@@ -2376,7 +2498,7 @@ class RequiredAndOptionalOperations:
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2396,6 +2518,8 @@ class RequiredAndOptionalOperations:
     def get_required_only(self, **kwargs: Any) -> _models.RequiredAndOptionalProperty:
         """Get models that will return only the required properties.
 
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: RequiredAndOptionalProperty. The RequiredAndOptionalProperty is compatible with
          MutableMapping
         :rtype: ~models.property.optional.models.RequiredAndOptionalProperty
@@ -2421,7 +2545,7 @@ class RequiredAndOptionalOperations:
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2448,6 +2572,8 @@ class RequiredAndOptionalOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2464,6 +2590,8 @@ class RequiredAndOptionalOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2480,6 +2608,8 @@ class RequiredAndOptionalOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2496,6 +2626,8 @@ class RequiredAndOptionalOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2530,7 +2662,7 @@ class RequiredAndOptionalOperations:
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2553,6 +2685,8 @@ class RequiredAndOptionalOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2569,6 +2703,8 @@ class RequiredAndOptionalOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2585,6 +2721,8 @@ class RequiredAndOptionalOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2601,6 +2739,8 @@ class RequiredAndOptionalOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2635,7 +2775,7 @@ class RequiredAndOptionalOperations:
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response

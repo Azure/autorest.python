@@ -639,11 +639,16 @@ class _OperationSerializer(
 
     def make_pipeline_call(self, builder: OperationType) -> List[str]:
         type_ignore = self.async_mode and builder.group_name == ""  # is in a mixin
+        if builder.expose_stream_keyword:
+            stream = '    stream=kwargs.pop("stream", False),'
+        else:
+            stream = f"    stream={builder.has_stream_response},"
+
         return [
             f"pipeline_response: PipelineResponse = {self._call_method}self._client._pipeline.run(  "
             + f"{'# type: ignore' if type_ignore else ''} # pylint: disable=protected-access",
             "    request,",
-            f"    stream={builder.has_stream_response},",
+            stream,
             "    **kwargs",
             ")",
         ]
@@ -669,6 +674,11 @@ class _OperationSerializer(
 
     def param_description(self, builder: OperationType) -> List[str]:
         description_list = super().param_description(builder)
+        if builder.expose_stream_keyword:
+            description_list.append(
+                ":keyword bool stream: Whether to stream the response of this operation. "
+                f"Defaults to False. You will have to context manage the returned stream."
+            )
         if not self.code_model.options["version_tolerant"]:
             description_list.append(
                 ":keyword callable cls: A custom type or function that will be passed the direct response"

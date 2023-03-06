@@ -57,6 +57,8 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
         :rtype: ~models.visibility.automatic.models.VisibilityModel
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -73,6 +75,8 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
         :rtype: ~models.visibility.automatic.models.VisibilityModel
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -89,6 +93,8 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
         :rtype: ~models.visibility.automatic.models.VisibilityModel
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -105,6 +111,8 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
         :rtype: ~models.visibility.automatic.models.VisibilityModel
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -139,7 +147,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -166,6 +174,8 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: bool
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -180,6 +190,8 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: bool
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -194,6 +206,8 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: bool
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -208,6 +222,8 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: bool
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -242,7 +258,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -266,6 +282,8 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -282,6 +300,8 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -298,6 +318,8 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -314,6 +336,8 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -348,7 +372,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -371,6 +395,8 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -387,6 +413,8 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -403,6 +431,8 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -419,6 +449,8 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -453,7 +485,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -476,6 +508,8 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -492,6 +526,8 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -508,6 +544,8 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -524,6 +562,8 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -558,7 +598,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -581,6 +621,8 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -597,6 +639,8 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -613,6 +657,8 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -629,6 +675,8 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -663,7 +711,7 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response

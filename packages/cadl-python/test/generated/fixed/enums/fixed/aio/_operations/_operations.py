@@ -41,6 +41,8 @@ class FixedClientOperationsMixin(FixedClientMixinABC):
     async def get_known_value(self, **kwargs: Any) -> Union[str, _models.DaysOfWeekEnum]:
         """getKnownValue.
 
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: DaysOfWeekEnum
         :rtype: str or ~enums.fixed.models.DaysOfWeekEnum
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -65,7 +67,7 @@ class FixedClientOperationsMixin(FixedClientMixinABC):
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -93,6 +95,8 @@ class FixedClientOperationsMixin(FixedClientMixinABC):
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -122,7 +126,7 @@ class FixedClientOperationsMixin(FixedClientMixinABC):
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
@@ -146,6 +150,8 @@ class FixedClientOperationsMixin(FixedClientMixinABC):
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -175,7 +181,7 @@ class FixedClientOperationsMixin(FixedClientMixinABC):
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response

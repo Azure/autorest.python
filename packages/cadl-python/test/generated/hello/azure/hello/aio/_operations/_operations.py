@@ -34,6 +34,8 @@ class HelloClientOperationsMixin(HelloClientMixinABC):
     async def world(self, **kwargs: Any) -> str:
         """world.
 
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: str
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -58,7 +60,7 @@ class HelloClientOperationsMixin(HelloClientMixinABC):
         request.url = self._client.format_url(request.url)
 
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=kwargs.pop("stream", False), **kwargs
         )
 
         response = pipeline_response.http_response
