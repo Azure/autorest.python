@@ -83,7 +83,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         request_builders: List[Union[RequestBuilder, OverloadedRequestBuilder]] = []
         for og_group in self.yaml_data["operationGroups"]:
             for operation_yaml in og_group["operations"]:
-                if operation_yaml["discriminator"] == "lro":
+                if operation_yaml["discriminator"] in ("lro", "lropaging"):
                     continue
                 request_builder = get_request_builder(
                     operation_yaml,
@@ -93,9 +93,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
                 if operation_yaml.get("isLroInitialOperation"):
                     # we want to change the name
                     request_builder.name = request_builder.get_name(
-                        request_builder.yaml_data["name"]
-                        .rstrip("_initial")
-                        .lstrip("_"),
+                        request_builder.yaml_data["name"][1 : -len("_initial")],
                         request_builder.yaml_data,
                         request_builder.code_model,
                         request_builder.client,

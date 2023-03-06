@@ -134,8 +134,10 @@ class LROOperationBase(OperationBase[LROResponseType]):
         file_import.add_submodule_import("typing", "cast", ImportType.STDLIB)
         return file_import
 
-
-class LROOperation(LROOperationBase[LROResponse]):
     @classmethod
     def get_request_builder(cls, yaml_data: Dict[str, Any], client: "Client"):
         return client.lookup_request_builder(id(yaml_data["initialOperation"]))
+
+
+class LROOperation(LROOperationBase[LROResponse]):
+    ...
