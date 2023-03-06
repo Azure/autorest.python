@@ -25,3 +25,4 @@ azure-core==1.24.0
 -e ./generated/usage
 -e ./generated/visibility
 -e ./generated/core
+-e ./generated/overload

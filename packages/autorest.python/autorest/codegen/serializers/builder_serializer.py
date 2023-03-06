@@ -16,6 +16,7 @@ from ..models import (
     LROOperation,
     LROPagingOperation,
     ModelType,
+    AnyObjectType,
     DictionaryType,
     ListType,
     Parameter,
@@ -23,6 +24,7 @@ from ..models import (
     ParameterLocation,
     Response,
     BinaryType,
+    ByteArraySchema,
     BodyParameter,
     ParameterMethodLocation,
     RequestBuilderBodyParameter,
@@ -735,7 +737,7 @@ class _OperationSerializer(
                 f"_{body_kwarg_name} = self._serialize.body({body_param.client_name}, "
                 f"'{body_param.type.serialization_type}'{is_xml_cmd}{serialization_ctxt_cmd})"
             )
-        elif self.code_model.options["models_mode"] == "dpg":
+        elif self.code_model.options["models_mode"] == "dpg" and isinstance(body_param.type, (ModelType, AnyObjectType)):
             create_body_call = (
                 f"_{body_kwarg_name} = json.dumps({body_param.client_name}, "
                 "cls=AzureJSONEncoder)  # type: ignore"
@@ -783,6 +785,26 @@ class _OperationSerializer(
             retval.extend(self._serialize_body_parameter(builder))
         return retval
 
+    def _initial_overloads_equally(self, builder: OperationType, same_content_type: bool) -> List[str]:
+        retval: List[str] = []
+        for idx, overload in enumerate(builder.overloads):
+            if builder.has_native_overload and isinstance(overload.parameters.body_parameter.type, ByteArraySchema):
+                continue
+            if_statement = "if" if idx == 0 else "elif"
+            body_param = overload.parameters.body_parameter
+            retval.append(
+                f"{if_statement} {body_param.type.instance_check_template.format(body_param.client_name)}:"
+            )
+            if body_param.default_content_type and not same_content_type:
+                retval.append(
+                    f'    content_type = content_type or "{body_param.default_content_type}"'
+                )
+            retval.extend(
+                f"    {l}"
+                for l in self._create_body_parameter(cast(OperationType, overload))
+            )
+        return retval
+
     def _initialize_overloads(
         self, builder: OperationType, is_paging: bool = False
     ) -> List[str]:
@@ -810,66 +832,57 @@ class _OperationSerializer(
         ]
         for v in sorted(set(client_names), key=client_names.index):
             retval.append(f"_{v} = None")
-        try:
-            # if there is a binary overload, we do a binary check first.
-            binary_overload = cast(
-                OperationType,
-                next(
-                    (
-                        o
-                        for o in builder.overloads
-                        if isinstance(o.parameters.body_parameter.type, BinaryType)
-                    )
-                ),
-            )
-            binary_body_param = binary_overload.parameters.body_parameter
-            retval.append(
-                f"if {binary_body_param.type.instance_check_template.format(binary_body_param.client_name)}:"
-            )
-            if binary_body_param.default_content_type and not same_content_type:
-                retval.append(
-                    f'    content_type = content_type or "{binary_body_param.default_content_type}"'
+        if not builder.has_native_overload:
+            try:
+                # if there is a binary overload, we do a binary check first.
+                binary_overload = cast(
+                    OperationType,
+                    next(
+                        (
+                            o
+                            for o in builder.overloads
+                            if isinstance(o.parameters.body_parameter.type, BinaryType)
+                        )
+                    ),
                 )
-            retval.extend(
-                f"    {l}" for l in self._create_body_parameter(binary_overload)
-            )
-            retval.append("else:")
-            other_overload = cast(
-                OperationType,
-                next(
-                    (
-                        o
-                        for o in builder.overloads
-                        if not isinstance(o.parameters.body_parameter.type, BinaryType)
-                    )
-                ),
-            )
-            retval.extend(
-                f"    {l}" for l in self._create_body_parameter(other_overload)
-            )
-            if (
-                other_overload.parameters.body_parameter.default_content_type
-                and not same_content_type
-            ):
+                binary_body_param = binary_overload.parameters.body_parameter
                 retval.append(
-                    "    content_type = content_type or "
-                    f'"{other_overload.parameters.body_parameter.default_content_type}"'
+                    f"if {binary_body_param.type.instance_check_template.format(binary_body_param.client_name)}:"
                 )
-        except StopIteration:
-            for idx, overload in enumerate(builder.overloads):
-                if_statement = "if" if idx == 0 else "elif"
-                body_param = overload.parameters.body_parameter
-                retval.append(
-                    f"{if_statement} {body_param.type.instance_check_template.format(body_param.client_name)}:"
-                )
-                if body_param.default_content_type and not same_content_type:
+                if binary_body_param.default_content_type and not same_content_type:
                     retval.append(
-                        f'    content_type = content_type or "{body_param.default_content_type}"'
+                        f'    content_type = content_type or "{binary_body_param.default_content_type}"'
                     )
                 retval.extend(
-                    f"    {l}"
-                    for l in self._create_body_parameter(cast(OperationType, overload))
+                    f"    {l}" for l in self._create_body_parameter(binary_overload)
                 )
+                retval.append("else:")
+                other_overload = cast(
+                    OperationType,
+                    next(
+                        (
+                            o
+                            for o in builder.overloads
+                            if not isinstance(o.parameters.body_parameter.type, BinaryType)
+                        )
+                    ),
+                )
+                retval.extend(
+                    f"    {l}" for l in self._create_body_parameter(other_overload)
+                )
+                if (
+                    other_overload.parameters.body_parameter.default_content_type
+                    and not same_content_type
+                ):
+                    retval.append(
+                        "    content_type = content_type or "
+                        f'"{other_overload.parameters.body_parameter.default_content_type}"'
+                    )
+            except StopIteration:
+                retval.extend(self._initial_overloads_equally(builder, same_content_type))
+        else:
+            retval.extend(self._initial_overloads_equally(builder, same_content_type))
+            retval.extend(["else:", f'    raise TypeError("unrecognized type for {builder.parameters.body_parameter.client_name}")'])
         return retval
 
     def _create_request_builder_call(

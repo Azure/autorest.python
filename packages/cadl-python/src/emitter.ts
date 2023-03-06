@@ -296,7 +296,7 @@ type ParamBase = {
     clientName: string;
     inOverload: boolean;
 };
-function emitParamBase(context: DpgContext, parameter: ModelProperty | Type): ParamBase {
+function emitParamBase(context: DpgContext, parameter: ModelProperty | Type, isOverload: boolean = false): ParamBase {
     let optional: boolean;
     let name: string;
     let description: string = "";
@@ -317,7 +317,7 @@ function emitParamBase(context: DpgContext, parameter: ModelProperty | Type): Pa
         description,
         addedOn,
         clientName: camelToSnakeCase(name),
-        inOverload: false,
+        inOverload: isOverload,
     };
 }
 
@@ -391,8 +391,9 @@ function emitParameter(
     context: DpgContext,
     parameter: HttpOperationParameter | HttpServerParameter,
     implementation: string,
+    isOverload: boolean = false,
 ): Record<string, any> {
-    const base = emitParamBase(context, parameter.param);
+    const base = emitParamBase(context, parameter.param, isOverload);
     let type = getType(context, parameter.param.type);
     let clientDefaultValue = undefined;
     if (parameter.name.toLowerCase() === "content-type") {
@@ -650,7 +651,7 @@ function emitBasicOperation(
     }
     const httpOperation = ignoreDiagnostics(getHttpOperation(context.program, operation));
     for (const param of httpOperation.parameters.parameters) {
-        const emittedParam = emitParameter(context, param, "Method");
+        const emittedParam = emitParameter(context, param, "Method", isOverload);
         if (isApiVersion(context, param) && apiVersionParam === undefined) {
             apiVersionParam = emittedParam;
         }
@@ -707,6 +708,14 @@ function emitBasicOperation(
         for (const overload_operation of overload_operations) {
             overloads.push(emitBasicOperation(context, overload_operation, operationGroupName, true))
         }
+        for (const overload of overloads) {
+            overload.name = name;
+        }
+        for (const p of parameters) {
+            if (p.restApiName.toLowerCase() === "content-type") {
+                p.optional = true;
+            }
+        }
     }
     return {
         name: name,
@@ -724,6 +733,7 @@ function emitBasicOperation(
         isOverload: isOverload,
         overloads: overloads,
         apiVersions: [getAddedOnVersion(context, operation)],
+        hasNativeOverload: overloads.length > 0,
     };
 }
 
