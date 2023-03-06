@@ -16,6 +16,7 @@ from ..models import (
     LROOperation,
     LROPagingOperation,
     ModelType,
+    DPGModelType,
     AnyObjectType,
     DictionaryType,
     ListType,
@@ -713,7 +714,9 @@ class _OperationSerializer(
             ":raises ~azure.core.exceptions.HttpResponseError:",
         ]
 
-    def _serialize_body_parameter(self, builder: OperationType) -> List[str]:
+    def _serialize_body_parameter(
+        self, builder: OperationType, has_native_overload: bool = False
+    ) -> List[str]:
         """We need to serialize params if they're not meant to be streamed in.
 
         This function serializes the body params that need to be serialized.
@@ -737,8 +740,12 @@ class _OperationSerializer(
                 f"_{body_kwarg_name} = self._serialize.body({body_param.client_name}, "
                 f"'{body_param.type.serialization_type}'{is_xml_cmd}{serialization_ctxt_cmd})"
             )
-        elif self.code_model.options["models_mode"] == "dpg" and isinstance(
-            body_param.type, (ModelType, AnyObjectType)
+        elif self.code_model.options["models_mode"] == "dpg" and (
+            (
+                isinstance(body_param.type, (ModelType, AnyObjectType))
+                and has_native_overload
+            )
+            or not has_native_overload
         ):
             create_body_call = (
                 f"_{body_kwarg_name} = json.dumps({body_param.client_name}, "
@@ -758,6 +765,7 @@ class _OperationSerializer(
     def _create_body_parameter(
         self,
         builder: OperationType,
+        has_native_overload: bool = False,
     ) -> List[str]:
         """Create the body parameter before we pass it as either json or content to the request builder"""
         retval = []
@@ -784,7 +792,7 @@ class _OperationSerializer(
                     ]
                 )
         else:
-            retval.extend(self._serialize_body_parameter(builder))
+            retval.extend(self._serialize_body_parameter(builder, has_native_overload))
         return retval
 
     def _initial_overloads_equally(
@@ -793,7 +801,7 @@ class _OperationSerializer(
         retval: List[str] = []
         for idx, overload in enumerate(builder.overloads):
             if builder.has_native_overload and isinstance(
-                overload.parameters.body_parameter.type, ByteArraySchema
+                overload.parameters.body_parameter.type, (ByteArraySchema, DPGModelType)
             ):
                 continue
             if_statement = "if" if idx == 0 else "elif"
@@ -807,7 +815,9 @@ class _OperationSerializer(
                 )
             retval.extend(
                 f"    {l}"
-                for l in self._create_body_parameter(cast(OperationType, overload))
+                for l in self._create_body_parameter(
+                    cast(OperationType, overload), builder.has_native_overload
+                )
             )
         return retval
 

@@ -346,17 +346,3 @@ class DPGModelType(GeneratedModelType):
     @property
     def instance_check_template(self) -> str:
         return "isinstance({}, _model_base.Model)"
-
-    def imports(self, **kwargs: Any) -> FileImport:
-        file_import = super().imports(**kwargs)
-        relative_path = kwargs.pop("relative_path", None)
-        if relative_path:
-            file_import.add_submodule_import(
-                relative_path,
-                "_model_base",
-                ImportType.LOCAL,
-                typing_section=TypingSection.TYPING
-                if kwargs.get("model_typing")
-                else TypingSection.REGULAR,
-            )
-        return file_import

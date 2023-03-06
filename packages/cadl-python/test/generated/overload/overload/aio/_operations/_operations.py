@@ -24,7 +24,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ... import _model_base, models as _models
+from ... import models as _models
 from ..._model_base import AzureJSONEncoder
 from ..._operations._operations import (
     build_overload_upload_bytes_or_string_request,
@@ -246,9 +246,6 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
         elif isinstance(data, str):
             content_type = content_type or "text/plain"
             _content = data
-        elif isinstance(data, _model_base.Model):
-            content_type = content_type or "application/json"
-            _content = json.dumps(data, cls=AzureJSONEncoder)  # type: ignore
         elif isinstance(data, MutableMapping):
             content_type = content_type or "application/json"
             _content = json.dumps(data, cls=AzureJSONEncoder)  # type: ignore
