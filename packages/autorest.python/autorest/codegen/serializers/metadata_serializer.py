@@ -18,7 +18,7 @@ from ..models import (
 from .builder_serializer import get_operation_serializer
 
 
-def _to_string(data: Union[Tuple[Any], List[Any]], str) -> str:
+def _to_string(data: Union[Tuple[Any], List[Any], str]) -> str:
     if isinstance(data, (list, tuple)):
         return "".join([_to_string(item) for item in data])
     return str(data)
