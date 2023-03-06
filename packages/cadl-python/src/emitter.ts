@@ -598,6 +598,7 @@ function addPagingInformation(context: DpgContext, operation: Operation, emitted
         throw Error("Trying to add paging information, but not paging metadata for this operation");
     }
     emittedOperation["itemName"] = pagedResult.itemsPath;
+    emittedOperation["itemType"] = getType(context, pagedResult.itemsProperty!.type);
     emittedOperation["continuationTokenName"] = pagedResult.nextLinkPath;
 }
 

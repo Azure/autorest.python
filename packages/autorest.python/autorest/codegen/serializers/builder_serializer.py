@@ -1363,25 +1363,22 @@ class _PagingOperationSerializer(
             retval.append(f"    deserialized = {deserialized}")
         elif self.code_model.options["models_mode"] == "dpg":
             # we don't want to generate paging models for DPG
-            pylint_disable = (
-                "  # pylint: disable=protected-access\n"
-                if isinstance(response.type, ModelType) and not response.type.is_public
-                else ""
-            )
             retval.append(f"    deserialized = {deserialized}")
-            retval.append(
-                f"    deserialized: {response.serialization_type} = ({pylint_disable}"
-            )
-            retval.append(f"        {deserialized})")
         else:
             retval.append(f"    deserialized = {deserialized}")
         item_name = builder.item_name
-        list_of_elem = (
+        access = (
             f".{item_name}"
             if self.code_model.options["models_mode"] == "msrest"
             else f'["{item_name}"]'
         )
-        retval.append(f"    list_of_elem = deserialized{list_of_elem}")
+        list_of_elem_deserialized = ""
+        if self.code_model.options["models_mode"] == "dpg":
+            list_of_elem_deserialized = f"_deserialize({response.serialization_type}, deserialized{access})"
+        else:
+
+            list_of_elem_deserialized = f"{deserialized}{access}"
+        retval.append(f"    list_of_elem = {list_of_elem_deserialized}")
         retval.append("    if cls:")
         retval.append("        list_of_elem = cls(list_of_elem) # type: ignore")
 

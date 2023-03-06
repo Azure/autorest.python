@@ -587,6 +587,7 @@ class M4Reformatter(
         operation["itemName"] = yaml_data["extensions"]["x-ms-pageable"].get(
             "itemName", "value"
         )
+        # operation["itemType"] =
         operation["continuationTokenName"] = yaml_data["extensions"][
             "x-ms-pageable"
         ].get("nextLinkName")

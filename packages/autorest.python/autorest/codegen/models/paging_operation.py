@@ -88,14 +88,15 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
         if not rest_api_name:
             # That's an ok scenario, it just means no next page possible
             return None
-        if self.code_model.options["models_mode"]:
+        if self.code_model.options["models_mode"] == "msrest":
             return self._get_attr_name(rest_api_name)
         return rest_api_name
 
     @property
     def item_name(self) -> str:
         rest_api_name = self.yaml_data["itemName"]
-        if self.code_model.options["models_mode"]:
+        if self.code_model.options["models_mode"] == "msrest":
+            # we don't use the paging model for dpg
             return self._get_attr_name(rest_api_name)
         return rest_api_name
 
