@@ -68,6 +68,8 @@ def add_overload(
     overload["bodyParameter"]["type"] = body_type
     overload["bodyParameter"]["defaultToUnsetSentinel"] = False
     overload["overloads"] = []
+    if yaml_data.get("initialOperation"):
+        overload["initialOperation"] = yaml_data["initialOperation"]
 
     if for_flatten_params:
         overload["bodyParameter"]["flattened"] = True
@@ -320,9 +322,15 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         is_overload: bool = False,
     ) -> None:
         self.update_operation(code_model, yaml_data, is_overload=is_overload)
+        self.update_operation(
+            code_model, yaml_data["initialOperation"], is_overload=is_overload
+        )
         self._update_lro_operation_helper(yaml_data)
         for overload in yaml_data.get("overloads", []):
             self._update_lro_operation_helper(overload)
+            self.update_operation(
+                code_model, overload["initialOperation"], is_overload=True
+            )
 
     def update_paging_operation(
         self,
