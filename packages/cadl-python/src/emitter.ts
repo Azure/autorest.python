@@ -589,7 +589,7 @@ function emitOperation(context: DpgContext, operation: Operation, operationGroup
 
 function addLroInformation(emittedOperation: Record<string, any>, initialOperation: Record<string, any>) {
     emittedOperation["discriminator"] = "lro";
-    emittedOperation["initialOperation"] = initialOperation
+    emittedOperation["initialOperation"] = initialOperation;
 }
 
 function addPagingInformation(context: DpgContext, operation: Operation, emittedOperation: Record<string, any>) {
@@ -602,12 +602,16 @@ function addPagingInformation(context: DpgContext, operation: Operation, emitted
     emittedOperation["continuationTokenName"] = pagedResult.nextLinkPath;
 }
 
-function getLroInitialOperation(context: DpgContext, operation: Operation, operationGroupName: string): Record<string, any> {
+function getLroInitialOperation(
+    context: DpgContext,
+    operation: Operation,
+    operationGroupName: string,
+): Record<string, any> {
     const initialOperation = emitBasicOperation(context, operation, operationGroupName)[0];
     initialOperation["name"] = `_${initialOperation["name"]}_initial`;
     initialOperation["isLroInitialOperation"] = true;
     initialOperation["wantTracing"] = false;
-    return initialOperation
+    return initialOperation;
 }
 
 function emitLroPagingOperation(
