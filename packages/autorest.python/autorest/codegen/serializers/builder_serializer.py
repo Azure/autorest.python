@@ -1068,9 +1068,7 @@ class _OperationSerializer(
                 deserialize_code.append("    deserialized = None")
         if builder.expose_stream_keyword:
             retval.append("if _stream:")
-            retval.append(
-                "    deserialized = response.iter_bytes()"
-            )
+            retval.append("    deserialized = response.iter_bytes()")
             retval.append("else:")
             retval.extend([f"    {dc}" for dc in deserialize_code])
         else:
