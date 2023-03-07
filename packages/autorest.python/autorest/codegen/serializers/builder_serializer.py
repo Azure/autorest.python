@@ -1399,7 +1399,7 @@ class _PagingOperationSerializer(
             list_of_elem_deserialized = f"_deserialize({builder.item_type.serialization_type}, deserialized{access})"
         else:
 
-            list_of_elem_deserialized = f"{deserialized}{access}"
+            list_of_elem_deserialized = f"deserialized{access}"
         retval.append(f"    list_of_elem = {list_of_elem_deserialized}")
         retval.append("    if cls:")
         retval.append("        list_of_elem = cls(list_of_elem) # type: ignore")
