@@ -198,7 +198,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             return name
 
         if self.is_cadl:
-            reserved_words = {k: v for k, v in CADL_RESERVED_WORDS.items()}
+            reserved_words = copy.copy(CADL_RESERVED_WORDS)
             reserved_words.update(RESERVED_WORDS)
         else:
             reserved_words = RESERVED_WORDS

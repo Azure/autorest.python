@@ -677,7 +677,7 @@ class _OperationSerializer(
         if builder.expose_stream_keyword:
             description_list.append(
                 ":keyword bool stream: Whether to stream the response of this operation. "
-                f"Defaults to False. You will have to context manage the returned stream."
+                "Defaults to False. You will have to context manage the returned stream."
             )
         if not self.code_model.options["version_tolerant"]:
             description_list.append(
