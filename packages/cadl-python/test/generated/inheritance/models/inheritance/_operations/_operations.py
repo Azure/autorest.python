@@ -326,7 +326,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(_models.Siamese, response.json())
 
@@ -441,7 +441,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(_models.Siamese, response.json())
 
@@ -491,7 +491,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(_models.Fish, response.json())
 
@@ -655,7 +655,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(_models.Fish, response.json())
 
@@ -819,7 +819,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(_models.Fish, response.json())
 
@@ -869,7 +869,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(_models.Fish, response.json())
 

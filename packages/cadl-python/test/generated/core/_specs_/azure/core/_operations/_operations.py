@@ -327,13 +327,13 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
 
         if response.status_code == 200:
             if _stream:
-                deserialized = response.stream_download(self._client._pipeline)
+                deserialized = response.iter_bytes()
             else:
                 deserialized = _deserialize(_models.User, response.json())
 
         if response.status_code == 201:
             if _stream:
-                deserialized = response.stream_download(self._client._pipeline)
+                deserialized = response.iter_bytes()
             else:
                 deserialized = _deserialize(_models.User, response.json())
 
@@ -471,13 +471,13 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
 
         if response.status_code == 200:
             if _stream:
-                deserialized = response.stream_download(self._client._pipeline)
+                deserialized = response.iter_bytes()
             else:
                 deserialized = _deserialize(_models.User, response.json())
 
         if response.status_code == 201:
             if _stream:
-                deserialized = response.stream_download(self._client._pipeline)
+                deserialized = response.iter_bytes()
             else:
                 deserialized = _deserialize(_models.User, response.json())
 
@@ -533,7 +533,7 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(_models.User, response.json())
 
@@ -706,7 +706,7 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(_models.User, response.json())
 

@@ -345,7 +345,7 @@ class Int32ValueOperations:
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(List[int], response.json())
 
@@ -507,7 +507,7 @@ class Int64ValueOperations:
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(List[int], response.json())
 
@@ -669,7 +669,7 @@ class BooleanValueOperations:
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(List[bool], response.json())
 
@@ -831,7 +831,7 @@ class StringValueOperations:
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(List[str], response.json())
 
@@ -993,7 +993,7 @@ class Float32ValueOperations:
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(List[float], response.json())
 
@@ -1157,7 +1157,7 @@ class DatetimeValueOperations:
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(List[datetime.datetime], response.json())
 
@@ -1321,7 +1321,7 @@ class DurationValueOperations:
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(List[datetime.timedelta], response.json())
 
@@ -1485,7 +1485,7 @@ class UnknownValueOperations:
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(List[Any], response.json())
 
@@ -1647,7 +1647,7 @@ class ModelValueOperations:
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(List[_models.InnerModel], response.json())
 

@@ -1069,7 +1069,7 @@ class _OperationSerializer(
         if builder.expose_stream_keyword:
             retval.append("if _stream:")
             retval.append(
-                "    deserialized = response.stream_download(self._client._pipeline)"
+                "    deserialized = response.iter_bytes()"
             )
             retval.append("else:")
             retval.extend([f"    {dc}" for dc in deserialize_code])

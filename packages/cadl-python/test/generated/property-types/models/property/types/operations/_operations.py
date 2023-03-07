@@ -518,7 +518,7 @@ class BooleanOperations:
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(_models.BooleanProperty, response.json())
 
@@ -700,7 +700,7 @@ class StringOperations:
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(_models.StringProperty, response.json())
 
@@ -882,7 +882,7 @@ class BytesOperations:
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(_models.BytesProperty, response.json())
 
@@ -1064,7 +1064,7 @@ class IntOperations:
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(_models.IntProperty, response.json())
 
@@ -1246,7 +1246,7 @@ class FloatOperations:
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(_models.FloatProperty, response.json())
 
@@ -1428,7 +1428,7 @@ class DatetimeOperations:
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(_models.DatetimeProperty, response.json())
 
@@ -1610,7 +1610,7 @@ class DurationOperations:
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(_models.DurationProperty, response.json())
 
@@ -1792,7 +1792,7 @@ class EnumOperations:
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(_models.EnumProperty, response.json())
 
@@ -1974,7 +1974,7 @@ class ExtensibleEnumOperations:
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(_models.ExtensibleEnumProperty, response.json())
 
@@ -2156,7 +2156,7 @@ class ModelOperations:
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(_models.ModelProperty, response.json())
 
@@ -2339,7 +2339,7 @@ class CollectionsStringOperations:
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(_models.CollectionsStringProperty, response.json())
 
@@ -2521,7 +2521,7 @@ class CollectionsIntOperations:
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(_models.CollectionsIntProperty, response.json())
 
@@ -2704,7 +2704,7 @@ class CollectionsModelOperations:
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(_models.CollectionsModelProperty, response.json())
 
@@ -2887,7 +2887,7 @@ class DictionaryStringOperations:
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(_models.DictionaryStringProperty, response.json())
 
@@ -3069,7 +3069,7 @@ class NeverOperations:
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(_models.NeverProperty, response.json())
 

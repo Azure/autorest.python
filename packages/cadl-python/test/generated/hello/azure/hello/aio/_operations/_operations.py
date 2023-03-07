@@ -71,7 +71,7 @@ class HelloClientOperationsMixin(HelloClientMixinABC):
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(str, response.json())
 

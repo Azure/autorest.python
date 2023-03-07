@@ -93,7 +93,7 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(_models.Product, response.json())
 
@@ -241,7 +241,7 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(_models.Product, response.json())
 
@@ -361,7 +361,7 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(_models.LroProduct, response.json())
 
