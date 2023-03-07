@@ -168,6 +168,8 @@ RESERVED_WORDS = {
     PadType.OPERATION_GROUP: [*_always_reserved],
 }
 
+CADL_RESERVED_WORDS = {PadType.PARAMETER: ["stream"]}
+
 REDEFINED_BUILTINS = [  # we don't pad, but we need to do lint ignores
     "id",
     "min",

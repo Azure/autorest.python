@@ -574,7 +574,7 @@ function emitResponse(
     };
 }
 
-function emitOperation(context: DpgContext, operation: Operation, operationGroupName: string): Record<string, any> {
+function emitOperation(context: DpgContext, operation: Operation, operationGroupName: string): Record<string, any>[] {
     const lro = isLro(operation);
     const paging = getPagedResult(context.program, operation);
     if (lro && paging) {
@@ -587,8 +587,10 @@ function emitOperation(context: DpgContext, operation: Operation, operationGroup
     return emitBasicOperation(context, operation, operationGroupName);
 }
 
-function addLroInformation(emittedOperation: Record<string, any>) {
+function addLroInformation(emittedOperation: Record<string, any>, initialOperation: Record<string, any>) {
     emittedOperation["discriminator"] = "lro";
+    emittedOperation["initialOperation"] = initialOperation;
+    emittedOperation["exposeStreamKeyword"] = false;
 }
 
 function addPagingInformation(context: DpgContext, operation: Operation, emittedOperation: Record<string, any>) {
@@ -600,41 +602,71 @@ function addPagingInformation(context: DpgContext, operation: Operation, emitted
     emittedOperation["itemName"] = pagedResult.itemsPath;
     emittedOperation["itemType"] = getType(context, pagedResult.itemsProperty!.type);
     emittedOperation["continuationTokenName"] = pagedResult.nextLinkPath;
+    emittedOperation["exposeStreamKeyword"] = false;
+}
+
+function getLroInitialOperation(
+    context: DpgContext,
+    operation: Operation,
+    operationGroupName: string,
+): Record<string, any> {
+    const initialOperation = emitBasicOperation(context, operation, operationGroupName)[0];
+    initialOperation["name"] = `_${initialOperation["name"]}_initial`;
+    initialOperation["isLroInitialOperation"] = true;
+    initialOperation["wantTracing"] = false;
+    initialOperation["exposeStreamKeyword"] = false;
+    return initialOperation;
 }
 
 function emitLroPagingOperation(
     context: DpgContext,
     operation: Operation,
     operationGroupName: string,
-): Record<string, any> {
-    const emittedOperation = emitBasicOperation(context, operation, operationGroupName);
-    addLroInformation(emittedOperation);
-    addPagingInformation(context, operation, emittedOperation);
-    emittedOperation["discriminator"] = "lropaging";
-    return emittedOperation;
+): Record<string, any>[] {
+    const retval: Record<string, any>[] = [];
+    for (const emittedOperation of emitBasicOperation(context, operation, operationGroupName)) {
+        const initialOperation = getLroInitialOperation(context, operation, operationGroupName);
+        addLroInformation(emittedOperation, initialOperation);
+        addPagingInformation(context, operation, emittedOperation);
+        emittedOperation["discriminator"] = "lropaging";
+        retval.push(emittedOperation);
+    }
+    return retval;
 }
 
-function emitLroOperation(context: DpgContext, operation: Operation, operationGroupName: string): Record<string, any> {
-    const emittedOperation = emitBasicOperation(context, operation, operationGroupName);
-    addLroInformation(emittedOperation);
-    return emittedOperation;
+function emitLroOperation(
+    context: DpgContext,
+    operation: Operation,
+    operationGroupName: string,
+): Record<string, any>[] {
+    const retval = [];
+    for (const emittedOperation of emitBasicOperation(context, operation, operationGroupName)) {
+        const initialOperation = getLroInitialOperation(context, operation, operationGroupName);
+        addLroInformation(emittedOperation, initialOperation);
+        retval.push(initialOperation);
+        retval.push(emittedOperation);
+    }
+    return retval;
 }
 
 function emitPagingOperation(
     context: DpgContext,
     operation: Operation,
     operationGroupName: string,
-): Record<string, any> {
-    const emittedOperation = emitBasicOperation(context, operation, operationGroupName);
-    addPagingInformation(context, operation, emittedOperation);
-    return emittedOperation;
+): Record<string, any>[] {
+    const retval = [];
+    for (const emittedOperation of emitBasicOperation(context, operation, operationGroupName)) {
+        addPagingInformation(context, operation, emittedOperation);
+        retval.push(emittedOperation);
+    }
+    return retval;
 }
 
 function emitBasicOperation(
     context: DpgContext,
     operation: Operation,
     operationGroupName: string,
-): Record<string, any> {
+): Record<string, any>[] {
     // Set up parameters for operation
     const parameters: Record<string, any>[] = [];
     if (endpointPathParameters) {
@@ -696,23 +728,27 @@ function emitBasicOperation(
         }
     }
     const name = camelToSnakeCase(getLibraryName(context, operation));
-    return {
-        name: name,
-        description: getDocStr(context, operation),
-        summary: getSummary(context.program, operation),
-        url: httpOperation.path,
-        method: httpOperation.verb.toUpperCase(),
-        parameters: parameters,
-        bodyParameter: bodyParameter,
-        responses: responses,
-        exceptions: exceptions,
-        groupName: operationGroupName,
-        addedOn: getAddedOnVersion(context, operation),
-        discriminator: "basic",
-        isOverload: false,
-        overloads: [],
-        apiVersions: [getAddedOnVersion(context, operation)],
-    };
+    return [
+        {
+            name: name,
+            description: getDocStr(context, operation),
+            summary: getSummary(context.program, operation),
+            url: httpOperation.path,
+            method: httpOperation.verb.toUpperCase(),
+            parameters: parameters,
+            bodyParameter: bodyParameter,
+            responses: responses,
+            exceptions: exceptions,
+            groupName: operationGroupName,
+            addedOn: getAddedOnVersion(context, operation),
+            discriminator: "basic",
+            isOverload: false,
+            overloads: [],
+            apiVersions: [getAddedOnVersion(context, operation)],
+            wantTracing: true,
+            exposeStreamKeyword: true,
+        },
+    ];
 }
 
 function isReadOnly(context: DpgContext, type: ModelProperty): boolean {
@@ -1104,10 +1140,10 @@ function emitType(context: DpgContext, type: EmitterType): Record<string, any> {
 function emitOperationGroups(context: DpgContext, client: Client): Record<string, any>[] {
     const operationGroups: Record<string, any>[] = [];
     for (const operationGroup of listOperationGroups(context, client)) {
-        const operations: Record<string, any>[] = [];
+        let operations: Record<string, any>[] = [];
         const name = operationGroup.type.name;
         for (const operation of listOperationsInOperationGroup(context, operationGroup)) {
-            operations.push(emitOperation(context, operation, name));
+            operations = operations.concat(emitOperation(context, operation, name));
         }
         operationGroups.push({
             className: name,
@@ -1115,9 +1151,9 @@ function emitOperationGroups(context: DpgContext, client: Client): Record<string
             operations: operations,
         });
     }
-    const clientOperations: Record<string, any>[] = [];
+    let clientOperations: Record<string, any>[] = [];
     for (const operation of listOperationsInOperationGroup(context, client)) {
-        clientOperations.push(emitOperation(context, operation, ""));
+        clientOperations = clientOperations.concat(emitOperation(context, operation, ""));
     }
     if (clientOperations.length > 0) {
         operationGroups.push({

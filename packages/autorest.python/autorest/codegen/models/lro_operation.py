@@ -14,6 +14,7 @@ from .parameter_list import ParameterList
 if TYPE_CHECKING:
     from .code_model import CodeModel
     from .client import Client
+    from . import OperationType
 
 LROResponseType = TypeVar(
     "LROResponseType", bound=Union[LROResponse, LROPagingResponse]
@@ -33,8 +34,6 @@ class LROOperationBase(OperationBase[LROResponseType]):
         exceptions: List[Response],
         *,
         overloads: Optional[List[Operation]] = None,
-        public: bool = True,
-        want_tracing: bool = True,
     ) -> None:
         super().__init__(
             code_model=code_model,
@@ -46,11 +45,22 @@ class LROOperationBase(OperationBase[LROResponseType]):
             responses=responses,
             exceptions=exceptions,
             overloads=overloads,
-            public=public,
-            want_tracing=want_tracing,
         )
         self.name = "begin_" + self.name
         self.lro_options: Dict[str, Any] = self.yaml_data.get("lroOptions", {})
+        self._initial_operation: Optional["OperationType"] = None
+
+    @property
+    def initial_operation(self) -> "OperationType":
+        if not self._initial_operation:
+            raise ValueError(
+                "You need to first call client.link_lro_initial_operations before accessing"
+            )
+        return self._initial_operation
+
+    @initial_operation.setter
+    def initial_operation(self, val: "OperationType") -> None:
+        self._initial_operation = val
 
     @property
     def operation_type(self) -> str:
@@ -93,26 +103,6 @@ class LROOperationBase(OperationBase[LROResponseType]):
         """We don't want the poller to show up in ClsType, so we call super() on resposne type annotation"""
         return f"ClsType[{Response.type_annotation(self.responses[0], async_mode=async_mode)}]"
 
-    @property
-    def initial_operation(self) -> Operation:
-        """Initial operation that creates the first call for LRO polling"""
-        return Operation(
-            yaml_data=self.yaml_data,
-            code_model=self.code_model,
-            client=self.client,
-            request_builder=self.client.lookup_request_builder(id(self.yaml_data)),
-            name=self.name[5:] + "_initial",
-            overloads=self.overloads,
-            parameters=self.parameters,
-            responses=[
-                Response(r.yaml_data, self.code_model, headers=r.headers, type=r.type)
-                for r in self.responses
-            ],
-            exceptions=self.exceptions,
-            public=False,
-            want_tracing=False,
-        )
-
     def get_poller(self, async_mode: bool) -> str:
         return self.responses[0].get_poller(async_mode)
 
@@ -143,6 +133,10 @@ class LROOperationBase(OperationBase[LROResponseType]):
         )
         file_import.add_submodule_import("typing", "cast", ImportType.STDLIB)
         return file_import
+
+    @classmethod
+    def get_request_builder(cls, yaml_data: Dict[str, Any], client: "Client"):
+        return client.lookup_request_builder(id(yaml_data["initialOperation"]))
 
 
 class LROOperation(LROOperationBase[LROResponse]):

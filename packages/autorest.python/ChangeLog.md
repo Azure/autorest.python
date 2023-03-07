@@ -1,6 +1,22 @@
 # Release History
 
-### 2023-03-XX - 6.4.2
+### 2023-03-07 - 6.4.3
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.9.2`     |
+| `@autorest/modelerfour`                                                 | `4.24.3`    |
+| `azure-core` dep of generated code                                      | `1.24.0`    |
+| `isodate` dep of generated code                                         | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+
+**Other Changes**
+
+- Expose `stream` keyword for TypeSpec generations #1777
+
+### 2023-03-06 - 6.4.2
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -15,6 +31,10 @@
 **Bug Fixes**
 
 - Fix import for `by_version` for multiapi package #1774
+
+**Other Changes**
+
+- Modify how we deal with LRO initial operations. No longer clone one past serialization from defined LRO operation #1775
 
 ### 2023-03-01 - 6.4.1
 

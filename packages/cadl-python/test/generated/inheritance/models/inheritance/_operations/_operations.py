@@ -182,6 +182,8 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -198,6 +200,8 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -214,6 +218,8 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -230,6 +236,8 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -263,8 +271,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -280,6 +289,8 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
     def get_valid(self, **kwargs: Any) -> _models.Siamese:
         """get_valid.
 
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: Siamese. The Siamese is compatible with MutableMapping
         :rtype: ~models.inheritance.models.Siamese
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -303,8 +314,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -313,7 +325,10 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.Siamese, response.json())
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.Siamese, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -331,6 +346,8 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: Siamese. The Siamese is compatible with MutableMapping
         :rtype: ~models.inheritance.models.Siamese
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -345,6 +362,8 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: Siamese. The Siamese is compatible with MutableMapping
         :rtype: ~models.inheritance.models.Siamese
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -359,6 +378,8 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: Siamese. The Siamese is compatible with MutableMapping
         :rtype: ~models.inheritance.models.Siamese
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -373,6 +394,8 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: Siamese. The Siamese is compatible with MutableMapping
         :rtype: ~models.inheritance.models.Siamese
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -406,8 +429,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -416,7 +440,10 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.Siamese, response.json())
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.Siamese, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -427,6 +454,8 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
     def get_model(self, **kwargs: Any) -> _models.Fish:
         """get_model.
 
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: Fish. The Fish is compatible with MutableMapping
         :rtype: ~models.inheritance.models.Fish
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -450,8 +479,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -460,7 +490,10 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.Fish, response.json())
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.Fish, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -478,6 +511,8 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -494,6 +529,8 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -510,6 +547,8 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -526,6 +565,8 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -559,8 +600,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -576,6 +618,8 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
     def get_recursive_model(self, **kwargs: Any) -> _models.Fish:
         """get_recursive_model.
 
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: Fish. The Fish is compatible with MutableMapping
         :rtype: ~models.inheritance.models.Fish
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -599,8 +643,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -609,7 +654,10 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.Fish, response.json())
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.Fish, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -627,6 +675,8 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -643,6 +693,8 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -659,6 +711,8 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -675,6 +729,8 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -708,8 +764,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -725,6 +782,8 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
     def get_missing_discriminator(self, **kwargs: Any) -> _models.Fish:
         """get_missing_discriminator.
 
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: Fish. The Fish is compatible with MutableMapping
         :rtype: ~models.inheritance.models.Fish
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -748,8 +807,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -758,7 +818,10 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.Fish, response.json())
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.Fish, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -769,6 +832,8 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
     def get_wrong_discriminator(self, **kwargs: Any) -> _models.Fish:
         """get_wrong_discriminator.
 
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: Fish. The Fish is compatible with MutableMapping
         :rtype: ~models.inheritance.models.Fish
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -792,8 +857,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -802,7 +868,10 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.Fish, response.json())
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.Fish, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
