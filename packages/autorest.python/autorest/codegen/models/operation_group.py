@@ -8,13 +8,14 @@ from typing import Dict, List, Any, TYPE_CHECKING
 from autorest.codegen.models.utils import OrderedSet
 
 from .base import BaseModel
-from .operation import OperationBase, get_operation
+from .operation import get_operation
 from .imports import FileImport, ImportType, TypingSection
 from .utils import add_to_pylint_disable
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
     from .client import Client
+    from . import OperationType
 
 
 class OperationGroup(BaseModel):
@@ -25,7 +26,7 @@ class OperationGroup(BaseModel):
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
         client: "Client",
-        operations: List[OperationBase],
+        operations: List["OperationType"],
         api_versions: List[str],
     ) -> None:
         super().__init__(yaml_data, code_model)

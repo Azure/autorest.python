@@ -183,3 +183,4 @@ RequestBuilderType = Union[RequestBuilder, OverloadedRequestBuilder]
 ParameterType = Union[
     Parameter, RequestBuilderParameter, ClientParameter, ConfigParameter
 ]
+OperationType = Union[Operation, LROOperation, PagingOperation, LROPagingOperation]

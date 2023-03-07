@@ -45,7 +45,6 @@ class BaseBuilder(
         parameters: ParameterListType,
         *,
         overloads=None,
-        want_tracing: bool = True,
     ) -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.client = client
@@ -56,7 +55,7 @@ class BaseBuilder(
             overloads or []
         )
         self._summary: str = yaml_data.get("summary", "")
-        self.want_tracing = want_tracing
+        self.want_tracing: bool = yaml_data.get("wantTracing", True)
         self.group_name: str = yaml_data[
             "groupName"
         ]  # either operationGroup or client I am on

@@ -299,10 +299,15 @@ def get_all_body_types(yaml_data: Dict[str, Any]) -> List[Dict[str, Any]]:
     return list(seen_body_types.values())
 
 
-def add_lro_information(operation: Dict[str, Any], yaml_data: Dict[str, Any]) -> None:
+def add_lro_information(
+    operation: Dict[str, Any],
+    initial_operation: Dict[str, Any],
+    yaml_data: Dict[str, Any],
+) -> None:
     operation["discriminator"] = "lro"
     extensions = yaml_data["extensions"]
     operation["lroOptions"] = extensions.get("x-ms-long-running-operation-options")
+    operation["initialOperation"] = initial_operation
     for response in operation["responses"]:
         response["pollerSync"] = extensions.get("x-python-custom-poller-sync")
         response["pollerAsync"] = extensions.get("x-python-custom-poller-async")
@@ -551,7 +556,7 @@ class M4Reformatter(
 
     def get_operation_creator(
         self, yaml_data: Dict[str, Any]
-    ) -> Callable[[str, Dict[str, Any]], Dict[str, Any]]:
+    ) -> Callable[[str, Dict[str, Any]], List[Dict[str, Any]]]:
         lro_operation = yaml_data.get("extensions", {}).get(
             "x-ms-long-running-operation"
         )
@@ -566,7 +571,7 @@ class M4Reformatter(
 
     def update_operation(
         self, group_name: str, yaml_data: Dict[str, Any]
-    ) -> Dict[str, Any]:
+    ) -> List[Dict[str, Any]]:
         body_parameter = (
             self.update_body_parameter(yaml_data["requestMediaTypes"])
             if yaml_data.get("requestMediaTypes")
@@ -578,7 +583,7 @@ class M4Reformatter(
             group_name, yaml_data, body_parameter, content_types=content_types
         )
         operation["samples"] = yaml_data.get("extensions", {}).get("x-ms-examples", {})
-        return operation
+        return [operation]
 
     def add_paging_information(
         self, group_name: str, operation: Dict[str, Any], yaml_data: Dict[str, Any]
@@ -596,7 +601,7 @@ class M4Reformatter(
                 yaml_data=yaml_data["language"]["default"]["paging"][
                     "nextLinkOperation"
                 ],
-            )
+            )[0]
         extensions = yaml_data["extensions"]
         for response in operation["responses"]:
             response["pagerSync"] = extensions.get("x-python-custom-pager-sync")
@@ -604,27 +609,43 @@ class M4Reformatter(
 
     def update_paging_operation(
         self, group_name: str, yaml_data: Dict[str, Any]
-    ) -> Dict[str, Any]:
-        base_operation = self.update_operation(group_name, yaml_data)
-        self.add_paging_information(group_name, base_operation, yaml_data)
-        return base_operation
+    ) -> List[Dict[str, Any]]:
+        retval: List[Dict[str, Any]] = []
+        for base_operation in self.update_operation(group_name, yaml_data):
+            self.add_paging_information(group_name, base_operation, yaml_data)
+            retval.append(base_operation)
+        return retval
 
     def update_lro_paging_operation(
         self, group_name: str, yaml_data: Dict[str, Any]
-    ) -> Dict[str, Any]:
-        operation = self.update_lro_operation(group_name, yaml_data)
-        self.add_paging_information(group_name, operation, yaml_data)
-        operation["discriminator"] = "lropaging"
-        return operation
+    ) -> List[Dict[str, Any]]:
+        retval: List[Dict[str, Any]] = []
+        for operation in self.update_lro_operation(group_name, yaml_data):
+            if operation.get("discriminator") == "lro":
+                self.add_paging_information(group_name, operation, yaml_data)
+                operation["discriminator"] = "lropaging"
+            retval.append(operation)
+        return retval
+
+    def update_lro_initial_operation(self, initial_operation: Dict[str, Any]):
+        initial_operation["name"] = f"_{initial_operation['name']}_initial"
+        initial_operation["isLroInitialOperation"] = True
+        initial_operation["wantTracing"] = False
+        return initial_operation
 
     def update_lro_operation(
         self, group_name: str, yaml_data: Dict[str, Any]
-    ) -> Dict[str, Any]:
-        base_operation = self.update_operation(group_name, yaml_data)
-        add_lro_information(base_operation, yaml_data)
-        for overload in base_operation["overloads"]:
-            add_lro_information(overload, yaml_data)
-        return base_operation
+    ) -> List[Dict[str, Any]]:
+        retval: List[Dict[str, Any]] = []
+        for base_operation in self.update_operation(group_name, yaml_data):
+            initial_operation = self.update_operation(group_name, yaml_data)[0]
+            self.update_lro_initial_operation(initial_operation)
+            add_lro_information(base_operation, initial_operation, yaml_data)
+            for overload in base_operation["overloads"]:
+                add_lro_information(overload, initial_operation, yaml_data)
+            retval.append(initial_operation)
+            retval.append(base_operation)
+        return retval
 
     def update_overload(
         self,
@@ -648,8 +669,9 @@ class M4Reformatter(
             "className": property_name,
             "operations": filter_out_paging_next_operation(
                 [
-                    self.get_operation_creator(o)(property_name, o)
-                    for o in yaml_data["operations"]
+                    o
+                    for ydo in yaml_data["operations"]
+                    for o in self.get_operation_creator(ydo)(property_name, ydo)
                 ]
             ),
         }
