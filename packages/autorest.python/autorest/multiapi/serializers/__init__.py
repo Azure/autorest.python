@@ -101,7 +101,8 @@ class MultiAPISerializer(ReaderAndWriter):  # pylint: disable=abstract-method
         # serialize mixins
         if code_model.operation_mixin_group.mixin_operations:
             imports = FileImportSerializer(
-                code_model.operation_mixin_group.imports(async_mode)
+                code_model.operation_mixin_group.imports(async_mode),
+                code_model.operation_mixin_group.typing_definitions(async_mode),
             )
             self.write_file(
                 _get_file_path("_operations_mixin", async_mode),

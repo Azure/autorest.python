@@ -1,6 +1,6 @@
 # Release History
 
-### 2023-03-XX - 6.4.2
+### 2023-03-06 - 6.4.2
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -15,6 +15,10 @@
 **Bug Fixes**
 
 - Fix import for `by_version` for multiapi package #1774
+
+**Other Changes**
+
+- Modify how we deal with LRO initial operations. No longer clone one past serialization from defined LRO operation #1775
 
 ### 2023-03-01 - 6.4.1
 
