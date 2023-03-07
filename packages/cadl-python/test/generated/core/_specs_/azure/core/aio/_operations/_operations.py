@@ -163,8 +163,9 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=kwargs.pop("stream", False), **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -174,10 +175,16 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
             raise HttpResponseError(response=response)
 
         if response.status_code == 200:
-            deserialized = _deserialize(_models.User, response.json())
+            if _stream:
+                deserialized = response.stream_download(self._client._pipeline)
+            else:
+                deserialized = _deserialize(_models.User, response.json())
 
         if response.status_code == 201:
-            deserialized = _deserialize(_models.User, response.json())
+            if _stream:
+                deserialized = response.stream_download(self._client._pipeline)
+            else:
+                deserialized = _deserialize(_models.User, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -300,8 +307,9 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=kwargs.pop("stream", False), **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -311,10 +319,16 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
             raise HttpResponseError(response=response)
 
         if response.status_code == 200:
-            deserialized = _deserialize(_models.User, response.json())
+            if _stream:
+                deserialized = response.stream_download(self._client._pipeline)
+            else:
+                deserialized = _deserialize(_models.User, response.json())
 
         if response.status_code == 201:
-            deserialized = _deserialize(_models.User, response.json())
+            if _stream:
+                deserialized = response.stream_download(self._client._pipeline)
+            else:
+                deserialized = _deserialize(_models.User, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -356,8 +370,9 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=kwargs.pop("stream", False), **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -366,7 +381,10 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.User, response.json())
+        if _stream:
+            deserialized = response.stream_download(self._client._pipeline)
+        else:
+            deserialized = _deserialize(_models.User, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -424,8 +442,9 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
+            _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request, stream=False, **kwargs
+                request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -472,8 +491,9 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=kwargs.pop("stream", False), **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -523,8 +543,9 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=kwargs.pop("stream", False), **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -533,7 +554,10 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.User, response.json())
+        if _stream:
+            deserialized = response.stream_download(self._client._pipeline)
+        else:
+            deserialized = _deserialize(_models.User, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

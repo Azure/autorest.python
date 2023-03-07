@@ -361,8 +361,9 @@ class Int32ValueOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=kwargs.pop("stream", False), **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -371,7 +372,10 @@ class Int32ValueOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(Dict[str, int], response.json())
+        if _stream:
+            deserialized = response.stream_download(self._client._pipeline)
+        else:
+            deserialized = _deserialize(Dict[str, int], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -460,8 +464,9 @@ class Int32ValueOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=kwargs.pop("stream", False), **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -520,8 +525,9 @@ class Int64ValueOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=kwargs.pop("stream", False), **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -530,7 +536,10 @@ class Int64ValueOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(Dict[str, int], response.json())
+        if _stream:
+            deserialized = response.stream_download(self._client._pipeline)
+        else:
+            deserialized = _deserialize(Dict[str, int], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -619,8 +628,9 @@ class Int64ValueOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=kwargs.pop("stream", False), **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -679,8 +689,9 @@ class BooleanValueOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=kwargs.pop("stream", False), **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -689,7 +700,10 @@ class BooleanValueOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(Dict[str, bool], response.json())
+        if _stream:
+            deserialized = response.stream_download(self._client._pipeline)
+        else:
+            deserialized = _deserialize(Dict[str, bool], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -778,8 +792,9 @@ class BooleanValueOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=kwargs.pop("stream", False), **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -838,8 +853,9 @@ class StringValueOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=kwargs.pop("stream", False), **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -848,7 +864,10 @@ class StringValueOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(Dict[str, str], response.json())
+        if _stream:
+            deserialized = response.stream_download(self._client._pipeline)
+        else:
+            deserialized = _deserialize(Dict[str, str], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -937,8 +956,9 @@ class StringValueOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=kwargs.pop("stream", False), **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -997,8 +1017,9 @@ class Float32ValueOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=kwargs.pop("stream", False), **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1007,7 +1028,10 @@ class Float32ValueOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(Dict[str, float], response.json())
+        if _stream:
+            deserialized = response.stream_download(self._client._pipeline)
+        else:
+            deserialized = _deserialize(Dict[str, float], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1096,8 +1120,9 @@ class Float32ValueOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=kwargs.pop("stream", False), **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1156,8 +1181,9 @@ class DatetimeValueOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=kwargs.pop("stream", False), **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1166,7 +1192,10 @@ class DatetimeValueOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(Dict[str, datetime.datetime], response.json())
+        if _stream:
+            deserialized = response.stream_download(self._client._pipeline)
+        else:
+            deserialized = _deserialize(Dict[str, datetime.datetime], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1255,8 +1284,9 @@ class DatetimeValueOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=kwargs.pop("stream", False), **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1315,8 +1345,9 @@ class DurationValueOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=kwargs.pop("stream", False), **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1325,7 +1356,10 @@ class DurationValueOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(Dict[str, datetime.timedelta], response.json())
+        if _stream:
+            deserialized = response.stream_download(self._client._pipeline)
+        else:
+            deserialized = _deserialize(Dict[str, datetime.timedelta], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1414,8 +1448,9 @@ class DurationValueOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=kwargs.pop("stream", False), **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1474,8 +1509,9 @@ class UnknownValueOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=kwargs.pop("stream", False), **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1484,7 +1520,10 @@ class UnknownValueOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(Dict[str, Any], response.json())
+        if _stream:
+            deserialized = response.stream_download(self._client._pipeline)
+        else:
+            deserialized = _deserialize(Dict[str, Any], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1573,8 +1612,9 @@ class UnknownValueOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=kwargs.pop("stream", False), **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1633,8 +1673,9 @@ class ModelValueOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=kwargs.pop("stream", False), **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1643,7 +1684,10 @@ class ModelValueOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(Dict[str, _models.InnerModel], response.json())
+        if _stream:
+            deserialized = response.stream_download(self._client._pipeline)
+        else:
+            deserialized = _deserialize(Dict[str, _models.InnerModel], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1732,8 +1776,9 @@ class ModelValueOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=kwargs.pop("stream", False), **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1792,8 +1837,9 @@ class RecursiveModelValueOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=kwargs.pop("stream", False), **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1802,7 +1848,10 @@ class RecursiveModelValueOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(Dict[str, _models.InnerModel], response.json())
+        if _stream:
+            deserialized = response.stream_download(self._client._pipeline)
+        else:
+            deserialized = _deserialize(Dict[str, _models.InnerModel], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1891,8 +1940,9 @@ class RecursiveModelValueOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=kwargs.pop("stream", False), **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

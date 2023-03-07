@@ -143,8 +143,9 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=kwargs.pop("stream", False), **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -256,8 +257,9 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=kwargs.pop("stream", False), **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -369,8 +371,9 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=kwargs.pop("stream", False), **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
