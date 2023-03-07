@@ -727,11 +727,11 @@ function emitBasicOperation(
         }
     }
     const name = camelToSnakeCase(getLibraryName(context, operation));
-    const overloads: Record<string, any>[] = [];
+    let overloads: Record<string, any>[] = [];
     const overload_operations = getOverloads(context.program, operation);
     if (overload_operations) {
         for (const overload_operation of overload_operations) {
-            overloads.push(emitBasicOperation(context, overload_operation, operationGroupName, true));
+            overloads = overloads.concat(emitBasicOperation(context, overload_operation, operationGroupName, true));
         }
         for (const overload of overloads) {
             overload.name = name;
