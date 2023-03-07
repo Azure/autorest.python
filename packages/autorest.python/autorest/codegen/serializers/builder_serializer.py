@@ -639,7 +639,11 @@ class _OperationSerializer(
 
     def make_pipeline_call(self, builder: OperationType) -> List[str]:
         type_ignore = self.async_mode and builder.group_name == ""  # is in a mixin
-        stream_value = 'kwargs.pop("stream", False)' if builder.expose_stream_keyword else builder.has_stream_response
+        stream_value = (
+            'kwargs.pop("stream", False)'
+            if builder.expose_stream_keyword
+            else builder.has_stream_response
+        )
         return [
             f"_stream = {stream_value}",
             f"pipeline_response: PipelineResponse = {self._call_method}self._client._pipeline.run(  "
@@ -1064,7 +1068,9 @@ class _OperationSerializer(
                 deserialize_code.append("    deserialized = None")
         if builder.expose_stream_keyword:
             retval.append("if _stream:")
-            retval.append("    deserialized = response.stream_download(self._client._pipeline)")
+            retval.append(
+                "    deserialized = response.stream_download(self._client._pipeline)"
+            )
             retval.append("else:")
             retval.extend([f"    {dc}" for dc in deserialize_code])
         else:
@@ -1129,7 +1135,9 @@ class _OperationSerializer(
                         retval.append("")
             else:
                 retval.extend(
-                    self.response_headers_and_deserialization(builder, builder.responses[0])
+                    self.response_headers_and_deserialization(
+                        builder, builder.responses[0]
+                    )
                 )
                 retval.append("")
         type_ignore = (
