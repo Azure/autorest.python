@@ -31,6 +31,20 @@ class OperationMixinGroup:
                 imports.merge(current_version_imports)
         return imports
 
+    def typing_definitions(self, async_mode: bool) -> str:
+        key = (
+            "sync_mixin_typing_definitions"
+            if async_mode
+            else "async_mixin_typing_definitions"
+        )
+        origin = "".join(
+            [
+                metadata_json.get("operation_mixins", {}).get(key, "")
+                for metadata_json in self.version_path_to_metadata.values()
+            ]
+        )
+        return "\n".join(set(origin.split("\n")))
+
     def _use_metadata_of_default_api_version(
         self, mixin_operations: List[MixinOperation]
     ) -> List[MixinOperation]:

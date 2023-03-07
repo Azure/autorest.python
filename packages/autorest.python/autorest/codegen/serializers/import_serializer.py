@@ -108,8 +108,8 @@ class FileImportSerializer:
                 "typing", "TYPE_CHECKING", ImportType.STDLIB
             )
 
-    def _get_typing_definitions(self) -> str:
-        def declare_defintion(
+    def get_typing_definitions(self) -> str:
+        def declare_definition(
             type_name: str, type_definition: TypeDefinition
         ) -> List[str]:
             ret: List[str] = []
@@ -125,7 +125,7 @@ class FileImportSerializer:
             return ""
         declarations: List[str] = [""]
         for type_name, value in self.file_import.type_definitions.items():
-            declarations.extend(declare_defintion(type_name, value))
+            declarations.extend(declare_definition(type_name, value))
         return "\n".join(declarations)
 
     def __str__(self) -> str:
@@ -151,4 +151,4 @@ class FileImportSerializer:
             typing_imports += "\n\n    ".join(
                 _get_import_clauses(typing_imports_list, "\n    ")
             )
-        return regular_imports + typing_imports + self._get_typing_definitions()
+        return regular_imports + typing_imports + self.get_typing_definitions()
