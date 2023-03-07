@@ -100,8 +100,10 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
     def item_type(self) -> ModelType:
         try:
             item_type_yaml = self.yaml_data["itemType"]
-        except KeyError:
-            raise ValueError("Only call this for DPG paging model deserialization")
+        except KeyError as e:
+            raise ValueError(
+                "Only call this for DPG paging model deserialization"
+            ) from e
         return cast(ModelType, self.code_model.types_map[id(item_type_yaml)])
 
     @property
