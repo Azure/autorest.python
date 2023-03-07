@@ -1,5 +1,11 @@
 # Release History
 
+## 2023-03-06 - 0.5.2
+
+**Other Changes**
+
+- Expose `stream` kwarg. Defaults to `False`, when passed in as `True` we stream the response back to users #1777
+
 ## 2023-03-06 - 0.5.1
 
 **Other Changes**

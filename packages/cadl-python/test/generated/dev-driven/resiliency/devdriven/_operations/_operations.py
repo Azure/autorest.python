@@ -130,6 +130,8 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
          before returning to users. Known values are: "raw" and "model". Required.
         :type mode: str or ~resiliency.devdriven.models.Mode
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: Product. The Product is compatible with MutableMapping
         :rtype: ~resiliency.devdriven.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -154,8 +156,9 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -164,7 +167,10 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.Product, response.json())
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.Product, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -192,6 +198,8 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: Product. The Product is compatible with MutableMapping
         :rtype: ~resiliency.devdriven.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -213,6 +221,8 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: Product. The Product is compatible with MutableMapping
         :rtype: ~resiliency.devdriven.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -234,6 +244,8 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: Product. The Product is compatible with MutableMapping
         :rtype: ~resiliency.devdriven.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -256,6 +268,8 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: Product. The Product is compatible with MutableMapping
         :rtype: ~resiliency.devdriven.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -290,8 +304,9 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -300,7 +315,10 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.Product, response.json())
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.Product, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -357,8 +375,9 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         def get_next(next_link=None):
             request = prepare_request(next_link)
 
+            _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=False, **kwargs
+                request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -379,6 +398,8 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
          before returning to users. Known values are: "raw" and "model". Required.
         :type mode: str or ~resiliency.devdriven.models.Mode
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: LroProduct. The LroProduct is compatible with MutableMapping
         :rtype: ~resiliency.devdriven.models.LroProduct
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -403,8 +424,9 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -413,7 +435,10 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.LroProduct, response.json())
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.LroProduct, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
