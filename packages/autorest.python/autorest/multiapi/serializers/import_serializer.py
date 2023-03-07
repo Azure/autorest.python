@@ -135,8 +135,9 @@ def _get_import_clauses(
 
 
 class FileImportSerializer:
-    def __init__(self, file_import: FileImport) -> None:
+    def __init__(self, file_import: FileImport, typing_definitions: str = "") -> None:
         self._file_import = file_import
+        self._typing_definitions = typing_definitions
 
     def _switch_typing_section_key(self, new_key: TypingSection):
         switched_dictionary = {}
@@ -193,4 +194,4 @@ class FileImportSerializer:
                 _get_import_clauses(typing_imports_dict, "\n    ")
             )
 
-        return regular_imports + typing_imports
+        return regular_imports + typing_imports + self._typing_definitions
