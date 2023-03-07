@@ -97,6 +97,14 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
         return rest_api_name
 
     @property
+    def item_type(self) -> ModelType:
+        try:
+            item_type_yaml = self.yaml_data["itemType"]
+        except KeyError:
+            raise ValueError("Only call this for DPG paging model deserialization")
+        return cast(ModelType, self.code_model.types_map[id(item_type_yaml)])
+
+    @property
     def operation_type(self) -> str:
         return "paging"
 
