@@ -668,13 +668,13 @@ function emitPagingOperation(
 function addOverloadForNativeOverload(
     originOverload: Record<string, any>,
     originBodyParameter: Record<string, any> | undefined,
-    bodyType: Record<string, any>
+    bodyType: Record<string, any>,
 ): Record<string, any> {
-    const addedOverload = {...originOverload};
-    addedOverload.bodyParameter = {...originOverload.bodyParameter};
+    const addedOverload = { ...originOverload };
+    addedOverload.bodyParameter = { ...originOverload.bodyParameter };
     addedOverload.bodyParameter.type = bodyType;
     if (originBodyParameter && originBodyParameter.type.type === "combined") {
-        originBodyParameter.type.types.push(bodyType)
+        originBodyParameter.type.types.push(bodyType);
     }
     return addedOverload;
 }
@@ -1417,6 +1417,6 @@ function emitCodeModel(context: EmitContext<EmitterOptions>) {
 
 const KnownTypes = {
     string: { type: "string" },
-    anyObject: {type: "any-object"},
-    binary: {type: "binary"},
+    anyObject: { type: "any-object" },
+    binary: { type: "binary" },
 };
