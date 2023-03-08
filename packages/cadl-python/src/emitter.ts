@@ -244,7 +244,7 @@ function getEffectiveSchemaType(context: DpgContext, type: Model): Model {
     return type;
 }
 
-function getType(context: DpgContext, type: EmitterType): any {
+function getType(context: DpgContext, type: EmitterType, location: string = ""): any {
     // don't cache simple type(string, int, etc) since decorators may change the result
     const program = context.program;
     const enableCache = !isSimpleType(context, type);
@@ -255,7 +255,7 @@ function getType(context: DpgContext, type: EmitterType): any {
             return cached;
         }
     }
-    let newValue = emitType(context, type);
+    let newValue = emitType(context, type, location);
     if (enableCache) {
         typesMap.set(effectiveModel, newValue);
         if (type.kind === "Model") {
@@ -391,7 +391,7 @@ function emitParameter(
     implementation: string,
 ): Record<string, any> {
     const base = emitParamBase(context, parameter.param);
-    let type = getType(context, parameter.param.type);
+    let type = getType(context, parameter.param.type, parameter.type);
     let clientDefaultValue = undefined;
     if (parameter.name.toLowerCase() === "content-type" && type["type"] === "constant") {
         /// We don't want constant types for content types, so we make sure if it's
@@ -400,7 +400,7 @@ function emitParameter(
         type = type["valueType"];
     }
     const paramMap: Record<string, any> = {
-        restApiName: parameter.name,
+        restApiName: parameter.type === "path" ? parameter.param.name : parameter.name,
         location: parameter.type,
         type: type,
         implementation: implementation,
@@ -522,7 +522,7 @@ function emitResponseHeaders(context: DpgContext, headers?: Record<string, Model
     }
     for (const [key, value] of Object.entries(headers)) {
         retval.push({
-            type: getType(context, value.type),
+            type: getType(context, value.type, "header"),
             restApiName: key,
         });
     }
@@ -894,7 +894,7 @@ function emitCredentialUnion(cred_types: CredentialTypeUnion): Record<string, an
     return result;
 }
 
-function emitStdScalar(scalar: Scalar & { name: IntrinsicScalarName }): Record<string, any> {
+function emitStdScalar(scalar: Scalar & { name: IntrinsicScalarName }, location: string = ""): Record<string, any> {
     switch (scalar.name) {
         case "bytes":
             return { type: "byte-array", format: "byte" };
@@ -921,7 +921,11 @@ function emitStdScalar(scalar: Scalar & { name: IntrinsicScalarName }): Record<s
         case "plainDate":
             return { type: "date" };
         case "zonedDateTime":
-            return { type: "datetime", format: "date-time" };
+            if (location === "header") {
+                return { type: "datetime", format: "date-time-rfc1123" };
+            } else {
+                return { type: "datetime", format: "date-time" };
+            }
         case "plainTime":
             return { type: "time" };
         case "duration":
@@ -990,10 +994,10 @@ function applyIntrinsicDecorators(
     return newResult;
 }
 
-function emitScalar(context: DpgContext, scalar: Scalar): Record<string, any> {
+function emitScalar(context: DpgContext, scalar: Scalar, location: string = ""): Record<string, any> {
     let result: Record<string, any> = {};
     if (context.program.checker.isStdType(scalar)) {
-        result = emitStdScalar(scalar);
+        result = emitStdScalar(scalar, location);
     } else if (scalar.baseScalar) {
         result = emitScalar(context, scalar.baseScalar);
     }
@@ -1097,7 +1101,7 @@ function emitUnion(context: DpgContext, type: Union): Record<string, any> {
     };
 }
 
-function emitType(context: DpgContext, type: EmitterType): Record<string, any> {
+function emitType(context: DpgContext, type: EmitterType, location: string = ""): Record<string, any> {
     if (type.kind === "Credential") {
         return emitCredential(type.scheme);
     }
@@ -1120,7 +1124,7 @@ function emitType(context: DpgContext, type: EmitterType): Record<string, any> {
         case "Model":
             return emitModel(context, type);
         case "Scalar":
-            return emitScalar(context, type);
+            return emitScalar(context, type, location);
         case "Union":
             return emitUnion(context, type);
         case "UnionVariant":
