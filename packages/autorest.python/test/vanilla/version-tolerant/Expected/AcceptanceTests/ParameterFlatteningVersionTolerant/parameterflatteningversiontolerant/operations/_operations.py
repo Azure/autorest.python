@@ -169,8 +169,8 @@ class AvailabilitySetsOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(tags, (IO, bytes)):
             _content = tags
         else:

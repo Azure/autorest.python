@@ -129,7 +129,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _content: Any = None
+        _content = None
         if isinstance(input, (IO, bytes)):
             _content = input
         else:
@@ -293,7 +293,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         cls: ClsType[_models.InputOutputRecord] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _content: Any = None
+        _content = None
         if isinstance(body, (IO, bytes)):
             _content = body
         else:

@@ -857,8 +857,9 @@ class _OperationSerializer(
             overload.request_builder.parameters.body_parameter.client_name
             for overload in builder.overloads
         ]
+        type_annotation = ": Any" if builder.has_native_overload else ""
         for v in sorted(set(client_names), key=client_names.index):
-            retval.append(f"_{v}: Any = None")
+            retval.append(f"_{v}{type_annotation} = None")
         if not builder.has_native_overload:
             try:
                 # if there is a binary overload, we do a binary check first.

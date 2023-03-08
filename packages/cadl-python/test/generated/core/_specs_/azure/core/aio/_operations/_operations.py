@@ -147,7 +147,7 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         cls: ClsType[_models.User] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/merge-patch+json"
-        _content: Any = None
+        _content = None
         if isinstance(resource, (IO, bytes)):
             _content = resource
         else:
@@ -291,7 +291,7 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         cls: ClsType[_models.User] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _content: Any = None
+        _content = None
         if isinstance(resource, (IO, bytes)):
             _content = resource
         else:

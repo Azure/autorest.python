@@ -402,8 +402,8 @@ class PolymorphismOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -714,8 +714,8 @@ class PolymorphismOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -812,8 +812,8 @@ class PolymorphismOperations:
         cls: ClsType[_models.Salmon] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -997,8 +997,8 @@ class PolymorphismOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:

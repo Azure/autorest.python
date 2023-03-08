@@ -770,8 +770,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[Optional[_models.Product]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
         else:
@@ -947,8 +947,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
         else:
@@ -1133,8 +1133,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
         else:
@@ -1316,8 +1316,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
         else:
@@ -1505,8 +1505,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
         else:
@@ -1783,8 +1783,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
         else:
@@ -1958,8 +1958,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
         else:
@@ -2136,8 +2136,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
         else:
@@ -2318,8 +2318,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
         else:
@@ -2496,8 +2496,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
         else:
@@ -2678,8 +2678,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
         else:
@@ -2856,8 +2856,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
         else:
@@ -3038,8 +3038,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
         else:
@@ -3231,8 +3231,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
         else:
@@ -3422,8 +3422,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
         else:
@@ -3615,8 +3615,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
         else:
@@ -3806,8 +3806,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
         else:
@@ -3993,8 +3993,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.Sku] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(sku, (IO, bytes)):
             _content = sku
         else:
@@ -4160,8 +4160,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.Sku] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(sku, (IO, bytes)):
             _content = sku
         else:
@@ -5852,8 +5852,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
         else:
@@ -6025,8 +6025,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
         else:
@@ -6507,8 +6507,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[Optional[_models.Product]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
         else:
@@ -6695,8 +6695,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[Optional[_models.Product]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
         else:
@@ -6883,8 +6883,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
         else:
@@ -7062,8 +7062,8 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
         else:

@@ -266,8 +266,8 @@ class PetOperations:
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(pet_param, (IO, bytes)):
             _content = pet_param
         else:

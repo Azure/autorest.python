@@ -119,8 +119,8 @@ class PetsOperations:
         cls: ClsType[_models.PetAPTrue] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(create_parameters, (IO, bytes)):
             _content = create_parameters
         else:
@@ -223,8 +223,8 @@ class PetsOperations:
         cls: ClsType[_models.CatAPTrue] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(create_parameters, (IO, bytes)):
             _content = create_parameters
         else:
@@ -327,8 +327,8 @@ class PetsOperations:
         cls: ClsType[_models.PetAPObject] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(create_parameters, (IO, bytes)):
             _content = create_parameters
         else:
@@ -431,8 +431,8 @@ class PetsOperations:
         cls: ClsType[_models.PetAPString] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(create_parameters, (IO, bytes)):
             _content = create_parameters
         else:
@@ -535,8 +535,8 @@ class PetsOperations:
         cls: ClsType[_models.PetAPInProperties] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(create_parameters, (IO, bytes)):
             _content = create_parameters
         else:
@@ -644,8 +644,8 @@ class PetsOperations:
         cls: ClsType[_models.PetAPInPropertiesWithAPString] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(create_parameters, (IO, bytes)):
             _content = create_parameters
         else:

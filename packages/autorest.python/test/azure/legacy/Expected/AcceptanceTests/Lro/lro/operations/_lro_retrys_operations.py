@@ -183,8 +183,8 @@ class LRORetrysOperations:
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
         else:
@@ -365,8 +365,8 @@ class LRORetrysOperations:
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
         else:
@@ -857,8 +857,8 @@ class LRORetrysOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
         else:
@@ -1030,8 +1030,8 @@ class LRORetrysOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
         else:
