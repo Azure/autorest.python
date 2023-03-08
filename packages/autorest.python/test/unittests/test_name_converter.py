@@ -3,10 +3,11 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-
-from autorest.preprocess.helpers import pad_reserved_words
+from autorest.preprocess import PreProcessPlugin
 from autorest.preprocess.python_mappings import PadType
 
+def pad_reserved_words(name: str, pad_type: PadType) -> str:
+    return PreProcessPlugin(output_folder="").pad_reserved_words(name, pad_type)
 
 def test_escaped_reserved_words():
     expected_conversion_model = {"Self": "Self", "And": "AndModel"}

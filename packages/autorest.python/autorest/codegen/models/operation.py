@@ -84,6 +84,10 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         self.include_documentation: bool = not self.is_lro_initial_operation
 
     @property
+    def expose_stream_keyword(self) -> bool:
+        return self.yaml_data.get("exposeStreamKeyword", False)
+
+    @property
     def operation_type(self) -> str:
         return "operation"
 

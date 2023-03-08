@@ -17,7 +17,6 @@ from ._utils import DEFAULT_HEADER_TEXT
 
 
 def _validate_code_model_options(options: Dict[str, Any]) -> None:
-
     if options["builders_visibility"] not in ["public", "hidden", "embedded"]:
         raise ValueError(
             "The value of --builders-visibility must be either 'public', 'hidden', "

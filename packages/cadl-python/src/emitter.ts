@@ -593,6 +593,7 @@ function emitOperation(context: DpgContext, operation: Operation, operationGroup
 function addLroInformation(emittedOperation: Record<string, any>, initialOperation: Record<string, any>) {
     emittedOperation["discriminator"] = "lro";
     emittedOperation["initialOperation"] = initialOperation;
+    emittedOperation["exposeStreamKeyword"] = false;
 }
 
 function addPagingInformation(context: DpgContext, operation: Operation, emittedOperation: Record<string, any>) {
@@ -602,7 +603,9 @@ function addPagingInformation(context: DpgContext, operation: Operation, emitted
         throw Error("Trying to add paging information, but not paging metadata for this operation");
     }
     emittedOperation["itemName"] = pagedResult.itemsPath;
+    emittedOperation["itemType"] = getType(context, pagedResult.itemsProperty!.type);
     emittedOperation["continuationTokenName"] = pagedResult.nextLinkPath;
+    emittedOperation["exposeStreamKeyword"] = false;
 }
 
 function getLroInitialOperation(
@@ -614,6 +617,7 @@ function getLroInitialOperation(
     initialOperation["name"] = `_${initialOperation["name"]}_initial`;
     initialOperation["isLroInitialOperation"] = true;
     initialOperation["wantTracing"] = false;
+    initialOperation["exposeStreamKeyword"] = false;
     return initialOperation;
 }
 
@@ -761,6 +765,7 @@ function emitBasicOperation(
             apiVersions: [getAddedOnVersion(context, operation)],
             hasNativeOverload: overloads.length > 0,
             wantTracing: true,
+            exposeStreamKeyword: true,
         },
     ];
 }

@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 import json
 import sys
-from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, AsyncIterable, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import (
@@ -63,6 +63,8 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/merge-patch+json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: User. The User is compatible with MutableMapping
         :rtype: ~_specs_.azure.core.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -83,6 +85,8 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/merge-patch+json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: User. The User is compatible with MutableMapping
         :rtype: ~_specs_.azure.core.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -103,6 +107,8 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/merge-patch+json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: User. The User is compatible with MutableMapping
         :rtype: ~_specs_.azure.core.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -120,6 +126,8 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         :type resource: ~_specs_.azure.core.models.User or JSON or IO
         :keyword content_type: This request has a JSON Merge Patch body. Default value is None.
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: User. The User is compatible with MutableMapping
         :rtype: ~_specs_.azure.core.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -155,8 +163,9 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -166,10 +175,16 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
             raise HttpResponseError(response=response)
 
         if response.status_code == 200:
-            deserialized = _deserialize(_models.User, response.json())
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.User, response.json())
 
         if response.status_code == 201:
-            deserialized = _deserialize(_models.User, response.json())
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.User, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -191,6 +206,8 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: User. The User is compatible with MutableMapping
         :rtype: ~_specs_.azure.core.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -211,6 +228,8 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: User. The User is compatible with MutableMapping
         :rtype: ~_specs_.azure.core.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -231,6 +250,8 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: User. The User is compatible with MutableMapping
         :rtype: ~_specs_.azure.core.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -249,6 +270,8 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: User. The User is compatible with MutableMapping
         :rtype: ~_specs_.azure.core.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -284,8 +307,9 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -295,10 +319,16 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
             raise HttpResponseError(response=response)
 
         if response.status_code == 200:
-            deserialized = _deserialize(_models.User, response.json())
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.User, response.json())
 
         if response.status_code == 201:
-            deserialized = _deserialize(_models.User, response.json())
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.User, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -313,6 +343,8 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
 
         :param id: The user's id. Required.
         :type id: int
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: User. The User is compatible with MutableMapping
         :rtype: ~_specs_.azure.core.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -338,8 +370,9 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -348,7 +381,10 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.User, response.json())
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.User, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -395,19 +431,18 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
             return request
 
         async def extract_data(pipeline_response):
-            deserialized: _models._models.CustomPageUser = _deserialize(  # pylint: disable=protected-access
-                _models._models.CustomPageUser, pipeline_response  # pylint: disable=protected-access
-            )
-            list_of_elem = deserialized.value
+            deserialized = pipeline_response.http_response.json()
+            list_of_elem = _deserialize(List[_models.User], deserialized["value"])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.next_link or None, AsyncList(list_of_elem)
+            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
+            _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request, stream=False, **kwargs
+                request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -427,6 +462,8 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
 
         :param id: The user's id. Required.
         :type id: int
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -452,8 +489,9 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -475,6 +513,8 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         :type id: int
         :keyword format: The format of the data. Required.
         :paramtype format: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: User. The User is compatible with MutableMapping
         :rtype: ~_specs_.azure.core.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -501,8 +541,9 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -511,7 +552,10 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.User, response.json())
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.User, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
