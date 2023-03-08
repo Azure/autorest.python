@@ -665,6 +665,20 @@ function emitPagingOperation(
     return retval;
 }
 
+function addOverloadForNativeOverload(
+    originOverload: Record<string, any>,
+    originBodyParameter: Record<string, any> | undefined,
+    bodyType: Record<string, any>
+): Record<string, any> {
+    const addedOverload = {...originOverload};
+    addedOverload.bodyParameter = {...originOverload.bodyParameter};
+    addedOverload.bodyParameter.type = bodyType;
+    if (originBodyParameter && originBodyParameter.type.type === "combined") {
+        originBodyParameter.type.types.push(bodyType)
+    }
+    return addedOverload;
+}
+
 function emitBasicOperation(
     context: DpgContext,
     operation: Operation,
@@ -731,14 +745,32 @@ function emitBasicOperation(
         }
     }
     const name = camelToSnakeCase(getLibraryName(context, operation));
+
+    // handle native overloads
     let overloads: Record<string, any>[] = [];
     const overload_operations = getOverloads(context.program, operation);
     if (overload_operations) {
         for (const overload_operation of overload_operations) {
             overloads = overloads.concat(emitBasicOperation(context, overload_operation, operationGroupName, true));
         }
+        let binaryOverload = undefined;
+        let modelOverload = undefined;
         for (const overload of overloads) {
             overload.name = name;
+            if (overload.bodyParameter.type.type === "byte-array" && !binaryOverload) {
+                binaryOverload = addOverloadForNativeOverload(overload, bodyParameter, KnownTypes.binary);
+            } else if (overload.bodyParameter.type.type === "model" && !modelOverload) {
+                modelOverload = addOverloadForNativeOverload(overload, bodyParameter, KnownTypes.anyObject);
+                if (!binaryOverload) {
+                    binaryOverload = addOverloadForNativeOverload(overload, bodyParameter, KnownTypes.binary);
+                }
+            }
+        }
+        if (modelOverload) {
+            overloads.push(modelOverload);
+        }
+        if (binaryOverload) {
+            overloads.unshift(binaryOverload);
         }
         for (const p of parameters) {
             if (p.restApiName.toLowerCase() === "content-type") {
@@ -1385,4 +1417,6 @@ function emitCodeModel(context: EmitContext<EmitterOptions>) {
 
 const KnownTypes = {
     string: { type: "string" },
+    anyObject: {type: "any-object"},
+    binary: {type: "binary"},
 };

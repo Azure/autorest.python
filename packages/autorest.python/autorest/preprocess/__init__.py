@@ -137,37 +137,6 @@ def add_overloads_for_body_param(yaml_data: Dict[str, Any]) -> None:
     content_type_param["optional"] = True
 
 
-def add_overloads_for_native_overloads(
-    code_model: Dict[str, Any], yaml_data: Dict[str, Any]
-) -> None:
-    if yaml_data["bodyParameter"]["type"]["type"] == "combined":
-        combined_type = yaml_data["bodyParameter"]["type"]
-    else:
-        combined_type = {"type": "combined", "types": []}
-        code_model["types"].append(combined_type)
-    binary_overload = None
-    model_overload = None
-    for overload in yaml_data["overloads"]:
-        body_type = overload["bodyParameter"]["type"]
-        if body_type["type"] == "byte-array" and not binary_overload:
-            combined_type["types"].append(KNOWN_TYPES["binary"])
-            binary_overload = add_overload(overload, KNOWN_TYPES["binary"])
-        elif (
-            body_type["type"] == "model"
-            and body_type["base"] == "dpg"
-            and not model_overload
-        ):
-            combined_type["types"].append(KNOWN_TYPES["any-object"])
-            model_overload = add_overload(overload, KNOWN_TYPES["any-object"])
-            if not binary_overload:
-                combined_type["types"].append(KNOWN_TYPES["binary"])
-                binary_overload = add_overload(overload, KNOWN_TYPES["binary"])
-    if model_overload:
-        yaml_data["overloads"].append(model_overload)
-    if binary_overload:
-        yaml_data["overloads"].insert(0, binary_overload)
-
-
 def _remove_paging_maxpagesize(yaml_data: Dict[str, Any]) -> None:
     # we don't expose maxpagesize for version tolerant generation
     # users should be passing this into `by_page`
@@ -323,13 +292,14 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             self.update_operation(code_model, overload, is_overload=True)
         for response in yaml_data.get("responses", []):
             response["discriminator"] = "operation"
-        if body_parameter and not is_overload:
-            if yaml_data.get("hasNativeOverload", False):
-                add_overloads_for_native_overloads(code_model, yaml_data)
-            else:
-                # if we have a JSON body, we add a binary overload
-                add_body_param_type(code_model, body_parameter)
-                add_overloads_for_body_param(yaml_data)
+        if (
+            body_parameter
+            and not is_overload
+            and not yaml_data.get("hasNativeOverload", False)
+        ):
+            # if we have a JSON body, we add a binary overload
+            add_body_param_type(code_model, body_parameter)
+            add_overloads_for_body_param(yaml_data)
 
     def _update_lro_operation_helper(self, yaml_data: Dict[str, Any]) -> None:
         azure_arm = self.options.get("azure-arm", False)
