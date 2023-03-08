@@ -416,7 +416,6 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 request = build_core_list_request(
                     api_version=self._config.api_version,
                     headers=_headers,

@@ -80,7 +80,6 @@ class PagingOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 request = build_get_pages_partial_url_request(
                     template_url=self.get_pages_partial_url.metadata["url"],
                     headers=_headers,
@@ -156,7 +155,6 @@ class PagingOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 request = build_get_pages_partial_url_operation_request(
                     template_url=self.get_pages_partial_url_operation.metadata["url"],
                     headers=_headers,
@@ -170,7 +168,6 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url, **path_format_arguments)
 
             else:
-
                 request = build_get_pages_partial_url_operation_next_request(
                     next_link=next_link,
                     template_url="/paging/customurl/{nextLink}",

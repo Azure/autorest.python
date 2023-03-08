@@ -73,7 +73,6 @@ JSON = MutableMapping[str, Any]
 
 
 class RawDeserializer:
-
     # Accept "text" because we're open minded people...
     JSON_REGEXP = re.compile(r"^(application|text)/([a-z+.]+\+)?json$")
 

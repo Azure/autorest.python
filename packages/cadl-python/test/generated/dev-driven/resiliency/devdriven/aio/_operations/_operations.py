@@ -274,7 +274,6 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
 
         def prepare_request(next_link=None):
             if not next_link:
-
                 request = build_dev_driven_get_pages_request(
                     api_version=self._config.api_version,
                     headers=_headers,
