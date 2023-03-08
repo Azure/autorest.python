@@ -34,7 +34,7 @@ class UnionClient(UnionClientOperationsMixin):  # pylint: disable=client-accepts
     def __init__(self, credential: Union[AzureKeyCredential, "TokenCredential"], **kwargs: Any) -> None:
         _endpoint = "http://localhost:3000"
         self._config = UnionClientConfiguration(credential=credential, **kwargs)
-        self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
+        self._client: PipelineClient = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

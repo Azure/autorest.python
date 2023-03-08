@@ -7,11 +7,12 @@ from typing import Dict, Optional, List, Any, TYPE_CHECKING, Union
 
 from .base import BaseModel
 from .base import BaseType
-from .imports import FileImport, ImportType
+from .imports import FileImport, ImportType, TypingSection
 from .primitive_types import BinaryType, BinaryIteratorType
 from .dictionary_type import DictionaryType
 from .list_type import ListType
 from .model_type import ModelType
+from .combined_type import CombinedType
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -105,6 +106,13 @@ class Response(BaseModel):
             file_import.merge(self.type.imports(is_operation_file=True, **kwargs))
         if self.nullable:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
+        if isinstance(self.type, CombinedType) and self.type.name:
+            file_import.add_submodule_import(
+                "..",
+                "_types",
+                ImportType.LOCAL,
+                TypingSection.TYPING,
+            )
         return file_import
 
     def imports(self, **kwargs: Any) -> FileImport:

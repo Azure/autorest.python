@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import functools
 import json
-from typing import List, Optional, Set, Tuple, Dict, Union
+from typing import List, Optional, Set, Tuple, Dict, Union, Any
 from jinja2 import Environment
 from ..models import (
     OperationGroup,
@@ -16,6 +16,13 @@ from ..models import (
     CodeModel,
 )
 from .builder_serializer import get_operation_serializer
+from .import_serializer import FileImportSerializer
+
+
+def _to_string(data: Union[Tuple[Any], List[Any], str]) -> str:
+    if isinstance(data, (list, tuple)):
+        return "".join([_to_string(item) for item in data])
+    return str(data)
 
 
 def _json_serialize_imports(
@@ -59,7 +66,7 @@ def _json_serialize_imports(
                 if name_imports:
                     name_import_ordered_list = list(name_imports)
                     name_import_ordered_list.sort(
-                        key=lambda e: "".join(e)  # type: ignore
+                        key=lambda e: _to_string(e)  # type: ignore
                         if isinstance(e, (list, tuple))
                         else e
                         if isinstance(e, str)
@@ -83,6 +90,24 @@ def _mixin_imports(
     return _json_serialize_imports(
         sync_mixin_imports.to_dict()
     ), _json_serialize_imports(async_mixin_imports.to_dict())
+
+
+def _mixin_typing_definitions(
+    mixin_operation_group: Optional[OperationGroup],
+) -> Tuple[Optional[str], Optional[str]]:
+    if not mixin_operation_group:
+        return None, None
+
+    sync_mixin_imports = mixin_operation_group.imports_for_multiapi(async_mode=False)
+    async_mixin_imports = mixin_operation_group.imports_for_multiapi(async_mode=True)
+    sync_mixin_typing_definitions = FileImportSerializer(
+        sync_mixin_imports, False
+    ).get_typing_definitions()
+    async_mixin_typing_definitions = FileImportSerializer(
+        async_mixin_imports, True
+    ).get_typing_definitions()
+
+    return sync_mixin_typing_definitions, async_mixin_typing_definitions
 
 
 class MetadataSerializer:
@@ -135,6 +160,10 @@ class MetadataSerializer:
             mixin_operation_group.operations if mixin_operation_group else []
         )
         sync_mixin_imports, async_mixin_imports = _mixin_imports(mixin_operation_group)
+        (
+            sync_mixin_typing_definitions,
+            async_mixin_typing_definitions,
+        ) = _mixin_typing_definitions(mixin_operation_group)
 
         chosen_version, total_api_version_list = self._choose_api_version()
 
@@ -155,6 +184,8 @@ class MetadataSerializer:
             str=str,
             sync_mixin_imports=sync_mixin_imports,
             async_mixin_imports=async_mixin_imports,
+            sync_mixin_typing_definitions=sync_mixin_typing_definitions,
+            async_mixin_typing_definitions=async_mixin_typing_definitions,
             sync_client_imports=_json_serialize_imports(
                 self.client.imports_for_multiapi(async_mode=False).to_dict()
             ),

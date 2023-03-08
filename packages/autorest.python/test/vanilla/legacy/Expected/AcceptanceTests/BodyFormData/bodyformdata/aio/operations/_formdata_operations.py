@@ -97,8 +97,9 @@ class FormdataOperations:
         request = _convert_request(request, _files)
         request.url = self._client.format_url(request.url)
 
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=True, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -154,8 +155,9 @@ class FormdataOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=True, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -214,8 +216,9 @@ class FormdataOperations:
         request = _convert_request(request, _files)
         request.url = self._client.format_url(request.url)
 
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=True, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

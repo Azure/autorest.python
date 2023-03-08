@@ -115,6 +115,8 @@
     "operation_mixins": {
         "sync_imports": {{ str(sync_mixin_imports) | tojson }},
         "async_imports": {{ str(async_mixin_imports) | tojson }},
+        "sync_mixin_typing_definitions": {{ str(sync_mixin_typing_definitions) | tojson }},
+        "async_mixin_typing_definitions": {{ str(async_mixin_typing_definitions) | tojson }},
         "operations": {
             {% for operation in mixin_operations %}
             {{ operation.name | tojson }} : {
