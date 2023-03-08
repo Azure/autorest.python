@@ -306,8 +306,8 @@ class ParamsOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(parameter, (IO, bytes)):
             _content = parameter
             if not content_type:
