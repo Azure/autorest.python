@@ -155,6 +155,8 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
             file_import.add_submodule_import(
                 "azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE
             )
+        if self.code_model.options["models_mode"] == "dpg":
+            file_import.merge(self.item_type.imports(**kwargs))
         return file_import
 
 

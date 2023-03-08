@@ -1396,7 +1396,8 @@ class _PagingOperationSerializer(
         )
         list_of_elem_deserialized = ""
         if self.code_model.options["models_mode"] == "dpg":
-            list_of_elem_deserialized = f"_deserialize({builder.item_type.serialization_type}, deserialized{access})"
+            item_type = builder.item_type.type_annotation(is_operation_file=True)
+            list_of_elem_deserialized = f"_deserialize({item_type}, deserialized{access})"
         else:
 
             list_of_elem_deserialized = f"deserialized{access}"
