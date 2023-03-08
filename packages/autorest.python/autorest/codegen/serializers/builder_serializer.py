@@ -858,7 +858,7 @@ class _OperationSerializer(
             for overload in builder.overloads
         ]
         for v in sorted(set(client_names), key=client_names.index):
-            retval.append(f"_{v} = None")
+            retval.append(f"_{v}: Any = None")
         if not builder.has_native_overload:
             try:
                 # if there is a binary overload, we do a binary check first.

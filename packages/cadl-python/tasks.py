@@ -35,7 +35,7 @@ def _add_options(spec):
 @task
 def regenerate(c, name=None, debug=False):
   specs = [
-    s for s in list(item for dir in (CADL_RANCH_DIR, PYTHON_TPYESPEC_DIR) for item in dir.glob("**/*"))
+    s for dir in (CADL_RANCH_DIR, PYTHON_TPYESPEC_DIR) for s in dir.glob("**/*") 
     if s.is_dir() and any(f for f in s.iterdir() if f.name == "main.cadl")
   ]
   if name:
