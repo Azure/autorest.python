@@ -22,6 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
+from .. import models as _models
 from .._model_base import _deserialize
 from .._serialization import Serializer
 from .._vendor import CollectionFormatClientMixinABC
@@ -71,15 +72,15 @@ def build_collection_format_test_csv_request(*, colors: List[str], **kwargs: Any
 
 class CollectionFormatClientOperationsMixin(CollectionFormatClientMixinABC):
     @distributed_trace
-    def test_multi(self, *, colors: List[str], **kwargs: Any) -> str:
+    def test_multi(self, *, colors: List[str], **kwargs: Any) -> _models.MessageResponse:
         """test_multi.
 
         :keyword colors: Possible values for colors are [blue,red,green]. Required.
         :paramtype colors: list[str]
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: str
-        :rtype: str
+        :return: MessageResponse. The MessageResponse is compatible with MutableMapping
+        :rtype: ~collectionformat.models.MessageResponse
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -93,7 +94,7 @@ class CollectionFormatClientOperationsMixin(CollectionFormatClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[str] = kwargs.pop("cls", None)
+        cls: ClsType[_models.MessageResponse] = kwargs.pop("cls", None)
 
         request = build_collection_format_test_multi_request(
             colors=colors,
@@ -116,7 +117,7 @@ class CollectionFormatClientOperationsMixin(CollectionFormatClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(str, response.json())
+            deserialized = _deserialize(_models.MessageResponse, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -124,15 +125,15 @@ class CollectionFormatClientOperationsMixin(CollectionFormatClientMixinABC):
         return deserialized  # type: ignore
 
     @distributed_trace
-    def test_csv(self, *, colors: List[str], **kwargs: Any) -> str:
+    def test_csv(self, *, colors: List[str], **kwargs: Any) -> _models.MessageResponse:
         """test_csv.
 
         :keyword colors: Possible values for colors are [blue,red,green]. Required.
         :paramtype colors: list[str]
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: str
-        :rtype: str
+        :return: MessageResponse. The MessageResponse is compatible with MutableMapping
+        :rtype: ~collectionformat.models.MessageResponse
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -146,7 +147,7 @@ class CollectionFormatClientOperationsMixin(CollectionFormatClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[str] = kwargs.pop("cls", None)
+        cls: ClsType[_models.MessageResponse] = kwargs.pop("cls", None)
 
         request = build_collection_format_test_csv_request(
             colors=colors,
@@ -169,7 +170,7 @@ class CollectionFormatClientOperationsMixin(CollectionFormatClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(str, response.json())
+            deserialized = _deserialize(_models.MessageResponse, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

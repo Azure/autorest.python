@@ -130,7 +130,16 @@ def build_core_get_request(id: int, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_core_list_request(**kwargs: Any) -> HttpRequest:
+def build_core_list_request(
+    *,
+    top: Optional[int] = None,
+    skip: Optional[int] = None,
+    orderby: Optional[List[str]] = None,
+    filter: Optional[str] = None,
+    select: Optional[List[str]] = None,
+    expand: Optional[List[str]] = None,
+    **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -141,6 +150,39 @@ def build_core_list_request(**kwargs: Any) -> HttpRequest:
 
     # Construct URL
     _url = "/azure/core/users"
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    if top is not None:
+        _params["top"] = _SERIALIZER.query("top", top, "int")
+    if skip is not None:
+        _params["skip"] = _SERIALIZER.query("skip", skip, "int")
+    if orderby is not None:
+        _params["orderby"] = [_SERIALIZER.query("orderby", q, "str") if q is not None else "" for q in orderby]
+    if filter is not None:
+        _params["filter"] = _SERIALIZER.query("filter", filter, "str")
+    if select is not None:
+        _params["select"] = [_SERIALIZER.query("select", q, "str") if q is not None else "" for q in select]
+    if expand is not None:
+        _params["expand"] = [_SERIALIZER.query("expand", q, "str") if q is not None else "" for q in expand]
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_core_list_with_page_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    api_version: Literal["2022-12-01-preview"] = kwargs.pop(
+        "api_version", _params.pop("api-version", "2022-12-01-preview")
+    )
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/azure/core/page"
 
     # Construct parameters
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
@@ -543,11 +585,35 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         return deserialized  # type: ignore
 
     @distributed_trace
-    def list(self, **kwargs: Any) -> Iterable["_models.User"]:
+    def list(
+        self,
+        *,
+        top: Optional[int] = None,
+        skip: Optional[int] = None,
+        orderby: Optional[List[str]] = None,
+        filter: Optional[str] = None,
+        select: Optional[List[str]] = None,
+        expand: Optional[List[str]] = None,
+        **kwargs: Any
+    ) -> Iterable["_models.User"]:
         """Lists all users.
 
         Lists all Users.
 
+        :keyword top: The number of result items to return. Default value is None.
+        :paramtype top: int
+        :keyword skip: The number of result items to skip. Default value is None.
+        :paramtype skip: int
+        :keyword orderby: Expressions that specify the order of returned results. Default value is
+         None.
+        :paramtype orderby: list[str]
+        :keyword filter: Filter the result list using the given expression. Default value is None.
+        :paramtype filter: str
+        :keyword select: Select the specified fields to be included in the response. Default value is
+         None.
+        :paramtype select: list[str]
+        :keyword expand: Expand the indicated resources into the response. Default value is None.
+        :paramtype expand: list[str]
         :return: An iterator like instance of User. The User is compatible with MutableMapping
         :rtype: ~azure.core.paging.ItemPaged[~_specs_.azure.core.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -569,6 +635,73 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
             if not next_link:
 
                 request = build_core_list_request(
+                    top=top,
+                    skip=skip,
+                    orderby=orderby,
+                    filter=filter,
+                    select=select,
+                    expand=expand,
+                    api_version=self._config.api_version,
+                    headers=_headers,
+                    params=_params,
+                )
+                request.url = self._client.format_url(request.url)
+
+            else:
+                request = HttpRequest("GET", next_link)
+                request.url = self._client.format_url(request.url)
+
+            return request
+
+        def extract_data(pipeline_response):
+            deserialized = pipeline_response.http_response.json()
+            list_of_elem = _deserialize(List[_models.User], deserialized["value"])
+            if cls:
+                list_of_elem = cls(list_of_elem)  # type: ignore
+            return deserialized.get("nextLink") or None, iter(list_of_elem)
+
+        def get_next(next_link=None):
+            request = prepare_request(next_link)
+
+            _stream = False
+            pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+                request, stream=_stream, **kwargs
+            )
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
+
+            return pipeline_response
+
+        return ItemPaged(get_next, extract_data)
+
+    @distributed_trace
+    def list_with_page(self, **kwargs: Any) -> Iterable["_models.User"]:
+        """List with Azure.Core.Page<>.
+
+        :return: An iterator like instance of User. The User is compatible with MutableMapping
+        :rtype: ~azure.core.paging.ItemPaged[~_specs_.azure.core.models.User]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models._models.PagedUser] = kwargs.pop("cls", None)  # pylint: disable=protected-access
+
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        def prepare_request(next_link=None):
+            if not next_link:
+
+                request = build_core_list_with_page_request(
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
