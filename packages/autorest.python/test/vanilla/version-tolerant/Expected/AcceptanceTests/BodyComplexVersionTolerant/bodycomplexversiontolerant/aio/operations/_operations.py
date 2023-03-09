@@ -146,8 +146,9 @@ class BasicOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -216,7 +217,7 @@ class BasicOperations:
     ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
-        :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Is either a model type
+        :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Is either a JSON type
          or a IO type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
@@ -225,6 +226,18 @@ class BasicOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "color": "str",  # Optional. Known values are: "cyan", "Magenta", "YELLOW",
+                      and "blacK".
+                    "id": 0,  # Optional. Basic Id.
+                    "name": "str"  # Optional. Name property with a very long description that
+                      does not fit on a single line and a line break.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -258,8 +271,9 @@ class BasicOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -310,8 +324,9 @@ class BasicOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -369,8 +384,9 @@ class BasicOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -428,8 +444,9 @@ class BasicOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -487,8 +504,9 @@ class BasicOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -561,8 +579,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -628,7 +647,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with integer properties.
 
-        :param complex_body: Please put -1 and 2. Is either a model type or a IO type. Required.
+        :param complex_body: Please put -1 and 2. Is either a JSON type or a IO type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -636,6 +655,15 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "field1": 0,  # Optional.
+                    "field2": 0  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -668,8 +696,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -717,8 +746,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -784,7 +814,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with long properties.
 
-        :param complex_body: Please put 1099511627775 and -999511627788. Is either a model type or a IO
+        :param complex_body: Please put 1099511627775 and -999511627788. Is either a JSON type or a IO
          type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
@@ -793,6 +823,15 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "field1": 0,  # Optional.
+                    "field2": 0  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -825,8 +864,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -874,8 +914,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -941,7 +982,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with float properties.
 
-        :param complex_body: Please put 1.05 and -0.003. Is either a model type or a IO type. Required.
+        :param complex_body: Please put 1.05 and -0.003. Is either a JSON type or a IO type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -949,6 +990,15 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "field1": 0.0,  # Optional.
+                    "field2": 0.0  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -981,8 +1031,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1031,8 +1082,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1102,7 +1154,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
-         -0.000000000000000000000000000000000000000000000000000000005. Is either a model type or a IO
+         -0.000000000000000000000000000000000000000000000000000000005. Is either a JSON type or a IO
          type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
@@ -1111,6 +1163,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "field1": 0.0,  # Optional.
+                "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose":
+                      0.0  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1143,8 +1205,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1192,8 +1255,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1259,7 +1323,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with bool properties.
 
-        :param complex_body: Please put true and false. Is either a model type or a IO type. Required.
+        :param complex_body: Please put true and false. Is either a JSON type or a IO type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1267,6 +1331,15 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "field_false": bool,  # Optional.
+                    "field_true": bool  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1299,8 +1372,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1349,8 +1423,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1417,7 +1492,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with string properties.
 
-        :param complex_body: Please put 'goodrequest', '', and null. Is either a model type or a IO
+        :param complex_body: Please put 'goodrequest', '', and null. Is either a JSON type or a IO
          type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
@@ -1426,6 +1501,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "empty": "str",  # Optional.
+                    "field": "str",  # Optional.
+                    "null": "str"  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1458,8 +1543,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1507,8 +1593,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1574,7 +1661,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with date properties.
 
-        :param complex_body: Please put '0001-01-01' and '2016-02-29'. Is either a model type or a IO
+        :param complex_body: Please put '0001-01-01' and '2016-02-29'. Is either a JSON type or a IO
          type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
@@ -1583,6 +1670,15 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "field": "2020-02-20",  # Optional.
+                    "leap": "2020-02-20"  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1615,8 +1711,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1664,8 +1761,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1734,7 +1832,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Put complex types with datetime properties.
 
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'. Is
-         either a model type or a IO type. Required.
+         either a JSON type or a IO type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1742,6 +1840,15 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "field": "2020-02-20 00:00:00",  # Optional.
+                    "now": "2020-02-20 00:00:00"  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1774,8 +1881,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1823,8 +1931,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1893,7 +2002,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Put complex types with datetimeRfc1123 properties.
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
-         GMT'. Is either a model type or a IO type. Required.
+         GMT'. Is either a JSON type or a IO type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1901,6 +2010,15 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "field": "2020-02-20 00:00:00",  # Optional.
+                    "now": "2020-02-20 00:00:00"  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1933,8 +2051,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1981,8 +2100,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2047,7 +2167,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     ) -> None:
         """Put complex types with duration properties.
 
-        :param complex_body: Please put 'P123DT22H14M12.011S'. Is either a model type or a IO type.
+        :param complex_body: Please put 'P123DT22H14M12.011S'. Is either a JSON type or a IO type.
          Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
@@ -2056,6 +2176,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "field": "1 day, 0:00:00"  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2088,8 +2216,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2136,8 +2265,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2205,7 +2335,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """Put complex types with byte properties.
 
         :param complex_body: Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8 F7 F6). Is
-         either a model type or a IO type. Required.
+         either a JSON type or a IO type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -2213,6 +2343,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "field": bytes("bytes", encoding="utf-8")  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2245,8 +2383,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2313,8 +2452,9 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2384,7 +2524,7 @@ class ArrayOperations:
         """Put complex types with array property.
 
         :param complex_body: Please put an array with 4 items: "1, 2, 3, 4", "", null, "&S#$(*Y", "The
-         quick brown fox jumps over the lazy dog". Is either a model type or a IO type. Required.
+         quick brown fox jumps over the lazy dog". Is either a JSON type or a IO type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -2392,6 +2532,16 @@ class ArrayOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "array": [
+                        "str"  # Optional.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2424,8 +2574,9 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2474,8 +2625,9 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2542,7 +2694,7 @@ class ArrayOperations:
     ) -> None:
         """Put complex types with array property which is empty.
 
-        :param complex_body: Please put an empty array. Is either a model type or a IO type. Required.
+        :param complex_body: Please put an empty array. Is either a JSON type or a IO type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -2550,6 +2702,16 @@ class ArrayOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "array": [
+                        "str"  # Optional.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2582,8 +2744,9 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2632,8 +2795,9 @@ class ArrayOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2707,8 +2871,9 @@ class DictionaryOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2778,7 +2943,7 @@ class DictionaryOperations:
         """Put complex types with dictionary property.
 
         :param complex_body: Please put a dictionary with 5 key-value pairs: "txt":"notepad",
-         "bmp":"mspaint", "xls":"excel", "exe":"", "":null. Is either a model type or a IO type.
+         "bmp":"mspaint", "xls":"excel", "exe":"", "":null. Is either a JSON type or a IO type.
          Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
@@ -2787,6 +2952,16 @@ class DictionaryOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "defaultProgram": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    }
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2819,8 +2994,9 @@ class DictionaryOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2869,8 +3045,9 @@ class DictionaryOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2937,7 +3114,7 @@ class DictionaryOperations:
     ) -> None:
         """Put complex types with dictionary property which is empty.
 
-        :param complex_body: Please put an empty dictionary. Is either a model type or a IO type.
+        :param complex_body: Please put an empty dictionary. Is either a JSON type or a IO type.
          Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
@@ -2946,6 +3123,16 @@ class DictionaryOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "defaultProgram": {
+                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                    }
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2978,8 +3165,9 @@ class DictionaryOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3028,8 +3216,9 @@ class DictionaryOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3085,8 +3274,9 @@ class DictionaryOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3168,8 +3358,9 @@ class InheritanceOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3250,7 +3441,7 @@ class InheritanceOperations:
 
         :param complex_body: Please put a siamese with id=2, name="Siameee", color=green,
          breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and
-         the 2nd one named "Tomato" with id=-1 and food="french fries". Is either a model type or a IO
+         the 2nd one named "Tomato" with id=-1 and food="french fries". Is either a JSON type or a IO
          type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
@@ -3259,6 +3450,24 @@ class InheritanceOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "breed": "str",  # Optional.
+                    "color": "str",  # Optional.
+                    "hates": [
+                        {
+                            "food": "str",  # Optional.
+                            "id": 0,  # Optional.
+                            "name": "str"  # Optional.
+                        }
+                    ],
+                    "id": 0,  # Optional.
+                    "name": "str"  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3291,8 +3500,9 @@ class InheritanceOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3410,8 +3620,9 @@ class PolymorphismOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3626,7 +3837,7 @@ class PolymorphismOperations:
                      'jawsize': 5
                    }
                  ]
-               };. Is either a model type or a IO type. Required.
+               };. Is either a JSON type or a IO type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -3634,6 +3845,68 @@ class PolymorphismOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "fishtype":
+
+                # JSON input template for discriminator value "smart_salmon":
+                fish = {
+                    "fishtype": "smart_salmon",
+                    "length": 0.0,  # Required.
+                    "college_degree": "str",  # Optional.
+                    "iswild": bool,  # Optional.
+                    "location": "str",  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template for discriminator value "cookiecuttershark":
+                fish = {
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "cookiecuttershark",
+                    "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template for discriminator value "goblin":
+                fish = {
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "goblin",
+                    "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
+                    "color": "gray",  # Optional. Default value is "gray". Colors possible. Known
+                      values are: "pink", "gray", "brown", "RED", and "red".
+                    "jawsize": 0,  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template for discriminator value "sawshark":
+                fish = {
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "sawshark",
+                    "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
+                    "picture": bytes("bytes", encoding="utf-8"),  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = fish
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -3666,8 +3939,9 @@ class PolymorphismOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3722,8 +3996,9 @@ class PolymorphismOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3806,8 +4081,9 @@ class PolymorphismOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3890,8 +4166,9 @@ class PolymorphismOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3959,8 +4236,9 @@ class PolymorphismOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4042,7 +4320,7 @@ class PolymorphismOperations:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
         additional properties.
 
-        :param complex_body: Is either a model type or a IO type. Required.
+        :param complex_body: Is either a JSON type or a IO type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -4050,6 +4328,28 @@ class PolymorphismOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "fishtype":
+
+                # JSON input template for discriminator value "smart_salmon":
+                fish = {
+                    "fishtype": "smart_salmon",
+                    "length": 0.0,  # Required.
+                    "college_degree": "str",  # Optional.
+                    "iswild": bool,  # Optional.
+                    "location": "str",  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = salmon
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -4082,8 +4382,9 @@ class PolymorphismOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4192,7 +4493,7 @@ class PolymorphismOperations:
     async def put_missing_discriminator(self, complex_body: Union[JSON, IO], **kwargs: Any) -> JSON:
         """Put complex types that are polymorphic, omitting the discriminator.
 
-        :param complex_body: Is either a model type or a IO type. Required.
+        :param complex_body: Is either a JSON type or a IO type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -4203,6 +4504,25 @@ class PolymorphismOperations:
 
         Example:
             .. code-block:: python
+
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "fishtype":
+
+                # JSON input template for discriminator value "smart_salmon":
+                fish = {
+                    "fishtype": "smart_salmon",
+                    "length": 0.0,  # Required.
+                    "college_degree": "str",  # Optional.
+                    "iswild": bool,  # Optional.
+                    "location": "str",  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = salmon
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "fishtype":
 
@@ -4253,8 +4573,9 @@ class PolymorphismOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4454,7 +4775,7 @@ class PolymorphismOperations:
                      "age": 105
                  }
              ]
-         }. Is either a model type or a IO type. Required.
+         }. Is either a JSON type or a IO type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -4462,6 +4783,68 @@ class PolymorphismOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "fishtype":
+
+                # JSON input template for discriminator value "smart_salmon":
+                fish = {
+                    "fishtype": "smart_salmon",
+                    "length": 0.0,  # Required.
+                    "college_degree": "str",  # Optional.
+                    "iswild": bool,  # Optional.
+                    "location": "str",  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template for discriminator value "cookiecuttershark":
+                fish = {
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "cookiecuttershark",
+                    "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template for discriminator value "goblin":
+                fish = {
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "goblin",
+                    "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
+                    "color": "gray",  # Optional. Default value is "gray". Colors possible. Known
+                      values are: "pink", "gray", "brown", "RED", and "red".
+                    "jawsize": 0,  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template for discriminator value "sawshark":
+                fish = {
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "sawshark",
+                    "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
+                    "picture": bytes("bytes", encoding="utf-8"),  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = fish
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -4494,8 +4877,9 @@ class PolymorphismOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4613,8 +4997,9 @@ class PolymorphicrecursiveOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4889,7 +5274,7 @@ class PolymorphicrecursiveOperations:
                      "age": 105
                  }
              ]
-         }. Is either a model type or a IO type. Required.
+         }. Is either a JSON type or a IO type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -4897,6 +5282,68 @@ class PolymorphicrecursiveOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "fishtype":
+
+                # JSON input template for discriminator value "smart_salmon":
+                fish = {
+                    "fishtype": "smart_salmon",
+                    "length": 0.0,  # Required.
+                    "college_degree": "str",  # Optional.
+                    "iswild": bool,  # Optional.
+                    "location": "str",  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template for discriminator value "cookiecuttershark":
+                fish = {
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "cookiecuttershark",
+                    "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template for discriminator value "goblin":
+                fish = {
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "goblin",
+                    "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
+                    "color": "gray",  # Optional. Default value is "gray". Colors possible. Known
+                      values are: "pink", "gray", "brown", "RED", and "red".
+                    "jawsize": 0,  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template for discriminator value "sawshark":
+                fish = {
+                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "fishtype": "sawshark",
+                    "length": 0.0,  # Required.
+                    "age": 0,  # Optional.
+                    "picture": bytes("bytes", encoding="utf-8"),  # Optional.
+                    "siblings": [
+                        fish
+                    ],
+                    "species": "str"  # Optional.
+                }
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = fish
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -4929,8 +5376,9 @@ class PolymorphicrecursiveOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4996,8 +5444,9 @@ class ReadonlypropertyOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5063,7 +5512,7 @@ class ReadonlypropertyOperations:
     ) -> None:
         """Put complex types that have readonly properties.
 
-        :param complex_body: Is either a model type or a IO type. Required.
+        :param complex_body: Is either a JSON type or a IO type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -5071,6 +5520,15 @@ class ReadonlypropertyOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                complex_body = {
+                    "id": "str",  # Optional.
+                    "size": 0  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -5103,8 +5561,9 @@ class ReadonlypropertyOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5179,8 +5638,9 @@ class FlattencomplexOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

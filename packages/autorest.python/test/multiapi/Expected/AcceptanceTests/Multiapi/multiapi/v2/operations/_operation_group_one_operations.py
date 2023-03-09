@@ -137,8 +137,8 @@ class OperationGroupOneOperations:
     def test_two(self, parameter_one: Optional[Union[_models.ModelTwo, IO]] = None, **kwargs: Any) -> _models.ModelTwo:
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelTwo and ouputs ModelTwo.
 
-        :param parameter_one: A ModelTwo parameter. Is either a model type or a IO type. Default value
-         is None.
+        :param parameter_one: A ModelTwo parameter. Is either a ModelTwo type or a IO type. Default
+         value is None.
         :type parameter_one: ~multiapi.v2.models.ModelTwo or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -186,8 +186,9 @@ class OperationGroupOneOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -238,8 +239,9 @@ class OperationGroupOneOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

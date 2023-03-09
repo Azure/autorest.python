@@ -36,7 +36,7 @@ class AutoRestHeadExceptionTestService:  # pylint: disable=client-accepts-api-ve
         self, credential: "TokenCredential", *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = AutoRestHeadExceptionTestServiceConfiguration(credential=credential, **kwargs)
-        self._client = ARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
+        self._client: ARMPipelineClient = ARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
@@ -72,5 +72,5 @@ class AutoRestHeadExceptionTestService:  # pylint: disable=client-accepts-api-ve
         self._client.__enter__()
         return self
 
-    def __exit__(self, *exc_details) -> None:
+    def __exit__(self, *exc_details: Any) -> None:
         self._client.__exit__(*exc_details)

@@ -47,7 +47,7 @@ class AutoRestUrlTestService:  # pylint: disable=client-accepts-api-version-keyw
         self._config = AutoRestUrlTestServiceConfiguration(
             global_string_path=global_string_path, global_string_query=global_string_query, **kwargs
         )
-        self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
+        self._client: PipelineClient = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in _models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
@@ -85,5 +85,5 @@ class AutoRestUrlTestService:  # pylint: disable=client-accepts-api-version-keyw
         self._client.__enter__()
         return self
 
-    def __exit__(self, *exc_details) -> None:
+    def __exit__(self, *exc_details: Any) -> None:
         self._client.__exit__(*exc_details)

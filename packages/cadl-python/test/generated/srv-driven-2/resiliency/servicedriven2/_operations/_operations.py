@@ -180,6 +180,8 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
 
         :keyword new_parameter: I'm a new input optional parameter. Default value is None.
         :paramtype new_parameter: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: bool
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -204,8 +206,9 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -231,6 +234,8 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
         :paramtype parameter: str
         :keyword new_parameter: I'm a new input optional parameter. Default value is None.
         :paramtype new_parameter: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: Message. The Message is compatible with MutableMapping
         :rtype: ~resiliency.servicedriven2.models.Message
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -256,8 +261,9 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -266,7 +272,10 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.Message, response.json())
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.Message, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -294,6 +303,8 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
         :paramtype optional_param: str
         :keyword new_parameter: I'm a new input optional parameter. Default value is None.
         :paramtype new_parameter: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: Message. The Message is compatible with MutableMapping
         :rtype: ~resiliency.servicedriven2.models.Message
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -320,8 +331,9 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -330,7 +342,10 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.Message, response.json())
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.Message, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -356,6 +371,8 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: Message. The Message is compatible with MutableMapping
         :rtype: ~resiliency.servicedriven2.models.Message
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -380,6 +397,8 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: Message. The Message is compatible with MutableMapping
         :rtype: ~resiliency.servicedriven2.models.Message
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -404,6 +423,8 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: Message. The Message is compatible with MutableMapping
         :rtype: ~resiliency.servicedriven2.models.Message
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -421,11 +442,14 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
         :param content_type_path: Known values are: "json" and "jpeg". Required.
         :type content_type_path: str or ~resiliency.servicedriven2.models.ContentTypePathType
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
-         "http://example.org/myimage.jpeg" }. Is one of the following types: model, JSON, IO Required.
+         "http://example.org/myimage.jpeg" }. Is one of the following types: PostInput, JSON, IO
+         Required.
         :type parameter: ~resiliency.servicedriven2.models.PostInput or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: Message. The Message is compatible with MutableMapping
         :rtype: ~resiliency.servicedriven2.models.Message
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -460,8 +484,9 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -470,7 +495,10 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.Message, response.json())
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.Message, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -486,6 +514,8 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
          Initially the path exists but there is no delete method. After evolution this is a new method
         in a known path.
 
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -509,8 +539,9 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -537,6 +568,8 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
         :paramtype optional_param: str
         :keyword new_parameter: I'm a new input optional parameter. Default value is None.
         :paramtype new_parameter: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: Message. The Message is compatible with MutableMapping
         :rtype: ~resiliency.servicedriven2.models.Message
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -562,8 +595,9 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -572,7 +606,10 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.Message, response.json())
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.Message, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -588,6 +625,8 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
          Initially neither path or method exist for this operation. After evolution, this is a new
         method in a new path.
 
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: Message. The Message is compatible with MutableMapping
         :rtype: ~resiliency.servicedriven2.models.Message
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -611,8 +650,9 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -621,7 +661,10 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.Message, response.json())
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.Message, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

@@ -5,8 +5,9 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict, List, Optional, TYPE_CHECKING
 import re
-from autorest.codegen.models.imports import FileImport, ImportType
+from autorest.codegen.models.imports import FileImport, ImportType, TypingSection
 from .base import BaseType
+from .model_type import JSONModelType
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -28,6 +29,7 @@ class CombinedType(BaseType):
     ) -> None:
         super().__init__(yaml_data, code_model)
         self.types = types  # the types that this type is combining
+        self.name = yaml_data.get("name")
 
     @property
     def serialization_type(self) -> str:
@@ -61,11 +63,16 @@ class CombinedType(BaseType):
         return " or ".join(t.docstring_type(**kwargs) for t in self.types)
 
     def type_annotation(self, **kwargs: Any) -> str:
+        if self.name:
+            ret = f"_types.{self.name}"
+            return ret if kwargs.get("is_operation_file") else f'"{ret}"'
+        return self.type_definition(**kwargs)
+
+    def type_definition(self, **kwargs: Any) -> str:
         """The python type used for type annotation
 
         Special case for enum, for instance: Union[str, "EnumName"]
         """
-        kwargs["is_operation_file"] = True
         inside_types = [type.type_annotation(**kwargs) for type in self.types]
 
         # If the inside types has been a Union, peel first and then re-union
@@ -95,6 +102,14 @@ class CombinedType(BaseType):
 
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
+        if self.name and not kwargs.get("is_types_file"):
+            file_import.add_submodule_import(
+                kwargs.pop("relative_path"),
+                "_types",
+                ImportType.LOCAL,
+                TypingSection.TYPING,
+            )
+            return file_import
         for type in self.types:
             file_import.merge(type.imports(**kwargs))
         file_import.add_submodule_import("typing", "Union", ImportType.STDLIB)
@@ -111,3 +126,20 @@ class CombinedType(BaseType):
             code_model,
             [build_type(t, code_model) for t in yaml_data["types"]],
         )
+
+    @staticmethod
+    def _get_json_model_type(t: BaseType) -> Optional[JSONModelType]:
+        if isinstance(t, JSONModelType):
+            return t
+        if isinstance(t, CombinedType):
+            try:
+                return next(
+                    CombinedType._get_json_model_type(sub_t) for sub_t in t.types
+                )
+            except StopIteration:
+                pass
+        return None
+
+    @property
+    def json_subtype(self) -> Optional[JSONModelType]:
+        return CombinedType._get_json_model_type(self)

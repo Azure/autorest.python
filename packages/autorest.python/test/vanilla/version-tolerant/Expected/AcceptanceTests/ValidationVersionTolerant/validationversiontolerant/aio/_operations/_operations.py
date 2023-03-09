@@ -110,8 +110,9 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -279,7 +280,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000. Required.
         :type id: int
-        :param body: Is either a model type or a IO type. Default value is None.
+        :param body: Is either a JSON type or a IO type. Default value is None.
         :type body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -290,6 +291,32 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "child": {
+                        "constProperty": "constant",  # Default value is "constant". Constant
+                          string. Required.
+                        "count": 0  # Optional. Count.
+                    },
+                    "constChild": {
+                        "constProperty": "constant",  # Default value is "constant". Constant
+                          string. Required.
+                        "constProperty2": "constant2"  # Default value is "constant2".
+                          Constant string2. Required.
+                    },
+                    "constInt": 0,  # Default value is 0. Constant int. Required.
+                    "constString": "constant",  # Default value is "constant". Constant string.
+                      Required.
+                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
+                    "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
+                      "constant_string_as_enum". Constant string as Enum.
+                    "display_names": [
+                        "str"  # Optional. Non required array of unique items from 0 to 6
+                          elements.
+                    ],
+                    "image": "str"  # Optional. Image URL representing the product.
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -355,8 +382,9 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -407,8 +435,9 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -546,7 +575,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
     async def post_with_constant_in_body(self, body: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:
         """post_with_constant_in_body.
 
-        :param body: Is either a model type or a IO type. Default value is None.
+        :param body: Is either a JSON type or a IO type. Default value is None.
         :type body: JSON or IO
         :keyword constant_param: Default value is "constant". Note that overriding this default value
          may result in unsupported behavior.
@@ -560,6 +589,32 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "child": {
+                        "constProperty": "constant",  # Default value is "constant". Constant
+                          string. Required.
+                        "count": 0  # Optional. Count.
+                    },
+                    "constChild": {
+                        "constProperty": "constant",  # Default value is "constant". Constant
+                          string. Required.
+                        "constProperty2": "constant2"  # Default value is "constant2".
+                          Constant string2. Required.
+                    },
+                    "constInt": 0,  # Default value is 0. Constant int. Required.
+                    "constString": "constant",  # Default value is "constant". Constant string.
+                      Required.
+                    "capacity": 0,  # Optional. Non required int betwen 0 and 100 exclusive.
+                    "constStringAsEnum": "constant_string_as_enum",  # Optional. Default value is
+                      "constant_string_as_enum". Constant string as Enum.
+                    "display_names": [
+                        "str"  # Optional. Non required array of unique items from 0 to 6
+                          elements.
+                    ],
+                    "image": "str"  # Optional. Image URL representing the product.
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -623,8 +678,9 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

@@ -93,8 +93,9 @@ class PetOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -182,7 +183,7 @@ class PetOperations:
     async def add_pet(self, pet_param: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:
         """add pet.
 
-        :param pet_param: pet param. Is either a model type or a IO type. Default value is None.
+        :param pet_param: pet param. Is either a JSON type or a IO type. Default value is None.
         :type pet_param: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -193,6 +194,15 @@ class PetOperations:
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                pet_param = {
+                    "IntEnum": "str",  # Required. Known values are: "1", "2", and "3".
+                    "DaysOfWeek": "Friday",  # Optional. Default value is "Friday". Type of Pet.
+                      Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+                      "Saturday", and "Sunday".
+                    "name": "str"  # Optional. name.
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -237,8 +247,9 @@ class PetOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

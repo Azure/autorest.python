@@ -50,11 +50,11 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
             name=name,
             parameters=parameters,
             overloads=overloads,
-            want_tracing=False,
         )
         self.overloads: List["RequestBuilder"] = overloads or []
         self.url: str = yaml_data["url"]
         self.method: str = yaml_data["method"]
+        self.want_tracing = False
 
     def response_type_annotation(self, **kwargs) -> str:
         return "HttpRequest"
@@ -121,20 +121,19 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
 
     @staticmethod
     @abstractmethod
-    def parameter_list_type() -> Callable[
-        [Dict[str, Any], "CodeModel"], ParameterListType
-    ]:
+    def parameter_list_type() -> (
+        Callable[[Dict[str, Any], "CodeModel"], ParameterListType]
+    ):
         ...
 
     @classmethod
-    def from_yaml(
+    def get_name(
         cls,
+        name: str,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
         client: "Client",
-    ):
-        # when combine embedded builders into one operation file, we need to avoid duplicated build function name.
-        # So add operation group name is effective method
+    ) -> str:
         additional_mark = ""
         if (
             code_model.options["combine_operation_files"]
@@ -146,10 +145,21 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
         names = [
             "build",
             additional_mark,
-            yaml_data["name"],
+            name,
             "request",
         ]
-        name = "_".join([n for n in names if n])
+        return "_".join([n for n in names if n])
+
+    @classmethod
+    def from_yaml(
+        cls,
+        yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
+        client: "Client",
+    ):
+        # when combine embedded builders into one operation file, we need to avoid duplicated build function name.
+        # So add operation group name is effective method
+
         overloads = [
             RequestBuilder.from_yaml(rb_yaml_data, code_model, client)
             for rb_yaml_data in yaml_data.get("overloads", [])
@@ -160,7 +170,7 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
             yaml_data=yaml_data,
             code_model=code_model,
             client=client,
-            name=name,
+            name=cls.get_name(yaml_data["name"], yaml_data, code_model, client),
             parameters=parameter_list,
             overloads=overloads,
         )
@@ -168,9 +178,9 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
 
 class RequestBuilder(RequestBuilderBase[RequestBuilderParameterList]):
     @staticmethod
-    def parameter_list_type() -> Callable[
-        [Dict[str, Any], "CodeModel"], RequestBuilderParameterList
-    ]:
+    def parameter_list_type() -> (
+        Callable[[Dict[str, Any], "CodeModel"], RequestBuilderParameterList]
+    ):
         return RequestBuilderParameterList.from_yaml
 
 
@@ -178,9 +188,9 @@ class OverloadedRequestBuilder(
     RequestBuilderBase[OverloadedRequestBuilderParameterList]
 ):
     @staticmethod
-    def parameter_list_type() -> Callable[
-        [Dict[str, Any], "CodeModel"], OverloadedRequestBuilderParameterList
-    ]:
+    def parameter_list_type() -> (
+        Callable[[Dict[str, Any], "CodeModel"], OverloadedRequestBuilderParameterList]
+    ):
         return OverloadedRequestBuilderParameterList.from_yaml
 
 

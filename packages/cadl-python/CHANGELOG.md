@@ -1,5 +1,78 @@
 # Release History
 
+## 2023-03-06 - 0.5.2
+
+**Other Changes**
+
+- Expose `stream` kwarg. Defaults to `False`, when passed in as `True` we stream the response back to users #1777
+
+## 2023-03-06 - 0.5.1
+
+**Other Changes**
+
+- Bump dependency on python generator
+
+## 2023-03-01 - 0.5.0
+
+**New Features**
+
+- Support nullable type generation.  #1758
+- Generate named union type in _types.py  #1733
+
+## 2023-02-15 - 0.4.25
+
+**Other Changes**
+
+- Support `@collectionFormat` for queries and headers.  #1748
+
+## 2023-02-14 - 0.4.24
+
+**Other Changes**
+
+- Support cadl @projectedName on operation/model/property.  #1687
+
+## 2023-02-08 - 0.4.23
+
+**Other Changes**
+
+- Bump Cadl dependency to `0.40.0`  #1736
+
+## 2023-02-01 - 0.4.22
+
+**Other Changes**
+
+- Update codegen dependency
+
+## 2023-01-27 - 0.4.21
+
+**Other Changes**
+
+- Update codegen dependency
+
+## 2023-01-23 - 0.4.20
+
+**Other Changes**
+
+- Make DPG models type complete #1689
+
+## 2023-01-19 - 0.4.19
+
+**Other Changes**
+
+- Bump CADL dependencies to 0.39.0 #1691
+
+## 2023-01-18 - 0.4.18
+
+**Bug Fixes**
+
+- Fix generation for overloads with splatted out body arguments #1684, #1685
+
+## 2023-01-11 - 0.4.17
+
+**Other Changes**
+
+- Hide header properties in DPG models #1668
+
 ## 2023-01-09 - 0.4.16
 
 **Bug Fixes**

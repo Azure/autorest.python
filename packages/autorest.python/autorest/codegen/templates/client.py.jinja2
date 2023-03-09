@@ -33,5 +33,5 @@
         {{ keywords.await }}self._client.__{{ keywords.async_prefix }}enter__()
         return self
 
-    {{ keywords.def }} __{{ keywords.async_prefix }}exit__(self, *exc_details) -> None:
+    {{ keywords.def }} __{{ keywords.async_prefix }}exit__(self, *exc_details: Any) -> None:
         {{ keywords.await }}self._client.__{{ keywords.async_prefix }}exit__(*exc_details)

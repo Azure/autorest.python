@@ -83,7 +83,6 @@ class GeneralSerializer:
         )
 
     def serialize_service_client_file(self, clients: List[Client]) -> str:
-
         template = self.env.get_template("client_container.py.jinja2")
 
         imports = FileImport()

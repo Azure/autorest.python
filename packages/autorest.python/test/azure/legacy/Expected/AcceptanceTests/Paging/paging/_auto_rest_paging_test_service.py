@@ -36,7 +36,7 @@ class AutoRestPagingTestService:  # pylint: disable=client-accepts-api-version-k
         self, base_url: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = AutoRestPagingTestServiceConfiguration(**kwargs)
-        self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
+        self._client: PipelineClient = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in _models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
@@ -73,5 +73,5 @@ class AutoRestPagingTestService:  # pylint: disable=client-accepts-api-version-k
         self._client.__enter__()
         return self
 
-    def __exit__(self, *exc_details) -> None:
+    def __exit__(self, *exc_details: Any) -> None:
         self._client.__exit__(*exc_details)

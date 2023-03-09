@@ -120,7 +120,8 @@ class StorageAccountsOperations:
 
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only. Is either a model type or a IO type. Required.
+         lower-case letters only. Is either a StorageAccountCheckNameAvailabilityParameters type or a IO
+         type. Required.
         :type account_name: ~storage.models.StorageAccountCheckNameAvailabilityParameters or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'text/json'. Default value is None.
@@ -168,8 +169,9 @@ class StorageAccountsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -236,8 +238,9 @@ class StorageAccountsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -361,8 +364,8 @@ class StorageAccountsOperations:
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only. Required.
         :type account_name: str
-        :param parameters: The parameters to provide for the created account. Is either a model type or
-         a IO type. Required.
+        :param parameters: The parameters to provide for the created account. Is either a
+         StorageAccountCreateParameters type or a IO type. Required.
         :type parameters: ~storage.models.StorageAccountCreateParameters or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'text/json'. Default value is None.
@@ -476,8 +479,9 @@ class StorageAccountsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -541,8 +545,9 @@ class StorageAccountsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -660,7 +665,8 @@ class StorageAccountsOperations:
          lower-case letters only. Required.
         :type account_name: str
         :param parameters: The parameters to update on the account. Note that only one property can be
-         changed at a time using this API. Is either a model type or a IO type. Required.
+         changed at a time using this API. Is either a StorageAccountUpdateParameters type or a IO type.
+         Required.
         :type parameters: ~storage.models.StorageAccountUpdateParameters or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'text/json'. Default value is None.
@@ -710,8 +716,9 @@ class StorageAccountsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -773,8 +780,9 @@ class StorageAccountsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -861,8 +869,9 @@ class StorageAccountsOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
+            _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=False, **kwargs
+                request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -949,8 +958,9 @@ class StorageAccountsOperations:
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
+            _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=False, **kwargs
+                request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1024,8 +1034,9 @@ class StorageAccountsOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

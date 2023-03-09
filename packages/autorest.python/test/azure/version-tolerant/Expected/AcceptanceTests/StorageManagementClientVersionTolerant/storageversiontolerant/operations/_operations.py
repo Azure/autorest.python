@@ -438,7 +438,7 @@ class StorageAccountsOperations:
 
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only. Is either a model type or a IO type. Required.
+         lower-case letters only. Is either a JSON type or a IO type. Required.
         :type account_name: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'text/json'. Default value is None.
@@ -449,6 +449,13 @@ class StorageAccountsOperations:
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                account_name = {
+                    "name": "str",  # Required.
+                    "type": "Microsoft.Storage/storageAccounts"  # Optional. Default value is
+                      "Microsoft.Storage/storageAccounts".
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -495,8 +502,9 @@ class StorageAccountsOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -553,8 +561,9 @@ class StorageAccountsOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -825,7 +834,7 @@ class StorageAccountsOperations:
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only. Required.
         :type account_name: str
-        :param parameters: The parameters to provide for the created account. Is either a model type or
+        :param parameters: The parameters to provide for the created account. Is either a JSON type or
          a IO type. Required.
         :type parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
@@ -844,6 +853,22 @@ class StorageAccountsOperations:
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                parameters = {
+                    "location": "str",  # Resource location. Required.
+                    "id": "str",  # Optional. Resource Id.
+                    "name": "str",  # Optional. Resource name.
+                    "properties": {
+                        "accountType": "str"  # Optional. Gets or sets the account type.
+                          Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
+                          "Standard_RAGRS", and "Premium_LRS".
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Resource tags.
+                    },
+                    "type": "str"  # Optional. Resource type.
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -998,8 +1023,9 @@ class StorageAccountsOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1121,8 +1147,9 @@ class StorageAccountsOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1396,7 +1423,7 @@ class StorageAccountsOperations:
          lower-case letters only. Required.
         :type account_name: str
         :param parameters: The parameters to update on the account. Note that only one property can be
-         changed at a time using this API. Is either a model type or a IO type. Required.
+         changed at a time using this API. Is either a JSON type or a IO type. Required.
         :type parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'text/json'. Default value is None.
@@ -1407,6 +1434,31 @@ class StorageAccountsOperations:
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                parameters = {
+                    "location": "str",  # Resource location. Required.
+                    "id": "str",  # Optional. Resource Id.
+                    "name": "str",  # Optional. Resource name.
+                    "properties": {
+                        "accountType": "str",  # Optional. Gets or sets the account type.
+                          Note that StandardZRS and PremiumLRS accounts cannot be changed to other
+                          account types, and other account types cannot be changed to StandardZRS or
+                          PremiumLRS. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
+                          "Standard_RAGRS", and "Premium_LRS".
+                        "customDomain": {
+                            "name": "str",  # Optional. Gets or sets the custom domain
+                              name. Name is the CNAME source.
+                            "useSubDomain": bool  # Optional. Indicates whether indirect
+                              CName validation is enabled. Default value is false. This should only be
+                              set on updates.
+                        }
+                    },
+                    "tags": {
+                        "str": "str"  # Optional. Resource tags.
+                    },
+                    "type": "str"  # Optional. Resource type.
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -1510,8 +1562,9 @@ class StorageAccountsOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1575,8 +1628,9 @@ class StorageAccountsOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1725,8 +1779,9 @@ class StorageAccountsOperations:
         def get_next(next_link=None):
             request = prepare_request(next_link)
 
+            _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=False, **kwargs
+                request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1872,8 +1927,9 @@ class StorageAccountsOperations:
         def get_next(next_link=None):
             request = prepare_request(next_link)
 
+            _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=False, **kwargs
+                request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1979,7 +2035,7 @@ class StorageAccountsOperations:
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only. Required.
         :type account_name: str
-        :param regenerate_key: Specifies name of the key which should be regenerated. Is either a model
+        :param regenerate_key: Specifies name of the key which should be regenerated. Is either a JSON
          type or a IO type. Required.
         :type regenerate_key: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
@@ -1991,6 +2047,11 @@ class StorageAccountsOperations:
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                regenerate_key = {
+                    "keyName": "str"  # Optional. Known values are: "key1" and "key2".
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -2033,8 +2094,9 @@ class StorageAccountsOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2124,8 +2186,9 @@ class UsageOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

@@ -17,7 +17,7 @@ from typing import (
     Generic,
 )
 
-from .imports import FileImport, ImportType
+from .imports import FileImport, ImportType, TypingSection
 from .base import BaseModel
 from .base import BaseType
 from .constant_type import ConstantType
@@ -86,6 +86,10 @@ class _ParameterBase(
         self.check_client_input: bool = self.yaml_data.get("checkClientInput", False)
         self.added_on: Optional[str] = self.yaml_data.get("addedOn")
         self.is_api_version: bool = self.yaml_data.get("isApiVersion", False)
+        self.in_overload: bool = self.yaml_data.get("inOverload", False)
+        self.default_to_unset_sentinel: bool = self.yaml_data.get(
+            "defaultToUnsetSentinel", False
+        )
 
     @property
     def constant(self) -> bool:
@@ -161,6 +165,13 @@ class _ParameterBase(
                 "api_version_validation",
                 ImportType.LOCAL,
             )
+        if isinstance(self.type, CombinedType) and self.type.name:
+            file_import.add_submodule_import(
+                "..",
+                "_types",
+                ImportType.LOCAL,
+                TypingSection.TYPING,
+            )
         return file_import
 
     def imports(self, async_mode: bool, **kwargs: Any) -> FileImport:
@@ -168,6 +179,12 @@ class _ParameterBase(
         file_import.merge(
             self.type.imports(is_operation_file=True, async_mode=async_mode, **kwargs)
         )
+        if self.default_to_unset_sentinel:
+            file_import.add_submodule_import("typing", "Any", ImportType.STDLIB)
+            file_import.define_mypy_type(
+                "_Unset: Any",
+                "object()",
+            )
         return file_import
 
     def imports_for_multiapi(self, async_mode: bool, **kwargs: Any) -> FileImport:
@@ -208,11 +225,13 @@ class _ParameterBase(
         type_annot = self.type_annotation(async_mode=async_mode)
         if self.client_default_value is not None or self.optional:
             return f"{self.client_name}: {type_annot} = {self.client_default_value_declaration},"
+        if self.default_to_unset_sentinel:
+            return f"{self.client_name}: {type_annot} = _Unset,"
         return f"{self.client_name}: {type_annot},"
 
 
-class _BodyParameterBase(_ParameterBase):
-    """Base class for body parameters"""
+class BodyParameter(_ParameterBase):
+    """Body parameter."""
 
     @property
     def is_partial_body(self) -> bool:
@@ -231,10 +250,6 @@ class _BodyParameterBase(_ParameterBase):
     def in_method_signature(self) -> bool:
         return not (self.flattened or self.grouped_by)
 
-
-class BodyParameter(_BodyParameterBase):
-    """Body parameter."""
-
     @property
     def content_types(self) -> List[str]:
         return self.yaml_data["contentTypes"]
@@ -243,19 +258,11 @@ class BodyParameter(_BodyParameterBase):
     def default_content_type(self) -> str:
         return self.yaml_data["defaultContentType"]
 
-    @staticmethod
-    def _has_json_model_type(t: BaseType) -> bool:
-        if isinstance(t, JSONModelType):
-            return True
-        if isinstance(t, CombinedType):
-            for sub_t in t.types:
-                if BodyParameter._has_json_model_type(sub_t):
-                    return True
-        return False
-
     @property
     def has_json_model_type(self) -> bool:
-        return BodyParameter._has_json_model_type(self.type)
+        if isinstance(self.type, CombinedType):
+            return self.type.json_subtype is not None
+        return isinstance(self.type, JSONModelType)
 
     @classmethod
     def from_yaml(
@@ -327,10 +334,9 @@ class Parameter(_ParameterBase):
         self.implementation: str = yaml_data["implementation"]
         self.skip_url_encoding: bool = self.yaml_data.get("skipUrlEncoding", False)
         self.explode: bool = self.yaml_data.get("explode", False)
-        self.in_overload: bool = self.yaml_data["inOverload"]
         self.in_overriden: bool = self.yaml_data.get("inOverriden", False)
         self.delimiter: Optional[ParameterDelimeter] = self.yaml_data.get("delimiter")
-        self.in_flattened_body: bool = self.yaml_data.get("inFlattenedBody", False)
+        self._default_to_unset_sentinel: bool = False
 
     @property
     def in_method_signature(self) -> bool:

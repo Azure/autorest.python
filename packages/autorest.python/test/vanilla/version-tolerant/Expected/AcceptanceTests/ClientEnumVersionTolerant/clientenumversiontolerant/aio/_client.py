@@ -31,7 +31,7 @@ class ClientWithEnum(ClientWithEnumOperationsMixin):  # pylint: disable=client-a
         self, x_ms_enum: Union[str, _models.Enum0], *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = ClientWithEnumConfiguration(x_ms_enum=x_ms_enum, **kwargs)
-        self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in _models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
@@ -67,5 +67,5 @@ class ClientWithEnum(ClientWithEnumOperationsMixin):  # pylint: disable=client-a
         await self._client.__aenter__()
         return self
 
-    async def __aexit__(self, *exc_details) -> None:
+    async def __aexit__(self, *exc_details: Any) -> None:
         await self._client.__aexit__(*exc_details)

@@ -78,7 +78,7 @@ class AutoRestAzureSpecialParametersTestClient:  # pylint: disable=client-accept
         self._config = AutoRestAzureSpecialParametersTestClientConfiguration(
             subscription_id=subscription_id, credential=credential, **kwargs
         )
-        self._client = ARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
+        self._client: ARMPipelineClient = ARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
@@ -133,5 +133,5 @@ class AutoRestAzureSpecialParametersTestClient:  # pylint: disable=client-accept
         self._client.__enter__()
         return self
 
-    def __exit__(self, *exc_details) -> None:
+    def __exit__(self, *exc_details: Any) -> None:
         self._client.__exit__(*exc_details)

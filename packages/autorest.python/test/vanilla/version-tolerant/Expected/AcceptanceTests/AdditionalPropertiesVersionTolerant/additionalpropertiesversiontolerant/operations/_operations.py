@@ -215,7 +215,7 @@ class PetsOperations:
     def create_ap_true(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is either a model type or a IO type. Required.
+        :param create_parameters: Is either a JSON type or a IO type. Required.
         :type create_parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -226,6 +226,13 @@ class PetsOperations:
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                create_parameters = {
+                    "id": 0,  # Required.
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -265,8 +272,9 @@ class PetsOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -351,7 +359,7 @@ class PetsOperations:
     def create_cat_ap_true(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
         """Create a CatAPTrue which contains more properties than what is defined.
 
-        :param create_parameters: Is either a model type or a IO type. Required.
+        :param create_parameters: Is either a JSON type or a IO type. Required.
         :type create_parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -362,6 +370,14 @@ class PetsOperations:
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                create_parameters = {
+                    "id": 0,  # Required.
+                    "friendly": bool,  # Optional.
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -402,8 +418,9 @@ class PetsOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -483,7 +500,7 @@ class PetsOperations:
     def create_ap_object(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is either a model type or a IO type. Required.
+        :param create_parameters: Is either a JSON type or a IO type. Required.
         :type create_parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -494,6 +511,13 @@ class PetsOperations:
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                create_parameters = {
+                    "id": 0,  # Required.
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -533,8 +557,9 @@ class PetsOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -614,7 +639,7 @@ class PetsOperations:
     def create_ap_string(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is either a model type or a IO type. Required.
+        :param create_parameters: Is either a JSON type or a IO type. Required.
         :type create_parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -625,6 +650,13 @@ class PetsOperations:
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                create_parameters = {
+                    "id": 0,  # Required.
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -664,8 +696,9 @@ class PetsOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -747,7 +780,7 @@ class PetsOperations:
     def create_ap_in_properties(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is either a model type or a IO type. Required.
+        :param create_parameters: Is either a JSON type or a IO type. Required.
         :type create_parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -758,6 +791,13 @@ class PetsOperations:
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                create_parameters = {
+                    "id": 0,  # Required.
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -797,8 +837,9 @@ class PetsOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -892,7 +933,7 @@ class PetsOperations:
     def create_ap_in_properties_with_ap_string(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is either a model type or a IO type. Required.
+        :param create_parameters: Is either a JSON type or a IO type. Required.
         :type create_parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -903,6 +944,17 @@ class PetsOperations:
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                create_parameters = {
+                    "@odata.location": "str",  # Required.
+                    "id": 0,  # Required.
+                    "additionalProperties": {
+                        "str": 0.0  # Optional. Dictionary of :code:`<number>`.
+                    },
+                    "name": "str",  # Optional.
+                    "status": bool  # Optional.
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -946,8 +998,9 @@ class PetsOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

@@ -118,9 +118,9 @@ class _ParameterListBase(
 
     @staticmethod
     @abstractmethod
-    def body_parameter_creator() -> Callable[
-        [Dict[str, Any], "CodeModel"], BodyParameterType
-    ]:
+    def body_parameter_creator() -> (
+        Callable[[Dict[str, Any], "CodeModel"], BodyParameterType]
+    ):
         """Callable for creating body parameters"""
 
     @property
@@ -317,9 +317,11 @@ class _ParameterList(
         return Parameter.from_yaml
 
     @staticmethod
-    def body_parameter_creator() -> Callable[
-        [Dict[str, Any], "CodeModel"], Union[MultipartBodyParameter, BodyParameter]
-    ]:
+    def body_parameter_creator() -> (
+        Callable[
+            [Dict[str, Any], "CodeModel"], Union[MultipartBodyParameter, BodyParameter]
+        ]
+    ):
         return get_body_parameter
 
     @property
@@ -345,15 +347,15 @@ class _RequestBuilderParameterList(
     """_RequestBuilderParameterList is base parameter list for RequestBuilder classes"""
 
     @staticmethod
-    def parameter_creator() -> Callable[
-        [Dict[str, Any], "CodeModel"], RequestBuilderParameter
-    ]:
+    def parameter_creator() -> (
+        Callable[[Dict[str, Any], "CodeModel"], RequestBuilderParameter]
+    ):
         return RequestBuilderParameter.from_yaml
 
     @staticmethod
-    def body_parameter_creator() -> Callable[
-        [Dict[str, Any], "CodeModel"], RequestBuilderBodyParameterType
-    ]:
+    def body_parameter_creator() -> (
+        Callable[[Dict[str, Any], "CodeModel"], RequestBuilderBodyParameterType]
+    ):
         return get_request_body_parameter
 
     @property
@@ -422,9 +424,9 @@ class _ClientGlobalParameterList(  # pylint: disable=abstract-method
     """Base parameter list for client and config classes"""
 
     @staticmethod
-    def body_parameter_creator() -> Callable[
-        [Dict[str, Any], "CodeModel"], BodyParameter
-    ]:
+    def body_parameter_creator() -> (
+        Callable[[Dict[str, Any], "CodeModel"], BodyParameter]
+    ):
         return BodyParameter.from_yaml
 
     @property

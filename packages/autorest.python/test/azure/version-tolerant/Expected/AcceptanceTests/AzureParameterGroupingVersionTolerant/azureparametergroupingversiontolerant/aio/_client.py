@@ -31,7 +31,7 @@ class AutoRestParameterGroupingTestService:  # pylint: disable=client-accepts-ap
         self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = AutoRestParameterGroupingTestServiceConfiguration(**kwargs)
-        self._client = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
@@ -69,5 +69,5 @@ class AutoRestParameterGroupingTestService:  # pylint: disable=client-accepts-ap
         await self._client.__aenter__()
         return self
 
-    async def __aexit__(self, *exc_details) -> None:
+    async def __aexit__(self, *exc_details: Any) -> None:
         await self._client.__aexit__(*exc_details)

@@ -36,7 +36,7 @@ class AutoRestParameterizedCustomHostTestClient:  # pylint: disable=client-accep
         self._config = AutoRestParameterizedCustomHostTestClientConfiguration(
             subscription_id=subscription_id, dns_suffix=dns_suffix, **kwargs
         )
-        self._client = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
@@ -78,5 +78,5 @@ class AutoRestParameterizedCustomHostTestClient:  # pylint: disable=client-accep
         await self._client.__aenter__()
         return self
 
-    async def __aexit__(self, *exc_details) -> None:
+    async def __aexit__(self, *exc_details: Any) -> None:
         await self._client.__aexit__(*exc_details)

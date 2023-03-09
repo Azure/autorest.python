@@ -54,6 +54,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> None:
         """Put External Resource as an Array.
 
+        .. seealso::
+           - http://tempuri.org
+
         :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: list[JSON]
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
@@ -86,6 +89,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> None:
         """Put External Resource as an Array.
 
+        .. seealso::
+           - http://tempuri.org
+
         :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
@@ -102,7 +108,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> None:
         """Put External Resource as an Array.
 
-        :param resource_array: External Resource as an Array to put. Is either a list type or a IO
+        .. seealso::
+           - http://tempuri.org
+
+        :param resource_array: External Resource as an Array to put. Is either a [JSON] type or a IO
          type. Default value is None.
         :type resource_array: list[JSON] or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
@@ -146,8 +155,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -162,6 +172,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     @distributed_trace_async
     async def get_array(self, **kwargs: Any) -> List[JSON]:
         """Get External Resource as an Array.
+
+        .. seealso::
+           - http://tempuri.org
 
         :return: list of JSON object
         :rtype: list[JSON]
@@ -210,8 +223,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -236,6 +250,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
+
+        .. seealso::
+           - http://tempuri.org
 
         :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: list[JSON]
@@ -264,6 +281,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
 
+        .. seealso::
+           - http://tempuri.org
+
         :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
@@ -281,7 +301,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
 
-        :param resource_array: External Resource as an Array to put. Is either a list type or a IO
+        .. seealso::
+           - http://tempuri.org
+
+        :param resource_array: External Resource as an Array to put. Is either a [JSON] type or a IO
          type. Default value is None.
         :type resource_array: list[JSON] or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
@@ -325,8 +348,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -342,6 +366,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     async def get_wrapped_array(self, **kwargs: Any) -> List[JSON]:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
+
+        .. seealso::
+           - http://tempuri.org
 
         :return: list of JSON object
         :rtype: list[JSON]
@@ -378,8 +405,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -407,6 +435,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         **kwargs: Any
     ) -> None:
         """Put External Resource as a Dictionary.
+
+        .. seealso::
+           - http://tempuri.org
 
         :param resource_dictionary: External Resource as a Dictionary to put. Default value is None.
         :type resource_dictionary: dict[str, JSON]
@@ -448,6 +479,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> None:
         """Put External Resource as a Dictionary.
 
+        .. seealso::
+           - http://tempuri.org
+
         :param resource_dictionary: External Resource as a Dictionary to put. Default value is None.
         :type resource_dictionary: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
@@ -464,8 +498,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> None:
         """Put External Resource as a Dictionary.
 
-        :param resource_dictionary: External Resource as a Dictionary to put. Is either a dict type or
-         a IO type. Default value is None.
+        .. seealso::
+           - http://tempuri.org
+
+        :param resource_dictionary: External Resource as a Dictionary to put. Is either a {str: JSON}
+         type or a IO type. Default value is None.
         :type resource_dictionary: dict[str, JSON] or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -508,8 +545,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -524,6 +562,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     @distributed_trace_async
     async def get_dictionary(self, **kwargs: Any) -> Dict[str, JSON]:
         """Get External Resource as a Dictionary.
+
+        .. seealso::
+           - http://tempuri.org
 
         :return: dict mapping str to JSON object
         :rtype: dict[str, JSON]
@@ -572,8 +613,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -597,6 +639,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         self, resource_complex_object: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put External Resource as a ResourceCollection.
+
+        .. seealso::
+           - http://tempuri.org
 
         :param resource_complex_object: External Resource as a ResourceCollection to put. Default value
          is None.
@@ -684,6 +729,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> None:
         """Put External Resource as a ResourceCollection.
 
+        .. seealso::
+           - http://tempuri.org
+
         :param resource_complex_object: External Resource as a ResourceCollection to put. Default value
          is None.
         :type resource_complex_object: IO
@@ -701,8 +749,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> None:
         """Put External Resource as a ResourceCollection.
 
+        .. seealso::
+           - http://tempuri.org
+
         :param resource_complex_object: External Resource as a ResourceCollection to put. Is either a
-         model type or a IO type. Default value is None.
+         JSON type or a IO type. Default value is None.
         :type resource_complex_object: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -710,6 +761,75 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                resource_complex_object = {
+                    "arrayofresources": [
+                        {
+                            "id": "str",  # Optional. Resource Id.
+                            "location": "str",  # Optional. Resource Location.
+                            "name": "str",  # Optional. Resource Name.
+                            "properties": {
+                                "p.name": "str",  # Optional.
+                                "provisioningState": "str",  # Optional.
+                                "provisioningStateValues": "str",  # Optional. Known
+                                  values are: "Succeeded", "Failed", "canceled", "Accepted",
+                                  "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
+                                  and "OK".
+                                "type": "str"  # Optional.
+                            },
+                            "tags": {
+                                "str": "str"  # Optional. Dictionary of
+                                  :code:`<string>`.
+                            },
+                            "type": "str"  # Optional. Resource Type.
+                        }
+                    ],
+                    "dictionaryofresources": {
+                        "str": {
+                            "id": "str",  # Optional. Resource Id.
+                            "location": "str",  # Optional. Resource Location.
+                            "name": "str",  # Optional. Resource Name.
+                            "properties": {
+                                "p.name": "str",  # Optional. Dictionary of
+                                  :code:`<FlattenedProduct>`.
+                                "provisioningState": "str",  # Optional. Dictionary
+                                  of :code:`<FlattenedProduct>`.
+                                "provisioningStateValues": "str",  # Optional. Known
+                                  values are: "Succeeded", "Failed", "canceled", "Accepted",
+                                  "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted",
+                                  and "OK".
+                                "type": "str"  # Optional. Dictionary of
+                                  :code:`<FlattenedProduct>`.
+                            },
+                            "tags": {
+                                "str": "str"  # Optional. Dictionary of
+                                  :code:`<string>`.
+                            },
+                            "type": "str"  # Optional. Resource Type.
+                        }
+                    },
+                    "productresource": {
+                        "id": "str",  # Optional. Resource Id.
+                        "location": "str",  # Optional. Resource Location.
+                        "name": "str",  # Optional. Resource Name.
+                        "properties": {
+                            "p.name": "str",  # Optional. Flattened product.
+                            "provisioningState": "str",  # Optional. Flattened product.
+                            "provisioningStateValues": "str",  # Optional. Known values
+                              are: "Succeeded", "Failed", "canceled", "Accepted", "Creating",
+                              "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
+                            "type": "str"  # Optional. Flattened product.
+                        },
+                        "tags": {
+                            "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        },
+                        "type": "str"  # Optional. Resource Type.
+                    }
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -745,8 +865,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -761,6 +882,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     @distributed_trace_async
     async def get_resource_collection(self, **kwargs: Any) -> JSON:
         """Get External Resource as a ResourceCollection.
+
+        .. seealso::
+           - http://tempuri.org
 
         :return: JSON object
         :rtype: JSON
@@ -854,8 +978,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -879,6 +1004,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         self, simple_body_product: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """Put Simple Product with client flattening true on the model.
+
+        .. seealso::
+           - http://tempuri.org
 
         :param simple_body_product: Simple body product to put. Default value is None.
         :type simple_body_product: JSON
@@ -935,6 +1063,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> JSON:
         """Put Simple Product with client flattening true on the model.
 
+        .. seealso::
+           - http://tempuri.org
+
         :param simple_body_product: Simple body product to put. Default value is None.
         :type simple_body_product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
@@ -970,7 +1101,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     async def put_simple_product(self, simple_body_product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:
         """Put Simple Product with client flattening true on the model.
 
-        :param simple_body_product: Simple body product to put. Is either a model type or a IO type.
+        .. seealso::
+           - http://tempuri.org
+
+        :param simple_body_product: Simple body product to put. Is either a JSON type or a IO type.
          Default value is None.
         :type simple_body_product: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
@@ -982,6 +1116,24 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                simple_body_product = {
+                    "base_product_id": "str",  # Unique identifier representing a specific
+                      product for a given latitude & longitude. For example, uberX in San Francisco
+                      will have a different product_id than uberX in Los Angeles. Required.
+                    "base_product_description": "str",  # Optional. Description of product.
+                    "details": {
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
+                        "max_product_display_name": "str",  # Display name of product.
+                          Required.
+                        "max_product_image": {
+                            "@odata.value": "str",  # Optional. URL value.
+                            "generic_value": "str"  # Optional. Generic URL value.
+                        }
+                    }
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -1035,8 +1187,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1060,6 +1213,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         self, simple_body_product: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """Put Flattened Simple Product with client flattening true on the parameter.
+
+        .. seealso::
+           - http://tempuri.org
 
         :param simple_body_product: Simple body product to post. Default value is None.
         :type simple_body_product: JSON
@@ -1116,6 +1272,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> JSON:
         """Put Flattened Simple Product with client flattening true on the parameter.
 
+        .. seealso::
+           - http://tempuri.org
+
         :param simple_body_product: Simple body product to post. Default value is None.
         :type simple_body_product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
@@ -1153,7 +1312,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> JSON:
         """Put Flattened Simple Product with client flattening true on the parameter.
 
-        :param simple_body_product: Simple body product to post. Is either a model type or a IO type.
+        .. seealso::
+           - http://tempuri.org
+
+        :param simple_body_product: Simple body product to post. Is either a JSON type or a IO type.
          Default value is None.
         :type simple_body_product: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
@@ -1165,6 +1327,24 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                simple_body_product = {
+                    "base_product_id": "str",  # Unique identifier representing a specific
+                      product for a given latitude & longitude. For example, uberX in San Francisco
+                      will have a different product_id than uberX in Los Angeles. Required.
+                    "base_product_description": "str",  # Optional. Description of product.
+                    "details": {
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
+                        "max_product_display_name": "str",  # Display name of product.
+                          Required.
+                        "max_product_image": {
+                            "@odata.value": "str",  # Optional. URL value.
+                            "generic_value": "str"  # Optional. Generic URL value.
+                        }
+                    }
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -1218,8 +1398,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1248,6 +1429,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         **kwargs: Any
     ) -> JSON:
         """Put Simple Product with client flattening true on the model.
+
+        .. seealso::
+           - http://tempuri.org
 
         :param name: Product name with value 'groupproduct'. Required.
         :type name: str
@@ -1311,6 +1495,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> JSON:
         """Put Simple Product with client flattening true on the model.
 
+        .. seealso::
+           - http://tempuri.org
+
         :param name: Product name with value 'groupproduct'. Required.
         :type name: str
         :param simple_body_product: Simple body product to put. Default value is None.
@@ -1350,9 +1537,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> JSON:
         """Put Simple Product with client flattening true on the model.
 
+        .. seealso::
+           - http://tempuri.org
+
         :param name: Product name with value 'groupproduct'. Required.
         :type name: str
-        :param simple_body_product: Simple body product to put. Is either a model type or a IO type.
+        :param simple_body_product: Simple body product to put. Is either a JSON type or a IO type.
          Default value is None.
         :type simple_body_product: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
@@ -1364,6 +1554,24 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                simple_body_product = {
+                    "base_product_id": "str",  # Unique identifier representing a specific
+                      product for a given latitude & longitude. For example, uberX in San Francisco
+                      will have a different product_id than uberX in Los Angeles. Required.
+                    "base_product_description": "str",  # Optional. Description of product.
+                    "details": {
+                        "max_product_capacity": "Large",  # Default value is "Large".
+                          Capacity of product. For example, 4 people. Required.
+                        "max_product_display_name": "str",  # Display name of product.
+                          Required.
+                        "max_product_image": {
+                            "@odata.value": "str",  # Optional. URL value.
+                            "generic_value": "str"  # Optional. Generic URL value.
+                        }
+                    }
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -1418,8 +1626,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

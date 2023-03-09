@@ -30,7 +30,7 @@ class AutoRestSwaggerBATFileService:  # pylint: disable=client-accepts-api-versi
         self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = AutoRestSwaggerBATFileServiceConfiguration(**kwargs)
-        self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
+        self._client: PipelineClient = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
@@ -66,5 +66,5 @@ class AutoRestSwaggerBATFileService:  # pylint: disable=client-accepts-api-versi
         self._client.__enter__()
         return self
 
-    def __exit__(self, *exc_details) -> None:
+    def __exit__(self, *exc_details: Any) -> None:
         self._client.__exit__(*exc_details)

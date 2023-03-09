@@ -163,7 +163,6 @@ class ModelType(  # pylint: disable=abstract-method
         )
 
     def get_polymorphic_subtypes(self, polymorphic_subtypes: List["ModelType"]) -> None:
-
         is_polymorphic_subtype = (
             self.discriminator_value and not self.discriminated_subtypes
         )
@@ -295,13 +294,23 @@ class GeneratedModelType(ModelType):  # pylint: disable=abstract-method
     def docstring_text(self, **kwargs: Any) -> str:
         return self.name
 
+    @property
+    def type_description(self) -> str:
+        return self.name
+
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = super().imports(**kwargs)
         relative_path = kwargs.pop("relative_path", None)
         if relative_path:
-            # add import for models in operations file
+            # add import for models in operations or _types file
             file_import.add_submodule_import(
-                relative_path, "models", ImportType.LOCAL, alias="_models"
+                relative_path,
+                "models",
+                ImportType.LOCAL,
+                alias="_models",
+                typing_section=TypingSection.TYPING
+                if kwargs.get("model_typing")
+                else TypingSection.REGULAR,
             )
         return file_import
 

@@ -37,7 +37,7 @@ class AutoRestParameterizedCustomHostTestClient:  # pylint: disable=client-accep
         self._config = AutoRestParameterizedCustomHostTestClientConfiguration(
             subscription_id=subscription_id, dns_suffix=dns_suffix, **kwargs
         )
-        self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
+        self._client: PipelineClient = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in _models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
@@ -80,5 +80,5 @@ class AutoRestParameterizedCustomHostTestClient:  # pylint: disable=client-accep
         self._client.__enter__()
         return self
 
-    def __exit__(self, *exc_details) -> None:
+    def __exit__(self, *exc_details: Any) -> None:
         self._client.__exit__(*exc_details)

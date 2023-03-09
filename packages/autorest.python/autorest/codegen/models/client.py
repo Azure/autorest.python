@@ -16,6 +16,8 @@ from .request_builder import (
     get_request_builder,
 )
 from .parameter import Parameter, ParameterMethodLocation
+from .lro_operation import LROOperation
+from .lro_paging_operation import LROPagingOperation
 
 ParameterListType = TypeVar(
     "ParameterListType",
@@ -24,6 +26,7 @@ ParameterListType = TypeVar(
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
+    from . import OperationType
 
 
 class _ClientConfigBase(Generic[ParameterListType], BaseModel):
@@ -72,7 +75,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
                 OperationGroup.from_yaml(op_group, code_model, self)
                 for op_group in self.yaml_data.get("operationGroups", [])
             ]
-            self.format_lro_operations()
+            self.link_lro_initial_operations()
 
     def _build_request_builders(
         self,
@@ -80,11 +83,21 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         request_builders: List[Union[RequestBuilder, OverloadedRequestBuilder]] = []
         for og_group in self.yaml_data["operationGroups"]:
             for operation_yaml in og_group["operations"]:
+                if operation_yaml["discriminator"] in ("lro", "lropaging"):
+                    continue
                 request_builder = get_request_builder(
                     operation_yaml,
                     code_model=self.code_model,
                     client=self,
                 )
+                if operation_yaml.get("isLroInitialOperation"):
+                    # we want to change the name
+                    request_builder.name = request_builder.get_name(
+                        request_builder.yaml_data["name"][1 : -len("_initial")],
+                        request_builder.yaml_data,
+                        request_builder.code_model,
+                        request_builder.client,
+                    )
                 if request_builder.overloads:
                     request_builders.extend(request_builder.overloads)
                 request_builders.append(request_builder)
@@ -160,6 +173,17 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
                 f"No request builder with id {request_builder_id} found."
             ) from exc
 
+    def lookup_operation(self, operation_id: int) -> "OperationType":
+        try:
+            return next(
+                o
+                for og in self.operation_groups
+                for o in og.operations
+                if id(o.yaml_data) == operation_id
+            )
+        except StopIteration as exc:
+            raise KeyError(f"No operation with id {operation_id} found.") from exc
+
     def _imports_shared(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
 
@@ -221,19 +245,14 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             for operation_group in self.operation_groups
         )
 
-    def format_lro_operations(self) -> None:
-        """Adds operations and attributes needed for LROs.
-        If there are LRO functions in here, will add initial LRO function. Will also set the return
-        type of the LRO operation
-        """
+    def link_lro_initial_operations(self) -> None:
+        """Link each LRO operation to its initial operation"""
         for operation_group in self.operation_groups:
-            i = 0
-            while i < len(operation_group.operations):
-                operation = operation_group.operations[i]
-                if operation.operation_type in ("lro", "lropaging"):
-                    operation_group.operations.insert(i, operation.initial_operation)  # type: ignore
-                    i += 1
-                i += 1
+            for operation in operation_group.operations:
+                if isinstance(operation, (LROOperation, LROPagingOperation)):
+                    operation.initial_operation = self.lookup_operation(
+                        id(operation.yaml_data["initialOperation"])
+                    )
 
     @property
     def need_request_converter(self) -> bool:

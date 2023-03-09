@@ -31,7 +31,7 @@ class AutorestSecurityKey(AutorestSecurityKeyOperationsMixin):  # pylint: disabl
         self, credential: AzureKeyCredential, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = AutorestSecurityKeyConfiguration(credential=credential, **kwargs)
-        self._client = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
+        self._client: PipelineClient = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
@@ -66,5 +66,5 @@ class AutorestSecurityKey(AutorestSecurityKeyOperationsMixin):  # pylint: disabl
         self._client.__enter__()
         return self
 
-    def __exit__(self, *exc_details) -> None:
+    def __exit__(self, *exc_details: Any) -> None:
         self._client.__exit__(*exc_details)

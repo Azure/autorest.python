@@ -107,8 +107,9 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -209,7 +210,7 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
     def begin_basic_polling(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> CustomPoller[JSON]:
         """A simple polling operation.
 
-        :param product: Product to put. Is either a model type or a IO type. Default value is None.
+        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
         :type product: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -227,6 +228,14 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
 
         Example:
             .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                product = {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
+                }
 
                 # response body for status code(s): 200
                 response == {
@@ -337,8 +346,9 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
         def get_next(next_link=None):
             request = prepare_request(next_link)
 
+            _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=False, **kwargs
+                request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 

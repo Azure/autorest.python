@@ -113,8 +113,9 @@ class InheritanceOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -179,7 +180,7 @@ class InheritanceOperations:
 
         :param complex_body: Please put a siamese with id=2, name="Siameee", color=green,
          breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and
-         the 2nd one named "Tomato" with id=-1 and food="french fries". Is either a model type or a IO
+         the 2nd one named "Tomato" with id=-1 and food="french fries". Is either a Siamese type or a IO
          type. Required.
         :type complex_body: ~bodycomplex.models.Siamese or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
@@ -223,8 +224,9 @@ class InheritanceOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

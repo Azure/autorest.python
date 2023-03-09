@@ -17,7 +17,6 @@ from ._utils import DEFAULT_HEADER_TEXT
 
 
 def _validate_code_model_options(options: Dict[str, Any]) -> None:
-
     if options["builders_visibility"] not in ["public", "hidden", "embedded"]:
         raise ValueError(
             "The value of --builders-visibility must be either 'public', 'hidden', "
@@ -164,6 +163,7 @@ class CodeGenerator(Plugin):
                 low_level_client or version_tolerant,
             ),
             "generate_sample": self.options.get("generate-sample", False),
+            "default_api_version": self.options.get("default-api-version"),
         }
 
         if options["builders_visibility"] is None:
@@ -276,6 +276,7 @@ class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
                 "default-optional-constants-to-none"
             ),
             "generate-sample": self._autorestapi.get_boolean_value("generate-sample"),
+            "default-api-version": self._autorestapi.get_value("default-api-version"),
         }
         return {k: v for k, v in options.items() if v is not None}
 

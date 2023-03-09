@@ -140,7 +140,7 @@ class OperationGroupTwoOperations:
     ) -> None:
         """TestFour should be in OperationGroupTwoOperations.
 
-        :param input: Input parameter. Is either a model type or a IO type. Default value is None.
+        :param input: Input parameter. Is either a SourcePath type or a IO type. Default value is None.
         :type input: ~multiapicredentialdefaultpolicy.v3.models.SourcePath or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Default value is None.
@@ -188,8 +188,9 @@ class OperationGroupTwoOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -236,8 +237,9 @@ class OperationGroupTwoOperations:
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

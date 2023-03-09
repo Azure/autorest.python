@@ -79,7 +79,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
     async def analyze_body(self, input: Optional[Union[_models.SourcePath, IO]] = None, **kwargs: Any) -> str:
         """Analyze body, that could be different media types.
 
-        :param input: Input parameter. Is either a model type or a IO type. Default value is None.
+        :param input: Input parameter. Is either a SourcePath type or a IO type. Default value is None.
         :type input: ~mediatypes.models.SourcePath or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Default value is None.
@@ -125,8 +125,9 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -188,7 +189,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
         type.
 
-        :param input: Input parameter. Is either a model type or a IO type. Default value is None.
+        :param input: Input parameter. Is either a SourcePath type or a IO type. Default value is None.
         :type input: ~mediatypes.models.SourcePath or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Default value is None.
@@ -234,8 +235,9 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -289,8 +291,9 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -346,8 +349,9 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -404,8 +408,9 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -483,7 +488,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         content type 'text/plain', {'hello': world'} with content type 'application/json' and a byte
         string for 'application/octet-stream'.
 
-        :param message: The payload body. Is one of the following types: any, IO, string Required.
+        :param message: The payload body. Is one of the following types: Any, IO, str Required.
         :type message: any or IO or str
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'application/octet-stream', 'text/plain'. Default value is None.
@@ -527,8 +532,9 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -583,8 +589,9 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

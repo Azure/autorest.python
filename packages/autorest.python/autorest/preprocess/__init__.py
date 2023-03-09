@@ -10,11 +10,11 @@ from typing import Callable, Dict, Any, List, Optional
 
 from .._utils import to_snake_case
 from .helpers import (
-    pad_reserved_words,
     add_redefined_builtin_info,
     pad_builtin_namespaces,
+    pad_special_chars,
 )
-from .python_mappings import PadType
+from .python_mappings import CADL_RESERVED_WORDS, RESERVED_WORDS, PadType
 
 from .. import YamlUpdatePlugin, YamlUpdatePluginAutorest
 from .._utils import parse_args, get_body_type_for_description, JSON_REGEXP, KNOWN_TYPES
@@ -66,8 +66,10 @@ def add_overload(
     overload = copy.deepcopy(yaml_data)
     overload["isOverload"] = True
     overload["bodyParameter"]["type"] = body_type
-
+    overload["bodyParameter"]["defaultToUnsetSentinel"] = False
     overload["overloads"] = []
+    if yaml_data.get("initialOperation"):
+        overload["initialOperation"] = yaml_data["initialOperation"]
 
     if for_flatten_params:
         overload["bodyParameter"]["flattened"] = True
@@ -95,6 +97,10 @@ def add_overload(
     if body_type["type"] == "binary" and len(content_types) > 1:
         content_types = "'" + "', '".join(content_types) + "'"
         content_type_param["description"] += f" Known values are: {content_types}."
+    overload["bodyParameter"]["inOverload"] = True
+    for parameter in overload["parameters"]:
+        parameter["inOverload"] = True
+        parameter["defaultToUnsetSentinel"] = False
     return overload
 
 
@@ -162,51 +168,6 @@ def update_operation_group_class_name(
     return class_name + "Operations"
 
 
-def update_parameter(yaml_data: Dict[str, Any]) -> None:
-    yaml_data["description"] = update_description(yaml_data["description"])
-    if not (
-        yaml_data["location"] == "header"
-        and yaml_data["clientName"] in ("content_type", "accept")
-    ):
-        yaml_data["clientName"] = pad_reserved_words(
-            yaml_data["clientName"].lower(), PadType.PARAMETER
-        )
-    if yaml_data.get("propertyToParameterName"):
-        # need to create a new one with padded keys and values
-        yaml_data["propertyToParameterName"] = {
-            pad_reserved_words(prop, PadType.PROPERTY): pad_reserved_words(
-                param_name, PadType.PARAMETER
-            )
-            for prop, param_name in yaml_data["propertyToParameterName"].items()
-        }
-
-
-def update_types(yaml_data: List[Dict[str, Any]]) -> None:
-    for type in yaml_data:
-        for property in type.get("properties", []):
-            property["description"] = update_description(property["description"])
-            property["clientName"] = pad_reserved_words(
-                property["clientName"].lower(), PadType.PROPERTY
-            )
-            add_redefined_builtin_info(property["clientName"], property)
-        if type.get("name"):
-            type["description"] = update_description(type["description"], type["name"])
-            type["snakeCaseName"] = to_snake_case(type["name"])
-
-
-def update_client(yaml_data: Dict[str, Any]) -> None:
-    yaml_data["description"] = update_description(
-        yaml_data["description"], default_description=yaml_data["name"]
-    )
-    yaml_data["legacyFilename"] = to_snake_case(yaml_data["name"].replace(" ", "_"))
-    for parameter in yaml_data["parameters"]:
-        update_parameter(parameter)
-    prop_name = yaml_data["name"]
-    if prop_name.endswith("Client"):
-        prop_name = prop_name[: len(prop_name) - len("Client")]
-    yaml_data["builderPadName"] = to_snake_case(prop_name)
-
-
 def update_paging_response(yaml_data: Dict[str, Any]) -> None:
     yaml_data["discriminator"] = "paging"
     yaml_data["pagerSync"] = yaml_data.get("pagerSync") or "azure.core.paging.ItemPaged"
@@ -224,9 +185,55 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
 
     @property
     def models_mode(self) -> Optional[str]:
-        return self.options.get(
-            "models-mode", "dpg" if self.options.get("cadl_file") else None
+        return self.options.get("models-mode", "dpg" if self.is_cadl else None)
+
+    @property
+    def is_cadl(self) -> bool:
+        return self.options.get("cadl_file", False)
+
+    def pad_reserved_words(self, name: str, pad_type: PadType):
+        # we want to pad hidden variables as well
+        if not name:
+            # we'll pass in empty operation groups sometime etc.
+            return name
+
+        if self.is_cadl:
+            reserved_words = copy.copy(CADL_RESERVED_WORDS)
+            reserved_words.update(RESERVED_WORDS)
+        else:
+            reserved_words = RESERVED_WORDS
+        name = pad_special_chars(name)
+        name_prefix = "_" if name[0] == "_" else ""
+        name = name[1:] if name[0] == "_" else name
+        if name.lower() in reserved_words[pad_type]:
+            return name_prefix + name + pad_type
+        return name_prefix + name
+
+    def update_types(self, yaml_data: List[Dict[str, Any]]) -> None:
+        for type in yaml_data:
+            for property in type.get("properties", []):
+                property["description"] = update_description(property["description"])
+                property["clientName"] = self.pad_reserved_words(
+                    property["clientName"].lower(), PadType.PROPERTY
+                )
+                add_redefined_builtin_info(property["clientName"], property)
+            if type.get("name"):
+                type["description"] = update_description(
+                    type["description"], type["name"]
+                )
+                type["snakeCaseName"] = to_snake_case(type["name"])
+
+    def update_client(self, yaml_data: Dict[str, Any]) -> None:
+        yaml_data["description"] = update_description(
+            yaml_data["description"], default_description=yaml_data["name"]
         )
+        yaml_data["legacyFilename"] = to_snake_case(yaml_data["name"].replace(" ", "_"))
+        for parameter in yaml_data["parameters"]:
+            self.update_parameter(parameter)
+        prop_name = yaml_data["name"]
+        if prop_name.endswith("Client"):
+            prop_name = prop_name[: len(prop_name) - len("Client")]
+        yaml_data["builderPadName"] = to_snake_case(prop_name)
 
     def get_operation_updater(
         self, yaml_data: Dict[str, Any]
@@ -239,6 +246,24 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             return self.update_paging_operation
         return self.update_operation
 
+    def update_parameter(self, yaml_data: Dict[str, Any]) -> None:
+        yaml_data["description"] = update_description(yaml_data["description"])
+        if not (
+            yaml_data["location"] == "header"
+            and yaml_data["clientName"] in ("content_type", "accept")
+        ):
+            yaml_data["clientName"] = self.pad_reserved_words(
+                yaml_data["clientName"].lower(), PadType.PARAMETER
+            )
+        if yaml_data.get("propertyToParameterName"):
+            # need to create a new one with padded keys and values
+            yaml_data["propertyToParameterName"] = {
+                self.pad_reserved_words(prop, PadType.PROPERTY)
+                .lower(): self.pad_reserved_words(param_name, PadType.PARAMETER)
+                .lower()
+                for prop, param_name in yaml_data["propertyToParameterName"].items()
+            }
+
     def update_operation(
         self,
         code_model: Dict[str, Any],
@@ -246,23 +271,23 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         *,
         is_overload: bool = False,
     ) -> None:
-        yaml_data["groupName"] = pad_reserved_words(
+        yaml_data["groupName"] = self.pad_reserved_words(
             yaml_data["groupName"], PadType.OPERATION_GROUP
         )
         yaml_data["groupName"] = to_snake_case(yaml_data["groupName"])
         yaml_data["name"] = yaml_data["name"].lower()
-        yaml_data["name"] = pad_reserved_words(yaml_data["name"], PadType.METHOD)
+        yaml_data["name"] = self.pad_reserved_words(yaml_data["name"], PadType.METHOD)
         yaml_data["description"] = update_description(
             yaml_data["description"], yaml_data["name"]
         )
         yaml_data["summary"] = update_description(yaml_data.get("summary", ""))
         body_parameter = yaml_data.get("bodyParameter")
         for parameter in yaml_data["parameters"]:
-            update_parameter(parameter)
+            self.update_parameter(parameter)
         if yaml_data.get("bodyParameter"):
-            update_parameter(yaml_data["bodyParameter"])
+            self.update_parameter(yaml_data["bodyParameter"])
             for entry in yaml_data["bodyParameter"].get("entries", []):
-                update_parameter(entry)
+                self.update_parameter(entry)
         for overload in yaml_data.get("overloads", []):
             self.update_operation(code_model, overload, is_overload=True)
         for response in yaml_data.get("responses", []):
@@ -316,9 +341,15 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         is_overload: bool = False,
     ) -> None:
         self.update_operation(code_model, yaml_data, is_overload=is_overload)
+        self.update_operation(
+            code_model, yaml_data["initialOperation"], is_overload=is_overload
+        )
         self._update_lro_operation_helper(yaml_data)
         for overload in yaml_data.get("overloads", []):
             self._update_lro_operation_helper(overload)
+            self.update_operation(
+                code_model, overload["initialOperation"], is_overload=True
+            )
 
     def update_paging_operation(
         self,
@@ -348,7 +379,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         if yaml_data.get("nextOperation"):
             if self.version_tolerant:
                 _remove_paging_maxpagesize(yaml_data["nextOperation"])
-            yaml_data["nextOperation"]["groupName"] = pad_reserved_words(
+            yaml_data["nextOperation"]["groupName"] = self.pad_reserved_words(
                 yaml_data["nextOperation"]["groupName"], PadType.OPERATION_GROUP
             )
             yaml_data["nextOperation"]["groupName"] = to_snake_case(
@@ -369,7 +400,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         operation_groups_yaml_data = client["operationGroups"]
         for operation_group in operation_groups_yaml_data:
             operation_group["clientName"] = client["name"]
-            operation_group["propertyName"] = pad_reserved_words(
+            operation_group["propertyName"] = self.pad_reserved_words(
                 operation_group["propertyName"], PadType.OPERATION_GROUP
             )
             operation_group["propertyName"] = to_snake_case(
@@ -383,13 +414,13 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
 
     def update_yaml(self, yaml_data: Dict[str, Any]) -> None:
         """Convert in place the YAML str."""
-        update_types(yaml_data["types"])
+        self.update_types(yaml_data["types"])
         for client in yaml_data["clients"]:
-            update_client(client)
+            self.update_client(client)
             self.update_operation_groups(yaml_data, client)
         for clients in yaml_data["subnamespaceToClients"].values():
             for client in clients:
-                update_client(client)
+                self.update_client(client)
                 self.update_operation_groups(yaml_data, client)
         if yaml_data.get("namespace"):
             yaml_data["namespace"] = pad_builtin_namespaces(yaml_data["namespace"])

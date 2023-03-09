@@ -73,8 +73,9 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -141,7 +142,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
          before returning to users. Required.
         :type mode: str
-        :param input: Please put {'hello': 'world!'}. Is either a model type or a IO type. Required.
+        :param input: Please put {'hello': 'world!'}. Is either a Input type or a IO type. Required.
         :type input: ~dpgtestmodelsversiontolerant.models.Input or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -182,8 +183,9 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -253,8 +255,9 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         async def get_next(next_link=None):
             request = prepare_request(next_link)
 
+            _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request, stream=False, **kwargs
+                request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -287,8 +290,9 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

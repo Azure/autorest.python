@@ -111,7 +111,7 @@ class AvailabilitySetsOperations:
         :type resource_group_name: str
         :param avset: The name of the storage availability set. Required.
         :type avset: str
-        :param tags: The tags. Is either a model type or a IO type. Required.
+        :param tags: The tags. Is either a JSON type or a IO type. Required.
         :type tags: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -119,6 +119,16 @@ class AvailabilitySetsOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                tags = {
+                    "tags": {
+                        "str": "str"  # A description about the set of tags. Required.
+                    }
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -153,8 +163,9 @@ class AvailabilitySetsOperations:
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

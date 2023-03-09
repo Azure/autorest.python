@@ -23,7 +23,7 @@ class ServiceDriven1Client(ServiceDriven1ClientOperationsMixin):  # pylint: disa
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
         self._config = ServiceDriven1ClientConfiguration(**kwargs)
-        self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
+        self._client: PipelineClient = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
@@ -58,5 +58,5 @@ class ServiceDriven1Client(ServiceDriven1ClientOperationsMixin):  # pylint: disa
         self._client.__enter__()
         return self
 
-    def __exit__(self, *exc_details) -> None:
+    def __exit__(self, *exc_details: Any) -> None:
         self._client.__exit__(*exc_details)

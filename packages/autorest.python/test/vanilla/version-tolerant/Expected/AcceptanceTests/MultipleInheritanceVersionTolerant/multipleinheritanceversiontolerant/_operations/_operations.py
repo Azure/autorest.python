@@ -230,8 +230,9 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -291,7 +292,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
     def put_horse(self, horse: Union[JSON, IO], **kwargs: Any) -> str:
         """Put a horse with name 'General' and isAShowHorse false.
 
-        :param horse: Put a horse with name 'General' and isAShowHorse false. Is either a model type or
+        :param horse: Put a horse with name 'General' and isAShowHorse false. Is either a JSON type or
          a IO type. Required.
         :type horse: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
@@ -300,6 +301,15 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         :return: str
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                horse = {
+                    "name": "str",  # Required.
+                    "isAShowHorse": bool  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -332,8 +342,9 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -387,8 +398,9 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -447,7 +459,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
     def put_pet(self, pet: Union[JSON, IO], **kwargs: Any) -> str:
         """Put a pet with name 'Butter'.
 
-        :param pet: Put a pet with name 'Butter'. Is either a model type or a IO type. Required.
+        :param pet: Put a pet with name 'Butter'. Is either a JSON type or a IO type. Required.
         :type pet: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -455,6 +467,14 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         :return: str
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                pet = {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -487,8 +507,9 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -543,8 +564,9 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -604,7 +626,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
     def put_feline(self, feline: Union[JSON, IO], **kwargs: Any) -> str:
         """Put a feline who hisses and doesn't meow.
 
-        :param feline: Put a feline who hisses and doesn't meow. Is either a model type or a IO type.
+        :param feline: Put a feline who hisses and doesn't meow. Is either a JSON type or a IO type.
          Required.
         :type feline: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
@@ -613,6 +635,15 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         :return: str
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                feline = {
+                    "hisses": bool,  # Optional.
+                    "meows": bool  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -645,8 +676,9 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -703,8 +735,9 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -769,7 +802,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
         :param cat: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true. Is
-         either a model type or a IO type. Required.
+         either a JSON type or a IO type. Required.
         :type cat: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -777,6 +810,17 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         :return: str
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                cat = {
+                    "name": "str",  # Required.
+                    "hisses": bool,  # Optional.
+                    "likesMilk": bool,  # Optional.
+                    "meows": bool  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -809,8 +853,9 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -869,8 +914,9 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -939,7 +985,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         true.
 
         :param kitten: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
-         eatsMiceYet is true. Is either a model type or a IO type. Required.
+         eatsMiceYet is true. Is either a JSON type or a IO type. Required.
         :type kitten: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -947,6 +993,18 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         :return: str
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                kitten = {
+                    "name": "str",  # Required.
+                    "eatsMiceYet": bool,  # Optional.
+                    "hisses": bool,  # Optional.
+                    "likesMilk": bool,  # Optional.
+                    "meows": bool  # Optional.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -979,8 +1037,9 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

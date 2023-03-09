@@ -23,8 +23,8 @@ steps:
       inputs:
           versionSpec: 3.7
 
-    - script: npm install -g pnpm
-      displayName: Install pnpm
+    - script: npm install -g pnpm@7.24.3
+      displayName: Install pnpm 7.24.3
 
     - script: npm install -g autorest
       displayName: Install autorest

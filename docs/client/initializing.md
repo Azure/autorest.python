@@ -86,7 +86,7 @@ client = PetsClient(credential=DefaultAzureCredential(), api_version="v1")
 
 <!-- LINKS -->
 
-[multiapi_generation]: https://github.com/Azure/autorest.python/blob/autorestv3/docs/generate/multiapi.md
+[multiapi_generation]: https://github.com/Azure/autorest.python/blob/main/docs/generate/multiapi.md
 [azure_core_library]: https://pypi.org/project/azure-core/
 [msrest_library]: https://pypi.org/project/msrest/
 [azure_mgmt_core_library]: https://pypi.org/project/azure-mgmt-core/

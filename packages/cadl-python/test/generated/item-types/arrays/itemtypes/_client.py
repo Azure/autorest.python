@@ -53,7 +53,7 @@ class ItemTypesClient:  # pylint: disable=client-accepts-api-version-keyword,too
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
         self._config = ItemTypesClientConfiguration(**kwargs)
-        self._client = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
+        self._client: PipelineClient = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
@@ -97,5 +97,5 @@ class ItemTypesClient:  # pylint: disable=client-accepts-api-version-keyword,too
         self._client.__enter__()
         return self
 
-    def __exit__(self, *exc_details) -> None:
+    def __exit__(self, *exc_details: Any) -> None:
         self._client.__exit__(*exc_details)

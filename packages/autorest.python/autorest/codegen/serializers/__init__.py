@@ -27,6 +27,7 @@ from .metadata_serializer import MetadataSerializer
 from .request_builders_serializer import RequestBuildersSerializer
 from .patch_serializer import PatchSerializer
 from .sample_serializer import SampleSerializer
+from .types_serializer import TypesSerializer
 from ..._utils import to_snake_case
 from .utils import extract_sample_name
 
@@ -125,7 +126,6 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
             self.code_model.options["show_operations"]
             and self.code_model.has_operations
             and self.code_model.options["generate_sample"]
-            and not self.code_model.options["multiapi"]
         ):
             self._serialize_and_write_sample(env, namespace_path)
 
@@ -193,6 +193,11 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                     namespace_path / Path("models.py"),
                     self.read_file(namespace_path / Path("models.py")),
                 )
+        if self.code_model.named_unions:
+            self.write_file(
+                namespace_path / Path("_types.py"),
+                TypesSerializer(code_model=self.code_model, env=env).serialize(),
+            )
 
     def _serialize_and_write_package_files(self, namespace_path: Path) -> None:
         root_of_sdk = self._package_root_folder(namespace_path)
@@ -549,6 +554,12 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
         for client in self.code_model.clients:
             for op_group in client.operation_groups:
                 for operation in op_group.operations:
+                    if (
+                        self.code_model.options["multiapi"]
+                        and operation.api_versions[0]
+                        != self.code_model.options["default_api_version"]
+                    ):
+                        continue
                     samples = operation.yaml_data["samples"]
                     if not samples or operation.name.startswith("_"):
                         continue

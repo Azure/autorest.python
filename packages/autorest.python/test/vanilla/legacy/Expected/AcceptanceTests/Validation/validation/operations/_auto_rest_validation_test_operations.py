@@ -178,8 +178,9 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -265,7 +266,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000. Required.
         :type id: int
-        :param body: Is either a model type or a IO type. Default value is None.
+        :param body: Is either a Product type or a IO type. Default value is None.
         :type body: ~validation.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -316,8 +317,9 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -371,8 +373,9 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -432,7 +435,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
     ) -> _models.Product:
         """post_with_constant_in_body.
 
-        :param body: Is either a model type or a IO type. Default value is None.
+        :param body: Is either a Product type or a IO type. Default value is None.
         :type body: ~validation.models.Product or IO
         :keyword constant_param: Default value is "constant". Note that overriding this default value
          may result in unsupported behavior.
@@ -483,8 +486,9 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         request = _convert_request(request)
         request.url = self._client.format_url(request.url)
 
+        _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

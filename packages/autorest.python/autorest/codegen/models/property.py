@@ -8,7 +8,7 @@ from typing import Any, Dict, Optional, TYPE_CHECKING, List
 from .base import BaseModel
 from .constant_type import ConstantType
 from .base import BaseType
-from .imports import FileImport, ImportType, TypingSection
+from .imports import FileImport, ImportType
 from .utils import add_to_description, add_to_pylint_disable
 
 if TYPE_CHECKING:
@@ -129,32 +129,12 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         retval.update(self.type.validation or {})
         return retval or None
 
-    @staticmethod
-    def contain_model_type(t: BaseType) -> bool:
-        from . import ListType, DictionaryType, ModelType
-
-        if isinstance(t, ModelType):
-            return True
-        if isinstance(t, ListType):
-            return Property.contain_model_type(t.element_type)
-        if isinstance(t, DictionaryType):
-            return Property.contain_model_type(t.element_type)
-        if isinstance(t, ConstantType):
-            return Property.contain_model_type(t.value_type)
-        return False
-
     def imports(self, **kwargs) -> FileImport:
-        file_import = self.type.imports(**kwargs, is_operation_file=False)
+        file_import = self.type.imports(
+            **kwargs, is_operation_file=False, relative_path="..", model_typing=True
+        )
         if self.optional and self.client_default_value is None:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
-        if self.contain_model_type(self.type):
-            file_import.add_submodule_import(
-                "..",
-                "models",
-                ImportType.LOCAL,
-                TypingSection.TYPING,
-                alias="_models",
-            )
         if self.code_model.options["models_mode"] == "dpg":
             file_import.add_submodule_import(
                 ".._model_base",
