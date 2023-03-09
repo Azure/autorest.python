@@ -63,6 +63,7 @@ import {
     isApiVersion,
     getDefaultApiVersion,
     getClientNamespaceString,
+    getClientFormat,
     createDpgContext,
     DpgContext,
     getPropertyNames,
@@ -244,7 +245,20 @@ function getEffectiveSchemaType(context: DpgContext, type: Model): Model {
     return type;
 }
 
-function getType(context: DpgContext, type: EmitterType, location: string = ""): any {
+function getEntityType(context: DpgContext, entity: ModelProperty): any {
+    const result = getType(context, entity.type);
+    const format = getClientFormat(context, entity);
+    if (format) {
+        if (format === "rfc1123") {
+            result["format"] = "date-time-rfc1123";
+        } else if (format === "iso8601") {
+            result["format"] = "date-time";
+        }
+    }
+    return result;
+}
+
+function getType(context: DpgContext, type: EmitterType): any {
     // don't cache simple type(string, int, etc) since decorators may change the result
     const program = context.program;
     const enableCache = !isSimpleType(context, type);
@@ -255,7 +269,7 @@ function getType(context: DpgContext, type: EmitterType, location: string = ""):
             return cached;
         }
     }
-    let newValue = emitType(context, type, location);
+    let newValue = emitType(context, type);
     if (enableCache) {
         typesMap.set(effectiveModel, newValue);
         if (type.kind === "Model") {
@@ -391,7 +405,7 @@ function emitParameter(
     implementation: string,
 ): Record<string, any> {
     const base = emitParamBase(context, parameter.param);
-    let type = getType(context, parameter.param.type, parameter.type);
+    let type = getEntityType(context, parameter.param);
     let clientDefaultValue = undefined;
     if (parameter.name.toLowerCase() === "content-type" && type["type"] === "constant") {
         /// We don't want constant types for content types, so we make sure if it's
@@ -522,7 +536,7 @@ function emitResponseHeaders(context: DpgContext, headers?: Record<string, Model
     }
     for (const [key, value] of Object.entries(headers)) {
         retval.push({
-            type: getType(context, value.type, "header"),
+            type: getEntityType(context, value),
             restApiName: key,
         });
     }
@@ -664,7 +678,7 @@ function emitBasicOperation(
     operationGroupName: string,
 ): Record<string, any>[] {
     // Set up parameters for operation
-    const parameters: Record<string, any>[] = [];
+    const parameters: Record<string, any>[] = [];   
     if (endpointPathParameters) {
         for (const param of endpointPathParameters) {
             parameters.push(param);
@@ -770,7 +784,7 @@ function emitProperty(context: DpgContext, property: ModelProperty): Record<stri
     return {
         clientName: camelToSnakeCase(clientName),
         restApiName: jsonName,
-        type: getType(context, property.type),
+        type: getEntityType(context, property),
         optional: property.optional,
         description: getDocStr(context, property),
         addedOn: getAddedOnVersion(context, property),
@@ -894,7 +908,7 @@ function emitCredentialUnion(cred_types: CredentialTypeUnion): Record<string, an
     return result;
 }
 
-function emitStdScalar(scalar: Scalar & { name: IntrinsicScalarName }, location: string = ""): Record<string, any> {
+function emitStdScalar(scalar: Scalar & { name: IntrinsicScalarName }): Record<string, any> {
     switch (scalar.name) {
         case "bytes":
             return { type: "byte-array", format: "byte" };
@@ -921,11 +935,7 @@ function emitStdScalar(scalar: Scalar & { name: IntrinsicScalarName }, location:
         case "plainDate":
             return { type: "date" };
         case "zonedDateTime":
-            if (location === "header") {
-                return { type: "datetime", format: "date-time-rfc1123" };
-            } else {
-                return { type: "datetime", format: "date-time" };
-            }
+            return { type: "datetime", format: "date-time" };
         case "plainTime":
             return { type: "time" };
         case "duration":
@@ -994,10 +1004,10 @@ function applyIntrinsicDecorators(
     return newResult;
 }
 
-function emitScalar(context: DpgContext, scalar: Scalar, location: string = ""): Record<string, any> {
+function emitScalar(context: DpgContext, scalar: Scalar): Record<string, any> {
     let result: Record<string, any> = {};
     if (context.program.checker.isStdType(scalar)) {
-        result = emitStdScalar(scalar, location);
+        result = emitStdScalar(scalar);
     } else if (scalar.baseScalar) {
         result = emitScalar(context, scalar.baseScalar);
     }
@@ -1101,7 +1111,7 @@ function emitUnion(context: DpgContext, type: Union): Record<string, any> {
     };
 }
 
-function emitType(context: DpgContext, type: EmitterType, location: string = ""): Record<string, any> {
+function emitType(context: DpgContext, type: EmitterType): Record<string, any> {
     if (type.kind === "Credential") {
         return emitCredential(type.scheme);
     }
@@ -1124,7 +1134,7 @@ function emitType(context: DpgContext, type: EmitterType, location: string = "")
         case "Model":
             return emitModel(context, type);
         case "Scalar":
-            return emitScalar(context, type, location);
+            return emitScalar(context, type);
         case "Union":
             return emitUnion(context, type);
         case "UnionVariant":

@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 import datetime
 import sys
-from typing import Any, Callable, Dict, List, Optional, TypeVar
+from typing import Any, Callable, Dict, Optional, TypeVar
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -120,29 +120,6 @@ def build_traits_delete_request(
         _headers["x-ms-client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
 
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
-
-
-def build_traits_list_request(path_param_name: int, *, query_param_name: int, **kwargs: Any) -> HttpRequest:
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
-
-    accept = _headers.pop("Accept", "application/json")
-
-    # Construct URL
-    _url = "/azure/traits/pets/{pathParamName}"
-    path_format_arguments = {
-        "pathParamName": _SERIALIZER.url("path_param_name", path_param_name, "int"),
-    }
-
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
-
-    # Construct parameters
-    _params["queryName"] = _SERIALIZER.query("query_param_name", query_param_name, "int")
-
-    # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 class TraitsClientOperationsMixin(TraitsClientMixinABC):
@@ -306,53 +283,3 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    @distributed_trace
-    def list(self, path_param_name: int, *, query_param_name: int, **kwargs: Any) -> List[_models.User]:
-        """list.
-
-        :param path_param_name: Required.
-        :type path_param_name: int
-        :keyword query_param_name: Required.
-        :paramtype query_param_name: int
-        :return: list of User
-        :rtype: list[~_specs_.azure.traits.models.User]
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-        error_map = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls: ClsType[List[_models.User]] = kwargs.pop("cls", None)
-
-        request = build_traits_list_request(
-            path_param_name=path_param_name,
-            query_param_name=query_param_name,
-            headers=_headers,
-            params=_params,
-        )
-        request.url = self._client.format_url(request.url)
-
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
-        )
-
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
-
-        deserialized = _deserialize(List[_models.User], response.json())
-
-        if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
-
-        return deserialized  # type: ignore
