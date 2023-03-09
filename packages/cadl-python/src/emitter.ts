@@ -678,7 +678,7 @@ function emitBasicOperation(
     operationGroupName: string,
 ): Record<string, any>[] {
     // Set up parameters for operation
-    const parameters: Record<string, any>[] = [];   
+    const parameters: Record<string, any>[] = [];
     if (endpointPathParameters) {
         for (const param of endpointPathParameters) {
             parameters.push(param);
