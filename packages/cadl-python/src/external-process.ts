@@ -1,4 +1,4 @@
-import { CompilerHost, joinPaths, Program, resolveModule, ResolveModuleHost } from "@cadl-lang/compiler";
+import { CompilerHost, joinPaths, Program, resolveModule, ResolveModuleHost } from "@typespec/compiler";
 import { ChildProcess, spawn, SpawnOptions } from "child_process";
 import { randomUUID } from "crypto";
 import { mkdir, writeFile } from "fs/promises";
