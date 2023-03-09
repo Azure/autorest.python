@@ -1,4 +1,4 @@
-import { getPagedResult } from "@azure-tools/cadl-azure-core";
+import { getPagedResult } from "@azure-tools/typespec-azure-core";
 import {
     EnumMember,
     Enum,
@@ -37,7 +37,7 @@ import {
     isNullType,
     SyntaxKind,
     Type,
-} from "@cadl-lang/compiler";
+} from "@typespec/compiler";
 import {
     getAuthentication,
     getHeaderFieldName,
@@ -53,8 +53,8 @@ import {
     isStatusCode,
     HttpOperation,
     isHeader,
-} from "@cadl-lang/rest/http";
-import { getAddedOn } from "@cadl-lang/versioning";
+} from "@typespec/http";
+import { getAddedOn } from "@typespec/versioning";
 import {
     Client,
     listClients,
@@ -68,8 +68,8 @@ import {
     DpgContext,
     getPropertyNames,
     getLibraryName,
-} from "@azure-tools/cadl-dpg";
-import { getResourceOperation } from "@cadl-lang/rest";
+} from "@azure-tools/typespec-client-generator-core";
+import { getResourceOperation } from "@typespec/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
