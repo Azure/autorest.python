@@ -24,7 +24,6 @@ def to_snake_case(name: str) -> str:
             and len(name) - next_non_upper_case_char_location > 1
             and name[next_non_upper_case_char_location].isalpha()
         ):
-
             return (
                 prefix
                 + match_str[: len(match_str) - 1]

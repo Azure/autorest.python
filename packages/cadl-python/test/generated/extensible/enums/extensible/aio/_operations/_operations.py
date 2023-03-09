@@ -42,6 +42,8 @@ class ExtensibleClientOperationsMixin(ExtensibleClientMixinABC):
     async def get_known_value(self, **kwargs: Any) -> Union[str, _models.DaysOfWeekExtensibleEnum]:
         """get_known_value.
 
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: DaysOfWeekExtensibleEnum
         :rtype: str or ~enums.extensible.models.DaysOfWeekExtensibleEnum
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -65,8 +67,9 @@ class ExtensibleClientOperationsMixin(ExtensibleClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -75,7 +78,10 @@ class ExtensibleClientOperationsMixin(ExtensibleClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(Union[str, _models.DaysOfWeekExtensibleEnum], response.json())
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(Union[str, _models.DaysOfWeekExtensibleEnum], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -86,6 +92,8 @@ class ExtensibleClientOperationsMixin(ExtensibleClientMixinABC):
     async def get_unknown_value(self, **kwargs: Any) -> Union[str, _models.DaysOfWeekExtensibleEnum]:
         """get_unknown_value.
 
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: DaysOfWeekExtensibleEnum
         :rtype: str or ~enums.extensible.models.DaysOfWeekExtensibleEnum
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -109,8 +117,9 @@ class ExtensibleClientOperationsMixin(ExtensibleClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -119,7 +128,10 @@ class ExtensibleClientOperationsMixin(ExtensibleClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(Union[str, _models.DaysOfWeekExtensibleEnum], response.json())
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(Union[str, _models.DaysOfWeekExtensibleEnum], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -138,6 +150,8 @@ class ExtensibleClientOperationsMixin(ExtensibleClientMixinABC):
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -166,8 +180,9 @@ class ExtensibleClientOperationsMixin(ExtensibleClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -191,6 +206,8 @@ class ExtensibleClientOperationsMixin(ExtensibleClientMixinABC):
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -219,8 +236,9 @@ class ExtensibleClientOperationsMixin(ExtensibleClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

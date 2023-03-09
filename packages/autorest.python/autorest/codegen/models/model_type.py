@@ -163,7 +163,6 @@ class ModelType(  # pylint: disable=abstract-method
         )
 
     def get_polymorphic_subtypes(self, polymorphic_subtypes: List["ModelType"]) -> None:
-
         is_polymorphic_subtype = (
             self.discriminator_value and not self.discriminated_subtypes
         )

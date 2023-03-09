@@ -84,16 +84,27 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
         if not rest_api_name:
             # That's an ok scenario, it just means no next page possible
             return None
-        if self.code_model.options["models_mode"]:
+        if self.code_model.options["models_mode"] == "msrest":
             return self._get_attr_name(rest_api_name)
         return rest_api_name
 
     @property
     def item_name(self) -> str:
         rest_api_name = self.yaml_data["itemName"]
-        if self.code_model.options["models_mode"]:
+        if self.code_model.options["models_mode"] == "msrest":
+            # we don't use the paging model for dpg
             return self._get_attr_name(rest_api_name)
         return rest_api_name
+
+    @property
+    def item_type(self) -> ModelType:
+        try:
+            item_type_yaml = self.yaml_data["itemType"]
+        except KeyError as e:
+            raise ValueError(
+                "Only call this for DPG paging model deserialization"
+            ) from e
+        return cast(ModelType, self.code_model.types_map[id(item_type_yaml)])
 
     @property
     def operation_type(self) -> str:
@@ -144,6 +155,8 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
             file_import.add_submodule_import(
                 "azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE
             )
+        if self.code_model.options["models_mode"] == "dpg":
+            file_import.merge(self.item_type.imports(**kwargs))
         return file_import
 
 
