@@ -157,6 +157,8 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :keyword client_request_id: An opaque, globally-unique, client-generated string identifier for
          the request. Default value is None.
         :paramtype client_request_id: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: User. The User is compatible with MutableMapping
         :rtype: ~_specs_.azure.traits.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -188,8 +190,9 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -205,7 +208,10 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
             "str", response.headers.get("x-ms-client-request-id")
         )
 
-        deserialized = _deserialize(_models.User, response.json())
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.User, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -235,6 +241,8 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :keyword client_request_id: An opaque, globally-unique, client-generated string identifier for
          the request. Default value is None.
         :paramtype client_request_id: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -263,8 +271,9 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         )
         request.url = self._client.format_url(request.url)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

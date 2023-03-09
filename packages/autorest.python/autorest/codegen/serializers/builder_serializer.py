@@ -1066,13 +1066,14 @@ class _OperationSerializer(
                 deserialize_code.append(f"    deserialized = {deserialized_value}")
                 deserialize_code.append("else:")
                 deserialize_code.append("    deserialized = None")
-        if builder.expose_stream_keyword:
-            retval.append("if _stream:")
-            retval.append("    deserialized = response.iter_bytes()")
-            retval.append("else:")
-            retval.extend([f"    {dc}" for dc in deserialize_code])
-        else:
-            retval.extend(deserialize_code)
+        if len(deserialize_code) > 0:
+            if builder.expose_stream_keyword:
+                retval.append("if _stream:")
+                retval.append("    deserialized = response.iter_bytes()")
+                retval.append("else:")
+                retval.extend([f"    {dc}" for dc in deserialize_code])
+            else:
+                retval.extend(deserialize_code)
         return retval
 
     def handle_error_response(self, builder: OperationType) -> List[str]:

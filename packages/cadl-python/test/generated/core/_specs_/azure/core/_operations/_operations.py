@@ -715,19 +715,18 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
             return request
 
         def extract_data(pipeline_response):
-            deserialized: _models._models.PagedUser = _deserialize(  # pylint: disable=protected-access
-                _models._models.PagedUser, pipeline_response  # pylint: disable=protected-access
-            )
-            list_of_elem = deserialized.value
+            deserialized = pipeline_response.http_response.json()
+            list_of_elem = _deserialize(List[_models.User], deserialized["value"])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.next_link or None, iter(list_of_elem)
+            return deserialized.get("nextLink") or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
 
+            _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=False, **kwargs
+                request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
