@@ -808,9 +808,14 @@ class _OperationSerializer(
 
             # make sure AnyType is in last one but we can't change original order
             overloads_copy = copy.copy(builder.overloads)
-            for i in range(len(overloads_copy)):
-                if isinstance(overloads_copy[i].parameters.body_parameter.type, AnyType):
-                    overloads_copy[i], overloads_copy[-1] = overloads_copy[-1], overloads_copy[i]
+            for i, _ in enumerate(overloads_copy):
+                if isinstance(
+                    overloads_copy[i].parameters.body_parameter.type, AnyType
+                ):
+                    overloads_copy[i], overloads_copy[-1] = (
+                        overloads_copy[-1],
+                        overloads_copy[i],
+                    )
                     break
 
             stop_loop = False

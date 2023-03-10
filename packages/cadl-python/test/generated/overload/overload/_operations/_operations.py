@@ -71,9 +71,7 @@ def build_overload_upload_json_or_string_request(**kwargs: Any) -> HttpRequest:
 
 class OverloadClientOperationsMixin(OverloadClientMixinABC):
     @overload
-    def upload_bytes_or_string(  # pylint: disable=inconsistent-return-statements
-        self, data: IO, *, content_type: str = "application/octet-stream", **kwargs: Any
-    ) -> None:
+    def upload_bytes_or_string(self, data: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """upload_bytes_or_string.
 
         :param data: Required.
@@ -89,7 +87,7 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
 
     @overload
     def upload_bytes_or_string(  # pylint: disable=inconsistent-return-statements
-        self, data: str, *, content_type: str = "text/plain", **kwargs: Any
+        self, data: str, **kwargs: Any
     ) -> None:
         """upload_bytes_or_string.
 
@@ -106,7 +104,7 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
 
     @overload
     def upload_bytes_or_string(  # pylint: disable=inconsistent-return-statements
-        self, data: bytes, *, content_type: str = "application/octet-stream", **kwargs: Any
+        self, data: bytes, **kwargs: Any
     ) -> None:
         """upload_bytes_or_string.
 
@@ -185,9 +183,7 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
             return cls(pipeline_response, None, {})
 
     @overload
-    def upload_json_or_string(  # pylint: disable=inconsistent-return-statements
-        self, data: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def upload_json_or_string(self, data: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """upload_json_or_string.
 
         :param data: Required.
@@ -202,9 +198,7 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
         """
 
     @overload
-    def upload_json_or_string(  # pylint: disable=inconsistent-return-statements
-        self, data: str, *, content_type: str = "text/plain", **kwargs: Any
-    ) -> None:
+    def upload_json_or_string(self, data: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """upload_json_or_string.
 
         :param data: Required.
@@ -220,7 +214,7 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
 
     @overload
     def upload_json_or_string(  # pylint: disable=inconsistent-return-statements
-        self, data: _models.Data, *, content_type: str = "application/json", **kwargs: Any
+        self, data: _models.Data, **kwargs: Any
     ) -> None:
         """upload_json_or_string.
 
@@ -237,7 +231,7 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
 
     @overload
     def upload_json_or_string(  # pylint: disable=inconsistent-return-statements
-        self, data: JSON, *, content_type: str = "application/json", **kwargs: Any
+        self, data: JSON, **kwargs: Any
     ) -> None:
         """upload_json_or_string.
 

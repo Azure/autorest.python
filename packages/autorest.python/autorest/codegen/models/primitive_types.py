@@ -172,6 +172,7 @@ class AnyType(PrimitiveType):
     def instance_check_template(self) -> str:
         return ""
 
+
 class AnyObjectType(PrimitiveType):
     @property
     def serialization_type(self) -> str:
