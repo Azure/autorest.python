@@ -173,6 +173,7 @@ const typesMap = new Map<EmitterType, Record<string, any>>();
 const simpleTypesMap = new Map<string, Record<string, any>>();
 const endpointPathParameters: Record<string, any>[] = [];
 let apiVersionParam: Record<string, any> | undefined = undefined;
+const combinedTypes: Record<string, any>[] = [];
 
 function isSimpleType(context: DpgContext, type: EmitterType | undefined): boolean {
     // these decorators can only work for simple type(int/string/float, etc)
@@ -679,18 +680,46 @@ function emitPagingOperation(
     return retval;
 }
 
-function addOverloadForNativeOverload(
+function addOverload(
     originOverload: Record<string, any>,
-    originBodyParameter: Record<string, any> | undefined,
+    originBodyParameter: Record<string, any>,
     bodyType: Record<string, any>,
 ): Record<string, any> {
     const addedOverload = { ...originOverload };
     addedOverload.bodyParameter = { ...originOverload.bodyParameter };
     addedOverload.bodyParameter.type = bodyType;
-    if (originBodyParameter && originBodyParameter.type.type === "combined") {
+    if (originBodyParameter.type.type === "combined") {
         originBodyParameter.type.types.push(bodyType);
+    } else {
+        originBodyParameter.type = {
+            type: "combined",
+            types: [originBodyParameter.type, bodyType],
+        };
+        combinedTypes.push(originBodyParameter.type);
     }
+    originOverload.bodyParameter.type["enableOverloadCheck"] = false;
     return addedOverload;
+}
+
+function updateOverloads(
+    operation: Record<string, any>,
+    bodyParameter: Record<string, any>,
+    bodyType: Record<string, any>,
+): void {
+    const overload = addOverload(operation, bodyParameter, bodyType);
+    overload.overloads = [];
+    overload.isOverload = true;
+    operation.overloads.push(overload);
+}
+
+function contentTypeOptional(
+    parameters: Record<string, any>[],
+): void {
+    for (const p of parameters) {
+        if (p.restApiName.toLowerCase() === "content-type") {
+            p.optional = true;
+        }
+    }
 }
 
 function emitBasicOperation(
@@ -763,7 +792,7 @@ function emitBasicOperation(
     // handle native overloads
     let overloads: Record<string, any>[] = [];
     const overload_operations = getOverloads(context.program, operation);
-    if (overload_operations) {
+    if (overload_operations && bodyParameter) {
         for (const overload_operation of overload_operations) {
             overloads = overloads.concat(emitBasicOperation(context, overload_operation, operationGroupName, true));
         }
@@ -772,11 +801,11 @@ function emitBasicOperation(
         for (const overload of overloads) {
             overload.name = name;
             if (overload.bodyParameter.type.type === "byte-array" && !binaryOverload) {
-                binaryOverload = addOverloadForNativeOverload(overload, bodyParameter, KnownTypes.binary);
+                binaryOverload = addOverload(overload, bodyParameter, KnownTypes.binary);
             } else if (overload.bodyParameter.type.type === "model" && !modelOverload) {
-                modelOverload = addOverloadForNativeOverload(overload, bodyParameter, KnownTypes.anyObject);
+                modelOverload = addOverload(overload, bodyParameter, KnownTypes.anyObject);
                 if (!binaryOverload) {
-                    binaryOverload = addOverloadForNativeOverload(overload, bodyParameter, KnownTypes.binary);
+                    binaryOverload = addOverload(overload, bodyParameter, KnownTypes.binary);
                 }
             }
         }
@@ -786,34 +815,41 @@ function emitBasicOperation(
         if (binaryOverload) {
             overloads.unshift(binaryOverload);
         }
-        for (const p of parameters) {
-            if (p.restApiName.toLowerCase() === "content-type") {
-                p.optional = true;
-            }
+        contentTypeOptional(parameters);
+    }
+    const basicOperation = {
+        name: name,
+        description: getDocStr(context, operation),
+        summary: getSummary(context.program, operation),
+        url: httpOperation.path,
+        method: httpOperation.verb.toUpperCase(),
+        parameters: parameters,
+        bodyParameter: bodyParameter,
+        responses: responses,
+        exceptions: exceptions,
+        groupName: operationGroupName,
+        addedOn: getAddedOnVersion(context, operation),
+        discriminator: "basic",
+        isOverload: isOverload,
+        overloads: overloads,
+        apiVersions: [getAddedOnVersion(context, operation)],
+        wantTracing: true,
+        exposeStreamKeyword: true,
+    };
+
+    // add overload if no native overload
+    if (!overload_operations && !isOverload && bodyParameter) {
+        if (bodyParameter.type.type === "byte-array") {
+            updateOverloads(basicOperation, bodyParameter, KnownTypes.binary);
+            contentTypeOptional(parameters);
+        } else if (bodyParameter.type.type === "model") {
+            updateOverloads(basicOperation, bodyParameter, KnownTypes.binary);
+            updateOverloads(basicOperation, bodyParameter, KnownTypes.anyObject);
+            contentTypeOptional(parameters);
         }
     }
-    return [
-        {
-            name: name,
-            description: getDocStr(context, operation),
-            summary: getSummary(context.program, operation),
-            url: httpOperation.path,
-            method: httpOperation.verb.toUpperCase(),
-            parameters: parameters,
-            bodyParameter: bodyParameter,
-            responses: responses,
-            exceptions: exceptions,
-            groupName: operationGroupName,
-            addedOn: getAddedOnVersion(context, operation),
-            discriminator: "basic",
-            isOverload: isOverload,
-            overloads: overloads,
-            apiVersions: [getAddedOnVersion(context, operation)],
-            hasNativeOverload: overloads.length > 0,
-            wantTracing: true,
-            exposeStreamKeyword: true,
-        },
-    ];
+
+    return [basicOperation];
 }
 
 function isReadOnly(context: DpgContext, type: ModelProperty): boolean {
@@ -1425,7 +1461,12 @@ function emitCodeModel(context: EmitContext<EmitterOptions>) {
             codeModel["subnamespaceToClients"][namespace] = emitClients(dpgContext, namespace);
         }
     }
-    codeModel["types"] = [...typesMap.values(), ...Object.values(KnownTypes), ...simpleTypesMap.values()];
+    codeModel["types"] = [
+        ...typesMap.values(),
+        ...Object.values(KnownTypes),
+        ...simpleTypesMap.values(),
+        ...combinedTypes,
+    ];
     return codeModel;
 }
 

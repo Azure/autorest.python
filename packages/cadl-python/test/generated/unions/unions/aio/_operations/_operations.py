@@ -45,51 +45,29 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class UnionsClientOperationsMixin(UnionsClientMixinABC):
     @overload
-    async def send_int(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.ModelWithSimpleUnionProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """send_int.
-
-        :param input: Required.
-        :type input: ~unions.models.ModelWithSimpleUnionProperty
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    async def send_int(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """send_int.
-
-        :param input: Required.
-        :type input: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    async def send_int(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def send_int(self, input: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """send_int.
 
         :param input: Required.
         :type input: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def send_int(self, input: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """send_int.
+
+        :param input: Required.
+        :type input: JSON
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -100,14 +78,14 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
 
     @distributed_trace_async
     async def send_int(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.ModelWithSimpleUnionProperty, JSON, IO], **kwargs: Any
+        self, input: Union[_models.ModelWithSimpleUnionProperty, IO, JSON], **kwargs: Any
     ) -> None:
         """send_int.
 
-        :param input: Is one of the following types: ModelWithSimpleUnionProperty, JSON, IO Required.
-        :type input: ~unions.models.ModelWithSimpleUnionProperty or JSON or IO
+        :param input: Is one of the following types: ModelWithSimpleUnionProperty, IO, JSON Required.
+        :type input: ~unions.models.ModelWithSimpleUnionProperty or IO or JSON
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -126,17 +104,14 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
-        if isinstance(input, _model_base.Model):
+        if isinstance(input, (IO, bytes)):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(input, MutableMapping):
-            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(input, (IO, bytes)):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -165,15 +140,13 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
             return cls(pipeline_response, None, {})
 
     @overload
-    async def send_int_array(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.ModelWithSimpleUnionProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def send_int_array(self, input: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """send_int_array.
 
         :param input: Required.
-        :type input: ~unions.models.ModelWithSimpleUnionProperty
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
+        :type input: IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -184,32 +157,14 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
 
     @overload
     async def send_int_array(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
+        self, input: JSON, **kwargs: Any
     ) -> None:
         """send_int_array.
 
         :param input: Required.
         :type input: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    async def send_int_array(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """send_int_array.
-
-        :param input: Required.
-        :type input: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -220,14 +175,14 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
 
     @distributed_trace_async
     async def send_int_array(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.ModelWithSimpleUnionProperty, JSON, IO], **kwargs: Any
+        self, input: Union[_models.ModelWithSimpleUnionProperty, IO, JSON], **kwargs: Any
     ) -> None:
         """send_int_array.
 
-        :param input: Is one of the following types: ModelWithSimpleUnionProperty, JSON, IO Required.
-        :type input: ~unions.models.ModelWithSimpleUnionProperty or JSON or IO
+        :param input: Is one of the following types: ModelWithSimpleUnionProperty, IO, JSON Required.
+        :type input: ~unions.models.ModelWithSimpleUnionProperty or IO or JSON
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -246,17 +201,14 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
-        if isinstance(input, _model_base.Model):
+        if isinstance(input, (IO, bytes)):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(input, MutableMapping):
-            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(input, (IO, bytes)):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -286,50 +238,32 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
 
     @overload
     async def send_first_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.ModelWithNamedUnionProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """send_first_named_union_value.
-
-        :param input: Required.
-        :type input: ~unions.models.ModelWithNamedUnionProperty
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    async def send_first_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """send_first_named_union_value.
-
-        :param input: Required.
-        :type input: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    async def send_first_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO, **kwargs: Any
     ) -> None:
         """send_first_named_union_value.
 
         :param input: Required.
         :type input: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def send_first_named_union_value(  # pylint: disable=inconsistent-return-statements
+        self, input: JSON, **kwargs: Any
+    ) -> None:
+        """send_first_named_union_value.
+
+        :param input: Required.
+        :type input: JSON
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -340,14 +274,14 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
 
     @distributed_trace_async
     async def send_first_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.ModelWithNamedUnionProperty, JSON, IO], **kwargs: Any
+        self, input: Union[_models.ModelWithNamedUnionProperty, IO, JSON], **kwargs: Any
     ) -> None:
         """send_first_named_union_value.
 
-        :param input: Is one of the following types: ModelWithNamedUnionProperty, JSON, IO Required.
-        :type input: ~unions.models.ModelWithNamedUnionProperty or JSON or IO
+        :param input: Is one of the following types: ModelWithNamedUnionProperty, IO, JSON Required.
+        :type input: ~unions.models.ModelWithNamedUnionProperty or IO or JSON
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -366,17 +300,14 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
-        if isinstance(input, _model_base.Model):
+        if isinstance(input, (IO, bytes)):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(input, MutableMapping):
-            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(input, (IO, bytes)):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -406,50 +337,32 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
 
     @overload
     async def send_second_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.ModelWithNamedUnionProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """send_second_named_union_value.
-
-        :param input: Required.
-        :type input: ~unions.models.ModelWithNamedUnionProperty
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    async def send_second_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """send_second_named_union_value.
-
-        :param input: Required.
-        :type input: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    async def send_second_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO, **kwargs: Any
     ) -> None:
         """send_second_named_union_value.
 
         :param input: Required.
         :type input: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def send_second_named_union_value(  # pylint: disable=inconsistent-return-statements
+        self, input: JSON, **kwargs: Any
+    ) -> None:
+        """send_second_named_union_value.
+
+        :param input: Required.
+        :type input: JSON
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -460,14 +373,14 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
 
     @distributed_trace_async
     async def send_second_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.ModelWithNamedUnionProperty, JSON, IO], **kwargs: Any
+        self, input: Union[_models.ModelWithNamedUnionProperty, IO, JSON], **kwargs: Any
     ) -> None:
         """send_second_named_union_value.
 
-        :param input: Is one of the following types: ModelWithNamedUnionProperty, JSON, IO Required.
-        :type input: ~unions.models.ModelWithNamedUnionProperty or JSON or IO
+        :param input: Is one of the following types: ModelWithNamedUnionProperty, IO, JSON Required.
+        :type input: ~unions.models.ModelWithNamedUnionProperty or IO or JSON
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -486,17 +399,14 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
-        if isinstance(input, _model_base.Model):
+        if isinstance(input, (IO, bytes)):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(input, MutableMapping):
-            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(input, (IO, bytes)):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:

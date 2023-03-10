@@ -242,53 +242,7 @@ def build_core_export_request(id: int, *, format: str, **kwargs: Any) -> HttpReq
 
 class CoreClientOperationsMixin(CoreClientMixinABC):
     @overload
-    def create_or_update(
-        self, id: int, resource: _models.User, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> _models.User:
-        """Adds a user or updates a user's fields.
-
-        Creates or updates a User.
-
-        :param id: The user's id. Required.
-        :type id: int
-        :param resource: The resource instance. Required.
-        :type resource: ~_specs_.azure.core.models.User
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/merge-patch+json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: User. The User is compatible with MutableMapping
-        :rtype: ~_specs_.azure.core.models.User
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def create_or_update(
-        self, id: int, resource: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> _models.User:
-        """Adds a user or updates a user's fields.
-
-        Creates or updates a User.
-
-        :param id: The user's id. Required.
-        :type id: int
-        :param resource: The resource instance. Required.
-        :type resource: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/merge-patch+json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: User. The User is compatible with MutableMapping
-        :rtype: ~_specs_.azure.core.models.User
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def create_or_update(
-        self, id: int, resource: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> _models.User:
+    def create_or_update(self, id: int, resource: IO, **kwargs: Any) -> _models.User:
         """Adds a user or updates a user's fields.
 
         Creates or updates a User.
@@ -297,8 +251,28 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         :type id: int
         :param resource: The resource instance. Required.
         :type resource: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/merge-patch+json".
+        :keyword content_type: This request has a JSON Merge Patch body. Default value is
+         "application/merge-patch+json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: User. The User is compatible with MutableMapping
+        :rtype: ~_specs_.azure.core.models.User
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def create_or_update(self, id: int, resource: JSON, **kwargs: Any) -> _models.User:
+        """Adds a user or updates a user's fields.
+
+        Creates or updates a User.
+
+        :param id: The user's id. Required.
+        :type id: int
+        :param resource: The resource instance. Required.
+        :type resource: JSON
+        :keyword content_type: This request has a JSON Merge Patch body. Default value is
+         "application/merge-patch+json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -308,16 +282,17 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         """
 
     @distributed_trace
-    def create_or_update(self, id: int, resource: Union[_models.User, JSON, IO], **kwargs: Any) -> _models.User:
+    def create_or_update(self, id: int, resource: Union[_models.User, IO, JSON], **kwargs: Any) -> _models.User:
         """Adds a user or updates a user's fields.
 
         Creates or updates a User.
 
         :param id: The user's id. Required.
         :type id: int
-        :param resource: The resource instance. Is one of the following types: User, JSON, IO Required.
-        :type resource: ~_specs_.azure.core.models.User or JSON or IO
-        :keyword content_type: This request has a JSON Merge Patch body. Default value is None.
+        :param resource: The resource instance. Is one of the following types: User, IO, JSON Required.
+        :type resource: ~_specs_.azure.core.models.User or IO or JSON
+        :keyword content_type: This request has a JSON Merge Patch body. Default value is
+         "application/merge-patch+json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -336,17 +311,14 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/merge-patch+json"))
         cls: ClsType[_models.User] = kwargs.pop("cls", None)
 
         _content: Any = None
-        if isinstance(resource, _model_base.Model):
+        if isinstance(resource, (IO, bytes)):
             _content = json.dumps(resource, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/merge-patch+json"
         elif isinstance(resource, MutableMapping):
-            _content = json.dumps(resource, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/merge-patch+json"
-        elif isinstance(resource, (IO, bytes)):
             _content = json.dumps(resource, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/merge-patch+json"
         else:
@@ -391,53 +363,7 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         return deserialized  # type: ignore
 
     @overload
-    def create_or_replace(
-        self, id: int, resource: _models.User, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.User:
-        """Adds a user or repalces a user's fields.
-
-        Creates or repalces a User.
-
-        :param id: The user's id. Required.
-        :type id: int
-        :param resource: The resource instance. Required.
-        :type resource: ~_specs_.azure.core.models.User
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: User. The User is compatible with MutableMapping
-        :rtype: ~_specs_.azure.core.models.User
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def create_or_replace(
-        self, id: int, resource: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.User:
-        """Adds a user or repalces a user's fields.
-
-        Creates or repalces a User.
-
-        :param id: The user's id. Required.
-        :type id: int
-        :param resource: The resource instance. Required.
-        :type resource: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: User. The User is compatible with MutableMapping
-        :rtype: ~_specs_.azure.core.models.User
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def create_or_replace(
-        self, id: int, resource: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.User:
+    def create_or_replace(self, id: int, resource: IO, **kwargs: Any) -> _models.User:
         """Adds a user or repalces a user's fields.
 
         Creates or repalces a User.
@@ -446,8 +372,28 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         :type id: int
         :param resource: The resource instance. Required.
         :type resource: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: User. The User is compatible with MutableMapping
+        :rtype: ~_specs_.azure.core.models.User
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def create_or_replace(self, id: int, resource: JSON, **kwargs: Any) -> _models.User:
+        """Adds a user or repalces a user's fields.
+
+        Creates or repalces a User.
+
+        :param id: The user's id. Required.
+        :type id: int
+        :param resource: The resource instance. Required.
+        :type resource: JSON
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -457,17 +403,17 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         """
 
     @distributed_trace
-    def create_or_replace(self, id: int, resource: Union[_models.User, JSON, IO], **kwargs: Any) -> _models.User:
+    def create_or_replace(self, id: int, resource: Union[_models.User, IO, JSON], **kwargs: Any) -> _models.User:
         """Adds a user or repalces a user's fields.
 
         Creates or repalces a User.
 
         :param id: The user's id. Required.
         :type id: int
-        :param resource: The resource instance. Is one of the following types: User, JSON, IO Required.
-        :type resource: ~_specs_.azure.core.models.User or JSON or IO
+        :param resource: The resource instance. Is one of the following types: User, IO, JSON Required.
+        :type resource: ~_specs_.azure.core.models.User or IO or JSON
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -486,17 +432,14 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[_models.User] = kwargs.pop("cls", None)
 
         _content: Any = None
-        if isinstance(resource, _model_base.Model):
+        if isinstance(resource, (IO, bytes)):
             _content = json.dumps(resource, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(resource, MutableMapping):
-            _content = json.dumps(resource, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(resource, (IO, bytes)):
             _content = json.dumps(resource, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:

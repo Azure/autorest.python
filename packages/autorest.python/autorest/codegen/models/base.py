@@ -46,6 +46,7 @@ class BaseType(BaseModel, ABC):  # pylint: disable=too-many-public-methods
             "apiVersions", []
         )  # api versions this type is in.
         self.enable_generate: bool = yaml_data.get("enableGenerate", True)
+        self.enable_overload_check: bool = yaml_data.get("enableOverloadCheck", True)
 
     @classmethod
     def from_yaml(

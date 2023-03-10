@@ -340,51 +340,29 @@ class ModelOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.BaseModel, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """put.
-
-        :param body: Required.
-        :type body: ~specialwords.models.BaseModel
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """put.
-
-        :param body: Required.
-        :type body: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """put.
 
         :param body: Required.
         :type body: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def put(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """put.
+
+        :param body: Required.
+        :type body: JSON
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -395,14 +373,14 @@ class ModelOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BaseModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.BaseModel, IO, JSON], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is one of the following types: BaseModel, JSON, IO Required.
-        :type body: ~specialwords.models.BaseModel or JSON or IO
+        :param body: Is one of the following types: BaseModel, IO, JSON Required.
+        :type body: ~specialwords.models.BaseModel or IO or JSON
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -421,17 +399,14 @@ class ModelOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
-        if isinstance(body, _model_base.Model):
+        if isinstance(body, (IO, bytes)):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(body, (IO, bytes)):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:

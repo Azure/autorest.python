@@ -234,64 +234,7 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
 
     @overload
     async def post_parameters(
-        self,
-        content_type_path: Union[str, _models.ContentTypePathType],
-        parameter: _models.PostInput,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.Message:
-        """POST a JSON or a JPEG.
-
-        :param content_type_path: Known values are: "json" and "jpeg". Required.
-        :type content_type_path: str or ~resiliency.servicedriven2.models.ContentTypePathType
-        :param parameter: I am a body parameter. My only valid JSON entry is { url:
-         "http://example.org/myimage.jpeg" }. Required.
-        :type parameter: ~resiliency.servicedriven2.models.PostInput
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: Message. The Message is compatible with MutableMapping
-        :rtype: ~resiliency.servicedriven2.models.Message
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    async def post_parameters(
-        self,
-        content_type_path: Union[str, _models.ContentTypePathType],
-        parameter: JSON,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.Message:
-        """POST a JSON or a JPEG.
-
-        :param content_type_path: Known values are: "json" and "jpeg". Required.
-        :type content_type_path: str or ~resiliency.servicedriven2.models.ContentTypePathType
-        :param parameter: I am a body parameter. My only valid JSON entry is { url:
-         "http://example.org/myimage.jpeg" }. Required.
-        :type parameter: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: Message. The Message is compatible with MutableMapping
-        :rtype: ~resiliency.servicedriven2.models.Message
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    async def post_parameters(
-        self,
-        content_type_path: Union[str, _models.ContentTypePathType],
-        parameter: IO,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, content_type_path: Union[str, _models.ContentTypePathType], parameter: IO, **kwargs: Any
     ) -> _models.Message:
         """POST a JSON or a JPEG.
 
@@ -300,8 +243,29 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
          "http://example.org/myimage.jpeg" }. Required.
         :type parameter: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: Message. The Message is compatible with MutableMapping
+        :rtype: ~resiliency.servicedriven2.models.Message
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def post_parameters(
+        self, content_type_path: Union[str, _models.ContentTypePathType], parameter: JSON, **kwargs: Any
+    ) -> _models.Message:
+        """POST a JSON or a JPEG.
+
+        :param content_type_path: Known values are: "json" and "jpeg". Required.
+        :type content_type_path: str or ~resiliency.servicedriven2.models.ContentTypePathType
+        :param parameter: I am a body parameter. My only valid JSON entry is { url:
+         "http://example.org/myimage.jpeg" }. Required.
+        :type parameter: JSON
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -314,7 +278,7 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
     async def post_parameters(
         self,
         content_type_path: Union[str, _models.ContentTypePathType],
-        parameter: Union[_models.PostInput, JSON, IO],
+        parameter: Union[_models.PostInput, IO, JSON],
         **kwargs: Any
     ) -> _models.Message:
         """POST a JSON or a JPEG.
@@ -322,11 +286,11 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
         :param content_type_path: Known values are: "json" and "jpeg". Required.
         :type content_type_path: str or ~resiliency.servicedriven2.models.ContentTypePathType
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
-         "http://example.org/myimage.jpeg" }. Is one of the following types: PostInput, JSON, IO
+         "http://example.org/myimage.jpeg" }. Is one of the following types: PostInput, IO, JSON
          Required.
-        :type parameter: ~resiliency.servicedriven2.models.PostInput or JSON or IO
+        :type parameter: ~resiliency.servicedriven2.models.PostInput or IO or JSON
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -345,17 +309,14 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[_models.Message] = kwargs.pop("cls", None)
 
         _content: Any = None
-        if isinstance(parameter, _model_base.Model):
+        if isinstance(parameter, (IO, bytes)):
             _content = json.dumps(parameter, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(parameter, MutableMapping):
-            _content = json.dumps(parameter, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(parameter, (IO, bytes)):
             _content = json.dumps(parameter, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:

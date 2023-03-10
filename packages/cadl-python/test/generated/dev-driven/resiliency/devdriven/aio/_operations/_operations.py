@@ -103,60 +103,7 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         return deserialized  # type: ignore
 
     @overload
-    async def post_model(
-        self,
-        mode: Union[str, _models.Mode],
-        input: _models.Input,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.Product:
-        """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
-        take a model instead, and put in 'model' as mode.
-
-        :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
-         with the raw body, and 'model' if you are going to convert the raw body to a customized body
-         before returning to users. Known values are: "raw" and "model". Required.
-        :type mode: str or ~resiliency.devdriven.models.Mode
-        :param input: Please put {'hello': 'world!'}. Required.
-        :type input: ~resiliency.devdriven.models.Input
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: Product. The Product is compatible with MutableMapping
-        :rtype: ~resiliency.devdriven.models.Product
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    async def post_model(
-        self, mode: Union[str, _models.Mode], input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.Product:
-        """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
-        take a model instead, and put in 'model' as mode.
-
-        :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
-         with the raw body, and 'model' if you are going to convert the raw body to a customized body
-         before returning to users. Known values are: "raw" and "model". Required.
-        :type mode: str or ~resiliency.devdriven.models.Mode
-        :param input: Please put {'hello': 'world!'}. Required.
-        :type input: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: Product. The Product is compatible with MutableMapping
-        :rtype: ~resiliency.devdriven.models.Product
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    async def post_model(
-        self, mode: Union[str, _models.Mode], input: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.Product:
+    async def post_model(self, mode: Union[str, _models.Mode], input: IO, **kwargs: Any) -> _models.Product:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
 
@@ -166,8 +113,29 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         :type mode: str or ~resiliency.devdriven.models.Mode
         :param input: Please put {'hello': 'world!'}. Required.
         :type input: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: Product. The Product is compatible with MutableMapping
+        :rtype: ~resiliency.devdriven.models.Product
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def post_model(self, mode: Union[str, _models.Mode], input: JSON, **kwargs: Any) -> _models.Product:
+        """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
+        take a model instead, and put in 'model' as mode.
+
+        :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
+         with the raw body, and 'model' if you are going to convert the raw body to a customized body
+         before returning to users. Known values are: "raw" and "model". Required.
+        :type mode: str or ~resiliency.devdriven.models.Mode
+        :param input: Please put {'hello': 'world!'}. Required.
+        :type input: JSON
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -178,7 +146,7 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
 
     @distributed_trace_async
     async def post_model(
-        self, mode: Union[str, _models.Mode], input: Union[_models.Input, JSON, IO], **kwargs: Any
+        self, mode: Union[str, _models.Mode], input: Union[_models.Input, IO, JSON], **kwargs: Any
     ) -> _models.Product:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
@@ -187,11 +155,11 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
          before returning to users. Known values are: "raw" and "model". Required.
         :type mode: str or ~resiliency.devdriven.models.Mode
-        :param input: Please put {'hello': 'world!'}. Is one of the following types: Input, JSON, IO
+        :param input: Please put {'hello': 'world!'}. Is one of the following types: Input, IO, JSON
          Required.
-        :type input: ~resiliency.devdriven.models.Input or JSON or IO
+        :type input: ~resiliency.devdriven.models.Input or IO or JSON
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -210,17 +178,14 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         _content: Any = None
-        if isinstance(input, _model_base.Model):
+        if isinstance(input, (IO, bytes)):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(input, MutableMapping):
-            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(input, (IO, bytes)):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:

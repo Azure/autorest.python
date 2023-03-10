@@ -17,7 +17,6 @@ from ..models import (
     LROOperation,
     LROPagingOperation,
     ModelType,
-    DPGModelType,
     AnyType,
     AnyObjectType,
     DictionaryType,
@@ -27,7 +26,6 @@ from ..models import (
     ParameterLocation,
     Response,
     BinaryType,
-    ByteArraySchema,
     BodyParameter,
     ParameterMethodLocation,
     RequestBuilderBodyParameter,
@@ -69,6 +67,9 @@ def _content_type_check(content_types: List[str]) -> List[str]:
         "if not content_type:",
         f'    raise TypeError("Missing required keyword-only argument: content_type. Known values are: {types}")',
     ]
+
+def _swap(data: List[Any], i: int, j: int):
+    data[i], data[j] = data[j], data[i]
 
 
 def _escape_str(input_str: str) -> str:
@@ -806,53 +807,50 @@ class _OperationSerializer(
             for v in sorted(set(client_names), key=client_names.index):
                 overload_retval.append(f"_{v}: Any = None")
 
-            # make sure AnyType is in last one but we can't change original order
+            # make sure AnyType is in last position and BinaryType in first position but we can't change original order
             overloads_copy = copy.copy(builder.overloads)
             for i, _ in enumerate(overloads_copy):
                 if isinstance(
                     overloads_copy[i].parameters.body_parameter.type, AnyType
                 ):
-                    overloads_copy[i], overloads_copy[-1] = (
-                        overloads_copy[-1],
-                        overloads_copy[i],
-                    )
-                    break
+                    _swap(overloads_copy, i, -1)
+                if isinstance(
+                    overloads_copy[i].parameters.body_parameter.type, BinaryType
+                ):
+                    _swap(overloads_copy, i, 0)
 
             stop_loop = False
-            for idx, overload in enumerate(overloads_copy):
-                if builder.has_native_overload and isinstance(
-                    overload.parameters.body_parameter.type,
-                    (ByteArraySchema, DPGModelType),
-                ):
-                    continue
+            if_statement = "if"
+            for overload in overloads_copy:
                 body_param = overload.parameters.body_parameter
-                if body_param.type.instance_check_template == "":
-                    stop_loop = True
-                    overload_retval.append("else:")
-                else:
-                    if_statement = "if" if idx == 0 else "elif"
-                    overload_retval.append(
-                        f"{if_statement} {body_param.type.instance_check_template.format(body_param.client_name)}:"
-                    )
-                overload_retval.extend(
-                    f"    {l}"
-                    for l in self._create_body_parameter(
-                        cast(OperationType, overload), builder.has_native_overload
-                    )
-                )
-                if body_param.default_content_type is None:
+                if body_param.type.enable_overload_check:
+                    if body_param.type.instance_check_template == "":
+                        stop_loop = True
+                        overload_retval.append("else:")
+                    else:
+                        overload_retval.append(
+                            f"{if_statement} {body_param.type.instance_check_template.format(body_param.client_name)}:"
+                        )
                     overload_retval.extend(
-                        [
-                            f"    {l}"
-                            for l in _content_type_check(body_param.content_types)
-                        ]
+                        f"    {l}"
+                        for l in self._create_body_parameter(
+                            cast(OperationType, overload), builder.has_native_overload
+                        )
                     )
-                else:
-                    overload_retval.append(
-                        f'    content_type = content_type or "{body_param.default_content_type}"'
-                    )
-                if stop_loop:
-                    break
+                    if body_param.default_content_type is None:
+                        overload_retval.extend(
+                            [
+                                f"    {l}"
+                                for l in _content_type_check(body_param.content_types)
+                            ]
+                        )
+                    else:
+                        overload_retval.append(
+                            f'    content_type = content_type or "{body_param.default_content_type}"'
+                        )
+                    if_statement = "elif"
+                    if stop_loop:
+                        break
             if overload_retval and not stop_loop:
                 overload_retval.extend(
                     [

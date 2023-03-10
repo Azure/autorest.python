@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 import datetime
 import json
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, Optional, TypeVar
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -49,7 +49,7 @@ def build_int32_value_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_int32_value_put_request(**kwargs: Any) -> HttpRequest:
+def build_int32_value_put_request(*, content: Dict[str, int], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -60,7 +60,7 @@ def build_int32_value_put_request(**kwargs: Any) -> HttpRequest:
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
 def build_int64_value_get_request(**kwargs: Any) -> HttpRequest:
@@ -77,7 +77,7 @@ def build_int64_value_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_int64_value_put_request(**kwargs: Any) -> HttpRequest:
+def build_int64_value_put_request(*, content: Dict[str, int], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -88,7 +88,7 @@ def build_int64_value_put_request(**kwargs: Any) -> HttpRequest:
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
 def build_boolean_value_get_request(**kwargs: Any) -> HttpRequest:
@@ -105,7 +105,7 @@ def build_boolean_value_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_boolean_value_put_request(**kwargs: Any) -> HttpRequest:
+def build_boolean_value_put_request(*, content: Dict[str, bool], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -116,7 +116,7 @@ def build_boolean_value_put_request(**kwargs: Any) -> HttpRequest:
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
 def build_string_value_get_request(**kwargs: Any) -> HttpRequest:
@@ -133,7 +133,7 @@ def build_string_value_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_string_value_put_request(**kwargs: Any) -> HttpRequest:
+def build_string_value_put_request(*, content: Dict[str, str], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -144,7 +144,7 @@ def build_string_value_put_request(**kwargs: Any) -> HttpRequest:
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
 def build_float32_value_get_request(**kwargs: Any) -> HttpRequest:
@@ -161,7 +161,7 @@ def build_float32_value_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_float32_value_put_request(**kwargs: Any) -> HttpRequest:
+def build_float32_value_put_request(*, content: Dict[str, float], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -172,7 +172,7 @@ def build_float32_value_put_request(**kwargs: Any) -> HttpRequest:
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
 def build_datetime_value_get_request(**kwargs: Any) -> HttpRequest:
@@ -189,7 +189,7 @@ def build_datetime_value_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_datetime_value_put_request(**kwargs: Any) -> HttpRequest:
+def build_datetime_value_put_request(*, content: Dict[str, datetime.datetime], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -200,7 +200,7 @@ def build_datetime_value_put_request(**kwargs: Any) -> HttpRequest:
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
 def build_duration_value_get_request(**kwargs: Any) -> HttpRequest:
@@ -217,7 +217,7 @@ def build_duration_value_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_duration_value_put_request(**kwargs: Any) -> HttpRequest:
+def build_duration_value_put_request(*, content: Dict[str, datetime.timedelta], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -228,7 +228,7 @@ def build_duration_value_put_request(**kwargs: Any) -> HttpRequest:
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
 def build_unknown_value_get_request(**kwargs: Any) -> HttpRequest:
@@ -245,7 +245,7 @@ def build_unknown_value_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_unknown_value_put_request(**kwargs: Any) -> HttpRequest:
+def build_unknown_value_put_request(*, content: Dict[str, Any], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -256,7 +256,7 @@ def build_unknown_value_put_request(**kwargs: Any) -> HttpRequest:
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
 def build_model_value_get_request(**kwargs: Any) -> HttpRequest:
@@ -273,7 +273,7 @@ def build_model_value_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_model_value_put_request(**kwargs: Any) -> HttpRequest:
+def build_model_value_put_request(*, content: Dict[str, _models.InnerModel], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -284,7 +284,7 @@ def build_model_value_put_request(**kwargs: Any) -> HttpRequest:
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
 def build_recursive_model_value_get_request(**kwargs: Any) -> HttpRequest:
@@ -301,7 +301,7 @@ def build_recursive_model_value_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_recursive_model_value_put_request(**kwargs: Any) -> HttpRequest:
+def build_recursive_model_value_put_request(*, content: Dict[str, _models.InnerModel], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -312,7 +312,7 @@ def build_recursive_model_value_put_request(**kwargs: Any) -> HttpRequest:
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
 class Int32ValueOperations:
@@ -382,52 +382,14 @@ class Int32ValueOperations:
 
         return deserialized  # type: ignore
 
-    @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Dict[str, int], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    @distributed_trace
+    def put(self, body: Dict[str, int], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """put.
 
         :param body: Required.
         :type body: dict[str, int]
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """put.
-
-        :param body: Required.
-        :type body: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, int], IO], **kwargs: Any
-    ) -> None:
-        """put.
-
-        :param body: Is either a {str: int} type or a IO type. Required.
-        :type body: dict[str, int] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -446,18 +408,10 @@ class Int32ValueOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content: Any = None
-        if isinstance(body, dict):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(body, (IO, bytes)):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for body")
+        _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_int32_value_put_request(
             content_type=content_type,
@@ -549,52 +503,14 @@ class Int64ValueOperations:
 
         return deserialized  # type: ignore
 
-    @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Dict[str, int], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    @distributed_trace
+    def put(self, body: Dict[str, int], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """put.
 
         :param body: Required.
         :type body: dict[str, int]
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """put.
-
-        :param body: Required.
-        :type body: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, int], IO], **kwargs: Any
-    ) -> None:
-        """put.
-
-        :param body: Is either a {str: int} type or a IO type. Required.
-        :type body: dict[str, int] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -613,18 +529,10 @@ class Int64ValueOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content: Any = None
-        if isinstance(body, dict):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(body, (IO, bytes)):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for body")
+        _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_int64_value_put_request(
             content_type=content_type,
@@ -716,52 +624,14 @@ class BooleanValueOperations:
 
         return deserialized  # type: ignore
 
-    @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Dict[str, bool], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    @distributed_trace
+    def put(self, body: Dict[str, bool], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """put.
 
         :param body: Required.
         :type body: dict[str, bool]
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """put.
-
-        :param body: Required.
-        :type body: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, bool], IO], **kwargs: Any
-    ) -> None:
-        """put.
-
-        :param body: Is either a {str: bool} type or a IO type. Required.
-        :type body: dict[str, bool] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -780,18 +650,10 @@ class BooleanValueOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content: Any = None
-        if isinstance(body, dict):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(body, (IO, bytes)):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for body")
+        _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_boolean_value_put_request(
             content_type=content_type,
@@ -883,52 +745,14 @@ class StringValueOperations:
 
         return deserialized  # type: ignore
 
-    @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Dict[str, str], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    @distributed_trace
+    def put(self, body: Dict[str, str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """put.
 
         :param body: Required.
         :type body: dict[str, str]
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """put.
-
-        :param body: Required.
-        :type body: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, str], IO], **kwargs: Any
-    ) -> None:
-        """put.
-
-        :param body: Is either a {str: str} type or a IO type. Required.
-        :type body: dict[str, str] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -947,18 +771,10 @@ class StringValueOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content: Any = None
-        if isinstance(body, dict):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(body, (IO, bytes)):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for body")
+        _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_string_value_put_request(
             content_type=content_type,
@@ -1050,52 +866,14 @@ class Float32ValueOperations:
 
         return deserialized  # type: ignore
 
-    @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Dict[str, float], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    @distributed_trace
+    def put(self, body: Dict[str, float], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """put.
 
         :param body: Required.
         :type body: dict[str, float]
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """put.
-
-        :param body: Required.
-        :type body: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, float], IO], **kwargs: Any
-    ) -> None:
-        """put.
-
-        :param body: Is either a {str: float} type or a IO type. Required.
-        :type body: dict[str, float] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1114,18 +892,10 @@ class Float32ValueOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content: Any = None
-        if isinstance(body, dict):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(body, (IO, bytes)):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for body")
+        _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_float32_value_put_request(
             content_type=content_type,
@@ -1217,52 +987,16 @@ class DatetimeValueOperations:
 
         return deserialized  # type: ignore
 
-    @overload
+    @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Dict[str, datetime.datetime], *, content_type: str = "application/json", **kwargs: Any
+        self, body: Dict[str, datetime.datetime], **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
         :type body: dict[str, ~datetime.datetime]
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """put.
-
-        :param body: Required.
-        :type body: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, datetime.datetime], IO], **kwargs: Any
-    ) -> None:
-        """put.
-
-        :param body: Is either a {str: datetime.datetime} type or a IO type. Required.
-        :type body: dict[str, ~datetime.datetime] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1281,18 +1015,10 @@ class DatetimeValueOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content: Any = None
-        if isinstance(body, dict):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(body, (IO, bytes)):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for body")
+        _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_datetime_value_put_request(
             content_type=content_type,
@@ -1384,52 +1110,16 @@ class DurationValueOperations:
 
         return deserialized  # type: ignore
 
-    @overload
+    @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Dict[str, datetime.timedelta], *, content_type: str = "application/json", **kwargs: Any
+        self, body: Dict[str, datetime.timedelta], **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
         :type body: dict[str, ~datetime.timedelta]
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """put.
-
-        :param body: Required.
-        :type body: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, datetime.timedelta], IO], **kwargs: Any
-    ) -> None:
-        """put.
-
-        :param body: Is either a {str: datetime.timedelta} type or a IO type. Required.
-        :type body: dict[str, ~datetime.timedelta] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1448,18 +1138,10 @@ class DurationValueOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content: Any = None
-        if isinstance(body, dict):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(body, (IO, bytes)):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for body")
+        _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_duration_value_put_request(
             content_type=content_type,
@@ -1551,52 +1233,14 @@ class UnknownValueOperations:
 
         return deserialized  # type: ignore
 
-    @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Dict[str, Any], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    @distributed_trace
+    def put(self, body: Dict[str, Any], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """put.
 
         :param body: Required.
         :type body: dict[str, any]
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """put.
-
-        :param body: Required.
-        :type body: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, Any], IO], **kwargs: Any
-    ) -> None:
-        """put.
-
-        :param body: Is either a {str: Any} type or a IO type. Required.
-        :type body: dict[str, any] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1615,18 +1259,10 @@ class UnknownValueOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content: Any = None
-        if isinstance(body, dict):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(body, (IO, bytes)):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for body")
+        _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_unknown_value_put_request(
             content_type=content_type,
@@ -1718,52 +1354,16 @@ class ModelValueOperations:
 
         return deserialized  # type: ignore
 
-    @overload
+    @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Dict[str, _models.InnerModel], *, content_type: str = "application/json", **kwargs: Any
+        self, body: Dict[str, _models.InnerModel], **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
         :type body: dict[str, ~dictionary.models.InnerModel]
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """put.
-
-        :param body: Required.
-        :type body: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, _models.InnerModel], IO], **kwargs: Any
-    ) -> None:
-        """put.
-
-        :param body: Is either a {str: InnerModel} type or a IO type. Required.
-        :type body: dict[str, ~dictionary.models.InnerModel] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1782,18 +1382,10 @@ class ModelValueOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content: Any = None
-        if isinstance(body, dict):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(body, (IO, bytes)):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for body")
+        _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_model_value_put_request(
             content_type=content_type,
@@ -1885,52 +1477,16 @@ class RecursiveModelValueOperations:
 
         return deserialized  # type: ignore
 
-    @overload
+    @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Dict[str, _models.InnerModel], *, content_type: str = "application/json", **kwargs: Any
+        self, body: Dict[str, _models.InnerModel], **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
         :type body: dict[str, ~dictionary.models.InnerModel]
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """put.
-
-        :param body: Required.
-        :type body: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, _models.InnerModel], IO], **kwargs: Any
-    ) -> None:
-        """put.
-
-        :param body: Is either a {str: InnerModel} type or a IO type. Required.
-        :type body: dict[str, ~dictionary.models.InnerModel] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1949,18 +1505,10 @@ class RecursiveModelValueOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content: Any = None
-        if isinstance(body, dict):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(body, (IO, bytes)):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for body")
+        _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
         request = build_recursive_model_value_put_request(
             content_type=content_type,

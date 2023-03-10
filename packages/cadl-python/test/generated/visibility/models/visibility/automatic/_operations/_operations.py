@@ -130,49 +130,29 @@ def build_automatic_delete_model_request(**kwargs: Any) -> HttpRequest:
 
 class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
     @overload
-    def get_model(
-        self, input: _models.VisibilityModel, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.VisibilityModel:
-        """get_model.
-
-        :param input: Required.
-        :type input: ~models.visibility.automatic.models.VisibilityModel
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
-        :rtype: ~models.visibility.automatic.models.VisibilityModel
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def get_model(
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.VisibilityModel:
-        """get_model.
-
-        :param input: Required.
-        :type input: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
-        :rtype: ~models.visibility.automatic.models.VisibilityModel
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def get_model(self, input: IO, *, content_type: str = "application/json", **kwargs: Any) -> _models.VisibilityModel:
+    def get_model(self, input: IO, **kwargs: Any) -> _models.VisibilityModel:
         """get_model.
 
         :param input: Required.
         :type input: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
+        :rtype: ~models.visibility.automatic.models.VisibilityModel
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def get_model(self, input: JSON, **kwargs: Any) -> _models.VisibilityModel:
+        """get_model.
+
+        :param input: Required.
+        :type input: JSON
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -182,13 +162,13 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         """
 
     @distributed_trace
-    def get_model(self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any) -> _models.VisibilityModel:
+    def get_model(self, input: Union[_models.VisibilityModel, IO, JSON], **kwargs: Any) -> _models.VisibilityModel:
         """get_model.
 
-        :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
-        :type input: ~models.visibility.automatic.models.VisibilityModel or JSON or IO
+        :param input: Is one of the following types: VisibilityModel, IO, JSON Required.
+        :type input: ~models.visibility.automatic.models.VisibilityModel or IO or JSON
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -207,17 +187,14 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[_models.VisibilityModel] = kwargs.pop("cls", None)
 
         _content: Any = None
-        if isinstance(input, _model_base.Model):
+        if isinstance(input, (IO, bytes)):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(input, MutableMapping):
-            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(input, (IO, bytes)):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -253,47 +230,29 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         return deserialized  # type: ignore
 
     @overload
-    def head_model(
-        self, input: _models.VisibilityModel, *, content_type: str = "application/json", **kwargs: Any
-    ) -> bool:
-        """head_model.
-
-        :param input: Required.
-        :type input: ~models.visibility.automatic.models.VisibilityModel
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: bool
-        :rtype: bool
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def head_model(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> bool:
-        """head_model.
-
-        :param input: Required.
-        :type input: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: bool
-        :rtype: bool
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def head_model(self, input: IO, *, content_type: str = "application/json", **kwargs: Any) -> bool:
+    def head_model(self, input: IO, **kwargs: Any) -> bool:
         """head_model.
 
         :param input: Required.
         :type input: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: bool
+        :rtype: bool
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def head_model(self, input: JSON, **kwargs: Any) -> bool:
+        """head_model.
+
+        :param input: Required.
+        :type input: JSON
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -303,13 +262,13 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         """
 
     @distributed_trace
-    def head_model(self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any) -> bool:
+    def head_model(self, input: Union[_models.VisibilityModel, IO, JSON], **kwargs: Any) -> bool:
         """head_model.
 
-        :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
-        :type input: ~models.visibility.automatic.models.VisibilityModel or JSON or IO
+        :param input: Is one of the following types: VisibilityModel, IO, JSON Required.
+        :type input: ~models.visibility.automatic.models.VisibilityModel or IO or JSON
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -328,17 +287,14 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
-        if isinstance(input, _model_base.Model):
+        if isinstance(input, (IO, bytes)):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(input, MutableMapping):
-            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(input, (IO, bytes)):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -368,51 +324,29 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         return 200 <= response.status_code <= 299
 
     @overload
-    def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.VisibilityModel, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """put_model.
-
-        :param input: Required.
-        :type input: ~models.visibility.automatic.models.VisibilityModel
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """put_model.
-
-        :param input: Required.
-        :type input: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_model(self, input: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """put_model.
 
         :param input: Required.
         :type input: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def put_model(self, input: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """put_model.
+
+        :param input: Required.
+        :type input: JSON
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -423,14 +357,14 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
 
     @distributed_trace
     def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any
+        self, input: Union[_models.VisibilityModel, IO, JSON], **kwargs: Any
     ) -> None:
         """put_model.
 
-        :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
-        :type input: ~models.visibility.automatic.models.VisibilityModel or JSON or IO
+        :param input: Is one of the following types: VisibilityModel, IO, JSON Required.
+        :type input: ~models.visibility.automatic.models.VisibilityModel or IO or JSON
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -449,17 +383,14 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
-        if isinstance(input, _model_base.Model):
+        if isinstance(input, (IO, bytes)):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(input, MutableMapping):
-            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(input, (IO, bytes)):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -488,51 +419,29 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
             return cls(pipeline_response, None, {})
 
     @overload
-    def patch_model(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.VisibilityModel, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """patch_model.
-
-        :param input: Required.
-        :type input: ~models.visibility.automatic.models.VisibilityModel
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def patch_model(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """patch_model.
-
-        :param input: Required.
-        :type input: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def patch_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def patch_model(self, input: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """patch_model.
 
         :param input: Required.
         :type input: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def patch_model(self, input: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """patch_model.
+
+        :param input: Required.
+        :type input: JSON
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -543,14 +452,14 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
 
     @distributed_trace
     def patch_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any
+        self, input: Union[_models.VisibilityModel, IO, JSON], **kwargs: Any
     ) -> None:
         """patch_model.
 
-        :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
-        :type input: ~models.visibility.automatic.models.VisibilityModel or JSON or IO
+        :param input: Is one of the following types: VisibilityModel, IO, JSON Required.
+        :type input: ~models.visibility.automatic.models.VisibilityModel or IO or JSON
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -569,17 +478,14 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
-        if isinstance(input, _model_base.Model):
+        if isinstance(input, (IO, bytes)):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(input, MutableMapping):
-            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(input, (IO, bytes)):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -608,51 +514,29 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
             return cls(pipeline_response, None, {})
 
     @overload
-    def post_model(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.VisibilityModel, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """post_model.
-
-        :param input: Required.
-        :type input: ~models.visibility.automatic.models.VisibilityModel
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def post_model(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """post_model.
-
-        :param input: Required.
-        :type input: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def post_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def post_model(self, input: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """post_model.
 
         :param input: Required.
         :type input: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def post_model(self, input: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """post_model.
+
+        :param input: Required.
+        :type input: JSON
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -663,14 +547,14 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
 
     @distributed_trace
     def post_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any
+        self, input: Union[_models.VisibilityModel, IO, JSON], **kwargs: Any
     ) -> None:
         """post_model.
 
-        :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
-        :type input: ~models.visibility.automatic.models.VisibilityModel or JSON or IO
+        :param input: Is one of the following types: VisibilityModel, IO, JSON Required.
+        :type input: ~models.visibility.automatic.models.VisibilityModel or IO or JSON
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -689,17 +573,14 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
-        if isinstance(input, _model_base.Model):
+        if isinstance(input, (IO, bytes)):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(input, MutableMapping):
-            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(input, (IO, bytes)):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -728,51 +609,29 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
             return cls(pipeline_response, None, {})
 
     @overload
-    def delete_model(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.VisibilityModel, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """delete_model.
-
-        :param input: Required.
-        :type input: ~models.visibility.automatic.models.VisibilityModel
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def delete_model(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """delete_model.
-
-        :param input: Required.
-        :type input: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def delete_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def delete_model(self, input: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """delete_model.
 
         :param input: Required.
         :type input: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def delete_model(self, input: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """delete_model.
+
+        :param input: Required.
+        :type input: JSON
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -783,14 +642,14 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
 
     @distributed_trace
     def delete_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any
+        self, input: Union[_models.VisibilityModel, IO, JSON], **kwargs: Any
     ) -> None:
         """delete_model.
 
-        :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
-        :type input: ~models.visibility.automatic.models.VisibilityModel or JSON or IO
+        :param input: Is one of the following types: VisibilityModel, IO, JSON Required.
+        :type input: ~models.visibility.automatic.models.VisibilityModel or IO or JSON
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+         value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -809,17 +668,14 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
-        if isinstance(input, _model_base.Model):
+        if isinstance(input, (IO, bytes)):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(input, MutableMapping):
-            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(input, (IO, bytes)):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
