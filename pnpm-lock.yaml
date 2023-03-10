@@ -37,7 +37,7 @@ importers:
       '@azure-tools/cadl-azure-core': ~0.26.0
       '@azure-tools/cadl-dpg': ~0.26.0
       '@azure-tools/cadl-ranch-expect': ~0.1.16
-      '@azure-tools/cadl-ranch-specs': ~0.8.0
+      '@azure-tools/cadl-ranch-specs': ~0.8.1
       '@cadl-lang/compiler': ~0.40.0
       '@cadl-lang/eslint-config-cadl': ~0.5.0
       '@cadl-lang/openapi': ~0.40.0
@@ -61,7 +61,7 @@ importers:
     devDependencies:
       '@azure-tools/cadl-azure-core': 0.26.0_hptrsc5c6rcq4yfinfjfsau7y4
       '@azure-tools/cadl-ranch-expect': 0.1.16_hptrsc5c6rcq4yfinfjfsau7y4
-      '@azure-tools/cadl-ranch-specs': 0.8.0_quv5oud7jdkvbodbvy3a7ivgta
+      '@azure-tools/cadl-ranch-specs': 0.8.1_quv5oud7jdkvbodbvy3a7ivgta
       '@cadl-lang/eslint-config-cadl': 0.5.0_prettier@2.7.1
       '@cadl-lang/openapi': 0.40.0_hptrsc5c6rcq4yfinfjfsau7y4
       '@cadl-lang/rest': 0.40.0_@cadl-lang+compiler@0.40.0
@@ -151,8 +151,8 @@ packages:
       '@cadl-lang/rest': 0.40.0_@cadl-lang+compiler@0.40.0
     dev: true
 
-  /@azure-tools/cadl-ranch-specs/0.8.0_quv5oud7jdkvbodbvy3a7ivgta:
-    resolution: {integrity: sha512-VbnvRjYE+htGSUzi/lRPGJ9FFMHkFs6qtcqHMqhGNpHnA2h8BQmz5qHwa9hn+xR9hNYg9CV13EiVqnMoRmqqRg==}
+  /@azure-tools/cadl-ranch-specs/0.8.1_quv5oud7jdkvbodbvy3a7ivgta:
+    resolution: {integrity: sha512-FR2JNA9DHiAqM+fhmzvc8Go2TWPxoSncNoavplCv15NBB/LbedoN0813LVzmmL4YVgtWibV4xTOs+GdXagkdXw==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       '@azure-tools/cadl-azure-core': ~0.26.0
