@@ -60,6 +60,13 @@ OperationType = TypeVar(
     bound=Union[Operation, PagingOperation, LROOperation, LROPagingOperation],
 )
 
+def _content_type_check(content_types: List[str]) -> List[str]:
+    types = "'" + "', '".join(list(set(content_types))) + "'"
+    return [
+            "if not content_type:",
+            f'    raise TypeError("Missing required keyword-only argument: content_type. Known values are: {types}")',
+        ]
+
 
 def _escape_str(input_str: str) -> str:
     replace = input_str.replace("'", "\\'")
@@ -725,15 +732,17 @@ class _OperationSerializer(
             ":raises ~azure.core.exceptions.HttpResponseError:",
         ]
 
-    def _serialize_body_parameter(
-        self, builder: OperationType, has_native_overload: bool = False
+    def _create_body_parameter(
+        self,
+        builder: OperationType,
+        has_native_overload: bool = False,
     ) -> List[str]:
-        """We need to serialize params if they're not meant to be streamed in.
-
-        This function serializes the body params that need to be serialized.
-        """
-        retval: List[str] = []
+        """Create the body parameter before we pass it as either json or content to the request builder"""
         body_param = cast(BodyParameter, builder.parameters.body_parameter)
+        if hasattr(body_param, "entries"):
+            return _serialize_multipart_body(builder)
+        
+        retval: List[str] = []
         body_kwarg_name = builder.request_builder.parameters.body_parameter.client_name
         send_xml = builder.parameters.body_parameter.type.is_xml
         xml_serialization_ctxt = (
@@ -747,10 +756,15 @@ class _OperationSerializer(
             serialization_ctxt_cmd = (
                 f", {ser_ctxt_name}={ser_ctxt_name}" if xml_serialization_ctxt else ""
             )
-            create_body_call = (
-                f"_{body_kwarg_name} = self._serialize.body({body_param.client_name}, "
-                f"'{body_param.type.serialization_type}'{is_xml_cmd}{serialization_ctxt_cmd})"
-            )
+            if isinstance(body_param.type, BinaryType):
+                create_body_call = (
+                    f"_{body_kwarg_name} = {body_param.client_name}"
+                )
+            else:
+                create_body_call = (
+                    f"_{body_kwarg_name} = self._serialize.body({body_param.client_name}, "
+                    f"'{body_param.type.serialization_type}'{is_xml_cmd}{serialization_ctxt_cmd})"
+                )
         elif self.code_model.options["models_mode"] == "dpg" and (
             (
                 isinstance(body_param.type, (ModelType, AnyObjectType))
@@ -773,65 +787,6 @@ class _OperationSerializer(
             retval.append(create_body_call)
         return retval
 
-    def _create_body_parameter(
-        self,
-        builder: OperationType,
-        has_native_overload: bool = False,
-    ) -> List[str]:
-        """Create the body parameter before we pass it as either json or content to the request builder"""
-        retval = []
-        body_param = cast(BodyParameter, builder.parameters.body_parameter)
-        if hasattr(body_param, "entries"):
-            return _serialize_multipart_body(builder)
-        body_kwarg_name = builder.request_builder.parameters.body_parameter.client_name
-        if isinstance(body_param.type, BinaryType):
-            retval.append(f"_{body_kwarg_name} = {body_param.client_name}")
-            if (
-                not body_param.default_content_type
-                and not next(
-                    p
-                    for p in builder.parameters
-                    if p.rest_api_name.lower() == "content-type"
-                ).optional
-            ):
-                content_types = "'" + "', '".join(body_param.content_types) + "'"
-                retval.extend(
-                    [
-                        "if not content_type:",
-                        f'    raise TypeError("Missing required keyword-only argument: content_type. '
-                        f'Known values are:" + "{content_types}")',
-                    ]
-                )
-        else:
-            retval.extend(self._serialize_body_parameter(builder, has_native_overload))
-        return retval
-
-    def _initial_overloads_equally(
-        self, builder: OperationType, same_content_type: bool
-    ) -> List[str]:
-        retval: List[str] = []
-        for idx, overload in enumerate(builder.overloads):
-            if builder.has_native_overload and isinstance(
-                overload.parameters.body_parameter.type, (ByteArraySchema, DPGModelType)
-            ):
-                continue
-            if_statement = "if" if idx == 0 else "elif"
-            body_param = overload.parameters.body_parameter
-            retval.append(
-                f"{if_statement} {body_param.type.instance_check_template.format(body_param.client_name)}:"
-            )
-            if body_param.default_content_type and not same_content_type:
-                retval.append(
-                    f'    content_type = content_type or "{body_param.default_content_type}"'
-                )
-            retval.extend(
-                f"    {l}"
-                for l in self._create_body_parameter(
-                    cast(OperationType, overload), builder.has_native_overload
-                )
-            )
-        return retval
-
     def _initialize_overloads(
         self, builder: OperationType, is_paging: bool = False
     ) -> List[str]:
@@ -839,87 +794,56 @@ class _OperationSerializer(
         # For paging, we put body parameter in local place outside `prepare_request`
         if is_paging:
             return retval
-        same_content_type = (
-            len(
-                set(
-                    o.parameters.body_parameter.default_content_type
-                    for o in builder.overloads
-                )
-            )
-            == 1
-        )
-        if same_content_type:
-            default_content_type = builder.overloads[
-                0
-            ].parameters.body_parameter.default_content_type
-            retval.append(f'content_type = content_type or "{default_content_type}"')
-        client_names = [
-            overload.request_builder.parameters.body_parameter.client_name
-            for overload in builder.overloads
-        ]
-        type_annotation = ": Any" if builder.has_native_overload else ""
-        for v in sorted(set(client_names), key=client_names.index):
-            retval.append(f"_{v}{type_annotation} = None")
-        if not builder.has_native_overload:
-            try:
-                # if there is a binary overload, we do a binary check first.
-                binary_overload = cast(
-                    OperationType,
-                    next(
-                        (
-                            o
-                            for o in builder.overloads
-                            if isinstance(o.parameters.body_parameter.type, BinaryType)
-                        )
-                    ),
-                )
-                binary_body_param = binary_overload.parameters.body_parameter
-                retval.append(
-                    f"if {binary_body_param.type.instance_check_template.format(binary_body_param.client_name)}:"
-                )
-                if binary_body_param.default_content_type and not same_content_type:
-                    retval.append(
-                        f'    content_type = content_type or "{binary_body_param.default_content_type}"'
-                    )
-                retval.extend(
-                    f"    {l}" for l in self._create_body_parameter(binary_overload)
-                )
-                retval.append("else:")
-                other_overload = cast(
-                    OperationType,
-                    next(
-                        (
-                            o
-                            for o in builder.overloads
-                            if not isinstance(
-                                o.parameters.body_parameter.type, BinaryType
-                            )
-                        )
-                    ),
-                )
-                retval.extend(
-                    f"    {l}" for l in self._create_body_parameter(other_overload)
-                )
-                if (
-                    other_overload.parameters.body_parameter.default_content_type
-                    and not same_content_type
+        
+        # type check for overload input
+        try:
+            overload_retval: List[str] = []
+            client_names = [
+                overload.request_builder.parameters.body_parameter.client_name
+                for overload in builder.overloads
+            ]
+            for v in sorted(set(client_names), key=client_names.index):
+                overload_retval.append(f"_{v}: Any = None")
+            for idx, overload in enumerate(builder.overloads):
+                if builder.has_native_overload and isinstance(
+                    overload.parameters.body_parameter.type, (ByteArraySchema, DPGModelType)
                 ):
-                    retval.append(
-                        "    content_type = content_type or "
-                        f'"{other_overload.parameters.body_parameter.default_content_type}"'
-                    )
-            except StopIteration:
-                retval.extend(
-                    self._initial_overloads_equally(builder, same_content_type)
+                    continue
+                if_statement = "if" if idx == 0 else "elif"
+                body_param = overload.parameters.body_parameter
+                overload_retval.append(
+                    f"{if_statement} {body_param.type.instance_check_template.format(body_param.client_name)}:"
                 )
-        else:
-            retval.extend(self._initial_overloads_equally(builder, same_content_type))
-            retval.extend(
-                [
-                    "else:",
-                    f'    raise TypeError("unrecognized type for {builder.parameters.body_parameter.client_name}")',
+                overload_retval.extend(
+                    f"    {l}"
+                    for l in self._create_body_parameter(
+                        cast(OperationType, overload), builder.has_native_overload
+                    )
+                )
+                if body_param.default_content_type is None:
+                    overload_retval.extend([f"    {l}" for l in _content_type_check(body_param.content_types)])
+                else:
+                    overload_retval.append(
+                        f'    content_type = content_type or "{body_param.default_content_type}"'
+                    )
+            if overload_retval:
+                overload_retval.extend(
+                        [
+                            "else:",
+                            f'    raise TypeError("unrecognized type for {builder.parameters.body_parameter.client_name}")',
+                        ]
+                    )
+            retval.extend(overload_retval)
+        except Exception:
+            body_kwarg_name = builder.request_builder.parameters.body_parameter.client_name
+            body_client_name = builder.parameters.body_parameter.client_name
+            retval.append(f"_{body_kwarg_name} = {body_client_name}")
+            if not builder.parameters.body_parameter.default_content_type:
+                content_types = [
+                    c for overload in builder.overloads for c in overload.parameters.body_parameter.content_types
                 ]
-            )
+                retval.extend(_content_type_check(content_types))
+
         return retval
 
     def _create_request_builder_call(

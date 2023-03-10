@@ -193,7 +193,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         excep_schema = default_exceptions[0].type
         if isinstance(excep_schema, ModelType):
             return f"_models.{excep_schema.name}"
-        # in this case, it's just an AnyType
+        # in this case, it's just an AnyObjectType
         return "'object'"
 
     @property

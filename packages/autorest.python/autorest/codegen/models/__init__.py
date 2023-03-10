@@ -22,7 +22,6 @@ from .primitive_types import (
     FloatType,
     StringType,
     TimeType,
-    AnyType,
     PrimitiveType,
     BinaryType,
     BooleanType,
@@ -75,7 +74,6 @@ from .credential_types import (
 
 __all__ = [
     "AzureKeyCredentialPolicyType",
-    "AnyType",
     "BaseModel",
     "BaseType",
     "CodeModel",
@@ -128,7 +126,7 @@ TYPE_TO_OBJECT = {
     "constant": ConstantType,
     "enum": EnumType,
     "binary": BinaryType,
-    "any": AnyType,
+    "any": AnyObjectType,
     "datetime": DatetimeType,
     "time": TimeType,
     "duration": DurationType,

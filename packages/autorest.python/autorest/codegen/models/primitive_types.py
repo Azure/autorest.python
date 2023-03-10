@@ -145,36 +145,6 @@ class BinaryIteratorType(PrimitiveType):
     def instance_check_template(self) -> str:
         return "isinstance({}, Iterator)"
 
-
-class AnyType(PrimitiveType):
-    @property
-    def serialization_type(self) -> str:
-        return "object"
-
-    def docstring_type(self, **kwargs: Any) -> str:
-        return "any"
-
-    def type_annotation(self, **kwargs: Any) -> str:
-        return "Any"
-
-    @property
-    def default_template_representation_declaration(self) -> str:
-        return self.get_declaration({})
-
-    def imports(self, **kwargs: Any) -> FileImport:
-        file_import = FileImport()
-        file_import.add_submodule_import(
-            "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
-        )
-        return file_import
-
-    @property
-    def instance_check_template(self) -> str:
-        raise ValueError(
-            "Shouldn't do instance check on an anytype, it can be anything"
-        )
-
-
 class AnyObjectType(PrimitiveType):
     @property
     def serialization_type(self) -> str:

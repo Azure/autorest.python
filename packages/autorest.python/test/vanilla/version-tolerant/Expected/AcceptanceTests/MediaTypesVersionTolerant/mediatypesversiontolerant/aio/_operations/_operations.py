@@ -125,21 +125,25 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        _json = None
-        _content = None
-        if isinstance(input, (IO, bytes)):
-            _content = input
-            if not content_type:
-                raise TypeError(
-                    "Missing required keyword-only argument: content_type. Known values are:"
-                    + "'application/json', 'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'"
-                )
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(input, MutableMapping):
             if input is not None:
                 _json = input
             else:
                 _json = None
             content_type = content_type or "application/json"
+        elif isinstance(input, (IO, bytes)):
+            if input is not None:
+                _content = input
+            else:
+                _content = None
+            if not content_type:
+                raise TypeError(
+                    "Missing required keyword-only argument: content_type. Known values are: 'application/pdf', 'image/png', 'image/jpeg', 'application/json', 'image/tiff'"
+                )
+        else:
+            raise TypeError("unrecognized type for input")
 
         request = build_media_types_analyze_body_request(
             content_type=content_type,
@@ -252,21 +256,25 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = None
-        _content = None
-        if isinstance(input, (IO, bytes)):
-            _content = input
-            if not content_type:
-                raise TypeError(
-                    "Missing required keyword-only argument: content_type. Known values are:"
-                    + "'application/json', 'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'"
-                )
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(input, MutableMapping):
             if input is not None:
                 _json = input
             else:
                 _json = None
             content_type = content_type or "application/json"
+        elif isinstance(input, (IO, bytes)):
+            if input is not None:
+                _content = input
+            else:
+                _content = None
+            if not content_type:
+                raise TypeError(
+                    "Missing required keyword-only argument: content_type. Known values are: 'application/pdf', 'image/png', 'image/jpeg', 'application/json', 'image/tiff'"
+                )
+        else:
+            raise TypeError("unrecognized type for input")
 
         request = build_media_types_analyze_body_no_accept_header_request(
             content_type=content_type,
@@ -312,7 +320,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "text/plain; charset=UTF-8"))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
         if input is not None:
