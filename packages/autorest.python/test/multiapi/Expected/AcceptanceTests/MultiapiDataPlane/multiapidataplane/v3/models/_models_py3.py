@@ -9,7 +9,6 @@
 
 from typing import Any, List, Optional, TYPE_CHECKING
 
-from .. import _serialization
 from ... import _serialization
 
 if TYPE_CHECKING:

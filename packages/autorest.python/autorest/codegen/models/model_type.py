@@ -76,6 +76,7 @@ class ModelType(  # pylint: disable=abstract-method
         self._got_polymorphic_subtypes = False
         self.is_public: bool = self.yaml_data.get("isPublic", True)
         self.snake_case_name: str = self.yaml_data["snakeCaseName"]
+        self.enable_import_for_overload: bool = self.yaml_data.get("enableImportForOverload", False)
 
     @property
     def is_xml(self) -> bool:
@@ -325,18 +326,20 @@ class MsrestModelType(GeneratedModelType):
 
     @property
     def instance_check_template(self) -> str:
-        return "isinstance({}, (_serialization.Model, dict))"
+        return "isinstance({}, (_serialization.Model, MutableMapping))"
 
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = super().imports(**kwargs)
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
-        relative_path = kwargs.pop("relative_path", None)
-        if relative_path:
-            file_import.add_submodule_import(relative_path, "_serialization", ImportType.LOCAL, TypingSection.REGULAR)
+        if kwargs.pop("enable_render", True) and self.enable_import_for_overload:
+            file_import.define_mutable_mapping_type()
+            relative_path = kwargs.pop("relative_path", None)
+            if relative_path:
+                relative_path = relative_path + ("." if self.code_model.options["multiapi"] else "")
+                file_import.add_submodule_import(relative_path, "_serialization", ImportType.LOCAL, TypingSection.REGULAR)
         return file_import
-
 
 class DPGModelType(GeneratedModelType):
     base = "dpg"

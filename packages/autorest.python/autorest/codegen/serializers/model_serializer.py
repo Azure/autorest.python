@@ -139,7 +139,7 @@ class MsrestModelSerializer(_ModelSerializer):
             self.code_model, "..", MsrestImportType.Module, TypingSection.REGULAR
         )
         for model in self.code_model.model_types:
-            file_import.merge(model.imports(is_operation_file=False))
+            file_import.merge(model.imports(is_operation_file=False, enable_render=False))
             for param in self._init_line_parameters(model):
                 file_import.merge(param.imports())
 

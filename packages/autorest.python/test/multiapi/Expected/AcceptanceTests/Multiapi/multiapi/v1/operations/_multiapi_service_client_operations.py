@@ -28,7 +28,7 @@ from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 
-from .. import _serialization, models as _models
+from .. import models as _models
 from ..._serialization import Serializer
 from .._vendor import MultiapiServiceClientMixinABC, _convert_request
 
@@ -201,7 +201,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         _json: Any = None
         _content: Any = None
-        if isinstance(product, (_serialization.Model, dict)):
+        if isinstance(product, (_serialization.Model, MutableMapping)):
             if product is not None:
                 _json = self._serialize.body(product, "Product")
             else:

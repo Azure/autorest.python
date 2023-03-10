@@ -24,15 +24,21 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from ... import _serialization, models as _models
+from ... import models as _models
+from .... import _serialization
 from ..._vendor import _convert_request
 from ...operations._operation_group_two_operations import build_test_five_request, build_test_four_request
 from .._vendor import MultiapiServiceClientMixinABC
 
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -124,7 +130,7 @@ class OperationGroupTwoOperations:
 
         _json: Any = None
         _content: Any = None
-        if isinstance(input, (_serialization.Model, dict)):
+        if isinstance(input, (_serialization.Model, MutableMapping)):
             if input is not None:
                 _json = self._serialize.body(input, "SourcePath")
             else:
@@ -137,7 +143,7 @@ class OperationGroupTwoOperations:
                 _content = None
             if not content_type:
                 raise TypeError(
-                    "Missing required keyword-only argument: content_type. Known values are: 'application/pdf', 'image/jpeg', 'application/json', 'image/png', 'image/tiff'"
+                    "Missing required keyword-only argument: content_type. Known values are: 'image/png', 'application/pdf', 'image/tiff', 'image/jpeg', 'application/json'"
                 )
         else:
             raise TypeError("unrecognized type for input")

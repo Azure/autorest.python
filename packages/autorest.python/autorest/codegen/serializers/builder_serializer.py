@@ -61,7 +61,7 @@ OperationType = TypeVar(
 )
 
 def _content_type_check(content_types: List[str]) -> List[str]:
-    types = "'" + "', '".join(list(set(content_types))) + "'"
+    types = "'" + "', '".join(sorted(list(set(content_types)))) + "'"
     return [
             "if not content_type:",
             f'    raise TypeError("Missing required keyword-only argument: content_type. Known values are: {types}")',

@@ -499,6 +499,8 @@ class M4Reformatter(
         if not body_types:
             return overloads
         for body_type in body_types:
+            if body_type["type"] == "model" and body_type.get("base") == "msrest":
+                body_type["enableImportForOverload"] = True
             overload = self.update_overload(
                 group_name, yaml_data, body_type, content_types=content_types
             )

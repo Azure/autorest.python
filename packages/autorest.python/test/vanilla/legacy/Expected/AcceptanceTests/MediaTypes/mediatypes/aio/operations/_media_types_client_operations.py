@@ -111,7 +111,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
 
         _json: Any = None
         _content: Any = None
-        if isinstance(input, (_serialization.Model, dict)):
+        if isinstance(input, (_serialization.Model, MutableMapping)):
             if input is not None:
                 _json = self._serialize.body(input, "SourcePath")
             else:
@@ -124,7 +124,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
                 _content = None
             if not content_type:
                 raise TypeError(
-                    "Missing required keyword-only argument: content_type. Known values are: 'image/jpeg', 'image/png', 'application/pdf', 'application/json', 'image/tiff'"
+                    "Missing required keyword-only argument: content_type. Known values are: 'image/jpeg', 'application/json', 'image/png', 'application/pdf', 'image/tiff'"
                 )
         else:
             raise TypeError("unrecognized type for input")
@@ -230,7 +230,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
 
         _json: Any = None
         _content: Any = None
-        if isinstance(input, (_serialization.Model, dict)):
+        if isinstance(input, (_serialization.Model, MutableMapping)):
             if input is not None:
                 _json = self._serialize.body(input, "SourcePath")
             else:
@@ -243,7 +243,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
                 _content = None
             if not content_type:
                 raise TypeError(
-                    "Missing required keyword-only argument: content_type. Known values are: 'image/jpeg', 'image/png', 'application/pdf', 'application/json', 'image/tiff'"
+                    "Missing required keyword-only argument: content_type. Known values are: 'image/jpeg', 'application/json', 'image/png', 'application/pdf', 'image/tiff'"
                 )
         else:
             raise TypeError("unrecognized type for input")
