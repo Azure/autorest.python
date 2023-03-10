@@ -121,9 +121,9 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
 
     @staticmethod
     @abstractmethod
-    def parameter_list_type() -> Callable[
-        [Dict[str, Any], "CodeModel"], ParameterListType
-    ]:
+    def parameter_list_type() -> (
+        Callable[[Dict[str, Any], "CodeModel"], ParameterListType]
+    ):
         ...
 
     @classmethod
@@ -178,9 +178,9 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
 
 class RequestBuilder(RequestBuilderBase[RequestBuilderParameterList]):
     @staticmethod
-    def parameter_list_type() -> Callable[
-        [Dict[str, Any], "CodeModel"], RequestBuilderParameterList
-    ]:
+    def parameter_list_type() -> (
+        Callable[[Dict[str, Any], "CodeModel"], RequestBuilderParameterList]
+    ):
         return RequestBuilderParameterList.from_yaml
 
 
@@ -188,9 +188,9 @@ class OverloadedRequestBuilder(
     RequestBuilderBase[OverloadedRequestBuilderParameterList]
 ):
     @staticmethod
-    def parameter_list_type() -> Callable[
-        [Dict[str, Any], "CodeModel"], OverloadedRequestBuilderParameterList
-    ]:
+    def parameter_list_type() -> (
+        Callable[[Dict[str, Any], "CodeModel"], OverloadedRequestBuilderParameterList]
+    ):
         return OverloadedRequestBuilderParameterList.from_yaml
 
 

@@ -37,7 +37,6 @@ def Process(plugin_name: str, session_id: str) -> bool:
     from .stdstream import StdStreamAutorestAPI
 
     with contextlib.closing(StdStreamAutorestAPI(session_id)) as stdstream_connection:
-
         _LOGGER.debug(
             "Autorest called process with plugin_name '%s' and session_id: '%s'",
             plugin_name,

@@ -63,6 +63,7 @@ import {
     isApiVersion,
     getDefaultApiVersion,
     getClientNamespaceString,
+    getClientFormat,
     createDpgContext,
     DpgContext,
     getPropertyNames,
@@ -244,6 +245,19 @@ function getEffectiveSchemaType(context: DpgContext, type: Model): Model {
     return type;
 }
 
+function getEntityType(context: DpgContext, entity: ModelProperty): any {
+    const result = getType(context, entity.type);
+    const format = getClientFormat(context, entity);
+    if (format) {
+        if (format === "rfc1123") {
+            result["format"] = "date-time-rfc1123";
+        } else if (format === "iso8601") {
+            result["format"] = "date-time";
+        }
+    }
+    return result;
+}
+
 function getType(context: DpgContext, type: EmitterType): any {
     // don't cache simple type(string, int, etc) since decorators may change the result
     const program = context.program;
@@ -391,7 +405,7 @@ function emitParameter(
     implementation: string,
 ): Record<string, any> {
     const base = emitParamBase(context, parameter.param);
-    let type = getType(context, parameter.param.type);
+    let type = getEntityType(context, parameter.param);
     let clientDefaultValue = undefined;
     if (parameter.name.toLowerCase() === "content-type" && type["type"] === "constant") {
         /// We don't want constant types for content types, so we make sure if it's
@@ -400,7 +414,7 @@ function emitParameter(
         type = type["valueType"];
     }
     const paramMap: Record<string, any> = {
-        restApiName: parameter.name,
+        restApiName: parameter.type === "path" ? parameter.param.name : parameter.name,
         location: parameter.type,
         type: type,
         implementation: implementation,
@@ -522,7 +536,7 @@ function emitResponseHeaders(context: DpgContext, headers?: Record<string, Model
     }
     for (const [key, value] of Object.entries(headers)) {
         retval.push({
-            type: getType(context, value.type),
+            type: getEntityType(context, value),
             restApiName: key,
         });
     }
@@ -590,6 +604,7 @@ function emitOperation(context: DpgContext, operation: Operation, operationGroup
 function addLroInformation(emittedOperation: Record<string, any>, initialOperation: Record<string, any>) {
     emittedOperation["discriminator"] = "lro";
     emittedOperation["initialOperation"] = initialOperation;
+    emittedOperation["exposeStreamKeyword"] = false;
 }
 
 function addPagingInformation(context: DpgContext, operation: Operation, emittedOperation: Record<string, any>) {
@@ -599,7 +614,9 @@ function addPagingInformation(context: DpgContext, operation: Operation, emitted
         throw Error("Trying to add paging information, but not paging metadata for this operation");
     }
     emittedOperation["itemName"] = pagedResult.itemsPath;
+    emittedOperation["itemType"] = getType(context, pagedResult.itemsProperty!.type);
     emittedOperation["continuationTokenName"] = pagedResult.nextLinkPath;
+    emittedOperation["exposeStreamKeyword"] = false;
 }
 
 function getLroInitialOperation(
@@ -611,6 +628,7 @@ function getLroInitialOperation(
     initialOperation["name"] = `_${initialOperation["name"]}_initial`;
     initialOperation["isLroInitialOperation"] = true;
     initialOperation["wantTracing"] = false;
+    initialOperation["exposeStreamKeyword"] = false;
     return initialOperation;
 }
 
@@ -742,6 +760,7 @@ function emitBasicOperation(
             overloads: [],
             apiVersions: [getAddedOnVersion(context, operation)],
             wantTracing: true,
+            exposeStreamKeyword: true,
         },
     ];
 }
@@ -770,7 +789,7 @@ function emitProperty(context: DpgContext, property: ModelProperty): Record<stri
     return {
         clientName: camelToSnakeCase(clientName),
         restApiName: jsonName,
-        type: getType(context, property.type),
+        type: getEntityType(context, property),
         optional: property.optional,
         description: getDocStr(context, property),
         addedOn: getAddedOnVersion(context, property),

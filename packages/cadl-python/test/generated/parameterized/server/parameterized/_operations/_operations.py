@@ -43,6 +43,8 @@ class ParameterizedClientOperationsMixin(ParameterizedClientMixinABC):
     def my_op(self, **kwargs: Any) -> bool:
         """my_op.
 
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
         :return: bool
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -69,8 +71,9 @@ class ParameterizedClientOperationsMixin(ParameterizedClientMixinABC):
         }
         request.url = self._client.format_url(request.url, **path_format_arguments)
 
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=False, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
