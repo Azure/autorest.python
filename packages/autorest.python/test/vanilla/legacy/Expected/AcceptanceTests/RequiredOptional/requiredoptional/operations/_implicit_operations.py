@@ -24,7 +24,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .. import models as _models
+from .. import _serialization, models as _models
 from .._vendor import _convert_request, _format_url_section
 
 T = TypeVar("T")
@@ -440,7 +440,10 @@ class ImplicitOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = body_parameter
+        if body_parameter is not None:
+            _content = body_parameter
+        else:
+            _content = None
 
         request = build_put_optional_binary_body_request(
             content_type=content_type,

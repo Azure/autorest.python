@@ -23,7 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ... import models as _models
+from ... import _serialization, models as _models
 from ..._vendor import _convert_request
 from ...operations._auto_rest_validation_test_operations import (
     build_get_with_constant_in_path_request,
@@ -197,16 +197,22 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(body, (IO, bytes)):
-            _content = body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(body, (_serialization.Model, dict)):
             if body is not None:
                 _json = self._serialize.body(body, "Product")
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(body, (IO, bytes)):
+            if body is not None:
+                _content = body
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for body")
 
         request = build_validation_of_body_request(
             resource_group_name=resource_group_name,
@@ -369,16 +375,22 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(body, (IO, bytes)):
-            _content = body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(body, (_serialization.Model, dict)):
             if body is not None:
                 _json = self._serialize.body(body, "Product")
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(body, (IO, bytes)):
+            if body is not None:
+                _content = body
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for body")
 
         request = build_post_with_constant_in_body_request(
             constant_param=constant_param,

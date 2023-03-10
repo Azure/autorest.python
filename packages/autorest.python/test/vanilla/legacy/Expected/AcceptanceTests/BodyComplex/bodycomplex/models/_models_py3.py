@@ -8,13 +8,22 @@
 # --------------------------------------------------------------------------
 
 import datetime
+import sys
 from typing import Any, Dict, List, Optional, TYPE_CHECKING, Union
 
 import msrest.serialization
 
+from .. import _serialization
+
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 
 class ArrayWrapper(msrest.serialization.Model):
@@ -1216,7 +1225,7 @@ class SmartSalmon(Salmon):
     :vartype iswild: bool
     :ivar additional_properties: Unmatched properties from the message are deserialized to this
      collection.
-    :vartype additional_properties: dict[str, any]
+    :vartype additional_properties: dict[str, JSON]
     :ivar college_degree:
     :vartype college_degree: str
     """
@@ -1245,7 +1254,7 @@ class SmartSalmon(Salmon):
         siblings: Optional[List["_models.Fish"]] = None,
         location: Optional[str] = None,
         iswild: Optional[bool] = None,
-        additional_properties: Optional[Dict[str, Any]] = None,
+        additional_properties: Optional[Dict[str, JSON]] = None,
         college_degree: Optional[str] = None,
         **kwargs: Any
     ) -> None:
@@ -1262,7 +1271,7 @@ class SmartSalmon(Salmon):
         :paramtype iswild: bool
         :keyword additional_properties: Unmatched properties from the message are deserialized to this
          collection.
-        :paramtype additional_properties: dict[str, any]
+        :paramtype additional_properties: dict[str, JSON]
         :keyword college_degree:
         :paramtype college_degree: str
         """

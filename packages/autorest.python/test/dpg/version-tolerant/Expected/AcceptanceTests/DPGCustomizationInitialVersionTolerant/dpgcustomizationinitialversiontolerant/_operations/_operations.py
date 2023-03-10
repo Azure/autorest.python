@@ -287,13 +287,16 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(input, (IO, bytes)):
-            _content = input
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(input, MutableMapping):
             _json = input
+            content_type = content_type or "application/json"
+        elif isinstance(input, (IO, bytes)):
+            _content = input
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for input")
 
         request = build_dpg_post_model_request(
             mode=mode,

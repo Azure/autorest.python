@@ -299,13 +299,16 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(array_body, (IO, bytes)):
-            _content = array_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(array_body, dict):
             _json = array_body
+            content_type = content_type or "application/json"
+        elif isinstance(array_body, (IO, bytes)):
+            _content = array_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for array_body")
 
         request = build_dictionary_put_empty_request(
             content_type=content_type,
@@ -679,13 +682,16 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(array_body, (IO, bytes)):
-            _content = array_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(array_body, dict):
             _json = array_body
+            content_type = content_type or "application/json"
+        elif isinstance(array_body, (IO, bytes)):
+            _content = array_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for array_body")
 
         request = build_dictionary_put_boolean_tfft_request(
             content_type=content_type,
@@ -947,13 +953,16 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(array_body, (IO, bytes)):
-            _content = array_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(array_body, dict):
             _json = array_body
+            content_type = content_type or "application/json"
+        elif isinstance(array_body, (IO, bytes)):
+            _content = array_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for array_body")
 
         request = build_dictionary_put_integer_valid_request(
             content_type=content_type,
@@ -1215,13 +1224,16 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(array_body, (IO, bytes)):
-            _content = array_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(array_body, dict):
             _json = array_body
+            content_type = content_type or "application/json"
+        elif isinstance(array_body, (IO, bytes)):
+            _content = array_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for array_body")
 
         request = build_dictionary_put_long_valid_request(
             content_type=content_type,
@@ -1483,13 +1495,16 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(array_body, (IO, bytes)):
-            _content = array_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(array_body, dict):
             _json = array_body
+            content_type = content_type or "application/json"
+        elif isinstance(array_body, (IO, bytes)):
+            _content = array_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for array_body")
 
         request = build_dictionary_put_float_valid_request(
             content_type=content_type,
@@ -1751,13 +1766,16 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(array_body, (IO, bytes)):
-            _content = array_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(array_body, dict):
             _json = array_body
+            content_type = content_type or "application/json"
+        elif isinstance(array_body, (IO, bytes)):
+            _content = array_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for array_body")
 
         request = build_dictionary_put_double_valid_request(
             content_type=content_type,
@@ -2019,13 +2037,16 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(array_body, (IO, bytes)):
-            _content = array_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(array_body, dict):
             _json = array_body
+            content_type = content_type or "application/json"
+        elif isinstance(array_body, (IO, bytes)):
+            _content = array_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for array_body")
 
         request = build_dictionary_put_string_valid_request(
             content_type=content_type,
@@ -2287,13 +2308,16 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(array_body, (IO, bytes)):
-            _content = array_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(array_body, dict):
             _json = array_body
+            content_type = content_type or "application/json"
+        elif isinstance(array_body, (IO, bytes)):
+            _content = array_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for array_body")
 
         request = build_dictionary_put_date_valid_request(
             content_type=content_type,
@@ -2559,13 +2583,16 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(array_body, (IO, bytes)):
-            _content = array_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(array_body, dict):
             _json = array_body
+            content_type = content_type or "application/json"
+        elif isinstance(array_body, (IO, bytes)):
+            _content = array_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for array_body")
 
         request = build_dictionary_put_date_time_valid_request(
             content_type=content_type,
@@ -2831,13 +2858,16 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(array_body, (IO, bytes)):
-            _content = array_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(array_body, dict):
             _json = array_body
+            content_type = content_type or "application/json"
+        elif isinstance(array_body, (IO, bytes)):
+            _content = array_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for array_body")
 
         request = build_dictionary_put_date_time_rfc1123_valid_request(
             content_type=content_type,
@@ -2987,13 +3017,16 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(array_body, (IO, bytes)):
-            _content = array_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(array_body, dict):
             _json = array_body
+            content_type = content_type or "application/json"
+        elif isinstance(array_body, (IO, bytes)):
+            _content = array_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for array_body")
 
         request = build_dictionary_put_duration_valid_request(
             content_type=content_type,
@@ -3147,13 +3180,16 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(array_body, (IO, bytes)):
-            _content = array_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(array_body, dict):
             _json = array_body
+            content_type = content_type or "application/json"
+        elif isinstance(array_body, (IO, bytes)):
+            _content = array_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for array_body")
 
         request = build_dictionary_put_byte_valid_request(
             content_type=content_type,
@@ -3665,13 +3701,16 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(array_body, (IO, bytes)):
-            _content = array_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(array_body, dict):
             _json = array_body
+            content_type = content_type or "application/json"
+        elif isinstance(array_body, (IO, bytes)):
+            _content = array_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for array_body")
 
         request = build_dictionary_put_complex_valid_request(
             content_type=content_type,
@@ -4061,13 +4100,16 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(array_body, (IO, bytes)):
-            _content = array_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(array_body, dict):
             _json = array_body
+            content_type = content_type or "application/json"
+        elif isinstance(array_body, (IO, bytes)):
+            _content = array_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for array_body")
 
         request = build_dictionary_put_array_valid_request(
             content_type=content_type,
@@ -4463,13 +4505,16 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(array_body, (IO, bytes)):
-            _content = array_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(array_body, dict):
             _json = array_body
+            content_type = content_type or "application/json"
+        elif isinstance(array_body, (IO, bytes)):
+            _content = array_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for array_body")
 
         request = build_dictionary_put_dictionary_valid_request(
             content_type=content_type,

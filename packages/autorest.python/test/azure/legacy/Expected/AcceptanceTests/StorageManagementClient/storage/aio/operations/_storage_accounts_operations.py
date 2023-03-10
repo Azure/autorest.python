@@ -29,7 +29,7 @@ from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
-from ... import models as _models
+from ... import _serialization, models as _models
 from ..._vendor import _convert_request
 from ...operations._storage_accounts_operations import (
     build_check_name_availability_request,
@@ -148,13 +148,16 @@ class StorageAccountsOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.CheckNameAvailabilityResult] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(account_name, (IO, bytes)):
-            _content = account_name
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(account_name, (_serialization.Model, dict)):
             _json = self._serialize.body(account_name, "StorageAccountCheckNameAvailabilityParameters")
+            content_type = content_type or "application/json"
+        elif isinstance(account_name, (IO, bytes)):
+            _content = account_name
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for account_name")
 
         request = build_check_name_availability_request(
             subscription_id=self._config.subscription_id,
@@ -215,13 +218,16 @@ class StorageAccountsOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[Optional[_models.StorageAccount]] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(parameters, (IO, bytes)):
-            _content = parameters
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(parameters, (_serialization.Model, dict)):
             _json = self._serialize.body(parameters, "StorageAccountCreateParameters")
+            content_type = content_type or "application/json"
+        elif isinstance(parameters, (IO, bytes)):
+            _content = parameters
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for parameters")
 
         request = build_create_request(
             resource_group_name=resource_group_name,
@@ -693,13 +699,16 @@ class StorageAccountsOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.StorageAccount] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(parameters, (IO, bytes)):
-            _content = parameters
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(parameters, (_serialization.Model, dict)):
             _json = self._serialize.body(parameters, "StorageAccountUpdateParameters")
+            content_type = content_type or "application/json"
+        elif isinstance(parameters, (IO, bytes)):
+            _content = parameters
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for parameters")
 
         request = build_update_request(
             resource_group_name=resource_group_name,

@@ -25,7 +25,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from .. import models as _models
+from .. import _serialization, models as _models
 from .._vendor import _convert_request, _format_url_section
 
 T = TypeVar("T")

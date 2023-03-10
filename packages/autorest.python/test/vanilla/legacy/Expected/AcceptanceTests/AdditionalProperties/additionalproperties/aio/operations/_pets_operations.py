@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ... import models as _models
+from ... import _serialization, models as _models
 from ..._vendor import _convert_request
 from ...operations._pets_operations import (
     build_create_ap_in_properties_request,
@@ -118,13 +118,16 @@ class PetsOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.PetAPTrue] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(create_parameters, (IO, bytes)):
-            _content = create_parameters
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(create_parameters, (_serialization.Model, dict)):
             _json = self._serialize.body(create_parameters, "PetAPTrue")
+            content_type = content_type or "application/json"
+        elif isinstance(create_parameters, (IO, bytes)):
+            _content = create_parameters
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for create_parameters")
 
         request = build_create_ap_true_request(
             content_type=content_type,
@@ -222,13 +225,16 @@ class PetsOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.CatAPTrue] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(create_parameters, (IO, bytes)):
-            _content = create_parameters
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(create_parameters, (_serialization.Model, dict)):
             _json = self._serialize.body(create_parameters, "CatAPTrue")
+            content_type = content_type or "application/json"
+        elif isinstance(create_parameters, (IO, bytes)):
+            _content = create_parameters
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for create_parameters")
 
         request = build_create_cat_ap_true_request(
             content_type=content_type,
@@ -326,13 +332,16 @@ class PetsOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.PetAPObject] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(create_parameters, (IO, bytes)):
-            _content = create_parameters
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(create_parameters, (_serialization.Model, dict)):
             _json = self._serialize.body(create_parameters, "PetAPObject")
+            content_type = content_type or "application/json"
+        elif isinstance(create_parameters, (IO, bytes)):
+            _content = create_parameters
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for create_parameters")
 
         request = build_create_ap_object_request(
             content_type=content_type,
@@ -430,13 +439,16 @@ class PetsOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.PetAPString] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(create_parameters, (IO, bytes)):
-            _content = create_parameters
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(create_parameters, (_serialization.Model, dict)):
             _json = self._serialize.body(create_parameters, "PetAPString")
+            content_type = content_type or "application/json"
+        elif isinstance(create_parameters, (IO, bytes)):
+            _content = create_parameters
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for create_parameters")
 
         request = build_create_ap_string_request(
             content_type=content_type,
@@ -534,13 +546,16 @@ class PetsOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.PetAPInProperties] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(create_parameters, (IO, bytes)):
-            _content = create_parameters
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(create_parameters, (_serialization.Model, dict)):
             _json = self._serialize.body(create_parameters, "PetAPInProperties")
+            content_type = content_type or "application/json"
+        elif isinstance(create_parameters, (IO, bytes)):
+            _content = create_parameters
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for create_parameters")
 
         request = build_create_ap_in_properties_request(
             content_type=content_type,
@@ -643,13 +658,16 @@ class PetsOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.PetAPInPropertiesWithAPString] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(create_parameters, (IO, bytes)):
-            _content = create_parameters
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(create_parameters, (_serialization.Model, dict)):
             _json = self._serialize.body(create_parameters, "PetAPInPropertiesWithAPString")
+            content_type = content_type or "application/json"
+        elif isinstance(create_parameters, (IO, bytes)):
+            _content = create_parameters
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for create_parameters")
 
         request = build_create_ap_in_properties_with_ap_string_request(
             content_type=content_type,

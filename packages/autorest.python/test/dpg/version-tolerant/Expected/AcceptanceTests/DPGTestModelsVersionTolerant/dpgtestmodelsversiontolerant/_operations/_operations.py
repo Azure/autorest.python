@@ -25,7 +25,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .. import models as _models
+from .. import _serialization, models as _models
 from .._serialization import Serializer
 from .._vendor import DPGClientMixinABC, _format_url_section
 
@@ -241,13 +241,16 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(input, (IO, bytes)):
-            _content = input
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(input, (_serialization.Model, dict)):
             _json = self._serialize.body(input, "Input")
+            content_type = content_type or "application/json"
+        elif isinstance(input, (IO, bytes)):
+            _content = input
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for input")
 
         request = build_dpg_post_model_request(
             mode=mode,

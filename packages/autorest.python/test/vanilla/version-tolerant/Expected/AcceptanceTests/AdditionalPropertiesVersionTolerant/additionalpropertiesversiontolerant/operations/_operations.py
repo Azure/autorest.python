@@ -255,13 +255,16 @@ class PetsOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(create_parameters, (IO, bytes)):
-            _content = create_parameters
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(create_parameters, MutableMapping):
             _json = create_parameters
+            content_type = content_type or "application/json"
+        elif isinstance(create_parameters, (IO, bytes)):
+            _content = create_parameters
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for create_parameters")
 
         request = build_pets_create_ap_true_request(
             content_type=content_type,
@@ -401,13 +404,16 @@ class PetsOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(create_parameters, (IO, bytes)):
-            _content = create_parameters
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(create_parameters, MutableMapping):
             _json = create_parameters
+            content_type = content_type or "application/json"
+        elif isinstance(create_parameters, (IO, bytes)):
+            _content = create_parameters
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for create_parameters")
 
         request = build_pets_create_cat_ap_true_request(
             content_type=content_type,
@@ -540,13 +546,16 @@ class PetsOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(create_parameters, (IO, bytes)):
-            _content = create_parameters
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(create_parameters, MutableMapping):
             _json = create_parameters
+            content_type = content_type or "application/json"
+        elif isinstance(create_parameters, (IO, bytes)):
+            _content = create_parameters
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for create_parameters")
 
         request = build_pets_create_ap_object_request(
             content_type=content_type,
@@ -679,13 +688,16 @@ class PetsOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(create_parameters, (IO, bytes)):
-            _content = create_parameters
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(create_parameters, MutableMapping):
             _json = create_parameters
+            content_type = content_type or "application/json"
+        elif isinstance(create_parameters, (IO, bytes)):
+            _content = create_parameters
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for create_parameters")
 
         request = build_pets_create_ap_string_request(
             content_type=content_type,
@@ -820,13 +832,16 @@ class PetsOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(create_parameters, (IO, bytes)):
-            _content = create_parameters
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(create_parameters, MutableMapping):
             _json = create_parameters
+            content_type = content_type or "application/json"
+        elif isinstance(create_parameters, (IO, bytes)):
+            _content = create_parameters
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for create_parameters")
 
         request = build_pets_create_ap_in_properties_request(
             content_type=content_type,
@@ -981,13 +996,16 @@ class PetsOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(create_parameters, (IO, bytes)):
-            _content = create_parameters
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(create_parameters, MutableMapping):
             _json = create_parameters
+            content_type = content_type or "application/json"
+        elif isinstance(create_parameters, (IO, bytes)):
+            _content = create_parameters
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for create_parameters")
 
         request = build_pets_create_ap_in_properties_with_ap_string_request(
             content_type=content_type,

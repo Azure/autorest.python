@@ -1365,16 +1365,22 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[Optional[JSON]] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lros_put200_succeeded_request(
             content_type=content_type,
@@ -1632,16 +1638,22 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lros_patch200_succeeded_ignore_headers_request(
             content_type=content_type,
@@ -1909,16 +1921,22 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lros_patch201_retry_with_async_header_request(
             content_type=content_type,
@@ -2187,16 +2205,22 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lros_patch202_retry_with_async_and_location_header_request(
             content_type=content_type,
@@ -2465,16 +2489,22 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lros_put201_succeeded_request(
             content_type=content_type,
@@ -2852,16 +2882,22 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lros_put200_succeeded_no_state_request(
             content_type=content_type,
@@ -3117,16 +3153,22 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lros_put202_retry200_request(
             content_type=content_type,
@@ -3383,16 +3425,22 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lros_put201_creating_succeeded200_request(
             content_type=content_type,
@@ -3658,16 +3706,22 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lros_put200_updating_succeeded204_request(
             content_type=content_type,
@@ -3926,16 +3980,22 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lros_put201_creating_failed200_request(
             content_type=content_type,
@@ -4201,16 +4261,22 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lros_put200_acceptedcanceled200_request(
             content_type=content_type,
@@ -4469,16 +4535,22 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lros_put_no_header_in_retry_request(
             content_type=content_type,
@@ -4738,16 +4810,22 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lros_put_async_retry_succeeded_request(
             content_type=content_type,
@@ -5020,16 +5098,22 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lros_put_async_no_retry_succeeded_request(
             content_type=content_type,
@@ -5300,16 +5384,22 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lros_put_async_retry_failed_request(
             content_type=content_type,
@@ -5580,16 +5670,22 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lros_put_async_no_retrycanceled_request(
             content_type=content_type,
@@ -5860,16 +5956,22 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lros_put_async_no_header_in_retry_request(
             content_type=content_type,
@@ -6138,16 +6240,22 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(sku, (IO, bytes)):
-            _content = sku
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(sku, MutableMapping):
             if sku is not None:
                 _json = sku
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(sku, (IO, bytes)):
+            if sku is not None:
+                _content = sku
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for sku")
 
         request = build_lros_put_non_resource_request(
             content_type=content_type,
@@ -6338,16 +6446,22 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(sku, (IO, bytes)):
-            _content = sku
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(sku, MutableMapping):
             if sku is not None:
                 _json = sku
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(sku, (IO, bytes)):
+            if sku is not None:
+                _content = sku
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for sku")
 
         request = build_lros_put_async_non_resource_request(
             content_type=content_type,
@@ -6538,16 +6652,22 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lros_put_sub_resource_request(
             content_type=content_type,
@@ -6768,16 +6888,22 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lros_put_async_sub_resource_request(
             content_type=content_type,
@@ -8357,16 +8483,22 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lros_post202_retry200_request(
             content_type=content_type,
@@ -8557,16 +8689,22 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lros_post202_no_retry204_request(
             content_type=content_type,
@@ -9182,16 +9320,22 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[Optional[JSON]] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lros_post_async_retry_succeeded_request(
             content_type=content_type,
@@ -9462,16 +9606,22 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[Optional[JSON]] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lros_post_async_no_retry_succeeded_request(
             content_type=content_type,
@@ -9742,16 +9892,22 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lros_post_async_retry_failed_request(
             content_type=content_type,
@@ -9952,16 +10108,22 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lros_post_async_retrycanceled_request(
             content_type=content_type,
@@ -10178,16 +10340,22 @@ class LRORetrysOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lro_retrys_put201_creating_succeeded200_request(
             content_type=content_type,
@@ -10455,16 +10623,22 @@ class LRORetrysOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lro_retrys_put_async_relative_retry_succeeded_request(
             content_type=content_type,
@@ -11043,16 +11217,22 @@ class LRORetrysOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lro_retrys_post202_retry200_request(
             content_type=content_type,
@@ -11245,16 +11425,22 @@ class LRORetrysOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lro_retrys_post_async_relative_retry_succeeded_request(
             content_type=content_type,
@@ -11471,16 +11657,22 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lrosads_put_non_retry400_request(
             content_type=content_type,
@@ -11738,16 +11930,22 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lrosads_put_non_retry201_creating400_request(
             content_type=content_type,
@@ -12012,16 +12210,22 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lrosads_put_non_retry201_creating400_invalid_json_request(
             content_type=content_type,
@@ -12284,16 +12488,22 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lrosads_put_async_relative_retry400_request(
             content_type=content_type,
@@ -12826,16 +13036,22 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lrosads_post_non_retry400_request(
             content_type=content_type,
@@ -13025,16 +13241,22 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lrosads_post202_non_retry400_request(
             content_type=content_type,
@@ -13224,16 +13446,22 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lrosads_post_async_relative_retry400_request(
             content_type=content_type,
@@ -13431,16 +13659,22 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lrosads_put_error201_no_provisioning_state_payload_request(
             content_type=content_type,
@@ -13702,16 +13936,22 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lrosads_put_async_relative_retry_no_status_request(
             content_type=content_type,
@@ -13986,16 +14226,22 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lrosads_put_async_relative_retry_no_status_payload_request(
             content_type=content_type,
@@ -14442,16 +14688,22 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lrosads_post202_no_location_request(
             content_type=content_type,
@@ -14644,16 +14896,22 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lrosads_post_async_relative_retry_no_payload_request(
             content_type=content_type,
@@ -14852,16 +15110,22 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[Optional[JSON]] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lrosads_put200_invalid_json_request(
             content_type=content_type,
@@ -15119,16 +15383,22 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lrosads_put_async_relative_retry_invalid_header_request(
             content_type=content_type,
@@ -15403,16 +15673,22 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lrosads_put_async_relative_retry_invalid_json_polling_request(
             content_type=content_type,
@@ -15957,16 +16233,22 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lrosads_post202_retry_invalid_header_request(
             content_type=content_type,
@@ -16161,16 +16443,22 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lrosads_post_async_relative_retry_invalid_header_request(
             content_type=content_type,
@@ -16371,16 +16659,22 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lrosads_post_async_relative_retry_invalid_json_polling_request(
             content_type=content_type,
@@ -16597,16 +16891,22 @@ class LROsCustomHeaderOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lr_os_custom_header_put_async_retry_succeeded_request(
             content_type=content_type,
@@ -16882,16 +17182,22 @@ class LROsCustomHeaderOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lr_os_custom_header_put201_creating_succeeded200_request(
             content_type=content_type,
@@ -17162,16 +17468,22 @@ class LROsCustomHeaderOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lr_os_custom_header_post202_retry200_request(
             content_type=content_type,
@@ -17367,16 +17679,22 @@ class LROsCustomHeaderOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, MutableMapping):
             if product is not None:
                 _json = product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_lr_os_custom_header_post_async_retry_succeeded_request(
             content_type=content_type,

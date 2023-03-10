@@ -124,7 +124,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
                 _content = None
             if not content_type:
                 raise TypeError(
-                    "Missing required keyword-only argument: content_type. Known values are: 'image/png', 'application/json', 'image/tiff', 'application/pdf', 'image/jpeg'"
+                    "Missing required keyword-only argument: content_type. Known values are: 'image/jpeg', 'image/png', 'application/pdf', 'application/json', 'image/tiff'"
                 )
         else:
             raise TypeError("unrecognized type for input")
@@ -243,7 +243,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
                 _content = None
             if not content_type:
                 raise TypeError(
-                    "Missing required keyword-only argument: content_type. Known values are: 'image/png', 'application/json', 'image/tiff', 'application/pdf', 'image/jpeg'"
+                    "Missing required keyword-only argument: content_type. Known values are: 'image/jpeg', 'image/png', 'application/pdf', 'application/json', 'image/tiff'"
                 )
         else:
             raise TypeError("unrecognized type for input")

@@ -28,7 +28,7 @@ from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 
-from .. import models as _models
+from .. import _serialization, models as _models
 from ..._serialization import Serializer
 from .._vendor import MultiapiServiceClientMixinABC, _convert_request
 
@@ -199,16 +199,22 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[Optional[_models.Product]] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, (_serialization.Model, dict)):
             if product is not None:
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_test_lro_request(
             content_type=content_type,

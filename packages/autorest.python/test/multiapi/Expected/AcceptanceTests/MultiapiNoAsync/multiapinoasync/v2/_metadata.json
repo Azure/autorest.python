@@ -96,8 +96,8 @@
         "operation_group_two": "OperationGroupTwoOperations"
     },
     "operation_mixins": {
-        "sync_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"regular\": {\"stdlib\": {\"typing\": [\"Optional\"]}, \"local\": {\".\": [[\"models\", \"_models\"]]}}}",
-        "async_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"regular\": {\"stdlib\": {\"typing\": [\"Optional\"]}, \"local\": {\"..\": [[\"models\", \"_models\"]]}}}",
+        "sync_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"regular\": {\"stdlib\": {\"typing\": [\"Optional\"]}, \"local\": {\".\": [\"_serialization\", [\"models\", \"_models\"]]}}}",
+        "async_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"regular\": {\"stdlib\": {\"typing\": [\"Optional\"]}, \"local\": {\"..\": [\"_serialization\", [\"models\", \"_models\"]]}}}",
         "sync_mixin_typing_definitions": "",
         "async_mixin_typing_definitions": "",
         "operations": {

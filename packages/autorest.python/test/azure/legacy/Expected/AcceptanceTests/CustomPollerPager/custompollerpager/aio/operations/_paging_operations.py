@@ -30,7 +30,7 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 from custompollerpagerdefinitions.aio import AsyncCustomPager, AsyncCustomPoller
 
-from ... import models as _models
+from ... import _serialization, models as _models
 from ..._vendor import _convert_request
 from ...operations._paging_operations import (
     build_append_api_version_request,

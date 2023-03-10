@@ -23,7 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .. import models as _models
+from .. import _serialization, models as _models
 from ..._serialization import Serializer
 from .._vendor import MultiapiServiceClientMixinABC, _convert_request
 
@@ -162,16 +162,22 @@ class OperationGroupOneOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.ModelTwo] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(parameter_one, (IO, bytes)):
-            _content = parameter_one
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(parameter_one, (_serialization.Model, dict)):
             if parameter_one is not None:
                 _json = self._serialize.body(parameter_one, "ModelTwo")
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(parameter_one, (IO, bytes)):
+            if parameter_one is not None:
+                _content = parameter_one
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for parameter_one")
 
         request = build_test_two_request(
             api_version=api_version,

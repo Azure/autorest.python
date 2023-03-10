@@ -24,7 +24,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from ... import models as _models
+from ... import _serialization, models as _models
 from ..._vendor import _convert_request
 from ...operations._operation_group_two_operations import build_test_five_request, build_test_four_request
 from .._vendor import MultiapiServiceClientMixinABC
@@ -122,16 +122,25 @@ class OperationGroupTwoOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = None
-        _content = None
-        if isinstance(input, (IO, bytes)):
-            _content = input
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(input, (_serialization.Model, dict)):
             if input is not None:
                 _json = self._serialize.body(input, "SourcePath")
             else:
                 _json = None
             content_type = content_type or "application/json"
+        elif isinstance(input, (IO, bytes)):
+            if input is not None:
+                _content = input
+            else:
+                _content = None
+            if not content_type:
+                raise TypeError(
+                    "Missing required keyword-only argument: content_type. Known values are: 'application/pdf', 'image/jpeg', 'application/json', 'image/png', 'image/tiff'"
+                )
+        else:
+            raise TypeError("unrecognized type for input")
 
         request = build_test_four_request(
             api_version=api_version,

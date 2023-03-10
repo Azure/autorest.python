@@ -29,7 +29,7 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 from custompollerpagerdefinitions import CustomPager, CustomPoller
 
-from .. import models as _models
+from .. import _serialization, models as _models
 from .._serialization import Serializer
 from .._vendor import _convert_request, _format_url_section
 

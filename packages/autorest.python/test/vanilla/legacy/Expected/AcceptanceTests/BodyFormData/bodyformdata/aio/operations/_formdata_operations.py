@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ... import models as _models
+from ... import _serialization, models as _models
 from ..._vendor import _convert_request
 from ...operations._formdata_operations import (
     build_upload_file_request,
@@ -78,7 +78,7 @@ class FormdataOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "multipart/form-data"))
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         # Construct form data
@@ -198,7 +198,7 @@ class FormdataOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "multipart/form-data"))
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         # Construct form data

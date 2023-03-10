@@ -7,9 +7,16 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+import sys
 from typing import Any, Dict, Optional
 
 from .. import _serialization
+
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 
 class PetAPTrue(_serialization.Model):
@@ -21,7 +28,7 @@ class PetAPTrue(_serialization.Model):
 
     :ivar additional_properties: Unmatched properties from the message are deserialized to this
      collection.
-    :vartype additional_properties: dict[str, any]
+    :vartype additional_properties: dict[str, JSON]
     :ivar id: Required.
     :vartype id: int
     :ivar name:
@@ -46,14 +53,14 @@ class PetAPTrue(_serialization.Model):
         self,
         *,
         id: int,  # pylint: disable=redefined-builtin
-        additional_properties: Optional[Dict[str, Any]] = None,
+        additional_properties: Optional[Dict[str, JSON]] = None,
         name: Optional[str] = None,
         **kwargs: Any
     ) -> None:
         """
         :keyword additional_properties: Unmatched properties from the message are deserialized to this
          collection.
-        :paramtype additional_properties: dict[str, any]
+        :paramtype additional_properties: dict[str, JSON]
         :keyword id: Required.
         :paramtype id: int
         :keyword name:
@@ -75,7 +82,7 @@ class CatAPTrue(PetAPTrue):
 
     :ivar additional_properties: Unmatched properties from the message are deserialized to this
      collection.
-    :vartype additional_properties: dict[str, any]
+    :vartype additional_properties: dict[str, JSON]
     :ivar id: Required.
     :vartype id: int
     :ivar name:
@@ -103,7 +110,7 @@ class CatAPTrue(PetAPTrue):
         self,
         *,
         id: int,  # pylint: disable=redefined-builtin
-        additional_properties: Optional[Dict[str, Any]] = None,
+        additional_properties: Optional[Dict[str, JSON]] = None,
         name: Optional[str] = None,
         friendly: Optional[bool] = None,
         **kwargs: Any
@@ -111,7 +118,7 @@ class CatAPTrue(PetAPTrue):
         """
         :keyword additional_properties: Unmatched properties from the message are deserialized to this
          collection.
-        :paramtype additional_properties: dict[str, any]
+        :paramtype additional_properties: dict[str, JSON]
         :keyword id: Required.
         :paramtype id: int
         :keyword name:
@@ -279,7 +286,7 @@ class PetAPObject(_serialization.Model):
 
     :ivar additional_properties: Unmatched properties from the message are deserialized to this
      collection.
-    :vartype additional_properties: dict[str, any]
+    :vartype additional_properties: dict[str, JSON]
     :ivar id: Required.
     :vartype id: int
     :ivar name:
@@ -304,14 +311,14 @@ class PetAPObject(_serialization.Model):
         self,
         *,
         id: int,  # pylint: disable=redefined-builtin
-        additional_properties: Optional[Dict[str, Any]] = None,
+        additional_properties: Optional[Dict[str, JSON]] = None,
         name: Optional[str] = None,
         **kwargs: Any
     ) -> None:
         """
         :keyword additional_properties: Unmatched properties from the message are deserialized to this
          collection.
-        :paramtype additional_properties: dict[str, any]
+        :paramtype additional_properties: dict[str, JSON]
         :keyword id: Required.
         :paramtype id: int
         :keyword name:

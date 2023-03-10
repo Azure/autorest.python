@@ -380,8 +380,10 @@ def _get_default_content_type(  # pylint: disable=too-many-return-statements
         return "application/octet-stream"
     if "application/x-www-form-urlencoded" in content_types:
         return "application/x-www-form-urlencoded"
-    if len(content_types) == 1:
-        return content_types[0]
+    
+    all_types = [ct for ct in content_types]
+    if len(all_types) == 1:
+        return all_types[0]
     return None
 
 

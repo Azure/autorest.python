@@ -55,7 +55,7 @@ def build_operation_with_content_param_request(*, content: IO, **kwargs: Any) ->
     return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_operation_with_json_param_request(*, json: Any, **kwargs: Any) -> HttpRequest:
+def build_operation_with_json_param_request(*, json: JSON, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -194,11 +194,11 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
     operation_with_content_param.metadata = {"url": "/reservedWords/operation/content"}
 
     @distributed_trace
-    def operation_with_json_param(self, json: Any, **kwargs: Any) -> JSON:
+    def operation_with_json_param(self, json: JSON, **kwargs: Any) -> JSON:
         """Operation with body param called 'json'. Pass in {'hello': 'world'}.
 
         :param json: Pass in {'hello': 'world'}. Required.
-        :type json: any
+        :type json: JSON
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: JSON or the result of cls(response)
         :rtype: JSON
@@ -339,7 +339,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "multipart/form-data"))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         # Construct form data

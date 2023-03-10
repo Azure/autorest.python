@@ -229,9 +229,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> None:
         """Put External Resource as an Array.
 
-        .. seealso::
-           - http://tempuri.org
-
         :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: list[JSON]
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
@@ -264,9 +261,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> None:
         """Put External Resource as an Array.
 
-        .. seealso::
-           - http://tempuri.org
-
         :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
@@ -282,9 +276,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         self, resource_array: Optional[Union[List[JSON], IO]] = None, **kwargs: Any
     ) -> None:
         """Put External Resource as an Array.
-
-        .. seealso::
-           - http://tempuri.org
 
         :param resource_array: External Resource as an Array to put. Is either a [JSON] type or a IO
          type. Default value is None.
@@ -310,16 +301,22 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(resource_array, (IO, bytes)):
-            _content = resource_array
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(resource_array, list):
             if resource_array is not None:
                 _json = resource_array
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(resource_array, (IO, bytes)):
+            if resource_array is not None:
+                _content = resource_array
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for resource_array")
 
         request = build_auto_rest_resource_flattening_test_service_put_array_request(
             content_type=content_type,
@@ -347,9 +344,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     @distributed_trace
     def get_array(self, **kwargs: Any) -> List[JSON]:
         """Get External Resource as an Array.
-
-        .. seealso::
-           - http://tempuri.org
 
         :return: list of JSON object
         :rtype: list[JSON]
@@ -426,9 +420,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
 
-        .. seealso::
-           - http://tempuri.org
-
         :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: list[JSON]
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
@@ -456,9 +447,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
 
-        .. seealso::
-           - http://tempuri.org
-
         :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
@@ -475,9 +463,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
-
-        .. seealso::
-           - http://tempuri.org
 
         :param resource_array: External Resource as an Array to put. Is either a [JSON] type or a IO
          type. Default value is None.
@@ -503,16 +488,22 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(resource_array, (IO, bytes)):
-            _content = resource_array
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(resource_array, list):
             if resource_array is not None:
                 _json = resource_array
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(resource_array, (IO, bytes)):
+            if resource_array is not None:
+                _content = resource_array
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for resource_array")
 
         request = build_auto_rest_resource_flattening_test_service_put_wrapped_array_request(
             content_type=content_type,
@@ -541,9 +532,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     def get_wrapped_array(self, **kwargs: Any) -> List[JSON]:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
-
-        .. seealso::
-           - http://tempuri.org
 
         :return: list of JSON object
         :rtype: list[JSON]
@@ -611,9 +599,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> None:
         """Put External Resource as a Dictionary.
 
-        .. seealso::
-           - http://tempuri.org
-
         :param resource_dictionary: External Resource as a Dictionary to put. Default value is None.
         :type resource_dictionary: dict[str, JSON]
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
@@ -654,9 +639,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> None:
         """Put External Resource as a Dictionary.
 
-        .. seealso::
-           - http://tempuri.org
-
         :param resource_dictionary: External Resource as a Dictionary to put. Default value is None.
         :type resource_dictionary: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
@@ -672,9 +654,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         self, resource_dictionary: Optional[Union[Dict[str, JSON], IO]] = None, **kwargs: Any
     ) -> None:
         """Put External Resource as a Dictionary.
-
-        .. seealso::
-           - http://tempuri.org
 
         :param resource_dictionary: External Resource as a Dictionary to put. Is either a {str: JSON}
          type or a IO type. Default value is None.
@@ -700,16 +679,22 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(resource_dictionary, (IO, bytes)):
-            _content = resource_dictionary
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(resource_dictionary, dict):
             if resource_dictionary is not None:
                 _json = resource_dictionary
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(resource_dictionary, (IO, bytes)):
+            if resource_dictionary is not None:
+                _content = resource_dictionary
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for resource_dictionary")
 
         request = build_auto_rest_resource_flattening_test_service_put_dictionary_request(
             content_type=content_type,
@@ -737,9 +722,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     @distributed_trace
     def get_dictionary(self, **kwargs: Any) -> Dict[str, JSON]:
         """Get External Resource as a Dictionary.
-
-        .. seealso::
-           - http://tempuri.org
 
         :return: dict mapping str to JSON object
         :rtype: dict[str, JSON]
@@ -814,9 +796,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         self, resource_complex_object: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put External Resource as a ResourceCollection.
-
-        .. seealso::
-           - http://tempuri.org
 
         :param resource_complex_object: External Resource as a ResourceCollection to put. Default value
          is None.
@@ -904,9 +883,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> None:
         """Put External Resource as a ResourceCollection.
 
-        .. seealso::
-           - http://tempuri.org
-
         :param resource_complex_object: External Resource as a ResourceCollection to put. Default value
          is None.
         :type resource_complex_object: IO
@@ -923,9 +899,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         self, resource_complex_object: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> None:
         """Put External Resource as a ResourceCollection.
-
-        .. seealso::
-           - http://tempuri.org
 
         :param resource_complex_object: External Resource as a ResourceCollection to put. Is either a
          JSON type or a IO type. Default value is None.
@@ -1020,16 +993,22 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(resource_complex_object, (IO, bytes)):
-            _content = resource_complex_object
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(resource_complex_object, MutableMapping):
             if resource_complex_object is not None:
                 _json = resource_complex_object
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(resource_complex_object, (IO, bytes)):
+            if resource_complex_object is not None:
+                _content = resource_complex_object
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for resource_complex_object")
 
         request = build_auto_rest_resource_flattening_test_service_put_resource_collection_request(
             content_type=content_type,
@@ -1057,9 +1036,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     @distributed_trace
     def get_resource_collection(self, **kwargs: Any) -> JSON:
         """Get External Resource as a ResourceCollection.
-
-        .. seealso::
-           - http://tempuri.org
 
         :return: JSON object
         :rtype: JSON
@@ -1180,9 +1156,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> JSON:
         """Put Simple Product with client flattening true on the model.
 
-        .. seealso::
-           - http://tempuri.org
-
         :param simple_body_product: Simple body product to put. Default value is None.
         :type simple_body_product: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
@@ -1238,9 +1211,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> JSON:
         """Put Simple Product with client flattening true on the model.
 
-        .. seealso::
-           - http://tempuri.org
-
         :param simple_body_product: Simple body product to put. Default value is None.
         :type simple_body_product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
@@ -1275,9 +1245,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     @distributed_trace
     def put_simple_product(self, simple_body_product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:
         """Put Simple Product with client flattening true on the model.
-
-        .. seealso::
-           - http://tempuri.org
 
         :param simple_body_product: Simple body product to put. Is either a JSON type or a IO type.
          Default value is None.
@@ -1342,16 +1309,22 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(simple_body_product, (IO, bytes)):
-            _content = simple_body_product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(simple_body_product, MutableMapping):
             if simple_body_product is not None:
                 _json = simple_body_product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(simple_body_product, (IO, bytes)):
+            if simple_body_product is not None:
+                _content = simple_body_product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for simple_body_product")
 
         request = build_auto_rest_resource_flattening_test_service_put_simple_product_request(
             content_type=content_type,
@@ -1388,9 +1361,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         self, simple_body_product: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """Put Flattened Simple Product with client flattening true on the parameter.
-
-        .. seealso::
-           - http://tempuri.org
 
         :param simple_body_product: Simple body product to post. Default value is None.
         :type simple_body_product: JSON
@@ -1447,9 +1417,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> JSON:
         """Put Flattened Simple Product with client flattening true on the parameter.
 
-        .. seealso::
-           - http://tempuri.org
-
         :param simple_body_product: Simple body product to post. Default value is None.
         :type simple_body_product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
@@ -1486,9 +1453,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         self, simple_body_product: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> JSON:
         """Put Flattened Simple Product with client flattening true on the parameter.
-
-        .. seealso::
-           - http://tempuri.org
 
         :param simple_body_product: Simple body product to post. Is either a JSON type or a IO type.
          Default value is None.
@@ -1553,16 +1517,22 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(simple_body_product, (IO, bytes)):
-            _content = simple_body_product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(simple_body_product, MutableMapping):
             if simple_body_product is not None:
                 _json = simple_body_product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(simple_body_product, (IO, bytes)):
+            if simple_body_product is not None:
+                _content = simple_body_product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for simple_body_product")
 
         request = build_auto_rest_resource_flattening_test_service_post_flattened_simple_product_request(
             content_type=content_type,
@@ -1604,9 +1574,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         **kwargs: Any,
     ) -> JSON:
         """Put Simple Product with client flattening true on the model.
-
-        .. seealso::
-           - http://tempuri.org
 
         :param name: Product name with value 'groupproduct'. Required.
         :type name: str
@@ -1670,9 +1637,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> JSON:
         """Put Simple Product with client flattening true on the model.
 
-        .. seealso::
-           - http://tempuri.org
-
         :param name: Product name with value 'groupproduct'. Required.
         :type name: str
         :param simple_body_product: Simple body product to put. Default value is None.
@@ -1711,9 +1675,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         self, name: str, simple_body_product: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> JSON:
         """Put Simple Product with client flattening true on the model.
-
-        .. seealso::
-           - http://tempuri.org
 
         :param name: Product name with value 'groupproduct'. Required.
         :type name: str
@@ -1780,16 +1741,22 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(simple_body_product, (IO, bytes)):
-            _content = simple_body_product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(simple_body_product, MutableMapping):
             if simple_body_product is not None:
                 _json = simple_body_product
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(simple_body_product, (IO, bytes)):
+            if simple_body_product is not None:
+                _content = simple_body_product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for simple_body_product")
 
         request = build_auto_rest_resource_flattening_test_service_put_simple_product_with_grouping_request(
             name=name,

@@ -192,13 +192,16 @@ class StorageAccountsOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(account_name, (IO, bytes)):
-            _content = account_name
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(account_name, MutableMapping):
             _json = account_name
+            content_type = content_type or "application/json"
+        elif isinstance(account_name, (IO, bytes)):
+            _content = account_name
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for account_name")
 
         request = build_storage_accounts_check_name_availability_request(
             subscription_id=self._config.subscription_id,
@@ -249,13 +252,16 @@ class StorageAccountsOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[Optional[JSON]] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(parameters, (IO, bytes)):
-            _content = parameters
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(parameters, MutableMapping):
             _json = parameters
+            content_type = content_type or "application/json"
+        elif isinstance(parameters, (IO, bytes)):
+            _content = parameters
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for parameters")
 
         request = build_storage_accounts_create_request(
             resource_group_name=resource_group_name,
@@ -1252,13 +1258,16 @@ class StorageAccountsOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(parameters, (IO, bytes)):
-            _content = parameters
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(parameters, MutableMapping):
             _json = parameters
+            content_type = content_type or "application/json"
+        elif isinstance(parameters, (IO, bytes)):
+            _content = parameters
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for parameters")
 
         request = build_storage_accounts_update_request(
             resource_group_name=resource_group_name,
@@ -1784,13 +1793,16 @@ class StorageAccountsOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(regenerate_key, (IO, bytes)):
-            _content = regenerate_key
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(regenerate_key, MutableMapping):
             _json = regenerate_key
+            content_type = content_type or "application/json"
+        elif isinstance(regenerate_key, (IO, bytes)):
+            _content = regenerate_key
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for regenerate_key")
 
         request = build_storage_accounts_regenerate_key_request(
             resource_group_name=resource_group_name,

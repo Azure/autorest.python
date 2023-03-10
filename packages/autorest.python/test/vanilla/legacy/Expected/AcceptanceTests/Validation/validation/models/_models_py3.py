@@ -12,6 +12,8 @@ from typing import Any, List, Optional, TYPE_CHECKING
 
 import msrest.serialization
 
+from .. import _serialization
+
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
 else:

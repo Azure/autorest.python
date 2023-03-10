@@ -144,13 +144,16 @@ class AvailabilitySetsOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(tags, (IO, bytes)):
-            _content = tags
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(tags, MutableMapping):
             _json = tags
+            content_type = content_type or "application/json"
+        elif isinstance(tags, (IO, bytes)):
+            _content = tags
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for tags")
 
         request = build_availability_sets_update_request(
             resource_group_name=resource_group_name,

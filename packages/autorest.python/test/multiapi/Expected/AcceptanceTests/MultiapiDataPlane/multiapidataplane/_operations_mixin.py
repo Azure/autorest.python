@@ -14,7 +14,7 @@ from typing import Any, IO, Iterable, Optional, Union
 from azure.core.paging import ItemPaged
 from azure.core.polling import LROPoller
 
-from . import models as _models
+from . import _serialization, models as _models
 
 
 class MultiapiServiceClientOperationsMixin(object):

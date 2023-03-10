@@ -25,7 +25,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .. import models as _models
+from .. import _serialization, models as _models
 from .._vendor import _convert_request
 
 if sys.version_info >= (3, 8):
@@ -268,13 +268,16 @@ class BasicOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(complex_body, (IO, bytes)):
-            _content = complex_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, (_serialization.Model, dict)):
             _json = self._serialize.body(complex_body, "Basic")
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_put_valid_request(
             api_version=api_version,

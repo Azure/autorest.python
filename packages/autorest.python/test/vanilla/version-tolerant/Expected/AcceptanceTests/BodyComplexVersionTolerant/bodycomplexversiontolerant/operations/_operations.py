@@ -1048,13 +1048,16 @@ class BasicOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(complex_body, (IO, bytes)):
-            _content = complex_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, MutableMapping):
             _json = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_basic_put_valid_request(
             content_type=content_type,
@@ -1474,13 +1477,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(complex_body, (IO, bytes)):
-            _content = complex_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, MutableMapping):
             _json = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_primitive_put_int_request(
             content_type=content_type,
@@ -1642,13 +1648,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(complex_body, (IO, bytes)):
-            _content = complex_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, MutableMapping):
             _json = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_primitive_put_long_request(
             content_type=content_type,
@@ -1809,13 +1818,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(complex_body, (IO, bytes)):
-            _content = complex_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, MutableMapping):
             _json = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_primitive_put_float_request(
             content_type=content_type,
@@ -1983,13 +1995,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(complex_body, (IO, bytes)):
-            _content = complex_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, MutableMapping):
             _json = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_primitive_put_double_request(
             content_type=content_type,
@@ -2150,13 +2165,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(complex_body, (IO, bytes)):
-            _content = complex_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, MutableMapping):
             _json = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_primitive_put_bool_request(
             content_type=content_type,
@@ -2321,13 +2339,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(complex_body, (IO, bytes)):
-            _content = complex_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, MutableMapping):
             _json = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_primitive_put_string_request(
             content_type=content_type,
@@ -2489,13 +2510,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(complex_body, (IO, bytes)):
-            _content = complex_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, MutableMapping):
             _json = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_primitive_put_date_request(
             content_type=content_type,
@@ -2659,13 +2683,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(complex_body, (IO, bytes)):
-            _content = complex_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, MutableMapping):
             _json = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_primitive_put_date_time_request(
             content_type=content_type,
@@ -2829,13 +2856,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(complex_body, (IO, bytes)):
-            _content = complex_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, MutableMapping):
             _json = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_primitive_put_date_time_rfc1123_request(
             content_type=content_type,
@@ -2994,13 +3024,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(complex_body, (IO, bytes)):
-            _content = complex_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, MutableMapping):
             _json = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_primitive_put_duration_request(
             content_type=content_type,
@@ -3161,13 +3194,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(complex_body, (IO, bytes)):
-            _content = complex_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, MutableMapping):
             _json = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_primitive_put_byte_request(
             content_type=content_type,
@@ -3352,13 +3388,16 @@ class ArrayOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(complex_body, (IO, bytes)):
-            _content = complex_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, MutableMapping):
             _json = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_array_put_valid_request(
             content_type=content_type,
@@ -3522,13 +3561,16 @@ class ArrayOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(complex_body, (IO, bytes)):
-            _content = complex_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, MutableMapping):
             _json = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_array_put_empty_request(
             content_type=content_type,
@@ -3772,13 +3814,16 @@ class DictionaryOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(complex_body, (IO, bytes)):
-            _content = complex_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, MutableMapping):
             _json = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_dictionary_put_valid_request(
             content_type=content_type,
@@ -3943,13 +3988,16 @@ class DictionaryOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(complex_body, (IO, bytes)):
-            _content = complex_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, MutableMapping):
             _json = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_dictionary_put_empty_request(
             content_type=content_type,
@@ -4278,13 +4326,16 @@ class InheritanceOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(complex_body, (IO, bytes)):
-            _content = complex_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, MutableMapping):
             _json = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_inheritance_put_valid_request(
             content_type=content_type,
@@ -4717,13 +4768,16 @@ class PolymorphismOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(complex_body, (IO, bytes)):
-            _content = complex_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, MutableMapping):
             _json = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_polymorphism_put_valid_request(
             content_type=content_type,
@@ -5160,13 +5214,16 @@ class PolymorphismOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(complex_body, (IO, bytes)):
-            _content = complex_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, MutableMapping):
             _json = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_polymorphism_put_complicated_request(
             content_type=content_type,
@@ -5351,13 +5408,16 @@ class PolymorphismOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(complex_body, (IO, bytes)):
-            _content = complex_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, MutableMapping):
             _json = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_polymorphism_put_missing_discriminator_request(
             content_type=content_type,
@@ -5655,13 +5715,16 @@ class PolymorphismOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(complex_body, (IO, bytes)):
-            _content = complex_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, MutableMapping):
             _json = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_polymorphism_put_valid_missing_required_request(
             content_type=content_type,
@@ -6154,13 +6217,16 @@ class PolymorphicrecursiveOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(complex_body, (IO, bytes)):
-            _content = complex_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, MutableMapping):
             _json = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_polymorphicrecursive_put_valid_request(
             content_type=content_type,
@@ -6339,13 +6405,16 @@ class ReadonlypropertyOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(complex_body, (IO, bytes)):
-            _content = complex_body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, MutableMapping):
             _json = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_readonlyproperty_put_valid_request(
             content_type=content_type,

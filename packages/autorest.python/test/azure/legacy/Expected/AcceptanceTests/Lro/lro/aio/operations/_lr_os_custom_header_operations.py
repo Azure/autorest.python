@@ -25,7 +25,7 @@ from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
-from ... import models as _models
+from ... import _serialization, models as _models
 from ..._vendor import _convert_request
 from ...operations._lr_os_custom_header_operations import (
     build_post202_retry200_request,
@@ -74,16 +74,22 @@ class LROsCustomHeaderOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, (_serialization.Model, dict)):
             if product is not None:
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_put_async_retry_succeeded_request(
             content_type=content_type,
@@ -273,16 +279,22 @@ class LROsCustomHeaderOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, (_serialization.Model, dict)):
             if product is not None:
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_put201_creating_succeeded200_request(
             content_type=content_type,
@@ -461,16 +473,22 @@ class LROsCustomHeaderOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, (_serialization.Model, dict)):
             if product is not None:
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_post202_retry200_request(
             content_type=content_type,
@@ -637,16 +655,22 @@ class LROsCustomHeaderOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(product, (IO, bytes)):
-            _content = product
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, (_serialization.Model, dict)):
             if product is not None:
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for product")
 
         request = build_post_async_retry_succeeded_request(
             content_type=content_type,

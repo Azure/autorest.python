@@ -358,16 +358,22 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(body, (IO, bytes)):
-            _content = body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(body, MutableMapping):
             if body is not None:
                 _json = body
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(body, (IO, bytes)):
+            if body is not None:
+                _content = body
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for body")
 
         request = build_auto_rest_validation_test_validation_of_body_request(
             resource_group_name=resource_group_name,
@@ -657,16 +663,22 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _json = None
-        _content = None
-        if isinstance(body, (IO, bytes)):
-            _content = body
-        else:
+        _json: Any = None
+        _content: Any = None
+        if isinstance(body, MutableMapping):
             if body is not None:
                 _json = body
             else:
                 _json = None
+            content_type = content_type or "application/json"
+        elif isinstance(body, (IO, bytes)):
+            if body is not None:
+                _content = body
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for body")
 
         request = build_auto_rest_validation_test_post_with_constant_in_body_request(
             constant_param=constant_param,
