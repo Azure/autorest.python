@@ -185,7 +185,7 @@ class OperationGroupTwoOperations:
                 _content = None
             if not content_type:
                 raise TypeError(
-                    "Missing required keyword-only argument: content_type. Known values are: 'application/pdf', 'image/png', 'image/tiff', 'image/jpeg', 'application/json'"
+                    "Missing required keyword-only argument: content_type. Known values are: 'application/json', 'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'"
                 )
         else:
             raise TypeError("unrecognized type for input")

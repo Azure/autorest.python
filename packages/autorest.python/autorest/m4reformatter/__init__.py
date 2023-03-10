@@ -499,6 +499,7 @@ class M4Reformatter(
         if not body_types:
             return overloads
         for body_type in body_types:
+            # make sure we need special import for overload check
             if body_type["type"] == "model" and body_type.get("base") == "msrest":
                 body_type["enableImportForOverload"] = True
             overload = self.update_overload(

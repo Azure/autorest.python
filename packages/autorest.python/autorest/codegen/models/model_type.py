@@ -333,7 +333,7 @@ class MsrestModelType(GeneratedModelType):
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
-        if kwargs.pop("enable_render", True) and self.enable_import_for_overload:
+        if kwargs.pop("enable_special_import", True) and self.enable_import_for_overload:
             file_import.define_mutable_mapping_type()
             relative_path = kwargs.pop("relative_path", None)
             if relative_path:
