@@ -8,7 +8,7 @@ from enum import Enum
 from typing import Any, Dict, List, Optional, Union, TYPE_CHECKING
 
 from .base import BaseType
-from .imports import FileImport, ImportType, TypingSection
+from .imports import FileImport, ImportType
 from .utils import add_to_description
 
 if TYPE_CHECKING:
@@ -144,6 +144,7 @@ class BinaryIteratorType(PrimitiveType):
     @property
     def instance_check_template(self) -> str:
         return "isinstance({}, Iterator)"
+
 
 class AnyObjectType(PrimitiveType):
     @property
