@@ -373,9 +373,6 @@ class ModelOperations:
         elif isinstance(body, MutableMapping):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
-        elif isinstance(body, _model_base.Model):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for body")
 

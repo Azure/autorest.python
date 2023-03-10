@@ -615,9 +615,6 @@ class BooleanOperations:
         elif isinstance(body, MutableMapping):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
-        elif isinstance(body, _model_base.Model):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for body")
 
@@ -799,9 +796,6 @@ class StringOperations:
         elif isinstance(body, MutableMapping):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
-        elif isinstance(body, _model_base.Model):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for body")
 
@@ -979,9 +973,6 @@ class BytesOperations:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(body, _model_base.Model):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -1163,9 +1154,6 @@ class IntOperations:
         elif isinstance(body, MutableMapping):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
-        elif isinstance(body, _model_base.Model):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for body")
 
@@ -1343,9 +1331,6 @@ class FloatOperations:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(body, _model_base.Model):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -1529,9 +1514,6 @@ class DatetimeOperations:
         elif isinstance(body, MutableMapping):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
-        elif isinstance(body, _model_base.Model):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for body")
 
@@ -1713,9 +1695,6 @@ class DurationOperations:
         elif isinstance(body, MutableMapping):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
-        elif isinstance(body, _model_base.Model):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for body")
 
@@ -1893,9 +1872,6 @@ class EnumOperations:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(body, _model_base.Model):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -2079,9 +2055,6 @@ class ExtensibleEnumOperations:
         elif isinstance(body, MutableMapping):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
-        elif isinstance(body, _model_base.Model):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for body")
 
@@ -2259,9 +2232,6 @@ class ModelOperations:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(body, _model_base.Model):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -2446,9 +2416,6 @@ class CollectionsStringOperations:
         elif isinstance(body, MutableMapping):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
-        elif isinstance(body, _model_base.Model):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for body")
 
@@ -2628,9 +2595,6 @@ class CollectionsIntOperations:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(body, _model_base.Model):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -2815,9 +2779,6 @@ class CollectionsModelOperations:
         elif isinstance(body, MutableMapping):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
-        elif isinstance(body, _model_base.Model):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for body")
 
@@ -3000,9 +2961,6 @@ class DictionaryStringOperations:
         elif isinstance(body, MutableMapping):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
-        elif isinstance(body, _model_base.Model):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for body")
 
@@ -3180,9 +3138,6 @@ class NeverOperations:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(body, _model_base.Model):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:

@@ -697,7 +697,6 @@ function addOverload(
         };
         combinedTypes.push(originBodyParameter.type);
     }
-    originOverload.bodyParameter.type["enableOverloadCheck"] = false;
     return addedOverload;
 }
 
@@ -705,16 +704,16 @@ function updateOverloads(
     operation: Record<string, any>,
     bodyParameter: Record<string, any>,
     bodyType: Record<string, any>,
+    enableOverloadCheck: boolean = true,
 ): void {
     const overload = addOverload(operation, bodyParameter, bodyType);
     overload.overloads = [];
     overload.isOverload = true;
+    overload.bodyParameter.type["enableOverloadCheck"] = enableOverloadCheck;
     operation.overloads.push(overload);
 }
 
-function contentTypeOptional(
-    parameters: Record<string, any>[],
-): void {
+function contentTypeOptional(parameters: Record<string, any>[]): void {
     for (const p of parameters) {
         if (p.restApiName.toLowerCase() === "content-type") {
             p.optional = true;
@@ -801,8 +800,10 @@ function emitBasicOperation(
         for (const overload of overloads) {
             overload.name = name;
             if (overload.bodyParameter.type.type === "byte-array" && !binaryOverload) {
+                overload.bodyParameter.type["enableOverloadCheck"] = false;
                 binaryOverload = addOverload(overload, bodyParameter, KnownTypes.binary);
             } else if (overload.bodyParameter.type.type === "model" && !modelOverload) {
+                overload.bodyParameter.type["enableOverloadCheck"] = false;
                 modelOverload = addOverload(overload, bodyParameter, KnownTypes.anyObject);
                 if (!binaryOverload) {
                     binaryOverload = addOverload(overload, bodyParameter, KnownTypes.binary);
@@ -840,10 +841,11 @@ function emitBasicOperation(
     // add overload if no native overload
     if (!overload_operations && !isOverload && bodyParameter) {
         if (bodyParameter.type.type === "byte-array") {
+            updateOverloads(basicOperation, bodyParameter, bodyParameter.type, false);
             updateOverloads(basicOperation, bodyParameter, KnownTypes.binary);
             contentTypeOptional(parameters);
         } else if (bodyParameter.type.type === "model") {
-            updateOverloads(basicOperation, bodyParameter, bodyParameter.type);
+            updateOverloads(basicOperation, bodyParameter, bodyParameter.type, false);
             updateOverloads(basicOperation, bodyParameter, KnownTypes.anyObject);
             updateOverloads(basicOperation, bodyParameter, KnownTypes.binary);
             contentTypeOptional(parameters);

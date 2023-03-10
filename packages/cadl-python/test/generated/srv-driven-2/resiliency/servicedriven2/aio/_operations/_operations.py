@@ -340,9 +340,6 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
         elif isinstance(parameter, MutableMapping):
             _content = json.dumps(parameter, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
-        elif isinstance(parameter, _model_base.Model):
-            _content = json.dumps(parameter, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for parameter")
 

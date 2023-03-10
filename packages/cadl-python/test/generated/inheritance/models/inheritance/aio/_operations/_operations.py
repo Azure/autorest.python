@@ -137,9 +137,6 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         elif isinstance(input, MutableMapping):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
-        elif isinstance(input, _model_base.Model):
-            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for input")
 
@@ -297,9 +294,6 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(input, MutableMapping):
-            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(input, _model_base.Model):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -472,9 +466,6 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         elif isinstance(input, MutableMapping):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
-        elif isinstance(input, _model_base.Model):
-            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for input")
 
@@ -640,9 +631,6 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(input, MutableMapping):
-            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(input, _model_base.Model):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:

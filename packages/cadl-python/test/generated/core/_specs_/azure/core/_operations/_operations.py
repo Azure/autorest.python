@@ -341,9 +341,6 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         elif isinstance(resource, MutableMapping):
             _content = json.dumps(resource, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/merge-patch+json"
-        elif isinstance(resource, _model_base.Model):
-            _content = json.dumps(resource, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/merge-patch+json"
         else:
             raise TypeError("unrecognized type for resource")
 
@@ -483,9 +480,6 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
             _content = json.dumps(resource, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(resource, MutableMapping):
-            _content = json.dumps(resource, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
-        elif isinstance(resource, _model_base.Model):
             _content = json.dumps(resource, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
