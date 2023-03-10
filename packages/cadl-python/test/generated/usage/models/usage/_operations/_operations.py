@@ -88,11 +88,13 @@ def build_usage_input_and_output_request(**kwargs: Any) -> HttpRequest:
 
 class UsageClientOperationsMixin(UsageClientMixinABC):
     @overload
-    def input(self, input: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def input(  # pylint: disable=inconsistent-return-statements
+        self, input: _models.InputRecord, **kwargs: Any
+    ) -> None:
         """input.
 
         :param input: Required.
-        :type input: IO
+        :type input: ~models.usage.models.InputRecord
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -119,14 +121,30 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+    @overload
+    def input(self, input: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """input.
+
+        :param input: Required.
+        :type input: IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
     @distributed_trace
     def input(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.InputRecord, IO, JSON], **kwargs: Any
+        self, input: Union[_models.InputRecord, JSON, IO], **kwargs: Any
     ) -> None:
         """input.
 
-        :param input: Is one of the following types: InputRecord, IO, JSON Required.
-        :type input: ~models.usage.models.InputRecord or IO or JSON
+        :param input: Is one of the following types: InputRecord, JSON, IO Required.
+        :type input: ~models.usage.models.InputRecord or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -155,6 +173,9 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(input, MutableMapping):
+            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(input, _model_base.Model):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -233,11 +254,11 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         return deserialized  # type: ignore
 
     @overload
-    def input_and_output(self, body: IO, **kwargs: Any) -> _models.InputOutputRecord:
+    def input_and_output(self, body: _models.InputOutputRecord, **kwargs: Any) -> _models.InputOutputRecord:
         """input_and_output.
 
         :param body: Required.
-        :type body: IO
+        :type body: ~models.usage.models.InputOutputRecord
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -264,14 +285,30 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+    @overload
+    def input_and_output(self, body: IO, **kwargs: Any) -> _models.InputOutputRecord:
+        """input_and_output.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: InputOutputRecord. The InputOutputRecord is compatible with MutableMapping
+        :rtype: ~models.usage.models.InputOutputRecord
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
     @distributed_trace
     def input_and_output(
-        self, body: Union[_models.InputOutputRecord, IO, JSON], **kwargs: Any
+        self, body: Union[_models.InputOutputRecord, JSON, IO], **kwargs: Any
     ) -> _models.InputOutputRecord:
         """input_and_output.
 
-        :param body: Is one of the following types: InputOutputRecord, IO, JSON Required.
-        :type body: ~models.usage.models.InputOutputRecord or IO or JSON
+        :param body: Is one of the following types: InputOutputRecord, JSON, IO Required.
+        :type body: ~models.usage.models.InputOutputRecord or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -300,6 +337,9 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(body, _model_base.Model):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:

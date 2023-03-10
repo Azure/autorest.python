@@ -693,7 +693,7 @@ function addOverload(
     } else {
         originBodyParameter.type = {
             type: "combined",
-            types: [originBodyParameter.type, bodyType],
+            types: [bodyType],
         };
         combinedTypes.push(originBodyParameter.type);
     }
@@ -843,8 +843,9 @@ function emitBasicOperation(
             updateOverloads(basicOperation, bodyParameter, KnownTypes.binary);
             contentTypeOptional(parameters);
         } else if (bodyParameter.type.type === "model") {
-            updateOverloads(basicOperation, bodyParameter, KnownTypes.binary);
+            updateOverloads(basicOperation, bodyParameter, bodyParameter.type);
             updateOverloads(basicOperation, bodyParameter, KnownTypes.anyObject);
+            updateOverloads(basicOperation, bodyParameter, KnownTypes.binary);
             contentTypeOptional(parameters);
         }
     }

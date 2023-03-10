@@ -172,11 +172,13 @@ def build_inheritance_get_wrong_discriminator_request(**kwargs: Any) -> HttpRequ
 
 class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
     @overload
-    def post_valid(self, input: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def post_valid(  # pylint: disable=inconsistent-return-statements
+        self, input: _models.Siamese, **kwargs: Any
+    ) -> None:
         """post_valid.
 
         :param input: Required.
-        :type input: IO
+        :type input: ~models.inheritance.models.Siamese
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -203,14 +205,30 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+    @overload
+    def post_valid(self, input: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """post_valid.
+
+        :param input: Required.
+        :type input: IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
     @distributed_trace
     def post_valid(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.Siamese, IO, JSON], **kwargs: Any
+        self, input: Union[_models.Siamese, JSON, IO], **kwargs: Any
     ) -> None:
         """post_valid.
 
-        :param input: Is one of the following types: Siamese, IO, JSON Required.
-        :type input: ~models.inheritance.models.Siamese or IO or JSON
+        :param input: Is one of the following types: Siamese, JSON, IO Required.
+        :type input: ~models.inheritance.models.Siamese or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -239,6 +257,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(input, MutableMapping):
+            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(input, _model_base.Model):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -317,11 +338,11 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         return deserialized  # type: ignore
 
     @overload
-    def put_valid(self, input: IO, **kwargs: Any) -> _models.Siamese:
+    def put_valid(self, input: _models.Siamese, **kwargs: Any) -> _models.Siamese:
         """put_valid.
 
         :param input: Required.
-        :type input: IO
+        :type input: ~models.inheritance.models.Siamese
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -348,12 +369,28 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-    @distributed_trace
-    def put_valid(self, input: Union[_models.Siamese, IO, JSON], **kwargs: Any) -> _models.Siamese:
+    @overload
+    def put_valid(self, input: IO, **kwargs: Any) -> _models.Siamese:
         """put_valid.
 
-        :param input: Is one of the following types: Siamese, IO, JSON Required.
-        :type input: ~models.inheritance.models.Siamese or IO or JSON
+        :param input: Required.
+        :type input: IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: Siamese. The Siamese is compatible with MutableMapping
+        :rtype: ~models.inheritance.models.Siamese
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace
+    def put_valid(self, input: Union[_models.Siamese, JSON, IO], **kwargs: Any) -> _models.Siamese:
+        """put_valid.
+
+        :param input: Is one of the following types: Siamese, JSON, IO Required.
+        :type input: ~models.inheritance.models.Siamese or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -382,6 +419,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(input, MutableMapping):
+            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(input, _model_base.Model):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -467,11 +507,11 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         return deserialized  # type: ignore
 
     @overload
-    def put_model(self, input: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def put_model(self, input: _models.Fish, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """put_model.
 
         :param input: Required.
-        :type input: IO
+        :type input: ~models.inheritance.models.Fish
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -498,14 +538,30 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+    @overload
+    def put_model(self, input: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """put_model.
+
+        :param input: Required.
+        :type input: IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
     @distributed_trace
     def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.Fish, IO, JSON], **kwargs: Any
+        self, input: Union[_models.Fish, JSON, IO], **kwargs: Any
     ) -> None:
         """put_model.
 
-        :param input: Is one of the following types: Fish, IO, JSON Required.
-        :type input: ~models.inheritance.models.Fish or IO or JSON
+        :param input: Is one of the following types: Fish, JSON, IO Required.
+        :type input: ~models.inheritance.models.Fish or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -534,6 +590,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(input, MutableMapping):
+            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(input, _model_base.Model):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -612,11 +671,13 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         return deserialized  # type: ignore
 
     @overload
-    def put_recursive_model(self, input: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def put_recursive_model(  # pylint: disable=inconsistent-return-statements
+        self, input: _models.Fish, **kwargs: Any
+    ) -> None:
         """put_recursive_model.
 
         :param input: Required.
-        :type input: IO
+        :type input: ~models.inheritance.models.Fish
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -643,14 +704,30 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+    @overload
+    def put_recursive_model(self, input: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """put_recursive_model.
+
+        :param input: Required.
+        :type input: IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
     @distributed_trace
     def put_recursive_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.Fish, IO, JSON], **kwargs: Any
+        self, input: Union[_models.Fish, JSON, IO], **kwargs: Any
     ) -> None:
         """put_recursive_model.
 
-        :param input: Is one of the following types: Fish, IO, JSON Required.
-        :type input: ~models.inheritance.models.Fish or IO or JSON
+        :param input: Is one of the following types: Fish, JSON, IO Required.
+        :type input: ~models.inheritance.models.Fish or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -679,6 +756,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(input, MutableMapping):
+            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(input, _model_base.Model):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:

@@ -234,7 +234,7 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
 
     @overload
     async def post_parameters(
-        self, content_type_path: Union[str, _models.ContentTypePathType], parameter: IO, **kwargs: Any
+        self, content_type_path: Union[str, _models.ContentTypePathType], parameter: _models.PostInput, **kwargs: Any
     ) -> _models.Message:
         """POST a JSON or a JPEG.
 
@@ -242,7 +242,7 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
         :type content_type_path: str or ~resiliency.servicedriven2.models.ContentTypePathType
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
          "http://example.org/myimage.jpeg" }. Required.
-        :type parameter: IO
+        :type parameter: ~resiliency.servicedriven2.models.PostInput
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -274,11 +274,32 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+    @overload
+    async def post_parameters(
+        self, content_type_path: Union[str, _models.ContentTypePathType], parameter: IO, **kwargs: Any
+    ) -> _models.Message:
+        """POST a JSON or a JPEG.
+
+        :param content_type_path: Known values are: "json" and "jpeg". Required.
+        :type content_type_path: str or ~resiliency.servicedriven2.models.ContentTypePathType
+        :param parameter: I am a body parameter. My only valid JSON entry is { url:
+         "http://example.org/myimage.jpeg" }. Required.
+        :type parameter: IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: Message. The Message is compatible with MutableMapping
+        :rtype: ~resiliency.servicedriven2.models.Message
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
     @distributed_trace_async
     async def post_parameters(
         self,
         content_type_path: Union[str, _models.ContentTypePathType],
-        parameter: Union[_models.PostInput, IO, JSON],
+        parameter: Union[_models.PostInput, JSON, IO],
         **kwargs: Any
     ) -> _models.Message:
         """POST a JSON or a JPEG.
@@ -286,9 +307,9 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
         :param content_type_path: Known values are: "json" and "jpeg". Required.
         :type content_type_path: str or ~resiliency.servicedriven2.models.ContentTypePathType
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
-         "http://example.org/myimage.jpeg" }. Is one of the following types: PostInput, IO, JSON
+         "http://example.org/myimage.jpeg" }. Is one of the following types: PostInput, JSON, IO
          Required.
-        :type parameter: ~resiliency.servicedriven2.models.PostInput or IO or JSON
+        :type parameter: ~resiliency.servicedriven2.models.PostInput or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -317,6 +338,9 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
             _content = json.dumps(parameter, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(parameter, MutableMapping):
+            _content = json.dumps(parameter, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(parameter, _model_base.Model):
             _content = json.dumps(parameter, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:

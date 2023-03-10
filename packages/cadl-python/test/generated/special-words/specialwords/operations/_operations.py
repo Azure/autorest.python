@@ -340,11 +340,11 @@ class ModelOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def put(self, body: _models.BaseModel, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: ~specialwords.models.BaseModel
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -371,14 +371,30 @@ class ModelOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+    @overload
+    def put(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """put.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BaseModel, IO, JSON], **kwargs: Any
+        self, body: Union[_models.BaseModel, JSON, IO], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is one of the following types: BaseModel, IO, JSON Required.
-        :type body: ~specialwords.models.BaseModel or IO or JSON
+        :param body: Is one of the following types: BaseModel, JSON, IO Required.
+        :type body: ~specialwords.models.BaseModel or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -407,6 +423,9 @@ class ModelOperations:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(body, _model_base.Model):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:

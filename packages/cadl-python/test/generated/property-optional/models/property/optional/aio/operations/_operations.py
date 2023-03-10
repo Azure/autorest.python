@@ -184,11 +184,13 @@ class StringOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put_all(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.StringProperty, **kwargs: Any
+    ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: ~models.property.optional.models.StringProperty
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -215,14 +217,30 @@ class StringOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+    @overload
+    async def put_all(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """Put a body with all properties present.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
     @distributed_trace_async
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringProperty, IO, JSON], **kwargs: Any
+        self, body: Union[_models.StringProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: StringProperty, IO, JSON Required.
-        :type body: ~models.property.optional.models.StringProperty or IO or JSON
+        :param body: Is one of the following types: StringProperty, JSON, IO Required.
+        :type body: ~models.property.optional.models.StringProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -251,6 +269,9 @@ class StringOperations:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(body, _model_base.Model):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -279,11 +300,13 @@ class StringOperations:
             return cls(pipeline_response, None, {})
 
     @overload
-    async def put_default(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put_default(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.StringProperty, **kwargs: Any
+    ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: ~models.property.optional.models.StringProperty
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -310,14 +333,30 @@ class StringOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+    @overload
+    async def put_default(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """Put a body with default properties.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
     @distributed_trace_async
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringProperty, IO, JSON], **kwargs: Any
+        self, body: Union[_models.StringProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: StringProperty, IO, JSON Required.
-        :type body: ~models.property.optional.models.StringProperty or IO or JSON
+        :param body: Is one of the following types: StringProperty, JSON, IO Required.
+        :type body: ~models.property.optional.models.StringProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -346,6 +385,9 @@ class StringOperations:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(body, _model_base.Model):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -492,11 +534,13 @@ class BytesOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put_all(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.BytesProperty, **kwargs: Any
+    ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: ~models.property.optional.models.BytesProperty
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -523,14 +567,30 @@ class BytesOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+    @overload
+    async def put_all(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """Put a body with all properties present.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
     @distributed_trace_async
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BytesProperty, IO, JSON], **kwargs: Any
+        self, body: Union[_models.BytesProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: BytesProperty, IO, JSON Required.
-        :type body: ~models.property.optional.models.BytesProperty or IO or JSON
+        :param body: Is one of the following types: BytesProperty, JSON, IO Required.
+        :type body: ~models.property.optional.models.BytesProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -559,6 +619,9 @@ class BytesOperations:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(body, _model_base.Model):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -587,11 +650,13 @@ class BytesOperations:
             return cls(pipeline_response, None, {})
 
     @overload
-    async def put_default(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put_default(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.BytesProperty, **kwargs: Any
+    ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: ~models.property.optional.models.BytesProperty
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -618,14 +683,30 @@ class BytesOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+    @overload
+    async def put_default(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """Put a body with default properties.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
     @distributed_trace_async
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BytesProperty, IO, JSON], **kwargs: Any
+        self, body: Union[_models.BytesProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: BytesProperty, IO, JSON Required.
-        :type body: ~models.property.optional.models.BytesProperty or IO or JSON
+        :param body: Is one of the following types: BytesProperty, JSON, IO Required.
+        :type body: ~models.property.optional.models.BytesProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -654,6 +735,9 @@ class BytesOperations:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(body, _model_base.Model):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -800,11 +884,13 @@ class DatetimeOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put_all(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.DatetimeProperty, **kwargs: Any
+    ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: ~models.property.optional.models.DatetimeProperty
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -831,14 +917,30 @@ class DatetimeOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+    @overload
+    async def put_all(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """Put a body with all properties present.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
     @distributed_trace_async
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DatetimeProperty, IO, JSON], **kwargs: Any
+        self, body: Union[_models.DatetimeProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: DatetimeProperty, IO, JSON Required.
-        :type body: ~models.property.optional.models.DatetimeProperty or IO or JSON
+        :param body: Is one of the following types: DatetimeProperty, JSON, IO Required.
+        :type body: ~models.property.optional.models.DatetimeProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -867,6 +969,9 @@ class DatetimeOperations:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(body, _model_base.Model):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -895,11 +1000,13 @@ class DatetimeOperations:
             return cls(pipeline_response, None, {})
 
     @overload
-    async def put_default(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put_default(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.DatetimeProperty, **kwargs: Any
+    ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: ~models.property.optional.models.DatetimeProperty
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -926,14 +1033,30 @@ class DatetimeOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+    @overload
+    async def put_default(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """Put a body with default properties.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
     @distributed_trace_async
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DatetimeProperty, IO, JSON], **kwargs: Any
+        self, body: Union[_models.DatetimeProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: DatetimeProperty, IO, JSON Required.
-        :type body: ~models.property.optional.models.DatetimeProperty or IO or JSON
+        :param body: Is one of the following types: DatetimeProperty, JSON, IO Required.
+        :type body: ~models.property.optional.models.DatetimeProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -962,6 +1085,9 @@ class DatetimeOperations:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(body, _model_base.Model):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -1108,11 +1234,13 @@ class DurationOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put_all(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.DurationProperty, **kwargs: Any
+    ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: ~models.property.optional.models.DurationProperty
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -1139,14 +1267,30 @@ class DurationOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+    @overload
+    async def put_all(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """Put a body with all properties present.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
     @distributed_trace_async
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DurationProperty, IO, JSON], **kwargs: Any
+        self, body: Union[_models.DurationProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: DurationProperty, IO, JSON Required.
-        :type body: ~models.property.optional.models.DurationProperty or IO or JSON
+        :param body: Is one of the following types: DurationProperty, JSON, IO Required.
+        :type body: ~models.property.optional.models.DurationProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -1175,6 +1319,9 @@ class DurationOperations:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(body, _model_base.Model):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -1203,11 +1350,13 @@ class DurationOperations:
             return cls(pipeline_response, None, {})
 
     @overload
-    async def put_default(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put_default(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.DurationProperty, **kwargs: Any
+    ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: ~models.property.optional.models.DurationProperty
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -1234,14 +1383,30 @@ class DurationOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+    @overload
+    async def put_default(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """Put a body with default properties.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
     @distributed_trace_async
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DurationProperty, IO, JSON], **kwargs: Any
+        self, body: Union[_models.DurationProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: DurationProperty, IO, JSON Required.
-        :type body: ~models.property.optional.models.DurationProperty or IO or JSON
+        :param body: Is one of the following types: DurationProperty, JSON, IO Required.
+        :type body: ~models.property.optional.models.DurationProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -1270,6 +1435,9 @@ class DurationOperations:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(body, _model_base.Model):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -1416,11 +1584,13 @@ class CollectionsByteOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put_all(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.CollectionsByteProperty, **kwargs: Any
+    ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: ~models.property.optional.models.CollectionsByteProperty
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -1447,14 +1617,30 @@ class CollectionsByteOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+    @overload
+    async def put_all(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """Put a body with all properties present.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
     @distributed_trace_async
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsByteProperty, IO, JSON], **kwargs: Any
+        self, body: Union[_models.CollectionsByteProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: CollectionsByteProperty, IO, JSON Required.
-        :type body: ~models.property.optional.models.CollectionsByteProperty or IO or JSON
+        :param body: Is one of the following types: CollectionsByteProperty, JSON, IO Required.
+        :type body: ~models.property.optional.models.CollectionsByteProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -1483,6 +1669,9 @@ class CollectionsByteOperations:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(body, _model_base.Model):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -1511,11 +1700,13 @@ class CollectionsByteOperations:
             return cls(pipeline_response, None, {})
 
     @overload
-    async def put_default(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put_default(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.CollectionsByteProperty, **kwargs: Any
+    ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: ~models.property.optional.models.CollectionsByteProperty
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -1542,14 +1733,30 @@ class CollectionsByteOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+    @overload
+    async def put_default(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """Put a body with default properties.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
     @distributed_trace_async
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsByteProperty, IO, JSON], **kwargs: Any
+        self, body: Union[_models.CollectionsByteProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: CollectionsByteProperty, IO, JSON Required.
-        :type body: ~models.property.optional.models.CollectionsByteProperty or IO or JSON
+        :param body: Is one of the following types: CollectionsByteProperty, JSON, IO Required.
+        :type body: ~models.property.optional.models.CollectionsByteProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -1578,6 +1785,9 @@ class CollectionsByteOperations:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(body, _model_base.Model):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -1726,11 +1936,13 @@ class CollectionsModelOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put_all(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.CollectionsModelProperty, **kwargs: Any
+    ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: ~models.property.optional.models.CollectionsModelProperty
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -1757,14 +1969,30 @@ class CollectionsModelOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+    @overload
+    async def put_all(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """Put a body with all properties present.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
     @distributed_trace_async
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsModelProperty, IO, JSON], **kwargs: Any
+        self, body: Union[_models.CollectionsModelProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: CollectionsModelProperty, IO, JSON Required.
-        :type body: ~models.property.optional.models.CollectionsModelProperty or IO or JSON
+        :param body: Is one of the following types: CollectionsModelProperty, JSON, IO Required.
+        :type body: ~models.property.optional.models.CollectionsModelProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -1793,6 +2021,9 @@ class CollectionsModelOperations:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(body, _model_base.Model):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -1821,11 +2052,13 @@ class CollectionsModelOperations:
             return cls(pipeline_response, None, {})
 
     @overload
-    async def put_default(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put_default(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.CollectionsModelProperty, **kwargs: Any
+    ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: ~models.property.optional.models.CollectionsModelProperty
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -1852,14 +2085,30 @@ class CollectionsModelOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+    @overload
+    async def put_default(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """Put a body with default properties.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
     @distributed_trace_async
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsModelProperty, IO, JSON], **kwargs: Any
+        self, body: Union[_models.CollectionsModelProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: CollectionsModelProperty, IO, JSON Required.
-        :type body: ~models.property.optional.models.CollectionsModelProperty or IO or JSON
+        :param body: Is one of the following types: CollectionsModelProperty, JSON, IO Required.
+        :type body: ~models.property.optional.models.CollectionsModelProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -1888,6 +2137,9 @@ class CollectionsModelOperations:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(body, _model_base.Model):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -2036,11 +2288,13 @@ class RequiredAndOptionalOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put_all(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.RequiredAndOptionalProperty, **kwargs: Any
+    ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: IO
+        :type body: ~models.property.optional.models.RequiredAndOptionalProperty
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -2067,14 +2321,30 @@ class RequiredAndOptionalOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+    @overload
+    async def put_all(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """Put a body with all properties present.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
     @distributed_trace_async
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.RequiredAndOptionalProperty, IO, JSON], **kwargs: Any
+        self, body: Union[_models.RequiredAndOptionalProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: RequiredAndOptionalProperty, IO, JSON Required.
-        :type body: ~models.property.optional.models.RequiredAndOptionalProperty or IO or JSON
+        :param body: Is one of the following types: RequiredAndOptionalProperty, JSON, IO Required.
+        :type body: ~models.property.optional.models.RequiredAndOptionalProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -2103,6 +2373,9 @@ class RequiredAndOptionalOperations:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(body, _model_base.Model):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -2132,12 +2405,12 @@ class RequiredAndOptionalOperations:
 
     @overload
     async def put_required_only(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, **kwargs: Any
+        self, body: _models.RequiredAndOptionalProperty, **kwargs: Any
     ) -> None:
         """Put a body with only required properties.
 
         :param body: Required.
-        :type body: IO
+        :type body: ~models.property.optional.models.RequiredAndOptionalProperty
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -2166,14 +2439,32 @@ class RequiredAndOptionalOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-    @distributed_trace_async
+    @overload
     async def put_required_only(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.RequiredAndOptionalProperty, IO, JSON], **kwargs: Any
+        self, body: IO, **kwargs: Any
     ) -> None:
         """Put a body with only required properties.
 
-        :param body: Is one of the following types: RequiredAndOptionalProperty, IO, JSON Required.
-        :type body: ~models.property.optional.models.RequiredAndOptionalProperty or IO or JSON
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def put_required_only(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.RequiredAndOptionalProperty, JSON, IO], **kwargs: Any
+    ) -> None:
+        """Put a body with only required properties.
+
+        :param body: Is one of the following types: RequiredAndOptionalProperty, JSON, IO Required.
+        :type body: ~models.property.optional.models.RequiredAndOptionalProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -2202,6 +2493,9 @@ class RequiredAndOptionalOperations:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(body, _model_base.Model):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:

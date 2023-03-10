@@ -103,7 +103,7 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         return deserialized  # type: ignore
 
     @overload
-    async def post_model(self, mode: Union[str, _models.Mode], input: IO, **kwargs: Any) -> _models.Product:
+    async def post_model(self, mode: Union[str, _models.Mode], input: _models.Input, **kwargs: Any) -> _models.Product:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
 
@@ -112,7 +112,7 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
          before returning to users. Known values are: "raw" and "model". Required.
         :type mode: str or ~resiliency.devdriven.models.Mode
         :param input: Please put {'hello': 'world!'}. Required.
-        :type input: IO
+        :type input: ~resiliency.devdriven.models.Input
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -144,9 +144,30 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+    @overload
+    async def post_model(self, mode: Union[str, _models.Mode], input: IO, **kwargs: Any) -> _models.Product:
+        """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
+        take a model instead, and put in 'model' as mode.
+
+        :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
+         with the raw body, and 'model' if you are going to convert the raw body to a customized body
+         before returning to users. Known values are: "raw" and "model". Required.
+        :type mode: str or ~resiliency.devdriven.models.Mode
+        :param input: Please put {'hello': 'world!'}. Required.
+        :type input: IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: Product. The Product is compatible with MutableMapping
+        :rtype: ~resiliency.devdriven.models.Product
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
     @distributed_trace_async
     async def post_model(
-        self, mode: Union[str, _models.Mode], input: Union[_models.Input, IO, JSON], **kwargs: Any
+        self, mode: Union[str, _models.Mode], input: Union[_models.Input, JSON, IO], **kwargs: Any
     ) -> _models.Product:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
@@ -155,9 +176,9 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
          before returning to users. Known values are: "raw" and "model". Required.
         :type mode: str or ~resiliency.devdriven.models.Mode
-        :param input: Please put {'hello': 'world!'}. Is one of the following types: Input, IO, JSON
+        :param input: Please put {'hello': 'world!'}. Is one of the following types: Input, JSON, IO
          Required.
-        :type input: ~resiliency.devdriven.models.Input or IO or JSON
+        :type input: ~resiliency.devdriven.models.Input or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -186,6 +207,9 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(input, MutableMapping):
+            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(input, _model_base.Model):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:

@@ -44,11 +44,13 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
     @overload
-    async def json_projection(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def json_projection(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.Project, **kwargs: Any
+    ) -> None:
         """json_projection.
 
         :param body: Required.
-        :type body: IO
+        :type body: ~projectedname.models.Project
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -77,14 +79,30 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
+    @overload
+    async def json_projection(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """json_projection.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
     @distributed_trace_async
     async def json_projection(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.Project, IO, JSON], **kwargs: Any
+        self, body: Union[_models.Project, JSON, IO], **kwargs: Any
     ) -> None:
         """json_projection.
 
-        :param body: Is one of the following types: Project, IO, JSON Required.
-        :type body: ~projectedname.models.Project or IO or JSON
+        :param body: Is one of the following types: Project, JSON, IO Required.
+        :type body: ~projectedname.models.Project or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -113,6 +131,9 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(body, _model_base.Model):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -142,12 +163,12 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
 
     @overload
     async def client_projection(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, **kwargs: Any
+        self, body: _models.Project, **kwargs: Any
     ) -> None:
         """client_projection.
 
         :param body: Required.
-        :type body: IO
+        :type body: ~projectedname.models.Project
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -176,14 +197,32 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-    @distributed_trace_async
+    @overload
     async def client_projection(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.Project, IO, JSON], **kwargs: Any
+        self, body: IO, **kwargs: Any
     ) -> None:
         """client_projection.
 
-        :param body: Is one of the following types: Project, IO, JSON Required.
-        :type body: ~projectedname.models.Project or IO or JSON
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def client_projection(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.Project, JSON, IO], **kwargs: Any
+    ) -> None:
+        """client_projection.
+
+        :param body: Is one of the following types: Project, JSON, IO Required.
+        :type body: ~projectedname.models.Project or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -212,6 +251,9 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(body, _model_base.Model):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
@@ -241,12 +283,12 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
 
     @overload
     async def language_projection(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, **kwargs: Any
+        self, body: _models.Project, **kwargs: Any
     ) -> None:
         """language_projection.
 
         :param body: Required.
-        :type body: IO
+        :type body: ~projectedname.models.Project
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -275,14 +317,32 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-    @distributed_trace_async
+    @overload
     async def language_projection(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.Project, IO, JSON], **kwargs: Any
+        self, body: IO, **kwargs: Any
     ) -> None:
         """language_projection.
 
-        :param body: Is one of the following types: Project, IO, JSON Required.
-        :type body: ~projectedname.models.Project or IO or JSON
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def language_projection(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.Project, JSON, IO], **kwargs: Any
+    ) -> None:
+        """language_projection.
+
+        :param body: Is one of the following types: Project, JSON, IO Required.
+        :type body: ~projectedname.models.Project or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
@@ -311,6 +371,9 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(body, _model_base.Model):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
