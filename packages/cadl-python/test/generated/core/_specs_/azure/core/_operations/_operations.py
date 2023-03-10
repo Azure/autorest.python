@@ -297,12 +297,18 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.User] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/merge-patch+json"
-        _content = None
-        if isinstance(resource, (IO, bytes)):
-            _content = resource
-        else:
+        _content: Any = None
+        if isinstance(resource, _model_base.Model):
             _content = json.dumps(resource, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/merge-patch+json"
+        elif isinstance(resource, MutableMapping):
+            _content = json.dumps(resource, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/merge-patch+json"
+        elif isinstance(resource, (IO, bytes)):
+            _content = json.dumps(resource, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/merge-patch+json"
+        else:
+            raise TypeError("unrecognized type for resource")
 
         request = build_core_create_or_update_request(
             id=id,
@@ -441,12 +447,18 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.User] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _content = None
-        if isinstance(resource, (IO, bytes)):
-            _content = resource
-        else:
+        _content: Any = None
+        if isinstance(resource, _model_base.Model):
             _content = json.dumps(resource, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(resource, MutableMapping):
+            _content = json.dumps(resource, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(resource, (IO, bytes)):
+            _content = json.dumps(resource, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for resource")
 
         request = build_core_create_or_replace_request(
             id=id,

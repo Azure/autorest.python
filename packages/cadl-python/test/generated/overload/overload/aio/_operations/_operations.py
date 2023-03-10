@@ -126,11 +126,11 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
 
         _content: Any = None
         if isinstance(data, (IO, bytes)):
+            _content = data
             content_type = content_type or "application/octet-stream"
-            _content = data
         elif isinstance(data, str):
-            content_type = content_type or "text/plain"
             _content = data
+            content_type = content_type or "text/plain"
         else:
             raise TypeError("unrecognized type for data")
 
@@ -257,14 +257,14 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
 
         _content: Any = None
         if isinstance(data, (IO, bytes)):
-            content_type = content_type or "application/json"
             _content = data
+            content_type = content_type or "application/json"
         elif isinstance(data, str):
-            content_type = content_type or "text/plain"
             _content = data
+            content_type = content_type or "text/plain"
         elif isinstance(data, MutableMapping):
-            content_type = content_type or "application/json"
             _content = json.dumps(data, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for data")
 

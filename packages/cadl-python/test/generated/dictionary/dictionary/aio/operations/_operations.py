@@ -8,6 +8,7 @@
 # --------------------------------------------------------------------------
 import datetime
 import json
+import sys
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
@@ -49,8 +50,13 @@ from ...operations._operations import (
     build_unknown_value_put_request,
 )
 
+if sys.version_info >= (3, 9):
+    from collections.abc import MutableMapping
+else:
+    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 
 class Int32ValueOperations:
@@ -187,12 +193,15 @@ class Int32ValueOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _content = None
-        if isinstance(body, (IO, bytes)):
-            _content = body
-        else:
+        _content: Any = None
+        if isinstance(body, dict):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(body, (IO, bytes)):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for body")
 
         request = build_int32_value_put_request(
             content_type=content_type,
@@ -351,12 +360,15 @@ class Int64ValueOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _content = None
-        if isinstance(body, (IO, bytes)):
-            _content = body
-        else:
+        _content: Any = None
+        if isinstance(body, dict):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(body, (IO, bytes)):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for body")
 
         request = build_int64_value_put_request(
             content_type=content_type,
@@ -515,12 +527,15 @@ class BooleanValueOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _content = None
-        if isinstance(body, (IO, bytes)):
-            _content = body
-        else:
+        _content: Any = None
+        if isinstance(body, dict):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(body, (IO, bytes)):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for body")
 
         request = build_boolean_value_put_request(
             content_type=content_type,
@@ -679,12 +694,15 @@ class StringValueOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _content = None
-        if isinstance(body, (IO, bytes)):
-            _content = body
-        else:
+        _content: Any = None
+        if isinstance(body, dict):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(body, (IO, bytes)):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for body")
 
         request = build_string_value_put_request(
             content_type=content_type,
@@ -843,12 +861,15 @@ class Float32ValueOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _content = None
-        if isinstance(body, (IO, bytes)):
-            _content = body
-        else:
+        _content: Any = None
+        if isinstance(body, dict):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(body, (IO, bytes)):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for body")
 
         request = build_float32_value_put_request(
             content_type=content_type,
@@ -1007,12 +1028,15 @@ class DatetimeValueOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _content = None
-        if isinstance(body, (IO, bytes)):
-            _content = body
-        else:
+        _content: Any = None
+        if isinstance(body, dict):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(body, (IO, bytes)):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for body")
 
         request = build_datetime_value_put_request(
             content_type=content_type,
@@ -1171,12 +1195,15 @@ class DurationValueOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _content = None
-        if isinstance(body, (IO, bytes)):
-            _content = body
-        else:
+        _content: Any = None
+        if isinstance(body, dict):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(body, (IO, bytes)):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for body")
 
         request = build_duration_value_put_request(
             content_type=content_type,
@@ -1219,13 +1246,13 @@ class UnknownValueOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get(self, **kwargs: Any) -> Dict[str, Any]:
+    async def get(self, **kwargs: Any) -> Dict[str, JSON]:
         """get.
 
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: dict mapping str to any
-        :rtype: dict[str, any]
+        :return: dict mapping str to JSON
+        :rtype: dict[str, JSON]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -1239,7 +1266,7 @@ class UnknownValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Dict[str, Any]] = kwargs.pop("cls", None)
+        cls: ClsType[Dict[str, JSON]] = kwargs.pop("cls", None)
 
         request = build_unknown_value_get_request(
             headers=_headers,
@@ -1261,7 +1288,7 @@ class UnknownValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, Any], response.json())
+            deserialized = _deserialize(Dict[str, JSON], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1270,12 +1297,12 @@ class UnknownValueOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Dict[str, Any], *, content_type: str = "application/json", **kwargs: Any
+        self, body: Dict[str, JSON], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: dict[str, any]
+        :type body: dict[str, JSON]
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1306,12 +1333,12 @@ class UnknownValueOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, Any], IO], **kwargs: Any
+        self, body: Union[Dict[str, JSON], IO], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: Any} type or a IO type. Required.
-        :type body: dict[str, any] or IO
+        :param body: Is either a {str: JSON} type or a IO type. Required.
+        :type body: dict[str, JSON] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1335,12 +1362,15 @@ class UnknownValueOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _content = None
-        if isinstance(body, (IO, bytes)):
-            _content = body
-        else:
+        _content: Any = None
+        if isinstance(body, dict):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(body, (IO, bytes)):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for body")
 
         request = build_unknown_value_put_request(
             content_type=content_type,
@@ -1499,12 +1529,15 @@ class ModelValueOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _content = None
-        if isinstance(body, (IO, bytes)):
-            _content = body
-        else:
+        _content: Any = None
+        if isinstance(body, dict):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(body, (IO, bytes)):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for body")
 
         request = build_model_value_put_request(
             content_type=content_type,
@@ -1663,12 +1696,15 @@ class RecursiveModelValueOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _content = None
-        if isinstance(body, (IO, bytes)):
-            _content = body
-        else:
+        _content: Any = None
+        if isinstance(body, dict):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(body, (IO, bytes)):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for body")
 
         request = build_recursive_model_value_put_request(
             content_type=content_type,

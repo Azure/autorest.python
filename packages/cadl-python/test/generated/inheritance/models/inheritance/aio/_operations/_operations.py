@@ -134,12 +134,18 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _content = None
-        if isinstance(input, (IO, bytes)):
-            _content = input
-        else:
+        _content: Any = None
+        if isinstance(input, _model_base.Model):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(input, MutableMapping):
+            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(input, (IO, bytes)):
+            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for input")
 
         request = build_inheritance_post_valid_request(
             content_type=content_type,
@@ -292,12 +298,18 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Siamese] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _content = None
-        if isinstance(input, (IO, bytes)):
-            _content = input
-        else:
+        _content: Any = None
+        if isinstance(input, _model_base.Model):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(input, MutableMapping):
+            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(input, (IO, bytes)):
+            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for input")
 
         request = build_inheritance_put_valid_request(
             content_type=content_type,
@@ -463,12 +475,18 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _content = None
-        if isinstance(input, (IO, bytes)):
-            _content = input
-        else:
+        _content: Any = None
+        if isinstance(input, _model_base.Model):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(input, MutableMapping):
+            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(input, (IO, bytes)):
+            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for input")
 
         request = build_inheritance_put_model_request(
             content_type=content_type,
@@ -627,12 +645,18 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _content = None
-        if isinstance(input, (IO, bytes)):
-            _content = input
-        else:
+        _content: Any = None
+        if isinstance(input, _model_base.Model):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(input, MutableMapping):
+            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        elif isinstance(input, (IO, bytes)):
+            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for input")
 
         request = build_inheritance_put_recursive_model_request(
             content_type=content_type,
