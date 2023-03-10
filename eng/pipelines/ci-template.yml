@@ -1,6 +1,6 @@
 parameters:
     installAutorest: false
-    installCadl: false
+    installTypeSpec: false
     installCadlRanch: false
     folderName: ""
     pythonCodeChecks: false
@@ -30,9 +30,9 @@ steps:
       displayName: Install autorest
       condition: and(succeeded(), ${{ parameters.installAutorest }})
 
-    - script: npm install -g @cadl-lang/compiler
-      displayName: Install Cadl
-      condition: and(succeeded(), ${{ parameters.installCadl }})
+    - script: npm install -g @typespec/compiler
+      displayName: Install TypeSpec
+      condition: and(succeeded(), ${{ parameters.installTypeSpec }})
 
     - script: npm install -g @azure-tools/cadl-ranch
       displayName: Install Cadl Ranch

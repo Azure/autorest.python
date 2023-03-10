@@ -29,7 +29,9 @@ EMITTER_OPTIONS = {
 
 def _add_options(spec):
     name = spec.stem.lower()
-    return "".join([f" --options=\'{PLUGIN}.{k}={v}\' " for k, v in EMITTER_OPTIONS[name].items()]) if name in EMITTER_OPTIONS else ""
+    options = {"emitter-output-dir": f"{PLUGIN_DIR}/test/generated/{spec.name}"}
+    options.update(EMITTER_OPTIONS.get(name, {}))
+    return " --option=".join([f"@azure-tools/cadl-python.{k}={v} " for k, v in options.items()])
 
 @task
 def regenerate(c, name=None, debug=False):
@@ -42,7 +44,7 @@ def regenerate(c, name=None, debug=False):
   for spec in specs:
     Path(f"{PLUGIN_DIR}/test/generated/{spec.name}").mkdir(parents=True, exist_ok=True)
   _run_cadl([
-    f"cadl compile {spec} --emit={PLUGIN} {_add_options(spec)} --output-dir={PLUGIN_DIR}/test/generated/{spec.name}{' --debug' if debug else ''}"
+    f"cadl compile {spec} --emit={PLUGIN} --option={_add_options(spec)}{' --debug' if debug else ''}"
     for spec in specs
   ])
 
@@ -62,6 +64,6 @@ def _run_single_cadl(cmd):
     print(Fore.GREEN + f'Call "{cmd}" done with success')
     return True
   print(Fore.RED + f'Call "{cmd}" failed with {result.return_code}\n{result.stdout}\n{result.stderr}')
-  output_folder = re.findall(r"--output-dir=([^\s]+)", cmd)[0]
+  output_folder = re.findall(r"emitter-output-dir=([^\s]+)", cmd)[0]
   shutil.rmtree(output_folder, ignore_errors=True)
   return False

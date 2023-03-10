@@ -4,7 +4,7 @@ importers:
 
   .:
     specifiers:
-      '@cadl-lang/prettier-plugin-cadl': ~0.38.0
+      '@typespec/prettier-plugin-typespec': ~0.41.0
       eslint: ^8.23.1
       eslint-plugin-import: ^2.26.0
       eslint-plugin-unicorn: ^43.0.2
@@ -12,7 +12,7 @@ importers:
       syncpack: ^8.2.4
       typescript: ^4.8.3
     devDependencies:
-      '@cadl-lang/prettier-plugin-cadl': 0.38.0
+      '@typespec/prettier-plugin-typespec': 0.41.0
       eslint: 8.23.1
       eslint-plugin-import: 2.26.0_eslint@8.23.1
       eslint-plugin-unicorn: 43.0.2_eslint@8.23.1
@@ -825,12 +825,6 @@ packages:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: true
 
-  /@cadl-lang/prettier-plugin-cadl/0.38.0:
-    resolution: {integrity: sha512-L4wXsTJukonB4KYEzPC/gpQcOXBGYHsBVgVa8D/Nc6tRRr2QLT+Oih7qpBTsuXgynWTP1EHr3iksbg3Mv91lnA==}
-    dependencies:
-      prettier: 2.7.1
-    dev: true
-
   /@colors/colors/1.5.0:
     resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
     engines: {node: '>=0.1.90'}
@@ -1539,6 +1533,12 @@ packages:
       '@typespec/rest': 0.41.0_@typespec+compiler@0.41.0
       '@typespec/versioning': 0.41.0
       js-yaml: 4.1.0
+    dev: true
+
+  /@typespec/prettier-plugin-typespec/0.41.0:
+    resolution: {integrity: sha512-ozI+iUf0XkXvOwt75xLS+j3oL7JIRHqOM2RPND6g8Rvd7rYzwEwT560ysu27A4wXBwxKfP4O4a8OUNxWvf1Fgw==}
+    dependencies:
+      prettier: 2.8.3
     dev: true
 
   /@typespec/rest/0.41.0_@typespec+compiler@0.41.0:

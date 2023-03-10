@@ -19,7 +19,7 @@ import {
     Namespace,
     getEffectiveModelType,
     JSONSchemaType,
-    createCadlLibrary,
+    createTypeSpecLibrary,
     getDiscriminator,
     Operation,
     isKey,
@@ -75,6 +75,7 @@ import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { dump } from "js-yaml";
 import { execFileSync } from "child_process";
+import { PythonEmitterOptions } from "./lib.js";
 
 interface HttpServerParameter {
     type: "endpointPath";
@@ -94,43 +95,12 @@ interface CredentialTypeUnion {
 
 type EmitterType = Type | CredentialType | CredentialTypeUnion;
 
-export interface EmitterOptions {
-    "basic-setup-py"?: boolean;
-    "package-version"?: string;
-    "package-name"?: string;
-    "output-dir"?: string;
-    "package-mode"?: string;
-    "debug"?: boolean;
-}
-
-const EmitterOptionsSchema: JSONSchemaType<EmitterOptions> = {
-    type: "object",
-    additionalProperties: false,
-    properties: {
-        "basic-setup-py": { type: "boolean", nullable: true },
-        "package-version": { type: "string", nullable: true },
-        "package-name": { type: "string", nullable: true },
-        "output-dir": { type: "string", nullable: true },
-        "package-mode": { type: "string", nullable: true },
-        "debug": { type: "boolean", nullable: true },
-    },
-    required: [],
-};
-
 const defaultOptions = {
     "basic-setup-py": true,
     "package-version": "1.0.0b1",
 };
 
-export const $lib = createCadlLibrary({
-    name: "MyEmitter",
-    diagnostics: {},
-    emitter: {
-        options: EmitterOptionsSchema,
-    },
-});
-
-export async function $onEmit(context: EmitContext<EmitterOptions>) {
+export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     const program = context.program;
     const resolvedOptions = { ...defaultOptions, ...context.options };
 
@@ -1355,7 +1325,7 @@ function getNamespaces(context: DpgContext): Set<string> {
     return namespaces;
 }
 
-function emitCodeModel(context: EmitContext<EmitterOptions>) {
+function emitCodeModel(context: EmitContext<PythonEmitterOptions>) {
     const dpgContext = createDpgContext(context);
     const clientNamespaceString = getClientNamespaceString(dpgContext)?.toLowerCase();
     // Get types

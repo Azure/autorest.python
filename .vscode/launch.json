@@ -8,8 +8,16 @@
             "name": "Generate cadl",
             "request": "launch",
             "cwd": "${workspaceFolder}/packages/cadl-python",
-            "args": ["compile", "${workspaceFolder}/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs/http/models/visibility", "--emit", "${workspaceFolder}/packages/cadl-python/dist/src/index.js", "--debug"],
-            "program": "${workspaceFolder}/packages/cadl-python/node_modules/@cadl-lang/compiler/dist/core/cli/cli.js",
+            "args": [
+                "compile",
+                "${workspaceFolder}/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs/http/models/visibility",
+                "--emit",
+                "${workspaceFolder}/packages/cadl-python/dist/src/index.js",
+                "--debug",
+                "--option",
+                "@azure-tools/cadl-python.package-name=hello"
+            ],
+            "program": "${workspaceFolder}/packages/cadl-python/node_modules/@typespec/compiler/dist/core/cli/cli.js",
             "skipFiles": ["<node_internals>/**"],
             "type": "node",
             "smartStep": true,
