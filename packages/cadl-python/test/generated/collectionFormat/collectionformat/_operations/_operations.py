@@ -70,6 +70,36 @@ def build_collection_format_test_csv_request(*, colors: List[str], **kwargs: Any
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
+def build_collection_format_test_csv_header_request(*, colors: List[str], **kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/collectionFormat/csvHeader"
+
+    # Construct headers
+    _headers["colors"] = _SERIALIZER.header("colors", colors, "[str]", div=",")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+
+
+def build_collection_format_test_default_header_request(*, colors: List[str], **kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/collectionFormat/defaultHeader"
+
+    # Construct headers
+    _headers["colors"] = _SERIALIZER.header("colors", colors, "[str]", div=",")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+
+
 class CollectionFormatClientOperationsMixin(CollectionFormatClientMixinABC):
     @distributed_trace
     def test_multi(self, *, colors: List[str], **kwargs: Any) -> _models.MessageResponse:
@@ -150,6 +180,112 @@ class CollectionFormatClientOperationsMixin(CollectionFormatClientMixinABC):
         cls: ClsType[_models.MessageResponse] = kwargs.pop("cls", None)
 
         request = build_collection_format_test_csv_request(
+            colors=colors,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.MessageResponse, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @distributed_trace
+    def test_csv_header(self, *, colors: List[str], **kwargs: Any) -> _models.MessageResponse:
+        """test_csv_header.
+
+        :keyword colors: Possible values for colors are [blue,red,green]. Required.
+        :paramtype colors: list[str]
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: MessageResponse. The MessageResponse is compatible with MutableMapping
+        :rtype: ~collectionformat.models.MessageResponse
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.MessageResponse] = kwargs.pop("cls", None)
+
+        request = build_collection_format_test_csv_header_request(
+            colors=colors,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.MessageResponse, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @distributed_trace
+    def test_default_header(self, *, colors: List[str], **kwargs: Any) -> _models.MessageResponse:
+        """test_default_header.
+
+        :keyword colors: Possible values for colors are [blue,red,green]. Required.
+        :paramtype colors: list[str]
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: MessageResponse. The MessageResponse is compatible with MutableMapping
+        :rtype: ~collectionformat.models.MessageResponse
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.MessageResponse] = kwargs.pop("cls", None)
+
+        request = build_collection_format_test_default_header_request(
             colors=colors,
             headers=_headers,
             params=_params,
