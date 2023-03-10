@@ -24,7 +24,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .. import _serialization, models as _models
+from .. import models as _models
 from .._vendor import _convert_request
 
 T = TypeVar("T")
@@ -1315,7 +1315,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         _json: Any = None
         _content: Any = None
-        if isinstance(body_parameter, (_serialization.Model, dict)):
+        if isinstance(body_parameter, (_serialization.Model, MutableMapping)):
             _json = self._serialize.body(body_parameter, "Product")
             content_type = content_type or "application/json"
         elif isinstance(body_parameter, (IO, bytes)):
@@ -1418,7 +1418,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         _json: Any = None
         _content: Any = None
-        if isinstance(body_parameter, (_serialization.Model, dict)):
+        if isinstance(body_parameter, (_serialization.Model, MutableMapping)):
             if body_parameter is not None:
                 _json = self._serialize.body(body_parameter, "Product")
             else:

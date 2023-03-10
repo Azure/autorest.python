@@ -13,8 +13,6 @@ from typing import Any, Dict, List, Optional, TYPE_CHECKING, Union
 
 import msrest.serialization
 
-from .. import _serialization
-
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:

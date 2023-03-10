@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ... import _serialization, models as _models
+from ... import models as _models
 from ..._vendor import _convert_request
 from ...operations._multiple_inheritance_service_client_operations import (
     build_get_cat_request,
@@ -155,7 +155,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
 
         _json: Any = None
         _content: Any = None
-        if isinstance(horse, (_serialization.Model, dict)):
+        if isinstance(horse, (_serialization.Model, MutableMapping)):
             _json = self._serialize.body(horse, "Horse")
             content_type = content_type or "application/json"
         elif isinstance(horse, (IO, bytes)):
@@ -416,7 +416,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
 
         _json: Any = None
         _content: Any = None
-        if isinstance(feline, (_serialization.Model, dict)):
+        if isinstance(feline, (_serialization.Model, MutableMapping)):
             _json = self._serialize.body(feline, "Feline")
             content_type = content_type or "application/json"
         elif isinstance(feline, (IO, bytes)):
@@ -570,7 +570,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
 
         _json: Any = None
         _content: Any = None
-        if isinstance(cat, (_serialization.Model, dict)):
+        if isinstance(cat, (_serialization.Model, MutableMapping)):
             _json = self._serialize.body(cat, "Cat")
             content_type = content_type or "application/json"
         elif isinstance(cat, (IO, bytes)):
@@ -728,7 +728,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
 
         _json: Any = None
         _content: Any = None
-        if isinstance(kitten, (_serialization.Model, dict)):
+        if isinstance(kitten, (_serialization.Model, MutableMapping)):
             _json = self._serialize.body(kitten, "Kitten")
             content_type = content_type or "application/json"
         elif isinstance(kitten, (IO, bytes)):

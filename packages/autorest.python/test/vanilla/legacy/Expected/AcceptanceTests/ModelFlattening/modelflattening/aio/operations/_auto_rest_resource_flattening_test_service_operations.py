@@ -23,7 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ... import _serialization, models as _models
+from ... import models as _models
 from ..._vendor import _convert_request
 from ...operations._auto_rest_resource_flattening_test_service_operations import (
     build_get_array_request,
@@ -621,7 +621,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
         _json: Any = None
         _content: Any = None
-        if isinstance(resource_complex_object, (_serialization.Model, dict)):
+        if isinstance(resource_complex_object, (_serialization.Model, MutableMapping)):
             if resource_complex_object is not None:
                 _json = self._serialize.body(resource_complex_object, "ResourceCollection")
             else:
@@ -786,7 +786,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
         _json: Any = None
         _content: Any = None
-        if isinstance(simple_body_product, (_serialization.Model, dict)):
+        if isinstance(simple_body_product, (_serialization.Model, MutableMapping)):
             if simple_body_product is not None:
                 _json = self._serialize.body(simple_body_product, "SimpleProduct")
             else:

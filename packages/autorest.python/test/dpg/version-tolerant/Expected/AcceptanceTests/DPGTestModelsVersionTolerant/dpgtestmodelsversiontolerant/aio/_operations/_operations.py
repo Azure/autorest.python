@@ -26,7 +26,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ... import _serialization, models as _models
+from ... import models as _models
 from ..._operations._operations import (
     build_dpg_get_model_request,
     build_dpg_get_pages_request,
@@ -167,7 +167,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
         _json: Any = None
         _content: Any = None
-        if isinstance(input, (_serialization.Model, dict)):
+        if isinstance(input, (_serialization.Model, MutableMapping)):
             _json = self._serialize.body(input, "Input")
             content_type = content_type or "application/json"
         elif isinstance(input, (IO, bytes)):

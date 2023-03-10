@@ -25,7 +25,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .. import _serialization, models as _models
+from .. import models as _models
 from .._serialization import Serializer
 from .._vendor import DPGClientMixinABC, _format_url_section
 
@@ -243,7 +243,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
         _json: Any = None
         _content: Any = None
-        if isinstance(input, (_serialization.Model, dict)):
+        if isinstance(input, (_serialization.Model, MutableMapping)):
             _json = self._serialize.body(input, "Input")
             content_type = content_type or "application/json"
         elif isinstance(input, (IO, bytes)):

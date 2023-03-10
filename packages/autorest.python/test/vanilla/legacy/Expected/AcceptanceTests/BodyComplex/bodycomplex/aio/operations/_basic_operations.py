@@ -23,7 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ... import _serialization, models as _models
+from ... import models as _models
 from ..._vendor import _convert_request
 from ...operations._basic_operations import (
     build_get_empty_request,
@@ -182,7 +182,7 @@ class BasicOperations:
 
         _json: Any = None
         _content: Any = None
-        if isinstance(complex_body, (_serialization.Model, dict)):
+        if isinstance(complex_body, (_serialization.Model, MutableMapping)):
             _json = self._serialize.body(complex_body, "Basic")
             content_type = content_type or "application/json"
         elif isinstance(complex_body, (IO, bytes)):

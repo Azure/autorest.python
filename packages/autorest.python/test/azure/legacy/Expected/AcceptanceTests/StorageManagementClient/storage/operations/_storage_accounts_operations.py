@@ -28,7 +28,7 @@ from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 
-from .. import _serialization, models as _models
+from .. import models as _models
 from .._serialization import Serializer
 from .._vendor import _convert_request, _format_url_section
 
@@ -430,7 +430,7 @@ class StorageAccountsOperations:
 
         _json: Any = None
         _content: Any = None
-        if isinstance(account_name, (_serialization.Model, dict)):
+        if isinstance(account_name, (_serialization.Model, MutableMapping)):
             _json = self._serialize.body(account_name, "StorageAccountCheckNameAvailabilityParameters")
             content_type = content_type or "application/json"
         elif isinstance(account_name, (IO, bytes)):
@@ -500,7 +500,7 @@ class StorageAccountsOperations:
 
         _json: Any = None
         _content: Any = None
-        if isinstance(parameters, (_serialization.Model, dict)):
+        if isinstance(parameters, (_serialization.Model, MutableMapping)):
             _json = self._serialize.body(parameters, "StorageAccountCreateParameters")
             content_type = content_type or "application/json"
         elif isinstance(parameters, (IO, bytes)):
@@ -979,7 +979,7 @@ class StorageAccountsOperations:
 
         _json: Any = None
         _content: Any = None
-        if isinstance(parameters, (_serialization.Model, dict)):
+        if isinstance(parameters, (_serialization.Model, MutableMapping)):
             _json = self._serialize.body(parameters, "StorageAccountUpdateParameters")
             content_type = content_type or "application/json"
         elif isinstance(parameters, (IO, bytes)):

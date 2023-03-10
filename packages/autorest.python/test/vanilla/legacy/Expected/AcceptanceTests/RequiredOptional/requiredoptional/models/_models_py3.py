@@ -11,8 +11,6 @@ from typing import Any, List, Optional, TYPE_CHECKING
 
 import msrest.serialization
 
-from .. import _serialization
-
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models

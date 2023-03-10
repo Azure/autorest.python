@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .. import _serialization, models as _models
+from .. import models as _models
 from .._serialization import Serializer
 from .._vendor import _convert_request, _format_url_section
 
@@ -205,7 +205,7 @@ class PetOperations:
 
         _json: Any = None
         _content: Any = None
-        if isinstance(pet_param, (_serialization.Model, dict)):
+        if isinstance(pet_param, (_serialization.Model, MutableMapping)):
             if pet_param is not None:
                 _json = self._serialize.body(pet_param, "Pet")
             else:
