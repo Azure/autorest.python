@@ -175,11 +175,11 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def operation_with_json_param(self, json: JSON, **kwargs: Any) -> JSON:
+    async def operation_with_json_param(self, json: Any, **kwargs: Any) -> JSON:
         """Operation with body param called 'json'. Pass in {'hello': 'world'}.
 
         :param json: Pass in {'hello': 'world'}. Required.
-        :type json: JSON
+        :type json: any
         :return: JSON
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:

@@ -1981,7 +1981,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         _json: Any = None
         _content: Any = None
-        if isinstance(properties, (_serialization.Model, MutableMapping)):
+        if isinstance(properties, (_serialization.Model, dict)):
             _json = self._serialize.body(properties, "JSONInput")
             content_type = content_type or "application/json"
         elif isinstance(properties, (IO, bytes)):

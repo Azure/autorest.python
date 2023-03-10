@@ -75,8 +75,8 @@ from .credential_types import (
 
 __all__ = [
     "AzureKeyCredentialPolicyType",
-    "BaseModel",
     "AnyType",
+    "BaseModel",
     "BaseType",
     "CodeModel",
     "Client",
