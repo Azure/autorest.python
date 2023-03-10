@@ -218,7 +218,7 @@ class PetsOperations:
 
         _json: Any = None
         _content: Any = None
-        if isinstance(create_parameters, (_serialization.Model, MutableMapping)):
+        if isinstance(create_parameters, (_serialization.Model, dict)):
             _json = self._serialize.body(create_parameters, "PetAPTrue")
             content_type = content_type or "application/json"
         elif isinstance(create_parameters, (IO, bytes)):
@@ -323,7 +323,7 @@ class PetsOperations:
 
         _json: Any = None
         _content: Any = None
-        if isinstance(create_parameters, (_serialization.Model, MutableMapping)):
+        if isinstance(create_parameters, (_serialization.Model, dict)):
             _json = self._serialize.body(create_parameters, "CatAPTrue")
             content_type = content_type or "application/json"
         elif isinstance(create_parameters, (IO, bytes)):
@@ -428,7 +428,7 @@ class PetsOperations:
 
         _json: Any = None
         _content: Any = None
-        if isinstance(create_parameters, (_serialization.Model, MutableMapping)):
+        if isinstance(create_parameters, (_serialization.Model, dict)):
             _json = self._serialize.body(create_parameters, "PetAPObject")
             content_type = content_type or "application/json"
         elif isinstance(create_parameters, (IO, bytes)):
@@ -533,7 +533,7 @@ class PetsOperations:
 
         _json: Any = None
         _content: Any = None
-        if isinstance(create_parameters, (_serialization.Model, MutableMapping)):
+        if isinstance(create_parameters, (_serialization.Model, dict)):
             _json = self._serialize.body(create_parameters, "PetAPString")
             content_type = content_type or "application/json"
         elif isinstance(create_parameters, (IO, bytes)):
@@ -640,7 +640,7 @@ class PetsOperations:
 
         _json: Any = None
         _content: Any = None
-        if isinstance(create_parameters, (_serialization.Model, MutableMapping)):
+        if isinstance(create_parameters, (_serialization.Model, dict)):
             _json = self._serialize.body(create_parameters, "PetAPInProperties")
             content_type = content_type or "application/json"
         elif isinstance(create_parameters, (IO, bytes)):
@@ -752,7 +752,7 @@ class PetsOperations:
 
         _json: Any = None
         _content: Any = None
-        if isinstance(create_parameters, (_serialization.Model, MutableMapping)):
+        if isinstance(create_parameters, (_serialization.Model, dict)):
             _json = self._serialize.body(create_parameters, "PetAPInPropertiesWithAPString")
             content_type = content_type or "application/json"
         elif isinstance(create_parameters, (IO, bytes)):

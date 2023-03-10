@@ -8,7 +8,6 @@
 # --------------------------------------------------------------------------
 import datetime
 import json
-import sys
 from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
@@ -29,13 +28,8 @@ from .. import models as _models
 from .._model_base import AzureJSONEncoder, _deserialize
 from .._serialization import Serializer
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -1472,13 +1466,13 @@ class UnknownValueOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> List[JSON]:
+    def get(self, **kwargs: Any) -> List[Any]:
         """get.
 
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: list of JSON
-        :rtype: list[JSON]
+        :return: list of any
+        :rtype: list[any]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -1492,7 +1486,7 @@ class UnknownValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[JSON]] = kwargs.pop("cls", None)
+        cls: ClsType[List[Any]] = kwargs.pop("cls", None)
 
         request = build_unknown_value_get_request(
             headers=_headers,
@@ -1514,7 +1508,7 @@ class UnknownValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[JSON], response.json())
+            deserialized = _deserialize(List[Any], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1523,12 +1517,12 @@ class UnknownValueOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: List[JSON], *, content_type: str = "application/json", **kwargs: Any
+        self, body: List[Any], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: list[JSON]
+        :type body: list[any]
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1558,11 +1552,11 @@ class UnknownValueOperations:
         """
 
     @distributed_trace
-    def put(self, body: Union[List[JSON], IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def put(self, body: Union[List[Any], IO], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """put.
 
-        :param body: Is either a [JSON] type or a IO type. Required.
-        :type body: list[JSON] or IO
+        :param body: Is either a [Any] type or a IO type. Required.
+        :type body: list[any] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str

@@ -155,7 +155,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
 
         _json: Any = None
         _content: Any = None
-        if isinstance(horse, (_serialization.Model, MutableMapping)):
+        if isinstance(horse, (_serialization.Model, dict)):
             _json = self._serialize.body(horse, "Horse")
             content_type = content_type or "application/json"
         elif isinstance(horse, (IO, bytes)):
@@ -416,7 +416,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
 
         _json: Any = None
         _content: Any = None
-        if isinstance(feline, (_serialization.Model, MutableMapping)):
+        if isinstance(feline, (_serialization.Model, dict)):
             _json = self._serialize.body(feline, "Feline")
             content_type = content_type or "application/json"
         elif isinstance(feline, (IO, bytes)):
@@ -570,7 +570,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
 
         _json: Any = None
         _content: Any = None
-        if isinstance(cat, (_serialization.Model, MutableMapping)):
+        if isinstance(cat, (_serialization.Model, dict)):
             _json = self._serialize.body(cat, "Cat")
             content_type = content_type or "application/json"
         elif isinstance(cat, (IO, bytes)):
@@ -728,7 +728,7 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
 
         _json: Any = None
         _content: Any = None
-        if isinstance(kitten, (_serialization.Model, MutableMapping)):
+        if isinstance(kitten, (_serialization.Model, dict)):
             _json = self._serialize.body(kitten, "Kitten")
             content_type = content_type or "application/json"
         elif isinstance(kitten, (IO, bytes)):

@@ -293,7 +293,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
         _json: Any = None
         _content: Any = None
-        if isinstance(body, (_serialization.Model, MutableMapping)):
+        if isinstance(body, (_serialization.Model, dict)):
             if body is not None:
                 _json = self._serialize.body(body, "Product")
             else:
@@ -471,7 +471,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
         _json: Any = None
         _content: Any = None
-        if isinstance(body, (_serialization.Model, MutableMapping)):
+        if isinstance(body, (_serialization.Model, dict)):
             if body is not None:
                 _json = self._serialize.body(body, "Product")
             else:

@@ -1315,7 +1315,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         _json: Any = None
         _content: Any = None
-        if isinstance(body_parameter, (_serialization.Model, MutableMapping)):
+        if isinstance(body_parameter, (_serialization.Model, dict)):
             _json = self._serialize.body(body_parameter, "Product")
             content_type = content_type or "application/json"
         elif isinstance(body_parameter, (IO, bytes)):
@@ -1418,7 +1418,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         _json: Any = None
         _content: Any = None
-        if isinstance(body_parameter, (_serialization.Model, MutableMapping)):
+        if isinstance(body_parameter, (_serialization.Model, dict)):
             if body_parameter is not None:
                 _json = self._serialize.body(body_parameter, "Product")
             else:

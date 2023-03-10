@@ -205,7 +205,7 @@ class PetOperations:
 
         _json: Any = None
         _content: Any = None
-        if isinstance(pet_param, (_serialization.Model, MutableMapping)):
+        if isinstance(pet_param, (_serialization.Model, dict)):
             if pet_param is not None:
                 _json = self._serialize.body(pet_param, "Pet")
             else:

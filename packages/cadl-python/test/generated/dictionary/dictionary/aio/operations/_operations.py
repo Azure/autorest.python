@@ -8,7 +8,6 @@
 # --------------------------------------------------------------------------
 import datetime
 import json
-import sys
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
@@ -50,13 +49,8 @@ from ...operations._operations import (
     build_unknown_value_put_request,
 )
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 
 class Int32ValueOperations:
@@ -1246,13 +1240,13 @@ class UnknownValueOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get(self, **kwargs: Any) -> Dict[str, JSON]:
+    async def get(self, **kwargs: Any) -> Dict[str, Any]:
         """get.
 
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: dict mapping str to JSON
-        :rtype: dict[str, JSON]
+        :return: dict mapping str to any
+        :rtype: dict[str, any]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -1266,7 +1260,7 @@ class UnknownValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Dict[str, JSON]] = kwargs.pop("cls", None)
+        cls: ClsType[Dict[str, Any]] = kwargs.pop("cls", None)
 
         request = build_unknown_value_get_request(
             headers=_headers,
@@ -1288,7 +1282,7 @@ class UnknownValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, JSON], response.json())
+            deserialized = _deserialize(Dict[str, Any], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1297,12 +1291,12 @@ class UnknownValueOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Dict[str, JSON], *, content_type: str = "application/json", **kwargs: Any
+        self, body: Dict[str, Any], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: dict[str, JSON]
+        :type body: dict[str, any]
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1333,12 +1327,12 @@ class UnknownValueOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, JSON], IO], **kwargs: Any
+        self, body: Union[Dict[str, Any], IO], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: JSON} type or a IO type. Required.
-        :type body: dict[str, JSON] or IO
+        :param body: Is either a {str: Any} type or a IO type. Required.
+        :type body: dict[str, any] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str

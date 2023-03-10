@@ -511,7 +511,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         _json: Any = None
         _content: Any = None
-        if isinstance(complex_body, (_serialization.Model, MutableMapping)):
+        if isinstance(complex_body, (_serialization.Model, dict)):
             _json = self._serialize.body(complex_body, "IntWrapper")
             content_type = content_type or "application/json"
         elif isinstance(complex_body, (IO, bytes)):
@@ -666,7 +666,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         _json: Any = None
         _content: Any = None
-        if isinstance(complex_body, (_serialization.Model, MutableMapping)):
+        if isinstance(complex_body, (_serialization.Model, dict)):
             _json = self._serialize.body(complex_body, "LongWrapper")
             content_type = content_type or "application/json"
         elif isinstance(complex_body, (IO, bytes)):
@@ -821,7 +821,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         _json: Any = None
         _content: Any = None
-        if isinstance(complex_body, (_serialization.Model, MutableMapping)):
+        if isinstance(complex_body, (_serialization.Model, dict)):
             _json = self._serialize.body(complex_body, "FloatWrapper")
             content_type = content_type or "application/json"
         elif isinstance(complex_body, (IO, bytes)):
@@ -979,7 +979,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         _json: Any = None
         _content: Any = None
-        if isinstance(complex_body, (_serialization.Model, MutableMapping)):
+        if isinstance(complex_body, (_serialization.Model, dict)):
             _json = self._serialize.body(complex_body, "DoubleWrapper")
             content_type = content_type or "application/json"
         elif isinstance(complex_body, (IO, bytes)):
@@ -1134,7 +1134,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         _json: Any = None
         _content: Any = None
-        if isinstance(complex_body, (_serialization.Model, MutableMapping)):
+        if isinstance(complex_body, (_serialization.Model, dict)):
             _json = self._serialize.body(complex_body, "BooleanWrapper")
             content_type = content_type or "application/json"
         elif isinstance(complex_body, (IO, bytes)):
@@ -1289,7 +1289,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         _json: Any = None
         _content: Any = None
-        if isinstance(complex_body, (_serialization.Model, MutableMapping)):
+        if isinstance(complex_body, (_serialization.Model, dict)):
             _json = self._serialize.body(complex_body, "StringWrapper")
             content_type = content_type or "application/json"
         elif isinstance(complex_body, (IO, bytes)):
@@ -1444,7 +1444,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         _json: Any = None
         _content: Any = None
-        if isinstance(complex_body, (_serialization.Model, MutableMapping)):
+        if isinstance(complex_body, (_serialization.Model, dict)):
             _json = self._serialize.body(complex_body, "DateWrapper")
             content_type = content_type or "application/json"
         elif isinstance(complex_body, (IO, bytes)):
@@ -1601,7 +1601,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         _json: Any = None
         _content: Any = None
-        if isinstance(complex_body, (_serialization.Model, MutableMapping)):
+        if isinstance(complex_body, (_serialization.Model, dict)):
             _json = self._serialize.body(complex_body, "DatetimeWrapper")
             content_type = content_type or "application/json"
         elif isinstance(complex_body, (IO, bytes)):
@@ -1758,7 +1758,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         _json: Any = None
         _content: Any = None
-        if isinstance(complex_body, (_serialization.Model, MutableMapping)):
+        if isinstance(complex_body, (_serialization.Model, dict)):
             _json = self._serialize.body(complex_body, "Datetimerfc1123Wrapper")
             content_type = content_type or "application/json"
         elif isinstance(complex_body, (IO, bytes)):

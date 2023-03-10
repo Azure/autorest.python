@@ -7,20 +7,13 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import sys
 from typing import Any, Dict, List, Optional, TYPE_CHECKING, Union
 
 from .. import _serialization
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 
 class Error(_serialization.Model):
@@ -30,7 +23,7 @@ class Error(_serialization.Model):
 
     :ivar additional_properties: Unmatched properties from the message are deserialized to this
      collection.
-    :vartype additional_properties: dict[str, JSON]
+    :vartype additional_properties: dict[str, any]
     :ivar code: One of a server-defined set of error codes. Required. Known values are:
      "BadParameter" and "Unauthorized".
     :vartype code: str or ~errorwithsecrets.models.ErrorCode
@@ -64,7 +57,7 @@ class Error(_serialization.Model):
         *,
         code: Union[str, "_models.ErrorCode"],
         message: str,
-        additional_properties: Optional[Dict[str, JSON]] = None,
+        additional_properties: Optional[Dict[str, Any]] = None,
         target: Optional[str] = None,
         details: Optional[List["_models.Error"]] = None,
         innererror: Optional["_models.InnerError"] = None,
@@ -73,7 +66,7 @@ class Error(_serialization.Model):
         """
         :keyword additional_properties: Unmatched properties from the message are deserialized to this
          collection.
-        :paramtype additional_properties: dict[str, JSON]
+        :paramtype additional_properties: dict[str, any]
         :keyword code: One of a server-defined set of error codes. Required. Known values are:
          "BadParameter" and "Unauthorized".
         :paramtype code: str or ~errorwithsecrets.models.ErrorCode
@@ -103,7 +96,7 @@ class ErrorResponse(_serialization.Model):
 
     :ivar additional_properties: Unmatched properties from the message are deserialized to this
      collection.
-    :vartype additional_properties: dict[str, JSON]
+    :vartype additional_properties: dict[str, any]
     :ivar error: The error object. Required.
     :vartype error: ~errorwithsecrets.models.Error
     """
@@ -118,12 +111,12 @@ class ErrorResponse(_serialization.Model):
     }
 
     def __init__(
-        self, *, error: "_models.Error", additional_properties: Optional[Dict[str, JSON]] = None, **kwargs: Any
+        self, *, error: "_models.Error", additional_properties: Optional[Dict[str, Any]] = None, **kwargs: Any
     ) -> None:
         """
         :keyword additional_properties: Unmatched properties from the message are deserialized to this
          collection.
-        :paramtype additional_properties: dict[str, JSON]
+        :paramtype additional_properties: dict[str, any]
         :keyword error: The error object. Required.
         :paramtype error: ~errorwithsecrets.models.Error
         """
@@ -141,7 +134,7 @@ class InnerError(_serialization.Model):
 
     :ivar additional_properties: Unmatched properties from the message are deserialized to this
      collection.
-    :vartype additional_properties: dict[str, JSON]
+    :vartype additional_properties: dict[str, any]
     :ivar code: One of a server-defined set of error codes. Required. Known values are:
      "MissingSharedKey" and "UnauthorizedSharedKey".
     :vartype code: str or ~errorwithsecrets.models.InnerErrorCode
@@ -169,14 +162,14 @@ class InnerError(_serialization.Model):
         *,
         code: Union[str, "_models.InnerErrorCode"],
         message: str,
-        additional_properties: Optional[Dict[str, JSON]] = None,
+        additional_properties: Optional[Dict[str, Any]] = None,
         innererror: Optional["_models.InnerError"] = None,
         **kwargs: Any
     ) -> None:
         """
         :keyword additional_properties: Unmatched properties from the message are deserialized to this
          collection.
-        :paramtype additional_properties: dict[str, JSON]
+        :paramtype additional_properties: dict[str, any]
         :keyword code: One of a server-defined set of error codes. Required. Known values are:
          "MissingSharedKey" and "UnauthorizedSharedKey".
         :paramtype code: str or ~errorwithsecrets.models.InnerErrorCode

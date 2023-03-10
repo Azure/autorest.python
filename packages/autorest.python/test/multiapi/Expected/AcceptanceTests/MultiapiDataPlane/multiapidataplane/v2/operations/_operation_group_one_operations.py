@@ -164,7 +164,7 @@ class OperationGroupOneOperations:
 
         _json: Any = None
         _content: Any = None
-        if isinstance(parameter_one, (_serialization.Model, MutableMapping)):
+        if isinstance(parameter_one, (_serialization.Model, dict)):
             if parameter_one is not None:
                 _json = self._serialize.body(parameter_one, "ModelTwo")
             else:

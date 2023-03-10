@@ -150,7 +150,7 @@ class StorageAccountsOperations:
 
         _json: Any = None
         _content: Any = None
-        if isinstance(account_name, (_serialization.Model, MutableMapping)):
+        if isinstance(account_name, (_serialization.Model, dict)):
             _json = self._serialize.body(account_name, "StorageAccountCheckNameAvailabilityParameters")
             content_type = content_type or "application/json"
         elif isinstance(account_name, (IO, bytes)):
@@ -220,7 +220,7 @@ class StorageAccountsOperations:
 
         _json: Any = None
         _content: Any = None
-        if isinstance(parameters, (_serialization.Model, MutableMapping)):
+        if isinstance(parameters, (_serialization.Model, dict)):
             _json = self._serialize.body(parameters, "StorageAccountCreateParameters")
             content_type = content_type or "application/json"
         elif isinstance(parameters, (IO, bytes)):
@@ -701,7 +701,7 @@ class StorageAccountsOperations:
 
         _json: Any = None
         _content: Any = None
-        if isinstance(parameters, (_serialization.Model, MutableMapping)):
+        if isinstance(parameters, (_serialization.Model, dict)):
             _json = self._serialize.body(parameters, "StorageAccountUpdateParameters")
             content_type = content_type or "application/json"
         elif isinstance(parameters, (IO, bytes)):

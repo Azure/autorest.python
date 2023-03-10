@@ -142,7 +142,7 @@ class LROsCustomHeaderOperations:
 
         _json: Any = None
         _content: Any = None
-        if isinstance(product, (_serialization.Model, MutableMapping)):
+        if isinstance(product, (_serialization.Model, dict)):
             if product is not None:
                 _json = self._serialize.body(product, "Product")
             else:
@@ -344,7 +344,7 @@ class LROsCustomHeaderOperations:
 
         _json: Any = None
         _content: Any = None
-        if isinstance(product, (_serialization.Model, MutableMapping)):
+        if isinstance(product, (_serialization.Model, dict)):
             if product is not None:
                 _json = self._serialize.body(product, "Product")
             else:
@@ -535,7 +535,7 @@ class LROsCustomHeaderOperations:
 
         _json: Any = None
         _content: Any = None
-        if isinstance(product, (_serialization.Model, MutableMapping)):
+        if isinstance(product, (_serialization.Model, dict)):
             if product is not None:
                 _json = self._serialize.body(product, "Product")
             else:
@@ -717,7 +717,7 @@ class LROsCustomHeaderOperations:
 
         _json: Any = None
         _content: Any = None
-        if isinstance(product, (_serialization.Model, MutableMapping)):
+        if isinstance(product, (_serialization.Model, dict)):
             if product is not None:
                 _json = self._serialize.body(product, "Product")
             else:

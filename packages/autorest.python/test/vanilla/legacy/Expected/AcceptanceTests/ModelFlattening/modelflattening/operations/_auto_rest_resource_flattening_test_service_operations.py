@@ -791,7 +791,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
         _json: Any = None
         _content: Any = None
-        if isinstance(resource_complex_object, (_serialization.Model, MutableMapping)):
+        if isinstance(resource_complex_object, (_serialization.Model, dict)):
             if resource_complex_object is not None:
                 _json = self._serialize.body(resource_complex_object, "ResourceCollection")
             else:
@@ -956,7 +956,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
         _json: Any = None
         _content: Any = None
-        if isinstance(simple_body_product, (_serialization.Model, MutableMapping)):
+        if isinstance(simple_body_product, (_serialization.Model, dict)):
             if simple_body_product is not None:
                 _json = self._serialize.body(simple_body_product, "SimpleProduct")
             else:

@@ -28,15 +28,10 @@ from ... import _serialization
 from ..._serialization import Serializer
 from .._vendor import MultiapiServiceClientMixinABC, _convert_request
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -172,7 +167,7 @@ class OperationGroupTwoOperations:
 
         _json: Any = None
         _content: Any = None
-        if isinstance(input, (_serialization.Model, MutableMapping)):
+        if isinstance(input, (_serialization.Model, dict)):
             if input is not None:
                 _json = self._serialize.body(input, "SourcePath")
             else:

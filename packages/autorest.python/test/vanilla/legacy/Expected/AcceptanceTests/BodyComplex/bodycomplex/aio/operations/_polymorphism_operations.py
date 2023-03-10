@@ -272,7 +272,7 @@ class PolymorphismOperations:
 
         _json: Any = None
         _content: Any = None
-        if isinstance(complex_body, (_serialization.Model, MutableMapping)):
+        if isinstance(complex_body, (_serialization.Model, dict)):
             _json = self._serialize.body(complex_body, "Fish")
             content_type = content_type or "application/json"
         elif isinstance(complex_body, (IO, bytes)):
@@ -587,7 +587,7 @@ class PolymorphismOperations:
 
         _json: Any = None
         _content: Any = None
-        if isinstance(complex_body, (_serialization.Model, MutableMapping)):
+        if isinstance(complex_body, (_serialization.Model, dict)):
             _json = self._serialize.body(complex_body, "Salmon")
             content_type = content_type or "application/json"
         elif isinstance(complex_body, (IO, bytes)):
@@ -688,7 +688,7 @@ class PolymorphismOperations:
 
         _json: Any = None
         _content: Any = None
-        if isinstance(complex_body, (_serialization.Model, MutableMapping)):
+        if isinstance(complex_body, (_serialization.Model, dict)):
             _json = self._serialize.body(complex_body, "Salmon")
             content_type = content_type or "application/json"
         elif isinstance(complex_body, (IO, bytes)):
@@ -876,7 +876,7 @@ class PolymorphismOperations:
 
         _json: Any = None
         _content: Any = None
-        if isinstance(complex_body, (_serialization.Model, MutableMapping)):
+        if isinstance(complex_body, (_serialization.Model, dict)):
             _json = self._serialize.body(complex_body, "Fish")
             content_type = content_type or "application/json"
         elif isinstance(complex_body, (IO, bytes)):

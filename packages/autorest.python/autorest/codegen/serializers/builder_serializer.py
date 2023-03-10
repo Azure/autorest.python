@@ -6,6 +6,7 @@
 # --------------------------------------------------------------------------
 import json
 from abc import abstractmethod
+import copy
 from collections import defaultdict
 from typing import Any, Generic, List, Type, TypeVar, Dict, Union, Optional, cast
 
@@ -17,6 +18,7 @@ from ..models import (
     LROPagingOperation,
     ModelType,
     DPGModelType,
+    AnyType,
     AnyObjectType,
     DictionaryType,
     ListType,
@@ -803,17 +805,30 @@ class _OperationSerializer(
             ]
             for v in sorted(set(client_names), key=client_names.index):
                 overload_retval.append(f"_{v}: Any = None")
-            for idx, overload in enumerate(builder.overloads):
+
+            # make sure AnyType is in last one but we can't change original order
+            overloads_copy = copy.copy(builder.overloads)
+            for i in range(len(overloads_copy)):
+                if isinstance(overloads_copy[i].parameters.body_parameter.type, AnyType):
+                    overloads_copy[i], overloads_copy[-1] = overloads_copy[-1], overloads_copy[i]
+                    break
+
+            stop_loop = False
+            for idx, overload in enumerate(overloads_copy):
                 if builder.has_native_overload and isinstance(
                     overload.parameters.body_parameter.type,
                     (ByteArraySchema, DPGModelType),
                 ):
                     continue
-                if_statement = "if" if idx == 0 else "elif"
                 body_param = overload.parameters.body_parameter
-                overload_retval.append(
-                    f"{if_statement} {body_param.type.instance_check_template.format(body_param.client_name)}:"
-                )
+                if body_param.type.instance_check_template == "":
+                    stop_loop = True
+                    overload_retval.append("else:")
+                else:
+                    if_statement = "if" if idx == 0 else "elif"
+                    overload_retval.append(
+                        f"{if_statement} {body_param.type.instance_check_template.format(body_param.client_name)}:"
+                    )
                 overload_retval.extend(
                     f"    {l}"
                     for l in self._create_body_parameter(
@@ -831,7 +846,9 @@ class _OperationSerializer(
                     overload_retval.append(
                         f'    content_type = content_type or "{body_param.default_content_type}"'
                     )
-            if overload_retval:
+                if stop_loop:
+                    break
+            if overload_retval and not stop_loop:
                 overload_retval.extend(
                     [
                         "else:",

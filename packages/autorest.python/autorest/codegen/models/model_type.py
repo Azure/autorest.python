@@ -328,7 +328,7 @@ class MsrestModelType(GeneratedModelType):
 
     @property
     def instance_check_template(self) -> str:
-        return "isinstance({}, (_serialization.Model, MutableMapping))"
+        return "isinstance({}, (_serialization.Model, dict))"
 
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = super().imports(**kwargs)
@@ -339,7 +339,6 @@ class MsrestModelType(GeneratedModelType):
             kwargs.pop("enable_special_import", True)
             and self.enable_import_for_overload
         ):
-            file_import.define_mutable_mapping_type()
             relative_path = kwargs.pop("relative_path", None)
             if relative_path:
                 relative_path = relative_path + (
