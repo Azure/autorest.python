@@ -24,7 +24,6 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
-from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._model_base import AzureJSONEncoder, _deserialize
@@ -103,7 +102,14 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         return deserialized  # type: ignore
 
     @overload
-    async def post_model(self, mode: Union[str, _models.Mode], input: _models.Input, **kwargs: Any) -> _models.Product:
+    async def post_model(
+        self,
+        mode: Union[str, _models.Mode],
+        input: _models.Input,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> _models.Product:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
 
@@ -124,7 +130,9 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         """
 
     @overload
-    async def post_model(self, mode: Union[str, _models.Mode], input: JSON, **kwargs: Any) -> _models.Product:
+    async def post_model(
+        self, mode: Union[str, _models.Mode], input: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Product:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
 
@@ -145,7 +153,9 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         """
 
     @overload
-    async def post_model(self, mode: Union[str, _models.Mode], input: IO, **kwargs: Any) -> _models.Product:
+    async def post_model(
+        self, mode: Union[str, _models.Mode], input: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Product:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
 
@@ -167,7 +177,12 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
 
     @distributed_trace_async
     async def post_model(
-        self, mode: Union[str, _models.Mode], input: Union[_models.Input, JSON, IO], **kwargs: Any
+        self,
+        mode: Union[str, _models.Mode],
+        input: Union[_models.Input, JSON, IO],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> _models.Product:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
@@ -196,10 +211,9 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         _content: Any = None

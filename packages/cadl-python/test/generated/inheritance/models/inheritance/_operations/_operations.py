@@ -41,10 +41,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_inheritance_post_valid_request(**kwargs: Any) -> HttpRequest:
+def build_inheritance_post_valid_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/models/inheritance/valid"
 
@@ -69,10 +68,9 @@ def build_inheritance_get_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_inheritance_put_valid_request(**kwargs: Any) -> HttpRequest:
+def build_inheritance_put_valid_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -100,10 +98,9 @@ def build_inheritance_get_model_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_inheritance_put_model_request(**kwargs: Any) -> HttpRequest:
+def build_inheritance_put_model_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/models/inheritance/discriminated/model"
 
@@ -128,10 +125,9 @@ def build_inheritance_get_recursive_model_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_inheritance_put_recursive_model_request(**kwargs: Any) -> HttpRequest:
+def build_inheritance_put_recursive_model_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/models/inheritance/discriminated/recursivemodel"
 
@@ -173,7 +169,7 @@ def build_inheritance_get_wrong_discriminator_request(**kwargs: Any) -> HttpRequ
 class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
     @overload
     def post_valid(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.Siamese, **kwargs: Any
+        self, input: _models.Siamese, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """post_valid.
 
@@ -190,7 +186,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         """
 
     @overload
-    def post_valid(self, input: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def post_valid(  # pylint: disable=inconsistent-return-statements
+        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """post_valid.
 
         :param input: Required.
@@ -206,7 +204,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         """
 
     @overload
-    def post_valid(self, input: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def post_valid(  # pylint: disable=inconsistent-return-statements
+        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """post_valid.
 
         :param input: Required.
@@ -223,7 +223,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
 
     @distributed_trace
     def post_valid(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.Siamese, JSON, IO], **kwargs: Any
+        self, input: Union[_models.Siamese, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """post_valid.
 
@@ -246,10 +246,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -335,7 +334,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         return deserialized  # type: ignore
 
     @overload
-    def put_valid(self, input: _models.Siamese, **kwargs: Any) -> _models.Siamese:
+    def put_valid(
+        self, input: _models.Siamese, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Siamese:
         """put_valid.
 
         :param input: Required.
@@ -351,7 +352,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         """
 
     @overload
-    def put_valid(self, input: JSON, **kwargs: Any) -> _models.Siamese:
+    def put_valid(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> _models.Siamese:
         """put_valid.
 
         :param input: Required.
@@ -367,7 +368,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         """
 
     @overload
-    def put_valid(self, input: IO, **kwargs: Any) -> _models.Siamese:
+    def put_valid(self, input: IO, *, content_type: str = "application/json", **kwargs: Any) -> _models.Siamese:
         """put_valid.
 
         :param input: Required.
@@ -383,7 +384,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         """
 
     @distributed_trace
-    def put_valid(self, input: Union[_models.Siamese, JSON, IO], **kwargs: Any) -> _models.Siamese:
+    def put_valid(
+        self, input: Union[_models.Siamese, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Siamese:
         """put_valid.
 
         :param input: Is one of the following types: Siamese, JSON, IO Required.
@@ -405,10 +408,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[_models.Siamese] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -501,7 +503,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         return deserialized  # type: ignore
 
     @overload
-    def put_model(self, input: _models.Fish, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def put_model(  # pylint: disable=inconsistent-return-statements
+        self, input: _models.Fish, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """put_model.
 
         :param input: Required.
@@ -517,7 +521,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         """
 
     @overload
-    def put_model(self, input: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def put_model(  # pylint: disable=inconsistent-return-statements
+        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """put_model.
 
         :param input: Required.
@@ -533,7 +539,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         """
 
     @overload
-    def put_model(self, input: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def put_model(  # pylint: disable=inconsistent-return-statements
+        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """put_model.
 
         :param input: Required.
@@ -550,7 +558,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
 
     @distributed_trace
     def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.Fish, JSON, IO], **kwargs: Any
+        self, input: Union[_models.Fish, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put_model.
 
@@ -573,10 +581,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -663,7 +670,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
 
     @overload
     def put_recursive_model(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.Fish, **kwargs: Any
+        self, input: _models.Fish, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put_recursive_model.
 
@@ -680,7 +687,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         """
 
     @overload
-    def put_recursive_model(self, input: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def put_recursive_model(  # pylint: disable=inconsistent-return-statements
+        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """put_recursive_model.
 
         :param input: Required.
@@ -696,7 +705,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         """
 
     @overload
-    def put_recursive_model(self, input: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def put_recursive_model(  # pylint: disable=inconsistent-return-statements
+        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """put_recursive_model.
 
         :param input: Required.
@@ -713,7 +724,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
 
     @distributed_trace
     def put_recursive_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.Fish, JSON, IO], **kwargs: Any
+        self, input: Union[_models.Fish, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put_recursive_model.
 
@@ -736,10 +747,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None

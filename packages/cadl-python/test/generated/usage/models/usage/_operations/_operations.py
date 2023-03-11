@@ -41,10 +41,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_usage_input_request(**kwargs: Any) -> HttpRequest:
+def build_usage_input_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/models/usage/input"
 
@@ -69,10 +68,9 @@ def build_usage_output_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_usage_input_and_output_request(**kwargs: Any) -> HttpRequest:
+def build_usage_input_and_output_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -89,7 +87,7 @@ def build_usage_input_and_output_request(**kwargs: Any) -> HttpRequest:
 class UsageClientOperationsMixin(UsageClientMixinABC):
     @overload
     def input(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.InputRecord, **kwargs: Any
+        self, input: _models.InputRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """input.
 
@@ -106,7 +104,9 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         """
 
     @overload
-    def input(self, input: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def input(  # pylint: disable=inconsistent-return-statements
+        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """input.
 
         :param input: Required.
@@ -122,7 +122,9 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         """
 
     @overload
-    def input(self, input: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def input(  # pylint: disable=inconsistent-return-statements
+        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """input.
 
         :param input: Required.
@@ -139,7 +141,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
 
     @distributed_trace
     def input(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.InputRecord, JSON, IO], **kwargs: Any
+        self, input: Union[_models.InputRecord, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """input.
 
@@ -162,10 +164,9 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -251,7 +252,9 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         return deserialized  # type: ignore
 
     @overload
-    def input_and_output(self, body: _models.InputOutputRecord, **kwargs: Any) -> _models.InputOutputRecord:
+    def input_and_output(
+        self, body: _models.InputOutputRecord, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.InputOutputRecord:
         """input_and_output.
 
         :param body: Required.
@@ -267,7 +270,9 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         """
 
     @overload
-    def input_and_output(self, body: JSON, **kwargs: Any) -> _models.InputOutputRecord:
+    def input_and_output(
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.InputOutputRecord:
         """input_and_output.
 
         :param body: Required.
@@ -283,7 +288,9 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         """
 
     @overload
-    def input_and_output(self, body: IO, **kwargs: Any) -> _models.InputOutputRecord:
+    def input_and_output(
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.InputOutputRecord:
         """input_and_output.
 
         :param body: Required.
@@ -300,7 +307,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
 
     @distributed_trace
     def input_and_output(
-        self, body: Union[_models.InputOutputRecord, JSON, IO], **kwargs: Any
+        self, body: Union[_models.InputOutputRecord, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.InputOutputRecord:
         """input_and_output.
 
@@ -323,10 +330,9 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[_models.InputOutputRecord] = kwargs.pop("cls", None)
 
         _content: Any = None

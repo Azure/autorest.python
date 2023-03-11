@@ -61,10 +61,11 @@ def build_dev_driven_get_model_request(mode: Union[str, _models.Mode], **kwargs:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_dev_driven_post_model_request(mode: Union[str, _models.Mode], **kwargs: Any) -> HttpRequest:
+def build_dev_driven_post_model_request(
+    mode: Union[str, _models.Mode], *, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -178,7 +179,14 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         return deserialized  # type: ignore
 
     @overload
-    def post_model(self, mode: Union[str, _models.Mode], input: _models.Input, **kwargs: Any) -> _models.Product:
+    def post_model(
+        self,
+        mode: Union[str, _models.Mode],
+        input: _models.Input,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> _models.Product:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
 
@@ -199,7 +207,9 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         """
 
     @overload
-    def post_model(self, mode: Union[str, _models.Mode], input: JSON, **kwargs: Any) -> _models.Product:
+    def post_model(
+        self, mode: Union[str, _models.Mode], input: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Product:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
 
@@ -220,7 +230,9 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         """
 
     @overload
-    def post_model(self, mode: Union[str, _models.Mode], input: IO, **kwargs: Any) -> _models.Product:
+    def post_model(
+        self, mode: Union[str, _models.Mode], input: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Product:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
 
@@ -242,7 +254,12 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
 
     @distributed_trace
     def post_model(
-        self, mode: Union[str, _models.Mode], input: Union[_models.Input, JSON, IO], **kwargs: Any
+        self,
+        mode: Union[str, _models.Mode],
+        input: Union[_models.Input, JSON, IO],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> _models.Product:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
@@ -271,10 +288,9 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         _content: Any = None

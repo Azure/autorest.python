@@ -22,7 +22,6 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
-from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._model_base import AzureJSONEncoder, _deserialize
@@ -137,7 +136,7 @@ class BooleanOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.BooleanProperty, **kwargs: Any
+        self, body: _models.BooleanProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -154,7 +153,9 @@ class BooleanOperations:
         """
 
     @overload
-    async def put(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -170,7 +171,9 @@ class BooleanOperations:
         """
 
     @overload
-    async def put(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -187,7 +190,7 @@ class BooleanOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BooleanProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.BooleanProperty, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -210,10 +213,9 @@ class BooleanOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -318,7 +320,7 @@ class StringOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.StringProperty, **kwargs: Any
+        self, body: _models.StringProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -335,7 +337,9 @@ class StringOperations:
         """
 
     @overload
-    async def put(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -351,7 +355,9 @@ class StringOperations:
         """
 
     @overload
-    async def put(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -368,7 +374,7 @@ class StringOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.StringProperty, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -391,10 +397,9 @@ class StringOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -499,7 +504,7 @@ class BytesOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.BytesProperty, **kwargs: Any
+        self, body: _models.BytesProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -516,7 +521,9 @@ class BytesOperations:
         """
 
     @overload
-    async def put(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -532,7 +539,9 @@ class BytesOperations:
         """
 
     @overload
-    async def put(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -549,7 +558,7 @@ class BytesOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BytesProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.BytesProperty, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -572,10 +581,9 @@ class BytesOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -680,7 +688,7 @@ class IntOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.IntProperty, **kwargs: Any
+        self, body: _models.IntProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -697,7 +705,9 @@ class IntOperations:
         """
 
     @overload
-    async def put(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -713,7 +723,9 @@ class IntOperations:
         """
 
     @overload
-    async def put(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -730,7 +742,7 @@ class IntOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IntProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.IntProperty, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -753,10 +765,9 @@ class IntOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -861,7 +872,7 @@ class FloatOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.FloatProperty, **kwargs: Any
+        self, body: _models.FloatProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -878,7 +889,9 @@ class FloatOperations:
         """
 
     @overload
-    async def put(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -894,7 +907,9 @@ class FloatOperations:
         """
 
     @overload
-    async def put(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -911,7 +926,7 @@ class FloatOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.FloatProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.FloatProperty, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -934,10 +949,9 @@ class FloatOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -1042,7 +1056,7 @@ class DatetimeOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.DatetimeProperty, **kwargs: Any
+        self, body: _models.DatetimeProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -1059,7 +1073,9 @@ class DatetimeOperations:
         """
 
     @overload
-    async def put(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1075,7 +1091,9 @@ class DatetimeOperations:
         """
 
     @overload
-    async def put(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1092,7 +1110,7 @@ class DatetimeOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DatetimeProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DatetimeProperty, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -1115,10 +1133,9 @@ class DatetimeOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -1223,7 +1240,7 @@ class DurationOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.DurationProperty, **kwargs: Any
+        self, body: _models.DurationProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -1240,7 +1257,9 @@ class DurationOperations:
         """
 
     @overload
-    async def put(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1256,7 +1275,9 @@ class DurationOperations:
         """
 
     @overload
-    async def put(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1273,7 +1294,7 @@ class DurationOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DurationProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DurationProperty, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -1296,10 +1317,9 @@ class DurationOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -1404,7 +1424,7 @@ class EnumOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.EnumProperty, **kwargs: Any
+        self, body: _models.EnumProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -1421,7 +1441,9 @@ class EnumOperations:
         """
 
     @overload
-    async def put(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1437,7 +1459,9 @@ class EnumOperations:
         """
 
     @overload
-    async def put(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1454,7 +1478,7 @@ class EnumOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.EnumProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.EnumProperty, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -1477,10 +1501,9 @@ class EnumOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -1585,7 +1608,7 @@ class ExtensibleEnumOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.ExtensibleEnumProperty, **kwargs: Any
+        self, body: _models.ExtensibleEnumProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -1602,7 +1625,9 @@ class ExtensibleEnumOperations:
         """
 
     @overload
-    async def put(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1618,7 +1643,9 @@ class ExtensibleEnumOperations:
         """
 
     @overload
-    async def put(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1635,7 +1662,11 @@ class ExtensibleEnumOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ExtensibleEnumProperty, JSON, IO], **kwargs: Any
+        self,
+        body: Union[_models.ExtensibleEnumProperty, JSON, IO],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -1658,10 +1689,9 @@ class ExtensibleEnumOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -1766,7 +1796,7 @@ class ModelOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.ModelProperty, **kwargs: Any
+        self, body: _models.ModelProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -1783,7 +1813,9 @@ class ModelOperations:
         """
 
     @overload
-    async def put(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1799,7 +1831,9 @@ class ModelOperations:
         """
 
     @overload
-    async def put(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1816,7 +1850,7 @@ class ModelOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ModelProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.ModelProperty, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -1839,10 +1873,9 @@ class ModelOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -1948,7 +1981,7 @@ class CollectionsStringOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.CollectionsStringProperty, **kwargs: Any
+        self, body: _models.CollectionsStringProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -1965,7 +1998,9 @@ class CollectionsStringOperations:
         """
 
     @overload
-    async def put(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1981,7 +2016,9 @@ class CollectionsStringOperations:
         """
 
     @overload
-    async def put(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1998,7 +2035,11 @@ class CollectionsStringOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsStringProperty, JSON, IO], **kwargs: Any
+        self,
+        body: Union[_models.CollectionsStringProperty, JSON, IO],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -2021,10 +2062,9 @@ class CollectionsStringOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -2129,7 +2169,7 @@ class CollectionsIntOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.CollectionsIntProperty, **kwargs: Any
+        self, body: _models.CollectionsIntProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -2146,7 +2186,9 @@ class CollectionsIntOperations:
         """
 
     @overload
-    async def put(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2162,7 +2204,9 @@ class CollectionsIntOperations:
         """
 
     @overload
-    async def put(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2179,7 +2223,11 @@ class CollectionsIntOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsIntProperty, JSON, IO], **kwargs: Any
+        self,
+        body: Union[_models.CollectionsIntProperty, JSON, IO],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -2202,10 +2250,9 @@ class CollectionsIntOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -2311,7 +2358,7 @@ class CollectionsModelOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.CollectionsModelProperty, **kwargs: Any
+        self, body: _models.CollectionsModelProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -2328,7 +2375,9 @@ class CollectionsModelOperations:
         """
 
     @overload
-    async def put(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2344,7 +2393,9 @@ class CollectionsModelOperations:
         """
 
     @overload
-    async def put(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2361,7 +2412,11 @@ class CollectionsModelOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsModelProperty, JSON, IO], **kwargs: Any
+        self,
+        body: Union[_models.CollectionsModelProperty, JSON, IO],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -2384,10 +2439,9 @@ class CollectionsModelOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -2493,7 +2547,7 @@ class DictionaryStringOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.DictionaryStringProperty, **kwargs: Any
+        self, body: _models.DictionaryStringProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -2510,7 +2564,9 @@ class DictionaryStringOperations:
         """
 
     @overload
-    async def put(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2526,7 +2582,9 @@ class DictionaryStringOperations:
         """
 
     @overload
-    async def put(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2543,7 +2601,11 @@ class DictionaryStringOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DictionaryStringProperty, JSON, IO], **kwargs: Any
+        self,
+        body: Union[_models.DictionaryStringProperty, JSON, IO],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -2566,10 +2628,9 @@ class DictionaryStringOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -2674,7 +2735,7 @@ class NeverOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.NeverProperty, **kwargs: Any
+        self, body: _models.NeverProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -2691,7 +2752,9 @@ class NeverOperations:
         """
 
     @overload
-    async def put(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2707,7 +2770,9 @@ class NeverOperations:
         """
 
     @overload
-    async def put(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2724,7 +2789,7 @@ class NeverOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.NeverProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.NeverProperty, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -2747,10 +2812,9 @@ class NeverOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None

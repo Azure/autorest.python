@@ -46,11 +46,10 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_core_create_or_update_request(id: int, **kwargs: Any) -> HttpRequest:
+def build_core_create_or_update_request(id: int, *, content_type: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     api_version: Literal["2022-12-01-preview"] = kwargs.pop(
         "api_version", _params.pop("api-version", "2022-12-01-preview")
     )
@@ -68,18 +67,16 @@ def build_core_create_or_update_request(id: int, **kwargs: Any) -> HttpRequest:
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PATCH", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_core_create_or_replace_request(id: int, **kwargs: Any) -> HttpRequest:
+def build_core_create_or_replace_request(id: int, *, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     api_version: Literal["2022-12-01-preview"] = kwargs.pop(
         "api_version", _params.pop("api-version", "2022-12-01-preview")
     )
@@ -242,7 +239,9 @@ def build_core_export_request(id: int, *, format: str, **kwargs: Any) -> HttpReq
 
 class CoreClientOperationsMixin(CoreClientMixinABC):
     @overload
-    def create_or_update(self, id: int, resource: _models.User, **kwargs: Any) -> _models.User:
+    def create_or_update(
+        self, id: int, resource: _models.User, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+    ) -> _models.User:
         """Adds a user or updates a user's fields.
 
         Creates or updates a User.
@@ -262,7 +261,9 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         """
 
     @overload
-    def create_or_update(self, id: int, resource: JSON, **kwargs: Any) -> _models.User:
+    def create_or_update(
+        self, id: int, resource: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+    ) -> _models.User:
         """Adds a user or updates a user's fields.
 
         Creates or updates a User.
@@ -282,7 +283,9 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         """
 
     @overload
-    def create_or_update(self, id: int, resource: IO, **kwargs: Any) -> _models.User:
+    def create_or_update(
+        self, id: int, resource: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+    ) -> _models.User:
         """Adds a user or updates a user's fields.
 
         Creates or updates a User.
@@ -302,7 +305,14 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         """
 
     @distributed_trace
-    def create_or_update(self, id: int, resource: Union[_models.User, JSON, IO], **kwargs: Any) -> _models.User:
+    def create_or_update(
+        self,
+        id: int,
+        resource: Union[_models.User, JSON, IO],
+        *,
+        content_type: str = "application/merge-patch+json",
+        **kwargs: Any
+    ) -> _models.User:
         """Adds a user or updates a user's fields.
 
         Creates or updates a User.
@@ -328,10 +338,9 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/merge-patch+json"))
         cls: ClsType[_models.User] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -383,7 +392,9 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         return deserialized  # type: ignore
 
     @overload
-    def create_or_replace(self, id: int, resource: _models.User, **kwargs: Any) -> _models.User:
+    def create_or_replace(
+        self, id: int, resource: _models.User, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.User:
         """Adds a user or repalces a user's fields.
 
         Creates or repalces a User.
@@ -403,7 +414,9 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         """
 
     @overload
-    def create_or_replace(self, id: int, resource: JSON, **kwargs: Any) -> _models.User:
+    def create_or_replace(
+        self, id: int, resource: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.User:
         """Adds a user or repalces a user's fields.
 
         Creates or repalces a User.
@@ -423,7 +436,9 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         """
 
     @overload
-    def create_or_replace(self, id: int, resource: IO, **kwargs: Any) -> _models.User:
+    def create_or_replace(
+        self, id: int, resource: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.User:
         """Adds a user or repalces a user's fields.
 
         Creates or repalces a User.
@@ -443,7 +458,9 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         """
 
     @distributed_trace
-    def create_or_replace(self, id: int, resource: Union[_models.User, JSON, IO], **kwargs: Any) -> _models.User:
+    def create_or_replace(
+        self, id: int, resource: Union[_models.User, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.User:
         """Adds a user or repalces a user's fields.
 
         Creates or repalces a User.
@@ -469,10 +486,9 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[_models.User] = kwargs.pop("cls", None)
 
         _content: Any = None

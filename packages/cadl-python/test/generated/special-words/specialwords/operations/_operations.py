@@ -85,10 +85,9 @@ def build_model_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_model_put_request(**kwargs: Any) -> HttpRequest:
+def build_model_put_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/special-words/model/put"
 
@@ -340,7 +339,9 @@ class ModelOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(self, body: _models.BaseModel, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.BaseModel, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """put.
 
         :param body: Required.
@@ -356,7 +357,9 @@ class ModelOperations:
         """
 
     @overload
-    def put(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """put.
 
         :param body: Required.
@@ -372,7 +375,9 @@ class ModelOperations:
         """
 
     @overload
-    def put(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def put(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """put.
 
         :param body: Required.
@@ -389,7 +394,7 @@ class ModelOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BaseModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.BaseModel, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
@@ -412,10 +417,9 @@ class ModelOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None

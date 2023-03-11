@@ -41,10 +41,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_projected_name_json_projection_request(**kwargs: Any) -> HttpRequest:
+def build_projected_name_json_projection_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/projection/json"
 
@@ -55,10 +54,9 @@ def build_projected_name_json_projection_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_projected_name_client_projection_request(**kwargs: Any) -> HttpRequest:
+def build_projected_name_client_projection_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/projection/client"
 
@@ -69,10 +67,11 @@ def build_projected_name_client_projection_request(**kwargs: Any) -> HttpRequest
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_projected_name_language_projection_request(**kwargs: Any) -> HttpRequest:
+def build_projected_name_language_projection_request(
+    *, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/projection/language"
 
@@ -86,7 +85,7 @@ def build_projected_name_language_projection_request(**kwargs: Any) -> HttpReque
 class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
     @overload
     def json_projection(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.Project, **kwargs: Any
+        self, body: _models.Project, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """json_projection.
 
@@ -103,7 +102,9 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
         """
 
     @overload
-    def json_projection(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def json_projection(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """json_projection.
 
         :param body: Required.
@@ -119,7 +120,9 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
         """
 
     @overload
-    def json_projection(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def json_projection(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """json_projection.
 
         :param body: Required.
@@ -136,7 +139,7 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
 
     @distributed_trace
     def json_projection(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.Project, JSON, IO], **kwargs: Any
+        self, body: Union[_models.Project, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """json_projection.
 
@@ -159,10 +162,9 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -199,7 +201,7 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
 
     @overload
     def client_projection(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.Project, **kwargs: Any
+        self, body: _models.Project, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """client_projection.
 
@@ -216,7 +218,9 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
         """
 
     @overload
-    def client_projection(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def client_projection(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """client_projection.
 
         :param body: Required.
@@ -232,7 +236,9 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
         """
 
     @overload
-    def client_projection(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def client_projection(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """client_projection.
 
         :param body: Required.
@@ -249,7 +255,7 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
 
     @distributed_trace
     def client_projection(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.Project, JSON, IO], **kwargs: Any
+        self, body: Union[_models.Project, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """client_projection.
 
@@ -272,10 +278,9 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -312,7 +317,7 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
 
     @overload
     def language_projection(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.Project, **kwargs: Any
+        self, body: _models.Project, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """language_projection.
 
@@ -329,7 +334,9 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
         """
 
     @overload
-    def language_projection(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def language_projection(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """language_projection.
 
         :param body: Required.
@@ -345,7 +352,9 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
         """
 
     @overload
-    def language_projection(self, body: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def language_projection(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """language_projection.
 
         :param body: Required.
@@ -362,7 +371,7 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
 
     @distributed_trace
     def language_projection(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.Project, JSON, IO], **kwargs: Any
+        self, body: Union[_models.Project, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """language_projection.
 
@@ -385,10 +394,9 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None

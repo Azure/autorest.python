@@ -41,10 +41,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_unions_send_int_request(**kwargs: Any) -> HttpRequest:
+def build_unions_send_int_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/unions/int"
 
@@ -55,10 +54,9 @@ def build_unions_send_int_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_unions_send_int_array_request(**kwargs: Any) -> HttpRequest:
+def build_unions_send_int_array_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/unions/int-array"
 
@@ -69,10 +67,11 @@ def build_unions_send_int_array_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_unions_send_first_named_union_value_request(**kwargs: Any) -> HttpRequest:
+def build_unions_send_first_named_union_value_request(
+    *, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/unions/model1"
 
@@ -83,10 +82,11 @@ def build_unions_send_first_named_union_value_request(**kwargs: Any) -> HttpRequ
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_unions_send_second_named_union_value_request(**kwargs: Any) -> HttpRequest:
+def build_unions_send_second_named_union_value_request(
+    *, content_type: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/unions/model2"
 
@@ -100,7 +100,7 @@ def build_unions_send_second_named_union_value_request(**kwargs: Any) -> HttpReq
 class UnionsClientOperationsMixin(UnionsClientMixinABC):
     @overload
     def send_int(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.ModelWithSimpleUnionProperty, **kwargs: Any
+        self, input: _models.ModelWithSimpleUnionProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send_int.
 
@@ -117,7 +117,9 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
         """
 
     @overload
-    def send_int(self, input: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def send_int(  # pylint: disable=inconsistent-return-statements
+        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """send_int.
 
         :param input: Required.
@@ -133,7 +135,9 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
         """
 
     @overload
-    def send_int(self, input: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def send_int(  # pylint: disable=inconsistent-return-statements
+        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """send_int.
 
         :param input: Required.
@@ -150,7 +154,11 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
 
     @distributed_trace
     def send_int(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.ModelWithSimpleUnionProperty, JSON, IO], **kwargs: Any
+        self,
+        input: Union[_models.ModelWithSimpleUnionProperty, JSON, IO],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> None:
         """send_int.
 
@@ -173,10 +181,9 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -213,7 +220,7 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
 
     @overload
     def send_int_array(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.ModelWithSimpleUnionProperty, **kwargs: Any
+        self, input: _models.ModelWithSimpleUnionProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send_int_array.
 
@@ -230,7 +237,9 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
         """
 
     @overload
-    def send_int_array(self, input: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def send_int_array(  # pylint: disable=inconsistent-return-statements
+        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """send_int_array.
 
         :param input: Required.
@@ -246,7 +255,9 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
         """
 
     @overload
-    def send_int_array(self, input: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def send_int_array(  # pylint: disable=inconsistent-return-statements
+        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """send_int_array.
 
         :param input: Required.
@@ -263,7 +274,11 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
 
     @distributed_trace
     def send_int_array(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.ModelWithSimpleUnionProperty, JSON, IO], **kwargs: Any
+        self,
+        input: Union[_models.ModelWithSimpleUnionProperty, JSON, IO],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> None:
         """send_int_array.
 
@@ -286,10 +301,9 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -326,7 +340,7 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
 
     @overload
     def send_first_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.ModelWithNamedUnionProperty, **kwargs: Any
+        self, input: _models.ModelWithNamedUnionProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send_first_named_union_value.
 
@@ -344,7 +358,7 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
 
     @overload
     def send_first_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, **kwargs: Any
+        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send_first_named_union_value.
 
@@ -362,7 +376,7 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
 
     @overload
     def send_first_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, **kwargs: Any
+        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send_first_named_union_value.
 
@@ -380,7 +394,11 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
 
     @distributed_trace
     def send_first_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.ModelWithNamedUnionProperty, JSON, IO], **kwargs: Any
+        self,
+        input: Union[_models.ModelWithNamedUnionProperty, JSON, IO],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> None:
         """send_first_named_union_value.
 
@@ -403,10 +421,9 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -443,7 +460,7 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
 
     @overload
     def send_second_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.ModelWithNamedUnionProperty, **kwargs: Any
+        self, input: _models.ModelWithNamedUnionProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send_second_named_union_value.
 
@@ -461,7 +478,7 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
 
     @overload
     def send_second_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, **kwargs: Any
+        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send_second_named_union_value.
 
@@ -479,7 +496,7 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
 
     @overload
     def send_second_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, **kwargs: Any
+        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send_second_named_union_value.
 
@@ -497,7 +514,11 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
 
     @distributed_trace
     def send_second_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.ModelWithNamedUnionProperty, JSON, IO], **kwargs: Any
+        self,
+        input: Union[_models.ModelWithNamedUnionProperty, JSON, IO],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> None:
         """send_second_named_union_value.
 
@@ -520,10 +541,9 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None

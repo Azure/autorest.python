@@ -680,14 +680,29 @@ function emitPagingOperation(
     return retval;
 }
 
+function makeContentTypeInOverload(operation: Record<string, any>): void {
+    for (const parameter of operation.parameters) {
+        if (parameter.restApiName.toLowerCase() === "content-type") {
+            parameter.inOverload = true;
+        }
+    }
+}
+
 function addOverload(
-    originOverload: Record<string, any>,
+    operation: Record<string, any>,
     originBodyParameter: Record<string, any>,
     bodyType: Record<string, any>,
 ): Record<string, any> {
-    const addedOverload = { ...originOverload };
-    addedOverload.bodyParameter = { ...originOverload.bodyParameter };
+    // we copy most of properties except for bodyParameter and contentType
+    const addedOverload = { ...operation };
+    addedOverload.bodyParameter = { ...operation.bodyParameter };
     addedOverload.bodyParameter.type = bodyType;
+    for (let i = 0; i < operation.parameters.length; i++) {
+        if (operation.parameters[i].restApiName.toLowerCase() === "content-type") {
+            addedOverload.parameters[i] = { ...operation.parameters[i] };
+        }
+    }
+    makeContentTypeInOverload(addedOverload);
     if (originBodyParameter.type.type === "combined") {
         originBodyParameter.type.types.push(bodyType);
     } else {
@@ -713,13 +728,14 @@ function updateOverloads(
     operation.overloads.push(overload);
 }
 
-function contentTypeOptional(parameters: Record<string, any>[]): void {
-    for (const p of parameters) {
-        if (p.restApiName.toLowerCase() === "content-type") {
-            p.optional = true;
-        }
-    }
-}
+// function contentTypeOptional(parameters: Record<string, any>[]): void {
+//     for (const p of parameters) {
+//         if (p.restApiName.toLowerCase() === "content-type") {
+//             p.optional = true;
+//             p.inOverload = true;
+//         }
+//     }
+// }
 
 function emitBasicOperation(
     context: DpgContext,
@@ -799,6 +815,7 @@ function emitBasicOperation(
         let modelOverload = undefined;
         for (const overload of overloads) {
             overload.name = name;
+            makeContentTypeInOverload(overload);
             if (overload.bodyParameter.type.type === "byte-array" && !binaryOverload) {
                 overload.bodyParameter.type["enableOverloadCheck"] = false;
                 binaryOverload = addOverload(overload, bodyParameter, KnownTypes.binary);
@@ -816,7 +833,7 @@ function emitBasicOperation(
         if (binaryOverload) {
             overloads.unshift(binaryOverload);
         }
-        contentTypeOptional(parameters);
+        // contentTypeOptional(parameters);
     }
     const basicOperation = {
         name: name,
@@ -843,12 +860,12 @@ function emitBasicOperation(
         if (bodyParameter.type.type === "byte-array") {
             updateOverloads(basicOperation, bodyParameter, bodyParameter.type, false);
             updateOverloads(basicOperation, bodyParameter, KnownTypes.binary);
-            contentTypeOptional(parameters);
+            // contentTypeOptional(parameters);
         } else if (bodyParameter.type.type === "model") {
             updateOverloads(basicOperation, bodyParameter, bodyParameter.type, false);
             updateOverloads(basicOperation, bodyParameter, KnownTypes.anyObject);
             updateOverloads(basicOperation, bodyParameter, KnownTypes.binary);
-            contentTypeOptional(parameters);
+            // contentTypeOptional(parameters);
         }
     }
 

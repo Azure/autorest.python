@@ -22,7 +22,6 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
-from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._model_base import AzureJSONEncoder
@@ -44,7 +43,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class OverloadClientOperationsMixin(OverloadClientMixinABC):
     @overload
     async def upload_bytes_or_string(  # pylint: disable=inconsistent-return-statements
-        self, data: IO, **kwargs: Any
+        self, data: IO, *, content_type: str = "application/octet-stream", **kwargs: Any
     ) -> None:
         """upload_bytes_or_string.
 
@@ -61,7 +60,7 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
 
     @overload
     async def upload_bytes_or_string(  # pylint: disable=inconsistent-return-statements
-        self, data: str, **kwargs: Any
+        self, data: str, *, content_type: str = "text/plain", **kwargs: Any
     ) -> None:
         """upload_bytes_or_string.
 
@@ -78,7 +77,7 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
 
     @overload
     async def upload_bytes_or_string(  # pylint: disable=inconsistent-return-statements
-        self, data: bytes, **kwargs: Any
+        self, data: bytes, *, content_type: str = "application/octet-stream", **kwargs: Any
     ) -> None:
         """upload_bytes_or_string.
 
@@ -101,8 +100,7 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
 
         :param data: Is one of the following types: str, bytes, IO Required.
         :type data: str or bytes or IO
-        :keyword content_type: Known values are: "text/plain" and "application/octet-stream". Default
-         value is None.
+        :keyword content_type: Known values are: "text/plain" and "application/octet-stream". Required.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -118,10 +116,10 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("content-type", None))
+        content_type: str = kwargs.pop("content_type")
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -158,7 +156,7 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
 
     @overload
     async def upload_json_or_string(  # pylint: disable=inconsistent-return-statements
-        self, data: IO, **kwargs: Any
+        self, data: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """upload_json_or_string.
 
@@ -175,7 +173,7 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
 
     @overload
     async def upload_json_or_string(  # pylint: disable=inconsistent-return-statements
-        self, data: str, **kwargs: Any
+        self, data: str, *, content_type: str = "text/plain", **kwargs: Any
     ) -> None:
         """upload_json_or_string.
 
@@ -192,7 +190,7 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
 
     @overload
     async def upload_json_or_string(  # pylint: disable=inconsistent-return-statements
-        self, data: _models.Data, **kwargs: Any
+        self, data: _models.Data, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """upload_json_or_string.
 
@@ -209,7 +207,7 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
 
     @overload
     async def upload_json_or_string(  # pylint: disable=inconsistent-return-statements
-        self, data: JSON, **kwargs: Any
+        self, data: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """upload_json_or_string.
 
@@ -232,8 +230,7 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
 
         :param data: Is one of the following types: str, Data, JSON, IO Required.
         :type data: str or ~overload.models.Data or JSON or IO
-        :keyword content_type: Known values are: "text/plain" and "application/json". Default value is
-         None.
+        :keyword content_type: Known values are: "text/plain" and "application/json". Required.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -249,10 +246,10 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("content-type", None))
+        content_type: str = kwargs.pop("content_type")
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None

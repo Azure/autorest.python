@@ -92,11 +92,10 @@ def build_service_driven1_put_required_optional_request(
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_service_driven1_post_parameters_request(**kwargs: Any) -> HttpRequest:
+def build_service_driven1_post_parameters_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type_path: Literal["json"] = kwargs.pop("content_type_path", "json")
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -295,18 +294,20 @@ class ServiceDriven1ClientOperationsMixin(ServiceDriven1ClientMixinABC):
         return deserialized  # type: ignore
 
     @overload
-    def post_parameters(self, parameter: _models.PostInput, **kwargs: Any) -> _models.Message:
+    def post_parameters(
+        self, parameter: _models.PostInput, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Message:
         """POST a JSON.
 
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
          "http://example.org/myimage.jpeg" }. Required.
         :type parameter: ~resiliency.servicedriven1.models.PostInput
-        :keyword content_type_path: Default value is "json". Note that overriding this default value
-         may result in unsupported behavior.
-        :paramtype content_type_path: str
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
+        :keyword content_type_path: Default value is "json". Note that overriding this default value
+         may result in unsupported behavior.
+        :paramtype content_type_path: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: Message. The Message is compatible with MutableMapping
@@ -315,18 +316,20 @@ class ServiceDriven1ClientOperationsMixin(ServiceDriven1ClientMixinABC):
         """
 
     @overload
-    def post_parameters(self, parameter: JSON, **kwargs: Any) -> _models.Message:
+    def post_parameters(
+        self, parameter: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Message:
         """POST a JSON.
 
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
          "http://example.org/myimage.jpeg" }. Required.
         :type parameter: JSON
-        :keyword content_type_path: Default value is "json". Note that overriding this default value
-         may result in unsupported behavior.
-        :paramtype content_type_path: str
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
+        :keyword content_type_path: Default value is "json". Note that overriding this default value
+         may result in unsupported behavior.
+        :paramtype content_type_path: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: Message. The Message is compatible with MutableMapping
@@ -335,18 +338,20 @@ class ServiceDriven1ClientOperationsMixin(ServiceDriven1ClientMixinABC):
         """
 
     @overload
-    def post_parameters(self, parameter: IO, **kwargs: Any) -> _models.Message:
+    def post_parameters(
+        self, parameter: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Message:
         """POST a JSON.
 
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
          "http://example.org/myimage.jpeg" }. Required.
         :type parameter: IO
-        :keyword content_type_path: Default value is "json". Note that overriding this default value
-         may result in unsupported behavior.
-        :paramtype content_type_path: str
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
+        :keyword content_type_path: Default value is "json". Note that overriding this default value
+         may result in unsupported behavior.
+        :paramtype content_type_path: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: Message. The Message is compatible with MutableMapping
@@ -355,19 +360,21 @@ class ServiceDriven1ClientOperationsMixin(ServiceDriven1ClientMixinABC):
         """
 
     @distributed_trace
-    def post_parameters(self, parameter: Union[_models.PostInput, JSON, IO], **kwargs: Any) -> _models.Message:
+    def post_parameters(
+        self, parameter: Union[_models.PostInput, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Message:
         """POST a JSON.
 
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
          "http://example.org/myimage.jpeg" }. Is one of the following types: PostInput, JSON, IO
          Required.
         :type parameter: ~resiliency.servicedriven1.models.PostInput or JSON or IO
-        :keyword content_type_path: Default value is "json". Note that overriding this default value
-         may result in unsupported behavior.
-        :paramtype content_type_path: str
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
+        :keyword content_type_path: Default value is "json". Note that overriding this default value
+         may result in unsupported behavior.
+        :paramtype content_type_path: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: Message. The Message is compatible with MutableMapping
@@ -382,11 +389,10 @@ class ServiceDriven1ClientOperationsMixin(ServiceDriven1ClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
         content_type_path: Literal["json"] = kwargs.pop("content_type_path", "json")
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[_models.Message] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -400,8 +406,8 @@ class ServiceDriven1ClientOperationsMixin(ServiceDriven1ClientMixinABC):
             raise TypeError("unrecognized type for parameter")
 
         request = build_service_driven1_post_parameters_request(
-            content_type_path=content_type_path,
             content_type=content_type,
+            content_type_path=content_type_path,
             content=_content,
             headers=_headers,
             params=_params,

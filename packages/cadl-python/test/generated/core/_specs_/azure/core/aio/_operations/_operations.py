@@ -24,7 +24,6 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
-from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._model_base import AzureJSONEncoder, _deserialize
@@ -50,7 +49,9 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class CoreClientOperationsMixin(CoreClientMixinABC):
     @overload
-    async def create_or_update(self, id: int, resource: _models.User, **kwargs: Any) -> _models.User:
+    async def create_or_update(
+        self, id: int, resource: _models.User, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+    ) -> _models.User:
         """Adds a user or updates a user's fields.
 
         Creates or updates a User.
@@ -70,7 +71,9 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         """
 
     @overload
-    async def create_or_update(self, id: int, resource: JSON, **kwargs: Any) -> _models.User:
+    async def create_or_update(
+        self, id: int, resource: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+    ) -> _models.User:
         """Adds a user or updates a user's fields.
 
         Creates or updates a User.
@@ -90,7 +93,9 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         """
 
     @overload
-    async def create_or_update(self, id: int, resource: IO, **kwargs: Any) -> _models.User:
+    async def create_or_update(
+        self, id: int, resource: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+    ) -> _models.User:
         """Adds a user or updates a user's fields.
 
         Creates or updates a User.
@@ -110,7 +115,14 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         """
 
     @distributed_trace_async
-    async def create_or_update(self, id: int, resource: Union[_models.User, JSON, IO], **kwargs: Any) -> _models.User:
+    async def create_or_update(
+        self,
+        id: int,
+        resource: Union[_models.User, JSON, IO],
+        *,
+        content_type: str = "application/merge-patch+json",
+        **kwargs: Any
+    ) -> _models.User:
         """Adds a user or updates a user's fields.
 
         Creates or updates a User.
@@ -136,10 +148,9 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/merge-patch+json"))
         cls: ClsType[_models.User] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -191,7 +202,9 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         return deserialized  # type: ignore
 
     @overload
-    async def create_or_replace(self, id: int, resource: _models.User, **kwargs: Any) -> _models.User:
+    async def create_or_replace(
+        self, id: int, resource: _models.User, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.User:
         """Adds a user or repalces a user's fields.
 
         Creates or repalces a User.
@@ -211,7 +224,9 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         """
 
     @overload
-    async def create_or_replace(self, id: int, resource: JSON, **kwargs: Any) -> _models.User:
+    async def create_or_replace(
+        self, id: int, resource: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.User:
         """Adds a user or repalces a user's fields.
 
         Creates or repalces a User.
@@ -231,7 +246,9 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         """
 
     @overload
-    async def create_or_replace(self, id: int, resource: IO, **kwargs: Any) -> _models.User:
+    async def create_or_replace(
+        self, id: int, resource: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.User:
         """Adds a user or repalces a user's fields.
 
         Creates or repalces a User.
@@ -251,7 +268,9 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         """
 
     @distributed_trace_async
-    async def create_or_replace(self, id: int, resource: Union[_models.User, JSON, IO], **kwargs: Any) -> _models.User:
+    async def create_or_replace(
+        self, id: int, resource: Union[_models.User, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.User:
         """Adds a user or repalces a user's fields.
 
         Creates or repalces a User.
@@ -277,10 +296,9 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[_models.User] = kwargs.pop("cls", None)
 
         _content: Any = None

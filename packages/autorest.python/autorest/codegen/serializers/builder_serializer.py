@@ -39,6 +39,7 @@ from ..models import (
     RequestBuilderType,
     CombinedType,
     ParameterListType,
+    StringType,
 )
 from .parameter_serializer import ParameterSerializer, PopKwargType
 from ..models.parameter_list import ParameterType
@@ -770,8 +771,8 @@ class _OperationSerializer(
                 f"_{body_kwarg_name} = self._serialize.body({body_param.client_name}, "
                 f"'{body_param.type.serialization_type}'{is_xml_cmd}{serialization_ctxt_cmd})"
             )
-        elif self.code_model.options["models_mode"] == "dpg" and isinstance(
-            body_param.type, (DPGModelType, AnyObjectType)
+        elif self.code_model.options["models_mode"] == "dpg" and not isinstance(
+            body_param.type, (BinaryIteratorType, BinaryType, StringType)
         ):
             create_body_call = (
                 f"_{body_kwarg_name} = json.dumps({body_param.client_name}, "

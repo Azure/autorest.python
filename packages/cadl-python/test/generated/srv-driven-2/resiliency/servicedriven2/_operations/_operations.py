@@ -102,11 +102,10 @@ def build_service_driven2_put_required_optional_request(
 
 
 def build_service_driven2_post_parameters_request(
-    content_type_path: Union[str, _models.ContentTypePathType], **kwargs: Any
+    content_type_path: Union[str, _models.ContentTypePathType], *, content_type: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -354,7 +353,12 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
 
     @overload
     def post_parameters(
-        self, content_type_path: Union[str, _models.ContentTypePathType], parameter: _models.PostInput, **kwargs: Any
+        self,
+        content_type_path: Union[str, _models.ContentTypePathType],
+        parameter: _models.PostInput,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> _models.Message:
         """POST a JSON or a JPEG.
 
@@ -375,7 +379,12 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
 
     @overload
     def post_parameters(
-        self, content_type_path: Union[str, _models.ContentTypePathType], parameter: JSON, **kwargs: Any
+        self,
+        content_type_path: Union[str, _models.ContentTypePathType],
+        parameter: JSON,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> _models.Message:
         """POST a JSON or a JPEG.
 
@@ -396,7 +405,12 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
 
     @overload
     def post_parameters(
-        self, content_type_path: Union[str, _models.ContentTypePathType], parameter: IO, **kwargs: Any
+        self,
+        content_type_path: Union[str, _models.ContentTypePathType],
+        parameter: IO,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> _models.Message:
         """POST a JSON or a JPEG.
 
@@ -420,6 +434,8 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
         self,
         content_type_path: Union[str, _models.ContentTypePathType],
         parameter: Union[_models.PostInput, JSON, IO],
+        *,
+        content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.Message:
         """POST a JSON or a JPEG.
@@ -447,10 +463,9 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[_models.Message] = kwargs.pop("cls", None)
 
         _content: Any = None

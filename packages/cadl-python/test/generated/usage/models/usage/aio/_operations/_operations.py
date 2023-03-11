@@ -22,7 +22,6 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
-from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._model_base import AzureJSONEncoder, _deserialize
@@ -45,7 +44,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class UsageClientOperationsMixin(UsageClientMixinABC):
     @overload
     async def input(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.InputRecord, **kwargs: Any
+        self, input: _models.InputRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """input.
 
@@ -62,7 +61,9 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         """
 
     @overload
-    async def input(self, input: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def input(  # pylint: disable=inconsistent-return-statements
+        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """input.
 
         :param input: Required.
@@ -78,7 +79,9 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         """
 
     @overload
-    async def input(self, input: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def input(  # pylint: disable=inconsistent-return-statements
+        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """input.
 
         :param input: Required.
@@ -95,7 +98,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
 
     @distributed_trace_async
     async def input(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.InputRecord, JSON, IO], **kwargs: Any
+        self, input: Union[_models.InputRecord, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """input.
 
@@ -118,10 +121,9 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -207,7 +209,9 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         return deserialized  # type: ignore
 
     @overload
-    async def input_and_output(self, body: _models.InputOutputRecord, **kwargs: Any) -> _models.InputOutputRecord:
+    async def input_and_output(
+        self, body: _models.InputOutputRecord, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.InputOutputRecord:
         """input_and_output.
 
         :param body: Required.
@@ -223,7 +227,9 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         """
 
     @overload
-    async def input_and_output(self, body: JSON, **kwargs: Any) -> _models.InputOutputRecord:
+    async def input_and_output(
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.InputOutputRecord:
         """input_and_output.
 
         :param body: Required.
@@ -239,7 +245,9 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         """
 
     @overload
-    async def input_and_output(self, body: IO, **kwargs: Any) -> _models.InputOutputRecord:
+    async def input_and_output(
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.InputOutputRecord:
         """input_and_output.
 
         :param body: Required.
@@ -256,7 +264,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
 
     @distributed_trace_async
     async def input_and_output(
-        self, body: Union[_models.InputOutputRecord, JSON, IO], **kwargs: Any
+        self, body: Union[_models.InputOutputRecord, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.InputOutputRecord:
         """input_and_output.
 
@@ -279,10 +287,9 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[_models.InputOutputRecord] = kwargs.pop("cls", None)
 
         _content: Any = None
