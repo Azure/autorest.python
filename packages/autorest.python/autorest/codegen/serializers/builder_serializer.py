@@ -17,6 +17,8 @@ from ..models import (
     LROOperation,
     LROPagingOperation,
     ModelType,
+    MsrestModelType,
+    DPGModelType,
     AnyType,
     AnyObjectType,
     DictionaryType,
@@ -740,7 +742,6 @@ class _OperationSerializer(
     def _create_body_parameter(
         self,
         builder: OperationType,
-        has_native_overload: bool = False,
     ) -> List[str]:
         """Create the body parameter before we pass it as either json or content to the request builder"""
         body_param = cast(BodyParameter, builder.parameters.body_parameter)
@@ -756,24 +757,19 @@ class _OperationSerializer(
         ser_ctxt_name = "serialization_ctxt"
         if xml_serialization_ctxt and self.code_model.options["models_mode"]:
             retval.append(f'{ser_ctxt_name} = {{"xml": {{{xml_serialization_ctxt}}}}}')
-        if self.code_model.options["models_mode"] == "msrest":
+        if self.code_model.options["models_mode"] == "msrest" and isinstance(
+            body_param.type, MsrestModelType
+        ):
             is_xml_cmd = ", is_xml=True" if send_xml else ""
             serialization_ctxt_cmd = (
                 f", {ser_ctxt_name}={ser_ctxt_name}" if xml_serialization_ctxt else ""
             )
-            if isinstance(body_param.type, BinaryType):
-                create_body_call = f"_{body_kwarg_name} = {body_param.client_name}"
-            else:
-                create_body_call = (
-                    f"_{body_kwarg_name} = self._serialize.body({body_param.client_name}, "
-                    f"'{body_param.type.serialization_type}'{is_xml_cmd}{serialization_ctxt_cmd})"
-                )
-        elif self.code_model.options["models_mode"] == "dpg" and (
-            (
-                isinstance(body_param.type, (ModelType, AnyObjectType))
-                and has_native_overload
+            create_body_call = (
+                f"_{body_kwarg_name} = self._serialize.body({body_param.client_name}, "
+                f"'{body_param.type.serialization_type}'{is_xml_cmd}{serialization_ctxt_cmd})"
             )
-            or not has_native_overload
+        elif self.code_model.options["models_mode"] == "dpg" and isinstance(
+            body_param.type, (DPGModelType, AnyObjectType)
         ):
             create_body_call = (
                 f"_{body_kwarg_name} = json.dumps({body_param.client_name}, "
@@ -808,7 +804,7 @@ class _OperationSerializer(
             for v in sorted(set(client_names), key=client_names.index):
                 overload_retval.append(f"_{v}: Any = None")
 
-            # make sure AnyType is in last position and BinaryType in first position 
+            # make sure AnyType is in last position and BinaryType in first position
             # but we can't change original data
             overloads_copy = copy.copy(builder.overloads)
             for i, _ in enumerate(overloads_copy):
@@ -825,19 +821,19 @@ class _OperationSerializer(
             if_statement = "if"
             for overload in overloads_copy:
                 body_param = overload.parameters.body_parameter
-                if body_param.type.enable_overload_check:
-                    if body_param.type.instance_check_template == "":
-                        stop_loop = True
-                        overload_retval.append("else:")
-                    else:
-                        overload_retval.append(
-                            f"{if_statement} {body_param.type.instance_check_template.format(body_param.client_name)}:"
-                        )
+                if not body_param.type.enable_overload_check:
+                    continue
+                try:
+                    overload_retval.append(
+                        f"{if_statement} {body_param.type.instance_check_template.format(body_param.client_name)}:"
+                    )
+                except ValueError:
+                    stop_loop = True
+                    overload_retval.append("else:")
+                finally:
                     overload_retval.extend(
                         f"    {l}"
-                        for l in self._create_body_parameter(
-                            cast(OperationType, overload), builder.has_native_overload
-                        )
+                        for l in self._create_body_parameter(cast(OperationType, overload))
                     )
                     if body_param.default_content_type is None:
                         overload_retval.extend(

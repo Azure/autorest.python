@@ -170,7 +170,9 @@ class AnyType(PrimitiveType):
 
     @property
     def instance_check_template(self) -> str:
-        return ""
+        raise ValueError(
+            "Shouldn't do instance check on an anytype, it can be anything"
+        )
 
 
 class AnyObjectType(PrimitiveType):

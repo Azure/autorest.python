@@ -589,9 +589,6 @@ class M4Reformatter(
         if not body_types:
             return overloads
         for body_type in body_types:
-            # make sure we need special import for overload check
-            if body_type["type"] == "model" and body_type.get("base") == "msrest":
-                body_type["enableImportForOverload"] = True
             overload = self.update_overload(group_name, yaml_data, body_type)
             for parameter in overload["parameters"]:
                 if parameter["restApiName"].lower() == "content-type":
@@ -767,11 +764,16 @@ class M4Reformatter(
         # add overload for operations including basic/paging/LRO
         for operation in operations:
             if (
-                operation["overloads"]
-                and len(operation["overloads"]) == 0
+                len(operation["overloads"]) == 0
                 and operation["bodyParameter"]
             ):
                 add_overloads_for_body_param(operation)
+            for overload in operation["overloads"]:
+                # make sure we need special import for overload check
+                body_type = overload["bodyParameter"]
+                if body_type["type"] == "model" and body_type.get("base") == "msrest":
+                    body_type["enableImportForOverload"] = True
+
         return {
             "propertyName": property_name,
             "className": property_name,
