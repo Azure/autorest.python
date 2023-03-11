@@ -194,7 +194,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = input
+        _json = self._serialize.body(input, "object")
 
         request = build_put_object_request(
             content_type=content_type,
@@ -298,7 +298,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = input
+        _json = self._serialize.body(input, "object")
 
         request = build_put_string_request(
             content_type=content_type,
@@ -402,7 +402,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = input
+        _json = self._serialize.body(input, "object")
 
         request = build_put_array_request(
             content_type=content_type,

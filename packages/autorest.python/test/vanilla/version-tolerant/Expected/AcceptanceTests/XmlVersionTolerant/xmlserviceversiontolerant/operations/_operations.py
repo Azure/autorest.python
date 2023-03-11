@@ -23,7 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .. import models as _models
+from .. import _serialization, models as _models
 from .._serialization import Serializer
 
 if sys.version_info >= (3, 8):
@@ -1266,7 +1266,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
-        _content = bananas
+        _content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
         request = build_xml_put_root_list_request(
             content_type=content_type,
@@ -1362,7 +1362,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
-        _content = bananas
+        _content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
         request = build_xml_put_root_list_single_item_request(
             content_type=content_type,
@@ -1458,7 +1458,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
-        _content = bananas
+        _content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
 
         request = build_xml_put_empty_root_list_request(
             content_type=content_type,
@@ -1832,7 +1832,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         serialization_ctxt = {"xml": {"name": "SignedIdentifiers", "wrapped": True, "itemsName": "SignedIdentifier"}}
-        _content = properties
+        _content = self._serialize.body(
+            properties, "[SignedIdentifier]", is_xml=True, serialization_ctxt=serialization_ctxt
+        )
 
         request = build_xml_put_acls_request(
             comp=comp,
@@ -1980,7 +1982,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(properties, (IO, bytes)):
-            _content = properties
+            _content = self._serialize.body(properties, "IO")
             content_type = content_type or "application/json"
         elif isinstance(properties, (_serialization.Model, dict)):
             _json = self._serialize.body(properties, "JSONInput")

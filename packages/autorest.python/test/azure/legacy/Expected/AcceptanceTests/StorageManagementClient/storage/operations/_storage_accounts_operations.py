@@ -28,7 +28,7 @@ from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 
-from .. import models as _models
+from .. import _serialization, models as _models
 from .._serialization import Serializer
 from .._vendor import _convert_request, _format_url_section
 
@@ -431,7 +431,7 @@ class StorageAccountsOperations:
         _json: Any = None
         _content: Any = None
         if isinstance(account_name, (IO, bytes)):
-            _content = account_name
+            _content = self._serialize.body(account_name, "IO")
             content_type = content_type or "application/json"
         elif isinstance(account_name, (_serialization.Model, dict)):
             _json = self._serialize.body(account_name, "StorageAccountCheckNameAvailabilityParameters")
@@ -501,7 +501,7 @@ class StorageAccountsOperations:
         _json: Any = None
         _content: Any = None
         if isinstance(parameters, (IO, bytes)):
-            _content = parameters
+            _content = self._serialize.body(parameters, "IO")
             content_type = content_type or "application/json"
         elif isinstance(parameters, (_serialization.Model, dict)):
             _json = self._serialize.body(parameters, "StorageAccountCreateParameters")
@@ -980,7 +980,7 @@ class StorageAccountsOperations:
         _json: Any = None
         _content: Any = None
         if isinstance(parameters, (IO, bytes)):
-            _content = parameters
+            _content = self._serialize.body(parameters, "IO")
             content_type = content_type or "application/json"
         elif isinstance(parameters, (_serialization.Model, dict)):
             _json = self._serialize.body(parameters, "StorageAccountUpdateParameters")

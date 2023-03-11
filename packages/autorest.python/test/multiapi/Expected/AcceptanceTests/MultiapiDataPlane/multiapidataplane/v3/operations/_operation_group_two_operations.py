@@ -24,6 +24,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
+from ... import _serialization
 from ..._serialization import Serializer
 from .._vendor import MultiapiServiceClientMixinABC, _convert_request
 
@@ -168,7 +169,7 @@ class OperationGroupTwoOperations:
         _content: Any = None
         if isinstance(input, (IO, bytes)):
             if input is not None:
-                _content = input
+                _content = self._serialize.body(input, "IO")
             else:
                 _content = None
             if not content_type:

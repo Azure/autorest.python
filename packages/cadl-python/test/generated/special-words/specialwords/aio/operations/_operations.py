@@ -368,7 +368,7 @@ class ModelOperations:
 
         _content: Any = None
         if isinstance(body, (IO, bytes)):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            _content = body
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore

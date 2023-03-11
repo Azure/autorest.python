@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .. import models as _models
+from .. import _serialization, models as _models
 from .._serialization import Serializer
 from .._vendor import _convert_request
 
@@ -193,7 +193,7 @@ class FormdataOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))
         cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
-        _content = file_content
+        _content = self._serialize.body(file_content, "IO")
 
         request = build_upload_file_via_body_request(
             content_type=content_type,

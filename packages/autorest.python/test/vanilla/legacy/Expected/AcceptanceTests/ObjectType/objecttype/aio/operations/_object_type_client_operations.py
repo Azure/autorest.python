@@ -116,7 +116,7 @@ class ObjectTypeClientOperationsMixin(ObjectTypeClientMixinABC):
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = put_object
+        _json = self._serialize.body(put_object, "object")
 
         request = build_put_request(
             content_type=content_type,

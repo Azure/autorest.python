@@ -108,7 +108,7 @@ class IntOperations:
         cls: ClsType[str] = kwargs.pop("cls", None)
 
         if input is not None:
-            _json = input
+            _json = self._serialize.body(input, "int")
         else:
             _json = None
 

@@ -336,7 +336,7 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
 
         _content: Any = None
         if isinstance(resource, (IO, bytes)):
-            _content = json.dumps(resource, cls=AzureJSONEncoder)  # type: ignore
+            _content = resource
             content_type = content_type or "application/merge-patch+json"
         elif isinstance(resource, MutableMapping):
             _content = json.dumps(resource, cls=AzureJSONEncoder)  # type: ignore
@@ -477,7 +477,7 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
 
         _content: Any = None
         if isinstance(resource, (IO, bytes)):
-            _content = json.dumps(resource, cls=AzureJSONEncoder)  # type: ignore
+            _content = resource
             content_type = content_type or "application/json"
         elif isinstance(resource, MutableMapping):
             _content = json.dumps(resource, cls=AzureJSONEncoder)  # type: ignore

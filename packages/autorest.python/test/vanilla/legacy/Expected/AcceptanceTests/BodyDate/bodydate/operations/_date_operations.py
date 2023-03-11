@@ -23,7 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .. import models as _models
+from .. import _serialization, models as _models
 from .._serialization import Serializer
 from .._vendor import _convert_request
 
@@ -402,7 +402,7 @@ class DateOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = date_body
+        _json = self._serialize.body(date_body, "date")
 
         request = build_put_max_date_request(
             content_type=content_type,
@@ -509,7 +509,7 @@ class DateOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = date_body
+        _json = self._serialize.body(date_body, "date")
 
         request = build_put_min_date_request(
             content_type=content_type,

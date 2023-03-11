@@ -455,7 +455,7 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
 
         _content: Any = None
         if isinstance(parameter, (IO, bytes)):
-            _content = json.dumps(parameter, cls=AzureJSONEncoder)  # type: ignore
+            _content = parameter
             content_type = content_type or "application/json"
         elif isinstance(parameter, MutableMapping):
             _content = json.dumps(parameter, cls=AzureJSONEncoder)  # type: ignore

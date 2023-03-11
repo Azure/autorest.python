@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .. import models as _models
+from .. import _serialization, models as _models
 from .._serialization import Serializer
 from .._vendor import MediaTypesClientMixinABC, _convert_request
 
@@ -215,7 +215,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         _content: Any = None
         if isinstance(input, (IO, bytes)):
             if input is not None:
-                _content = input
+                _content = self._serialize.body(input, "IO")
             else:
                 _content = None
             if not content_type:
@@ -334,7 +334,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         _content: Any = None
         if isinstance(input, (IO, bytes)):
             if input is not None:
-                _content = input
+                _content = self._serialize.body(input, "IO")
             else:
                 _content = None
             if not content_type:
@@ -403,7 +403,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         cls: ClsType[str] = kwargs.pop("cls", None)
 
         if input is not None:
-            _content = input
+            _content = self._serialize.body(input, "str")
         else:
             _content = None
 
@@ -463,7 +463,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        _content = message
+        _content = self._serialize.body(message, "IO")
 
         request = build_binary_body_with_two_content_types_request(
             content_type=content_type,
@@ -522,7 +522,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        _content = message
+        _content = self._serialize.body(message, "IO")
 
         request = build_binary_body_with_three_content_types_request(
             content_type=content_type,
@@ -639,13 +639,13 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         _json: Any = None
         _content: Any = None
         if isinstance(message, (IO, bytes)):
-            _content = message
+            _content = self._serialize.body(message, "IO")
             content_type = content_type or "application/octet-stream"
         elif isinstance(message, str):
-            _content = message
+            _content = self._serialize.body(message, "str")
             content_type = content_type or "text/plain"
         else:
-            _json = message
+            _json = self._serialize.body(message, "object")
             content_type = content_type or "application/json"
 
         request = build_body_three_types_request(
@@ -704,7 +704,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        _content = message
+        _content = self._serialize.body(message, "str")
 
         request = build_put_text_and_json_body_request(
             content_type=content_type,

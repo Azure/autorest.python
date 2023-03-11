@@ -23,7 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ... import models as _models
+from ... import _serialization, models as _models
 from ..._vendor import _convert_request
 from ...operations._string_operations import (
     build_get_base64_encoded_request,
@@ -147,7 +147,7 @@ class StringOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if string_body is not None:
-            _content = string_body
+            _content = self._serialize.body(string_body, "str")
         else:
             _content = None
 
@@ -256,7 +256,7 @@ class StringOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = string_body
+        _json = self._serialize.body(string_body, "str")
 
         request = build_put_empty_request(
             content_type=content_type,
@@ -366,7 +366,7 @@ class StringOperations:
         )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = string_body
+        _json = self._serialize.body(string_body, "str")
 
         request = build_put_mbcs_request(
             content_type=content_type,
@@ -480,7 +480,7 @@ class StringOperations:
         ] = kwargs.pop("string_body", "    Now is the time for all good men to come to the aid of their country    ")
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = string_body
+        _json = self._serialize.body(string_body, "str")
 
         request = build_put_whitespace_request(
             content_type=content_type,
@@ -689,7 +689,7 @@ class StringOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = string_body
+        _json = self._serialize.body(string_body, "base64")
 
         request = build_put_base64_url_encoded_request(
             content_type=content_type,

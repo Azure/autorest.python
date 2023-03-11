@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .. import models as _models
+from .. import _serialization, models as _models
 from .._serialization import Serializer
 from .._vendor import _convert_request
 
@@ -219,7 +219,7 @@ class PetsOperations:
         _json: Any = None
         _content: Any = None
         if isinstance(create_parameters, (IO, bytes)):
-            _content = create_parameters
+            _content = self._serialize.body(create_parameters, "IO")
             content_type = content_type or "application/json"
         elif isinstance(create_parameters, (_serialization.Model, dict)):
             _json = self._serialize.body(create_parameters, "PetAPTrue")
@@ -324,7 +324,7 @@ class PetsOperations:
         _json: Any = None
         _content: Any = None
         if isinstance(create_parameters, (IO, bytes)):
-            _content = create_parameters
+            _content = self._serialize.body(create_parameters, "IO")
             content_type = content_type or "application/json"
         elif isinstance(create_parameters, (_serialization.Model, dict)):
             _json = self._serialize.body(create_parameters, "CatAPTrue")
@@ -429,7 +429,7 @@ class PetsOperations:
         _json: Any = None
         _content: Any = None
         if isinstance(create_parameters, (IO, bytes)):
-            _content = create_parameters
+            _content = self._serialize.body(create_parameters, "IO")
             content_type = content_type or "application/json"
         elif isinstance(create_parameters, (_serialization.Model, dict)):
             _json = self._serialize.body(create_parameters, "PetAPObject")
@@ -534,7 +534,7 @@ class PetsOperations:
         _json: Any = None
         _content: Any = None
         if isinstance(create_parameters, (IO, bytes)):
-            _content = create_parameters
+            _content = self._serialize.body(create_parameters, "IO")
             content_type = content_type or "application/json"
         elif isinstance(create_parameters, (_serialization.Model, dict)):
             _json = self._serialize.body(create_parameters, "PetAPString")
@@ -641,7 +641,7 @@ class PetsOperations:
         _json: Any = None
         _content: Any = None
         if isinstance(create_parameters, (IO, bytes)):
-            _content = create_parameters
+            _content = self._serialize.body(create_parameters, "IO")
             content_type = content_type or "application/json"
         elif isinstance(create_parameters, (_serialization.Model, dict)):
             _json = self._serialize.body(create_parameters, "PetAPInProperties")
@@ -753,7 +753,7 @@ class PetsOperations:
         _json: Any = None
         _content: Any = None
         if isinstance(create_parameters, (IO, bytes)):
-            _content = create_parameters
+            _content = self._serialize.body(create_parameters, "IO")
             content_type = content_type or "application/json"
         elif isinstance(create_parameters, (_serialization.Model, dict)):
             _json = self._serialize.body(create_parameters, "PetAPInPropertiesWithAPString")

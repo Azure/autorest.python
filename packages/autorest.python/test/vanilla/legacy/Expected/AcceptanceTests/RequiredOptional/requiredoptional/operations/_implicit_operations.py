@@ -24,7 +24,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .. import models as _models
+from .. import _serialization, models as _models
 from .._vendor import _convert_request, _format_url_section
 
 T = TypeVar("T")
@@ -382,7 +382,7 @@ class ImplicitOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if body_parameter is not None:
-            _content = body_parameter
+            _content = self._serialize.body(body_parameter, "str")
         else:
             _content = None
 
@@ -441,7 +441,7 @@ class ImplicitOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if body_parameter is not None:
-            _content = body_parameter
+            _content = self._serialize.body(body_parameter, "IO")
         else:
             _content = None
 

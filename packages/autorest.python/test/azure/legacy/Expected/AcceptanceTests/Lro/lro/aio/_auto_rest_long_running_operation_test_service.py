@@ -15,7 +15,7 @@ from azure.mgmt.core import AsyncARMPipelineClient
 from .. import models as _models
 from .._serialization import Deserializer, Serializer
 from ._configuration import AutoRestLongRunningOperationTestServiceConfiguration
-from .operations import LROsOperations
+from .operations import LRORetrysOperations, LROSADsOperations, LROsCustomHeaderOperations, LROsOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -27,6 +27,12 @@ class AutoRestLongRunningOperationTestService:  # pylint: disable=client-accepts
 
     :ivar lros: LROsOperations operations
     :vartype lros: lro.aio.operations.LROsOperations
+    :ivar lro_retrys: LRORetrysOperations operations
+    :vartype lro_retrys: lro.aio.operations.LRORetrysOperations
+    :ivar lrosads: LROSADsOperations operations
+    :vartype lrosads: lro.aio.operations.LROSADsOperations
+    :ivar lr_os_custom_header: LROsCustomHeaderOperations operations
+    :vartype lr_os_custom_header: lro.aio.operations.LROsCustomHeaderOperations
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param base_url: Service URL. Default value is "http://localhost:3000".
@@ -46,6 +52,11 @@ class AutoRestLongRunningOperationTestService:  # pylint: disable=client-accepts
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
         self.lros = LROsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.lro_retrys = LRORetrysOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.lrosads = LROSADsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.lr_os_custom_header = LROsCustomHeaderOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def _send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.

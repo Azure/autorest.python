@@ -24,7 +24,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .. import models as _models
+from .. import _serialization, models as _models
 from .._vendor import _convert_request
 
 T = TypeVar("T")
@@ -481,7 +481,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if body_parameter is not None:
-            _content = body_parameter
+            _content = self._serialize.body(body_parameter, "IO")
         else:
             _content = None
 
@@ -539,7 +539,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = body_parameter
+        _content = self._serialize.body(body_parameter, "IO")
 
         request = build_put_required_binary_body_request(
             content_type=content_type,
@@ -596,7 +596,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = body_parameter
+        _json = self._serialize.body(body_parameter, "int")
 
         request = build_post_required_integer_parameter_request(
             content_type=content_type,
@@ -653,7 +653,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if body_parameter is not None:
-            _json = body_parameter
+            _json = self._serialize.body(body_parameter, "int")
         else:
             _json = None
 
@@ -935,7 +935,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = body_parameter
+        _content = self._serialize.body(body_parameter, "str")
 
         request = build_post_required_string_parameter_request(
             content_type=content_type,
@@ -992,7 +992,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if body_parameter is not None:
-            _content = body_parameter
+            _content = self._serialize.body(body_parameter, "str")
         else:
             _content = None
 
@@ -1316,7 +1316,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(body_parameter, (IO, bytes)):
-            _content = body_parameter
+            _content = self._serialize.body(body_parameter, "IO")
             content_type = content_type or "application/json"
         elif isinstance(body_parameter, (_serialization.Model, dict)):
             _json = self._serialize.body(body_parameter, "Product")
@@ -1420,7 +1420,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _content: Any = None
         if isinstance(body_parameter, (IO, bytes)):
             if body_parameter is not None:
-                _content = body_parameter
+                _content = self._serialize.body(body_parameter, "IO")
             else:
                 _content = None
             content_type = content_type or "application/json"
@@ -1649,10 +1649,10 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(body_parameter, (IO, bytes)):
-            _content = body_parameter
+            _content = self._serialize.body(body_parameter, "IO")
             content_type = content_type or "application/json"
         elif isinstance(body_parameter, list):
-            _json = body_parameter
+            _json = self._serialize.body(body_parameter, "[str]")
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for body_parameter")
@@ -1753,13 +1753,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _content: Any = None
         if isinstance(body_parameter, (IO, bytes)):
             if body_parameter is not None:
-                _content = body_parameter
+                _content = self._serialize.body(body_parameter, "IO")
             else:
                 _content = None
             content_type = content_type or "application/json"
         elif isinstance(body_parameter, list):
             if body_parameter is not None:
-                _json = body_parameter
+                _json = self._serialize.body(body_parameter, "[str]")
             else:
                 _json = None
             content_type = content_type or "application/json"

@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ... import models as _models
+from ... import _serialization, models as _models
 from ..._vendor import _convert_request
 from ...operations._implicit_operations import (
     build_get_optional_global_query_request,
@@ -242,7 +242,7 @@ class ImplicitOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if body_parameter is not None:
-            _content = body_parameter
+            _content = self._serialize.body(body_parameter, "str")
         else:
             _content = None
 
@@ -301,7 +301,7 @@ class ImplicitOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if body_parameter is not None:
-            _content = body_parameter
+            _content = self._serialize.body(body_parameter, "IO")
         else:
             _content = None
 

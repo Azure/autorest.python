@@ -218,7 +218,7 @@ class BooleanOperations:
 
         _content: Any = None
         if isinstance(body, (IO, bytes)):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            _content = body
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
@@ -399,7 +399,7 @@ class StringOperations:
 
         _content: Any = None
         if isinstance(body, (IO, bytes)):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            _content = body
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
@@ -580,7 +580,7 @@ class BytesOperations:
 
         _content: Any = None
         if isinstance(body, (IO, bytes)):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            _content = body
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
@@ -761,7 +761,7 @@ class IntOperations:
 
         _content: Any = None
         if isinstance(body, (IO, bytes)):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            _content = body
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
@@ -942,7 +942,7 @@ class FloatOperations:
 
         _content: Any = None
         if isinstance(body, (IO, bytes)):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            _content = body
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
@@ -1123,7 +1123,7 @@ class DatetimeOperations:
 
         _content: Any = None
         if isinstance(body, (IO, bytes)):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            _content = body
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
@@ -1304,7 +1304,7 @@ class DurationOperations:
 
         _content: Any = None
         if isinstance(body, (IO, bytes)):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            _content = body
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
@@ -1485,7 +1485,7 @@ class EnumOperations:
 
         _content: Any = None
         if isinstance(body, (IO, bytes)):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            _content = body
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
@@ -1666,7 +1666,7 @@ class ExtensibleEnumOperations:
 
         _content: Any = None
         if isinstance(body, (IO, bytes)):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            _content = body
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
@@ -1847,7 +1847,7 @@ class ModelOperations:
 
         _content: Any = None
         if isinstance(body, (IO, bytes)):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            _content = body
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
@@ -2029,7 +2029,7 @@ class CollectionsStringOperations:
 
         _content: Any = None
         if isinstance(body, (IO, bytes)):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            _content = body
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
@@ -2210,7 +2210,7 @@ class CollectionsIntOperations:
 
         _content: Any = None
         if isinstance(body, (IO, bytes)):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            _content = body
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
@@ -2392,7 +2392,7 @@ class CollectionsModelOperations:
 
         _content: Any = None
         if isinstance(body, (IO, bytes)):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            _content = body
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
@@ -2574,7 +2574,7 @@ class DictionaryStringOperations:
 
         _content: Any = None
         if isinstance(body, (IO, bytes)):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            _content = body
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
@@ -2755,7 +2755,7 @@ class NeverOperations:
 
         _content: Any = None
         if isinstance(body, (IO, bytes)):
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            _content = body
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore

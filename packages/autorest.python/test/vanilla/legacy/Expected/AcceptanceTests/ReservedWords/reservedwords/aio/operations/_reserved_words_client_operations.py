@@ -68,7 +68,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        _content = content
+        _content = self._serialize.body(content, "IO")
 
         request = build_operation_with_content_param_request(
             content_type=content_type,
@@ -125,7 +125,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        _json = json
+        _json = self._serialize.body(json, "object")
 
         request = build_operation_with_json_param_request(
             content_type=content_type,

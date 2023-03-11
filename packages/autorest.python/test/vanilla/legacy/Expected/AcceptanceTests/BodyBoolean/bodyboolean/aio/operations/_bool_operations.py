@@ -23,7 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ... import models as _models
+from ... import _serialization, models as _models
 from ..._vendor import _convert_request
 from ...operations._bool_operations import (
     build_get_false_request,
@@ -139,7 +139,7 @@ class BoolOperations:
         bool_body: Literal[True] = kwargs.pop("bool_body", True)
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = bool_body
+        _json = self._serialize.body(bool_body, "bool")
 
         request = build_put_true_request(
             content_type=content_type,
@@ -246,7 +246,7 @@ class BoolOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = bool_body
+        _json = self._serialize.body(bool_body, "bool")
 
         request = build_put_false_request(
             content_type=content_type,

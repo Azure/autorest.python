@@ -23,7 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .. import models as _models
+from .. import _serialization, models as _models
 from .._serialization import Serializer
 from .._vendor import _convert_request
 
@@ -630,7 +630,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
-            _json = boolean_value
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
@@ -690,7 +690,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
-            _json = boolean_value
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
@@ -750,7 +750,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
-            _json = boolean_value
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
@@ -810,7 +810,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
-            _json = boolean_value
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
@@ -1058,7 +1058,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
-            _json = boolean_value
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
@@ -1118,7 +1118,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
-            _json = boolean_value
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
@@ -1178,7 +1178,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
-            _json = boolean_value
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
@@ -1238,7 +1238,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
-            _json = boolean_value
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
@@ -1298,7 +1298,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
-            _json = boolean_value
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
@@ -1546,7 +1546,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
-            _json = boolean_value
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
@@ -1606,7 +1606,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
-            _json = boolean_value
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
@@ -1666,7 +1666,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
-            _json = boolean_value
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
@@ -1773,7 +1773,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
-            _json = boolean_value
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 

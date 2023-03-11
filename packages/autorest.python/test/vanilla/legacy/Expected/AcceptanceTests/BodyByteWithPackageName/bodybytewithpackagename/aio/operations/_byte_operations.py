@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ... import models as _models
+from ... import _serialization, models as _models
 from ..._vendor import _convert_request
 from ...operations._byte_operations import (
     build_get_empty_request,
@@ -236,7 +236,7 @@ class ByteOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = byte_body
+        _json = self._serialize.body(byte_body, "bytearray")
 
         request = build_put_non_ascii_request(
             content_type=content_type,

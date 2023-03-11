@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .. import models as _models
+from .. import _serialization, models as _models
 from .._serialization import Serializer
 from .._vendor import _convert_request
 
@@ -653,7 +653,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = number_body
+        _json = self._serialize.body(number_body, "float")
 
         request = build_put_big_float_request(
             content_type=content_type,
@@ -760,7 +760,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = number_body
+        _json = self._serialize.body(number_body, "float")
 
         request = build_put_big_double_request(
             content_type=content_type,
@@ -867,7 +867,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         number_body: float = kwargs.pop("number_body", 99999999.99)
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = number_body
+        _json = self._serialize.body(number_body, "float")
 
         request = build_put_big_double_positive_decimal_request(
             content_type=content_type,
@@ -974,7 +974,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         number_body: float = kwargs.pop("number_body", -99999999.99)
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = number_body
+        _json = self._serialize.body(number_body, "float")
 
         request = build_put_big_double_negative_decimal_request(
             content_type=content_type,
@@ -1081,7 +1081,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = number_body
+        _json = self._serialize.body(number_body, "float")
 
         request = build_put_big_decimal_request(
             content_type=content_type,
@@ -1188,7 +1188,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         number_body: float = kwargs.pop("number_body", 99999999.99)
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = number_body
+        _json = self._serialize.body(number_body, "float")
 
         request = build_put_big_decimal_positive_decimal_request(
             content_type=content_type,
@@ -1295,7 +1295,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         number_body: float = kwargs.pop("number_body", -99999999.99)
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = number_body
+        _json = self._serialize.body(number_body, "float")
 
         request = build_put_big_decimal_negative_decimal_request(
             content_type=content_type,
@@ -1402,7 +1402,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = number_body
+        _json = self._serialize.body(number_body, "float")
 
         request = build_put_small_float_request(
             content_type=content_type,
@@ -1509,7 +1509,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = number_body
+        _json = self._serialize.body(number_body, "float")
 
         request = build_put_small_double_request(
             content_type=content_type,
@@ -1616,7 +1616,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = number_body
+        _json = self._serialize.body(number_body, "float")
 
         request = build_put_small_decimal_request(
             content_type=content_type,

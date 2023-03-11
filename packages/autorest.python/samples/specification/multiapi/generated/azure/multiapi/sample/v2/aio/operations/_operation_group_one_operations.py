@@ -25,6 +25,7 @@ from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
+from .... import _serialization
 from ..._vendor import _convert_request
 from ...operations._operation_group_one_operations import build_test_three_request, build_test_two_request
 from .._vendor import MultiapiServiceClientMixinABC
@@ -126,7 +127,7 @@ class OperationGroupOneOperations:
         _content: Any = None
         if isinstance(parameter_one, (IO, bytes)):
             if parameter_one is not None:
-                _content = parameter_one
+                _content = self._serialize.body(parameter_one, "IO")
             else:
                 _content = None
             content_type = content_type or "application/json"

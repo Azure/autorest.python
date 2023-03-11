@@ -23,7 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .. import models as _models
+from .. import _serialization, models as _models
 from .._serialization import Serializer
 from .._vendor import _convert_request
 
@@ -416,7 +416,7 @@ class Datetimerfc1123Operations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = datetime_body
+        _json = self._serialize.body(datetime_body, "rfc-1123")
 
         request = build_put_utc_max_date_time_request(
             content_type=content_type,
@@ -574,7 +574,7 @@ class Datetimerfc1123Operations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = datetime_body
+        _json = self._serialize.body(datetime_body, "rfc-1123")
 
         request = build_put_utc_min_date_time_request(
             content_type=content_type,

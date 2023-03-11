@@ -279,7 +279,7 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
 
         _content: Any = None
         if isinstance(input, (IO, bytes)):
-            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
+            _content = input
             content_type = content_type or "application/json"
         elif isinstance(input, MutableMapping):
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore

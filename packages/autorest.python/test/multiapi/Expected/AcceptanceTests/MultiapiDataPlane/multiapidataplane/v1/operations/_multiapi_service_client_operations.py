@@ -28,6 +28,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
+from ... import _serialization
 from ..._serialization import Serializer
 from .._vendor import MultiapiServiceClientMixinABC, _convert_request
 
@@ -202,7 +203,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         _content: Any = None
         if isinstance(product, (IO, bytes)):
             if product is not None:
-                _content = product
+                _content = self._serialize.body(product, "IO")
             else:
                 _content = None
             content_type = content_type or "application/json"

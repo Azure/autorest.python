@@ -23,7 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ... import models as _models
+from ... import _serialization, models as _models
 from ..._vendor import _convert_request
 from ...operations._int_operations import (
     build_get_invalid_request,
@@ -396,7 +396,7 @@ class IntOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = int_body
+        _json = self._serialize.body(int_body, "int")
 
         request = build_put_max32_request(
             content_type=content_type,
@@ -450,7 +450,7 @@ class IntOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = int_body
+        _json = self._serialize.body(int_body, "int")
 
         request = build_put_max64_request(
             content_type=content_type,
@@ -504,7 +504,7 @@ class IntOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = int_body
+        _json = self._serialize.body(int_body, "int")
 
         request = build_put_min32_request(
             content_type=content_type,
@@ -558,7 +558,7 @@ class IntOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = int_body
+        _json = self._serialize.body(int_body, "int")
 
         request = build_put_min64_request(
             content_type=content_type,
@@ -665,7 +665,7 @@ class IntOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = int_body
+        _json = self._serialize.body(int_body, "unix-time")
 
         request = build_put_unix_time_date_request(
             content_type=content_type,

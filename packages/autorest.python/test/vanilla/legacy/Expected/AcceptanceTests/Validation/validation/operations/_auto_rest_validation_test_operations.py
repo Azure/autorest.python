@@ -25,7 +25,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .. import models as _models
+from .. import _serialization, models as _models
 from .._vendor import AutoRestValidationTestMixinABC, _convert_request, _format_url_section
 
 if sys.version_info >= (3, 8):
@@ -295,7 +295,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         _content: Any = None
         if isinstance(body, (IO, bytes)):
             if body is not None:
-                _content = body
+                _content = self._serialize.body(body, "IO")
             else:
                 _content = None
             content_type = content_type or "application/json"
@@ -473,7 +473,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         _content: Any = None
         if isinstance(body, (IO, bytes)):
             if body is not None:
-                _content = body
+                _content = self._serialize.body(body, "IO")
             else:
                 _content = None
             content_type = content_type or "application/json"

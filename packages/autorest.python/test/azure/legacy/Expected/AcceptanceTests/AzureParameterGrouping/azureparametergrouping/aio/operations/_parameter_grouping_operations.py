@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ... import models as _models
+from ... import _serialization, models as _models
 from ..._vendor import _convert_request
 from ...operations._parameter_grouping_operations import (
     build_group_with_constant_request,
@@ -95,7 +95,7 @@ class ParameterGroupingOperations:
             _custom_header = parameter_grouping_post_required_parameters.custom_header
             _path = parameter_grouping_post_required_parameters.path
             _query = parameter_grouping_post_required_parameters.query
-        _json = _body
+        _json = self._serialize.body(_body, "int")
 
         request = build_post_required_request(
             path=_path,

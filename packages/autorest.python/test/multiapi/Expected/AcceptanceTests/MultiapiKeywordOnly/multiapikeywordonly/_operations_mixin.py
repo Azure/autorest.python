@@ -12,6 +12,7 @@ from ._serialization import Serializer, Deserializer
 from typing import Any
 
 from . import models as _models
+from .. import _serialization
 
 
 class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):

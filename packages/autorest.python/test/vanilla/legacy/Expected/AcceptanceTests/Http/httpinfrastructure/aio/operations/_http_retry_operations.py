@@ -23,7 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ... import models as _models
+from ... import _serialization, models as _models
 from ..._vendor import _convert_request
 from ...operations._http_retry_operations import (
     build_delete503_request,
@@ -140,7 +140,7 @@ class HttpRetryOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
-            _json = boolean_value
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
@@ -200,7 +200,7 @@ class HttpRetryOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
-            _json = boolean_value
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
@@ -358,7 +358,7 @@ class HttpRetryOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
-            _json = boolean_value
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
@@ -418,7 +418,7 @@ class HttpRetryOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
-            _json = boolean_value
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
@@ -478,7 +478,7 @@ class HttpRetryOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
-            _json = boolean_value
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 
@@ -538,7 +538,7 @@ class HttpRetryOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
-            _json = boolean_value
+            _json = self._serialize.body(boolean_value, "bool")
         else:
             _json = None
 

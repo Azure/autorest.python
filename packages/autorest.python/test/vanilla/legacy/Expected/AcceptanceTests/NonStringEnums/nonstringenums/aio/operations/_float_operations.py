@@ -74,7 +74,7 @@ class FloatOperations:
         cls: ClsType[str] = kwargs.pop("cls", None)
 
         if input is not None:
-            _json = input
+            _json = self._serialize.body(input, "float")
         else:
             _json = None
 

@@ -23,7 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .. import models as _models
+from .. import _serialization, models as _models
 from .._serialization import Serializer
 from .._vendor import _convert_request
 
@@ -160,7 +160,7 @@ class TimeOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        _json = time_body
+        _json = self._serialize.body(time_body, "time")
 
         request = build_put_request(
             content_type=content_type,

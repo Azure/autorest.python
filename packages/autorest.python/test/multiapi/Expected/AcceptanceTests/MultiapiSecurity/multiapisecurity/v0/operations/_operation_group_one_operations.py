@@ -24,6 +24,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
+from ... import _serialization
 from ..._serialization import Serializer
 from .._vendor import _convert_request
 

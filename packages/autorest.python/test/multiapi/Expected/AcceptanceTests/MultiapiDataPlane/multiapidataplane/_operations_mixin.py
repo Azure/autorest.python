@@ -15,6 +15,7 @@ from azure.core.paging import ItemPaged
 from azure.core.polling import LROPoller
 
 from . import models as _models
+from .. import _serialization
 
 
 class MultiapiServiceClientOperationsMixin(object):
