@@ -335,21 +335,21 @@ class MsrestModelType(GeneratedModelType):
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
-        # if (
-        #     kwargs.pop("enable_special_import", True)
-        #     and self.enable_import_for_overload
-        # ):
-        relative_path = kwargs.pop("relative_path", None)
-        if relative_path:
-            relative_path = relative_path + (
-                "." if self.code_model.options["multiapi"] else ""
-            )
-            file_import.add_submodule_import(
-                relative_path,
-                "_serialization",
-                ImportType.LOCAL,
-                TypingSection.REGULAR,
-            )
+        if (
+            kwargs.pop("enable_special_import", True)
+            and self.enable_import_for_overload
+        ):
+            relative_path = kwargs.pop("relative_path", None)
+            if relative_path:
+                relative_path = relative_path + (
+                    "." if self.code_model.options["multiapi"] else ""
+                )
+                file_import.add_submodule_import(
+                    relative_path,
+                    "_serialization",
+                    ImportType.LOCAL,
+                    TypingSection.REGULAR,
+                )
         return file_import
 
 

@@ -28,7 +28,6 @@ from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
-from .... import _serialization
 from ..._vendor import _convert_request
 from ...operations._operation_group_one_operations import (
     build_test_operation_group_paging_request,
