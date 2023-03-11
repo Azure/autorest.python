@@ -125,13 +125,7 @@ class OperationGroupTwoOperations:
 
         _json: Any = None
         _content: Any = None
-        if isinstance(input, (_serialization.Model, dict)):
-            if input is not None:
-                _json = self._serialize.body(input, "SourcePath")
-            else:
-                _json = None
-            content_type = content_type or "application/json"
-        elif isinstance(input, (IO, bytes)):
+        if isinstance(input, (IO, bytes)):
             if input is not None:
                 _content = input
             else:
@@ -140,6 +134,12 @@ class OperationGroupTwoOperations:
                 raise TypeError(
                     "Missing required keyword-only argument: content_type. Known values are: 'application/json', 'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'"
                 )
+        elif isinstance(input, (_serialization.Model, dict)):
+            if input is not None:
+                _json = self._serialize.body(input, "SourcePath")
+            else:
+                _json = None
+            content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for input")
 

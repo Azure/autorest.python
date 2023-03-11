@@ -127,13 +127,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
 
         _json: Any = None
         _content: Any = None
-        if isinstance(input, MutableMapping):
-            if input is not None:
-                _json = input
-            else:
-                _json = None
-            content_type = content_type or "application/json"
-        elif isinstance(input, (IO, bytes)):
+        if isinstance(input, (IO, bytes)):
             if input is not None:
                 _content = input
             else:
@@ -142,6 +136,12 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
                 raise TypeError(
                     "Missing required keyword-only argument: content_type. Known values are: 'application/json', 'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'"
                 )
+        elif isinstance(input, MutableMapping):
+            if input is not None:
+                _json = input
+            else:
+                _json = None
+            content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for input")
 
@@ -258,13 +258,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
 
         _json: Any = None
         _content: Any = None
-        if isinstance(input, MutableMapping):
-            if input is not None:
-                _json = input
-            else:
-                _json = None
-            content_type = content_type or "application/json"
-        elif isinstance(input, (IO, bytes)):
+        if isinstance(input, (IO, bytes)):
             if input is not None:
                 _content = input
             else:
@@ -273,6 +267,12 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
                 raise TypeError(
                     "Missing required keyword-only argument: content_type. Known values are: 'application/json', 'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'"
                 )
+        elif isinstance(input, MutableMapping):
+            if input is not None:
+                _json = input
+            else:
+                _json = None
+            content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for input")
 

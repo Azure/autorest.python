@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
+from typing import Any, AsyncIterable, Callable, Dict, Optional, TypeVar, Union, cast
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import (
@@ -107,10 +107,8 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
         return cast(JSON, deserialized)
 
-    @overload
-    async def post_model(
-        self, mode: str, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> JSON:
+    @distributed_trace_async
+    async def post_model(self, mode: str, input: JSON, **kwargs: Any) -> JSON:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
 
@@ -120,68 +118,6 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         :type mode: str
         :param input: Please put {'hello': 'world!'}. Required.
         :type input: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: JSON object
-        :rtype: JSON
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "hello": "str"  # Required.
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "received": "str"  # Required. Known values are: "raw" and "model".
-                }
-        """
-
-    @overload
-    async def post_model(self, mode: str, input: IO, *, content_type: str = "application/json", **kwargs: Any) -> JSON:
-        """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
-        take a model instead, and put in 'model' as mode.
-
-        :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
-         with the raw body, and 'model' if you are going to convert the raw body to a customized body
-         before returning to users. Required.
-        :type mode: str
-        :param input: Please put {'hello': 'world!'}. Required.
-        :type input: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: JSON object
-        :rtype: JSON
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "received": "str"  # Required. Known values are: "raw" and "model".
-                }
-        """
-
-    @distributed_trace_async
-    async def post_model(self, mode: str, input: Union[JSON, IO], **kwargs: Any) -> JSON:
-        """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
-        take a model instead, and put in 'model' as mode.
-
-        :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
-         with the raw body, and 'model' if you are going to convert the raw body to a customized body
-         before returning to users. Required.
-        :type mode: str
-        :param input: Please put {'hello': 'world!'}. Is either a JSON type or a IO type. Required.
-        :type input: JSON or IO
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: JSON object
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -210,25 +146,15 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
-        if isinstance(input, MutableMapping):
-            _json = input
-            content_type = content_type or "application/json"
-        elif isinstance(input, (IO, bytes)):
-            _content = input
-            content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for input")
+        _json = input
 
         request = build_dpg_post_model_request(
             mode=mode,
             content_type=content_type,
             json=_json,
-            content=_content,
             headers=_headers,
             params=_params,
         )

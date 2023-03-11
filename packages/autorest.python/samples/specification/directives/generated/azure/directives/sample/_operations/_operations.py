@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, Iterable, Optional, TypeVar, Union, cast
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -40,7 +40,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_polling_paging_example_basic_polling_request(**kwargs: Any) -> HttpRequest:
+def build_polling_paging_example_basic_polling_request(*, json: Optional[JSON] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -54,7 +54,7 @@ def build_polling_paging_example_basic_polling_request(**kwargs: Any) -> HttpReq
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
 def build_polling_paging_example_basic_paging_request(**kwargs: Any) -> HttpRequest:
@@ -72,7 +72,7 @@ def build_polling_paging_example_basic_paging_request(**kwargs: Any) -> HttpRequ
 
 
 class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
-    def _basic_polling_initial(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> Optional[JSON]:
+    def _basic_polling_initial(self, product: Optional[JSON] = None, **kwargs: Any) -> Optional[JSON]:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -84,30 +84,17 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[Optional[JSON]] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
-        if isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
-            content_type = content_type or "application/json"
-        elif isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
-            content_type = content_type or "application/json"
+        if product is not None:
+            _json = product
         else:
-            raise TypeError("unrecognized type for product")
+            _json = None
 
         request = build_polling_paging_example_basic_polling_request(
             content_type=content_type,
             json=_json,
-            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -136,91 +123,12 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
 
         return deserialized
 
-    @overload
-    def begin_basic_polling(
-        self, product: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
-    ) -> CustomPoller[JSON]:
+    @distributed_trace
+    def begin_basic_polling(self, product: Optional[JSON] = None, **kwargs: Any) -> CustomPoller[JSON]:
         """A simple polling operation.
 
         :param product: Product to put. Default value is None.
         :type product: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be CustomDefaultPollingMethod. Pass in
-         False for this operation to not poll, or pass in your own initialized polling object for a
-         personal polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.PollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
-        :return: An instance of CustomPoller that returns JSON object
-        :rtype: ~my.library.CustomPoller[JSON]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                product = {
-                    "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
-                    }
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
-                    }
-                }
-        """
-
-    @overload
-    def begin_basic_polling(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
-    ) -> CustomPoller[JSON]:
-        """A simple polling operation.
-
-        :param product: Product to put. Default value is None.
-        :type product: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be CustomDefaultPollingMethod. Pass in
-         False for this operation to not poll, or pass in your own initialized polling object for a
-         personal polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.PollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
-        :return: An instance of CustomPoller that returns JSON object
-        :rtype: ~my.library.CustomPoller[JSON]
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
-                    }
-                }
-        """
-
-    @distributed_trace
-    def begin_basic_polling(self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> CustomPoller[JSON]:
-        """A simple polling operation.
-
-        :param product: Product to put. Is either a JSON type or a IO type. Default value is None.
-        :type product: JSON or IO
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be CustomDefaultPollingMethod. Pass in
          False for this operation to not poll, or pass in your own initialized polling object for a
@@ -254,7 +162,7 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
         polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)

@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, AsyncIterable, Callable, Dict, Optional, TypeVar
 import urllib.parse
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
@@ -140,56 +140,12 @@ class OperationGroupOneOperations:
 
     test_operation_group_paging.metadata = {"url": "/multiapi/one/paging/1"}
 
-    @overload
-    async def test_two(
-        self,
-        parameter_one: Optional[_models.ModelThree] = None,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.ModelThree:
+    @distributed_trace_async
+    async def test_two(self, parameter_one: Optional[_models.ModelThree] = None, **kwargs: Any) -> _models.ModelThree:
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelThree and ouputs ModelThree.
 
         :param parameter_one: A ModelThree parameter. Default value is None.
         :type parameter_one: ~multiapiwithsubmodule.submodule.v3.models.ModelThree
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ModelThree or the result of cls(response)
-        :rtype: ~multiapiwithsubmodule.submodule.v3.models.ModelThree
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    async def test_two(
-        self, parameter_one: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.ModelThree:
-        """TestTwo should be in OperationGroupOneOperations. Takes in ModelThree and ouputs ModelThree.
-
-        :param parameter_one: A ModelThree parameter. Default value is None.
-        :type parameter_one: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ModelThree or the result of cls(response)
-        :rtype: ~multiapiwithsubmodule.submodule.v3.models.ModelThree
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace_async
-    async def test_two(
-        self, parameter_one: Optional[Union[_models.ModelThree, IO]] = None, **kwargs: Any
-    ) -> _models.ModelThree:
-        """TestTwo should be in OperationGroupOneOperations. Takes in ModelThree and ouputs ModelThree.
-
-        :param parameter_one: A ModelThree parameter. Is either a ModelThree type or a IO type. Default
-         value is None.
-        :type parameter_one: ~multiapiwithsubmodule.submodule.v3.models.ModelThree or IO
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelThree or the result of cls(response)
         :rtype: ~multiapiwithsubmodule.submodule.v3.models.ModelThree
@@ -207,31 +163,18 @@ class OperationGroupOneOperations:
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version: Literal["3.0.0"] = kwargs.pop("api_version", _params.pop("api-version", "3.0.0"))
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[_models.ModelThree] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
-        if isinstance(parameter_one, (_serialization.Model, dict)):
-            if parameter_one is not None:
-                _json = self._serialize.body(parameter_one, "ModelThree")
-            else:
-                _json = None
-            content_type = content_type or "application/json"
-        elif isinstance(parameter_one, (IO, bytes)):
-            if parameter_one is not None:
-                _content = parameter_one
-            else:
-                _content = None
-            content_type = content_type or "application/json"
+        if parameter_one is not None:
+            _json = self._serialize.body(parameter_one, "ModelThree")
         else:
-            raise TypeError("unrecognized type for parameter_one")
+            _json = None
 
         request = build_test_two_request(
             api_version=api_version,
             content_type=content_type,
             json=_json,
-            content=_content,
             template_url=self.test_two.metadata["url"],
             headers=_headers,
             params=_params,

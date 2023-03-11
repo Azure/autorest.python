@@ -17,124 +17,7 @@ from .helpers import (
 from .python_mappings import CADL_RESERVED_WORDS, RESERVED_WORDS, PadType
 
 from .. import YamlUpdatePlugin, YamlUpdatePluginAutorest
-from .._utils import parse_args, get_body_type_for_description, JSON_REGEXP, KNOWN_TYPES
-
-
-def add_body_param_type(
-    code_model: Dict[str, Any],
-    body_parameter: Dict[str, Any],
-):
-    if (
-        body_parameter
-        and body_parameter["type"]["type"] in ("model", "dict", "list")
-        and any(
-            ct for ct in body_parameter.get("contentTypes", []) if JSON_REGEXP.match(ct)
-        )
-        and not body_parameter["type"].get("xmlMetadata")
-        and not any(t for t in ["flattened", "groupedBy"] if body_parameter.get(t))
-    ):
-        origin_type = body_parameter["type"]["type"]
-        is_dpg_model = body_parameter["type"].get("base") == "dpg"
-        body_parameter["type"] = {
-            "type": "combined",
-            "types": [body_parameter["type"], KNOWN_TYPES["binary"]],
-        }
-        if origin_type == "model" and is_dpg_model:
-            body_parameter["type"]["types"].insert(1, KNOWN_TYPES["any-object"])
-        code_model["types"].append(body_parameter["type"])
-
-
-def update_overload_section(
-    overload: Dict[str, Any],
-    yaml_data: Dict[str, Any],
-    section: str,
-):
-    for overload_s, original_s in zip(overload[section], yaml_data[section]):
-        if overload_s.get("type"):
-            overload_s["type"] = original_s["type"]
-        if overload_s.get("headers"):
-            for overload_h, original_h in zip(
-                overload_s["headers"], original_s["headers"]
-            ):
-                if overload_h.get("type"):
-                    overload_h["type"] = original_h["type"]
-
-
-def add_overload(
-    yaml_data: Dict[str, Any], body_type: Dict[str, Any], for_flatten_params=False
-):
-    overload = copy.deepcopy(yaml_data)
-    overload["isOverload"] = True
-    overload["bodyParameter"]["type"] = body_type
-    overload["bodyParameter"]["defaultToUnsetSentinel"] = False
-    overload["overloads"] = []
-    if yaml_data.get("initialOperation"):
-        overload["initialOperation"] = yaml_data["initialOperation"]
-
-    if for_flatten_params:
-        overload["bodyParameter"]["flattened"] = True
-    else:
-        overload["parameters"] = [
-            p for p in overload["parameters"] if not p.get("inFlattenedBody")
-        ]
-    # for yaml sync, we need to make sure all of the responses, parameters, and exceptions' types have the same yaml id
-    for overload_p, original_p in zip(overload["parameters"], yaml_data["parameters"]):
-        overload_p["type"] = original_p["type"]
-    update_overload_section(overload, yaml_data, "responses")
-    update_overload_section(overload, yaml_data, "exceptions")
-
-    # update content type to be an overloads content type
-    content_type_param = next(
-        p for p in overload["parameters"] if p["restApiName"].lower() == "content-type"
-    )
-    content_type_param["inOverload"] = True
-    content_type_param["inDocstring"] = True
-    body_type_description = get_body_type_for_description(overload["bodyParameter"])
-    content_type_param[
-        "description"
-    ] = f"Body Parameter content-type. Content type parameter for {body_type_description} body."
-    content_types = yaml_data["bodyParameter"]["contentTypes"]
-    if body_type["type"] == "binary" and len(content_types) > 1:
-        content_types = "'" + "', '".join(content_types) + "'"
-        content_type_param["description"] += f" Known values are: {content_types}."
-    overload["bodyParameter"]["inOverload"] = True
-    for parameter in overload["parameters"]:
-        parameter["inOverload"] = True
-        parameter["defaultToUnsetSentinel"] = False
-    return overload
-
-
-def add_overloads_for_body_param(yaml_data: Dict[str, Any]) -> None:
-    """If we added a body parameter type, add overloads for that type"""
-    body_parameter = yaml_data["bodyParameter"]
-    if not (
-        body_parameter["type"]["type"] == "combined"
-        and len(yaml_data["bodyParameter"]["type"]["types"])
-        > len(yaml_data["overloads"])
-    ):
-        return
-    for body_type in body_parameter["type"]["types"]:
-        if any(
-            o
-            for o in yaml_data["overloads"]
-            if id(o["bodyParameter"]["type"]) == id(body_type)
-        ):
-            continue
-        yaml_data["overloads"].append(add_overload(yaml_data, body_type))
-        if body_type.get("type") == "model" and body_type.get("base") == "json":
-            yaml_data["overloads"].append(
-                add_overload(yaml_data, body_type, for_flatten_params=True)
-            )
-    content_type_param = next(
-        p for p in yaml_data["parameters"] if p["restApiName"].lower() == "content-type"
-    )
-    content_type_param["inOverload"] = False
-    content_type_param["inOverriden"] = True
-    content_type_param["inDocstring"] = True
-    content_type_param[
-        "clientDefaultValue"
-    ] = None  # make it none bc it will be overriden, we depend on default of overloads
-    content_type_param["optional"] = True
+from .._utils import parse_args
 
 
 def _remove_paging_maxpagesize(yaml_data: Dict[str, Any]) -> None:
@@ -268,8 +151,6 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         self,
         code_model: Dict[str, Any],
         yaml_data: Dict[str, Any],
-        *,
-        is_overload: bool = False,
     ) -> None:
         yaml_data["groupName"] = self.pad_reserved_words(
             yaml_data["groupName"], PadType.OPERATION_GROUP
@@ -281,7 +162,6 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             yaml_data["description"], yaml_data["name"]
         )
         yaml_data["summary"] = update_description(yaml_data.get("summary", ""))
-        body_parameter = yaml_data.get("bodyParameter")
         for parameter in yaml_data["parameters"]:
             self.update_parameter(parameter)
         if yaml_data.get("bodyParameter"):
@@ -289,17 +169,9 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             for entry in yaml_data["bodyParameter"].get("entries", []):
                 self.update_parameter(entry)
         for overload in yaml_data.get("overloads", []):
-            self.update_operation(code_model, overload, is_overload=True)
+            self.update_operation(code_model, overload)
         for response in yaml_data.get("responses", []):
             response["discriminator"] = "operation"
-        # if (
-        #     body_parameter
-        #     and not is_overload
-        #     and not yaml_data.get("hasNativeOverload", False),
-        # ):
-        #     # if we have a JSON body, we add a binary overload
-        #     add_body_param_type(code_model, body_parameter)
-        #     add_overloads_for_body_param(yaml_data)
 
     def _update_lro_operation_helper(self, yaml_data: Dict[str, Any]) -> None:
         azure_arm = self.options.get("azure-arm", False)
@@ -328,40 +200,33 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         self,
         code_model: Dict[str, Any],
         yaml_data: Dict[str, Any],
-        is_overload: bool = False,
     ) -> None:
-        self.update_lro_operation(code_model, yaml_data, is_overload=is_overload)
-        self.update_paging_operation(code_model, yaml_data, is_overload=is_overload)
+        self.update_lro_operation(code_model, yaml_data)
+        self.update_paging_operation(code_model, yaml_data)
         yaml_data["discriminator"] = "lropaging"
         for response in yaml_data.get("responses", []):
             response["discriminator"] = "lropaging"
         for overload in yaml_data.get("overloads", []):
-            self.update_lro_paging_operation(code_model, overload, is_overload=True)
+            self.update_lro_paging_operation(code_model, overload)
 
     def update_lro_operation(
         self,
         code_model: Dict[str, Any],
         yaml_data: Dict[str, Any],
-        is_overload: bool = False,
     ) -> None:
-        self.update_operation(code_model, yaml_data, is_overload=is_overload)
-        self.update_operation(
-            code_model, yaml_data["initialOperation"], is_overload=is_overload
-        )
+        self.update_operation(code_model, yaml_data)
+        self.update_operation(code_model, yaml_data["initialOperation"])
         self._update_lro_operation_helper(yaml_data)
         for overload in yaml_data.get("overloads", []):
             self._update_lro_operation_helper(overload)
-            self.update_operation(
-                code_model, overload["initialOperation"], is_overload=True
-            )
+            self.update_operation(code_model, overload["initialOperation"])
 
     def update_paging_operation(
         self,
         code_model: Dict[str, Any],
         yaml_data: Dict[str, Any],
-        is_overload: bool = False,
     ) -> None:
-        self.update_operation(code_model, yaml_data, is_overload=is_overload)
+        self.update_operation(code_model, yaml_data)
         if not yaml_data.get("pagerSync"):
             yaml_data["pagerSync"] = "azure.core.paging.ItemPaged"
         if not yaml_data.get("pagerAsync"):
@@ -396,7 +261,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             update_paging_response(response)
             response["itemType"] = item_type
         for overload in yaml_data.get("overloads", []):
-            self.update_paging_operation(code_model, overload, is_overload=True)
+            self.update_paging_operation(code_model, overload)
 
     def update_operation_groups(
         self, code_model: Dict[str, Any], client: Dict[str, Any]

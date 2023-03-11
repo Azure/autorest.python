@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, List, Optional, TypeVar
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -252,7 +252,7 @@ def build_explicit_post_optional_integer_parameter_request(*, json: Optional[int
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_explicit_post_required_integer_property_request(**kwargs: Any) -> HttpRequest:
+def build_explicit_post_required_integer_property_request(*, json: JSON, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -266,10 +266,10 @@ def build_explicit_post_required_integer_property_request(**kwargs: Any) -> Http
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_explicit_post_optional_integer_property_request(**kwargs: Any) -> HttpRequest:
+def build_explicit_post_optional_integer_property_request(*, json: Optional[JSON] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -283,7 +283,7 @@ def build_explicit_post_optional_integer_property_request(**kwargs: Any) -> Http
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, **kwargs)
 
 
 def build_explicit_post_required_integer_header_request(*, header_parameter: int, **kwargs: Any) -> HttpRequest:
@@ -355,7 +355,7 @@ def build_explicit_post_optional_string_parameter_request(
     return HttpRequest(method="POST", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_explicit_post_required_string_property_request(**kwargs: Any) -> HttpRequest:
+def build_explicit_post_required_string_property_request(*, json: JSON, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -369,10 +369,10 @@ def build_explicit_post_required_string_property_request(**kwargs: Any) -> HttpR
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_explicit_post_optional_string_property_request(**kwargs: Any) -> HttpRequest:
+def build_explicit_post_optional_string_property_request(*, json: Optional[JSON] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -386,7 +386,7 @@ def build_explicit_post_optional_string_property_request(**kwargs: Any) -> HttpR
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, **kwargs)
 
 
 def build_explicit_post_required_string_header_request(*, header_parameter: str, **kwargs: Any) -> HttpRequest:
@@ -422,7 +422,7 @@ def build_explicit_post_optional_string_header_request(
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_explicit_post_required_class_parameter_request(**kwargs: Any) -> HttpRequest:
+def build_explicit_post_required_class_parameter_request(*, json: JSON, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -436,10 +436,10 @@ def build_explicit_post_required_class_parameter_request(**kwargs: Any) -> HttpR
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_explicit_post_optional_class_parameter_request(**kwargs: Any) -> HttpRequest:
+def build_explicit_post_optional_class_parameter_request(*, json: Optional[JSON] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -453,10 +453,10 @@ def build_explicit_post_optional_class_parameter_request(**kwargs: Any) -> HttpR
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_explicit_post_required_class_property_request(**kwargs: Any) -> HttpRequest:
+def build_explicit_post_required_class_property_request(*, json: JSON, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -470,10 +470,10 @@ def build_explicit_post_required_class_property_request(**kwargs: Any) -> HttpRe
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_explicit_post_optional_class_property_request(**kwargs: Any) -> HttpRequest:
+def build_explicit_post_optional_class_property_request(*, json: Optional[JSON] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -487,10 +487,10 @@ def build_explicit_post_optional_class_property_request(**kwargs: Any) -> HttpRe
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_explicit_post_required_array_parameter_request(**kwargs: Any) -> HttpRequest:
+def build_explicit_post_required_array_parameter_request(*, json: List[str], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -504,10 +504,12 @@ def build_explicit_post_required_array_parameter_request(**kwargs: Any) -> HttpR
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_explicit_post_optional_array_parameter_request(**kwargs: Any) -> HttpRequest:
+def build_explicit_post_optional_array_parameter_request(
+    *, json: Optional[List[str]] = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -521,10 +523,10 @@ def build_explicit_post_optional_array_parameter_request(**kwargs: Any) -> HttpR
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_explicit_post_required_array_property_request(**kwargs: Any) -> HttpRequest:
+def build_explicit_post_required_array_property_request(*, json: JSON, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -538,10 +540,10 @@ def build_explicit_post_required_array_property_request(**kwargs: Any) -> HttpRe
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_explicit_post_optional_array_property_request(**kwargs: Any) -> HttpRequest:
+def build_explicit_post_optional_array_property_request(*, json: Optional[JSON] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -555,7 +557,7 @@ def build_explicit_post_optional_array_property_request(**kwargs: Any) -> HttpRe
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="POST", url=_url, headers=_headers, json=json, **kwargs)
 
 
 def build_explicit_post_required_array_header_request(*, header_parameter: List[str], **kwargs: Any) -> HttpRequest:
@@ -1203,60 +1205,15 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    @overload
+    @distributed_trace
     def post_required_integer_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: JSON, *, content_type: str = "application/json", **kwargs: Any
+        self, body_parameter: JSON, **kwargs: Any
     ) -> None:
         """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
         :param body_parameter: Required.
         :type body_parameter: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body_parameter = {
-                    "value": 0  # Required.
-                }
-        """
-
-    @overload
-    def post_required_integer_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
-        client library should throw before the request is sent.
-
-        :param body_parameter: Required.
-        :type body_parameter: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def post_required_integer_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Union[JSON, IO], **kwargs: Any
-    ) -> None:
-        """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
-        client library should throw before the request is sent.
-
-        :param body_parameter: Is either a JSON type or a IO type. Required.
-        :type body_parameter: JSON or IO
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1280,24 +1237,14 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
-        if isinstance(body_parameter, MutableMapping):
-            _json = body_parameter
-            content_type = content_type or "application/json"
-        elif isinstance(body_parameter, (IO, bytes)):
-            _content = body_parameter
-            content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for body_parameter")
+        _json = body_parameter
 
         request = build_explicit_post_required_integer_property_request(
             content_type=content_type,
             json=_json,
-            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -1317,57 +1264,14 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    @overload
+    @distributed_trace
     def post_optional_integer_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, body_parameter: Optional[JSON] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
 
         :param body_parameter: Default value is None.
         :type body_parameter: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body_parameter = {
-                    "value": 0  # Optional.
-                }
-        """
-
-    @overload
-    def post_optional_integer_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
-
-        :param body_parameter: Default value is None.
-        :type body_parameter: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def post_optional_integer_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[Union[JSON, IO]] = None, **kwargs: Any
-    ) -> None:
-        """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
-
-        :param body_parameter: Is either a JSON type or a IO type. Default value is None.
-        :type body_parameter: JSON or IO
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1391,30 +1295,17 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
-        if isinstance(body_parameter, MutableMapping):
-            if body_parameter is not None:
-                _json = body_parameter
-            else:
-                _json = None
-            content_type = content_type or "application/json"
-        elif isinstance(body_parameter, (IO, bytes)):
-            if body_parameter is not None:
-                _content = body_parameter
-            else:
-                _content = None
-            content_type = content_type or "application/json"
+        if body_parameter is not None:
+            _json = body_parameter
         else:
-            raise TypeError("unrecognized type for body_parameter")
+            _json = None
 
         request = build_explicit_post_optional_integer_property_request(
             content_type=content_type,
             json=_json,
-            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -1631,60 +1522,15 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    @overload
+    @distributed_trace
     def post_required_string_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: JSON, *, content_type: str = "application/json", **kwargs: Any
+        self, body_parameter: JSON, **kwargs: Any
     ) -> None:
         """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
         :param body_parameter: Required.
         :type body_parameter: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body_parameter = {
-                    "value": "str"  # Required.
-                }
-        """
-
-    @overload
-    def post_required_string_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
-        client library should throw before the request is sent.
-
-        :param body_parameter: Required.
-        :type body_parameter: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def post_required_string_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Union[JSON, IO], **kwargs: Any
-    ) -> None:
-        """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
-        client library should throw before the request is sent.
-
-        :param body_parameter: Is either a JSON type or a IO type. Required.
-        :type body_parameter: JSON or IO
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1708,24 +1554,14 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
-        if isinstance(body_parameter, MutableMapping):
-            _json = body_parameter
-            content_type = content_type or "application/json"
-        elif isinstance(body_parameter, (IO, bytes)):
-            _content = body_parameter
-            content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for body_parameter")
+        _json = body_parameter
 
         request = build_explicit_post_required_string_property_request(
             content_type=content_type,
             json=_json,
-            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -1745,57 +1581,14 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    @overload
+    @distributed_trace
     def post_optional_string_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, body_parameter: Optional[JSON] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
 
         :param body_parameter: Default value is None.
         :type body_parameter: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body_parameter = {
-                    "value": "str"  # Optional.
-                }
-        """
-
-    @overload
-    def post_optional_string_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
-
-        :param body_parameter: Default value is None.
-        :type body_parameter: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def post_optional_string_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[Union[JSON, IO]] = None, **kwargs: Any
-    ) -> None:
-        """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
-
-        :param body_parameter: Is either a JSON type or a IO type. Default value is None.
-        :type body_parameter: JSON or IO
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1819,30 +1612,17 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
-        if isinstance(body_parameter, MutableMapping):
-            if body_parameter is not None:
-                _json = body_parameter
-            else:
-                _json = None
-            content_type = content_type or "application/json"
-        elif isinstance(body_parameter, (IO, bytes)):
-            if body_parameter is not None:
-                _content = body_parameter
-            else:
-                _content = None
-            content_type = content_type or "application/json"
+        if body_parameter is not None:
+            _json = body_parameter
         else:
-            raise TypeError("unrecognized type for body_parameter")
+            _json = None
 
         request = build_explicit_post_optional_string_property_request(
             content_type=content_type,
             json=_json,
-            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -1955,61 +1735,15 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    @overload
+    @distributed_trace
     def post_required_class_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: JSON, *, content_type: str = "application/json", **kwargs: Any
+        self, body_parameter: JSON, **kwargs: Any
     ) -> None:
         """Test explicitly required complex object. Please put null and the client library should throw
         before the request is sent.
 
         :param body_parameter: Required.
         :type body_parameter: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body_parameter = {
-                    "id": 0,  # Required.
-                    "name": "str"  # Optional.
-                }
-        """
-
-    @overload
-    def post_required_class_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """Test explicitly required complex object. Please put null and the client library should throw
-        before the request is sent.
-
-        :param body_parameter: Required.
-        :type body_parameter: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def post_required_class_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Union[JSON, IO], **kwargs: Any
-    ) -> None:
-        """Test explicitly required complex object. Please put null and the client library should throw
-        before the request is sent.
-
-        :param body_parameter: Is either a JSON type or a IO type. Required.
-        :type body_parameter: JSON or IO
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2034,24 +1768,14 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
-        if isinstance(body_parameter, MutableMapping):
-            _json = body_parameter
-            content_type = content_type or "application/json"
-        elif isinstance(body_parameter, (IO, bytes)):
-            _content = body_parameter
-            content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for body_parameter")
+        _json = body_parameter
 
         request = build_explicit_post_required_class_parameter_request(
             content_type=content_type,
             json=_json,
-            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -2071,58 +1795,14 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    @overload
+    @distributed_trace
     def post_optional_class_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, body_parameter: Optional[JSON] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional complex object. Please put null.
 
         :param body_parameter: Default value is None.
         :type body_parameter: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body_parameter = {
-                    "id": 0,  # Required.
-                    "name": "str"  # Optional.
-                }
-        """
-
-    @overload
-    def post_optional_class_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """Test explicitly optional complex object. Please put null.
-
-        :param body_parameter: Default value is None.
-        :type body_parameter: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def post_optional_class_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[Union[JSON, IO]] = None, **kwargs: Any
-    ) -> None:
-        """Test explicitly optional complex object. Please put null.
-
-        :param body_parameter: Is either a JSON type or a IO type. Default value is None.
-        :type body_parameter: JSON or IO
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2147,30 +1827,17 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
-        if isinstance(body_parameter, MutableMapping):
-            if body_parameter is not None:
-                _json = body_parameter
-            else:
-                _json = None
-            content_type = content_type or "application/json"
-        elif isinstance(body_parameter, (IO, bytes)):
-            if body_parameter is not None:
-                _content = body_parameter
-            else:
-                _content = None
-            content_type = content_type or "application/json"
+        if body_parameter is not None:
+            _json = body_parameter
         else:
-            raise TypeError("unrecognized type for body_parameter")
+            _json = None
 
         request = build_explicit_post_optional_class_parameter_request(
             content_type=content_type,
             json=_json,
-            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -2190,63 +1857,15 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    @overload
+    @distributed_trace
     def post_required_class_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: JSON, *, content_type: str = "application/json", **kwargs: Any
+        self, body_parameter: JSON, **kwargs: Any
     ) -> None:
         """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
         and the client library should throw before the request is sent.
 
         :param body_parameter: Required.
         :type body_parameter: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body_parameter = {
-                    "value": {
-                        "id": 0,  # Required.
-                        "name": "str"  # Optional. Required.
-                    }
-                }
-        """
-
-    @overload
-    def post_required_class_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
-        and the client library should throw before the request is sent.
-
-        :param body_parameter: Required.
-        :type body_parameter: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def post_required_class_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Union[JSON, IO], **kwargs: Any
-    ) -> None:
-        """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
-        and the client library should throw before the request is sent.
-
-        :param body_parameter: Is either a JSON type or a IO type. Required.
-        :type body_parameter: JSON or IO
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2273,24 +1892,14 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
-        if isinstance(body_parameter, MutableMapping):
-            _json = body_parameter
-            content_type = content_type or "application/json"
-        elif isinstance(body_parameter, (IO, bytes)):
-            _content = body_parameter
-            content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for body_parameter")
+        _json = body_parameter
 
         request = build_explicit_post_required_class_property_request(
             content_type=content_type,
             json=_json,
-            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -2310,60 +1919,14 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    @overload
+    @distributed_trace
     def post_optional_class_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, body_parameter: Optional[JSON] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
 
         :param body_parameter: Default value is None.
         :type body_parameter: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body_parameter = {
-                    "value": {
-                        "id": 0,  # Required.
-                        "name": "str"  # Optional.
-                    }
-                }
-        """
-
-    @overload
-    def post_optional_class_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
-
-        :param body_parameter: Default value is None.
-        :type body_parameter: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def post_optional_class_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[Union[JSON, IO]] = None, **kwargs: Any
-    ) -> None:
-        """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
-
-        :param body_parameter: Is either a JSON type or a IO type. Default value is None.
-        :type body_parameter: JSON or IO
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2390,30 +1953,17 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
-        if isinstance(body_parameter, MutableMapping):
-            if body_parameter is not None:
-                _json = body_parameter
-            else:
-                _json = None
-            content_type = content_type or "application/json"
-        elif isinstance(body_parameter, (IO, bytes)):
-            if body_parameter is not None:
-                _content = body_parameter
-            else:
-                _content = None
-            content_type = content_type or "application/json"
+        if body_parameter is not None:
+            _json = body_parameter
         else:
-            raise TypeError("unrecognized type for body_parameter")
+            _json = None
 
         request = build_explicit_post_optional_class_property_request(
             content_type=content_type,
             json=_json,
-            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -2433,18 +1983,15 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    @overload
+    @distributed_trace
     def post_required_array_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: List[str], *, content_type: str = "application/json", **kwargs: Any
+        self, body_parameter: List[str], **kwargs: Any
     ) -> None:
         """Test explicitly required array. Please put null and the client library should throw before the
         request is sent.
 
         :param body_parameter: Required.
         :type body_parameter: list[str]
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2457,40 +2004,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
                     "str"  # Optional.
                 ]
         """
-
-    @overload
-    def post_required_array_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """Test explicitly required array. Please put null and the client library should throw before the
-        request is sent.
-
-        :param body_parameter: Required.
-        :type body_parameter: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def post_required_array_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Union[List[str], IO], **kwargs: Any
-    ) -> None:
-        """Test explicitly required array. Please put null and the client library should throw before the
-        request is sent.
-
-        :param body_parameter: Is either a [str] type or a IO type. Required.
-        :type body_parameter: list[str] or IO
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -2502,24 +2015,14 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
-        if isinstance(body_parameter, list):
-            _json = body_parameter
-            content_type = content_type or "application/json"
-        elif isinstance(body_parameter, (IO, bytes)):
-            _content = body_parameter
-            content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for body_parameter")
+        _json = body_parameter
 
         request = build_explicit_post_required_array_parameter_request(
             content_type=content_type,
             json=_json,
-            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -2539,17 +2042,14 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    @overload
+    @distributed_trace
     def post_optional_array_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[List[str]] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, body_parameter: Optional[List[str]] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional array. Please put null.
 
         :param body_parameter: Default value is None.
         :type body_parameter: list[str]
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2562,38 +2062,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
                     "str"  # Optional.
                 ]
         """
-
-    @overload
-    def post_optional_array_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """Test explicitly optional array. Please put null.
-
-        :param body_parameter: Default value is None.
-        :type body_parameter: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def post_optional_array_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[Union[List[str], IO]] = None, **kwargs: Any
-    ) -> None:
-        """Test explicitly optional array. Please put null.
-
-        :param body_parameter: Is either a [str] type or a IO type. Default value is None.
-        :type body_parameter: list[str] or IO
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -2605,30 +2073,17 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
-        if isinstance(body_parameter, list):
-            if body_parameter is not None:
-                _json = body_parameter
-            else:
-                _json = None
-            content_type = content_type or "application/json"
-        elif isinstance(body_parameter, (IO, bytes)):
-            if body_parameter is not None:
-                _content = body_parameter
-            else:
-                _content = None
-            content_type = content_type or "application/json"
+        if body_parameter is not None:
+            _json = body_parameter
         else:
-            raise TypeError("unrecognized type for body_parameter")
+            _json = None
 
         request = build_explicit_post_optional_array_parameter_request(
             content_type=content_type,
             json=_json,
-            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -2648,62 +2103,15 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    @overload
+    @distributed_trace
     def post_required_array_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: JSON, *, content_type: str = "application/json", **kwargs: Any
+        self, body_parameter: JSON, **kwargs: Any
     ) -> None:
         """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
         :param body_parameter: Required.
         :type body_parameter: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body_parameter = {
-                    "value": [
-                        "str"  # Required.
-                    ]
-                }
-        """
-
-    @overload
-    def post_required_array_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
-        client library should throw before the request is sent.
-
-        :param body_parameter: Required.
-        :type body_parameter: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def post_required_array_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Union[JSON, IO], **kwargs: Any
-    ) -> None:
-        """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
-        client library should throw before the request is sent.
-
-        :param body_parameter: Is either a JSON type or a IO type. Required.
-        :type body_parameter: JSON or IO
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2729,24 +2137,14 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
-        if isinstance(body_parameter, MutableMapping):
-            _json = body_parameter
-            content_type = content_type or "application/json"
-        elif isinstance(body_parameter, (IO, bytes)):
-            _content = body_parameter
-            content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for body_parameter")
+        _json = body_parameter
 
         request = build_explicit_post_required_array_property_request(
             content_type=content_type,
             json=_json,
-            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -2766,59 +2164,14 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})
 
-    @overload
+    @distributed_trace
     def post_optional_array_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, body_parameter: Optional[JSON] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
 
         :param body_parameter: Default value is None.
         :type body_parameter: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body_parameter = {
-                    "value": [
-                        "str"  # Optional.
-                    ]
-                }
-        """
-
-    @overload
-    def post_optional_array_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
-
-        :param body_parameter: Default value is None.
-        :type body_parameter: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def post_optional_array_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[Union[JSON, IO]] = None, **kwargs: Any
-    ) -> None:
-        """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
-
-        :param body_parameter: Is either a JSON type or a IO type. Default value is None.
-        :type body_parameter: JSON or IO
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2844,30 +2197,17 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
-        if isinstance(body_parameter, MutableMapping):
-            if body_parameter is not None:
-                _json = body_parameter
-            else:
-                _json = None
-            content_type = content_type or "application/json"
-        elif isinstance(body_parameter, (IO, bytes)):
-            if body_parameter is not None:
-                _content = body_parameter
-            else:
-                _content = None
-            content_type = content_type or "application/json"
+        if body_parameter is not None:
+            _json = body_parameter
         else:
-            raise TypeError("unrecognized type for body_parameter")
+            _json = None
 
         request = build_explicit_post_optional_array_property_request(
             content_type=content_type,
             json=_json,
-            content=_content,
             headers=_headers,
             params=_params,
         )

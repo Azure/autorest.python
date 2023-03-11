@@ -407,6 +407,98 @@ def to_lower_camel_case(name: str) -> str:
     return re.sub(r"_([a-z])", lambda x: x.group(1).upper(), name)
 
 
+def update_overload_section(
+    overload: Dict[str, Any],
+    yaml_data: Dict[str, Any],
+    section: str,
+):
+    for overload_s, original_s in zip(overload[section], yaml_data[section]):
+        if overload_s.get("type"):
+            overload_s["type"] = original_s["type"]
+        if overload_s.get("headers"):
+            for overload_h, original_h in zip(
+                overload_s["headers"], original_s["headers"]
+            ):
+                if overload_h.get("type"):
+                    overload_h["type"] = original_h["type"]
+
+
+def add_overload(
+    yaml_data: Dict[str, Any], body_type: Dict[str, Any], for_flatten_params=False
+):
+    overload = copy.deepcopy(yaml_data)
+    overload["isOverload"] = True
+    overload["bodyParameter"]["type"] = body_type
+    overload["bodyParameter"]["defaultToUnsetSentinel"] = False
+    overload["overloads"] = []
+    if yaml_data.get("initialOperation"):
+        overload["initialOperation"] = yaml_data["initialOperation"]
+
+    if for_flatten_params:
+        overload["bodyParameter"]["flattened"] = True
+    else:
+        overload["parameters"] = [
+            p for p in overload["parameters"] if not p.get("inFlattenedBody")
+        ]
+    # for yaml sync, we need to make sure all of the responses, parameters, and exceptions' types have the same yaml id
+    for overload_p, original_p in zip(overload["parameters"], yaml_data["parameters"]):
+        overload_p["type"] = original_p["type"]
+    update_overload_section(overload, yaml_data, "responses")
+    update_overload_section(overload, yaml_data, "exceptions")
+
+    # update content type to be an overloads content type
+    content_type_param = next(
+        p for p in overload["parameters"] if p["restApiName"].lower() == "content-type"
+    )
+    content_type_param["inOverload"] = True
+    content_type_param["inDocstring"] = True
+    body_type_description = get_body_type_for_description(overload["bodyParameter"])
+    content_type_param[
+        "description"
+    ] = f"Body Parameter content-type. Content type parameter for {body_type_description} body."
+    content_types = yaml_data["bodyParameter"]["contentTypes"]
+    if body_type["type"] == "binary" and len(content_types) > 1:
+        content_types = "'" + "', '".join(content_types) + "'"
+        content_type_param["description"] += f" Known values are: {content_types}."
+    overload["bodyParameter"]["inOverload"] = True
+    for parameter in overload["parameters"]:
+        parameter["inOverload"] = True
+        parameter["defaultToUnsetSentinel"] = False
+    return overload
+
+
+def add_overloads_for_body_param(yaml_data: Dict[str, Any]) -> None:
+    body_parameter = yaml_data["bodyParameter"]
+    if (
+        body_parameter["type"]["type"] in ("model", "dict", "list")
+        and any(
+            ct for ct in body_parameter.get("contentTypes", []) if JSON_REGEXP.match(ct)
+        )
+        and not body_parameter["type"].get("xmlMetadata")
+        and not any(t for t in ["flattened", "groupedBy"] if body_parameter.get(t))
+    ):
+        body_parameter["type"] = {
+            "type": "combined",
+            "types": [body_parameter["type"], KNOWN_TYPES["binary"]],
+        }
+        ORIGINAL_ID_TO_UPDATED_TYPE[id(body_parameter["type"])] = body_parameter["type"]
+
+        for body_type in body_parameter["type"]["types"]:
+            yaml_data["overloads"].append(add_overload(yaml_data, body_type))
+        content_type_param = next(
+            p
+            for p in yaml_data["parameters"]
+            if p["restApiName"].lower() == "content-type"
+        )
+        content_type_param["inOverload"] = False
+        content_type_param["inOverriden"] = True
+        content_type_param["inDocstring"] = True
+        content_type_param[
+            "clientDefaultValue"
+        ] = None  # make it none bc it will be overriden, we depend on default of overloads
+        content_type_param["optional"] = True
+
+
 class M4Reformatter(
     YamlUpdatePluginAutorest
 ):  # pylint: disable=too-many-public-methods
@@ -489,8 +581,6 @@ class M4Reformatter(
         group_name: str,
         yaml_data: Dict[str, Any],
         body_parameter: Optional[Dict[str, Any]],
-        *,
-        content_types: Optional[List[str]] = None,
     ) -> List[Dict[str, Any]]:
         overloads: List[Dict[str, Any]] = []
         if not body_parameter:
@@ -498,14 +588,11 @@ class M4Reformatter(
         body_types = body_parameter["type"].get("types", [])
         if not body_types:
             return overloads
-
         for body_type in body_types:
             # make sure we need special import for overload check
             if body_type["type"] == "model" and body_type.get("base") == "msrest":
                 body_type["enableImportForOverload"] = True
-            overload = self.update_overload(
-                group_name, yaml_data, body_type, content_types=content_types
-            )
+            overload = self.update_overload(group_name, yaml_data, body_type)
             for parameter in overload["parameters"]:
                 if parameter["restApiName"].lower() == "content-type":
                     parameter["clientDefaultValue"] = overload["bodyParameter"][
@@ -585,10 +672,9 @@ class M4Reformatter(
             if yaml_data.get("requestMediaTypes")
             else None
         )
-        content_types = None
         operation = self._update_operation_helper(group_name, yaml_data, body_parameter)
         operation["overloads"] = self.update_overloads(
-            group_name, yaml_data, body_parameter, content_types=content_types
+            group_name, yaml_data, body_parameter
         )
         operation["samples"] = yaml_data.get("extensions", {}).get("x-ms-examples", {})
         return [operation]
@@ -661,11 +747,9 @@ class M4Reformatter(
         group_name: str,
         yaml_data: Dict[str, Any],
         body_type: Dict[str, Any],
-        *,
-        content_types: Optional[List[str]] = None,
     ) -> Dict[str, Any]:
         body_parameter = self.update_body_parameter_overload(
-            yaml_data["requestMediaTypes"], body_type, content_types=content_types
+            yaml_data["requestMediaTypes"], body_type
         )
         return self._update_operation_helper(
             group_name, yaml_data, body_parameter, is_overload=True
@@ -673,16 +757,25 @@ class M4Reformatter(
 
     def update_operation_group(self, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
         property_name = yaml_data["language"]["default"]["name"]
+        operations = filter_out_paging_next_operation(
+            [
+                o
+                for ydo in yaml_data["operations"]
+                for o in self.get_operation_creator(ydo)(property_name, ydo)
+            ]
+        )
+        # add overload for operations including basic/paging/LRO
+        for operation in operations:
+            if (
+                operation["overloads"]
+                and len(operation["overloads"]) == 0
+                and operation["bodyParameter"]
+            ):
+                add_overloads_for_body_param(operation)
         return {
             "propertyName": property_name,
             "className": property_name,
-            "operations": filter_out_paging_next_operation(
-                [
-                    o
-                    for ydo in yaml_data["operations"]
-                    for o in self.get_operation_creator(ydo)(property_name, ydo)
-                ]
-            ),
+            "operations": operations,
         }
 
     def _update_body_parameter_helper(
@@ -690,15 +783,13 @@ class M4Reformatter(
         yaml_data: Dict[str, Any],
         body_param: Dict[str, Any],
         body_type: Dict[str, Any],
-        *,
-        content_types: Optional[List[str]] = None,
     ) -> Dict[str, Any]:
         flattened = body_param.get("flattened")
         is_partial_body = body_param.get("isPartialBody")
         param_base = self.update_parameter_base(body_param)
         body_param = copy.deepcopy(param_base)
         body_param["type"] = body_type
-        body_param["contentTypes"] = content_types or [
+        body_param["contentTypes"] = [
             ct
             for ct, request in yaml_data.items()
             if id(body_type)
@@ -712,7 +803,7 @@ class M4Reformatter(
         )
         # python supports IO input with all kinds of content_types
         if body_type["type"] == "binary":
-            body_param["contentTypes"] = content_types or list(yaml_data.keys())
+            body_param["contentTypes"] = list(yaml_data.keys())
         if body_param["type"]["type"] == "constant":
             if not body_param["optional"] or (
                 body_param["optional"] and not self.default_optional_constants_to_none
@@ -771,16 +862,12 @@ class M4Reformatter(
         self,
         yaml_data: Dict[str, Any],
         body_type: Dict[str, Any],
-        *,
-        content_types: Optional[List[str]] = None,
     ) -> Dict[str, Any]:
         """For overloads we already know what body_type we want to go with"""
         body_param = next(
             p for sr in yaml_data.values() for p in sr["parameters"] if is_body(p)
         )
-        return self._update_body_parameter_helper(
-            yaml_data, body_param, body_type, content_types=content_types
-        )
+        return self._update_body_parameter_helper(yaml_data, body_param, body_type)
 
     def update_flattened_parameter(
         self, yaml_data: Dict[str, Any], body_parameter: Optional[Dict[str, Any]]

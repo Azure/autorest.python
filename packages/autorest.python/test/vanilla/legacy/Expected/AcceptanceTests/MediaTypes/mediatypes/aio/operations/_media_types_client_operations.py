@@ -105,13 +105,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
 
         _json: Any = None
         _content: Any = None
-        if isinstance(input, (_serialization.Model, dict)):
-            if input is not None:
-                _json = self._serialize.body(input, "SourcePath")
-            else:
-                _json = None
-            content_type = content_type or "application/json"
-        elif isinstance(input, (IO, bytes)):
+        if isinstance(input, (IO, bytes)):
             if input is not None:
                 _content = input
             else:
@@ -120,6 +114,12 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
                 raise TypeError(
                     "Missing required keyword-only argument: content_type. Known values are: 'application/json', 'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'"
                 )
+        elif isinstance(input, (_serialization.Model, dict)):
+            if input is not None:
+                _json = self._serialize.body(input, "SourcePath")
+            else:
+                _json = None
+            content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for input")
 
@@ -224,13 +224,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
 
         _json: Any = None
         _content: Any = None
-        if isinstance(input, (_serialization.Model, dict)):
-            if input is not None:
-                _json = self._serialize.body(input, "SourcePath")
-            else:
-                _json = None
-            content_type = content_type or "application/json"
-        elif isinstance(input, (IO, bytes)):
+        if isinstance(input, (IO, bytes)):
             if input is not None:
                 _content = input
             else:
@@ -239,6 +233,12 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
                 raise TypeError(
                     "Missing required keyword-only argument: content_type. Known values are: 'application/json', 'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'"
                 )
+        elif isinstance(input, (_serialization.Model, dict)):
+            if input is not None:
+                _json = self._serialize.body(input, "SourcePath")
+            else:
+                _json = None
+            content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for input")
 
@@ -532,12 +532,12 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
 
         _json: Any = None
         _content: Any = None
-        if isinstance(message, str):
-            _content = self._serialize.body(message, "str")
-            content_type = content_type or "text/plain"
-        elif isinstance(message, (IO, bytes)):
+        if isinstance(message, (IO, bytes)):
             _content = message
             content_type = content_type or "application/octet-stream"
+        elif isinstance(message, str):
+            _content = self._serialize.body(message, "str")
+            content_type = content_type or "text/plain"
         else:
             _json = self._serialize.body(message, "object")
             content_type = content_type or "application/json"

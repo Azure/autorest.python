@@ -308,12 +308,12 @@ class ParamsOperations:
 
         _json: Any = None
         _content: Any = None
-        if isinstance(parameter, MutableMapping):
-            _json = parameter
-            content_type = content_type or "application/json"
-        elif isinstance(parameter, (IO, bytes)):
+        if isinstance(parameter, (IO, bytes)):
             _content = parameter
             content_type = content_type or "image/jpeg"
+        elif isinstance(parameter, MutableMapping):
+            _json = parameter
+            content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for parameter")
 

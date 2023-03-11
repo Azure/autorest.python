@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, Iterable, Optional, TypeVar, Union, cast
 import urllib.parse
 
 from azure.core.exceptions import (
@@ -43,7 +43,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_check_name_availability_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
+def build_check_name_availability_request(
+    subscription_id: str, *, json: _models.StorageAccountCheckNameAvailabilityParameters, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -71,11 +73,16 @@ def build_check_name_availability_request(subscription_id: str, **kwargs: Any) -
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
+    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, json=json, **kwargs)
 
 
 def build_create_request(
-    resource_group_name: str, account_name: str, subscription_id: str, **kwargs: Any
+    resource_group_name: str,
+    account_name: str,
+    subscription_id: str,
+    *,
+    json: _models.StorageAccountCreateParameters,
+    **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -107,7 +114,7 @@ def build_create_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
+    return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, json=json, **kwargs)
 
 
 def build_delete_request(
@@ -171,7 +178,12 @@ def build_get_properties_request(
 
 
 def build_update_request(
-    resource_group_name: str, account_name: str, subscription_id: str, **kwargs: Any
+    resource_group_name: str,
+    account_name: str,
+    subscription_id: str,
+    *,
+    json: _models.StorageAccountUpdateParameters,
+    **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -203,7 +215,7 @@ def build_update_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PATCH", url=_url, params=_params, headers=_headers, **kwargs)
+    return HttpRequest(method="PATCH", url=_url, params=_params, headers=_headers, json=json, **kwargs)
 
 
 def build_list_keys_request(
@@ -350,13 +362,9 @@ class StorageAccountsOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    @overload
+    @distributed_trace
     def check_name_availability(
-        self,
-        account_name: _models.StorageAccountCheckNameAvailabilityParameters,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, account_name: _models.StorageAccountCheckNameAvailabilityParameters, **kwargs: Any
     ) -> _models.CheckNameAvailabilityResult:
         """Checks that account name is valid and is not in use.
 
@@ -364,48 +372,6 @@ class StorageAccountsOperations:
          Storage account names must be between 3 and 24 characters in length and use numbers and
          lower-case letters only. Required.
         :type account_name: ~storage.models.StorageAccountCheckNameAvailabilityParameters
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: CheckNameAvailabilityResult or the result of cls(response)
-        :rtype: ~storage.models.CheckNameAvailabilityResult
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def check_name_availability(
-        self, account_name: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.CheckNameAvailabilityResult:
-        """Checks that account name is valid and is not in use.
-
-        :param account_name: The name of the storage account within the specified resource group.
-         Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only. Required.
-        :type account_name: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Known values are: 'application/json', 'text/json'. Default value is "application/json".
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: CheckNameAvailabilityResult or the result of cls(response)
-        :rtype: ~storage.models.CheckNameAvailabilityResult
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def check_name_availability(
-        self, account_name: Union[_models.StorageAccountCheckNameAvailabilityParameters, IO], **kwargs: Any
-    ) -> _models.CheckNameAvailabilityResult:
-        """Checks that account name is valid and is not in use.
-
-        :param account_name: The name of the storage account within the specified resource group.
-         Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only. Is either a StorageAccountCheckNameAvailabilityParameters type or a IO
-         type. Required.
-        :type account_name: ~storage.models.StorageAccountCheckNameAvailabilityParameters or IO
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
-         'text/json'. Default value is None.
-        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: CheckNameAvailabilityResult or the result of cls(response)
         :rtype: ~storage.models.CheckNameAvailabilityResult
@@ -425,26 +391,16 @@ class StorageAccountsOperations:
         api_version: Literal["2015-05-01-preview"] = kwargs.pop(
             "api_version", _params.pop("api-version", self._config.api_version)
         )
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[_models.CheckNameAvailabilityResult] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
-        if isinstance(account_name, (_serialization.Model, dict)):
-            _json = self._serialize.body(account_name, "StorageAccountCheckNameAvailabilityParameters")
-            content_type = content_type or "application/json"
-        elif isinstance(account_name, (IO, bytes)):
-            _content = account_name
-            content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for account_name")
+        _json = self._serialize.body(account_name, "StorageAccountCheckNameAvailabilityParameters")
 
         request = build_check_name_availability_request(
             subscription_id=self._config.subscription_id,
             api_version=api_version,
             content_type=content_type,
             json=_json,
-            content=_content,
             template_url=self.check_name_availability.metadata["url"],
             headers=_headers,
             params=_params,
@@ -478,7 +434,7 @@ class StorageAccountsOperations:
         self,
         resource_group_name: str,
         account_name: str,
-        parameters: Union[_models.StorageAccountCreateParameters, IO],
+        parameters: _models.StorageAccountCreateParameters,
         **kwargs: Any
     ) -> Optional[_models.StorageAccount]:
         error_map = {
@@ -495,19 +451,10 @@ class StorageAccountsOperations:
         api_version: Literal["2015-05-01-preview"] = kwargs.pop(
             "api_version", _params.pop("api-version", self._config.api_version)
         )
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[Optional[_models.StorageAccount]] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
-        if isinstance(parameters, (_serialization.Model, dict)):
-            _json = self._serialize.body(parameters, "StorageAccountCreateParameters")
-            content_type = content_type or "application/json"
-        elif isinstance(parameters, (IO, bytes)):
-            _content = parameters
-            content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for parameters")
+        _json = self._serialize.body(parameters, "StorageAccountCreateParameters")
 
         request = build_create_request(
             resource_group_name=resource_group_name,
@@ -516,7 +463,6 @@ class StorageAccountsOperations:
             api_version=api_version,
             content_type=content_type,
             json=_json,
-            content=_content,
             template_url=self._create_initial.metadata["url"],
             headers=_headers,
             params=_params,
@@ -548,14 +494,12 @@ class StorageAccountsOperations:
         "url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"
     }
 
-    @overload
+    @distributed_trace
     def begin_create(
         self,
         resource_group_name: str,
         account_name: str,
         parameters: _models.StorageAccountCreateParameters,
-        *,
-        content_type: str = "application/json",
         **kwargs: Any
     ) -> LROPoller[_models.StorageAccount]:
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
@@ -572,90 +516,6 @@ class StorageAccountsOperations:
         :type account_name: str
         :param parameters: The parameters to provide for the created account. Required.
         :type parameters: ~storage.models.StorageAccountCreateParameters
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
-         operation to not poll, or pass in your own initialized polling object for a personal polling
-         strategy.
-        :paramtype polling: bool or ~azure.core.polling.PollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
-        :return: An instance of LROPoller that returns either StorageAccount or the result of
-         cls(response)
-        :rtype: ~azure.core.polling.LROPoller[~storage.models.StorageAccount]
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def begin_create(
-        self,
-        resource_group_name: str,
-        account_name: str,
-        parameters: IO,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> LROPoller[_models.StorageAccount]:
-        """Asynchronously creates a new storage account with the specified parameters. Existing accounts
-        cannot be updated with this API and should instead use the Update Storage Account API. If an
-        account is already created and subsequent PUT request is issued with exact same set of
-        properties, then HTTP 200 would be returned.
-
-        :param resource_group_name: The name of the resource group within the user’s subscription.
-         Required.
-        :type resource_group_name: str
-        :param account_name: The name of the storage account within the specified resource group.
-         Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only. Required.
-        :type account_name: str
-        :param parameters: The parameters to provide for the created account. Required.
-        :type parameters: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Known values are: 'application/json', 'text/json'. Default value is "application/json".
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
-         operation to not poll, or pass in your own initialized polling object for a personal polling
-         strategy.
-        :paramtype polling: bool or ~azure.core.polling.PollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
-        :return: An instance of LROPoller that returns either StorageAccount or the result of
-         cls(response)
-        :rtype: ~azure.core.polling.LROPoller[~storage.models.StorageAccount]
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def begin_create(
-        self,
-        resource_group_name: str,
-        account_name: str,
-        parameters: Union[_models.StorageAccountCreateParameters, IO],
-        **kwargs: Any
-    ) -> LROPoller[_models.StorageAccount]:
-        """Asynchronously creates a new storage account with the specified parameters. Existing accounts
-        cannot be updated with this API and should instead use the Update Storage Account API. If an
-        account is already created and subsequent PUT request is issued with exact same set of
-        properties, then HTTP 200 would be returned.
-
-        :param resource_group_name: The name of the resource group within the user’s subscription.
-         Required.
-        :type resource_group_name: str
-        :param account_name: The name of the storage account within the specified resource group.
-         Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only. Required.
-        :type account_name: str
-        :param parameters: The parameters to provide for the created account. Is either a
-         StorageAccountCreateParameters type or a IO type. Required.
-        :type parameters: ~storage.models.StorageAccountCreateParameters or IO
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
-         'text/json'. Default value is None.
-        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
@@ -675,7 +535,7 @@ class StorageAccountsOperations:
         api_version: Literal["2015-05-01-preview"] = kwargs.pop(
             "api_version", _params.pop("api-version", self._config.api_version)
         )
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[_models.StorageAccount] = kwargs.pop("cls", None)
         polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
@@ -851,14 +711,12 @@ class StorageAccountsOperations:
         "url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"
     }
 
-    @overload
+    @distributed_trace
     def update(
         self,
         resource_group_name: str,
         account_name: str,
         parameters: _models.StorageAccountUpdateParameters,
-        *,
-        content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.StorageAccount:
         """Updates the account type or tags for a storage account. It can also be used to add a custom
@@ -879,82 +737,6 @@ class StorageAccountsOperations:
         :param parameters: The parameters to update on the account. Note that only one property can be
          changed at a time using this API. Required.
         :type parameters: ~storage.models.StorageAccountUpdateParameters
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: StorageAccount or the result of cls(response)
-        :rtype: ~storage.models.StorageAccount
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def update(
-        self,
-        resource_group_name: str,
-        account_name: str,
-        parameters: IO,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.StorageAccount:
-        """Updates the account type or tags for a storage account. It can also be used to add a custom
-        domain (note that custom domains cannot be added via the Create operation). Only one custom
-        domain is supported per storage account. This API can only be used to update one of tags,
-        accountType, or customDomain per call. To update multiple of these properties, call the API
-        multiple times with one change per call. This call does not change the storage keys for the
-        account. If you want to change storage account keys, use the RegenerateKey operation. The
-        location and name of the storage account cannot be changed after creation.
-
-        :param resource_group_name: The name of the resource group within the user’s subscription.
-         Required.
-        :type resource_group_name: str
-        :param account_name: The name of the storage account within the specified resource group.
-         Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only. Required.
-        :type account_name: str
-        :param parameters: The parameters to update on the account. Note that only one property can be
-         changed at a time using this API. Required.
-        :type parameters: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Known values are: 'application/json', 'text/json'. Default value is "application/json".
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: StorageAccount or the result of cls(response)
-        :rtype: ~storage.models.StorageAccount
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def update(
-        self,
-        resource_group_name: str,
-        account_name: str,
-        parameters: Union[_models.StorageAccountUpdateParameters, IO],
-        **kwargs: Any
-    ) -> _models.StorageAccount:
-        """Updates the account type or tags for a storage account. It can also be used to add a custom
-        domain (note that custom domains cannot be added via the Create operation). Only one custom
-        domain is supported per storage account. This API can only be used to update one of tags,
-        accountType, or customDomain per call. To update multiple of these properties, call the API
-        multiple times with one change per call. This call does not change the storage keys for the
-        account. If you want to change storage account keys, use the RegenerateKey operation. The
-        location and name of the storage account cannot be changed after creation.
-
-        :param resource_group_name: The name of the resource group within the user’s subscription.
-         Required.
-        :type resource_group_name: str
-        :param account_name: The name of the storage account within the specified resource group.
-         Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only. Required.
-        :type account_name: str
-        :param parameters: The parameters to update on the account. Note that only one property can be
-         changed at a time using this API. Is either a StorageAccountUpdateParameters type or a IO type.
-         Required.
-        :type parameters: ~storage.models.StorageAccountUpdateParameters or IO
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
-         'text/json'. Default value is None.
-        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccount or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
@@ -974,19 +756,10 @@ class StorageAccountsOperations:
         api_version: Literal["2015-05-01-preview"] = kwargs.pop(
             "api_version", _params.pop("api-version", self._config.api_version)
         )
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[_models.StorageAccount] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
-        if isinstance(parameters, (_serialization.Model, dict)):
-            _json = self._serialize.body(parameters, "StorageAccountUpdateParameters")
-            content_type = content_type or "application/json"
-        elif isinstance(parameters, (IO, bytes)):
-            _content = parameters
-            content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for parameters")
+        _json = self._serialize.body(parameters, "StorageAccountUpdateParameters")
 
         request = build_update_request(
             resource_group_name=resource_group_name,
@@ -995,7 +768,6 @@ class StorageAccountsOperations:
             api_version=api_version,
             content_type=content_type,
             json=_json,
-            content=_content,
             template_url=self.update.metadata["url"],
             headers=_headers,
             params=_params,

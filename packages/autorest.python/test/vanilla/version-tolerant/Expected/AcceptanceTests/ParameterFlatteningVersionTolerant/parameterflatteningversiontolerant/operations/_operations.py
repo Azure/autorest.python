@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, Optional, TypeVar
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -38,7 +38,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_availability_sets_update_request(resource_group_name: str, avset: str, **kwargs: Any) -> HttpRequest:
+def build_availability_sets_update_request(
+    resource_group_name: str, avset: str, *, json: JSON, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -55,7 +57,7 @@ def build_availability_sets_update_request(resource_group_name: str, avset: str,
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="PATCH", url=_url, headers=_headers, json=json, **kwargs)
 
 
 class AvailabilitySetsOperations:
@@ -75,9 +77,9 @@ class AvailabilitySetsOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    @overload
+    @distributed_trace
     def update(  # pylint: disable=inconsistent-return-statements
-        self, resource_group_name: str, avset: str, tags: JSON, *, content_type: str = "application/json", **kwargs: Any
+        self, resource_group_name: str, avset: str, tags: JSON, **kwargs: Any
     ) -> None:
         """Updates the tags for an availability set.
 
@@ -87,59 +89,6 @@ class AvailabilitySetsOperations:
         :type avset: str
         :param tags: The tags. Required.
         :type tags: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                tags = {
-                    "tags": {
-                        "str": "str"  # A description about the set of tags. Required.
-                    }
-                }
-        """
-
-    @overload
-    def update(  # pylint: disable=inconsistent-return-statements
-        self, resource_group_name: str, avset: str, tags: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """Updates the tags for an availability set.
-
-        :param resource_group_name: The name of the resource group. Required.
-        :type resource_group_name: str
-        :param avset: The name of the storage availability set. Required.
-        :type avset: str
-        :param tags: The tags. Required.
-        :type tags: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def update(  # pylint: disable=inconsistent-return-statements
-        self, resource_group_name: str, avset: str, tags: Union[JSON, IO], **kwargs: Any
-    ) -> None:
-        """Updates the tags for an availability set.
-
-        :param resource_group_name: The name of the resource group. Required.
-        :type resource_group_name: str
-        :param avset: The name of the storage availability set. Required.
-        :type avset: str
-        :param tags: The tags. Is either a JSON type or a IO type. Required.
-        :type tags: JSON or IO
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -165,26 +114,16 @@ class AvailabilitySetsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
-        if isinstance(tags, MutableMapping):
-            _json = tags
-            content_type = content_type or "application/json"
-        elif isinstance(tags, (IO, bytes)):
-            _content = tags
-            content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for tags")
+        _json = tags
 
         request = build_availability_sets_update_request(
             resource_group_name=resource_group_name,
             avset=avset,
             content_type=content_type,
             json=_json,
-            content=_content,
             headers=_headers,
             params=_params,
         )

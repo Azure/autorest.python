@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, Iterable, Optional, TypeVar, Union, cast
 import urllib.parse
 
 from azure.core.exceptions import (
@@ -64,7 +64,7 @@ def build_test_one_request(*, id: int, message: Optional[str] = None, **kwargs: 
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_test_lro_request(**kwargs: Any) -> HttpRequest:
+def build_test_lro_request(*, json: Optional[_models.Product] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -78,7 +78,7 @@ def build_test_lro_request(**kwargs: Any) -> HttpRequest:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
 def build_test_lro_and_paging_request(
@@ -181,9 +181,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
     test_one.metadata = {"url": "/multiapi/testOneEndpoint"}
 
-    def _test_lro_initial(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
-    ) -> Optional[_models.Product]:
+    def _test_lro_initial(self, product: Optional[_models.Product] = None, **kwargs: Any) -> Optional[_models.Product]:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -195,30 +193,17 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[Optional[_models.Product]] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
-        if isinstance(product, (_serialization.Model, dict)):
-            if product is not None:
-                _json = self._serialize.body(product, "Product")
-            else:
-                _json = None
-            content_type = content_type or "application/json"
-        elif isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
-            content_type = content_type or "application/json"
+        if product is not None:
+            _json = self._serialize.body(product, "Product")
         else:
-            raise TypeError("unrecognized type for product")
+            _json = None
 
         request = build_test_lro_request(
             content_type=content_type,
             json=_json,
-            content=_content,
             template_url=self._test_lro_initial.metadata["url"],
             headers=_headers,
             params=_params,
@@ -249,65 +234,12 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
     _test_lro_initial.metadata = {"url": "/multiapi/lro"}
 
-    @overload
-    def begin_test_lro(
-        self, product: Optional[_models.Product] = None, *, content_type: str = "application/json", **kwargs: Any
-    ) -> LROPoller[_models.Product]:
+    @distributed_trace
+    def begin_test_lro(self, product: Optional[_models.Product] = None, **kwargs: Any) -> LROPoller[_models.Product]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
         :param product: Product to put. Default value is None.
         :type product: ~multiapidataplane.v1.models.Product
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be LROBasePolling. Pass in False for
-         this operation to not poll, or pass in your own initialized polling object for a personal
-         polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.PollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
-        :return: An instance of LROPoller that returns either Product or the result of cls(response)
-        :rtype: ~azure.core.polling.LROPoller[~multiapidataplane.v1.models.Product]
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def begin_test_lro(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
-    ) -> LROPoller[_models.Product]:
-        """Put in whatever shape of Product you want, will return a Product with id equal to 100.
-
-        :param product: Product to put. Default value is None.
-        :type product: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be LROBasePolling. Pass in False for
-         this operation to not poll, or pass in your own initialized polling object for a personal
-         polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.PollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
-        :return: An instance of LROPoller that returns either Product or the result of cls(response)
-        :rtype: ~azure.core.polling.LROPoller[~multiapidataplane.v1.models.Product]
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @distributed_trace
-    def begin_test_lro(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
-    ) -> LROPoller[_models.Product]:
-        """Put in whatever shape of Product you want, will return a Product with id equal to 100.
-
-        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
-        :type product: ~multiapidataplane.v1.models.Product or IO
-        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
-         Default value is None.
-        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be LROBasePolling. Pass in False for
@@ -323,7 +255,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
         polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)

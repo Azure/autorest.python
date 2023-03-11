@@ -68,6 +68,7 @@ def _content_type_check(content_types: List[str]) -> List[str]:
         f'    raise TypeError("Missing required keyword-only argument: content_type. Known values are: {types}")',
     ]
 
+
 def _swap(data: List[Any], i: int, j: int):
     data[i], data[j] = data[j], data[i]
 
@@ -807,7 +808,8 @@ class _OperationSerializer(
             for v in sorted(set(client_names), key=client_names.index):
                 overload_retval.append(f"_{v}: Any = None")
 
-            # make sure AnyType is in last position and BinaryType in first position but we can't change original order
+            # make sure AnyType is in last position and BinaryType in first position 
+            # but we can't change original data
             overloads_copy = copy.copy(builder.overloads)
             for i, _ in enumerate(overloads_copy):
                 if isinstance(
