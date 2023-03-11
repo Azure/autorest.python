@@ -8,7 +8,13 @@
             "name": "Generate typespec",
             "request": "launch",
             "cwd": "${workspaceFolder}/packages/cadl-python",
-            "args": ["compile", "${workspaceFolder}/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs/http/resiliency/dev-driven", "--emit", "${workspaceFolder}/packages/cadl-python/dist/src/index.js", "--debug"],
+            "args": [
+                "compile",
+                "${workspaceFolder}/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs/http/hello",
+                 "--emit",
+                 "${workspaceFolder}/packages/cadl-python/dist/src/index.js",
+                 "--option=@azure-tools/cadl-python.debug=true"
+            ],
             "program": "${workspaceFolder}/packages/cadl-python/node_modules/@typespec/compiler/dist/core/cli/cli.js",
             "skipFiles": ["<node_internals>/**"],
             "type": "node",

@@ -27,9 +27,11 @@ EMITTER_OPTIONS = {
     "hello": {"package-name": "azure-hello"}
 }
 
-def _add_options(spec):
+def _add_options(spec, debug=False):
     name = spec.stem.lower()
     options = {"emitter-output-dir": f"{PLUGIN_DIR}/test/generated/{spec.name}"}
+    # if debug:
+    #   options["debug"] = "true"
     options.update(EMITTER_OPTIONS.get(name, {}))
     return " --option ".join([f"@azure-tools/cadl-python.{k}={v} " for k, v in options.items()])
 
@@ -44,7 +46,7 @@ def regenerate(c, name=None, debug=False):
   for spec in specs:
     Path(f"{PLUGIN_DIR}/test/generated/{spec.name}").mkdir(parents=True, exist_ok=True)
   _run_cadl([
-    f"tsp compile {spec} --emit={PLUGIN_DIR} --option {_add_options(spec)}{' --debug' if debug else ''}"
+    f"tsp compile {spec} --emit={PLUGIN_DIR} --option {_add_options(spec, debug)}"
     for spec in specs
   ])
 

@@ -362,20 +362,10 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             yaml_data["pagerSync"] = "azure.core.paging.ItemPaged"
         if not yaml_data.get("pagerAsync"):
             yaml_data["pagerAsync"] = "azure.core.async_paging.AsyncItemPaged"
-        returned_response_object = (
-            yaml_data["nextOperation"]["responses"][0]
-            if yaml_data.get("nextOperation")
-            else yaml_data["responses"][0]
-        )
         if self.version_tolerant:
             # if we're in version tolerant, hide the paging model
-            returned_response_object["type"]["isPublic"] = False
             _remove_paging_maxpagesize(yaml_data)
-        item_type = next(
-            p["type"]["elementType"]
-            for p in returned_response_object["type"]["properties"]
-            if p["restApiName"] == (yaml_data.get("itemName") or "value")
-        )
+        item_type = yaml_data["itemType"]["elementType"]
         if yaml_data.get("nextOperation"):
             if self.version_tolerant:
                 _remove_paging_maxpagesize(yaml_data["nextOperation"])
