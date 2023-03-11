@@ -243,22 +243,7 @@ class OperationGroupOneOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.ModelThree] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
-        if isinstance(parameter_one, (IO, bytes)):
-            if {body_param.client_name} is not None:
-                _content = self._serialize.body(parameter_one, "IO")
-            else:
-                _content = None
-            content_type = content_type or "application/json"
-        elif isinstance(parameter_one, (_serialization.Model, dict)):
-            if {body_param.client_name} is not None:
-                _json = self._serialize.body(parameter_one, "ModelThree")
-            else:
-                _json = None
-            content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for parameter_one")
+        _json = parameter_one
 
         request = build_test_two_request(
             api_version=api_version,
