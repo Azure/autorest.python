@@ -794,7 +794,6 @@ class _OperationSerializer(
         if is_paging:
             return retval
 
-        # type check for overload input
         try:
             overload_retval: List[str] = []
             client_names = [
