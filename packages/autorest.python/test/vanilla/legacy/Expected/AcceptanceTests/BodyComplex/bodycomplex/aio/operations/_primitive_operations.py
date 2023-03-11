@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, Callable, Dict, Optional, TypeVar
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -124,14 +124,51 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     get_int.metadata = {"url": "/complex/primitive/integer"}
 
-    @distributed_trace_async
+    @overload
     async def put_int(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.IntWrapper, **kwargs: Any
+        self, complex_body: _models.IntWrapper, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with integer properties.
 
         :param complex_body: Please put -1 and 2. Required.
         :type complex_body: ~bodycomplex.models.IntWrapper
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_int(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put complex types with integer properties.
+
+        :param complex_body: Please put -1 and 2. Required.
+        :type complex_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def put_int(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: Union[_models.IntWrapper, IO], **kwargs: Any
+    ) -> None:
+        """Put complex types with integer properties.
+
+        :param complex_body: Please put -1 and 2. Is either a IntWrapper type or a IO type. Required.
+        :type complex_body: ~bodycomplex.models.IntWrapper or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -148,14 +185,24 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = self._serialize.body(complex_body, "IntWrapper")
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (_serialization.Model, dict)):
+            _json = self._serialize.body(complex_body, "IntWrapper")
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_put_int_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_int.metadata["url"],
             headers=_headers,
             params=_params,
@@ -231,14 +278,52 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     get_long.metadata = {"url": "/complex/primitive/long"}
 
-    @distributed_trace_async
+    @overload
     async def put_long(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.LongWrapper, **kwargs: Any
+        self, complex_body: _models.LongWrapper, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with long properties.
 
         :param complex_body: Please put 1099511627775 and -999511627788. Required.
         :type complex_body: ~bodycomplex.models.LongWrapper
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_long(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put complex types with long properties.
+
+        :param complex_body: Please put 1099511627775 and -999511627788. Required.
+        :type complex_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def put_long(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: Union[_models.LongWrapper, IO], **kwargs: Any
+    ) -> None:
+        """Put complex types with long properties.
+
+        :param complex_body: Please put 1099511627775 and -999511627788. Is either a LongWrapper type
+         or a IO type. Required.
+        :type complex_body: ~bodycomplex.models.LongWrapper or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -255,14 +340,24 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = self._serialize.body(complex_body, "LongWrapper")
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (_serialization.Model, dict)):
+            _json = self._serialize.body(complex_body, "LongWrapper")
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_put_long_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_long.metadata["url"],
             headers=_headers,
             params=_params,
@@ -338,14 +433,52 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     get_float.metadata = {"url": "/complex/primitive/float"}
 
-    @distributed_trace_async
+    @overload
     async def put_float(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.FloatWrapper, **kwargs: Any
+        self, complex_body: _models.FloatWrapper, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with float properties.
 
         :param complex_body: Please put 1.05 and -0.003. Required.
         :type complex_body: ~bodycomplex.models.FloatWrapper
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_float(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put complex types with float properties.
+
+        :param complex_body: Please put 1.05 and -0.003. Required.
+        :type complex_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def put_float(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: Union[_models.FloatWrapper, IO], **kwargs: Any
+    ) -> None:
+        """Put complex types with float properties.
+
+        :param complex_body: Please put 1.05 and -0.003. Is either a FloatWrapper type or a IO type.
+         Required.
+        :type complex_body: ~bodycomplex.models.FloatWrapper or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -362,14 +495,24 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = self._serialize.body(complex_body, "FloatWrapper")
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (_serialization.Model, dict)):
+            _json = self._serialize.body(complex_body, "FloatWrapper")
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_put_float_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_float.metadata["url"],
             headers=_headers,
             params=_params,
@@ -445,15 +588,55 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     get_double.metadata = {"url": "/complex/primitive/double"}
 
-    @distributed_trace_async
+    @overload
     async def put_double(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.DoubleWrapper, **kwargs: Any
+        self, complex_body: _models.DoubleWrapper, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
          -0.000000000000000000000000000000000000000000000000000000005. Required.
         :type complex_body: ~bodycomplex.models.DoubleWrapper
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_double(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put complex types with double properties.
+
+        :param complex_body: Please put 3e-100 and
+         -0.000000000000000000000000000000000000000000000000000000005. Required.
+        :type complex_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def put_double(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: Union[_models.DoubleWrapper, IO], **kwargs: Any
+    ) -> None:
+        """Put complex types with double properties.
+
+        :param complex_body: Please put 3e-100 and
+         -0.000000000000000000000000000000000000000000000000000000005. Is either a DoubleWrapper type or
+         a IO type. Required.
+        :type complex_body: ~bodycomplex.models.DoubleWrapper or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -470,14 +653,24 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = self._serialize.body(complex_body, "DoubleWrapper")
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (_serialization.Model, dict)):
+            _json = self._serialize.body(complex_body, "DoubleWrapper")
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_put_double_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_double.metadata["url"],
             headers=_headers,
             params=_params,
@@ -553,14 +746,52 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     get_bool.metadata = {"url": "/complex/primitive/bool"}
 
-    @distributed_trace_async
+    @overload
     async def put_bool(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.BooleanWrapper, **kwargs: Any
+        self, complex_body: _models.BooleanWrapper, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with bool properties.
 
         :param complex_body: Please put true and false. Required.
         :type complex_body: ~bodycomplex.models.BooleanWrapper
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_bool(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put complex types with bool properties.
+
+        :param complex_body: Please put true and false. Required.
+        :type complex_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def put_bool(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: Union[_models.BooleanWrapper, IO], **kwargs: Any
+    ) -> None:
+        """Put complex types with bool properties.
+
+        :param complex_body: Please put true and false. Is either a BooleanWrapper type or a IO type.
+         Required.
+        :type complex_body: ~bodycomplex.models.BooleanWrapper or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -577,14 +808,24 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = self._serialize.body(complex_body, "BooleanWrapper")
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (_serialization.Model, dict)):
+            _json = self._serialize.body(complex_body, "BooleanWrapper")
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_put_bool_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_bool.metadata["url"],
             headers=_headers,
             params=_params,
@@ -660,14 +901,52 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     get_string.metadata = {"url": "/complex/primitive/string"}
 
-    @distributed_trace_async
+    @overload
     async def put_string(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.StringWrapper, **kwargs: Any
+        self, complex_body: _models.StringWrapper, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with string properties.
 
         :param complex_body: Please put 'goodrequest', '', and null. Required.
         :type complex_body: ~bodycomplex.models.StringWrapper
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_string(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put complex types with string properties.
+
+        :param complex_body: Please put 'goodrequest', '', and null. Required.
+        :type complex_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def put_string(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: Union[_models.StringWrapper, IO], **kwargs: Any
+    ) -> None:
+        """Put complex types with string properties.
+
+        :param complex_body: Please put 'goodrequest', '', and null. Is either a StringWrapper type or
+         a IO type. Required.
+        :type complex_body: ~bodycomplex.models.StringWrapper or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -684,14 +963,24 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = self._serialize.body(complex_body, "StringWrapper")
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (_serialization.Model, dict)):
+            _json = self._serialize.body(complex_body, "StringWrapper")
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_put_string_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_string.metadata["url"],
             headers=_headers,
             params=_params,
@@ -767,14 +1056,52 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     get_date.metadata = {"url": "/complex/primitive/date"}
 
-    @distributed_trace_async
+    @overload
     async def put_date(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.DateWrapper, **kwargs: Any
+        self, complex_body: _models.DateWrapper, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with date properties.
 
         :param complex_body: Please put '0001-01-01' and '2016-02-29'. Required.
         :type complex_body: ~bodycomplex.models.DateWrapper
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_date(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put complex types with date properties.
+
+        :param complex_body: Please put '0001-01-01' and '2016-02-29'. Required.
+        :type complex_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def put_date(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: Union[_models.DateWrapper, IO], **kwargs: Any
+    ) -> None:
+        """Put complex types with date properties.
+
+        :param complex_body: Please put '0001-01-01' and '2016-02-29'. Is either a DateWrapper type or
+         a IO type. Required.
+        :type complex_body: ~bodycomplex.models.DateWrapper or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -791,14 +1118,24 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = self._serialize.body(complex_body, "DateWrapper")
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (_serialization.Model, dict)):
+            _json = self._serialize.body(complex_body, "DateWrapper")
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_put_date_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_date.metadata["url"],
             headers=_headers,
             params=_params,
@@ -874,15 +1211,54 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     get_date_time.metadata = {"url": "/complex/primitive/datetime"}
 
-    @distributed_trace_async
+    @overload
     async def put_date_time(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.DatetimeWrapper, **kwargs: Any
+        self, complex_body: _models.DatetimeWrapper, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with datetime properties.
 
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'.
          Required.
         :type complex_body: ~bodycomplex.models.DatetimeWrapper
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_date_time(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put complex types with datetime properties.
+
+        :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'.
+         Required.
+        :type complex_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def put_date_time(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: Union[_models.DatetimeWrapper, IO], **kwargs: Any
+    ) -> None:
+        """Put complex types with datetime properties.
+
+        :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'. Is
+         either a DatetimeWrapper type or a IO type. Required.
+        :type complex_body: ~bodycomplex.models.DatetimeWrapper or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -899,14 +1275,24 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = self._serialize.body(complex_body, "DatetimeWrapper")
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (_serialization.Model, dict)):
+            _json = self._serialize.body(complex_body, "DatetimeWrapper")
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_put_date_time_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_date_time.metadata["url"],
             headers=_headers,
             params=_params,
@@ -982,15 +1368,54 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     get_date_time_rfc1123.metadata = {"url": "/complex/primitive/datetimerfc1123"}
 
-    @distributed_trace_async
+    @overload
     async def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.Datetimerfc1123Wrapper, **kwargs: Any
+        self, complex_body: _models.Datetimerfc1123Wrapper, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with datetimeRfc1123 properties.
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
          GMT'. Required.
         :type complex_body: ~bodycomplex.models.Datetimerfc1123Wrapper
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put complex types with datetimeRfc1123 properties.
+
+        :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
+         GMT'. Required.
+        :type complex_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: Union[_models.Datetimerfc1123Wrapper, IO], **kwargs: Any
+    ) -> None:
+        """Put complex types with datetimeRfc1123 properties.
+
+        :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
+         GMT'. Is either a Datetimerfc1123Wrapper type or a IO type. Required.
+        :type complex_body: ~bodycomplex.models.Datetimerfc1123Wrapper or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -1007,14 +1432,24 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = self._serialize.body(complex_body, "Datetimerfc1123Wrapper")
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (_serialization.Model, dict)):
+            _json = self._serialize.body(complex_body, "Datetimerfc1123Wrapper")
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_put_date_time_rfc1123_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_date_time_rfc1123.metadata["url"],
             headers=_headers,
             params=_params,

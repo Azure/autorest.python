@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Optional, TypeVar
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -105,9 +105,15 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
     validation_of_method_parameters.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}
 
-    @distributed_trace_async
+    @overload
     async def validation_of_body(
-        self, resource_group_name: str, id: int, body: Optional[_models.Product] = None, **kwargs: Any
+        self,
+        resource_group_name: str,
+        id: int,
+        body: Optional[_models.Product] = None,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> _models.Product:
         """Validates body parameters on the method. See swagger for details.
 
@@ -118,6 +124,59 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         :type id: int
         :param body: Default value is None.
         :type body: ~validation.models.Product
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: Product or the result of cls(response)
+        :rtype: ~validation.models.Product
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def validation_of_body(
+        self,
+        resource_group_name: str,
+        id: int,
+        body: Optional[IO] = None,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> _models.Product:
+        """Validates body parameters on the method. See swagger for details.
+
+        :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
+         Required.
+        :type resource_group_name: str
+        :param id: Required int multiple of 10 from 100 to 1000. Required.
+        :type id: int
+        :param body: Default value is None.
+        :type body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: Product or the result of cls(response)
+        :rtype: ~validation.models.Product
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def validation_of_body(
+        self, resource_group_name: str, id: int, body: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+    ) -> _models.Product:
+        """Validates body parameters on the method. See swagger for details.
+
+        :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
+         Required.
+        :type resource_group_name: str
+        :param id: Required int multiple of 10 from 100 to 1000. Required.
+        :type id: int
+        :param body: Is either a Product type or a IO type. Default value is None.
+        :type body: ~validation.models.Product or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
@@ -135,13 +194,25 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version: Literal["1.0.0"] = kwargs.pop("api_version", _params.pop("apiVersion", self._config.api_version))
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
-        if body is not None:
-            _json = self._serialize.body(body, "Product")
+        _json: Any = None
+        _content: Any = None
+        if isinstance(body, (IO, bytes)):
+            if body is not None:
+                _content = body
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        elif isinstance(body, (_serialization.Model, dict)):
+            if body is not None:
+                _json = self._serialize.body(body, "Product")
+            else:
+                _json = None
+            content_type = content_type or "application/json"
         else:
-            _json = None
+            raise TypeError("unrecognized type for body")
 
         request = build_validation_of_body_request(
             resource_group_name=resource_group_name,
@@ -150,6 +221,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
             api_version=api_version,
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.validation_of_body.metadata["url"],
             headers=_headers,
             params=_params,
@@ -229,17 +301,60 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
     get_with_constant_in_path.metadata = {"url": "/validation/constantsInPath/{constantParam}/value"}
 
-    @distributed_trace_async
+    @overload
     async def post_with_constant_in_body(
-        self, body: Optional[_models.Product] = None, **kwargs: Any
+        self, body: Optional[_models.Product] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Product:
         """post_with_constant_in_body.
 
         :param body: Default value is None.
         :type body: ~validation.models.Product
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
         :keyword constant_param: Default value is "constant". Note that overriding this default value
          may result in unsupported behavior.
         :paramtype constant_param: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: Product or the result of cls(response)
+        :rtype: ~validation.models.Product
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def post_with_constant_in_body(
+        self, body: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Product:
+        """post_with_constant_in_body.
+
+        :param body: Default value is None.
+        :type body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword constant_param: Default value is "constant". Note that overriding this default value
+         may result in unsupported behavior.
+        :paramtype constant_param: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: Product or the result of cls(response)
+        :rtype: ~validation.models.Product
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def post_with_constant_in_body(
+        self, body: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+    ) -> _models.Product:
+        """post_with_constant_in_body.
+
+        :param body: Is either a Product type or a IO type. Default value is None.
+        :type body: ~validation.models.Product or IO
+        :keyword constant_param: Default value is "constant". Note that overriding this default value
+         may result in unsupported behavior.
+        :paramtype constant_param: str
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
@@ -257,18 +372,31 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         _params = kwargs.pop("params", {}) or {}
 
         constant_param: Literal["constant"] = kwargs.pop("constant_param", "constant")
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
-        if body is not None:
-            _json = self._serialize.body(body, "Product")
+        _json: Any = None
+        _content: Any = None
+        if isinstance(body, (IO, bytes)):
+            if body is not None:
+                _content = body
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        elif isinstance(body, (_serialization.Model, dict)):
+            if body is not None:
+                _json = self._serialize.body(body, "Product")
+            else:
+                _json = None
+            content_type = content_type or "application/json"
         else:
-            _json = None
+            raise TypeError("unrecognized type for body")
 
         request = build_post_with_constant_in_body_request(
             constant_param=constant_param,
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.post_with_constant_in_body.metadata["url"],
             headers=_headers,
             params=_params,

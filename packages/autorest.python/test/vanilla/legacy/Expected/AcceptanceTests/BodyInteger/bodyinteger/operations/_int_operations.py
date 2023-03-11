@@ -595,7 +595,7 @@ class IntOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = self._serialize.body(int_body, "int")
+        _json = int_body
 
         request = build_put_max32_request(
             content_type=content_type,
@@ -649,7 +649,7 @@ class IntOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = self._serialize.body(int_body, "int")
+        _json = int_body
 
         request = build_put_max64_request(
             content_type=content_type,
@@ -703,7 +703,7 @@ class IntOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = self._serialize.body(int_body, "int")
+        _json = int_body
 
         request = build_put_min32_request(
             content_type=content_type,
@@ -757,7 +757,7 @@ class IntOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = self._serialize.body(int_body, "int")
+        _json = int_body
 
         request = build_put_min64_request(
             content_type=content_type,
@@ -864,7 +864,7 @@ class IntOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = self._serialize.body(int_body, "unix-time")
+        _json = int_body
 
         request = build_put_unix_time_date_request(
             content_type=content_type,

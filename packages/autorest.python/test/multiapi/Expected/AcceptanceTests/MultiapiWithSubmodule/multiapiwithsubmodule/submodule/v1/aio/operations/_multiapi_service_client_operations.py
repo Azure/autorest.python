@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, AsyncIterable, Callable, Dict, Optional, TypeVar, Union, cast
+from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 import urllib.parse
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
@@ -106,7 +106,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
     test_one.metadata = {"url": "/multiapi/testOneEndpoint"}
 
     async def _test_lro_initial(
-        self, product: Optional[_models.Product] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> Optional[_models.Product]:
         error_map = {
             401: ClientAuthenticationError,
@@ -119,17 +119,30 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[Optional[_models.Product]] = kwargs.pop("cls", None)
 
-        if product is not None:
-            _json = self._serialize.body(product, "Product")
+        _json: Any = None
+        _content: Any = None
+        if isinstance(product, (IO, bytes)):
+            if product is not None:
+                _content = product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        elif isinstance(product, (_serialization.Model, dict)):
+            if product is not None:
+                _json = self._serialize.body(product, "Product")
+            else:
+                _json = None
+            content_type = content_type or "application/json"
         else:
-            _json = None
+            raise TypeError("unrecognized type for product")
 
         request = build_test_lro_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self._test_lro_initial.metadata["url"],
             headers=_headers,
             params=_params,
@@ -160,14 +173,67 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
     _test_lro_initial.metadata = {"url": "/multiapi/lro"}
 
-    @distributed_trace_async
+    @overload
     async def begin_test_lro(
-        self, product: Optional[_models.Product] = None, **kwargs: Any
+        self, product: Optional[_models.Product] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
         :param product: Product to put. Default value is None.
         :type product: ~multiapiwithsubmodule.submodule.v1.models.Product
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
+         this operation to not poll, or pass in your own initialized polling object for a personal
+         polling strategy.
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of AsyncLROPoller that returns either Product or the result of
+         cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~multiapiwithsubmodule.submodule.v1.models.Product]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def begin_test_lro(
+        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+    ) -> AsyncLROPoller[_models.Product]:
+        """Put in whatever shape of Product you want, will return a Product with id equal to 100.
+
+        :param product: Product to put. Default value is None.
+        :type product: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
+        :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
+         this operation to not poll, or pass in your own initialized polling object for a personal
+         polling strategy.
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
+         Retry-After header is present.
+        :return: An instance of AsyncLROPoller that returns either Product or the result of
+         cls(response)
+        :rtype: ~azure.core.polling.AsyncLROPoller[~multiapiwithsubmodule.submodule.v1.models.Product]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def begin_test_lro(
+        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+    ) -> AsyncLROPoller[_models.Product]:
+        """Put in whatever shape of Product you want, will return a Product with id equal to 100.
+
+        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
+        :type product: ~multiapiwithsubmodule.submodule.v1.models.Product or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncARMPolling. Pass in False for
@@ -184,7 +250,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)

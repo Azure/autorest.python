@@ -310,7 +310,7 @@ class HttpRedirectsOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, "bool")
+            _json = boolean_value
         else:
             _json = None
 
@@ -476,7 +476,7 @@ class HttpRedirectsOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, "bool")
+            _json = boolean_value
         else:
             _json = None
 
@@ -540,7 +540,7 @@ class HttpRedirectsOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, "bool")
+            _json = boolean_value
         else:
             _json = None
 
@@ -757,7 +757,7 @@ class HttpRedirectsOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, "bool")
+            _json = boolean_value
         else:
             _json = None
 
@@ -821,7 +821,7 @@ class HttpRedirectsOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, "bool")
+            _json = boolean_value
         else:
             _json = None
 
@@ -885,7 +885,7 @@ class HttpRedirectsOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, "bool")
+            _json = boolean_value
         else:
             _json = None
 
@@ -949,7 +949,7 @@ class HttpRedirectsOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
-            _json = self._serialize.body(boolean_value, "bool")
+            _json = boolean_value
         else:
             _json = None
 

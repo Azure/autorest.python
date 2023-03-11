@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .. import _serialization, models as _models
+from .. import models as _models
 from .._serialization import Serializer
 from .._vendor import MediaTypesClientMixinABC, _convert_request
 
@@ -403,7 +403,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         cls: ClsType[str] = kwargs.pop("cls", None)
 
         if input is not None:
-            _content = self._serialize.body(input, "str")
+            _content = input
         else:
             _content = None
 
@@ -642,10 +642,10 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
             _content = message
             content_type = content_type or "application/octet-stream"
         elif isinstance(message, str):
-            _content = self._serialize.body(message, "str")
+            _content = message
             content_type = content_type or "text/plain"
         else:
-            _json = self._serialize.body(message, "object")
+            _json = message
             content_type = content_type or "application/json"
 
         request = build_body_three_types_request(
@@ -704,7 +704,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        _content = self._serialize.body(message, "str")
+        _content = message
 
         request = build_put_text_and_json_body_request(
             content_type=content_type,

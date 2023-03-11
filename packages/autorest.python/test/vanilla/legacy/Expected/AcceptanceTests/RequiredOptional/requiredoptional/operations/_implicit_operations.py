@@ -382,7 +382,7 @@ class ImplicitOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if body_parameter is not None:
-            _content = self._serialize.body(body_parameter, "str")
+            _content = body_parameter
         else:
             _content = None
 

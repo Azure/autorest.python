@@ -416,7 +416,7 @@ class Datetimerfc1123Operations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = self._serialize.body(datetime_body, "rfc-1123")
+        _json = datetime_body
 
         request = build_put_utc_max_date_time_request(
             content_type=content_type,
@@ -574,7 +574,7 @@ class Datetimerfc1123Operations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = self._serialize.body(datetime_body, "rfc-1123")
+        _json = datetime_body
 
         request = build_put_utc_min_date_time_request(
             content_type=content_type,

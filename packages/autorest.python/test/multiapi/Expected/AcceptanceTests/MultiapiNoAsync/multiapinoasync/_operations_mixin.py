@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 from ._serialization import Serializer, Deserializer
-from typing import Any, Iterable, Optional
+from typing import Any, IO, Iterable, Optional, Union
 
 from azure.core.paging import ItemPaged
 from azure.core.polling import LROPoller
@@ -21,13 +21,16 @@ class MultiapiServiceClientOperationsMixin(object):
 
     def begin_test_lro(
         self,
-        product: Optional[_models.Product] = None,
+        product: Optional[Union[_models.Product, IO]] = None,
         **kwargs: Any
     ) -> LROPoller[_models.Product]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
-        :param product: Product to put. Default value is None.
-        :type product: ~multiapinoasync.v1.models.Product
+        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
+        :type product: ~multiapinoasync.v1.models.Product or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this

@@ -304,7 +304,7 @@ class ByteOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = self._serialize.body(byte_body, "bytearray")
+        _json = byte_body
 
         request = build_put_non_ascii_request(
             content_type=content_type,

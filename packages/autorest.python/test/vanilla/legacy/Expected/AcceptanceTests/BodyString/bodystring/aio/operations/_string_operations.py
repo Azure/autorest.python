@@ -147,7 +147,7 @@ class StringOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if string_body is not None:
-            _content = self._serialize.body(string_body, "str")
+            _content = string_body
         else:
             _content = None
 
@@ -256,7 +256,7 @@ class StringOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = self._serialize.body(string_body, "str")
+        _json = string_body
 
         request = build_put_empty_request(
             content_type=content_type,
@@ -366,7 +366,7 @@ class StringOperations:
         )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = self._serialize.body(string_body, "str")
+        _json = string_body
 
         request = build_put_mbcs_request(
             content_type=content_type,
@@ -480,7 +480,7 @@ class StringOperations:
         ] = kwargs.pop("string_body", "    Now is the time for all good men to come to the aid of their country    ")
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = self._serialize.body(string_body, "str")
+        _json = string_body
 
         request = build_put_whitespace_request(
             content_type=content_type,
@@ -689,7 +689,7 @@ class StringOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = self._serialize.body(string_body, "base64")
+        _json = string_body
 
         request = build_put_base64_url_encoded_request(
             content_type=content_type,

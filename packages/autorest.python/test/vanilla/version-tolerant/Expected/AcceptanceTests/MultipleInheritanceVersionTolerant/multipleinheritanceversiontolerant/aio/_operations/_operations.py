@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Optional, TypeVar, cast
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -104,12 +104,53 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
 
         return cast(JSON, deserialized)
 
-    @distributed_trace_async
-    async def put_horse(self, horse: JSON, **kwargs: Any) -> str:
+    @overload
+    async def put_horse(self, horse: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
         """Put a horse with name 'General' and isAShowHorse false.
 
         :param horse: Put a horse with name 'General' and isAShowHorse false. Required.
         :type horse: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: str
+        :rtype: str
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                horse = {
+                    "name": "str",  # Required.
+                    "isAShowHorse": bool  # Optional.
+                }
+        """
+
+    @overload
+    async def put_horse(self, horse: IO, *, content_type: str = "application/json", **kwargs: Any) -> str:
+        """Put a horse with name 'General' and isAShowHorse false.
+
+        :param horse: Put a horse with name 'General' and isAShowHorse false. Required.
+        :type horse: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: str
+        :rtype: str
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def put_horse(self, horse: Union[JSON, IO], **kwargs: Any) -> str:
+        """Put a horse with name 'General' and isAShowHorse false.
+
+        :param horse: Put a horse with name 'General' and isAShowHorse false. Is either a JSON type or
+         a IO type. Required.
+        :type horse: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :return: str
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -134,14 +175,24 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        _json = horse
+        _json: Any = None
+        _content: Any = None
+        if isinstance(horse, (IO, bytes)):
+            _content = horse
+            content_type = content_type or "application/json"
+        elif isinstance(horse, MutableMapping):
+            _json = horse
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for horse")
 
         request = build_multiple_inheritance_service_put_horse_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -224,12 +275,51 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
 
         return cast(JSON, deserialized)
 
-    @distributed_trace_async
-    async def put_pet(self, pet: JSON, **kwargs: Any) -> str:
+    @overload
+    async def put_pet(self, pet: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
         """Put a pet with name 'Butter'.
 
         :param pet: Put a pet with name 'Butter'. Required.
         :type pet: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: str
+        :rtype: str
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                pet = {
+                    "name": "str"  # Required.
+                }
+        """
+
+    @overload
+    async def put_pet(self, pet: IO, *, content_type: str = "application/json", **kwargs: Any) -> str:
+        """Put a pet with name 'Butter'.
+
+        :param pet: Put a pet with name 'Butter'. Required.
+        :type pet: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: str
+        :rtype: str
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def put_pet(self, pet: Union[JSON, IO], **kwargs: Any) -> str:
+        """Put a pet with name 'Butter'.
+
+        :param pet: Put a pet with name 'Butter'. Is either a JSON type or a IO type. Required.
+        :type pet: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :return: str
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -253,14 +343,24 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        _json = pet
+        _json: Any = None
+        _content: Any = None
+        if isinstance(pet, (IO, bytes)):
+            _content = pet
+            content_type = content_type or "application/json"
+        elif isinstance(pet, MutableMapping):
+            _json = pet
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for pet")
 
         request = build_multiple_inheritance_service_put_pet_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -344,12 +444,53 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
 
         return cast(JSON, deserialized)
 
-    @distributed_trace_async
-    async def put_feline(self, feline: JSON, **kwargs: Any) -> str:
+    @overload
+    async def put_feline(self, feline: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
         """Put a feline who hisses and doesn't meow.
 
         :param feline: Put a feline who hisses and doesn't meow. Required.
         :type feline: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: str
+        :rtype: str
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                feline = {
+                    "hisses": bool,  # Optional.
+                    "meows": bool  # Optional.
+                }
+        """
+
+    @overload
+    async def put_feline(self, feline: IO, *, content_type: str = "application/json", **kwargs: Any) -> str:
+        """Put a feline who hisses and doesn't meow.
+
+        :param feline: Put a feline who hisses and doesn't meow. Required.
+        :type feline: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: str
+        :rtype: str
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def put_feline(self, feline: Union[JSON, IO], **kwargs: Any) -> str:
+        """Put a feline who hisses and doesn't meow.
+
+        :param feline: Put a feline who hisses and doesn't meow. Is either a JSON type or a IO type.
+         Required.
+        :type feline: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :return: str
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -374,14 +515,24 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        _json = feline
+        _json: Any = None
+        _content: Any = None
+        if isinstance(feline, (IO, bytes)):
+            _content = feline
+            content_type = content_type or "application/json"
+        elif isinstance(feline, MutableMapping):
+            _json = feline
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for feline")
 
         request = build_multiple_inheritance_service_put_feline_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -467,13 +618,57 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
 
         return cast(JSON, deserialized)
 
-    @distributed_trace_async
-    async def put_cat(self, cat: JSON, **kwargs: Any) -> str:
+    @overload
+    async def put_cat(self, cat: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
         """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
         :param cat: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
          Required.
         :type cat: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: str
+        :rtype: str
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                cat = {
+                    "name": "str",  # Required.
+                    "hisses": bool,  # Optional.
+                    "likesMilk": bool,  # Optional.
+                    "meows": bool  # Optional.
+                }
+        """
+
+    @overload
+    async def put_cat(self, cat: IO, *, content_type: str = "application/json", **kwargs: Any) -> str:
+        """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
+
+        :param cat: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
+         Required.
+        :type cat: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: str
+        :rtype: str
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def put_cat(self, cat: Union[JSON, IO], **kwargs: Any) -> str:
+        """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
+
+        :param cat: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true. Is
+         either a JSON type or a IO type. Required.
+        :type cat: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :return: str
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -500,14 +695,24 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        _json = cat
+        _json: Any = None
+        _content: Any = None
+        if isinstance(cat, (IO, bytes)):
+            _content = cat
+            content_type = content_type or "application/json"
+        elif isinstance(cat, MutableMapping):
+            _json = cat
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for cat")
 
         request = build_multiple_inheritance_service_put_cat_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -595,14 +800,61 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
 
         return cast(JSON, deserialized)
 
-    @distributed_trace_async
-    async def put_kitten(self, kitten: JSON, **kwargs: Any) -> str:
+    @overload
+    async def put_kitten(self, kitten: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
         """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
         true.
 
         :param kitten: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
          eatsMiceYet is true. Required.
         :type kitten: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: str
+        :rtype: str
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                kitten = {
+                    "name": "str",  # Required.
+                    "eatsMiceYet": bool,  # Optional.
+                    "hisses": bool,  # Optional.
+                    "likesMilk": bool,  # Optional.
+                    "meows": bool  # Optional.
+                }
+        """
+
+    @overload
+    async def put_kitten(self, kitten: IO, *, content_type: str = "application/json", **kwargs: Any) -> str:
+        """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
+        true.
+
+        :param kitten: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
+         eatsMiceYet is true. Required.
+        :type kitten: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: str
+        :rtype: str
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def put_kitten(self, kitten: Union[JSON, IO], **kwargs: Any) -> str:
+        """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
+        true.
+
+        :param kitten: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
+         eatsMiceYet is true. Is either a JSON type or a IO type. Required.
+        :type kitten: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :return: str
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -630,14 +882,24 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        _json = kitten
+        _json: Any = None
+        _content: Any = None
+        if isinstance(kitten, (IO, bytes)):
+            _content = kitten
+            content_type = content_type or "application/json"
+        elif isinstance(kitten, MutableMapping):
+            _json = kitten
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for kitten")
 
         request = build_multiple_inheritance_service_put_kitten_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )

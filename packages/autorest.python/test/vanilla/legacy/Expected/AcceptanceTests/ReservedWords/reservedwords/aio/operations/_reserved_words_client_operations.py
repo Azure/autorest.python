@@ -125,7 +125,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        _json = self._serialize.body(json, "object")
+        _json = json
 
         request = build_operation_with_json_param_request(
             content_type=content_type,

@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, List, Optional, TypeVar
+from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -777,7 +777,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
-        _content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
+        _content = bananas
 
         request = build_xml_put_root_list_request(
             content_type=content_type,
@@ -873,7 +873,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
-        _content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
+        _content = bananas
 
         request = build_xml_put_root_list_single_item_request(
             content_type=content_type,
@@ -969,7 +969,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         serialization_ctxt = {"xml": {"name": "bananas", "wrapped": True, "itemsName": "banana"}}
-        _content = self._serialize.body(bananas, "[Banana]", is_xml=True, serialization_ctxt=serialization_ctxt)
+        _content = bananas
 
         request = build_xml_put_empty_root_list_request(
             content_type=content_type,
@@ -1343,9 +1343,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         serialization_ctxt = {"xml": {"name": "SignedIdentifiers", "wrapped": True, "itemsName": "SignedIdentifier"}}
-        _content = self._serialize.body(
-            properties, "[SignedIdentifier]", is_xml=True, serialization_ctxt=serialization_ctxt
-        )
+        _content = properties
 
         request = build_xml_put_acls_request(
             comp=comp,
@@ -1426,15 +1424,52 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    @distributed_trace_async
+    @overload
     async def json_input(  # pylint: disable=inconsistent-return-statements
-        self, properties: _models.JSONInput, **kwargs: Any
+        self, properties: _models.JSONInput, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
         number 42.
 
         :param properties: Required.
         :type properties: ~xmlserviceversiontolerant.models.JSONInput
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def json_input(  # pylint: disable=inconsistent-return-statements
+        self, properties: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
+        number 42.
+
+        :param properties: Required.
+        :type properties: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def json_input(  # pylint: disable=inconsistent-return-statements
+        self, properties: Union[_models.JSONInput, IO], **kwargs: Any
+    ) -> None:
+        """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
+        number 42.
+
+        :param properties: Is either a JSONInput type or a IO type. Required.
+        :type properties: ~xmlserviceversiontolerant.models.JSONInput or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1450,14 +1485,24 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = self._serialize.body(properties, "JSONInput")
+        _json: Any = None
+        _content: Any = None
+        if isinstance(properties, (IO, bytes)):
+            _content = properties
+            content_type = content_type or "application/json"
+        elif isinstance(properties, (_serialization.Model, dict)):
+            _json = self._serialize.body(properties, "JSONInput")
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for properties")
 
         request = build_xml_json_input_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )

@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, AsyncIterable, Callable, Dict, Optional, TypeVar, Union, cast
+from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 import urllib.parse
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
@@ -415,12 +415,75 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         return AsyncItemPaged(get_next, extract_data)
 
-    @distributed_trace
-    def get_single_pages_with_body_params(self, parameters: JSON, **kwargs: Any) -> AsyncIterable[JSON]:
+    @overload
+    def get_single_pages_with_body_params(
+        self, parameters: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> AsyncIterable[JSON]:
         """A paging operation that finishes on the first call with body params without a nextlink.
 
         :param parameters: put {'name': 'body'} to pass the test. Required.
         :type parameters: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An iterator like instance of JSON object
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                parameters = {
+                    "name": "str"  # Optional.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
+                }
+        """
+
+    @overload
+    def get_single_pages_with_body_params(
+        self, parameters: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> AsyncIterable[JSON]:
+        """A paging operation that finishes on the first call with body params without a nextlink.
+
+        :param parameters: put {'name': 'body'} to pass the test. Required.
+        :type parameters: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: An iterator like instance of JSON object
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "properties": {
+                        "id": 0,  # Optional.
+                        "name": "str"  # Optional.
+                    }
+                }
+        """
+
+    @distributed_trace
+    def get_single_pages_with_body_params(self, parameters: Union[JSON, IO], **kwargs: Any) -> AsyncIterable[JSON]:
+        """A paging operation that finishes on the first call with body params without a nextlink.
+
+        :param parameters: put {'name': 'body'} to pass the test. Is either a JSON type or a IO type.
+         Required.
+        :type parameters: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -444,7 +507,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         error_map = {
@@ -454,14 +517,24 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             304: ResourceNotModifiedError,
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
+        _json: Any = None
+        _content: Any = None
+        if isinstance(parameters, (IO, bytes)):
+            _content = parameters
+            content_type = content_type or "application/json"
+        elif isinstance(parameters, MutableMapping):
+            _json = parameters
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for parameters")
 
         def prepare_request(next_link=None):
             if not next_link:
-                _json = parameters
 
                 request = build_paging_get_single_pages_with_body_params_request(
                     content_type=content_type,
                     json=_json,
+                    content=_content,
                     headers=_headers,
                     params=_params,
                 )

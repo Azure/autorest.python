@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Optional, TypeVar, cast
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -216,13 +216,54 @@ class ParamsOperations:
 
         return cast(JSON, deserialized)
 
-    @distributed_trace_async
-    async def post_parameters(self, parameter: JSON, **kwargs: Any) -> JSON:
+    @overload
+    async def post_parameters(self, parameter: JSON, *, content_type: str = "application/json", **kwargs: Any) -> JSON:
         """POST a JSON.
 
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
          "http://example.org/myimage.jpeg" }. Required.
         :type parameter: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: JSON
+        :rtype: JSON
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                parameter = {
+                    "url": "str"  # Required.
+                }
+        """
+
+    @overload
+    async def post_parameters(self, parameter: IO, *, content_type: str = "application/json", **kwargs: Any) -> JSON:
+        """POST a JSON.
+
+        :param parameter: I am a body parameter. My only valid JSON entry is { url:
+         "http://example.org/myimage.jpeg" }. Required.
+        :type parameter: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: JSON
+        :rtype: JSON
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def post_parameters(self, parameter: Union[JSON, IO], **kwargs: Any) -> JSON:
+        """POST a JSON.
+
+        :param parameter: I am a body parameter. My only valid JSON entry is { url:
+         "http://example.org/myimage.jpeg" }. Is either a JSON type or a IO type. Required.
+        :type parameter: JSON or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :return: JSON
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -246,14 +287,24 @@ class ParamsOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        _json = parameter
+        _json: Any = None
+        _content: Any = None
+        if isinstance(parameter, (IO, bytes)):
+            _content = parameter
+            content_type = content_type or "application/json"
+        elif isinstance(parameter, MutableMapping):
+            _json = parameter
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for parameter")
 
         request = build_params_post_parameters_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             headers=_headers,
             params=_params,
         )

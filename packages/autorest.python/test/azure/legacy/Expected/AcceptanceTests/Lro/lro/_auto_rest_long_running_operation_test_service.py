@@ -15,7 +15,7 @@ from azure.mgmt.core import ARMPipelineClient
 from . import models as _models
 from ._configuration import AutoRestLongRunningOperationTestServiceConfiguration
 from ._serialization import Deserializer, Serializer
-from .operations import LRORetrysOperations, LROSADsOperations, LROsCustomHeaderOperations, LROsOperations
+from .operations import LROsOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -27,12 +27,6 @@ class AutoRestLongRunningOperationTestService:  # pylint: disable=client-accepts
 
     :ivar lros: LROsOperations operations
     :vartype lros: lro.operations.LROsOperations
-    :ivar lro_retrys: LRORetrysOperations operations
-    :vartype lro_retrys: lro.operations.LRORetrysOperations
-    :ivar lrosads: LROSADsOperations operations
-    :vartype lrosads: lro.operations.LROSADsOperations
-    :ivar lr_os_custom_header: LROsCustomHeaderOperations operations
-    :vartype lr_os_custom_header: lro.operations.LROsCustomHeaderOperations
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials.TokenCredential
     :param base_url: Service URL. Default value is "http://localhost:3000".
@@ -50,11 +44,6 @@ class AutoRestLongRunningOperationTestService:  # pylint: disable=client-accepts
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
         self.lros = LROsOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.lro_retrys = LRORetrysOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.lrosads = LROSADsOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.lr_os_custom_header = LROsCustomHeaderOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
 
     def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

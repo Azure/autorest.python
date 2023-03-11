@@ -95,7 +95,7 @@ class ParameterGroupingOperations:
             _custom_header = parameter_grouping_post_required_parameters.custom_header
             _path = parameter_grouping_post_required_parameters.path
             _query = parameter_grouping_post_required_parameters.query
-        _json = self._serialize.body(_body, "int")
+        _json = _body
 
         request = build_post_required_request(
             path=_path,

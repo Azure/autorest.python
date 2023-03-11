@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, List, Optional, TypeVar
+from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -49,14 +49,56 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatteningTestServiceMixinABC):
-    @distributed_trace_async
+    @overload
     async def put_array(  # pylint: disable=inconsistent-return-statements
-        self, resource_array: Optional[List[_models.Resource]] = None, **kwargs: Any
+        self,
+        resource_array: Optional[List[_models.Resource]] = None,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> None:
         """Put External Resource as an Array.
 
         :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: list[~modelflattening.models.Resource]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_array(  # pylint: disable=inconsistent-return-statements
+        self, resource_array: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put External Resource as an Array.
+
+        :param resource_array: External Resource as an Array to put. Default value is None.
+        :type resource_array: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def put_array(  # pylint: disable=inconsistent-return-statements
+        self, resource_array: Optional[Union[List[_models.Resource], IO]] = None, **kwargs: Any
+    ) -> None:
+        """Put External Resource as an Array.
+
+        :param resource_array: External Resource as an Array to put. Is either a [Resource] type or a
+         IO type. Default value is None.
+        :type resource_array: list[~modelflattening.models.Resource] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -73,17 +115,30 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if resource_array is not None:
-            _json = self._serialize.body(resource_array, "[Resource]")
+        _json: Any = None
+        _content: Any = None
+        if isinstance(resource_array, (IO, bytes)):
+            if resource_array is not None:
+                _content = resource_array
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        elif isinstance(resource_array, list):
+            if resource_array is not None:
+                _json = resource_array
+            else:
+                _json = None
+            content_type = content_type or "application/json"
         else:
-            _json = None
+            raise TypeError("unrecognized type for resource_array")
 
         request = build_put_array_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_array.metadata["url"],
             headers=_headers,
             params=_params,
@@ -159,15 +214,59 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
     get_array.metadata = {"url": "/model-flatten/array"}
 
-    @distributed_trace_async
+    @overload
     async def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
-        self, resource_array: Optional[List[_models.WrappedProduct]] = None, **kwargs: Any
+        self,
+        resource_array: Optional[List[_models.WrappedProduct]] = None,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
 
         :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: list[~modelflattening.models.WrappedProduct]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
+        self, resource_array: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """No need to have a route in Express server for this operation. Used to verify the type flattened
+        is not removed if it's referenced in an array.
+
+        :param resource_array: External Resource as an Array to put. Default value is None.
+        :type resource_array: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
+        self, resource_array: Optional[Union[List[_models.WrappedProduct], IO]] = None, **kwargs: Any
+    ) -> None:
+        """No need to have a route in Express server for this operation. Used to verify the type flattened
+        is not removed if it's referenced in an array.
+
+        :param resource_array: External Resource as an Array to put. Is either a [WrappedProduct] type
+         or a IO type. Default value is None.
+        :type resource_array: list[~modelflattening.models.WrappedProduct] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -184,17 +283,30 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if resource_array is not None:
-            _json = self._serialize.body(resource_array, "[WrappedProduct]")
+        _json: Any = None
+        _content: Any = None
+        if isinstance(resource_array, (IO, bytes)):
+            if resource_array is not None:
+                _content = resource_array
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        elif isinstance(resource_array, list):
+            if resource_array is not None:
+                _json = resource_array
+            else:
+                _json = None
+            content_type = content_type or "application/json"
         else:
-            _json = None
+            raise TypeError("unrecognized type for resource_array")
 
         request = build_put_wrapped_array_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_wrapped_array.metadata["url"],
             headers=_headers,
             params=_params,
@@ -271,14 +383,56 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
     get_wrapped_array.metadata = {"url": "/model-flatten/wrappedarray"}
 
-    @distributed_trace_async
+    @overload
     async def put_dictionary(  # pylint: disable=inconsistent-return-statements
-        self, resource_dictionary: Optional[Dict[str, _models.FlattenedProduct]] = None, **kwargs: Any
+        self,
+        resource_dictionary: Optional[Dict[str, _models.FlattenedProduct]] = None,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> None:
         """Put External Resource as a Dictionary.
 
         :param resource_dictionary: External Resource as a Dictionary to put. Default value is None.
         :type resource_dictionary: dict[str, ~modelflattening.models.FlattenedProduct]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_dictionary(  # pylint: disable=inconsistent-return-statements
+        self, resource_dictionary: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put External Resource as a Dictionary.
+
+        :param resource_dictionary: External Resource as a Dictionary to put. Default value is None.
+        :type resource_dictionary: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def put_dictionary(  # pylint: disable=inconsistent-return-statements
+        self, resource_dictionary: Optional[Union[Dict[str, _models.FlattenedProduct], IO]] = None, **kwargs: Any
+    ) -> None:
+        """Put External Resource as a Dictionary.
+
+        :param resource_dictionary: External Resource as a Dictionary to put. Is either a {str:
+         FlattenedProduct} type or a IO type. Default value is None.
+        :type resource_dictionary: dict[str, ~modelflattening.models.FlattenedProduct] or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -295,17 +449,30 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if resource_dictionary is not None:
-            _json = self._serialize.body(resource_dictionary, "{FlattenedProduct}")
+        _json: Any = None
+        _content: Any = None
+        if isinstance(resource_dictionary, (IO, bytes)):
+            if resource_dictionary is not None:
+                _content = resource_dictionary
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        elif isinstance(resource_dictionary, dict):
+            if resource_dictionary is not None:
+                _json = resource_dictionary
+            else:
+                _json = None
+            content_type = content_type or "application/json"
         else:
-            _json = None
+            raise TypeError("unrecognized type for resource_dictionary")
 
         request = build_put_dictionary_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_dictionary.metadata["url"],
             headers=_headers,
             params=_params,
@@ -381,15 +548,58 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
     get_dictionary.metadata = {"url": "/model-flatten/dictionary"}
 
-    @distributed_trace_async
+    @overload
     async def put_resource_collection(  # pylint: disable=inconsistent-return-statements
-        self, resource_complex_object: Optional[_models.ResourceCollection] = None, **kwargs: Any
+        self,
+        resource_complex_object: Optional[_models.ResourceCollection] = None,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> None:
         """Put External Resource as a ResourceCollection.
 
         :param resource_complex_object: External Resource as a ResourceCollection to put. Default value
          is None.
         :type resource_complex_object: ~modelflattening.models.ResourceCollection
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_resource_collection(  # pylint: disable=inconsistent-return-statements
+        self, resource_complex_object: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put External Resource as a ResourceCollection.
+
+        :param resource_complex_object: External Resource as a ResourceCollection to put. Default value
+         is None.
+        :type resource_complex_object: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def put_resource_collection(  # pylint: disable=inconsistent-return-statements
+        self, resource_complex_object: Optional[Union[_models.ResourceCollection, IO]] = None, **kwargs: Any
+    ) -> None:
+        """Put External Resource as a ResourceCollection.
+
+        :param resource_complex_object: External Resource as a ResourceCollection to put. Is either a
+         ResourceCollection type or a IO type. Default value is None.
+        :type resource_complex_object: ~modelflattening.models.ResourceCollection or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -406,17 +616,30 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if resource_complex_object is not None:
-            _json = self._serialize.body(resource_complex_object, "ResourceCollection")
+        _json: Any = None
+        _content: Any = None
+        if isinstance(resource_complex_object, (IO, bytes)):
+            if resource_complex_object is not None:
+                _content = resource_complex_object
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        elif isinstance(resource_complex_object, (_serialization.Model, dict)):
+            if resource_complex_object is not None:
+                _json = self._serialize.body(resource_complex_object, "ResourceCollection")
+            else:
+                _json = None
+            content_type = content_type or "application/json"
         else:
-            _json = None
+            raise TypeError("unrecognized type for resource_complex_object")
 
         request = build_put_resource_collection_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_resource_collection.metadata["url"],
             headers=_headers,
             params=_params,
@@ -492,14 +715,56 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
     get_resource_collection.metadata = {"url": "/model-flatten/resourcecollection"}
 
-    @distributed_trace_async
+    @overload
     async def put_simple_product(
-        self, simple_body_product: Optional[_models.SimpleProduct] = None, **kwargs: Any
+        self,
+        simple_body_product: Optional[_models.SimpleProduct] = None,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> _models.SimpleProduct:
         """Put Simple Product with client flattening true on the model.
 
         :param simple_body_product: Simple body product to put. Default value is None.
         :type simple_body_product: ~modelflattening.models.SimpleProduct
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: SimpleProduct or the result of cls(response)
+        :rtype: ~modelflattening.models.SimpleProduct
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_simple_product(
+        self, simple_body_product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.SimpleProduct:
+        """Put Simple Product with client flattening true on the model.
+
+        :param simple_body_product: Simple body product to put. Default value is None.
+        :type simple_body_product: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: SimpleProduct or the result of cls(response)
+        :rtype: ~modelflattening.models.SimpleProduct
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def put_simple_product(
+        self, simple_body_product: Optional[Union[_models.SimpleProduct, IO]] = None, **kwargs: Any
+    ) -> _models.SimpleProduct:
+        """Put Simple Product with client flattening true on the model.
+
+        :param simple_body_product: Simple body product to put. Is either a SimpleProduct type or a IO
+         type. Default value is None.
+        :type simple_body_product: ~modelflattening.models.SimpleProduct or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
@@ -516,17 +781,30 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.SimpleProduct] = kwargs.pop("cls", None)
 
-        if simple_body_product is not None:
-            _json = self._serialize.body(simple_body_product, "SimpleProduct")
+        _json: Any = None
+        _content: Any = None
+        if isinstance(simple_body_product, (IO, bytes)):
+            if simple_body_product is not None:
+                _content = simple_body_product
+            else:
+                _content = None
+            content_type = content_type or "application/json"
+        elif isinstance(simple_body_product, (_serialization.Model, dict)):
+            if simple_body_product is not None:
+                _json = self._serialize.body(simple_body_product, "SimpleProduct")
+            else:
+                _json = None
+            content_type = content_type or "application/json"
         else:
-            _json = None
+            raise TypeError("unrecognized type for simple_body_product")
 
         request = build_put_simple_product_request(
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_simple_product.metadata["url"],
             headers=_headers,
             params=_params,

@@ -230,7 +230,7 @@ class EnumOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = self._serialize.body(string_body, "str")
+        _json = string_body
 
         request = build_put_not_expandable_request(
             content_type=content_type,
@@ -338,7 +338,7 @@ class EnumOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = self._serialize.body(enum_string_body, "str")
+        _json = enum_string_body
 
         request = build_put_referenced_request(
             content_type=content_type,

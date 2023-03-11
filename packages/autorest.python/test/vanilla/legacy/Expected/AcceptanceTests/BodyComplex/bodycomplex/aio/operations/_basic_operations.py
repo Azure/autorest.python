@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Optional, TypeVar
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -112,14 +112,52 @@ class BasicOperations:
 
     get_valid.metadata = {"url": "/complex/basic/valid"}
 
-    @distributed_trace_async
+    @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.Basic, **kwargs: Any
+        self, complex_body: _models.Basic, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Required.
         :type complex_body: ~bodycomplex.models.Basic
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_valid(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Please put {id: 2, name: 'abc', color: 'Magenta'}.
+
+        :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Required.
+        :type complex_body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: None or the result of cls(response)
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def put_valid(  # pylint: disable=inconsistent-return-statements
+        self, complex_body: Union[_models.Basic, IO], **kwargs: Any
+    ) -> None:
+        """Please put {id: 2, name: 'abc', color: 'Magenta'}.
+
+        :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Is either a Basic type
+         or a IO type. Required.
+        :type complex_body: ~bodycomplex.models.Basic or IO
+        :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
+         Default value is None.
+        :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -139,15 +177,25 @@ class BasicOperations:
         api_version: Literal["2016-02-29"] = kwargs.pop(
             "api_version", _params.pop("api-version", self._config.api_version)
         )
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = self._serialize.body(complex_body, "Basic")
+        _json: Any = None
+        _content: Any = None
+        if isinstance(complex_body, (IO, bytes)):
+            _content = complex_body
+            content_type = content_type or "application/json"
+        elif isinstance(complex_body, (_serialization.Model, dict)):
+            _json = self._serialize.body(complex_body, "Basic")
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for complex_body")
 
         request = build_put_valid_request(
             api_version=api_version,
             content_type=content_type,
             json=_json,
+            content=_content,
             template_url=self.put_valid.metadata["url"],
             headers=_headers,
             params=_params,
