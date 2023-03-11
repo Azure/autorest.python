@@ -17,6 +17,7 @@ from ..models import (
     LROOperation,
     LROPagingOperation,
     ModelType,
+    BinaryIteratorType,
     MsrestModelType,
     DPGModelType,
     AnyType,
@@ -755,9 +756,10 @@ class _OperationSerializer(
             body_param.type.xml_serialization_ctxt if send_xml else None
         )
         ser_ctxt_name = "serialization_ctxt"
+        direct_assign = False
         if xml_serialization_ctxt and self.code_model.options["models_mode"]:
             retval.append(f'{ser_ctxt_name} = {{"xml": {{{xml_serialization_ctxt}}}}}')
-        if self.code_model.options["models_mode"] == "msrest":
+        if self.code_model.options["models_mode"] == "msrest" and not isinstance(body_param.type, BinaryIteratorType):
             is_xml_cmd = ", is_xml=True" if send_xml else ""
             serialization_ctxt_cmd = (
                 f", {ser_ctxt_name}={ser_ctxt_name}" if xml_serialization_ctxt else ""
@@ -775,11 +777,15 @@ class _OperationSerializer(
             )
         else:
             create_body_call = f"_{body_kwarg_name} = {body_param.client_name}"
+            direct_assign = True
         if body_param.optional:
-            retval.append(f"if {body_param.client_name} is not None:")
-            retval.append("    " + create_body_call)
-            retval.append("else:")
-            retval.append(f"    _{body_kwarg_name} = None")
+            if direct_assign:
+                retval.append(create_body_call)
+            else:
+                retval.append("if {body_param.client_name} is not None:")
+                retval.append("    " + create_body_call)
+                retval.append("else:")
+                retval.append(f"    _{body_kwarg_name} = None")
         else:
             retval.append(create_body_call)
         return retval
@@ -830,7 +836,9 @@ class _OperationSerializer(
                 finally:
                     overload_retval.extend(
                         f"    {l}"
-                        for l in self._create_body_parameter(cast(OperationType, overload))
+                        for l in self._create_body_parameter(
+                            cast(OperationType, overload)
+                        )
                     )
                     if body_param.default_content_type is None:
                         overload_retval.extend(

@@ -165,13 +165,13 @@ class OperationGroupOneOperations:
         _json: Any = None
         _content: Any = None
         if isinstance(parameter_one, (IO, bytes)):
-            if parameter_one is not None:
+            if {body_param.client_name} is not None:
                 _content = self._serialize.body(parameter_one, "IO")
             else:
                 _content = None
             content_type = content_type or "application/json"
         elif isinstance(parameter_one, (_serialization.Model, dict)):
-            if parameter_one is not None:
+            if {body_param.client_name} is not None:
                 _json = self._serialize.body(parameter_one, "ModelTwo")
             else:
                 _json = None

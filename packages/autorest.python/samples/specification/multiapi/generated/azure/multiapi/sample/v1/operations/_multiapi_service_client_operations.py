@@ -202,13 +202,13 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
+            if {body_param.client_name} is not None:
                 _content = self._serialize.body(product, "IO")
             else:
                 _content = None
             content_type = content_type or "application/json"
         elif isinstance(product, (_serialization.Model, dict)):
-            if product is not None:
+            if {body_param.client_name} is not None:
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None

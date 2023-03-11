@@ -125,7 +125,7 @@ class OperationGroupTwoOperations:
         _json: Any = None
         _content: Any = None
         if isinstance(input, (IO, bytes)):
-            if input is not None:
+            if {body_param.client_name} is not None:
                 _content = self._serialize.body(input, "IO")
             else:
                 _content = None
@@ -134,7 +134,7 @@ class OperationGroupTwoOperations:
                     "Missing required keyword-only argument: content_type. Known values are: 'application/json', 'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'"
                 )
         elif isinstance(input, (_serialization.Model, dict)):
-            if input is not None:
+            if {body_param.client_name} is not None:
                 _json = self._serialize.body(input, "SourcePath")
             else:
                 _json = None

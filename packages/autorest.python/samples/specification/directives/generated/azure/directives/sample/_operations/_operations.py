@@ -90,16 +90,10 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
