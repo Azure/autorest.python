@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ... import models as _models
+from ... import _serialization, models as _models
 from ..._vendor import _convert_request
 from ...operations._explicit_operations import (
     build_post_optional_array_header_request,
@@ -101,10 +101,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if body_parameter is not None:
-            _content = self._serialize.body(body_parameter, "IO")
-        else:
-            _content = None
+        _content = body_parameter
 
         request = build_put_optional_binary_body_request(
             content_type=content_type,
@@ -160,7 +157,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = self._serialize.body(body_parameter, "IO")
+        _content = body_parameter
 
         request = build_put_required_binary_body_request(
             content_type=content_type,
@@ -937,7 +934,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(body_parameter, (IO, bytes)):
-            _content = self._serialize.body(body_parameter, "IO")
+            _content = body_parameter
             content_type = content_type or "application/json"
         elif isinstance(body_parameter, (_serialization.Model, dict)):
             _json = self._serialize.body(body_parameter, "Product")
@@ -1040,10 +1037,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(body_parameter, (IO, bytes)):
-            if body_parameter is not None:
-                _content = self._serialize.body(body_parameter, "IO")
-            else:
-                _content = None
+            _content = body_parameter
             content_type = content_type or "application/json"
         elif isinstance(body_parameter, (_serialization.Model, dict)):
             if body_parameter is not None:
@@ -1270,7 +1264,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(body_parameter, (IO, bytes)):
-            _content = self._serialize.body(body_parameter, "IO")
+            _content = body_parameter
             content_type = content_type or "application/json"
         elif isinstance(body_parameter, list):
             _json = self._serialize.body(body_parameter, "[str]")
@@ -1373,10 +1367,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(body_parameter, (IO, bytes)):
-            if body_parameter is not None:
-                _content = self._serialize.body(body_parameter, "IO")
-            else:
-                _content = None
+            _content = body_parameter
             content_type = content_type or "application/json"
         elif isinstance(body_parameter, list):
             if body_parameter is not None:

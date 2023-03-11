@@ -161,7 +161,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        _content = self._serialize.body(content, "IO")
+        _content = content
 
         request = build_operation_with_content_param_request(
             content_type=content_type,

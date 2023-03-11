@@ -156,16 +156,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -431,16 +425,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -714,16 +702,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -999,16 +981,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -1283,16 +1259,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -1682,16 +1652,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -1953,16 +1917,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -2229,16 +2187,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -2512,16 +2464,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -2788,16 +2734,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -3071,16 +3011,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -3345,16 +3279,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -3624,16 +3552,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -3914,16 +3836,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -4200,16 +4116,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -4490,16 +4400,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -4778,16 +4682,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -5062,16 +4960,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(sku, (IO, bytes)):
-            if sku is not None:
-                _content = sku
-            else:
-                _content = None
+            _content = sku
             content_type = content_type or "application/json"
         elif isinstance(sku, MutableMapping):
-            if sku is not None:
-                _json = sku
-            else:
-                _json = None
+            _json = sku
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for sku")
@@ -5270,16 +5162,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(sku, (IO, bytes)):
-            if sku is not None:
-                _content = sku
-            else:
-                _content = None
+            _content = sku
             content_type = content_type or "application/json"
         elif isinstance(sku, MutableMapping):
-            if sku is not None:
-                _json = sku
-            else:
-                _json = None
+            _json = sku
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for sku")
@@ -5478,16 +5364,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -5716,16 +5596,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -7315,16 +7189,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -7523,16 +7391,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -8157,16 +8019,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -8443,16 +8299,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -8729,16 +8579,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -8945,16 +8789,10 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -9179,16 +9017,10 @@ class LRORetrysOperations:
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -9462,16 +9294,10 @@ class LRORetrysOperations:
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -10058,16 +9884,10 @@ class LRORetrysOperations:
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -10268,16 +10088,10 @@ class LRORetrysOperations:
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -10500,16 +10314,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -10777,16 +10585,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -11057,16 +10859,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -11337,16 +11133,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -11889,16 +11679,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -12096,16 +11880,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -12303,16 +12081,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -12516,16 +12288,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -12793,16 +12559,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -13083,16 +12843,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -13547,16 +13301,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -13757,16 +13505,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -13973,16 +13715,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -14248,16 +13984,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -14538,16 +14268,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -15098,16 +14822,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -15308,16 +15026,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -15524,16 +15236,10 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -15758,16 +15464,10 @@ class LROsCustomHeaderOperations:
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -16051,16 +15751,10 @@ class LROsCustomHeaderOperations:
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -16337,16 +16031,10 @@ class LROsCustomHeaderOperations:
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")
@@ -16550,16 +16238,10 @@ class LROsCustomHeaderOperations:
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = product
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, MutableMapping):
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for product")

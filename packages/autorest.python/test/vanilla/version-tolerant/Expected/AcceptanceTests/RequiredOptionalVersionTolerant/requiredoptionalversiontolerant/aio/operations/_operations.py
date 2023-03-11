@@ -248,10 +248,7 @@ class ImplicitOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if body_parameter is not None:
-            _content = body_parameter
-        else:
-            _content = None
+        _content = body_parameter
 
         request = build_implicit_put_optional_body_request(
             content_type=content_type,
@@ -301,10 +298,7 @@ class ImplicitOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if body_parameter is not None:
-            _content = body_parameter
-        else:
-            _content = None
+        _content = body_parameter
 
         request = build_implicit_put_optional_binary_body_request(
             content_type=content_type,
@@ -498,10 +492,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if body_parameter is not None:
-            _content = body_parameter
-        else:
-            _content = None
+        _content = body_parameter
 
         request = build_explicit_put_optional_binary_body_request(
             content_type=content_type,
@@ -652,10 +643,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if body_parameter is not None:
-            _json = body_parameter
-        else:
-            _json = None
+        _json = body_parameter
 
         request = build_explicit_post_optional_integer_parameter_request(
             content_type=content_type,
@@ -873,16 +861,10 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(body_parameter, (IO, bytes)):
-            if body_parameter is not None:
-                _content = body_parameter
-            else:
-                _content = None
+            _content = body_parameter
             content_type = content_type or "application/json"
         elif isinstance(body_parameter, MutableMapping):
-            if body_parameter is not None:
-                _json = body_parameter
-            else:
-                _json = None
+            _json = body_parameter
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for body_parameter")
@@ -1080,10 +1062,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if body_parameter is not None:
-            _content = body_parameter
-        else:
-            _content = None
+        _content = body_parameter
 
         request = build_explicit_post_optional_string_parameter_request(
             content_type=content_type,
@@ -1301,16 +1280,10 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(body_parameter, (IO, bytes)):
-            if body_parameter is not None:
-                _content = body_parameter
-            else:
-                _content = None
+            _content = body_parameter
             content_type = content_type or "application/json"
         elif isinstance(body_parameter, MutableMapping):
-            if body_parameter is not None:
-                _json = body_parameter
-            else:
-                _json = None
+            _json = body_parameter
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for body_parameter")
@@ -1629,16 +1602,10 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(body_parameter, (IO, bytes)):
-            if body_parameter is not None:
-                _content = body_parameter
-            else:
-                _content = None
+            _content = body_parameter
             content_type = content_type or "application/json"
         elif isinstance(body_parameter, MutableMapping):
-            if body_parameter is not None:
-                _json = body_parameter
-            else:
-                _json = None
+            _json = body_parameter
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for body_parameter")
@@ -1872,16 +1839,10 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(body_parameter, (IO, bytes)):
-            if body_parameter is not None:
-                _content = body_parameter
-            else:
-                _content = None
+            _content = body_parameter
             content_type = content_type or "application/json"
         elif isinstance(body_parameter, MutableMapping):
-            if body_parameter is not None:
-                _json = body_parameter
-            else:
-                _json = None
+            _json = body_parameter
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for body_parameter")
@@ -2087,16 +2048,10 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(body_parameter, (IO, bytes)):
-            if body_parameter is not None:
-                _content = body_parameter
-            else:
-                _content = None
+            _content = body_parameter
             content_type = content_type or "application/json"
         elif isinstance(body_parameter, list):
-            if body_parameter is not None:
-                _json = body_parameter
-            else:
-                _json = None
+            _json = body_parameter
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for body_parameter")
@@ -2326,16 +2281,10 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(body_parameter, (IO, bytes)):
-            if body_parameter is not None:
-                _content = body_parameter
-            else:
-                _content = None
+            _content = body_parameter
             content_type = content_type or "application/json"
         elif isinstance(body_parameter, MutableMapping):
-            if body_parameter is not None:
-                _json = body_parameter
-            else:
-                _json = None
+            _json = body_parameter
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for body_parameter")

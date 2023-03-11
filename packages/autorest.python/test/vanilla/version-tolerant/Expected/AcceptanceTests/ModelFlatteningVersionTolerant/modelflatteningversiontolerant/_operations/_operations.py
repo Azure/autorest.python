@@ -304,16 +304,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         _json: Any = None
         _content: Any = None
         if isinstance(resource_array, (IO, bytes)):
-            if resource_array is not None:
-                _content = resource_array
-            else:
-                _content = None
+            _content = resource_array
             content_type = content_type or "application/json"
         elif isinstance(resource_array, list):
-            if resource_array is not None:
-                _json = resource_array
-            else:
-                _json = None
+            _json = resource_array
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for resource_array")
@@ -491,16 +485,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         _json: Any = None
         _content: Any = None
         if isinstance(resource_array, (IO, bytes)):
-            if resource_array is not None:
-                _content = resource_array
-            else:
-                _content = None
+            _content = resource_array
             content_type = content_type or "application/json"
         elif isinstance(resource_array, list):
-            if resource_array is not None:
-                _json = resource_array
-            else:
-                _json = None
+            _json = resource_array
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for resource_array")
@@ -682,16 +670,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         _json: Any = None
         _content: Any = None
         if isinstance(resource_dictionary, (IO, bytes)):
-            if resource_dictionary is not None:
-                _content = resource_dictionary
-            else:
-                _content = None
+            _content = resource_dictionary
             content_type = content_type or "application/json"
         elif isinstance(resource_dictionary, dict):
-            if resource_dictionary is not None:
-                _json = resource_dictionary
-            else:
-                _json = None
+            _json = resource_dictionary
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for resource_dictionary")
@@ -996,16 +978,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         _json: Any = None
         _content: Any = None
         if isinstance(resource_complex_object, (IO, bytes)):
-            if resource_complex_object is not None:
-                _content = resource_complex_object
-            else:
-                _content = None
+            _content = resource_complex_object
             content_type = content_type or "application/json"
         elif isinstance(resource_complex_object, MutableMapping):
-            if resource_complex_object is not None:
-                _json = resource_complex_object
-            else:
-                _json = None
+            _json = resource_complex_object
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for resource_complex_object")
@@ -1312,16 +1288,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         _json: Any = None
         _content: Any = None
         if isinstance(simple_body_product, (IO, bytes)):
-            if simple_body_product is not None:
-                _content = simple_body_product
-            else:
-                _content = None
+            _content = simple_body_product
             content_type = content_type or "application/json"
         elif isinstance(simple_body_product, MutableMapping):
-            if simple_body_product is not None:
-                _json = simple_body_product
-            else:
-                _json = None
+            _json = simple_body_product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for simple_body_product")
@@ -1520,16 +1490,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         _json: Any = None
         _content: Any = None
         if isinstance(simple_body_product, (IO, bytes)):
-            if simple_body_product is not None:
-                _content = simple_body_product
-            else:
-                _content = None
+            _content = simple_body_product
             content_type = content_type or "application/json"
         elif isinstance(simple_body_product, MutableMapping):
-            if simple_body_product is not None:
-                _json = simple_body_product
-            else:
-                _json = None
+            _json = simple_body_product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for simple_body_product")
@@ -1744,16 +1708,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         _json: Any = None
         _content: Any = None
         if isinstance(simple_body_product, (IO, bytes)):
-            if simple_body_product is not None:
-                _content = simple_body_product
-            else:
-                _content = None
+            _content = simple_body_product
             content_type = content_type or "application/json"
         elif isinstance(simple_body_product, MutableMapping):
-            if simple_body_product is not None:
-                _json = simple_body_product
-            else:
-                _json = None
+            _json = simple_body_product
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for simple_body_product")

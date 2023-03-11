@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ... import models as _models
+from ... import _serialization, models as _models
 from ..._vendor import _convert_request
 from ...operations._polymorphism_operations import (
     build_get_complicated_request,
@@ -273,7 +273,7 @@ class PolymorphismOperations:
         _json: Any = None
         _content: Any = None
         if isinstance(complex_body, (IO, bytes)):
-            _content = self._serialize.body(complex_body, "IO")
+            _content = complex_body
             content_type = content_type or "application/json"
         elif isinstance(complex_body, (_serialization.Model, dict)):
             _json = self._serialize.body(complex_body, "Fish")
@@ -588,7 +588,7 @@ class PolymorphismOperations:
         _json: Any = None
         _content: Any = None
         if isinstance(complex_body, (IO, bytes)):
-            _content = self._serialize.body(complex_body, "IO")
+            _content = complex_body
             content_type = content_type or "application/json"
         elif isinstance(complex_body, (_serialization.Model, dict)):
             _json = self._serialize.body(complex_body, "Salmon")
@@ -689,7 +689,7 @@ class PolymorphismOperations:
         _json: Any = None
         _content: Any = None
         if isinstance(complex_body, (IO, bytes)):
-            _content = self._serialize.body(complex_body, "IO")
+            _content = complex_body
             content_type = content_type or "application/json"
         elif isinstance(complex_body, (_serialization.Model, dict)):
             _json = self._serialize.body(complex_body, "Salmon")
@@ -877,7 +877,7 @@ class PolymorphismOperations:
         _json: Any = None
         _content: Any = None
         if isinstance(complex_body, (IO, bytes)):
-            _content = self._serialize.body(complex_body, "IO")
+            _content = complex_body
             content_type = content_type or "application/json"
         elif isinstance(complex_body, (_serialization.Model, dict)):
             _json = self._serialize.body(complex_body, "Fish")

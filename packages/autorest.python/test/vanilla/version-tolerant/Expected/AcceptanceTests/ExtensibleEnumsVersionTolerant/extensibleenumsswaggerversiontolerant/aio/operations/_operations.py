@@ -230,16 +230,10 @@ class PetOperations:
         _json: Any = None
         _content: Any = None
         if isinstance(pet_param, (IO, bytes)):
-            if pet_param is not None:
-                _content = pet_param
-            else:
-                _content = None
+            _content = pet_param
             content_type = content_type or "application/json"
         elif isinstance(pet_param, MutableMapping):
-            if pet_param is not None:
-                _json = pet_param
-            else:
-                _json = None
+            _json = pet_param
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for pet_param")

@@ -23,7 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .. import models as _models
+from .. import _serialization, models as _models
 from .._serialization import Serializer
 from .._vendor import AutoRestResourceFlatteningTestServiceMixinABC, _convert_request, _format_url_section
 
@@ -291,10 +291,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         _json: Any = None
         _content: Any = None
         if isinstance(resource_array, (IO, bytes)):
-            if resource_array is not None:
-                _content = self._serialize.body(resource_array, "IO")
-            else:
-                _content = None
+            _content = resource_array
             content_type = content_type or "application/json"
         elif isinstance(resource_array, list):
             if resource_array is not None:
@@ -459,10 +456,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         _json: Any = None
         _content: Any = None
         if isinstance(resource_array, (IO, bytes)):
-            if resource_array is not None:
-                _content = self._serialize.body(resource_array, "IO")
-            else:
-                _content = None
+            _content = resource_array
             content_type = content_type or "application/json"
         elif isinstance(resource_array, list):
             if resource_array is not None:
@@ -625,10 +619,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         _json: Any = None
         _content: Any = None
         if isinstance(resource_dictionary, (IO, bytes)):
-            if resource_dictionary is not None:
-                _content = self._serialize.body(resource_dictionary, "IO")
-            else:
-                _content = None
+            _content = resource_dictionary
             content_type = content_type or "application/json"
         elif isinstance(resource_dictionary, dict):
             if resource_dictionary is not None:
@@ -792,10 +783,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         _json: Any = None
         _content: Any = None
         if isinstance(resource_complex_object, (IO, bytes)):
-            if resource_complex_object is not None:
-                _content = self._serialize.body(resource_complex_object, "IO")
-            else:
-                _content = None
+            _content = resource_complex_object
             content_type = content_type or "application/json"
         elif isinstance(resource_complex_object, (_serialization.Model, dict)):
             if resource_complex_object is not None:
@@ -957,10 +945,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         _json: Any = None
         _content: Any = None
         if isinstance(simple_body_product, (IO, bytes)):
-            if simple_body_product is not None:
-                _content = self._serialize.body(simple_body_product, "IO")
-            else:
-                _content = None
+            _content = simple_body_product
             content_type = content_type or "application/json"
         elif isinstance(simple_body_product, (_serialization.Model, dict)):
             if simple_body_product is not None:

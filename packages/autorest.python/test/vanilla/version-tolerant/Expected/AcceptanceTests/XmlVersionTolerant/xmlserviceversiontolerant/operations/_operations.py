@@ -23,7 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .. import models as _models
+from .. import _serialization, models as _models
 from .._serialization import Serializer
 
 if sys.version_info >= (3, 8):
@@ -1982,7 +1982,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(properties, (IO, bytes)):
-            _content = self._serialize.body(properties, "IO")
+            _content = properties
             content_type = content_type or "application/json"
         elif isinstance(properties, (_serialization.Model, dict)):
             _json = self._serialize.body(properties, "JSONInput")

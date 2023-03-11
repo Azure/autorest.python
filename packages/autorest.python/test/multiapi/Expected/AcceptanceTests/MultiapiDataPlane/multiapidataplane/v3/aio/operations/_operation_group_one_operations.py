@@ -27,6 +27,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
+from .... import _serialization
 from ..._vendor import _convert_request
 from ...operations._operation_group_one_operations import (
     build_test_operation_group_paging_request,
@@ -208,7 +209,19 @@ class OperationGroupOneOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.ModelThree] = kwargs.pop("cls", None)
 
-        _json = parameter_one
+        _json: Any = None
+        _content: Any = None
+        if isinstance(parameter_one, (IO, bytes)):
+            _content = parameter_one
+            content_type = content_type or "application/json"
+        elif isinstance(parameter_one, (_serialization.Model, dict)):
+            if parameter_one is not None:
+                _json = self._serialize.body(parameter_one, "ModelThree")
+            else:
+                _json = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for parameter_one")
 
         request = build_test_two_request(
             api_version=api_version,

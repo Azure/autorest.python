@@ -193,7 +193,7 @@ class FormdataOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))
         cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
-        _content = self._serialize.body(file_content, "IO")
+        _content = file_content
 
         request = build_upload_file_via_body_request(
             content_type=content_type,

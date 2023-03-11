@@ -2016,10 +2016,7 @@ class HttpSuccessOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_success_put200_request(
             content_type=content_type,
@@ -2070,10 +2067,7 @@ class HttpSuccessOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_success_patch200_request(
             content_type=content_type,
@@ -2124,10 +2118,7 @@ class HttpSuccessOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_success_post200_request(
             content_type=content_type,
@@ -2178,10 +2169,7 @@ class HttpSuccessOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_success_delete200_request(
             content_type=content_type,
@@ -2232,10 +2220,7 @@ class HttpSuccessOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_success_put201_request(
             content_type=content_type,
@@ -2286,10 +2271,7 @@ class HttpSuccessOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_success_post201_request(
             content_type=content_type,
@@ -2340,10 +2322,7 @@ class HttpSuccessOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_success_put202_request(
             content_type=content_type,
@@ -2394,10 +2373,7 @@ class HttpSuccessOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_success_patch202_request(
             content_type=content_type,
@@ -2448,10 +2424,7 @@ class HttpSuccessOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_success_post202_request(
             content_type=content_type,
@@ -2502,10 +2475,7 @@ class HttpSuccessOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_success_delete202_request(
             content_type=content_type,
@@ -2597,10 +2567,7 @@ class HttpSuccessOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_success_put204_request(
             content_type=content_type,
@@ -2651,10 +2618,7 @@ class HttpSuccessOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_success_patch204_request(
             content_type=content_type,
@@ -2705,10 +2669,7 @@ class HttpSuccessOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_success_post204_request(
             content_type=content_type,
@@ -2759,10 +2720,7 @@ class HttpSuccessOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_success_delete204_request(
             content_type=content_type,
@@ -3069,10 +3027,7 @@ class HttpRedirectsOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_redirects_put301_request(
             content_type=content_type,
@@ -3217,10 +3172,7 @@ class HttpRedirectsOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_redirects_patch302_request(
             content_type=content_type,
@@ -3275,10 +3227,7 @@ class HttpRedirectsOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_redirects_post303_request(
             content_type=content_type,
@@ -3468,10 +3417,7 @@ class HttpRedirectsOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_redirects_put307_request(
             content_type=content_type,
@@ -3526,10 +3472,7 @@ class HttpRedirectsOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_redirects_patch307_request(
             content_type=content_type,
@@ -3584,10 +3527,7 @@ class HttpRedirectsOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_redirects_post307_request(
             content_type=content_type,
@@ -3642,10 +3582,7 @@ class HttpRedirectsOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_redirects_delete307_request(
             content_type=content_type,
@@ -3841,10 +3778,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_client_failure_put400_request(
             content_type=content_type,
@@ -3895,10 +3829,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_client_failure_patch400_request(
             content_type=content_type,
@@ -3949,10 +3880,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_client_failure_post400_request(
             content_type=content_type,
@@ -4003,10 +3931,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_client_failure_delete400_request(
             content_type=content_type,
@@ -4221,10 +4146,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_client_failure_put404_request(
             content_type=content_type,
@@ -4275,10 +4197,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_client_failure_patch405_request(
             content_type=content_type,
@@ -4329,10 +4248,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_client_failure_post406_request(
             content_type=content_type,
@@ -4383,10 +4299,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_client_failure_delete407_request(
             content_type=content_type,
@@ -4437,10 +4350,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_client_failure_put409_request(
             content_type=content_type,
@@ -4655,10 +4565,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_client_failure_put413_request(
             content_type=content_type,
@@ -4709,10 +4616,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_client_failure_patch414_request(
             content_type=content_type,
@@ -4763,10 +4667,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_client_failure_post415_request(
             content_type=content_type,
@@ -4858,10 +4759,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_client_failure_delete417_request(
             content_type=content_type,
@@ -5053,10 +4951,7 @@ class HttpServerFailureOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_server_failure_post505_request(
             content_type=content_type,
@@ -5107,10 +5002,7 @@ class HttpServerFailureOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_server_failure_delete505_request(
             content_type=content_type,
@@ -5220,10 +5112,7 @@ class HttpRetryOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_retry_put500_request(
             content_type=content_type,
@@ -5274,10 +5163,7 @@ class HttpRetryOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_retry_patch500_request(
             content_type=content_type,
@@ -5417,10 +5303,7 @@ class HttpRetryOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_retry_post503_request(
             content_type=content_type,
@@ -5471,10 +5354,7 @@ class HttpRetryOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_retry_delete503_request(
             content_type=content_type,
@@ -5525,10 +5405,7 @@ class HttpRetryOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_retry_put504_request(
             content_type=content_type,
@@ -5579,10 +5456,7 @@ class HttpRetryOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if boolean_value is not None:
-            _json = boolean_value
-        else:
-            _json = None
+        _json = boolean_value
 
         request = build_http_retry_patch504_request(
             content_type=content_type,

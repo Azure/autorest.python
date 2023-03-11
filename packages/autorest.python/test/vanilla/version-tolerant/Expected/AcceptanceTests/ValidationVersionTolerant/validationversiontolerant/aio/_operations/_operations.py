@@ -361,16 +361,10 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         _json: Any = None
         _content: Any = None
         if isinstance(body, (IO, bytes)):
-            if body is not None:
-                _content = body
-            else:
-                _content = None
+            _content = body
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
-            if body is not None:
-                _json = body
-            else:
-                _json = None
+            _json = body
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for body")
@@ -666,16 +660,10 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         _json: Any = None
         _content: Any = None
         if isinstance(body, (IO, bytes)):
-            if body is not None:
-                _content = body
-            else:
-                _content = None
+            _content = body
             content_type = content_type or "application/json"
         elif isinstance(body, MutableMapping):
-            if body is not None:
-                _json = body
-            else:
-                _json = None
+            _json = body
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for body")

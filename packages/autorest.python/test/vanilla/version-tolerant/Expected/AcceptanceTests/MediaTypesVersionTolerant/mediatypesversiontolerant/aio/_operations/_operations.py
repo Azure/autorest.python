@@ -128,19 +128,13 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         _json: Any = None
         _content: Any = None
         if isinstance(input, (IO, bytes)):
-            if input is not None:
-                _content = input
-            else:
-                _content = None
+            _content = input
             if not content_type:
                 raise TypeError(
                     "Missing required keyword-only argument: content_type. Known values are: 'application/json', 'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'"
                 )
         elif isinstance(input, MutableMapping):
-            if input is not None:
-                _json = input
-            else:
-                _json = None
+            _json = input
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for input")
@@ -259,19 +253,13 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         _json: Any = None
         _content: Any = None
         if isinstance(input, (IO, bytes)):
-            if input is not None:
-                _content = input
-            else:
-                _content = None
+            _content = input
             if not content_type:
                 raise TypeError(
                     "Missing required keyword-only argument: content_type. Known values are: 'application/json', 'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'"
                 )
         elif isinstance(input, MutableMapping):
-            if input is not None:
-                _json = input
-            else:
-                _json = None
+            _json = input
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for input")
@@ -323,10 +311,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "text/plain; charset=UTF-8"))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        if input is not None:
-            _content = input
-        else:
-            _content = None
+        _content = input
 
         request = build_media_types_content_type_with_encoding_request(
             content_type=content_type,

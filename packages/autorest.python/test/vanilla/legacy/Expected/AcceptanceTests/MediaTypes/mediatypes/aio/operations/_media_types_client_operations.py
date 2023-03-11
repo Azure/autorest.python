@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ... import models as _models
+from ... import _serialization, models as _models
 from ..._vendor import _convert_request
 from ...operations._media_types_client_operations import (
     build_analyze_body_no_accept_header_request,
@@ -106,10 +106,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         _json: Any = None
         _content: Any = None
         if isinstance(input, (IO, bytes)):
-            if input is not None:
-                _content = self._serialize.body(input, "IO")
-            else:
-                _content = None
+            _content = input
             if not content_type:
                 raise TypeError(
                     "Missing required keyword-only argument: content_type. Known values are: 'application/json', 'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'"
@@ -225,10 +222,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         _json: Any = None
         _content: Any = None
         if isinstance(input, (IO, bytes)):
-            if input is not None:
-                _content = self._serialize.body(input, "IO")
-            else:
-                _content = None
+            _content = input
             if not content_type:
                 raise TypeError(
                     "Missing required keyword-only argument: content_type. Known values are: 'application/json', 'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'"
@@ -355,7 +349,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        _content = self._serialize.body(message, "IO")
+        _content = message
 
         request = build_binary_body_with_two_content_types_request(
             content_type=content_type,
@@ -414,7 +408,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        _content = self._serialize.body(message, "IO")
+        _content = message
 
         request = build_binary_body_with_three_content_types_request(
             content_type=content_type,
@@ -533,7 +527,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         _json: Any = None
         _content: Any = None
         if isinstance(message, (IO, bytes)):
-            _content = self._serialize.body(message, "IO")
+            _content = message
             content_type = content_type or "application/octet-stream"
         elif isinstance(message, str):
             _content = self._serialize.body(message, "str")

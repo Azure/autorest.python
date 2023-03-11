@@ -25,7 +25,7 @@ from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
-from ... import models as _models
+from ... import _serialization, models as _models
 from ..._vendor import _convert_request
 from ...operations._lrosads_operations import (
     build_delete202_non_retry400_request,
@@ -99,10 +99,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = self._serialize.body(product, "IO")
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, (_serialization.Model, dict)):
             if product is not None:
@@ -284,10 +281,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = self._serialize.body(product, "IO")
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, (_serialization.Model, dict)):
             if product is not None:
@@ -472,10 +466,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = self._serialize.body(product, "IO")
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, (_serialization.Model, dict)):
             if product is not None:
@@ -664,10 +655,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = self._serialize.body(product, "IO")
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, (_serialization.Model, dict)):
             if product is not None:
@@ -1149,10 +1137,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = self._serialize.body(product, "IO")
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, (_serialization.Model, dict)):
             if product is not None:
@@ -1325,10 +1310,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = self._serialize.body(product, "IO")
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, (_serialization.Model, dict)):
             if product is not None:
@@ -1501,10 +1483,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = self._serialize.body(product, "IO")
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, (_serialization.Model, dict)):
             if product is not None:
@@ -1683,10 +1662,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = self._serialize.body(product, "IO")
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, (_serialization.Model, dict)):
             if product is not None:
@@ -1870,10 +1846,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = self._serialize.body(product, "IO")
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, (_serialization.Model, dict)):
             if product is not None:
@@ -2072,10 +2045,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = self._serialize.body(product, "IO")
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, (_serialization.Model, dict)):
             if product is not None:
@@ -2462,10 +2432,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = self._serialize.body(product, "IO")
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, (_serialization.Model, dict)):
             if product is not None:
@@ -2641,10 +2608,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = self._serialize.body(product, "IO")
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, (_serialization.Model, dict)):
             if product is not None:
@@ -2826,10 +2790,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = self._serialize.body(product, "IO")
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, (_serialization.Model, dict)):
             if product is not None:
@@ -3012,10 +2973,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = self._serialize.body(product, "IO")
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, (_serialization.Model, dict)):
             if product is not None:
@@ -3214,10 +3172,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = self._serialize.body(product, "IO")
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, (_serialization.Model, dict)):
             if product is not None:
@@ -3715,10 +3670,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = self._serialize.body(product, "IO")
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, (_serialization.Model, dict)):
             if product is not None:
@@ -3894,10 +3846,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = self._serialize.body(product, "IO")
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, (_serialization.Model, dict)):
             if product is not None:
@@ -4079,10 +4028,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = self._serialize.body(product, "IO")
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, (_serialization.Model, dict)):
             if product is not None:

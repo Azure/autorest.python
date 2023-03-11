@@ -23,7 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ... import models as _models
+from ... import _serialization, models as _models
 from ...operations._operations import (
     build_xml_get_acls_request,
     build_xml_get_bytes_request,
@@ -1493,7 +1493,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(properties, (IO, bytes)):
-            _content = self._serialize.body(properties, "IO")
+            _content = properties
             content_type = content_type or "application/json"
         elif isinstance(properties, (_serialization.Model, dict)):
             _json = self._serialize.body(properties, "JSONInput")

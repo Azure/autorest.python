@@ -440,10 +440,7 @@ class ImplicitOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if body_parameter is not None:
-            _content = self._serialize.body(body_parameter, "IO")
-        else:
-            _content = None
+        _content = body_parameter
 
         request = build_put_optional_binary_body_request(
             content_type=content_type,

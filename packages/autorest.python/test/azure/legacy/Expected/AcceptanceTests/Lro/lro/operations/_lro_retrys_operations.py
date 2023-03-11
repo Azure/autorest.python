@@ -25,7 +25,7 @@ from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 
-from .. import models as _models
+from .. import _serialization, models as _models
 from .._serialization import Serializer
 from .._vendor import _convert_request
 
@@ -185,10 +185,7 @@ class LRORetrysOperations:
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = self._serialize.body(product, "IO")
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, (_serialization.Model, dict)):
             if product is not None:
@@ -373,10 +370,7 @@ class LRORetrysOperations:
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = self._serialize.body(product, "IO")
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, (_serialization.Model, dict)):
             if product is not None:
@@ -871,10 +865,7 @@ class LRORetrysOperations:
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = self._serialize.body(product, "IO")
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, (_serialization.Model, dict)):
             if product is not None:
@@ -1050,10 +1041,7 @@ class LRORetrysOperations:
         _json: Any = None
         _content: Any = None
         if isinstance(product, (IO, bytes)):
-            if product is not None:
-                _content = self._serialize.body(product, "IO")
-            else:
-                _content = None
+            _content = product
             content_type = content_type or "application/json"
         elif isinstance(product, (_serialization.Model, dict)):
             if product is not None:

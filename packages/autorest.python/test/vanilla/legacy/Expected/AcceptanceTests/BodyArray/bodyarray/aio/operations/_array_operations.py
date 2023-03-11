@@ -340,7 +340,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(array_body, (IO, bytes)):
-            _content = self._serialize.body(array_body, "IO")
+            _content = array_body
             content_type = content_type or "application/json"
         elif isinstance(array_body, list):
             _json = self._serialize.body(array_body, "[str]")
@@ -494,7 +494,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(array_body, (IO, bytes)):
-            _content = self._serialize.body(array_body, "IO")
+            _content = array_body
             content_type = content_type or "application/json"
         elif isinstance(array_body, list):
             _json = self._serialize.body(array_body, "[bool]")
@@ -750,7 +750,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(array_body, (IO, bytes)):
-            _content = self._serialize.body(array_body, "IO")
+            _content = array_body
             content_type = content_type or "application/json"
         elif isinstance(array_body, list):
             _json = self._serialize.body(array_body, "[int]")
@@ -1006,7 +1006,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(array_body, (IO, bytes)):
-            _content = self._serialize.body(array_body, "IO")
+            _content = array_body
             content_type = content_type or "application/json"
         elif isinstance(array_body, list):
             _json = self._serialize.body(array_body, "[int]")
@@ -1262,7 +1262,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(array_body, (IO, bytes)):
-            _content = self._serialize.body(array_body, "IO")
+            _content = array_body
             content_type = content_type or "application/json"
         elif isinstance(array_body, list):
             _json = self._serialize.body(array_body, "[float]")
@@ -1518,7 +1518,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(array_body, (IO, bytes)):
-            _content = self._serialize.body(array_body, "IO")
+            _content = array_body
             content_type = content_type or "application/json"
         elif isinstance(array_body, list):
             _json = self._serialize.body(array_body, "[float]")
@@ -1774,7 +1774,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(array_body, (IO, bytes)):
-            _content = self._serialize.body(array_body, "IO")
+            _content = array_body
             content_type = content_type or "application/json"
         elif isinstance(array_body, list):
             _json = self._serialize.body(array_body, "[str]")
@@ -1928,7 +1928,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(array_body, (IO, bytes)):
-            _content = self._serialize.body(array_body, "IO")
+            _content = array_body
             content_type = content_type or "application/json"
         elif isinstance(array_body, list):
             _json = self._serialize.body(array_body, "[str]")
@@ -2082,7 +2082,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(array_body, (IO, bytes)):
-            _content = self._serialize.body(array_body, "IO")
+            _content = array_body
             content_type = content_type or "application/json"
         elif isinstance(array_body, list):
             _json = self._serialize.body(array_body, "[str]")
@@ -2342,7 +2342,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(array_body, (IO, bytes)):
-            _content = self._serialize.body(array_body, "IO")
+            _content = array_body
             content_type = content_type or "application/json"
         elif isinstance(array_body, list):
             _json = self._serialize.body(array_body, "[str]")
@@ -2547,7 +2547,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(array_body, (IO, bytes)):
-            _content = self._serialize.body(array_body, "IO")
+            _content = array_body
             content_type = content_type or "application/json"
         elif isinstance(array_body, list):
             _json = self._serialize.body(array_body, "[date]")
@@ -2807,7 +2807,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(array_body, (IO, bytes)):
-            _content = self._serialize.body(array_body, "IO")
+            _content = array_body
             content_type = content_type or "application/json"
         elif isinstance(array_body, list):
             _json = self._serialize.body(array_body, "[iso-8601]")
@@ -3067,7 +3067,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(array_body, (IO, bytes)):
-            _content = self._serialize.body(array_body, "IO")
+            _content = array_body
             content_type = content_type or "application/json"
         elif isinstance(array_body, list):
             _json = self._serialize.body(array_body, "[rfc-1123]")
@@ -3221,7 +3221,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(array_body, (IO, bytes)):
-            _content = self._serialize.body(array_body, "IO")
+            _content = array_body
             content_type = content_type or "application/json"
         elif isinstance(array_body, list):
             _json = self._serialize.body(array_body, "[duration]")
@@ -3379,7 +3379,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(array_body, (IO, bytes)):
-            _content = self._serialize.body(array_body, "IO")
+            _content = array_body
             content_type = content_type or "application/json"
         elif isinstance(array_body, list):
             _json = self._serialize.body(array_body, "[bytearray]")
@@ -3846,7 +3846,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(array_body, (IO, bytes)):
-            _content = self._serialize.body(array_body, "IO")
+            _content = array_body
             content_type = content_type or "application/json"
         elif isinstance(array_body, list):
             _json = self._serialize.body(array_body, "[Product]")
@@ -4204,7 +4204,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(array_body, (IO, bytes)):
-            _content = self._serialize.body(array_body, "IO")
+            _content = array_body
             content_type = content_type or "application/json"
         elif isinstance(array_body, list):
             _json = self._serialize.body(array_body, "[[str]]")
@@ -4568,7 +4568,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _json: Any = None
         _content: Any = None
         if isinstance(array_body, (IO, bytes)):
-            _content = self._serialize.body(array_body, "IO")
+            _content = array_body
             content_type = content_type or "application/json"
         elif isinstance(array_body, list):
             _json = self._serialize.body(array_body, "[{str}]")
