@@ -356,6 +356,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         code_model: Dict[str, Any],
         yaml_data: Dict[str, Any],
         is_overload: bool = False,
+        item_type: Optional[Dict[str, Any]] = None,
     ) -> None:
         self.update_operation(code_model, yaml_data, is_overload=is_overload)
         if not yaml_data.get("pagerSync"):
@@ -365,7 +366,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         if self.version_tolerant:
             # if we're in version tolerant, hide the paging model
             _remove_paging_maxpagesize(yaml_data)
-        item_type = yaml_data["itemType"]["elementType"]
+        item_type = item_type or yaml_data["itemType"]["elementType"]
         if yaml_data.get("nextOperation"):
             if self.version_tolerant:
                 _remove_paging_maxpagesize(yaml_data["nextOperation"])
@@ -382,7 +383,9 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             update_paging_response(response)
             response["itemType"] = item_type
         for overload in yaml_data.get("overloads", []):
-            self.update_paging_operation(code_model, overload, is_overload=True)
+            self.update_paging_operation(
+                code_model, overload, is_overload=True, item_type=item_type
+            )
 
     def update_operation_groups(
         self, code_model: Dict[str, Any], client: Dict[str, Any]
