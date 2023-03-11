@@ -759,7 +759,9 @@ class _OperationSerializer(
         direct_assign = False
         if xml_serialization_ctxt and self.code_model.options["models_mode"]:
             retval.append(f'{ser_ctxt_name} = {{"xml": {{{xml_serialization_ctxt}}}}}')
-        if self.code_model.options["models_mode"] == "msrest" and not isinstance(body_param.type, BinaryIteratorType, BinaryType):
+        if self.code_model.options["models_mode"] == "msrest" and not isinstance(
+            body_param.type, (BinaryIteratorType, BinaryType)
+        ):
             is_xml_cmd = ", is_xml=True" if send_xml else ""
             serialization_ctxt_cmd = (
                 f", {ser_ctxt_name}={ser_ctxt_name}" if xml_serialization_ctxt else ""

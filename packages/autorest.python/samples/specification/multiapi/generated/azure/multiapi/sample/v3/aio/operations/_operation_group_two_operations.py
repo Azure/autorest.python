@@ -122,11 +122,22 @@ class OperationGroupTwoOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json = input
-        if not content_type:
-            raise TypeError(
-                "Missing required keyword-only argument: content_type. Known values are: 'application/json', 'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'"
-            )
+        _json: Any = None
+        _content: Any = None
+        if isinstance(input, (IO, bytes)):
+            _content = input
+            if not content_type:
+                raise TypeError(
+                    "Missing required keyword-only argument: content_type. Known values are: 'application/json', 'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'"
+                )
+        elif isinstance(input, (_serialization.Model, dict)):
+            if input is not None:
+                _json = self._serialize.body(input, "SourcePath")
+            else:
+                _json = None
+            content_type = content_type or "application/json"
+        else:
+            raise TypeError("unrecognized type for input")
 
         request = build_test_four_request(
             api_version=api_version,
