@@ -15,7 +15,6 @@ from azure.core.async_paging import AsyncItemPaged
 from azure.core.polling import AsyncLROPoller
 
 from .. import models as _models
-from ... import _serialization
 
 
 class MultiapiServiceClientOperationsMixin(object):
