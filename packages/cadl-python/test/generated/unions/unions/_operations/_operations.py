@@ -41,9 +41,10 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_unions_send_int_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_unions_send_int_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/unions/int"
 
@@ -54,9 +55,10 @@ def build_unions_send_int_request(*, content_type: Optional[str] = None, **kwarg
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_unions_send_int_array_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_unions_send_int_array_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/unions/int-array"
 
@@ -67,11 +69,10 @@ def build_unions_send_int_array_request(*, content_type: Optional[str] = None, *
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_unions_send_first_named_union_value_request(
-    *, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
+def build_unions_send_first_named_union_value_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/unions/model1"
 
@@ -82,11 +83,10 @@ def build_unions_send_first_named_union_value_request(
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_unions_send_second_named_union_value_request(
-    *, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
+def build_unions_send_second_named_union_value_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/unions/model2"
 
@@ -154,18 +154,14 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
 
     @distributed_trace
     def send_int(  # pylint: disable=inconsistent-return-statements
-        self,
-        input: Union[_models.ModelWithSimpleUnionProperty, JSON, IO],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, input: Union[_models.ModelWithSimpleUnionProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """send_int.
 
         :param input: Is one of the following types: ModelWithSimpleUnionProperty, JSON, IO Required.
         :type input: ~unions.models.ModelWithSimpleUnionProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -181,9 +177,10 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -274,18 +271,14 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
 
     @distributed_trace
     def send_int_array(  # pylint: disable=inconsistent-return-statements
-        self,
-        input: Union[_models.ModelWithSimpleUnionProperty, JSON, IO],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, input: Union[_models.ModelWithSimpleUnionProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """send_int_array.
 
         :param input: Is one of the following types: ModelWithSimpleUnionProperty, JSON, IO Required.
         :type input: ~unions.models.ModelWithSimpleUnionProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -301,9 +294,10 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -394,18 +388,14 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
 
     @distributed_trace
     def send_first_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self,
-        input: Union[_models.ModelWithNamedUnionProperty, JSON, IO],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, input: Union[_models.ModelWithNamedUnionProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """send_first_named_union_value.
 
         :param input: Is one of the following types: ModelWithNamedUnionProperty, JSON, IO Required.
         :type input: ~unions.models.ModelWithNamedUnionProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -421,9 +411,10 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -514,18 +505,14 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
 
     @distributed_trace
     def send_second_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self,
-        input: Union[_models.ModelWithNamedUnionProperty, JSON, IO],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, input: Union[_models.ModelWithNamedUnionProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """send_second_named_union_value.
 
         :param input: Is one of the following types: ModelWithNamedUnionProperty, JSON, IO Required.
         :type input: ~unions.models.ModelWithNamedUnionProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -541,9 +528,10 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None

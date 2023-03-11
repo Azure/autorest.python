@@ -41,9 +41,10 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_projected_name_json_projection_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_projected_name_json_projection_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/projection/json"
 
@@ -54,9 +55,10 @@ def build_projected_name_json_projection_request(*, content_type: Optional[str] 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_projected_name_client_projection_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_projected_name_client_projection_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/projection/client"
 
@@ -67,11 +69,10 @@ def build_projected_name_client_projection_request(*, content_type: Optional[str
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_projected_name_language_projection_request(
-    *, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
+def build_projected_name_language_projection_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/projection/language"
 
@@ -139,14 +140,14 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
 
     @distributed_trace
     def json_projection(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.Project, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, body: Union[_models.Project, JSON, IO], **kwargs: Any
     ) -> None:
         """json_projection.
 
         :param body: Is one of the following types: Project, JSON, IO Required.
         :type body: ~projectedname.models.Project or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -162,9 +163,10 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -255,14 +257,14 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
 
     @distributed_trace
     def client_projection(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.Project, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, body: Union[_models.Project, JSON, IO], **kwargs: Any
     ) -> None:
         """client_projection.
 
         :param body: Is one of the following types: Project, JSON, IO Required.
         :type body: ~projectedname.models.Project or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -278,9 +280,10 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -371,14 +374,14 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
 
     @distributed_trace
     def language_projection(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.Project, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, body: Union[_models.Project, JSON, IO], **kwargs: Any
     ) -> None:
         """language_projection.
 
         :param body: Is one of the following types: Project, JSON, IO Required.
         :type body: ~projectedname.models.Project or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -394,9 +397,10 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None

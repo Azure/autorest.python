@@ -22,6 +22,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
+from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._model_base import AzureJSONEncoder
@@ -99,18 +100,14 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
 
     @distributed_trace_async
     async def send_int(  # pylint: disable=inconsistent-return-statements
-        self,
-        input: Union[_models.ModelWithSimpleUnionProperty, JSON, IO],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, input: Union[_models.ModelWithSimpleUnionProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """send_int.
 
         :param input: Is one of the following types: ModelWithSimpleUnionProperty, JSON, IO Required.
         :type input: ~unions.models.ModelWithSimpleUnionProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -126,9 +123,10 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -219,18 +217,14 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
 
     @distributed_trace_async
     async def send_int_array(  # pylint: disable=inconsistent-return-statements
-        self,
-        input: Union[_models.ModelWithSimpleUnionProperty, JSON, IO],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, input: Union[_models.ModelWithSimpleUnionProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """send_int_array.
 
         :param input: Is one of the following types: ModelWithSimpleUnionProperty, JSON, IO Required.
         :type input: ~unions.models.ModelWithSimpleUnionProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -246,9 +240,10 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -339,18 +334,14 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
 
     @distributed_trace_async
     async def send_first_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self,
-        input: Union[_models.ModelWithNamedUnionProperty, JSON, IO],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, input: Union[_models.ModelWithNamedUnionProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """send_first_named_union_value.
 
         :param input: Is one of the following types: ModelWithNamedUnionProperty, JSON, IO Required.
         :type input: ~unions.models.ModelWithNamedUnionProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -366,9 +357,10 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -459,18 +451,14 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
 
     @distributed_trace_async
     async def send_second_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self,
-        input: Union[_models.ModelWithNamedUnionProperty, JSON, IO],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, input: Union[_models.ModelWithNamedUnionProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """send_second_named_union_value.
 
         :param input: Is one of the following types: ModelWithNamedUnionProperty, JSON, IO Required.
         :type input: ~unions.models.ModelWithNamedUnionProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -486,9 +474,10 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None

@@ -102,10 +102,11 @@ def build_service_driven2_put_required_optional_request(
 
 
 def build_service_driven2_post_parameters_request(
-    content_type_path: Union[str, _models.ContentTypePathType], *, content_type: Optional[str] = None, **kwargs: Any
+    content_type_path: Union[str, _models.ContentTypePathType], **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -434,8 +435,6 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
         self,
         content_type_path: Union[str, _models.ContentTypePathType],
         parameter: Union[_models.PostInput, JSON, IO],
-        *,
-        content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.Message:
         """POST a JSON or a JPEG.
@@ -447,7 +446,7 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
          Required.
         :type parameter: ~resiliency.servicedriven2.models.PostInput or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -463,9 +462,10 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Message] = kwargs.pop("cls", None)
 
         _content: Any = None

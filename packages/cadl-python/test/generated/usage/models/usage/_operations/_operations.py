@@ -41,9 +41,10 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_usage_input_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_usage_input_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/models/usage/input"
 
@@ -68,9 +69,10 @@ def build_usage_output_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_usage_input_and_output_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_usage_input_and_output_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -141,14 +143,14 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
 
     @distributed_trace
     def input(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.InputRecord, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, input: Union[_models.InputRecord, JSON, IO], **kwargs: Any
     ) -> None:
         """input.
 
         :param input: Is one of the following types: InputRecord, JSON, IO Required.
         :type input: ~models.usage.models.InputRecord or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -164,9 +166,10 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -307,14 +310,14 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
 
     @distributed_trace
     def input_and_output(
-        self, body: Union[_models.InputOutputRecord, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, body: Union[_models.InputOutputRecord, JSON, IO], **kwargs: Any
     ) -> _models.InputOutputRecord:
         """input_and_output.
 
         :param body: Is one of the following types: InputOutputRecord, JSON, IO Required.
         :type body: ~models.usage.models.InputOutputRecord or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -330,9 +333,10 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.InputOutputRecord] = kwargs.pop("cls", None)
 
         _content: Any = None

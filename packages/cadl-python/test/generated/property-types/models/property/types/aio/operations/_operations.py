@@ -22,6 +22,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
+from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._model_base import AzureJSONEncoder, _deserialize
@@ -190,14 +191,14 @@ class BooleanOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BooleanProperty, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, body: Union[_models.BooleanProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: BooleanProperty, JSON, IO Required.
         :type body: ~models.property.types.models.BooleanProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -213,9 +214,10 @@ class BooleanOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -374,14 +376,14 @@ class StringOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringProperty, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, body: Union[_models.StringProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: StringProperty, JSON, IO Required.
         :type body: ~models.property.types.models.StringProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -397,9 +399,10 @@ class StringOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -558,14 +561,14 @@ class BytesOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BytesProperty, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, body: Union[_models.BytesProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: BytesProperty, JSON, IO Required.
         :type body: ~models.property.types.models.BytesProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -581,9 +584,10 @@ class BytesOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -742,14 +746,14 @@ class IntOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IntProperty, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, body: Union[_models.IntProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: IntProperty, JSON, IO Required.
         :type body: ~models.property.types.models.IntProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -765,9 +769,10 @@ class IntOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -926,14 +931,14 @@ class FloatOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.FloatProperty, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, body: Union[_models.FloatProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: FloatProperty, JSON, IO Required.
         :type body: ~models.property.types.models.FloatProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -949,9 +954,10 @@ class FloatOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -1110,14 +1116,14 @@ class DatetimeOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DatetimeProperty, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, body: Union[_models.DatetimeProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: DatetimeProperty, JSON, IO Required.
         :type body: ~models.property.types.models.DatetimeProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1133,9 +1139,10 @@ class DatetimeOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -1294,14 +1301,14 @@ class DurationOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DurationProperty, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, body: Union[_models.DurationProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: DurationProperty, JSON, IO Required.
         :type body: ~models.property.types.models.DurationProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1317,9 +1324,10 @@ class DurationOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -1478,14 +1486,14 @@ class EnumOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.EnumProperty, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, body: Union[_models.EnumProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: EnumProperty, JSON, IO Required.
         :type body: ~models.property.types.models.EnumProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1501,9 +1509,10 @@ class EnumOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -1662,18 +1671,14 @@ class ExtensibleEnumOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[_models.ExtensibleEnumProperty, JSON, IO],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, body: Union[_models.ExtensibleEnumProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: ExtensibleEnumProperty, JSON, IO Required.
         :type body: ~models.property.types.models.ExtensibleEnumProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1689,9 +1694,10 @@ class ExtensibleEnumOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -1850,14 +1856,14 @@ class ModelOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ModelProperty, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, body: Union[_models.ModelProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: ModelProperty, JSON, IO Required.
         :type body: ~models.property.types.models.ModelProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1873,9 +1879,10 @@ class ModelOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -2035,18 +2042,14 @@ class CollectionsStringOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[_models.CollectionsStringProperty, JSON, IO],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, body: Union[_models.CollectionsStringProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: CollectionsStringProperty, JSON, IO Required.
         :type body: ~models.property.types.models.CollectionsStringProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -2062,9 +2065,10 @@ class CollectionsStringOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -2223,18 +2227,14 @@ class CollectionsIntOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[_models.CollectionsIntProperty, JSON, IO],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, body: Union[_models.CollectionsIntProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: CollectionsIntProperty, JSON, IO Required.
         :type body: ~models.property.types.models.CollectionsIntProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -2250,9 +2250,10 @@ class CollectionsIntOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -2412,18 +2413,14 @@ class CollectionsModelOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[_models.CollectionsModelProperty, JSON, IO],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, body: Union[_models.CollectionsModelProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: CollectionsModelProperty, JSON, IO Required.
         :type body: ~models.property.types.models.CollectionsModelProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -2439,9 +2436,10 @@ class CollectionsModelOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -2601,18 +2599,14 @@ class DictionaryStringOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[_models.DictionaryStringProperty, JSON, IO],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, body: Union[_models.DictionaryStringProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: DictionaryStringProperty, JSON, IO Required.
         :type body: ~models.property.types.models.DictionaryStringProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -2628,9 +2622,10 @@ class DictionaryStringOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -2789,14 +2784,14 @@ class NeverOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.NeverProperty, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, body: Union[_models.NeverProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: NeverProperty, JSON, IO Required.
         :type body: ~models.property.types.models.NeverProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -2812,9 +2807,10 @@ class NeverOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None

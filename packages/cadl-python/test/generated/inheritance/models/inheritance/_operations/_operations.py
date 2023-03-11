@@ -41,9 +41,10 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_inheritance_post_valid_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_inheritance_post_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/models/inheritance/valid"
 
@@ -68,9 +69,10 @@ def build_inheritance_get_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_inheritance_put_valid_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_inheritance_put_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -98,9 +100,10 @@ def build_inheritance_get_model_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_inheritance_put_model_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_inheritance_put_model_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/models/inheritance/discriminated/model"
 
@@ -125,9 +128,10 @@ def build_inheritance_get_recursive_model_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_inheritance_put_recursive_model_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_inheritance_put_recursive_model_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/models/inheritance/discriminated/recursivemodel"
 
@@ -223,14 +227,14 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
 
     @distributed_trace
     def post_valid(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.Siamese, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, input: Union[_models.Siamese, JSON, IO], **kwargs: Any
     ) -> None:
         """post_valid.
 
         :param input: Is one of the following types: Siamese, JSON, IO Required.
         :type input: ~models.inheritance.models.Siamese or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -246,9 +250,10 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -384,15 +389,13 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         """
 
     @distributed_trace
-    def put_valid(
-        self, input: Union[_models.Siamese, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.Siamese:
+    def put_valid(self, input: Union[_models.Siamese, JSON, IO], **kwargs: Any) -> _models.Siamese:
         """put_valid.
 
         :param input: Is one of the following types: Siamese, JSON, IO Required.
         :type input: ~models.inheritance.models.Siamese or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -408,9 +411,10 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Siamese] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -558,14 +562,14 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
 
     @distributed_trace
     def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.Fish, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, input: Union[_models.Fish, JSON, IO], **kwargs: Any
     ) -> None:
         """put_model.
 
         :param input: Is one of the following types: Fish, JSON, IO Required.
         :type input: ~models.inheritance.models.Fish or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -581,9 +585,10 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -724,14 +729,14 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
 
     @distributed_trace
     def put_recursive_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.Fish, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, input: Union[_models.Fish, JSON, IO], **kwargs: Any
     ) -> None:
         """put_recursive_model.
 
         :param input: Is one of the following types: Fish, JSON, IO Required.
         :type input: ~models.inheritance.models.Fish or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -747,9 +752,10 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None

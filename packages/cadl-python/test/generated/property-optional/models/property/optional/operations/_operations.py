@@ -68,9 +68,10 @@ def build_string_get_default_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_string_put_all_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_string_put_all_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/models/properties/optional/string/all"
 
@@ -81,9 +82,10 @@ def build_string_put_all_request(*, content_type: Optional[str] = None, **kwargs
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_string_put_default_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_string_put_default_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/models/properties/optional/string/default"
 
@@ -122,9 +124,10 @@ def build_bytes_get_default_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_bytes_put_all_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_bytes_put_all_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/models/properties/optional/bytes/all"
 
@@ -135,9 +138,10 @@ def build_bytes_put_all_request(*, content_type: Optional[str] = None, **kwargs:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_bytes_put_default_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_bytes_put_default_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/models/properties/optional/bytes/default"
 
@@ -176,9 +180,10 @@ def build_datetime_get_default_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_datetime_put_all_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_datetime_put_all_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/models/properties/optional/datetime/all"
 
@@ -189,9 +194,10 @@ def build_datetime_put_all_request(*, content_type: Optional[str] = None, **kwar
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_datetime_put_default_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_datetime_put_default_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/models/properties/optional/datetime/default"
 
@@ -230,9 +236,10 @@ def build_duration_get_default_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_duration_put_all_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_duration_put_all_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/models/properties/optional/duration/all"
 
@@ -243,9 +250,10 @@ def build_duration_put_all_request(*, content_type: Optional[str] = None, **kwar
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_duration_put_default_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_duration_put_default_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/models/properties/optional/duration/default"
 
@@ -284,9 +292,10 @@ def build_collections_byte_get_default_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_collections_byte_put_all_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_collections_byte_put_all_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/models/properties/optional/collections/bytes/all"
 
@@ -297,9 +306,10 @@ def build_collections_byte_put_all_request(*, content_type: Optional[str] = None
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_collections_byte_put_default_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_collections_byte_put_default_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/models/properties/optional/collections/bytes/default"
 
@@ -338,9 +348,10 @@ def build_collections_model_get_default_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_collections_model_put_all_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_collections_model_put_all_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/models/properties/optional/collections/model/all"
 
@@ -351,9 +362,10 @@ def build_collections_model_put_all_request(*, content_type: Optional[str] = Non
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_collections_model_put_default_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_collections_model_put_default_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/models/properties/optional/collections/model/default"
 
@@ -392,9 +404,10 @@ def build_required_and_optional_get_required_only_request(**kwargs: Any) -> Http
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_required_and_optional_put_all_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_required_and_optional_put_all_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/models/properties/optional/requiredAndOptional/all"
 
@@ -405,11 +418,10 @@ def build_required_and_optional_put_all_request(*, content_type: Optional[str] =
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_required_and_optional_put_required_only_request(
-    *, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
+def build_required_and_optional_put_required_only_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/models/properties/optional/requiredAndOptional/requiredOnly"
 
@@ -593,14 +605,14 @@ class StringOperations:
 
     @distributed_trace
     def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringProperty, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, body: Union[_models.StringProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: StringProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.StringProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -616,9 +628,10 @@ class StringOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -709,14 +722,14 @@ class StringOperations:
 
     @distributed_trace
     def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringProperty, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, body: Union[_models.StringProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: StringProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.StringProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -732,9 +745,10 @@ class StringOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -943,14 +957,14 @@ class BytesOperations:
 
     @distributed_trace
     def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BytesProperty, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, body: Union[_models.BytesProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: BytesProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.BytesProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -966,9 +980,10 @@ class BytesOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -1059,14 +1074,14 @@ class BytesOperations:
 
     @distributed_trace
     def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BytesProperty, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, body: Union[_models.BytesProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: BytesProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.BytesProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1082,9 +1097,10 @@ class BytesOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -1293,14 +1309,14 @@ class DatetimeOperations:
 
     @distributed_trace
     def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DatetimeProperty, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, body: Union[_models.DatetimeProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: DatetimeProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.DatetimeProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1316,9 +1332,10 @@ class DatetimeOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -1409,14 +1426,14 @@ class DatetimeOperations:
 
     @distributed_trace
     def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DatetimeProperty, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, body: Union[_models.DatetimeProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: DatetimeProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.DatetimeProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1432,9 +1449,10 @@ class DatetimeOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -1643,14 +1661,14 @@ class DurationOperations:
 
     @distributed_trace
     def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DurationProperty, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, body: Union[_models.DurationProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: DurationProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.DurationProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1666,9 +1684,10 @@ class DurationOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -1759,14 +1778,14 @@ class DurationOperations:
 
     @distributed_trace
     def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DurationProperty, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, body: Union[_models.DurationProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: DurationProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.DurationProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1782,9 +1801,10 @@ class DurationOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -1993,18 +2013,14 @@ class CollectionsByteOperations:
 
     @distributed_trace
     def put_all(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[_models.CollectionsByteProperty, JSON, IO],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, body: Union[_models.CollectionsByteProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: CollectionsByteProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.CollectionsByteProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -2020,9 +2036,10 @@ class CollectionsByteOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -2113,18 +2130,14 @@ class CollectionsByteOperations:
 
     @distributed_trace
     def put_default(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[_models.CollectionsByteProperty, JSON, IO],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, body: Union[_models.CollectionsByteProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: CollectionsByteProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.CollectionsByteProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -2140,9 +2153,10 @@ class CollectionsByteOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -2353,18 +2367,14 @@ class CollectionsModelOperations:
 
     @distributed_trace
     def put_all(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[_models.CollectionsModelProperty, JSON, IO],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, body: Union[_models.CollectionsModelProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: CollectionsModelProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.CollectionsModelProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -2380,9 +2390,10 @@ class CollectionsModelOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -2473,18 +2484,14 @@ class CollectionsModelOperations:
 
     @distributed_trace
     def put_default(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[_models.CollectionsModelProperty, JSON, IO],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, body: Union[_models.CollectionsModelProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: CollectionsModelProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.CollectionsModelProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -2500,9 +2507,10 @@ class CollectionsModelOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -2713,18 +2721,14 @@ class RequiredAndOptionalOperations:
 
     @distributed_trace
     def put_all(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[_models.RequiredAndOptionalProperty, JSON, IO],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, body: Union[_models.RequiredAndOptionalProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: RequiredAndOptionalProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.RequiredAndOptionalProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -2740,9 +2744,10 @@ class RequiredAndOptionalOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -2833,18 +2838,14 @@ class RequiredAndOptionalOperations:
 
     @distributed_trace
     def put_required_only(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[_models.RequiredAndOptionalProperty, JSON, IO],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, body: Union[_models.RequiredAndOptionalProperty, JSON, IO], **kwargs: Any
     ) -> None:
         """Put a body with only required properties.
 
         :param body: Is one of the following types: RequiredAndOptionalProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.RequiredAndOptionalProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -2860,9 +2861,10 @@ class RequiredAndOptionalOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None

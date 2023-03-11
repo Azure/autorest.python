@@ -85,9 +85,10 @@ def build_model_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_model_put_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_model_put_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/special-words/model/put"
 
@@ -394,14 +395,14 @@ class ModelOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BaseModel, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, body: Union[_models.BaseModel, JSON, IO], **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Is one of the following types: BaseModel, JSON, IO Required.
         :type body: ~specialwords.models.BaseModel or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -417,9 +418,10 @@ class ModelOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None

@@ -24,6 +24,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
+from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._model_base import AzureJSONEncoder, _deserialize
@@ -115,14 +116,7 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         """
 
     @distributed_trace_async
-    async def create_or_update(
-        self,
-        id: int,
-        resource: Union[_models.User, JSON, IO],
-        *,
-        content_type: str = "application/merge-patch+json",
-        **kwargs: Any
-    ) -> _models.User:
+    async def create_or_update(self, id: int, resource: Union[_models.User, JSON, IO], **kwargs: Any) -> _models.User:
         """Adds a user or updates a user's fields.
 
         Creates or updates a User.
@@ -131,8 +125,7 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         :type id: int
         :param resource: The resource instance. Is one of the following types: User, JSON, IO Required.
         :type resource: ~_specs_.azure.core.models.User or JSON or IO
-        :keyword content_type: This request has a JSON Merge Patch body. Default value is
-         "application/merge-patch+json".
+        :keyword content_type: This request has a JSON Merge Patch body. Default value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -148,9 +141,10 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.User] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -268,9 +262,7 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         """
 
     @distributed_trace_async
-    async def create_or_replace(
-        self, id: int, resource: Union[_models.User, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.User:
+    async def create_or_replace(self, id: int, resource: Union[_models.User, JSON, IO], **kwargs: Any) -> _models.User:
         """Adds a user or repalces a user's fields.
 
         Creates or repalces a User.
@@ -280,7 +272,7 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         :param resource: The resource instance. Is one of the following types: User, JSON, IO Required.
         :type resource: ~_specs_.azure.core.models.User or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -296,9 +288,10 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.User] = kwargs.pop("cls", None)
 
         _content: Any = None

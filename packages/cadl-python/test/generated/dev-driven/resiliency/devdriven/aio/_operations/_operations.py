@@ -24,6 +24,7 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
+from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._model_base import AzureJSONEncoder, _deserialize
@@ -177,12 +178,7 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
 
     @distributed_trace_async
     async def post_model(
-        self,
-        mode: Union[str, _models.Mode],
-        input: Union[_models.Input, JSON, IO],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, mode: Union[str, _models.Mode], input: Union[_models.Input, JSON, IO], **kwargs: Any
     ) -> _models.Product:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
@@ -195,7 +191,7 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
          Required.
         :type input: ~resiliency.devdriven.models.Input or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -211,9 +207,10 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         _content: Any = None

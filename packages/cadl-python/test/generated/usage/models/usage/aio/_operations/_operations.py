@@ -22,6 +22,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
+from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._model_base import AzureJSONEncoder, _deserialize
@@ -98,14 +99,14 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
 
     @distributed_trace_async
     async def input(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.InputRecord, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, input: Union[_models.InputRecord, JSON, IO], **kwargs: Any
     ) -> None:
         """input.
 
         :param input: Is one of the following types: InputRecord, JSON, IO Required.
         :type input: ~models.usage.models.InputRecord or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -121,9 +122,10 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -264,14 +266,14 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
 
     @distributed_trace_async
     async def input_and_output(
-        self, body: Union[_models.InputOutputRecord, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, body: Union[_models.InputOutputRecord, JSON, IO], **kwargs: Any
     ) -> _models.InputOutputRecord:
         """input_and_output.
 
         :param body: Is one of the following types: InputOutputRecord, JSON, IO Required.
         :type body: ~models.usage.models.InputOutputRecord or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -287,9 +289,10 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.InputOutputRecord] = kwargs.pop("cls", None)
 
         _content: Any = None

@@ -44,12 +44,13 @@ _SERIALIZER.client_side_validation = False
 def build_overload_upload_bytes_or_string_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: str = kwargs.pop("content_type")
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("content-type", None))
     # Construct URL
     _url = "/overload/bytesOrString"
 
     # Construct headers
-    _headers["content-type"] = _SERIALIZER.header("content_type", content_type, "str")
+    if content_type is not None:
+        _headers["content-type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
@@ -57,12 +58,13 @@ def build_overload_upload_bytes_or_string_request(**kwargs: Any) -> HttpRequest:
 def build_overload_upload_json_or_string_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    content_type: str = kwargs.pop("content_type")
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("content-type", None))
     # Construct URL
     _url = "/overload/JsonOrString"
 
     # Construct headers
-    _headers["content-type"] = _SERIALIZER.header("content_type", content_type, "str")
+    if content_type is not None:
+        _headers["content-type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
@@ -127,7 +129,8 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
 
         :param data: Is one of the following types: str, bytes, IO Required.
         :type data: str or bytes or IO
-        :keyword content_type: Known values are: "text/plain" and "application/octet-stream". Required.
+        :keyword content_type: Known values are: "text/plain" and "application/octet-stream". Default
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -143,10 +146,10 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type")
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("content-type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -257,7 +260,8 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
 
         :param data: Is one of the following types: str, Data, JSON, IO Required.
         :type data: str or ~overload.models.Data or JSON or IO
-        :keyword content_type: Known values are: "text/plain" and "application/json". Required.
+        :keyword content_type: Known values are: "text/plain" and "application/json". Default value is
+         None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -273,10 +277,10 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type")
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("content-type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None

@@ -41,9 +41,10 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_automatic_get_model_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_automatic_get_model_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -57,9 +58,10 @@ def build_automatic_get_model_request(*, content_type: Optional[str] = None, **k
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_automatic_head_model_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_automatic_head_model_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/models/visibility/automatic"
 
@@ -70,9 +72,10 @@ def build_automatic_head_model_request(*, content_type: Optional[str] = None, **
     return HttpRequest(method="HEAD", url=_url, headers=_headers, **kwargs)
 
 
-def build_automatic_put_model_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_automatic_put_model_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/models/visibility/automatic"
 
@@ -83,9 +86,10 @@ def build_automatic_put_model_request(*, content_type: Optional[str] = None, **k
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_automatic_patch_model_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_automatic_patch_model_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/models/visibility/automatic"
 
@@ -96,9 +100,10 @@ def build_automatic_patch_model_request(*, content_type: Optional[str] = None, *
     return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
 
 
-def build_automatic_post_model_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_automatic_post_model_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/models/visibility/automatic"
 
@@ -109,9 +114,10 @@ def build_automatic_post_model_request(*, content_type: Optional[str] = None, **
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_automatic_delete_model_request(*, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_automatic_delete_model_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
     _url = "/models/visibility/automatic"
 
@@ -176,15 +182,13 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         """
 
     @distributed_trace
-    def get_model(
-        self, input: Union[_models.VisibilityModel, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.VisibilityModel:
+    def get_model(self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any) -> _models.VisibilityModel:
         """get_model.
 
         :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
         :type input: ~models.visibility.automatic.models.VisibilityModel or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -200,9 +204,10 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.VisibilityModel] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -295,15 +300,13 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         """
 
     @distributed_trace
-    def head_model(
-        self, input: Union[_models.VisibilityModel, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
-    ) -> bool:
+    def head_model(self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any) -> bool:
         """head_model.
 
         :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
         :type input: ~models.visibility.automatic.models.VisibilityModel or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -319,9 +322,10 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -413,14 +417,14 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
 
     @distributed_trace
     def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.VisibilityModel, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any
     ) -> None:
         """put_model.
 
         :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
         :type input: ~models.visibility.automatic.models.VisibilityModel or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -436,9 +440,10 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -529,14 +534,14 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
 
     @distributed_trace
     def patch_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.VisibilityModel, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any
     ) -> None:
         """patch_model.
 
         :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
         :type input: ~models.visibility.automatic.models.VisibilityModel or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -552,9 +557,10 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -645,14 +651,14 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
 
     @distributed_trace
     def post_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.VisibilityModel, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any
     ) -> None:
         """post_model.
 
         :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
         :type input: ~models.visibility.automatic.models.VisibilityModel or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -668,9 +674,10 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -761,14 +768,14 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
 
     @distributed_trace
     def delete_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.VisibilityModel, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
+        self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any
     ) -> None:
         """delete_model.
 
         :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
         :type input: ~models.visibility.automatic.models.VisibilityModel or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -784,9 +791,10 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content: Any = None

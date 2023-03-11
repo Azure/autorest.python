@@ -680,10 +680,11 @@ function emitPagingOperation(
     return retval;
 }
 
-function makeContentTypeInOverload(operation: Record<string, any>): void {
+function updateContentType(operation: Record<string, any>, property: string, value: any = true): void {
     for (const parameter of operation.parameters) {
         if (parameter.restApiName.toLowerCase() === "content-type") {
-            parameter.inOverload = true;
+            parameter[property] = value;
+            break;
         }
     }
 }
@@ -693,16 +694,10 @@ function addOverload(
     originBodyParameter: Record<string, any>,
     bodyType: Record<string, any>,
 ): Record<string, any> {
-    // we copy most of properties except for bodyParameter and contentType
+    // we copy most of properties except for bodyParameter
     const addedOverload = { ...operation };
     addedOverload.bodyParameter = { ...operation.bodyParameter };
     addedOverload.bodyParameter.type = bodyType;
-    for (let i = 0; i < operation.parameters.length; i++) {
-        if (operation.parameters[i].restApiName.toLowerCase() === "content-type") {
-            addedOverload.parameters[i] = { ...operation.parameters[i] };
-        }
-    }
-    makeContentTypeInOverload(addedOverload);
     if (originBodyParameter.type.type === "combined") {
         originBodyParameter.type.types.push(bodyType);
     } else {
@@ -726,16 +721,16 @@ function updateOverloads(
     overload.isOverload = true;
     overload.bodyParameter.type["enableOverloadCheck"] = enableOverloadCheck;
     operation.overloads.push(overload);
-}
 
-// function contentTypeOptional(parameters: Record<string, any>[]): void {
-//     for (const p of parameters) {
-//         if (p.restApiName.toLowerCase() === "content-type") {
-//             p.optional = true;
-//             p.inOverload = true;
-//         }
-//     }
-// }
+    overload.parameters = [...operation.parameters];
+    for (let i = 0; i < operation.parameters.length; i++) {
+        if (operation.parameters[i].restApiName.toLowerCase() === "content-type") {
+            overload.parameters[i] = { ...operation.parameters[i] };
+            overload.parameters[i].inOverload = true;
+            break;
+        }
+    }
+}
 
 function emitBasicOperation(
     context: DpgContext,
@@ -815,7 +810,7 @@ function emitBasicOperation(
         let modelOverload = undefined;
         for (const overload of overloads) {
             overload.name = name;
-            makeContentTypeInOverload(overload);
+            updateContentType(overload, "inOverload");
             if (overload.bodyParameter.type.type === "byte-array" && !binaryOverload) {
                 overload.bodyParameter.type["enableOverloadCheck"] = false;
                 binaryOverload = addOverload(overload, bodyParameter, KnownTypes.binary);
@@ -833,7 +828,6 @@ function emitBasicOperation(
         if (binaryOverload) {
             overloads.unshift(binaryOverload);
         }
-        // contentTypeOptional(parameters);
     }
     const basicOperation = {
         name: name,
@@ -857,16 +851,30 @@ function emitBasicOperation(
 
     // add overload if no native overload
     if (!overload_operations && !isOverload && bodyParameter) {
-        if (bodyParameter.type.type === "byte-array") {
+        let needOverload: boolean = true;
+        if (["byte-array", "dict", "list"].includes(bodyParameter.type.type)) {
             updateOverloads(basicOperation, bodyParameter, bodyParameter.type, false);
             updateOverloads(basicOperation, bodyParameter, KnownTypes.binary);
-            // contentTypeOptional(parameters);
         } else if (bodyParameter.type.type === "model") {
             updateOverloads(basicOperation, bodyParameter, bodyParameter.type, false);
             updateOverloads(basicOperation, bodyParameter, KnownTypes.anyObject);
             updateOverloads(basicOperation, bodyParameter, KnownTypes.binary);
-            // contentTypeOptional(parameters);
+        } else {
+            needOverload = false;
         }
+        if (needOverload) {
+            for (const parameter of basicOperation.parameters) {
+                if (parameter.restApiName.toLowerCase() === "content-type") {
+                    parameter.clientDefaultValue = null;
+                    parameter.optional = true;
+                    break;
+                }
+            }
+        }
+    }
+
+    if (basicOperation.overloads.length > 0) {
+        updateContentType(basicOperation, "optional");
     }
 
     return [basicOperation];

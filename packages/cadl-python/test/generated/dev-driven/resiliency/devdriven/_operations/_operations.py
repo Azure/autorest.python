@@ -61,11 +61,10 @@ def build_dev_driven_get_model_request(mode: Union[str, _models.Mode], **kwargs:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_dev_driven_post_model_request(
-    mode: Union[str, _models.Mode], *, content_type: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
+def build_dev_driven_post_model_request(mode: Union[str, _models.Mode], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -254,12 +253,7 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
 
     @distributed_trace
     def post_model(
-        self,
-        mode: Union[str, _models.Mode],
-        input: Union[_models.Input, JSON, IO],
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, mode: Union[str, _models.Mode], input: Union[_models.Input, JSON, IO], **kwargs: Any
     ) -> _models.Product:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
@@ -272,7 +266,7 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
          Required.
         :type input: ~resiliency.devdriven.models.Input or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -288,9 +282,10 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         _content: Any = None

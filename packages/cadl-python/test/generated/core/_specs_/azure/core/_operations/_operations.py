@@ -46,10 +46,11 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_core_create_or_update_request(id: int, *, content_type: str, **kwargs: Any) -> HttpRequest:
+def build_core_create_or_update_request(id: int, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     api_version: Literal["2022-12-01-preview"] = kwargs.pop(
         "api_version", _params.pop("api-version", "2022-12-01-preview")
     )
@@ -67,16 +68,18 @@ def build_core_create_or_update_request(id: int, *, content_type: str, **kwargs:
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="PATCH", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_core_create_or_replace_request(id: int, *, content_type: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_core_create_or_replace_request(id: int, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     api_version: Literal["2022-12-01-preview"] = kwargs.pop(
         "api_version", _params.pop("api-version", "2022-12-01-preview")
     )
@@ -305,14 +308,7 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         """
 
     @distributed_trace
-    def create_or_update(
-        self,
-        id: int,
-        resource: Union[_models.User, JSON, IO],
-        *,
-        content_type: str = "application/merge-patch+json",
-        **kwargs: Any
-    ) -> _models.User:
+    def create_or_update(self, id: int, resource: Union[_models.User, JSON, IO], **kwargs: Any) -> _models.User:
         """Adds a user or updates a user's fields.
 
         Creates or updates a User.
@@ -321,8 +317,7 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         :type id: int
         :param resource: The resource instance. Is one of the following types: User, JSON, IO Required.
         :type resource: ~_specs_.azure.core.models.User or JSON or IO
-        :keyword content_type: This request has a JSON Merge Patch body. Default value is
-         "application/merge-patch+json".
+        :keyword content_type: This request has a JSON Merge Patch body. Default value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -338,9 +333,10 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.User] = kwargs.pop("cls", None)
 
         _content: Any = None
@@ -458,9 +454,7 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         """
 
     @distributed_trace
-    def create_or_replace(
-        self, id: int, resource: Union[_models.User, JSON, IO], *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.User:
+    def create_or_replace(self, id: int, resource: Union[_models.User, JSON, IO], **kwargs: Any) -> _models.User:
         """Adds a user or repalces a user's fields.
 
         Creates or repalces a User.
@@ -470,7 +464,7 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         :param resource: The resource instance. Is one of the following types: User, JSON, IO Required.
         :type resource: ~_specs_.azure.core.models.User or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -486,9 +480,10 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.User] = kwargs.pop("cls", None)
 
         _content: Any = None
