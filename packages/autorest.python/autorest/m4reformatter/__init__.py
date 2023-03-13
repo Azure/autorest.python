@@ -763,10 +763,7 @@ class M4Reformatter(
         )
         # add overload for operations including basic/paging/LRO
         for operation in operations:
-            if (
-                len(operation["overloads"]) == 0
-                and operation["bodyParameter"]
-            ):
+            if len(operation["overloads"]) == 0 and operation["bodyParameter"]:
                 add_overloads_for_body_param(operation)
             for overload in operation["overloads"]:
                 # make sure we need special import for overload check

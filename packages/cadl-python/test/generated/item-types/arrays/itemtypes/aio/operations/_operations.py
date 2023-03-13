@@ -189,6 +189,9 @@ class Int32ValueOperations:
         if isinstance(body, (IO, bytes)):
             _content = body
             content_type = content_type or "application/json"
+        elif isinstance(body, list):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for body")
 
@@ -352,6 +355,9 @@ class Int64ValueOperations:
         _content: Any = None
         if isinstance(body, (IO, bytes)):
             _content = body
+            content_type = content_type or "application/json"
+        elif isinstance(body, list):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for body")
@@ -517,6 +523,9 @@ class BooleanValueOperations:
         if isinstance(body, (IO, bytes)):
             _content = body
             content_type = content_type or "application/json"
+        elif isinstance(body, list):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for body")
 
@@ -680,6 +689,9 @@ class StringValueOperations:
         _content: Any = None
         if isinstance(body, (IO, bytes)):
             _content = body
+            content_type = content_type or "application/json"
+        elif isinstance(body, list):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for body")
@@ -845,6 +857,9 @@ class Float32ValueOperations:
         if isinstance(body, (IO, bytes)):
             _content = body
             content_type = content_type or "application/json"
+        elif isinstance(body, list):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for body")
 
@@ -1008,6 +1023,9 @@ class DatetimeValueOperations:
         _content: Any = None
         if isinstance(body, (IO, bytes)):
             _content = body
+            content_type = content_type or "application/json"
+        elif isinstance(body, list):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for body")
@@ -1173,6 +1191,9 @@ class DurationValueOperations:
         if isinstance(body, (IO, bytes)):
             _content = body
             content_type = content_type or "application/json"
+        elif isinstance(body, list):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for body")
 
@@ -1337,6 +1358,9 @@ class UnknownValueOperations:
         if isinstance(body, (IO, bytes)):
             _content = body
             content_type = content_type or "application/json"
+        elif isinstance(body, list):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for body")
 
@@ -1500,6 +1524,9 @@ class ModelValueOperations:
         _content: Any = None
         if isinstance(body, (IO, bytes)):
             _content = body
+            content_type = content_type or "application/json"
+        elif isinstance(body, list):
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
         else:
             raise TypeError("unrecognized type for body")

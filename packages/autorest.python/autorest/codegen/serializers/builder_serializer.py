@@ -18,10 +18,7 @@ from ..models import (
     LROPagingOperation,
     ModelType,
     BinaryIteratorType,
-    MsrestModelType,
-    DPGModelType,
     AnyType,
-    AnyObjectType,
     DictionaryType,
     ListType,
     Parameter,
@@ -836,27 +833,26 @@ class _OperationSerializer(
                 except ValueError:
                     stop_loop = True
                     overload_retval.append("else:")
-                finally:
-                    overload_retval.extend(
-                        f"    {l}"
-                        for l in self._create_body_parameter(
-                            cast(OperationType, overload)
-                        )
+                overload_retval.extend(
+                    f"    {l}"
+                    for l in self._create_body_parameter(
+                        cast(OperationType, overload)
                     )
-                    if body_param.default_content_type is None:
-                        overload_retval.extend(
-                            [
-                                f"    {l}"
-                                for l in _content_type_check(body_param.content_types)
-                            ]
-                        )
-                    else:
-                        overload_retval.append(
-                            f'    content_type = content_type or "{body_param.default_content_type}"'
-                        )
-                    if_statement = "elif"
-                    if stop_loop:
-                        break
+                )
+                if body_param.default_content_type is None:
+                    overload_retval.extend(
+                        [
+                            f"    {l}"
+                            for l in _content_type_check(body_param.content_types)
+                        ]
+                    )
+                else:
+                    overload_retval.append(
+                        f'    content_type = content_type or "{body_param.default_content_type}"'
+                    )
+                if_statement = "elif"
+                if stop_loop:
+                    break
             if overload_retval and not stop_loop:
                 overload_retval.extend(
                     [

@@ -853,7 +853,8 @@ function emitBasicOperation(
     if (!overload_operations && !isOverload && bodyParameter) {
         let needOverload: boolean = true;
         if (["byte-array", "dict", "list"].includes(bodyParameter.type.type)) {
-            updateOverloads(basicOperation, bodyParameter, bodyParameter.type, false);
+            const enableOverloadCheck = bodyParameter.type.type !== "byte-array";
+            updateOverloads(basicOperation, bodyParameter, bodyParameter.type, enableOverloadCheck);
             updateOverloads(basicOperation, bodyParameter, KnownTypes.binary);
         } else if (bodyParameter.type.type === "model") {
             updateOverloads(basicOperation, bodyParameter, bodyParameter.type, false);

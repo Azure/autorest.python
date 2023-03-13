@@ -118,7 +118,7 @@ __all__ = [
     "ClientParameter",
     "ConfigParameter",
     "ParameterListType",
-    "BinaryIteratorType"
+    "BinaryIteratorType",
 ]
 
 TYPE_TO_OBJECT = {

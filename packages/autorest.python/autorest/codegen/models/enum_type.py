@@ -191,10 +191,7 @@ class EnumType(BaseType):
             self.value_type.imports(is_operation_file=is_operation_file, **kwargs)
         )
         relative_path = kwargs.pop("relative_path", None)
-        if (
-            self.enable_generate_model
-            and relative_path
-        ):
+        if self.enable_generate_model and relative_path:
             # add import for enums in operations file
             file_import.add_submodule_import(
                 relative_path,
@@ -206,7 +203,7 @@ class EnumType(BaseType):
                 else TypingSection.REGULAR,
             )
         return file_import
-    
+
     @property
-    def enable_generate_model(self)->bool:
+    def enable_generate_model(self) -> bool:
         return self.code_model.options["models_mode"] and self.enable_generate

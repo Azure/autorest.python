@@ -84,8 +84,12 @@ def _mixin_imports(
     if not mixin_operation_group:
         return None, None
 
-    sync_mixin_imports = mixin_operation_group.imports_for_multiapi(async_mode=False, enable_special_import=False)
-    async_mixin_imports = mixin_operation_group.imports_for_multiapi(async_mode=True, enable_special_import=False)
+    sync_mixin_imports = mixin_operation_group.imports_for_multiapi(
+        async_mode=False, enable_special_import=False
+    )
+    async_mixin_imports = mixin_operation_group.imports_for_multiapi(
+        async_mode=True, enable_special_import=False
+    )
 
     return _json_serialize_imports(
         sync_mixin_imports.to_dict()
