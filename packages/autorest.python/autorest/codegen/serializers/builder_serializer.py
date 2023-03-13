@@ -835,9 +835,7 @@ class _OperationSerializer(
                     overload_retval.append("else:")
                 overload_retval.extend(
                     f"    {l}"
-                    for l in self._create_body_parameter(
-                        cast(OperationType, overload)
-                    )
+                    for l in self._create_body_parameter(cast(OperationType, overload))
                 )
                 if body_param.default_content_type is None:
                     overload_retval.extend(
