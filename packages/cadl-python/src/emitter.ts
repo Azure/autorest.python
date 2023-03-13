@@ -530,11 +530,10 @@ function emitResponse(
     if (innerResponse.body?.type) {
         let modelType = undefined;
         if (innerResponse.body.type.kind === "Model") {
-            modelType = getEffectiveSchemaType(context, innerResponse.body.type)
+            modelType = getEffectiveSchemaType(context, innerResponse.body.type);
         }
-        ;
         if (modelType && !isAzureCoreModel(modelType)) {
-            type = getType(context, modelType)
+            type = getType(context, modelType);
         } else if (modelType && ["CustomPage", "Page"].includes(modelType.name)) {
             // hacky sorry. we want a dummy type here so we get the accept parameter
             // we don't want to generate the paged models
