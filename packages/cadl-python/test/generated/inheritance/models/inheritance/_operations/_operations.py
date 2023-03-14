@@ -257,7 +257,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _content = None
+        _content: Any = None
         if isinstance(input, (IO, bytes)):
             _content = input
         else:
@@ -415,7 +415,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         cls: ClsType[_models.Siamese] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _content = None
+        _content: Any = None
         if isinstance(input, (IO, bytes)):
             _content = input
         else:
@@ -586,7 +586,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _content = None
+        _content: Any = None
         if isinstance(input, (IO, bytes)):
             _content = input
         else:
@@ -750,7 +750,7 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _content = None
+        _content: Any = None
         if isinstance(input, (IO, bytes)):
             _content = input
         else:
