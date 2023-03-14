@@ -152,15 +152,13 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("content-type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content: Any = None
+        _content = None
         if isinstance(data, (IO, bytes)):
             _content = data
             content_type = content_type or "application/octet-stream"
         elif isinstance(data, str):
             _content = data
             content_type = content_type or "text/plain"
-        else:
-            raise TypeError("unrecognized type for data")
 
         request = build_overload_upload_bytes_or_string_request(
             content_type=content_type,
@@ -283,18 +281,16 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("content-type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content: Any = None
+        _content = None
         if isinstance(data, (IO, bytes)):
             _content = data
             content_type = content_type or "application/json"
         elif isinstance(data, str):
             _content = data
             content_type = content_type or "text/plain"
-        elif isinstance(data, MutableMapping):
+        else:
             _content = json.dumps(data, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for data")
 
         request = build_overload_upload_json_or_string_request(
             content_type=content_type,

@@ -183,15 +183,13 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content: Any = None
+        _content = None
         if isinstance(input, (IO, bytes)):
             _content = input
             content_type = content_type or "application/json"
-        elif isinstance(input, MutableMapping):
+        else:
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for input")
 
         request = build_unions_send_int_request(
             content_type=content_type,
@@ -300,15 +298,13 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content: Any = None
+        _content = None
         if isinstance(input, (IO, bytes)):
             _content = input
             content_type = content_type or "application/json"
-        elif isinstance(input, MutableMapping):
+        else:
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for input")
 
         request = build_unions_send_int_array_request(
             content_type=content_type,
@@ -417,15 +413,13 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content: Any = None
+        _content = None
         if isinstance(input, (IO, bytes)):
             _content = input
             content_type = content_type or "application/json"
-        elif isinstance(input, MutableMapping):
+        else:
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for input")
 
         request = build_unions_send_first_named_union_value_request(
             content_type=content_type,
@@ -534,15 +528,13 @@ class UnionsClientOperationsMixin(UnionsClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content: Any = None
+        _content = None
         if isinstance(input, (IO, bytes)):
             _content = input
             content_type = content_type or "application/json"
-        elif isinstance(input, MutableMapping):
+        else:
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for input")
 
         request = build_unions_send_second_named_union_value_request(
             content_type=content_type,

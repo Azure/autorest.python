@@ -131,15 +131,13 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.VisibilityModel] = kwargs.pop("cls", None)
 
-        _content: Any = None
+        _content = None
         if isinstance(input, (IO, bytes)):
             _content = input
             content_type = content_type or "application/json"
-        elif isinstance(input, MutableMapping):
+        else:
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for input")
 
         request = build_automatic_get_model_request(
             content_type=content_type,
@@ -249,15 +247,13 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content: Any = None
+        _content = None
         if isinstance(input, (IO, bytes)):
             _content = input
             content_type = content_type or "application/json"
-        elif isinstance(input, MutableMapping):
+        else:
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for input")
 
         request = build_automatic_head_model_request(
             content_type=content_type,
@@ -367,15 +363,13 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content: Any = None
+        _content = None
         if isinstance(input, (IO, bytes)):
             _content = input
             content_type = content_type or "application/json"
-        elif isinstance(input, MutableMapping):
+        else:
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for input")
 
         request = build_automatic_put_model_request(
             content_type=content_type,
@@ -484,15 +478,13 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content: Any = None
+        _content = None
         if isinstance(input, (IO, bytes)):
             _content = input
             content_type = content_type or "application/json"
-        elif isinstance(input, MutableMapping):
+        else:
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for input")
 
         request = build_automatic_patch_model_request(
             content_type=content_type,
@@ -601,15 +593,13 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content: Any = None
+        _content = None
         if isinstance(input, (IO, bytes)):
             _content = input
             content_type = content_type or "application/json"
-        elif isinstance(input, MutableMapping):
+        else:
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for input")
 
         request = build_automatic_post_model_request(
             content_type=content_type,
@@ -718,15 +708,13 @@ class AutomaticClientOperationsMixin(AutomaticClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content: Any = None
+        _content = None
         if isinstance(input, (IO, bytes)):
             _content = input
             content_type = content_type or "application/json"
-        elif isinstance(input, MutableMapping):
+        else:
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for input")
 
         request = build_automatic_delete_model_request(
             content_type=content_type,
