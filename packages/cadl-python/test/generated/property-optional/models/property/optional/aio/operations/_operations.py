@@ -209,8 +209,8 @@ class StringOperations:
 
         :param body: Required.
         :type body: JSON
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -227,8 +227,8 @@ class StringOperations:
 
         :param body: Required.
         :type body: IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -245,8 +245,8 @@ class StringOperations:
 
         :param body: Is one of the following types: StringProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.StringProperty or JSON or IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -323,8 +323,8 @@ class StringOperations:
 
         :param body: Required.
         :type body: JSON
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -341,8 +341,8 @@ class StringOperations:
 
         :param body: Required.
         :type body: IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -359,8 +359,8 @@ class StringOperations:
 
         :param body: Is one of the following types: StringProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.StringProperty or JSON or IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -555,8 +555,8 @@ class BytesOperations:
 
         :param body: Required.
         :type body: JSON
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -573,8 +573,8 @@ class BytesOperations:
 
         :param body: Required.
         :type body: IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -591,8 +591,8 @@ class BytesOperations:
 
         :param body: Is one of the following types: BytesProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.BytesProperty or JSON or IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -669,8 +669,8 @@ class BytesOperations:
 
         :param body: Required.
         :type body: JSON
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -687,8 +687,8 @@ class BytesOperations:
 
         :param body: Required.
         :type body: IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -705,8 +705,8 @@ class BytesOperations:
 
         :param body: Is one of the following types: BytesProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.BytesProperty or JSON or IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -901,8 +901,8 @@ class DatetimeOperations:
 
         :param body: Required.
         :type body: JSON
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -919,8 +919,8 @@ class DatetimeOperations:
 
         :param body: Required.
         :type body: IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -937,8 +937,8 @@ class DatetimeOperations:
 
         :param body: Is one of the following types: DatetimeProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.DatetimeProperty or JSON or IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1015,8 +1015,8 @@ class DatetimeOperations:
 
         :param body: Required.
         :type body: JSON
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1033,8 +1033,8 @@ class DatetimeOperations:
 
         :param body: Required.
         :type body: IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1051,8 +1051,8 @@ class DatetimeOperations:
 
         :param body: Is one of the following types: DatetimeProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.DatetimeProperty or JSON or IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1247,8 +1247,8 @@ class DurationOperations:
 
         :param body: Required.
         :type body: JSON
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1265,8 +1265,8 @@ class DurationOperations:
 
         :param body: Required.
         :type body: IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1283,8 +1283,8 @@ class DurationOperations:
 
         :param body: Is one of the following types: DurationProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.DurationProperty or JSON or IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1361,8 +1361,8 @@ class DurationOperations:
 
         :param body: Required.
         :type body: JSON
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1379,8 +1379,8 @@ class DurationOperations:
 
         :param body: Required.
         :type body: IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1397,8 +1397,8 @@ class DurationOperations:
 
         :param body: Is one of the following types: DurationProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.DurationProperty or JSON or IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1593,8 +1593,8 @@ class CollectionsByteOperations:
 
         :param body: Required.
         :type body: JSON
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1611,8 +1611,8 @@ class CollectionsByteOperations:
 
         :param body: Required.
         :type body: IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1629,8 +1629,8 @@ class CollectionsByteOperations:
 
         :param body: Is one of the following types: CollectionsByteProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.CollectionsByteProperty or JSON or IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1707,8 +1707,8 @@ class CollectionsByteOperations:
 
         :param body: Required.
         :type body: JSON
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1725,8 +1725,8 @@ class CollectionsByteOperations:
 
         :param body: Required.
         :type body: IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1743,8 +1743,8 @@ class CollectionsByteOperations:
 
         :param body: Is one of the following types: CollectionsByteProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.CollectionsByteProperty or JSON or IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1941,8 +1941,8 @@ class CollectionsModelOperations:
 
         :param body: Required.
         :type body: JSON
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1959,8 +1959,8 @@ class CollectionsModelOperations:
 
         :param body: Required.
         :type body: IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -1977,8 +1977,8 @@ class CollectionsModelOperations:
 
         :param body: Is one of the following types: CollectionsModelProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.CollectionsModelProperty or JSON or IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -2055,8 +2055,8 @@ class CollectionsModelOperations:
 
         :param body: Required.
         :type body: JSON
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -2073,8 +2073,8 @@ class CollectionsModelOperations:
 
         :param body: Required.
         :type body: IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -2091,8 +2091,8 @@ class CollectionsModelOperations:
 
         :param body: Is one of the following types: CollectionsModelProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.CollectionsModelProperty or JSON or IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -2289,8 +2289,8 @@ class RequiredAndOptionalOperations:
 
         :param body: Required.
         :type body: JSON
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -2307,8 +2307,8 @@ class RequiredAndOptionalOperations:
 
         :param body: Required.
         :type body: IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -2325,8 +2325,8 @@ class RequiredAndOptionalOperations:
 
         :param body: Is one of the following types: RequiredAndOptionalProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.RequiredAndOptionalProperty or JSON or IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -2403,8 +2403,8 @@ class RequiredAndOptionalOperations:
 
         :param body: Required.
         :type body: JSON
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -2421,8 +2421,8 @@ class RequiredAndOptionalOperations:
 
         :param body: Required.
         :type body: IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -2439,8 +2439,8 @@ class RequiredAndOptionalOperations:
 
         :param body: Is one of the following types: RequiredAndOptionalProperty, JSON, IO Required.
         :type body: ~models.property.optional.models.RequiredAndOptionalProperty or JSON or IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.

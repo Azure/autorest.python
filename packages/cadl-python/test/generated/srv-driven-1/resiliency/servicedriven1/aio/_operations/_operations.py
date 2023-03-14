@@ -239,8 +239,8 @@ class ServiceDriven1ClientOperationsMixin(ServiceDriven1ClientMixinABC):
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
          "http://example.org/myimage.jpeg" }. Required.
         :type parameter: JSON
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword content_type_path: Default value is "json". Note that overriding this default value
          may result in unsupported behavior.
@@ -261,8 +261,8 @@ class ServiceDriven1ClientOperationsMixin(ServiceDriven1ClientMixinABC):
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
          "http://example.org/myimage.jpeg" }. Required.
         :type parameter: IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword content_type_path: Default value is "json". Note that overriding this default value
          may result in unsupported behavior.
@@ -285,8 +285,8 @@ class ServiceDriven1ClientOperationsMixin(ServiceDriven1ClientMixinABC):
         :keyword content_type_path: Default value is "json". Note that overriding this default value
          may result in unsupported behavior.
         :paramtype content_type_path: str
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.

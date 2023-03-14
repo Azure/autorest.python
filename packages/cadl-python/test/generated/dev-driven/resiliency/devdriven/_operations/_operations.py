@@ -218,8 +218,8 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         :type mode: str or ~resiliency.devdriven.models.Mode
         :param input: Please put {'hello': 'world!'}. Required.
         :type input: JSON
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -241,8 +241,8 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         :type mode: str or ~resiliency.devdriven.models.Mode
         :param input: Please put {'hello': 'world!'}. Required.
         :type input: IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -265,8 +265,8 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         :param input: Please put {'hello': 'world!'}. Is one of the following types: Input, JSON, IO
          Required.
         :type input: ~resiliency.devdriven.models.Input or JSON or IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
