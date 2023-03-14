@@ -823,7 +823,11 @@ class _OperationSerializer(
 
             # make sure some special type is in last position and some in first position
             # but we can't change original data
-            overloads_copy = copy.copy(builder.overloads)
+            overloads_copy = [
+                o
+                for o in builder.overloads
+                if o.parameters.body_parameter.type.enable_overload_check
+            ]
             for i, _ in enumerate(overloads_copy):
                 if isinstance(
                     overloads_copy[i].parameters.body_parameter.type,
@@ -838,8 +842,6 @@ class _OperationSerializer(
             if_statement = "if"
             for idx, overload in enumerate(overloads_copy):
                 body_param = overload.parameters.body_parameter
-                if not body_param.type.enable_overload_check:
-                    continue
                 try:
                     if idx + 1 >= len(overloads_copy):
                         raise ValueError()

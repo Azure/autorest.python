@@ -156,7 +156,7 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
         if isinstance(data, (IO, bytes)):
             _content = data
             content_type = content_type or "application/octet-stream"
-        elif isinstance(data, str):
+        else:
             _content = data
             content_type = content_type or "text/plain"
 
