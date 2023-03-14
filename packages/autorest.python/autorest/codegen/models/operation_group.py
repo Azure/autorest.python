@@ -47,18 +47,12 @@ class OperationGroup(BaseModel):
             base_classes.append(f"{self.client.name}MixinABC")
         return ", ".join(base_classes)
 
-    def imports_for_multiapi(
-        self, async_mode: bool, enable_special_import: bool = True
-    ) -> FileImport:
+    def imports_for_multiapi(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
         relative_path = ".." if async_mode else "."
         for operation in self.operations:
             file_import.merge(
-                operation.imports_for_multiapi(
-                    async_mode,
-                    relative_path=relative_path,
-                    enable_special_import=enable_special_import,
-                )
+                operation.imports_for_multiapi(async_mode, relative_path=relative_path)
             )
         if (
             self.code_model.model_types or self.code_model.enums

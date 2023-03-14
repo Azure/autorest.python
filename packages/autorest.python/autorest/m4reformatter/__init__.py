@@ -765,11 +765,6 @@ class M4Reformatter(
         for operation in operations:
             if len(operation["overloads"]) == 0 and operation["bodyParameter"]:
                 add_overloads_for_body_param(operation)
-            for overload in operation["overloads"]:
-                # make sure we need special import for overload check
-                body_type = overload["bodyParameter"]["type"]
-                if body_type["type"] == "model" and body_type.get("base") == "msrest":
-                    body_type["enableImportForOverload"] = True
 
         return {
             "propertyName": property_name,

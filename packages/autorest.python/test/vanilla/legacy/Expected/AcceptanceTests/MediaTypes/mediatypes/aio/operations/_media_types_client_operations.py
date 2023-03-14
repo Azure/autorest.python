@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ... import _serialization, models as _models
+from ... import models as _models
 from ..._vendor import _convert_request
 from ...operations._media_types_client_operations import (
     build_analyze_body_no_accept_header_request,

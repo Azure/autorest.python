@@ -322,11 +322,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
                 )
             )
         for response in self.responses:
-            file_import.merge(
-                response.imports(
-                    async_mode=async_mode, enable_special_import=False, **kwargs
-                )
-            )
+            file_import.merge(response.imports(async_mode=async_mode, **kwargs))
         if self.code_model.options["models_mode"]:
             for exception in self.exceptions:
                 file_import.merge(exception.imports(async_mode=async_mode, **kwargs))
