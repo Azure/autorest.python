@@ -311,8 +311,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(resource_array, (IO, bytes)):
             _content = resource_array
         else:
@@ -501,8 +501,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(resource_array, (IO, bytes)):
             _content = resource_array
         else:
@@ -695,8 +695,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(resource_dictionary, (IO, bytes)):
             _content = resource_dictionary
         else:
@@ -1012,8 +1012,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(resource_complex_object, (IO, bytes)):
             _content = resource_complex_object
         else:
@@ -1331,8 +1331,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(simple_body_product, (IO, bytes)):
             _content = simple_body_product
         else:
@@ -1539,8 +1539,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(simple_body_product, (IO, bytes)):
             _content = simple_body_product
         else:
@@ -1763,8 +1763,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(simple_body_product, (IO, bytes)):
             _content = simple_body_product
         else:

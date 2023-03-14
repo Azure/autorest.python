@@ -166,8 +166,8 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(input, (IO, bytes)):
             _content = input
         else:

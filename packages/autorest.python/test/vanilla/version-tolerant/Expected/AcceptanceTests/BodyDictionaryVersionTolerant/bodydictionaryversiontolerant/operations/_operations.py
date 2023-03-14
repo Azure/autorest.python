@@ -1192,8 +1192,8 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
@@ -1572,8 +1572,8 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
@@ -1840,8 +1840,8 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
@@ -2108,8 +2108,8 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
@@ -2376,8 +2376,8 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
@@ -2644,8 +2644,8 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
@@ -2912,8 +2912,8 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
@@ -3180,8 +3180,8 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
@@ -3452,8 +3452,8 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
@@ -3724,8 +3724,8 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
@@ -3880,8 +3880,8 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
@@ -4040,8 +4040,8 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
@@ -4558,8 +4558,8 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
@@ -4954,8 +4954,8 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
@@ -5356,8 +5356,8 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
