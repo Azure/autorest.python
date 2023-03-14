@@ -6,7 +6,6 @@
 # --------------------------------------------------------------------------
 import json
 from abc import abstractmethod
-import copy
 from collections import defaultdict
 from typing import Any, Generic, List, Type, TypeVar, Dict, Union, Optional, cast
 
