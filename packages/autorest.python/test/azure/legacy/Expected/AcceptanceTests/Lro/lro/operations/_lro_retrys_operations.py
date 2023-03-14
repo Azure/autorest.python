@@ -182,17 +182,16 @@ class LRORetrysOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
-            content_type = content_type or "application/json"
         else:
             if product is not None:
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put201_creating_succeeded200_request(
             content_type=content_type,
@@ -365,17 +364,16 @@ class LRORetrysOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
-            content_type = content_type or "application/json"
         else:
             if product is not None:
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_async_relative_retry_succeeded_request(
             content_type=content_type,
@@ -858,17 +856,16 @@ class LRORetrysOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
-            content_type = content_type or "application/json"
         else:
             if product is not None:
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_post202_retry200_request(
             content_type=content_type,
@@ -1032,17 +1029,16 @@ class LRORetrysOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
-            content_type = content_type or "application/json"
         else:
             if product is not None:
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_post_async_relative_retry_succeeded_request(
             content_type=content_type,

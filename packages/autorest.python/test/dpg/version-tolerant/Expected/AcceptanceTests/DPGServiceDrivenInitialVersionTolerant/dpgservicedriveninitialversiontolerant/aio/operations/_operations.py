@@ -290,14 +290,13 @@ class ParamsOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(parameter, (IO, bytes)):
             _content = parameter
-            content_type = content_type or "application/json"
         else:
             _json = parameter
-            content_type = content_type or "application/json"
 
         request = build_params_post_parameters_request(
             content_type=content_type,

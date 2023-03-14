@@ -282,14 +282,13 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
-            content_type = content_type or "application/json"
         else:
             _json = self._serialize.body(array_body, "{str}")
-            content_type = content_type or "application/json"
 
         request = build_put_empty_request(
             content_type=content_type,
@@ -638,14 +637,13 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
-            content_type = content_type or "application/json"
         else:
             _json = self._serialize.body(array_body, "{bool}")
-            content_type = content_type or "application/json"
 
         request = build_put_boolean_tfft_request(
             content_type=content_type,
@@ -892,14 +890,13 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
-            content_type = content_type or "application/json"
         else:
             _json = self._serialize.body(array_body, "{int}")
-            content_type = content_type or "application/json"
 
         request = build_put_integer_valid_request(
             content_type=content_type,
@@ -1146,14 +1143,13 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
-            content_type = content_type or "application/json"
         else:
             _json = self._serialize.body(array_body, "{int}")
-            content_type = content_type or "application/json"
 
         request = build_put_long_valid_request(
             content_type=content_type,
@@ -1400,14 +1396,13 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
-            content_type = content_type or "application/json"
         else:
             _json = self._serialize.body(array_body, "{float}")
-            content_type = content_type or "application/json"
 
         request = build_put_float_valid_request(
             content_type=content_type,
@@ -1654,14 +1649,13 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
-            content_type = content_type or "application/json"
         else:
             _json = self._serialize.body(array_body, "{float}")
-            content_type = content_type or "application/json"
 
         request = build_put_double_valid_request(
             content_type=content_type,
@@ -1908,14 +1902,13 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
-            content_type = content_type or "application/json"
         else:
             _json = self._serialize.body(array_body, "{str}")
-            content_type = content_type or "application/json"
 
         request = build_put_string_valid_request(
             content_type=content_type,
@@ -2162,14 +2155,13 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
-            content_type = content_type or "application/json"
         else:
             _json = self._serialize.body(array_body, "{date}")
-            content_type = content_type or "application/json"
 
         request = build_put_date_valid_request(
             content_type=content_type,
@@ -2420,14 +2412,13 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
-            content_type = content_type or "application/json"
         else:
             _json = self._serialize.body(array_body, "{iso-8601}")
-            content_type = content_type or "application/json"
 
         request = build_put_date_time_valid_request(
             content_type=content_type,
@@ -2678,14 +2669,13 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
-            content_type = content_type or "application/json"
         else:
             _json = self._serialize.body(array_body, "{rfc-1123}")
-            content_type = content_type or "application/json"
 
         request = build_put_date_time_rfc1123_valid_request(
             content_type=content_type,
@@ -2830,14 +2820,13 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
-            content_type = content_type or "application/json"
         else:
             _json = self._serialize.body(array_body, "{duration}")
-            content_type = content_type or "application/json"
 
         request = build_put_duration_valid_request(
             content_type=content_type,
@@ -2986,14 +2975,13 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
-            content_type = content_type or "application/json"
         else:
             _json = self._serialize.body(array_body, "{bytearray}")
-            content_type = content_type or "application/json"
 
         request = build_put_byte_valid_request(
             content_type=content_type,
@@ -3452,14 +3440,13 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
-            content_type = content_type or "application/json"
         else:
             _json = self._serialize.body(array_body, "{Widget}")
-            content_type = content_type or "application/json"
 
         request = build_put_complex_valid_request(
             content_type=content_type,
@@ -3812,14 +3799,13 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
-            content_type = content_type or "application/json"
         else:
             _json = self._serialize.body(array_body, "{[str]}")
-            content_type = content_type or "application/json"
 
         request = build_put_array_valid_request(
             content_type=content_type,
@@ -4178,14 +4164,13 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
-            content_type = content_type or "application/json"
         else:
             _json = self._serialize.body(array_body, "{{str}}")
-            content_type = content_type or "application/json"
 
         request = build_put_dictionary_valid_request(
             content_type=content_type,

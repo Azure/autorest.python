@@ -288,17 +288,16 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(resource_array, (IO, bytes)):
             _content = resource_array
-            content_type = content_type or "application/json"
         else:
             if resource_array is not None:
                 _json = self._serialize.body(resource_array, "[Resource]")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_array_request(
             content_type=content_type,
@@ -451,17 +450,16 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(resource_array, (IO, bytes)):
             _content = resource_array
-            content_type = content_type or "application/json"
         else:
             if resource_array is not None:
                 _json = self._serialize.body(resource_array, "[WrappedProduct]")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_wrapped_array_request(
             content_type=content_type,
@@ -612,17 +610,16 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(resource_dictionary, (IO, bytes)):
             _content = resource_dictionary
-            content_type = content_type or "application/json"
         else:
             if resource_dictionary is not None:
                 _json = self._serialize.body(resource_dictionary, "{FlattenedProduct}")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_dictionary_request(
             content_type=content_type,
@@ -774,17 +771,16 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(resource_complex_object, (IO, bytes)):
             _content = resource_complex_object
-            content_type = content_type or "application/json"
         else:
             if resource_complex_object is not None:
                 _json = self._serialize.body(resource_complex_object, "ResourceCollection")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_resource_collection_request(
             content_type=content_type,
@@ -934,17 +930,16 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.SimpleProduct] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(simple_body_product, (IO, bytes)):
             _content = simple_body_product
-            content_type = content_type or "application/json"
         else:
             if simple_body_product is not None:
                 _json = self._serialize.body(simple_body_product, "SimpleProduct")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_put_simple_product_request(
             content_type=content_type,

@@ -164,17 +164,16 @@ class PetOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Pet] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(pet_param, (IO, bytes)):
             _content = pet_param
-            content_type = content_type or "application/json"
         else:
             if pet_param is not None:
                 _json = self._serialize.body(pet_param, "Pet")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_add_pet_request(
             content_type=content_type,

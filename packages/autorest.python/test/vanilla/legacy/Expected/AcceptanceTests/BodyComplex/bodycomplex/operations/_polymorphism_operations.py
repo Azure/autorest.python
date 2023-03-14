@@ -401,14 +401,13 @@ class PolymorphismOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
-            content_type = content_type or "application/json"
         else:
             _json = self._serialize.body(complex_body, "Fish")
-            content_type = content_type or "application/json"
 
         request = build_put_valid_request(
             content_type=content_type,
@@ -714,14 +713,13 @@ class PolymorphismOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
-            content_type = content_type or "application/json"
         else:
             _json = self._serialize.body(complex_body, "Salmon")
-            content_type = content_type or "application/json"
 
         request = build_put_complicated_request(
             content_type=content_type,
@@ -813,14 +811,13 @@ class PolymorphismOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Salmon] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
-            content_type = content_type or "application/json"
         else:
             _json = self._serialize.body(complex_body, "Salmon")
-            content_type = content_type or "application/json"
 
         request = build_put_missing_discriminator_request(
             content_type=content_type,
@@ -999,14 +996,13 @@ class PolymorphismOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
-            content_type = content_type or "application/json"
         else:
             _json = self._serialize.body(complex_body, "Fish")
-            content_type = content_type or "application/json"
 
         request = build_put_valid_missing_required_request(
             content_type=content_type,

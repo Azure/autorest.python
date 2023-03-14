@@ -325,14 +325,13 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(horse, (IO, bytes)):
             _content = horse
-            content_type = content_type or "application/json"
         else:
             _json = horse
-            content_type = content_type or "application/json"
 
         request = build_multiple_inheritance_service_put_horse_request(
             content_type=content_type,
@@ -491,14 +490,13 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(pet, (IO, bytes)):
             _content = pet
-            content_type = content_type or "application/json"
         else:
             _json = pet
-            content_type = content_type or "application/json"
 
         request = build_multiple_inheritance_service_put_pet_request(
             content_type=content_type,
@@ -661,14 +659,13 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(feline, (IO, bytes)):
             _content = feline
-            content_type = content_type or "application/json"
         else:
             _json = feline
-            content_type = content_type or "application/json"
 
         request = build_multiple_inheritance_service_put_feline_request(
             content_type=content_type,
@@ -839,14 +836,13 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(cat, (IO, bytes)):
             _content = cat
-            content_type = content_type or "application/json"
         else:
             _json = cat
-            content_type = content_type or "application/json"
 
         request = build_multiple_inheritance_service_put_cat_request(
             content_type=content_type,
@@ -1024,14 +1020,13 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(kitten, (IO, bytes)):
             _content = kitten
-            content_type = content_type or "application/json"
         else:
             _json = kitten
-            content_type = content_type or "application/json"
 
         request = build_multiple_inheritance_service_put_kitten_request(
             content_type=content_type,

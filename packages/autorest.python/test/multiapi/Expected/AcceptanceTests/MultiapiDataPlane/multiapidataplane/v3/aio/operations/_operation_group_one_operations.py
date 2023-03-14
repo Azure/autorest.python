@@ -209,17 +209,16 @@ class OperationGroupOneOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.ModelThree] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(parameter_one, (IO, bytes)):
             _content = parameter_one
-            content_type = content_type or "application/json"
         else:
             if parameter_one is not None:
                 _json = self._serialize.body(parameter_one, "ModelThree")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         request = build_test_two_request(
             api_version=api_version,

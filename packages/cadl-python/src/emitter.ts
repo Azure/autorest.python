@@ -738,7 +738,9 @@ function updateOverloads(
             overload.parameters[i] = { ...operation.parameters[i] };
             overload.parameters[i].inOverload = true;
             const bodyTypeDescription = getBodyTypeForDescription(overload.bodyParameter);
-            overload.parameters[i].description = `Body Parameter content-type. Content type parameter for ${bodyTypeDescription} body.`
+            overload.parameters[
+                i
+            ].description = `Body Parameter content-type. Content type parameter for ${bodyTypeDescription} body.`;
             break;
         }
     }

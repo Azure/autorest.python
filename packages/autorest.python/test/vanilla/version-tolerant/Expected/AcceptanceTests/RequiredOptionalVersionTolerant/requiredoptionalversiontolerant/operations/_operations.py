@@ -1271,14 +1271,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body_parameter, (IO, bytes)):
             _content = body_parameter
-            content_type = content_type or "application/json"
         else:
             _json = body_parameter
-            content_type = content_type or "application/json"
 
         request = build_explicit_post_required_integer_property_request(
             content_type=content_type,
@@ -1380,14 +1379,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body_parameter, (IO, bytes)):
             _content = body_parameter
-            content_type = content_type or "application/json"
         else:
             _json = body_parameter
-            content_type = content_type or "application/json"
 
         request = build_explicit_post_optional_integer_property_request(
             content_type=content_type,
@@ -1686,14 +1684,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body_parameter, (IO, bytes)):
             _content = body_parameter
-            content_type = content_type or "application/json"
         else:
             _json = body_parameter
-            content_type = content_type or "application/json"
 
         request = build_explicit_post_required_string_property_request(
             content_type=content_type,
@@ -1795,14 +1792,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body_parameter, (IO, bytes)):
             _content = body_parameter
-            content_type = content_type or "application/json"
         else:
             _json = body_parameter
-            content_type = content_type or "application/json"
 
         request = build_explicit_post_optional_string_property_request(
             content_type=content_type,
@@ -2002,14 +1998,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body_parameter, (IO, bytes)):
             _content = body_parameter
-            content_type = content_type or "application/json"
         else:
             _json = body_parameter
-            content_type = content_type or "application/json"
 
         request = build_explicit_post_required_class_parameter_request(
             content_type=content_type,
@@ -2113,14 +2108,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body_parameter, (IO, bytes)):
             _content = body_parameter
-            content_type = content_type or "application/json"
         else:
             _json = body_parameter
-            content_type = content_type or "application/json"
 
         request = build_explicit_post_optional_class_parameter_request(
             content_type=content_type,
@@ -2231,14 +2225,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body_parameter, (IO, bytes)):
             _content = body_parameter
-            content_type = content_type or "application/json"
         else:
             _json = body_parameter
-            content_type = content_type or "application/json"
 
         request = build_explicit_post_required_class_property_request(
             content_type=content_type,
@@ -2346,14 +2339,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body_parameter, (IO, bytes)):
             _content = body_parameter
-            content_type = content_type or "application/json"
         else:
             _json = body_parameter
-            content_type = content_type or "application/json"
 
         request = build_explicit_post_optional_class_property_request(
             content_type=content_type,
@@ -2450,14 +2442,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body_parameter, (IO, bytes)):
             _content = body_parameter
-            content_type = content_type or "application/json"
         else:
             _json = body_parameter
-            content_type = content_type or "application/json"
 
         request = build_explicit_post_required_array_parameter_request(
             content_type=content_type,
@@ -2551,14 +2542,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body_parameter, (IO, bytes)):
             _content = body_parameter
-            content_type = content_type or "application/json"
         else:
             _json = body_parameter
-            content_type = content_type or "application/json"
 
         request = build_explicit_post_optional_array_parameter_request(
             content_type=content_type,
@@ -2667,14 +2657,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body_parameter, (IO, bytes)):
             _content = body_parameter
-            content_type = content_type or "application/json"
         else:
             _json = body_parameter
-            content_type = content_type or "application/json"
 
         request = build_explicit_post_required_array_property_request(
             content_type=content_type,
@@ -2780,14 +2769,13 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body_parameter, (IO, bytes)):
             _content = body_parameter
-            content_type = content_type or "application/json"
         else:
             _json = body_parameter
-            content_type = content_type or "application/json"
 
         request = build_explicit_post_optional_array_property_request(
             content_type=content_type,

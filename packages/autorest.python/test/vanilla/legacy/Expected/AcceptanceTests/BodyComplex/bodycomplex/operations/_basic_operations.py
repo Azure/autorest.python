@@ -268,14 +268,13 @@ class BasicOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
-            content_type = content_type or "application/json"
         else:
             _json = self._serialize.body(complex_body, "Basic")
-            content_type = content_type or "application/json"
 
         request = build_put_valid_request(
             api_version=api_version,

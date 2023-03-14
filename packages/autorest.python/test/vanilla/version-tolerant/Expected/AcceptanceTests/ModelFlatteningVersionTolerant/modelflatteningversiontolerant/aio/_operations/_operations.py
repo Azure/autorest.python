@@ -126,14 +126,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(resource_array, (IO, bytes)):
             _content = resource_array
-            content_type = content_type or "application/json"
         else:
             _json = resource_array
-            content_type = content_type or "application/json"
 
         request = build_auto_rest_resource_flattening_test_service_put_array_request(
             content_type=content_type,
@@ -305,14 +304,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(resource_array, (IO, bytes)):
             _content = resource_array
-            content_type = content_type or "application/json"
         else:
             _json = resource_array
-            content_type = content_type or "application/json"
 
         request = build_auto_rest_resource_flattening_test_service_put_wrapped_array_request(
             content_type=content_type,
@@ -488,14 +486,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(resource_dictionary, (IO, bytes)):
             _content = resource_dictionary
-            content_type = content_type or "application/json"
         else:
             _json = resource_dictionary
-            content_type = content_type or "application/json"
 
         request = build_auto_rest_resource_flattening_test_service_put_dictionary_request(
             content_type=content_type,
@@ -794,14 +791,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(resource_complex_object, (IO, bytes)):
             _content = resource_complex_object
-            content_type = content_type or "application/json"
         else:
             _json = resource_complex_object
-            content_type = content_type or "application/json"
 
         request = build_auto_rest_resource_flattening_test_service_put_resource_collection_request(
             content_type=content_type,
@@ -1102,14 +1098,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(simple_body_product, (IO, bytes)):
             _content = simple_body_product
-            content_type = content_type or "application/json"
         else:
             _json = simple_body_product
-            content_type = content_type or "application/json"
 
         request = build_auto_rest_resource_flattening_test_service_put_simple_product_request(
             content_type=content_type,
@@ -1302,14 +1297,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(simple_body_product, (IO, bytes)):
             _content = simple_body_product
-            content_type = content_type or "application/json"
         else:
             _json = simple_body_product
-            content_type = content_type or "application/json"
 
         request = build_auto_rest_resource_flattening_test_service_post_flattened_simple_product_request(
             content_type=content_type,
@@ -1518,14 +1512,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(simple_body_product, (IO, bytes)):
             _content = simple_body_product
-            content_type = content_type or "application/json"
         else:
             _json = simple_body_product
-            content_type = content_type or "application/json"
 
         request = build_auto_rest_resource_flattening_test_service_put_simple_product_with_grouping_request(
             name=name,
