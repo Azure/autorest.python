@@ -1,4 +1,4 @@
-import { getPagedResult } from "@azure-tools/cadl-azure-core";
+import { getPagedResult } from "@azure-tools/typespec-azure-core";
 import {
     EnumMember,
     Enum,
@@ -18,8 +18,6 @@ import {
     ModelProperty,
     Namespace,
     getEffectiveModelType,
-    JSONSchemaType,
-    createCadlLibrary,
     getDiscriminator,
     Operation,
     isKey,
@@ -37,7 +35,8 @@ import {
     isNullType,
     SyntaxKind,
     Type,
-} from "@cadl-lang/compiler";
+    getNamespaceFullName,
+} from "@typespec/compiler";
 import {
     getAuthentication,
     getHeaderFieldName,
@@ -53,8 +52,8 @@ import {
     isStatusCode,
     HttpOperation,
     isHeader,
-} from "@cadl-lang/rest/http";
-import { getAddedOn } from "@cadl-lang/versioning";
+} from "@typespec/http";
+import { getAddedOn } from "@typespec/versioning";
 import {
     Client,
     listClients,
@@ -68,13 +67,15 @@ import {
     DpgContext,
     getPropertyNames,
     getLibraryName,
-} from "@azure-tools/cadl-dpg";
-import { getResourceOperation } from "@cadl-lang/rest";
+    getAllModels,
+} from "@azure-tools/typespec-client-generator-core";
+import { getResourceOperation } from "@typespec/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { dump } from "js-yaml";
 import { execFileSync } from "child_process";
+import { PythonEmitterOptions } from "./lib.js";
 
 interface HttpServerParameter {
     type: "endpointPath";
@@ -94,43 +95,12 @@ interface CredentialTypeUnion {
 
 type EmitterType = Type | CredentialType | CredentialTypeUnion;
 
-export interface EmitterOptions {
-    "basic-setup-py"?: boolean;
-    "package-version"?: string;
-    "package-name"?: string;
-    "output-dir"?: string;
-    "package-mode"?: string;
-    "debug"?: boolean;
-}
-
-const EmitterOptionsSchema: JSONSchemaType<EmitterOptions> = {
-    type: "object",
-    additionalProperties: false,
-    properties: {
-        "basic-setup-py": { type: "boolean", nullable: true },
-        "package-version": { type: "string", nullable: true },
-        "package-name": { type: "string", nullable: true },
-        "output-dir": { type: "string", nullable: true },
-        "package-mode": { type: "string", nullable: true },
-        "debug": { type: "boolean", nullable: true },
-    },
-    required: [],
-};
-
 const defaultOptions = {
     "basic-setup-py": true,
     "package-version": "1.0.0b1",
 };
 
-export const $lib = createCadlLibrary({
-    name: "MyEmitter",
-    diagnostics: {},
-    emitter: {
-        options: EmitterOptionsSchema,
-    },
-});
-
-export async function $onEmit(context: EmitContext<EmitterOptions>) {
+export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     const program = context.program;
     const resolvedOptions = { ...defaultOptions, ...context.options };
 
@@ -543,17 +513,12 @@ function emitResponseHeaders(context: DpgContext, headers?: Record<string, Model
     return retval;
 }
 
-function isAzureCoreErrorType(t?: Type): boolean {
-    if (t?.kind !== "Model" || !["Error", "ErrorResponse", "InnerError"].includes(t.name)) return false;
-    const namespaces = ".Azure.Core.Foundations".split(".");
-    while (
-        namespaces.length > 0 &&
-        (t?.kind === "Model" || t?.kind === "Namespace") &&
-        t.namespace?.name === namespaces.pop()
-    ) {
-        t = t.namespace;
-    }
-    return namespaces.length === 0;
+function isAzureCoreModel(t: Type): boolean {
+    return (
+        t.kind === "Model" &&
+        t.namespace !== undefined &&
+        ["Azure.Core", "Azure.Core.Foundations"].includes(getNamespaceFullName(t.namespace))
+    );
 }
 
 function emitResponse(
@@ -562,14 +527,18 @@ function emitResponse(
     innerResponse: HttpOperationResponseContent,
 ): Record<string, any> {
     let type = undefined;
-    if (innerResponse.body?.type && !isAzureCoreErrorType(innerResponse.body?.type)) {
-        // temporary logic. It can be removed after compiler optimize the response
-        const candidate = ["ResourceOkResponse", "ResourceCreatedResponse", "AcceptedResponse"];
-        const originType = innerResponse.body.type as Model;
-        if (innerResponse.body.type.kind === "Model" && candidate.find((e) => e === originType.name)) {
-            const modelType = getEffectiveSchemaType(context, originType);
+    if (innerResponse.body?.type) {
+        let modelType = undefined;
+        if (innerResponse.body.type.kind === "Model") {
+            modelType = getEffectiveSchemaType(context, innerResponse.body.type);
+        }
+        if (modelType && !isAzureCoreModel(modelType)) {
             type = getType(context, modelType);
-        } else {
+        } else if (modelType && ["CustomPage", "Page"].includes(modelType.name)) {
+            // hacky sorry. we want a dummy type here so we get the accept parameter
+            // we don't want to generate the paged models
+            type = getType(context, Array.from(modelType.properties.values())[0].type);
+        } else if (!modelType) {
             type = getType(context, innerResponse.body.type);
         }
     }
@@ -1355,7 +1324,7 @@ function getNamespaces(context: DpgContext): Set<string> {
     return namespaces;
 }
 
-function emitCodeModel(context: EmitContext<EmitterOptions>) {
+function emitCodeModel(context: EmitContext<PythonEmitterOptions>) {
     const dpgContext = createDpgContext(context);
     const clientNamespaceString = getClientNamespaceString(dpgContext)?.toLowerCase();
     // Get types
@@ -1363,6 +1332,9 @@ function emitCodeModel(context: EmitContext<EmitterOptions>) {
         namespace: clientNamespaceString,
         subnamespaceToClients: {},
     };
+    for (const model of getAllModels(dpgContext)) {
+        getType(dpgContext, model);
+    }
     for (const namespace of getNamespaces(dpgContext)) {
         if (namespace === clientNamespaceString) {
             codeModel["clients"] = emitClients(dpgContext, namespace);

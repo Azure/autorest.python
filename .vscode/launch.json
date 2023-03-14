@@ -5,11 +5,17 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Generate cadl",
+            "name": "Generate typespec",
             "request": "launch",
             "cwd": "${workspaceFolder}/packages/cadl-python",
-            "args": ["compile", "${workspaceFolder}/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs/http/models/visibility", "--emit", "${workspaceFolder}/packages/cadl-python/dist/src/index.js", "--debug"],
-            "program": "${workspaceFolder}/packages/cadl-python/node_modules/@cadl-lang/compiler/dist/core/cli/cli.js",
+            "args": [
+                "compile",
+                "${workspaceFolder}/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs/http/hello",
+                 "--emit",
+                 "${workspaceFolder}/packages/cadl-python/dist/src/index.js",
+                 "--option=@azure-tools/cadl-python.debug=true"
+            ],
+            "program": "${workspaceFolder}/packages/cadl-python/node_modules/@typespec/compiler/dist/core/cli/cli.js",
             "skipFiles": ["<node_internals>/**"],
             "type": "node",
             "smartStep": true,
