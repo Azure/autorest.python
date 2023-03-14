@@ -16,7 +16,6 @@ from ..models import (
     LROOperation,
     LROPagingOperation,
     ModelType,
-    BinaryIteratorType,
     AnyType,
     AnyObjectType,
     DictionaryType,
@@ -758,7 +757,7 @@ class _OperationSerializer(
         if xml_serialization_ctxt and self.code_model.options["models_mode"]:
             retval.append(f'{ser_ctxt_name} = {{"xml": {{{xml_serialization_ctxt}}}}}')
         if self.code_model.options["models_mode"] == "msrest" and not isinstance(
-            body_param.type, (BinaryIteratorType, BinaryType)
+            body_param.type, BinaryType
         ):
             is_xml_cmd = ", is_xml=True" if send_xml else ""
             serialization_ctxt_cmd = (
@@ -769,7 +768,7 @@ class _OperationSerializer(
                 f"'{body_param.type.serialization_type}'{is_xml_cmd}{serialization_ctxt_cmd})"
             )
         elif self.code_model.options["models_mode"] == "dpg" and not isinstance(
-            body_param.type, (BinaryIteratorType, BinaryType, StringType)
+            body_param.type, (BinaryType, StringType)
         ):
             create_body_call = (
                 f"_{body_kwarg_name} = json.dumps({body_param.client_name}, "

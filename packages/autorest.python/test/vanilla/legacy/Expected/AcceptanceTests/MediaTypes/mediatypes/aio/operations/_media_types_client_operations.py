@@ -283,7 +283,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "text/plain; charset=UTF-8"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
         if input is not None:
@@ -476,7 +476,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         """
 
     @overload
-    async def body_three_types(self, message: str, *, content_type: str = "text/plain", **kwargs: Any) -> str:
+    async def body_three_types(self, message: str, *, content_type: Optional[str] = None, **kwargs: Any) -> str:
         """Body with three types. Can be stream, string, or JSON. Pass in string 'hello, world' with
         content type 'text/plain', {'hello': world'} with content type 'application/json' and a byte
         string for 'application/octet-stream'.
@@ -484,7 +484,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         :param message: The payload body. Required.
         :type message: str
         :keyword content_type: Body Parameter content-type. Content type parameter for string body.
-         Default value is "text/plain".
+         Default value is None.
         :paramtype content_type: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
@@ -529,7 +529,10 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
             content_type = content_type or "application/octet-stream"
         elif isinstance(message, str):
             _content = self._serialize.body(message, "str")
-            content_type = content_type or "text/plain"
+            if not content_type:
+                raise TypeError(
+                    "Missing required keyword-only argument: content_type. Known values are:" + "'text/plain'"
+                )
         else:
             _json = self._serialize.body(message, "object")
             content_type = content_type or "application/json"

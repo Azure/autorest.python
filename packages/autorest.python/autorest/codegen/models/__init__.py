@@ -28,7 +28,6 @@ from .primitive_types import (
     BooleanType,
     AnyObjectType,
     UnixTimeType,
-    BinaryIteratorType,
 )
 from .enum_type import EnumType
 from .base import BaseType
@@ -118,7 +117,6 @@ __all__ = [
     "ClientParameter",
     "ConfigParameter",
     "ParameterListType",
-    "BinaryIteratorType",
 ]
 
 TYPE_TO_OBJECT = {

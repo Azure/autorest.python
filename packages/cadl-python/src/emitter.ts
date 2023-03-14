@@ -812,37 +812,7 @@ function emitBasicOperation(
         }
     }
     const name = camelToSnakeCase(getLibraryName(context, operation));
-
-    // handle native overloads
     let overloads: Record<string, any>[] = [];
-    const overload_operations = getOverloads(context.program, operation);
-    if (overload_operations && bodyParameter) {
-        for (const overload_operation of overload_operations) {
-            overloads = overloads.concat(emitBasicOperation(context, overload_operation, operationGroupName, true));
-        }
-        let binaryOverload = undefined;
-        let modelOverload = undefined;
-        for (const overload of overloads) {
-            overload.name = name;
-            updateContentType(overload, "inOverload");
-            if (overload.bodyParameter.type.type === "byte-array" && !binaryOverload) {
-                overload.bodyParameter.type["enableOverloadCheck"] = false;
-                binaryOverload = addOverload(overload, bodyParameter, KnownTypes.binary);
-            } else if (overload.bodyParameter.type.type === "model" && !modelOverload) {
-                overload.bodyParameter.type["enableOverloadCheck"] = false;
-                modelOverload = addOverload(overload, bodyParameter, KnownTypes.anyObject);
-                if (!binaryOverload) {
-                    binaryOverload = addOverload(overload, bodyParameter, KnownTypes.binary);
-                }
-            }
-        }
-        if (modelOverload) {
-            overloads.push(modelOverload);
-        }
-        if (binaryOverload) {
-            overloads.unshift(binaryOverload);
-        }
-    }
     const basicOperation = {
         name: name,
         description: getDocStr(context, operation),
@@ -863,33 +833,61 @@ function emitBasicOperation(
         exposeStreamKeyword: true,
     };
 
-    // add overload if no native overload
-    if (!overload_operations && !isOverload && bodyParameter) {
-        let needOverload: boolean = true;
-        if (["byte-array", "dict", "list"].includes(bodyParameter.type.type)) {
-            const enableOverloadCheck = bodyParameter.type.type !== "byte-array";
-            updateOverloads(basicOperation, bodyParameter, bodyParameter.type, enableOverloadCheck);
-            updateOverloads(basicOperation, bodyParameter, KnownTypes.binary);
-        } else if (bodyParameter.type.type === "model") {
-            updateOverloads(basicOperation, bodyParameter, bodyParameter.type, false);
-            updateOverloads(basicOperation, bodyParameter, KnownTypes.anyObject);
-            updateOverloads(basicOperation, bodyParameter, KnownTypes.binary);
+    // handle overloads
+    if (!isOverload && bodyParameter) {
+        const overload_operations = getOverloads(context.program, operation);
+        if (overload_operations) {
+            for (const overload_operation of overload_operations) {
+                overloads = overloads.concat(emitBasicOperation(context, overload_operation, operationGroupName, true));
+            }
+            let ioOverload = undefined;
+            let modelOverload = undefined;
+            for (const overload of overloads) {
+                overload.name = name;
+                updateContentType(overload, "inOverload");
+                if (overload.bodyParameter.type.type === "byte-array" && !ioOverload) {
+                    overload.bodyParameter.type["enableOverloadCheck"] = false;
+                    ioOverload = addOverload(overload, bodyParameter, KnownTypes.binary);
+                } else if (overload.bodyParameter.type.type === "model" && !modelOverload) {
+                    overload.bodyParameter.type["enableOverloadCheck"] = false;
+                    modelOverload = addOverload(overload, bodyParameter, KnownTypes.anyObject);
+                    if (!ioOverload) {
+                        ioOverload = addOverload(overload, bodyParameter, KnownTypes.binary);
+                    }
+                }
+            }
+            if (ioOverload) {
+                overloads.push(ioOverload);
+            }
+            if (modelOverload) {
+                overloads.push(modelOverload);
+            }
+            basicOperation.overloads = overloads;
         } else {
-            needOverload = false;
-        }
-        if (needOverload) {
-            for (const parameter of basicOperation.parameters) {
-                if (parameter.restApiName.toLowerCase() === "content-type") {
-                    parameter.clientDefaultValue = null;
-                    parameter.optional = true;
-                    break;
+            let needOverload: boolean = true;
+            if (["byte-array", "dict", "list"].includes(bodyParameter.type.type)) {
+                const enableOverloadCheck = bodyParameter.type.type !== "byte-array";
+                updateOverloads(basicOperation, bodyParameter, bodyParameter.type, enableOverloadCheck);
+                updateOverloads(basicOperation, bodyParameter, KnownTypes.binary);
+            } else if (bodyParameter.type.type === "model") {
+                updateOverloads(basicOperation, bodyParameter, bodyParameter.type, false);
+                updateOverloads(basicOperation, bodyParameter, KnownTypes.anyObject);
+                updateOverloads(basicOperation, bodyParameter, KnownTypes.binary);
+            } else {
+                needOverload = false;
+            }
+            if (needOverload) {
+                for (const parameter of basicOperation.parameters) {
+                    if (parameter.restApiName.toLowerCase() === "content-type") {
+                        parameter.clientDefaultValue = null;
+                        break;
+                    }
                 }
             }
         }
-    }
-
-    if (basicOperation.overloads.length > 0) {
-        updateContentType(basicOperation, "optional");
+        if (basicOperation.overloads.length > 0) {
+            updateContentType(basicOperation, "optional");
+        }
     }
 
     return [basicOperation];

@@ -72,23 +72,6 @@ def build_overload_upload_json_or_string_request(**kwargs: Any) -> HttpRequest:
 class OverloadClientOperationsMixin(OverloadClientMixinABC):
     @overload
     def upload_bytes_or_string(  # pylint: disable=inconsistent-return-statements
-        self, data: IO, *, content_type: str = "application/octet-stream", **kwargs: Any
-    ) -> None:
-        """upload_bytes_or_string.
-
-        :param data: Required.
-        :type data: IO
-        :keyword content_type: Default value is "application/octet-stream".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def upload_bytes_or_string(  # pylint: disable=inconsistent-return-statements
         self, data: str, *, content_type: str = "text/plain", **kwargs: Any
     ) -> None:
         """upload_bytes_or_string.
@@ -112,6 +95,23 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
 
         :param data: Required.
         :type data: bytes
+        :keyword content_type: Default value is "application/octet-stream".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def upload_bytes_or_string(  # pylint: disable=inconsistent-return-statements
+        self, data: IO, *, content_type: str = "application/octet-stream", **kwargs: Any
+    ) -> None:
+        """upload_bytes_or_string.
+
+        :param data: Required.
+        :type data: IO
         :keyword content_type: Default value is "application/octet-stream".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
@@ -184,23 +184,6 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
 
     @overload
     def upload_json_or_string(  # pylint: disable=inconsistent-return-statements
-        self, data: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """upload_json_or_string.
-
-        :param data: Required.
-        :type data: IO
-        :keyword content_type: Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def upload_json_or_string(  # pylint: disable=inconsistent-return-statements
         self, data: str, *, content_type: str = "text/plain", **kwargs: Any
     ) -> None:
         """upload_json_or_string.
@@ -224,6 +207,23 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
 
         :param data: Required.
         :type data: ~overload.models.Data
+        :keyword content_type: Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def upload_json_or_string(  # pylint: disable=inconsistent-return-statements
+        self, data: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """upload_json_or_string.
+
+        :param data: Required.
+        :type data: IO
         :keyword content_type: Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
