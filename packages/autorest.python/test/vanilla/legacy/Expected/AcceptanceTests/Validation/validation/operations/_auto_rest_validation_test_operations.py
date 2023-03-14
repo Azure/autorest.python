@@ -291,19 +291,17 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(body, (IO, bytes)):
             _content = body
             content_type = content_type or "application/json"
-        elif isinstance(body, (_serialization.Model, dict)):
+        else:
             if body is not None:
                 _json = self._serialize.body(body, "Product")
             else:
                 _json = None
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for body")
 
         request = build_validation_of_body_request(
             resource_group_name=resource_group_name,
@@ -466,19 +464,17 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(body, (IO, bytes)):
             _content = body
             content_type = content_type or "application/json"
-        elif isinstance(body, (_serialization.Model, dict)):
+        else:
             if body is not None:
                 _json = self._serialize.body(body, "Product")
             else:
                 _json = None
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for body")
 
         request = build_post_with_constant_in_body_request(
             constant_param=constant_param,

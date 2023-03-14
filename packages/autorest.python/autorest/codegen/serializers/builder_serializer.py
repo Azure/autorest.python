@@ -19,6 +19,7 @@ from ..models import (
     ModelType,
     BinaryIteratorType,
     AnyType,
+    AnyObjectType,
     DictionaryType,
     ListType,
     Parameter,
@@ -66,7 +67,7 @@ def _content_type_check(content_types: List[str]) -> List[str]:
     types = "'" + "', '".join(sorted(list(set(content_types)))) + "'"
     return [
         "if not content_type:",
-        f'    raise TypeError("Missing required keyword-only argument: content_type. Known values are: {types}")',
+        f'    raise TypeError("Missing required keyword-only argument: content_type. Known values are:" + "{types}")',
     ]
 
 
@@ -797,7 +798,20 @@ class _OperationSerializer(
         # For paging, we put body parameter in local place outside `prepare_request`
         if is_paging:
             return retval
-
+        same_content_type = (
+            len(
+                set(
+                    o.parameters.body_parameter.default_content_type
+                    for o in builder.overloads
+                )
+            )
+            == 1
+        )
+        if same_content_type:
+            default_content_type = builder.overloads[
+                0
+            ].parameters.body_parameter.default_content_type
+            retval.append(f'content_type = content_type or "{default_content_type}"')
         try:
             overload_retval: List[str] = []
             client_names = [
@@ -805,14 +819,15 @@ class _OperationSerializer(
                 for overload in builder.overloads
             ]
             for v in sorted(set(client_names), key=client_names.index):
-                overload_retval.append(f"_{v}: Any = None")
+                overload_retval.append(f"_{v} = None")
 
-            # make sure AnyType is in last position and BinaryType in first position
+            # make sure some special type is in last position and some in first position
             # but we can't change original data
             overloads_copy = copy.copy(builder.overloads)
             for i, _ in enumerate(overloads_copy):
                 if isinstance(
-                    overloads_copy[i].parameters.body_parameter.type, AnyType
+                    overloads_copy[i].parameters.body_parameter.type,
+                    (AnyType, AnyObjectType),
                 ):
                     _swap(overloads_copy, i, -1)
                 if isinstance(
@@ -820,18 +835,18 @@ class _OperationSerializer(
                 ):
                     _swap(overloads_copy, i, 0)
 
-            stop_loop = False
             if_statement = "if"
-            for overload in overloads_copy:
+            for idx, overload in enumerate(overloads_copy):
                 body_param = overload.parameters.body_parameter
                 if not body_param.type.enable_overload_check:
                     continue
                 try:
+                    if idx + 1 >= len(overloads_copy):
+                        raise ValueError()
                     overload_retval.append(
                         f"{if_statement} {body_param.type.instance_check_template.format(body_param.client_name)}:"
                     )
                 except ValueError:
-                    stop_loop = True
                     overload_retval.append("else:")
                 overload_retval.extend(
                     f"    {l}"
@@ -844,20 +859,11 @@ class _OperationSerializer(
                             for l in _content_type_check(body_param.content_types)
                         ]
                     )
-                else:
+                elif not same_content_type:
                     overload_retval.append(
                         f'    content_type = content_type or "{body_param.default_content_type}"'
                     )
                 if_statement = "elif"
-                if stop_loop:
-                    break
-            if overload_retval and not stop_loop:
-                overload_retval.extend(
-                    [
-                        "else:",
-                        f'    raise TypeError("unrecognized type for {builder.parameters.body_parameter.client_name}")',
-                    ]
-                )
             retval.extend(overload_retval)
         except Exception:  # pylint: disable=broad-except
             body_kwarg_name = (

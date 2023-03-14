@@ -211,22 +211,21 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(input, (IO, bytes)):
             _content = input
             if not content_type:
                 raise TypeError(
-                    "Missing required keyword-only argument: content_type. Known values are: 'application/json', 'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'"
+                    "Missing required keyword-only argument: content_type. Known values are:"
+                    + "'application/json', 'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'"
                 )
-        elif isinstance(input, (_serialization.Model, dict)):
+        else:
             if input is not None:
                 _json = self._serialize.body(input, "SourcePath")
             else:
                 _json = None
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for input")
 
         request = build_analyze_body_request(
             content_type=content_type,
@@ -327,22 +326,21 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(input, (IO, bytes)):
             _content = input
             if not content_type:
                 raise TypeError(
-                    "Missing required keyword-only argument: content_type. Known values are: 'application/json', 'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'"
+                    "Missing required keyword-only argument: content_type. Known values are:"
+                    + "'application/json', 'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'"
                 )
-        elif isinstance(input, (_serialization.Model, dict)):
+        else:
             if input is not None:
                 _json = self._serialize.body(input, "SourcePath")
             else:
                 _json = None
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for input")
 
         request = build_analyze_body_no_accept_header_request(
             content_type=content_type,
@@ -630,8 +628,8 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(message, (IO, bytes)):
             _content = message
             content_type = content_type or "application/octet-stream"

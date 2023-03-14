@@ -974,16 +974,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             304: ResourceNotModifiedError,
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(parameters, (IO, bytes)):
             _content = parameters
             content_type = content_type or "application/json"
-        elif isinstance(parameters, MutableMapping):
+        else:
             _json = parameters
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for parameters")
 
         def prepare_request(next_link=None):
             if not next_link:

@@ -490,19 +490,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
             content_type = content_type or "application/json"
-        elif isinstance(product, (_serialization.Model, dict)):
+        else:
             if product is not None:
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for product")
 
         request = build_put_non_retry400_request(
             content_type=content_type,
@@ -669,19 +667,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
             content_type = content_type or "application/json"
-        elif isinstance(product, (_serialization.Model, dict)):
+        else:
             if product is not None:
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for product")
 
         request = build_put_non_retry201_creating400_request(
             content_type=content_type,
@@ -851,19 +847,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
             content_type = content_type or "application/json"
-        elif isinstance(product, (_serialization.Model, dict)):
+        else:
             if product is not None:
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for product")
 
         request = build_put_non_retry201_creating400_invalid_json_request(
             content_type=content_type,
@@ -1037,19 +1031,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
             content_type = content_type or "application/json"
-        elif isinstance(product, (_serialization.Model, dict)):
+        else:
             if product is not None:
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for product")
 
         request = build_put_async_relative_retry400_request(
             content_type=content_type,
@@ -1512,19 +1504,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
             content_type = content_type or "application/json"
-        elif isinstance(product, (_serialization.Model, dict)):
+        else:
             if product is not None:
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for product")
 
         request = build_post_non_retry400_request(
             content_type=content_type,
@@ -1685,19 +1675,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
             content_type = content_type or "application/json"
-        elif isinstance(product, (_serialization.Model, dict)):
+        else:
             if product is not None:
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for product")
 
         request = build_post202_non_retry400_request(
             content_type=content_type,
@@ -1858,19 +1846,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
             content_type = content_type or "application/json"
-        elif isinstance(product, (_serialization.Model, dict)):
+        else:
             if product is not None:
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for product")
 
         request = build_post_async_relative_retry400_request(
             content_type=content_type,
@@ -2037,19 +2023,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
             content_type = content_type or "application/json"
-        elif isinstance(product, (_serialization.Model, dict)):
+        else:
             if product is not None:
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for product")
 
         request = build_put_error201_no_provisioning_state_payload_request(
             content_type=content_type,
@@ -2218,19 +2202,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
             content_type = content_type or "application/json"
-        elif isinstance(product, (_serialization.Model, dict)):
+        else:
             if product is not None:
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for product")
 
         request = build_put_async_relative_retry_no_status_request(
             content_type=content_type,
@@ -2414,19 +2396,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
             content_type = content_type or "application/json"
-        elif isinstance(product, (_serialization.Model, dict)):
+        else:
             if product is not None:
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for product")
 
         request = build_put_async_relative_retry_no_status_payload_request(
             content_type=content_type,
@@ -2796,19 +2776,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
             content_type = content_type or "application/json"
-        elif isinstance(product, (_serialization.Model, dict)):
+        else:
             if product is not None:
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for product")
 
         request = build_post202_no_location_request(
             content_type=content_type,
@@ -2972,19 +2950,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
             content_type = content_type or "application/json"
-        elif isinstance(product, (_serialization.Model, dict)):
+        else:
             if product is not None:
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for product")
 
         request = build_post_async_relative_retry_no_payload_request(
             content_type=content_type,
@@ -3154,19 +3130,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[Optional[_models.Product]] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
             content_type = content_type or "application/json"
-        elif isinstance(product, (_serialization.Model, dict)):
+        else:
             if product is not None:
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for product")
 
         request = build_put200_invalid_json_request(
             content_type=content_type,
@@ -3334,19 +3308,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
             content_type = content_type or "application/json"
-        elif isinstance(product, (_serialization.Model, dict)):
+        else:
             if product is not None:
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for product")
 
         request = build_put_async_relative_retry_invalid_header_request(
             content_type=content_type,
@@ -3530,19 +3502,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
             content_type = content_type or "application/json"
-        elif isinstance(product, (_serialization.Model, dict)):
+        else:
             if product is not None:
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for product")
 
         request = build_put_async_relative_retry_invalid_json_polling_request(
             content_type=content_type,
@@ -4025,19 +3995,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
             content_type = content_type or "application/json"
-        elif isinstance(product, (_serialization.Model, dict)):
+        else:
             if product is not None:
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for product")
 
         request = build_post202_retry_invalid_header_request(
             content_type=content_type,
@@ -4201,19 +4169,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
             content_type = content_type or "application/json"
-        elif isinstance(product, (_serialization.Model, dict)):
+        else:
             if product is not None:
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for product")
 
         request = build_post_async_relative_retry_invalid_header_request(
             content_type=content_type,
@@ -4383,19 +4349,17 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
             content_type = content_type or "application/json"
-        elif isinstance(product, (_serialization.Model, dict)):
+        else:
             if product is not None:
                 _json = self._serialize.body(product, "Product")
             else:
                 _json = None
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for product")
 
         request = build_post_async_relative_retry_invalid_json_polling_request(
             content_type=content_type,

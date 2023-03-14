@@ -58,16 +58,14 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[Optional[JSON]] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(product, (IO, bytes)):
             _content = product
             content_type = content_type or "application/json"
-        elif isinstance(product, MutableMapping):
+        else:
             _json = product
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for product")
 
         request = build_polling_paging_example_basic_polling_request(
             content_type=content_type,

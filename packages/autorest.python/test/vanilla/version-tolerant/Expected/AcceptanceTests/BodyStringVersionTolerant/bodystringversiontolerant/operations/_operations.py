@@ -1354,16 +1354,14 @@ class EnumOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(enum_string_body, (IO, bytes)):
             _content = enum_string_body
             content_type = content_type or "application/json"
-        elif isinstance(enum_string_body, MutableMapping):
+        else:
             _json = enum_string_body
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for enum_string_body")
 
         request = build_enum_put_referenced_constant_request(
             content_type=content_type,

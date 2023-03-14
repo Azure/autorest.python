@@ -339,13 +339,12 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.User] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/merge-patch+json"
         _content = None
         if isinstance(resource, (IO, bytes)):
             _content = resource
-            content_type = content_type or "application/merge-patch+json"
         else:
             _content = json.dumps(resource, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/merge-patch+json"
 
         request = build_core_create_or_update_request(
             id=id,
@@ -484,13 +483,12 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.User] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _content = None
         if isinstance(resource, (IO, bytes)):
             _content = resource
-            content_type = content_type or "application/json"
         else:
             _content = json.dumps(resource, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
 
         request = build_core_create_or_replace_request(
             id=id,

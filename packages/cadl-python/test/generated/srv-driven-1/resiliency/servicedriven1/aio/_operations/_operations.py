@@ -309,13 +309,12 @@ class ServiceDriven1ClientOperationsMixin(ServiceDriven1ClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Message] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _content = None
         if isinstance(parameter, (IO, bytes)):
             _content = parameter
-            content_type = content_type or "application/json"
         else:
             _content = json.dumps(parameter, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
 
         request = build_service_driven1_post_parameters_request(
             content_type_path=content_type_path,

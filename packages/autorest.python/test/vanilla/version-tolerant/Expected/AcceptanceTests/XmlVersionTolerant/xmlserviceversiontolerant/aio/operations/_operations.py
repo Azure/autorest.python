@@ -1490,16 +1490,14 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(properties, (IO, bytes)):
             _content = properties
             content_type = content_type or "application/json"
-        elif isinstance(properties, (_serialization.Model, dict)):
+        else:
             _json = self._serialize.body(properties, "JSONInput")
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for properties")
 
         request = build_xml_json_input_request(
             content_type=content_type,

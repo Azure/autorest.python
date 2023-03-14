@@ -213,13 +213,12 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _content = None
         if isinstance(input, (IO, bytes)):
             _content = input
-            content_type = content_type or "application/json"
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
 
         request = build_dev_driven_post_model_request(
             mode=mode,

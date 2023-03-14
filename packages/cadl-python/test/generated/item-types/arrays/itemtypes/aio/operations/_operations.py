@@ -185,13 +185,12 @@ class Int32ValueOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _content = None
         if isinstance(body, (IO, bytes)):
             _content = body
-            content_type = content_type or "application/json"
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
 
         request = build_int32_value_put_request(
             content_type=content_type,
@@ -350,13 +349,12 @@ class Int64ValueOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _content = None
         if isinstance(body, (IO, bytes)):
             _content = body
-            content_type = content_type or "application/json"
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
 
         request = build_int64_value_put_request(
             content_type=content_type,
@@ -515,13 +513,12 @@ class BooleanValueOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _content = None
         if isinstance(body, (IO, bytes)):
             _content = body
-            content_type = content_type or "application/json"
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
 
         request = build_boolean_value_put_request(
             content_type=content_type,
@@ -680,13 +677,12 @@ class StringValueOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _content = None
         if isinstance(body, (IO, bytes)):
             _content = body
-            content_type = content_type or "application/json"
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
 
         request = build_string_value_put_request(
             content_type=content_type,
@@ -845,13 +841,12 @@ class Float32ValueOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _content = None
         if isinstance(body, (IO, bytes)):
             _content = body
-            content_type = content_type or "application/json"
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
 
         request = build_float32_value_put_request(
             content_type=content_type,
@@ -1010,13 +1005,12 @@ class DatetimeValueOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _content = None
         if isinstance(body, (IO, bytes)):
             _content = body
-            content_type = content_type or "application/json"
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
 
         request = build_datetime_value_put_request(
             content_type=content_type,
@@ -1175,13 +1169,12 @@ class DurationValueOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _content = None
         if isinstance(body, (IO, bytes)):
             _content = body
-            content_type = content_type or "application/json"
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
 
         request = build_duration_value_put_request(
             content_type=content_type,
@@ -1340,13 +1333,12 @@ class UnknownValueOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _content = None
         if isinstance(body, (IO, bytes)):
             _content = body
-            content_type = content_type or "application/json"
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
 
         request = build_unknown_value_put_request(
             content_type=content_type,
@@ -1505,13 +1497,12 @@ class ModelValueOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _content = None
         if isinstance(body, (IO, bytes)):
             _content = body
-            content_type = content_type or "application/json"
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
 
         request = build_model_value_put_request(
             content_type=content_type,

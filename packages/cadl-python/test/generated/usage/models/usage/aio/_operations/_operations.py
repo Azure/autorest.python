@@ -128,13 +128,12 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _content = None
         if isinstance(input, (IO, bytes)):
             _content = input
-            content_type = content_type or "application/json"
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
 
         request = build_usage_input_request(
             content_type=content_type,
@@ -293,13 +292,12 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.InputOutputRecord] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json"
         _content = None
         if isinstance(body, (IO, bytes)):
             _content = body
-            content_type = content_type or "application/json"
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or "application/json"
 
         request = build_usage_input_and_output_request(
             content_type=content_type,

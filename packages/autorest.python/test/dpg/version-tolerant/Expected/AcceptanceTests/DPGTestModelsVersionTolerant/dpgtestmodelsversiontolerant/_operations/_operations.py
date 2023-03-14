@@ -241,16 +241,14 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(input, (IO, bytes)):
             _content = input
             content_type = content_type or "application/json"
-        elif isinstance(input, (_serialization.Model, dict)):
+        else:
             _json = self._serialize.body(input, "Input")
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for input")
 
         request = build_dpg_post_model_request(
             mode=mode,

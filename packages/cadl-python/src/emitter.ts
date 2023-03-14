@@ -710,6 +710,16 @@ function addOverload(
     return addedOverload;
 }
 
+function getBodyTypeForDescription(bodyParameter: Record<string, any>): string {
+    if (bodyParameter.type.type === "binary") {
+        return "binary";
+    }
+    if (bodyParameter.type.type === "string") {
+        return "string";
+    }
+    return "JSON";
+}
+
 function updateOverloads(
     operation: Record<string, any>,
     bodyParameter: Record<string, any>,
@@ -727,6 +737,8 @@ function updateOverloads(
         if (operation.parameters[i].restApiName.toLowerCase() === "content-type") {
             overload.parameters[i] = { ...operation.parameters[i] };
             overload.parameters[i].inOverload = true;
+            const bodyTypeDescription = getBodyTypeForDescription(overload.bodyParameter);
+            operation.parameters[i].description = `Body Parameter content-type. Content type parameter for ${bodyTypeDescription} body.`
             break;
         }
     }

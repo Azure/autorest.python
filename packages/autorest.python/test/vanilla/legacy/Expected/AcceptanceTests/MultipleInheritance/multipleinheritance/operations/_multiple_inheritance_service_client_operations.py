@@ -299,16 +299,14 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(horse, (IO, bytes)):
             _content = horse
             content_type = content_type or "application/json"
-        elif isinstance(horse, (_serialization.Model, dict)):
+        else:
             _json = self._serialize.body(horse, "Horse")
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for horse")
 
         request = build_put_horse_request(
             content_type=content_type,
@@ -560,16 +558,14 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(feline, (IO, bytes)):
             _content = feline
             content_type = content_type or "application/json"
-        elif isinstance(feline, (_serialization.Model, dict)):
+        else:
             _json = self._serialize.body(feline, "Feline")
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for feline")
 
         request = build_put_feline_request(
             content_type=content_type,
@@ -714,16 +710,14 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(cat, (IO, bytes)):
             _content = cat
             content_type = content_type or "application/json"
-        elif isinstance(cat, (_serialization.Model, dict)):
+        else:
             _json = self._serialize.body(cat, "Cat")
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for cat")
 
         request = build_put_cat_request(
             content_type=content_type,
@@ -872,16 +866,14 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(kitten, (IO, bytes)):
             _content = kitten
             content_type = content_type or "application/json"
-        elif isinstance(kitten, (_serialization.Model, dict)):
+        else:
             _json = self._serialize.body(kitten, "Kitten")
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for kitten")
 
         request = build_put_kitten_request(
             content_type=content_type,

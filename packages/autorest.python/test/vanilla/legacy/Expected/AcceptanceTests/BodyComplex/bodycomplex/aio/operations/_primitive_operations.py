@@ -188,16 +188,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
             content_type = content_type or "application/json"
-        elif isinstance(complex_body, (_serialization.Model, dict)):
+        else:
             _json = self._serialize.body(complex_body, "IntWrapper")
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for complex_body")
 
         request = build_put_int_request(
             content_type=content_type,
@@ -343,16 +341,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
             content_type = content_type or "application/json"
-        elif isinstance(complex_body, (_serialization.Model, dict)):
+        else:
             _json = self._serialize.body(complex_body, "LongWrapper")
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for complex_body")
 
         request = build_put_long_request(
             content_type=content_type,
@@ -498,16 +494,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
             content_type = content_type or "application/json"
-        elif isinstance(complex_body, (_serialization.Model, dict)):
+        else:
             _json = self._serialize.body(complex_body, "FloatWrapper")
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for complex_body")
 
         request = build_put_float_request(
             content_type=content_type,
@@ -656,16 +650,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
             content_type = content_type or "application/json"
-        elif isinstance(complex_body, (_serialization.Model, dict)):
+        else:
             _json = self._serialize.body(complex_body, "DoubleWrapper")
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for complex_body")
 
         request = build_put_double_request(
             content_type=content_type,
@@ -811,16 +803,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
             content_type = content_type or "application/json"
-        elif isinstance(complex_body, (_serialization.Model, dict)):
+        else:
             _json = self._serialize.body(complex_body, "BooleanWrapper")
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for complex_body")
 
         request = build_put_bool_request(
             content_type=content_type,
@@ -966,16 +956,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
             content_type = content_type or "application/json"
-        elif isinstance(complex_body, (_serialization.Model, dict)):
+        else:
             _json = self._serialize.body(complex_body, "StringWrapper")
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for complex_body")
 
         request = build_put_string_request(
             content_type=content_type,
@@ -1121,16 +1109,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
             content_type = content_type or "application/json"
-        elif isinstance(complex_body, (_serialization.Model, dict)):
+        else:
             _json = self._serialize.body(complex_body, "DateWrapper")
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for complex_body")
 
         request = build_put_date_request(
             content_type=content_type,
@@ -1278,16 +1264,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
             content_type = content_type or "application/json"
-        elif isinstance(complex_body, (_serialization.Model, dict)):
+        else:
             _json = self._serialize.body(complex_body, "DatetimeWrapper")
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for complex_body")
 
         request = build_put_date_time_request(
             content_type=content_type,
@@ -1435,16 +1419,14 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
             content_type = content_type or "application/json"
-        elif isinstance(complex_body, (_serialization.Model, dict)):
+        else:
             _json = self._serialize.body(complex_body, "Datetimerfc1123Wrapper")
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for complex_body")
 
         request = build_put_date_time_rfc1123_request(
             content_type=content_type,

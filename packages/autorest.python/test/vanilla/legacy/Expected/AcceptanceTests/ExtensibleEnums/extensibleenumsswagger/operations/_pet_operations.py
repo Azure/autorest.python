@@ -203,19 +203,17 @@ class PetOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.Pet] = kwargs.pop("cls", None)
 
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(pet_param, (IO, bytes)):
             _content = pet_param
             content_type = content_type or "application/json"
-        elif isinstance(pet_param, (_serialization.Model, dict)):
+        else:
             if pet_param is not None:
                 _json = self._serialize.body(pet_param, "Pet")
             else:
                 _json = None
             content_type = content_type or "application/json"
-        else:
-            raise TypeError("unrecognized type for pet_param")
 
         request = build_add_pet_request(
             content_type=content_type,
