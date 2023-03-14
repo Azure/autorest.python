@@ -14,7 +14,7 @@ from .._model_base import rest_field
 
 
 class User(_model_base.Model):
-    """User.
+    """Sample Model.
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 

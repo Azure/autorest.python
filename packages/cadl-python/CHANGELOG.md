@@ -1,5 +1,11 @@
 # Release History
 
+## 2023-03-06 - 0.6.0
+
+**Other Changes**
+
+- Switch to typespec packages from cadl packages #1786
+
 ## 2023-03-06 - 0.5.2
 
 **Other Changes**

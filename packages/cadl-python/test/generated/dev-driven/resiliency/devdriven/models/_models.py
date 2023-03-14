@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, List, Mapping, Optional, TYPE_CHECKING, Union, overload
+from typing import Any, Mapping, TYPE_CHECKING, Union, overload
 
 from .. import _model_base
 from .._model_base import rest_field
@@ -15,23 +15,6 @@ from .._model_base import rest_field
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
-
-
-class CustomPageProduct(_model_base.Model):
-    """Paged collection of Product items.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar value: The Product items on this page. Required.
-    :vartype value: list[~resiliency.devdriven.models.Product]
-    :ivar next_link: The link to the next page of items.
-    :vartype next_link: str
-    """
-
-    value: List["_models.Product"] = rest_field()
-    """The Product items on this page. Required. """
-    next_link: Optional[str] = rest_field(name="nextLink")
-    """The link to the next page of items. """
 
 
 class Input(_model_base.Model):

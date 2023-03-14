@@ -158,7 +158,7 @@ jobs:
     steps:
       - template: ci-template.yml
         parameters:
-            installCadl: true
+            installTypeSpec: true
             installCadlRanch: true
             folderName: "cadl-python"
             regenerate: true
