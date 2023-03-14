@@ -817,7 +817,7 @@ class _OperationSerializer(
                 for overload in builder.overloads
             ]
             for v in sorted(set(client_names), key=client_names.index):
-                overload_retval.append(f"_{v} = None")
+                overload_retval.append(f"_{v}: Any = None")
 
             # make sure some special type is in last position and some in first position
             # but we can't change original data
