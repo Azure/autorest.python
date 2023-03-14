@@ -310,7 +310,7 @@ class ServiceDriven1ClientOperationsMixin(ServiceDriven1ClientMixinABC):
         cls: ClsType[_models.Message] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _content = None
+        _content: Any = None
         if isinstance(parameter, (IO, bytes)):
             _content = parameter
         else:
