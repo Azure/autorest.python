@@ -248,8 +248,8 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
          "http://example.org/myimage.jpeg" }. Required.
         :type parameter: ~resiliency.servicedriven2.models.PostInput
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is "application/json".
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -300,7 +300,7 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
          "http://example.org/myimage.jpeg" }. Required.
         :type parameter: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
@@ -325,8 +325,8 @@ class ServiceDriven2ClientOperationsMixin(ServiceDriven2ClientMixinABC):
          "http://example.org/myimage.jpeg" }. Is one of the following types: PostInput, JSON, IO
          Required.
         :type parameter: ~resiliency.servicedriven2.models.PostInput or JSON or IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is None.
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
