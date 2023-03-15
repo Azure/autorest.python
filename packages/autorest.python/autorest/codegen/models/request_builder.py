@@ -80,6 +80,9 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
         if self.abstract:
             return file_import
         for parameter in self.parameters.method:
+            # special logic for api-version parameter
+            if parameter.is_api_version:
+                continue
             file_import.merge(
                 parameter.imports(async_mode=False, relative_path=relative_path)
             )
