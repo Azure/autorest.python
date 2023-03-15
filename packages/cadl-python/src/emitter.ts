@@ -407,6 +407,7 @@ function emitParameter(
         paramMap.type = defaultApiVersion ? getConstantType(defaultApiVersion.value) : KnownTypes.string;
         paramMap.implementation = "Client";
         paramMap.in_docstring = false;
+        paramMap.isApiVersion = true;
         if (defaultApiVersion) {
             clientDefaultValue = defaultApiVersion.value;
         }

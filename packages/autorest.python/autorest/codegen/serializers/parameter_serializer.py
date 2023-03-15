@@ -127,6 +127,7 @@ class ParameterSerializer:
         if pop_headers_kwarg != PopKwargType.NO or pop_params_kwarg != PopKwargType.NO:
             retval.append("")
         for kwarg in parameters:
+            type_annot = "str" if kwarg.is_api_version else kwarg.type_annotation()
             if kwarg.client_default_value is not None or kwarg.optional:
                 if check_client_input and kwarg.check_client_input:
                     default_value = f"self._config.{kwarg.client_name}"
@@ -145,11 +146,10 @@ class ParameterSerializer:
                         f"_{kwarg_dict}.pop('{kwarg.rest_api_name}', {default_value})"
                     )
                 retval.append(
-                    f"{kwarg.client_name}: {kwarg.type_annotation()} = kwargs.pop('{kwarg.client_name}', "
+                    f"{kwarg.client_name}: {type_annot} = kwargs.pop('{kwarg.client_name}', "
                     + f"{default_value})"
                 )
             else:
-                type_annot = kwarg.type_annotation()
                 retval.append(
                     f"{kwarg.client_name}: {type_annot} = kwargs.pop('{kwarg.client_name}')"
                 )
