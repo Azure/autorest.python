@@ -680,10 +680,22 @@ class M4Reformatter(
         operation["itemName"] = yaml_data["extensions"]["x-ms-pageable"].get(
             "itemName", "value"
         )
-        # operation["itemType"] =
         operation["continuationTokenName"] = yaml_data["extensions"][
             "x-ms-pageable"
         ].get("nextLinkName")
+        returned_response_object = (
+            operation["nextOperation"]["responses"][0]
+            if operation.get("nextOperation")
+            else operation["responses"][0]
+        )
+        if self.version_tolerant:
+            # if we're in version tolerant, hide the paging model
+            returned_response_object["type"]["isPublic"] = False
+        operation["itemType"] = next(
+            p["type"]
+            for p in returned_response_object["type"]["properties"]
+            if p["restApiName"] == operation["itemName"]
+        )
         if yaml_data["language"]["default"]["paging"].get("nextLinkOperation"):
             operation["nextOperation"] = self.update_operation(
                 group_name=group_name,

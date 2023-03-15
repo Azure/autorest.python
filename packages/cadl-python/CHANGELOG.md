@@ -1,4 +1,16 @@
-# Release History
+# Release
+
+## 2023-03-06 - 0.6.1
+
+**Bug Fixes**
+
+- Fix vendored xml serialization code #1795
+
+## 2023-03-06 - 0.6.0
+
+**Other Changes**
+
+- Switch to typespec packages from cadl packages #1786
 
 ## 2023-03-06 - 0.5.2
 

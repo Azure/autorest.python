@@ -614,14 +614,14 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         :paramtype select: list[str]
         :keyword expand: Expand the indicated resources into the response. Default value is None.
         :paramtype expand: list[str]
-        :return: An iterator like instance of User. The User is compatible with MutableMapping
+        :return: An iterator like instance of User
         :rtype: ~azure.core.paging.ItemPaged[~_specs_.azure.core.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models._models.CustomPageUser] = kwargs.pop("cls", None)  # pylint: disable=protected-access
+        cls: ClsType[List[_models.User]] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -681,14 +681,14 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
     def list_with_page(self, **kwargs: Any) -> Iterable["_models.User"]:
         """List with Azure.Core.Page<>.
 
-        :return: An iterator like instance of User. The User is compatible with MutableMapping
+        :return: An iterator like instance of User
         :rtype: ~azure.core.paging.ItemPaged[~_specs_.azure.core.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models._models.PagedUser] = kwargs.pop("cls", None)  # pylint: disable=protected-access
+        cls: ClsType[List[_models.User]] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,

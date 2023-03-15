@@ -83,14 +83,32 @@ def build_dev_driven_post_model_request(mode: Union[str, _models.Mode], **kwargs
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_dev_driven_get_pages_request(*, api_version: str, **kwargs: Any) -> HttpRequest:
+def build_dev_driven_get_protocol_pages_request(*, api_version: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/resiliency/devdriven/products"
+    _url = "/resiliency/devdriven/customization/paging/protocol/products"
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_dev_driven_get_convenience_pages_request(*, api_version: str, **kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/resiliency/devdriven/customization/paging/convenience/products"
 
     # Construct parameters
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
@@ -326,18 +344,17 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         return deserialized  # type: ignore
 
     @distributed_trace
-    def get_pages(self, **kwargs: Any) -> Iterable["_models.Product"]:
-        """Get pages that you will either return to users in pages of raw bodies, or pages of models
-        following group.
+    def get_protocol_pages(self, **kwargs: Any) -> Iterable["_models.Product"]:
+        """Get pages of protocol bodies.
 
-        :return: An iterator like instance of Product. The Product is compatible with MutableMapping
+        :return: An iterator like instance of Product
         :rtype: ~azure.core.paging.ItemPaged[~resiliency.devdriven.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models._models.CustomPageProduct] = kwargs.pop("cls", None)  # pylint: disable=protected-access
+        cls: ClsType[List[_models.Product]] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -350,7 +367,68 @@ class DevDrivenClientOperationsMixin(DevDrivenClientMixinABC):
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_dev_driven_get_pages_request(
+                request = build_dev_driven_get_protocol_pages_request(
+                    api_version=self._config.api_version,
+                    headers=_headers,
+                    params=_params,
+                )
+                request.url = self._client.format_url(request.url)
+
+            else:
+                request = HttpRequest("GET", next_link)
+                request.url = self._client.format_url(request.url)
+
+            return request
+
+        def extract_data(pipeline_response):
+            deserialized = pipeline_response.http_response.json()
+            list_of_elem = _deserialize(List[_models.Product], deserialized["value"])
+            if cls:
+                list_of_elem = cls(list_of_elem)  # type: ignore
+            return deserialized.get("nextLink") or None, iter(list_of_elem)
+
+        def get_next(next_link=None):
+            request = prepare_request(next_link)
+
+            _stream = False
+            pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+                request, stream=_stream, **kwargs
+            )
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
+
+            return pipeline_response
+
+        return ItemPaged(get_next, extract_data)
+
+    @distributed_trace
+    def get_convenience_pages(self, **kwargs: Any) -> Iterable["_models.Product"]:
+        """Get pages of models.
+
+        :return: An iterator like instance of Product
+        :rtype: ~azure.core.paging.ItemPaged[~resiliency.devdriven.models.Product]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[List[_models.Product]] = kwargs.pop("cls", None)
+
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        def prepare_request(next_link=None):
+            if not next_link:
+
+                request = build_dev_driven_get_convenience_pages_request(
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,

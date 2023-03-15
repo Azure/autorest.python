@@ -17,42 +17,8 @@ if TYPE_CHECKING:
     from .. import models as _models
 
 
-class CustomPageUser(_model_base.Model):
-    """Paged collection of User items.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar value: The User items on this page. Required.
-    :vartype value: list[~_specs_.azure.core.models.User]
-    :ivar next_link: The link to the next page of items.
-    :vartype next_link: str
-    """
-
-    value: List["_models.User"] = rest_field()
-    """The User items on this page. Required. """
-    next_link: Optional[str] = rest_field(name="nextLink")
-    """The link to the next page of items. """
-
-
-class PagedUser(_model_base.Model):
-    """Paged collection of User items.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar value: The User items on this page. Required.
-    :vartype value: list[~_specs_.azure.core.models.User]
-    :ivar next_link: The link to the next page of items.
-    :vartype next_link: str
-    """
-
-    value: List["_models.User"] = rest_field()
-    """The User items on this page. Required. """
-    next_link: Optional[str] = rest_field(name="nextLink")
-    """The link to the next page of items. """
-
-
 class User(_model_base.Model):
-    """User.
+    """Details about a user.
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
