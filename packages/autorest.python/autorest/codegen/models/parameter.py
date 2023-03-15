@@ -140,7 +140,11 @@ class _ParameterBase(
 
     def type_annotation(self, **kwargs: Any) -> str:
         kwargs["is_operation_file"] = True
-        type_annot = self.type.type_annotation(**kwargs)
+        # special logic for api-version parameter
+        if self.is_api_version:
+            type_annot = "str"
+        else:
+            type_annot = self.type.type_annotation(**kwargs)
         if self.optional and self.client_default_value is None:
             return f"Optional[{type_annot}]"
         return type_annot
