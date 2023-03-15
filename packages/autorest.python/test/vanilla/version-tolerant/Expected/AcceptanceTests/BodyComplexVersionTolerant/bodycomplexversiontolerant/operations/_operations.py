@@ -1049,8 +1049,8 @@ class BasicOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -1475,8 +1475,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -1643,8 +1643,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -1810,8 +1810,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -1984,8 +1984,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -2151,8 +2151,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -2322,8 +2322,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -2490,8 +2490,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -2660,8 +2660,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -2830,8 +2830,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -2995,8 +2995,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -3162,8 +3162,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -3353,8 +3353,8 @@ class ArrayOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -3523,8 +3523,8 @@ class ArrayOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -3773,8 +3773,8 @@ class DictionaryOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -3944,8 +3944,8 @@ class DictionaryOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -4279,8 +4279,8 @@ class InheritanceOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -4718,8 +4718,8 @@ class PolymorphismOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -5161,8 +5161,8 @@ class PolymorphismOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -5352,8 +5352,8 @@ class PolymorphismOperations:
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -5656,8 +5656,8 @@ class PolymorphismOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -6155,8 +6155,8 @@ class PolymorphicrecursiveOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:
@@ -6340,8 +6340,8 @@ class ReadonlypropertyOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(complex_body, (IO, bytes)):
             _content = complex_body
         else:

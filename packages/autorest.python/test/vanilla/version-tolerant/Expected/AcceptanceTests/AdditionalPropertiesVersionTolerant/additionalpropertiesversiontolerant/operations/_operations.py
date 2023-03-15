@@ -256,8 +256,8 @@ class PetsOperations:
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(create_parameters, (IO, bytes)):
             _content = create_parameters
         else:
@@ -402,8 +402,8 @@ class PetsOperations:
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(create_parameters, (IO, bytes)):
             _content = create_parameters
         else:
@@ -541,8 +541,8 @@ class PetsOperations:
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(create_parameters, (IO, bytes)):
             _content = create_parameters
         else:
@@ -680,8 +680,8 @@ class PetsOperations:
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(create_parameters, (IO, bytes)):
             _content = create_parameters
         else:
@@ -821,8 +821,8 @@ class PetsOperations:
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(create_parameters, (IO, bytes)):
             _content = create_parameters
         else:
@@ -982,8 +982,8 @@ class PetsOperations:
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json = None
-        _content = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(create_parameters, (IO, bytes)):
             _content = create_parameters
         else:
