@@ -40,7 +40,7 @@ class AutoRestPagingTestServiceConfiguration(Configuration):  # pylint: disable=
 
     def __init__(self, credential: "AsyncTokenCredential", **kwargs: Any) -> None:
         super(AutoRestPagingTestServiceConfiguration, self).__init__(**kwargs)
-        api_version: Literal["1.0.0"] = kwargs.pop("api_version", "1.0.0")
+        api_version: str = kwargs.pop("api_version", "1.0.0")
 
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")

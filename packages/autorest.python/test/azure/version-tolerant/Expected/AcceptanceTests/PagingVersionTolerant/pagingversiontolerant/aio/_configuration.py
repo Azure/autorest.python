@@ -33,7 +33,7 @@ class AutoRestPagingTestServiceConfiguration(Configuration):  # pylint: disable=
 
     def __init__(self, **kwargs: Any) -> None:
         super(AutoRestPagingTestServiceConfiguration, self).__init__(**kwargs)
-        api_version: Literal["1.0.0"] = kwargs.pop("api_version", "1.0.0")
+        api_version: str = kwargs.pop("api_version", "1.0.0")
 
         self.api_version = api_version
         kwargs.setdefault("sdk_moniker", "autorestpagingtestservice/{}".format(VERSION))

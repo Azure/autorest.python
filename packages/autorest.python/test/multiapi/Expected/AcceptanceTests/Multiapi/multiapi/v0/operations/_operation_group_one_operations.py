@@ -43,7 +43,7 @@ def build_test_two_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: Literal["0.0.0"] = kwargs.pop("api_version", _params.pop("api-version", "0.0.0"))
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "0.0.0"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -97,7 +97,7 @@ class OperationGroupOneOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version: Literal["0.0.0"] = kwargs.pop("api_version", _params.pop("api-version", "0.0.0"))
+        api_version: str = kwargs.pop("api_version", _params.pop("api-version", "0.0.0"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_test_two_request(

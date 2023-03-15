@@ -42,9 +42,7 @@ def build_get_method_global_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: Literal["2015-07-01-preview"] = kwargs.pop(
-        "api_version", _params.pop("api-version", "2015-07-01-preview")
-    )
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2015-07-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -63,9 +61,7 @@ def build_get_method_global_not_provided_valid_request(**kwargs: Any) -> HttpReq
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: Literal["2015-07-01-preview"] = kwargs.pop(
-        "api_version", _params.pop("api-version", "2015-07-01-preview")
-    )
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2015-07-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -86,9 +82,7 @@ def build_get_path_global_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: Literal["2015-07-01-preview"] = kwargs.pop(
-        "api_version", _params.pop("api-version", "2015-07-01-preview")
-    )
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2015-07-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -107,9 +101,7 @@ def build_get_swagger_global_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: Literal["2015-07-01-preview"] = kwargs.pop(
-        "api_version", _params.pop("api-version", "2015-07-01-preview")
-    )
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2015-07-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -163,9 +155,7 @@ class ApiVersionDefaultOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version: Literal["2015-07-01-preview"] = kwargs.pop(
-            "api_version", _params.pop("api-version", "2015-07-01-preview")
-        )
+        api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2015-07-01-preview"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_method_global_valid_request(
@@ -218,9 +208,7 @@ class ApiVersionDefaultOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version: Literal["2015-07-01-preview"] = kwargs.pop(
-            "api_version", _params.pop("api-version", "2015-07-01-preview")
-        )
+        api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2015-07-01-preview"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_method_global_not_provided_valid_request(
@@ -271,9 +259,7 @@ class ApiVersionDefaultOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version: Literal["2015-07-01-preview"] = kwargs.pop(
-            "api_version", _params.pop("api-version", "2015-07-01-preview")
-        )
+        api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2015-07-01-preview"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_path_global_valid_request(
@@ -324,9 +310,7 @@ class ApiVersionDefaultOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version: Literal["2015-07-01-preview"] = kwargs.pop(
-            "api_version", _params.pop("api-version", "2015-07-01-preview")
-        )
+        api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2015-07-01-preview"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_swagger_global_valid_request(

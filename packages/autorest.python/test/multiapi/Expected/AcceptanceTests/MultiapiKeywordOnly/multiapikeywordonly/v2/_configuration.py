@@ -41,7 +41,7 @@ class MultiapiCustomBaseUrlServiceClientConfiguration(Configuration):  # pylint:
 
     def __init__(self, endpoint: str, credential: "TokenCredential", **kwargs: Any) -> None:
         super(MultiapiCustomBaseUrlServiceClientConfiguration, self).__init__(**kwargs)
-        api_version: Literal["2.0.0"] = kwargs.pop("api_version", "2.0.0")
+        api_version: str = kwargs.pop("api_version", "2.0.0")
 
         if endpoint is None:
             raise ValueError("Parameter 'endpoint' must not be None.")

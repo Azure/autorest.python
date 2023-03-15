@@ -45,7 +45,7 @@ class AutoRestAzureSpecialParametersTestClientConfiguration(
 
     def __init__(self, subscription_id: str, credential: "TokenCredential", **kwargs: Any) -> None:
         super(AutoRestAzureSpecialParametersTestClientConfiguration, self).__init__(**kwargs)
-        api_version: Literal["2015-07-01-preview"] = kwargs.pop("api_version", "2015-07-01-preview")
+        api_version: str = kwargs.pop("api_version", "2015-07-01-preview")
 
         if subscription_id is None:
             raise ValueError("Parameter 'subscription_id' must not be None.")

@@ -42,7 +42,7 @@ class MicrosoftAzureTestUrlConfiguration(Configuration):  # pylint: disable=too-
 
     def __init__(self, subscription_id: str, credential: "AsyncTokenCredential", **kwargs: Any) -> None:
         super(MicrosoftAzureTestUrlConfiguration, self).__init__(**kwargs)
-        api_version: Literal["2014-04-01-preview"] = kwargs.pop("api_version", "2014-04-01-preview")
+        api_version: str = kwargs.pop("api_version", "2014-04-01-preview")
 
         if subscription_id is None:
             raise ValueError("Parameter 'subscription_id' must not be None.")

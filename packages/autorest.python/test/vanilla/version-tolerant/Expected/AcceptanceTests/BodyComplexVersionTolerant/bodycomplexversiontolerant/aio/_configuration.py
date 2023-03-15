@@ -33,7 +33,7 @@ class AutoRestComplexTestServiceConfiguration(Configuration):  # pylint: disable
 
     def __init__(self, **kwargs: Any) -> None:
         super(AutoRestComplexTestServiceConfiguration, self).__init__(**kwargs)
-        api_version: Literal["2016-02-29"] = kwargs.pop("api_version", "2016-02-29")
+        api_version: str = kwargs.pop("api_version", "2016-02-29")
 
         self.api_version = api_version
         kwargs.setdefault("sdk_moniker", "autorestcomplextestservice/{}".format(VERSION))
