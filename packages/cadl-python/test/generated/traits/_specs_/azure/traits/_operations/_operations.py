@@ -54,9 +54,7 @@ def build_traits_get_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: Literal["2022-12-01-preview"] = kwargs.pop(
-        "api_version", _params.pop("api-version", "2022-12-01-preview")
-    )
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -97,7 +95,7 @@ def build_traits_delete_request(
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    api_version: Literal["2022-12-01-preview"] = kwargs.pop("api_version", "2022-12-01-preview")
+    api_version: str = kwargs.pop("api_version", "2022-12-01-preview")
     # Construct URL
     _url = "/azure/traits/api/{apiVersion}/user/{id}"
     path_format_arguments = {
