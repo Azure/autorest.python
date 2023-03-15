@@ -183,7 +183,9 @@ class _ParameterBase(
         # special logic for api-version parameter
         if not self.is_api_version:
             file_import.merge(
-                self.type.imports(is_operation_file=True, async_mode=async_mode, **kwargs)
+                self.type.imports(
+                    is_operation_file=True, async_mode=async_mode, **kwargs
+                )
             )
         if self.default_to_unset_sentinel:
             file_import.add_submodule_import("typing", "Any", ImportType.STDLIB)
