@@ -810,74 +810,53 @@ class _OperationSerializer(
                 0
             ].parameters.body_parameter.default_content_type
             retval.append(f'content_type = content_type or "{default_content_type}"')
-        try:
-            overload_retval: List[str] = []
-            client_names = [
-                overload.request_builder.parameters.body_parameter.client_name
-                for overload in builder.overloads
-            ]
-            for v in sorted(set(client_names), key=client_names.index):
-                overload_retval.append(f"_{v}: Any = None")
+        client_names = [
+            overload.request_builder.parameters.body_parameter.client_name
+            for overload in builder.overloads
+        ]
+        for v in sorted(set(client_names), key=client_names.index):
+            retval.append(f"_{v}: Any = None")
 
-            # make sure some special type is in last position and some in first position
-            # but we can't change original data
-            overloads_copy = [
-                o
-                for o in builder.overloads
-                if o.parameters.body_parameter.type.enable_overload_check
-            ]
-            for i, _ in enumerate(overloads_copy):
-                if isinstance(
-                    overloads_copy[i].parameters.body_parameter.type,
-                    (AnyType, AnyObjectType),
-                ):
-                    _swap(overloads_copy, i, -1)
-                if isinstance(
-                    overloads_copy[i].parameters.body_parameter.type, BinaryType
-                ):
-                    _swap(overloads_copy, i, 0)
+        # make sure some special type is in last position and some in first position
+        # but we can't change original data
+        overloads_copy = [
+            o
+            for o in builder.overloads
+            if o.parameters.body_parameter.type.enable_overload_check
+        ]
+        for i, _ in enumerate(overloads_copy):
+            if isinstance(
+                overloads_copy[i].parameters.body_parameter.type,
+                (AnyType, AnyObjectType),
+            ):
+                _swap(overloads_copy, i, -1)
+            if isinstance(overloads_copy[i].parameters.body_parameter.type, BinaryType):
+                _swap(overloads_copy, i, 0)
 
-            if_statement = "if"
-            for idx, overload in enumerate(overloads_copy):
-                body_param = overload.parameters.body_parameter
-                try:
-                    if idx + 1 >= len(overloads_copy):
-                        raise ValueError()
-                    overload_retval.append(
-                        f"{if_statement} {body_param.type.instance_check_template.format(body_param.client_name)}:"
-                    )
-                except ValueError:
-                    overload_retval.append("else:")
-                overload_retval.extend(
-                    f"    {l}"
-                    for l in self._create_body_parameter(cast(OperationType, overload))
+        if_statement = "if"
+        for idx, overload in enumerate(overloads_copy):
+            body_param = overload.parameters.body_parameter
+            try:
+                if idx + 1 >= len(overloads_copy):
+                    raise ValueError()
+                retval.append(
+                    f"{if_statement} {body_param.type.instance_check_template.format(body_param.client_name)}:"
                 )
-                if body_param.default_content_type is None:
-                    overload_retval.extend(
-                        [
-                            f"    {l}"
-                            for l in _content_type_check(body_param.content_types)
-                        ]
-                    )
-                elif not same_content_type:
-                    overload_retval.append(
-                        f'    content_type = content_type or "{body_param.default_content_type}"'
-                    )
-                if_statement = "elif"
-            retval.extend(overload_retval)
-        except Exception:  # pylint: disable=broad-except
-            body_kwarg_name = (
-                builder.request_builder.parameters.body_parameter.client_name
+            except ValueError:
+                retval.append("else:")
+            retval.extend(
+                f"    {l}"
+                for l in self._create_body_parameter(cast(OperationType, overload))
             )
-            body_client_name = builder.parameters.body_parameter.client_name
-            retval.append(f"_{body_kwarg_name} = {body_client_name}")
-            if not builder.parameters.body_parameter.default_content_type:
-                content_types = [
-                    c
-                    for overload in builder.overloads
-                    for c in overload.parameters.body_parameter.content_types
-                ]
-                retval.extend(_content_type_check(content_types))
+            if body_param.default_content_type is None:
+                retval.extend(
+                    [f"    {l}" for l in _content_type_check(body_param.content_types)]
+                )
+            elif not same_content_type:
+                retval.append(
+                    f'    content_type = content_type or "{body_param.default_content_type}"'
+                )
+            if_statement = "elif"
 
         return retval
 
