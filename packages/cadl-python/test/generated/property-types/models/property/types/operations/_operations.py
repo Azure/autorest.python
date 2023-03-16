@@ -613,7 +613,7 @@ class BooleanOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _content: Any = None
+        _content = None
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
@@ -795,7 +795,7 @@ class StringOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _content: Any = None
+        _content = None
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
@@ -977,7 +977,7 @@ class BytesOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _content: Any = None
+        _content = None
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
@@ -1159,7 +1159,7 @@ class IntOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _content: Any = None
+        _content = None
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
@@ -1341,7 +1341,7 @@ class FloatOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _content: Any = None
+        _content = None
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
@@ -1523,7 +1523,7 @@ class DatetimeOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _content: Any = None
+        _content = None
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
@@ -1705,7 +1705,7 @@ class DurationOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _content: Any = None
+        _content = None
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
@@ -1887,7 +1887,7 @@ class EnumOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _content: Any = None
+        _content = None
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
@@ -2069,7 +2069,7 @@ class ExtensibleEnumOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _content: Any = None
+        _content = None
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
@@ -2251,7 +2251,7 @@ class ModelOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _content: Any = None
+        _content = None
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
@@ -2434,7 +2434,7 @@ class CollectionsStringOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _content: Any = None
+        _content = None
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
@@ -2616,7 +2616,7 @@ class CollectionsIntOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _content: Any = None
+        _content = None
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
@@ -2799,7 +2799,7 @@ class CollectionsModelOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _content: Any = None
+        _content = None
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
@@ -2982,7 +2982,7 @@ class DictionaryStringOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _content: Any = None
+        _content = None
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
@@ -3164,7 +3164,7 @@ class NeverOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _content: Any = None
+        _content = None
         if isinstance(body, (IO, bytes)):
             _content = body
         else:

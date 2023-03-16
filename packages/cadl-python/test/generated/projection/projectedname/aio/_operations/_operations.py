@@ -129,7 +129,7 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _content: Any = None
+        _content = None
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
@@ -243,7 +243,7 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _content: Any = None
+        _content = None
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
@@ -357,7 +357,7 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _content: Any = None
+        _content = None
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
