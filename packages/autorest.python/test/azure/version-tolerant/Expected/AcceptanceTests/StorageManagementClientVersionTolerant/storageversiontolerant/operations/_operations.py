@@ -35,10 +35,6 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-if sys.version_info >= (3, 8):
-    from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
-else:
-    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -52,9 +48,7 @@ def build_storage_accounts_check_name_availability_request(subscription_id: str,
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-    api_version: Literal["2015-05-01-preview"] = kwargs.pop(
-        "api_version", _params.pop("api-version", "2015-05-01-preview")
-    )
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))
     accept = _headers.pop("Accept", "application/json, text/json")
 
     # Construct URL
@@ -83,9 +77,7 @@ def build_storage_accounts_create_request(
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-    api_version: Literal["2015-05-01-preview"] = kwargs.pop(
-        "api_version", _params.pop("api-version", "2015-05-01-preview")
-    )
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))
     accept = _headers.pop("Accept", "application/json, text/json")
 
     # Construct URL
@@ -114,9 +106,7 @@ def build_storage_accounts_delete_request(
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: Literal["2015-05-01-preview"] = kwargs.pop(
-        "api_version", _params.pop("api-version", "2015-05-01-preview")
-    )
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"  # pylint: disable=line-too-long
     path_format_arguments = {
@@ -139,9 +129,7 @@ def build_storage_accounts_get_properties_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: Literal["2015-05-01-preview"] = kwargs.pop(
-        "api_version", _params.pop("api-version", "2015-05-01-preview")
-    )
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))
     accept = _headers.pop("Accept", "application/json, text/json")
 
     # Construct URL
@@ -170,9 +158,7 @@ def build_storage_accounts_update_request(
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-    api_version: Literal["2015-05-01-preview"] = kwargs.pop(
-        "api_version", _params.pop("api-version", "2015-05-01-preview")
-    )
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))
     accept = _headers.pop("Accept", "application/json, text/json")
 
     # Construct URL
@@ -202,9 +188,7 @@ def build_storage_accounts_list_keys_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: Literal["2015-05-01-preview"] = kwargs.pop(
-        "api_version", _params.pop("api-version", "2015-05-01-preview")
-    )
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))
     accept = _headers.pop("Accept", "application/json, text/json")
 
     # Construct URL
@@ -230,9 +214,7 @@ def build_storage_accounts_list_request(subscription_id: str, **kwargs: Any) -> 
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: Literal["2015-05-01-preview"] = kwargs.pop(
-        "api_version", _params.pop("api-version", "2015-05-01-preview")
-    )
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))
     accept = _headers.pop("Accept", "application/json, text/json")
 
     # Construct URL
@@ -258,9 +240,7 @@ def build_storage_accounts_list_by_resource_group_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: Literal["2015-05-01-preview"] = kwargs.pop(
-        "api_version", _params.pop("api-version", "2015-05-01-preview")
-    )
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))
     accept = _headers.pop("Accept", "application/json, text/json")
 
     # Construct URL
@@ -290,9 +270,7 @@ def build_storage_accounts_regenerate_key_request(
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-    api_version: Literal["2015-05-01-preview"] = kwargs.pop(
-        "api_version", _params.pop("api-version", "2015-05-01-preview")
-    )
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))
     accept = _headers.pop("Accept", "application/json, text/json")
 
     # Construct URL
@@ -320,9 +298,7 @@ def build_usage_list_request(subscription_id: str, **kwargs: Any) -> HttpRequest
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: Literal["2015-05-01-preview"] = kwargs.pop(
-        "api_version", _params.pop("api-version", "2015-05-01-preview")
-    )
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))
     accept = _headers.pop("Accept", "application/json, text/json")
 
     # Construct URL
