@@ -12,12 +12,10 @@ from .constant_type import ConstantType
 from .property import Property
 from .imports import FileImport, ImportType, TypingSection
 
-
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
-
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -75,6 +73,8 @@ class ModelType(  # pylint: disable=abstract-method
         self._created_json_template_representation = False
         self._got_polymorphic_subtypes = False
         self.is_public: bool = self.yaml_data.get("isPublic", True)
+        if not self.is_public:
+            self.name = "_" + self.name
         self.snake_case_name: str = self.yaml_data["snakeCaseName"]
 
     @property
