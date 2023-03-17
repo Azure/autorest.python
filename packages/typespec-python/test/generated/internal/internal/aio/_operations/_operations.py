@@ -77,7 +77,7 @@ class InternalClientOperationsMixin(InternalClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models._models._InternalModel, response.json())
+            deserialized = _deserialize(_models._models._InternalModel, response.json())  # pylint: disable=protected-access
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

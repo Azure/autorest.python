@@ -305,7 +305,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
     def description_and_summary(self, builder: BuilderType) -> List[str]:
         description_list: List[str] = []
         description_list.append(
-            f"{ builder.summary.strip() if builder.summary else builder.description.strip() }"
+            f"{builder.summary.strip() if builder.summary else builder.description.strip()}"
         )
         if builder.summary and builder.description:
             description_list.append("")
@@ -328,7 +328,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
             if not param.in_docstring:
                 continue
             description_list.extend(
-                f":{param.description_keyword} { param.client_name }: { param.description }".replace(
+                f":{param.description_keyword} {param.client_name}: {param.description}".replace(
                     "\n", "\n "
                 ).split(
                     "\n"
@@ -1047,14 +1047,17 @@ class _OperationSerializer(
                 )
             )
         elif response.type:
+            pylint_disable = ""
+            if isinstance(response.type, ModelType) and not response.type.is_public:
+                pylint_disable = "  # pylint: disable=protected-access"
             if self.code_model.options["models_mode"] == "msrest":
                 deserialize_code.append(
-                    f"deserialized = self._deserialize('{response.serialization_type}', pipeline_response)"
+                    f"deserialized = self._deserialize('{response.serialization_type}', pipeline_response){pylint_disable}"
                 )
             elif self.code_model.options["models_mode"] == "dpg":
                 deserialize_code.append(
                     f"deserialized = _deserialize({response.type.type_annotation(is_operation_file=True)}"
-                    ", response.json())"
+                    f", response.json()){pylint_disable}"
                 )
             else:
                 deserialized_value = (
@@ -1247,7 +1250,7 @@ class _OperationSerializer(
     @staticmethod
     def get_metadata_url(builder: OperationType) -> str:
         url = _escape_str(builder.request_builder.url)
-        return f"{builder.name}.metadata = {{'url': { url }}}"
+        return f"{builder.name}.metadata = {{'url': {url}}}"
 
     @property
     def _call_method(self) -> str:
@@ -1501,7 +1504,7 @@ class _LROOperationSerializer(_OperationSerializer[LROOperationType]):
         retval.append("if cont_token is None:")
         retval.append(
             f"    raw_result = {self._call_method}self.{builder.initial_operation.name}("
-            f"{''  if builder.lro_response and builder.lro_response.type else '  # type: ignore'}"
+            f"{'' if builder.lro_response and builder.lro_response.type else '  # type: ignore'}"
         )
         retval.extend(
             [

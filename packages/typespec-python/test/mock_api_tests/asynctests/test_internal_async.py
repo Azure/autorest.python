@@ -13,6 +13,7 @@ async def client():
         yield client
 
 
+@pytest.mark.asyncio
 async def test_get(client: InternalClient):
     result = await client._get_internal(name="test")
     assert result.name == "test"

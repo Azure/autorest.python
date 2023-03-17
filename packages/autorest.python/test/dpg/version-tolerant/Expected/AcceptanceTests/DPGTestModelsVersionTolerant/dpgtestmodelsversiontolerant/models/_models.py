@@ -16,6 +16,34 @@ if TYPE_CHECKING:
     from .. import models as _models
 
 
+class _ProductResult(_serialization.Model):
+    """ProductResult.
+
+    :ivar values:
+    :vartype values: list[~dpgtestmodelsversiontolerant.models.Product]
+    :ivar next_link:
+    :vartype next_link: str
+    """
+
+    _attribute_map = {
+        "values": {"key": "values", "type": "[Product]"},
+        "next_link": {"key": "nextLink", "type": "str"},
+    }
+
+    def __init__(
+        self, *, values: Optional[List["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """
+        :keyword values:
+        :paramtype values: list[~dpgtestmodelsversiontolerant.models.Product]
+        :keyword next_link:
+        :paramtype next_link: str
+        """
+        super().__init__(**kwargs)
+        self.values = values
+        self.next_link = next_link
+
+
 class Input(_serialization.Model):
     """Input.
 
@@ -100,31 +128,3 @@ class LROProduct(Product):
         """
         super().__init__(received=received, **kwargs)
         self.provisioning_state = provisioning_state
-
-
-class ProductResult(_serialization.Model):
-    """ProductResult.
-
-    :ivar values:
-    :vartype values: list[~dpgtestmodelsversiontolerant.models.Product]
-    :ivar next_link:
-    :vartype next_link: str
-    """
-
-    _attribute_map = {
-        "values": {"key": "values", "type": "[Product]"},
-        "next_link": {"key": "nextLink", "type": "str"},
-    }
-
-    def __init__(
-        self, *, values: Optional[List["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs: Any
-    ) -> None:
-        """
-        :keyword values:
-        :paramtype values: list[~dpgtestmodelsversiontolerant.models.Product]
-        :keyword next_link:
-        :paramtype next_link: str
-        """
-        super().__init__(**kwargs)
-        self.values = values
-        self.next_link = next_link
