@@ -68,6 +68,7 @@ import {
     getPropertyNames,
     getLibraryName,
     getAllModels,
+    isInternal,
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
@@ -731,6 +732,7 @@ function emitBasicOperation(
             apiVersions: [getAddedOnVersion(context, operation)],
             wantTracing: true,
             exposeStreamKeyword: true,
+            isPublic: !isInternal(context, operation),
         },
     ];
 }
@@ -800,6 +802,7 @@ function emitModel(context: DpgContext, type: Model): Record<string, any> {
         addedOn: getAddedOnVersion(context, type),
         snakeCaseName: modelName ? camelToSnakeCase(modelName) : modelName,
         base: modelName === "" ? "json" : "dpg",
+        isPublic: !isInternal(context, type),
     };
 }
 
