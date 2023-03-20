@@ -1,5 +1,9 @@
 # Release
 
+## 2023-03-20 - 0.7.0
+
+- Rename package to `@azure-tools/typespec-python` #1800
+
 ## 2023-03-06 - 0.6.1
 
 **Bug Fixes**
