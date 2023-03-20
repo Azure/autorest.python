@@ -19,11 +19,11 @@ steps:
       parameters:
           installTypeSpec: true
           installCadlRanch: true
-          folderName: "cadl-python"
+          folderName: "typespec-python"
           regenerate: true
     - script: tox -e ci
       displayName: Mock Api Tests
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/test/mock_api_tests
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/test/mock_api_tests
 
     - task: AzureCLI@2
       displayName: Upload scenario manifest
@@ -31,5 +31,5 @@ steps:
         azureSubscription: "Cadl Ranch Storage"
         scriptType: "bash"
         scriptLocation: "inlineScript"
-        inlineScript: cadl-ranch upload-coverage --generatorName python --storageAccountName azuresdkcadlranch --generatorVersion $(node -p -e "require('$(Build.SourcesDirectory)/autorest.python/packages/cadl-python/package.json').version")
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs
+        inlineScript: cadl-ranch upload-coverage --generatorName python --storageAccountName azuresdkcadlranch --generatorVersion $(node -p -e "require('$(Build.SourcesDirectory)/autorest.python/packages/typespec-python/package.json').version")
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/node_modules/@azure-tools/cadl-ranch-specs

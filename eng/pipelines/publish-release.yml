@@ -28,7 +28,7 @@ steps:
 
     - script: pip install -r dev_requirements.txt
       displayName: Install Cadl dev requirements
-      workingDirectory: $(Build.SourcesDirectory)/packages/cadl-python/
+      workingDirectory: $(Build.SourcesDirectory)/packages/typespec-python/
 
     - script: |
           cd $(AutorestTestFolder)/azure/version-tolerant
@@ -49,7 +49,7 @@ steps:
           cd test/mock_api_tests
           tox -e ci
       displayName: Execute Cadl Tests
-      workingDirectory: $(Build.SourcesDirectory)/packages/cadl-python/
+      workingDirectory: $(Build.SourcesDirectory)/packages/typespec-python/
 
     - script: |
           pnpm config set //registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)

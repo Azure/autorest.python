@@ -1,6 +1,6 @@
 {
   "references": [
-    { "path": "packages/cadl-python/tsconfig.json" },
+    { "path": "packages/typespec-python/tsconfig.json" },
   ],
   "files": []
 }

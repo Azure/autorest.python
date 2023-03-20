@@ -1,10 +1,10 @@
 {
-  "name": "@azure-tools/cadl-python",
+  "name": "@azure-tools/typespec-python",
   "version": "0.6.1",
   "author": "Microsoft Corporation",
   "description": "Cadl emitter for Python SDKs",
   "homepage": "https://github.com/Azure/autorest.python",
-  "readme": "https://github.com/Azure/autorest.python/packages/cadl-python/README.md",
+  "readme": "https://github.com/Azure/autorest.python/packages/typespec-python/README.md",
   "license": "MIT",
   "repository": {
     "type": "git",

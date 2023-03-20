@@ -107,7 +107,7 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     const root = await resolveModuleRoot(program, "@autorest/python", dirname(fileURLToPath(import.meta.url)));
     const outputDir = context.emitterOutputDir;
     const yamlMap = emitCodeModel(context);
-    const yamlPath = await saveCodeModelAsYaml("cadl-python-yaml-map", yamlMap);
+    const yamlPath = await saveCodeModelAsYaml("typespec-python-yaml-map", yamlMap);
     const commandArgs = [
         `${root}/run-python3.js`,
         `${root}/run_cadl.py`,
