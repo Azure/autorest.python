@@ -27,7 +27,7 @@ updates:
       include: "scope"
 
 #  - package-ecosystem: "pnpm" # https://github.com/dependabot/dependabot-core/issues/1736
-#    directory: "/packages/cadl-python/" # Location of package manifests
+#    directory: "/packages/typespec-python/" # Location of package manifests
 #    schedule:
 #      interval: "weekly"
 #    # Include a list of updated dependencies

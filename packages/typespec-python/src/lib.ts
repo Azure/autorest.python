@@ -24,7 +24,7 @@ const EmitterOptionsSchema: JSONSchemaType<PythonEmitterOptions> = {
 };
 
 const libDef = {
-    name: "@azure-tools/cadl-python",
+    name: "@azure-tools/typespec-python",
     diagnostics: {},
     emitter: {
         options: EmitterOptionsSchema as JSONSchemaType<PythonEmitterOptions>,

@@ -16,15 +16,17 @@ import time
 from pathlib import Path
 import argparse
 from multiprocessing import Pool
+
 logging.getLogger().setLevel(logging.INFO)
 
-root_dir = os.path.abspath(os.path.join(
-    os.path.abspath(__file__), "..", "..", ".."))
+root_dir = os.path.abspath(os.path.join(os.path.abspath(__file__), "..", "..", ".."))
 config_file_dir = Path(root_dir) / Path("packages/autorest.python")
 
+
 def _single_dir_pyright(mod):
-    inner_class = next(d for d in mod.iterdir() if d.is_dir()
-                       and not str(d).endswith("egg-info"))
+    inner_class = next(
+        d for d in mod.iterdir() if d.is_dir() and not str(d).endswith("egg-info")
+    )
     retries = 3
     while retries:
         try:
@@ -37,13 +39,12 @@ def _single_dir_pyright(mod):
                     str(config_file_dir),
                     str(inner_class.absolute()),
                 ],
-                text=True
+                text=True,
             )
             return True
         except CalledProcessError as e:
             logging.exception(
-                "{} exited with pyright error {}".format(
-                    inner_class.stem, e.returncode)
+                "{} exited with pyright error {}".format(inner_class.stem, e.returncode)
             )
             logging.error(f"PyRight stdout:\n{e.stdout}\n===========")
             logging.error(f"PyRight stderr:\n{e.stderr}\n===========")
@@ -62,7 +63,7 @@ if __name__ == "__main__":
         "-p",
         "--package",
         dest="package",
-        help="The specific which package to verify, autorest.python or cadl-python. Optional.",
+        help="The specific which package to verify, autorest.python or typespec-python. Optional.",
         required=False,
         default="autorest.python",
     )
@@ -98,8 +99,12 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    pkg_dir = Path(
-        root_dir) / Path(f"packages/{args.package}") / Path("test") / Path(args.test_folder)
+    pkg_dir = (
+        Path(root_dir)
+        / Path(f"packages/{args.package}")
+        / Path("test")
+        / Path(args.test_folder)
+    )
     if args.generator:
         pkg_dir /= Path(args.generator)
     if args.subfolder:
@@ -114,7 +119,5 @@ if __name__ == "__main__":
     else:
         response = _single_dir_pyright(dirs[0])
     if not response:
-        logging.error(
-            "Linting fails"
-        )
+        logging.error("Linting fails")
         exit(1)

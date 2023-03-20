@@ -15,18 +15,19 @@ import sys
 from pathlib import Path
 import argparse
 from multiprocessing import Pool
+
 logging.getLogger().setLevel(logging.INFO)
 
-root_dir = os.path.abspath(os.path.join(
-    os.path.abspath(__file__), "..", "..", ".."))
+root_dir = os.path.abspath(os.path.join(os.path.abspath(__file__), "..", "..", ".."))
 autorest_package_dir = Path(root_dir) / Path("packages/autorest.python")
 rfc_file_location = os.path.join(autorest_package_dir, "pylintrc")
 lint_plugin_path = os.path.join(root_dir, "scripts/pylint_custom_plugin")
 
 
 def _single_dir_pylint(mod):
-    inner_class = next(d for d in mod.iterdir() if d.is_dir()
-                       and not str(d).endswith("egg-info"))
+    inner_class = next(
+        d for d in mod.iterdir() if d.is_dir() and not str(d).endswith("egg-info")
+    )
     try:
         check_call(
             [
@@ -42,8 +43,7 @@ def _single_dir_pylint(mod):
         return True
     except CalledProcessError as e:
         logging.error(
-            "{} exited with linting error {}".format(
-                inner_class.stem, e.returncode)
+            "{} exited with linting error {}".format(inner_class.stem, e.returncode)
         )
         return False
 
@@ -56,7 +56,7 @@ if __name__ == "__main__":
         "-p",
         "--package",
         dest="package",
-        help="The specific which package to verify, autorest.python or cadl-python. Optional.",
+        help="The specific which package to verify, autorest.python or typespec-python. Optional.",
         required=False,
         default="autorest.python",
     )
@@ -92,8 +92,12 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    pkg_dir = Path(
-        root_dir) / Path(f"packages/{args.package}") / Path("test") / Path(args.test_folder)
+    pkg_dir = (
+        Path(root_dir)
+        / Path(f"packages/{args.package}")
+        / Path("test")
+        / Path(args.test_folder)
+    )
     if args.generator:
         pkg_dir /= Path(args.generator)
     if args.subfolder:
@@ -108,7 +112,5 @@ if __name__ == "__main__":
     else:
         response = _single_dir_pylint(dirs[0])
     if not response:
-        logging.error(
-            "Linting fails"
-        )
+        logging.error("Linting fails")
         exit(1)
