@@ -14,9 +14,11 @@ import logging
 from pathlib import Path
 import argparse
 from multiprocessing import Pool
+
 logging.getLogger().setLevel(logging.INFO)
 
 root_dir = os.path.abspath(os.path.join(os.path.abspath(__file__), "..", "..", ".."))
+
 
 def _single_dir_apiview(mod):
     loop = 0
@@ -30,9 +32,13 @@ def _single_dir_apiview(mod):
                 ]
             )
         except CalledProcessError as e:
-            if loop>= 2:    # retry for maximum 3 times because sometimes the apistubgen has transient failure.
+            if (
+                loop >= 2
+            ):  # retry for maximum 3 times because sometimes the apistubgen has transient failure.
                 logging.error(
-                    "{} exited with apiview generation error {}".format(mod.stem, e.returncode)
+                    "{} exited with apiview generation error {}".format(
+                        mod.stem, e.returncode
+                    )
                 )
                 return False
             else:
@@ -48,7 +54,7 @@ if __name__ == "__main__":
         "-p",
         "--package",
         dest="package",
-        help="The specific which package to verify, autorest.python or cadl-python. Optional.",
+        help="The specific which package to verify, autorest.python or typespec-python. Optional.",
         required=False,
         default="autorest.python",
     )
@@ -84,7 +90,12 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    pkg_dir = Path(root_dir) / Path(f"packages/{args.package}") / Path("test") / Path(args.test_folder)
+    pkg_dir = (
+        Path(root_dir)
+        / Path(f"packages/{args.package}")
+        / Path("test")
+        / Path(args.test_folder)
+    )
     if args.generator:
         pkg_dir /= Path(args.generator)
     if args.subfolder:
@@ -99,7 +110,5 @@ if __name__ == "__main__":
     else:
         response = _single_dir_apiview(dirs[0])
     if not response:
-        logging.error(
-            "APIView validation fails"
-        )
+        logging.error("APIView validation fails")
         exit(1)

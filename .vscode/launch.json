@@ -7,15 +7,15 @@
         {
             "name": "Generate typespec",
             "request": "launch",
-            "cwd": "${workspaceFolder}/packages/cadl-python",
+            "cwd": "${workspaceFolder}/packages/typespec-python",
             "args": [
                 "compile",
-                "${workspaceFolder}/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs/http/hello",
+                "${workspaceFolder}/packages/typespec-python/node_modules/@azure-tools/cadl-ranch-specs/http/hello",
                  "--emit",
-                 "${workspaceFolder}/packages/cadl-python/dist/src/index.js",
-                 "--option=@azure-tools/cadl-python.debug=true"
+                 "${workspaceFolder}/packages/typespec-python/dist/src/index.js",
+                 "--option=@azure-tools/typespec-python.debug=true"
             ],
-            "program": "${workspaceFolder}/packages/cadl-python/node_modules/@typespec/compiler/dist/core/cli/cli.js",
+            "program": "${workspaceFolder}/packages/typespec-python/node_modules/@typespec/compiler/dist/core/cli/cli.js",
             "skipFiles": ["<node_internals>/**"],
             "type": "node",
             "smartStep": true,

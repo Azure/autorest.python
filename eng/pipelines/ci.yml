@@ -160,7 +160,7 @@ jobs:
         parameters:
             installTypeSpec: true
             installCadlRanch: true
-            folderName: "cadl-python"
+            folderName: "typespec-python"
             regenerate: true
 
       - script: |
@@ -170,12 +170,12 @@ jobs:
 
       - template: generated-code-checks-template.yml
         parameters:
-            package: "cadl-python"
+            package: "typespec-python"
 
       - script: cadl-ranch check-coverage http/
         displayName: Check Coverage
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/node_modules/@azure-tools/cadl-ranch-specs
         continueOnError: true
 
-      - publish: $(Build.SourcesDirectory)/autorest.python/packages/cadl-python/node_modules/@azure-tools/cadl-ranch-specs/cadl-ranch-coverage.json
+      - publish: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/node_modules/@azure-tools/cadl-ranch-specs/cadl-ranch-coverage.json
         artifact: CoverageReport

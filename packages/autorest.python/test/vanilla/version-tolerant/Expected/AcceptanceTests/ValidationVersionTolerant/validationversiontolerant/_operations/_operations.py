@@ -48,7 +48,7 @@ def build_auto_rest_validation_test_validation_of_method_parameters_request(
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: Literal["1.0.0"] = kwargs.pop("api_version", _params.pop("apiVersion", "1.0.0"))
+    api_version: str = kwargs.pop("api_version", _params.pop("apiVersion", "1.0.0"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -79,7 +79,7 @@ def build_auto_rest_validation_test_validation_of_body_request(
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-    api_version: Literal["1.0.0"] = kwargs.pop("api_version", _params.pop("apiVersion", "1.0.0"))
+    api_version: str = kwargs.pop("api_version", _params.pop("apiVersion", "1.0.0"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
