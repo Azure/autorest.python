@@ -217,7 +217,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models._models._ProductResult] = kwargs.pop("cls", None)  # pylint: disable=protected-access
+        cls: ClsType[_models._models.ProductResult] = kwargs.pop("cls", None)  # pylint: disable=protected-access
 
         error_map = {
             401: ClientAuthenticationError,
@@ -245,7 +245,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
         async def extract_data(pipeline_response):
             deserialized = self._deserialize(
-                _models._models._ProductResult, pipeline_response  # pylint: disable=protected-access
+                _models._models.ProductResult, pipeline_response  # pylint: disable=protected-access
             )
             list_of_elem = deserialized.values
             if cls:

@@ -11,8 +11,8 @@ from .. import _model_base
 from .._model_base import rest_field
 
 
-class _InternalModel(_model_base.Model):
-    """This is a internal model.
+class InternalModel(_model_base.Model):
+    """This is an internal model.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -20,5 +20,22 @@ class _InternalModel(_model_base.Model):
     :vartype name: str
     """
 
+    name: str = rest_field()
+    """Required. """
+
+
+class ModelOnlyUsedByInternalOperation(_model_base.Model):
+    """This is a non-internal model only used by internal operation.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar id: Required.
+    :vartype id: str
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    id: str = rest_field()
+    """Required. """
     name: str = rest_field()
     """Required. """

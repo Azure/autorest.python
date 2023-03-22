@@ -4,6 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
+from internal import models
 from internal.aio import InternalClient
 
 
@@ -14,6 +15,14 @@ async def client():
 
 
 @pytest.mark.asyncio
-async def test_get(client: InternalClient):
+async def test_get_internal(client: InternalClient):
     result = await client._get_internal(name="test")
+    assert result.name == "test"
+
+
+@pytest.mark.asyncio
+async def test_post_internal(client: InternalClient):
+    result = await client._post_internal(
+        models.ModelOnlyUsedByInternalOperation(id=1, name="test")
+    )
     assert result.name == "test"

@@ -73,8 +73,6 @@ class ModelType(  # pylint: disable=abstract-method
         self._created_json_template_representation = False
         self._got_polymorphic_subtypes = False
         self.is_public: bool = self.yaml_data.get("isPublic", True)
-        if not self.is_public:
-            self.name = "_" + self.name
         self.snake_case_name: str = self.yaml_data["snakeCaseName"]
 
     @property
