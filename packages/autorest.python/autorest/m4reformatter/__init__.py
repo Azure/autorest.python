@@ -430,8 +430,13 @@ class M4Reformatter(
 
     @property
     def only_path_and_body_parameters_positional(self) -> bool:
-        return self.version_tolerant or bool(
-            self._autorestapi.get_boolean_value("only-path-and-body-params-positional")
+        return self.version_tolerant or (
+            bool(
+                self._autorestapi.get_boolean_value(
+                    "only-path-and-body-params-positional"
+                )
+            )
+            and not bool(self._autorestapi.get_boolean_value("azure-arm"))
         )
 
     @property
