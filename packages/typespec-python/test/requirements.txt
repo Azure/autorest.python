@@ -27,3 +27,4 @@ azure-core==1.24.0
 -e ./generated/core
 -e ./generated/overload
 -e ./generated/traits
+-e ./generated/collectionFormat
