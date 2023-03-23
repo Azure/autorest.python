@@ -80,6 +80,8 @@ def add_overload(
     # for yaml sync, we need to make sure all of the responses, parameters, and exceptions' types have the same yaml id
     for overload_p, original_p in zip(overload["parameters"], yaml_data["parameters"]):
         overload_p["type"] = original_p["type"]
+    if yaml_data.get("itemType"):
+        overload["itemType"] = yaml_data["itemType"]
     update_overload_section(overload, yaml_data, "responses")
     update_overload_section(overload, yaml_data, "exceptions")
 
