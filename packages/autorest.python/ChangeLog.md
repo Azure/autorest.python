@@ -15,6 +15,8 @@
 **Bug Fixes**
 
 - Switch typing for `api-version` parameters from a literal to a string #1796
+- Avoid `--only-path-and-body-params-positional` to influence order of client parameters for Mgmt SDK #1804
+- Fix generation failure for scenario where lropaging and overload exist together #1804
 
 ### 2023-03-14 - 6.4.5
 
