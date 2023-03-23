@@ -1,5 +1,11 @@
 # Release
 
+## 2023-03-23 - 0.7.1
+
+**Bug Fixes**
+
+- Generate operations with multiple input content types as abstract instead of crashing #1806
+
 ## 2023-03-20 - 0.7.0
 
 - Rename package to `@azure-tools/typespec-python` #1800
