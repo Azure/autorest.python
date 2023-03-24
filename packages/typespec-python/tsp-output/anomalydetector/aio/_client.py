@@ -13,7 +13,6 @@ from azure.core import AsyncPipelineClient
 from azure.core.credentials import AzureKeyCredential
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
-from .. import models as _models
 from .._serialization import Deserializer, Serializer
 from ._configuration import AnomalyDetectorClientConfiguration
 from ._operations import AnomalyDetectorClientOperationsMixin
