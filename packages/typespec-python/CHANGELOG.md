@@ -1,5 +1,11 @@
 # Release
 
+## 2023-03-23 - 0.7.2
+
+**Other Changes**
+
+- Switch from `@typespec/versioning`'s `getAddedOnVersion` to `getAddedOnVersions` because it's getting deprecated #1808
+
 ## 2023-03-23 - 0.7.1
 
 **Bug Fixes**
