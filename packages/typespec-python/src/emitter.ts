@@ -651,6 +651,11 @@ function emitPagingOperation(
     return retval;
 }
 
+function isAbstract(operation: HttpOperation, overloads: Record<string, any>[]): boolean {
+    const body = operation.parameters.body;
+    return body !== undefined && body.contentTypes.length > 1 && overloads.length === 0;
+}
+
 function updateContentType(operation: Record<string, any>, property: string, value: any = true): void {
     for (const parameter of operation.parameters) {
         if (parameter.restApiName.toLowerCase() === "content-type") {
@@ -802,6 +807,7 @@ function emitBasicOperation(
         apiVersions: [getAddedOnVersion(context, operation)],
         wantTracing: true,
         exposeStreamKeyword: true,
+        abstract: false,
     };
 
     // handle overloads
@@ -860,6 +866,8 @@ function emitBasicOperation(
             updateContentType(basicOperation, "optional");
         }
     }
+
+    basicOperation.abstract = isAbstract(httpOperation, basicOperation.overloads);
 
     return [basicOperation];
 }

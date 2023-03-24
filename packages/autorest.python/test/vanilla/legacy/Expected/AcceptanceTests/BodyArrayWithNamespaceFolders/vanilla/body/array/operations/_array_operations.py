@@ -1291,8 +1291,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
@@ -1442,8 +1442,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
@@ -1695,8 +1695,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
@@ -1948,8 +1948,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
@@ -2201,8 +2201,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
@@ -2454,8 +2454,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
@@ -2707,8 +2707,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
@@ -2858,8 +2858,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
@@ -3009,8 +3009,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
@@ -3266,8 +3266,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
@@ -3468,8 +3468,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
@@ -3725,8 +3725,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
@@ -3982,8 +3982,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
@@ -4133,8 +4133,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
@@ -4288,8 +4288,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
@@ -4752,8 +4752,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
@@ -5107,8 +5107,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:
@@ -5468,8 +5468,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(array_body, (IO, bytes)):
             _content = array_body
         else:

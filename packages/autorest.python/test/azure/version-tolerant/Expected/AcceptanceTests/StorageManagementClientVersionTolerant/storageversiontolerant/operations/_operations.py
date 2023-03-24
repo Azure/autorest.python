@@ -460,8 +460,8 @@ class StorageAccountsOperations:
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(account_name, (IO, bytes)):
             _content = account_name
         else:
@@ -517,8 +517,8 @@ class StorageAccountsOperations:
         cls: ClsType[Optional[JSON]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(parameters, (IO, bytes)):
             _content = parameters
         else:
@@ -1518,8 +1518,8 @@ class StorageAccountsOperations:
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(parameters, (IO, bytes)):
             _content = parameters
         else:
@@ -2050,8 +2050,8 @@ class StorageAccountsOperations:
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(regenerate_key, (IO, bytes)):
             _content = regenerate_key
         else:

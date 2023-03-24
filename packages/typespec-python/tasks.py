@@ -24,6 +24,7 @@ init()
 PLUGIN_DIR = Path(os.path.dirname(__file__))
 PLUGIN = (PLUGIN_DIR / "dist/src/index.js").as_posix()
 CADL_RANCH_DIR = PLUGIN_DIR / Path("node_modules/@azure-tools/cadl-ranch-specs")
+PYTHON_TPYESPEC_DIR = PLUGIN_DIR / Path("test/python_typespec")
 EMITTER_OPTIONS = {"hello": {"package-name": "azure-hello"}}
 
 
@@ -41,8 +42,7 @@ def _add_options(spec, debug=False):
 @task
 def regenerate(c, name=None, debug=False):
     specs = [
-        s
-        for s in CADL_RANCH_DIR.glob("**/*")
+        s for dir in (CADL_RANCH_DIR, PYTHON_TPYESPEC_DIR) for s in dir.glob("**/*")
         if s.is_dir() and any(f for f in s.iterdir() if f.name == "main.cadl")
     ]
     if name:

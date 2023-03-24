@@ -326,8 +326,8 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         cls: ClsType[str] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(horse, (IO, bytes)):
             _content = horse
         else:
@@ -491,8 +491,8 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         cls: ClsType[str] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(pet, (IO, bytes)):
             _content = pet
         else:
@@ -660,8 +660,8 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         cls: ClsType[str] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(feline, (IO, bytes)):
             _content = feline
         else:
@@ -837,8 +837,8 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         cls: ClsType[str] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(cat, (IO, bytes)):
             _content = cat
         else:
@@ -1021,8 +1021,8 @@ class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceService
         cls: ClsType[str] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
-        _json: Any = None
-        _content: Any = None
+        _json = None
+        _content = None
         if isinstance(kitten, (IO, bytes)):
             _content = kitten
         else:

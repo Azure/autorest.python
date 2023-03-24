@@ -73,6 +73,18 @@ def _swap(data: List[Any], i: int, j: int):
     data[i], data[j] = data[j], data[i]
 
 
+def _type_hint(builder: OperationType) -> str:
+    count = 0
+    body_type = builder.parameters.body_parameter.type
+    if isinstance(body_type.type, CombinedType):
+        for type in body_type.type.types:
+            if isinstance(type, StringType):
+                count = count + 1
+            if isinstance(type, BinaryType):
+                count = count + 1
+    return f": Optional[{body_type.type_description}]" if count >= 2 else ""
+
+
 def _escape_str(input_str: str) -> str:
     replace = input_str.replace("'", "\\'")
     return f'"{replace}"'
@@ -815,7 +827,7 @@ class _OperationSerializer(
             for overload in builder.overloads
         ]
         for v in sorted(set(client_names), key=client_names.index):
-            retval.append(f"_{v}: Any = None")
+            retval.append(f"_{v}{_type_hint(builder)} = None")
 
         # make sure some special type is in last position and some in first position
         # but we can't change original data
