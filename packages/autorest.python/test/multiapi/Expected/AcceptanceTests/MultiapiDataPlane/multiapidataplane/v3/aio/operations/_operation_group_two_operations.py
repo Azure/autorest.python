@@ -120,11 +120,6 @@ class OperationGroupTwoOperations:
         _content = None
         if isinstance(input, (IO, bytes)):
             _content = input
-            if not content_type:
-                raise TypeError(
-                    "Missing required keyword-only argument: content_type. Known values are:"
-                    + "'application/json', 'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'"
-                )
         else:
             if input is not None:
                 _json = self._serialize.body(input, "SourcePath")

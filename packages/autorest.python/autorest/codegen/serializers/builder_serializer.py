@@ -76,13 +76,21 @@ def _swap(data: List[Any], i: int, j: int):
 def _type_hint(builder: OperationType) -> str:
     count = 0
     body_type = builder.parameters.body_parameter.type
-    if isinstance(body_type.type, CombinedType):
-        for type in body_type.type.types:
+    if isinstance(body_type, CombinedType):
+        for type in body_type.types:
             if isinstance(type, StringType):
                 count = count + 1
             if isinstance(type, BinaryType):
                 count = count + 1
     return f": Optional[{body_type.type_description}]" if count >= 2 else ""
+
+
+def _enable_content_type_check(operation: OperationType) -> bool:
+    if operation.parameters.body_parameter.default_content_type is None:
+        for p in operation.parameters.parameters:
+            if p.client_name == "content_type" and not p.optional:
+                return True
+    return False
 
 
 def _escape_str(input_str: str) -> str:
@@ -860,11 +868,11 @@ class _OperationSerializer(
                 f"    {l}"
                 for l in self._create_body_parameter(cast(OperationType, overload))
             )
-            if body_param.default_content_type is None:
+            if _enable_content_type_check(overload):
                 retval.extend(
                     [f"    {l}" for l in _content_type_check(body_param.content_types)]
                 )
-            elif not same_content_type:
+            elif not same_content_type and body_param.default_content_type is not None:
                 retval.append(
                     f'    content_type = content_type or "{body_param.default_content_type}"'
                 )

@@ -22,7 +22,6 @@ export async function saveCodeModelAsYaml(name: string, codemodel: unknown): Pro
     const filename = createTempPath(".yaml", name);
     const yamlStr = jsyaml.dump(codemodel);
     await writeFile(filename, yamlStr);
-    return filename;
 }
 
 /**

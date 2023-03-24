@@ -68,6 +68,8 @@ class EnumType(BaseType):
         self.name: str = yaml_data["name"]
         self.values = values
         self.value_type = value_type
+        # currently we don't generate enum type for content_type if it is set False
+        self.enable_generate: bool = yaml_data.get("enableGenerate", True)
 
     def __lt__(self, other):
         return self.name.lower() < other.name.lower()
