@@ -53,7 +53,7 @@ import {
     HttpOperation,
     isHeader,
 } from "@typespec/http";
-import { getAddedOn } from "@typespec/versioning";
+import { getAddedOnVersions } from "@typespec/versioning";
 import {
     Client,
     listClients,
@@ -268,7 +268,11 @@ function getType(context: DpgContext, type: EmitterType): any {
 
 // To pass the yaml dump
 function getAddedOnVersion(context: DpgContext, t: Type): string | undefined {
-    return getAddedOn(context.program as any, t as any)?.value;
+    const versions = getAddedOnVersions(context.program as any, t as any);
+    if (versions !== undefined && versions.length > 0) {
+        return versions[0].value;
+    }
+    return undefined;
 }
 
 type ParamBase = {
