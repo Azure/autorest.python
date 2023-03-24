@@ -107,11 +107,6 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         _content = None
         if isinstance(input, (IO, bytes)):
             _content = input
-            if not content_type:
-                raise TypeError(
-                    "Missing required keyword-only argument: content_type. Known values are:"
-                    + "'application/json', 'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'"
-                )
         else:
             if input is not None:
                 _json = self._serialize.body(input, "SourcePath")
@@ -222,11 +217,6 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         _content = None
         if isinstance(input, (IO, bytes)):
             _content = input
-            if not content_type:
-                raise TypeError(
-                    "Missing required keyword-only argument: content_type. Known values are:"
-                    + "'application/json', 'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'"
-                )
         else:
             if input is not None:
                 _json = self._serialize.body(input, "SourcePath")
@@ -522,17 +512,13 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        _json = None
-        _content = None
+        _json: Optional[Union[Any, IO, str]] = None
+        _content: Optional[Union[Any, IO, str]] = None
         if isinstance(message, (IO, bytes)):
             _content = message
             content_type = content_type or "application/octet-stream"
         elif isinstance(message, str):
             _content = self._serialize.body(message, "str")
-            if not content_type:
-                raise TypeError(
-                    "Missing required keyword-only argument: content_type. Known values are:" + "'text/plain'"
-                )
         else:
             _json = self._serialize.body(message, "object")
             content_type = content_type or "application/json"
