@@ -996,7 +996,7 @@ class M4Reformatter(
 
                 client_name = (
                     "endpoint"
-                    if self.only_path_and_body_parameters_positional
+                    if self.version_tolerant
                     else "base_url"
                 )
                 global_parameter["language"]["default"]["description"] = "Service URL."
@@ -1129,7 +1129,7 @@ class M4Reformatter(
             "skipUrlEncoding": True,
             "inOverload": False,
         }
-        if self.only_path_and_body_parameters_positional:
+        if self.version_tolerant:
             parameters.append(credential)
         else:
             parameters.insert(0, credential)

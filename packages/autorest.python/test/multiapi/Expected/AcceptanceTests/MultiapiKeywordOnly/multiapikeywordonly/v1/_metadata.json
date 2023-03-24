@@ -2,26 +2,19 @@
     "chosen_version": "1.0.0",
     "total_api_version_list": ["1.0.0"],
     "client": {
-        "name": "MultiapiCustomBaseUrlServiceClient",
-        "filename": "_multiapi_custom_base_url_service_client",
-        "description": "Service client for multiapi custom base url testing.",
-        "host_value": null,
-        "parameterized_host_template": "\u0027{Endpoint}/multiapiCustomBaseUrl/v1\u0027",
+        "name": "MultiapiServiceClient",
+        "filename": "_multiapi_service_client",
+        "description": "Service client for multiapi client testing.",
+        "host_value": "\"http://localhost:3000\"",
+        "parameterized_host_template": null,
         "azure_arm": false,
-        "has_lro_operations": false,
+        "has_lro_operations": true,
         "client_side_validation": false,
-        "sync_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Optional\"]}}, \"regular\": {\"azurecore\": {\"azure.core\": [\"PipelineClient\"], \"azure.profiles\": [\"KnownProfiles\", \"ProfileDefinition\"], \"azure.profiles.multiapiclient\": [\"MultiApiClientMixin\"]}, \"local\": {\"._configuration\": [\"MultiapiCustomBaseUrlServiceClientConfiguration\"], \".._serialization\": [\"Deserializer\", \"Serializer\"], \"._operations_mixin\": [\"MultiapiCustomBaseUrlServiceClientOperationsMixin\"]}}, \"typing\": {\"azurecore\": {\"azure.core.credentials\": [\"TokenCredential\"]}}}",
-        "async_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Optional\"]}}, \"regular\": {\"azurecore\": {\"azure.core\": [\"AsyncPipelineClient\"], \"azure.profiles\": [\"KnownProfiles\", \"ProfileDefinition\"], \"azure.profiles.multiapiclient\": [\"MultiApiClientMixin\"]}, \"local\": {\"._configuration\": [\"MultiapiCustomBaseUrlServiceClientConfiguration\"], \"..._serialization\": [\"Deserializer\", \"Serializer\"], \"._operations_mixin\": [\"MultiapiCustomBaseUrlServiceClientOperationsMixin\"]}}, \"typing\": {\"azurecore\": {\"azure.core.credentials_async\": [\"AsyncTokenCredential\"]}}}"
+        "sync_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Optional\"]}}, \"regular\": {\"azurecore\": {\"azure.core\": [\"PipelineClient\"], \"azure.profiles\": [\"KnownProfiles\", \"ProfileDefinition\"], \"azure.profiles.multiapiclient\": [\"MultiApiClientMixin\"]}, \"local\": {\"._configuration\": [\"MultiapiServiceClientConfiguration\"], \".._serialization\": [\"Deserializer\", \"Serializer\"], \"._operations_mixin\": [\"MultiapiServiceClientOperationsMixin\"]}}, \"typing\": {\"azurecore\": {\"azure.core.credentials\": [\"TokenCredential\"]}}}",
+        "async_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Optional\"]}}, \"regular\": {\"azurecore\": {\"azure.core\": [\"AsyncPipelineClient\"], \"azure.profiles\": [\"KnownProfiles\", \"ProfileDefinition\"], \"azure.profiles.multiapiclient\": [\"MultiApiClientMixin\"]}, \"local\": {\"._configuration\": [\"MultiapiServiceClientConfiguration\"], \"..._serialization\": [\"Deserializer\", \"Serializer\"], \"._operations_mixin\": [\"MultiapiServiceClientOperationsMixin\"]}}, \"typing\": {\"azurecore\": {\"azure.core.credentials_async\": [\"AsyncTokenCredential\"]}}}"
     },
     "global_parameters": {
         "sync": {
-            "endpoint": {
-                "signature": "endpoint: str,",
-                "description": "Pass in https://localhost:3000. Required.",
-                "docstring_type": "str",
-                "required": true,
-                "method_location": "positional"
-            },
             "credential": {
                 "signature": "credential: \"TokenCredential\",",
                 "description": "Credential needed for the client to connect to Azure. Required.",
@@ -31,12 +24,6 @@
             }
         },
         "async": {
-            "endpoint": {
-                "signature": "endpoint: str,",
-                "description": "Pass in https://localhost:3000. Required.",
-                "docstring_type": "str",
-                "required": true
-            },
             "credential": {
                 "signature": "credential: \"AsyncTokenCredential\",",
                 "description": "Credential needed for the client to connect to Azure. Required.",
@@ -46,12 +33,19 @@
         },
         "constant": {
         },
-        "call": "endpoint, credential",
+        "call": "credential",
         "service_client_specific": {
             "sync": {
                 "api_version": {
                     "signature": "api_version: Optional[str]=None,",
                     "description": "API version to use if no profile is provided, or if missing in profile.",
+                    "docstring_type": "str",
+                    "required": false,
+                    "method_location": "keywordOnly"
+                },
+                "endpoint": {
+                    "signature": "base_url: str = \"http://localhost:3000\",",
+                    "description": "Service URL",
                     "docstring_type": "str",
                     "required": false,
                     "method_location": "keywordOnly"
@@ -68,6 +62,13 @@
                 "api_version": {
                     "signature": "api_version: Optional[str] = None,",
                     "description": "API version to use if no profile is provided, or if missing in profile.",
+                    "docstring_type": "str",
+                    "required": false,
+                    "method_location": "keywordOnly"
+                },
+                "endpoint": {
+                    "signature": "base_url: str = \"http://localhost:3000\",",
+                    "description": "Service URL",
                     "docstring_type": "str",
                     "required": false,
                     "method_location": "keywordOnly"
@@ -91,24 +92,90 @@
         "async_imports": "{\"regular\": {\"azurecore\": {\"azure.core.configuration\": [\"Configuration\"], \"azure.core.pipeline\": [\"policies\"]}, \"local\": {\".._version\": [\"VERSION\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"typing\": {\"azurecore\": {\"azure.core.credentials_async\": [\"AsyncTokenCredential\"]}}}"
     },
     "operation_groups": {
+        "operation_group_one": "OperationGroupOneOperations"
     },
     "operation_mixins": {
-        "sync_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"regular\": {\"local\": {\".\": [[\"models\", \"_models\"]]}}}",
-        "async_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"regular\": {\"local\": {\"..\": [[\"models\", \"_models\"]]}}}",
+        "sync_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Iterable\"]}}, \"regular\": {\"stdlib\": {\"typing\": [\"IO\", \"Optional\", \"Union\"]}, \"local\": {\".\": [[\"models\", \"_models\"]]}, \"azurecore\": {\"azure.core.polling\": [\"LROPoller\"], \"azure.core.paging\": [\"ItemPaged\"]}}}",
+        "async_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"AsyncIterable\"]}}, \"regular\": {\"stdlib\": {\"typing\": [\"IO\", \"Optional\", \"Union\"]}, \"local\": {\"..\": [[\"models\", \"_models\"]]}, \"azurecore\": {\"azure.core.polling\": [\"AsyncLROPoller\"], \"azure.core.async_paging\": [\"AsyncItemPaged\"]}}}",
         "sync_mixin_typing_definitions": "",
         "async_mixin_typing_definitions": "",
         "operations": {
-            "test" : {
+            "test_one" : {
                 "sync": {
-                    "signature": "def test(  # pylint: disable=inconsistent-return-statements\n    self,\n    *,\n    id: int,\n    **kwargs: Any\n) -\u003e None:\n",
-                    "doc": "\"\"\"Should be a mixin operation. Put in 1 for the required parameter and have the correct api\nversion of 1.0.0 to pass.\n\n:keyword id: An int parameter. Put in 1 to pass. Required.\n:paramtype id: int\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: None or the result of cls(response)\n:rtype: None\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
-                    "call": "id=id, **kwargs"
+                    "signature": "def test_one(  # pylint: disable=inconsistent-return-statements\n    self,\n    *,\n    id: int,\n    message: Optional[str] = None,\n    **kwargs: Any\n) -\u003e None:\n",
+                    "doc": "\"\"\"TestOne should be in an FirstVersionOperationsMixin.\n\n:keyword id: An int parameter. Required.\n:paramtype id: int\n:keyword message: An optional string parameter. Default value is None.\n:paramtype message: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: None or the result of cls(response)\n:rtype: None\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
+                    "call": "id=id, message=message, **kwargs"
                 },
                 "async": {
                     "coroutine": true,
-                    "signature": "async def test(  # pylint: disable=inconsistent-return-statements\n    self,\n    *,\n    id: int,\n    **kwargs: Any\n) -\u003e None:\n",
-                    "doc": "\"\"\"Should be a mixin operation. Put in 1 for the required parameter and have the correct api\nversion of 1.0.0 to pass.\n\n:keyword id: An int parameter. Put in 1 to pass. Required.\n:paramtype id: int\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: None or the result of cls(response)\n:rtype: None\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
-                    "call": "id=id, **kwargs"
+                    "signature": "async def test_one(  # pylint: disable=inconsistent-return-statements\n    self,\n    *,\n    id: int,\n    message: Optional[str] = None,\n    **kwargs: Any\n) -\u003e None:\n",
+                    "doc": "\"\"\"TestOne should be in an FirstVersionOperationsMixin.\n\n:keyword id: An int parameter. Required.\n:paramtype id: int\n:keyword message: An optional string parameter. Default value is None.\n:paramtype message: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: None or the result of cls(response)\n:rtype: None\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
+                    "call": "id=id, message=message, **kwargs"
+                }
+            },
+            "_test_lro_initial" : {
+                "sync": {
+                    "signature": "def _test_lro_initial(\n    self,\n    product: Optional[Union[_models.Product, IO]] = None,\n    **kwargs: Any\n) -\u003e Optional[_models.Product]:\n",
+                    "doc": "\"\"\"Put in whatever shape of Product you want, will return a Product with id equal to 100.\n\n:param product: Product to put. Is either a Product type or a IO type. Default value is None.\n:type product: ~multiapikeywordonly.v1.models.Product or IO\n:keyword content_type: Body Parameter content-type. Known values are: \u0027application/json\u0027.\n Default value is None.\n:paramtype content_type: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: Product or None or the result of cls(response)\n:rtype: ~multiapikeywordonly.v1.models.Product or None\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
+                    "call": "product, **kwargs"
+                },
+                "async": {
+                    "coroutine": true,
+                    "signature": "async def _test_lro_initial(\n    self,\n    product: Optional[Union[_models.Product, IO]] = None,\n    **kwargs: Any\n) -\u003e Optional[_models.Product]:\n",
+                    "doc": "\"\"\"Put in whatever shape of Product you want, will return a Product with id equal to 100.\n\n:param product: Product to put. Is either a Product type or a IO type. Default value is None.\n:type product: ~multiapikeywordonly.v1.models.Product or IO\n:keyword content_type: Body Parameter content-type. Known values are: \u0027application/json\u0027.\n Default value is None.\n:paramtype content_type: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: Product or None or the result of cls(response)\n:rtype: ~multiapikeywordonly.v1.models.Product or None\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
+                    "call": "product, **kwargs"
+                }
+            },
+            "begin_test_lro" : {
+                "sync": {
+                    "signature": "def begin_test_lro(\n    self,\n    product: Optional[Union[_models.Product, IO]] = None,\n    **kwargs: Any\n) -\u003e LROPoller[_models.Product]:\n",
+                    "doc": "\"\"\"Put in whatever shape of Product you want, will return a Product with id equal to 100.\n\n:param product: Product to put. Is either a Product type or a IO type. Default value is None.\n:type product: ~multiapikeywordonly.v1.models.Product or IO\n:keyword content_type: Body Parameter content-type. Known values are: \u0027application/json\u0027.\n Default value is None.\n:paramtype content_type: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:keyword str continuation_token: A continuation token to restart a poller from a saved state.\n:keyword polling: By default, your polling method will be LROBasePolling. Pass in False for\n this operation to not poll, or pass in your own initialized polling object for a personal\n polling strategy.\n:paramtype polling: bool or ~azure.core.polling.PollingMethod\n:keyword int polling_interval: Default waiting time between two polls for LRO operations if no\n Retry-After header is present.\n:return: An instance of LROPoller that returns either Product or the result of cls(response)\n:rtype: ~azure.core.polling.LROPoller[~multiapikeywordonly.v1.models.Product]\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
+                    "call": "product, **kwargs"
+                },
+                "async": {
+                    "coroutine": true,
+                    "signature": "async def begin_test_lro(\n    self,\n    product: Optional[Union[_models.Product, IO]] = None,\n    **kwargs: Any\n) -\u003e AsyncLROPoller[_models.Product]:\n",
+                    "doc": "\"\"\"Put in whatever shape of Product you want, will return a Product with id equal to 100.\n\n:param product: Product to put. Is either a Product type or a IO type. Default value is None.\n:type product: ~multiapikeywordonly.v1.models.Product or IO\n:keyword content_type: Body Parameter content-type. Known values are: \u0027application/json\u0027.\n Default value is None.\n:paramtype content_type: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:keyword str continuation_token: A continuation token to restart a poller from a saved state.\n:keyword polling: By default, your polling method will be AsyncLROBasePolling. Pass in False\n for this operation to not poll, or pass in your own initialized polling object for a personal\n polling strategy.\n:paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod\n:keyword int polling_interval: Default waiting time between two polls for LRO operations if no\n Retry-After header is present.\n:return: An instance of AsyncLROPoller that returns either Product or the result of\n cls(response)\n:rtype: ~azure.core.polling.AsyncLROPoller[~multiapikeywordonly.v1.models.Product]\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
+                    "call": "product, **kwargs"
+                }
+            },
+            "_test_lro_and_paging_initial" : {
+                "sync": {
+                    "signature": "def _test_lro_and_paging_initial(\n    self,\n    test_lro_and_paging_options: Optional[_models.TestLroAndPagingOptions] = None,\n    *,\n    client_request_id: Optional[str] = None,\n    **kwargs: Any\n) -\u003e _models.PagingResult:\n",
+                    "doc": "\"\"\"A long-running paging operation that includes a nextLink that has 10 pages.\n\n:param test_lro_and_paging_options: Parameter group. Default value is None.\n:type test_lro_and_paging_options: ~multiapikeywordonly.v1.models.TestLroAndPagingOptions\n:keyword client_request_id: Default value is None.\n:paramtype client_request_id: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: PagingResult or the result of cls(response)\n:rtype: ~multiapikeywordonly.v1.models.PagingResult\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
+                    "call": "test_lro_and_paging_options, client_request_id=client_request_id, **kwargs"
+                },
+                "async": {
+                    "coroutine": true,
+                    "signature": "async def _test_lro_and_paging_initial(\n    self,\n    test_lro_and_paging_options: Optional[_models.TestLroAndPagingOptions] = None,\n    *,\n    client_request_id: Optional[str] = None,\n    **kwargs: Any\n) -\u003e _models.PagingResult:\n",
+                    "doc": "\"\"\"A long-running paging operation that includes a nextLink that has 10 pages.\n\n:param test_lro_and_paging_options: Parameter group. Default value is None.\n:type test_lro_and_paging_options: ~multiapikeywordonly.v1.models.TestLroAndPagingOptions\n:keyword client_request_id: Default value is None.\n:paramtype client_request_id: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: PagingResult or the result of cls(response)\n:rtype: ~multiapikeywordonly.v1.models.PagingResult\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
+                    "call": "test_lro_and_paging_options, client_request_id=client_request_id, **kwargs"
+                }
+            },
+            "begin_test_lro_and_paging" : {
+                "sync": {
+                    "signature": "def begin_test_lro_and_paging(\n    self,\n    test_lro_and_paging_options: Optional[_models.TestLroAndPagingOptions] = None,\n    *,\n    client_request_id: Optional[str] = None,\n    **kwargs: Any\n) -\u003e LROPoller[Iterable[\"_models.Product\"]]:\n",
+                    "doc": "\"\"\"A long-running paging operation that includes a nextLink that has 10 pages.\n\n:param test_lro_and_paging_options: Parameter group. Default value is None.\n:type test_lro_and_paging_options: ~multiapikeywordonly.v1.models.TestLroAndPagingOptions\n:keyword client_request_id: Default value is None.\n:paramtype client_request_id: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:keyword str continuation_token: A continuation token to restart a poller from a saved state.\n:keyword polling: By default, your polling method will be LROBasePolling. Pass in False for\n this operation to not poll, or pass in your own initialized polling object for a personal\n polling strategy.\n:paramtype polling: bool or ~azure.core.polling.PollingMethod\n:keyword int polling_interval: Default waiting time between two polls for LRO operations if no\n Retry-After header is present.\n:return: An instance of LROPoller that returns an iterator like instance of either PagingResult\n or the result of cls(response)\n:rtype:\n ~azure.core.polling.LROPoller[~azure.core.paging.ItemPaged[~multiapikeywordonly.v1.models.Product]]\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
+                    "call": "test_lro_and_paging_options, client_request_id=client_request_id, **kwargs"
+                },
+                "async": {
+                    "coroutine": true,
+                    "signature": "async def begin_test_lro_and_paging(\n    self,\n    test_lro_and_paging_options: Optional[_models.TestLroAndPagingOptions] = None,\n    *,\n    client_request_id: Optional[str] = None,\n    **kwargs: Any\n) -\u003e AsyncLROPoller[AsyncIterable[\"_models.Product\"]]:\n",
+                    "doc": "\"\"\"A long-running paging operation that includes a nextLink that has 10 pages.\n\n:param test_lro_and_paging_options: Parameter group. Default value is None.\n:type test_lro_and_paging_options: ~multiapikeywordonly.v1.models.TestLroAndPagingOptions\n:keyword client_request_id: Default value is None.\n:paramtype client_request_id: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:keyword str continuation_token: A continuation token to restart a poller from a saved state.\n:keyword polling: By default, your polling method will be AsyncLROBasePolling. Pass in False\n for this operation to not poll, or pass in your own initialized polling object for a personal\n polling strategy.\n:paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod\n:keyword int polling_interval: Default waiting time between two polls for LRO operations if no\n Retry-After header is present.\n:return: An instance of LROPoller that returns an iterator like instance of either PagingResult\n or the result of cls(response)\n:rtype:\n ~azure.core.polling.AsyncLROPoller[~azure.core.async_paging.AsyncItemPaged[~multiapikeywordonly.v1.models.Product]]\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
+                    "call": "test_lro_and_paging_options, client_request_id=client_request_id, **kwargs"
+                }
+            },
+            "test_different_calls" : {
+                "sync": {
+                    "signature": "def test_different_calls(  # pylint: disable=inconsistent-return-statements\n    self,\n    *,\n    greeting_in_english: str,\n    **kwargs: Any\n) -\u003e None:\n",
+                    "doc": "\"\"\"Has added parameters across the API versions.\n\n:keyword greeting_in_english: pass in \u0027hello\u0027 to pass test. Required.\n:paramtype greeting_in_english: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: None or the result of cls(response)\n:rtype: None\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
+                    "call": "greeting_in_english=greeting_in_english, **kwargs"
+                },
+                "async": {
+                    "coroutine": true,
+                    "signature": "async def test_different_calls(  # pylint: disable=inconsistent-return-statements\n    self,\n    *,\n    greeting_in_english: str,\n    **kwargs: Any\n) -\u003e None:\n",
+                    "doc": "\"\"\"Has added parameters across the API versions.\n\n:keyword greeting_in_english: pass in \u0027hello\u0027 to pass test. Required.\n:paramtype greeting_in_english: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: None or the result of cls(response)\n:rtype: None\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
+                    "call": "greeting_in_english=greeting_in_english, **kwargs"
                 }
             }
         }

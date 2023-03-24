@@ -17,50 +17,47 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpResponse
+from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
-from azure.core.tracing.decorator import distributed_trace
+from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from .. import models as _models
-from ..._serialization import Serializer
-from .._vendor import MultiapiCustomBaseUrlServiceClientMixinABC, _convert_request
+from ... import models as _models
+from ..._vendor import _convert_request
+from ...operations._operation_group_two_operations import build_test_four_request
+from .._vendor import MultiapiServiceClientMixinABC
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
-
-_SERIALIZER = Serializer()
-_SERIALIZER.client_side_validation = False
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-def build_test_request(*, id: int, **kwargs: Any) -> HttpRequest:
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+class OperationGroupTwoOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
 
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2.0.0"))
-    accept = _headers.pop("Accept", "application/json")
+        Instead, you should access the following operations through
+        :class:`~multiapikeywordonly.v2.aio.MultiapiServiceClient`'s
+        :attr:`operation_group_two` attribute.
+    """
 
-    # Construct URL
-    _url = kwargs.pop("template_url", "/test")
+    models = _models
 
-    # Construct parameters
-    _params["id"] = _SERIALIZER.query("id", id, "int")
-    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    def __init__(self, *args, **kwargs) -> None:
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    @distributed_trace_async
+    async def test_four(  # pylint: disable=inconsistent-return-statements
+        self, *, parameter_one: bool, **kwargs: Any
+    ) -> None:
+        """TestFour should be in OperationGroupTwoOperations.
 
-    return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
-
-
-class MultiapiCustomBaseUrlServiceClientOperationsMixin(MultiapiCustomBaseUrlServiceClientMixinABC):
-    @distributed_trace
-    def test(self, *, id: int, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        """Should be a mixin operation. Put in 2 for the required parameter and have the correct api
-        version of 2.0.0 to pass.
-
-        :keyword id: An int parameter. Put in 2 to pass. Required.
-        :paramtype id: int
+        :keyword parameter_one: A boolean parameter. Required.
+        :paramtype parameter_one: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -80,21 +77,18 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(MultiapiCustomBaseUrlSer
         api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2.0.0"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_test_request(
-            id=id,
+        request = build_test_four_request(
+            parameter_one=parameter_one,
             api_version=api_version,
-            template_url=self.test.metadata["url"],
+            template_url=self.test_four.metadata["url"],
             headers=_headers,
             params=_params,
         )
         request = _convert_request(request)
-        path_format_arguments = {
-            "Endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-        }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        request.url = self._client.format_url(request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -108,4 +102,4 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(MultiapiCustomBaseUrlSer
         if cls:
             return cls(pipeline_response, None, {})
 
-    test.metadata = {"url": "/test"}
+    test_four.metadata = {"url": "/multiapi/two/testFourEndpoint"}

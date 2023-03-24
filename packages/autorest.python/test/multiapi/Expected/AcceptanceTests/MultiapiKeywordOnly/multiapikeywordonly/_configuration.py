@@ -19,31 +19,25 @@ if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials import TokenCredential
 
-class MultiapiCustomBaseUrlServiceClientConfiguration(Configuration):
-    """Configuration for MultiapiCustomBaseUrlServiceClient.
+class MultiapiServiceClientConfiguration(Configuration):
+    """Configuration for MultiapiServiceClient.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param endpoint: Pass in https://localhost:3000. Required.
-    :type endpoint: str
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials.TokenCredential
     """
 
     def __init__(
         self,
-        endpoint: str,
         credential: "TokenCredential",
         **kwargs: Any
     ):
-        if endpoint is None:
-            raise ValueError("Parameter 'endpoint' must not be None.")
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
-        super(MultiapiCustomBaseUrlServiceClientConfiguration, self).__init__(**kwargs)
+        super(MultiapiServiceClientConfiguration, self).__init__(**kwargs)
 
-        self.endpoint = endpoint
         self.credential = credential
         self.credential_scopes = kwargs.pop('credential_scopes', [])
         kwargs.setdefault('sdk_moniker', 'multiapikeywordonly/{}'.format(VERSION))
