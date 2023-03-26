@@ -45,8 +45,8 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
     :type credential: ~azure.core.credentials.TokenCredential
     :param api_version: API version to use if no profile is provided, or if missing in profile.
     :type api_version: str
-    :param endpoint: Service URL
-    :type endpoint: str
+    :param base_url: Service URL
+    :type base_url: str
     :param profile: A profile definition, from KnownProfiles to dict.
     :type profile: azure.profiles.KnownProfiles
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
@@ -66,7 +66,6 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
     def __init__(
         self,
         credential: "TokenCredential",
-        *,
         api_version: Optional[str]=None,
         base_url: str = "http://localhost:3000",
         profile: KnownProfiles=KnownProfiles.default,

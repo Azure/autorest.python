@@ -41,21 +41,21 @@
                     "description": "API version to use if no profile is provided, or if missing in profile.",
                     "docstring_type": "str",
                     "required": false,
-                    "method_location": "keywordOnly"
+                    "method_location": "positional"
                 },
-                "endpoint": {
+                "base_url": {
                     "signature": "base_url: str = \"http://localhost:3000\",",
                     "description": "Service URL",
                     "docstring_type": "str",
                     "required": false,
-                    "method_location": "keywordOnly"
+                    "method_location": "positional"
                 },
                 "profile": {
                     "signature": "profile: KnownProfiles=KnownProfiles.default,",
                     "description": "A profile definition, from KnownProfiles to dict.",
                     "docstring_type": "azure.profiles.KnownProfiles",
                     "required": false,
-                    "method_location": "keywordOnly"
+                    "method_location": "positional"
                 }
             },
             "async": {
@@ -64,21 +64,21 @@
                     "description": "API version to use if no profile is provided, or if missing in profile.",
                     "docstring_type": "str",
                     "required": false,
-                    "method_location": "keywordOnly"
+                    "method_location": "positional"
                 },
-                "endpoint": {
+                "base_url": {
                     "signature": "base_url: str = \"http://localhost:3000\",",
                     "description": "Service URL",
                     "docstring_type": "str",
                     "required": false,
-                    "method_location": "keywordOnly"
+                    "method_location": "positional"
                 },
                 "profile": {
                     "signature": "profile: KnownProfiles = KnownProfiles.default,",
                     "description": "A profile definition, from KnownProfiles to dict.",
                     "docstring_type": "azure.profiles.KnownProfiles",
                     "required": false,
-                    "method_location": "keywordOnly"
+                    "method_location": "positional"
                 }
             }
         }
