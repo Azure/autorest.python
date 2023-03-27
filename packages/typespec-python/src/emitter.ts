@@ -350,9 +350,6 @@ function emitBodyParameter(context: DpgContext, httpOperation: HttpOperation): B
     if (contentTypes.length === 0) {
         contentTypes = ["application/json"];
     }
-    if (contentTypes.length !== 1) {
-        throw Error("Currently only one kind of content-type!");
-    }
     const type = getType(context, getBodyType(context, httpOperation));
 
     if (type.type === "model" && type.name === "") {
@@ -647,6 +644,11 @@ function emitPagingOperation(
     return retval;
 }
 
+function isAbstract(operation: HttpOperation): boolean {
+    const body = operation.parameters.body;
+    return body !== undefined && body.contentTypes.length > 1;
+}
+
 function emitBasicOperation(
     context: DpgContext,
     operation: Operation,
@@ -732,6 +734,7 @@ function emitBasicOperation(
             apiVersions: [getAddedOnVersion(context, operation)],
             wantTracing: true,
             exposeStreamKeyword: true,
+            abstract: isAbstract(httpOperation),
             isPublic: !isInternal(context, operation),
         },
     ];
