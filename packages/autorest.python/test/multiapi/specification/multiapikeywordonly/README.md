@@ -12,6 +12,12 @@ namespace: multiapikeywordonly.v2
 output-folder: $(python-sdks-folder)/multiapi/Expected/AcceptanceTests/MultiapiKeywordOnly/multiapikeywordonly/v2
 ```
 
+``` yaml $(tag) == 'v3'
+input-file: ../../../../node_modules/@microsoft.azure/autorest.testserver/swagger/multiapi-v3.json
+namespace: multiapikeywordonly.v3
+output-folder: $(python-sdks-folder)/multiapi/Expected/AcceptanceTests/MultiapiKeywordOnly/multiapikeywordonly/v3
+```
+
 ### Settings
 ``` yaml
 package-name: multiapikeywordonly
@@ -28,6 +34,7 @@ clear-output-folder: true
 batch:
     - tag: v1
     - tag: v2
+    - tag: v3
     - multiapiscript: true
 ```
 

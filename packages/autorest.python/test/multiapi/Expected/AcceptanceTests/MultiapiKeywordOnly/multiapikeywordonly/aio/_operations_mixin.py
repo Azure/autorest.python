@@ -104,6 +104,7 @@ class MultiapiServiceClientOperationsMixin(object):
         *,
         greeting_in_english: str,
         greeting_in_chinese: Optional[str] = None,
+        greeting_in_french: Optional[str] = None,
         **kwargs: Any
     ) -> None:
         """Has added parameters across the API versions.
@@ -112,6 +113,8 @@ class MultiapiServiceClientOperationsMixin(object):
         :paramtype greeting_in_english: str
         :keyword greeting_in_chinese: pass in 'nihao' to pass test. Default value is None.
         :paramtype greeting_in_chinese: str
+        :keyword greeting_in_french: pass in 'bonjour' to pass test. Default value is None.
+        :paramtype greeting_in_french: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -122,6 +125,8 @@ class MultiapiServiceClientOperationsMixin(object):
             from ..v1.aio.operations import MultiapiServiceClientOperationsMixin as OperationClass
         elif api_version == '2.0.0':
             from ..v2.aio.operations import MultiapiServiceClientOperationsMixin as OperationClass
+        elif api_version == '3.0.0':
+            from ..v3.aio.operations import MultiapiServiceClientOperationsMixin as OperationClass
         else:
             raise ValueError("API version {} does not have operation 'test_different_calls'".format(api_version))
         mixin_instance = OperationClass()
@@ -131,24 +136,24 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
         mixin_instance._serialize.client_side_validation = False
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
-        return await mixin_instance.test_different_calls(greeting_in_english=greeting_in_english, greeting_in_chinese=greeting_in_chinese, **kwargs)
+        return await mixin_instance.test_different_calls(greeting_in_english=greeting_in_english, greeting_in_chinese=greeting_in_chinese, greeting_in_french=greeting_in_french, **kwargs)
 
-    async def test_one(
+    async def test_one(  # pylint: disable=inconsistent-return-statements
         self,
         *,
         id: int,
         message: Optional[str] = None,
         **kwargs: Any
-    ) -> _models.ModelTwo:
-        """TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.
+    ) -> None:
+        """TestOne should be in an FirstVersionOperationsMixin.
 
         :keyword id: An int parameter. Required.
         :paramtype id: int
         :keyword message: An optional string parameter. Default value is None.
         :paramtype message: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ModelTwo or the result of cls(response)
-        :rtype: ~multiapikeywordonly.v2.models.ModelTwo
+        :return: None or the result of cls(response)
+        :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         api_version = self._get_api_version('test_one')
@@ -166,3 +171,28 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._serialize.client_side_validation = False
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
         return await mixin_instance.test_one(id=id, message=message, **kwargs)
+
+    def test_paging(
+        self,
+        **kwargs: Any
+    ) -> AsyncIterable["_models.ModelThree"]:
+        """Returns ModelThree with optionalProperty 'paged'.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: An iterator like instance of either ModelThree or the result of cls(response)
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~multiapikeywordonly.v3.models.ModelThree]
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        api_version = self._get_api_version('test_paging')
+        if api_version == '3.0.0':
+            from ..v3.aio.operations import MultiapiServiceClientOperationsMixin as OperationClass
+        else:
+            raise ValueError("API version {} does not have operation 'test_paging'".format(api_version))
+        mixin_instance = OperationClass()
+        mixin_instance._client = self._client
+        mixin_instance._config = self._config
+        mixin_instance._config.api_version = api_version
+        mixin_instance._serialize = Serializer(self._models_dict(api_version))
+        mixin_instance._serialize.client_side_validation = False
+        mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
+        return mixin_instance.test_paging(**kwargs)

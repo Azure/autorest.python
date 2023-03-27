@@ -52,13 +52,14 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     """
 
-    DEFAULT_API_VERSION = '2.0.0'
+    DEFAULT_API_VERSION = '3.0.0'
     _PROFILE_TAG = "multiapikeywordonly.MultiapiServiceClient"
     LATEST_PROFILE = ProfileDefinition({
         _PROFILE_TAG: {
             None: DEFAULT_API_VERSION,
             'begin_test_lro': '1.0.0',
             'begin_test_lro_and_paging': '1.0.0',
+            'test_one': '2.0.0',
         }},
         _PROFILE_TAG + " latest"
     )
@@ -88,12 +89,16 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
 
            * 1.0.0: :mod:`v1.models<multiapikeywordonly.v1.models>`
            * 2.0.0: :mod:`v2.models<multiapikeywordonly.v2.models>`
+           * 3.0.0: :mod:`v3.models<multiapikeywordonly.v3.models>`
         """
         if api_version == '1.0.0':
             from .v1 import models
             return models
         elif api_version == '2.0.0':
             from .v2 import models
+            return models
+        elif api_version == '3.0.0':
+            from .v3 import models
             return models
         raise ValueError("API version {} is not available".format(api_version))
 
@@ -103,12 +108,15 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
 
            * 1.0.0: :class:`OperationGroupOneOperations<multiapikeywordonly.v1.operations.OperationGroupOneOperations>`
            * 2.0.0: :class:`OperationGroupOneOperations<multiapikeywordonly.v2.operations.OperationGroupOneOperations>`
+           * 3.0.0: :class:`OperationGroupOneOperations<multiapikeywordonly.v3.operations.OperationGroupOneOperations>`
         """
         api_version = self._get_api_version('operation_group_one')
         if api_version == '1.0.0':
             from .v1.operations import OperationGroupOneOperations as OperationClass
         elif api_version == '2.0.0':
             from .v2.operations import OperationGroupOneOperations as OperationClass
+        elif api_version == '3.0.0':
+            from .v3.operations import OperationGroupOneOperations as OperationClass
         else:
             raise ValueError("API version {} does not have operation group 'operation_group_one'".format(api_version))
         self._config.api_version = api_version
@@ -119,10 +127,13 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
         """Instance depends on the API version:
 
            * 2.0.0: :class:`OperationGroupTwoOperations<multiapikeywordonly.v2.operations.OperationGroupTwoOperations>`
+           * 3.0.0: :class:`OperationGroupTwoOperations<multiapikeywordonly.v3.operations.OperationGroupTwoOperations>`
         """
         api_version = self._get_api_version('operation_group_two')
         if api_version == '2.0.0':
             from .v2.operations import OperationGroupTwoOperations as OperationClass
+        elif api_version == '3.0.0':
+            from .v3.operations import OperationGroupTwoOperations as OperationClass
         else:
             raise ValueError("API version {} does not have operation group 'operation_group_two'".format(api_version))
         self._config.api_version = api_version
