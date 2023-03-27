@@ -21,6 +21,36 @@ def test_get_internal(client: InternalClient):
 
 def test_post_internal(client: InternalClient):
     result = client._post_internal(
-        models.ModelOnlyUsedByInternalOperation(id=1, name="test")
+        models._models.ModelOnlyUsedByInternalOperation(id=1, name="test")
     )
     assert result.name == "test"
+
+
+def test_visibility(client: InternalClient):
+    try:
+        from internal.models import InternalModel
+
+        pytest.fail("InternalModel should be hidden")
+    except:
+        pass
+
+    try:
+        from internal.models import ModelOnlyUsedByInternalOperation
+
+        pytest.fail("ModelOnlyUsedByInternalOperation should be hidden")
+    except:
+        pass
+
+    try:
+        client.get_internal(name="test")
+        pytest.fail("getInternal should be hidden")
+    except:
+        pass
+
+    try:
+        client.post_internal(
+            models._models.ModelOnlyUsedByInternalOperation(id=1, name="test")
+        )
+        pytest.fail("postInternal should be hidden")
+    except:
+        pass

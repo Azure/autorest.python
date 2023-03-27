@@ -140,58 +140,19 @@ class InternalClientOperationsMixin(InternalClientMixinABC):
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models._models.ModelOnlyUsedByInternalOperation:
-        """post_internal.
-
-        :param body: Required.
-        :type body: ~internal.models.ModelOnlyUsedByInternalOperation
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: ModelOnlyUsedByInternalOperation. The ModelOnlyUsedByInternalOperation is compatible
-         with MutableMapping
-        :rtype: ~internal.models.ModelOnlyUsedByInternalOperation
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
+        ...
 
     @overload
     def _post_internal(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models._models.ModelOnlyUsedByInternalOperation:
-        """post_internal.
-
-        :param body: Required.
-        :type body: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: ModelOnlyUsedByInternalOperation. The ModelOnlyUsedByInternalOperation is compatible
-         with MutableMapping
-        :rtype: ~internal.models.ModelOnlyUsedByInternalOperation
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
+        ...
 
     @overload
     def _post_internal(
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models._models.ModelOnlyUsedByInternalOperation:
-        """post_internal.
-
-        :param body: Required.
-        :type body: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: ModelOnlyUsedByInternalOperation. The ModelOnlyUsedByInternalOperation is compatible
-         with MutableMapping
-        :rtype: ~internal.models.ModelOnlyUsedByInternalOperation
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
+        ...
 
     @distributed_trace
     def _post_internal(

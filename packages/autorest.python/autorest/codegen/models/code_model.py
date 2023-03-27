@@ -194,7 +194,7 @@ class CodeModel:  # pylint: disable=too-many-public-methods
 
     @property
     def public_model_types(self) -> List[ModelType]:
-        return [m for m in self.model_types if m.is_public and not m.base == "json"]
+        return [m for m in self.model_types if not m.internal and not m.base == "json"]
 
     @property
     def enums(self) -> List[EnumType]:

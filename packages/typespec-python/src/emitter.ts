@@ -735,7 +735,7 @@ function emitBasicOperation(
             wantTracing: true,
             exposeStreamKeyword: true,
             abstract: isAbstract(httpOperation),
-            isPublic: !isInternal(context, operation),
+            internal: isInternal(context, operation),
         },
     ];
 }
@@ -805,7 +805,7 @@ function emitModel(context: DpgContext, type: Model): Record<string, any> {
         addedOn: getAddedOnVersion(context, type),
         snakeCaseName: modelName ? camelToSnakeCase(modelName) : modelName,
         base: modelName === "" ? "json" : "dpg",
-        isPublic: !isInternal(context, type),
+        internal: isInternal(context, type),
     };
 }
 
@@ -1045,7 +1045,7 @@ function emitUnion(context: DpgContext, type: Union): Record<string, any> {
             name: unionName,
             snakeCaseName: camelToSnakeCase(unionName || ""),
             description: `Type of ${unionName}`,
-            isPublic: false,
+            internal: true,
             type: "combined",
             types: nonNullOptions.map((x) => getType(context, x)),
             xmlMetadata: {},
@@ -1084,7 +1084,7 @@ function emitUnion(context: DpgContext, type: Union): Record<string, any> {
         name: enumName,
         snakeCaseName: camelToSnakeCase(enumName),
         description: `Type of ${enumName}`,
-        isPublic: false,
+        internal: true,
         type: "enum",
         valueType: emitType(context, nonNullOptions[0])["valueType"],
         values: values,

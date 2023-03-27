@@ -36,7 +36,7 @@
         {% endfor %}
     {% endfor %}
 
-    {% if model.is_public and serializer.init_line(model) %}
+    {% if not model.internal and serializer.init_line(model) %}
     @overload
     def __init__(
         self,
@@ -55,7 +55,7 @@
 
     {% endif %}
     {% set initialize_properties = serializer.initialize_properties(model) %}
-    {% if model.is_public and serializer.init_line(model) or initialize_properties %}
+    {% if not model.internal and serializer.init_line(model) or initialize_properties %}
     def __init__(self, *args: Any, **kwargs: Any) -> None:{{ '# pylint: disable=useless-super-delegation' if not initialize_properties else '' }}
         super().__init__(*args, **kwargs)
     {% for initialize_property in initialize_properties %}

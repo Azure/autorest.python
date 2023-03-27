@@ -1049,15 +1049,15 @@ class _OperationSerializer(
             )
         elif response.type:
             pylint_disable = ""
-            if isinstance(response.type, ModelType) and not response.type.is_public:
+            if isinstance(response.type, ModelType) and response.type.internal:
                 pylint_disable = "  # pylint: disable=protected-access"
             if self.code_model.options["models_mode"] == "msrest":
-                deserialize_code.append(f"deserialized = self._deserialize(")
+                deserialize_code.append("deserialized = self._deserialize(")
                 deserialize_code.append(f"    '{response.serialization_type}',{pylint_disable}")
-                deserialize_code.append("    pipeline_response)")
+                deserialize_code.append("    pipeline_response")
                 deserialize_code.append(")")
             elif self.code_model.options["models_mode"] == "dpg":
-                deserialize_code.append(f"deserialized = _deserialize(")
+                deserialize_code.append("deserialized = _deserialize(")
                 deserialize_code.append(f"    {response.type.type_annotation(is_operation_file=True)},{pylint_disable}")
                 deserialize_code.append("    response.json()")
                 deserialize_code.append(")")
@@ -1384,7 +1384,7 @@ class _PagingOperationSerializer(
         if self.code_model.options["models_mode"] == "msrest":
             deserialize_type = response.serialization_type
             pylint_disable = "  # pylint: disable=protected-access"
-            if isinstance(response.type, ModelType) and response.type.is_public:
+            if isinstance(response.type, ModelType) and not response.type.internal:
                 deserialize_type = f'"{response.serialization_type}"'
                 pylint_disable = ""
             deserialized = f"self._deserialize(\n    {deserialize_type},{pylint_disable}\n    pipeline_response\n)"
