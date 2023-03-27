@@ -994,11 +994,7 @@ class M4Reformatter(
             if name == "$host":
                 # I am the non-parameterized endpoint. Modify name based off of flag
 
-                client_name = (
-                    "endpoint"
-                    if self.only_path_and_body_parameters_positional
-                    else "base_url"
-                )
+                client_name = "endpoint" if self.version_tolerant else "base_url"
                 global_parameter["language"]["default"]["description"] = "Service URL."
             elif (
                 global_parameter.get("origin") == "modelerfour:synthesized/api-version"
@@ -1129,7 +1125,7 @@ class M4Reformatter(
             "skipUrlEncoding": True,
             "inOverload": False,
         }
-        if self.only_path_and_body_parameters_positional:
+        if self.version_tolerant:
             parameters.append(credential)
         else:
             parameters.insert(0, credential)
