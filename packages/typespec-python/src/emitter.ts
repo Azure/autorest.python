@@ -53,7 +53,7 @@ import {
     HttpOperation,
     isHeader,
 } from "@typespec/http";
-import { getAddedOn } from "@typespec/versioning";
+import { getAddedOnVersions } from "@typespec/versioning";
 import {
     Client,
     listClients,
@@ -268,7 +268,11 @@ function getType(context: DpgContext, type: EmitterType): any {
 
 // To pass the yaml dump
 function getAddedOnVersion(context: DpgContext, t: Type): string | undefined {
-    return getAddedOn(context.program as any, t as any)?.value;
+    const versions = getAddedOnVersions(context.program as any, t as any);
+    if (versions !== undefined && versions.length > 0) {
+        return versions[0].value;
+    }
+    return undefined;
 }
 
 type ParamBase = {
@@ -348,9 +352,6 @@ function emitBodyParameter(context: DpgContext, httpOperation: HttpOperation): B
     let contentTypes = body.contentTypes;
     if (contentTypes.length === 0) {
         contentTypes = ["application/json"];
-    }
-    if (contentTypes.length !== 1) {
-        throw Error("Currently only one kind of content-type!");
     }
     const type = getType(context, getBodyType(context, httpOperation));
 
@@ -646,6 +647,11 @@ function emitPagingOperation(
     return retval;
 }
 
+function isAbstract(operation: HttpOperation): boolean {
+    const body = operation.parameters.body;
+    return body !== undefined && body.contentTypes.length > 1;
+}
+
 function emitBasicOperation(
     context: DpgContext,
     operation: Operation,
@@ -731,6 +737,7 @@ function emitBasicOperation(
             apiVersions: [getAddedOnVersion(context, operation)],
             wantTracing: true,
             exposeStreamKeyword: true,
+            abstract: isAbstract(httpOperation),
         },
     ];
 }

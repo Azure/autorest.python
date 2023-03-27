@@ -1,7 +1,5 @@
 {% import 'operation_tools.jinja2' as op_tools %}
 {% import 'keywords.jinja2' as keywords %}
-{% set only_path = client.code_model.options["only_path_and_body_params_positional"] %}
-{% set method_location = "keywordOnly" if only_path else "positional" %}
 {
     "chosen_version": {{ chosen_version | tojson }},
     "total_api_version_list": {{ total_api_version_list | tojson }},
@@ -52,15 +50,15 @@
                     "description": "API version to use if no profile is provided, or if missing in profile.",
                     "docstring_type": "str",
                     "required": false,
-                    "method_location": {{ method_location | tojson }}
+                    "method_location": "positional"
                 },
                 {% if not client.has_parameterized_host %}
-                "{{ "endpoint" if only_path else "base_url" }}": {
+                "base_url": {
                     "signature": {{ client.parameters.host.method_signature(async_mode=False) | tojson }},
                     "description": "Service URL",
                     "docstring_type": "str",
                     "required": false,
-                    "method_location": {{ method_location | tojson }}
+                    "method_location": "positional"
                 },
                 {% endif %}
                 "profile": {
@@ -68,7 +66,7 @@
                     "description": "A profile definition, from KnownProfiles to dict.",
                     "docstring_type": "azure.profiles.KnownProfiles",
                     "required": false,
-                    "method_location": {{ method_location | tojson }}
+                    "method_location": "positional"
                 }
             },
             "async": {
@@ -77,15 +75,15 @@
                     "description": "API version to use if no profile is provided, or if missing in profile.",
                     "docstring_type": "str",
                     "required": false,
-                    "method_location": {{ method_location | tojson }}
+                    "method_location": "positional"
                 },
                 {% if not client.has_parameterized_host %}
-                "{{ "endpoint" if only_path else "base_url" }}": {
+                "base_url": {
                     "signature": {{ client.parameters.host.method_signature(async_mode=True) | tojson }},
                     "description": "Service URL",
                     "docstring_type": "str",
                     "required": false,
-                    "method_location": {{ method_location | tojson }}
+                    "method_location": "positional"
                 },
                 {% endif %}
                 "profile": {
@@ -93,7 +91,7 @@
                     "description": "A profile definition, from KnownProfiles to dict.",
                     "docstring_type": "azure.profiles.KnownProfiles",
                     "required": false,
-                    "method_location": {{ method_location | tojson }}
+                    "method_location": "positional"
                 }
             }
         }

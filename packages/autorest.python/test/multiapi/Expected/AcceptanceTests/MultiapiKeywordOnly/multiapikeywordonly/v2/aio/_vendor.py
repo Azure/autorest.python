@@ -10,7 +10,7 @@ from typing import TYPE_CHECKING
 
 from azure.core.pipeline.transport import HttpRequest
 
-from ._configuration import MultiapiCustomBaseUrlServiceClientConfiguration
+from ._configuration import MultiapiServiceClientConfiguration
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -19,10 +19,10 @@ if TYPE_CHECKING:
     from ..._serialization import Deserializer, Serializer
 
 
-class MultiapiCustomBaseUrlServiceClientMixinABC(ABC):
+class MultiapiServiceClientMixinABC(ABC):
     """DO NOT use this class. It is for internal typing use only."""
 
     _client: "AsyncPipelineClient"
-    _config: MultiapiCustomBaseUrlServiceClientConfiguration
+    _config: MultiapiServiceClientConfiguration
     _serialize: "Serializer"
     _deserialize: "Deserializer"
