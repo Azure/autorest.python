@@ -707,7 +707,9 @@ class _OperationSerializer(
         pylint_disable = ""
         if any(x.startswith("_") for x in cls_annotation.split(".")):
             pylint_disable = "  # pylint: disable=protected-access"
-        kwargs.append(f"cls: {cls_annotation} = kwargs.pop({pylint_disable}\n    'cls', None\n)")
+        kwargs.append(
+            f"cls: {cls_annotation} = kwargs.pop({pylint_disable}\n    'cls', None\n)"
+        )
         return kwargs
 
     def response_docstring(self, builder: OperationType) -> List[str]:
@@ -1053,12 +1055,16 @@ class _OperationSerializer(
                 pylint_disable = "  # pylint: disable=protected-access"
             if self.code_model.options["models_mode"] == "msrest":
                 deserialize_code.append("deserialized = self._deserialize(")
-                deserialize_code.append(f"    '{response.serialization_type}',{pylint_disable}")
+                deserialize_code.append(
+                    f"    '{response.serialization_type}',{pylint_disable}"
+                )
                 deserialize_code.append("    pipeline_response")
                 deserialize_code.append(")")
             elif self.code_model.options["models_mode"] == "dpg":
                 deserialize_code.append("deserialized = _deserialize(")
-                deserialize_code.append(f"    {response.type.type_annotation(is_operation_file=True)},{pylint_disable}")
+                deserialize_code.append(
+                    f"    {response.type.type_annotation(is_operation_file=True)},{pylint_disable}"
+                )
                 deserialize_code.append("    response.json()")
                 deserialize_code.append(")")
             else:
