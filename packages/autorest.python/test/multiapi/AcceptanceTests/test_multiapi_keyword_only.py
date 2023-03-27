@@ -24,12 +24,21 @@
 #
 # --------------------------------------------------------------------------
 import pytest
-from multiapikeywordonly import MultiapiCustomBaseUrlServiceClient
+from multiapikeywordonly import MultiapiServiceClient
+from .multiapi_base import NotTested
+
+@pytest.fixture
+def default_client(credential, authentication_policy):
+    with MultiapiServiceClient(
+		base_url="http://localhost:3000",
+        credential=credential,
+        authentication_policy=authentication_policy
+    ) as default_client:
+        yield default_client
 
 @pytest.fixture
 def client(credential, authentication_policy, api_version):
-
-    with MultiapiCustomBaseUrlServiceClient(
+    with MultiapiServiceClient(
 		endpoint="http://localhost:3000",
         api_version=api_version,
         credential=credential,
@@ -37,12 +46,10 @@ def client(credential, authentication_policy, api_version):
     ) as client:
         yield client
 
-class TestMultiapiCustomBaseUrl(object):
+@pytest.fixture
+def namespace_models():
+    from multiapikeywordonly import models
+    return models
 
-    @pytest.mark.parametrize('api_version', ["1.0.0"])
-    def test_custom_base_url_version_one(self, client):
-        client.test(id=1)
-
-    @pytest.mark.parametrize('api_version', ["2.0.0"])
-    def test_custom_base_url_version_two(self, client):
-        client.test(id=2)
+class TestMultiapiClientKeywordOnly(NotTested.TestMultiapiBase):
+    pass

@@ -7,9 +7,13 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, Optional
+from typing import Any, List, Optional, TYPE_CHECKING
 
 from ... import _serialization
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from .. import models as _models
 
 
 class Error(_serialization.Model):
@@ -36,3 +40,79 @@ class Error(_serialization.Model):
         super().__init__(**kwargs)
         self.status = status
         self.message = message
+
+
+class PagingResult(_serialization.Model):
+    """PagingResult.
+
+    :ivar values:
+    :vartype values: list[~multiapikeywordonly.v1.models.Product]
+    :ivar next_link:
+    :vartype next_link: str
+    """
+
+    _attribute_map = {
+        "values": {"key": "values", "type": "[Product]"},
+        "next_link": {"key": "nextLink", "type": "str"},
+    }
+
+    def __init__(
+        self, *, values: Optional[List["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """
+        :keyword values:
+        :paramtype values: list[~multiapikeywordonly.v1.models.Product]
+        :keyword next_link:
+        :paramtype next_link: str
+        """
+        super().__init__(**kwargs)
+        self.values = values
+        self.next_link = next_link
+
+
+class Product(_serialization.Model):
+    """Product.
+
+    :ivar id:
+    :vartype id: int
+    """
+
+    _attribute_map = {
+        "id": {"key": "id", "type": "int"},
+    }
+
+    def __init__(self, *, id: Optional[int] = None, **kwargs: Any) -> None:  # pylint: disable=redefined-builtin
+        """
+        :keyword id:
+        :paramtype id: int
+        """
+        super().__init__(**kwargs)
+        self.id = id
+
+
+class TestLroAndPagingOptions(_serialization.Model):
+    """Parameter group.
+
+    :ivar maxresults: Sets the maximum number of items to return in the response.
+    :vartype maxresults: int
+    :ivar timeout: Sets the maximum time that the server can spend processing the request, in
+     seconds. The default is 30 seconds.
+    :vartype timeout: int
+    """
+
+    _attribute_map = {
+        "maxresults": {"key": "maxresults", "type": "int"},
+        "timeout": {"key": "timeout", "type": "int"},
+    }
+
+    def __init__(self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any) -> None:
+        """
+        :keyword maxresults: Sets the maximum number of items to return in the response.
+        :paramtype maxresults: int
+        :keyword timeout: Sets the maximum time that the server can spend processing the request, in
+         seconds. The default is 30 seconds.
+        :paramtype timeout: int
+        """
+        super().__init__(**kwargs)
+        self.maxresults = maxresults
+        self.timeout = timeout

@@ -325,14 +325,22 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         code_model: Dict[str, Any],
         yaml_data: Dict[str, Any],
         is_overload: bool = False,
+        item_type: Optional[Dict[str, Any]] = None,
     ) -> None:
         self.update_lro_operation(code_model, yaml_data, is_overload=is_overload)
-        self.update_paging_operation(code_model, yaml_data, is_overload=is_overload)
+        self.update_paging_operation(
+            code_model, yaml_data, is_overload=is_overload, item_type=item_type
+        )
         yaml_data["discriminator"] = "lropaging"
         for response in yaml_data.get("responses", []):
             response["discriminator"] = "lropaging"
         for overload in yaml_data.get("overloads", []):
-            self.update_lro_paging_operation(code_model, overload, is_overload=True)
+            self.update_lro_paging_operation(
+                code_model,
+                overload,
+                is_overload=True,
+                item_type=yaml_data["responses"][0]["itemType"],
+            )
 
     def update_lro_operation(
         self,
