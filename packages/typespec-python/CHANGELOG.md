@@ -1,5 +1,11 @@
 # Release
 
+## 2023-03-27 - 0.7.3
+
+**Other Changes**
+
+- Bump python generator dependency
+
 ## 2023-03-23 - 0.7.2
 
 **Other Changes**
