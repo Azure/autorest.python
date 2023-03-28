@@ -25,13 +25,13 @@
 # --------------------------------------------------------------------------
 import pytest
 from async_generator import yield_, async_generator
-from multiapikeywordonly.aio import MultiapiCustomBaseUrlServiceClient
+from multiapikeywordonly.aio import MultiapiServiceClient
+from .multiapi_base import NotTested
 
 @pytest.fixture
 @async_generator
 async def client(credential, authentication_policy, api_version):
-
-    async with MultiapiCustomBaseUrlServiceClient(
+    async with MultiapiServiceClient(
 		endpoint="http://localhost:3000",
         api_version=api_version,
         credential=credential,
@@ -39,14 +39,20 @@ async def client(credential, authentication_policy, api_version):
     ) as client:
         await yield_(client)
 
-class TestMultiapiCustomBaseUrl(object):
+@pytest.fixture
+@async_generator
+async def default_client(credential, authentication_policy):
+    async with MultiapiServiceClient(
+		base_url="http://localhost:3000",
+        credential=credential,
+        authentication_policy=authentication_policy
+    ) as default_client:
+        await yield_(default_client)
 
-    @pytest.mark.parametrize('api_version', ["1.0.0"])
-    @pytest.mark.asyncio
-    async def test_custom_base_url_version_one(self, client):
-        await client.test(id=1)
+@pytest.fixture
+def namespace_models():
+    from multiapikeywordonly import models
+    return models
 
-    @pytest.mark.parametrize('api_version', ["2.0.0"])
-    @pytest.mark.asyncio
-    async def test_custom_base_url_version_two(self, client):
-        await client.test(id=2)
+class TestMultiapiClientKeywordOnly(NotTested.TestMultiapiBase):
+    pass

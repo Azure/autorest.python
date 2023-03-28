@@ -1,6 +1,6 @@
 # Release
 
-### 2023-03-xx - 6.4.6
+### 2023-03-27 - 6.4.6
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -15,6 +15,8 @@
 **Bug Fixes**
 
 - Switch typing for `api-version` parameters from a literal to a string #1796
+- Fix cases of lro paging where generation was failing on `itemType` #1817
+- Fix generation of `version-tolerant: false` with `only-path-and-body-params-positional: true` so client signature is not impacted #1809
 
 ### 2023-03-14 - 6.4.5
 

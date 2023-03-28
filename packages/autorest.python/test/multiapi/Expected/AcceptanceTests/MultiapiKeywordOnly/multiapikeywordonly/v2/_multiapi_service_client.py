@@ -14,39 +14,44 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from . import models as _models
 from .._serialization import Deserializer, Serializer
-from ._configuration import MultiapiCustomBaseUrlServiceClientConfiguration
-from .operations import MultiapiCustomBaseUrlServiceClientOperationsMixin
+from ._configuration import MultiapiServiceClientConfiguration
+from .operations import MultiapiServiceClientOperationsMixin, OperationGroupOneOperations, OperationGroupTwoOperations
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials import TokenCredential
 
 
-class MultiapiCustomBaseUrlServiceClient(
-    MultiapiCustomBaseUrlServiceClientOperationsMixin
-):  # pylint: disable=client-accepts-api-version-keyword
-    """Service client for multiapi custom base url testing.
+class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+    """Service client for multiapi client testing.
 
-    :param endpoint: Pass in https://localhost:3000. Required.
-    :type endpoint: str
+    :ivar operation_group_one: OperationGroupOneOperations operations
+    :vartype operation_group_one: multiapikeywordonly.v2.operations.OperationGroupOneOperations
+    :ivar operation_group_two: OperationGroupTwoOperations operations
+    :vartype operation_group_two: multiapikeywordonly.v2.operations.OperationGroupTwoOperations
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials.TokenCredential
-    :keyword api_version: Api Version. Default value is "1.0.0". Note that overriding this default
+    :param base_url: Service URL. Default value is "http://localhost:3000".
+    :type base_url: str
+    :keyword api_version: Api Version. Default value is "2.0.0". Note that overriding this default
      value may result in unsupported behavior.
     :paramtype api_version: str
     """
 
-    def __init__(self, endpoint: str, credential: "TokenCredential", **kwargs: Any) -> None:
-        _endpoint = "{Endpoint}/multiapiCustomBaseUrl/v1"
-        self._config = MultiapiCustomBaseUrlServiceClientConfiguration(
-            endpoint=endpoint, credential=credential, **kwargs
-        )
-        self._client: PipelineClient = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
+    def __init__(self, credential: "TokenCredential", base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
+        self._config = MultiapiServiceClientConfiguration(credential=credential, **kwargs)
+        self._client: PipelineClient = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in _models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
+        self.operation_group_one = OperationGroupOneOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.operation_group_two = OperationGroupTwoOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
@@ -67,17 +72,13 @@ class MultiapiCustomBaseUrlServiceClient(
         """
 
         request_copy = deepcopy(request)
-        path_format_arguments = {
-            "Endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-        }
-
-        request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
+        request_copy.url = self._client.format_url(request_copy.url)
         return self._client.send_request(request_copy, **kwargs)
 
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "MultiapiCustomBaseUrlServiceClient":
+    def __enter__(self) -> "MultiapiServiceClient":
         self._client.__enter__()
         return self
 

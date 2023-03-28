@@ -6,14 +6,18 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._multiapi_custom_base_url_service_client_operations import MultiapiCustomBaseUrlServiceClientOperationsMixin
+from ._multiapi_service_client_operations import MultiapiServiceClientOperationsMixin
+from ._operation_group_one_operations import OperationGroupOneOperations
+from ._operation_group_two_operations import OperationGroupTwoOperations
 
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "MultiapiCustomBaseUrlServiceClientOperationsMixin",
+    "MultiapiServiceClientOperationsMixin",
+    "OperationGroupOneOperations",
+    "OperationGroupTwoOperations",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()
