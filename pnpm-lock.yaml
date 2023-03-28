@@ -36,7 +36,7 @@ importers:
       '@autorest/python': workspace:^
       '@azure-tools/cadl-ranch-expect': ~0.2.1
       '@azure-tools/cadl-ranch-specs': ~0.9.2
-      '@azure-tools/typespec-azure-core': ~0.28.0
+      '@azure-tools/typespec-azure-core': ~0.28.1
       '@azure-tools/typespec-client-generator-core': ~0.28.0
       '@types/js-yaml': ~4.0.1
       '@types/mocha': ~9.1.0
@@ -61,8 +61,8 @@ importers:
       js-yaml: 4.1.0
     devDependencies:
       '@azure-tools/cadl-ranch-expect': 0.2.1_hzb2jbmq64tbaesm4d7gx5mjku
-      '@azure-tools/cadl-ranch-specs': 0.9.2_g47zje2g4fffuqrvxucdzfursa
-      '@azure-tools/typespec-azure-core': 0.28.0_hzb2jbmq64tbaesm4d7gx5mjku
+      '@azure-tools/cadl-ranch-specs': 0.9.2_nsd5tt3z75vftbf2qjrjvejfea
+      '@azure-tools/typespec-azure-core': 0.28.1_hzb2jbmq64tbaesm4d7gx5mjku
       '@types/js-yaml': 4.0.5
       '@types/mocha': 9.1.1
       '@types/node': 18.7.16
@@ -132,7 +132,7 @@ packages:
       '@typespec/rest': 0.42.0_@typespec+compiler@0.42.0
     dev: true
 
-  /@azure-tools/cadl-ranch-specs/0.9.2_g47zje2g4fffuqrvxucdzfursa:
+  /@azure-tools/cadl-ranch-specs/0.9.2_nsd5tt3z75vftbf2qjrjvejfea:
     resolution: {integrity: sha512-E7yl78Owyh4PvZZnPdxXHrBREU4mJnBa1swEEaiIkvjWKFWquFOF1sV2SfhOERy4+m3hNYDEXkMucQzaMALu1g==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
@@ -146,7 +146,7 @@ packages:
       '@azure-tools/cadl-ranch': 0.4.1
       '@azure-tools/cadl-ranch-api': 0.2.1
       '@azure-tools/cadl-ranch-expect': 0.2.1_hzb2jbmq64tbaesm4d7gx5mjku
-      '@azure-tools/typespec-azure-core': 0.28.0_hzb2jbmq64tbaesm4d7gx5mjku
+      '@azure-tools/typespec-azure-core': 0.28.1_hzb2jbmq64tbaesm4d7gx5mjku
       '@typespec/compiler': 0.42.0
       '@typespec/http': 0.42.0_@typespec+compiler@0.42.0
       '@typespec/rest': 0.42.0_@typespec+compiler@0.42.0
@@ -191,8 +191,8 @@ packages:
       - supports-color
     dev: true
 
-  /@azure-tools/typespec-azure-core/0.28.0_hzb2jbmq64tbaesm4d7gx5mjku:
-    resolution: {integrity: sha512-5qs2ItWRfndL4ScAGhIceff03uejpNlSbQwOYo3QjYzzJ9+xGXqtY8NIBOR/JbKe1/3SdCkoeoRjf4KQ7/OvZw==}
+  /@azure-tools/typespec-azure-core/0.28.1_hzb2jbmq64tbaesm4d7gx5mjku:
+    resolution: {integrity: sha512-kjfI9AXizQOVlqriEEvyoArjgTk2RaX4BKEU/Dh5MrGN2ztXMwoUFS0Ym8xuVTsSzu1Elz9s6Ll5PeZDz88wpw==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       '@typespec/compiler': ~0.42.0
