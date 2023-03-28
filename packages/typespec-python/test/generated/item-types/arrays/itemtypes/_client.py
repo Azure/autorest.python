@@ -22,6 +22,7 @@ from .operations import (
     Int32ValueOperations,
     Int64ValueOperations,
     ModelValueOperations,
+    NullableFloatValueOperations,
     StringValueOperations,
     UnknownValueOperations,
 )
@@ -48,6 +49,8 @@ class ItemTypesClient:  # pylint: disable=client-accepts-api-version-keyword,too
     :vartype unknown_value: arrays.itemtypes.operations.UnknownValueOperations
     :ivar model_value: ModelValueOperations operations
     :vartype model_value: arrays.itemtypes.operations.ModelValueOperations
+    :ivar nullable_float_value: NullableFloatValueOperations operations
+    :vartype nullable_float_value: arrays.itemtypes.operations.NullableFloatValueOperations
     """
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
@@ -67,6 +70,9 @@ class ItemTypesClient:  # pylint: disable=client-accepts-api-version-keyword,too
         self.duration_value = DurationValueOperations(self._client, self._config, self._serialize, self._deserialize)
         self.unknown_value = UnknownValueOperations(self._client, self._config, self._serialize, self._deserialize)
         self.model_value = ModelValueOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.nullable_float_value = NullableFloatValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

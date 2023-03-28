@@ -27,7 +27,7 @@ class BytesProperty(_model_base.Model):
     """
 
     property: Optional[bytes] = rest_field()
-    """Property. """
+    """Property."""
 
     @overload
     def __init__(
@@ -56,7 +56,7 @@ class CollectionsByteProperty(_model_base.Model):
     """
 
     property: Optional[List[bytes]] = rest_field()
-    """Property. """
+    """Property."""
 
     @overload
     def __init__(
@@ -85,7 +85,7 @@ class CollectionsModelProperty(_model_base.Model):
     """
 
     property: Optional[List["_models.StringProperty"]] = rest_field()
-    """Property. """
+    """Property."""
 
     @overload
     def __init__(
@@ -114,7 +114,7 @@ class DatetimeProperty(_model_base.Model):
     """
 
     property: Optional[datetime.datetime] = rest_field()
-    """Property. """
+    """Property."""
 
     @overload
     def __init__(
@@ -143,7 +143,7 @@ class DurationProperty(_model_base.Model):
     """
 
     property: Optional[datetime.timedelta] = rest_field()
-    """Property. """
+    """Property."""
 
     @overload
     def __init__(
@@ -176,9 +176,9 @@ class RequiredAndOptionalProperty(_model_base.Model):
     """
 
     optional_property: Optional[str] = rest_field(name="optionalProperty")
-    """optional string property. """
+    """optional string property."""
     required_property: int = rest_field(name="requiredProperty")
-    """required int property. Required. """
+    """required int property. Required."""
 
     @overload
     def __init__(
@@ -209,7 +209,7 @@ class StringProperty(_model_base.Model):
     """
 
     property: Optional[str] = rest_field()
-    """Property. """
+    """Property."""
 
     @overload
     def __init__(

@@ -33,7 +33,7 @@ class Pet(_model_base.Model):
     """
 
     name: str = rest_field()
-    """Required. """
+    """Required."""
 
     @overload
     def __init__(
@@ -66,7 +66,7 @@ class Cat(Pet):
     """
 
     age: int = rest_field()
-    """Required. """
+    """Required."""
 
     @overload
     def __init__(
@@ -104,7 +104,7 @@ class Fish(_model_base.Model):
 
     __mapping__: Dict[str, _model_base.Model] = {}
     age: int = rest_field()
-    """Required. """
+    """Required."""
     kind: Literal[None] = rest_discriminator(name="kind")
     """Required. Default value is None."""
 
@@ -305,7 +305,7 @@ class Siamese(Cat):
     """
 
     smart: bool = rest_field()
-    """Required. """
+    """Required."""
 
     @overload
     def __init__(

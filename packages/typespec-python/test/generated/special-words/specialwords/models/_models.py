@@ -56,9 +56,9 @@ class DerivedModel(BaseModel, discriminator="derived"):
     model_kind: Literal["derived"] = rest_discriminator(name="model.kind")  # type: ignore
     """Required. Default value is \"derived\"."""
     derived_name: str = rest_field(name="derived.name")
-    """Required. """
+    """Required."""
     for_property: str = rest_field(name="for")
-    """Required. """
+    """Required."""
 
     @overload
     def __init__(

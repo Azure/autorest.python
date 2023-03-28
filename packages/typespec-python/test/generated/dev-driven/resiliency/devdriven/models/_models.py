@@ -27,7 +27,7 @@ class Input(_model_base.Model):
     """
 
     hello: str = rest_field()
-    """property on the input. Required. """
+    """property on the input. Required."""
 
     @overload
     def __init__(
@@ -62,7 +62,7 @@ class Product(_model_base.Model):
     """
 
     key: str = rest_field(readonly=True)
-    """key of product. Required. """
+    """key of product. Required."""
     received: Union[str, "_models.Mode"] = rest_field()
     """received mode. Required. Known values are: \"raw\" and \"model\"."""
 
@@ -101,7 +101,7 @@ class LroProduct(Product):
     """
 
     provisioning_state: str = rest_field(name="provisioningState")
-    """Provisioning state returned by the service. Required. """
+    """Provisioning state returned by the service. Required."""
 
     @overload
     def __init__(

@@ -43,7 +43,7 @@ def regenerate(c, name=None, debug=False):
     specs = [
         s
         for s in CADL_RANCH_DIR.glob("**/*")
-        if s.is_dir() and any(f for f in s.iterdir() if f.name == "main.cadl")
+        if s.is_dir() and any(f for f in s.iterdir() if f.name == "main.tsp")
     ]
     if name:
         specs = [s for s in specs if name.lower() in s.stem.lower()]

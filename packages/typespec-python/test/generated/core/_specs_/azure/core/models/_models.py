@@ -35,13 +35,13 @@ class User(_model_base.Model):
     """
 
     id: int = rest_field(readonly=True)
-    """The user's id. Required. """
+    """The user's id. Required."""
     name: str = rest_field()
-    """The user's name. Required. """
+    """The user's name. Required."""
     orders: Optional[List["_models.UserOrder"]] = rest_field()
-    """The user's order list. """
+    """The user's order list."""
     etag: str = rest_field(readonly=True)
-    """The entity tag for this resource. Required. """
+    """The entity tag for this resource. Required."""
 
     @overload
     def __init__(
@@ -79,11 +79,11 @@ class UserOrder(_model_base.Model):
     """
 
     id: int = rest_field(readonly=True)
-    """The user's id. Required. """
+    """The user's id. Required."""
     user_id: int = rest_field(name="userId")
-    """The user's id. Required. """
+    """The user's id. Required."""
     detail: str = rest_field()
-    """The user's order detail. Required. """
+    """The user's order detail. Required."""
 
     @overload
     def __init__(

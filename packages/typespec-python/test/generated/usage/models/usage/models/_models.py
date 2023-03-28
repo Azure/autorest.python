@@ -23,7 +23,7 @@ class InputOutputRecord(_model_base.Model):
     """
 
     required_prop: str = rest_field(name="requiredProp")
-    """Required. """
+    """Required."""
 
     @overload
     def __init__(
@@ -54,7 +54,7 @@ class InputRecord(_model_base.Model):
     """
 
     required_prop: str = rest_field(name="requiredProp")
-    """Required. """
+    """Required."""
 
     @overload
     def __init__(
@@ -85,7 +85,7 @@ class OutputRecord(_model_base.Model):
     """
 
     required_prop: str = rest_field(name="requiredProp")
-    """Required. """
+    """Required."""
 
     @overload
     def __init__(

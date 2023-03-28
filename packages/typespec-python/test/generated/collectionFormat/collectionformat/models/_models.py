@@ -23,7 +23,7 @@ class MessageResponse(_model_base.Model):
     """
 
     message: str = rest_field()
-    """Required. """
+    """Required."""
 
     @overload
     def __init__(

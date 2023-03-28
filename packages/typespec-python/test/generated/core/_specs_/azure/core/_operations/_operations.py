@@ -371,9 +371,9 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
     def create_or_replace(
         self, id: int, resource: _models.User, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.User:
-        """Adds a user or repalces a user's fields.
+        """Adds a user or replaces a user's fields.
 
-        Creates or repalces a User.
+        Creates or replaces a User.
 
         :param id: The user's id. Required.
         :type id: int
@@ -393,9 +393,9 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
     def create_or_replace(
         self, id: int, resource: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.User:
-        """Adds a user or repalces a user's fields.
+        """Adds a user or replaces a user's fields.
 
-        Creates or repalces a User.
+        Creates or replaces a User.
 
         :param id: The user's id. Required.
         :type id: int
@@ -415,9 +415,9 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
     def create_or_replace(
         self, id: int, resource: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.User:
-        """Adds a user or repalces a user's fields.
+        """Adds a user or replaces a user's fields.
 
-        Creates or repalces a User.
+        Creates or replaces a User.
 
         :param id: The user's id. Required.
         :type id: int
@@ -435,9 +435,9 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
 
     @distributed_trace
     def create_or_replace(self, id: int, resource: Union[_models.User, JSON, IO], **kwargs: Any) -> _models.User:
-        """Adds a user or repalces a user's fields.
+        """Adds a user or replaces a user's fields.
 
-        Creates or repalces a User.
+        Creates or replaces a User.
 
         :param id: The user's id. Required.
         :type id: int

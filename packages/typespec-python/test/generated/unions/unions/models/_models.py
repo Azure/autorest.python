@@ -27,7 +27,7 @@ class BaseModel(_model_base.Model):
     """
 
     name: str = rest_field()
-    """Required. """
+    """Required."""
 
     @overload
     def __init__(
@@ -60,7 +60,7 @@ class Model1(BaseModel):
     """
 
     prop1: int = rest_field()
-    """Required. """
+    """Required."""
 
     @overload
     def __init__(
@@ -94,7 +94,7 @@ class Model2(BaseModel):
     """
 
     prop2: int = rest_field()
-    """Required. """
+    """Required."""
 
     @overload
     def __init__(
