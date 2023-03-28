@@ -251,7 +251,7 @@ class DpgModelSerializer(_ModelSerializer):
         return properties_to_declare
 
     @staticmethod
-    def declare_property(prop: Property) -> List[str]:
+    def declare_property(prop: Property) -> str:
         args = []
         if prop.client_name != prop.rest_api_name or prop.is_discriminator:
             args.append(f'name="{prop.rest_api_name}"')
@@ -266,14 +266,10 @@ class DpgModelSerializer(_ModelSerializer):
             and prop.is_discriminator
             and cast(ConstantType, prop.type).value
         )
-        ret = [
+        return (
             f"{prop.client_name}: {prop.type_annotation()} ="
             f' {field}({", ".join(args)}){"  # type: ignore" if type_ignore else ""}'
-        ]
-        comment = prop.description(is_operation_file=False).replace('"', '\\"')
-        if comment:
-            ret.append(f'"""{comment}"""')
-        return ret
+        )
 
     def initialize_properties(self, model: ModelType) -> List[str]:
         init_args = []

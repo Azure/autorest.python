@@ -28,7 +28,7 @@ class BooleanProperty(_model_base.Model):
     """
 
     property: bool = rest_field()
-    """Property. Required. """
+    """Property. Required."""
 
     @overload
     def __init__(
@@ -59,7 +59,7 @@ class BytesProperty(_model_base.Model):
     """
 
     property: bytes = rest_field()
-    """Property. Required. """
+    """Property. Required."""
 
     @overload
     def __init__(
@@ -90,7 +90,7 @@ class CollectionsIntProperty(_model_base.Model):
     """
 
     property: List[int] = rest_field()
-    """Property. Required. """
+    """Property. Required."""
 
     @overload
     def __init__(
@@ -121,7 +121,7 @@ class CollectionsModelProperty(_model_base.Model):
     """
 
     property: List["_models.InnerModel"] = rest_field()
-    """Property. Required. """
+    """Property. Required."""
 
     @overload
     def __init__(
@@ -152,7 +152,7 @@ class CollectionsStringProperty(_model_base.Model):
     """
 
     property: List[str] = rest_field()
-    """Property. Required. """
+    """Property. Required."""
 
     @overload
     def __init__(
@@ -183,7 +183,7 @@ class DatetimeProperty(_model_base.Model):
     """
 
     property: datetime.datetime = rest_field()
-    """Property. Required. """
+    """Property. Required."""
 
     @overload
     def __init__(
@@ -214,7 +214,7 @@ class DictionaryStringProperty(_model_base.Model):
     """
 
     property: Dict[str, str] = rest_field()
-    """Property. Required. """
+    """Property. Required."""
 
     @overload
     def __init__(
@@ -245,7 +245,7 @@ class DurationProperty(_model_base.Model):
     """
 
     property: datetime.timedelta = rest_field()
-    """Property. Required. """
+    """Property. Required."""
 
     @overload
     def __init__(
@@ -338,7 +338,7 @@ class FloatProperty(_model_base.Model):
     """
 
     property: float = rest_field()
-    """Property. Required. """
+    """Property. Required."""
 
     @overload
     def __init__(
@@ -369,7 +369,7 @@ class InnerModel(_model_base.Model):
     """
 
     property: str = rest_field()
-    """Required string property. Required. """
+    """Required string property. Required."""
 
     @overload
     def __init__(
@@ -400,7 +400,7 @@ class IntProperty(_model_base.Model):
     """
 
     property: int = rest_field()
-    """Property. Required. """
+    """Property. Required."""
 
     @overload
     def __init__(
@@ -431,7 +431,7 @@ class ModelProperty(_model_base.Model):
     """
 
     property: "_models.InnerModel" = rest_field()
-    """Property. Required. """
+    """Property. Required."""
 
     @overload
     def __init__(
@@ -466,7 +466,7 @@ class StringProperty(_model_base.Model):
     """
 
     property: str = rest_field()
-    """Property. Required. """
+    """Property. Required."""
 
     @overload
     def __init__(

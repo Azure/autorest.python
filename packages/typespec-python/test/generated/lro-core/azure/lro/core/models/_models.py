@@ -27,9 +27,9 @@ class User(_model_base.Model):
     """
 
     name: str = rest_field(readonly=True)
-    """The name of user. Required. """
+    """The name of user. Required."""
     role: str = rest_field()
-    """The role of user. Required. """
+    """The role of user. Required."""
 
     @overload
     def __init__(

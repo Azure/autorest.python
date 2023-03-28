@@ -37,15 +37,15 @@ class Error(_model_base.Model):
     """
 
     code: str = rest_field()
-    """One of a server-defined set of error codes. Required. """
+    """One of a server-defined set of error codes. Required."""
     message: str = rest_field()
-    """A human-readable representation of the error. Required. """
+    """A human-readable representation of the error. Required."""
     target: Optional[str] = rest_field()
-    """The target of the error. """
+    """The target of the error."""
     details: List["_models.Error"] = rest_field()
-    """An array of details about specific errors that led to this reported error. Required. """
+    """An array of details about specific errors that led to this reported error. Required."""
     innererror: Optional["_models.InnerError"] = rest_field()
-    """An object containing more specific information than the current object about the error. """
+    """An object containing more specific information than the current object about the error."""
 
     @overload
     def __init__(
@@ -80,7 +80,7 @@ class ErrorResponse(_model_base.Model):
     """
 
     error: "_models.Error" = rest_field()
-    """The error object. Required. """
+    """The error object. Required."""
 
     @overload
     def __init__(
@@ -115,9 +115,9 @@ class InnerError(_model_base.Model):
     """
 
     code: str = rest_field()
-    """One of a server-defined set of error codes. Required. """
+    """One of a server-defined set of error codes. Required."""
     innererror: Optional["_models.InnerError"] = rest_field()
-    """Inner error. """
+    """Inner error."""
 
     @overload
     def __init__(
@@ -149,7 +149,7 @@ class JobData(_model_base.Model):
     """
 
     comment: str = rest_field()
-    """Comment. Required. """
+    """Comment. Required."""
 
     @overload
     def __init__(
@@ -185,9 +185,10 @@ class JobPollResult(_model_base.Model):
     """
 
     operation_id: str = rest_field(name="operationId", readonly=True)
-    """Operation identifier. Required. """
+    """Operation identifier. Required."""
     status: Union[str, "_models.OperationState"] = rest_field(readonly=True)
-    """The status of the processing job. Required. Known values are: \"InProgress\", \"Succeeded\", \"Failed\", and \"Canceled\"."""
+    """The status of the processing job. Required. Known values are: \"InProgress\", \"Succeeded\",
+     \"Failed\", and \"Canceled\"."""
 
 
 class JobResult(_model_base.Model):
@@ -211,12 +212,13 @@ class JobResult(_model_base.Model):
     """
 
     job_id: str = rest_field(name="jobId", readonly=True)
-    """A processing job identifier. Required. """
+    """A processing job identifier. Required."""
     comment: str = rest_field(readonly=True)
-    """Comment. Required. """
+    """Comment. Required."""
     status: Union[str, "_models.OperationState"] = rest_field(readonly=True)
-    """The status of the processing job. Required. Known values are: \"InProgress\", \"Succeeded\", \"Failed\", and \"Canceled\"."""
+    """The status of the processing job. Required. Known values are: \"InProgress\", \"Succeeded\",
+     \"Failed\", and \"Canceled\"."""
     errors: Optional[List["_models.ErrorResponse"]] = rest_field(readonly=True)
-    """Error objects that describes the error when status is \"Failed\". """
+    """Error objects that describes the error when status is \"Failed\"."""
     results: List[str] = rest_field(readonly=True)
-    """The results. Required. """
+    """The results. Required."""

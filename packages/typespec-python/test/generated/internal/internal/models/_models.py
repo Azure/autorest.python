@@ -23,7 +23,7 @@ class InternalModel(_model_base.Model):
     """
 
     name: str = rest_field()
-    """Required. """
+    """Required."""
 
     @overload
     def __init__(
@@ -56,9 +56,9 @@ class ModelOnlyUsedByInternalOperation(_model_base.Model):
     """
 
     id: str = rest_field()
-    """Required. """
+    """Required."""
     name: str = rest_field()
-    """Required. """
+    """Required."""
 
     @overload
     def __init__(

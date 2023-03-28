@@ -23,7 +23,7 @@ class Message(_model_base.Model):
     """
 
     message: str = rest_field()
-    """Required. """
+    """Required."""
 
     @overload
     def __init__(
@@ -54,7 +54,7 @@ class PostInput(_model_base.Model):
     """
 
     url: str = rest_field()
-    """Required. """
+    """Required."""
 
     @overload
     def __init__(

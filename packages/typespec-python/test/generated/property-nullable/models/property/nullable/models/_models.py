@@ -31,9 +31,9 @@ class BytesProperty(_model_base.Model):
     """
 
     required_property: str = rest_field(name="requiredProperty")
-    """Required property. Required. """
+    """Required property. Required."""
     nullable_property: bytes = rest_field(name="nullableProperty")
-    """Property. Required. """
+    """Property. Required."""
 
     @overload
     def __init__(
@@ -67,9 +67,9 @@ class CollectionsByteProperty(_model_base.Model):
     """
 
     required_property: str = rest_field(name="requiredProperty")
-    """Required property. Required. """
+    """Required property. Required."""
     nullable_property: List[bytes] = rest_field(name="nullableProperty")
-    """Property. Required. """
+    """Property. Required."""
 
     @overload
     def __init__(
@@ -103,9 +103,9 @@ class CollectionsModelProperty(_model_base.Model):
     """
 
     required_property: str = rest_field(name="requiredProperty")
-    """Required property. Required. """
+    """Required property. Required."""
     nullable_property: List["_models.StringProperty"] = rest_field(name="nullableProperty")
-    """Property. Required. """
+    """Property. Required."""
 
     @overload
     def __init__(
@@ -139,9 +139,9 @@ class DatetimeProperty(_model_base.Model):
     """
 
     required_property: str = rest_field(name="requiredProperty")
-    """Required property. Required. """
+    """Required property. Required."""
     nullable_property: datetime.datetime = rest_field(name="nullableProperty")
-    """Property. Required. """
+    """Property. Required."""
 
     @overload
     def __init__(
@@ -175,9 +175,9 @@ class DurationProperty(_model_base.Model):
     """
 
     required_property: str = rest_field(name="requiredProperty")
-    """Required property. Required. """
+    """Required property. Required."""
     nullable_property: datetime.timedelta = rest_field(name="nullableProperty")
-    """Property. Required. """
+    """Property. Required."""
 
     @overload
     def __init__(
@@ -212,9 +212,9 @@ class StringProperty(_model_base.Model):
     """
 
     required_property: str = rest_field(name="requiredProperty")
-    """Required property. Required. """
+    """Required property. Required."""
     nullable_property: str = rest_field(name="nullableProperty")
-    """Property. Required. """
+    """Property. Required."""
 
     @overload
     def __init__(
