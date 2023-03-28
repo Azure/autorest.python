@@ -23,6 +23,7 @@ from azure.core.polling.async_base_polling import AsyncLROBasePolling
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
+from ... import models as _models
 from ..._model_base import _deserialize
 from ..._operations._operations import build_lro_create_request, build_lro_get_request, build_lro_polling_request
 from .._vendor import LroClientMixinABC
@@ -32,7 +33,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class LroClientOperationsMixin(LroClientMixinABC):
-    async def _create_initial(self, **kwargs: Any) -> str:
+    async def _create_initial(self, **kwargs: Any) -> _models.User:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -44,7 +45,7 @@ class LroClientOperationsMixin(LroClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[str] = kwargs.pop("cls", None)
+        cls: ClsType[_models.User] = kwargs.pop("cls", None)
 
         request = build_lro_create_request(
             headers=_headers,
@@ -63,7 +64,7 @@ class LroClientOperationsMixin(LroClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(str, response.json())
+        deserialized = _deserialize(_models.User, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -71,7 +72,7 @@ class LroClientOperationsMixin(LroClientMixinABC):
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def begin_create(self, **kwargs: Any) -> AsyncLROPoller[str]:
+    async def begin_create(self, **kwargs: Any) -> AsyncLROPoller[_models.User]:
         """Test for basic lro of put.
 
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
@@ -81,14 +82,15 @@ class LroClientOperationsMixin(LroClientMixinABC):
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns str
-        :rtype: ~azure.core.polling.AsyncLROPoller[str]
+        :return: An instance of AsyncLROPoller that returns User. The User is compatible with
+         MutableMapping
+        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.lro.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[str] = kwargs.pop("cls", None)
+        cls: ClsType[_models.User] = kwargs.pop("cls", None)
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
@@ -98,7 +100,7 @@ class LroClientOperationsMixin(LroClientMixinABC):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = _deserialize(str, response.json())
+            deserialized = _deserialize(_models.User, response.json())
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -119,13 +121,13 @@ class LroClientOperationsMixin(LroClientMixinABC):
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     @distributed_trace_async
-    async def polling(self, **kwargs: Any) -> str:
+    async def polling(self, **kwargs: Any) -> _models.User:
         """The polling url.
 
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: str
-        :rtype: str
+        :return: User. The User is compatible with MutableMapping
+        :rtype: ~azure.lro.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -139,7 +141,7 @@ class LroClientOperationsMixin(LroClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[str] = kwargs.pop("cls", None)
+        cls: ClsType[_models.User] = kwargs.pop("cls", None)
 
         request = build_lro_polling_request(
             headers=_headers,
@@ -161,7 +163,7 @@ class LroClientOperationsMixin(LroClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(str, response.json())
+            deserialized = _deserialize(_models.User, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -169,13 +171,13 @@ class LroClientOperationsMixin(LroClientMixinABC):
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get(self, **kwargs: Any) -> str:
+    async def get(self, **kwargs: Any) -> _models.User:
         """The final url.
 
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: str
-        :rtype: str
+        :return: User. The User is compatible with MutableMapping
+        :rtype: ~azure.lro.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -189,7 +191,7 @@ class LroClientOperationsMixin(LroClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[str] = kwargs.pop("cls", None)
+        cls: ClsType[_models.User] = kwargs.pop("cls", None)
 
         request = build_lro_get_request(
             headers=_headers,
@@ -211,7 +213,7 @@ class LroClientOperationsMixin(LroClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(str, response.json())
+            deserialized = _deserialize(_models.User, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
