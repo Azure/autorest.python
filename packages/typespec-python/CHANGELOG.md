@@ -1,5 +1,11 @@
 # Release
 
+## 2023-03-28 - 0.7.4
+
+**Other Changes**
+
+- Bump `@azure-tools/typespec-azure-core` to `0.28.1` to generate LROs through polling location #1818
+
 ## 2023-03-27 - 0.7.3
 
 **Other Changes**
