@@ -2,6 +2,12 @@
 
 ## 2023-03-28 - 0.7.4
 
+**New Features**
+
+- Support typespec @internal for models and operations  #1798
+
+## 2023-03-28 - 0.7.4
+
 **Other Changes**
 
 - Bump `@azure-tools/typespec-azure-core` to `0.28.1` to generate LROs through polling location #1818
