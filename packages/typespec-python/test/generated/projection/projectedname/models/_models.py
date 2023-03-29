@@ -25,11 +25,11 @@ class Project(_model_base.Model):
     """
 
     produced_by: Optional[str] = rest_field(name="codegen")
-    """Only valid value is 'DPG'. """
+    """Only valid value is 'DPG'."""
     created_by: Optional[str] = rest_field(name="builtfrom")
-    """Only valid value is 'DPG'. """
+    """Only valid value is 'DPG'."""
     made_for_python: Optional[str] = rest_field(name="wasMadeFor")
-    """Only valid value is 'customers'. """
+    """Only valid value is 'customers'."""
 
     @overload
     def __init__(

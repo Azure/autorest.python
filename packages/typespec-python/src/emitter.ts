@@ -1,4 +1,4 @@
-import { getPagedResult } from "@azure-tools/typespec-azure-core";
+import { getPagedResult, getLroMetadata } from "@azure-tools/typespec-azure-core";
 import {
     EnumMember,
     Enum,
@@ -158,15 +158,6 @@ function isSimpleType(context: DpgContext, type: EmitterType | undefined): boole
 
 function getDocStr(context: DpgContext, target: Type): string {
     return getDoc(context.program, target) ?? "";
-}
-
-function isLro(operation: Operation): boolean {
-    for (const decorator of operation.decorators) {
-        if (decorator.decorator.name === "$pollingOperation") {
-            return true;
-        }
-    }
-    return false;
 }
 
 function handleDiscriminator(context: DpgContext, type: Model, model: Record<string, any>) {
@@ -561,7 +552,7 @@ function emitResponse(
 }
 
 function emitOperation(context: DpgContext, operation: Operation, operationGroupName: string): Record<string, any>[] {
-    const lro = isLro(operation);
+    const lro = getLroMetadata(context.program, operation);
     const paging = getPagedResult(context.program, operation);
     if (lro && paging) {
         return emitLroPagingOperation(context, operation, operationGroupName);
@@ -596,7 +587,11 @@ function getLroInitialOperation(
     operation: Operation,
     operationGroupName: string,
 ): Record<string, any> {
-    const initialOperation = emitBasicOperation(context, operation, operationGroupName)[0];
+    const initialOperation = emitBasicOperation(
+        context,
+        getLroMetadata(context.program, operation)!.operation,
+        operationGroupName,
+    )[0];
     initialOperation["name"] = `_${initialOperation["name"]}_initial`;
     initialOperation["isLroInitialOperation"] = true;
     initialOperation["wantTracing"] = false;

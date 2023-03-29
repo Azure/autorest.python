@@ -13,4 +13,4 @@ def client():
 
 def test_lro_basic_put(client):
     result = client.begin_create(polling_interval=0).result()
-    assert result == "Test for polling succeed"
+    assert result.name == "bob"

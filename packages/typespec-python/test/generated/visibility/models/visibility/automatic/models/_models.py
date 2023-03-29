@@ -33,15 +33,15 @@ class VisibilityModel(_model_base.Model):
     """
 
     read_prop: str = rest_field(name="readProp", readonly=True)
-    """Required string, illustrating a readonly property. Required. """
+    """Required string, illustrating a readonly property. Required."""
     query_prop: int = rest_field(name="queryProp")
-    """Required int32, illustrating a query property. Required. """
+    """Required int32, illustrating a query property. Required."""
     create_prop: List[str] = rest_field(name="createProp")
-    """Required string[], illustrating a create property. Required. """
+    """Required string[], illustrating a create property. Required."""
     update_prop: List[int] = rest_field(name="updateProp")
-    """Required int32[], illustrating a update property. Required. """
+    """Required int32[], illustrating a update property. Required."""
     delete_prop: bool = rest_field(name="deleteProp")
-    """Required bool, illustrating a delete property. Required. """
+    """Required bool, illustrating a delete property. Required."""
 
     @overload
     def __init__(

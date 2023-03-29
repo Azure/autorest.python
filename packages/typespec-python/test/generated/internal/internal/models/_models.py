@@ -23,7 +23,25 @@ class InternalModel(_model_base.Model):
     """
 
     name: str = rest_field()
-    """Required. """
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
 class ModelOnlyUsedByInternalOperation(_model_base.Model):
@@ -38,9 +56,9 @@ class ModelOnlyUsedByInternalOperation(_model_base.Model):
     """
 
     id: str = rest_field()
-    """Required. """
+    """Required."""
     name: str = rest_field()
-    """Required. """
+    """Required."""
 
     @overload
     def __init__(

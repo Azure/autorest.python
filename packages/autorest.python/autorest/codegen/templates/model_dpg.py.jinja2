@@ -31,9 +31,11 @@
     __mapping__: Dict[str, _model_base.Model] = {}
     {% endif %}
     {% for p in serializer.get_properties_to_declare(model)%}
-        {% for line in serializer.declare_property(p) %}
-    {{ line }}
-        {% endfor %}
+    {{ serializer.declare_property(p) }}
+        {% set prop_description = p.description(is_operation_file=False).replace('"', '\\"') %}
+        {% if prop_description %}
+    """{{ prop_description | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n     ') }}"""
+        {% endif %}
     {% endfor %}
 
     {% if not model.internal and serializer.init_line(model) %}

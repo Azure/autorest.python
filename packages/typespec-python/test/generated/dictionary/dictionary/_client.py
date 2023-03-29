@@ -22,6 +22,7 @@ from .operations import (
     Int32ValueOperations,
     Int64ValueOperations,
     ModelValueOperations,
+    NullableFloatValueOperations,
     RecursiveModelValueOperations,
     StringValueOperations,
     UnknownValueOperations,
@@ -51,6 +52,8 @@ class DictionaryClient:  # pylint: disable=client-accepts-api-version-keyword,to
     :vartype model_value: dictionary.operations.ModelValueOperations
     :ivar recursive_model_value: RecursiveModelValueOperations operations
     :vartype recursive_model_value: dictionary.operations.RecursiveModelValueOperations
+    :ivar nullable_float_value: NullableFloatValueOperations operations
+    :vartype nullable_float_value: dictionary.operations.NullableFloatValueOperations
     """
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
@@ -71,6 +74,9 @@ class DictionaryClient:  # pylint: disable=client-accepts-api-version-keyword,to
         self.unknown_value = UnknownValueOperations(self._client, self._config, self._serialize, self._deserialize)
         self.model_value = ModelValueOperations(self._client, self._config, self._serialize, self._deserialize)
         self.recursive_model_value = RecursiveModelValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.nullable_float_value = NullableFloatValueOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 
