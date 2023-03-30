@@ -17,69 +17,23 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpResponse
-from azure.core.polling import LROPoller, NoPolling, PollingMethod
-from azure.core.polling.base_polling import LROBasePolling
+from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMethod
+from azure.core.polling.async_base_polling import AsyncLROBasePolling
 from azure.core.rest import HttpRequest
-from azure.core.tracing.decorator import distributed_trace
-from azure.core.utils import case_insensitive_dict
+from azure.core.tracing.decorator_async import distributed_trace_async
 
-from .. import models as _models
-from .._model_base import _deserialize
-from .._serialization import Serializer
+from ... import models as _models
+from ..._model_base import _deserialize
+from ..._operations._operations import build_lro_create_request, build_lro_get_request, build_lro_polling_request
 from .._vendor import LroClientMixinABC
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
-
-_SERIALIZER = Serializer()
-_SERIALIZER.client_side_validation = False
-
-
-def build_lro_create_request(**kwargs: Any) -> HttpRequest:
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    accept = _headers.pop("Accept", "application/json")
-
-    # Construct URL
-    _url = "/lro/basic/put"
-
-    # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
-
-
-def build_lro_polling_request(**kwargs: Any) -> HttpRequest:
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    accept = _headers.pop("Accept", "application/json")
-
-    # Construct URL
-    _url = "/lro/basic/put/polling"
-
-    # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
-
-
-def build_lro_get_request(**kwargs: Any) -> HttpRequest:
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    accept = _headers.pop("Accept", "application/json")
-
-    # Construct URL
-    _url = "/lro/basic/put"
-
-    # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
 class LroClientOperationsMixin(LroClientMixinABC):
-    def _create_initial(self, **kwargs: Any) -> _models.User:
+    async def _create_initial(self, **kwargs: Any) -> _models.User:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -100,7 +54,7 @@ class LroClientOperationsMixin(LroClientMixinABC):
         request.url = self._client.format_url(request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -117,30 +71,31 @@ class LroClientOperationsMixin(LroClientMixinABC):
 
         return deserialized  # type: ignore
 
-    @distributed_trace
-    def begin_create(self, **kwargs: Any) -> LROPoller[_models.User]:
+    @distributed_trace_async
+    async def begin_create(self, **kwargs: Any) -> AsyncLROPoller[_models.User]:
         """Test for basic lro of put.
 
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be LROBasePolling. Pass in False for
-         this operation to not poll, or pass in your own initialized polling object for a personal
+        :keyword polling: By default, your polling method will be AsyncLROBasePolling. Pass in False
+         for this operation to not poll, or pass in your own initialized polling object for a personal
          polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of LROPoller that returns User. The User is compatible with MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.lro.models.User]
+        :return: An instance of AsyncLROPoller that returns User. The User is compatible with
+         MutableMapping
+        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.lro.basic.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
         cls: ClsType[_models.User] = kwargs.pop("cls", None)
-        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = self._create_initial(cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs)
+            raw_result = await self._create_initial(cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs)
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -151,28 +106,28 @@ class LroClientOperationsMixin(LroClientMixinABC):
             return deserialized
 
         if polling is True:
-            polling_method: PollingMethod = cast(PollingMethod, LROBasePolling(lro_delay, **kwargs))
+            polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncLROBasePolling(lro_delay, **kwargs))
         elif polling is False:
-            polling_method = cast(PollingMethod, NoPolling())
+            polling_method = cast(AsyncPollingMethod, AsyncNoPolling())
         else:
             polling_method = polling
         if cont_token:
-            return LROPoller.from_continuation_token(
+            return AsyncLROPoller.from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    @distributed_trace
-    def polling(self, **kwargs: Any) -> _models.User:
+    @distributed_trace_async
+    async def polling(self, **kwargs: Any) -> _models.User:
         """The polling url.
 
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: User. The User is compatible with MutableMapping
-        :rtype: ~azure.lro.models.User
+        :rtype: ~azure.lro.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -195,7 +150,7 @@ class LroClientOperationsMixin(LroClientMixinABC):
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -215,14 +170,14 @@ class LroClientOperationsMixin(LroClientMixinABC):
 
         return deserialized  # type: ignore
 
-    @distributed_trace
-    def get(self, **kwargs: Any) -> _models.User:
+    @distributed_trace_async
+    async def get(self, **kwargs: Any) -> _models.User:
         """The final url.
 
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: User. The User is compatible with MutableMapping
-        :rtype: ~azure.lro.models.User
+        :rtype: ~azure.lro.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -245,7 +200,7 @@ class LroClientOperationsMixin(LroClientMixinABC):
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 

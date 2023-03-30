@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from azure.lro import LroClient
+from azure.lro.basic import LroClient
 
 @pytest.fixture
 def client():
