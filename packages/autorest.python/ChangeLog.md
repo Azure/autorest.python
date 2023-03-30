@@ -1,6 +1,6 @@
 # Release
 
-### 2023-xx-xx - 6.4.7
+### 2023-03-30 - 6.4.7
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -12,7 +12,11 @@
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
 | `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
 
-**New Features**
+**Bug Fixes**
+
+- Add padded enums for legacy generated code #1820
+
+**Other Changes**
 
 - Add support for generating internal models and operations  #1798
 
