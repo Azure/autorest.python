@@ -215,7 +215,7 @@ class DpgModelSerializer(_ModelSerializer):
                 file_import.merge(prop.imports())
             if model.is_polymorphic:
                 file_import.add_submodule_import("typing", "Dict", ImportType.STDLIB)
-            if model.is_public and self.init_line(model):
+            if not model.internal and self.init_line(model):
                 file_import.add_submodule_import(
                     "typing", "overload", ImportType.STDLIB
                 )
