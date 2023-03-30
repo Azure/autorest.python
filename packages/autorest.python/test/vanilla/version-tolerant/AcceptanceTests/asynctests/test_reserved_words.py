@@ -57,3 +57,7 @@ async def test_operation_with_files_param(client):
 @pytest.mark.asyncio
 async def test_operation_with_url(client):
     await client.operation_with_url("foo", header_parameters="x-ms-header", query_parameters=["one", "two"])
+
+@pytest.mark.asyncio
+async def test_operation_with_enum(client: ReservedWordsClient):
+    await client.reserved_enum(enum_parameter="import")
