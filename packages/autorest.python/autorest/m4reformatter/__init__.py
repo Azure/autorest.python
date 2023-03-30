@@ -602,7 +602,7 @@ class M4Reformatter(
         )
         if self.version_tolerant:
             # if we're in version tolerant, hide the paging model
-            returned_response_object["type"]["isPublic"] = False
+            returned_response_object["type"]["internal"] = True
         operation["itemType"] = next(
             p["type"]
             for p in returned_response_object["type"]["properties"]
