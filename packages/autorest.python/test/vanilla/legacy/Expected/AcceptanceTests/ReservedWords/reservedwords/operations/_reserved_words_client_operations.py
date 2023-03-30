@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, IO, List, Optional, TypeVar
+from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -23,6 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
+from .. import models as _models
 from .._serialization import Serializer
 from .._vendor import ReservedWordsClientMixinABC, _convert_request, _format_url_section
 
@@ -133,6 +134,21 @@ def build_operation_with_url_request(
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_reserved_enum_request(*, enum_parameter: Union[str, _models.MyEnum], **kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = kwargs.pop("template_url", "/reservedWords/enum")
+
+    # Construct headers
+    _headers["enumParameter"] = _SERIALIZER.header("enum_parameter", enum_parameter, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
@@ -441,3 +457,57 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         return deserialized
 
     operation_with_url.metadata = {"url": "/reservedWords/{url}"}
+
+    @distributed_trace
+    def reserved_enum(self, enum_parameter: Union[str, _models.MyEnum], **kwargs: Any) -> JSON:
+        """Operation that accepts a reserved enum value.
+
+        :param enum_parameter: Pass in MyEnum.IMPORT to pass. Known values are: "import", "other", and
+         "import". Required.
+        :type enum_parameter: str or ~reservedwords.models.MyEnum
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: JSON or the result of cls(response)
+        :rtype: JSON
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[JSON] = kwargs.pop("cls", None)
+
+        request = build_reserved_enum_request(
+            enum_parameter=enum_parameter,
+            template_url=self.reserved_enum.metadata["url"],
+            headers=_headers,
+            params=_params,
+        )
+        request = _convert_request(request)
+        request.url = self._client.format_url(request.url)
+
+        _stream = False
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        deserialized = self._deserialize("object", pipeline_response)
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})
+
+        return deserialized
+
+    reserved_enum.metadata = {"url": "/reservedWords/enum"}
