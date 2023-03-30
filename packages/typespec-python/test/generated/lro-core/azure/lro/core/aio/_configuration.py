@@ -31,7 +31,7 @@ class CoreClientConfiguration(Configuration):  # pylint: disable=too-many-instan
         api_version: str = kwargs.pop("api_version", "2022-12-01-preview")
 
         self.api_version = api_version
-        kwargs.setdefault("sdk_moniker", "coreclient/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "lro-core/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

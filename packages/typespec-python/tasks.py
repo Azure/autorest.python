@@ -27,6 +27,8 @@ CADL_RANCH_DIR = PLUGIN_DIR / Path("node_modules/@azure-tools/cadl-ranch-specs")
 EMITTER_OPTIONS = {
     "hello": {"package-name": "azure-hello"},
     "lro-basic": {"package-name": "azure-lro-basic"},
+    "lro-core": {"package-name": "azure-lro-core"},
+    "lro-rpc": {"package-name": "azure-lro-rpc"},
 }
 
 
