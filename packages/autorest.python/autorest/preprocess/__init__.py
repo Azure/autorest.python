@@ -24,6 +24,7 @@ def add_body_param_type(
     code_model: Dict[str, Any],
     body_parameter: Dict[str, Any],
 ):
+    # pylint: disable=too-many-boolean-expressions
     if (
         body_parameter
         and body_parameter["type"]["type"] in ("model", "dict", "list")
@@ -32,13 +33,28 @@ def add_body_param_type(
         )
         and not body_parameter["type"].get("xmlMetadata")
         and not any(t for t in ["flattened", "groupedBy"] if body_parameter.get(t))
+    ) or (
+        body_parameter
+        and body_parameter["type"]["type"] == "combined"
+        and not KNOWN_TYPES["binary"] in body_parameter["type"]["types"]
     ):
-        origin_type = body_parameter["type"]["type"]
-        is_dpg_model = body_parameter["type"].get("base") == "dpg"
-        body_parameter["type"] = {
-            "type": "combined",
-            "types": [body_parameter["type"], KNOWN_TYPES["binary"]],
-        }
+        if body_parameter["type"]["type"] != "combined":
+            origin_type = body_parameter["type"]["type"]
+            is_dpg_model = body_parameter["type"].get("base") == "dpg"
+            body_parameter["type"] = {
+                "type": "combined",
+                "types": [body_parameter["type"], KNOWN_TYPES["binary"]],
+            }
+        else:
+            try:
+                model_type = next(
+                    t for t in body_parameter["type"]["types"] if t["type"] == "model"
+                )
+            except StopIteration:
+                model_type = None
+            origin_type = model_type["type"] if model_type else None
+            is_dpg_model = model_type["base"] == "dpg" if origin_type else False
+            body_parameter["type"]["types"].append(KNOWN_TYPES["binary"])
         if origin_type == "model" and is_dpg_model:
             body_parameter["type"]["types"].insert(1, KNOWN_TYPES["any-object"])
         code_model["types"].append(body_parameter["type"])
@@ -61,9 +77,12 @@ def update_overload_section(
 
 
 def add_overload(
-    yaml_data: Dict[str, Any], body_type: Dict[str, Any], for_flatten_params=False
+    yaml_data: Dict[str, Any],
+    body_type: Dict[str, Any],
+    for_flatten_params=False,
+    overload_yaml: Optional[Dict[str, Any]] = None,
 ):
-    overload = copy.deepcopy(yaml_data)
+    overload = copy.deepcopy(yaml_data if not overload_yaml else overload_yaml)
     overload["isOverload"] = True
     overload["bodyParameter"]["type"] = body_type
     overload["bodyParameter"]["defaultToUnsetSentinel"] = False
@@ -94,7 +113,7 @@ def add_overload(
         "description"
     ] = f"Body Parameter content-type. Content type parameter for {body_type_description} body."
     content_types = yaml_data["bodyParameter"]["contentTypes"]
-    if body_type["type"] == "binary" and len(content_types) > 1:
+    if body_type["type"] == "binary" and len(content_types) > 1 and not overload_yaml:
         content_types = "'" + "', '".join(content_types) + "'"
         content_type_param["description"] += f" Known values are: {content_types}."
     overload["bodyParameter"]["inOverload"] = True
@@ -102,6 +121,31 @@ def add_overload(
         parameter["inOverload"] = True
         parameter["defaultToUnsetSentinel"] = False
     return overload
+
+
+# we can pick overload as source data instead of operation so that we can make sure the
+# content type for each body type
+def pick_overload_as_source(
+    yaml_data: Dict[str, Any], type_name: str
+) -> Optional[Dict[str, Any]]:
+    for overload in yaml_data["overloads"]:
+        if overload["bodyParameter"]["type"]["type"] == type_name:
+            return overload
+    return None
+
+
+def map_for_body_type_and_source(yaml_data: Dict[str, Any]) -> Dict[Any, Any]:
+    body_type_and_source = {}
+    overload_of_model = pick_overload_as_source(yaml_data, "model")
+    overload_of_bytes = pick_overload_as_source(yaml_data, "byte-array")
+    for body_type in yaml_data["bodyParameter"]["type"]["types"]:
+        if body_type == KNOWN_TYPES["binary"] and overload_of_model:
+            body_type_and_source[id(body_type)] = overload_of_model
+        elif body_type == KNOWN_TYPES["binary"] and overload_of_bytes:
+            body_type_and_source[id(body_type)] = overload_of_bytes
+        elif body_type == KNOWN_TYPES["any-object"] and overload_of_model:
+            body_type_and_source[id(body_type)] = overload_of_model
+    return body_type_and_source
 
 
 def add_overloads_for_body_param(yaml_data: Dict[str, Any]) -> None:
@@ -113,6 +157,7 @@ def add_overloads_for_body_param(yaml_data: Dict[str, Any]) -> None:
         > len(yaml_data["overloads"])
     ):
         return
+    body_type_and_source = map_for_body_type_and_source(yaml_data)
     for body_type in body_parameter["type"]["types"]:
         if any(
             o
@@ -120,7 +165,11 @@ def add_overloads_for_body_param(yaml_data: Dict[str, Any]) -> None:
             if id(o["bodyParameter"]["type"]) == id(body_type)
         ):
             continue
-        yaml_data["overloads"].append(add_overload(yaml_data, body_type))
+        yaml_data["overloads"].append(
+            add_overload(
+                yaml_data, body_type, False, body_type_and_source.get(id(body_type))
+            )
+        )
         if body_type.get("type") == "model" and body_type.get("base") == "json":
             yaml_data["overloads"].append(
                 add_overload(yaml_data, body_type, for_flatten_params=True)

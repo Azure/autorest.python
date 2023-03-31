@@ -36,6 +36,8 @@ import {
     SyntaxKind,
     Type,
     getNamespaceFullName,
+    getOverloads,
+    getOverloadedOperation,
 } from "@typespec/compiler";
 import {
     getAuthentication,
@@ -357,8 +359,7 @@ function emitBodyParameter(context: DpgContext, httpOperation: HttpOperation): B
         restApiName: body.parameter?.name ?? "body",
         location: "body",
         ...base,
-        defaultContentType:
-            body.parameter?.default ?? contentTypes.includes("application/json") ? "application/json" : contentTypes[0],
+        defaultContentType: body.parameter?.default ?? contentTypes.length > 1 ? "" : contentTypes[0],
     };
 }
 
@@ -370,11 +371,15 @@ function emitParameter(
     const base = emitParamBase(context, parameter.param);
     let type = getEntityType(context, parameter.param);
     let clientDefaultValue = undefined;
-    if (parameter.name.toLowerCase() === "content-type" && type["type"] === "constant") {
-        /// We don't want constant types for content types, so we make sure if it's
-        /// a constant, we make it not constant
-        clientDefaultValue = type["value"];
-        type = type["valueType"];
+    if (parameter.name.toLowerCase() === "content-type") {
+        if (type["type"] === "constant") {
+            /// We don't want constant types for content types, so we make sure if it's
+            /// a constant, we make it not constant
+            clientDefaultValue = type["value"];
+            type = type["valueType"];
+        }
+        // we don't want to generate enum model for content types
+        type["enableGenerate"] = false;
     }
     const paramMap: Record<string, any> = {
         restApiName: parameter.type === "path" ? parameter.param.name : parameter.name,
@@ -648,10 +653,20 @@ function isAbstract(operation: HttpOperation): boolean {
     return body !== undefined && body.contentTypes.length > 1;
 }
 
+function updateContentType(operation: Record<string, any>, property: string, value: any = true): void {
+    for (const parameter of operation.parameters) {
+        if (parameter.restApiName.toLowerCase() === "content-type") {
+            parameter[property] = value;
+            break;
+        }
+    }
+}
+
 function emitBasicOperation(
     context: DpgContext,
     operation: Operation,
     operationGroupName: string,
+    isOverload: boolean = false,
 ): Record<string, any>[] {
     // Set up parameters for operation
     const parameters: Record<string, any>[] = [];
@@ -672,7 +687,6 @@ function emitBasicOperation(
     // Set up responses for operation
     const responses: Record<string, any>[] = [];
     const exceptions: Record<string, any>[] = [];
-    const isOverload: boolean = false;
     const isOverriden: boolean = false;
     for (const response of httpOperation.responses) {
         for (const innerResponse of response.responses) {
@@ -714,6 +728,23 @@ function emitBasicOperation(
         }
     }
     const name = camelToSnakeCase(getLibraryName(context, operation));
+    // handle native overloads
+    let overloads: Record<string, any>[] = [];
+    if (!isOverload && bodyParameter) {
+        const overload_operations = getOverloads(context.program, operation);
+        if (overload_operations) {
+            for (const overload_operation of overload_operations) {
+                overloads = overloads.concat(emitBasicOperation(context, overload_operation, operationGroupName, true));
+            }
+            for (const overload of overloads) {
+                overload.name = name;
+                updateContentType(overload, "inOverload");
+                if (["byte-array", "model"].includes(overload.bodyParameter.type.type)) {
+                    overload.bodyParameter.type["enableOverloadCheck"] = false;
+                }
+            }
+        }
+    }
     return [
         {
             name: name,
@@ -728,12 +759,12 @@ function emitBasicOperation(
             groupName: operationGroupName,
             addedOn: getAddedOnVersion(context, operation),
             discriminator: "basic",
-            isOverload: false,
-            overloads: [],
+            isOverload: isOverload,
+            overloads: overloads,
             apiVersions: [getAddedOnVersion(context, operation)],
             wantTracing: true,
             exposeStreamKeyword: true,
-            abstract: isAbstract(httpOperation),
+            abstract: isAbstract(httpOperation) && overloads.length === 0,
             internal: isInternal(context, operation),
         },
     ];
@@ -1132,7 +1163,9 @@ function emitOperationGroups(context: DpgContext, client: Client): Record<string
         let operations: Record<string, any>[] = [];
         const name = operationGroup.type.name;
         for (const operation of listOperationsInOperationGroup(context, operationGroup)) {
-            operations = operations.concat(emitOperation(context, operation, name));
+            if (!getOverloadedOperation(context.program, operation)) {
+                operations = operations.concat(emitOperation(context, operation, name));
+            }
         }
         operationGroups.push({
             className: name,
@@ -1142,7 +1175,9 @@ function emitOperationGroups(context: DpgContext, client: Client): Record<string
     }
     let clientOperations: Record<string, any>[] = [];
     for (const operation of listOperationsInOperationGroup(context, client)) {
-        clientOperations = clientOperations.concat(emitOperation(context, operation, ""));
+        if (!getOverloadedOperation(context.program, operation)) {
+            clientOperations = clientOperations.concat(emitOperation(context, operation, ""));
+        }
     }
     if (clientOperations.length > 0) {
         operationGroups.push({

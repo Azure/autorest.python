@@ -16,6 +16,8 @@ from ..models import (
     LROOperation,
     LROPagingOperation,
     ModelType,
+    AnyType,
+    AnyObjectType,
     DictionaryType,
     ListType,
     Parameter,
@@ -33,6 +35,7 @@ from ..models import (
     RequestBuilderType,
     CombinedType,
     ParameterListType,
+    StringType,
 )
 from .parameter_serializer import ParameterSerializer, PopKwargType
 from ..models.parameter_list import ParameterType
@@ -56,6 +59,38 @@ OperationType = TypeVar(
     "OperationType",
     bound=Union[Operation, PagingOperation, LROOperation, LROPagingOperation],
 )
+
+
+def _content_type_check(content_types: List[str]) -> List[str]:
+    types = "'" + "', '".join(sorted(list(set(content_types)))) + "'"
+    return [
+        "if not content_type:",
+        f'    raise TypeError("Missing required keyword-only argument: content_type. Known values are:" + "{types}")',
+    ]
+
+
+def _swap(data: List[Any], i: int, j: int):
+    data[i], data[j] = data[j], data[i]
+
+
+def _type_hint(builder: OperationType) -> str:
+    count = 0
+    body_type = builder.parameters.body_parameter.type
+    if isinstance(body_type, CombinedType):
+        for type in body_type.types:
+            if isinstance(type, StringType):
+                count = count + 1
+            if isinstance(type, BinaryType):
+                count = count + 1
+    return f": Optional[{body_type.type_description}]" if count >= 2 else ""
+
+
+def _enable_content_type_check(operation: OperationType) -> bool:
+    if operation.parameters.body_parameter.default_content_type is None:
+        for p in operation.parameters.parameters:
+            if p.client_name == "content_type" and not p.optional:
+                return True
+    return False
 
 
 def _escape_str(input_str: str) -> str:
@@ -305,7 +340,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
     def description_and_summary(self, builder: BuilderType) -> List[str]:
         description_list: List[str] = []
         description_list.append(
-            f"{builder.summary.strip() if builder.summary else builder.description.strip()}"
+            f"{ builder.summary.strip() if builder.summary else builder.description.strip() }"
         )
         if builder.summary and builder.description:
             description_list.append("")
@@ -328,7 +363,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
             if not param.in_docstring:
                 continue
             description_list.extend(
-                f":{param.description_keyword} {param.client_name}: {param.description}".replace(
+                f":{param.description_keyword} { param.client_name }: { param.description }".replace(
                     "\n", "\n "
                 ).split(
                     "\n"
@@ -704,12 +739,9 @@ class _OperationSerializer(
             check_client_input=not self.code_model.options["multiapi"],
         )
         cls_annotation = builder.cls_type_annotation(async_mode=self.async_mode)
-        pylint_disable = ""
+        kwargs.append(f"cls: {cls_annotation} = kwargs.pop('cls', None)")
         if any(x.startswith("_") for x in cls_annotation.split(".")):
-            pylint_disable = "  # pylint: disable=protected-access"
-        kwargs.append(
-            f"cls: {cls_annotation} = kwargs.pop({pylint_disable}\n    'cls', None\n)"
-        )
+            kwargs[-1] += " # pylint: disable=protected-access"
         return kwargs
 
     def response_docstring(self, builder: OperationType) -> List[str]:
@@ -725,22 +757,28 @@ class _OperationSerializer(
             ":raises ~azure.core.exceptions.HttpResponseError:",
         ]
 
-    def _serialize_body_parameter(self, builder: OperationType) -> List[str]:
-        """We need to serialize params if they're not meant to be streamed in.
-
-        This function serializes the body params that need to be serialized.
-        """
-        retval: List[str] = []
+    def _create_body_parameter(
+        self,
+        builder: OperationType,
+    ) -> List[str]:
+        """Create the body parameter before we pass it as either json or content to the request builder"""
         body_param = cast(BodyParameter, builder.parameters.body_parameter)
+        if hasattr(body_param, "entries"):
+            return _serialize_multipart_body(builder)
+
+        retval: List[str] = []
         body_kwarg_name = builder.request_builder.parameters.body_parameter.client_name
         send_xml = builder.parameters.body_parameter.type.is_xml
         xml_serialization_ctxt = (
             body_param.type.xml_serialization_ctxt if send_xml else None
         )
         ser_ctxt_name = "serialization_ctxt"
+        direct_assign = False
         if xml_serialization_ctxt and self.code_model.options["models_mode"]:
             retval.append(f'{ser_ctxt_name} = {{"xml": {{{xml_serialization_ctxt}}}}}')
-        if self.code_model.options["models_mode"] == "msrest":
+        if self.code_model.options["models_mode"] == "msrest" and not isinstance(
+            body_param.type, BinaryType
+        ):
             is_xml_cmd = ", is_xml=True" if send_xml else ""
             serialization_ctxt_cmd = (
                 f", {ser_ctxt_name}={ser_ctxt_name}" if xml_serialization_ctxt else ""
@@ -749,52 +787,26 @@ class _OperationSerializer(
                 f"_{body_kwarg_name} = self._serialize.body({body_param.client_name}, "
                 f"'{body_param.type.serialization_type}'{is_xml_cmd}{serialization_ctxt_cmd})"
             )
-        elif self.code_model.options["models_mode"] == "dpg":
+        elif self.code_model.options["models_mode"] == "dpg" and not isinstance(
+            body_param.type, (BinaryType, StringType)
+        ):
             create_body_call = (
                 f"_{body_kwarg_name} = json.dumps({body_param.client_name}, "
                 "cls=AzureJSONEncoder)  # type: ignore"
             )
         else:
             create_body_call = f"_{body_kwarg_name} = {body_param.client_name}"
+            direct_assign = True
         if body_param.optional:
-            retval.append(f"if {body_param.client_name} is not None:")
-            retval.append("    " + create_body_call)
-            retval.append("else:")
-            retval.append(f"    _{body_kwarg_name} = None")
+            if direct_assign:
+                retval.append(create_body_call)
+            else:
+                retval.append(f"if {body_param.client_name} is not None:")
+                retval.append("    " + create_body_call)
+                retval.append("else:")
+                retval.append(f"    _{body_kwarg_name} = None")
         else:
             retval.append(create_body_call)
-        return retval
-
-    def _create_body_parameter(
-        self,
-        builder: OperationType,
-    ) -> List[str]:
-        """Create the body parameter before we pass it as either json or content to the request builder"""
-        retval = []
-        body_param = cast(BodyParameter, builder.parameters.body_parameter)
-        if hasattr(body_param, "entries"):
-            return _serialize_multipart_body(builder)
-        body_kwarg_name = builder.request_builder.parameters.body_parameter.client_name
-        if isinstance(body_param.type, BinaryType):
-            retval.append(f"_{body_kwarg_name} = {body_param.client_name}")
-            if (
-                not body_param.default_content_type
-                and not next(
-                    p
-                    for p in builder.parameters
-                    if p.rest_api_name.lower() == "content-type"
-                ).optional
-            ):
-                content_types = "'" + "', '".join(body_param.content_types) + "'"
-                retval.extend(
-                    [
-                        "if not content_type:",
-                        f'    raise TypeError("Missing required keyword-only argument: content_type. '
-                        f'Known values are:" + "{content_types}")',
-                    ]
-                )
-        else:
-            retval.extend(self._serialize_body_parameter(builder))
         return retval
 
     def _initialize_overloads(
@@ -823,67 +835,49 @@ class _OperationSerializer(
             for overload in builder.overloads
         ]
         for v in sorted(set(client_names), key=client_names.index):
-            retval.append(f"_{v} = None")
-        try:
-            # if there is a binary overload, we do a binary check first.
-            binary_overload = cast(
-                OperationType,
-                next(
-                    (
-                        o
-                        for o in builder.overloads
-                        if isinstance(o.parameters.body_parameter.type, BinaryType)
-                    )
-                ),
-            )
-            binary_body_param = binary_overload.parameters.body_parameter
-            retval.append(
-                f"if {binary_body_param.type.instance_check_template.format(binary_body_param.client_name)}:"
-            )
-            if binary_body_param.default_content_type and not same_content_type:
-                retval.append(
-                    f'    content_type = content_type or "{binary_body_param.default_content_type}"'
-                )
-            retval.extend(
-                f"    {l}" for l in self._create_body_parameter(binary_overload)
-            )
-            retval.append("else:")
-            other_overload = cast(
-                OperationType,
-                next(
-                    (
-                        o
-                        for o in builder.overloads
-                        if not isinstance(o.parameters.body_parameter.type, BinaryType)
-                    )
-                ),
-            )
-            retval.extend(
-                f"    {l}" for l in self._create_body_parameter(other_overload)
-            )
-            if (
-                other_overload.parameters.body_parameter.default_content_type
-                and not same_content_type
+            retval.append(f"_{v}{_type_hint(builder)} = None")
+
+        # make sure some special type is in last position and some in first position
+        # but we can't change original data
+        overloads_copy = [
+            o
+            for o in builder.overloads
+            if o.parameters.body_parameter.type.enable_overload_check
+        ]
+        for i, _ in enumerate(overloads_copy):
+            if isinstance(
+                overloads_copy[i].parameters.body_parameter.type,
+                (AnyType, AnyObjectType),
             ):
-                retval.append(
-                    "    content_type = content_type or "
-                    f'"{other_overload.parameters.body_parameter.default_content_type}"'
-                )
-        except StopIteration:
-            for idx, overload in enumerate(builder.overloads):
-                if_statement = "if" if idx == 0 else "elif"
-                body_param = overload.parameters.body_parameter
+                _swap(overloads_copy, i, -1)
+            if isinstance(overloads_copy[i].parameters.body_parameter.type, BinaryType):
+                _swap(overloads_copy, i, 0)
+
+        if_statement = "if"
+        for idx, overload in enumerate(overloads_copy):
+            body_param = overload.parameters.body_parameter
+            try:
+                if idx + 1 >= len(overloads_copy):
+                    raise ValueError()
                 retval.append(
                     f"{if_statement} {body_param.type.instance_check_template.format(body_param.client_name)}:"
                 )
-                if body_param.default_content_type and not same_content_type:
-                    retval.append(
-                        f'    content_type = content_type or "{body_param.default_content_type}"'
-                    )
+            except ValueError:
+                retval.append("else:")
+            retval.extend(
+                f"    {l}"
+                for l in self._create_body_parameter(cast(OperationType, overload))
+            )
+            if _enable_content_type_check(overload):
                 retval.extend(
-                    f"    {l}"
-                    for l in self._create_body_parameter(cast(OperationType, overload))
+                    [f"    {l}" for l in _content_type_check(body_param.content_types)]
                 )
+            elif not same_content_type and body_param.default_content_type is not None:
+                retval.append(
+                    f'    content_type = content_type or "{body_param.default_content_type}"'
+                )
+            if_statement = "elif"
+
         return retval
 
     def _create_request_builder_call(
@@ -1050,23 +1044,15 @@ class _OperationSerializer(
                 )
             )
         elif response.type:
-            pylint_disable = ""
-            if isinstance(response.type, ModelType) and response.type.internal:
-                pylint_disable = "  # pylint: disable=protected-access"
             if self.code_model.options["models_mode"] == "msrest":
-                deserialize_code.append("deserialized = self._deserialize(")
                 deserialize_code.append(
-                    f"    '{response.serialization_type}',{pylint_disable}"
+                    f"deserialized = self._deserialize('{response.serialization_type}', pipeline_response)"
                 )
-                deserialize_code.append("    pipeline_response")
-                deserialize_code.append(")")
             elif self.code_model.options["models_mode"] == "dpg":
-                deserialize_code.append("deserialized = _deserialize(")
                 deserialize_code.append(
-                    f"    {response.type.type_annotation(is_operation_file=True)},{pylint_disable}"
+                    f"deserialized = _deserialize({response.type.type_annotation(is_operation_file=True)}"
+                    ", response.json())"
                 )
-                deserialize_code.append("    response.json()")
-                deserialize_code.append(")")
             else:
                 deserialized_value = (
                     "ET.fromstring(response.text())"
@@ -1258,7 +1244,7 @@ class _OperationSerializer(
     @staticmethod
     def get_metadata_url(builder: OperationType) -> str:
         url = _escape_str(builder.request_builder.url)
-        return f"{builder.name}.metadata = {{'url': {url}}}"
+        return f"{builder.name}.metadata = {{'url': { url }}}"
 
     @property
     def _call_method(self) -> str:
@@ -1390,10 +1376,10 @@ class _PagingOperationSerializer(
         if self.code_model.options["models_mode"] == "msrest":
             deserialize_type = response.serialization_type
             pylint_disable = "  # pylint: disable=protected-access"
-            if isinstance(response.type, ModelType) and not response.type.internal:
+            if isinstance(response.type, ModelType) and response.type.internal:
                 deserialize_type = f'"{response.serialization_type}"'
                 pylint_disable = ""
-            deserialized = f"self._deserialize(\n    {deserialize_type},{pylint_disable}\n    pipeline_response\n)"
+            deserialized = f"self._deserialize(\n    {deserialize_type}, pipeline_response{pylint_disable}\n)"
             retval.append(f"    deserialized = {deserialized}")
         elif self.code_model.options["models_mode"] == "dpg":
             # we don't want to generate paging models for DPG
@@ -1512,7 +1498,7 @@ class _LROOperationSerializer(_OperationSerializer[LROOperationType]):
         retval.append("if cont_token is None:")
         retval.append(
             f"    raw_result = {self._call_method}self.{builder.initial_operation.name}("
-            f"{'' if builder.lro_response and builder.lro_response.type else '  # type: ignore'}"
+            f"{''  if builder.lro_response and builder.lro_response.type else '  # type: ignore'}"
         )
         retval.extend(
             [

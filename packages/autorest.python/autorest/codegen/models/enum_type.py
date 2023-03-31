@@ -68,6 +68,8 @@ class EnumType(BaseType):
         self.name: str = yaml_data["name"]
         self.values = values
         self.value_type = value_type
+        # currently we don't generate enum type for content_type if it is set False
+        self.enable_generate: bool = yaml_data.get("enableGenerate", True)
 
     def __lt__(self, other):
         return self.name.lower() < other.name.lower()
@@ -106,7 +108,7 @@ class EnumType(BaseType):
         :return: The type annotation for this schema
         :rtype: str
         """
-        if self.code_model.options["models_mode"]:
+        if self.enable_generate_model:
             model_name = f"_models.{self.name}"
             # we don't need quoted annotation in operation files, and need it in model folder files.
             if not kwargs.get("is_operation_file", False):
@@ -119,13 +121,13 @@ class EnumType(BaseType):
         return self.value_type.get_declaration(value)
 
     def docstring_text(self, **kwargs: Any) -> str:
-        if self.code_model.options["models_mode"]:
+        if self.enable_generate_model:
             return self.name
         return self.value_type.type_annotation(**kwargs)
 
     def docstring_type(self, **kwargs: Any) -> str:
         """The python type used for RST syntax input and type annotation."""
-        if self.code_model.options["models_mode"]:
+        if self.enable_generate_model:
             type_annotation = self.value_type.type_annotation(**kwargs)
             enum_type_annotation = f"{self.code_model.namespace}.models.{self.name}"
             return f"{type_annotation} or ~{enum_type_annotation}"
@@ -191,7 +193,7 @@ class EnumType(BaseType):
             self.value_type.imports(is_operation_file=is_operation_file, **kwargs)
         )
         relative_path = kwargs.pop("relative_path", None)
-        if self.code_model.options["models_mode"] and relative_path:
+        if self.enable_generate_model and relative_path:
             # add import for enums in operations file
             file_import.add_submodule_import(
                 relative_path,
@@ -203,3 +205,7 @@ class EnumType(BaseType):
                 else TypingSection.REGULAR,
             )
         return file_import
+
+    @property
+    def enable_generate_model(self) -> bool:
+        return self.code_model.options["models_mode"] and self.enable_generate

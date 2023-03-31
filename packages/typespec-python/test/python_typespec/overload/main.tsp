@@ -1,0 +1,74 @@
+import "@typespec/http";
+import "@azure-tools/cadl-ranch-expect";
+
+using TypeSpec.Http;
+
+@doc("Overload")
+@supportedBy("dpg")
+@scenarioService("/overload")
+namespace Overload;
+
+@scenario
+@scenarioDoc("""
+send "hello world" with `conten-type` "text/plain";
+send binary data "hello world" with `conten-type` "application/octet-stream"
+""")
+@route("/bytesOrString")
+@post
+op uploadBytesOrString(
+  @body data: string | bytes,
+  @header contentType: "text/plain" | "application/octet-stream"
+): void;
+
+@scenario
+@scenarioDoc("""
+TODO: optimize cadl-ranch to skip it because the op is only for overload and no need to test
+""")
+@overload(uploadBytesOrString)
+@route("/bytesOrString/skip1")
+@post
+op uploadBytesOrStringSkip1(@body data: string, @header contentType: "text/plain"): void;
+
+@scenario
+@scenarioDoc("""
+TODO: optimize cadl-ranch to skip it because the op is only for overload and no need to test
+""")
+@overload(uploadBytesOrString)
+@route("/bytesOrString/skip2")
+@post
+op uploadBytesOrStringSkip2(@body data: bytes, @header contentType: "application/octet-stream"): void;
+
+model Data {
+  hello: string;
+}
+
+@scenario
+@scenarioDoc("""
+send "hello world" with `conten-type` "text/plain";
+send
+```json
+{ "hello": "world"}
+```
+with `conten-type` "application//json"
+""")
+@route("/JsonOrString")
+@post
+op uploadJsonOrString(@body data: string | Data, @header contentType: "text/plain" | "application/json"): void;
+
+@scenario
+@scenarioDoc("""
+TODO: optimize cadl-ranch to skip it because the op is only for overload and no need to test
+""")
+@overload(uploadJsonOrString)
+@route("/JsonOrString/skip3")
+@post
+op uploadJsonOrStringSkip3(@body data: string, @header contentType: "text/plain"): void;
+
+@scenario
+@scenarioDoc("""
+TODO: optimize cadl-ranch to skip it because the op is only for overload and no need to test
+""")
+@overload(uploadJsonOrString)
+@route("/JsonOrString/skip4")
+@post
+op uploadJsonOrStringSkip4(@body data: Data, @header contentType: "application/json"): void;
