@@ -739,9 +739,6 @@ function emitBasicOperation(
             for (const overload of overloads) {
                 overload.name = name;
                 updateContentType(overload, "inOverload");
-                if (["byte-array", "model"].includes(overload.bodyParameter.type.type)) {
-                    overload.bodyParameter.type["enableOverloadCheck"] = false;
-                }
             }
         }
     }

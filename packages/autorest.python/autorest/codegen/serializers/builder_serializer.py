@@ -36,6 +36,8 @@ from ..models import (
     CombinedType,
     ParameterListType,
     StringType,
+    GeneratedModelType,
+    ByteArraySchema,
 )
 from .parameter_serializer import ParameterSerializer, PopKwargType
 from ..models.parameter_list import ParameterType
@@ -842,7 +844,9 @@ class _OperationSerializer(
         overloads_copy = [
             o
             for o in builder.overloads
-            if o.parameters.body_parameter.type.enable_overload_check
+            if not isinstance(
+                o.parameters.body_parameter.type, (GeneratedModelType, ByteArraySchema)
+            )
         ]
         for i, _ in enumerate(overloads_copy):
             if isinstance(

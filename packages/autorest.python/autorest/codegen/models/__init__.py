@@ -9,7 +9,13 @@ from .base import BaseModel
 from .base_builder import BaseBuilder, ParameterListType
 from .code_model import CodeModel
 from .client import Client
-from .model_type import ModelType, JSONModelType, DPGModelType, MsrestModelType
+from .model_type import (
+    ModelType,
+    JSONModelType,
+    DPGModelType,
+    MsrestModelType,
+    GeneratedModelType,
+)
 from .dictionary_type import DictionaryType
 from .list_type import ListType
 from .combined_type import CombinedType
@@ -117,6 +123,7 @@ __all__ = [
     "ClientParameter",
     "ConfigParameter",
     "ParameterListType",
+    "GeneratedModelType",
 ]
 
 TYPE_TO_OBJECT = {

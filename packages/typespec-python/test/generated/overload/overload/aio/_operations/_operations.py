@@ -78,15 +78,15 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
 
     @overload
     async def upload_bytes_or_string(  # pylint: disable=inconsistent-return-statements
-        self, data: IO, *, content_type: str, **kwargs: Any
+        self, data: IO, *, content_type: str = "application/octet-stream", **kwargs: Any
     ) -> None:
         """upload_bytes_or_string.
 
         :param data: Required.
         :type data: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Known values are: 'text/plain', 'application/octet-stream'. Known values are: "text/plain" and
-         "application/octet-stream". Required.
+         Known values are: "text/plain" and "application/octet-stream". Default value is
+         "application/octet-stream".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -129,7 +129,7 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
         _content: Optional[Union[str, bytes, IO]] = None
         if isinstance(data, (IO, bytes)):
             _content = data
-            content_type = content_type or ""
+            content_type = content_type or "application/octet-stream"
         else:
             _content = data
             content_type = content_type or "text/plain"
@@ -192,14 +192,14 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
 
     @overload
     async def upload_json_or_string(  # pylint: disable=inconsistent-return-statements
-        self, data: JSON, *, content_type: str, **kwargs: Any
+        self, data: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """upload_json_or_string.
 
         :param data: Required.
         :type data: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body. Known
-         values are: "text/plain" and "application/json". Required.
+         values are: "text/plain" and "application/json". Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -210,15 +210,14 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
 
     @overload
     async def upload_json_or_string(  # pylint: disable=inconsistent-return-statements
-        self, data: IO, *, content_type: str, **kwargs: Any
+        self, data: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """upload_json_or_string.
 
         :param data: Required.
         :type data: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Known values are: 'text/plain', 'application/json'. Known values are: "text/plain" and
-         "application/json". Required.
+         Known values are: "text/plain" and "application/json". Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -261,13 +260,13 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
         _content: Optional[Union[str, JSON, "_models.Data", IO]] = None
         if isinstance(data, (IO, bytes)):
             _content = data
-            content_type = content_type or ""
+            content_type = content_type or "application/json"
         elif isinstance(data, str):
             _content = data
             content_type = content_type or "text/plain"
         else:
             _content = json.dumps(data, cls=AzureJSONEncoder)  # type: ignore
-            content_type = content_type or ""
+            content_type = content_type or "application/json"
 
         request = build_overload_upload_json_or_string_request(
             content_type=content_type,

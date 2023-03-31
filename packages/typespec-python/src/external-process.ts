@@ -22,6 +22,7 @@ export async function saveCodeModelAsYaml(name: string, codemodel: unknown): Pro
     const filename = createTempPath(".yaml", name);
     const yamlStr = jsyaml.dump(codemodel);
     await writeFile(filename, yamlStr);
+    await writeFile(joinPaths("D:/dev1/autorest.python/packages/typespec-python", "alpha", "output.yaml"), yamlStr);
     return filename;
 }
 
