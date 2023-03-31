@@ -23,12 +23,12 @@ importers:
   packages/autorest.python:
     specifiers:
       '@autorest/system-requirements': ~1.0.0
-      '@microsoft.azure/autorest.testserver': ^3.3.45
+      '@microsoft.azure/autorest.testserver': ^3.3.46
       typescript: ^4.8.3
     dependencies:
       '@autorest/system-requirements': 1.0.0
     devDependencies:
-      '@microsoft.azure/autorest.testserver': 3.3.45
+      '@microsoft.azure/autorest.testserver': 3.3.46
       typescript: 4.8.3
 
   packages/typespec-python:
@@ -490,8 +490,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
-  /@microsoft.azure/autorest.testserver/3.3.45:
-    resolution: {integrity: sha512-svSjt0kcJUAVXVJJt/3uokaQIVOCGnSyxwPCgDM203WyyDQ6UcztvhYrezKcWoZNcZrKJFlmrag51cwtTcZspQ==}
+  /@microsoft.azure/autorest.testserver/3.3.46:
+    resolution: {integrity: sha512-ne6zSqSQWTSx1dVWoQ77jxSrRppNsoWVjAZAxHbxPAUy+N34cM0UocYfMoqLlghDoMqM8xVMWAdG/ReNuvdBAg==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
@@ -513,7 +513,7 @@ packages:
       underscore: 1.13.4
       winston: 3.8.2
       xml2js: 0.4.23
-      yargs: 17.5.1
+      yargs: 17.6.2
     transitivePeerDependencies:
       - '@types/express'
       - debug
@@ -4289,19 +4289,6 @@ packages:
       string-width: 4.2.3
       y18n: 5.0.8
       yargs-parser: 20.2.9
-    dev: true
-
-  /yargs/17.5.1:
-    resolution: {integrity: sha512-t6YAJcxDkNX7NFYiVtKvWUz8l+PaKTLiL63mJYWR2GnHq2gjEWISzsLp9wg3aY36dY1j+gfIEL3pIF+XlJJfbA==}
-    engines: {node: '>=12'}
-    dependencies:
-      cliui: 7.0.4
-      escalade: 3.1.1
-      get-caller-file: 2.0.5
-      require-directory: 2.1.1
-      string-width: 4.2.3
-      y18n: 5.0.8
-      yargs-parser: 21.1.1
     dev: true
 
   /yargs/17.6.2:

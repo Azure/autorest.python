@@ -40,7 +40,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class InternalClientOperationsMixin(InternalClientMixinABC):
     @distributed_trace_async
-    async def get_internal(self, *, name: str, **kwargs: Any) -> _models.InternalModel:
+    async def _get_internal(self, *, name: str, **kwargs: Any) -> _models._models.InternalModel:
         """get_internal.
 
         :keyword name: Required.
@@ -62,7 +62,7 @@ class InternalClientOperationsMixin(InternalClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.InternalModel] = kwargs.pop("cls", None)
+        cls: ClsType[_models._models.InternalModel] = kwargs.pop("cls", None)  # pylint: disable=protected-access
 
         request = build_internal_get_internal_request(
             name=name,
@@ -85,7 +85,9 @@ class InternalClientOperationsMixin(InternalClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.InternalModel, response.json())
+            deserialized = _deserialize(
+                _models._models.InternalModel, response.json()  # pylint: disable=protected-access
+            )
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -93,64 +95,25 @@ class InternalClientOperationsMixin(InternalClientMixinABC):
         return deserialized  # type: ignore
 
     @overload
-    async def post_internal(
+    async def _post_internal(
         self, body: _models.ModelOnlyUsedByInternalOperation, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.ModelOnlyUsedByInternalOperation:
-        """post_internal.
-
-        :param body: Required.
-        :type body: ~internal.models.ModelOnlyUsedByInternalOperation
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: ModelOnlyUsedByInternalOperation. The ModelOnlyUsedByInternalOperation is compatible
-         with MutableMapping
-        :rtype: ~internal.models.ModelOnlyUsedByInternalOperation
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
+        ...
 
     @overload
-    async def post_internal(
+    async def _post_internal(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.ModelOnlyUsedByInternalOperation:
-        """post_internal.
-
-        :param body: Required.
-        :type body: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: ModelOnlyUsedByInternalOperation. The ModelOnlyUsedByInternalOperation is compatible
-         with MutableMapping
-        :rtype: ~internal.models.ModelOnlyUsedByInternalOperation
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
+        ...
 
     @overload
-    async def post_internal(
+    async def _post_internal(
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.ModelOnlyUsedByInternalOperation:
-        """post_internal.
-
-        :param body: Required.
-        :type body: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: ModelOnlyUsedByInternalOperation. The ModelOnlyUsedByInternalOperation is compatible
-         with MutableMapping
-        :rtype: ~internal.models.ModelOnlyUsedByInternalOperation
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
+        ...
 
     @distributed_trace_async
-    async def post_internal(
+    async def _post_internal(
         self, body: Union[_models.ModelOnlyUsedByInternalOperation, JSON, IO], **kwargs: Any
     ) -> _models.ModelOnlyUsedByInternalOperation:
         """post_internal.

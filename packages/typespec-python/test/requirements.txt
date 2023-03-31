@@ -29,3 +29,4 @@ azure-core==1.24.0
 -e ./generated/core
 -e ./generated/traits
 -e ./generated/collectionFormat
+-e ./generated/internal

@@ -82,6 +82,9 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             "isLroInitialOperation", False
         )
         self.include_documentation: bool = not self.is_lro_initial_operation
+        self.internal: bool = self.yaml_data.get("internal", False)
+        if self.internal:
+            self.name = "_" + self.name
 
     @property
     def expose_stream_keyword(self) -> bool:

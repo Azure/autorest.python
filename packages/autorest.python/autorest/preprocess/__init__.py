@@ -218,10 +218,27 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                 )
                 add_redefined_builtin_info(property["clientName"], property)
             if type.get("name"):
+                type["name"] = self.pad_reserved_words(type["name"], PadType.MODEL)
                 type["description"] = update_description(
                     type["description"], type["name"]
                 )
                 type["snakeCaseName"] = to_snake_case(type["name"])
+            if type.get("values") and not self.version_tolerant:
+                # we're enums
+                values_to_add = []
+                for value in type["values"]:
+                    padded_name = self.pad_reserved_words(
+                        value["name"].lower(), PadType.ENUM
+                    ).upper()
+                    if value["name"] != padded_name:
+                        values_to_add.append(
+                            {
+                                "description": value["description"],
+                                "name": padded_name,
+                                "value": value["value"],
+                            }
+                        )
+                type["values"].extend(values_to_add)
 
     def update_client(self, yaml_data: Dict[str, Any]) -> None:
         yaml_data["description"] = update_description(

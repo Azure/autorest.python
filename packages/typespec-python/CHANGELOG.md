@@ -1,5 +1,15 @@
 # Release
 
+## 2023-03-30 - 0.8.0
+
+**New Features**
+
+- Support typespec @internal for models and operations  #1798
+
+**Bug Fixes**
+
+- Don't update dictionary representation of a model if you pass in `None` for a field through keyword #1825 
+
 ## 2023-03-28 - 0.7.4
 
 **Other Changes**

@@ -24,11 +24,11 @@
 #
 # --------------------------------------------------------------------------
 import pytest
-from reservedwords.aio import ReservedWordsClient
+from reservedwords import models, aio
 
 @pytest.fixture
 async def client():
-    async with ReservedWordsClient() as client:
+    async with aio.ReservedWordsClient() as client:
         yield client
 
 @pytest.mark.asyncio
@@ -54,3 +54,8 @@ async def test_operation_with_files_param(client):
 @pytest.mark.asyncio
 async def test_operation_with_url(client):
     await client.operation_with_url("foo", header_parameters="x-ms-header", query_parameters=["one", "two"])
+
+@pytest.mark.asyncio
+async def test_operation_with_enum(client):
+    await client.reserved_enum(models.MyEnum.IMPORT)
+    await client.reserved_enum(models.MyEnum.IMPORT_ENUM)

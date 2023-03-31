@@ -12,12 +12,10 @@ from .constant_type import ConstantType
 from .property import Property
 from .imports import FileImport, ImportType, TypingSection
 
-
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
-
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -74,7 +72,7 @@ class ModelType(  # pylint: disable=abstract-method
         )
         self._created_json_template_representation = False
         self._got_polymorphic_subtypes = False
-        self.is_public: bool = self.yaml_data.get("isPublic", True)
+        self.internal: bool = self.yaml_data.get("internal", False)
         self.snake_case_name: str = self.yaml_data["snakeCaseName"]
 
     @property
@@ -284,7 +282,7 @@ class GeneratedModelType(ModelType):  # pylint: disable=abstract-method
     def type_annotation(self, **kwargs: Any) -> str:
         is_operation_file = kwargs.pop("is_operation_file", False)
         retval = f"_models.{self.name}"
-        if not self.is_public:
+        if self.internal:
             retval = f"{self.code_model.models_filename}.{retval}"
         return retval if is_operation_file else f'"{retval}"'
 
@@ -321,7 +319,7 @@ class MsrestModelType(GeneratedModelType):
     @property
     def serialization_type(self) -> str:
         private_model_path = f"_models.{self.code_model.models_filename}."
-        return f"{'' if self.is_public else private_model_path}{self.name}"
+        return f"{private_model_path if self.internal else ''}{self.name}"
 
     @property
     def instance_check_template(self) -> str:
@@ -340,7 +338,7 @@ class DPGModelType(GeneratedModelType):
 
     @property
     def serialization_type(self) -> str:
-        return f"{'' if self.is_public else '_models.'}_models.{self.name}"
+        return f"{'_models.' if self.internal else ''}_models.{self.name}"
 
     @property
     def instance_check_template(self) -> str:

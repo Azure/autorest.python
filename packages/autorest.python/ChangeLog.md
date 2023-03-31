@@ -1,5 +1,25 @@
 # Release
 
+### 2023-03-30 - 6.4.7
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.9.2`     |
+| `@autorest/modelerfour`                                                 | `4.24.3`    |
+| `azure-core` dep of generated code                                      | `1.24.0`    |
+| `isodate` dep of generated code                                         | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+
+**Bug Fixes**
+
+- Add padded enums for legacy generated code #1820
+
+**Other Changes**
+
+- Add support for generating internal models and operations  #1798
+
 ### 2023-03-27 - 6.4.6
 
 | Library                                                                 | Min Version |
