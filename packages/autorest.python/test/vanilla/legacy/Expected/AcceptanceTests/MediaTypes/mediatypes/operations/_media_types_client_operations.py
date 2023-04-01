@@ -618,11 +618,13 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        _json = None
-        _content = None
+        _json: Optional[Union[Any, IO, str]] = None
+        _content: Optional[Union[Any, IO, str]] = None
         if isinstance(message, (IO, bytes)):
-            content_type = content_type or "application/octet-stream"
             _content = message
+            content_type = content_type or "application/octet-stream"
+        elif isinstance(message, str):
+            _content = self._serialize.body(message, "str")
         else:
             _json = self._serialize.body(message, "object")
             content_type = content_type or "application/json"

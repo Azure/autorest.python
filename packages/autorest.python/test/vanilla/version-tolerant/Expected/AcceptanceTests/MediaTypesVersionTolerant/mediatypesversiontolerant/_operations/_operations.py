@@ -232,10 +232,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
                     + "'application/json', 'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'"
                 )
         else:
-            if input is not None:
-                _json = input
-            else:
-                _json = None
+            _json = input
             content_type = content_type or "application/json"
 
         request = build_media_types_analyze_body_request(
@@ -359,10 +356,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
                     + "'application/json', 'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'"
                 )
         else:
-            if input is not None:
-                _json = input
-            else:
-                _json = None
+            _json = input
             content_type = content_type or "application/json"
 
         request = build_media_types_analyze_body_no_accept_header_request(
@@ -412,10 +406,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        if input is not None:
-            _content = input
-        else:
-            _content = None
+        _content = input
 
         request = build_media_types_content_type_with_encoding_request(
             content_type=content_type,

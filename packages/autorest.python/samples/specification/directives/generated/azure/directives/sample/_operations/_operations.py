@@ -93,10 +93,7 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
         if isinstance(product, (IO, bytes)):
             _content = product
         else:
-            if product is not None:
-                _json = product
-            else:
-                _json = None
+            _json = product
 
         request = build_polling_paging_example_basic_polling_request(
             content_type=content_type,

@@ -365,7 +365,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
             if not param.in_docstring:
                 continue
             description_list.extend(
-                f":{param.description_keyword} { param.client_name }: { param.description }".replace(
+                f":{param.description_keyword} {param.client_name}: {param.description}".replace(
                     "\n", "\n "
                 ).split(
                     "\n"
@@ -844,12 +844,18 @@ class _OperationSerializer(
 
         # make sure some special type is in last position and some in first position
         # but we can't change original data
+        if len(builder.overloads) == 3:
+            for o in builder.overloads:
+                x = o.parameters.body_parameter.type
+                print(x)
         overloads_copy = [
             o
             for o in builder.overloads
             if not isinstance(
-                o.parameters.body_parameter.type, (GeneratedModelType, ByteArraySchema)
+                o.parameters.body_parameter.type,
+                (GeneratedModelType, ByteArraySchema),
             )
+            or len(builder.overloads) <= 2
         ]
         for i, _ in enumerate(overloads_copy):
             if isinstance(
@@ -1087,6 +1093,7 @@ class _OperationSerializer(
             else:
                 retval.extend(deserialize_code)
         return retval
+
     def handle_error_response(self, builder: OperationType) -> List[str]:
         retval = [
             f"if response.status_code not in {str(builder.success_status_codes)}:"
@@ -1393,7 +1400,7 @@ class _PagingOperationSerializer(
             if isinstance(response.type, ModelType) and not response.type.internal:
                 deserialize_type = f'"{response.serialization_type}"'
                 pylint_disable = ""
-            deserialized = f"self._deserialize(\n {deserialize_type},{pylint_disable}\n pipeline_response\n)"
+            deserialized = f"self._deserialize(\n    {deserialize_type},{pylint_disable}\n    pipeline_response\n)"
             retval.append(f"    deserialized = {deserialized}")
         elif self.code_model.options["models_mode"] == "dpg":
             # we don't want to generate paging models for DPG
@@ -1512,7 +1519,7 @@ class _LROOperationSerializer(_OperationSerializer[LROOperationType]):
         retval.append("if cont_token is None:")
         retval.append(
             f"    raw_result = {self._call_method}self.{builder.initial_operation.name}("
-            f"{'' if builder.lro_response and builder.lro_response.type else ' # type: ignore'}"
+            f"{'' if builder.lro_response and builder.lro_response.type else '  # type: ignore'}"
         )
         retval.extend(
             [
