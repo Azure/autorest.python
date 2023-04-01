@@ -316,10 +316,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         if isinstance(resource_array, (IO, bytes)):
             _content = resource_array
         else:
-            if resource_array is not None:
-                _json = resource_array
-            else:
-                _json = None
+            _json = resource_array
 
         request = build_auto_rest_resource_flattening_test_service_put_array_request(
             content_type=content_type,
@@ -509,10 +506,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         if isinstance(resource_array, (IO, bytes)):
             _content = resource_array
         else:
-            if resource_array is not None:
-                _json = resource_array
-            else:
-                _json = None
+            _json = resource_array
 
         request = build_auto_rest_resource_flattening_test_service_put_wrapped_array_request(
             content_type=content_type,
@@ -706,10 +700,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         if isinstance(resource_dictionary, (IO, bytes)):
             _content = resource_dictionary
         else:
-            if resource_dictionary is not None:
-                _json = resource_dictionary
-            else:
-                _json = None
+            _json = resource_dictionary
 
         request = build_auto_rest_resource_flattening_test_service_put_dictionary_request(
             content_type=content_type,
@@ -1026,10 +1017,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         if isinstance(resource_complex_object, (IO, bytes)):
             _content = resource_complex_object
         else:
-            if resource_complex_object is not None:
-                _json = resource_complex_object
-            else:
-                _json = None
+            _json = resource_complex_object
 
         request = build_auto_rest_resource_flattening_test_service_put_resource_collection_request(
             content_type=content_type,
@@ -1348,10 +1336,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         if isinstance(simple_body_product, (IO, bytes)):
             _content = simple_body_product
         else:
-            if simple_body_product is not None:
-                _json = simple_body_product
-            else:
-                _json = None
+            _json = simple_body_product
 
         request = build_auto_rest_resource_flattening_test_service_put_simple_product_request(
             content_type=content_type,
@@ -1559,10 +1544,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         if isinstance(simple_body_product, (IO, bytes)):
             _content = simple_body_product
         else:
-            if simple_body_product is not None:
-                _json = simple_body_product
-            else:
-                _json = None
+            _json = simple_body_product
 
         request = build_auto_rest_resource_flattening_test_service_post_flattened_simple_product_request(
             content_type=content_type,
@@ -1786,10 +1768,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         if isinstance(simple_body_product, (IO, bytes)):
             _content = simple_body_product
         else:
-            if simple_body_product is not None:
-                _json = simple_body_product
-            else:
-                _json = None
+            _json = simple_body_product
 
         request = build_auto_rest_resource_flattening_test_service_put_simple_product_with_grouping_request(
             name=name,

@@ -233,10 +233,7 @@ class PetOperations:
         if isinstance(pet_param, (IO, bytes)):
             _content = pet_param
         else:
-            if pet_param is not None:
-                _json = pet_param
-            else:
-                _json = None
+            _json = pet_param
 
         request = build_pet_add_pet_request(
             content_type=content_type,

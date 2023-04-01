@@ -429,10 +429,7 @@ class StringOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if string_body is not None:
-            _content = string_body
-        else:
-            _content = None
+        _content = string_body
 
         request = build_string_put_null_request(
             content_type=content_type,

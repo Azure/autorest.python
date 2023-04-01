@@ -75,10 +75,7 @@ class IntOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        if input is not None:
-            _json = input
-        else:
-            _json = None
+        _json = input
 
         request = build_int_put_request(
             content_type=content_type,
@@ -200,10 +197,7 @@ class FloatOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        if input is not None:
-            _json = input
-        else:
-            _json = None
+        _json = input
 
         request = build_float_put_request(
             content_type=content_type,

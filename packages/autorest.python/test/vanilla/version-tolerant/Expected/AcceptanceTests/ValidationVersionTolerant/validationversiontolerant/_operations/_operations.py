@@ -461,10 +461,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
-            if body is not None:
-                _json = body
-            else:
-                _json = None
+            _json = body
 
         request = build_auto_rest_validation_test_validation_of_body_request(
             resource_group_name=resource_group_name,
@@ -760,10 +757,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         if isinstance(body, (IO, bytes)):
             _content = body
         else:
-            if body is not None:
-                _json = body
-            else:
-                _json = None
+            _json = body
 
         request = build_auto_rest_validation_test_post_with_constant_in_body_request(
             constant_param=constant_param,
