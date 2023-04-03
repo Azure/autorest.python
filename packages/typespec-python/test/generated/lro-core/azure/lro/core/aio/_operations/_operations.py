@@ -358,9 +358,7 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _export_initial(  # pylint: disable=inconsistent-return-statements
-        self, name: str, *, format: str, **kwargs: Any
-    ) -> None:
+    async def _export_initial(self, name: str, *, format: str, **kwargs: Any) -> _models.ExportedUser:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -372,7 +370,7 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[_models.ExportedUser] = kwargs.pop("cls", None)
 
         request = build_core_export_request(
             name=name,
@@ -397,11 +395,15 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         response_headers = {}
         response_headers["Operation-Location"] = self._deserialize("str", response.headers.get("Operation-Location"))
 
+        deserialized = _deserialize(_models.ExportedUser, response.json())
+
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def begin_export(self, name: str, *, format: str, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_export(self, name: str, *, format: str, **kwargs: Any) -> AsyncLROPoller[_models.ExportedUser]:
         """Exports a user.
 
         Exports a User.
@@ -417,26 +419,35 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of AsyncLROPoller that returns None
-        :rtype: ~azure.core.polling.AsyncLROPoller[None]
+        :return: An instance of AsyncLROPoller that returns ExportedUser. The ExportedUser is
+         compatible with MutableMapping
+        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.lro.core.models.ExportedUser]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[_models.ExportedUser] = kwargs.pop("cls", None)
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = await self._export_initial(  # type: ignore
+            raw_result = await self._export_initial(
                 name=name, format=format, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
         kwargs.pop("error_map", None)
 
-        def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
+        def get_long_running_output(pipeline_response):
+            response_headers = {}
+            response = pipeline_response.http_response
+            response_headers["Operation-Location"] = self._deserialize(
+                "str", response.headers.get("Operation-Location")
+            )
+
+            deserialized = _deserialize(_models.ExportedUser, response.json())
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+            return deserialized
 
         if polling is True:
             polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncLROBasePolling(lro_delay, **kwargs))

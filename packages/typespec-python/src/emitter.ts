@@ -202,6 +202,12 @@ function getEffectiveSchemaType(context: DpgContext, type: Model): Model {
 
     const effective = getEffectiveModelType(program, type, isSchemaProperty);
     if (effective.name) {
+        if (effective.name === "ResourceOperationStatus") {
+            const result = effective.properties.get("result");
+            if (result?.type.kind === "Model") {
+                return result.type;
+            }
+        }
         return effective;
     }
     return type;

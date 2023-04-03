@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import pytest
 from azure.lro.core.aio import CoreClient
-from azure.lro.core.models import User
+from azure.lro.core.models import User, ExportedUser
 
 @pytest.fixture
 async def client():
@@ -24,6 +24,6 @@ async def test_lro_core_delete(client):
 
 @pytest.mark.asyncio
 async def test_lro_core_delete(client):
-    export_user = { "name": "madge", "resourceUri": "/users/madge" }
+    export_user = ExportedUser({ "name": "madge", "resourceUri": "/users/madge" })
     result = await (await client.begin_export(name="madge", polling_interval=0)).result()
     assert result == export_user

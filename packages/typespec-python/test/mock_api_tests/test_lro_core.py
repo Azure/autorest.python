@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import pytest
 from azure.lro.core import CoreClient
-from azure.lro.core.models import User
+from azure.lro.core.models import User, ExportedUser
 
 @pytest.fixture
 def client():
@@ -21,6 +21,6 @@ def test_lro_core_delete(client):
     client.begin_delete(name="madge", polling_interval=0).result()
 
 def test_lro_core_delete(client):
-    export_user = { "name": "madge", "resourceUri": "/users/madge" }
+    export_user = ExportedUser({ "name": "madge", "resourceUri": "/users/madge" })
     result = client.begin_export(name="madge", polling_interval=0).result()
     assert result == export_user
