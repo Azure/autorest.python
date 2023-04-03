@@ -23,7 +23,7 @@ async def test_lro_core_delete(client):
     await (await client.begin_delete(name="madge", polling_interval=0)).result()
 
 @pytest.mark.asyncio
-async def test_lro_core_delete(client):
+async def test_lro_core_export(client):
     export_user = ExportedUser({ "name": "madge", "resourceUri": "/users/madge" })
-    result = await (await client.begin_export(name="madge", polling_interval=0)).result()
+    result = await (await client.begin_export(name="madge", format="json", polling_interval=0)).result()
     assert result == export_user
