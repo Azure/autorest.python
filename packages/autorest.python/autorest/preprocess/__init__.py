@@ -53,7 +53,7 @@ def add_body_param_type(
             except StopIteration:
                 model_type = None
             origin_type = model_type["type"] if model_type else None
-            is_dpg_model = model_type["base"] == "dpg" if origin_type else False
+            is_dpg_model = model_type["base"] == "dpg" if model_type else False
             body_parameter["type"]["types"].append(KNOWN_TYPES["binary"])
         if origin_type == "model" and is_dpg_model:
             body_parameter["type"]["types"].insert(1, KNOWN_TYPES["any-object"])
