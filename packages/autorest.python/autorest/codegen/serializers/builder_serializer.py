@@ -844,10 +844,6 @@ class _OperationSerializer(
 
         # make sure some special type is in last position and some in first position
         # but we can't change original data
-        if len(builder.overloads) == 3:
-            for o in builder.overloads:
-                x = o.parameters.body_parameter.type
-                print(x)
         overloads_copy = [
             o
             for o in builder.overloads

@@ -653,15 +653,6 @@ function isAbstract(operation: HttpOperation): boolean {
     return body !== undefined && body.contentTypes.length > 1;
 }
 
-function updateContentType(operation: Record<string, any>, property: string, value: any = true): void {
-    for (const parameter of operation.parameters) {
-        if (parameter.restApiName.toLowerCase() === "content-type") {
-            parameter[property] = value;
-            break;
-        }
-    }
-}
-
 function emitBasicOperation(
     context: DpgContext,
     operation: Operation,
@@ -738,7 +729,12 @@ function emitBasicOperation(
             }
             for (const overload of overloads) {
                 overload.name = name;
-                updateContentType(overload, "inOverload");
+                for (const parameter of overload.parameters) {
+                    if (parameter.restApiName.toLowerCase() === "content-type") {
+                        parameter.inOverload = true;
+                        break;
+                    }
+                }
             }
         }
     }
