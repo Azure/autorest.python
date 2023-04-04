@@ -84,7 +84,7 @@ def _type_hint(builder: OperationType) -> str:
                 count = count + 1
             if isinstance(type, BinaryType):
                 count = count + 1
-    return f": Optional[{body_type.type_description}]" if count >= 2 else ""
+    return f": Any" if count >= 2 else ""
 
 
 def _enable_content_type_check(operation: OperationType) -> bool:

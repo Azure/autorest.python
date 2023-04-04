@@ -589,7 +589,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         """
 
     @distributed_trace
-    def body_three_types(self, message: Union[Any, IO, str], **kwargs: Any) -> str:
+    def body_three_types(self, message: Any, **kwargs: Any) -> str:
         """Body with three types. Can be stream, string, or JSON. Pass in string 'hello, world' with
         content type 'text/plain', {'hello': world'} with content type 'application/json' and a byte
         string for 'application/octet-stream'.
@@ -618,8 +618,8 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        _json: Optional[Union[Any, IO, str]] = None
-        _content: Optional[Union[Any, IO, str]] = None
+        _json: Any = None
+        _content: Any = None
         if isinstance(message, (IO, bytes)):
             _content = message
             content_type = content_type or "application/octet-stream"

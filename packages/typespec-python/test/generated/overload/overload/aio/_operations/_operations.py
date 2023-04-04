@@ -126,7 +126,7 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("content-type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content: Optional[Union[str, bytes, IO]] = None
+        _content: Any = None
         if isinstance(data, (IO, bytes)):
             _content = data
             content_type = content_type or "application/octet-stream"
@@ -257,7 +257,7 @@ class OverloadClientOperationsMixin(OverloadClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("content-type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content: Optional[Union[str, JSON, "_models.Data", IO]] = None
+        _content: Any = None
         if isinstance(data, (IO, bytes)):
             _content = data
             content_type = content_type or "application/json"

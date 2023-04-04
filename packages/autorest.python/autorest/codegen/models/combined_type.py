@@ -8,6 +8,7 @@ import re
 from autorest.codegen.models.imports import FileImport, ImportType, TypingSection
 from .base import BaseType
 from .model_type import JSONModelType
+from .primitive_types import AnyType
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -73,6 +74,9 @@ class CombinedType(BaseType):
 
         Special case for enum, for instance: Union[str, "EnumName"]
         """
+        for type in self.types:
+            if isinstance(type, AnyType):
+                return type.type_annotation(**kwargs)
         inside_types = [type.type_annotation(**kwargs) for type in self.types]
 
         # If the inside types has been a Union, peel first and then re-union
