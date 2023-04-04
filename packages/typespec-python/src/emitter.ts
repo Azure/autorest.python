@@ -224,7 +224,12 @@ function getType(context: DpgContext, type: EmitterType): any {
     // don't cache simple type(string, int, etc) since decorators may change the result
     const program = context.program;
     // object, {}, Model{} all will be treated as empty model
-    const isEmptyModel = type.kind === "Model" && type.properties.size === 0 && !type.baseModel && type.derivedModels.length === 0 && !type.indexer;
+    const isEmptyModel =
+        type.kind === "Model" &&
+        type.properties.size === 0 &&
+        !type.baseModel &&
+        type.derivedModels.length === 0 &&
+        !type.indexer;
     const enableCache = !isSimpleType(context, type) && !isEmptyModel;
     const effectiveModel = type.kind === "Model" ? getEffectiveSchemaType(context, type) : type;
     if (enableCache) {
