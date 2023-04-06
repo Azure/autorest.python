@@ -58,6 +58,14 @@ OperationType = TypeVar(
 )
 
 
+def _xml_config(send_xml: bool, content_types: List[str]) -> str:
+    if not (send_xml and "xml" in str(content_types)):
+        return ""
+    if len(content_types) == 1:
+        return ", is_xml=True"
+    return ", is_xml=kwargs.pop('is_xml', 'xml' in str(content_type))"
+
+
 def _escape_str(input_str: str) -> str:
     replace = input_str.replace("'", "\\'")
     return f'"{replace}"'
@@ -741,7 +749,9 @@ class _OperationSerializer(
         if xml_serialization_ctxt and self.code_model.options["models_mode"]:
             retval.append(f'{ser_ctxt_name} = {{"xml": {{{xml_serialization_ctxt}}}}}')
         if self.code_model.options["models_mode"] == "msrest":
-            is_xml_cmd = ", is_xml=True" if send_xml else ""
+            is_xml_cmd = _xml_config(
+                send_xml, builder.parameters.body_parameter.content_types
+            )
             serialization_ctxt_cmd = (
                 f", {ser_ctxt_name}={ser_ctxt_name}" if xml_serialization_ctxt else ""
             )
