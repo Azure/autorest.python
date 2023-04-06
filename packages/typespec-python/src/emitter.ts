@@ -22,13 +22,6 @@ import {
     Operation,
     isKey,
     Scalar,
-    IntrinsicScalarName,
-    isStringType,
-    getPropertyType,
-    isNumericType,
-    getFormat,
-    getMinItems,
-    getMaxItems,
     EmitContext,
     listServices,
     Union,
@@ -36,6 +29,7 @@ import {
     SyntaxKind,
     Type,
     getNamespaceFullName,
+    IntrinsicType,
 } from "@typespec/compiler";
 import {
     getAuthentication,
@@ -69,7 +63,7 @@ import {
     getLibraryName,
     getAllModels,
     isInternal,
-    SdkSimpleType,
+    getSdkSimpleType,
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
@@ -103,11 +97,11 @@ const defaultOptions = {
 };
 
 const sdkScalarKindToPythonKind: Record<string, string> = {
-    "int32": "integer",
-    "int64": "integer",
-    "float32": "float",
-    "float64": "float",
-}
+    int32: "integer",
+    int64: "integer",
+    float32: "float",
+    float64: "float",
+};
 
 export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     const program = context.program;
@@ -896,71 +890,30 @@ function emitCredentialUnion(cred_types: CredentialTypeUnion): Record<string, an
     return result;
 }
 
-function isNumber(type: SdkSimpleType): boolean {
-    return type.kind === "int32" || type.kind === "int64" || type.kind === "float32" || type.kind === "float64"
-}
-
-function emitSimpleType(context: SdkContext, scalar: Scalar | IntrinsicType): Record<string, any> {
-    const sdkScalar = getSdkSimpleType(context, scalar);
-    const extraInformation: Record<string, any> = {}
-    if (sdkScalar.kind === "string") {
-        extraInformation["pattern"] = sdkScalar.pattern;
-        extraInformation["minLength"] = sdkScalar.minLength;
-        extraInformation["maxLength"] = sdkScalar.maxLength;
-    } else if (isNumber(sdkScalar)) {
-        extraInformation["minValue"] = sdkScalar.minValue;
-        extraInformation["maxValue"] = sdkScalar.maxValue;
+function emitSimpleType(context: SdkContext, type: Scalar | IntrinsicType): Record<string, any> {
+    const sdkType = getSdkSimpleType(context, type);
+    const extraInformation: Record<string, any> = {};
+    if (sdkType.kind === "string") {
+        extraInformation["pattern"] = sdkType.pattern;
+        extraInformation["minLength"] = sdkType.minLength;
+        extraInformation["maxLength"] = sdkType.maxLength;
+    } else if (
+        sdkType.kind === "int32" ||
+        sdkType.kind === "int64" ||
+        sdkType.kind === "float32" ||
+        sdkType.kind === "float64"
+    ) {
+        extraInformation["minValue"] = sdkType.minValue;
+        extraInformation["maxValue"] = sdkType.maxValue;
     }
     return {
-        kind: sdkScalarKindToPythonKind[sdkScalar.kind] || sdkScalar.kind,
-        doc: sdkScalar.doc,
-        apiVersions: sdkScalar.apiVersions,
-        sdkDefaultValue: sdkScalar.sdkDefaultValue,
-        format: sdkScalar.format,
+        type: sdkScalarKindToPythonKind[sdkType.kind] || sdkType.kind, // TODO: switch to kind
+        doc: sdkType.doc,
+        apiVersions: sdkType.apiVersions,
+        sdkDefaultValue: sdkType.sdkDefaultValue,
+        format: sdkType.format,
         ...extraInformation,
-    }
-}
-
-    const minLength = getMinLength(program, type);
-    if (isString && !result.minLength && minLength !== undefined) {
-        newResult.minLength = minLength;
-    }
-
-    const maxLength = getMaxLength(program, type);
-    if (isString && !result.maxLength && maxLength !== undefined) {
-        newResult.maxLength = maxLength;
-    }
-
-    const minValue = getMinValue(program, type);
-    if (isNumeric && !result.minimum && minValue !== undefined) {
-        newResult.minimum = minValue;
-    }
-
-    const maxValue = getMaxValue(program, type);
-    if (isNumeric && !result.maximum && maxValue !== undefined) {
-        newResult.maximum = maxValue;
-    }
-
-    const minItems = getMinItems(program, type);
-    if (!result.minItems && minItems !== undefined) {
-        newResult.minItems = minItems;
-    }
-
-    const maxItems = getMaxItems(program, type);
-    if (!result.maxItems && maxItems !== undefined) {
-        newResult.maxItems = maxItems;
-    }
-    return newResult;
-}
-
-function emitScalar(context: SdkContext, scalar: Scalar): Record<string, any> {
-    let result: Record<string, any> = {};
-    if (context.program.checker.isStdType(scalar)) {
-        result = emitStdScalar(scalar);
-    } else if (scalar.baseScalar) {
-        result = emitScalar(context, scalar.baseScalar);
-    }
-    return applyIntrinsicDecorators(context, scalar, result);
+    };
 }
 
 function emitListOrDict(context: SdkContext, type: Model): Record<string, any> | undefined {
@@ -1083,7 +1036,7 @@ function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
         case "Model":
             return emitModel(context, type);
         case "Scalar":
-            return emitScalar(context, type);
+            return emitSimpleType(context, type);
         case "Union":
             return emitUnion(context, type);
         case "UnionVariant":
