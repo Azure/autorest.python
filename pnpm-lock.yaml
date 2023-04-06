@@ -37,7 +37,11 @@ importers:
       '@azure-tools/cadl-ranch-expect': ~0.2.1
       '@azure-tools/cadl-ranch-specs': ~0.10.0
       '@azure-tools/typespec-azure-core': ~0.28.1
+<<<<<<< Updated upstream
       '@azure-tools/typespec-client-generator-core': ~0.28.0
+=======
+      '@azure-tools/typespec-client-generator-core': ~0.29.0-dev.5
+>>>>>>> Stashed changes
       '@types/js-yaml': ~4.0.1
       '@types/mocha': ~9.1.0
       '@types/node': ^18.7.16
@@ -56,7 +60,11 @@ importers:
       typescript: ^4.8.3
     dependencies:
       '@autorest/python': link:../autorest.python
+<<<<<<< Updated upstream
       '@azure-tools/typespec-client-generator-core': 0.28.0_hzb2jbmq64tbaesm4d7gx5mjku
+=======
+      '@azure-tools/typespec-client-generator-core': 0.29.0-dev.5_hzb2jbmq64tbaesm4d7gx5mjku
+>>>>>>> Stashed changes
       '@typespec/compiler': 0.42.0
       js-yaml: 4.1.0
     devDependencies:
@@ -205,8 +213,13 @@ packages:
       '@typespec/rest': 0.42.0_@typespec+compiler@0.42.0
     dev: true
 
+<<<<<<< Updated upstream
   /@azure-tools/typespec-client-generator-core/0.28.0_hzb2jbmq64tbaesm4d7gx5mjku:
     resolution: {integrity: sha512-EuWlcstpFTvxZ4dft5H6BobG4/JXGQVVzytvLmpLNKRmCfkgtP4I/zA5ZxzVJT4HFIeyW24B5lzafrik8JYdJg==}
+=======
+  /@azure-tools/typespec-client-generator-core/0.29.0-dev.5_hzb2jbmq64tbaesm4d7gx5mjku:
+    resolution: {integrity: sha512-8zal3kCHiDHfmakrFlC0LLARMhnFuyeJnbmDmZBoe3Y4hsTNz4eZyDRG8kCaCCoOyDZ8WuDh+gQi5vn1yECXsQ==}
+>>>>>>> Stashed changes
     engines: {node: '>=16.0.0'}
     peerDependencies:
       '@typespec/compiler': ~0.42.0

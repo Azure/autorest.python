@@ -55,7 +55,7 @@ import {
 } from "@typespec/http";
 import { getAddedOnVersions } from "@typespec/versioning";
 import {
-    Client,
+    SdkClient,
     listClients,
     listOperationGroups,
     listOperationsInOperationGroup,
@@ -63,12 +63,13 @@ import {
     getDefaultApiVersion,
     getClientNamespaceString,
     getClientFormat,
-    createDpgContext,
-    DpgContext,
+    createSdkContext,
+    SdkContext,
     getPropertyNames,
     getLibraryName,
     getAllModels,
     isInternal,
+    SdkSimpleType,
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
@@ -100,6 +101,13 @@ const defaultOptions = {
     "basic-setup-py": true,
     "package-version": "1.0.0b1",
 };
+
+const sdkScalarKindToPythonKind: Record<string, string> = {
+    "int32": "integer",
+    "int64": "integer",
+    "float32": "float",
+    "float64": "float",
+}
 
 export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     const program = context.program;
@@ -143,7 +151,7 @@ const simpleTypesMap = new Map<string, Record<string, any>>();
 const endpointPathParameters: Record<string, any>[] = [];
 let apiVersionParam: Record<string, any> | undefined = undefined;
 
-function isSimpleType(context: DpgContext, type: EmitterType | undefined): boolean {
+function isSimpleType(context: SdkContext, type: EmitterType | undefined): boolean {
     // these decorators can only work for simple type(int/string/float, etc)
     if (type && (type.kind === "Scalar" || type.kind === "ModelProperty")) {
         const funcs = [getMinValue, getMaxValue, getMinLength, getMaxLength, getPattern];
@@ -156,11 +164,11 @@ function isSimpleType(context: DpgContext, type: EmitterType | undefined): boole
     return false;
 }
 
-function getDocStr(context: DpgContext, target: Type): string {
+function getDocStr(context: SdkContext, target: Type): string {
     return getDoc(context.program, target) ?? "";
 }
 
-function handleDiscriminator(context: DpgContext, type: Model, model: Record<string, any>) {
+function handleDiscriminator(context: SdkContext, type: Model, model: Record<string, any>) {
     const discriminator = getDiscriminator(context.program, type);
     if (discriminator) {
         let discriminatorProperty;
@@ -190,7 +198,7 @@ function handleDiscriminator(context: DpgContext, type: Model, model: Record<str
     }
 }
 
-function getEffectiveSchemaType(context: DpgContext, type: Model): Model {
+function getEffectiveSchemaType(context: SdkContext, type: Model): Model {
     const program = context.program;
     function isSchemaProperty(property: ModelProperty) {
         const headerInfo = getHeaderFieldName(program, property);
@@ -207,7 +215,7 @@ function getEffectiveSchemaType(context: DpgContext, type: Model): Model {
     return type;
 }
 
-function getEntityType(context: DpgContext, entity: ModelProperty): any {
+function getEntityType(context: SdkContext, entity: ModelProperty): any {
     const result = getType(context, entity.type);
     const format = getClientFormat(context, entity);
     if (format) {
@@ -220,7 +228,7 @@ function getEntityType(context: DpgContext, entity: ModelProperty): any {
     return result;
 }
 
-function getType(context: DpgContext, type: EmitterType): any {
+function getType(context: SdkContext, type: EmitterType): any {
     // don't cache simple type(string, int, etc) since decorators may change the result
     const program = context.program;
     const enableCache = !isSimpleType(context, type);
@@ -259,7 +267,7 @@ function getType(context: DpgContext, type: EmitterType): any {
 }
 
 // To pass the yaml dump
-function getAddedOnVersion(context: DpgContext, t: Type): string | undefined {
+function getAddedOnVersion(context: SdkContext, t: Type): string | undefined {
     const versions = getAddedOnVersions(context.program as any, t as any);
     if (versions !== undefined && versions.length > 0) {
         return versions[0].value;
@@ -274,7 +282,7 @@ type ParamBase = {
     clientName: string;
     inOverload: boolean;
 };
-function emitParamBase(context: DpgContext, parameter: ModelProperty | Type): ParamBase {
+function emitParamBase(context: SdkContext, parameter: ModelProperty | Type): ParamBase {
     let optional: boolean;
     let name: string;
     let description: string = "";
@@ -307,7 +315,7 @@ type BodyParameter = ParamBase & {
     defaultContentType: string;
 };
 
-function getBodyType(context: DpgContext, route: HttpOperation): Type {
+function getBodyType(context: SdkContext, route: HttpOperation): Type {
     let bodyModel = route.parameters.body?.type;
     if (bodyModel && bodyModel.kind === "Model" && route.operation) {
         const resourceType = getResourceOperation(context.program, route.operation)?.resourceType;
@@ -337,7 +345,7 @@ function getBodyType(context: DpgContext, route: HttpOperation): Type {
     return bodyModel!;
 }
 
-function emitBodyParameter(context: DpgContext, httpOperation: HttpOperation): BodyParameter {
+function emitBodyParameter(context: SdkContext, httpOperation: HttpOperation): BodyParameter {
     const params = httpOperation.parameters;
     const body = params.body!;
     const base = emitParamBase(context, body.parameter ?? body.type);
@@ -363,7 +371,7 @@ function emitBodyParameter(context: DpgContext, httpOperation: HttpOperation): B
 }
 
 function emitParameter(
-    context: DpgContext,
+    context: SdkContext,
     parameter: HttpOperationParameter | HttpServerParameter,
     implementation: string,
 ): Record<string, any> {
@@ -493,7 +501,7 @@ function emitAcceptParameter(inOverload: boolean, inOverriden: boolean): Record<
     };
 }
 
-function emitResponseHeaders(context: DpgContext, headers?: Record<string, ModelProperty>): Record<string, any>[] {
+function emitResponseHeaders(context: SdkContext, headers?: Record<string, ModelProperty>): Record<string, any>[] {
     const retval: Record<string, any>[] = [];
     if (!headers) {
         return retval;
@@ -516,7 +524,7 @@ function isAzureCoreModel(t: Type): boolean {
 }
 
 function emitResponse(
-    context: DpgContext,
+    context: SdkContext,
     response: HttpOperationResponse,
     innerResponse: HttpOperationResponseContent,
 ): Record<string, any> {
@@ -551,7 +559,7 @@ function emitResponse(
     };
 }
 
-function emitOperation(context: DpgContext, operation: Operation, operationGroupName: string): Record<string, any>[] {
+function emitOperation(context: SdkContext, operation: Operation, operationGroupName: string): Record<string, any>[] {
     const lro = getLroMetadata(context.program, operation);
     const paging = getPagedResult(context.program, operation);
     if (lro && paging) {
@@ -570,7 +578,7 @@ function addLroInformation(emittedOperation: Record<string, any>, initialOperati
     emittedOperation["exposeStreamKeyword"] = false;
 }
 
-function addPagingInformation(context: DpgContext, operation: Operation, emittedOperation: Record<string, any>) {
+function addPagingInformation(context: SdkContext, operation: Operation, emittedOperation: Record<string, any>) {
     emittedOperation["discriminator"] = "paging";
     const pagedResult = getPagedResult(context.program, operation);
     if (pagedResult === undefined) {
@@ -583,7 +591,7 @@ function addPagingInformation(context: DpgContext, operation: Operation, emitted
 }
 
 function getLroInitialOperation(
-    context: DpgContext,
+    context: SdkContext,
     operation: Operation,
     operationGroupName: string,
 ): Record<string, any> {
@@ -600,7 +608,7 @@ function getLroInitialOperation(
 }
 
 function emitLroPagingOperation(
-    context: DpgContext,
+    context: SdkContext,
     operation: Operation,
     operationGroupName: string,
 ): Record<string, any>[] {
@@ -616,7 +624,7 @@ function emitLroPagingOperation(
 }
 
 function emitLroOperation(
-    context: DpgContext,
+    context: SdkContext,
     operation: Operation,
     operationGroupName: string,
 ): Record<string, any>[] {
@@ -631,7 +639,7 @@ function emitLroOperation(
 }
 
 function emitPagingOperation(
-    context: DpgContext,
+    context: SdkContext,
     operation: Operation,
     operationGroupName: string,
 ): Record<string, any>[] {
@@ -649,7 +657,7 @@ function isAbstract(operation: HttpOperation): boolean {
 }
 
 function emitBasicOperation(
-    context: DpgContext,
+    context: SdkContext,
     operation: Operation,
     operationGroupName: string,
 ): Record<string, any>[] {
@@ -739,7 +747,7 @@ function emitBasicOperation(
     ];
 }
 
-function isReadOnly(context: DpgContext, type: ModelProperty): boolean {
+function isReadOnly(context: SdkContext, type: ModelProperty): boolean {
     // https://microsoft.github.io/cadl/standard-library/rest/operations#automatic-visibility
     // Only "read" should be readOnly
     const visibility = getVisibility(context.program, type);
@@ -750,7 +758,7 @@ function isReadOnly(context: DpgContext, type: ModelProperty): boolean {
     }
 }
 
-function emitProperty(context: DpgContext, property: ModelProperty): Record<string, any> {
+function emitProperty(context: SdkContext, property: ModelProperty): Record<string, any> {
     let clientDefaultValue = undefined;
     const propertyDefaultKind = property.default?.kind;
     if (
@@ -772,7 +780,7 @@ function emitProperty(context: DpgContext, property: ModelProperty): Record<stri
     };
 }
 
-function getName(context: DpgContext, type: Model): string {
+function getName(context: SdkContext, type: Model): string {
     const friendlyName = getFriendlyName(context.program, type);
     if (friendlyName) {
         return friendlyName;
@@ -786,7 +794,7 @@ function getName(context: DpgContext, type: Model): string {
     }
 }
 
-function emitModel(context: DpgContext, type: Model): Record<string, any> {
+function emitModel(context: SdkContext, type: Model): Record<string, any> {
     // Now we know it's a defined model
     const properties: Record<string, any>[] = [];
     let baseModel = undefined;
@@ -819,7 +827,7 @@ function enumName(name: string): string {
     return camelToSnakeCase(name).toUpperCase();
 }
 
-function emitEnum(context: DpgContext, type: Enum): Record<string, any> {
+function emitEnum(context: SdkContext, type: Enum): Record<string, any> {
     const enumValues = [];
     for (const m of type.members.values()) {
         enumValues.push({
@@ -888,69 +896,30 @@ function emitCredentialUnion(cred_types: CredentialTypeUnion): Record<string, an
     return result;
 }
 
-function emitStdScalar(scalar: Scalar & { name: IntrinsicScalarName }): Record<string, any> {
-    switch (scalar.name) {
-        case "bytes":
-            return { type: "byte-array", format: "byte" };
-        case "int8":
-        case "int16":
-        case "int32":
-        case "int64":
-        case "safeint":
-        case "uint8":
-        case "uint16":
-        case "uint32":
-        case "uint64":
-        case "integer":
-            return { type: "integer" };
-        case "float32":
-        case "float64":
-        case "float":
-            return { type: "float" };
-        case "url":
-        case "string":
-            return { type: "string" };
-        case "boolean":
-            return { type: "boolean" };
-        case "plainDate":
-            return { type: "date" };
-        case "zonedDateTime":
-            return { type: "datetime", format: "date-time" };
-        case "plainTime":
-            return { type: "time" };
-        case "duration":
-            return { type: "duration" };
-        case "numeric":
-            return {}; // Waiting on design for more precise type https://github.com/microsoft/cadl/issues/1260
-        default:
-            return {};
-    }
+function isNumber(type: SdkSimpleType): boolean {
+    return type.kind === "int32" || type.kind === "int64" || type.kind === "float32" || type.kind === "float64"
 }
 
-function applyIntrinsicDecorators(
-    context: DpgContext,
-    type: Scalar | ModelProperty,
-    result: Record<string, any>,
-): Record<string, any> {
-    const program = context.program;
-    const newResult = { ...result };
-    const docStr = getDoc(program, type);
-    const isString = isStringType(program, getPropertyType(type));
-    const isNumeric = isNumericType(program, getPropertyType(type));
-
-    if (!result.description && docStr) {
-        newResult.description = docStr;
+function emitSimpleType(context: SdkContext, scalar: Scalar | IntrinsicType): Record<string, any> {
+    const sdkScalar = getSdkSimpleType(context, scalar);
+    const extraInformation: Record<string, any> = {}
+    if (sdkScalar.kind === "string") {
+        extraInformation["pattern"] = sdkScalar.pattern;
+        extraInformation["minLength"] = sdkScalar.minLength;
+        extraInformation["maxLength"] = sdkScalar.maxLength;
+    } else if (isNumber(sdkScalar)) {
+        extraInformation["minValue"] = sdkScalar.minValue;
+        extraInformation["maxValue"] = sdkScalar.maxValue;
     }
-
-    const formatStr = getFormat(program, type);
-    if (isString && !result.format && formatStr) {
-        newResult.format = formatStr;
+    return {
+        kind: sdkScalarKindToPythonKind[sdkScalar.kind] || sdkScalar.kind,
+        doc: sdkScalar.doc,
+        apiVersions: sdkScalar.apiVersions,
+        sdkDefaultValue: sdkScalar.sdkDefaultValue,
+        format: sdkScalar.format,
+        ...extraInformation,
     }
-
-    const pattern = getPattern(program, type);
-    if (isString && !result.pattern && pattern) {
-        newResult.pattern = pattern;
-    }
+}
 
     const minLength = getMinLength(program, type);
     if (isString && !result.minLength && minLength !== undefined) {
@@ -984,7 +953,7 @@ function applyIntrinsicDecorators(
     return newResult;
 }
 
-function emitScalar(context: DpgContext, scalar: Scalar): Record<string, any> {
+function emitScalar(context: SdkContext, scalar: Scalar): Record<string, any> {
     let result: Record<string, any> = {};
     if (context.program.checker.isStdType(scalar)) {
         result = emitStdScalar(scalar);
@@ -994,7 +963,7 @@ function emitScalar(context: DpgContext, scalar: Scalar): Record<string, any> {
     return applyIntrinsicDecorators(context, scalar, result);
 }
 
-function emitListOrDict(context: DpgContext, type: Model): Record<string, any> | undefined {
+function emitListOrDict(context: SdkContext, type: Model): Record<string, any> | undefined {
     if (type.indexer !== undefined) {
         if (isNeverType(type.indexer.key)) {
         } else {
@@ -1012,7 +981,7 @@ function emitListOrDict(context: DpgContext, type: Model): Record<string, any> |
     return undefined;
 }
 
-function mapCadlType(context: DpgContext, type: Type): any {
+function mapCadlType(context: SdkContext, type: Type): any {
     switch (type.kind) {
         case "Number":
             return constantType(type.value, intOrFloat(type.value));
@@ -1029,7 +998,7 @@ function capitalize(name: string): string {
     return name[0].toUpperCase() + name.slice(1);
 }
 
-function emitUnion(context: DpgContext, type: Union): Record<string, any> {
+function emitUnion(context: SdkContext, type: Union): Record<string, any> {
     const nonNullOptions = [...type.variants.values()].map((x) => x.type).filter((t) => !isNullType(t));
 
     const notLiteral = (t: Type): boolean => ["Boolean", "Number", "String"].indexOf(t.kind) < 0;
@@ -1091,7 +1060,7 @@ function emitUnion(context: DpgContext, type: Union): Record<string, any> {
     };
 }
 
-function emitType(context: DpgContext, type: EmitterType): Record<string, any> {
+function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
     if (type.kind === "Credential") {
         return emitCredential(type.scheme);
     }
@@ -1126,7 +1095,7 @@ function emitType(context: DpgContext, type: EmitterType): Record<string, any> {
     }
 }
 
-function emitOperationGroups(context: DpgContext, client: Client): Record<string, any>[] {
+function emitOperationGroups(context: SdkContext, client: SdkClient): Record<string, any>[] {
     const operationGroups: Record<string, any>[] = [];
     for (const operationGroup of listOperationGroups(context, client)) {
         let operations: Record<string, any>[] = [];
@@ -1154,7 +1123,7 @@ function emitOperationGroups(context: DpgContext, client: Client): Record<string
     return operationGroups;
 }
 
-function getServerHelper(context: DpgContext, namespace: Namespace): HttpServer | undefined {
+function getServerHelper(context: SdkContext, namespace: Namespace): HttpServer | undefined {
     const servers = getServers(context.program, namespace);
     if (servers === undefined) {
         return undefined;
@@ -1162,7 +1131,7 @@ function getServerHelper(context: DpgContext, namespace: Namespace): HttpServer 
     return servers[0];
 }
 
-function emitServerParams(context: DpgContext, namespace: Namespace): Record<string, any>[] {
+function emitServerParams(context: SdkContext, namespace: Namespace): Record<string, any>[] {
     const server = getServerHelper(context, namespace);
     if (server === undefined) {
         return [
@@ -1213,7 +1182,7 @@ function emitServerParams(context: DpgContext, namespace: Namespace): Record<str
     }
 }
 
-function emitCredentialParam(context: DpgContext, namespace: Namespace): Record<string, any> | undefined {
+function emitCredentialParam(context: SdkContext, namespace: Namespace): Record<string, any> | undefined {
     const auth = getAuthentication(context.program, namespace);
     if (auth) {
         const credential_types: CredentialType[] = [];
@@ -1252,7 +1221,7 @@ function emitCredentialParam(context: DpgContext, namespace: Namespace): Record<
     return undefined;
 }
 
-function emitGlobalParameters(context: DpgContext, namespace: Namespace): Record<string, any>[] {
+function emitGlobalParameters(context: SdkContext, namespace: Namespace): Record<string, any>[] {
     const clientParameters = emitServerParams(context, namespace);
     const credentialParam = emitCredentialParam(context, namespace);
     if (credentialParam) {
@@ -1261,7 +1230,7 @@ function emitGlobalParameters(context: DpgContext, namespace: Namespace): Record
     return clientParameters;
 }
 
-function getApiVersionParameter(context: DpgContext): Record<string, any> | void {
+function getApiVersionParameter(context: SdkContext): Record<string, any> | void {
     const version = getDefaultApiVersion(context, getServiceNamespace(context));
     if (apiVersionParam) {
         return apiVersionParam;
@@ -1284,7 +1253,7 @@ function getApiVersionParameter(context: DpgContext): Record<string, any> | void
     }
 }
 
-function emitClients(context: DpgContext, namespace: string): Record<string, any>[] {
+function emitClients(context: SdkContext, namespace: string): Record<string, any>[] {
     const clients = listClients(context);
     const retval: Record<string, any>[] = [];
     for (const client of clients) {
@@ -1309,11 +1278,11 @@ function emitClients(context: DpgContext, namespace: string): Record<string, any
     return retval;
 }
 
-function getServiceNamespace(context: DpgContext): Namespace {
+function getServiceNamespace(context: SdkContext): Namespace {
     return listServices(context.program)[0].type;
 }
 
-function getNamespace(context: DpgContext, clientName: string): string {
+function getNamespace(context: SdkContext, clientName: string): string {
     // We get client namespaces from the client name. If there's a dot, we add that to the namespace
     const submodule = clientName.split(".").slice(0, -1).join(".").toLowerCase();
     if (!submodule) {
@@ -1322,7 +1291,7 @@ function getNamespace(context: DpgContext, clientName: string): string {
     return submodule;
 }
 
-function getNamespaces(context: DpgContext): Set<string> {
+function getNamespaces(context: SdkContext): Set<string> {
     const namespaces = new Set<string>();
     for (const client of listClients(context)) {
         namespaces.add(getNamespace(context, client.name));
@@ -1331,21 +1300,21 @@ function getNamespaces(context: DpgContext): Set<string> {
 }
 
 function emitCodeModel(context: EmitContext<PythonEmitterOptions>) {
-    const dpgContext = createDpgContext(context);
-    const clientNamespaceString = getClientNamespaceString(dpgContext)?.toLowerCase();
+    const sdkContext = createSdkContext(context);
+    const clientNamespaceString = getClientNamespaceString(sdkContext)?.toLowerCase();
     // Get types
     const codeModel: Record<string, any> = {
         namespace: clientNamespaceString,
         subnamespaceToClients: {},
     };
-    for (const model of getAllModels(dpgContext)) {
-        getType(dpgContext, model);
+    for (const model of getAllModels(sdkContext)) {
+        getType(sdkContext, model);
     }
-    for (const namespace of getNamespaces(dpgContext)) {
+    for (const namespace of getNamespaces(sdkContext)) {
         if (namespace === clientNamespaceString) {
-            codeModel["clients"] = emitClients(dpgContext, namespace);
+            codeModel["clients"] = emitClients(sdkContext, namespace);
         } else {
-            codeModel["subnamespaceToClients"][namespace] = emitClients(dpgContext, namespace);
+            codeModel["subnamespaceToClients"][namespace] = emitClients(sdkContext, namespace);
         }
     }
     codeModel["types"] = [...typesMap.values(), ...Object.values(KnownTypes), ...simpleTypesMap.values()];

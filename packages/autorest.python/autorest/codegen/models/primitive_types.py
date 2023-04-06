@@ -346,7 +346,7 @@ class StringType(PrimitiveType):
 class DatetimeType(PrimitiveType):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
-        self.format = self.Formats(yaml_data["format"])
+        self.format = self.Formats(yaml_data.get("format", "date-time"))
 
     class Formats(str, Enum):
         datetime = "date-time"
@@ -578,7 +578,7 @@ class DurationType(PrimitiveType):
 class ByteArraySchema(PrimitiveType):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
-        self.format = yaml_data["format"]
+        self.format = yaml_data.get("format", "bytes")
 
     @property
     def serialization_type(self) -> str:
