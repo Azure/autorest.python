@@ -39,7 +39,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_multiple_inheritance_service_get_horse_request(**kwargs: Any) -> HttpRequest:
+def build_multiple_inheritance_service_get_horse_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -53,7 +53,7 @@ def build_multiple_inheritance_service_get_horse_request(**kwargs: Any) -> HttpR
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_multiple_inheritance_service_put_horse_request(**kwargs: Any) -> HttpRequest:
+def build_multiple_inheritance_service_put_horse_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -70,7 +70,7 @@ def build_multiple_inheritance_service_put_horse_request(**kwargs: Any) -> HttpR
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_multiple_inheritance_service_get_pet_request(**kwargs: Any) -> HttpRequest:
+def build_multiple_inheritance_service_get_pet_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -84,7 +84,7 @@ def build_multiple_inheritance_service_get_pet_request(**kwargs: Any) -> HttpReq
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_multiple_inheritance_service_put_pet_request(**kwargs: Any) -> HttpRequest:
+def build_multiple_inheritance_service_put_pet_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -101,7 +101,9 @@ def build_multiple_inheritance_service_put_pet_request(**kwargs: Any) -> HttpReq
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_multiple_inheritance_service_get_feline_request(**kwargs: Any) -> HttpRequest:
+def build_multiple_inheritance_service_get_feline_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -115,7 +117,9 @@ def build_multiple_inheritance_service_get_feline_request(**kwargs: Any) -> Http
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_multiple_inheritance_service_put_feline_request(**kwargs: Any) -> HttpRequest:
+def build_multiple_inheritance_service_put_feline_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -132,7 +136,7 @@ def build_multiple_inheritance_service_put_feline_request(**kwargs: Any) -> Http
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_multiple_inheritance_service_get_cat_request(**kwargs: Any) -> HttpRequest:
+def build_multiple_inheritance_service_get_cat_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -146,7 +150,7 @@ def build_multiple_inheritance_service_get_cat_request(**kwargs: Any) -> HttpReq
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_multiple_inheritance_service_put_cat_request(**kwargs: Any) -> HttpRequest:
+def build_multiple_inheritance_service_put_cat_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -163,7 +167,9 @@ def build_multiple_inheritance_service_put_cat_request(**kwargs: Any) -> HttpReq
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_multiple_inheritance_service_get_kitten_request(**kwargs: Any) -> HttpRequest:
+def build_multiple_inheritance_service_get_kitten_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -177,7 +183,9 @@ def build_multiple_inheritance_service_get_kitten_request(**kwargs: Any) -> Http
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_multiple_inheritance_service_put_kitten_request(**kwargs: Any) -> HttpRequest:
+def build_multiple_inheritance_service_put_kitten_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))

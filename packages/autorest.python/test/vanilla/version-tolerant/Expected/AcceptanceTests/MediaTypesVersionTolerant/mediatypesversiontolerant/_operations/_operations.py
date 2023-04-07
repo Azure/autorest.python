@@ -56,7 +56,9 @@ def build_media_types_analyze_body_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_media_types_analyze_body_no_accept_header_request(**kwargs: Any) -> HttpRequest:
+def build_media_types_analyze_body_no_accept_header_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -70,7 +72,7 @@ def build_media_types_analyze_body_no_accept_header_request(**kwargs: Any) -> Ht
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_media_types_content_type_with_encoding_request(
+def build_media_types_content_type_with_encoding_request(  # pylint: disable=name-too-long
     *, content: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -89,7 +91,9 @@ def build_media_types_content_type_with_encoding_request(
     return HttpRequest(method="POST", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_media_types_binary_body_with_two_content_types_request(*, content: IO, **kwargs: Any) -> HttpRequest:
+def build_media_types_binary_body_with_two_content_types_request(  # pylint: disable=name-too-long
+    *, content: IO, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -106,7 +110,9 @@ def build_media_types_binary_body_with_two_content_types_request(*, content: IO,
     return HttpRequest(method="POST", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_media_types_binary_body_with_three_content_types_request(*, content: IO, **kwargs: Any) -> HttpRequest:
+def build_media_types_binary_body_with_three_content_types_request(  # pylint: disable=name-too-long
+    *, content: IO, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -123,7 +129,9 @@ def build_media_types_binary_body_with_three_content_types_request(*, content: I
     return HttpRequest(method="POST", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_media_types_put_text_and_json_body_request(*, content: str, **kwargs: Any) -> HttpRequest:
+def build_media_types_put_text_and_json_body_request(  # pylint: disable=name-too-long
+    *, content: str, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))

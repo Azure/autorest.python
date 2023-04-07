@@ -85,7 +85,9 @@ def build_dev_driven_post_model_request(mode: Union[str, _models.Mode], **kwargs
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_dev_driven_get_protocol_pages_request(*, api_version: str, **kwargs: Any) -> HttpRequest:
+def build_dev_driven_get_protocol_pages_request(  # pylint: disable=name-too-long
+    *, api_version: str, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -103,7 +105,9 @@ def build_dev_driven_get_protocol_pages_request(*, api_version: str, **kwargs: A
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_dev_driven_get_convenience_pages_request(*, api_version: str, **kwargs: Any) -> HttpRequest:
+def build_dev_driven_get_convenience_pages_request(  # pylint: disable=name-too-long
+    *, api_version: str, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 

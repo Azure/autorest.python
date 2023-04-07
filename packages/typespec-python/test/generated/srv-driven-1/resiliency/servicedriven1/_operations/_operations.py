@@ -46,14 +46,16 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_service_driven1_head_no_params_request(**kwargs: Any) -> HttpRequest:
+def build_service_driven1_head_no_params_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     # Construct URL
     _url = "/resiliency/servicedriven1/parameters"
 
     return HttpRequest(method="HEAD", url=_url, **kwargs)
 
 
-def build_service_driven1_get_required_request(*, parameter: str, **kwargs: Any) -> HttpRequest:
+def build_service_driven1_get_required_request(  # pylint: disable=name-too-long
+    *, parameter: str, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -71,7 +73,7 @@ def build_service_driven1_get_required_request(*, parameter: str, **kwargs: Any)
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_service_driven1_put_required_optional_request(
+def build_service_driven1_put_required_optional_request(  # pylint: disable=name-too-long
     *, required_param: str, optional_param: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -93,7 +95,7 @@ def build_service_driven1_put_required_optional_request(
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_service_driven1_post_parameters_request(**kwargs: Any) -> HttpRequest:
+def build_service_driven1_post_parameters_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type_path: Literal["json"] = kwargs.pop("content_type_path", "json")
@@ -116,7 +118,9 @@ def build_service_driven1_post_parameters_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_service_driven1_get_optional_request(*, optional_param: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_service_driven1_get_optional_request(  # pylint: disable=name-too-long
+    *, optional_param: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
