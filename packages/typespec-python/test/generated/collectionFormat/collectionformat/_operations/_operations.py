@@ -34,7 +34,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_collection_format_test_multi_request(*, colors: List[str], **kwargs: Any) -> HttpRequest:
+def build_collection_format_test_multi_request(  # pylint: disable=name-too-long
+    *, colors: List[str], **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -70,7 +72,9 @@ def build_collection_format_test_csv_request(*, colors: List[str], **kwargs: Any
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_collection_format_test_csv_header_request(*, colors: List[str], **kwargs: Any) -> HttpRequest:
+def build_collection_format_test_csv_header_request(  # pylint: disable=name-too-long
+    *, colors: List[str], **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -85,7 +89,9 @@ def build_collection_format_test_csv_header_request(*, colors: List[str], **kwar
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_collection_format_test_default_header_request(*, colors: List[str], **kwargs: Any) -> HttpRequest:
+def build_collection_format_test_default_header_request(  # pylint: disable=name-too-long
+    *, colors: List[str], **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")

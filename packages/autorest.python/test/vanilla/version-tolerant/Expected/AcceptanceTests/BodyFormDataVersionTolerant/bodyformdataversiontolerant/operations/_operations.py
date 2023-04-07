@@ -32,7 +32,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_formdata_upload_file_via_body_request(*, content: IO, **kwargs: Any) -> HttpRequest:
+def build_formdata_upload_file_via_body_request(  # pylint: disable=name-too-long
+    *, content: IO, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
