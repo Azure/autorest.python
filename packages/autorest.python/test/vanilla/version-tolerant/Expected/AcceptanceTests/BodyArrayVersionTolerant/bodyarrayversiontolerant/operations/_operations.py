@@ -7,6 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
+from io import IOBase
 import sys
 from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, cast, overload
 
@@ -1315,7 +1316,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = array_body
@@ -1471,7 +1472,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = array_body
@@ -1739,7 +1740,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = array_body
@@ -2007,7 +2008,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = array_body
@@ -2275,7 +2276,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = array_body
@@ -2543,7 +2544,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = array_body
@@ -2811,7 +2812,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = array_body
@@ -2967,7 +2968,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = array_body
@@ -3123,7 +3124,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = array_body
@@ -3395,7 +3396,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = array_body
@@ -3607,7 +3608,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = array_body
@@ -3879,7 +3880,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = array_body
@@ -4151,7 +4152,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = array_body
@@ -4307,7 +4308,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = array_body
@@ -4467,7 +4468,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = array_body
@@ -4984,7 +4985,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = array_body
@@ -5376,7 +5377,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = array_body
@@ -5774,7 +5775,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = array_body

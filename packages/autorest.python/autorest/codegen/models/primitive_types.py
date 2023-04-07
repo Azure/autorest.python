@@ -107,11 +107,12 @@ class BinaryType(PrimitiveType):
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         file_import.add_submodule_import("typing", "IO", ImportType.STDLIB)
+        file_import.add_submodule_import("io", "IOBase", ImportType.STDLIB)
         return file_import
 
     @property
     def instance_check_template(self) -> str:
-        return "isinstance({}, (IO, bytes))"
+        return "isinstance({}, (IOBase, bytes))"
 
 
 class BinaryIteratorType(PrimitiveType):
