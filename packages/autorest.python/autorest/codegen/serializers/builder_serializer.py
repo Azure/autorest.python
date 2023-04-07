@@ -63,7 +63,7 @@ def _xml_config(send_xml: bool, content_types: List[str]) -> str:
         return ""
     if len(content_types) == 1:
         return ", is_xml=True"
-    return ", is_xml=kwargs.pop('is_xml', 'xml' in str(content_type))"
+    return ", is_xml='xml' in str(content_type)"
 
 
 def _escape_str(input_str: str) -> str:
