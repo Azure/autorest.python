@@ -1,8 +1,9 @@
 # Release
 
-## 2023-xx-xx - 0.8.1
+## 2023-04-xx - 0.8.2
 
-**Other Changes**
+**Bug Fixes**
+
 - Do not generate model for object, {} and empty model, type them as any
 
 ## 2023-03-30 - 0.8.0

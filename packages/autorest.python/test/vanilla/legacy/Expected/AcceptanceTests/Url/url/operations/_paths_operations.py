@@ -99,7 +99,7 @@ def build_get_int_one_million_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_int_negative_one_million_request(**kwargs: Any) -> HttpRequest:
+def build_get_int_negative_one_million_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     int_path: Literal[-1000000] = kwargs.pop("int_path", -1000000)

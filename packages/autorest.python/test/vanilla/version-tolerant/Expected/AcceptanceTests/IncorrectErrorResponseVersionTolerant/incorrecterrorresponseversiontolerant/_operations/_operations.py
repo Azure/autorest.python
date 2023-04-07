@@ -31,7 +31,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_incorrect_returned_error_model_get_incorrect_error_from_server_request(**kwargs: Any) -> HttpRequest:
+def build_incorrect_returned_error_model_get_incorrect_error_from_server_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/incorrectError"
 
