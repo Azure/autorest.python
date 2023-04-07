@@ -941,7 +941,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     begin_put200_succeeded.metadata = {"url": "/lro/put/200/succeeded"}
 
-    def _patch200_succeeded_ignore_headers_initial(
+    def _patch200_succeeded_ignore_headers_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> _models.Product:
         error_map = {
@@ -1127,7 +1127,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     begin_patch200_succeeded_ignore_headers.metadata = {"url": "/lro/patch/200/succeeded/ignoreheaders"}
 
-    def _patch201_retry_with_async_header_initial(
+    def _patch201_retry_with_async_header_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> _models.Product:
         error_map = {
@@ -1310,7 +1310,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     begin_patch201_retry_with_async_header.metadata = {"url": "/lro/patch/201/retry/onlyAsyncHeader"}
 
-    def _patch202_retry_with_async_and_location_header_initial(
+    def _patch202_retry_with_async_and_location_header_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> _models.Product:
         error_map = {
@@ -1382,7 +1382,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     }
 
     @overload
-    def begin_patch202_retry_with_async_and_location_header(
+    def begin_patch202_retry_with_async_and_location_header(  # pylint: disable=name-too-long
         self, product: Optional[_models.Product] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> LROPoller[_models.Product]:
         """Long running patch request, service returns a 202 to the initial request with async and
@@ -1407,7 +1407,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    def begin_patch202_retry_with_async_and_location_header(
+    def begin_patch202_retry_with_async_and_location_header(  # pylint: disable=name-too-long
         self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> LROPoller[_models.Product]:
         """Long running patch request, service returns a 202 to the initial request with async and
@@ -1432,7 +1432,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace
-    def begin_patch202_retry_with_async_and_location_header(
+    def begin_patch202_retry_with_async_and_location_header(  # pylint: disable=name-too-long
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> LROPoller[_models.Product]:
         """Long running patch request, service returns a 202 to the initial request with async and
@@ -4549,7 +4549,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     begin_put_async_sub_resource.metadata = {"url": "/lro/putsubresourceasync/202/200"}
 
-    def _delete_provisioning202_accepted200_succeeded_initial(self, **kwargs: Any) -> _models.Product:
+    def _delete_provisioning202_accepted200_succeeded_initial(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> _models.Product:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -4602,7 +4604,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     }
 
     @distributed_trace
-    def begin_delete_provisioning202_accepted200_succeeded(self, **kwargs: Any) -> LROPoller[_models.Product]:
+    def begin_delete_provisioning202_accepted200_succeeded(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> LROPoller[_models.Product]:
         """Long running delete request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Succeeded’.
@@ -4657,7 +4661,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         "url": "/lro/delete/provisioning/202/accepted/200/succeeded"
     }
 
-    def _delete_provisioning202_deleting_failed200_initial(self, **kwargs: Any) -> _models.Product:
+    def _delete_provisioning202_deleting_failed200_initial(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> _models.Product:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -4710,7 +4716,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     }
 
     @distributed_trace
-    def begin_delete_provisioning202_deleting_failed200(self, **kwargs: Any) -> LROPoller[_models.Product]:
+    def begin_delete_provisioning202_deleting_failed200(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> LROPoller[_models.Product]:
         """Long running delete request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Failed’.
@@ -4765,7 +4773,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         "url": "/lro/delete/provisioning/202/deleting/200/failed"
     }
 
-    def _delete_provisioning202_deletingcanceled200_initial(self, **kwargs: Any) -> _models.Product:
+    def _delete_provisioning202_deletingcanceled200_initial(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> _models.Product:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -4818,7 +4828,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     }
 
     @distributed_trace
-    def begin_delete_provisioning202_deletingcanceled200(self, **kwargs: Any) -> LROPoller[_models.Product]:
+    def begin_delete_provisioning202_deletingcanceled200(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> LROPoller[_models.Product]:
         """Long running delete request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Canceled’.
@@ -6203,7 +6215,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     begin_post202_no_retry204.metadata = {"url": "/lro/post/202/noretry/204"}
 
-    def _post_double_headers_final_location_get_initial(self, **kwargs: Any) -> _models.Product:
+    def _post_double_headers_final_location_get_initial(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> _models.Product:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -6246,7 +6260,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     _post_double_headers_final_location_get_initial.metadata = {"url": "/lro/LROPostDoubleHeadersFinalLocationGet"}
 
     @distributed_trace
-    def begin_post_double_headers_final_location_get(self, **kwargs: Any) -> LROPoller[_models.Product]:
+    def begin_post_double_headers_final_location_get(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> LROPoller[_models.Product]:
         """Long running post request, service returns a 202 to the initial request with both Location and
         Azure-Async header. Poll Azure-Async and it's success. Should poll Location to get the final
         object.
@@ -6301,7 +6317,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     begin_post_double_headers_final_location_get.metadata = {"url": "/lro/LROPostDoubleHeadersFinalLocationGet"}
 
-    def _post_double_headers_final_azure_header_get_initial(self, **kwargs: Any) -> _models.Product:
+    def _post_double_headers_final_azure_header_get_initial(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> _models.Product:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -6346,7 +6364,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     }
 
     @distributed_trace
-    def begin_post_double_headers_final_azure_header_get(self, **kwargs: Any) -> LROPoller[_models.Product]:
+    def begin_post_double_headers_final_azure_header_get(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> LROPoller[_models.Product]:
         """Long running post request, service returns a 202 to the initial request with both Location and
         Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the
         final object.
@@ -6401,7 +6421,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     begin_post_double_headers_final_azure_header_get.metadata = {"url": "/lro/LROPostDoubleHeadersFinalAzureHeaderGet"}
 
-    def _post_double_headers_final_azure_header_get_default_initial(self, **kwargs: Any) -> _models.Product:
+    def _post_double_headers_final_azure_header_get_default_initial(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> _models.Product:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -6446,7 +6468,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     }
 
     @distributed_trace
-    def begin_post_double_headers_final_azure_header_get_default(self, **kwargs: Any) -> LROPoller[_models.Product]:
+    def begin_post_double_headers_final_azure_header_get_default(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> LROPoller[_models.Product]:
         """Long running post request, service returns a 202 to the initial request with both Location and
         Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the
         final object if you support initial Autorest behavior.
