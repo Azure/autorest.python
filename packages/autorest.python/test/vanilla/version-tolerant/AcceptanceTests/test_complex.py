@@ -479,6 +479,11 @@ def test_polymorphismrecursive_get_and_put_valid(client):
     # PUT polymorphicrecursive/valid
     client.polymorphicrecursive.put_valid(request)
 
+def test_polymorphismrecursive_get_and_put_valid_stream(client):
+    with open("./test_files/complex.json", "rb") as fd:
+        client.polymorphicrecursive.put_valid(fd)
+
+
 
 # Complex types that uses additional properties and polymorphism
 def test_polymorphism_get_and_put_complicated(client):
