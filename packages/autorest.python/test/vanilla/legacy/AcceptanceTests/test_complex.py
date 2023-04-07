@@ -421,6 +421,10 @@ class TestComplex(object):
         # PUT polymorphicrecursive/valid
         client.polymorphicrecursive.put_valid(request)
 
+    def test_polymorphismrecursive_put_valid_stream(self, client):
+        with open("./test_files/complex.json", "rb") as fd:
+            client.polymorphicrecursive.put_valid(fd)
+
 
     # Complex types that uses additional properties and polymorphism
     def test_polymorphism_get_and_put_complicated(self, client):
@@ -495,7 +499,7 @@ class TestComplex(object):
         # PUT basic/valid
         basic_result = Basic(id=2, name='abc', color="Magenta")
         client.basic.put_valid(basic_result)
-        
+
         # it shall raise exception since we override api_version
         with pytest.raises(AssertionError):
             client.basic.put_valid(basic_result, api_version="2016-02-29")
