@@ -42,7 +42,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_service_driven2_head_no_params_request(*, new_parameter: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_service_driven2_head_no_params_request(  # pylint: disable=name-too-long
+    *, new_parameter: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -55,7 +57,7 @@ def build_service_driven2_head_no_params_request(*, new_parameter: Optional[str]
     return HttpRequest(method="HEAD", url=_url, params=_params, **kwargs)
 
 
-def build_service_driven2_get_required_request(
+def build_service_driven2_get_required_request(  # pylint: disable=name-too-long
     *, parameter: str, new_parameter: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -77,7 +79,7 @@ def build_service_driven2_get_required_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_service_driven2_put_required_optional_request(
+def build_service_driven2_put_required_optional_request(  # pylint: disable=name-too-long
     *, required_param: str, optional_param: Optional[str] = None, new_parameter: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -101,7 +103,7 @@ def build_service_driven2_put_required_optional_request(
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_service_driven2_post_parameters_request(
+def build_service_driven2_post_parameters_request(  # pylint: disable=name-too-long
     content_type_path: Union[str, _models.ContentTypePathType], **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -125,14 +127,14 @@ def build_service_driven2_post_parameters_request(
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_service_driven2_delete_parameters_request(**kwargs: Any) -> HttpRequest:
+def build_service_driven2_delete_parameters_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     # Construct URL
     _url = "/serviceDriven2/serviceDriven/parameters"
 
     return HttpRequest(method="DELETE", url=_url, **kwargs)
 
 
-def build_service_driven2_get_optional_request(
+def build_service_driven2_get_optional_request(  # pylint: disable=name-too-long
     *, optional_param: Optional[str] = None, new_parameter: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -155,7 +157,7 @@ def build_service_driven2_get_optional_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_service_driven2_get_new_operation_request(**kwargs: Any) -> HttpRequest:
+def build_service_driven2_get_new_operation_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
