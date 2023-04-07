@@ -32,7 +32,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_auto_rest_report_service_for_azure_get_report_request(
+def build_auto_rest_report_service_for_azure_get_report_request(  # pylint: disable=name-too-long
     *, qualifier: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
