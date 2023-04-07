@@ -905,7 +905,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def get_local_positive_offset_lowercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
+    def get_local_positive_offset_lowercase_max_date_time(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> datetime.datetime:
         """Get max datetime value with positive num offset 9999-12-31t23:59:59.999+14:00.
 
         :return: datetime
@@ -953,7 +955,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         return cast(datetime.datetime, deserialized)
 
     @distributed_trace
-    def get_local_positive_offset_uppercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
+    def get_local_positive_offset_uppercase_max_date_time(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> datetime.datetime:
         """Get max datetime value with positive num offset 9999-12-31T23:59:59.999+14:00.
 
         :return: datetime
@@ -1051,7 +1055,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def get_local_negative_offset_uppercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
+    def get_local_negative_offset_uppercase_max_date_time(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> datetime.datetime:
         """Get max datetime value with positive num offset 9999-12-31T23:59:59.999-14:00.
 
         :return: datetime
@@ -1099,7 +1105,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         return cast(datetime.datetime, deserialized)
 
     @distributed_trace
-    def get_local_negative_offset_lowercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
+    def get_local_negative_offset_lowercase_max_date_time(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> datetime.datetime:
         """Get max datetime value with positive num offset 9999-12-31t23:59:59.999-14:00.
 
         :return: datetime

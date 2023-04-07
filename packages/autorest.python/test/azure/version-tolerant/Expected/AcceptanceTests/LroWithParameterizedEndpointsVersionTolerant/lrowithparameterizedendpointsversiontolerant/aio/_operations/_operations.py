@@ -39,7 +39,9 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpointsMixinABC):
-    async def _poll_with_parameterized_endpoints_initial(self, account_name: str, **kwargs: Any) -> Optional[str]:
+    async def _poll_with_parameterized_endpoints_initial(  # pylint: disable=name-too-long
+        self, account_name: str, **kwargs: Any
+    ) -> Optional[str]:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -158,7 +160,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _poll_with_constant_parameterized_endpoints_initial(
+    async def _poll_with_constant_parameterized_endpoints_initial(  # pylint: disable=name-too-long
         self, account_name: str, **kwargs: Any
     ) -> Optional[str]:
         error_map = {
@@ -214,7 +216,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
         return deserialized
 
     @distributed_trace_async
-    async def begin_poll_with_constant_parameterized_endpoints(
+    async def begin_poll_with_constant_parameterized_endpoints(  # pylint: disable=name-too-long
         self, account_name: str, **kwargs: Any
     ) -> AsyncLROPoller[str]:
         """Poll with method and client level parameters in endpoint, with a constant value.

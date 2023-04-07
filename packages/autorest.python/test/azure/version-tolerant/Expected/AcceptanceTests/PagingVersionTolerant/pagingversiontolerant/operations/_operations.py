@@ -2181,7 +2181,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return ItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_multiple_pages_fragment_with_grouping_next_link(
+    def get_multiple_pages_fragment_with_grouping_next_link(  # pylint: disable=name-too-long
         self, tenant: str, *, api_version: str, **kwargs: Any
     ) -> Iterable[JSON]:
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
@@ -2630,7 +2630,9 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return ItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_paging_model_with_item_name_with_xms_client_name(self, **kwargs: Any) -> Iterable[JSON]:
+    def get_paging_model_with_item_name_with_xms_client_name(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> Iterable[JSON]:
         """A paging operation that returns a paging model whose item name is is overriden by
         x-ms-client-name 'indexes'.
 

@@ -78,7 +78,9 @@ def build_lro_with_paramaterized_endpoints_poll_with_constant_parameterized_endp
 
 
 class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpointsMixinABC):
-    def _poll_with_parameterized_endpoints_initial(self, account_name: str, **kwargs: Any) -> Optional[str]:
+    def _poll_with_parameterized_endpoints_initial(  # pylint: disable=name-too-long
+        self, account_name: str, **kwargs: Any
+    ) -> Optional[str]:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -197,7 +199,9 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    def _poll_with_constant_parameterized_endpoints_initial(self, account_name: str, **kwargs: Any) -> Optional[str]:
+    def _poll_with_constant_parameterized_endpoints_initial(  # pylint: disable=name-too-long
+        self, account_name: str, **kwargs: Any
+    ) -> Optional[str]:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -251,7 +255,9 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
         return deserialized
 
     @distributed_trace
-    def begin_poll_with_constant_parameterized_endpoints(self, account_name: str, **kwargs: Any) -> LROPoller[str]:
+    def begin_poll_with_constant_parameterized_endpoints(  # pylint: disable=name-too-long
+        self, account_name: str, **kwargs: Any
+    ) -> LROPoller[str]:
         """Poll with method and client level parameters in endpoint, with a constant value.
 
         :param account_name: Account Name. Pass in 'local' to pass test. Required.
