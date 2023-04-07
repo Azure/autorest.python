@@ -422,7 +422,15 @@ class TestComplex(object):
         client.polymorphicrecursive.put_valid(request)
 
     def test_polymorphismrecursive_put_valid_stream(self, client):
-        with open("./test_files/complex.json", "rb") as fd:
+        path = os.path.abspath(
+            os.path.join(
+                os.path.abspath(__file__),
+                "..",
+                "..",
+                "./test_files/complex.json",
+            )
+        )
+        with open(path, "rb") as fd:
             client.polymorphicrecursive.put_valid(fd)
 
 

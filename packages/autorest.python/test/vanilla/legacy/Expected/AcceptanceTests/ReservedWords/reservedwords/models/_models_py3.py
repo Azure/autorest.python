@@ -7,6 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from io import IOBase
 from typing import Any, IO
 
 from .. import _serialization
