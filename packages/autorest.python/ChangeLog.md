@@ -15,6 +15,8 @@
 **Bug Fixes**
 
 - Fix IO input support for legacy generated code #1842
+- set default vaule from `package-name` if `package-pprint-name` is not configured  #1841
+
 
 ### 2023-03-30 - 6.4.7
 
