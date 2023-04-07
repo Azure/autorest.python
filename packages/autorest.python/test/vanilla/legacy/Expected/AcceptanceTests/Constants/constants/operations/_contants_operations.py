@@ -38,7 +38,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_put_no_model_as_string_no_required_two_value_no_default_request(
+def build_put_no_model_as_string_no_required_two_value_no_default_request(  # pylint: disable=name-too-long
     *, input: Optional[Union[str, _models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum]] = None, **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -53,7 +53,7 @@ def build_put_no_model_as_string_no_required_two_value_no_default_request(
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_put_no_model_as_string_no_required_two_value_default_request(
+def build_put_no_model_as_string_no_required_two_value_default_request(  # pylint: disable=name-too-long
     *, input: Union[str, _models.NoModelAsStringNoRequiredTwoValueDefaultOpEnum] = "value1", **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -68,7 +68,7 @@ def build_put_no_model_as_string_no_required_two_value_default_request(
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_put_no_model_as_string_no_required_one_value_no_default_request(
+def build_put_no_model_as_string_no_required_one_value_no_default_request(  # pylint: disable=name-too-long
     *, input: Literal["value1"] = "value1", **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -83,7 +83,7 @@ def build_put_no_model_as_string_no_required_one_value_no_default_request(
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_put_no_model_as_string_no_required_one_value_default_request(
+def build_put_no_model_as_string_no_required_one_value_default_request(  # pylint: disable=name-too-long
     *, input: Literal["value1"] = "value1", **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -98,7 +98,7 @@ def build_put_no_model_as_string_no_required_one_value_default_request(
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_put_no_model_as_string_required_two_value_no_default_request(
+def build_put_no_model_as_string_required_two_value_no_default_request(  # pylint: disable=name-too-long
     *, input: Union[str, _models.NoModelAsStringRequiredTwoValueNoDefaultOpEnum], **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -112,7 +112,7 @@ def build_put_no_model_as_string_required_two_value_no_default_request(
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_put_no_model_as_string_required_two_value_default_request(
+def build_put_no_model_as_string_required_two_value_default_request(  # pylint: disable=name-too-long
     *, input: Union[str, _models.NoModelAsStringRequiredTwoValueDefaultOpEnum] = "value1", **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -126,7 +126,9 @@ def build_put_no_model_as_string_required_two_value_default_request(
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_put_no_model_as_string_required_one_value_no_default_request(**kwargs: Any) -> HttpRequest:
+def build_put_no_model_as_string_required_one_value_no_default_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     input: Literal["value1"] = kwargs.pop("input", _params.pop("input", "value1"))
@@ -139,7 +141,9 @@ def build_put_no_model_as_string_required_one_value_no_default_request(**kwargs:
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_put_no_model_as_string_required_one_value_default_request(**kwargs: Any) -> HttpRequest:
+def build_put_no_model_as_string_required_one_value_default_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     input: Literal["value1"] = kwargs.pop("input", _params.pop("input", "value1"))
@@ -152,7 +156,7 @@ def build_put_no_model_as_string_required_one_value_default_request(**kwargs: An
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_put_model_as_string_no_required_two_value_no_default_request(
+def build_put_model_as_string_no_required_two_value_no_default_request(  # pylint: disable=name-too-long
     *, input: Optional[Union[str, _models.ModelAsStringNoRequiredTwoValueNoDefaultOpEnum]] = None, **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -167,7 +171,7 @@ def build_put_model_as_string_no_required_two_value_no_default_request(
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_put_model_as_string_no_required_two_value_default_request(
+def build_put_model_as_string_no_required_two_value_default_request(  # pylint: disable=name-too-long
     *, input: Union[str, _models.ModelAsStringNoRequiredTwoValueDefaultOpEnum] = "value1", **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -182,7 +186,7 @@ def build_put_model_as_string_no_required_two_value_default_request(
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_put_model_as_string_no_required_one_value_no_default_request(
+def build_put_model_as_string_no_required_one_value_no_default_request(  # pylint: disable=name-too-long
     *, input: Optional[Union[str, _models.ModelAsStringNoRequiredOneValueNoDefaultOpEnum]] = None, **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -197,7 +201,7 @@ def build_put_model_as_string_no_required_one_value_no_default_request(
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_put_model_as_string_no_required_one_value_default_request(
+def build_put_model_as_string_no_required_one_value_default_request(  # pylint: disable=name-too-long
     *, input: Union[str, _models.ModelAsStringNoRequiredOneValueDefaultOpEnum] = "value1", **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -212,7 +216,7 @@ def build_put_model_as_string_no_required_one_value_default_request(
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_put_model_as_string_required_two_value_no_default_request(
+def build_put_model_as_string_required_two_value_no_default_request(  # pylint: disable=name-too-long
     *, input: Union[str, _models.ModelAsStringRequiredTwoValueNoDefaultOpEnum], **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -226,7 +230,7 @@ def build_put_model_as_string_required_two_value_no_default_request(
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_put_model_as_string_required_two_value_default_request(
+def build_put_model_as_string_required_two_value_default_request(  # pylint: disable=name-too-long
     *, input: Union[str, _models.ModelAsStringRequiredTwoValueDefaultOpEnum] = "value1", **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -240,7 +244,7 @@ def build_put_model_as_string_required_two_value_default_request(
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_put_model_as_string_required_one_value_no_default_request(
+def build_put_model_as_string_required_one_value_no_default_request(  # pylint: disable=name-too-long
     *, input: Union[str, _models.ModelAsStringRequiredOneValueNoDefaultOpEnum], **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -254,7 +258,7 @@ def build_put_model_as_string_required_one_value_no_default_request(
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_put_model_as_string_required_one_value_default_request(
+def build_put_model_as_string_required_one_value_default_request(  # pylint: disable=name-too-long
     *, input: Union[str, _models.ModelAsStringRequiredOneValueDefaultOpEnum] = "value1", **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -315,7 +319,7 @@ class ContantsOperations:
     def put_no_model_as_string_no_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements
         self,
         input: Optional[Union[str, _models.NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None:
         """Puts constants to the testserver.
 

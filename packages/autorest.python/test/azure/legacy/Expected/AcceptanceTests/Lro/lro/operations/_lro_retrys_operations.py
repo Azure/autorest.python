@@ -36,7 +36,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_put201_creating_succeeded200_request(**kwargs: Any) -> HttpRequest:
+def build_put201_creating_succeeded200_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -53,7 +53,7 @@ def build_put201_creating_succeeded200_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_async_relative_retry_succeeded_request(**kwargs: Any) -> HttpRequest:
+def build_put_async_relative_retry_succeeded_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -70,7 +70,9 @@ def build_put_async_relative_retry_succeeded_request(**kwargs: Any) -> HttpReque
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_delete_provisioning202_accepted200_succeeded_request(**kwargs: Any) -> HttpRequest:
+def build_delete_provisioning202_accepted200_succeeded_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -98,7 +100,7 @@ def build_delete202_retry200_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_delete_async_relative_retry_succeeded_request(**kwargs: Any) -> HttpRequest:
+def build_delete_async_relative_retry_succeeded_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -129,7 +131,7 @@ def build_post202_retry200_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_post_async_relative_retry_succeeded_request(**kwargs: Any) -> HttpRequest:
+def build_post_async_relative_retry_succeeded_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -320,7 +322,7 @@ class LRORetrysOperations:
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs
+                **kwargs,
             )
         kwargs.pop("error_map", None)
 
@@ -505,7 +507,7 @@ class LRORetrysOperations:
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs
+                **kwargs,
             )
         kwargs.pop("error_map", None)
 
@@ -987,7 +989,7 @@ class LRORetrysOperations:
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs
+                **kwargs,
             )
         kwargs.pop("error_map", None)
 
@@ -1166,7 +1168,7 @@ class LRORetrysOperations:
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs
+                **kwargs,
             )
         kwargs.pop("error_map", None)
 
