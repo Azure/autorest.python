@@ -40,7 +40,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_poll_with_parameterized_endpoints_request(**kwargs: Any) -> HttpRequest:
+def build_poll_with_parameterized_endpoints_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -54,7 +54,9 @@ def build_poll_with_parameterized_endpoints_request(**kwargs: Any) -> HttpReques
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_poll_with_constant_parameterized_endpoints_request(**kwargs: Any) -> HttpRequest:
+def build_poll_with_constant_parameterized_endpoints_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     constant_parameter: Literal["iAmConstant"] = kwargs.pop("constant_parameter", "iAmConstant")
@@ -177,7 +179,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
                     lro_delay,
                     lro_options={"final-state-via": "location"},
                     path_format_arguments=path_format_arguments,
-                    **kwargs
+                    **kwargs,
                 ),
             )
         elif polling is False:
@@ -288,7 +290,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs
+                **kwargs,
             )
         kwargs.pop("error_map", None)
 

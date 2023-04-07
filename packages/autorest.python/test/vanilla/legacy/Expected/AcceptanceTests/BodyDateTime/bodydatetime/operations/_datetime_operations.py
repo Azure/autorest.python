@@ -107,7 +107,9 @@ def build_put_utc_max_date_time_request(*, json: datetime.datetime, **kwargs: An
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_put_utc_max_date_time7_digits_request(*, json: datetime.datetime, **kwargs: Any) -> HttpRequest:
+def build_put_utc_max_date_time7_digits_request(  # pylint: disable=name-too-long
+    *, json: datetime.datetime, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -124,7 +126,7 @@ def build_put_utc_max_date_time7_digits_request(*, json: datetime.datetime, **kw
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_get_utc_lowercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
+def build_get_utc_lowercase_max_date_time_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -138,7 +140,7 @@ def build_get_utc_lowercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_utc_uppercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
+def build_get_utc_uppercase_max_date_time_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -152,7 +154,9 @@ def build_get_utc_uppercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_utc_uppercase_max_date_time7_digits_request(**kwargs: Any) -> HttpRequest:
+def build_get_utc_uppercase_max_date_time7_digits_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -166,7 +170,9 @@ def build_get_utc_uppercase_max_date_time7_digits_request(**kwargs: Any) -> Http
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_local_positive_offset_max_date_time_request(*, json: datetime.datetime, **kwargs: Any) -> HttpRequest:
+def build_put_local_positive_offset_max_date_time_request(  # pylint: disable=name-too-long
+    *, json: datetime.datetime, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -183,7 +189,9 @@ def build_put_local_positive_offset_max_date_time_request(*, json: datetime.date
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_get_local_positive_offset_lowercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
+def build_get_local_positive_offset_lowercase_max_date_time_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -197,7 +205,9 @@ def build_get_local_positive_offset_lowercase_max_date_time_request(**kwargs: An
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_local_positive_offset_uppercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
+def build_get_local_positive_offset_uppercase_max_date_time_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -211,7 +221,9 @@ def build_get_local_positive_offset_uppercase_max_date_time_request(**kwargs: An
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_local_negative_offset_max_date_time_request(*, json: datetime.datetime, **kwargs: Any) -> HttpRequest:
+def build_put_local_negative_offset_max_date_time_request(  # pylint: disable=name-too-long
+    *, json: datetime.datetime, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -228,7 +240,9 @@ def build_put_local_negative_offset_max_date_time_request(*, json: datetime.date
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_get_local_negative_offset_uppercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
+def build_get_local_negative_offset_uppercase_max_date_time_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -242,7 +256,9 @@ def build_get_local_negative_offset_uppercase_max_date_time_request(**kwargs: An
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_local_negative_offset_lowercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
+def build_get_local_negative_offset_lowercase_max_date_time_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -287,7 +303,9 @@ def build_get_utc_min_date_time_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_local_positive_offset_min_date_time_request(*, json: datetime.datetime, **kwargs: Any) -> HttpRequest:
+def build_put_local_positive_offset_min_date_time_request(  # pylint: disable=name-too-long
+    *, json: datetime.datetime, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -304,7 +322,9 @@ def build_put_local_positive_offset_min_date_time_request(*, json: datetime.date
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_get_local_positive_offset_min_date_time_request(**kwargs: Any) -> HttpRequest:
+def build_get_local_positive_offset_min_date_time_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -318,7 +338,9 @@ def build_get_local_positive_offset_min_date_time_request(**kwargs: Any) -> Http
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_local_negative_offset_min_date_time_request(*, json: datetime.datetime, **kwargs: Any) -> HttpRequest:
+def build_put_local_negative_offset_min_date_time_request(  # pylint: disable=name-too-long
+    *, json: datetime.datetime, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -335,7 +357,9 @@ def build_put_local_negative_offset_min_date_time_request(*, json: datetime.date
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_get_local_negative_offset_min_date_time_request(**kwargs: Any) -> HttpRequest:
+def build_get_local_negative_offset_min_date_time_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -349,7 +373,7 @@ def build_get_local_negative_offset_min_date_time_request(**kwargs: Any) -> Http
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_local_no_offset_min_date_time_request(**kwargs: Any) -> HttpRequest:
+def build_get_local_no_offset_min_date_time_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")

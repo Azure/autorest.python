@@ -39,7 +39,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_lro_with_paramaterized_endpoints_poll_with_parameterized_endpoints_request(**kwargs: Any) -> HttpRequest:
+def build_lro_with_paramaterized_endpoints_poll_with_parameterized_endpoints_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -53,7 +55,7 @@ def build_lro_with_paramaterized_endpoints_poll_with_parameterized_endpoints_req
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_lro_with_paramaterized_endpoints_poll_with_constant_parameterized_endpoints_request(
+def build_lro_with_paramaterized_endpoints_poll_with_constant_parameterized_endpoints_request(  # pylint: disable=name-too-long
     **kwargs: Any,
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
