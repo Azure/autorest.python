@@ -228,7 +228,7 @@ def build_put_base64_url_encoded_request(*, json: bytes, **kwargs: Any) -> HttpR
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_get_null_base64_url_encoded_request(**kwargs: Any) -> HttpRequest:
+def build_get_null_base64_url_encoded_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")

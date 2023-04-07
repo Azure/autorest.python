@@ -245,7 +245,7 @@ class LRORetrysOperations:
 
     begin_put201_creating_succeeded200.metadata = {"url": "/lro/retryerror/put/201/creating/succeeded/200"}
 
-    async def _put_async_relative_retry_succeeded_initial(
+    async def _put_async_relative_retry_succeeded_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> _models.Product:
         error_map = {
@@ -441,7 +441,9 @@ class LRORetrysOperations:
 
     begin_put_async_relative_retry_succeeded.metadata = {"url": "/lro/retryerror/putasync/retry/succeeded"}
 
-    async def _delete_provisioning202_accepted200_succeeded_initial(self, **kwargs: Any) -> _models.Product:
+    async def _delete_provisioning202_accepted200_succeeded_initial(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> _models.Product:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -494,7 +496,7 @@ class LRORetrysOperations:
     }
 
     @distributed_trace_async
-    async def begin_delete_provisioning202_accepted200_succeeded(
+    async def begin_delete_provisioning202_accepted200_succeeded(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running delete request, service returns a 500, then a  202 to the initial request, with an
@@ -647,7 +649,7 @@ class LRORetrysOperations:
 
     begin_delete202_retry200.metadata = {"url": "/lro/retryerror/delete/202/retry/200"}
 
-    async def _delete_async_relative_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
+    async def _delete_async_relative_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, **kwargs: Any
     ) -> None:
         error_map = {
@@ -695,7 +697,9 @@ class LRORetrysOperations:
     _delete_async_relative_retry_succeeded_initial.metadata = {"url": "/lro/retryerror/deleteasync/retry/succeeded"}
 
     @distributed_trace_async
-    async def begin_delete_async_relative_retry_succeeded(self, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_delete_async_relative_retry_succeeded(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 500, then a 202 to the initial request. Poll the
         endpoint indicated in the Azure-AsyncOperation header for operation status.
 
@@ -918,7 +922,7 @@ class LRORetrysOperations:
 
     begin_post202_retry200.metadata = {"url": "/lro/retryerror/post/202/retry/200"}
 
-    async def _post_async_relative_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
+    async def _post_async_relative_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> None:
         error_map = {
@@ -981,7 +985,7 @@ class LRORetrysOperations:
     _post_async_relative_retry_succeeded_initial.metadata = {"url": "/lro/retryerror/postasync/retry/succeeded"}
 
     @overload
-    async def begin_post_async_relative_retry_succeeded(
+    async def begin_post_async_relative_retry_succeeded(  # pylint: disable=name-too-long
         self, product: Optional[_models.Product] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 500, then a 202 to the initial request, with an
@@ -1007,7 +1011,7 @@ class LRORetrysOperations:
         """
 
     @overload
-    async def begin_post_async_relative_retry_succeeded(
+    async def begin_post_async_relative_retry_succeeded(  # pylint: disable=name-too-long
         self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 500, then a 202 to the initial request, with an
@@ -1033,7 +1037,7 @@ class LRORetrysOperations:
         """
 
     @distributed_trace_async
-    async def begin_post_async_relative_retry_succeeded(
+    async def begin_post_async_relative_retry_succeeded(  # pylint: disable=name-too-long
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 500, then a 202 to the initial request, with an
