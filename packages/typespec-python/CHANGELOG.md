@@ -1,5 +1,11 @@
 # Release
 
+## 2023-04-XX - 0.8.1
+
+**New Features**
+
+- Support `--package-pprint-name` in tspconfig.yaml. If not configured, set default value with `package-name`  #1841
+
 ## 2023-03-30 - 0.8.0
 
 **New Features**

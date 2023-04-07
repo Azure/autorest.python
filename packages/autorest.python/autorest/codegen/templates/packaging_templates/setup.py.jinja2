@@ -24,12 +24,12 @@ with open(os.path.join(package_folder_path, "_version.py"), "r") as fd:
 
 if not version:
     raise RuntimeError("Cannot find version information")
-{% set description = "Microsoft %s Client Library for Python"|format(package_pprint_name) %}
+{% set description = "\"Microsoft {} Client Library for Python\".format(PACKAGE_PPRINT_NAME)" %}
 {% set author_email = "azpysdkhelp@microsoft.com" %}
 {% set url = "https://github.com/Azure/azure-sdk-for-python/tree/main/sdk" %}
 {% else %}
 version = "{{ package_version }}"
-{% set description = "%s"|format(package_name) %}
+{% set description = "\"%s\""|format(package_name) %}
 {% set long_description = code_model.description %}
 {% set author_email = "" %}
 {% set url = "" %}
@@ -38,7 +38,7 @@ version = "{{ package_version }}"
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="{{ description }}",
+    description={{ description }},
     {% if package_mode %}
     long_description=open("README.md", "r").read(),
     long_description_content_type="text/markdown",
