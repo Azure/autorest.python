@@ -16,6 +16,10 @@ from .serializers import JinjaSerializer, JinjaSerializerAutorest
 from ._utils import DEFAULT_HEADER_TEXT
 
 
+def _default_pprint(package_name: str) -> str:
+    return " ".join([i.capitalize() for i in package_name.split("-")])
+
+
 def _validate_code_model_options(options: Dict[str, Any]) -> None:
     if options["builders_visibility"] not in ["public", "hidden", "embedded"]:
         raise ValueError(
@@ -126,6 +130,7 @@ class CodeGenerator(Plugin):
         if self.options.get("cadl_file") is not None:
             models_mode_default = "dpg"
 
+        package_name = self.options.get("package-name")
         options: Dict[str, Any] = {
             "azure_arm": azure_arm,
             "head_as_boolean": self.options.get("head-as-boolean", True),
@@ -134,7 +139,7 @@ class CodeGenerator(Plugin):
             "no_async": self.options.get("no-async", False),
             "no_namespace_folders": self.options.get("no-namespace-folders", False),
             "basic_setup_py": self.options.get("basic-setup-py", False),
-            "package_name": self.options.get("package-name"),
+            "package_name": package_name,
             "package_version": self.options.get("package-version"),
             "client_side_validation": self.options.get("client-side-validation", False),
             "tracing": self.options.get("tracing", show_operations),
@@ -156,7 +161,8 @@ class CodeGenerator(Plugin):
                 "combine-operation-files", version_tolerant
             ),
             "package_mode": self.options.get("package-mode"),
-            "package_pprint_name": self.options.get("package-pprint-name"),
+            "package_pprint_name": self.options.get("package-pprint-name")
+            or _default_pprint(str(package_name)),
             "package_configuration": self.options.get("package-configuration"),
             "default_optional_constants_to_none": self.options.get(
                 "default-optional-constants-to-none",

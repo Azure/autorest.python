@@ -17,7 +17,7 @@ from ._configuration import AutoRestParameterizedHostTestPagingClientConfigurati
 from .operations import PagingOperations
 
 
-class AutoRestParameterizedHostTestPagingClient:  # pylint: disable=client-accepts-api-version-keyword
+class AutoRestParameterizedHostTestPagingClient:  # pylint: disable=client-accepts-api-version-keyword,name-too-long
     """Test Infrastructure for AutoRest.
 
     :ivar paging: PagingOperations operations
