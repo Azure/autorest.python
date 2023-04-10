@@ -15,7 +15,7 @@
 **Other Changes**
 
 - set default vaule from `package-name` if `package-pprint-name` is not configured  #1841
-- Optimize logic about whether set `is_xml` when serialization #1835
+- Optimize logic about `is_xml` when serialization #1835
 
 ### 2023-03-30 - 6.4.7
 
