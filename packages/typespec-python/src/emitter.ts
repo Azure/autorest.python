@@ -220,10 +220,21 @@ function getEntityType(context: DpgContext, entity: ModelProperty): any {
     return result;
 }
 
+function isEmptyModel(type: EmitterType): boolean {
+    // object, {}, Model{} all will be treated as empty model
+    return (
+        type.kind === "Model" &&
+        type.properties.size === 0 &&
+        !type.baseModel &&
+        type.derivedModels.length === 0 &&
+        !type.indexer
+    );
+}
+
 function getType(context: DpgContext, type: EmitterType): any {
     // don't cache simple type(string, int, etc) since decorators may change the result
     const program = context.program;
-    const enableCache = !isSimpleType(context, type);
+    const enableCache = !isSimpleType(context, type) && !isEmptyModel(type);
     const effectiveModel = type.kind === "Model" ? getEffectiveSchemaType(context, type) : type;
     if (enableCache) {
         const cached = typesMap.get(effectiveModel);
@@ -231,7 +242,13 @@ function getType(context: DpgContext, type: EmitterType): any {
             return cached;
         }
     }
-    let newValue = emitType(context, type);
+    let newValue;
+    if (isEmptyModel(type)) {
+        // do not generate model for empty model, treat it as any
+        newValue = { type: "any" };
+    } else {
+        newValue = emitType(context, type);
+    }
     if (enableCache) {
         typesMap.set(effectiveModel, newValue);
         if (type.kind === "Model") {
