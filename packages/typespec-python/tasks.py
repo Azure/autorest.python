@@ -25,7 +25,7 @@ PLUGIN_DIR = Path(os.path.dirname(__file__))
 PLUGIN = (PLUGIN_DIR / "dist/src/index.js").as_posix()
 CADL_RANCH_DIR = PLUGIN_DIR / Path("node_modules/@azure-tools/cadl-ranch-specs")
 PYTHON_TPYESPEC_DIR = PLUGIN_DIR / Path("test/python_typespec")
-EMITTER_OPTIONS = {"hello": {"package-name": "azure-hello"}}
+EMITTER_OPTIONS = {"hello": {"package-name": "azure-hello", "package-mode": "dataplane", "package-pprint-name": "Hello"}}
 
 
 def _add_options(spec, debug=False):

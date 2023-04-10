@@ -402,7 +402,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _patch200_succeeded_ignore_headers_initial(
+    async def _patch200_succeeded_ignore_headers_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
@@ -676,7 +676,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _patch201_retry_with_async_header_initial(
+    async def _patch201_retry_with_async_header_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
@@ -952,7 +952,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _patch202_retry_with_async_and_location_header_initial(
+    async def _patch202_retry_with_async_and_location_header_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
@@ -1021,7 +1021,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    async def begin_patch202_retry_with_async_and_location_header(
+    async def begin_patch202_retry_with_async_and_location_header(  # pylint: disable=name-too-long
         self, product: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running patch request, service returns a 202 to the initial request with async and
@@ -1082,7 +1082,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def begin_patch202_retry_with_async_and_location_header(
+    async def begin_patch202_retry_with_async_and_location_header(  # pylint: disable=name-too-long
         self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running patch request, service returns a 202 to the initial request with async and
@@ -1126,7 +1126,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def begin_patch202_retry_with_async_and_location_header(
+    async def begin_patch202_retry_with_async_and_location_header(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running patch request, service returns a 202 to the initial request with async and
@@ -5747,7 +5747,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _delete_provisioning202_accepted200_succeeded_initial(self, **kwargs: Any) -> JSON:
+    async def _delete_provisioning202_accepted200_succeeded_initial(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -5800,7 +5802,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace_async
-    async def begin_delete_provisioning202_accepted200_succeeded(self, **kwargs: Any) -> AsyncLROPoller[JSON]:
+    async def begin_delete_provisioning202_accepted200_succeeded(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running delete request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Succeeded’.
@@ -5874,7 +5878,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _delete_provisioning202_deleting_failed200_initial(self, **kwargs: Any) -> JSON:
+    async def _delete_provisioning202_deleting_failed200_initial(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -5927,7 +5933,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace_async
-    async def begin_delete_provisioning202_deleting_failed200(self, **kwargs: Any) -> AsyncLROPoller[JSON]:
+    async def begin_delete_provisioning202_deleting_failed200(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running delete request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Failed’.
@@ -6001,7 +6009,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _delete_provisioning202_deletingcanceled200_initial(self, **kwargs: Any) -> JSON:
+    async def _delete_provisioning202_deletingcanceled200_initial(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -6054,7 +6064,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace_async
-    async def begin_delete_provisioning202_deletingcanceled200(self, **kwargs: Any) -> AsyncLROPoller[JSON]:
+    async def begin_delete_provisioning202_deletingcanceled200(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running delete request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Canceled’.
@@ -7577,7 +7589,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _post_double_headers_final_location_get_initial(self, **kwargs: Any) -> JSON:
+    async def _post_double_headers_final_location_get_initial(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -7619,7 +7633,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def begin_post_double_headers_final_location_get(self, **kwargs: Any) -> AsyncLROPoller[JSON]:
+    async def begin_post_double_headers_final_location_get(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running post request, service returns a 202 to the initial request with both Location and
         Azure-Async header. Poll Azure-Async and it's success. Should poll Location to get the final
         object.
@@ -7695,7 +7711,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _post_double_headers_final_azure_header_get_initial(self, **kwargs: Any) -> JSON:
+    async def _post_double_headers_final_azure_header_get_initial(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -7737,7 +7755,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def begin_post_double_headers_final_azure_header_get(self, **kwargs: Any) -> AsyncLROPoller[JSON]:
+    async def begin_post_double_headers_final_azure_header_get(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running post request, service returns a 202 to the initial request with both Location and
         Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the
         final object.
@@ -7814,7 +7834,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _post_double_headers_final_azure_header_get_default_initial(self, **kwargs: Any) -> JSON:
+    async def _post_double_headers_final_azure_header_get_default_initial(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -7856,7 +7878,9 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)
 
     @distributed_trace_async
-    async def begin_post_double_headers_final_azure_header_get_default(self, **kwargs: Any) -> AsyncLROPoller[JSON]:
+    async def begin_post_double_headers_final_azure_header_get_default(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running post request, service returns a 202 to the initial request with both Location and
         Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the
         final object if you support initial Autorest behavior.
@@ -9190,7 +9214,7 @@ class LRORetrysOperations:
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _put_async_relative_retry_succeeded_initial(
+    async def _put_async_relative_retry_succeeded_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
@@ -9471,7 +9495,9 @@ class LRORetrysOperations:
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _delete_provisioning202_accepted200_succeeded_initial(self, **kwargs: Any) -> JSON:
+    async def _delete_provisioning202_accepted200_succeeded_initial(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -9524,7 +9550,9 @@ class LRORetrysOperations:
         return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace_async
-    async def begin_delete_provisioning202_accepted200_succeeded(self, **kwargs: Any) -> AsyncLROPoller[JSON]:
+    async def begin_delete_provisioning202_accepted200_succeeded(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[JSON]:
         """Long running delete request, service returns a 500, then a  202 to the initial request, with an
         entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll
         returns a ‘200’ with ProvisioningState=’Succeeded’.
@@ -9686,7 +9714,7 @@ class LRORetrysOperations:
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _delete_async_relative_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
+    async def _delete_async_relative_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, **kwargs: Any
     ) -> None:
         error_map = {
@@ -9730,7 +9758,9 @@ class LRORetrysOperations:
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_delete_async_relative_retry_succeeded(self, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_delete_async_relative_retry_succeeded(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 500, then a 202 to the initial request. Poll the
         endpoint indicated in the Azure-AsyncOperation header for operation status.
 
@@ -9978,7 +10008,7 @@ class LRORetrysOperations:
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _post_async_relative_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
+    async def _post_async_relative_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> None:
         error_map = {
@@ -10034,7 +10064,7 @@ class LRORetrysOperations:
             return cls(pipeline_response, None, response_headers)
 
     @overload
-    async def begin_post_async_relative_retry_succeeded(
+    async def begin_post_async_relative_retry_succeeded(  # pylint: disable=name-too-long
         self, product: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 500, then a 202 to the initial request, with an
@@ -10079,7 +10109,7 @@ class LRORetrysOperations:
         """
 
     @overload
-    async def begin_post_async_relative_retry_succeeded(
+    async def begin_post_async_relative_retry_succeeded(  # pylint: disable=name-too-long
         self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 500, then a 202 to the initial request, with an
@@ -10104,7 +10134,7 @@ class LRORetrysOperations:
         """
 
     @distributed_trace_async
-    async def begin_post_async_relative_retry_succeeded(
+    async def begin_post_async_relative_retry_succeeded(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 500, then a 202 to the initial request, with an
@@ -10740,7 +10770,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _put_non_retry201_creating400_invalid_json_initial(
+    async def _put_non_retry201_creating400_invalid_json_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
@@ -10803,7 +10833,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    async def begin_put_non_retry201_creating400_invalid_json(
+    async def begin_put_non_retry201_creating400_invalid_json(  # pylint: disable=name-too-long
         self, product: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
@@ -10864,7 +10894,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def begin_put_non_retry201_creating400_invalid_json(
+    async def begin_put_non_retry201_creating400_invalid_json(  # pylint: disable=name-too-long
         self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
@@ -10908,7 +10938,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def begin_put_non_retry201_creating400_invalid_json(
+    async def begin_put_non_retry201_creating400_invalid_json(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
@@ -12154,7 +12184,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _put_error201_no_provisioning_state_payload_initial(
+    async def _put_error201_no_provisioning_state_payload_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
@@ -12217,7 +12247,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    async def begin_put_error201_no_provisioning_state_payload(
+    async def begin_put_error201_no_provisioning_state_payload(  # pylint: disable=name-too-long
         self, product: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 201 to the initial request with no payload.
@@ -12277,7 +12307,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def begin_put_error201_no_provisioning_state_payload(
+    async def begin_put_error201_no_provisioning_state_payload(  # pylint: disable=name-too-long
         self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 201 to the initial request with no payload.
@@ -12320,7 +12350,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def begin_put_error201_no_provisioning_state_payload(
+    async def begin_put_error201_no_provisioning_state_payload(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 201 to the initial request with no payload.
@@ -12422,7 +12452,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _put_async_relative_retry_no_status_initial(
+    async def _put_async_relative_retry_no_status_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
@@ -12703,7 +12733,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _put_async_relative_retry_no_status_payload_initial(
+    async def _put_async_relative_retry_no_status_payload_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
@@ -12766,7 +12796,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)
 
     @overload
-    async def begin_put_async_relative_retry_no_status_payload(
+    async def begin_put_async_relative_retry_no_status_payload(  # pylint: disable=name-too-long
         self, product: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
@@ -12828,7 +12858,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def begin_put_async_relative_retry_no_status_payload(
+    async def begin_put_async_relative_retry_no_status_payload(  # pylint: disable=name-too-long
         self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
@@ -12873,7 +12903,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def begin_put_async_relative_retry_no_status_payload(
+    async def begin_put_async_relative_retry_no_status_payload(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
@@ -13067,7 +13097,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _delete_async_relative_retry_no_status_initial(  # pylint: disable=inconsistent-return-statements
+    async def _delete_async_relative_retry_no_status_initial(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, **kwargs: Any
     ) -> None:
         error_map = {
@@ -13111,7 +13141,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_delete_async_relative_retry_no_status(self, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_delete_async_relative_retry_no_status(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -13359,7 +13391,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _post_async_relative_retry_no_payload_initial(  # pylint: disable=inconsistent-return-statements
+    async def _post_async_relative_retry_no_payload_initial(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> None:
         error_map = {
@@ -13415,7 +13447,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @overload
-    async def begin_post_async_relative_retry_no_payload(
+    async def begin_post_async_relative_retry_no_payload(  # pylint: disable=name-too-long
         self, product: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
@@ -13460,7 +13492,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def begin_post_async_relative_retry_no_payload(
+    async def begin_post_async_relative_retry_no_payload(  # pylint: disable=name-too-long
         self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
@@ -13485,7 +13517,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def begin_post_async_relative_retry_no_payload(
+    async def begin_post_async_relative_retry_no_payload(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
@@ -13832,7 +13864,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _put_async_relative_retry_invalid_header_initial(
+    async def _put_async_relative_retry_invalid_header_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
@@ -13895,7 +13927,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)
 
     @overload
-    async def begin_put_async_relative_retry_invalid_header(
+    async def begin_put_async_relative_retry_invalid_header(  # pylint: disable=name-too-long
         self, product: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
@@ -13957,7 +13989,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def begin_put_async_relative_retry_invalid_header(
+    async def begin_put_async_relative_retry_invalid_header(  # pylint: disable=name-too-long
         self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
@@ -14002,7 +14034,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def begin_put_async_relative_retry_invalid_header(
+    async def begin_put_async_relative_retry_invalid_header(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
@@ -14113,7 +14145,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _put_async_relative_retry_invalid_json_polling_initial(
+    async def _put_async_relative_retry_invalid_json_polling_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> JSON:
         error_map = {
@@ -14176,7 +14208,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)
 
     @overload
-    async def begin_put_async_relative_retry_invalid_json_polling(
+    async def begin_put_async_relative_retry_invalid_json_polling(  # pylint: disable=name-too-long
         self, product: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
@@ -14238,7 +14270,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def begin_put_async_relative_retry_invalid_json_polling(
+    async def begin_put_async_relative_retry_invalid_json_polling(  # pylint: disable=name-too-long
         self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
@@ -14283,7 +14315,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def begin_put_async_relative_retry_invalid_json_polling(
+    async def begin_put_async_relative_retry_invalid_json_polling(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
@@ -14482,7 +14514,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _delete_async_relative_retry_invalid_header_initial(  # pylint: disable=inconsistent-return-statements
+    async def _delete_async_relative_retry_invalid_header_initial(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, **kwargs: Any
     ) -> None:
         error_map = {
@@ -14526,7 +14558,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_delete_async_relative_retry_invalid_header(self, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_delete_async_relative_retry_invalid_header(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. The endpoint
         indicated in the Azure-AsyncOperation header is invalid.
 
@@ -14573,7 +14607,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _delete_async_relative_retry_invalid_json_polling_initial(  # pylint: disable=inconsistent-return-statements
+    async def _delete_async_relative_retry_invalid_json_polling_initial(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, **kwargs: Any
     ) -> None:
         error_map = {
@@ -14617,7 +14651,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
-    async def begin_delete_async_relative_retry_invalid_json_polling(self, **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_delete_async_relative_retry_invalid_json_polling(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
         indicated in the Azure-AsyncOperation header for operation status.
 
@@ -14865,7 +14901,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _post_async_relative_retry_invalid_header_initial(  # pylint: disable=inconsistent-return-statements
+    async def _post_async_relative_retry_invalid_header_initial(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> None:
         error_map = {
@@ -14921,7 +14957,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @overload
-    async def begin_post_async_relative_retry_invalid_header(
+    async def begin_post_async_relative_retry_invalid_header(  # pylint: disable=name-too-long
         self, product: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
@@ -14966,7 +15002,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def begin_post_async_relative_retry_invalid_header(
+    async def begin_post_async_relative_retry_invalid_header(  # pylint: disable=name-too-long
         self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
@@ -14991,7 +15027,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def begin_post_async_relative_retry_invalid_header(
+    async def begin_post_async_relative_retry_invalid_header(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
@@ -15072,7 +15108,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _post_async_relative_retry_invalid_json_polling_initial(  # pylint: disable=inconsistent-return-statements
+    async def _post_async_relative_retry_invalid_json_polling_initial(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> None:
         error_map = {
@@ -15128,7 +15164,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)
 
     @overload
-    async def begin_post_async_relative_retry_invalid_json_polling(
+    async def begin_post_async_relative_retry_invalid_json_polling(  # pylint: disable=name-too-long
         self, product: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
@@ -15173,7 +15209,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def begin_post_async_relative_retry_invalid_json_polling(
+    async def begin_post_async_relative_retry_invalid_json_polling(  # pylint: disable=name-too-long
         self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
@@ -15198,7 +15234,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def begin_post_async_relative_retry_invalid_json_polling(
+    async def begin_post_async_relative_retry_invalid_json_polling(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
