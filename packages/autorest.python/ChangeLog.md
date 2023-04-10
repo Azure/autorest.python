@@ -1,6 +1,6 @@
 # Release
 
-### 2023-04-07- 6.4.8
+### 2023-04-10 - 6.4.8
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -15,6 +15,11 @@
 **Bug Fixes**
 
 - Fix IO input support for legacy generated code #1842
+
+**Other Changes**
+
+- set default vaule from `package-name` if `package-pprint-name` is not configured  #1841
+- Optimize logic about `is_xml` when serialization #1835
 
 ### 2023-03-30 - 6.4.7
 

@@ -2,9 +2,14 @@
 
 ## 2023-03-30 - 0.8.1
 
+**Bug Fixes**
+
+- Do not generate model for object, {} and empty model, type them as any
+
 **Other Changes**
 
 - Bump python generator dependency
+
 
 ## 2023-03-30 - 0.8.0
 
