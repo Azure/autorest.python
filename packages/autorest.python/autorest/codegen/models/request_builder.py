@@ -88,7 +88,9 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
             return file_import
         for parameter in self.parameters.method:
             file_import.merge(
-                parameter.imports(async_mode=False, relative_path=relative_path)
+                parameter.imports(
+                    async_mode=False, relative_path=relative_path, operation=self
+                )
             )
 
         file_import.add_submodule_import(
