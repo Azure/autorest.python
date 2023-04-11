@@ -223,7 +223,9 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         )
 
         response_types = [
-            r.type_annotation(async_mode=async_mode) for r in self.responses if r.type
+            r.type_annotation(async_mode=async_mode, operation=self)
+            for r in self.responses
+            if r.type
         ]
         if len(set(response_types)) > 1:
             file_import.add_submodule_import(
@@ -245,17 +247,22 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             file_import.merge(
                 param.imports_for_multiapi(
                     async_mode,
+                    operation=self,
                     **kwargs,
                 )
             )
         for response in self.responses:
             file_import.merge(
-                response.imports_for_multiapi(async_mode=async_mode, **kwargs)
+                response.imports_for_multiapi(
+                    async_mode=async_mode, operation=self, **kwargs
+                )
             )
         if self.code_model.options["models_mode"]:
             for exception in self.exceptions:
                 file_import.merge(
-                    exception.imports_for_multiapi(async_mode=async_mode, **kwargs)
+                    exception.imports_for_multiapi(
+                        async_mode=async_mode, operation=self, **kwargs
+                    )
                 )
         return file_import
 
@@ -323,17 +330,22 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             file_import.merge(
                 param.imports(
                     async_mode,
+                    operation=self,
                     **kwargs,
                 )
             )
         for response in self.responses:
-            file_import.merge(response.imports(async_mode=async_mode, **kwargs))
+            file_import.merge(
+                response.imports(async_mode=async_mode, operation=self, **kwargs)
+            )
         if self.code_model.options["models_mode"]:
             for exception in self.exceptions:
                 file_import.merge(exception.imports(async_mode=async_mode, **kwargs))
 
         if self.parameters.has_body and self.parameters.body_parameter.flattened:
-            file_import.merge(self.parameters.body_parameter.type.imports(**kwargs))
+            file_import.merge(
+                self.parameters.body_parameter.type.imports(operation=self, **kwargs)
+            )
 
         # Exceptions
         errors = [

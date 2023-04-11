@@ -7,6 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
+from io import IOBase
 import json
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
@@ -479,7 +480,7 @@ class Int32ValueOperations:
 
         content_type = content_type or "application/json"
         _content = None
-        if isinstance(body, (IO, bytes)):
+        if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
@@ -643,7 +644,7 @@ class Int64ValueOperations:
 
         content_type = content_type or "application/json"
         _content = None
-        if isinstance(body, (IO, bytes)):
+        if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
@@ -807,7 +808,7 @@ class BooleanValueOperations:
 
         content_type = content_type or "application/json"
         _content = None
-        if isinstance(body, (IO, bytes)):
+        if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
@@ -971,7 +972,7 @@ class StringValueOperations:
 
         content_type = content_type or "application/json"
         _content = None
-        if isinstance(body, (IO, bytes)):
+        if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
@@ -1135,7 +1136,7 @@ class Float32ValueOperations:
 
         content_type = content_type or "application/json"
         _content = None
-        if isinstance(body, (IO, bytes)):
+        if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
@@ -1299,7 +1300,7 @@ class DatetimeValueOperations:
 
         content_type = content_type or "application/json"
         _content = None
-        if isinstance(body, (IO, bytes)):
+        if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
@@ -1463,7 +1464,7 @@ class DurationValueOperations:
 
         content_type = content_type or "application/json"
         _content = None
-        if isinstance(body, (IO, bytes)):
+        if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
@@ -1627,7 +1628,7 @@ class UnknownValueOperations:
 
         content_type = content_type or "application/json"
         _content = None
-        if isinstance(body, (IO, bytes)):
+        if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
@@ -1791,7 +1792,7 @@ class ModelValueOperations:
 
         content_type = content_type or "application/json"
         _content = None
-        if isinstance(body, (IO, bytes)):
+        if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
@@ -1955,7 +1956,7 @@ class RecursiveModelValueOperations:
 
         content_type = content_type or "application/json"
         _content = None
-        if isinstance(body, (IO, bytes)):
+        if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
@@ -2119,7 +2120,7 @@ class NullableFloatValueOperations:
 
         content_type = content_type or "application/json"
         _content = None
-        if isinstance(body, (IO, bytes)):
+        if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore

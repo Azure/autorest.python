@@ -105,13 +105,23 @@ class BinaryType(PrimitiveType):
         return self.get_declaration(b"bytes")
 
     def imports(self, **kwargs: Any) -> FileImport:
+        from .combined_type import CombinedType
+        from .operation import OperationBase
+
         file_import = FileImport()
         file_import.add_submodule_import("typing", "IO", ImportType.STDLIB)
+        operation = kwargs.get("operation")
+        if (
+            isinstance(operation, OperationBase)
+            and operation.parameters.has_body
+            and isinstance(operation.parameters.body_parameter.type, CombinedType)
+        ):
+            file_import.add_submodule_import("io", "IOBase", ImportType.STDLIB)
         return file_import
 
     @property
     def instance_check_template(self) -> str:
-        return "isinstance({}, (IO, bytes))"
+        return "isinstance({}, (IOBase, bytes))"
 
 
 class BinaryIteratorType(PrimitiveType):

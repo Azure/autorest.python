@@ -456,6 +456,20 @@ class TestComplex(object):
         # PUT polymorphicrecursive/valid
         await client.polymorphicrecursive.put_valid(request)
 
+    @pytest.mark.asyncio
+    async def test_polymorphismrecursive_put_valid_stream(self, client):
+        path = os.path.abspath(
+            os.path.join(
+                os.path.abspath(__file__),
+                "..",
+                "..",
+                "..",
+                "./test_files/complex.json",
+            )
+        )
+        with open(path, "rb") as fd:
+            await client.polymorphicrecursive.put_valid(fd)
+
 
     # Complex types that uses additional properties and polymorphism
     @pytest.mark.asyncio

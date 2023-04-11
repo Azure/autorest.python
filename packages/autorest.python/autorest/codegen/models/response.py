@@ -103,7 +103,7 @@ class Response(BaseModel):
     def _imports_shared(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         if self.type:
-            file_import.merge(self.type.imports(is_operation_file=True, **kwargs))
+            file_import.merge(self.type.imports(**kwargs))
         if self.nullable:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
         if isinstance(self.type, CombinedType) and self.type.name:

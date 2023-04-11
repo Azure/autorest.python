@@ -182,11 +182,7 @@ class _ParameterBase(
         file_import = self._imports_shared(async_mode, **kwargs)
         # special logic for api-version parameter
         if not self.is_api_version:
-            file_import.merge(
-                self.type.imports(
-                    is_operation_file=True, async_mode=async_mode, **kwargs
-                )
-            )
+            file_import.merge(self.type.imports(async_mode=async_mode, **kwargs))
         if self.default_to_unset_sentinel:
             file_import.add_submodule_import("typing", "Any", ImportType.STDLIB)
             file_import.define_mypy_type(
@@ -198,9 +194,7 @@ class _ParameterBase(
     def imports_for_multiapi(self, async_mode: bool, **kwargs: Any) -> FileImport:
         file_import = self._imports_shared(async_mode, **kwargs)
         file_import.merge(
-            self.type.imports_for_multiapi(
-                is_operation_file=True, async_mode=async_mode, **kwargs
-            )
+            self.type.imports_for_multiapi(async_mode=async_mode, **kwargs)
         )
         return file_import
 

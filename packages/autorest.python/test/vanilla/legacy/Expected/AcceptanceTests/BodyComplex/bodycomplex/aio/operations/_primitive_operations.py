@@ -7,6 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
+from io import IOBase
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
@@ -191,7 +192,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(complex_body, (IO, bytes)):
+        if isinstance(complex_body, (IOBase, bytes)):
             _content = complex_body
         else:
             _json = self._serialize.body(complex_body, "IntWrapper")
@@ -343,7 +344,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(complex_body, (IO, bytes)):
+        if isinstance(complex_body, (IOBase, bytes)):
             _content = complex_body
         else:
             _json = self._serialize.body(complex_body, "LongWrapper")
@@ -495,7 +496,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(complex_body, (IO, bytes)):
+        if isinstance(complex_body, (IOBase, bytes)):
             _content = complex_body
         else:
             _json = self._serialize.body(complex_body, "FloatWrapper")
@@ -650,7 +651,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(complex_body, (IO, bytes)):
+        if isinstance(complex_body, (IOBase, bytes)):
             _content = complex_body
         else:
             _json = self._serialize.body(complex_body, "DoubleWrapper")
@@ -802,7 +803,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(complex_body, (IO, bytes)):
+        if isinstance(complex_body, (IOBase, bytes)):
             _content = complex_body
         else:
             _json = self._serialize.body(complex_body, "BooleanWrapper")
@@ -954,7 +955,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(complex_body, (IO, bytes)):
+        if isinstance(complex_body, (IOBase, bytes)):
             _content = complex_body
         else:
             _json = self._serialize.body(complex_body, "StringWrapper")
@@ -1106,7 +1107,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(complex_body, (IO, bytes)):
+        if isinstance(complex_body, (IOBase, bytes)):
             _content = complex_body
         else:
             _json = self._serialize.body(complex_body, "DateWrapper")
@@ -1260,7 +1261,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(complex_body, (IO, bytes)):
+        if isinstance(complex_body, (IOBase, bytes)):
             _content = complex_body
         else:
             _json = self._serialize.body(complex_body, "DatetimeWrapper")
@@ -1414,7 +1415,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(complex_body, (IO, bytes)):
+        if isinstance(complex_body, (IOBase, bytes)):
             _content = complex_body
         else:
             _json = self._serialize.body(complex_body, "Datetimerfc1123Wrapper")

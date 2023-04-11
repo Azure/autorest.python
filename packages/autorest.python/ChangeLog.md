@@ -12,6 +12,10 @@
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
 | `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
 
+**Bug Fixes**
+
+- Fix IO input support for legacy generated code #1842
+
 **Other Changes**
 
 - set default vaule from `package-name` if `package-pprint-name` is not configured  #1841
