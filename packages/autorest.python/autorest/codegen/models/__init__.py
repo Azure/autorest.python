@@ -133,7 +133,7 @@ TYPE_TO_OBJECT = {
     "time": TimeType,
     "duration": DurationType,
     "date": DateType,
-    "byte-array": ByteArraySchema,
+    "bytes": ByteArraySchema,
     "boolean": BooleanType,
     "combined": CombinedType,
     "OAuth2": TokenCredentialType,

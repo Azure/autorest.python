@@ -52,7 +52,7 @@
     "js-yaml": "~4.1.0",
     "@autorest/python": "workspace:^",
     "@typespec/compiler": "~0.42.0",
-    "@azure-tools/typespec-client-generator-core": "~0.28.0"
+    "@azure-tools/typespec-client-generator-core": "~0.29.0-dev.7"
   },
   "devDependencies": {
     "@types/mocha": "~9.1.0",
