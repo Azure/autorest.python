@@ -4,14 +4,15 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from server.parameterized import ParameterizedClient
+from server.path.single.aio import SingleClient
 
 
 @pytest.fixture
-def client():
-    with ParameterizedClient(endpoint="http://localhost:3000") as client:
+async def client():
+    async with SingleClient(endpoint="http://localhost:3000") as client:
         yield client
 
 
-def test_my_op(client):
-    assert client.my_op() is True
+@pytest.mark.asyncio
+async def test_my_op(client):
+    assert await client.my_op() is True
