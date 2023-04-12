@@ -1,7 +1,6 @@
 parameters:
     installAutorest: false
     installTypeSpec: false
-    installCadlRanch: false
     folderName: ""
     pythonCodeChecks: false
     pythonFolderName: ""
@@ -33,10 +32,6 @@ steps:
     - script: npm install -g @typespec/compiler
       displayName: Install TypeSpec
       condition: and(succeeded(), ${{ parameters.installTypeSpec }})
-
-    - script: npm install -g @azure-tools/cadl-ranch
-      displayName: Install Cadl Ranch
-      condition: and(succeeded(), ${{ parameters.installCadlRanch }})
 
     - script: pnpm install
       displayName: Pnpm install

@@ -18,7 +18,6 @@ steps:
     - template: ci-template.yml
       parameters:
           installTypeSpec: true
-          installCadlRanch: true
           folderName: "typespec-python"
           regenerate: true
     - script: tox -e ci

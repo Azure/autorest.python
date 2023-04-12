@@ -21,6 +21,7 @@ azure-core==1.24.0
 -e ./generated/models-property-types
 -e ./generated/models-usage
 -e ./generated/models-visibility
+-e ./generated/parameters-collection-format
 -e ./generated/projection
 -e ./generated/resiliency-dev-driven
 -e ./generated/resiliency-srv-driven-1

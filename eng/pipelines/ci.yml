@@ -159,7 +159,6 @@ jobs:
       - template: ci-template.yml
         parameters:
             installTypeSpec: true
-            installCadlRanch: true
             folderName: "typespec-python"
             regenerate: true
 
