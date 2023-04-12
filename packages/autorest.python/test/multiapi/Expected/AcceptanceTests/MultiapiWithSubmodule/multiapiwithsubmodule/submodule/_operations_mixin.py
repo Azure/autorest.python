@@ -9,6 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 from ._serialization import Serializer, Deserializer
+from io import IOBase
 from typing import Any, IO, Iterable, Optional, Union
 
 from azure.core.paging import ItemPaged

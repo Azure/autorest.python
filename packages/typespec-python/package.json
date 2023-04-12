@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/typespec-python",
-  "version": "0.8.0",
+  "version": "0.8.2",
   "author": "Microsoft Corporation",
   "description": "Cadl emitter for Python SDKs",
   "homepage": "https://github.com/Azure/autorest.python",
@@ -52,7 +52,7 @@
     "js-yaml": "~4.1.0",
     "@autorest/python": "workspace:^",
     "@typespec/compiler": "~0.42.0",
-    "@azure-tools/typespec-client-generator-core": "~0.28.0"
+    "@azure-tools/typespec-client-generator-core": "~0.29.0-dev.7"
   },
   "devDependencies": {
     "@types/mocha": "~9.1.0",

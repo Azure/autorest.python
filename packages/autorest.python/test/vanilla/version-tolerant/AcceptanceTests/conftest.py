@@ -101,4 +101,3 @@ def credential_async():
         async def get_token(*scopes) -> AccessToken:
             return generate_token(*scopes)
     return FakeCredentialAsync()
-

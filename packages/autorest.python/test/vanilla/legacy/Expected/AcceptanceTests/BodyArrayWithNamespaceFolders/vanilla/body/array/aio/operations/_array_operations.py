@@ -7,6 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
+from io import IOBase
 from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
@@ -340,7 +341,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[str]")
@@ -491,7 +492,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[bool]")
@@ -744,7 +745,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[int]")
@@ -997,7 +998,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[int]")
@@ -1250,7 +1251,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[float]")
@@ -1503,7 +1504,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[float]")
@@ -1756,7 +1757,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[str]")
@@ -1907,7 +1908,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[str]")
@@ -2058,7 +2059,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[str]")
@@ -2315,7 +2316,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[str]")
@@ -2517,7 +2518,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[date]")
@@ -2774,7 +2775,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[iso-8601]")
@@ -3031,7 +3032,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[rfc-1123]")
@@ -3182,7 +3183,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[duration]")
@@ -3337,7 +3338,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[bytearray]")
@@ -3801,7 +3802,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[Product]")
@@ -4156,7 +4157,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[[str]]")
@@ -4517,7 +4518,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[{str}]")

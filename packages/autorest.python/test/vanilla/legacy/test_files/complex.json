@@ -1,0 +1,60 @@
+{
+    "fishtype": "salmon",
+    "species": "king",
+    "length": 1.0,
+    "siblings": [
+        {
+            "fishtype": "shark",
+            "species": "predator",
+            "length": 20.0,
+            "siblings": [
+                {
+                    "fishtype": "salmon",
+                    "species": "coho",
+                    "length": 2.0,
+                    "siblings": [
+                        {
+                            "fishtype": "shark",
+                            "species": "predator",
+                            "length": 20.0,
+                            "age": 6,
+                            "birthday": "2012-01-05T01:00:00.000Z"
+                        },
+                        {
+                            "fishtype": "sawshark",
+                            "species": "dangerous",
+                            "length": 10.0,
+                            "age": 105,
+                            "birthday": "1900-01-05T01:00:00.000Z",
+                            "picture": "//////4="
+                        }
+                    ],
+                    "location": "atlantic",
+                    "iswild": true
+                },
+                {
+                    "fishtype": "sawshark",
+                    "species": "dangerous",
+                    "length": 10.0,
+                    "siblings": [],
+                    "age": 105,
+                    "birthday": "1900-01-05T01:00:00.000Z",
+                    "picture": "//////4="
+                }
+            ],
+            "age": 6,
+            "birthday": "2012-01-05T01:00:00.000Z"
+        },
+        {
+            "fishtype": "sawshark",
+            "species": "dangerous",
+            "length": 10.0,
+            "siblings": [],
+            "age": 105,
+            "birthday": "1900-01-05T01:00:00.000Z",
+            "picture": "//////4="
+        }
+    ],
+    "location": "alaska",
+    "iswild": true
+}

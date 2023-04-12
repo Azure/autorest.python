@@ -7,6 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
+from io import IOBase
 from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
@@ -658,7 +659,7 @@ def build_get_date_time_invalid_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_date_time_invalid_chars_request(**kwargs: Any) -> HttpRequest:
+def build_get_date_time_invalid_chars_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -672,7 +673,7 @@ def build_get_date_time_invalid_chars_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_date_time_rfc1123_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_date_time_rfc1123_valid_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -686,7 +687,7 @@ def build_get_date_time_rfc1123_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_date_time_rfc1123_valid_request(**kwargs: Any) -> HttpRequest:
+def build_put_date_time_rfc1123_valid_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -1293,7 +1294,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[str]")
@@ -1444,7 +1445,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[bool]")
@@ -1697,7 +1698,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[int]")
@@ -1950,7 +1951,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[int]")
@@ -2203,7 +2204,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[float]")
@@ -2456,7 +2457,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[float]")
@@ -2709,7 +2710,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[str]")
@@ -2860,7 +2861,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[str]")
@@ -3011,7 +3012,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[str]")
@@ -3268,7 +3269,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[str]")
@@ -3470,7 +3471,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[date]")
@@ -3727,7 +3728,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[iso-8601]")
@@ -3984,7 +3985,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[rfc-1123]")
@@ -4135,7 +4136,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[duration]")
@@ -4290,7 +4291,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[bytearray]")
@@ -4754,7 +4755,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[Product]")
@@ -5109,7 +5110,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[[str]]")
@@ -5470,7 +5471,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(array_body, (IO, bytes)):
+        if isinstance(array_body, (IOBase, bytes)):
             _content = array_body
         else:
             _json = self._serialize.body(array_body, "[{str}]")

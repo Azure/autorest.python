@@ -105,13 +105,23 @@ class BinaryType(PrimitiveType):
         return self.get_declaration(b"bytes")
 
     def imports(self, **kwargs: Any) -> FileImport:
+        from .combined_type import CombinedType
+        from .operation import OperationBase
+
         file_import = FileImport()
         file_import.add_submodule_import("typing", "IO", ImportType.STDLIB)
+        operation = kwargs.get("operation")
+        if (
+            isinstance(operation, OperationBase)
+            and operation.parameters.has_body
+            and isinstance(operation.parameters.body_parameter.type, CombinedType)
+        ):
+            file_import.add_submodule_import("io", "IOBase", ImportType.STDLIB)
         return file_import
 
     @property
     def instance_check_template(self) -> str:
-        return "isinstance({}, (IO, bytes))"
+        return "isinstance({}, (IOBase, bytes))"
 
 
 class BinaryIteratorType(PrimitiveType):
@@ -346,7 +356,7 @@ class StringType(PrimitiveType):
 class DatetimeType(PrimitiveType):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
-        self.format = self.Formats(yaml_data["format"])
+        self.format = self.Formats(yaml_data.get("format", "date-time"))
 
     class Formats(str, Enum):
         datetime = "date-time"
@@ -578,7 +588,7 @@ class DurationType(PrimitiveType):
 class ByteArraySchema(PrimitiveType):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
-        self.format = yaml_data["format"]
+        self.format = yaml_data.get("format", "bytes")
 
     @property
     def serialization_type(self) -> str:

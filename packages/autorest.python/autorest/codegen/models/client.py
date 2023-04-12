@@ -146,6 +146,8 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         retval = add_to_pylint_disable("", "client-accepts-api-version-keyword")
         if len(self.operation_groups) > 6:
             retval = add_to_pylint_disable(retval, "too-many-instance-attributes")
+        if len(self.name) > 40:
+            retval = add_to_pylint_disable(retval, "name-too-long")
         return retval
 
     @property
@@ -203,7 +205,11 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             if gp.method_location == ParameterMethodLocation.KWARG:
                 continue
             file_import.merge(
-                gp.imports(async_mode, relative_path=".." if async_mode else ".")
+                gp.imports(
+                    async_mode,
+                    relative_path=".." if async_mode else ".",
+                    operation=True,
+                )
             )
         file_import.add_submodule_import(
             "._configuration",
@@ -420,7 +426,9 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
                 continue
             file_import.merge(
                 gp.imports(
-                    async_mode=async_mode, relative_path=".." if async_mode else "."
+                    async_mode=async_mode,
+                    relative_path=".." if async_mode else ".",
+                    operation=True,
                 )
             )
         return file_import
@@ -436,7 +444,9 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
                 continue
             file_import.merge(
                 gp.imports_for_multiapi(
-                    async_mode=async_mode, relative_path=".." if async_mode else "."
+                    async_mode=async_mode,
+                    relative_path=".." if async_mode else ".",
+                    operation=True,
                 )
             )
         return file_import

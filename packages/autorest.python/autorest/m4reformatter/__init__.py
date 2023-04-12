@@ -234,7 +234,7 @@ def update_primitive(  # pylint: disable=too-many-return-statements
         base["format"] = yaml_data["format"]
         return base
     if type_group == "byte-array":
-        base = _update_type_base("byte-array", yaml_data)
+        base = _update_type_base("bytes", yaml_data)
         base["format"] = yaml_data["format"]
         return base
     return _update_type_base(type_group, yaml_data)
