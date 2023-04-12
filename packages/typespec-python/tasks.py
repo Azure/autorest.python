@@ -23,13 +23,19 @@ init()
 
 PLUGIN_DIR = Path(os.path.dirname(__file__))
 PLUGIN = (PLUGIN_DIR / "dist/src/index.js").as_posix()
-CADL_RANCH_DIR = PLUGIN_DIR / Path("node_modules/@azure-tools/cadl-ranch-specs")
-EMITTER_OPTIONS = {"hello": {"package-name": "azure-hello", "package-mode": "dataplane", "package-pprint-name": "Hello"}}
+CADL_RANCH_DIR = PLUGIN_DIR / Path("node_modules/@azure-tools/cadl-ranch-specs/http")
+EMITTER_OPTIONS = {
+    "hello": {
+        "package-name": "azure-hello",
+        "package-mode": "dataplane",
+        "package-pprint-name": "Hello",
+    }
+}
 
 
 def _add_options(spec, debug=False):
     name = spec.stem.lower()
-    options = {"emitter-output-dir": f"{PLUGIN_DIR}/test/generated/{spec.name}"}
+    options = {"emitter-output-dir": f"{PLUGIN_DIR}/test/generated/{_get_package_name(spec)}"}
     # if debug:
     #   options["debug"] = "true"
     options.update(EMITTER_OPTIONS.get(name, {}))
@@ -48,7 +54,7 @@ def regenerate(c, name=None, debug=False):
     if name:
         specs = [s for s in specs if name.lower() in s.stem.lower()]
     for spec in specs:
-        Path(f"{PLUGIN_DIR}/test/generated/{spec.name}").mkdir(
+        Path(f"{PLUGIN_DIR}/test/generated/{_get_package_name(spec)}").mkdir(
             parents=True, exist_ok=True
         )
     _run_cadl(
@@ -57,6 +63,18 @@ def regenerate(c, name=None, debug=False):
             for spec in specs
         ]
     )
+
+
+def _get_package_name(spec: Path):
+    prefix_path = str(spec.parent).replace(str(CADL_RANCH_DIR), "")
+    if prefix_path:
+        return (
+            "-".join(prefix_path.split(os.sep)[1:])
+            + "-"
+            + spec.name
+        )
+    else:
+        return spec.name
 
 
 def _run_cadl(cmds):
