@@ -99,12 +99,12 @@ class CollectionsModelProperty(_model_base.Model):
     :ivar required_property: Required property. Required.
     :vartype required_property: str
     :ivar nullable_property: Property. Required.
-    :vartype nullable_property: list[~models.property.nullable.models.StringProperty]
+    :vartype nullable_property: list[~models.property.nullable.models.InnerModel]
     """
 
     required_property: str = rest_field(name="requiredProperty")
     """Required property. Required."""
-    nullable_property: List["_models.StringProperty"] = rest_field(name="nullableProperty")
+    nullable_property: List["_models.InnerModel"] = rest_field(name="nullableProperty")
     """Property. Required."""
 
     @overload
@@ -112,7 +112,7 @@ class CollectionsModelProperty(_model_base.Model):
         self,
         *,
         required_property: str,
-        nullable_property: List["_models.StringProperty"],
+        nullable_property: List["_models.InnerModel"],
     ):
         ...
 
@@ -185,6 +185,37 @@ class DurationProperty(_model_base.Model):
         *,
         required_property: str,
         nullable_property: datetime.timedelta,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class InnerModel(_model_base.Model):
+    """Inner model used in collections model property.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar property: Inner model property. Required.
+    :vartype property: str
+    """
+
+    property: str = rest_field()
+    """Inner model property. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        property: str,  # pylint: disable=redefined-builtin
     ):
         ...
 
