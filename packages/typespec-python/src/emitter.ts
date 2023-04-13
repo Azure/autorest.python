@@ -547,7 +547,7 @@ function emitResponse(
         if (innerResponse.body.type.kind === "Model") {
             const lroMeta = getLroMetadata(context.program, operation);
             if (lroMeta && lroMeta.logicalResult.name) {
-                modelType = lroMeta.logicalResult
+                modelType = lroMeta.logicalResult;
                 if (lroMeta.finalStep?.target.kind === "ModelProperty") {
                     resultProperty = lroMeta.finalStep.target.name;
                 }
