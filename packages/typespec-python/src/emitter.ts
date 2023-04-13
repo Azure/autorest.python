@@ -939,9 +939,9 @@ function emitListOrDict(context: SdkContext, type: Model): Record<string, any> |
     if (sdkType) {
         return {
             type: sdkType.kind,
-            elementType: getType(context, sdkType.elementType.__raw)
-        }
-    };
+            elementType: getType(context, sdkType.elementType.__raw),
+        };
+    }
     return undefined;
 }
 
