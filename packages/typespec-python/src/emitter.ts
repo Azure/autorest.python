@@ -204,12 +204,6 @@ function getEffectiveSchemaType(context: SdkContext, type: Model): Model {
 
     const effective = getEffectiveModelType(program, type, isSchemaProperty);
     if (effective.name) {
-        if (effective.name === "ResourceOperationStatus") {
-            const result = effective.properties.get("result");
-            if (result?.type.kind === "Model") {
-                return result.type;
-            }
-        }
         return effective;
     }
     return type;
@@ -544,12 +538,22 @@ function emitResponse(
     context: SdkContext,
     response: HttpOperationResponse,
     innerResponse: HttpOperationResponseContent,
+    operation: Operation,
 ): Record<string, any> {
     let type = undefined;
+    let resultProperty = undefined;
     if (innerResponse.body?.type) {
         let modelType = undefined;
         if (innerResponse.body.type.kind === "Model") {
-            modelType = getEffectiveSchemaType(context, innerResponse.body.type);
+            const lroMeta = getLroMetadata(context.program, operation);
+            if (lroMeta && lroMeta.logicalResult.name) {
+                modelType = lroMeta.logicalResult
+                if (lroMeta.finalStep?.target.kind === "ModelProperty") {
+                    resultProperty = lroMeta.finalStep.target.name;
+                }
+            } else {
+                modelType = getEffectiveSchemaType(context, innerResponse.body.type);
+            }
         }
         if (modelType && !isAzureCoreModel(modelType)) {
             type = getType(context, modelType);
@@ -573,6 +577,7 @@ function emitResponse(
         addedOn: getAddedOnVersion(context, response.type),
         discriminator: "basic",
         type: type,
+        resultProperty: resultProperty,
     };
 }
 
@@ -701,7 +706,7 @@ function emitBasicOperation(
     const isOverriden: boolean = false;
     for (const response of httpOperation.responses) {
         for (const innerResponse of response.responses) {
-            const emittedResponse = emitResponse(context, response, innerResponse);
+            const emittedResponse = emitResponse(context, response, innerResponse, operation);
             if (
                 emittedResponse["type"] &&
                 parameters.filter((e) => e.restApiName.toLowerCase() === "accept").length === 0
