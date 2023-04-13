@@ -23,5 +23,4 @@ def test_lro_core_delete(client):
 def test_lro_core_export(client):
     export_user = ExportedUser({ "name": "madge", "resourceUri": "/users/madge" })
     result = client.begin_export(name="madge", format="json", polling_interval=0).result()
-    print(result)
     assert result == export_user

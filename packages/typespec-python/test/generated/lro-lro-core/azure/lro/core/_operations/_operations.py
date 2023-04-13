@@ -158,8 +158,7 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
 
         if response.status_code not in [200, 201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.User, response.json())
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         if response.status_code == 200:
@@ -457,8 +456,7 @@ class CoreClientOperationsMixin(CoreClientMixinABC):
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ExportedUser, response.json())
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         response_headers["Operation-Location"] = self._deserialize("str", response.headers.get("Operation-Location"))

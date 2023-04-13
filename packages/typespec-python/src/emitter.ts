@@ -545,14 +545,16 @@ function emitResponse(
     if (innerResponse.body?.type) {
         let modelType = undefined;
         if (innerResponse.body.type.kind === "Model") {
-            const lroMeta = getLroMetadata(context.program, operation);
-            if (lroMeta && lroMeta.logicalResult.name) {
-                modelType = lroMeta.logicalResult;
-                if (lroMeta.finalStep?.target.kind === "ModelProperty") {
-                    resultProperty = lroMeta.finalStep.target.name;
+            modelType = getEffectiveSchemaType(context, innerResponse.body.type);
+            // For LROs, we use getLroMetadata to get final result type if we can't get it from common function
+            if (isAzureCoreModel(modelType) && modelType.name === "ResourceOperationStatus") {
+                const lroMeta = getLroMetadata(context.program, operation);
+                if (lroMeta && lroMeta.logicalResult.name) {
+                    modelType = lroMeta.logicalResult;
+                    if (lroMeta.finalStep?.target.kind === "ModelProperty") {
+                        resultProperty = lroMeta.finalStep.target.name;
+                    }
                 }
-            } else {
-                modelType = getEffectiveSchemaType(context, innerResponse.body.type);
             }
         }
         if (modelType && !isAzureCoreModel(modelType)) {
