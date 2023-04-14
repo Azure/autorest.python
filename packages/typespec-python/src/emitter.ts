@@ -892,6 +892,15 @@ function emitCredential(auth: HttpAuth): Record<string, any> {
             },
         };
     }
+    else if (auth.type === "http") {
+        credential_type = {
+            type: "Key",
+            policy: {
+                type: "AzureHttpCredentialPolicy",
+                scheme: auth.scheme,
+            },
+        };
+    }
     return credential_type;
 }
 
