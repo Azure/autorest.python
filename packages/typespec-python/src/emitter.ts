@@ -64,6 +64,7 @@ import {
     getAllModels,
     isInternal,
     getSdkSimpleType,
+    getSdkListOrDict,
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
@@ -934,19 +935,12 @@ function emitSimpleType(context: SdkContext, type: Scalar | IntrinsicType): Reco
 }
 
 function emitListOrDict(context: SdkContext, type: Model): Record<string, any> | undefined {
-    if (type.indexer !== undefined) {
-        if (isNeverType(type.indexer.key)) {
-        } else {
-            const name = type.indexer.key.name;
-            const elementType = type.indexer.value!;
-            if (name === "string") {
-                if (elementType.kind === "Intrinsic") {
-                }
-                return { type: "dict", elementType: getType(context, type.indexer.value!) };
-            } else if (name === "integer") {
-                return { type: "list", elementType: getType(context, type.indexer.value!) };
-            }
-        }
+    const sdkType = getSdkListOrDict(context, type);
+    if (sdkType) {
+        return {
+            type: sdkType.kind,
+            elementType: getType(context, sdkType.elementType.__raw),
+        };
     }
     return undefined;
 }
