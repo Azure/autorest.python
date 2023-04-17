@@ -68,6 +68,7 @@ import {
     getSdkUnion,
     SdkSimpleType,
     SdkEnumValueType,
+    getSdkEnum,
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
@@ -851,28 +852,14 @@ function emitEnumMember(type: SdkEnumValueType): Record<string, any> {
 }
 
 function emitEnum(context: SdkContext, type: Enum): Record<string, any> {
-    const enumValues = [];
-    for (const m of type.members.values()) {
-        enumValues.push({
-            name: enumName(m.name),
-            value: m.value ?? m.name,
-            description: getDocStr(context, m),
-        });
-    }
-
+    const sdkType = getSdkEnum(context, type);
     return {
-        type: "enum",
-        name: type.name,
-        description: getDocStr(context, type),
-        valueType: { type: enumMemberType(type.members.values().next().value) },
-        values: enumValues,
+        type: sdkType.kind,
+        name: sdkType.name,
+        description: sdkType.doc,
+        valueType: emitSimpleType(context, sdkType.valueType as SdkSimpleType),
+        values: sdkType.values.map((x) => emitEnumMember(x)),
     };
-    function enumMemberType(member: EnumMember) {
-        if (typeof member.value === "number") {
-            return intOrFloat(member.value);
-        }
-        return "string";
-    }
 }
 
 function constantType(value: any, valueType: string): Record<string, any> {
