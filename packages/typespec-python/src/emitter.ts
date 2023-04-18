@@ -857,7 +857,7 @@ function emitEnum(context: SdkContext, type: Enum): Record<string, any> {
         type: sdkType.kind,
         name: sdkType.name,
         description: sdkType.doc,
-        valueType: emitSimpleType(context, sdkType.valueType as SdkSimpleType),
+        valueType: emitSimpleType(context, sdkType.valueType),
         values: sdkType.values.map((x) => emitEnumMember(x)),
     };
 }
@@ -988,7 +988,7 @@ function emitUnion(context: SdkContext, type: Union): Record<string, any> {
             description: sdkType.doc || `Type of ${sdkType.name}`,
             internal: true,
             type: sdkType.kind,
-            valueType: emitSimpleType(context, sdkType.valueType as SdkSimpleType),
+            valueType: emitSimpleType(context, sdkType.valueType),
             values: sdkType.values.map((x) => emitEnumMember(x)),
             xmlMetadata: {},
         };
