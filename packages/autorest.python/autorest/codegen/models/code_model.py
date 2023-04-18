@@ -297,15 +297,16 @@ class CodeModel:  # pylint: disable=too-many-public-methods
         referenced_types = [
             t for t in self.types_map.values() if isinstance(t, ReferencedType)
         ]
-        result = {}
+        result: Dict[str, str] = {}
         for referenced_type in referenced_types:
-            if referenced_type.package not in result:
-                result[referenced_type.package] = referenced_type.version
-            else:
-                # this logic need to be refined to handle any version constraints,
-                # but for now, we just compare the version string directly
-                if referenced_type.version > result[referenced_type.package]:
+            if referenced_type.package and referenced_type.version:
+                if referenced_type.package not in result:
                     result[referenced_type.package] = referenced_type.version
+                else:
+                    # this logic need to be refined to handle any version constraints,
+                    # but for now, we just compare the version string directly
+                    if referenced_type.version > result[referenced_type.package]:
+                        result[referenced_type.package] = referenced_type.version
         return result
     @property
     def install_requires(self) -> List[str]:
