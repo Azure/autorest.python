@@ -11,132 +11,11 @@ from typing import Any, List, Mapping, Optional, TYPE_CHECKING, Union, overload
 
 from .. import _model_base
 from .._model_base import rest_field
+from azure.core.exceptions import HttpResponseError
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
-
-
-class Error(_model_base.Model):
-    """The error object.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar code: One of a server-defined set of error codes. Required.
-    :vartype code: str
-    :ivar message: A human-readable representation of the error. Required.
-    :vartype message: str
-    :ivar target: The target of the error.
-    :vartype target: str
-    :ivar details: An array of details about specific errors that led to this reported error.
-     Required.
-    :vartype details: list[~azure.lro.rpc.models.Error]
-    :ivar innererror: An object containing more specific information than the current object about
-     the error.
-    :vartype innererror: ~azure.lro.rpc.models.InnerError
-    """
-
-    code: str = rest_field()
-    """One of a server-defined set of error codes. Required."""
-    message: str = rest_field()
-    """A human-readable representation of the error. Required."""
-    target: Optional[str] = rest_field()
-    """The target of the error."""
-    details: List["_models.Error"] = rest_field()
-    """An array of details about specific errors that led to this reported error. Required."""
-    innererror: Optional["_models.InnerError"] = rest_field()
-    """An object containing more specific information than the current object about the error."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        code: str,
-        message: str,
-        details: List["_models.Error"],
-        target: Optional[str] = None,
-        innererror: Optional["_models.InnerError"] = None,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class ErrorResponse(_model_base.Model):
-    """A response containing error details.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar error: The error object. Required.
-    :vartype error: ~azure.lro.rpc.models.Error
-    """
-
-    error: "_models.Error" = rest_field()
-    """The error object. Required."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        error: "_models.Error",
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class InnerError(_model_base.Model):
-    """An object containing more specific information about the error. As per Microsoft One API
-    guidelines -
-    https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar code: One of a server-defined set of error codes. Required.
-    :vartype code: str
-    :ivar innererror: Inner error.
-    :vartype innererror: ~azure.lro.rpc.models.InnerError
-    """
-
-    code: str = rest_field()
-    """One of a server-defined set of error codes. Required."""
-    innererror: Optional["_models.InnerError"] = rest_field()
-    """Inner error."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        code: str,
-        innererror: Optional["_models.InnerError"] = None,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
 
 
 class JobData(_model_base.Model):
@@ -206,7 +85,7 @@ class JobResult(_model_base.Model):
      "Succeeded", "Failed", and "Canceled".
     :vartype status: str or ~azure.lro.rpc.models.OperationState
     :ivar errors: Error objects that describes the error when status is "Failed".
-    :vartype errors: list[~azure.lro.rpc.models.ErrorResponse]
+    :vartype errors: list[~azure.core.exceptions.HttpResponseError]
     :ivar results: The results. Required.
     :vartype results: list[str]
     """
@@ -218,7 +97,7 @@ class JobResult(_model_base.Model):
     status: Union[str, "_models.OperationState"] = rest_field(readonly=True)
     """The status of the processing job. Required. Known values are: \"InProgress\", \"Succeeded\",
      \"Failed\", and \"Canceled\"."""
-    errors: Optional[List["_models.ErrorResponse"]] = rest_field(readonly=True)
+    errors: Optional[List[HttpResponseError]] = rest_field(readonly=True)
     """Error objects that describes the error when status is \"Failed\"."""
     results: List[str] = rest_field(readonly=True)
     """The results. Required."""

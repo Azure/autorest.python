@@ -258,7 +258,7 @@ function getType(context: SdkContext, type: EmitterType): any {
     }
     if (enableCache) {
         typesMap.set(effectiveModel, newValue);
-        if (type.kind === "Model") {
+        if (type.kind === "Model" && newValue.type !== "referencedType") {
             // need to do properties after insertion to avoid infinite recursion
             for (const property of type.properties.values()) {
                 if (isStatusCode(program, property) || isNeverType(property.type) || isHeader(program, property)) {
@@ -821,6 +821,7 @@ function emitModel(context: SdkContext, type: Model): Record<string, any> {
     return {
         type: "model",
         name: modelName,
+        referencedType: getAzureCoreReferencedType(type),
         description: getDocStr(context, type),
         parents: baseModel ? [baseModel] : [],
         discriminatedSubtypes: {},
@@ -1012,6 +1013,11 @@ function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
             builtinType.description = doc;
         }
         return builtinType;
+    }
+
+    const referencedType = getAzureCoreReferencedType(type);
+    if (referencedType) {
+        return referencedType;
     }
 
     switch (type.kind) {
@@ -1261,3 +1267,26 @@ function emitCodeModel(context: EmitContext<PythonEmitterOptions>) {
 const KnownTypes = {
     string: { type: "string" },
 };
+
+interface ReferencedType {
+    type: string,
+    refer: string,
+    package?: string,
+    version?: string,
+}
+
+
+const CORE_MORE_MAPPING: Record<string, ReferencedType> = {
+    "Azure.Core.Foundations.ErrorResponse": { type: "referencedType", package: "azure-core", version: "<2.0.0,>=1.24.0", refer: "azure.core.exceptions.HttpResponseError" },
+    "Azure.Core.Foundations.Error": { type: "referencedType", package: "azure-core", version: "<2.0.0,>=1.24.0", refer: "azure.core.exceptions.ODataV4Error" },
+}
+
+function getAzureCoreReferencedType(t: Type): ReferencedType | undefined {
+    if ((t.kind === "Model" || t.kind === "Enum") &&
+        t.namespace !== undefined &&
+        ["Azure.Core", "Azure.Core.Foundations"].includes(getNamespaceFullName(t.namespace))) {
+        return CORE_MORE_MAPPING[getNamespaceFullName(t.namespace) + "." + t.name];
+    } else {
+        return undefined;
+    }
+}

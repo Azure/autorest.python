@@ -48,6 +48,7 @@ from .parameter import (
 from .operation import Operation
 from .property import Property
 from .operation_group import OperationGroup
+from .referenced_type import ReferencedType
 from .response import Response
 from .parameter_list import (
     ParameterList,
@@ -144,6 +145,7 @@ TYPE_TO_OBJECT = {
     "any-object": AnyObjectType,
     "unixtime": UnixTimeType,
     "credential": StringType,
+    "referencedType": ReferencedType,
 }
 _LOGGER = logging.getLogger(__name__)
 

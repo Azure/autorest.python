@@ -82,19 +82,9 @@ setup(
     include_package_data=True,
     {% endif %}
     install_requires=[
-        {% if code_model.is_legacy %}
-        "msrest>=0.7.1",
-        {% else %}
-        "isodate<1.0.0,>=0.6.1",
-        {% endif %}
-        {% if azure_arm %}
-        "azure-mgmt-core<2.0.0,>=1.3.2",
-        {% else %}
-        "azure-core<2.0.0,>=1.24.0",
-        {% endif %}
-        {% if code_model.need_typing_extensions %}
-        "typing-extensions>=4.3.0; python_version<'3.8.0'",
-        {% endif %}
+        {% for value in code_model.install_requires %}
+        "{{value}}",
+        {% endfor %}
     ],
     {% if package_mode %}
     python_requires=">=3.7",

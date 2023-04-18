@@ -12,6 +12,7 @@ from .combined_type import CombinedType
 from .client import Client
 from .request_builder import RequestBuilder, OverloadedRequestBuilder
 from .constant_type import ConstantType
+from .referenced_type import ReferencedType
 
 
 def _is_legacy(options) -> bool:
@@ -289,3 +290,45 @@ class CodeModel:  # pylint: disable=too-many-public-methods
         ):
             return True
         return False
+
+    @property
+    def get_referenced_type_libraries(self) -> Dict[str, str]:
+        """Get all the libraries needed for referenced types"""
+        referenced_types = [
+            t for t in self.types_map.values() if isinstance(t, ReferencedType)
+        ]
+        result = {}
+        for referenced_type in referenced_types:
+            if referenced_type.package not in result:
+                result[referenced_type.package] = referenced_type.version
+            else:
+                # this logic need to be refined to handle any version constraints,
+                # but for now, we just compare the version string directly
+                if referenced_type.version > result[referenced_type.package]:
+                    result[referenced_type.package] = referenced_type.version
+        return result
+    @property
+    def install_requires(self) -> List[str]:
+        result = []
+        referenced_type_libraries = self.get_referenced_type_libraries
+        if self.is_legacy:
+            result.append("msrest>=0.7.1")
+            if referenced_type_libraries.get("msrest"):
+                del referenced_type_libraries["msrest"]
+        else:
+            result.append("isodate<1.0.0,>=0.6.1")
+            if referenced_type_libraries.get("isodate"):
+                del referenced_type_libraries["isodate"]
+        if self.options.get("azure-arm", False):
+            result.append("azure-mgmt-core<2.0.0,>=1.3.2")
+            if referenced_type_libraries.get("azure-mgmt-core"):
+                del referenced_type_libraries["azure-mgmt-core"]
+        else:
+            result.append("azure-core<2.0.0,>=1.24.0")
+            if referenced_type_libraries.get("azure-core"):
+                del referenced_type_libraries["azure-core"]
+        if self.need_typing_extensions:
+            result.append("typing-extensions>=4.3.0; python_version<'3.8.0'")
+        for lib, version in referenced_type_libraries.items():
+            result.append(f"{lib}{version}")
+        return result

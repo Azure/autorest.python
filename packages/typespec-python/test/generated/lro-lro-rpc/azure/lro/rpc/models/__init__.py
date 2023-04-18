@@ -6,9 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._models import Error
-from ._models import ErrorResponse
-from ._models import InnerError
 from ._models import JobData
 from ._models import JobPollResult
 from ._models import JobResult
@@ -19,9 +16,6 @@ from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "Error",
-    "ErrorResponse",
-    "InnerError",
     "JobData",
     "JobPollResult",
     "JobResult",
