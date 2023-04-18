@@ -308,6 +308,7 @@ class CodeModel:  # pylint: disable=too-many-public-methods
                     if referenced_type.version > result[referenced_type.package]:
                         result[referenced_type.package] = referenced_type.version
         return result
+
     @property
     def install_requires(self) -> List[str]:
         result = []
