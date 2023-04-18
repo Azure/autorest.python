@@ -69,6 +69,7 @@ import {
     SdkSimpleType,
     SdkEnumValueType,
     getSdkEnum,
+    getSdkConstant,
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
@@ -862,10 +863,6 @@ function emitEnum(context: SdkContext, type: Enum): Record<string, any> {
     };
 }
 
-function constantType(value: any, valueType: string): Record<string, any> {
-    return { type: "constant", value: value, valueType: { type: valueType } };
-}
-
 function emitCredential(auth: HttpAuth): Record<string, any> {
     let credential_type: Record<string, any> = {};
     if (auth.type === "oauth2") {
@@ -951,11 +948,15 @@ function emitListOrDict(context: SdkContext, type: Model): Record<string, any> |
 function mapCadlType(context: SdkContext, type: Type): any {
     switch (type.kind) {
         case "Number":
-            return constantType(type.value, intOrFloat(type.value));
         case "String":
-            return constantType(type.value, "string");
         case "Boolean":
-            return constantType(type.value, "boolean");
+            const sdkType = getSdkConstant(context, type)!;
+            return {
+                type: sdkType.kind,
+                value: sdkType.value,
+                valueType: getType(context, sdkType.valueType.__raw)
+
+            }
         case "Model":
             return emitListOrDict(context, type);
     }
