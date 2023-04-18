@@ -1269,22 +1269,33 @@ const KnownTypes = {
 };
 
 interface ReferencedType {
-    type: string,
-    refer: string,
-    package?: string,
-    version?: string,
+    type: string;
+    refer: string;
+    package?: string;
+    version?: string;
 }
-
 
 const CORE_MORE_MAPPING: Record<string, ReferencedType> = {
-    "Azure.Core.Foundations.ErrorResponse": { type: "referencedType", package: "azure-core", version: "<2.0.0,>=1.24.0", refer: "azure.core.exceptions.HttpResponseError" },
-    "Azure.Core.Foundations.Error": { type: "referencedType", package: "azure-core", version: "<2.0.0,>=1.24.0", refer: "azure.core.exceptions.ODataV4Error" },
-}
+    "Azure.Core.Foundations.ErrorResponse": {
+        type: "referencedType",
+        package: "azure-core",
+        version: "<2.0.0,>=1.24.0",
+        refer: "azure.core.exceptions.HttpResponseError",
+    },
+    "Azure.Core.Foundations.Error": {
+        type: "referencedType",
+        package: "azure-core",
+        version: "<2.0.0,>=1.24.0",
+        refer: "azure.core.exceptions.ODataV4Error",
+    },
+};
 
 function getAzureCoreReferencedType(t: Type): ReferencedType | undefined {
-    if ((t.kind === "Model" || t.kind === "Enum") &&
+    if (
+        (t.kind === "Model" || t.kind === "Enum") &&
         t.namespace !== undefined &&
-        ["Azure.Core", "Azure.Core.Foundations"].includes(getNamespaceFullName(t.namespace))) {
+        ["Azure.Core", "Azure.Core.Foundations"].includes(getNamespaceFullName(t.namespace))
+    ) {
         return CORE_MORE_MAPPING[getNamespaceFullName(t.namespace) + "." + t.name];
     } else {
         return undefined;
