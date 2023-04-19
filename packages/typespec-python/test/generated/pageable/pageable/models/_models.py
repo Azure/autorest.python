@@ -7,46 +7,14 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, Mapping, overload
+from typing import Any, List, Mapping, Optional, TYPE_CHECKING, overload
 
 from .. import _model_base
 from .._model_base import rest_field
 
-
-class Error(_model_base.Model):
-    """Error.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar code: Error code. Required.
-    :vartype code: int
-    :ivar message: Error message. Required.
-    :vartype message: str
-    """
-
-    code: int = rest_field()
-    """Error code. Required."""
-    message: str = rest_field()
-    """Error message. Required."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        code: int,
-        message: str,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from .. import models as _models
 
 
 class User(_model_base.Model):
@@ -71,6 +39,42 @@ class User(_model_base.Model):
         *,
         id: int,  # pylint: disable=redefined-builtin
         name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class UserListResults(_model_base.Model):
+    """UserListResults.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar items: List of items. Required.
+    :vartype items: list[~pageable.models.User]
+    :ivar next_link: Link to fetch more items.
+    :vartype next_link: str
+    """
+
+    items: List["_models.User"] = rest_field()
+    """List of items. Required."""
+    next_link: Optional[str] = rest_field(name="nextLink")
+    """Link to fetch more items."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        items: List["_models.User"],
+        next_link: Optional[str] = None,
     ):
         ...
 

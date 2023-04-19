@@ -22,16 +22,6 @@ model ResponsePage<T> {
     nextLink?: string;
 }
 
-@doc("Error")
-@error
-model Error {
-    @doc("Error code")
-    code: int32;
-
-    @doc("Error message")
-    message: string;
-}
-
 @doc("User")
 model User {
     @doc("User id")
@@ -46,4 +36,4 @@ model User {
 @doc("List users")
 op list(
     @query @doc("Name filter") nameFilter: string
-): ResponsePage<User> | Error;
+): ResponsePage<User>;
