@@ -550,13 +550,11 @@ function emitResponse(
         if (innerResponse.body.type.kind === "Model") {
             modelType = getEffectiveSchemaType(context, innerResponse.body.type);
         }
-        if (modelType && !isAzureCoreModel(modelType)) {
-            type = getType(context, modelType);
-        } else if (modelType && ["CustomPage", "Page"].includes(modelType.name)) {
-            // hacky sorry. we want a dummy type here so we get the accept parameter
-            // we don't want to generate the paged models
+        if (modelType && modelType.decorators.find((d) => d.decorator.name === "$pagedResult")) {
             type = getType(context, Array.from(modelType.properties.values())[0].type);
-        } else if (!modelType) {
+        }else if (modelType && !isAzureCoreModel(modelType)) {
+            type = getType(context, modelType);
+        }  else if (!modelType) {
             type = getType(context, innerResponse.body.type);
         }
     }
@@ -600,6 +598,7 @@ function addPagingInformation(context: SdkContext, operation: Operation, emitted
     if (pagedResult === undefined) {
         throw Error("Trying to add paging information, but not paging metadata for this operation");
     }
+    getType(context, pagedResult.modelType)["pageResultModel"] = true;
     emittedOperation["itemName"] = pagedResult.itemsPath;
     emittedOperation["itemType"] = getType(context, pagedResult.itemsProperty!.type);
     emittedOperation["continuationTokenName"] = pagedResult.nextLinkPath;
