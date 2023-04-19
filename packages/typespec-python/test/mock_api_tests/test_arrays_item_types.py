@@ -33,7 +33,7 @@ def client():
                 models.InnerModel(property="world"),
             ],
         ),
-        # ("nullable_float_value", [1.2, None, 3.0]),
+        ("nullable_float_value", [1.2, None, 3.0]),
     ],
 )
 def test_array(client: ItemTypesClient, og_name: str, val: dict):

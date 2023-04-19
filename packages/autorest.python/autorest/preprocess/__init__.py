@@ -220,7 +220,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             if type.get("name"):
                 type["name"] = self.pad_reserved_words(type["name"], PadType.MODEL)
                 type["description"] = update_description(
-                    type["description"], type["name"]
+                    type.get("description", ""), type["name"]
                 )
                 type["snakeCaseName"] = to_snake_case(type["name"])
             if type.get("values") and not self.version_tolerant:
