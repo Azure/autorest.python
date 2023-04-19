@@ -1,5 +1,11 @@
 # Release
 
+## 2023-04-xx - 0.8.3
+
+**Bug Fixes**
+
+- Do not generate page result model for DPG #1825
+
 ## 2023-04-10 - 0.8.2
 
 **Other Changes**
