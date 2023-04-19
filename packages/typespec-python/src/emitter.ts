@@ -552,9 +552,9 @@ function emitResponse(
         }
         if (modelType && modelType.decorators.find((d) => d.decorator.name === "$pagedResult")) {
             type = getType(context, Array.from(modelType.properties.values())[0].type);
-        }else if (modelType && !isAzureCoreModel(modelType)) {
+        } else if (modelType && !isAzureCoreModel(modelType)) {
             type = getType(context, modelType);
-        }  else if (!modelType) {
+        } else if (!modelType) {
             type = getType(context, innerResponse.body.type);
         }
     }
