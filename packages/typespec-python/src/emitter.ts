@@ -539,6 +539,10 @@ function isAzureCoreModel(t: Type): boolean {
     );
 }
 
+function hasDefaultStatusCode(response: HttpOperationResponse): boolean {
+    return (response.statusCode === "*");
+}
+
 function emitResponse(
     context: SdkContext,
     response: HttpOperationResponse,
@@ -551,8 +555,8 @@ function emitResponse(
         let modelType = undefined;
         if (innerResponse.body.type.kind === "Model") {
             const lroMeta = getLroMetadata(context.program, operation);
-            if (lroMeta) {
-                modelType = getType(context, lroMeta.logicalResult);
+            if (!hasDefaultStatusCode(response) && lroMeta) {
+                modelType = lroMeta.logicalResult;
                 if (lroMeta.finalStep?.target.kind === "ModelProperty") {
                     resultProperty = lroMeta.finalStep.target.name;
                 }
@@ -571,7 +575,7 @@ function emitResponse(
         }
     }
     const statusCodes = [];
-    if (response.statusCode === "*") {
+    if (hasDefaultStatusCode(response)) {
         statusCodes.push("default");
     } else {
         statusCodes.push(parseInt(response.statusCode));
