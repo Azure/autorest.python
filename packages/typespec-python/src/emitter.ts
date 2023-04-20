@@ -65,6 +65,10 @@ import {
     isInternal,
     getSdkSimpleType,
     getSdkListOrDict,
+    getSdkUnion,
+    SdkSimpleType,
+    SdkEnumValueType,
+    getSdkEnum,
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
@@ -839,29 +843,23 @@ function enumName(name: string): string {
     return camelToSnakeCase(name).toUpperCase();
 }
 
-function emitEnum(context: SdkContext, type: Enum): Record<string, any> {
-    const enumValues = [];
-    for (const m of type.members.values()) {
-        enumValues.push({
-            name: enumName(m.name),
-            value: m.value ?? m.name,
-            description: getDocStr(context, m),
-        });
-    }
-
+function emitEnumMember(type: SdkEnumValueType): Record<string, any> {
     return {
-        type: "enum",
-        name: type.name,
-        description: getDocStr(context, type),
-        valueType: { type: enumMemberType(type.members.values().next().value) },
-        values: enumValues,
+        name: enumName(type.name),
+        value: type.value,
+        description: type.doc,
     };
-    function enumMemberType(member: EnumMember) {
-        if (typeof member.value === "number") {
-            return intOrFloat(member.value);
-        }
-        return "string";
-    }
+}
+
+function emitEnum(context: SdkContext, type: Enum): Record<string, any> {
+    const sdkType = getSdkEnum(context, type);
+    return {
+        type: sdkType.kind,
+        name: sdkType.name,
+        description: sdkType.doc,
+        valueType: emitSimpleType(context, sdkType.valueType as SdkSimpleType),
+        values: sdkType.values.map((x) => emitEnumMember(x)),
+    };
 }
 
 function constantType(value: any, valueType: string): Record<string, any> {
@@ -908,8 +906,13 @@ function emitCredentialUnion(cred_types: CredentialTypeUnion): Record<string, an
     return result;
 }
 
-function emitSimpleType(context: SdkContext, type: Scalar | IntrinsicType): Record<string, any> {
-    const sdkType = getSdkSimpleType(context, type);
+function emitSimpleType(context: SdkContext, type: Scalar | IntrinsicType | SdkSimpleType): Record<string, any> {
+    let sdkType: SdkSimpleType;
+    if (type.kind === "Scalar" || type.kind === "Intrinsic") {
+        sdkType = getSdkSimpleType(context, type);
+    } else {
+        sdkType = type;
+    }
     const extraInformation: Record<string, any> = {};
     if (sdkType.kind === "string") {
         extraInformation["pattern"] = sdkType.pattern;
@@ -963,15 +966,11 @@ function capitalize(name: string): string {
 }
 
 function emitUnion(context: SdkContext, type: Union): Record<string, any> {
-    const nonNullOptions = [...type.variants.values()].map((x) => x.type).filter((t) => !isNullType(t));
-
-    const notLiteral = (t: Type): boolean => ["Boolean", "Number", "String"].indexOf(t.kind) < 0;
-    if (nonNullOptions.every(notLiteral)) {
-        if (nonNullOptions.length === 1) {
-            // Generate as internal type if there is only one internal type in this Union.
-            return emitType(context, nonNullOptions[0]);
-        }
-        // Generate as CombinedType if non of the options is Literal.
+    const sdkType = getSdkUnion(context, type);
+    if (sdkType === undefined) {
+        throw Error("Should not have an empty union");
+    }
+    if (sdkType.kind === "union") {
         const unionName = type.name;
         return {
             name: unionName,
@@ -979,49 +978,23 @@ function emitUnion(context: SdkContext, type: Union): Record<string, any> {
             description: `Type of ${unionName}`,
             internal: true,
             type: "combined",
-            types: nonNullOptions.map((x) => getType(context, x)),
+            types: sdkType.values.map((x) => getType(context, x.__raw)),
             xmlMetadata: {},
         };
-    } else if (nonNullOptions.some(notLiteral)) {
-        // Can't generate if this union is a mixed up of literals and sub-types
-        throw Error(`Can't do union for ${JSON.stringify(nonNullOptions)}`);
+    } else if (sdkType.kind === "enum") {
+        return {
+            name: sdkType.name,
+            snakeCaseName: camelToSnakeCase(sdkType.name),
+            description: sdkType.doc || `Type of ${sdkType.name}`,
+            internal: true,
+            type: sdkType.kind,
+            valueType: emitSimpleType(context, sdkType.valueType as SdkSimpleType),
+            values: sdkType.values.map((x) => emitEnumMember(x)),
+            xmlMetadata: {},
+        };
+    } else {
+        return emitType(context, sdkType.__raw);
     }
-
-    // Geneate Union of Literals as Python Enum
-    const values: Record<string, any>[] = [];
-    for (const option of nonNullOptions) {
-        const value = emitType(context, option)["value"];
-        values.push({
-            description: "",
-            name: camelToSnakeCase(value).toUpperCase(),
-            value: value,
-        });
-    }
-    let enumName = "MyEnum";
-    if (
-        type.node &&
-        type.node.parent &&
-        [SyntaxKind.ModelStatement, SyntaxKind.ModelProperty].includes(type.node.parent.kind)
-    ) {
-        if (type.node.parent.kind === SyntaxKind.ModelStatement) {
-            enumName = capitalize(type.node.parent.id.sv);
-        } else if (type.node.parent.kind === SyntaxKind.ModelProperty) {
-            const parent = type.node.parent as any;
-            if (parent.id.sv) {
-                enumName = capitalize(parent.id.sv) + "Type";
-            }
-        }
-    }
-    return {
-        name: enumName,
-        snakeCaseName: camelToSnakeCase(enumName),
-        description: `Type of ${enumName}`,
-        internal: true,
-        type: "enum",
-        valueType: emitType(context, nonNullOptions[0])["valueType"],
-        values: values,
-        xmlMetadata: {},
-    };
 }
 
 function emitType(context: SdkContext, type: EmitterType): Record<string, any> {

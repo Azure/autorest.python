@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/typespec-python",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "author": "Microsoft Corporation",
   "description": "Cadl emitter for Python SDKs",
   "homepage": "https://github.com/Azure/autorest.python",
@@ -45,21 +45,21 @@
   "peerDependencies": {
     "@typespec/versioning": "~0.43.0",
     "@typespec/rest": "~0.43.0",
-    "@typespec/http": "~0.43.0",
+    "@typespec/http": "~0.43.1",
     "@azure-tools/typespec-azure-core": "~0.29.0"
   },
   "dependencies": {
     "js-yaml": "~4.1.0",
     "@autorest/python": "workspace:^",
     "@typespec/compiler": "~0.43.0",
-    "@azure-tools/typespec-client-generator-core": "~0.30.0-dev.3"
+    "@azure-tools/typespec-client-generator-core": "~0.30.0-dev.4"
   },
   "devDependencies": {
     "@types/mocha": "~9.1.0",
     "@types/node": "^18.7.16",
     "@types/js-yaml": "~4.0.1",
     "@typespec/rest": "~0.43.0",
-    "@typespec/http": "~0.43.0",
+    "@typespec/http": "~0.43.1",
     "@typespec/versioning": "~0.43.0",
     "@typespec/eslint-config-typespec": "~0.6.0",
     "eslint": "^8.23.1",
