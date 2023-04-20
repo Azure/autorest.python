@@ -14,10 +14,8 @@ def client():
 
 
 def test_no_operation_params(client: MultipleClient):
-    # client.no_operation_params()
-    pass
+    client.no_operation_params()
 
 
 def test_with_operation_path_param(client: MultipleClient):
-    # client.with_operation_path_param(keyword="test")
-    pass
+    client.with_operation_path_param(keyword="test")
