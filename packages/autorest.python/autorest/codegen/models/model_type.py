@@ -74,6 +74,7 @@ class ModelType(  # pylint: disable=abstract-method
         self._got_polymorphic_subtypes = False
         self.internal: bool = self.yaml_data.get("internal", False)
         self.snake_case_name: str = self.yaml_data["snakeCaseName"]
+        self.page_result_model: bool = self.yaml_data.get("pageResultModel", False)
 
     @property
     def is_xml(self) -> bool:
