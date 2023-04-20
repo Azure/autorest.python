@@ -1,6 +1,6 @@
 # Release
 
-### 2023-04-xx - 6.4.10
+### 2023-04-19 - 6.4.10
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -14,7 +14,7 @@
 
 **Bug Fixes**
 
-- Do not generate page result model for DPG #1825
+- Correctly handle `azure.core.serialization.NULL` #1857
 
 ### 2023-04-11 - 6.4.9
 
