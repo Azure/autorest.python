@@ -24,7 +24,6 @@ init()
 PLUGIN_DIR = Path(os.path.dirname(__file__))
 PLUGIN = (PLUGIN_DIR / "dist/src/index.js").as_posix()
 CADL_RANCH_DIR = PLUGIN_DIR / Path("node_modules/@azure-tools/cadl-ranch-specs/http")
-PYTHON_TPYESPEC_DIR = PLUGIN_DIR / Path("test/python_typespec")
 EMITTER_OPTIONS = {
     "hello": {
         "package-name": "azure-hello",
@@ -48,7 +47,8 @@ def _add_options(spec, debug=False):
 @task
 def regenerate(c, name=None, debug=False):
     specs = [
-        s for dir in (CADL_RANCH_DIR, PYTHON_TPYESPEC_DIR) for s in dir.glob("**/*")
+        s
+        for s in CADL_RANCH_DIR.glob("**/*")
         if s.is_dir() and any(f for f in s.iterdir() if f.name == "main.tsp")
     ]
     if name:
@@ -66,7 +66,7 @@ def regenerate(c, name=None, debug=False):
 
 
 def _get_package_name(spec: Path):
-    prefix_path = str(spec.parent).replace(str(CADL_RANCH_DIR), "").replace(str(PYTHON_TPYESPEC_DIR), "")
+    prefix_path = str(spec.parent).replace(str(CADL_RANCH_DIR), "")
     if prefix_path:
         return (
             "-".join(prefix_path.split(os.sep)[1:])
