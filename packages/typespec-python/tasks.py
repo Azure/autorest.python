@@ -84,15 +84,7 @@ def regenerate(c, name=None, debug=False):
 def _get_package_name(spec: Path):
     if _get_emitter_option(spec).get("package-name"):
         return _get_emitter_option(spec)["package-name"]
-    prefix_path = str(spec.parent.relative_to(CADL_RANCH_DIR))
-    if prefix_path:
-        return (
-            "-".join(prefix_path.split(os.sep)[1:])
-            + "-"
-            + spec.name
-        )
-    else:
-        return spec.name
+    return str(spec.relative_to(CADL_RANCH_DIR)).replace("/main.tsp", "").replace("/", "-")
 
 
 def _run_cadl(cmds):

@@ -12,7 +12,7 @@ azure-core==1.24.0
 -e ./generated/dictionary
 -e ./generated/enums-extensible
 -e ./generated/enums-fixed
--e ./generated/hello
+-e ./generated/azure-hello
 -e ./generated/internal
 -e ./generated/lro-lro-basic
 -e ./generated/models-inheritance
