@@ -24,7 +24,7 @@ from azure.core.utils import case_insensitive_dict
 
 from .._serialization import Serializer
 from .._validation import api_version_validation
-from .._vendor import ResiliencyServiceDrivenClientMixinABC, raise_if_not_implemented
+from .._vendor import ResiliencyServiceDrivenClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -91,14 +91,6 @@ def build_resiliency_service_driven_from_one_optional_request(  # pylint: disabl
 
 
 class ResiliencyServiceDrivenClientOperationsMixin(ResiliencyServiceDrivenClientMixinABC):
-    def __init__(self):
-        raise_if_not_implemented(
-            self.__class__,
-            [
-                "add_content_type",
-            ],
-        )
-
     @distributed_trace
     @api_version_validation(
         method_added_on="v2",

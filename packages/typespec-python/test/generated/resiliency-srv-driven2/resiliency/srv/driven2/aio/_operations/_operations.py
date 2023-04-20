@@ -28,21 +28,13 @@ from ..._operations._operations import (
     build_resiliency_service_driven_from_one_required_request,
 )
 from ..._validation import api_version_validation
-from .._vendor import ResiliencyServiceDrivenClientMixinABC, raise_if_not_implemented
+from .._vendor import ResiliencyServiceDrivenClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
 class ResiliencyServiceDrivenClientOperationsMixin(ResiliencyServiceDrivenClientMixinABC):
-    def __init__(self) -> None:
-        raise_if_not_implemented(
-            self.__class__,
-            [
-                "add_content_type",
-            ],
-        )
-
     @distributed_trace_async
     @api_version_validation(
         method_added_on="v2",
