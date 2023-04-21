@@ -23,9 +23,8 @@ azure-core==1.24.0
 -e ./generated/models-visibility
 -e ./generated/parameters-collection-format
 -e ./generated/projection
--e ./generated/resiliency-dev-driven
--e ./generated/resiliency-srv-driven-1
--e ./generated/resiliency-srv-driven-2
+-e ./generated/resiliency-srv-driven1
+-e ./generated/resiliency-srv-driven2
 -e ./generated/server-path-multiple
 -e ./generated/server-path-single
 -e ./generated/special-words
