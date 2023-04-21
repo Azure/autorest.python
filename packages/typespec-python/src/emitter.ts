@@ -540,7 +540,7 @@ function isAzureCoreModel(t: Type): boolean {
 }
 
 function hasDefaultStatusCode(response: HttpOperationResponse): boolean {
-    return (response.statusCode === "*");
+    return response.statusCode === "*";
 }
 
 function emitResponse(
@@ -554,8 +554,10 @@ function emitResponse(
     if (innerResponse.body?.type) {
         let modelType = undefined;
         if (innerResponse.body.type.kind === "Model") {
+            modelType = getEffectiveSchemaType(context, innerResponse.body.type);
             const lroMeta = getLroMetadata(context.program, operation);
-            if (!hasDefaultStatusCode(response) && lroMeta) {
+            // only when getLroMetadata can provide effective model with valid name
+            if (!hasDefaultStatusCode(response) && lroMeta && lroMeta.logicalResult.name) {
                 modelType = lroMeta.logicalResult;
                 if (lroMeta.finalStep?.target.kind === "ModelProperty") {
                     resultProperty = lroMeta.finalStep.target.name;
