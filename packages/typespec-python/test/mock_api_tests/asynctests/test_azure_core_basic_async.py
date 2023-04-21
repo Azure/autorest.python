@@ -4,38 +4,39 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from _specs_.azure.core.aio import CoreClient
+from typing import AsyncIterable
+from _specs_.azure.core.basic import models, aio
 
 
 @pytest.fixture
 async def client():
-    async with CoreClient() as client:
+    async with aio.BasicClient() as client:
         yield client
 
 
 @pytest.mark.asyncio
-async def test_create_or_update(client):
+async def test_create_or_update(client: aio.BasicClient):
     result = await client.create_or_update(id=1, resource={"name": "Madge"})
     assert result.id == 1
     assert result.name == "Madge"
 
 
 @pytest.mark.asyncio
-async def test_create_or_replace(client):
+async def test_create_or_replace(client: aio.BasicClient):
     result = await client.create_or_replace(id=1, resource={"name": "Madge"})
     assert result.id == 1
     assert result.name == "Madge"
 
 
 @pytest.mark.asyncio
-async def test_get(client):
+async def test_get(client: aio.BasicClient):
     result = await client.get(id=1)
     assert result.id == 1
     assert result.name == "Madge"
 
 
 @pytest.mark.asyncio
-async def test_list(client):
+async def test_list(client: aio.BasicClient):
     result = client.list(
         top=5,
         skip=10,
@@ -49,35 +50,44 @@ async def test_list(client):
     assert result[0].id == 1
     assert result[0].name == "Madge"
     assert result[0].etag == "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-    assert result[0].orders[0].id == 1
-    assert result[0].orders[0].user_id == 1
-    assert result[0].orders[0].detail == "a recorder"
+    assert result[0].orders
+    first_order = result[0].orders[0]
+    assert first_order.id == 1
+    assert first_order.user_id == 1
+    assert first_order.detail == "a recorder"
     assert result[1].id == 2
     assert result[1].name == "John"
     assert result[1].etag == "11bdc430-65e8-45ad-81d9-8ffa60d55b5a"
-    assert result[1].orders[0].id == 2
-    assert result[1].orders[0].user_id == 2
-    assert result[1].orders[0].detail == "a TV"
+    assert first_order.id == 2
+    assert first_order.user_id == 2
+    assert first_order.detail == "a TV"
 
-
-@pytest.mark.asyncio
-async def test_list_with_page(client):
-    result = client.list_with_page()
-    result = [item async for item in result]
+async def _list_with_page_tests(pager: AsyncIterable[models.User]):
+    result = [p async for p in pager]
     assert len(result) == 1
     assert result[0].id == 1
     assert result[0].name == "Madge"
     assert result[0].etag == "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
     assert result[0].orders is None
 
+@pytest.mark.asyncio
+async def test_list_with_page(client: aio.BasicClient):
+    await _list_with_page_tests(client.list_with_page())
 
 @pytest.mark.asyncio
-async def test_delete(client):
+async def test_list_with_custom_page_model(client: aio.BasicClient):
+    await _list_with_page_tests(client.list_with_custom_page_model())
+    with pytest.raises(AttributeError):
+        models.CustomPageModel
+
+
+@pytest.mark.asyncio
+async def test_delete(client: aio.BasicClient):
     await client.delete(id=1)
 
 
 @pytest.mark.asyncio
-async def test_export(client):
+async def test_export(client: aio.BasicClient):
     result = await client.export(id=1, format="json")
     assert result.id == 1
     assert result.name == "Madge"

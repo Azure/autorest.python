@@ -47,8 +47,8 @@ def test_list(client: BasicClient):
     assert result[0].orders
     first_order = result[0].orders[0]
     assert first_order.id == 1
-    assert result[0].orders[0].user_id == 1
-    assert result[0].orders[0].detail == "a recorder"
+    assert first_order.user_id == 1
+    assert first_order.detail == "a recorder"
     assert result[1].id == 2
     assert result[1].name == "John"
     assert result[1].etag == "11bdc430-65e8-45ad-81d9-8ffa60d55b5a"
