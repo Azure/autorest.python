@@ -6,7 +6,7 @@
 from datetime import datetime
 
 import pytest
-from _specs_.azure.traits import TraitsClient
+from _specs_.azure.core.traits import TraitsClient
 
 
 @pytest.fixture

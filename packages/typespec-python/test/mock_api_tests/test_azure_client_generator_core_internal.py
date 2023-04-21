@@ -4,8 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from internal import models
-from internal import InternalClient
+from _specs_.azure.clientgenerator.core.internal import models, InternalClient
 
 
 @pytest.fixture
@@ -28,7 +27,7 @@ def test_post_internal(client: InternalClient):
 
 def test_visibility(client: InternalClient):
     with pytest.raises(ImportError):
-        from internal.models import InternalModel
+        from models import InternalModel
 
     with pytest.raises(AttributeError):
         client.get_internal(name="test")

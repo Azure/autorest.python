@@ -6,39 +6,66 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 # coding: utf-8
+
+import os
+import re
 from setuptools import setup, find_packages
 
 
 PACKAGE_NAME = "resiliency-srv-driven2"
-version = "1.0.0b1"
+PACKAGE_PPRINT_NAME = "ResiliencySrvDriven2"
+
+# a-b-c => a/b/c
+package_folder_path = PACKAGE_NAME.replace("-", "/")
+
+# Version extraction inspired from 'requests'
+with open(os.path.join(package_folder_path, "_version.py"), "r") as fd:
+    version = re.search(r'^VERSION\s*=\s*[\'"]([^\'"]*)[\'"]', fd.read(), re.MULTILINE).group(1)
+
+if not version:
+    raise RuntimeError("Cannot find version information")
+
+
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="resiliency-srv-driven2",
-    author_email="",
-    url="",
+    description="Microsoft {} Client Library for Python".format(PACKAGE_PPRINT_NAME),
+    long_description=open("README.md", "r").read(),
+    long_description_content_type="text/markdown",
+    license="MIT License",
+    author="Microsoft Corporation",
+    author_email="azpysdkhelp@microsoft.com",
+    url="https://github.com/Azure/azure-sdk-for-python/tree/main/sdk",
     keywords="azure, azure sdk",
-    packages=find_packages(),
+    classifiers=[
+        "Development Status :: 4 - Beta",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3 :: Only",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "License :: OSI Approved :: MIT License",
+    ],
+    zip_safe=False,
+    packages=find_packages(
+        exclude=[
+            "tests",
+            # Exclude packages that will be covered by PEP420 or nspkg
+            "resiliency",
+            "resiliency.srv",
+        ]
+    ),
     include_package_data=True,
+    package_data={
+        "pytyped": ["py.typed"],
+    },
     install_requires=[
         "isodate<1.0.0,>=0.6.1",
         "azure-core<2.0.0,>=1.24.0",
         "typing-extensions>=4.3.0; python_version<'3.8.0'",
     ],
-    long_description="""\
-    Test that we can grow up a service spec and service deployment into a multi-versioned service with full client support.
-
-There are three concepts that should be clarified:
-
-
-#. Client spec version: refers to the spec that the client is generated from. 'v1' is a client generated from old.tsp and 'v2' is a client generated from main.tsp.
-#. Service deployment version: refers to a deployment version of the service. 'v1' represents the initial deployment of the service with a single api version. 'v2' represents the new deployment of a service with multiple api versions
-#. Api version: The initial deployment of the service only supports api version 'v1'. The new deployment of the service supports api versions 'v1' and 'v2'.
-
-We test the following configurations from this service spec:
-
-
-* A client generated from the second service spec can call the second deployment of a service with api version v1
-* A client generated from the second service spec can call the second deployment of a service with api version v2.
-    """,
+    python_requires=">=3.7",
 )

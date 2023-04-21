@@ -26,16 +26,15 @@ PLUGIN_DIR = Path(os.path.dirname(__file__))
 PLUGIN = (PLUGIN_DIR / "dist/src/index.js").as_posix()
 CADL_RANCH_DIR = PLUGIN_DIR / Path("node_modules/@azure-tools/cadl-ranch-specs/http")
 EMITTER_OPTIONS = {
-    "hello/main.tsp": {
-        "package-name": "azure-hello",
-        "package-mode": "dataplane",
-        "package-pprint-name": "Hello",
-    },
     "resiliency/srv-driven/old.tsp": {
         "package-name": "resiliency-srv-driven1",
+        "package-mode": "dataplane",
+        "package-pprint-name": "ResiliencySrvDriven1",
     },
     "resiliency/srv-driven/main.tsp": {
         "package-name": "resiliency-srv-driven2",
+        "package-mode": "dataplane",
+        "package-pprint-name": "ResiliencySrvDriven2",
     },
 }
 
