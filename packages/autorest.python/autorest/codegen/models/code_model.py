@@ -184,7 +184,10 @@ class CodeModel:  # pylint: disable=too-many-public-methods
         """All of the model types in this class"""
         if not self._model_types:
             self._model_types = [
-                t for t in self.types_map.values() if isinstance(t, ModelType)
+                t
+                for t in self.types_map.values()
+                if isinstance(t, ModelType)
+                and not (self.options["models_mode"] == "dpg" and t.page_result_model)
             ]
         return self._model_types
 
