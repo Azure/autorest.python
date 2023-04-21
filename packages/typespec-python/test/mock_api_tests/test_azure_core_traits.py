@@ -16,7 +16,7 @@ def client():
 
 
 def test_get(client: TraitsClient):
-    result, header = client.get(
+    result, header = client.smoke_test(
         id=1,
         foo="123",
         if_match="valid",
@@ -35,9 +35,3 @@ def test_get(client: TraitsClient):
     assert header["ETag"] == "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
     assert header["bar"] == "456"
     assert header["x-ms-client-request-id"] == "test-id"
-
-
-def test_delete(client: TraitsClient):
-    header = client.delete(id=1, client_request_id="test-id", cls=lambda x, y, z: z)
-    assert header["x-ms-client-request-id"] == "test-id"
-    assert header["Repeatability-Result"] == "Accepted"

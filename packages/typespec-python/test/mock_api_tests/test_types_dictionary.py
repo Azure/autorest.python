@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from dictionary import DictionaryClient, models
+from types.dictionary import DictionaryClient, models
 import isodate
 @pytest.fixture
 def client():

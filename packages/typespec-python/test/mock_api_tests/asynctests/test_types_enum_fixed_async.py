@@ -5,19 +5,21 @@
 # --------------------------------------------------------------------------
 import pytest
 from azure.core.exceptions import HttpResponseError
-from enums.fixed import FixedClient, models
+from types.enum.fixed import aio, models
 
 @pytest.fixture
-def client():
-    with FixedClient() as client:
+async def client():
+    async with aio.FixedClient() as client:
         yield client
 
-def test_known_value(client):
-    assert client.get_known_value() == models.DaysOfWeekEnum.MONDAY
-    client.put_known_value(models.DaysOfWeekEnum.MONDAY)
+@pytest.mark.asyncio
+async def test_known_value(client):
+    assert await client.get_known_value() == models.DaysOfWeekEnum.MONDAY
+    await client.put_known_value(models.DaysOfWeekEnum.MONDAY)
 
-def test_unknown_value(client):
+@pytest.mark.asyncio
+async def test_unknown_value(client):
     try:
-        client.put_unknown_value("Weekend")
+        await client.put_unknown_value("Weekend")
     except HttpResponseError as err:
         assert err.status_code == 500

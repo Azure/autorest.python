@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from models.inheritance import InheritanceClient, models
+from types.model.inheritance import InheritanceClient, models
 
 @pytest.fixture
 def client():

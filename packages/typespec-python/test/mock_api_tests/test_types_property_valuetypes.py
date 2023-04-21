@@ -5,12 +5,12 @@
 # --------------------------------------------------------------------------
 import pytest
 import datetime
-from models.property.types import TypesClient, models
+from types.property.valuetypes import ValueTypesClient, models
 
 
 @pytest.fixture
 def client():
-    with TypesClient() as client:
+    with ValueTypesClient() as client:
         yield client
 
 
@@ -93,4 +93,3 @@ def test_model_deserialization(client: TypesClient):
     assert body.property[0].property == body["property"][0]["property"]
     resp = client.collections_model.get()
     assert resp.property[1].property == resp["property"][1]["property"]
-    

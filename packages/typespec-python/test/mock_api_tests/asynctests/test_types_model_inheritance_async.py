@@ -4,8 +4,8 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from models.inheritance.aio import InheritanceClient
-from models.inheritance import models
+from types.model.inheritance.aio import InheritanceClient
+from types.model.inheritance import models
 
 @pytest.fixture
 async def client():

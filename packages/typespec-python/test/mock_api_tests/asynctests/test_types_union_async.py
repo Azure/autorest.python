@@ -4,12 +4,12 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from unions.aio import UnionsClient
-from unions.models import ModelWithNamedUnionProperty, ModelWithSimpleUnionProperty, Model1, Model2
+from types.union.aio import UnionClient
+from types.union.models import ModelWithNamedUnionProperty, ModelWithSimpleUnionProperty, Model1, Model2
 
 @pytest.fixture
 async def client():
-    async with UnionsClient() as client:
+    async with UnionClient() as client:
         yield client
 
 @pytest.mark.asyncio

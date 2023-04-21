@@ -6,12 +6,12 @@
 
 import pytest
 import isodate
-from arrays.itemtypes import ItemTypesClient, models
+from types.array import ArrayClient, models
 
 
 @pytest.fixture
 def client():
-    with ItemTypesClient() as client:
+    with ArrayClient() as client:
         yield client
 
 
@@ -36,7 +36,7 @@ def client():
         ("nullable_float_value", [1.2, None, 3.0]),
     ],
 )
-def test_array(client: ItemTypesClient, og_name: str, val: dict):
+def test_array(client: ArrayClient, og_name: str, val: dict):
     og_group = getattr(client, og_name)
     assert og_group.get() == val
     og_group.put(val)

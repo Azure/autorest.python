@@ -3,13 +3,13 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from typing import Any
 import pytest
-from models.property.optional import models
-from models.property.optional.aio import OptionalClient
+from types.property.optional import OptionalClient, models
 
 @pytest.fixture
-async def client():
-    async with OptionalClient() as client:
+def client():
+    with OptionalClient() as client:
         yield client
 
 @pytest.mark.parametrize(
@@ -22,14 +22,13 @@ async def client():
     ("collections_model", [{'property': 'hello'}, {'property': 'world'}]),
 ]
 )
-@pytest.mark.asyncio
-async def test_json(client, og_name, val):
+def test_json(client, og_name, val):
     body = {"property": val}
     og_group = getattr(client, og_name)
-    assert await og_group.get_all() == body
-    assert await og_group.get_default() == {}
-    await og_group.put_all(body)
-    await og_group.put_default({})
+    assert og_group.get_all() == body
+    assert og_group.get_default() == {}
+    og_group.put_all(body)
+    og_group.put_default({})
 
 @pytest.mark.parametrize(
 "og_name,model,val", [
@@ -41,17 +40,15 @@ async def test_json(client, og_name, val):
     ("collections_model", models.CollectionsModelProperty, [models.StringProperty(property="hello"), models.StringProperty(property="world")]),
 ]
 )
-@pytest.mark.asyncio
-async def test_model(client, og_name, model, val):
+def test_model(client, og_name, model, val):
     body = model(property=val)
     og_group = getattr(client, og_name)
-    assert await og_group.get_all() == body
-    assert await og_group.get_default() == {} == model()
-    await og_group.put_all(body)
-    await og_group.put_default(model())
+    assert og_group.get_all() == body
+    assert og_group.get_default() == {} == model()
+    og_group.put_all(body)
+    og_group.put_default(model())
 
-@pytest.mark.asyncio
-async def test_required_and_optional(client):
+def test_required_and_optional(client):
     all_body = {
         "optionalProperty": "hello",
         "requiredProperty": 42,
@@ -59,7 +56,7 @@ async def test_required_and_optional(client):
     required_only_body = {
         "requiredProperty": 42,
     }
-    assert await client.required_and_optional.get_all() == all_body
-    assert await client.required_and_optional.get_required_only() == required_only_body
-    await client.required_and_optional.put_all(all_body)
-    await client.required_and_optional.put_required_only(required_only_body)
+    assert client.required_and_optional.get_all() == all_body
+    assert client.required_and_optional.get_required_only() == required_only_body
+    client.required_and_optional.put_all(all_body)
+    client.required_and_optional.put_required_only(required_only_body)

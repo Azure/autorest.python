@@ -4,11 +4,11 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from models.visibility.automatic import AutomaticClient, models
+from types.model.visibility import VisibilityClient, models
 
 @pytest.fixture
 def client():
-    with AutomaticClient() as client:
+    with VisibilityClient() as client:
         yield client
 
 def test_read(client):

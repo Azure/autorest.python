@@ -5,8 +5,8 @@
 # --------------------------------------------------------------------------
 import datetime
 import pytest
-from models.property.types import models
-from models.property.types.aio import TypesClient
+from types.property.valuetypes import models
+from types.property.valuetypes.aio import ValueTypesClient
 
 
 @pytest.fixture

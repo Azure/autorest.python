@@ -4,7 +4,9 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from _specs_.azure.clientgenerator.core.internal import models, InternalClient
+from _specs_.azure.clientgenerator.core.internal import InternalClient
+from _specs_.azure.clientgenerator.core.internal import models
+from _specs_.azure.clientgenerator.core.internal.models import _models
 
 
 @pytest.fixture
@@ -20,7 +22,7 @@ def test_get_internal(client: InternalClient):
 
 def test_post_internal(client: InternalClient):
     result = client._post_internal(
-        models._models.ModelOnlyUsedByInternalOperation(id=1, name="test")
+        _models.ModelOnlyUsedByInternalOperation(id=1, name="test")
     )
     assert result.name == "test"
 
@@ -34,5 +36,5 @@ def test_visibility(client: InternalClient):
 
     with pytest.raises(AttributeError):
         client.post_internal(
-            models._models.ModelOnlyUsedByInternalOperation(id=1, name="test")
+            _models.ModelOnlyUsedByInternalOperation(id=1, name="test")
         )

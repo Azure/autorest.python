@@ -4,11 +4,11 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from models.visibility.automatic import aio, models
+from types.model.visibility import aio, models
 
 @pytest.fixture
 async def client():
-    async with aio.AutomaticClient() as client:
+    async with aio.VisibilityClient() as client:
         yield client
 
 @pytest.mark.asyncio

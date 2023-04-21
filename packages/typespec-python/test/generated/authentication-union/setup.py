@@ -9,12 +9,12 @@
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "unionclient"
+PACKAGE_NAME = "authentication-union"
 version = "1.0.0b1"
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="UnionClient",
+    description="authentication-union",
     author_email="",
     url="",
     keywords="azure, azure sdk",

@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from enums.extensible import models, aio
+from types.enum.extensible import models, aio
 
 @pytest.fixture
 async def client():

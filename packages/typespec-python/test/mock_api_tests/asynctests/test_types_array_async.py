@@ -6,12 +6,11 @@
 
 import pytest
 import isodate
-from arrays.itemtypes import models
-from arrays.itemtypes.aio import ItemTypesClient
+from types.array import models, aio
 
 @pytest.fixture
 async def client():
-    async with ItemTypesClient() as client:
+    async with aio.ArrayClient() as client:
         yield client
 
 @pytest.mark.parametrize(
@@ -31,7 +30,7 @@ async def client():
     ]
 )
 @pytest.mark.asyncio
-async def test_array(client: ItemTypesClient, og_name: str, val: dict):
+async def test_array(client: aio.ArrayClient, og_name: str, val: dict):
     og_group = getattr(client, og_name)
     assert await og_group.get() == val
     await og_group.put(val)

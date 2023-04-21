@@ -4,12 +4,12 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from unions import UnionsClient
-from unions.models import ModelWithNamedUnionProperty, ModelWithSimpleUnionProperty, Model1, Model2
+from types.union import UnionClient
+from types.union.models import ModelWithNamedUnionProperty, ModelWithSimpleUnionProperty, Model1, Model2
 
 @pytest.fixture
 def client():
-    with UnionsClient() as client:
+    with UnionClient() as client:
         yield client
 
 def test_send_int(client):

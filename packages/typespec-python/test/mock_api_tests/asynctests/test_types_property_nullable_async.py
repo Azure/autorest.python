@@ -5,9 +5,8 @@
 # --------------------------------------------------------------------------
 from typing import Any
 import pytest
-from models.property.nullable.aio import NullableClient
-from models.property.nullable import models
-# from azure.core.serialization import NULL
+from types.property.nullable.aio import NullableClient
+from types.property.nullable import models\
 
 
 @pytest.fixture

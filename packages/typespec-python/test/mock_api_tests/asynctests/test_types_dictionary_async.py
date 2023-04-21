@@ -4,8 +4,8 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from dictionary import models
-from dictionary.aio import DictionaryClient
+from types.dictionary import models
+from types.dictionary.aio import DictionaryClient
 import isodate
 
 @pytest.fixture

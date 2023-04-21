@@ -4,15 +4,13 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from models.usage import models
-from models.usage.aio import UsageClient
+from types.model.usage import UsageClient, models
 
 @pytest.fixture
-async def client():
-    async with UsageClient() as client:
+def client():
+    with UsageClient() as client:
         yield client
 
-@pytest.mark.asyncio
 @pytest.mark.parametrize(
 "op_name, input,output", [
     ("input", models.InputRecord(required_prop="example-value"), None),
@@ -20,9 +18,9 @@ async def client():
     ("input_and_output", models.InputOutputRecord(required_prop="example-value"), models.InputOutputRecord(required_prop="example-value")),
 ]
 )
-async def test_input_output(client, op_name, input, output):
+def test_input_output(client, op_name, input, output):
     op = getattr(client, op_name)
     if input:
-        assert output == await op(input)
+        assert output == op(input)
     else:
-        assert output == await op()
+        assert output == op()
