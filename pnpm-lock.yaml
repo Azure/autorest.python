@@ -35,7 +35,7 @@ importers:
     specifiers:
       '@autorest/python': workspace:^
       '@azure-tools/cadl-ranch-expect': ~0.2.3
-      '@azure-tools/cadl-ranch-specs': ~0.12.0
+      '@azure-tools/cadl-ranch-specs': ~0.13.0
       '@azure-tools/typespec-azure-core': ~0.29.0
       '@azure-tools/typespec-client-generator-core': ~0.30.0-dev.4
       '@types/js-yaml': ~4.0.1
@@ -61,7 +61,7 @@ importers:
       js-yaml: 4.1.0
     devDependencies:
       '@azure-tools/cadl-ranch-expect': 0.2.3_iaqsnjlmblwjtzjnlq5lqg6yfu
-      '@azure-tools/cadl-ranch-specs': 0.12.0_xvq5y4wjj2afm7emwmuwvir4ui
+      '@azure-tools/cadl-ranch-specs': 0.13.0_xvq5y4wjj2afm7emwmuwvir4ui
       '@azure-tools/typespec-azure-core': 0.29.0_iaqsnjlmblwjtzjnlq5lqg6yfu
       '@types/js-yaml': 4.0.5
       '@types/mocha': 9.1.1
@@ -132,8 +132,8 @@ packages:
       '@typespec/rest': 0.43.0_@typespec+compiler@0.43.0
     dev: true
 
-  /@azure-tools/cadl-ranch-specs/0.12.0_xvq5y4wjj2afm7emwmuwvir4ui:
-    resolution: {integrity: sha512-K0PghOu4wO+xZCk+lru+Hke6yAynhXo1xG8d47LXzrHm2DYZujjoB02DuEyYwc1J8ZBZ5VraA1QFuo9PzYQfSg==}
+  /@azure-tools/cadl-ranch-specs/0.13.0_xvq5y4wjj2afm7emwmuwvir4ui:
+    resolution: {integrity: sha512-9rwJLzIDcdy4E5vuT07bRGlg/zFySzfBBvJHoMRKPQPpxygZZRls7MX7OCsn+A/ES8FEXW/in8YACdQ2AOveZw==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       '@azure-tools/cadl-ranch-expect': ~0.2.3
