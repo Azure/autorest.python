@@ -36,6 +36,9 @@ EMITTER_OPTIONS = {
         "package-mode": "dataplane",
         "package-pprint-name": "ResiliencySrvDriven2",
     },
+    "authentication/union/main.tsp": {
+        "package-name": "authentication-union",
+    }
 }
 
 def _get_emitter_option(spec: Path) -> Dict[str, str]:

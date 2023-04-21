@@ -135,26 +135,30 @@ class InternalClientOperationsMixin(InternalClientMixinABC):
 
     @overload
     def _post_internal(
-        self, body: _models.ModelOnlyUsedByInternalOperation, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.ModelOnlyUsedByInternalOperation:
+        self,
+        body: _models._models.ModelOnlyUsedByInternalOperation,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> _models._models.ModelOnlyUsedByInternalOperation:
         ...
 
     @overload
     def _post_internal(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.ModelOnlyUsedByInternalOperation:
+    ) -> _models._models.ModelOnlyUsedByInternalOperation:
         ...
 
     @overload
     def _post_internal(
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.ModelOnlyUsedByInternalOperation:
+    ) -> _models._models.ModelOnlyUsedByInternalOperation:
         ...
 
     @distributed_trace
     def _post_internal(
-        self, body: Union[_models.ModelOnlyUsedByInternalOperation, JSON, IO], **kwargs: Any
-    ) -> _models.ModelOnlyUsedByInternalOperation:
+        self, body: Union[_models._models.ModelOnlyUsedByInternalOperation, JSON, IO], **kwargs: Any
+    ) -> _models._models.ModelOnlyUsedByInternalOperation:
         """post_internal.
 
         :param body: Is one of the following types: ModelOnlyUsedByInternalOperation, JSON, IO
@@ -184,7 +188,9 @@ class InternalClientOperationsMixin(InternalClientMixinABC):
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.ModelOnlyUsedByInternalOperation] = kwargs.pop("cls", None)
+        cls: ClsType[_models._models.ModelOnlyUsedByInternalOperation] = kwargs.pop(  # pylint: disable=protected-access
+            "cls", None
+        )
 
         content_type = content_type or "application/json"
         _content = None
@@ -215,7 +221,9 @@ class InternalClientOperationsMixin(InternalClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ModelOnlyUsedByInternalOperation, response.json())
+            deserialized = _deserialize(
+                _models._models.ModelOnlyUsedByInternalOperation, response.json()  # pylint: disable=protected-access
+            )
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
