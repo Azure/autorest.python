@@ -36,7 +36,7 @@ class ResiliencyServiceDrivenClient(
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
         self, service_deployment_version: str, **kwargs: Any
     ) -> None:
-        _endpoint = "http://localhost:3000/resiliency/service-driven/client:v1/service:{serviceDeploymentVersion}/api-version:{apiVersion}"
+        _endpoint = "http://localhost:3000/resiliency/service-driven/client:v1/service:{serviceDeploymentVersion}/api-version:{apiVersion}"  # pylint: disable=line-too-long
         self._config = ResiliencyServiceDrivenClientConfiguration(
             service_deployment_version=service_deployment_version, **kwargs
         )
