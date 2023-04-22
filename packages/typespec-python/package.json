@@ -52,7 +52,7 @@
     "js-yaml": "~4.1.0",
     "@autorest/python": "workspace:^",
     "@typespec/compiler": "~0.43.0",
-    "@azure-tools/typespec-client-generator-core": "~0.30.0-dev.4"
+    "@azure-tools/typespec-client-generator-core": "~0.30.0-dev.9"
   },
   "devDependencies": {
     "@types/mocha": "~9.1.0",
@@ -68,8 +68,8 @@
     "rimraf": "~3.0.2",
     "typescript": "^4.8.3",
     "@azure-tools/typespec-azure-core": "~0.29.0",
-    "@azure-tools/cadl-ranch-specs": "~0.11.2",
-    "@azure-tools/cadl-ranch-expect": "~0.2.2",
+    "@azure-tools/cadl-ranch-specs": "~0.14.2",
+    "@azure-tools/cadl-ranch-expect": "~0.2.3",
     "@typespec/openapi": "~0.43.0",
     "prettier": "^2.7.1"
   }
