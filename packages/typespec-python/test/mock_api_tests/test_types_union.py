@@ -4,8 +4,8 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from types.union import UnionClient
-from types.union.models import ModelWithNamedUnionProperty, ModelWithSimpleUnionProperty, Model1, Model2
+from type.union import UnionClient
+from type.union.models import ModelWithNamedUnionProperty, ModelWithSimpleUnionProperty, Model1, Model2
 
 @pytest.fixture
 def client():
