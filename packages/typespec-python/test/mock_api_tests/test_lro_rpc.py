@@ -4,8 +4,8 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from azure.lro.rpc import RpcClient
-from azure.lro.rpc.models import JobResult, JobData, JobPollResult
+from _specs_.azure.core.lro.rpc import RpcClient
+from _specs_.azure.core.lro.rpc.models import JobResult, JobData, JobPollResult
 
 @pytest.fixture
 def client():

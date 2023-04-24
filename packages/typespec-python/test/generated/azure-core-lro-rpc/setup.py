@@ -9,12 +9,12 @@
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "azure-lro-rpc"
+PACKAGE_NAME = "rpcclient"
 version = "1.0.0b1"
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="azure-lro-rpc",
+    description="RpcClient",
     author_email="",
     url="",
     keywords="azure, azure sdk",

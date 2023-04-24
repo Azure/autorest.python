@@ -9,20 +9,12 @@
 from setuptools import setup, find_packages
 
 
-<<<<<<< HEAD:packages/typespec-python/test/generated/lro-lro-core/setup.py
-PACKAGE_NAME = "azure-lro-core"
-=======
 PACKAGE_NAME = "standardclient"
->>>>>>> 5b10cc9a4a3f670701209c990af76dec9d5100ec:packages/typespec-python/test/generated/azure-core-lro-standard/setup.py
 version = "1.0.0b1"
 setup(
     name=PACKAGE_NAME,
     version=version,
-<<<<<<< HEAD:packages/typespec-python/test/generated/lro-lro-core/setup.py
-    description="azure-lro-core",
-=======
     description="StandardClient",
->>>>>>> 5b10cc9a4a3f670701209c990af76dec9d5100ec:packages/typespec-python/test/generated/azure-core-lro-standard/setup.py
     author_email="",
     url="",
     keywords="azure, azure sdk",

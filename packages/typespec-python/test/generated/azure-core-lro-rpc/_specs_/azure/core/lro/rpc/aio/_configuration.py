@@ -31,7 +31,7 @@ class RpcClientConfiguration(Configuration):  # pylint: disable=too-many-instanc
         api_version: str = kwargs.pop("api_version", "2022-12-01-preview")
 
         self.api_version = api_version
-        kwargs.setdefault("sdk_moniker", "lro-rpc/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "rpcclient/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

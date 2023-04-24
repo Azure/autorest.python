@@ -4,12 +4,12 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from azure.lro.core import CoreClient
-from azure.lro.core.models import User, ExportedUser
+from _specs_.azure.core.lro.standard import StandardClient
+from _specs_.azure.core.lro.standard.models import User, ExportedUser
 
 @pytest.fixture
 def client():
-    with CoreClient() as client:
+    with StandardClient() as client:
         yield client
 
 def test_lro_core_put(client):

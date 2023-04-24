@@ -4,12 +4,12 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from azure.lro.core.aio import CoreClient
-from azure.lro.core.models import User, ExportedUser
+from _specs_.azure.core.lro.standard.aio import StandardClient
+from _specs_.azure.core.lro.standard.models import User, ExportedUser
 
 @pytest.fixture
 async def client():
-    async with CoreClient() as client:
+    async with StandardClient() as client:
         yield client
 
 @pytest.mark.asyncio

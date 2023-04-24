@@ -89,12 +89,8 @@ def build_standard_delete_request(name: str, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="DELETE", url=_url, params=_params, **kwargs)
 
 
-<<<<<<< HEAD:packages/typespec-python/test/generated/lro-lro-core/azure/lro/core/_operations/_operations.py
-def build_core_export_request(name: str, *, format: str, **kwargs: Any) -> HttpRequest:
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-=======
 def build_standard_export_request(name: str, *, format: str, **kwargs: Any) -> HttpRequest:
->>>>>>> 5b10cc9a4a3f670701209c990af76dec9d5100ec:packages/typespec-python/test/generated/azure-core-lro-standard/_specs_/azure/core/lro/standard/_operations/_operations.py
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-12-01-preview"))
@@ -491,7 +487,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
          Retry-After header is present.
         :return: An instance of LROPoller that returns ExportedUser. The ExportedUser is compatible
          with MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.lro.core.models.ExportedUser]
+        :rtype: ~azure.core.polling.LROPoller[~_specs_.azure.core.lro.standard.models.ExportedUser]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}

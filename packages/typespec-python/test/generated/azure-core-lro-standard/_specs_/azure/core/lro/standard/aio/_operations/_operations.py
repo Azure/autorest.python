@@ -422,7 +422,8 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
          Retry-After header is present.
         :return: An instance of AsyncLROPoller that returns ExportedUser. The ExportedUser is
          compatible with MutableMapping
-        :rtype: ~azure.core.polling.AsyncLROPoller[~azure.lro.core.models.ExportedUser]
+        :rtype:
+         ~azure.core.polling.AsyncLROPoller[~_specs_.azure.core.lro.standard.models.ExportedUser]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
