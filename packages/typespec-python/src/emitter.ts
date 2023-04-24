@@ -554,7 +554,6 @@ function emitResponse(
     if (innerResponse.body?.type) {
         let modelType = undefined;
         if (innerResponse.body.type.kind === "Model") {
-            modelType = getEffectiveSchemaType(context, innerResponse.body.type);
             const lroMeta = getLroMetadata(context.program, operation);
             // only when getLroMetadata can provide effective model with valid name
             if (!hasDefaultStatusCode(response) && lroMeta && lroMeta.logicalResult.name) {
@@ -562,6 +561,8 @@ function emitResponse(
                 if (lroMeta.finalStep?.target.kind === "ModelProperty") {
                     resultProperty = lroMeta.finalStep.target.name;
                 }
+            } else {
+                modelType = getEffectiveSchemaType(context, innerResponse.body.type);
             }
         }
         if (modelType && modelType.decorators.find((d) => d.decorator.name === "$pagedResult")) {
