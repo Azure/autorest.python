@@ -122,10 +122,16 @@ class SampleSerializer:
             return ""
         return f".{self.operation_group.property_name}"
 
+    @property
+    def _print_suffix(self) -> str:
+        return (
+            ".serialize()" if self.code_model.options["models_mode"] == "msrest" else ""
+        )
+
     def _operation_result(self) -> str:
         lro = ".result()"
-        paging = "\n    for item in response:\n        print(item)"
-        normal_print = "\n    print(response)"
+        paging = f"\n    for item in response:\n        print(item{self._print_suffix})"
+        normal_print = f"\n    print(response{self._print_suffix})"
         if self.operation.operation_type == "paging":
             return paging
         if self.operation.operation_type == "lro":

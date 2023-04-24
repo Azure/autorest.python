@@ -49,6 +49,10 @@ _PACKAGE_FILES = [
 _REGENERATE_FILES = {"setup.py", "MANIFEST.in"}
 
 
+def _sample_output_path(source_file_path: str) -> Path:
+    return Path(source_file_path.split("examples")[-1]).parent
+
+
 class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
     def __init__(
         self,
@@ -568,7 +572,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                         file_name = to_snake_case(extract_sample_name(file)) + ".py"
                         try:
                             self.write_file(
-                                out_path / file_name,
+                                out_path / _sample_output_path(file) / file_name,
                                 SampleSerializer(
                                     code_model=self.code_model,
                                     env=env,
