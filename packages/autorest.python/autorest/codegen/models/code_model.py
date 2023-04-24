@@ -324,7 +324,7 @@ class CodeModel:  # pylint: disable=too-many-public-methods
             result.append("isodate<1.0.0,>=0.6.1")
             if referenced_type_libraries.get("isodate"):
                 del referenced_type_libraries["isodate"]
-        if self.options.get("azure-arm", False):
+        if self.options.get("azure_arm", False):
             result.append("azure-mgmt-core<2.0.0,>=1.3.2")
             if referenced_type_libraries.get("azure-mgmt-core"):
                 del referenced_type_libraries["azure-mgmt-core"]
