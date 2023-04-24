@@ -24,11 +24,7 @@ class UnionClientConfiguration(Configuration):  # pylint: disable=too-many-insta
     def __init__(self, **kwargs: Any) -> None:
         super(UnionClientConfiguration, self).__init__(**kwargs)
 
-<<<<<<<< HEAD:packages/typespec-python/test/generated/lro-lro-basic/azure/lro/basic/aio/_configuration.py
-        kwargs.setdefault("sdk_moniker", "lro-basic/{}".format(VERSION))
-========
         kwargs.setdefault("sdk_moniker", "unionclient/{}".format(VERSION))
->>>>>>>> 5b10cc9a4a3f670701209c990af76dec9d5100ec:packages/typespec-python/test/generated/type-union/type/union/aio/_configuration.py
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

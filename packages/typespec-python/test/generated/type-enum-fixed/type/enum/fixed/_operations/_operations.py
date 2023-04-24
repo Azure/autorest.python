@@ -79,63 +79,6 @@ def build_fixed_put_unknown_value_request(*, content: Union[str, _models.DaysOfW
 
 class FixedClientOperationsMixin(FixedClientMixinABC):
     @distributed_trace
-<<<<<<<< HEAD:packages/typespec-python/test/generated/lro-lro-basic/azure/lro/basic/_operations/_operations.py
-    def begin_create(self, **kwargs: Any) -> LROPoller[_models.User]:
-        """Test for basic lro of put.
-
-        :keyword str continuation_token: A continuation token to restart a poller from a saved state.
-        :keyword polling: By default, your polling method will be LROBasePolling. Pass in False for
-         this operation to not poll, or pass in your own initialized polling object for a personal
-         polling strategy.
-        :paramtype polling: bool or ~azure.core.polling.PollingMethod
-        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-         Retry-After header is present.
-        :return: An instance of LROPoller that returns User. The User is compatible with MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~azure.lro.basic.models.User]
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls: ClsType[_models.User] = kwargs.pop("cls", None)
-        polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
-        lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
-        cont_token: Optional[str] = kwargs.pop("continuation_token", None)
-        if cont_token is None:
-            raw_result = self._create_initial(cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs)
-        kwargs.pop("error_map", None)
-
-        def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
-            deserialized = _deserialize(_models.User, response.json())
-            if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
-            return deserialized
-
-        if polling is True:
-            polling_method: PollingMethod = cast(PollingMethod, LROBasePolling(lro_delay, **kwargs))
-        elif polling is False:
-            polling_method = cast(PollingMethod, NoPolling())
-        else:
-            polling_method = polling
-        if cont_token:
-            return LROPoller.from_continuation_token(
-                polling_method=polling_method,
-                continuation_token=cont_token,
-                client=self._client,
-                deserialization_callback=get_long_running_output,
-            )
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
-
-    @distributed_trace
-    def polling(self, **kwargs: Any) -> _models.User:
-        """The polling url.
-
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: User. The User is compatible with MutableMapping
-        :rtype: ~azure.lro.basic.models.User
-========
     def get_known_value(self, **kwargs: Any) -> Union[str, _models.DaysOfWeekEnum]:
         """getKnownValue.
 
@@ -143,7 +86,6 @@ class FixedClientOperationsMixin(FixedClientMixinABC):
          will have to context manage the returned stream.
         :return: DaysOfWeekEnum
         :rtype: str or ~type.enum.fixed.models.DaysOfWeekEnum
->>>>>>>> 5b10cc9a4a3f670701209c990af76dec9d5100ec:packages/typespec-python/test/generated/type-enum-fixed/type/enum/fixed/_operations/_operations.py
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -200,13 +142,8 @@ class FixedClientOperationsMixin(FixedClientMixinABC):
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-<<<<<<<< HEAD:packages/typespec-python/test/generated/lro-lro-basic/azure/lro/basic/_operations/_operations.py
-        :return: User. The User is compatible with MutableMapping
-        :rtype: ~azure.lro.basic.models.User
-========
         :return: None
         :rtype: None
->>>>>>>> 5b10cc9a4a3f670701209c990af76dec9d5100ec:packages/typespec-python/test/generated/type-enum-fixed/type/enum/fixed/_operations/_operations.py
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {

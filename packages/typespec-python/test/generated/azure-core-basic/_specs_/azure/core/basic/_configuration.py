@@ -31,11 +31,7 @@ class BasicClientConfiguration(Configuration):  # pylint: disable=too-many-insta
         api_version: str = kwargs.pop("api_version", "2022-12-01-preview")
 
         self.api_version = api_version
-<<<<<<< HEAD:packages/typespec-python/test/generated/lro-lro-core/azure/lro/core/_configuration.py
-        kwargs.setdefault("sdk_moniker", "lro-core/{}".format(VERSION))
-=======
         kwargs.setdefault("sdk_moniker", "basicclient/{}".format(VERSION))
->>>>>>> 5b10cc9a4a3f670701209c990af76dec9d5100ec:packages/typespec-python/test/generated/azure-core-basic/_specs_/azure/core/basic/_configuration.py
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

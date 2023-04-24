@@ -9,20 +9,12 @@
 from setuptools import setup, find_packages
 
 
-<<<<<<< HEAD:packages/typespec-python/test/generated/lro-lro-basic/setup.py
-PACKAGE_NAME = "azure-lro-basic"
-=======
 PACKAGE_NAME = "unionclient"
->>>>>>> 5b10cc9a4a3f670701209c990af76dec9d5100ec:packages/typespec-python/test/generated/type-union/setup.py
 version = "1.0.0b1"
 setup(
     name=PACKAGE_NAME,
     version=version,
-<<<<<<< HEAD:packages/typespec-python/test/generated/lro-lro-basic/setup.py
-    description="azure-lro-basic",
-=======
     description="UnionClient",
->>>>>>> 5b10cc9a4a3f670701209c990af76dec9d5100ec:packages/typespec-python/test/generated/type-union/setup.py
     author_email="",
     url="",
     keywords="azure, azure sdk",

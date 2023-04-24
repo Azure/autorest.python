@@ -1,6 +1,3 @@
-<<<<<<< HEAD:packages/typespec-python/test/generated/lro-lro-basic/azure/lro/__init__.py
-__path__ = __import__("pkgutil").extend_path(__path__, __name__)  # type: ignore
-=======
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -27,4 +24,3 @@ __all__ = [
 __all__.extend([p for p in _patch_all if p not in __all__])
 
 _patch_sdk()
->>>>>>> 5b10cc9a4a3f670701209c990af76dec9d5100ec:packages/typespec-python/test/generated/azure-core-basic/_specs_/azure/core/basic/__init__.py
