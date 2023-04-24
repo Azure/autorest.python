@@ -42,7 +42,7 @@ EMITTER_OPTIONS = {
 }
 
 def _get_emitter_option(spec: Path) -> Dict[str, str]:
-    name = str(spec.relative_to(CADL_RANCH_DIR))
+    name = str(spec.relative_to(CADL_RANCH_DIR).as_posix())
     return EMITTER_OPTIONS.get(name, {})
 
 def _add_options(spec: Path, debug=False) -> str:
@@ -62,7 +62,6 @@ def regenerate(c, name=None, debug=False):
         s / "main.tsp"
         for s in CADL_RANCH_DIR.glob("**/*")
         if s.is_dir() and any(f for f in s.iterdir() if f.name == "main.tsp")
-        and "internal" not in s.name.lower()
     ]
     if name:
         specs = [s for s in specs if name.lower() in str(s)]
