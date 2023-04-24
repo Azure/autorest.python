@@ -15,6 +15,7 @@ azure-core==1.24.0
 -e ./generated/hello
 -e ./generated/internal
 -e ./generated/lro-lro-basic
+-e ./generated/lro-lro-rpc
 -e ./generated/models-inheritance
 -e ./generated/models-property-nullable
 -e ./generated/models-property-optional

@@ -1275,7 +1275,7 @@ interface ReferencedType {
     version?: string;
 }
 
-const CORE_MORE_MAPPING: Record<string, ReferencedType> = {
+const AZURE_CORE_REFERENCED_TYPE_MAPPING: Record<string, ReferencedType> = {
     "Azure.Core.Foundations.ErrorResponse": {
         type: "referencedType",
         package: "azure-core",
@@ -1296,7 +1296,7 @@ function getAzureCoreReferencedType(t: Type): ReferencedType | undefined {
         t.namespace !== undefined &&
         ["Azure.Core", "Azure.Core.Foundations"].includes(getNamespaceFullName(t.namespace))
     ) {
-        return CORE_MORE_MAPPING[getNamespaceFullName(t.namespace) + "." + t.name];
+        return AZURE_CORE_REFERENCED_TYPE_MAPPING[getNamespaceFullName(t.namespace) + "." + t.name];
     } else {
         return undefined;
     }

@@ -66,7 +66,7 @@ class ReferencedType(BaseType):
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         file_import.add_submodule_import(
-            self.import_path, self.name, ImportType.LOCAL, TypingSection.REGULAR
+            self.import_path, self.name, ImportType.THIRDPARTY, TypingSection.REGULAR
         )
         return file_import
 

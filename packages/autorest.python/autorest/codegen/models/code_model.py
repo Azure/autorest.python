@@ -303,8 +303,8 @@ class CodeModel:  # pylint: disable=too-many-public-methods
                 if referenced_type.package not in result:
                     result[referenced_type.package] = referenced_type.version
                 else:
-                    # this logic need to be refined to handle any version constraints,
-                    # but for now, we just compare the version string directly
+                    # this logic need to be refined to handle any version constraints string comparison,
+                    # for now, we just compare the version string directly
                     if referenced_type.version > result[referenced_type.package]:
                         result[referenced_type.package] = referenced_type.version
         return result

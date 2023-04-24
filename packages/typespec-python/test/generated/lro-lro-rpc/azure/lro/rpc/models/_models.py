@@ -9,9 +9,10 @@
 
 from typing import Any, List, Mapping, Optional, TYPE_CHECKING, Union, overload
 
+from azure.core.exceptions import HttpResponseError
+
 from .. import _model_base
 from .._model_base import rest_field
-from azure.core.exceptions import HttpResponseError
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
