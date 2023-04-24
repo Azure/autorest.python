@@ -562,8 +562,6 @@ function emitResponse(
                 if (lroMeta.finalStep?.target.kind === "ModelProperty") {
                     resultProperty = lroMeta.finalStep.target.name;
                 }
-            } else {
-                modelType = getEffectiveSchemaType(context, innerResponse.body.type);
             }
         }
         if (modelType && modelType.decorators.find((d) => d.decorator.name === "$pagedResult")) {
