@@ -10,6 +10,7 @@ from multiprocessing import Pool
 from colorama import init, Fore
 from invoke import task, run
 import shutil
+from typing import Optional, Dict
 
 #######################################################
 # Working around for issue https://github.com/pyinvoke/invoke/issues/833 in python3.11
@@ -25,23 +26,31 @@ PLUGIN_DIR = Path(os.path.dirname(__file__))
 PLUGIN = (PLUGIN_DIR / "dist/src/index.js").as_posix()
 CADL_RANCH_DIR = PLUGIN_DIR / Path("node_modules/@azure-tools/cadl-ranch-specs/http")
 EMITTER_OPTIONS = {
-    "hello": {
-        "package-name": "azure-hello",
+    "resiliency/srv-driven/old.tsp": {
+        "package-name": "resiliency-srv-driven1",
         "package-mode": "dataplane",
-        "package-pprint-name": "Hello",
+        "package-pprint-name": "ResiliencySrvDriven1",
     },
-    "lro-basic": {"package-name": "azure-lro-basic"},
-    "lro-core": {"package-name": "azure-lro-core"},
-    "lro-rpc": {"package-name": "azure-lro-rpc"},
+    "resiliency/srv-driven/main.tsp": {
+        "package-name": "resiliency-srv-driven2",
+        "package-mode": "dataplane",
+        "package-pprint-name": "ResiliencySrvDriven2",
+    },
+    "authentication/union/main.tsp": {
+        "package-name": "authentication-union",
+    }
 }
 
+def _get_emitter_option(spec: Path) -> Dict[str, str]:
+    name = str(spec.relative_to(CADL_RANCH_DIR))
+    return EMITTER_OPTIONS.get(name, {})
 
-def _add_options(spec, debug=False):
-    name = spec.stem.lower()
+def _add_options(spec: Path, debug=False) -> str:
+
     options = {"emitter-output-dir": f"{PLUGIN_DIR}/test/generated/{_get_package_name(spec)}"}
     # if debug:
     #   options["debug"] = "true"
-    options.update(EMITTER_OPTIONS.get(name, {}))
+    options.update(_get_emitter_option(spec))
     return " --option ".join(
         [f"@azure-tools/typespec-python.{k}={v} " for k, v in options.items()]
     )
@@ -50,12 +59,19 @@ def _add_options(spec, debug=False):
 @task
 def regenerate(c, name=None, debug=False):
     specs = [
-        s
+        s / "main.tsp"
         for s in CADL_RANCH_DIR.glob("**/*")
         if s.is_dir() and any(f for f in s.iterdir() if f.name == "main.tsp")
+        and "internal" not in s.name.lower()
     ]
     if name:
-        specs = [s for s in specs if name.lower() in s.stem.lower()]
+        specs = [s for s in specs if name.lower() in str(s)]
+    if not name or name in "resiliency/srv-driven":
+        specs.extend([
+            s / "old.tsp"
+            for s in CADL_RANCH_DIR.glob("**/*")
+            if s.is_dir() and any(f for f in s.iterdir() if f.name == "old.tsp")
+        ])
     for spec in specs:
         Path(f"{PLUGIN_DIR}/test/generated/{_get_package_name(spec)}").mkdir(
             parents=True, exist_ok=True
@@ -69,15 +85,9 @@ def regenerate(c, name=None, debug=False):
 
 
 def _get_package_name(spec: Path):
-    prefix_path = str(spec.parent).replace(str(CADL_RANCH_DIR), "")
-    if prefix_path:
-        return (
-            "-".join(prefix_path.split(os.sep)[1:])
-            + "-"
-            + spec.name
-        )
-    else:
-        return spec.name
+    if _get_emitter_option(spec).get("package-name"):
+        return _get_emitter_option(spec)["package-name"]
+    return str(spec.relative_to(CADL_RANCH_DIR)).replace("/main.tsp", "").replace("/", "-")
 
 
 def _run_cadl(cmds):

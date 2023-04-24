@@ -38,7 +38,7 @@ class UnionClientConfiguration(Configuration):  # pylint: disable=too-many-insta
 
         self.credential = credential
         self.credential_scopes = kwargs.pop("credential_scopes", ["https://security.microsoft.com/.default"])
-        kwargs.setdefault("sdk_moniker", "unionclient/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "authentication-union/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _infer_policy(self, **kwargs):
