@@ -10,7 +10,7 @@ from multiprocessing import Pool
 from colorama import init, Fore
 from invoke import task, run
 import shutil
-from typing import Optional, Dict
+from typing import Dict
 
 #######################################################
 # Working around for issue https://github.com/pyinvoke/invoke/issues/833 in python3.11
@@ -76,7 +76,7 @@ EMITTER_OPTIONS = {
 
 
 def _get_emitter_option(spec: Path) -> Dict[str, str]:
-    name = str(spec.relative_to(CADL_RANCH_DIR)).replace(os.sep, "/")
+    name = str(spec.relative_to(CADL_RANCH_DIR).as_posix())
     return EMITTER_OPTIONS.get(name, {})
 
 
@@ -127,9 +127,9 @@ def _get_package_name(spec: Path):
     if _get_emitter_option(spec).get("package-name"):
         return _get_emitter_option(spec)["package-name"]
     return (
-        str(spec.relative_to(CADL_RANCH_DIR))
-        .replace(f"{os.sep}main.tsp", "")
-        .replace(os.sep, "-")
+        str(spec.relative_to(CADL_RANCH_DIR).as_posix())
+        .replace("/main.tsp", "")
+        .replace("/", "-")
     )
 
 
