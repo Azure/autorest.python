@@ -28,7 +28,7 @@ def main():
     )
 
     response = client.http_success.head404()
-    print(response)
+    print(response.serialize())
 
 
 if __name__ == "__main__":

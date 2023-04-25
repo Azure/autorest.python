@@ -29,7 +29,7 @@ def main():
     )
 
     response = client.head_exception.head204()
-    print(response)
+    print(response.serialize())
 
 
 if __name__ == "__main__":

@@ -23,7 +23,7 @@ def main():
         account_name="testaccount",
     )
     for item in response:
-        print(item)
+        print(item.serialize())
 
 
 if __name__ == "__main__":
