@@ -52,7 +52,7 @@ _REGENERATE_FILES = {"setup.py", "MANIFEST.in"}
 def _sample_output_path(source_file_path: str) -> Path:
     posix_path = Path(source_file_path).as_posix()
     if "examples/" in posix_path:
-        after_examples = Path(posix_path.split("examples/")[-1]).parent
+        after_examples = Path(posix_path.split("examples/", maxsplit=1)[-1]).parent
         return Path("/".join([to_snake_case(i) for i in after_examples.parts]))
     return Path("")
 
