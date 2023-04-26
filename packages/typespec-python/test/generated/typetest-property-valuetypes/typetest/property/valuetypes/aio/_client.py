@@ -30,6 +30,9 @@ from .operations import (
     ModelOperations,
     NeverOperations,
     StringOperations,
+    UnknownDictOperations,
+    UnknownIntOperations,
+    UnknownStringOperations,
 )
 
 
@@ -69,6 +72,12 @@ class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,to
      typetest.property.valuetypes.aio.operations.DictionaryStringOperations
     :ivar never: NeverOperations operations
     :vartype never: typetest.property.valuetypes.aio.operations.NeverOperations
+    :ivar unknown_string: UnknownStringOperations operations
+    :vartype unknown_string: typetest.property.valuetypes.aio.operations.UnknownStringOperations
+    :ivar unknown_int: UnknownIntOperations operations
+    :vartype unknown_int: typetest.property.valuetypes.aio.operations.UnknownIntOperations
+    :ivar unknown_dict: UnknownDictOperations operations
+    :vartype unknown_dict: typetest.property.valuetypes.aio.operations.UnknownDictOperations
     """
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
@@ -100,6 +109,9 @@ class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,to
             self._client, self._config, self._serialize, self._deserialize
         )
         self.never = NeverOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.unknown_string = UnknownStringOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.unknown_int = UnknownIntOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.unknown_dict = UnknownDictOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.

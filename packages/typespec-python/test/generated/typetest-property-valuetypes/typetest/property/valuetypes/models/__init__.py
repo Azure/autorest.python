@@ -22,6 +22,9 @@ from ._models import IntProperty
 from ._models import ModelProperty
 from ._models import NeverProperty
 from ._models import StringProperty
+from ._models import UnknownDictProperty
+from ._models import UnknownIntProperty
+from ._models import UnknownStringProperty
 
 from ._enums import FixedInnerEnum
 from ._enums import InnerEnum
@@ -46,6 +49,9 @@ __all__ = [
     "ModelProperty",
     "NeverProperty",
     "StringProperty",
+    "UnknownDictProperty",
+    "UnknownIntProperty",
+    "UnknownStringProperty",
     "FixedInnerEnum",
     "InnerEnum",
 ]
