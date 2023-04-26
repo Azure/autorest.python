@@ -15,7 +15,6 @@
 **Other Changes**
 
 - optimize output folder to avoid sample files are overwritten  #1875
-- optimize output format for generated sample files  #1854
 
 ### 2023-04-20 - 6.4.11
 
