@@ -456,6 +456,37 @@ class NeverProperty(_model_base.Model):
     """Model with a property never. (This property should not be included)."""
 
 
+class RecordUnknownProperty(_model_base.Model):
+    """Model with Record:code:`<unknown>` property, and the data is a json object.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar property: Property. Required.
+    :vartype property: any
+    """
+
+    property: Any = rest_field()
+    """Property. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        property: Any,  # pylint: disable=redefined-builtin
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
 class StringProperty(_model_base.Model):
     """Model with a string property.
 

@@ -29,6 +29,7 @@ from .operations import (
     IntOperations,
     ModelOperations,
     NeverOperations,
+    RecordUnknownOperations,
     StringOperations,
 )
 
@@ -67,6 +68,8 @@ class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,to
     :vartype dictionary_string: typetest.property.valuetypes.operations.DictionaryStringOperations
     :ivar never: NeverOperations operations
     :vartype never: typetest.property.valuetypes.operations.NeverOperations
+    :ivar record_unknown: RecordUnknownOperations operations
+    :vartype record_unknown: typetest.property.valuetypes.operations.RecordUnknownOperations
     """
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
@@ -98,6 +101,7 @@ class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,to
             self._client, self._config, self._serialize, self._deserialize
         )
         self.never = NeverOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.record_unknown = RecordUnknownOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
