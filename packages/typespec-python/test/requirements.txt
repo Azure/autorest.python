@@ -6,6 +6,7 @@ azure-core==1.24.0
 -e ./generated/authentication-api-key
 -e ./generated/authentication-oauth2
 -e ./generated/authentication-union
+-e ./generated/azure-client-generator-core-client-format-duration
 -e ./generated/azure-core-basic
 -e ./generated/azure-core-lro-rpc
 -e ./generated/azure-core-lro-standard

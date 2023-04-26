@@ -214,14 +214,16 @@ function getEffectiveSchemaType(context: SdkContext, type: Model): Model {
     return type;
 }
 
-function getEntityType(context: SdkContext, entity: ModelProperty): any {
-    const result = getType(context, entity.type);
+function emitModelPropertyType(context: SdkContext, entity: ModelProperty): Record<string, any> {
+    const result = emitType(context, entity.type);
     const format = getClientFormat(context, entity);
     if (format) {
         if (format === "rfc1123") {
             result["format"] = "date-time-rfc1123";
         } else if (format === "iso8601") {
             result["format"] = "date-time";
+        } else if (format === "seconds") {
+            result["type"] = "float";
         }
     }
     return result;
@@ -253,9 +255,13 @@ function getType(context: SdkContext, type: EmitterType): any {
     if (isEmptyModel(type)) {
         // do not generate model for empty model, treat it as any
         newValue = { type: "any" };
-    } else {
+    } else if (type.kind === "ModelProperty") {
+        newValue = emitModelPropertyType(context, type);
+    }
+    else {
         newValue = emitType(context, type);
     }
+
     if (enableCache) {
         typesMap.set(effectiveModel, newValue);
         if (type.kind === "Model") {
@@ -392,7 +398,7 @@ function emitParameter(
     implementation: string,
 ): Record<string, any> {
     const base = emitParamBase(context, parameter.param);
-    let type = getEntityType(context, parameter.param);
+    let type = getType(context, parameter.param);
     let clientDefaultValue = undefined;
     if (parameter.name.toLowerCase() === "content-type" && type["type"] === "constant") {
         /// We don't want constant types for content types, so we make sure if it's
@@ -524,7 +530,7 @@ function emitResponseHeaders(context: SdkContext, headers?: Record<string, Model
     }
     for (const [key, value] of Object.entries(headers)) {
         retval.push({
-            type: getEntityType(context, value),
+            type: getType(context, value),
             restApiName: key,
         });
     }
@@ -786,7 +792,7 @@ function emitProperty(context: SdkContext, property: ModelProperty): Record<stri
     return {
         clientName: camelToSnakeCase(clientName),
         restApiName: jsonName,
-        type: getEntityType(context, property),
+        type: getType(context, property),
         optional: property.optional,
         description: getDocStr(context, property),
         addedOn: getAddedOnVersion(context, property),
