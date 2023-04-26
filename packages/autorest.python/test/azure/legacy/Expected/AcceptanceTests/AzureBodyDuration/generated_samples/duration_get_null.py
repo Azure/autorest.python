@@ -20,7 +20,7 @@ def main():
     client = AutoRestDurationTestService()
 
     response = client.duration.get_null()
-    print(response)
+    print(response.serialize())
 
 
 if __name__ == "__main__":
