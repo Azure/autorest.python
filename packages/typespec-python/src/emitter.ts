@@ -555,7 +555,6 @@ function emitResponse(
         let modelType = undefined;
         if (innerResponse.body.type.kind === "Model") {
             const lroMeta = getLroMetadata(context.program, operation);
-            // only when getLroMetadata can provide effective model with valid name
             if (!hasDefaultStatusCode(response) && lroMeta) {
                 modelType = lroMeta.logicalResult;
                 if (lroMeta.finalStep?.target.kind === "ModelProperty") {
