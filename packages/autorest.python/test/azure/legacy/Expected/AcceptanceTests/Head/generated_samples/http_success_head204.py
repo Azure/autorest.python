@@ -29,7 +29,7 @@ def main():
     )
 
     response = client.http_success.head204()
-    print(response.serialize())
+    print(response)
 
 
 if __name__ == "__main__":
