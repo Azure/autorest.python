@@ -37,7 +37,7 @@ importers:
       '@azure-tools/cadl-ranch-expect': ~0.2.4
       '@azure-tools/cadl-ranch-specs': ~0.14.3
       '@azure-tools/typespec-azure-core': ~0.29.0
-      '@azure-tools/typespec-client-generator-core': ~0.30.0-dev.9
+      '@azure-tools/typespec-client-generator-core': ~0.30.0-dev.10
       '@types/js-yaml': ~4.0.1
       '@types/mocha': ~9.1.0
       '@types/node': ^18.7.16
@@ -56,7 +56,7 @@ importers:
       typescript: ^4.8.3
     dependencies:
       '@autorest/python': link:../autorest.python
-      '@azure-tools/typespec-client-generator-core': 0.30.0-dev.9_iaqsnjlmblwjtzjnlq5lqg6yfu
+      '@azure-tools/typespec-client-generator-core': 0.30.0-dev.10_iaqsnjlmblwjtzjnlq5lqg6yfu
       '@typespec/compiler': 0.43.0
       js-yaml: 4.1.0
     devDependencies:
@@ -94,14 +94,14 @@ packages:
     engines: {node: '>=16.0.0'}
     dependencies:
       body-parser: 1.20.2
-      deep-equal: 2.2.0
+      deep-equal: 2.2.1
       express: 4.18.2
       express-promise-router: 4.1.1_express@4.18.2
       glob: 10.2.2
       morgan: 1.10.0
       picocolors: 1.0.0
       winston: 3.8.2
-      yargs: 17.7.1
+      yargs: 17.7.2
     transitivePeerDependencies:
       - '@types/express'
       - supports-color
@@ -172,7 +172,7 @@ packages:
       '@typespec/rest': 0.43.0_@typespec+compiler@0.43.0
       ajv: 8.12.0
       body-parser: 1.20.2
-      deep-equal: 2.2.0
+      deep-equal: 2.2.1
       express: 4.18.2
       express-promise-router: 4.1.1_express@4.18.2
       glob: 10.2.2
@@ -184,7 +184,7 @@ packages:
       source-map-support: 0.5.21
       winston: 3.8.2
       xml2js: 0.5.0
-      yargs: 17.7.1
+      yargs: 17.7.2
     transitivePeerDependencies:
       - '@types/express'
       - encoding
@@ -205,8 +205,8 @@ packages:
       '@typespec/rest': 0.43.0_@typespec+compiler@0.43.0
     dev: true
 
-  /@azure-tools/typespec-client-generator-core/0.30.0-dev.9_iaqsnjlmblwjtzjnlq5lqg6yfu:
-    resolution: {integrity: sha512-kiMlynnvzH6Bj2nkfiUDmpAI6jjHslCiGOCgzbJZYPHhLUQ2M436lBI4cFZ2l3Kc+QP0fBsJ93fqC4fgG8stkQ==}
+  /@azure-tools/typespec-client-generator-core/0.30.0-dev.10_iaqsnjlmblwjtzjnlq5lqg6yfu:
+    resolution: {integrity: sha512-K4hHOb7r00BdTByvZg5jAuNISM1XLop4TOZNlUWmrIPmrLHMS3QZm2S80ymnzxPWIBa5C4lhI5vkbEq9vsaSHw==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       '@typespec/compiler': '>=0.43.0'
@@ -635,7 +635,7 @@ packages:
   /@types/node-fetch/2.6.2:
     resolution: {integrity: sha512-DHqhlq5jeESLy19TYhLakJ07kNumXWjcDdxXsLUMJZ6ue8VZJj4kLPQVE/2mdHh3xZziNF1xppu5lwmS53HR+A==}
     dependencies:
-      '@types/node': 18.7.16
+      '@types/node': 18.16.1
       form-data: 3.0.1
     dev: true
 
@@ -658,7 +658,7 @@ packages:
   /@types/tunnel/0.0.3:
     resolution: {integrity: sha512-sOUTGn6h1SfQ+gbgqC364jLFBw2lnFqkgF3q0WovEHRLMrVD1sd5aufqi/aJObLekJO+Aq5z646U4Oxy6shXMA==}
     dependencies:
-      '@types/node': 18.7.16
+      '@types/node': 18.16.1
     dev: true
 
   /@typescript-eslint/eslint-plugin/5.34.0_d352tuzo7ckayjnu3uej2p3q4m:
@@ -754,7 +754,7 @@ packages:
       debug: 4.3.4
       globby: 11.1.0
       is-glob: 4.0.3
-      semver: 7.3.7
+      semver: 7.5.0
       tsutils: 3.21.0_typescript@4.9.4
       typescript: 4.9.4
     transitivePeerDependencies:
@@ -967,6 +967,13 @@ packages:
 
   /argparse/2.0.1:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
+
+  /array-buffer-byte-length/1.0.0:
+    resolution: {integrity: sha512-LPuwb2P+NrQw3XhxGc36+XSvuBPopovXYTR9Ew++Du9Yb/bx5AzBfrIsBoj0EZUifjQU+sHL21sseZ3jerWO/A==}
+    dependencies:
+      call-bind: 1.0.2
+      is-array-buffer: 3.0.2
+    dev: true
 
   /array-flatten/1.1.1:
     resolution: {integrity: sha512-PCVAQswWemu6UdxsDFFX/+gVeYqKAod3D3UVm91jHwynguOwAvYPhx8nNlM++NqRcK6CxxpUafjmhIdKiHibqg==}
@@ -1509,11 +1516,12 @@ packages:
       which-typed-array: 1.1.8
     dev: true
 
-  /deep-equal/2.2.0:
-    resolution: {integrity: sha512-RdpzE0Hv4lhowpIUKKMJfeH6C1pXdtT1/it80ubgWqwI3qpuxUBpC1S4hnHg+zjnuOoDkzUtUCEEkG+XG5l3Mw==}
+  /deep-equal/2.2.1:
+    resolution: {integrity: sha512-lKdkdV6EOGoVn65XaOsPdH4rMxTZOnmFyuIkMjM1i5HHCbfjC97dawgTAy0deYNfuqUqW+Q5VrVaQYtUpSd6yQ==}
     dependencies:
+      array-buffer-byte-length: 1.0.0
       call-bind: 1.0.2
-      es-get-iterator: 1.1.2
+      es-get-iterator: 1.1.3
       get-intrinsic: 1.2.0
       is-arguments: 1.1.1
       is-array-buffer: 3.0.2
@@ -1524,7 +1532,7 @@ packages:
       object-is: 1.1.5
       object-keys: 1.1.1
       object.assign: 4.1.4
-      regexp.prototype.flags: 1.4.3
+      regexp.prototype.flags: 1.5.0
       side-channel: 1.0.4
       which-boxed-primitive: 1.0.2
       which-collection: 1.0.1
@@ -1542,6 +1550,14 @@ packages:
 
   /define-properties/1.1.4:
     resolution: {integrity: sha512-uckOqKcfaVvtBdsVkdPv3XjveQJsNQqmhXgRi8uhvWWuPYZCNlzT8qAyblUgNoXdHdjMTzAqeGjAoli8f+bzPA==}
+    engines: {node: '>= 0.4'}
+    dependencies:
+      has-property-descriptors: 1.0.0
+      object-keys: 1.1.1
+    dev: true
+
+  /define-properties/1.2.0:
+    resolution: {integrity: sha512-xvqAVKGfT1+UAvPwKTVw/njhdQ8ZhXK4lI0bCIuCMrp2up9nPnaDftrLtmpTazqd1o+UY4zgzU+avtMbDP+ldA==}
     engines: {node: '>= 0.4'}
     dependencies:
       has-property-descriptors: 1.0.0
@@ -1641,7 +1657,7 @@ packages:
       es-to-primitive: 1.2.1
       function-bind: 1.1.1
       function.prototype.name: 1.1.5
-      get-intrinsic: 1.1.2
+      get-intrinsic: 1.2.0
       get-symbol-description: 1.0.0
       has: 1.0.3
       has-property-descriptors: 1.0.0
@@ -1656,7 +1672,7 @@ packages:
       object-inspect: 1.12.2
       object-keys: 1.1.1
       object.assign: 4.1.4
-      regexp.prototype.flags: 1.4.3
+      regexp.prototype.flags: 1.5.0
       string.prototype.trimend: 1.0.5
       string.prototype.trimstart: 1.0.5
       unbox-primitive: 1.0.2
@@ -1673,6 +1689,20 @@ packages:
       is-set: 2.0.2
       is-string: 1.0.7
       isarray: 2.0.5
+    dev: true
+
+  /es-get-iterator/1.1.3:
+    resolution: {integrity: sha512-sPZmqHBe6JIiTfN5q2pEi//TwxmAFHwj/XEuYjTuse78i8KxaqMTTzxPoFKuzRpDpTJ+0NAbpfenkmH2rePtuw==}
+    dependencies:
+      call-bind: 1.0.2
+      get-intrinsic: 1.2.0
+      has-symbols: 1.0.3
+      is-arguments: 1.1.1
+      is-map: 2.0.2
+      is-set: 2.0.2
+      is-string: 1.0.7
+      isarray: 2.0.5
+      stop-iteration-iterator: 1.0.0
     dev: true
 
   /es-shim-unscopables/1.0.0:
@@ -2331,7 +2361,7 @@ packages:
     engines: {node: '>= 0.4'}
     dependencies:
       call-bind: 1.0.2
-      define-properties: 1.1.4
+      define-properties: 1.2.0
       es-abstract: 1.20.1
       functions-have-names: 1.2.3
     dev: true
@@ -2369,7 +2399,7 @@ packages:
     engines: {node: '>= 0.4'}
     dependencies:
       call-bind: 1.0.2
-      get-intrinsic: 1.1.2
+      get-intrinsic: 1.2.0
     dev: true
 
   /getpass/0.1.7:
@@ -2640,7 +2670,16 @@ packages:
     resolution: {integrity: sha512-O0DB1JC/sPyZl7cIo78n5dR7eUSwwpYPiXRhTzNxZVAMUuB8vlnRFyLxdrVToks6XPLVnFfbzaVd5WLjhgg+vA==}
     engines: {node: '>= 0.4'}
     dependencies:
-      get-intrinsic: 1.1.2
+      get-intrinsic: 1.2.0
+      has: 1.0.3
+      side-channel: 1.0.4
+    dev: true
+
+  /internal-slot/1.0.5:
+    resolution: {integrity: sha512-Y+R5hJrzs52QCG2laLn4udYVnxsfny9CpOhNhUvk/SSSVyF6T27FzRbF0sroPidSu3X8oEAkOn2K804mjpt6UQ==}
+    engines: {node: '>= 0.4'}
+    dependencies:
+      get-intrinsic: 1.2.0
       has: 1.0.3
       side-channel: 1.0.4
     dev: true
@@ -2814,17 +2853,6 @@ packages:
       call-bind: 1.0.2
       for-each: 0.3.3
       gopd: 1.0.1
-      has-tostringtag: 1.0.0
-    dev: true
-
-  /is-typed-array/1.1.9:
-    resolution: {integrity: sha512-kfrlnTTn8pZkfpJMUgYD7YZ3qzeJgWUn8XfVYBARc4wnmNOmLbmuuaAs3q5fvB0UJOn6yHAKaGTPM7d6ezoD/A==}
-    engines: {node: '>= 0.4'}
-    dependencies:
-      available-typed-arrays: 1.0.5
-      call-bind: 1.0.2
-      es-abstract: 1.20.1
-      for-each: 0.3.3
       has-tostringtag: 1.0.0
     dev: true
 
@@ -3708,7 +3736,16 @@ packages:
     engines: {node: '>= 0.4'}
     dependencies:
       call-bind: 1.0.2
-      define-properties: 1.1.4
+      define-properties: 1.2.0
+      functions-have-names: 1.2.3
+    dev: true
+
+  /regexp.prototype.flags/1.5.0:
+    resolution: {integrity: sha512-0SutC3pNudRKgquxGoRGIz946MZVHqbNfPjBdxeOhBrdgDKlRoXmYLQN9xRbrR09ZXWeGAdPuif7egofn6v5LA==}
+    engines: {node: '>= 0.4'}
+    dependencies:
+      call-bind: 1.0.2
+      define-properties: 1.2.0
       functions-have-names: 1.2.3
     dev: true
 
@@ -4028,6 +4065,13 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /stop-iteration-iterator/1.0.0:
+    resolution: {integrity: sha512-iCGQj+0l0HOdZ2AEeBADlsRC+vsnDsZsbdSiH1yNSjcfKM7fdpCMfqAL/dwF5BLiw/XhRft/Wax6zQbhq2BcjQ==}
+    engines: {node: '>= 0.4'}
+    dependencies:
+      internal-slot: 1.0.5
+    dev: true
+
   /stoppable/1.1.0:
     resolution: {integrity: sha512-KXDYZ9dszj6bzvnEMRYvxgeTHU74QBFL54XKtP3nyMuJ81CFYtABZ3bAzL2EdFUaEwJOBOgENyFj3R7oTzDyyw==}
     engines: {node: '>=4', npm: '>=6'}
@@ -4054,7 +4098,7 @@ packages:
     resolution: {integrity: sha512-I7RGvmjV4pJ7O3kdf+LXFpVfdNOxtCW/2C8f6jNiW4+PQchwxkCDzlk1/7p+Wl4bqFIZeF47qAHXLuHHWKAxog==}
     dependencies:
       call-bind: 1.0.2
-      define-properties: 1.1.4
+      define-properties: 1.2.0
       es-abstract: 1.20.1
     dev: true
 
@@ -4062,7 +4106,7 @@ packages:
     resolution: {integrity: sha512-THx16TJCGlsN0o6dl2o6ncWUsdgnLRSA23rRE5pyGBw/mLr3Ej/R2LaqCtgP8VNMGZsvMWnf9ooZPyY2bHvUFg==}
     dependencies:
       call-bind: 1.0.2
-      define-properties: 1.1.4
+      define-properties: 1.2.0
       es-abstract: 1.20.1
     dev: true
 
@@ -4444,7 +4488,7 @@ packages:
       es-abstract: 1.20.1
       for-each: 0.3.3
       has-tostringtag: 1.0.0
-      is-typed-array: 1.1.9
+      is-typed-array: 1.1.10
     dev: true
 
   /which-typed-array/1.1.9:
@@ -4596,8 +4640,8 @@ packages:
       y18n: 5.0.8
       yargs-parser: 21.1.1
 
-  /yargs/17.7.1:
-    resolution: {integrity: sha512-cwiTb08Xuv5fqF4AovYacTFNxk62th7LKJ6BL9IGUpTJrWoU7/7WdQGTP2SjKf1dUNBGzDd28p/Yfs/GI6JrLw==}
+  /yargs/17.7.2:
+    resolution: {integrity: sha512-7dSzzRQ++CKnNI/krKnYRV7JKKPUXMEh61soaHKg9mrWEhzFWhFnxPxGl+69cD1Ou63C13NUPCnmIcrvqCuM6w==}
     engines: {node: '>=12'}
     dependencies:
       cliui: 8.0.1
