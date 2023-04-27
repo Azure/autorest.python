@@ -69,7 +69,7 @@ def test_list_with_page(client: BasicClient):
 
 
 def test_list_with_custom_page_model(client: BasicClient):
-    # _list_with_page_tests(client.list_with_custom_page_model())
+    _list_with_page_tests(client.list_with_custom_page_model())
     with pytest.raises(AttributeError):
         models.CustomPageModel
 

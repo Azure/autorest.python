@@ -12,13 +12,31 @@ async def client():
     async with CollectionFormatClient() as client:
         yield client
 
+
 @pytest.mark.asyncio
 async def test_query_multi(client: CollectionFormatClient):
     await client.query.multi(colors=["blue", "red", "green"])
 
+
 @pytest.mark.asyncio
 async def test_query_csv(client: CollectionFormatClient):
     await client.query.csv(colors=["blue", "red", "green"])
+
+
+@pytest.mark.asyncio
+async def test_query_pipes(client: CollectionFormatClient):
+    await client.query.pipes(colors=["blue", "red", "green"])
+
+
+@pytest.mark.asyncio
+async def test_query_ssv(client: CollectionFormatClient):
+    await client.query.ssv(colors=["blue", "red", "green"])
+
+
+@pytest.mark.asyncio
+async def test_query_tsv(client: CollectionFormatClient):
+    await client.query.tsv(colors=["blue", "red", "green"])
+
 
 @pytest.mark.asyncio
 async def test_csv_header(client: CollectionFormatClient):

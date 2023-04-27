@@ -60,6 +60,7 @@ async def test_list(client: aio.BasicClient):
     assert result[1].orders[0].user_id == 2
     assert result[1].orders[0].detail == "a TV"
 
+
 async def _list_with_page_tests(pager: AsyncIterable[models.User]):
     result = [p async for p in pager]
     assert len(result) == 1
@@ -68,13 +69,15 @@ async def _list_with_page_tests(pager: AsyncIterable[models.User]):
     assert result[0].etag == "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
     assert result[0].orders is None
 
+
 @pytest.mark.asyncio
 async def test_list_with_page(client: aio.BasicClient):
     await _list_with_page_tests(client.list_with_page())
 
+
 @pytest.mark.asyncio
 async def test_list_with_custom_page_model(client: aio.BasicClient):
-    # await _list_with_page_tests(client.list_with_custom_page_model())
+    await _list_with_page_tests(client.list_with_custom_page_model())
     with pytest.raises(AttributeError):
         models.CustomPageModel
 

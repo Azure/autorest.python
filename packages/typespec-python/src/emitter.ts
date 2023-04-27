@@ -410,6 +410,13 @@ function emitParameter(
     if (type.type === "list" && (parameter.type === "query" || parameter.type === "header")) {
         if (parameter.format === "csv") {
             paramMap["delimiter"] = "comma";
+        }
+        else if (parameter.format + "" === "ssv") {
+            paramMap["delimiter"] = "space";
+        } else if (parameter.format + "" === "tsv") {
+            paramMap["delimiter"] = "tab";
+        } else if (parameter.format + "" === "pipes") {
+            paramMap["delimiter"] = "pipe";
         } else {
             paramMap["explode"] = true;
         }
