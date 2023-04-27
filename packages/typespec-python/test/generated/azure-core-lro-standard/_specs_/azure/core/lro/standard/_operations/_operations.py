@@ -90,9 +90,12 @@ def build_standard_delete_request(name: str, **kwargs: Any) -> HttpRequest:
 
 
 def build_standard_export_request(name: str, *, format: str, **kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-12-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/azure/core/lro/standard/users/{name}:export"
     path_format_arguments = {
@@ -105,7 +108,10 @@ def build_standard_export_request(name: str, *, format: str, **kwargs: Any) -> H
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
     _params["format"] = _SERIALIZER.query("format", format, "str")
 
-    return HttpRequest(method="POST", url=_url, params=_params, **kwargs)
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 class StandardClientOperationsMixin(StandardClientMixinABC):
@@ -418,9 +424,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    def _export_initial(  # pylint: disable=inconsistent-return-statements
-        self, name: str, *, format: str, **kwargs: Any
-    ) -> None:
+    def _export_initial(self, name: str, *, format: str, **kwargs: Any) -> _models.ExportedUser:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -432,7 +436,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[_models.ExportedUser] = kwargs.pop("cls", None)
 
         request = build_standard_export_request(
             name=name,
@@ -457,11 +461,15 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         response_headers = {}
         response_headers["Operation-Location"] = self._deserialize("str", response.headers.get("Operation-Location"))
 
+        deserialized = _deserialize(_models.ExportedUser, response.json().get("result"))
+
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
 
     @distributed_trace
-    def begin_export(self, name: str, *, format: str, **kwargs: Any) -> LROPoller[None]:
+    def begin_export(self, name: str, *, format: str, **kwargs: Any) -> LROPoller[_models.ExportedUser]:
         """Exports a user.
 
         Exports a User.
@@ -477,26 +485,35 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of LROPoller that returns None
-        :rtype: ~azure.core.polling.LROPoller[None]
+        :return: An instance of LROPoller that returns ExportedUser. The ExportedUser is compatible
+         with MutableMapping
+        :rtype: ~azure.core.polling.LROPoller[~_specs_.azure.core.lro.standard.models.ExportedUser]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[_models.ExportedUser] = kwargs.pop("cls", None)
         polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = self._export_initial(  # type: ignore
+            raw_result = self._export_initial(
                 name=name, format=format, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
         kwargs.pop("error_map", None)
 
-        def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
+        def get_long_running_output(pipeline_response):
+            response_headers = {}
+            response = pipeline_response.http_response
+            response_headers["Operation-Location"] = self._deserialize(
+                "str", response.headers.get("Operation-Location")
+            )
+
+            deserialized = _deserialize(_models.ExportedUser, response.json().get("result"))
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+            return deserialized
 
         if polling is True:
             polling_method: PollingMethod = cast(PollingMethod, LROBasePolling(lro_delay, **kwargs))

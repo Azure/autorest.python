@@ -540,16 +540,30 @@ function isAzureCoreModel(t: Type): boolean {
     );
 }
 
+function hasDefaultStatusCode(response: HttpOperationResponse): boolean {
+    return response.statusCode === "*";
+}
+
 function emitResponse(
     context: SdkContext,
     response: HttpOperationResponse,
     innerResponse: HttpOperationResponseContent,
+    operation: Operation,
 ): Record<string, any> {
     let type = undefined;
+    let resultProperty = undefined;
     if (innerResponse.body?.type) {
         let modelType = undefined;
         if (innerResponse.body.type.kind === "Model") {
-            modelType = getEffectiveSchemaType(context, innerResponse.body.type);
+            const lroMeta = getLroMetadata(context.program, operation);
+            if (!hasDefaultStatusCode(response) && lroMeta) {
+                modelType = lroMeta.logicalResult;
+                if (lroMeta.finalStep?.target.kind === "ModelProperty") {
+                    resultProperty = lroMeta.finalStep.target.name;
+                }
+            } else {
+                modelType = getEffectiveSchemaType(context, innerResponse.body.type);
+            }
         }
         if (modelType && modelType.decorators.find((d) => d.decorator.name === "$pagedResult")) {
             type = getType(context, Array.from(modelType.properties.values())[0].type);
@@ -560,7 +574,7 @@ function emitResponse(
         }
     }
     const statusCodes = [];
-    if (response.statusCode === "*") {
+    if (hasDefaultStatusCode(response)) {
         statusCodes.push("default");
     } else {
         statusCodes.push(parseInt(response.statusCode));
@@ -571,6 +585,7 @@ function emitResponse(
         addedOn: getAddedOnVersion(context, response.type),
         discriminator: "basic",
         type: type,
+        resultProperty: resultProperty,
     };
 }
 
@@ -700,7 +715,7 @@ function emitBasicOperation(
     const isOverriden: boolean = false;
     for (const response of httpOperation.responses) {
         for (const innerResponse of response.responses) {
-            const emittedResponse = emitResponse(context, response, innerResponse);
+            const emittedResponse = emitResponse(context, response, innerResponse, operation);
             if (
                 emittedResponse["type"] &&
                 parameters.filter((e) => e.restApiName.toLowerCase() === "accept").length === 0
