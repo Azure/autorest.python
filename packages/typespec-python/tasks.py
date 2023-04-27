@@ -99,7 +99,6 @@ def regenerate(c, name=None, debug=False):
         for s in CADL_RANCH_DIR.glob("**/*")
         if s.is_dir()
         and any(f for f in s.iterdir() if f.name == "main.tsp")
-        and "internal" not in s.name.lower()
     ]
     if name:
         specs = [s for s in specs if name.lower() in str(s)]
