@@ -953,9 +953,8 @@ function mapCadlType(context: SdkContext, type: Type): any {
             return {
                 type: sdkType.kind,
                 value: sdkType.value,
-                valueType: getType(context, sdkType.valueType.__raw)
-
-            }
+                valueType: getType(context, sdkType.valueType.__raw),
+            };
         case "Model":
             return emitListOrDict(context, type);
     }
