@@ -42,6 +42,7 @@ def _single_dir_apiview(mod):
                 )
                 return False
             else:
+                loop += 1
                 continue
         return True
 

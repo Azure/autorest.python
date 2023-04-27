@@ -31,7 +31,7 @@ def main():
         {% endfor %}
     )
 
-    response = client{{ operation_group_name }}{{ operation_name }}(
+    {{ return_var }}client{{ operation_group_name }}{{ operation_name }}(
         {% for key, value in operation_params.items() %}
         {{ key }}={{ value|indent(8) }},
         {% endfor %}

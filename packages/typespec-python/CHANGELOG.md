@@ -1,5 +1,17 @@
 # Release
 
+## 2023-04-20 - 0.8.4
+
+**Bug Fixes**
+
+- Do not generate page result model for DPG #1825
+
+## 2023-04-19 - 0.8.3
+
+**Other Changes**
+
+- Bump python generator dependency
+
 ## 2023-04-10 - 0.8.2
 
 **Other Changes**
@@ -20,7 +32,7 @@
 
 **Bug Fixes**
 
-- Don't update dictionary representation of a model if you pass in `None` for a field through keyword #1825 
+- Don't update dictionary representation of a model if you pass in `None` for a field through keyword #1825
 
 ## 2023-03-28 - 0.7.4
 
