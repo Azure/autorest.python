@@ -10,7 +10,7 @@ from multiprocessing import Pool
 from colorama import init, Fore
 from invoke import task, run
 import shutil
-from typing import Optional, Dict
+from typing import Dict
 
 #######################################################
 # Working around for issue https://github.com/pyinvoke/invoke/issues/833 in python3.11
@@ -38,16 +38,52 @@ EMITTER_OPTIONS = {
     },
     "authentication/union/main.tsp": {
         "package-name": "authentication-union",
-    }
+    },
+    "type/array/main.tsp": {
+        "package-name": "typetest-array",
+    },
+    "type/dictionary/main.tsp": {
+        "package-name": "typetest-dictionary",
+    },
+    "type/enum/extensible/main.tsp": {
+        "package-name": "typetest-enum-extensible",
+    },
+    "type/enum/fixed/main.tsp": {
+        "package-name": "typetest-enum-fixed",
+    },
+    "type/model/inheritance/main.tsp": {
+        "package-name": "typetest-model-inheritance",
+    },
+    "type/model/usage/main.tsp": {
+        "package-name": "typetest-model-usage",
+    },
+    "type/model/visibility/main.tsp": {
+        "package-name": "typetest-model-visibility",
+    },
+    "type/property/nullable/main.tsp": {
+        "package-name": "typetest-property-nullable",
+    },
+    "type/property/optional/main.tsp": {
+        "package-name": "typetest-property-optional",
+    },
+    "type/property/value-types/main.tsp": {
+        "package-name": "typetest-property-valuetypes",
+    },
+    "type/union/main.tsp": {
+        "package-name": "typetest-union",
+    },
 }
+
 
 def _get_emitter_option(spec: Path) -> Dict[str, str]:
     name = str(spec.relative_to(CADL_RANCH_DIR).as_posix())
     return EMITTER_OPTIONS.get(name, {})
 
-def _add_options(spec: Path, debug=False) -> str:
 
-    options = {"emitter-output-dir": f"{PLUGIN_DIR}/test/generated/{_get_package_name(spec)}"}
+def _add_options(spec: Path, debug=False) -> str:
+    options = {
+        "emitter-output-dir": f"{PLUGIN_DIR}/test/generated/{_get_package_name(spec)}"
+    }
     # if debug:
     #   options["debug"] = "true"
     options.update(_get_emitter_option(spec))
@@ -61,16 +97,19 @@ def regenerate(c, name=None, debug=False):
     specs = [
         s / "main.tsp"
         for s in CADL_RANCH_DIR.glob("**/*")
-        if s.is_dir() and any(f for f in s.iterdir() if f.name == "main.tsp")
+        if s.is_dir()
+        and any(f for f in s.iterdir() if f.name == "main.tsp")
     ]
     if name:
         specs = [s for s in specs if name.lower() in str(s)]
     if not name or name in "resiliency/srv-driven":
-        specs.extend([
-            s / "old.tsp"
-            for s in CADL_RANCH_DIR.glob("**/*")
-            if s.is_dir() and any(f for f in s.iterdir() if f.name == "old.tsp")
-        ])
+        specs.extend(
+            [
+                s / "old.tsp"
+                for s in CADL_RANCH_DIR.glob("**/*")
+                if s.is_dir() and any(f for f in s.iterdir() if f.name == "old.tsp")
+            ]
+        )
     for spec in specs:
         Path(f"{PLUGIN_DIR}/test/generated/{_get_package_name(spec)}").mkdir(
             parents=True, exist_ok=True
@@ -86,7 +125,11 @@ def regenerate(c, name=None, debug=False):
 def _get_package_name(spec: Path):
     if _get_emitter_option(spec).get("package-name"):
         return _get_emitter_option(spec)["package-name"]
-    return str(spec.relative_to(CADL_RANCH_DIR).as_posix()).replace("/main.tsp", "").replace("/", "-")
+    return (
+        str(spec.relative_to(CADL_RANCH_DIR).as_posix())
+        .replace("/main.tsp", "")
+        .replace("/", "-")
+    )
 
 
 def _run_cadl(cmds):
