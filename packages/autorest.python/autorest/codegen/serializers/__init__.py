@@ -48,6 +48,16 @@ _PACKAGE_FILES = [
 
 _REGENERATE_FILES = {"setup.py", "MANIFEST.in"}
 
+# extract sub folders. For example, source_file_path is like:
+# "xxx/resource-manager/Microsoft.XX/stable/2023-04-01/examples/Compute/createOrUpdate/AKSCompute.json",
+# and we want to extract the sub folders after "examples/", which is "compute/create_or_update"
+def _sample_output_path(source_file_path: str) -> Path:
+    posix_path = Path(source_file_path).as_posix()
+    if "examples/" in posix_path:
+        after_examples = Path(posix_path.split("examples/", maxsplit=1)[-1]).parent
+        return Path("/".join([to_snake_case(i) for i in after_examples.parts]))
+    return Path("")
+
 
 class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
     def __init__(
@@ -568,7 +578,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                         file_name = to_snake_case(extract_sample_name(file)) + ".py"
                         try:
                             self.write_file(
-                                out_path / file_name,
+                                out_path / _sample_output_path(file) / file_name,
                                 SampleSerializer(
                                     code_model=self.code_model,
                                     env=env,
