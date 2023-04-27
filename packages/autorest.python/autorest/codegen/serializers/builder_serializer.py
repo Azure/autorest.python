@@ -1075,7 +1075,9 @@ class _OperationSerializer(
                 deserialize_code.append(
                     f"    {response.type.type_annotation(is_operation_file=True)},{pylint_disable}"
                 )
-                deserialize_code.append("    response.json()")
+                deserialize_code.append(
+                    f"    response.json(){response.result_property}"
+                )
                 deserialize_code.append(")")
             else:
                 deserialized_value = (

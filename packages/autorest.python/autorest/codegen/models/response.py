@@ -59,6 +59,13 @@ class Response(BaseModel):
         self.type = type
         self.nullable = yaml_data.get("nullable")
 
+    @property
+    def result_property(self) -> str:
+        field = self.yaml_data.get("resultProperty")
+        if field:
+            return f'.get("{field}")'
+        return ""
+
     def get_polymorphic_subtypes(self, polymorphic_subtypes: List["ModelType"]) -> None:
         if self.type:
             self.type.get_polymorphic_subtypes(polymorphic_subtypes)
