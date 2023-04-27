@@ -130,7 +130,7 @@ class ModelType(  # pylint: disable=abstract-method
         # don't add additional properties, because there's not really a concept of
         # additional properties in the template
         representation = {
-            f'"{prop.rest_api_name}"': prop.get_json_template_representation(
+            f'"{prop.wire_name}"': prop.get_json_template_representation(
                 optional=optional,
                 client_default_value_declaration=client_default_value_declaration,
                 description=description,
@@ -143,14 +143,14 @@ class ModelType(  # pylint: disable=abstract-method
         }
         if self.discriminator and self.discriminator_value:
             representation[
-                f'"{self.discriminator.rest_api_name}"'
+                f'"{self.discriminator.wire_name}"'
             ] = f'"{self.discriminator_value}"'
 
         # once we've finished, we want to reset created_json_template_representation to false
         # so we can call it again
         self._created_json_template_representation = False
         optional_keys = [
-            f'"{p.rest_api_name}"'
+            f'"{p.wire_name}"'
             for p in self.properties
             if getattr(p, "optional", False)
         ]

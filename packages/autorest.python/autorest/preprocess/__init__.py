@@ -85,7 +85,7 @@ def add_overload(
 
     # update content type to be an overloads content type
     content_type_param = next(
-        p for p in overload["parameters"] if p["restApiName"].lower() == "content-type"
+        p for p in overload["parameters"] if p["wireName"].lower() == "content-type"
     )
     content_type_param["inOverload"] = True
     content_type_param["inDocstring"] = True
@@ -126,7 +126,7 @@ def add_overloads_for_body_param(yaml_data: Dict[str, Any]) -> None:
                 add_overload(yaml_data, body_type, for_flatten_params=True)
             )
     content_type_param = next(
-        p for p in yaml_data["parameters"] if p["restApiName"].lower() == "content-type"
+        p for p in yaml_data["parameters"] if p["wireName"].lower() == "content-type"
     )
     content_type_param["inOverload"] = False
     content_type_param["inOverriden"] = True
@@ -143,7 +143,7 @@ def _remove_paging_maxpagesize(yaml_data: Dict[str, Any]) -> None:
     yaml_data["parameters"] = [
         p
         for p in yaml_data.get("parameters", [])
-        if p["restApiName"].lower() not in ["maxpagesize", "$maxpagesize"]
+        if p["wireName"].lower() not in ["maxpagesize", "$maxpagesize"]
     ]
 
 

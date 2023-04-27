@@ -58,7 +58,7 @@ class SampleSerializer:
             if (
                 not param.client_default_value
                 and not param.optional
-                and param.rest_api_name in self.sample["parameters"]
+                and param.wire_name in self.sample["parameters"]
             ):
                 imports.merge(param.type.imports_for_sample())
         return FileImportSerializer(imports, True)
@@ -82,7 +82,7 @@ class SampleSerializer:
         client_params = {
             p.client_name: special_param.get(
                 p.client_name,
-                f'"{self.sample["parameters"].get(p.rest_api_name) or p.client_name.upper()}"',
+                f'"{self.sample["parameters"].get(p.wire_name) or p.client_name.upper()}"',
             )
             for p in params_positional
         }
@@ -107,7 +107,7 @@ class SampleSerializer:
         failure_info = "fail to find required param named {}"
         operation_params = {}
         for param in params_positional:
-            name = param.rest_api_name
+            name = param.wire_name
             param_value = self.sample["parameters"].get(name)
             if not param.optional:
                 if not param_value:
