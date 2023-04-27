@@ -462,17 +462,17 @@ class RecordUnknownProperty(_model_base.Model):
     All required parameters must be populated in order to send to Azure.
 
     :ivar property: Property. Required.
-    :vartype property: any
+    :vartype property: dict[str, any]
     """
 
-    property: Any = rest_field()
+    property: Dict[str, Any] = rest_field()
     """Property. Required."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Any,  # pylint: disable=redefined-builtin
+        property: Dict[str, Any],  # pylint: disable=redefined-builtin
     ):
         ...
 
