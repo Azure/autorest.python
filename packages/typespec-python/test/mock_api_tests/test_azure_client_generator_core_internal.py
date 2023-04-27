@@ -5,8 +5,7 @@
 # --------------------------------------------------------------------------
 import pytest
 from _specs_.azure.clientgenerator.core.internal import InternalClient
-from _specs_.azure.clientgenerator.core.internal import models
-from _specs_.azure.clientgenerator.core.internal.models import _models
+
 
 @pytest.fixture
 def client():
@@ -14,26 +13,37 @@ def client():
         yield client
 
 
-def test_get_internal(client: InternalClient):
-    result = client._get_internal(name="test")
+def test_public_only(client: InternalClient):
+    result = client.public_only(name="test")
     assert result.name == "test"
 
 
-def test_post_internal(client: InternalClient):
-    result = client._post_internal(
-        _models.ModelOnlyUsedByInternalOperation(id=1, name="test")
-    )
+def test_internal_only(client: InternalClient):
+    result = client._internal_only(name="test")
+    assert result.name == "test"
+
+
+def test_shared_public(client: InternalClient):
+    result = client.shared.public(name="test")
+    assert result.name == "test"
+
+
+def test_shared_internal(client: InternalClient):
+    result = client.shared._internal(name="test")
     assert result.name == "test"
 
 
 def test_visibility(client: InternalClient):
+    from _specs_.azure.clientgenerator.core.internal.models import (
+        PublicModel,
+        SharedModel,
+    )
+
     with pytest.raises(ImportError):
-        from models import InternalModel
+        from _specs_.azure.clientgenerator.core.internal.models import InternalModel
 
     with pytest.raises(AttributeError):
-        client.get_internal(name="test")
+        client.internal_only(name="test")
 
     with pytest.raises(AttributeError):
-        client.post_internal(
-            _models.ModelOnlyUsedByInternalOperation(id=1, name="test")
-        )
+        client.shared.internal(name="test")

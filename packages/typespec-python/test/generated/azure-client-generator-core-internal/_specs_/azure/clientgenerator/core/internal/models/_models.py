@@ -7,12 +7,14 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import Any, Mapping, overload
+
 from .. import _model_base
 from .._model_base import rest_field
 
 
-class InternalModel(_model_base.Model):
-    """This is an internal model.
+class PublicModel(_model_base.Model):
+    """This is a model only used by public operation. It should be generated and exported.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -23,19 +25,52 @@ class InternalModel(_model_base.Model):
     name: str = rest_field()
     """Required."""
 
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
 
-class ModelOnlyUsedByInternalOperation(_model_base.Model):
-    """This is a non-internal model only used by internal operation.
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class SharedModel(_model_base.Model):
+    """This is a model used by both public and internal operation. It should be generated and
+    exported.
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar id: Required.
-    :vartype id: str
     :ivar name: Required.
     :vartype name: str
     """
 
-    id: str = rest_field()
-    """Required."""
     name: str = rest_field()
     """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)

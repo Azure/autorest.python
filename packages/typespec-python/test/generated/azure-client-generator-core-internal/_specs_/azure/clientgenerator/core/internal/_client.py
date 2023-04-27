@@ -13,12 +13,16 @@ from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import InternalClientConfiguration
-from ._operations import InternalClientOperationsMixin
 from ._serialization import Deserializer, Serializer
+from .operations import InternalClientOperationsMixin, SharedOperations
 
 
 class InternalClient(InternalClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
-    """Test for internal decorator."""
+    """Test for internal decorator.
+
+    :ivar shared: SharedOperations operations
+    :vartype shared: _specs_.azure.clientgenerator.core.internal.operations.SharedOperations
+    """
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
@@ -28,6 +32,7 @@ class InternalClient(InternalClientOperationsMixin):  # pylint: disable=client-a
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
+        self.shared = SharedOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
