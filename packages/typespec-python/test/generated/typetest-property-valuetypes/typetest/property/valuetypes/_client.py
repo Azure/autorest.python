@@ -30,6 +30,7 @@ from .operations import (
     ModelOperations,
     NeverOperations,
     StringOperations,
+    UnknownArrayOperations,
     UnknownDictOperations,
     UnknownIntOperations,
     UnknownStringOperations,
@@ -76,6 +77,8 @@ class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,to
     :vartype unknown_int: typetest.property.valuetypes.operations.UnknownIntOperations
     :ivar unknown_dict: UnknownDictOperations operations
     :vartype unknown_dict: typetest.property.valuetypes.operations.UnknownDictOperations
+    :ivar unknown_array: UnknownArrayOperations operations
+    :vartype unknown_array: typetest.property.valuetypes.operations.UnknownArrayOperations
     """
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
@@ -110,6 +113,7 @@ class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,to
         self.unknown_string = UnknownStringOperations(self._client, self._config, self._serialize, self._deserialize)
         self.unknown_int = UnknownIntOperations(self._client, self._config, self._serialize, self._deserialize)
         self.unknown_dict = UnknownDictOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.unknown_array = UnknownArrayOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

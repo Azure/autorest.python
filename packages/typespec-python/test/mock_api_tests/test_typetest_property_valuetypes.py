@@ -33,6 +33,7 @@ def client():
         ("unknown_string", "hello"),
         ("unknown_int", 42),
         ("unknown_dict", {'k1': 'hello', 'k2': 42}),
+        ("unknown_array", ['hello', 'world']),
     ]
 )
 def test_json(client, og_name, val):
@@ -62,6 +63,7 @@ def test_json(client, og_name, val):
         ("unknown_string", models.UnknownStringProperty, "hello"),
         ("unknown_int", models.UnknownIntProperty, 42),
         ("unknown_dict", models.UnknownDictProperty, {'k1': 'hello', 'k2': 42}),
+        ("unknown_array", models.UnknownArrayProperty, ['hello', 'world']),
     ]
 )
 def test_model(client, og_name, model, val):

@@ -24,6 +24,7 @@ from ._operations import NeverOperations
 from ._operations import UnknownStringOperations
 from ._operations import UnknownIntOperations
 from ._operations import UnknownDictOperations
+from ._operations import UnknownArrayOperations
 
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
@@ -48,6 +49,7 @@ __all__ = [
     "UnknownStringOperations",
     "UnknownIntOperations",
     "UnknownDictOperations",
+    "UnknownArrayOperations",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()
