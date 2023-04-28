@@ -5,16 +5,16 @@
 
 version: 2
 updates:
-  - package-ecosystem: "pip" # See documentation for possible values
-    directory: "/packages/autorest.python/" # Location of package manifests
-    schedule:
-      interval: "weekly"
-    # Include a list of updated dependencies
-    # with a prefix determined by the dependency group
-    commit-message:
-      prefix: "pip prod"
-      prefix-development: "pip dev"
-      include: "scope"
+#  - package-ecosystem: "pip" # See documentation for possible values
+#    directory: "/packages/autorest.python/" # Location of package manifests
+#    schedule:
+#      interval: "weekly"
+#    # Include a list of updated dependencies
+#    # with a prefix determined by the dependency group
+#    commit-message:
+#      prefix: "pip prod"
+#      prefix-development: "pip dev"
+#      include: "scope"
   - package-ecosystem: "pip" # See documentation for possible values
     directory: "/eng/" # Location of package manifests
     schedule:
