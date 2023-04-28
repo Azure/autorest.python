@@ -19,10 +19,9 @@ from custombaseurl import AutoRestParameterizedHostTestClient
 def main():
     client = AutoRestParameterizedHostTestClient()
 
-    response = client.paths.get_empty(
+    client.paths.get_empty(
         account_name="testaccount",
     )
-    print(response)
 
 
 if __name__ == "__main__":

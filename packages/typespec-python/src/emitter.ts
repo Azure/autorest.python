@@ -69,6 +69,7 @@ import {
     SdkSimpleType,
     SdkEnumValueType,
     getSdkEnum,
+    getSdkConstant,
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
@@ -539,16 +540,30 @@ function isAzureCoreModel(t: Type): boolean {
     );
 }
 
+function hasDefaultStatusCode(response: HttpOperationResponse): boolean {
+    return response.statusCode === "*";
+}
+
 function emitResponse(
     context: SdkContext,
     response: HttpOperationResponse,
     innerResponse: HttpOperationResponseContent,
+    operation: Operation,
 ): Record<string, any> {
     let type = undefined;
+    let resultProperty = undefined;
     if (innerResponse.body?.type) {
         let modelType = undefined;
         if (innerResponse.body.type.kind === "Model") {
-            modelType = getEffectiveSchemaType(context, innerResponse.body.type);
+            const lroMeta = getLroMetadata(context.program, operation);
+            if (!hasDefaultStatusCode(response) && lroMeta) {
+                modelType = lroMeta.logicalResult;
+                if (lroMeta.finalStep?.target.kind === "ModelProperty") {
+                    resultProperty = lroMeta.finalStep.target.name;
+                }
+            } else {
+                modelType = getEffectiveSchemaType(context, innerResponse.body.type);
+            }
         }
         if (modelType && modelType.decorators.find((d) => d.decorator.name === "$pagedResult")) {
             type = getType(context, Array.from(modelType.properties.values())[0].type);
@@ -559,7 +574,7 @@ function emitResponse(
         }
     }
     const statusCodes = [];
-    if (response.statusCode === "*") {
+    if (hasDefaultStatusCode(response)) {
         statusCodes.push("default");
     } else {
         statusCodes.push(parseInt(response.statusCode));
@@ -570,6 +585,7 @@ function emitResponse(
         addedOn: getAddedOnVersion(context, response.type),
         discriminator: "basic",
         type: type,
+        resultProperty: resultProperty,
     };
 }
 
@@ -699,7 +715,7 @@ function emitBasicOperation(
     const isOverriden: boolean = false;
     for (const response of httpOperation.responses) {
         for (const innerResponse of response.responses) {
-            const emittedResponse = emitResponse(context, response, innerResponse);
+            const emittedResponse = emitResponse(context, response, innerResponse, operation);
             if (
                 emittedResponse["type"] &&
                 parameters.filter((e) => e.restApiName.toLowerCase() === "accept").length === 0
@@ -856,13 +872,9 @@ function emitEnum(context: SdkContext, type: Enum): Record<string, any> {
         type: sdkType.kind,
         name: sdkType.name,
         description: sdkType.doc,
-        valueType: emitSimpleType(context, sdkType.valueType as SdkSimpleType),
+        valueType: emitSimpleType(context, sdkType.valueType),
         values: sdkType.values.map((x) => emitEnumMember(x)),
     };
-}
-
-function constantType(value: any, valueType: string): Record<string, any> {
-    return { type: "constant", value: value, valueType: { type: valueType } };
 }
 
 function emitCredential(auth: HttpAuth): Record<string, any> {
@@ -950,11 +962,14 @@ function emitListOrDict(context: SdkContext, type: Model): Record<string, any> |
 function mapCadlType(context: SdkContext, type: Type): any {
     switch (type.kind) {
         case "Number":
-            return constantType(type.value, intOrFloat(type.value));
         case "String":
-            return constantType(type.value, "string");
         case "Boolean":
-            return constantType(type.value, "boolean");
+            const sdkType = getSdkConstant(context, type)!;
+            return {
+                type: sdkType.kind,
+                value: sdkType.value,
+                valueType: emitSimpleType(context, sdkType.valueType),
+            };
         case "Model":
             return emitListOrDict(context, type);
     }
@@ -987,7 +1002,7 @@ function emitUnion(context: SdkContext, type: Union): Record<string, any> {
             description: sdkType.doc || `Type of ${sdkType.name}`,
             internal: true,
             type: sdkType.kind,
-            valueType: emitSimpleType(context, sdkType.valueType as SdkSimpleType),
+            valueType: emitSimpleType(context, sdkType.valueType),
             values: sdkType.values.map((x) => emitEnumMember(x)),
             xmlMetadata: {},
         };
