@@ -68,7 +68,7 @@
     "rimraf": "~3.0.2",
     "typescript": "^4.8.3",
     "@azure-tools/typespec-azure-core": "~0.29.0",
-    "@azure-tools/cadl-ranch-specs": "~0.14.3",
+    "@azure-tools/cadl-ranch-specs": "~0.14.4",
     "@azure-tools/cadl-ranch-expect": "~0.2.4",
     "@typespec/openapi": "~0.43.0",
     "prettier": "^2.7.1"
