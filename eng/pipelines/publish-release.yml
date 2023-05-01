@@ -13,7 +13,7 @@ steps:
     - script: npm install -g pnpm@7.24.3
       displayName: Install PNPM 7.24.3
 
-    - script: npm install @azure-tools/cadl-ranch
+    - script: npm install -g @azure-tools/cadl-ranch
       displayName: Install cadl ranch
 
     - script: pnpm install
