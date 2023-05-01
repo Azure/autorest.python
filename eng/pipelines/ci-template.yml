@@ -34,7 +34,7 @@ steps:
       displayName: Install TypeSpec
       condition: and(succeeded(), ${{ parameters.installTypeSpec }})
 
-    - script: npm install -g @azure-tools/cadl-ranch
+    - script: npm install @azure-tools/cadl-ranch
       displayName: Install Cadl Ranch
       condition: and(succeeded(), ${{ parameters.installCadlRanch }})
 
