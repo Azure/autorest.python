@@ -69,7 +69,7 @@
     "typescript": "^5.0.4",
     "@azure-tools/cadl-ranch-specs": "~0.14.6",
     "@azure-tools/cadl-ranch-expect": "~0.3.0",
-    "@typespec/openapi": ">=0.43.1 <1.0.0",
+    "@typespec/openapi": ">=0.43.0 <1.0.0",
     "prettier": "^2.8.8"
   }
 }
