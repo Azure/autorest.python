@@ -150,9 +150,7 @@ class ModelType(  # pylint: disable=abstract-method
         # so we can call it again
         self._created_json_template_representation = False
         optional_keys = [
-            f'"{p.wire_name}"'
-            for p in self.properties
-            if getattr(p, "optional", False)
+            f'"{p.wire_name}"' for p in self.properties if getattr(p, "optional", False)
         ]
         return OrderedDict(
             sorted(

@@ -212,7 +212,9 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
     def update_types(self, yaml_data: List[Dict[str, Any]]) -> None:
         for type in yaml_data:
             for property in type.get("properties", []):
-                property["description"] = update_description(property.get("description", ""))
+                property["description"] = update_description(
+                    property.get("description", "")
+                )
                 property["clientName"] = self.pad_reserved_words(
                     property["clientName"].lower(), PadType.PROPERTY
                 )
