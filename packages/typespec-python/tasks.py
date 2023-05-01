@@ -134,16 +134,16 @@ def _get_package_name(spec: Path):
 
 def _run_cadl(cmds):
     if len(cmds) == 1:
-        success = _run_single_cadl(cmds[0])
+        success = _run_single_tsp(cmds[0])
     else:
         with Pool() as pool:
-            result = pool.map(_run_single_cadl, cmds)
+            result = pool.map(_run_single_tsp, cmds)
         success = all(result)
     if not success:
         raise SystemExit("Cadl generation fails")
 
 
-def _run_single_cadl(cmd):
+def _run_single_tsp(cmd):
     result = run(cmd, warn=True)
     if result.ok:
         print(Fore.GREEN + f'Call "{cmd}" done with success')
