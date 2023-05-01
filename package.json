@@ -38,9 +38,16 @@
         "eslint-plugin-unicorn": "^46.0.0",
         "prettier": "^2.8.8",
         "typescript": "^5.0.4",
-        "syncpack": "^8.2.4"
+        "syncpack": "^9.8.6"
     },
     "syncpack": {
-        "workspace": false
+        "dependencyTypes": [
+          "dev",
+          "overrides",
+          "peer",
+          "pnpmOverrides",
+          "prod",
+          "resolutions"
+        ]
     }
 }
