@@ -19,9 +19,9 @@ steps:
       inputs:
           versionSpec: "16.x"
     - task: UsePythonVersion@0
-      displayName: "Use Python 3.7"
+      displayName: "Use Python 3.11"
       inputs:
-          versionSpec: 3.7
+          versionSpec: 3.11
 
     - script: npm install -g pnpm@7.24.3
       displayName: Install pnpm 7.24.3
