@@ -74,7 +74,7 @@ async def test_list_with_page(client: aio.BasicClient):
 
 @pytest.mark.asyncio
 async def test_list_with_custom_page_model(client: aio.BasicClient):
-    # await _list_with_page_tests(client.list_with_custom_page_model())
+    await _list_with_page_tests(client.list_with_custom_page_model())
     with pytest.raises(AttributeError):
         models.CustomPageModel
 
