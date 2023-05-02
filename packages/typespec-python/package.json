@@ -48,7 +48,7 @@
     "@typespec/rest": ">=0.43.0 <1.0.0",
     "@typespec/http": ">=0.43.1 <1.0.0",
     "@azure-tools/typespec-azure-core": ">=0.29.0 <1.0.0",
-    "@azure-tools/typespec-client-generator-core": ">=0.30.0-dev.10 <1.0.0"
+    "@azure-tools/typespec-client-generator-core": ">=0.30.0-dev.13 <1.0.0"
   },
   "dependencies": {
     "js-yaml": "~4.1.0",

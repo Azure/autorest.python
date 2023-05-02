@@ -95,7 +95,7 @@ class ParameterSerializer:
         retval.extend(
             [
                 '    "{}": {},'.format(
-                    path_parameter.rest_api_name,
+                    path_parameter.wire_name,
                     self.serialize_parameter(path_parameter, serializer_name),
                 )
                 for path_parameter in parameters
@@ -143,7 +143,7 @@ class ParameterSerializer:
                         else "params"
                     )
                     default_value = (
-                        f"_{kwarg_dict}.pop('{kwarg.rest_api_name}', {default_value})"
+                        f"_{kwarg_dict}.pop('{kwarg.wire_name}', {default_value})"
                     )
                 retval.append(
                     f"{kwarg.client_name}: {type_annot} = kwargs.pop('{kwarg.client_name}', "

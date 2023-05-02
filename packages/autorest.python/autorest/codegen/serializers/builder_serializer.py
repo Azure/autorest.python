@@ -200,7 +200,7 @@ def _serialize_multipart_body(builder: BuilderType) -> List[str]:
     retval.append("# Construct form data")
     retval.append(f"_{body_param.client_name} = {{")
     for param in body_param.entries:
-        retval.append(f'    "{param.rest_api_name}": {param.client_name},')
+        retval.append(f'    "{param.wire_name}": {param.client_name},')
     retval.append("}")
     return retval
 
@@ -396,7 +396,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
             # we just assume one kind of polymorphic body for input
             discriminator_name = cast(
                 Property, polymorphic_subtypes[0].discriminator
-            ).rest_api_name
+            ).wire_name
             template.append(
                 "# The input is polymorphic. The following are possible polymorphic "
                 f'inputs based off discriminator "{discriminator_name}":'
@@ -425,7 +425,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
     def _serialize_parameter(self, param: Parameter, kwarg_name: str) -> List[str]:
         set_parameter = "_{}['{}'] = {}".format(
             kwarg_name,
-            param.rest_api_name,
+            param.wire_name,
             self.parameter_serializer.serialize_parameter(param, self.serializer_name),
         )
         if not param.optional:
@@ -480,7 +480,7 @@ class RequestBuilderSerializer(
                     if param.location == ParameterLocation.HEADER
                     else "params"
                 )
-                return f"_{kwarg_dict}.pop('{param.rest_api_name}', {param_type.get_declaration()})"
+                return f"_{kwarg_dict}.pop('{param.wire_name}', {param_type.get_declaration()})"
             return f"{param_type.get_declaration()}"
 
         return [
@@ -614,7 +614,7 @@ class _OperationSerializer(
                 # we just assume one kind of polymorphic body for input
                 discriminator_name = cast(
                     Property, polymorphic_subtypes[0].discriminator
-                ).rest_api_name
+                ).wire_name
                 retval.append(
                     "# The response is polymorphic. The following are possible polymorphic "
                     f'responses based off discriminator "{discriminator_name}":'
@@ -792,7 +792,7 @@ class _OperationSerializer(
                 and not next(
                     p
                     for p in builder.parameters
-                    if p.rest_api_name.lower() == "content-type"
+                    if p.wire_name.lower() == "content-type"
                 ).optional
             ):
                 content_types = "'" + "', '".join(body_param.content_types) + "'"
@@ -1043,8 +1043,8 @@ class _OperationSerializer(
     ) -> List[str]:
         retval: List[str] = [
             (
-                f"response_headers['{response_header.rest_api_name}']=self._deserialize("
-                f"'{response_header.serialization_type}', response.headers.get('{response_header.rest_api_name}'))"
+                f"response_headers['{response_header.wire_name}']=self._deserialize("
+                f"'{response_header.serialization_type}', response.headers.get('{response_header.wire_name}'))"
             )
             for response_header in response.headers
         ]

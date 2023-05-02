@@ -41,7 +41,7 @@ def get_parameter(name, required, default_value=None, type=None):
 
     return Parameter(
         yaml_data={
-            "restApiName": name,
+            "wireName": name,
             "clientName": name,
             "location": "path",
             "clientDefaultValue": default_value,

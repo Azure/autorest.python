@@ -188,7 +188,7 @@ class MsrestModelSerializer(_ModelSerializer):
                 _ModelSerializer.escape_dot(n) for n in prop.flattened_names
             )
         else:
-            attribute_key = _ModelSerializer.escape_dot(prop.rest_api_name)
+            attribute_key = _ModelSerializer.escape_dot(prop.wire_name)
         if prop.type.xml_serialization_ctxt:
             xml_metadata = f", 'xml': {{{prop.type.xml_serialization_ctxt}}}"
         else:
@@ -253,8 +253,8 @@ class DpgModelSerializer(_ModelSerializer):
     @staticmethod
     def declare_property(prop: Property) -> str:
         args = []
-        if prop.client_name != prop.rest_api_name or prop.is_discriminator:
-            args.append(f'name="{prop.rest_api_name}"')
+        if prop.client_name != prop.wire_name or prop.is_discriminator:
+            args.append(f'name="{prop.wire_name}"')
         if prop.readonly:
             args.append("readonly=True")
         if prop.client_default_value is not None:

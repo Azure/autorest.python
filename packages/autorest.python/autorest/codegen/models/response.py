@@ -26,7 +26,7 @@ class ResponseHeader(BaseModel):
         type: BaseType,
     ) -> None:
         super().__init__(yaml_data, code_model)
-        self.rest_api_name: str = yaml_data["restApiName"]
+        self.wire_name: str = yaml_data["wireName"]
         self.type = type
 
     @property
