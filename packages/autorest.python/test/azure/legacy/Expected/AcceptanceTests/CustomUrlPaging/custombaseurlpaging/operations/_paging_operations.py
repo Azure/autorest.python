@@ -48,7 +48,7 @@ def build_get_pages_partial_url_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_pages_partial_url_operation_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_get_pages_partial_url_operation_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -62,9 +62,7 @@ def build_get_pages_partial_url_operation_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_pages_partial_url_operation_next_request(  # pylint: disable=name-too-long
-    next_link: str, **kwargs: Any
-) -> HttpRequest:
+def build_get_pages_partial_url_operation_next_request(next_link: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")

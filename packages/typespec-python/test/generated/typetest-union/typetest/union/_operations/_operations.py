@@ -70,7 +70,7 @@ def build_union_send_int_array_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_union_send_first_named_union_value_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_union_send_first_named_union_value_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -84,7 +84,7 @@ def build_union_send_first_named_union_value_request(**kwargs: Any) -> HttpReque
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_union_send_second_named_union_value_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_union_send_second_named_union_value_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))

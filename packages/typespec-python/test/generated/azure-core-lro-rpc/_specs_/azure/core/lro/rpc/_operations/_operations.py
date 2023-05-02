@@ -84,7 +84,7 @@ def build_rpc_get_job_request(job_id: str, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_rpc_create_job_final_on_location_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_rpc_create_job_final_on_location_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 

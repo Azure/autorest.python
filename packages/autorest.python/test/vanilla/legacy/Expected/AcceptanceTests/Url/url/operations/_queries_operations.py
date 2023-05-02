@@ -115,7 +115,7 @@ def build_get_int_one_million_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_get_int_negative_one_million_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_get_int_negative_one_million_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -636,7 +636,7 @@ def build_array_string_csv_empty_request(*, array_query: Optional[List[str]] = N
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_array_string_no_collection_format_empty_request(  # pylint: disable=name-too-long
+def build_array_string_no_collection_format_empty_request(
     *, array_query: Optional[List[str]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})

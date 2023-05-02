@@ -32,9 +32,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_auto_rest_report_service_get_report_request(  # pylint: disable=name-too-long
-    *, qualifier: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
+def build_auto_rest_report_service_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -53,7 +51,7 @@ def build_auto_rest_report_service_get_report_request(  # pylint: disable=name-t
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_auto_rest_report_service_get_optional_report_request(  # pylint: disable=name-too-long
+def build_auto_rest_report_service_get_optional_report_request(
     *, qualifier: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})

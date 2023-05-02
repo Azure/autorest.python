@@ -265,7 +265,7 @@ def build_duration_patch_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
 
 
-def build_collections_byte_get_non_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_collections_byte_get_non_null_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -293,7 +293,7 @@ def build_collections_byte_get_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_collections_byte_patch_non_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_collections_byte_patch_non_null_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -307,7 +307,7 @@ def build_collections_byte_patch_non_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
 
 
-def build_collections_byte_patch_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_collections_byte_patch_null_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -321,7 +321,7 @@ def build_collections_byte_patch_null_request(**kwargs: Any) -> HttpRequest:  # 
     return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
 
 
-def build_collections_model_get_non_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_collections_model_get_non_null_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -349,7 +349,7 @@ def build_collections_model_get_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_collections_model_patch_non_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_collections_model_patch_non_null_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -363,7 +363,7 @@ def build_collections_model_patch_non_null_request(**kwargs: Any) -> HttpRequest
     return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
 
 
-def build_collections_model_patch_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_collections_model_patch_null_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))

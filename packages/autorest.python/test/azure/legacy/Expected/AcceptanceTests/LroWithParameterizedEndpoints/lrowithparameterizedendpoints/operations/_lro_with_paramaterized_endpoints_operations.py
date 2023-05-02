@@ -40,7 +40,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_poll_with_parameterized_endpoints_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_poll_with_parameterized_endpoints_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -54,9 +54,7 @@ def build_poll_with_parameterized_endpoints_request(**kwargs: Any) -> HttpReques
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_poll_with_constant_parameterized_endpoints_request(  # pylint: disable=name-too-long
-    **kwargs: Any,
-) -> HttpRequest:
+def build_poll_with_constant_parameterized_endpoints_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     constant_parameter: Literal["iAmConstant"] = kwargs.pop("constant_parameter", "iAmConstant")
@@ -77,9 +75,7 @@ def build_poll_with_constant_parameterized_endpoints_request(  # pylint: disable
 
 
 class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpointsMixinABC):
-    def _poll_with_parameterized_endpoints_initial(  # pylint: disable=name-too-long
-        self, account_name: str, **kwargs: Any
-    ) -> Optional[str]:
+    def _poll_with_parameterized_endpoints_initial(self, account_name: str, **kwargs: Any) -> Optional[str]:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -181,7 +177,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
                     lro_delay,
                     lro_options={"final-state-via": "location"},
                     path_format_arguments=path_format_arguments,
-                    **kwargs,
+                    **kwargs
                 ),
             )
         elif polling is False:
@@ -199,9 +195,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
 
     begin_poll_with_parameterized_endpoints.metadata = {"url": "/lroParameterizedEndpoints"}
 
-    def _poll_with_constant_parameterized_endpoints_initial(  # pylint: disable=name-too-long
-        self, account_name: str, **kwargs: Any
-    ) -> Optional[str]:
+    def _poll_with_constant_parameterized_endpoints_initial(self, account_name: str, **kwargs: Any) -> Optional[str]:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -259,9 +253,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
     }
 
     @distributed_trace
-    def begin_poll_with_constant_parameterized_endpoints(  # pylint: disable=name-too-long
-        self, account_name: str, **kwargs: Any
-    ) -> LROPoller[str]:
+    def begin_poll_with_constant_parameterized_endpoints(self, account_name: str, **kwargs: Any) -> LROPoller[str]:
         """Poll with method and client level parameters in endpoint, with a constant value.
 
         :param account_name: Account Name. Pass in 'local' to pass test. Required.
@@ -296,7 +288,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs,
+                **kwargs
             )
         kwargs.pop("error_map", None)
 

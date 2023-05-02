@@ -17,7 +17,7 @@ from ._serialization import Deserializer, Serializer
 from .operations import PagingOperations
 
 
-class AutoRestParameterizedHostTestPagingClient:  # pylint: disable=client-accepts-api-version-keyword,name-too-long
+class AutoRestParameterizedHostTestPagingClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
     :ivar paging: PagingOperations operations

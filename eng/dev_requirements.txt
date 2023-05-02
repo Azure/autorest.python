@@ -1,4 +1,4 @@
-azure-pylint-guidelines-checker==0.0.7
+azure-pylint-guidelines-checker==0.0.8
 invoke==2.0.0
 colorama==0.4.6
 debugpy==1.6.6
