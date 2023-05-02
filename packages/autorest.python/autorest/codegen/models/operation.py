@@ -130,8 +130,6 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         if self.response_type_annotation(async_mode=False) == "None":
             # doesn't matter if it's async or not
             retval = add_to_pylint_disable(retval, "inconsistent-return-statements")
-        if len(self.name) > 40:
-            retval = add_to_pylint_disable(retval, "name-too-long")
         return retval
 
     def cls_type_annotation(self, *, async_mode: bool) -> str:

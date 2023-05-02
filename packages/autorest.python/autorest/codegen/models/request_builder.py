@@ -57,12 +57,6 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
         self.method: str = yaml_data["method"]
         self.want_tracing = False
 
-    @property
-    def pylint_disable(self) -> str:
-        if len(self.name) > 40:
-            return add_to_pylint_disable("", "name-too-long")
-        return ""
-
     def response_type_annotation(self, **kwargs) -> str:
         return "HttpRequest"
 
