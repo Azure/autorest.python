@@ -9,7 +9,6 @@ import {
     getMinValue,
     getPattern,
     getSummary,
-    getVisibility,
     ignoreDiagnostics,
     isErrorModel,
     isNeverType,
@@ -20,7 +19,6 @@ import {
     getDiscriminator,
     Operation,
     Scalar,
-    createDecoratorDefinition,
     EmitContext,
     listServices,
     Union,
@@ -775,17 +773,6 @@ function emitBasicOperation(
     ];
 }
 
-function isReadOnly(context: SdkContext, type: ModelProperty): boolean {
-    // https://microsoft.github.io/cadl/standard-library/rest/operations#automatic-visibility
-    // Only "read" should be readOnly
-    const visibility = getVisibility(context.program, type);
-    if (visibility) {
-        return visibility.includes("read");
-    } else {
-        return false;
-    }
-}
-
 function emitProperty(context: SdkContext, type: ModelProperty): Record<string, any> {
     const sdkProperty = getSdkModelPropertyType(context, type);
     return {
@@ -833,10 +820,6 @@ function emitModel(context: SdkContext, type: Model): Record<string, any> {
         base: modelName === "" ? "json" : "dpg",
         internal: isInternal(context, type),
     };
-}
-
-function intOrFloat(value: number): string {
-    return value.toString().indexOf(".") === -1 ? "integer" : "float";
 }
 
 function enumName(name: string): string {
