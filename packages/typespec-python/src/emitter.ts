@@ -1,6 +1,5 @@
 import { getPagedResult, getLroMetadata } from "@azure-tools/typespec-azure-core";
 import {
-    EnumMember,
     Enum,
     getDoc,
     getFriendlyName,
@@ -25,8 +24,6 @@ import {
     EmitContext,
     listServices,
     Union,
-    isNullType,
-    SyntaxKind,
     Type,
     getNamespaceFullName,
     IntrinsicType,
@@ -59,7 +56,6 @@ import {
     getClientFormat,
     createSdkContext,
     SdkContext,
-    getPropertyNames,
     getLibraryName,
     getAllModels,
     isInternal,
@@ -70,6 +66,7 @@ import {
     SdkEnumValueType,
     getSdkEnum,
     getSdkConstant,
+    getSdkModelPropertyType,
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
@@ -175,7 +172,7 @@ function handleDiscriminator(context: SdkContext, type: Model, model: Record<str
         for (const childModel of type.derivedModels) {
             const modelType = getType(context, childModel);
             for (const property of modelType.properties) {
-                if (property.restApiName === discriminator.propertyName) {
+                if (property.wireName === discriminator.propertyName) {
                     modelType.discriminatorValue = property.type.value;
                     property.isDiscriminator = true;
                     model.discriminatedSubtypes[property.type.value] = modelType;
@@ -327,7 +324,7 @@ function emitParamBase(context: SdkContext, parameter: ModelProperty | Type): Pa
 type BodyParameter = ParamBase & {
     contentTypes: string[];
     type: Type;
-    restApiName: string;
+    wireName: string;
     location: "body";
     defaultContentType: string;
 };
@@ -379,7 +376,7 @@ function emitBodyParameter(context: SdkContext, httpOperation: HttpOperation): B
     return {
         contentTypes,
         type,
-        restApiName: body.parameter?.name ?? "body",
+        wireName: body.parameter?.name ?? "body",
         location: "body",
         ...base,
         defaultContentType:
@@ -402,7 +399,7 @@ function emitParameter(
         type = type["valueType"];
     }
     const paramMap: Record<string, any> = {
-        restApiName: parameter.type === "path" ? parameter.param.name : parameter.name,
+        wireName: parameter.type === "path" ? parameter.param.name : parameter.name,
         location: parameter.type,
         type: type,
         implementation: implementation,
@@ -450,7 +447,7 @@ function emitContentTypeParameter(
         inOverriden: inOverriden,
         location: "header",
         optional: true,
-        restApiName: "Content-Type",
+        wireName: "Content-Type",
         type: KnownTypes.string,
     };
 }
@@ -473,7 +470,7 @@ function emitFlattenedParameter(
         isApiVersion: bodyParameter["isApiVersion"],
         location: "other",
         optional: property["optional"],
-        restApiName: null,
+        wireName: null,
         skipUrlEncoding: false,
         type: property["type"],
         defaultToUnsetSentinel: true,
@@ -512,7 +509,7 @@ function emitAcceptParameter(inOverload: boolean, inOverriden: boolean): Record<
         inOverriden: inOverriden,
         location: "header",
         optional: false,
-        restApiName: "Accept",
+        wireName: "Accept",
         skipUrlEncoding: false,
         type: getConstantType("application/json"),
     };
@@ -526,7 +523,7 @@ function emitResponseHeaders(context: SdkContext, headers?: Record<string, Model
     for (const [key, value] of Object.entries(headers)) {
         retval.push({
             type: getEntityType(context, value),
-            restApiName: key,
+            wireName: key,
         });
     }
     return retval;
@@ -718,7 +715,7 @@ function emitBasicOperation(
             const emittedResponse = emitResponse(context, response, innerResponse, operation);
             if (
                 emittedResponse["type"] &&
-                parameters.filter((e) => e.restApiName.toLowerCase() === "accept").length === 0
+                parameters.filter((e) => e.wireName.toLowerCase() === "accept").length === 0
             ) {
                 parameters.push(emitAcceptParameter(isOverload, isOverriden));
             }
@@ -738,7 +735,7 @@ function emitBasicOperation(
         bodyParameter = undefined;
     } else {
         bodyParameter = emitBodyParameter(context, httpOperation);
-        if (parameters.filter((e) => e.restApiName.toLowerCase() === "content-type").length === 0) {
+        if (parameters.filter((e) => e.wireName.toLowerCase() === "content-type").length === 0) {
             parameters.push(emitContentTypeParameter(bodyParameter, isOverload, isOverriden));
         }
         if (bodyParameter.type.type === "model" && bodyParameter.type.base === "json") {
@@ -747,7 +744,7 @@ function emitBasicOperation(
                 bodyParameter.defaultToUnsetSentinel = true;
             }
             for (const property of bodyParameter.type.properties) {
-                bodyParameter["propertyToParameterName"][property["restApiName"]] = property["clientName"];
+                bodyParameter["propertyToParameterName"][property["wireName"]] = property["clientName"];
                 parameters.push(emitFlattenedParameter(bodyParameter, property));
             }
         }
@@ -789,25 +786,16 @@ function isReadOnly(context: SdkContext, type: ModelProperty): boolean {
     }
 }
 
-function emitProperty(context: SdkContext, property: ModelProperty): Record<string, any> {
-    let clientDefaultValue = undefined;
-    const propertyDefaultKind = property.default?.kind;
-    if (
-        property.default &&
-        (propertyDefaultKind === "Number" || propertyDefaultKind === "String" || propertyDefaultKind === "Boolean")
-    ) {
-        clientDefaultValue = property.default.value;
-    }
-    const [clientName, jsonName] = getPropertyNames(context, property);
+function emitProperty(context: SdkContext, type: ModelProperty): Record<string, any> {
+    const sdkProperty = getSdkModelPropertyType(context, type);
     return {
-        clientName: camelToSnakeCase(clientName),
-        restApiName: jsonName,
-        type: getEntityType(context, property),
-        optional: property.optional,
-        description: getDocStr(context, property),
-        addedOn: getAddedOnVersion(context, property),
-        readonly: isReadOnly(context, property) || isKey(context.program, property),
-        clientDefaultValue: clientDefaultValue,
+        clientName: camelToSnakeCase(sdkProperty.name),
+        wireName: sdkProperty.wireName,
+        type: getEntityType(context, type),
+        optional: sdkProperty.optional,
+        description: sdkProperty.doc,
+        addedOn: getAddedOnVersion(context, type),
+        readonly: sdkProperty.readonly,
     };
 }
 
@@ -1091,7 +1079,7 @@ function emitServerParams(context: SdkContext, namespace: Namespace): Record<str
                 description: "Service host",
                 clientName: "endpoint",
                 clientDefaultValue: null,
-                restApiName: "$host",
+                wireName: "$host",
                 location: "path",
                 type: KnownTypes.string,
                 implementation: "Client",
@@ -1123,7 +1111,7 @@ function emitServerParams(context: SdkContext, namespace: Namespace): Record<str
                 description: "Service host",
                 clientName: "endpoint",
                 clientDefaultValue: server.url,
-                restApiName: "$host",
+                wireName: "$host",
                 location: "path",
                 type: KnownTypes.string,
                 implementation: "Client",
@@ -1162,7 +1150,7 @@ function emitCredentialParam(context: SdkContext, namespace: Namespace): Record<
                 description: "Credential needed for the client to connect to Azure.",
                 clientName: "credential",
                 location: "other",
-                restApiName: "credential",
+                wireName: "credential",
                 implementation: "Client",
                 skipUrlEncoding: true,
                 inOverload: false,
@@ -1192,7 +1180,7 @@ function getApiVersionParameter(context: SdkContext): Record<string, any> | void
             description: "Api Version",
             implementation: "Client",
             location: "query",
-            restApiName: "api-version",
+            wireName: "api-version",
             skipUrlEncoding: false,
             optional: false,
             inDocString: true,
