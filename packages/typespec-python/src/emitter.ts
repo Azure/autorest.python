@@ -792,8 +792,8 @@ function getName(context: SdkContext, type: Model): string {
         return friendlyName;
     } else {
         const modelName = getLibraryName(context, type);
-        if (type.templateArguments && type.templateArguments.length > 0) {
-            return modelName + type.templateArguments.map((it) => (it.kind === "Model" ? it.name : "")).join("");
+        if (type.templateMapper && type.templateMapper.args.length > 0) {
+            return modelName + type.templateMapper.args.map((it) => (it.kind === "Model" ? it.name : "")).join("");
         } else {
             return modelName;
         }
