@@ -15,6 +15,9 @@ variables:
   PythonVersion: "3.10"
 
 steps:
+    - script: npm install -g pnpm@8.3.1
+      displayName: Install pnpm 8.3.1
+
     - script: npm install -g npm-check-updates
       displayName: Install npm-check-updates
 
