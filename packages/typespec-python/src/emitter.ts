@@ -340,8 +340,8 @@ function getBodyType(context: SdkContext, route: HttpOperation): Type {
                     // response body type is reosurce type, and request body type (if templated) contains resource type
                     if (
                         bodyTypeInResponse === resourceType &&
-                        bodyModel.templateArguments &&
-                        bodyModel.templateArguments.some((it) => {
+                        bodyModel.templateMapper &&
+                        bodyModel.templateMapper.args.some((it) => {
                             return it.kind === "Model" || it.kind === "Union" ? it === bodyTypeInResponse : false;
                         })
                     ) {
