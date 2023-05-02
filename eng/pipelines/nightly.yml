@@ -20,6 +20,7 @@ steps:
 
     - script: ncu --target @next --filter "@typespec*,@azure-tools*" -u
       displayName: Update monorepo base's tsp packages to next version
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
 
     - script: ncu --target @next --filter "@typespec*,@azure-tools*" -u
       displayName: Update tsp emitter's tsp packages to next version
