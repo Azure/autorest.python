@@ -22,12 +22,12 @@ steps:
       displayName: Install npm-check-updates
 
     - script: ncu --target @next --filter "@typespec*,@azure-tools*" -u
-      displayName: Update monorepo base's tsp packages to next version
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
-
-    - script: ncu --target @next --filter "@typespec*,@azure-tools*" -u
       displayName: Update tsp emitter's tsp packages to next version
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/
+
+    - script: ncu --target @next --filter "@typespec*,@azure-tools*" -u
+      displayName: Update monorepo base's tsp packages to next version
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
 
     - template: ci-template.yml
       parameters:
