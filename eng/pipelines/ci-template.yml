@@ -6,6 +6,7 @@ parameters:
     pythonCodeChecks: false
     pythonFolderName: ""
     regenerate: false
+    updateToLatestTypespec: false
 
 steps:
     - checkout: self
@@ -37,6 +38,20 @@ steps:
     - script: npm install -g @azure-tools/cadl-ranch
       displayName: Install Cadl Ranch
       condition: and(succeeded(), ${{ parameters.installCadlRanch }})
+
+    - script: npm install -g npm-check-updates
+      displayName: Install npm-check-updates
+      condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
+
+    - script: ncu --target @next --filter "@typespec*,@azure-tools*" -u
+      displayName: Update monorepo base's tsp packages to next version
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+      condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
+
+    - script: ncu --target @next --filter "@typespec*,@azure-tools*" -u
+      displayName: Update tsp emitter's tsp packages to next version
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/
+      condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
 
     - script: pnpm install
       displayName: Pnpm install
