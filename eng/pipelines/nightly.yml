@@ -1,0 +1,37 @@
+trigger:
+  branches:
+    include:
+      - main
+pr: none
+
+resources:
+  repositories:
+    - repository: azure-sdk-tools
+      type: github
+      endpoint: Azure
+      name: Azure/azure-sdk-tools
+
+variables:
+  PythonVersion: "3.10"
+
+steps:
+    - script: npm install -g npm-check-updates
+      displayName: Install npm-check-updates
+
+    - script: ncu --target @next --filter "@typespec*,@azure-tools*" -u
+      displayName: Update monorepo base's tsp packages to next version
+
+    - script: ncu --target @next --filter "@typespec*,@azure-tools*" -u
+      displayName: Update tsp emitter's tsp packages to next version
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/
+
+    - template: ci-template.yml
+      parameters:
+        installTypeSpec: true
+        installCadlRanch: true
+        folderName: "typespec-python"
+        regenerate: true
+
+    - template: generated-code-checks-template.yml
+      parameters:
+        package: "typespec-python"
