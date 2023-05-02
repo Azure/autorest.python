@@ -53,9 +53,15 @@ steps:
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/
       condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
 
+    - script: pnpm install --no-frozen-lockfile
+      displayName: Pnpm install
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+      condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
+
     - script: pnpm install
       displayName: Pnpm install
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+      condition: and(failed(), ${{ parameters.updateToLatestTypespec }})
 
     - script: pnpm run build
       displayName: Build project
