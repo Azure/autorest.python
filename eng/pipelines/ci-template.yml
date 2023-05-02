@@ -114,12 +114,12 @@ steps:
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
       condition: and(succeeded(), ${{ parameters.regenerate }})
 
-    - script: node ./eng/scripts/check-for-changed-files.js
+    - script: node ../../../eng/scripts/check-for-changed-files.js
       displayName: Fail on regeneration diff in Typespec
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/test
       condition: and(succeeded(), ${{ parameters.regenerate }})
 
-    - script: node ./eng/scripts/check-for-changed-files.js
+    - script: node ../../../eng/scripts/check-for-changed-files.js
       displayName: Fail on regeneration diff in Autorest
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test
       condition: and(succeeded(), ${{ parameters.regenerate }})
