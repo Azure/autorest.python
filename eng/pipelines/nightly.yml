@@ -17,9 +17,11 @@ variables:
   PythonVersion: "3.10"
 
 steps:
+    - scripts: npm install -g @typespec/compiler@next
+      displayName: Install @typespec/compiler@next
+
     - template: ci-template.yml
       parameters:
-        installTypeSpec: true
         installCadlRanch: true
         folderName: "typespec-python"
         regenerate: true
