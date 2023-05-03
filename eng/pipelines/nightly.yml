@@ -17,7 +17,7 @@ variables:
   PythonVersion: "3.10"
 
 steps:
-    - scripts: npm install -g @typespec/compiler@next
+    - script: npm install -g @typespec/compiler@next
       displayName: Install @typespec/compiler@next
 
     - template: ci-template.yml
