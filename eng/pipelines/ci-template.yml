@@ -6,6 +6,7 @@ parameters:
     pythonCodeChecks: false
     pythonFolderName: ""
     regenerate: false
+    updateToLatestTypespec: false
 
 steps:
     - checkout: self
@@ -23,8 +24,8 @@ steps:
       inputs:
           versionSpec: 3.11
 
-    - script: npm install -g pnpm@7.24.3
-      displayName: Install pnpm 7.24.3
+    - script: npm install -g pnpm@8.3.1
+      displayName: Install pnpm 8.3.1
 
     - script: npm install -g autorest
       displayName: Install autorest
@@ -38,9 +39,29 @@ steps:
       displayName: Install Cadl Ranch
       condition: and(succeeded(), ${{ parameters.installCadlRanch }})
 
+    - script: npm install -g npm-check-updates
+      displayName: Install npm-check-updates
+      condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
+
+    - script: ncu --target @next --filter "@typespec*,@azure-tools*" -u
+      displayName: Update monorepo base's tsp packages to next version
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+      condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
+
+    - script: ncu --target @next --filter "@typespec*,@azure-tools*" -u
+      displayName: Update tsp emitter's tsp packages to next version
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/
+      condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
+
+    - script: pnpm install --no-frozen-lockfile
+      displayName: Pnpm install
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+      condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
+
     - script: pnpm install
       displayName: Pnpm install
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+      condition: and(succeeded(), eq(${{ parameters.updateToLatestTypespec }}, false))
 
     - script: pnpm run build
       displayName: Build project
@@ -50,6 +71,11 @@ steps:
       displayName: Check version mismatch
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
 
+    - script: pnpm lint
+      displayName: Lint project
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+      continueOnError: true
+      
     - script: pnpm check-format
       displayName: Check formatting
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
@@ -93,9 +119,14 @@ steps:
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
       condition: and(succeeded(), ${{ parameters.regenerate }})
 
-    - script: node ./eng/scripts/check-for-changed-files.js
-      displayName: Fail on regeneration diff
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+    - script: node ../../../eng/scripts/check-for-changed-files.js
+      displayName: Fail on regeneration diff in Typespec
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/test
+      condition: and(succeeded(), ${{ parameters.regenerate }})
+
+    - script: node ../../../eng/scripts/check-for-changed-files.js
+      displayName: Fail on regeneration diff in Autorest
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test
       condition: and(succeeded(), ${{ parameters.regenerate }})
 
     - task: UsePythonVersion@0
