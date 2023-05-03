@@ -9,7 +9,6 @@ import {
     getMinValue,
     getPattern,
     getSummary,
-    getVisibility,
     ignoreDiagnostics,
     isErrorModel,
     isNeverType,
@@ -19,7 +18,6 @@ import {
     getEffectiveModelType,
     getDiscriminator,
     Operation,
-    isKey,
     Scalar,
     EmitContext,
     listServices,
@@ -342,8 +340,8 @@ function getBodyType(context: SdkContext, route: HttpOperation): Type {
                     // response body type is reosurce type, and request body type (if templated) contains resource type
                     if (
                         bodyTypeInResponse === resourceType &&
-                        bodyModel.templateArguments &&
-                        bodyModel.templateArguments.some((it) => {
+                        bodyModel.templateMapper &&
+                        bodyModel.templateMapper.args.some((it) => {
                             return it.kind === "Model" || it.kind === "Union" ? it === bodyTypeInResponse : false;
                         })
                     ) {
@@ -775,17 +773,6 @@ function emitBasicOperation(
     ];
 }
 
-function isReadOnly(context: SdkContext, type: ModelProperty): boolean {
-    // https://microsoft.github.io/cadl/standard-library/rest/operations#automatic-visibility
-    // Only "read" should be readOnly
-    const visibility = getVisibility(context.program, type);
-    if (visibility) {
-        return visibility.includes("read");
-    } else {
-        return false;
-    }
-}
-
 function emitProperty(context: SdkContext, type: ModelProperty): Record<string, any> {
     const sdkProperty = getSdkModelPropertyType(context, type);
     return {
@@ -805,8 +792,8 @@ function getName(context: SdkContext, type: Model): string {
         return friendlyName;
     } else {
         const modelName = getLibraryName(context, type);
-        if (type.templateArguments && type.templateArguments.length > 0) {
-            return modelName + type.templateArguments.map((it) => (it.kind === "Model" ? it.name : "")).join("");
+        if (type.templateMapper && type.templateMapper.args.length > 0) {
+            return modelName + type.templateMapper.args.map((it) => (it.kind === "Model" ? it.name : "")).join("");
         } else {
             return modelName;
         }
@@ -833,10 +820,6 @@ function emitModel(context: SdkContext, type: Model): Record<string, any> {
         base: modelName === "" ? "json" : "dpg",
         internal: isInternal(context, type),
     };
-}
-
-function intOrFloat(value: number): string {
-    return value.toString().indexOf(".") === -1 ? "integer" : "float";
 }
 
 function enumName(name: string): string {

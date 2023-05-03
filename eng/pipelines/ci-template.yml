@@ -50,6 +50,11 @@ steps:
       displayName: Check version mismatch
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
 
+    - script: pnpm lint
+      displayName: Lint project
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+      continueOnError: true
+      
     - script: pnpm check-format
       displayName: Check formatting
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
