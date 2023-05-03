@@ -61,7 +61,7 @@ steps:
     - script: pnpm install
       displayName: Pnpm install
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
-      condition: and(failed(), ${{ parameters.updateToLatestTypespec }})
+      condition: and(succeeded(), eq(${{ parameters.updateToLatestTypespec }}, false))
 
     - script: pnpm run build
       displayName: Build project
