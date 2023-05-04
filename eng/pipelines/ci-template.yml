@@ -39,6 +39,11 @@ steps:
       displayName: Install Cadl Ranch
       condition: and(succeeded(), ${{ parameters.installCadlRanch }})
 
+    - script: npm install @azure-tools/typespec-bump-deps
+      displayName: Install @azure-tools/typespec-bump-deps
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+      condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
+
     - script: npx typespec-bump-deps package.json packages/typespec-python/package.json
       displayName: Update typespec packages to latest dev version
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
