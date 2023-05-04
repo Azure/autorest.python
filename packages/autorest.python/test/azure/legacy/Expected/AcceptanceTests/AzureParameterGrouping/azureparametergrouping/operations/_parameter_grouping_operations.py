@@ -145,7 +145,7 @@ def build_post_multi_param_groups_request(
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_post_shared_parameter_group_object_request(  # pylint: disable=name-too-long
+def build_post_shared_parameter_group_object_request(
     *, header_one: Optional[str] = None, query_one: int = 30, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})

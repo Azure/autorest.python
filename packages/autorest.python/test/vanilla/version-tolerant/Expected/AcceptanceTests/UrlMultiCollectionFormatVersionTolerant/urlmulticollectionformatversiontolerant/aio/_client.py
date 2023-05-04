@@ -17,7 +17,7 @@ from ._configuration import AutoRestUrlMutliCollectionFormatTestServiceConfigura
 from .operations import QueriesOperations
 
 
-class AutoRestUrlMutliCollectionFormatTestService:  # pylint: disable=client-accepts-api-version-keyword,name-too-long
+class AutoRestUrlMutliCollectionFormatTestService:  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
     :ivar queries: QueriesOperations operations

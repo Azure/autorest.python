@@ -67,12 +67,9 @@ def build_rpc_create_job_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_rpc_get_job_request(job_id: str, **kwargs: Any) -> HttpRequest:
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-12-01-preview"))
-    accept = _headers.pop("Accept", "application/json")
-
     # Construct URL
     _url = "/azure/core/lro/rpc/same-poll-result/jobs/{jobId}"
     path_format_arguments = {
@@ -84,13 +81,10 @@ def build_rpc_get_job_request(job_id: str, **kwargs: Any) -> HttpRequest:
     # Construct parameters
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
-    # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_rpc_create_job_final_on_location_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_rpc_create_job_final_on_location_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -113,12 +107,9 @@ def build_rpc_create_job_final_on_location_request(**kwargs: Any) -> HttpRequest
 
 
 def build_rpc_get_poll_request(operation_id: str, **kwargs: Any) -> HttpRequest:
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-12-01-preview"))
-    accept = _headers.pop("Accept", "application/json")
-
     # Construct URL
     _url = "/azure/core/lro/rpc/different-poll-result/jobs/operations/{operationId}"
     path_format_arguments = {
@@ -130,10 +121,7 @@ def build_rpc_get_poll_request(operation_id: str, **kwargs: Any) -> HttpRequest:
     # Construct parameters
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
-    # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
 class RpcClientOperationsMixin(RpcClientMixinABC):
@@ -324,7 +312,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    def _get_job_initial(self, job_id: str, **kwargs: Any) -> _models.JobResult:
+    def _get_job_initial(self, job_id: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -336,7 +324,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.JobResult] = kwargs.pop("cls", None)
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_rpc_get_job_request(
             job_id=job_id,
@@ -357,15 +345,11 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.JobResult, response.json())
-
         if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
-
-        return deserialized  # type: ignore
+            return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def begin_get_job(self, job_id: str, **kwargs: Any) -> LROPoller[_models.JobResult]:
+    def begin_get_job(self, job_id: str, **kwargs: Any) -> LROPoller[None]:
         """Gets the status of a Job.
 
         :param job_id: A processing job identifier. Required.
@@ -377,30 +361,26 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of LROPoller that returns JobResult. The JobResult is compatible with
-         MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~_specs_.azure.core.lro.rpc.models.JobResult]
+        :return: An instance of LROPoller that returns None
+        :rtype: ~azure.core.polling.LROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.JobResult] = kwargs.pop("cls", None)
+        cls: ClsType[None] = kwargs.pop("cls", None)
         polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = self._get_job_initial(
+            raw_result = self._get_job_initial(  # type: ignore
                 job_id=job_id, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
         kwargs.pop("error_map", None)
 
-        def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
-            deserialized = _deserialize(_models.JobResult, response.json())
+        def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
-            return deserialized
+                return cls(pipeline_response, None, {})
 
         if polling is True:
             polling_method: PollingMethod = cast(PollingMethod, LROBasePolling(lro_delay, **kwargs))
@@ -419,7 +399,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
 
     def _create_job_final_on_location_initial(
         self, body: Union[_models.JobData, JSON, IO], **kwargs: Any
-    ) -> Optional[_models.JobResult]:
+    ) -> Optional[JSON]:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -432,7 +412,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[Optional[_models.JobResult]] = kwargs.pop("cls", None)
+        cls: ClsType[Optional[JSON]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -464,7 +444,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
         deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            deserialized = _deserialize(_models.JobResult, response.json())
+            deserialized = _deserialize(JSON, response.json())
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
@@ -481,7 +461,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
     @overload
     def begin_create_job_final_on_location(
         self, body: _models.JobData, *, content_type: str = "application/json", **kwargs: Any
-    ) -> LROPoller[_models.JobResult]:
+    ) -> LROPoller[JSON]:
         """Creates a Job.
 
         :param body: Required.
@@ -496,16 +476,16 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of LROPoller that returns JobResult. The JobResult is compatible with
+        :return: An instance of LROPoller that returns JSON object. The JSON object is compatible with
          MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~_specs_.azure.core.lro.rpc.models.JobResult]
+        :rtype: ~azure.core.polling.LROPoller[JSON]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
     def begin_create_job_final_on_location(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> LROPoller[_models.JobResult]:
+    ) -> LROPoller[JSON]:
         """Creates a Job.
 
         :param body: Required.
@@ -520,16 +500,16 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of LROPoller that returns JobResult. The JobResult is compatible with
+        :return: An instance of LROPoller that returns JSON object. The JSON object is compatible with
          MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~_specs_.azure.core.lro.rpc.models.JobResult]
+        :rtype: ~azure.core.polling.LROPoller[JSON]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
     def begin_create_job_final_on_location(
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> LROPoller[_models.JobResult]:
+    ) -> LROPoller[JSON]:
         """Creates a Job.
 
         :param body: Required.
@@ -544,16 +524,16 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of LROPoller that returns JobResult. The JobResult is compatible with
+        :return: An instance of LROPoller that returns JSON object. The JSON object is compatible with
          MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~_specs_.azure.core.lro.rpc.models.JobResult]
+        :rtype: ~azure.core.polling.LROPoller[JSON]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace
     def begin_create_job_final_on_location(
         self, body: Union[_models.JobData, JSON, IO], **kwargs: Any
-    ) -> LROPoller[_models.JobResult]:
+    ) -> LROPoller[JSON]:
         """Creates a Job.
 
         :param body: Is one of the following types: JobData, JSON, IO Required.
@@ -568,16 +548,16 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of LROPoller that returns JobResult. The JobResult is compatible with
+        :return: An instance of LROPoller that returns JSON object. The JSON object is compatible with
          MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~_specs_.azure.core.lro.rpc.models.JobResult]
+        :rtype: ~azure.core.polling.LROPoller[JSON]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.JobResult] = kwargs.pop("cls", None)
+        cls: ClsType[JSON] = kwargs.pop("cls", None)
         polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
@@ -589,7 +569,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = _deserialize(_models.JobResult, response.json())
+            deserialized = _deserialize(JSON, response.json())
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
@@ -609,7 +589,9 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    def _get_poll_initial(self, operation_id: str, **kwargs: Any) -> _models.JobPollResult:
+    def _get_poll_initial(  # pylint: disable=inconsistent-return-statements
+        self, operation_id: str, **kwargs: Any
+    ) -> None:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -621,7 +603,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.JobPollResult] = kwargs.pop("cls", None)
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_rpc_get_poll_request(
             operation_id=operation_id,
@@ -642,15 +624,11 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = _deserialize(_models.JobPollResult, response.json())
-
         if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
-
-        return deserialized  # type: ignore
+            return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def begin_get_poll(self, operation_id: str, **kwargs: Any) -> LROPoller[_models.JobPollResult]:
+    def begin_get_poll(self, operation_id: str, **kwargs: Any) -> LROPoller[None]:
         """Gets the status of a Job.
 
         :param operation_id: Operation identifier. Required.
@@ -662,30 +640,26 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of LROPoller that returns JobPollResult. The JobPollResult is compatible
-         with MutableMapping
-        :rtype: ~azure.core.polling.LROPoller[~_specs_.azure.core.lro.rpc.models.JobPollResult]
+        :return: An instance of LROPoller that returns None
+        :rtype: ~azure.core.polling.LROPoller[None]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.JobPollResult] = kwargs.pop("cls", None)
+        cls: ClsType[None] = kwargs.pop("cls", None)
         polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = self._get_poll_initial(
+            raw_result = self._get_poll_initial(  # type: ignore
                 operation_id=operation_id, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
         kwargs.pop("error_map", None)
 
-        def get_long_running_output(pipeline_response):
-            response = pipeline_response.http_response
-            deserialized = _deserialize(_models.JobPollResult, response.json())
+        def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
-            return deserialized
+                return cls(pipeline_response, None, {})
 
         if polling is True:
             polling_method: PollingMethod = cast(PollingMethod, LROBasePolling(lro_delay, **kwargs))

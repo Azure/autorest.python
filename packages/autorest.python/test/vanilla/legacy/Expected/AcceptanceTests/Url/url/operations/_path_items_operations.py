@@ -117,7 +117,7 @@ def build_get_global_query_null_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_get_global_and_local_query_null_request(  # pylint: disable=name-too-long
+def build_get_global_and_local_query_null_request(
     path_item_string_path: str,
     local_string_path: str,
     global_string_path: str,
@@ -159,7 +159,7 @@ def build_get_global_and_local_query_null_request(  # pylint: disable=name-too-l
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_get_local_path_item_query_null_request(  # pylint: disable=name-too-long
+def build_get_local_path_item_query_null_request(
     path_item_string_path: str,
     local_string_path: str,
     global_string_path: str,

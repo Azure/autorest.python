@@ -1,0 +1,32 @@
+schedules:
+- cron: '0 0 * * *'
+  displayName: Daily midnight build
+  branches:
+    include:
+    - main
+pr: none
+
+resources:
+  repositories:
+    - repository: azure-sdk-tools
+      type: github
+      endpoint: Azure
+      name: Azure/azure-sdk-tools
+
+variables:
+  PythonVersion: "3.10"
+
+steps:
+    - script: npm install -g @typespec/compiler@next
+      displayName: Install @typespec/compiler@next
+
+    - template: ci-template.yml
+      parameters:
+        installCadlRanch: true
+        folderName: "typespec-python"
+        regenerate: true
+        updateToLatestTypespec: true
+
+    - template: generated-code-checks-template.yml
+      parameters:
+        package: "typespec-python"

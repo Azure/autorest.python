@@ -74,7 +74,7 @@ jobs:
 
       - script: |
           pip install pip==20.2
-          pip install tox==3.27.1 coverage
+          pip install  coverage
         displayName: "Install Env Specific Reqs in Target PyVersion $(PythonVersion)"
 
       - template: generated-code-checks-template.yml
@@ -117,7 +117,7 @@ jobs:
             displayName: Move azure-sdk-for-python files up a level
 
           - script: |
-              pip install tox-monorepo
+
             displayName: "Prepare environment"
 
           - ${{ each package in parameters.VerificationPackages }}:
@@ -162,11 +162,6 @@ jobs:
             installCadlRanch: true
             folderName: "typespec-python"
             regenerate: true
-
-      - script: |
-          pip install pip==20.2
-          pip install tox==3.27.1 coverage==4.5.4
-        displayName: "Install Env Specific Reqs in Target PyVersion $(PythonVersion)"
 
       - template: generated-code-checks-template.yml
         parameters:

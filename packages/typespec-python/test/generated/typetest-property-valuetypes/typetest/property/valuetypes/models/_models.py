@@ -485,3 +485,127 @@ class StringProperty(_model_base.Model):
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
+
+
+class UnknownArrayProperty(_model_base.Model):
+    """Model with a property unknown, and the data is an array.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar property: Property. Required.
+    :vartype property: any
+    """
+
+    property: Any = rest_field()
+    """Property. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        property: Any,  # pylint: disable=redefined-builtin
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class UnknownDictProperty(_model_base.Model):
+    """Model with a property unknown, and the data is a dictionnary.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar property: Property. Required.
+    :vartype property: any
+    """
+
+    property: Any = rest_field()
+    """Property. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        property: Any,  # pylint: disable=redefined-builtin
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class UnknownIntProperty(_model_base.Model):
+    """Model with a property unknown, and the data is a int32.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar property: Property. Required.
+    :vartype property: any
+    """
+
+    property: Any = rest_field()
+    """Property. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        property: Any,  # pylint: disable=redefined-builtin
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class UnknownStringProperty(_model_base.Model):
+    """Model with a property unknown, and the data is a string.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar property: Property. Required.
+    :vartype property: any
+    """
+
+    property: Any = rest_field()
+    """Property. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        property: Any,  # pylint: disable=redefined-builtin
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
