@@ -13,6 +13,19 @@ from .. import _model_base
 from .._model_base import rest_field
 
 
+class InternalModel(_model_base.Model):
+    """This is a model only used by internal operation. It should be generated but not exported.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+
 class PublicModel(_model_base.Model):
     """This is a model only used by public operation. It should be generated and exported.
 
