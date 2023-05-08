@@ -214,15 +214,15 @@ class InternalClientOperationsMixin(InternalClientMixinABC):
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def _internal_only(self, *, name: str, **kwargs: Any) -> _models.PublicModel:
+    async def _internal_only(self, *, name: str, **kwargs: Any) -> _models._models.InternalModel:
         """internal_only.
 
         :keyword name: Required.
         :paramtype name: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: PublicModel. The PublicModel is compatible with MutableMapping
-        :rtype: ~_specs_.azure.clientgenerator.core.internal.models.PublicModel
+        :return: InternalModel. The InternalModel is compatible with MutableMapping
+        :rtype: ~_specs_.azure.clientgenerator.core.internal.models.InternalModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -236,7 +236,7 @@ class InternalClientOperationsMixin(InternalClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.PublicModel] = kwargs.pop("cls", None)
+        cls: ClsType[_models._models.InternalModel] = kwargs.pop("cls", None)  # pylint: disable=protected-access
 
         request = build_internal_internal_only_request(
             name=name,
@@ -259,7 +259,9 @@ class InternalClientOperationsMixin(InternalClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.PublicModel, response.json())
+            deserialized = _deserialize(
+                _models._models.InternalModel, response.json()  # pylint: disable=protected-access
+            )
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
