@@ -39,18 +39,9 @@ steps:
       displayName: Install Cadl Ranch
       condition: and(succeeded(), ${{ parameters.installCadlRanch }})
 
-    - script: npm install -g npm-check-updates
-      displayName: Install npm-check-updates
-      condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
-
-    - script: ncu --target @next --filter "@typespec*,@azure-tools*" -u
-      displayName: Update monorepo base's tsp packages to next version
+    - script: npx @azure-tools/typespec-bump-deps package.json packages/typespec-python/package.json
+      displayName: Update typespec packages to latest dev version
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
-      condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
-
-    - script: ncu --target @next --filter "@typespec*,@azure-tools*" -u
-      displayName: Update tsp emitter's tsp packages to next version
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/
       condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
 
     - script: pnpm install --no-frozen-lockfile
@@ -62,6 +53,10 @@ steps:
       displayName: Pnpm install
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
       condition: and(succeeded(), eq(${{ parameters.updateToLatestTypespec }}, false))
+
+    - script: pnpm list
+      displayName: Pnpm list
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python
 
     - script: pnpm run build
       displayName: Build project
@@ -75,7 +70,7 @@ steps:
       displayName: Lint project
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
       continueOnError: true
-      
+
     - script: pnpm check-format
       displayName: Check formatting
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
