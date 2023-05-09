@@ -30,6 +30,10 @@ def client():
         ("collections_int", [1, 2]),
         ("collections_model", [{'property': 'hello'}, {'property': 'world'}]),
         ("dictionary_string", {'k1': 'hello', 'k2': 'world'}),
+        ("unknown_string", "hello"),
+        ("unknown_int", 42),
+        ("unknown_dict", {'k1': 'hello', 'k2': 42}),
+        ("unknown_array", ['hello', 'world']),
     ]
 )
 def test_json(client, og_name, val):
@@ -56,6 +60,10 @@ def test_json(client, og_name, val):
          [{'property': 'hello'}, {'property': 'world'}]),
         ("dictionary_string", models.DictionaryStringProperty,
          {'k1': 'hello', 'k2': 'world'}),
+        ("unknown_string", models.UnknownStringProperty, "hello"),
+        ("unknown_int", models.UnknownIntProperty, 42),
+        ("unknown_dict", models.UnknownDictProperty, {'k1': 'hello', 'k2': 42}),
+        ("unknown_array", models.UnknownArrayProperty, ['hello', 'world']),
     ]
 )
 def test_model(client, og_name, model, val):

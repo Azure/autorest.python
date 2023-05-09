@@ -38,7 +38,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_error_with_secrets_create_secret_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_error_with_secrets_create_secret_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -52,9 +52,7 @@ def build_error_with_secrets_create_secret_request(**kwargs: Any) -> HttpRequest
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_error_with_secrets_get_error_with_secrets_request(  # pylint: disable=name-too-long
-    **kwargs: Any,
-) -> HttpRequest:
+def build_error_with_secrets_get_error_with_secrets_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")

@@ -5,7 +5,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, Any, Union
+from typing import Dict, Any, Union, Tuple
 from jinja2 import Environment
 
 from autorest.codegen.models.credential_types import AzureKeyCredentialType
@@ -58,7 +58,7 @@ class SampleSerializer:
             if (
                 not param.client_default_value
                 and not param.optional
-                and param.rest_api_name in self.sample["parameters"]
+                and param.wire_name in self.sample["parameters"]
             ):
                 imports.merge(param.type.imports_for_sample())
         return FileImportSerializer(imports, True)
@@ -82,7 +82,7 @@ class SampleSerializer:
         client_params = {
             p.client_name: special_param.get(
                 p.client_name,
-                f'"{self.sample["parameters"].get(p.rest_api_name) or p.client_name.upper()}"',
+                f'"{self.sample["parameters"].get(p.wire_name) or p.client_name.upper()}"',
             )
             for p in params_positional
         }
@@ -107,7 +107,7 @@ class SampleSerializer:
         failure_info = "fail to find required param named {}"
         operation_params = {}
         for param in params_positional:
-            name = param.rest_api_name
+            name = param.wire_name
             param_value = self.sample["parameters"].get(name)
             if not param.optional:
                 if not param_value:
@@ -122,17 +122,25 @@ class SampleSerializer:
             return ""
         return f".{self.operation_group.property_name}"
 
-    def _operation_result(self) -> str:
+    def _operation_result(self) -> Tuple[str, str]:
+        is_response_none = "None" in self.operation.response_type_annotation(
+            async_mode=False
+        )
         lro = ".result()"
-        paging = "\n    for item in response:\n        print(item)"
-        normal_print = "\n    print(response)"
+        if is_response_none:
+            paging, normal_print, return_var = "", "", ""
+        else:
+            paging = "\n    for item in response:\n        print(item)"
+            normal_print = "\n    print(response)"
+            return_var = "response = "
+
         if self.operation.operation_type == "paging":
-            return paging
+            return paging, return_var
         if self.operation.operation_type == "lro":
-            return lro + normal_print
+            return lro + normal_print, return_var
         if self.operation.operation_type == "lropaging":
-            return lro + paging
-        return normal_print
+            return lro + paging, return_var
+        return normal_print, return_var
 
     def _operation_name(self) -> str:
         return f".{self.operation.name}"
@@ -144,14 +152,16 @@ class SampleSerializer:
         return ""
 
     def serialize(self) -> str:
+        operation_result, return_var = self._operation_result()
         return self.env.get_template("sample.py.jinja2").render(
             code_model=self.code_model,
             file_name=self.file_name,
-            operation_result=self._operation_result(),
+            operation_result=operation_result,
             operation_params=self._operation_params(),
             operation_group_name=self._operation_group_name(),
             operation_name=self._operation_name(),
             imports=self._imports(),
             client_params=self._client_params(),
             origin_file=self._origin_file(),
+            return_var=return_var,
         )

@@ -23,7 +23,7 @@ steps:
           regenerate: true
     - script: tox -e ci
       displayName: Mock Api Tests
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/test/mock_api_tests
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/test
 
     - task: AzureCLI@2
       displayName: Upload scenario manifest

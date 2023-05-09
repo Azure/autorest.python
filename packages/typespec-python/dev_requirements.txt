@@ -1,4 +1,3 @@
 -r ../../eng/requirements.txt
-invoke
-colorama
-debugpy
+-r ../../eng/dev_requirements.txt
+

@@ -21,10 +21,9 @@ from bodydurationversiontolerant import AutoRestDurationTestService
 def main():
     client = AutoRestDurationTestService()
 
-    response = client.duration.put_positive_duration(
+    client.duration.put_positive_duration(
         duration_body=isodate.parse_duration("P123DT22H14M12.011S"),
     )
-    print(response)
 
 
 if __name__ == "__main__":

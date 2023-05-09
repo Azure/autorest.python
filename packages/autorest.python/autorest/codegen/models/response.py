@@ -26,7 +26,7 @@ class ResponseHeader(BaseModel):
         type: BaseType,
     ) -> None:
         super().__init__(yaml_data, code_model)
-        self.rest_api_name: str = yaml_data["restApiName"]
+        self.wire_name: str = yaml_data["wireName"]
         self.type = type
 
     @property
@@ -58,6 +58,13 @@ class Response(BaseModel):
         self.headers = headers or []
         self.type = type
         self.nullable = yaml_data.get("nullable")
+
+    @property
+    def result_property(self) -> str:
+        field = self.yaml_data.get("resultProperty")
+        if field:
+            return f'.get("{field}")'
+        return ""
 
     def get_polymorphic_subtypes(self, polymorphic_subtypes: List["ModelType"]) -> None:
         if self.type:

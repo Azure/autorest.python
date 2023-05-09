@@ -38,9 +38,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_merge_patch_json_patch_single_request(  # pylint: disable=name-too-long
-    *, json: JSON, **kwargs: Any
-) -> HttpRequest:
+def build_merge_patch_json_patch_single_request(*, json: JSON, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
