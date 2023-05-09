@@ -991,14 +991,13 @@ function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
         return builtinType;
     }
 
-    let result;
     switch (type.kind) {
         case "Intrinsic":
             return { type: "any" };
         case "Model":
             return emitModel(context, type);
         case "Scalar":
-            result = emitSimpleType(context, type);
+            const result = emitSimpleType(context, type);
             updateTypeAndFormat(context, type, result);
             return result;
         case "Union":
