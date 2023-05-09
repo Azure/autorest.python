@@ -5,6 +5,7 @@
 **Bug Fixes**
 
 - Add support for ssv, tsv, pipes collection format
+- Optimize logic about camel to snake case in case of the name contains "/"  #1907
 
 ## 2023-04-20 - 0.8.4
 
