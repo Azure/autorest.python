@@ -2,12 +2,8 @@ import { getPagedResult, getLroMetadata } from "@azure-tools/typespec-azure-core
 import {
     Enum,
     getDoc,
+    getEncode,
     getFriendlyName,
-    getMaxLength,
-    getMaxValue,
-    getMinLength,
-    getMinValue,
-    getPattern,
     getSummary,
     ignoreDiagnostics,
     isErrorModel,
@@ -51,7 +47,6 @@ import {
     isApiVersion,
     getDefaultApiVersion,
     getClientNamespaceString,
-    getClientFormat,
     createSdkContext,
     SdkContext,
     getLibraryName,
@@ -146,18 +141,6 @@ const simpleTypesMap = new Map<string, Record<string, any>>();
 const endpointPathParameters: Record<string, any>[] = [];
 let apiVersionParam: Record<string, any> | undefined = undefined;
 
-function isSimpleType(context: SdkContext, type: EmitterType | undefined): boolean {
-    // these decorators can only work for simple type(int/string/float, etc)
-    if (type && (type.kind === "Scalar" || type.kind === "ModelProperty")) {
-        const funcs = [getMinValue, getMaxValue, getMinLength, getMaxLength, getPattern];
-        for (const func of funcs) {
-            if (func(context.program, type)) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
 
 function getDocStr(context: SdkContext, target: Type): string {
     return getDoc(context.program, target) ?? "";
@@ -210,21 +193,6 @@ function getEffectiveSchemaType(context: SdkContext, type: Model): Model {
     return type;
 }
 
-function emitModelPropertyType(context: SdkContext, entity: ModelProperty): Record<string, any> {
-    const result = emitType(context, entity.type);
-    const format = getClientFormat(context, entity);
-    if (format) {
-        if (format === "rfc1123") {
-            result["format"] = "date-time-rfc1123";
-        } else if (format === "iso8601") {
-            result["format"] = "date-time";
-        } else if (format === "seconds") {
-            result["type"] = "float";
-        }
-    }
-    return result;
-}
-
 function isEmptyModel(type: EmitterType): boolean {
     // object, {}, Model{} all will be treated as empty model
     return (
@@ -239,7 +207,12 @@ function isEmptyModel(type: EmitterType): boolean {
 function getType(context: SdkContext, type: EmitterType): any {
     // don't cache simple type(string, int, etc) since decorators may change the result
     const program = context.program;
-    const enableCache = !isSimpleType(context, type) && !isEmptyModel(type);
+    let oriType;
+    if (type.kind === "ModelProperty") {
+        oriType = type;
+        type = type.type
+    }
+    const enableCache = type.kind !== "Scalar" && !isEmptyModel(type);
     const effectiveModel = type.kind === "Model" ? getEffectiveSchemaType(context, type) : type;
     if (enableCache) {
         const cached = typesMap.get(effectiveModel);
@@ -251,11 +224,18 @@ function getType(context: SdkContext, type: EmitterType): any {
     if (isEmptyModel(type)) {
         // do not generate model for empty model, treat it as any
         newValue = { type: "any" };
-    } else if (type.kind === "ModelProperty") {
-        newValue = emitModelPropertyType(context, type);
-    }
-    else {
+    } else {
         newValue = emitType(context, type);
+    }
+
+    if (oriType?.kind === "ModelProperty" ) {
+        if (context.program.checker.isStdType(oriType.type)) {
+            if (oriType.type.name === "utcDateTime" || oriType.type.name === "offsetDateTime") {
+                // if it's a date-time we change the format
+                newValue["format"] = isHeader(context.program, oriType) ? "date-time-rfc1123" : "date-time";
+            }
+        }
+        updateTypeAndFormat(context, oriType, newValue);
     }
 
     if (enableCache) {
@@ -1011,13 +991,16 @@ function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
         return builtinType;
     }
 
+    let result;
     switch (type.kind) {
         case "Intrinsic":
             return { type: "any" };
         case "Model":
             return emitModel(context, type);
         case "Scalar":
-            return emitSimpleType(context, type);
+            result = emitSimpleType(context, type);
+            updateTypeAndFormat(context, type, result);
+            return result;
         case "Union":
             return emitUnion(context, type);
         case "UnionVariant":
@@ -1026,6 +1009,15 @@ function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
             return emitEnum(context, type);
         default:
             throw Error(`Not supported ${type.kind}`);
+    }
+}
+
+function updateTypeAndFormat(context: SdkContext, entity: ModelProperty | Scalar, result: Record<string, any>) {
+    const encode = getEncode(context.program, entity);
+    if (encode) {
+        if (encode.encoding === "seconds") {
+            result["type"] = encode.type.name.includes("float") ? "float" : "integer";
+        }
     }
 }
 

@@ -14,6 +14,68 @@ from .. import _model_base
 from .._model_base import rest_field
 
 
+class FloatSecondsDurationProperty(_model_base.Model):
+    """FloatSecondsDurationProperty.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar value: Required.
+    :vartype value: float
+    """
+
+    value: float = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        value: float,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class Int32SecondsDurationProperty(_model_base.Model):
+    """Int32SecondsDurationProperty.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar value: Required.
+    :vartype value: int
+    """
+
+    value: int = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        value: int,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
 class ISO8601DurationProperty(_model_base.Model):
     """ISO8601DurationProperty.
 
@@ -31,37 +93,6 @@ class ISO8601DurationProperty(_model_base.Model):
         self,
         *,
         value: datetime.timedelta,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class SecondsDurationProperty(_model_base.Model):
-    """SecondsDurationProperty.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar value: Required.
-    :vartype value: float
-    """
-
-    value: float = rest_field()
-    """Required."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        value: float,
     ):
         ...
 

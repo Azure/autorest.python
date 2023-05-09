@@ -18,14 +18,12 @@ from .operations import PropertyOperations, QueryOperations
 
 
 class DurationClient:  # pylint: disable=client-accepts-api-version-keyword
-    """Test for clientFormat decorator on duration.
+    """Test for encode decorator on duration.
 
     :ivar query: QueryOperations operations
-    :vartype query:
-     _specs_.azure.clientgenerator.core.clientformat.duration.aio.operations.QueryOperations
+    :vartype query: encode.duration.aio.operations.QueryOperations
     :ivar property: PropertyOperations operations
-    :vartype property:
-     _specs_.azure.clientgenerator.core.clientformat.duration.aio.operations.PropertyOperations
+    :vartype property: encode.duration.aio.operations.PropertyOperations
     """
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential

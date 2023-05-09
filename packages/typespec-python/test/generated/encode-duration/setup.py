@@ -25,6 +25,6 @@ setup(
         "azure-core<2.0.0,>=1.24.0",
     ],
     long_description="""\
-    Test for clientFormat decorator on duration.
+    Test for encode decorator on duration.
     """,
 )

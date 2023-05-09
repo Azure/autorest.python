@@ -6,11 +6,11 @@ azure-core==1.24.0
 -e ./generated/authentication-api-key
 -e ./generated/authentication-oauth2
 -e ./generated/authentication-union
--e ./generated/azure-client-generator-core-client-format-duration
 -e ./generated/azure-core-basic
 -e ./generated/azure-core-lro-rpc
 -e ./generated/azure-core-lro-standard
 -e ./generated/azure-core-traits
+-e ./generated/encode-duration
 -e ./generated/parameters-collection-format
 -e ./generated/parameters-spread
 -e ./generated/projection-projected-name
