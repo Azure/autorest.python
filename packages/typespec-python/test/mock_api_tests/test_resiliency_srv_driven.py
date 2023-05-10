@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+import pytest
 from azure.core.rest import HttpRequest
 from resiliency.srv.driven1 import ResiliencyServiceDrivenClient as V1Client
 from resiliency.srv.driven2 import ResiliencyServiceDrivenClient as V2Client
@@ -75,3 +76,17 @@ def test_break_the_glass():
 def test_add_operation():
     with V2Client(service_deployment_version="v2") as client:
         client.add_operation()
+
+@pytest.mark.parametrize(
+    "func_name, params", [
+        ("from_none", {"new_parameter": "new"}),
+        ("from_one_optional", {"parameter": "optional", "new_parameter": "new"}),
+        ("from_one_required", {"parameter": "required", "new_parameter": "new"}),
+        ("add_operation", {}),
+    ]
+)
+def test_new_client_with_old_apiversion_call_new_parameter(func_name, params):
+    client = get_v2_client(service_deployment_version="v2", api_version="v2")
+    with pytest.raises(ValueError) as ex:
+        getattr(client, func_name)(**params)
+    assert "is not available in API version" in str(ex.value)
