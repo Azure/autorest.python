@@ -86,7 +86,7 @@ def test_add_operation():
     ]
 )
 def test_new_client_with_old_apiversion_call_new_parameter(func_name, params):
-    client = get_v2_client(service_deployment_version="v2", api_version="v2")
+    client = get_v2_client(service_deployment_version="v2", api_version="v1")
     with pytest.raises(ValueError) as ex:
         getattr(client, func_name)(**params)
     assert "is not available in API version" in str(ex.value)
