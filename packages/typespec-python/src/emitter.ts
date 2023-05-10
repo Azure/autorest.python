@@ -235,7 +235,7 @@ function getType(context: SdkContext, type: EmitterType): any {
                 newValue["format"] = isHeader(context.program, oriType) ? "date-time-rfc1123" : "date-time";
             }
         }
-        updateTypeAndFormat(context, oriType, newValue);
+        updateEncode(context, oriType, newValue);
     }
 
     if (enableCache) {
@@ -998,7 +998,7 @@ function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
             return emitModel(context, type);
         case "Scalar":
             const result = emitSimpleType(context, type);
-            updateTypeAndFormat(context, type, result);
+            updateEncode(context, type, result);
             return result;
         case "Union":
             return emitUnion(context, type);
@@ -1011,7 +1011,7 @@ function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
     }
 }
 
-function updateTypeAndFormat(context: SdkContext, entity: ModelProperty | Scalar, result: Record<string, any>) {
+function updateEncode(context: SdkContext, entity: ModelProperty | Scalar, result: Record<string, any>) {
     const encode = getEncode(context.program, entity);
     if (encode) {
         if (encode.encoding === "seconds") {
