@@ -30,14 +30,15 @@ class BlackScriptPlugin(Plugin):  # pylint: disable=abstract-method
         self.output_folder = Path(output_folder)
 
     def process(self) -> bool:
-        # apply format_file on every file in the output folder
+        # apply format_file on every .py file in the output folder
         list(
             map(
                 self.format_file,
                 [
                     Path(f)
                     for f in self.list_file()
-                    if "__pycache__" not in f and Path(f).suffix == ".py"
+                    if all(item not in f for item in ("__pycache__", "node_modules"))
+                    and Path(f).suffix == ".py"
                 ],
             )
         )
