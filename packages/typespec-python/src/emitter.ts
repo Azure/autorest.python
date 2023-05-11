@@ -141,7 +141,6 @@ const simpleTypesMap = new Map<string, Record<string, any>>();
 const endpointPathParameters: Record<string, any>[] = [];
 let apiVersionParam: Record<string, any> | undefined = undefined;
 
-
 function getDocStr(context: SdkContext, target: Type): string {
     return getDoc(context.program, target) ?? "";
 }
@@ -210,7 +209,7 @@ function getType(context: SdkContext, type: EmitterType): any {
     let oriType;
     if (type.kind === "ModelProperty") {
         oriType = type;
-        type = type.type
+        type = type.type;
     }
     const enableCache = type.kind !== "Scalar" && !isEmptyModel(type);
     const effectiveModel = type.kind === "Model" ? getEffectiveSchemaType(context, type) : type;
@@ -228,14 +227,14 @@ function getType(context: SdkContext, type: EmitterType): any {
         newValue = emitType(context, type);
     }
 
-    if (oriType?.kind === "ModelProperty" ) {
+    if (oriType?.kind === "ModelProperty") {
         if (context.program.checker.isStdType(oriType.type)) {
             if (oriType.type.name === "utcDateTime" || oriType.type.name === "offsetDateTime") {
                 // if it's a date-time we change the format
                 newValue["format"] = isHeader(context.program, oriType) ? "date-time-rfc1123" : "date-time";
             }
         }
-        updateEncode(context, oriType, newValue);
+        updateWithEncode(context, oriType, newValue);
     }
 
     if (enableCache) {
@@ -998,7 +997,7 @@ function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
             return emitModel(context, type);
         case "Scalar":
             const result = emitSimpleType(context, type);
-            updateEncode(context, type, result);
+            updateWithEncode(context, type, result);
             return result;
         case "Union":
             return emitUnion(context, type);
@@ -1011,7 +1010,7 @@ function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
     }
 }
 
-function updateEncode(context: SdkContext, entity: ModelProperty | Scalar, result: Record<string, any>) {
+function updateWithEncode(context: SdkContext, entity: ModelProperty | Scalar, result: Record<string, any>) {
     const encode = getEncode(context.program, entity);
     if (encode) {
         if (encode.encoding === "seconds") {
