@@ -81,3 +81,19 @@ async def test_break_the_glass():
 async def test_add_operation():
     async with V2Client(service_deployment_version="v2") as client:
         await client.add_operation()
+
+
+@pytest.mark.parametrize(
+    "func_name, params", [
+        ("from_none", {"new_parameter": "new"}),
+        ("from_one_optional", {"parameter": "optional", "new_parameter": "new"}),
+        ("from_one_required", {"parameter": "required", "new_parameter": "new"}),
+        ("add_operation", {}),
+    ]
+)
+@pytest.mark.asyncio
+async def test_new_client_with_old_apiversion_call_new_parameter(func_name, params):
+    client = get_v2_client(service_deployment_version="v2", api_version="v1")
+    with pytest.raises(ValueError) as ex:
+        await getattr(client, func_name)(**params)
+    assert "is not available in API version" in str(ex.value)
