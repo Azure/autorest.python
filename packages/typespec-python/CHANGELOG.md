@@ -1,10 +1,14 @@
 # Release
 
-## 2023-04-xx - 0.8.5
+## 2023-05-12 - 0.8.5
 
 **Bug Fixes**
 
 - Add support for ssv, tsv, pipes collection format
+
+**Other Changes**
+
+- Bump TSP dependency to `0.44`
 
 ## 2023-04-20 - 0.8.4
 
