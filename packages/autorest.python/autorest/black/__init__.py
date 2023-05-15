@@ -30,28 +30,22 @@ class BlackScriptPlugin(Plugin):  # pylint: disable=abstract-method
         self.output_folder = Path(output_folder)
 
     def process(self) -> bool:
-        # apply format_file on every file in the output folder
+        # apply format_file on every .py file in the output folder
         list(
             map(
                 self.format_file,
-                [Path(f) for f in self.list_file() if "__pycache__" not in f],
+                [
+                    Path(f)
+                    for f in self.list_file()
+                    if all(item not in f for item in ("__pycache__", "node_modules"))
+                    and Path(f).suffix == ".py"
+                ],
             )
         )
         return True
 
     def format_file(self, file: Path) -> None:
-        try:
-            file_content = self.read_file(file)
-        except Exception as e:  # pylint: disable=broad-except
-            if file.suffix != ".py":
-                _LOGGER.warning(
-                    "Can not read file %s, not blacking this file", file.name
-                )
-                return
-            raise e  # still want to raise if we fail reading a py file
-        if file.suffix != ".py":
-            self.write_file(file, file_content)
-            return
+        file_content = self.read_file(file)
         try:
             file_content = black.format_file_contents(
                 file_content, fast=True, mode=_BLACK_MODE
