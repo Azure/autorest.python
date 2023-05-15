@@ -1,5 +1,25 @@
 # Release
 
+## 2023-05-15 - 0.8.6
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@typespec/compiler`                                                    | `0.44.0`    |
+| `@typespec/http`                                                        | `0.44.0`    |
+| `@typespec/rest`                                                        | `0.44.0`    |
+| `@typespec/versioning`                                                  | `0.44.0`    |
+| `@azure-tools/typespec-azure-core                                       | `0.30.0`    |
+| `@azure-tools/typespec-client-generator-core                            | `0.30.0`    |
+| `azure-core` dep of generated code                                      | `1.24.0`    |
+| `isodate` dep of generated code                                         | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+
+**Bug Fixes**
+
+- Fix linting errors in vendored model base class  #1915
+
 ## 2023-05-12 - 0.8.5
 
 **Bug Fixes**
