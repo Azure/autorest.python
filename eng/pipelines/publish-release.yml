@@ -46,7 +46,7 @@ steps:
       displayName: Execute Autorest DPG Version Tolerant Tests
       workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
     - script: |
-          cd test/mock_api_tests
+          cd test
           tox -e ci
       displayName: Execute Cadl Tests
       workingDirectory: $(Build.SourcesDirectory)/packages/typespec-python/
