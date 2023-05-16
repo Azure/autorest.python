@@ -229,8 +229,8 @@ function getType(context: SdkContext, type: EmitterType): any {
     }
 
     if (oriType?.kind === "ModelProperty") {
-        updateWithEncode(context, oriType, newValue);
         updateWithClientFormat(context, oriType, newValue);
+        updateWithEncode(context, oriType, newValue);
     }
 
     if (enableCache) {
