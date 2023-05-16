@@ -60,6 +60,7 @@ import {
     getSdkEnum,
     getSdkConstant,
     getSdkModelPropertyType,
+    getClientFormat,
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
@@ -228,13 +229,8 @@ function getType(context: SdkContext, type: EmitterType): any {
     }
 
     if (oriType?.kind === "ModelProperty") {
-        if (context.program.checker.isStdType(oriType.type)) {
-            if (oriType.type.name === "utcDateTime" || oriType.type.name === "offsetDateTime") {
-                // if it's a date-time we change the format
-                newValue["format"] = isHeader(context.program, oriType) ? "date-time-rfc1123" : "date-time";
-            }
-        }
         updateWithEncode(context, oriType, newValue);
+        updateWithClientFormat(context, oriType, newValue);
     }
 
     if (enableCache) {
@@ -1015,6 +1011,17 @@ function updateWithEncode(context: SdkContext, entity: ModelProperty | Scalar, r
     if (encode) {
         if (encode.encoding === "seconds") {
             result["type"] = encode.type.name.includes("float") ? "float" : "integer";
+        }
+    }
+}
+
+function updateWithClientFormat(context: SdkContext, entity: ModelProperty, result: Record<string, any>) {
+    const format = getClientFormat(context, entity);
+    if (format) {
+        if (format === "rfc1123") {
+            result["format"] = "date-time-rfc1123";
+        } else if (format === "iso8601") {
+            result["format"] = "date-time";
         }
     }
 }
