@@ -7,8 +7,12 @@ import datetime
 
 import pytest
 from encode.duration import DurationClient
-from encode.duration.models import Int32SecondsDurationProperty, \
-    ISO8601DurationProperty, FloatSecondsDurationProperty
+from encode.duration.models import (
+    Int32SecondsDurationProperty,
+    ISO8601DurationProperty,
+    FloatSecondsDurationProperty,
+    DefaultDurationProperty,
+)
 
 
 @pytest.fixture
@@ -25,9 +29,15 @@ def test_query(client: DurationClient):
 
 
 def test_property(client: DurationClient):
-    result = client.property.iso8601(ISO8601DurationProperty(value=datetime.timedelta(days=40)))
+    result = client.property.default(
+        DefaultDurationProperty(value=datetime.timedelta(days=40))
+    )
     assert result.value == datetime.timedelta(days=40)
-    result = client.property.default(ISO8601DurationProperty(value="P40D"))
+    result = client.property.default(DefaultDurationProperty(value="P40D"))
+    assert result.value == datetime.timedelta(days=40)
+    result = client.property.iso8601(
+        ISO8601DurationProperty(value=datetime.timedelta(days=40))
+    )
     assert result.value == datetime.timedelta(days=40)
     result = client.property.iso8601(ISO8601DurationProperty(value="P40D"))
     assert result.value == datetime.timedelta(days=40)
