@@ -277,26 +277,26 @@ class PropertyOperations:
 
     @overload
     async def default(
-        self, body: _models.ISO8601DurationProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.ISO8601DurationProperty:
+        self, body: _models.DefaultDurationProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.DefaultDurationProperty:
         """default.
 
         :param body: Required.
-        :type body: ~encode.duration.models.ISO8601DurationProperty
+        :type body: ~encode.duration.models.DefaultDurationProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ISO8601DurationProperty. The ISO8601DurationProperty is compatible with MutableMapping
-        :rtype: ~encode.duration.models.ISO8601DurationProperty
+        :return: DefaultDurationProperty. The DefaultDurationProperty is compatible with MutableMapping
+        :rtype: ~encode.duration.models.DefaultDurationProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
     async def default(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.ISO8601DurationProperty:
+    ) -> _models.DefaultDurationProperty:
         """default.
 
         :param body: Required.
@@ -306,15 +306,15 @@ class PropertyOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ISO8601DurationProperty. The ISO8601DurationProperty is compatible with MutableMapping
-        :rtype: ~encode.duration.models.ISO8601DurationProperty
+        :return: DefaultDurationProperty. The DefaultDurationProperty is compatible with MutableMapping
+        :rtype: ~encode.duration.models.DefaultDurationProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
     async def default(
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.ISO8601DurationProperty:
+    ) -> _models.DefaultDurationProperty:
         """default.
 
         :param body: Required.
@@ -324,26 +324,26 @@ class PropertyOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ISO8601DurationProperty. The ISO8601DurationProperty is compatible with MutableMapping
-        :rtype: ~encode.duration.models.ISO8601DurationProperty
+        :return: DefaultDurationProperty. The DefaultDurationProperty is compatible with MutableMapping
+        :rtype: ~encode.duration.models.DefaultDurationProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace_async
     async def default(
-        self, body: Union[_models.ISO8601DurationProperty, JSON, IO], **kwargs: Any
-    ) -> _models.ISO8601DurationProperty:
+        self, body: Union[_models.DefaultDurationProperty, JSON, IO], **kwargs: Any
+    ) -> _models.DefaultDurationProperty:
         """default.
 
-        :param body: Is one of the following types: ISO8601DurationProperty, JSON, IO Required.
-        :type body: ~encode.duration.models.ISO8601DurationProperty or JSON or IO
+        :param body: Is one of the following types: DefaultDurationProperty, JSON, IO Required.
+        :type body: ~encode.duration.models.DefaultDurationProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ISO8601DurationProperty. The ISO8601DurationProperty is compatible with MutableMapping
-        :rtype: ~encode.duration.models.ISO8601DurationProperty
+        :return: DefaultDurationProperty. The DefaultDurationProperty is compatible with MutableMapping
+        :rtype: ~encode.duration.models.DefaultDurationProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -358,7 +358,7 @@ class PropertyOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.ISO8601DurationProperty] = kwargs.pop("cls", None)
+        cls: ClsType[_models.DefaultDurationProperty] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -389,7 +389,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ISO8601DurationProperty, response.json())
+            deserialized = _deserialize(_models.DefaultDurationProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
