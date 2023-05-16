@@ -2,12 +2,8 @@ import { getPagedResult, getLroMetadata } from "@azure-tools/typespec-azure-core
 import {
     Enum,
     getDoc,
+    getEncode,
     getFriendlyName,
-    getMaxLength,
-    getMaxValue,
-    getMinLength,
-    getMinValue,
-    getPattern,
     getSummary,
     ignoreDiagnostics,
     isErrorModel,
@@ -51,7 +47,6 @@ import {
     isApiVersion,
     getDefaultApiVersion,
     getClientNamespaceString,
-    getClientFormat,
     createSdkContext,
     SdkContext,
     getLibraryName,
@@ -65,6 +60,7 @@ import {
     getSdkEnum,
     getSdkConstant,
     getSdkModelPropertyType,
+    getClientFormat,
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
@@ -147,19 +143,6 @@ const simpleTypesMap = new Map<string, Record<string, any>>();
 const endpointPathParameters: Record<string, any>[] = [];
 let apiVersionParam: Record<string, any> | undefined = undefined;
 
-function isSimpleType(context: SdkContext, type: EmitterType | undefined): boolean {
-    // these decorators can only work for simple type(int/string/float, etc)
-    if (type && (type.kind === "Scalar" || type.kind === "ModelProperty")) {
-        const funcs = [getMinValue, getMaxValue, getMinLength, getMaxLength, getPattern];
-        for (const func of funcs) {
-            if (func(context.program, type)) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
 function getDocStr(context: SdkContext, target: Type): string {
     return getDoc(context.program, target) ?? "";
 }
@@ -211,19 +194,6 @@ function getEffectiveSchemaType(context: SdkContext, type: Model): Model {
     return type;
 }
 
-function getEntityType(context: SdkContext, entity: ModelProperty): any {
-    const result = getType(context, entity.type);
-    const format = getClientFormat(context, entity);
-    if (format) {
-        if (format === "rfc1123") {
-            result["format"] = "date-time-rfc1123";
-        } else if (format === "iso8601") {
-            result["format"] = "date-time";
-        }
-    }
-    return result;
-}
-
 function isEmptyModel(type: EmitterType): boolean {
     // object, {}, Model{} all will be treated as empty model
     return (
@@ -238,7 +208,12 @@ function isEmptyModel(type: EmitterType): boolean {
 function getType(context: SdkContext, type: EmitterType): any {
     // don't cache simple type(string, int, etc) since decorators may change the result
     const program = context.program;
-    const enableCache = !isSimpleType(context, type) && !isEmptyModel(type);
+    let oriType;
+    if (type.kind === "ModelProperty") {
+        oriType = type;
+        type = type.type;
+    }
+    const enableCache = type.kind !== "Scalar" && !isEmptyModel(type);
     const effectiveModel = type.kind === "Model" ? getEffectiveSchemaType(context, type) : type;
     if (enableCache) {
         const cached = typesMap.get(effectiveModel);
@@ -253,6 +228,12 @@ function getType(context: SdkContext, type: EmitterType): any {
     } else {
         newValue = emitType(context, type);
     }
+
+    if (oriType?.kind === "ModelProperty") {
+        updateWithClientFormat(context, oriType, newValue);
+        updateWithEncode(context, oriType, newValue);
+    }
+
     if (enableCache) {
         typesMap.set(effectiveModel, newValue);
         if (type.kind === "Model") {
@@ -389,7 +370,7 @@ function emitParameter(
     implementation: string,
 ): Record<string, any> {
     const base = emitParamBase(context, parameter.param);
-    let type = getEntityType(context, parameter.param);
+    let type = getType(context, parameter.param);
     let clientDefaultValue = undefined;
     if (parameter.name.toLowerCase() === "content-type" && type["type"] === "constant") {
         /// We don't want constant types for content types, so we make sure if it's
@@ -527,7 +508,7 @@ function emitResponseHeaders(context: SdkContext, headers?: Record<string, Model
     }
     for (const [key, value] of Object.entries(headers)) {
         retval.push({
-            type: getEntityType(context, value),
+            type: getType(context, value),
             wireName: key,
         });
     }
@@ -785,7 +766,7 @@ function emitProperty(context: SdkContext, type: ModelProperty): Record<string, 
     return {
         clientName: camelToSnakeCase(sdkProperty.name),
         wireName: sdkProperty.wireName,
-        type: getEntityType(context, type),
+        type: getType(context, type),
         optional: sdkProperty.optional,
         description: sdkProperty.doc,
         addedOn: getAddedOnVersion(context, type),
@@ -1012,7 +993,9 @@ function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
         case "Model":
             return emitModel(context, type);
         case "Scalar":
-            return emitSimpleType(context, type);
+            const result = emitSimpleType(context, type);
+            updateWithEncode(context, type, result);
+            return result;
         case "Union":
             return emitUnion(context, type);
         case "UnionVariant":
@@ -1021,6 +1004,26 @@ function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
             return emitEnum(context, type);
         default:
             throw Error(`Not supported ${type.kind}`);
+    }
+}
+
+function updateWithEncode(context: SdkContext, entity: ModelProperty | Scalar, result: Record<string, any>) {
+    const encode = getEncode(context.program, entity);
+    if (encode) {
+        if (encode.encoding === "seconds") {
+            result["type"] = encode.type.name.includes("float") ? "float" : "integer";
+        }
+    }
+}
+
+function updateWithClientFormat(context: SdkContext, entity: ModelProperty, result: Record<string, any>) {
+    const format = getClientFormat(context, entity);
+    if (format) {
+        if (format === "rfc1123") {
+            result["format"] = "date-time-rfc1123";
+        } else if (format === "iso8601") {
+            result["format"] = "date-time";
+        }
     }
 }
 
