@@ -133,6 +133,7 @@ function camelToSnakeCase(name: string): string {
     if (!name) return name;
     const camelToSnakeCaseRe = (str: string) =>
         str
+            .replace("/", "_")
             .replace(/\s+/g, "_")
             .replace(/\$/g, "")
             .replace(/-/g, "_")
