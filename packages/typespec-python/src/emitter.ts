@@ -21,6 +21,7 @@ import {
     Type,
     getNamespaceFullName,
     IntrinsicType,
+    Program,
 } from "@typespec/compiler";
 import {
     getAuthentication,
@@ -194,18 +195,20 @@ function getEffectiveSchemaType(context: SdkContext, type: Model): Model {
     return type;
 }
 
-function isEmptyModel(type: EmitterType): boolean {
-    // object, {}, Model{} all will be treated as empty model
+function isEmptyModel(program: Program, type: EmitterType): boolean {
+    // object, {} will be treated as empty model, user defined empty model will not
+    const [objectType] = program.resolveTypeReference("TypeSpec.object");
     return (
         type.kind === "Model" &&
         type.properties.size === 0 &&
         !type.baseModel &&
         type.derivedModels.length === 0 &&
-        !type.indexer
+        !type.indexer &&
+        (type === objectType || type.name === "")
     );
 }
 
-function getType(context: SdkContext, type: EmitterType): any {
+export function getType(context: SdkContext, type: EmitterType): any {
     // don't cache simple type(string, int, etc) since decorators may change the result
     const program = context.program;
     let oriType;
@@ -213,7 +216,7 @@ function getType(context: SdkContext, type: EmitterType): any {
         oriType = type;
         type = type.type;
     }
-    const enableCache = type.kind !== "Scalar" && !isEmptyModel(type);
+    const enableCache = type.kind !== "Scalar" && !isEmptyModel(context.program, type);
     const effectiveModel = type.kind === "Model" ? getEffectiveSchemaType(context, type) : type;
     if (enableCache) {
         const cached = typesMap.get(effectiveModel);
@@ -222,7 +225,7 @@ function getType(context: SdkContext, type: EmitterType): any {
         }
     }
     let newValue;
-    if (isEmptyModel(type)) {
+    if (isEmptyModel(context.program, type)) {
         // do not generate model for empty model, treat it as any
         newValue = { type: "any" };
     } else {
