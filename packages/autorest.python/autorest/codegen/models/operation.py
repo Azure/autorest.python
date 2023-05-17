@@ -36,6 +36,7 @@ from .parameter import (
 )
 from .parameter_list import ParameterList
 from .model_type import ModelType
+from .base import BaseType
 from .request_builder import OverloadedRequestBuilder, RequestBuilder
 
 if TYPE_CHECKING:
@@ -47,6 +48,10 @@ ResponseType = TypeVar(
     "ResponseType",
     bound=Union[Response, PagingResponse, LROResponse, LROPagingResponse],
 )
+
+
+def is_internal(target_type: Optional[BaseType]) -> bool:
+    return isinstance(target_type, ModelType) and target_type.internal
 
 
 class OperationBase(  # pylint: disable=too-many-public-methods
@@ -130,6 +135,13 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         if self.response_type_annotation(async_mode=False) == "None":
             # doesn't matter if it's async or not
             retval = add_to_pylint_disable(retval, "inconsistent-return-statements")
+        try:
+            if any(is_internal(r.type) for r in self.responses) or is_internal(
+                self.parameters.body_parameter.type
+            ):
+                retval = add_to_pylint_disable(retval, "protected-access")
+        except ValueError:
+            pass
         return retval
 
     def cls_type_annotation(self, *, async_mode: bool) -> str:
