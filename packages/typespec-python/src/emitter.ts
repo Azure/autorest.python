@@ -195,9 +195,9 @@ function getEffectiveSchemaType(context: SdkContext, type: Model): Model {
     return type;
 }
 
-function isEmptyModel(program: Program, type: EmitterType): boolean {
+function isEmptyModel(context: SdkContext, type: EmitterType): boolean {
     // object, {} will be treated as empty model, user defined empty model will not
-    const [objectType] = program.resolveTypeReference("TypeSpec.object");
+    const [objectType] = context.program.resolveTypeReference("TypeSpec.object");
     return (
         type.kind === "Model" &&
         type.properties.size === 0 &&
@@ -216,7 +216,7 @@ export function getType(context: SdkContext, type: EmitterType): any {
         oriType = type;
         type = type.type;
     }
-    const enableCache = type.kind !== "Scalar" && !isEmptyModel(context.program, type);
+    const enableCache = type.kind !== "Scalar" && !isEmptyModel(context, type);
     const effectiveModel = type.kind === "Model" ? getEffectiveSchemaType(context, type) : type;
     if (enableCache) {
         const cached = typesMap.get(effectiveModel);
@@ -225,7 +225,7 @@ export function getType(context: SdkContext, type: EmitterType): any {
         }
     }
     let newValue;
-    if (isEmptyModel(context.program, type)) {
+    if (isEmptyModel(context, type)) {
         // do not generate model for empty model, treat it as any
         newValue = { type: "any" };
     } else {
