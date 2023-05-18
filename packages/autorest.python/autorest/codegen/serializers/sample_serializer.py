@@ -50,15 +50,12 @@ class SampleSerializer:
         namespace_config = get_namespace_config(
             self.code_model.namespace, self.code_model.options["multiapi"]
         )
-        # mainly for "azure-mgmt-resource" and "azure-mgmt-rdbms"
-        if self.code_model.options["multiapi"]:
-            namespace = namespace_from_package_name or namespace_config
-        else:
-            namespace = (
-                namespace_config
-                if namespace_config.count(".") > namespace_from_package_name.count(".")
-                else namespace_from_package_name
-            )
+        namespace = namespace_from_package_name or namespace_config
+        # mainly for "azure-mgmt-rdbms"
+        if not self.code_model.options["multiapi"] and namespace_config.count(
+            "."
+        ) > namespace_from_package_name.count("."):
+            namespace = namespace_config
         client = self.code_model.clients[0]
         imports.add_submodule_import(namespace, client.name, ImportType.THIRDPARTY)
         credential_type = getattr(client.credential, "type", None)
