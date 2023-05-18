@@ -50,8 +50,8 @@ ResponseType = TypeVar(
 )
 
 
-def is_internal(target_type: Optional[BaseType]) -> bool:
-    return isinstance(target_type, ModelType) and target_type.internal
+def is_internal(target: Optional[BaseType]) -> bool:
+    return isinstance(target, ModelType) and target.base == "dpg" and target.internal
 
 
 class OperationBase(  # pylint: disable=too-many-public-methods
