@@ -38,17 +38,27 @@ class SampleSerializer:
         self.operation = operation
         self.sample = sample
         self.file_name = file_name
-        self.sample_params = {to_snake_case(k): v for k, v in sample.get("parameters", {}).items()}
+        self.sample_params = {
+            to_snake_case(k): v for k, v in sample.get("parameters", {}).items()
+        }
 
     def _imports(self) -> FileImportSerializer:
         imports = FileImport()
-        namespace_from_package_name = get_namespace_from_package_name(self.code_model.options["package_name"])
-        namespace_config = get_namespace_config(self.code_model.namespace, self.code_model.options["multiapi"])
+        namespace_from_package_name = get_namespace_from_package_name(
+            self.code_model.options["package_name"]
+        )
+        namespace_config = get_namespace_config(
+            self.code_model.namespace, self.code_model.options["multiapi"]
+        )
         # mainly for "azure-mgmt-resource" and "azure-mgmt-rdbms"
         if self.code_model.options["multiapi"]:
             namespace = namespace_from_package_name or namespace_config
         else:
-            namespace = namespace_config if namespace_config.count(".") > namespace_from_package_name.count(".") else namespace_from_package_name
+            namespace = (
+                namespace_config
+                if namespace_config.count(".") > namespace_from_package_name.count(".")
+                else namespace_from_package_name
+            )
         client = self.code_model.clients[0]
         imports.add_submodule_import(namespace, client.name, ImportType.THIRDPARTY)
         credential_type = getattr(client.credential, "type", None)
