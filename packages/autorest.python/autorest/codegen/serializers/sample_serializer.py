@@ -16,6 +16,7 @@ from autorest.codegen.models.operation_group import OperationGroup
 from autorest.codegen.models.parameter import Parameter, BodyParameter
 from autorest.codegen.serializers.import_serializer import FileImportSerializer
 from ..models import CodeModel
+from .utils import get_namespace_config, get_namespace_from_package_name
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -39,9 +40,13 @@ class SampleSerializer:
 
     def _imports(self) -> FileImportSerializer:
         imports = FileImport()
-        namespace = (self.code_model.options["package_name"] or "").replace(
-            "-", "."
-        ) or self.code_model.namespace
+        namespace_from_package_name = get_namespace_from_package_name(self.code_model.options["package_name"])
+        namespace_config = get_namespace_config(self.code_model.namespace, self.code_model.options["multiapi"])
+        # mainly for "azure-mgmt-resource" and "azure-mgmt-rdbms"
+        if self.code_model.options["multiapi"]:
+            namespace = namespace_from_package_name or namespace_config
+        else:
+            namespace = namespace_config if namespace_config.count(".") > namespace_from_package_name.count(".") else namespace_from_package_name
         client = self.code_model.clients[0]
         imports.add_submodule_import(namespace, client.name, ImportType.THIRDPARTY)
         credential_type = getattr(client.credential, "type", None)
