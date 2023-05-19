@@ -9,6 +9,7 @@
 from ._models import Cat
 from ._models import Fish
 from ._models import GoblinShark
+from ._models import ModelRecordUnknown
 from ._models import Pet
 from ._models import Salmon
 from ._models import SawShark
@@ -22,6 +23,7 @@ __all__ = [
     "Cat",
     "Fish",
     "GoblinShark",
+    "ModelRecordUnknown",
     "Pet",
     "Salmon",
     "SawShark",

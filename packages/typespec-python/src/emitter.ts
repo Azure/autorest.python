@@ -208,6 +208,18 @@ function isEmptyModel(context: SdkContext, type: EmitterType): boolean {
     );
 }
 
+function addtionalProperties(type: any): Record<string, any> {
+    return {
+        clientName: "additional_properties",
+        wireName: "additionalProperties",
+        optional: true,
+        description: "Unmatched properties from the message are deserialized to this collection.",
+        isDiscriminator: false,
+        readonly: false,
+        type: type,
+    };
+}
+
 export function getType(context: SdkContext, type: EmitterType): any {
     // don't cache simple type(string, int, etc) since decorators may change the result
     const program = context.program;
@@ -249,6 +261,18 @@ export function getType(context: SdkContext, type: EmitterType): any {
             }
             // need to do discriminator outside `emitModel` to avoid infinite recursion
             handleDiscriminator(context, type, newValue);
+
+            // special case for additionalProperties
+            try {
+                if (newValue.type === "model" && newValue.parents.length > 0 && newValue.parents[0].type === "dict") {
+                    newValue.properties.push(addtionalProperties(newValue.parents[0]));
+                    newValue.parents = [];
+                }
+            }
+            catch (e) {
+                // do nothing
+                newValue.parents = [];
+            }
         }
     } else {
         const key = dump(newValue, { sortKeys: true });

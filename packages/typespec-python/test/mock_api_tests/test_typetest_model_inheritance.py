@@ -106,3 +106,7 @@ def test_get_missing_discriminator(client):
 
 def test_get_wrong_discriminator(client):
     assert client.get_wrong_discriminator() == models.Fish(age=1, kind="wrongKind")
+
+def test_put_model_record_unknown(client):
+    body = models.ModelRecordUnknown(name="ModelRecordUnknown", additional_properties={"prop1": 32, "prop2": True, "prop3": "abc"})
+    assert client.put_model_record_unknown(body) == body

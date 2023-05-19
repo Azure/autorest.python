@@ -34,6 +34,7 @@ from ..._operations._operations import (
     build_inheritance_get_valid_request,
     build_inheritance_get_wrong_discriminator_request,
     build_inheritance_post_valid_request,
+    build_inheritance_put_model_record_unknown_request,
     build_inheritance_put_model_request,
     build_inheritance_put_recursive_model_request,
     build_inheritance_put_valid_request,
@@ -323,6 +324,127 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
             deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(_models.Siamese, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    async def put_model_record_unknown(
+        self, input: _models.ModelRecordUnknown, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.ModelRecordUnknown:
+        """put_model_record_unknown.
+
+        :param input: Required.
+        :type input: ~typetest.model.inheritance.models.ModelRecordUnknown
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: ModelRecordUnknown. The ModelRecordUnknown is compatible with MutableMapping
+        :rtype: ~typetest.model.inheritance.models.ModelRecordUnknown
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_model_record_unknown(
+        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.ModelRecordUnknown:
+        """put_model_record_unknown.
+
+        :param input: Required.
+        :type input: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: ModelRecordUnknown. The ModelRecordUnknown is compatible with MutableMapping
+        :rtype: ~typetest.model.inheritance.models.ModelRecordUnknown
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_model_record_unknown(
+        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.ModelRecordUnknown:
+        """put_model_record_unknown.
+
+        :param input: Required.
+        :type input: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: ModelRecordUnknown. The ModelRecordUnknown is compatible with MutableMapping
+        :rtype: ~typetest.model.inheritance.models.ModelRecordUnknown
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def put_model_record_unknown(
+        self, input: Union[_models.ModelRecordUnknown, JSON, IO], **kwargs: Any
+    ) -> _models.ModelRecordUnknown:
+        """put_model_record_unknown.
+
+        :param input: Is one of the following types: ModelRecordUnknown, JSON, IO Required.
+        :type input: ~typetest.model.inheritance.models.ModelRecordUnknown or JSON or IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: ModelRecordUnknown. The ModelRecordUnknown is compatible with MutableMapping
+        :rtype: ~typetest.model.inheritance.models.ModelRecordUnknown
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.ModelRecordUnknown] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(input, (IOBase, bytes)):
+            _content = input
+        else:
+            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
+
+        request = build_inheritance_put_model_record_unknown_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.ModelRecordUnknown, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
