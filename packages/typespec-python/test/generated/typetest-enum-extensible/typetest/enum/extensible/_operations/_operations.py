@@ -63,9 +63,7 @@ def build_extensible_get_unknown_value_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_extensible_put_known_value_request(
-    *, content: Union[str, _models.DaysOfWeekExtensibleEnum], **kwargs: Any
-) -> HttpRequest:
+def build_extensible_put_known_value_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -76,12 +74,10 @@ def build_extensible_put_known_value_request(
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_extensible_put_unknown_value_request(
-    *, content: Union[str, _models.DaysOfWeekExtensibleEnum], **kwargs: Any
-) -> HttpRequest:
+def build_extensible_put_unknown_value_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -92,7 +88,7 @@ def build_extensible_put_unknown_value_request(
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
 
-    return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
 class ExtensibleClientOperationsMixin(ExtensibleClientMixinABC):

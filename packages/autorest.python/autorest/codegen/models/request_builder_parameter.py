@@ -40,7 +40,11 @@ class RequestBuilderBodyParameter(BodyParameter):
 
     @property
     def in_method_signature(self) -> bool:
-        return super().in_method_signature and not self.is_partial_body
+        return (
+            super().in_method_signature
+            and not self.is_partial_body
+            and self.code_model.options["models_mode"] != "dpg"
+        )
 
     @property
     def method_location(self) -> ParameterMethodLocation:
