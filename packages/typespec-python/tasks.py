@@ -57,6 +57,9 @@ EMITTER_OPTIONS = {
     "type/model/usage/main.tsp": {
         "package-name": "typetest-model-usage",
     },
+    "type/model/record/main.tsp": {
+        "package-name": "typetest-model-record",
+    },
     "type/model/visibility/main.tsp": {
         "package-name": "typetest-model-visibility",
     },
