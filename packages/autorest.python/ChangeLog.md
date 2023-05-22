@@ -1,6 +1,6 @@
 # Release
 
-### 2023-05-XX - 6.4.15
+### 2023-05-XX - 6.4.16
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -15,7 +15,23 @@
 **Bug Fixes**
 
 - Added sub-namespace folder when generating samples #1920
+
+### 2023-05-19 - 6.4.15
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.9.2`     |
+| `@autorest/modelerfour`                                                 | `4.24.3`    |
+| `azure-core` dep of generated code                                      | `1.24.0`    |
+| `isodate` dep of generated code                                         | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+
+**Bug Fixes**
+
 - Optimize logic to find realted params in example files #1916
+- Fix pylint and mypy bugs for internal models #1922
 
 ### 2023-05-16 - 6.4.14
 

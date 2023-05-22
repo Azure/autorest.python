@@ -214,7 +214,9 @@ class InternalClientOperationsMixin(InternalClientMixinABC):
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def _internal_only(self, *, name: str, **kwargs: Any) -> _models._models.InternalModel:
+    async def _internal_only(  # pylint: disable=protected-access
+        self, *, name: str, **kwargs: Any
+    ) -> _models._models.InternalModel:
         """internal_only.
 
         :keyword name: Required.
