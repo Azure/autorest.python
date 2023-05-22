@@ -215,22 +215,16 @@ class ModelRecordUnknown(_model_base.Model):
 
     :ivar name: Required.
     :vartype name: str
-    :ivar additional_properties: Unmatched properties from the message are deserialized to this
-     collection.
-    :vartype additional_properties: dict[str, any]
     """
 
     name: str = rest_field()
     """Required."""
-    additional_properties: Optional[Dict[str, Any]] = rest_field(name="additionalProperties")
-    """Unmatched properties from the message are deserialized to this collection."""
 
     @overload
     def __init__(
         self,
         *,
         name: str,
-        additional_properties: Optional[Dict[str, Any]] = None,
     ):
         ...
 
