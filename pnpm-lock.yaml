@@ -48,8 +48,8 @@ importers:
         specifier: '>=0.30.0 <1.0.0'
         version: 0.30.0(@typespec/compiler@0.44.0)(@typespec/http@0.44.0)(@typespec/rest@0.44.0)
       '@azure-tools/typespec-client-generator-core':
-        specifier: '>=0.30.0 <1.0.0'
-        version: 0.30.0(@typespec/compiler@0.44.0)(@typespec/http@0.44.0)(@typespec/rest@0.44.0)
+        specifier: '>=0.31.0-dev.3 <1.0.0'
+        version: 0.31.0-dev.3(@typespec/compiler@0.44.0)(@typespec/http@0.44.0)(@typespec/rest@0.44.0)(@typespec/versioning@0.44.0)
       '@typespec/compiler':
         specifier: '>=0.44.0 <1.0.0'
         version: 0.44.0
@@ -239,18 +239,20 @@ packages:
       '@typespec/lint': 0.44.0(@typespec/compiler@0.44.0)
       '@typespec/rest': 0.44.0(@typespec/compiler@0.44.0)
 
-  /@azure-tools/typespec-client-generator-core@0.30.0(@typespec/compiler@0.44.0)(@typespec/http@0.44.0)(@typespec/rest@0.44.0):
-    resolution: {integrity: sha512-2CyCrIPXL/k6vXGWixWCYlA8gENErIUncdN9IFUBlqyqWlgb8GBpjl2RhIqbQCo2PGS6U3s1NEdZffzD0tNSdw==}
+  /@azure-tools/typespec-client-generator-core@0.31.0-dev.3(@typespec/compiler@0.44.0)(@typespec/http@0.44.0)(@typespec/rest@0.44.0)(@typespec/versioning@0.44.0):
+    resolution: {integrity: sha512-SY8uZPWIIZU8mE+Jqpk9RVgFmDWWUUT5wQpMjjFJEIH+3bJ03eSrcmYM3o1R/w7T5aQEbLSjsE3P0JogrDvejw==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@typespec/compiler': ~0.44.0
-      '@typespec/http': ~0.44.0
-      '@typespec/rest': ~0.44.0
+      '@typespec/compiler': ~0.44.0 || >=0.45.0-dev <0.45.0
+      '@typespec/http': ~0.44.0 || >=0.45.0-dev <0.45.0
+      '@typespec/rest': ~0.44.0 || >=0.45.0-dev <0.45.0
+      '@typespec/versioning': ~0.44.0 || >=0.45.0-dev <0.45.0
     dependencies:
       '@typespec/compiler': 0.44.0
       '@typespec/http': 0.44.0(@typespec/compiler@0.44.0)
       '@typespec/lint': 0.44.0(@typespec/compiler@0.44.0)
       '@typespec/rest': 0.44.0(@typespec/compiler@0.44.0)
+      '@typespec/versioning': 0.44.0(@typespec/compiler@0.44.0)
     dev: false
 
   /@azure/abort-controller@1.1.0:
