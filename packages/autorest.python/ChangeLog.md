@@ -15,6 +15,7 @@
 **Bug Fixes**
 
 - Added sub-namespace folder when generating samples #1920
+- Optimize logic to find realted params in example files #1916
 
 ### 2023-05-19 - 6.4.15
 
@@ -30,7 +31,6 @@
 
 **Bug Fixes**
 
-- Optimize logic to find realted params in example files #1916
 - Fix pylint and mypy bugs for internal models #1922
 
 ### 2023-05-16 - 6.4.14
