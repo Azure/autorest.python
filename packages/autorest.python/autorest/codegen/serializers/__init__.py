@@ -29,7 +29,11 @@ from .patch_serializer import PatchSerializer
 from .sample_serializer import SampleSerializer
 from .types_serializer import TypesSerializer
 from ..._utils import to_snake_case
-from .utils import extract_sample_name
+from .utils import (
+    extract_sample_name,
+    get_namespace_from_package_name,
+    get_namespace_config,
+)
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -547,17 +551,34 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
             namespace_path / Path("_metadata.json"), metadata_serializer.serialize()
         )
 
+    @property
+    def _namespace_from_package_name(self) -> str:
+        return get_namespace_from_package_name(self.code_model.options["package_name"])
+
     def _name_space(self) -> str:
-        if self.code_model.namespace.count(".") >= (
-            self.code_model.options["package_name"] or ""
-        ).count("-"):
+        if self.code_model.namespace.count(
+            "."
+        ) >= self._namespace_from_package_name.count("."):
             return self.code_model.namespace
 
-        return self.code_model.options["package_name"].replace("-", ".")
+        return self._namespace_from_package_name
 
     # find root folder where "setup.py" is
     def _package_root_folder(self, namespace_path: Path) -> Path:
         return namespace_path / Path("../" * (self._name_space().count(".") + 1))
+
+    @property
+    def _additional_folder(self) -> Path:
+        namespace_config = get_namespace_config(
+            self.code_model.namespace, self.code_model.options["multiapi"]
+        )
+        num_of_namespace = namespace_config.count(".") + 1
+        num_of_package_namespace = self._namespace_from_package_name.count(".") + 1
+        if num_of_namespace > num_of_package_namespace:
+            return Path(
+                "/".join(namespace_config.split(".")[num_of_package_namespace:])
+            )
+        return Path("")
 
     def _serialize_and_write_sample(self, env: Environment, namespace_path: Path):
         out_path = self._package_root_folder(namespace_path) / Path("generated_samples")
@@ -578,7 +599,10 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                         file_name = to_snake_case(extract_sample_name(file)) + ".py"
                         try:
                             self.write_file(
-                                out_path / _sample_output_path(file) / file_name,
+                                out_path
+                                / self._additional_folder
+                                / _sample_output_path(file)
+                                / file_name,
                                 SampleSerializer(
                                     code_model=self.code_model,
                                     env=env,
