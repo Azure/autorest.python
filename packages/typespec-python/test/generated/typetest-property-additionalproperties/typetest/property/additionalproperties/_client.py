@@ -12,22 +12,36 @@ from typing import Any
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 
-from ._configuration import RecordTestClientConfiguration
-from ._operations import RecordTestClientOperationsMixin
+from ._configuration import AdditionalPropertiesClientConfiguration
 from ._serialization import Deserializer, Serializer
+from .operations import ExtendsRecordUnknownOperations, IsRecordUnknownOperations
 
 
-class RecordTestClient(RecordTestClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
-    """Illustrates model that extends from record."""
+class AdditionalPropertiesClient:  # pylint: disable=client-accepts-api-version-keyword
+    """Illustrates various property types for models.
+
+    :ivar extends_record_unknown: ExtendsRecordUnknownOperations operations
+    :vartype extends_record_unknown:
+     typetest.property.additionalproperties.operations.ExtendsRecordUnknownOperations
+    :ivar is_record_unknown: IsRecordUnknownOperations operations
+    :vartype is_record_unknown:
+     typetest.property.additionalproperties.operations.IsRecordUnknownOperations
+    """
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
-        self._config = RecordTestClientConfiguration(**kwargs)
+        self._config = AdditionalPropertiesClientConfiguration(**kwargs)
         self._client: PipelineClient = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
+        self.extends_record_unknown = ExtendsRecordUnknownOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.is_record_unknown = IsRecordUnknownOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
@@ -54,7 +68,7 @@ class RecordTestClient(RecordTestClientOperationsMixin):  # pylint: disable=clie
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "RecordTestClient":
+    def __enter__(self) -> "AdditionalPropertiesClient":
         self._client.__enter__()
         return self
 

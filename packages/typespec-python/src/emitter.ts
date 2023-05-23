@@ -249,11 +249,6 @@ export function getType(context: SdkContext, type: EmitterType): any {
             }
             // need to do discriminator outside `emitModel` to avoid infinite recursion
             handleDiscriminator(context, type, newValue);
-
-            // DPG model is inherited from Mapping, so we don't need handle inheritance from "dict"
-            if (newValue.type === "model" && newValue.parents.length > 0 && newValue.parents[0].type === "dict") {
-                newValue.parents = [];
-            }
         }
     } else {
         const key = dump(newValue, { sortKeys: true });
@@ -802,6 +797,11 @@ function emitModel(context: SdkContext, type: Model): Record<string, any> {
     let baseModel = undefined;
     if (type.baseModel) {
         baseModel = getType(context, type.baseModel);
+        // For "model MyModel extends Record<> {}", we don't need handle inheritance from "dict"
+        // since DPG model is inherited from Mapping
+        if (baseModel && baseModel.type === "dict") {
+            baseModel = undefined;
+        }
     }
     const modelName = getName(context, type) || getEffectiveSchemaType(context, type).name;
     return {
@@ -938,6 +938,10 @@ function mapCadlType(context: SdkContext, type: Type): any {
                 valueType: emitSimpleType(context, sdkType.valueType),
             };
         case "Model":
+            // for "model MyModel is Record<> {}", we shall treat it as model instead of dict
+            if (type.sourceModel?.kind === "Model" && type.sourceModel?.name === "Record") {
+                return undefined;
+            }
             return emitListOrDict(context, type);
     }
 }

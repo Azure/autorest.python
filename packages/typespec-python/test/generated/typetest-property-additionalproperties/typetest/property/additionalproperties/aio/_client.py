@@ -13,21 +13,35 @@ from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
-from ._configuration import RecordTestClientConfiguration
-from ._operations import RecordTestClientOperationsMixin
+from ._configuration import AdditionalPropertiesClientConfiguration
+from .operations import ExtendsRecordUnknownOperations, IsRecordUnknownOperations
 
 
-class RecordTestClient(RecordTestClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
-    """Illustrates model that extends from record."""
+class AdditionalPropertiesClient:  # pylint: disable=client-accepts-api-version-keyword
+    """Illustrates various property types for models.
+
+    :ivar extends_record_unknown: ExtendsRecordUnknownOperations operations
+    :vartype extends_record_unknown:
+     typetest.property.additionalproperties.aio.operations.ExtendsRecordUnknownOperations
+    :ivar is_record_unknown: IsRecordUnknownOperations operations
+    :vartype is_record_unknown:
+     typetest.property.additionalproperties.aio.operations.IsRecordUnknownOperations
+    """
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
-        self._config = RecordTestClientConfiguration(**kwargs)
+        self._config = AdditionalPropertiesClientConfiguration(**kwargs)
         self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
+        self.extends_record_unknown = ExtendsRecordUnknownOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.is_record_unknown = IsRecordUnknownOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
@@ -54,7 +68,7 @@ class RecordTestClient(RecordTestClientOperationsMixin):  # pylint: disable=clie
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "RecordTestClient":
+    async def __aenter__(self) -> "AdditionalPropertiesClient":
         await self._client.__aenter__()
         return self
 

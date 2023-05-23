@@ -9,12 +9,12 @@
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "typetest-model-record"
+PACKAGE_NAME = "typetest-property-additionalproperties"
 version = "1.0.0b1"
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="typetest-model-record",
+    description="typetest-property-additionalproperties",
     author_email="",
     url="",
     keywords="azure, azure sdk",
@@ -25,6 +25,6 @@ setup(
         "azure-core<2.0.0,>=1.24.0",
     ],
     long_description="""\
-    Illustrates model that extends from record.
+    Illustrates various property types for models.
     """,
 )
