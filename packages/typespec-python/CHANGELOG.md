@@ -40,7 +40,6 @@
 
 - Expose the scoped `@internal` decorator in TCGC #1926
 
-
 ## 2023-05-17 - 0.9.1
 
 | Library                                                                 | Min Version |
