@@ -202,7 +202,9 @@ class OperationGroupOneOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version: str = kwargs.pop("api_version", _params.pop("api-version", "3.0.0"))
+        api_version: str = kwargs.pop(
+            "api_version", getattr(self._config, "api_version", None) or _params.pop("api-version", "3.0.0")
+        )
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.ModelThree] = kwargs.pop("cls", None)
 

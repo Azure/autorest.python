@@ -145,6 +145,11 @@ class ParameterSerializer:
                     default_value = (
                         f"_{kwarg_dict}.pop('{kwarg.wire_name}', {default_value})"
                     )
+                if (
+                    kwarg.client_name == "api_version"
+                    and kwarg.code_model.options["multiapi"]
+                ):
+                    default_value = f"getattr(self._config, 'api_version', None)  or {default_value}"
                 retval.append(
                     f"{kwarg.client_name}: {type_annot} = kwargs.pop('{kwarg.client_name}', "
                     + f"{default_value})"
