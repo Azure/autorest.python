@@ -37,9 +37,7 @@ def build_test_four_request(*, parameter_one: bool, **kwargs: Any) -> HttpReques
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop(
-        "api_version", _params.pop("api-version", getattr(self._config, "api_version", None) or "2.0.0")
-    )
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2.0.0"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL

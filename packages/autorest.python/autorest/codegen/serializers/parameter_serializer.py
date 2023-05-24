@@ -111,6 +111,7 @@ class ParameterSerializer:
         pop_headers_kwarg: PopKwargType,
         pop_params_kwarg: PopKwargType,
         check_client_input: bool = False,
+        in_operation: bool = False,
     ) -> List[str]:
         retval = []
 
@@ -145,6 +146,7 @@ class ParameterSerializer:
                     if (
                         kwarg.client_name == "api_version"
                         and kwarg.code_model.options["multiapi"]
+                        and in_operation
                     ):
                         default_value = f"getattr(self._config, 'api_version', None)  or {default_value}"
                     default_value = (
