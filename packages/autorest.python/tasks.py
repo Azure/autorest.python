@@ -513,7 +513,7 @@ def regenerate_version_tolerant(c, swagger_name=None, debug=False):
 def test(c):
     # run language-specific tests
     base_dir = os.path.dirname(__file__)
-    cmd = 'tox -e ci'
+    cmd = 'tox run -e ci'
 
     autorest_types = ["azure", "vanilla"]
     gen_types = ["legacy", "version-tolerant"]
