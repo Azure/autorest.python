@@ -47,7 +47,7 @@ def build_extends_record_unknown_get_request(**kwargs: Any) -> HttpRequest:
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/type/property/additionalProperties/extends/record/unknown"
+    _url = "/type/property/additionalProperties/extendsRecordUnknown"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -60,7 +60,7 @@ def build_extends_record_unknown_put_request(**kwargs: Any) -> HttpRequest:
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
-    _url = "/type/property/additionalProperties/extends/record/unknown"
+    _url = "/type/property/additionalProperties/extendsRecordUnknown"
 
     # Construct headers
     if content_type is not None:
@@ -75,7 +75,7 @@ def build_is_record_unknown_get_request(**kwargs: Any) -> HttpRequest:
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/type/property/additionalProperties/is/record/unknown"
+    _url = "/type/property/additionalProperties/isRecordUnknown"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -88,7 +88,7 @@ def build_is_record_unknown_put_request(**kwargs: Any) -> HttpRequest:
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     # Construct URL
-    _url = "/type/property/additionalProperties/is/record/unknown"
+    _url = "/type/property/additionalProperties/isRecordUnknown"
 
     # Construct headers
     if content_type is not None:
