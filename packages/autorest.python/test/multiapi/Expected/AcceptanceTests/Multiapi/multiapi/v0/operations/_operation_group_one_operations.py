@@ -39,7 +39,7 @@ def build_test_two_request(**kwargs: Any) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     api_version: str = kwargs.pop(
-        "api_version", getattr(self._config, "api_version", None) or _params.pop("api-version", "0.0.0")
+        "api_version", _params.pop("api-version", getattr(self._config, "api_version", None) or "0.0.0")
     )
     accept = _headers.pop("Accept", "application/json")
 
@@ -95,7 +95,7 @@ class OperationGroupOneOperations:
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version: str = kwargs.pop(
-            "api_version", getattr(self._config, "api_version", None) or _params.pop("api-version", "0.0.0")
+            "api_version", _params.pop("api-version", getattr(self._config, "api_version", None) or "0.0.0")
         )
         cls: ClsType[None] = kwargs.pop("cls", None)
 

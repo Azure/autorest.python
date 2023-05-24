@@ -114,7 +114,7 @@ class OperationGroupTwoOperations:
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version: str = kwargs.pop(
-            "api_version", getattr(self._config, "api_version", None) or _params.pop("api-version", "3.0.0")
+            "api_version", _params.pop("api-version", getattr(self._config, "api_version", None) or "3.0.0")
         )
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
@@ -180,7 +180,7 @@ class OperationGroupTwoOperations:
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version: str = kwargs.pop(
-            "api_version", getattr(self._config, "api_version", None) or _params.pop("api-version", "3.0.0")
+            "api_version", _params.pop("api-version", getattr(self._config, "api_version", None) or "3.0.0")
         )
         cls: ClsType[None] = kwargs.pop("cls", None)
 

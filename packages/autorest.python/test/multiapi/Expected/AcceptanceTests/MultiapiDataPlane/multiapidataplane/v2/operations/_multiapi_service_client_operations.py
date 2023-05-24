@@ -38,7 +38,7 @@ def build_test_one_request(*, id: int, message: Optional[str] = None, **kwargs: 
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     api_version: str = kwargs.pop(
-        "api_version", getattr(self._config, "api_version", None) or _params.pop("api-version", "2.0.0")
+        "api_version", _params.pop("api-version", getattr(self._config, "api_version", None) or "2.0.0")
     )
     accept = _headers.pop("Accept", "application/json")
 
@@ -64,7 +64,7 @@ def build_test_different_calls_request(
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     api_version: str = kwargs.pop(
-        "api_version", getattr(self._config, "api_version", None) or _params.pop("api-version", "2.0.0")
+        "api_version", _params.pop("api-version", getattr(self._config, "api_version", None) or "2.0.0")
     )
     accept = _headers.pop("Accept", "application/json")
 
@@ -109,7 +109,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version: str = kwargs.pop(
-            "api_version", getattr(self._config, "api_version", None) or _params.pop("api-version", "2.0.0")
+            "api_version", _params.pop("api-version", getattr(self._config, "api_version", None) or "2.0.0")
         )
         cls: ClsType[_models.ModelTwo] = kwargs.pop("cls", None)
 
@@ -172,7 +172,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version: str = kwargs.pop(
-            "api_version", getattr(self._config, "api_version", None) or _params.pop("api-version", "2.0.0")
+            "api_version", _params.pop("api-version", getattr(self._config, "api_version", None) or "2.0.0")
         )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
