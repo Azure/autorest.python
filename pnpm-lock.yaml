@@ -48,8 +48,8 @@ importers:
         specifier: '>=0.30.0 <1.0.0'
         version: 0.30.0(@typespec/compiler@0.44.0)(@typespec/http@0.44.0)(@typespec/rest@0.44.0)
       '@azure-tools/typespec-client-generator-core':
-        specifier: '>=0.31.0-dev.3 <1.0.0'
-        version: 0.31.0-dev.3(@typespec/compiler@0.44.0)(@typespec/http@0.44.0)(@typespec/rest@0.44.0)(@typespec/versioning@0.44.0)
+        specifier: '>=0.31.0-dev.4 <1.0.0'
+        version: 0.31.0-dev.4(@typespec/compiler@0.44.0)(@typespec/http@0.44.0)(@typespec/rest@0.44.0)(@typespec/versioning@0.44.0)
       '@typespec/compiler':
         specifier: '>=0.44.0 <1.0.0'
         version: 0.44.0
@@ -70,8 +70,8 @@ importers:
         specifier: ~0.3.1
         version: 0.3.1(@typespec/compiler@0.44.0)(@typespec/http@0.44.0)(@typespec/rest@0.44.0)(@typespec/versioning@0.44.0)
       '@azure-tools/cadl-ranch-specs':
-        specifier: ~0.15.0
-        version: 0.15.0(@azure-tools/cadl-ranch-expect@0.3.1)(@azure-tools/typespec-azure-core@0.30.0)(@typespec/compiler@0.44.0)(@typespec/http@0.44.0)(@typespec/rest@0.44.0)(@typespec/versioning@0.44.0)
+        specifier: ~0.15.2
+        version: 0.15.2(@azure-tools/cadl-ranch-expect@0.3.1)(@azure-tools/typespec-azure-core@0.30.0)(@typespec/compiler@0.44.0)(@typespec/http@0.44.0)(@typespec/rest@0.44.0)(@typespec/versioning@0.44.0)
       '@types/js-yaml':
         specifier: ~4.0.5
         version: 4.0.5
@@ -165,8 +165,8 @@ packages:
       '@typespec/versioning': 0.44.0(@typespec/compiler@0.44.0)
     dev: true
 
-  /@azure-tools/cadl-ranch-specs@0.15.0(@azure-tools/cadl-ranch-expect@0.3.1)(@azure-tools/typespec-azure-core@0.30.0)(@typespec/compiler@0.44.0)(@typespec/http@0.44.0)(@typespec/rest@0.44.0)(@typespec/versioning@0.44.0):
-    resolution: {integrity: sha512-+BO4ZFJY6ko3HW+ZhbQ6lwdQMncD5kBVx2V5Jn3u9/RUETg4EuDVJJEa2DSMpRuPqWi+j3pU0iVI5ungxGJy7A==}
+  /@azure-tools/cadl-ranch-specs@0.15.2(@azure-tools/cadl-ranch-expect@0.3.1)(@azure-tools/typespec-azure-core@0.30.0)(@typespec/compiler@0.44.0)(@typespec/http@0.44.0)(@typespec/rest@0.44.0)(@typespec/versioning@0.44.0):
+    resolution: {integrity: sha512-2xMOKRpV2b8ERc+bXnpbb8lwLWtuU3GyB5iT0Fm1u+BRFmYr6jGk+fo7DhRWDoTOyEQc+bQrPP10Mh8SqHIK+A==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       '@azure-tools/cadl-ranch-expect': ~0.3.1
@@ -176,7 +176,7 @@ packages:
       '@typespec/rest': ~0.44.0
       '@typespec/versioning': ~0.44.0
     dependencies:
-      '@azure-tools/cadl-ranch': 0.4.14(@typespec/versioning@0.44.0)
+      '@azure-tools/cadl-ranch': 0.4.15(@typespec/versioning@0.44.0)
       '@azure-tools/cadl-ranch-api': 0.2.5
       '@azure-tools/cadl-ranch-expect': 0.3.1(@typespec/compiler@0.44.0)(@typespec/http@0.44.0)(@typespec/rest@0.44.0)(@typespec/versioning@0.44.0)
       '@azure-tools/typespec-azure-core': 0.30.0(@typespec/compiler@0.44.0)(@typespec/http@0.44.0)(@typespec/rest@0.44.0)
@@ -190,8 +190,8 @@ packages:
       - supports-color
     dev: true
 
-  /@azure-tools/cadl-ranch@0.4.14(@typespec/versioning@0.44.0):
-    resolution: {integrity: sha512-fKJVSaYm+J9ralU1swvQDCah/W35Ec4xhIGmRgLqAQKeDpXwQr7kYWG5so3CrgU7EkOdZppQz2M+5GSarPY6WA==}
+  /@azure-tools/cadl-ranch@0.4.15(@typespec/versioning@0.44.0):
+    resolution: {integrity: sha512-v4+fC8ZOMkApEEzJyhUAIW5RO2fQYKjlWpobr98GyDuKq2336hElBS8h0BLqy++641fjp9+ZWSNhjvxOqAa4Cw==}
     engines: {node: '>=16.0.0'}
     hasBin: true
     dependencies:
@@ -239,8 +239,8 @@ packages:
       '@typespec/lint': 0.44.0(@typespec/compiler@0.44.0)
       '@typespec/rest': 0.44.0(@typespec/compiler@0.44.0)
 
-  /@azure-tools/typespec-client-generator-core@0.31.0-dev.3(@typespec/compiler@0.44.0)(@typespec/http@0.44.0)(@typespec/rest@0.44.0)(@typespec/versioning@0.44.0):
-    resolution: {integrity: sha512-SY8uZPWIIZU8mE+Jqpk9RVgFmDWWUUT5wQpMjjFJEIH+3bJ03eSrcmYM3o1R/w7T5aQEbLSjsE3P0JogrDvejw==}
+  /@azure-tools/typespec-client-generator-core@0.31.0-dev.4(@typespec/compiler@0.44.0)(@typespec/http@0.44.0)(@typespec/rest@0.44.0)(@typespec/versioning@0.44.0):
+    resolution: {integrity: sha512-MaU8KnT32VGat8mxOQDzeoOHauStmps1PAyDWZCw6pcUk078JGy7/FgH4d0vq/WeTQ6Lr8steRReVzRADVIpvQ==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       '@typespec/compiler': ~0.44.0 || >=0.45.0-dev <0.45.0
