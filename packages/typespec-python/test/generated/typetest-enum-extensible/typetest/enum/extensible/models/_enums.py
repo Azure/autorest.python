@@ -11,12 +11,19 @@ from azure.core import CaseInsensitiveEnumMeta
 
 
 class DaysOfWeekExtensibleEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """DaysOfWeekExtensibleEnum."""
+    """Days of the week."""
 
     MONDAY = "Monday"
+    """Monday."""
     TUESDAY = "Tuesday"
+    """Tuesday."""
     WEDNESDAY = "Wednesday"
+    """Wednesday."""
     THURSDAY = "Thursday"
+    """Thursday."""
     FRIDAY = "Friday"
+    """Friday."""
     SATURDAY = "Saturday"
+    """Saturday."""
     SUNDAY = "Sunday"
+    """Sunday."""
