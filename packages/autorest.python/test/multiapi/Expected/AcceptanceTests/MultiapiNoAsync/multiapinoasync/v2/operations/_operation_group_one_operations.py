@@ -156,7 +156,7 @@ class OperationGroupOneOperations:
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version: str = kwargs.pop(
-            "api_version", _params.pop("api-version", getattr(self._config, "api_version", None) or "2.0.0")
+            "api_version", _params.pop("api-version", getattr(self, "_api_version", None) or "2.0.0")
         )
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[_models.ModelTwo] = kwargs.pop("cls", None)
@@ -226,7 +226,7 @@ class OperationGroupOneOperations:
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version: str = kwargs.pop(
-            "api_version", _params.pop("api-version", getattr(self._config, "api_version", None) or "2.0.0")
+            "api_version", _params.pop("api-version", getattr(self, "_api_version", None) or "2.0.0")
         )
         cls: ClsType[None] = kwargs.pop("cls", None)
 

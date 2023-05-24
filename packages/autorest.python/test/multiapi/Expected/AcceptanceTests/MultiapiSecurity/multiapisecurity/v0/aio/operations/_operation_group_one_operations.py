@@ -70,7 +70,7 @@ class OperationGroupOneOperations:
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         api_version: str = kwargs.pop(
-            "api_version", _params.pop("api-version", getattr(self._config, "api_version", None) or "0.0.0")
+            "api_version", _params.pop("api-version", getattr(self, "_api_version", None) or "0.0.0")
         )
         cls: ClsType[None] = kwargs.pop("cls", None)
 

@@ -148,7 +148,9 @@ class ParameterSerializer:
                         and kwarg.code_model.options["multiapi"]
                         and in_operation
                     ):
-                        default_value = f"getattr(self._config, 'api_version', None)  or {default_value}"
+                        default_value = (
+                            f"getattr(self, '_api_version', None)  or {default_value}"
+                        )
                     default_value = (
                         f"_{kwarg_dict}.pop('{kwarg.wire_name}', {default_value})"
                     )
