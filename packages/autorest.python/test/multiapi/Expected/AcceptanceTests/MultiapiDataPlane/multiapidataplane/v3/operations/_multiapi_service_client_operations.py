@@ -80,6 +80,13 @@ def build_test_different_calls_request(
 
 
 class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
+    @property
+    def _api_version(self) -> str:
+        try:
+            return self._get_api_version(None)
+        except:  # pylint: disable=bare-except
+            return ""
+
     @distributed_trace
     def test_paging(self, **kwargs: Any) -> Iterable["_models.ModelThree"]:
         """Returns ModelThree with optionalProperty 'paged'.
@@ -189,9 +196,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version: str = kwargs.pop(
-            "api_version", _params.pop("api-version", getattr(self, "_api_version", None) or "3.0.0")
-        )
+        api_version: str = kwargs.pop("api_version", _params.pop("api-version", self._api_version or "3.0.0"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_test_different_calls_request(

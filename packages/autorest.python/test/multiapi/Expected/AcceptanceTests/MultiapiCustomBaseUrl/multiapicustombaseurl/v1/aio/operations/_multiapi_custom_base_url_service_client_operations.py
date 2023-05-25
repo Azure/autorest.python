@@ -32,6 +32,13 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class MultiapiCustomBaseUrlServiceClientOperationsMixin(MultiapiCustomBaseUrlServiceClientMixinABC):
+    @property
+    def _api_version(self) -> str:
+        try:
+            return self._get_api_version(None)
+        except:  # pylint: disable=bare-except
+            return ""
+
     @distributed_trace_async
     async def test(self, id: int, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Should be a mixin operation. Put in 1 for the required parameter and have the correct api
@@ -55,9 +62,7 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(MultiapiCustomBaseUrlSer
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version: str = kwargs.pop(
-            "api_version", _params.pop("api-version", getattr(self, "_api_version", None) or "1.0.0")
-        )
+        api_version: str = kwargs.pop("api_version", _params.pop("api-version", self._api_version or "1.0.0"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_test_request(

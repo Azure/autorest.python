@@ -71,6 +71,7 @@ class OperationGroupOneOperations:
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._api_version = input_args.pop(0) if input_args else kwargs.pop("api_version")
 
     @distributed_trace
     def test_two(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -92,9 +93,7 @@ class OperationGroupOneOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version: str = kwargs.pop(
-            "api_version", _params.pop("api-version", getattr(self, "_api_version", None) or "1.0.0")
-        )
+        api_version: str = kwargs.pop("api_version", _params.pop("api-version", self._api_version or "1.0.0"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_test_two_request(
