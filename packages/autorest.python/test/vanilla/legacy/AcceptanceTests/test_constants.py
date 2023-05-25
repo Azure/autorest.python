@@ -49,10 +49,10 @@ def test_put_client_constants_override():
         assert client._config.path_constant == "new_path"
 
 def test_models():
-    models.ModelAsStringNoRequiredOneValueDefault()
-    models.ModelAsStringNoRequiredTwoValueDefault()
-    models.ModelAsStringRequiredOneValueDefault()
-    models.ModelAsStringRequiredTwoValueDefault()
-    models.NoModelAsStringNoRequiredOneValueDefault()
-    models.NoModelAsStringNoRequiredTwoValueDefault()
-    models.NoModelAsStringRequiredTwoValueDefault()
+    assert models.ModelAsStringNoRequiredOneValueDefault().parameter == "value1"
+    assert models.ModelAsStringNoRequiredTwoValueDefault().parameter == "value1"
+    assert models.ModelAsStringRequiredOneValueDefault().parameter == "value1"
+    assert models.ModelAsStringRequiredTwoValueDefault().parameter == "value1"
+    assert models.NoModelAsStringNoRequiredOneValueDefault().parameter == "value1"
+    assert models.NoModelAsStringNoRequiredTwoValueDefault().parameter == "value1"
+    assert models.NoModelAsStringRequiredTwoValueDefault().parameter == "value1"

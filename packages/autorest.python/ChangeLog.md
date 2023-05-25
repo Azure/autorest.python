@@ -14,6 +14,7 @@
 
 **Bug Fixes**
 
+- Fix `x-ms-client-default` for model property  #1937
 - Added sub-namespace folder when generating samples #1920
 - Optimize logic to find realted params in example files #1916
 
