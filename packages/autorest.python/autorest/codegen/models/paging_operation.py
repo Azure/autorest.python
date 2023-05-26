@@ -62,17 +62,17 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
         self.pager_sync: str = yaml_data["pagerSync"]
         self.pager_async: str = yaml_data["pagerAsync"]
 
-    def _get_attr_name(self, rest_api_name: str) -> str:
+    def _get_attr_name(self, wire_name: str) -> str:
         response = self.responses[0]
         try:
             return next(
                 p.client_name
                 for p in cast(ModelType, response.type).properties
-                if p.rest_api_name == rest_api_name
+                if p.wire_name == wire_name
             )
         except StopIteration as exc:
             raise ValueError(
-                f"Can't find a matching property in response for {rest_api_name}"
+                f"Can't find a matching property in response for {wire_name}"
             ) from exc
 
     def get_pager(self, async_mode: bool) -> str:
@@ -80,21 +80,21 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
 
     @property
     def continuation_token_name(self) -> Optional[str]:
-        rest_api_name = self.yaml_data["continuationTokenName"]
-        if not rest_api_name:
+        wire_name = self.yaml_data["continuationTokenName"]
+        if not wire_name:
             # That's an ok scenario, it just means no next page possible
             return None
         if self.code_model.options["models_mode"] == "msrest":
-            return self._get_attr_name(rest_api_name)
-        return rest_api_name
+            return self._get_attr_name(wire_name)
+        return wire_name
 
     @property
     def item_name(self) -> str:
-        rest_api_name = self.yaml_data["itemName"]
+        wire_name = self.yaml_data["itemName"]
         if self.code_model.options["models_mode"] == "msrest":
             # we don't use the paging model for dpg
-            return self._get_attr_name(rest_api_name)
-        return rest_api_name
+            return self._get_attr_name(wire_name)
+        return wire_name
 
     @property
     def item_type(self) -> ModelType:
@@ -156,7 +156,14 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
                 "azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE
             )
         if self.code_model.options["models_mode"] == "dpg":
+            relative_path = "..." if async_mode else ".."
             file_import.merge(self.item_type.imports(**kwargs))
+            if self.default_error_deserialization or any(
+                r.type for r in self.responses
+            ):
+                file_import.add_submodule_import(
+                    f"{relative_path}_model_base", "_deserialize", ImportType.LOCAL
+                )
         return file_import
 
 

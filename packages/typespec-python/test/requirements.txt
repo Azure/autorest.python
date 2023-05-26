@@ -1,32 +1,33 @@
 aiohttp;python_full_version>="3.5.2"
-requests==2.20.0
+requests==2.28.2
 pytest
 pytest-asyncio==0.14.0;python_full_version>="3.5.2"
 azure-core==1.24.0
--e ./generated/arrays-item-types
 -e ./generated/authentication-api-key
 -e ./generated/authentication-oauth2
 -e ./generated/authentication-union
--e ./generated/azure-core
+-e ./generated/azure-core-basic
+-e ./generated/azure-core-lro-rpc
+-e ./generated/azure-core-lro-standard
 -e ./generated/azure-core-traits
--e ./generated/dictionary
--e ./generated/enums-extensible
--e ./generated/enums-fixed
--e ./generated/hello
--e ./generated/internal
--e ./generated/lro-lro-basic
--e ./generated/models-inheritance
--e ./generated/models-property-nullable
--e ./generated/models-property-optional
--e ./generated/models-property-types
--e ./generated/models-usage
--e ./generated/models-visibility
+-e ./generated/encode-duration
 -e ./generated/parameters-collection-format
--e ./generated/projection
--e ./generated/resiliency-dev-driven
--e ./generated/resiliency-srv-driven-1
--e ./generated/resiliency-srv-driven-2
+-e ./generated/parameters-spread
+-e ./generated/projection-projected-name
+-e ./generated/resiliency-srv-driven1
+-e ./generated/resiliency-srv-driven2
 -e ./generated/server-path-multiple
 -e ./generated/server-path-single
 -e ./generated/special-words
--e ./generated/unions
+-e ./generated/typetest-array
+-e ./generated/typetest-dictionary
+-e ./generated/typetest-enum-extensible
+-e ./generated/typetest-enum-fixed
+-e ./generated/typetest-model-inheritance
+-e ./generated/typetest-model-usage
+-e ./generated/typetest-model-visibility
+-e ./generated/typetest-property-nullable
+-e ./generated/typetest-property-optional
+-e ./generated/typetest-property-valuetypes
+-e ./generated/typetest-union
+-e ./generated/azure-client-generator-core-internal

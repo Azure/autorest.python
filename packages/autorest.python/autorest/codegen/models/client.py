@@ -146,8 +146,14 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         retval = add_to_pylint_disable("", "client-accepts-api-version-keyword")
         if len(self.operation_groups) > 6:
             retval = add_to_pylint_disable(retval, "too-many-instance-attributes")
-        if len(self.name) > 40:
-            retval = add_to_pylint_disable(retval, "name-too-long")
+        return retval
+
+    @property
+    def url_pylint_disable(self) -> str:
+        # if the url is too long
+        retval = ""
+        if len(self.url) > 85:
+            retval = add_to_pylint_disable(retval, "line-too-long")
         return retval
 
     @property

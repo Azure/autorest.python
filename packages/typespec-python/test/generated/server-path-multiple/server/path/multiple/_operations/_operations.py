@@ -31,16 +31,14 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_multiple_no_operation_params_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_multiple_no_operation_params_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_multiple_with_operation_path_param_request(  # pylint: disable=name-too-long
-    keyword: str, **kwargs: Any
-) -> HttpRequest:
+def build_multiple_with_operation_path_param_request(keyword: str, **kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/{keyword}"
     path_format_arguments = {

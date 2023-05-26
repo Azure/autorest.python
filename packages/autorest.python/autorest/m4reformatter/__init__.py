@@ -117,7 +117,7 @@ def update_property(
         client_name = "additional_properties1"
     return {
         "clientName": client_name,
-        "restApiName": yaml_data["serializedName"],
+        "wireName": yaml_data["serializedName"],
         "flattenedNames": yaml_data.get("flattenedNames", []),
         "type": update_type(yaml_data["schema"]),
         "optional": not yaml_data.get("required"),
@@ -128,6 +128,7 @@ def update_property(
             op["language"]["default"]["name"].lstrip("_")  # TODO: patching m4
             for op in yaml_data.get("originalParameter", [])
         ],
+        "clientDefaultValue": yaml_data.get("clientDefaultValue"),
     }
 
 
@@ -158,7 +159,7 @@ def fill_model(
         properties.append(
             {
                 "clientName": "additional_properties",
-                "restApiName": "",
+                "wireName": "",
                 "type": update_type(dict_parents[0]),
                 "optional": True,
                 "description": "Unmatched properties from the message are deserialized to this collection.",
@@ -333,7 +334,7 @@ def filter_out_paging_next_operation(
 
 def update_response_header(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     return {
-        "restApiName": yaml_data["header"],
+        "wireName": yaml_data["header"],
         "type": update_type(yaml_data["schema"]),
     }
 
@@ -470,7 +471,7 @@ class M4Reformatter(
             "optional": not yaml_data.get("required", False),
             "description": yaml_data["language"]["default"]["description"],
             "clientName": client_name,
-            "restApiName": yaml_data["language"]["default"].get("serializedName"),
+            "wireName": yaml_data["language"]["default"].get("serializedName"),
             "clientDefaultValue": yaml_data.get("clientDefaultValue"),
             "location": location,
             "groupedBy": grouped_by,
@@ -499,7 +500,7 @@ class M4Reformatter(
                 group_name, yaml_data, body_type, content_types=content_types
             )
             for parameter in overload["parameters"]:
-                if parameter["restApiName"].lower() == "content-type":
+                if parameter["wireName"].lower() == "content-type":
                     parameter["clientDefaultValue"] = overload["bodyParameter"][
                         "defaultContentType"
                     ]
@@ -606,7 +607,7 @@ class M4Reformatter(
         operation["itemType"] = next(
             p["type"]
             for p in returned_response_object["type"]["properties"]
-            if p["restApiName"] == operation["itemName"]
+            if p["wireName"] == operation["itemName"]
         )
         if yaml_data["language"]["default"]["paging"].get("nextLinkOperation"):
             operation["nextOperation"] = self.update_operation(
@@ -724,7 +725,7 @@ class M4Reformatter(
                 body_param["clientDefaultValue"] = body_type["value"]
         body_param["flattened"] = flattened
         body_param["isPartialBody"] = is_partial_body
-        body_param["restApiName"] = body_param["restApiName"] or to_lower_camel_case(
+        body_param["wireName"] = body_param["wireName"] or to_lower_camel_case(
             body_param["clientName"]
         )
         return body_param
@@ -742,7 +743,7 @@ class M4Reformatter(
             "optional": not first_value.get("required", False),
             "description": description,
             "clientName": client_name,
-            "restApiName": client_name,
+            "wireName": client_name,
             "clientDefaultValue": None,
             "location": "Method",
             "type": KNOWN_TYPES["anydict"],
@@ -1120,7 +1121,7 @@ class M4Reformatter(
             "description": "Credential needed for the client to connect to Azure.",
             "clientName": "credential",
             "location": "other",
-            "restApiName": "credential",
+            "wireName": "credential",
             "implementation": "Client",
             "skipUrlEncoding": True,
             "inOverload": False,

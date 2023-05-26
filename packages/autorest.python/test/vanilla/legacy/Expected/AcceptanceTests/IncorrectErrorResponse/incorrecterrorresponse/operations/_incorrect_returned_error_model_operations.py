@@ -31,7 +31,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_get_incorrect_error_from_server_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_get_incorrect_error_from_server_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = kwargs.pop("template_url", "/incorrectError")
 

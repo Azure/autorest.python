@@ -64,7 +64,7 @@ class _ParameterBase(
         type: BaseType,
     ) -> None:
         super().__init__(yaml_data, code_model)
-        self.rest_api_name: str = yaml_data["restApiName"]
+        self.wire_name: str = yaml_data["wireName"]
         self.client_name: str = self.yaml_data["clientName"]
         self.optional: bool = self.yaml_data["optional"]
         self.location: ParameterLocation = self.yaml_data["location"]
@@ -342,7 +342,7 @@ class Parameter(_ParameterBase):
 
     @property
     def in_method_signature(self) -> bool:
-        return not (self.rest_api_name == "Accept" or self.grouped_by or self.flattened)
+        return not (self.wire_name == "Accept" or self.grouped_by or self.flattened)
 
     @property
     def full_client_name(self) -> str:
@@ -356,7 +356,7 @@ class Parameter(_ParameterBase):
 
     @property
     def is_content_type(self) -> bool:
-        return bool(self.rest_api_name) and self.rest_api_name.lower() == "content-type"
+        return bool(self.wire_name) and self.wire_name.lower() == "content-type"
 
     @property
     def method_location(  # pylint: disable=too-many-return-statements
@@ -399,7 +399,7 @@ class ClientParameter(Parameter):
 
     @property
     def is_host(self) -> bool:
-        return self.rest_api_name == "$host"
+        return self.wire_name == "$host"
 
     @property
     def method_location(self) -> ParameterMethodLocation:
@@ -423,7 +423,7 @@ class ConfigParameter(Parameter):
 
     @property
     def is_host(self) -> bool:
-        return self.rest_api_name == "$host"
+        return self.wire_name == "$host"
 
     @property
     def method_location(self) -> ParameterMethodLocation:

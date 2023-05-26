@@ -16,7 +16,6 @@ from typing import (
 from abc import abstractmethod
 
 from .base_builder import BaseBuilder
-from .utils import add_to_pylint_disable
 from .parameter_list import (
     RequestBuilderParameterList,
     OverloadedRequestBuilderParameterList,
@@ -56,12 +55,6 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
         self.url: str = yaml_data["url"]
         self.method: str = yaml_data["method"]
         self.want_tracing = False
-
-    @property
-    def pylint_disable(self) -> str:
-        if len(self.name) > 40:
-            return add_to_pylint_disable("", "name-too-long")
-        return ""
 
     def response_type_annotation(self, **kwargs) -> str:
         return "HttpRequest"

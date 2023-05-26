@@ -46,9 +46,7 @@ def build_duration_get_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_duration_put_positive_duration_request(  # pylint: disable=name-too-long
-    *, json: datetime.timedelta, **kwargs: Any
-) -> HttpRequest:
+def build_duration_put_positive_duration_request(*, json: datetime.timedelta, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -65,7 +63,7 @@ def build_duration_put_positive_duration_request(  # pylint: disable=name-too-lo
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_duration_get_positive_duration_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_duration_get_positive_duration_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")

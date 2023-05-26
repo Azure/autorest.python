@@ -85,7 +85,7 @@ def add_overload(
 
     # update content type to be an overloads content type
     content_type_param = next(
-        p for p in overload["parameters"] if p["restApiName"].lower() == "content-type"
+        p for p in overload["parameters"] if p["wireName"].lower() == "content-type"
     )
     content_type_param["inOverload"] = True
     content_type_param["inDocstring"] = True
@@ -126,7 +126,7 @@ def add_overloads_for_body_param(yaml_data: Dict[str, Any]) -> None:
                 add_overload(yaml_data, body_type, for_flatten_params=True)
             )
     content_type_param = next(
-        p for p in yaml_data["parameters"] if p["restApiName"].lower() == "content-type"
+        p for p in yaml_data["parameters"] if p["wireName"].lower() == "content-type"
     )
     content_type_param["inOverload"] = False
     content_type_param["inOverriden"] = True
@@ -143,7 +143,7 @@ def _remove_paging_maxpagesize(yaml_data: Dict[str, Any]) -> None:
     yaml_data["parameters"] = [
         p
         for p in yaml_data.get("parameters", [])
-        if p["restApiName"].lower() not in ["maxpagesize", "$maxpagesize"]
+        if p["wireName"].lower() not in ["maxpagesize", "$maxpagesize"]
     ]
 
 
@@ -212,7 +212,9 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
     def update_types(self, yaml_data: List[Dict[str, Any]]) -> None:
         for type in yaml_data:
             for property in type.get("properties", []):
-                property["description"] = update_description(property["description"])
+                property["description"] = update_description(
+                    property.get("description", "")
+                )
                 property["clientName"] = self.pad_reserved_words(
                     property["clientName"].lower(), PadType.PROPERTY
                 )
@@ -220,7 +222,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             if type.get("name"):
                 type["name"] = self.pad_reserved_words(type["name"], PadType.MODEL)
                 type["description"] = update_description(
-                    type["description"], type["name"]
+                    type.get("description", ""), type["name"]
                 )
                 type["snakeCaseName"] = to_snake_case(type["name"])
             if type.get("values") and not self.version_tolerant:
@@ -264,7 +266,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         return self.update_operation
 
     def update_parameter(self, yaml_data: Dict[str, Any]) -> None:
-        yaml_data["description"] = update_description(yaml_data["description"])
+        yaml_data["description"] = update_description(yaml_data.get("description", ""))
         if not (
             yaml_data["location"] == "header"
             and yaml_data["clientName"] in ("content_type", "accept")

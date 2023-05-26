@@ -37,7 +37,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_put201_creating_succeeded200_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_put201_creating_succeeded200_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -54,7 +54,7 @@ def build_put201_creating_succeeded200_request(**kwargs: Any) -> HttpRequest:  #
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_async_relative_retry_succeeded_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_put_async_relative_retry_succeeded_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -71,9 +71,7 @@ def build_put_async_relative_retry_succeeded_request(**kwargs: Any) -> HttpReque
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_delete_provisioning202_accepted200_succeeded_request(  # pylint: disable=name-too-long
-    **kwargs: Any,
-) -> HttpRequest:
+def build_delete_provisioning202_accepted200_succeeded_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -101,7 +99,7 @@ def build_delete202_retry200_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_delete_async_relative_retry_succeeded_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_delete_async_relative_retry_succeeded_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -132,7 +130,7 @@ def build_post202_retry200_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_post_async_relative_retry_succeeded_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_post_async_relative_retry_succeeded_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -323,7 +321,7 @@ class LRORetrysOperations:
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs,
+                **kwargs
             )
         kwargs.pop("error_map", None)
 
@@ -350,7 +348,7 @@ class LRORetrysOperations:
 
     begin_put201_creating_succeeded200.metadata = {"url": "/lro/retryerror/put/201/creating/succeeded/200"}
 
-    def _put_async_relative_retry_succeeded_initial(  # pylint: disable=name-too-long
+    def _put_async_relative_retry_succeeded_initial(
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> _models.Product:
         error_map = {
@@ -508,7 +506,7 @@ class LRORetrysOperations:
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs,
+                **kwargs
             )
         kwargs.pop("error_map", None)
 
@@ -543,9 +541,7 @@ class LRORetrysOperations:
 
     begin_put_async_relative_retry_succeeded.metadata = {"url": "/lro/retryerror/putasync/retry/succeeded"}
 
-    def _delete_provisioning202_accepted200_succeeded_initial(  # pylint: disable=name-too-long
-        self, **kwargs: Any
-    ) -> _models.Product:
+    def _delete_provisioning202_accepted200_succeeded_initial(self, **kwargs: Any) -> _models.Product:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -598,9 +594,7 @@ class LRORetrysOperations:
     }
 
     @distributed_trace
-    def begin_delete_provisioning202_accepted200_succeeded(  # pylint: disable=name-too-long
-        self, **kwargs: Any
-    ) -> LROPoller[_models.Product]:
+    def begin_delete_provisioning202_accepted200_succeeded(self, **kwargs: Any) -> LROPoller[_models.Product]:
         """Long running delete request, service returns a 500, then a  202 to the initial request, with an
         entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll
         returns a ‘200’ with ProvisioningState=’Succeeded’.
@@ -748,7 +742,7 @@ class LRORetrysOperations:
 
     begin_delete202_retry200.metadata = {"url": "/lro/retryerror/delete/202/retry/200"}
 
-    def _delete_async_relative_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements,name-too-long
+    def _delete_async_relative_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
         self, **kwargs: Any
     ) -> None:
         error_map = {
@@ -796,9 +790,7 @@ class LRORetrysOperations:
     _delete_async_relative_retry_succeeded_initial.metadata = {"url": "/lro/retryerror/deleteasync/retry/succeeded"}
 
     @distributed_trace
-    def begin_delete_async_relative_retry_succeeded(  # pylint: disable=name-too-long
-        self, **kwargs: Any
-    ) -> LROPoller[None]:
+    def begin_delete_async_relative_retry_succeeded(self, **kwargs: Any) -> LROPoller[None]:
         """Long running delete request, service returns a 500, then a 202 to the initial request. Poll the
         endpoint indicated in the Azure-AsyncOperation header for operation status.
 
@@ -996,7 +988,7 @@ class LRORetrysOperations:
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs,
+                **kwargs
             )
         kwargs.pop("error_map", None)
 
@@ -1021,7 +1013,7 @@ class LRORetrysOperations:
 
     begin_post202_retry200.metadata = {"url": "/lro/retryerror/post/202/retry/200"}
 
-    def _post_async_relative_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements,name-too-long
+    def _post_async_relative_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> None:
         error_map = {
@@ -1084,7 +1076,7 @@ class LRORetrysOperations:
     _post_async_relative_retry_succeeded_initial.metadata = {"url": "/lro/retryerror/postasync/retry/succeeded"}
 
     @overload
-    def begin_post_async_relative_retry_succeeded(  # pylint: disable=name-too-long
+    def begin_post_async_relative_retry_succeeded(
         self, product: Optional[_models.Product] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> LROPoller[None]:
         """Long running post request, service returns a 500, then a 202 to the initial request, with an
@@ -1110,7 +1102,7 @@ class LRORetrysOperations:
         """
 
     @overload
-    def begin_post_async_relative_retry_succeeded(  # pylint: disable=name-too-long
+    def begin_post_async_relative_retry_succeeded(
         self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> LROPoller[None]:
         """Long running post request, service returns a 500, then a 202 to the initial request, with an
@@ -1136,7 +1128,7 @@ class LRORetrysOperations:
         """
 
     @distributed_trace
-    def begin_post_async_relative_retry_succeeded(  # pylint: disable=name-too-long
+    def begin_post_async_relative_retry_succeeded(
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> LROPoller[None]:
         """Long running post request, service returns a 500, then a 202 to the initial request, with an
@@ -1175,7 +1167,7 @@ class LRORetrysOperations:
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs,
+                **kwargs
             )
         kwargs.pop("error_map", None)
 

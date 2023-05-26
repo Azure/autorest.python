@@ -1,8 +1,5 @@
 -e .
 -r ../../eng/requirements.txt
-invoke
-colorama
-pytest
-ptvsd
-black==22.12.0
-types-PyYAML
+-r ../../eng/dev_requirements.txt
+ptvsd==4.3.2
+types-PyYAML==6.0.12.8

@@ -605,9 +605,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
     put_local_positive_offset_max_date_time.metadata = {"url": "/datetime/max/localpositiveoffset"}
 
     @distributed_trace_async
-    async def get_local_positive_offset_lowercase_max_date_time(  # pylint: disable=name-too-long
-        self, **kwargs: Any
-    ) -> datetime.datetime:
+    async def get_local_positive_offset_lowercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get max datetime value with positive num offset 9999-12-31t23:59:59.999+14:00.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -658,9 +656,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
     get_local_positive_offset_lowercase_max_date_time.metadata = {"url": "/datetime/max/localpositiveoffset/lowercase"}
 
     @distributed_trace_async
-    async def get_local_positive_offset_uppercase_max_date_time(  # pylint: disable=name-too-long
-        self, **kwargs: Any
-    ) -> datetime.datetime:
+    async def get_local_positive_offset_uppercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get max datetime value with positive num offset 9999-12-31T23:59:59.999+14:00.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -767,9 +763,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
     put_local_negative_offset_max_date_time.metadata = {"url": "/datetime/max/localnegativeoffset"}
 
     @distributed_trace_async
-    async def get_local_negative_offset_uppercase_max_date_time(  # pylint: disable=name-too-long
-        self, **kwargs: Any
-    ) -> datetime.datetime:
+    async def get_local_negative_offset_uppercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get max datetime value with positive num offset 9999-12-31T23:59:59.999-14:00.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -820,9 +814,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
     get_local_negative_offset_uppercase_max_date_time.metadata = {"url": "/datetime/max/localnegativeoffset/uppercase"}
 
     @distributed_trace_async
-    async def get_local_negative_offset_lowercase_max_date_time(  # pylint: disable=name-too-long
-        self, **kwargs: Any
-    ) -> datetime.datetime:
+    async def get_local_negative_offset_lowercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
         """Get max datetime value with positive num offset 9999-12-31t23:59:59.999-14:00.
 
         :keyword callable cls: A custom type or function that will be passed the direct response

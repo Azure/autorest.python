@@ -6,7 +6,7 @@
 from datetime import datetime
 
 import pytest
-from _specs_.azure.traits.aio import TraitsClient
+from _specs_.azure.core.traits.aio import TraitsClient
 
 
 @pytest.fixture
@@ -17,11 +17,11 @@ async def client():
 
 @pytest.mark.asyncio
 async def test_get(client: TraitsClient):
-    result, header = await client.get(
+    result, header = await client.smoke_test(
         id=1,
         foo="123",
-        if_match="valid",
-        if_none_match="invalid",
+        if_match="\"valid\"",
+        if_none_match="\"invalid\"",
         if_unmodified_since=datetime(
             year=2022, month=8, day=26, hour=14, minute=38, second=0
         ),
@@ -36,12 +36,3 @@ async def test_get(client: TraitsClient):
     assert header["ETag"] == "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
     assert header["bar"] == "456"
     assert header["x-ms-client-request-id"] == "test-id"
-
-
-@pytest.mark.asyncio
-async def test_delete(client: TraitsClient):
-    header = await client.delete(
-        id=1, client_request_id="test-id", cls=lambda x, y, z: z
-    )
-    assert header["x-ms-client-request-id"] == "test-id"
-    assert header["Repeatability-Result"] == "Accepted"
