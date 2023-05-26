@@ -73,36 +73,24 @@ class ARMChallengeAuthenticationPolicyType(BearerTokenCredentialPolicyType):
 
 class AzureKeyCredentialPolicyType(_CredentialPolicyBaseType):
     def __init__(
-        self, yaml_data: Dict[str, Any], code_model: "CodeModel", key: str
+        self, yaml_data: Dict[str, Any], code_model: "CodeModel", key: str, scheme: Optional[str] = None
     ) -> None:
         super().__init__(yaml_data, code_model)
         self.key = key
+        self.scheme = scheme
 
     def call(self, async_mode: bool) -> str:
-        return f'policies.AzureKeyCredentialPolicy(self.credential, "{self.key}", **kwargs)'
+        params = f'"{self.key}", '
+        if self.scheme:
+            params += f'prefix="{self.scheme}", '
+        return f'policies.AzureKeyCredentialPolicy(self.credential, {params}**kwargs)'
 
     @classmethod
     def from_yaml(
         cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
     ) -> "AzureKeyCredentialPolicyType":
-        return cls(yaml_data, code_model, yaml_data["key"])
+        return cls(yaml_data, code_model, yaml_data["key"], yaml_data.get("scheme", None))
 
-
-class AzureHttpCredentialPolicyType(_CredentialPolicyBaseType):
-    def __init__(
-        self, yaml_data: Dict[str, Any], code_model: "CodeModel", scheme: str
-    ) -> None:
-        super().__init__(yaml_data, code_model)
-        self.scheme = scheme
-
-    def call(self, async_mode: bool) -> str:
-        return f'policies.AzureHttpCredentialPolicyType(self.credential, "{self.scheme}", **kwargs)'
-
-    @classmethod
-    def from_yaml(
-        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> "AzureHttpCredentialPolicyType":
-        return cls(yaml_data, code_model, yaml_data["scheme"])
 
 CredentialPolicyType = TypeVar(
     "CredentialPolicyType",
@@ -110,7 +98,6 @@ CredentialPolicyType = TypeVar(
         BearerTokenCredentialPolicyType,
         ARMChallengeAuthenticationPolicyType,
         AzureKeyCredentialPolicyType,
-        AzureHttpCredentialPolicyType,
     ],
 )
 

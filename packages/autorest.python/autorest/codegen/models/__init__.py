@@ -70,7 +70,6 @@ from .credential_types import (
     ARMChallengeAuthenticationPolicyType,
     BearerTokenCredentialPolicyType,
     AzureKeyCredentialPolicyType,
-    AzureHttpCredentialPolicyType,
     CredentialType,
 )
 
@@ -142,7 +141,6 @@ TYPE_TO_OBJECT = {
     "ARMChallengeAuthenticationPolicy": ARMChallengeAuthenticationPolicyType,
     "BearerTokenCredentialPolicy": BearerTokenCredentialPolicyType,
     "AzureKeyCredentialPolicy": AzureKeyCredentialPolicyType,
-    "AzureHttpCredentialPolicy": AzureHttpCredentialPolicyType,
     "any-object": AnyObjectType,
     "unixtime": UnixTimeType,
     "credential": StringType,
