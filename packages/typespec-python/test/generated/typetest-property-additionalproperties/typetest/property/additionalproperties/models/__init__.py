@@ -6,15 +6,23 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._models import ModelExtendsRecordUnknown
-from ._models import ModelIsRecordUnknown
+from ._models import ExtendsFloatAddtionalProperties
+from ._models import ExtendsStringAddtionalProperties
+from ._models import ExtendsUnknownAddtionalProperties
+from ._models import IsFloatAddtionalProperties
+from ._models import IsStringAddtionalProperties
+from ._models import IsUnknownAddtionalProperties
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "ModelExtendsRecordUnknown",
-    "ModelIsRecordUnknown",
+    "ExtendsFloatAddtionalProperties",
+    "ExtendsStringAddtionalProperties",
+    "ExtendsUnknownAddtionalProperties",
+    "IsFloatAddtionalProperties",
+    "IsStringAddtionalProperties",
+    "IsUnknownAddtionalProperties",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()

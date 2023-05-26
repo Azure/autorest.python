@@ -17,8 +17,12 @@ async def client():
 @pytest.mark.asyncio
 @pytest.mark.parametrize(
     "og_name,val, model_name", [
-        ("extends_record_unknown", {'name': 'ModelExtendsRecordUnknown', 'prop1': 32, 'prop2': True, 'prop3': 'abc'}, models.ModelExtendsRecordUnknown),
-        ("is_record_unknown", {'name': 'ModelIsRecordUnknown', 'prop1': 32, 'prop2': True, 'prop3': 'abc'}, models.ModelIsRecordUnknown),
+        ("extends_unknown", {'name': 'ExtendsUnknownAddtionalProperties', 'prop1': 32, 'prop2': True, 'prop3': 'abc'}, models.ExtendsUnknownAddtionalProperties),
+        ("is_unknown", {'name': 'IsUnknownAddtionalProperties', 'prop1': 32, 'prop2': True, 'prop3': 'abc'}, models.IsUnknownAddtionalProperties),
+        ("extends_string", {'name': 'ExtendsStringAddtionalProperties', 'prop': 'abc'}, models.ExtendsStringAddtionalProperties),
+        ("is_string", {'name': 'IsStringAddtionalProperties', 'prop': 'abc'}, models.IsStringAddtionalProperties),
+        ("extends_float", {'id': 42.42, 'prop': 42.42}, models.ExtendsFloatAddtionalProperties),
+        ("is_float", {'id': 42.42, 'prop': 42.42}, models.IsFloatAddtionalProperties),
     ]
 )
 async def test_json(client, og_name, val, model_name):

@@ -14,18 +14,34 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
 from ._configuration import AdditionalPropertiesClientConfiguration
-from .operations import ExtendsRecordUnknownOperations, IsRecordUnknownOperations
+from .operations import (
+    ExtendsFloatOperations,
+    ExtendsStringOperations,
+    ExtendsUnknownOperations,
+    IsFloatOperations,
+    IsStringOperations,
+    IsUnknownOperations,
+)
 
 
 class AdditionalPropertiesClient:  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates various property types for models.
 
-    :ivar extends_record_unknown: ExtendsRecordUnknownOperations operations
-    :vartype extends_record_unknown:
-     typetest.property.additionalproperties.aio.operations.ExtendsRecordUnknownOperations
-    :ivar is_record_unknown: IsRecordUnknownOperations operations
-    :vartype is_record_unknown:
-     typetest.property.additionalproperties.aio.operations.IsRecordUnknownOperations
+    :ivar extends_unknown: ExtendsUnknownOperations operations
+    :vartype extends_unknown:
+     typetest.property.additionalproperties.aio.operations.ExtendsUnknownOperations
+    :ivar is_unknown: IsUnknownOperations operations
+    :vartype is_unknown: typetest.property.additionalproperties.aio.operations.IsUnknownOperations
+    :ivar extends_string: ExtendsStringOperations operations
+    :vartype extends_string:
+     typetest.property.additionalproperties.aio.operations.ExtendsStringOperations
+    :ivar is_string: IsStringOperations operations
+    :vartype is_string: typetest.property.additionalproperties.aio.operations.IsStringOperations
+    :ivar extends_float: ExtendsFloatOperations operations
+    :vartype extends_float:
+     typetest.property.additionalproperties.aio.operations.ExtendsFloatOperations
+    :ivar is_float: IsFloatOperations operations
+    :vartype is_float: typetest.property.additionalproperties.aio.operations.IsFloatOperations
     """
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
@@ -36,12 +52,12 @@ class AdditionalPropertiesClient:  # pylint: disable=client-accepts-api-version-
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.extends_record_unknown = ExtendsRecordUnknownOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.is_record_unknown = IsRecordUnknownOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
+        self.extends_unknown = ExtendsUnknownOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.is_unknown = IsUnknownOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.extends_string = ExtendsStringOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.is_string = IsStringOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.extends_float = ExtendsFloatOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.is_float = IsFloatOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.

@@ -28,10 +28,18 @@ from azure.core.utils import case_insensitive_dict
 from ... import models as _models
 from ..._model_base import AzureJSONEncoder, _deserialize
 from ...operations._operations import (
-    build_extends_record_unknown_get_request,
-    build_extends_record_unknown_put_request,
-    build_is_record_unknown_get_request,
-    build_is_record_unknown_put_request,
+    build_extends_float_get_request,
+    build_extends_float_put_request,
+    build_extends_string_get_request,
+    build_extends_string_put_request,
+    build_extends_unknown_get_request,
+    build_extends_unknown_put_request,
+    build_is_float_get_request,
+    build_is_float_put_request,
+    build_is_string_get_request,
+    build_is_string_put_request,
+    build_is_unknown_get_request,
+    build_is_unknown_put_request,
 )
 
 if sys.version_info >= (3, 9):
@@ -43,14 +51,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ExtendsRecordUnknownOperations:
+class ExtendsUnknownOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`extends_record_unknown` attribute.
+        :attr:`extends_unknown` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -61,14 +69,14 @@ class ExtendsRecordUnknownOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get(self, **kwargs: Any) -> _models.ModelExtendsRecordUnknown:
+    async def get(self, **kwargs: Any) -> _models.ExtendsUnknownAddtionalProperties:
         """Get call.
 
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ModelExtendsRecordUnknown. The ModelExtendsRecordUnknown is compatible with
-         MutableMapping
-        :rtype: ~typetest.property.additionalproperties.models.ModelExtendsRecordUnknown
+        :return: ExtendsUnknownAddtionalProperties. The ExtendsUnknownAddtionalProperties is compatible
+         with MutableMapping
+        :rtype: ~typetest.property.additionalproperties.models.ExtendsUnknownAddtionalProperties
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -82,9 +90,9 @@ class ExtendsRecordUnknownOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ModelExtendsRecordUnknown] = kwargs.pop("cls", None)
+        cls: ClsType[_models.ExtendsUnknownAddtionalProperties] = kwargs.pop("cls", None)
 
-        request = build_extends_record_unknown_get_request(
+        request = build_extends_unknown_get_request(
             headers=_headers,
             params=_params,
         )
@@ -104,7 +112,7 @@ class ExtendsRecordUnknownOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ModelExtendsRecordUnknown, response.json())
+            deserialized = _deserialize(_models.ExtendsUnknownAddtionalProperties, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -113,12 +121,12 @@ class ExtendsRecordUnknownOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.ModelExtendsRecordUnknown, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.ExtendsUnknownAddtionalProperties, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: ~typetest.property.additionalproperties.models.ModelExtendsRecordUnknown
+        :type body: ~typetest.property.additionalproperties.models.ExtendsUnknownAddtionalProperties
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -167,13 +175,14 @@ class ExtendsRecordUnknownOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ModelExtendsRecordUnknown, JSON, IO], **kwargs: Any
+        self, body: Union[_models.ExtendsUnknownAddtionalProperties, JSON, IO], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: ModelExtendsRecordUnknown, JSON, IO Required.
-        :type body: ~typetest.property.additionalproperties.models.ModelExtendsRecordUnknown or JSON or
-         IO
+        :param body: body. Is one of the following types: ExtendsUnknownAddtionalProperties, JSON, IO
+         Required.
+        :type body: ~typetest.property.additionalproperties.models.ExtendsUnknownAddtionalProperties or
+         JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -204,7 +213,7 @@ class ExtendsRecordUnknownOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
-        request = build_extends_record_unknown_put_request(
+        request = build_extends_unknown_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -227,14 +236,14 @@ class ExtendsRecordUnknownOperations:
             return cls(pipeline_response, None, {})
 
 
-class IsRecordUnknownOperations:
+class IsUnknownOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`is_record_unknown` attribute.
+        :attr:`is_unknown` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -245,13 +254,14 @@ class IsRecordUnknownOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get(self, **kwargs: Any) -> _models.ModelIsRecordUnknown:
+    async def get(self, **kwargs: Any) -> _models.IsUnknownAddtionalProperties:
         """Get call.
 
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ModelIsRecordUnknown. The ModelIsRecordUnknown is compatible with MutableMapping
-        :rtype: ~typetest.property.additionalproperties.models.ModelIsRecordUnknown
+        :return: IsUnknownAddtionalProperties. The IsUnknownAddtionalProperties is compatible with
+         MutableMapping
+        :rtype: ~typetest.property.additionalproperties.models.IsUnknownAddtionalProperties
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -265,9 +275,9 @@ class IsRecordUnknownOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ModelIsRecordUnknown] = kwargs.pop("cls", None)
+        cls: ClsType[_models.IsUnknownAddtionalProperties] = kwargs.pop("cls", None)
 
-        request = build_is_record_unknown_get_request(
+        request = build_is_unknown_get_request(
             headers=_headers,
             params=_params,
         )
@@ -287,7 +297,7 @@ class IsRecordUnknownOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ModelIsRecordUnknown, response.json())
+            deserialized = _deserialize(_models.IsUnknownAddtionalProperties, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -296,12 +306,12 @@ class IsRecordUnknownOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.ModelIsRecordUnknown, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.IsUnknownAddtionalProperties, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: ~typetest.property.additionalproperties.models.ModelIsRecordUnknown
+        :type body: ~typetest.property.additionalproperties.models.IsUnknownAddtionalProperties
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -350,12 +360,14 @@ class IsRecordUnknownOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ModelIsRecordUnknown, JSON, IO], **kwargs: Any
+        self, body: Union[_models.IsUnknownAddtionalProperties, JSON, IO], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: ModelIsRecordUnknown, JSON, IO Required.
-        :type body: ~typetest.property.additionalproperties.models.ModelIsRecordUnknown or JSON or IO
+        :param body: body. Is one of the following types: IsUnknownAddtionalProperties, JSON, IO
+         Required.
+        :type body: ~typetest.property.additionalproperties.models.IsUnknownAddtionalProperties or JSON
+         or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -386,7 +398,747 @@ class IsRecordUnknownOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
-        request = build_is_record_unknown_put_request(
+        request = build_is_unknown_put_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+
+class ExtendsStringOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
+        :attr:`extends_string` attribute.
+    """
+
+    def __init__(self, *args, **kwargs) -> None:
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+    @distributed_trace_async
+    async def get(self, **kwargs: Any) -> _models.ExtendsStringAddtionalProperties:
+        """Get call.
+
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: ExtendsStringAddtionalProperties. The ExtendsStringAddtionalProperties is compatible
+         with MutableMapping
+        :rtype: ~typetest.property.additionalproperties.models.ExtendsStringAddtionalProperties
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.ExtendsStringAddtionalProperties] = kwargs.pop("cls", None)
+
+        request = build_extends_string_get_request(
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.ExtendsStringAddtionalProperties, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.ExtendsStringAddtionalProperties, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: ~typetest.property.additionalproperties.models.ExtendsStringAddtionalProperties
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.ExtendsStringAddtionalProperties, JSON, IO], **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Is one of the following types: ExtendsStringAddtionalProperties, JSON, IO
+         Required.
+        :type body: ~typetest.property.additionalproperties.models.ExtendsStringAddtionalProperties or
+         JSON or IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+
+        request = build_extends_string_put_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+
+class IsStringOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
+        :attr:`is_string` attribute.
+    """
+
+    def __init__(self, *args, **kwargs) -> None:
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+    @distributed_trace_async
+    async def get(self, **kwargs: Any) -> _models.IsStringAddtionalProperties:
+        """Get call.
+
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: IsStringAddtionalProperties. The IsStringAddtionalProperties is compatible with
+         MutableMapping
+        :rtype: ~typetest.property.additionalproperties.models.IsStringAddtionalProperties
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.IsStringAddtionalProperties] = kwargs.pop("cls", None)
+
+        request = build_is_string_get_request(
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.IsStringAddtionalProperties, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.IsStringAddtionalProperties, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: ~typetest.property.additionalproperties.models.IsStringAddtionalProperties
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.IsStringAddtionalProperties, JSON, IO], **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Is one of the following types: IsStringAddtionalProperties, JSON, IO
+         Required.
+        :type body: ~typetest.property.additionalproperties.models.IsStringAddtionalProperties or JSON
+         or IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+
+        request = build_is_string_put_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+
+class ExtendsFloatOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
+        :attr:`extends_float` attribute.
+    """
+
+    def __init__(self, *args, **kwargs) -> None:
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+    @distributed_trace_async
+    async def get(self, **kwargs: Any) -> _models.ExtendsFloatAddtionalProperties:
+        """Get call.
+
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: ExtendsFloatAddtionalProperties. The ExtendsFloatAddtionalProperties is compatible
+         with MutableMapping
+        :rtype: ~typetest.property.additionalproperties.models.ExtendsFloatAddtionalProperties
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.ExtendsFloatAddtionalProperties] = kwargs.pop("cls", None)
+
+        request = build_extends_float_get_request(
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.ExtendsFloatAddtionalProperties, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.ExtendsFloatAddtionalProperties, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: ~typetest.property.additionalproperties.models.ExtendsFloatAddtionalProperties
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.ExtendsFloatAddtionalProperties, JSON, IO], **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Is one of the following types: ExtendsFloatAddtionalProperties, JSON, IO
+         Required.
+        :type body: ~typetest.property.additionalproperties.models.ExtendsFloatAddtionalProperties or
+         JSON or IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+
+        request = build_extends_float_put_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+
+class IsFloatOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
+        :attr:`is_float` attribute.
+    """
+
+    def __init__(self, *args, **kwargs) -> None:
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+    @distributed_trace_async
+    async def get(self, **kwargs: Any) -> _models.IsFloatAddtionalProperties:
+        """Get call.
+
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: IsFloatAddtionalProperties. The IsFloatAddtionalProperties is compatible with
+         MutableMapping
+        :rtype: ~typetest.property.additionalproperties.models.IsFloatAddtionalProperties
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.IsFloatAddtionalProperties] = kwargs.pop("cls", None)
+
+        request = build_is_float_get_request(
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.IsFloatAddtionalProperties, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.IsFloatAddtionalProperties, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: ~typetest.property.additionalproperties.models.IsFloatAddtionalProperties
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Required.
+        :type body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def put(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.IsFloatAddtionalProperties, JSON, IO], **kwargs: Any
+    ) -> None:
+        """Put operation.
+
+        :param body: body. Is one of the following types: IsFloatAddtionalProperties, JSON, IO
+         Required.
+        :type body: ~typetest.property.additionalproperties.models.IsFloatAddtionalProperties or JSON
+         or IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+
+        request = build_is_float_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

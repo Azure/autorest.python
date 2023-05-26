@@ -6,16 +6,24 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._operations import ExtendsRecordUnknownOperations
-from ._operations import IsRecordUnknownOperations
+from ._operations import ExtendsUnknownOperations
+from ._operations import IsUnknownOperations
+from ._operations import ExtendsStringOperations
+from ._operations import IsStringOperations
+from ._operations import ExtendsFloatOperations
+from ._operations import IsFloatOperations
 
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "ExtendsRecordUnknownOperations",
-    "IsRecordUnknownOperations",
+    "ExtendsUnknownOperations",
+    "IsUnknownOperations",
+    "ExtendsStringOperations",
+    "IsStringOperations",
+    "ExtendsFloatOperations",
+    "IsFloatOperations",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()

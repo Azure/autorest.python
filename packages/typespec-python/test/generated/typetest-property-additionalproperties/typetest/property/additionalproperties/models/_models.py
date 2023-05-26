@@ -13,7 +13,69 @@ from .. import _model_base
 from .._model_base import rest_field
 
 
-class ModelExtendsRecordUnknown(_model_base.Model):
+class ExtendsFloatAddtionalProperties(_model_base.Model):
+    """The model extends from Record:code:`<float32>` type.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar id: The id property. Required.
+    :vartype id: float
+    """
+
+    id: float = rest_field()
+    """The id property. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        id: float,  # pylint: disable=redefined-builtin
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class ExtendsStringAddtionalProperties(_model_base.Model):
+    """The model extends from Record:code:`<string>` type.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: The name property. Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """The name property. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class ExtendsUnknownAddtionalProperties(_model_base.Model):
     """The model extends from Record:code:`<unknown>` type.
 
     All required parameters must be populated in order to send to Azure.
@@ -44,7 +106,69 @@ class ModelExtendsRecordUnknown(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ModelIsRecordUnknown(_model_base.Model):
+class IsFloatAddtionalProperties(_model_base.Model):
+    """The model is from Record:code:`<float32>` type.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar id: The id property. Required.
+    :vartype id: float
+    """
+
+    id: float = rest_field()
+    """The id property. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        id: float,  # pylint: disable=redefined-builtin
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class IsStringAddtionalProperties(_model_base.Model):
+    """The model is from Record:code:`<string>` type.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: The name property. Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """The name property. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class IsUnknownAddtionalProperties(_model_base.Model):
     """The model is from Record:code:`<unknown>` type.
 
     All required parameters must be populated in order to send to Azure.
