@@ -14,10 +14,6 @@ def client():
         yield client
 
 
-class EmptyModel:
-    pass
-
-
 def test_put(client: EmptyClient):
     client.put_empty(EmptyInput())
     client.put_empty({})
