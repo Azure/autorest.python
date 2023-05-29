@@ -1,6 +1,6 @@
 # Release
 
-## 2023-05-XX - 0.9.3
+## 2023-xx-xx - 0.9.3
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -9,7 +9,7 @@
 | `@typespec/rest`                                                        | `0.44.0`    |
 | `@typespec/versioning`                                                  | `0.44.0`    |
 | `@azure-tools/typespec-azure-core`                                      | `0.30.0`    |
-| `@azure-tools/typespec-client-generator-core`                           | `0.30.0`    |
+| `@azure-tools/typespec-client-generator-core`                           | `0.31.0-dev.3`|
 | `azure-core` dep of generated code                                      | `1.24.0`    |
 | `isodate` dep of generated code                                         | `0.6.1`     |
 | `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
