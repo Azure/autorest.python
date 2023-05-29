@@ -34,10 +34,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class MultiapiCustomBaseUrlServiceClientOperationsMixin(MultiapiCustomBaseUrlServiceClientMixinABC):
     @property
     def _api_version(self) -> str:
-        try:
-            return self._get_api_version(None)
-        except:  # pylint: disable=bare-except
-            return ""
+        return self._config.api_version
 
     @distributed_trace_async
     async def test(self, id: int, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

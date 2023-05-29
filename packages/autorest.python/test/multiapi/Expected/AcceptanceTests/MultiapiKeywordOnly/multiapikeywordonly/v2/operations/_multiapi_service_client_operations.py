@@ -82,10 +82,7 @@ def build_test_different_calls_request(
 class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
     @property
     def _api_version(self) -> str:
-        try:
-            return self._get_api_version(None)
-        except:  # pylint: disable=bare-except
-            return ""
+        return self._config.api_version
 
     @distributed_trace
     def test_one(self, *, id: int, message: Optional[str] = None, **kwargs: Any) -> _models.ModelTwo:

@@ -56,10 +56,7 @@ def build_test_request(*, id: int, **kwargs: Any) -> HttpRequest:
 class MultiapiCustomBaseUrlServiceClientOperationsMixin(MultiapiCustomBaseUrlServiceClientMixinABC):
     @property
     def _api_version(self) -> str:
-        try:
-            return self._get_api_version(None)
-        except:  # pylint: disable=bare-except
-            return ""
+        return self._config.api_version
 
     @distributed_trace
     def test(self, id: int, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

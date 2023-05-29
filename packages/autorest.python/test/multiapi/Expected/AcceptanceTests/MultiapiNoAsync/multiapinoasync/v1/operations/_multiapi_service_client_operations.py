@@ -123,10 +123,7 @@ def build_test_different_calls_request(*, greeting_in_english: str, **kwargs: An
 class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
     @property
     def _api_version(self) -> str:
-        try:
-            return self._get_api_version(None)
-        except:  # pylint: disable=bare-except
-            return ""
+        return self._config.api_version
 
     @distributed_trace
     def test_one(  # pylint: disable=inconsistent-return-statements

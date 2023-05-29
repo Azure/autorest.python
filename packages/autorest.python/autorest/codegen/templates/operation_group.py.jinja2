@@ -42,10 +42,7 @@ class {{ operation_group.class_name }}{{ base_class }}:{{ disable }}
 {% if operation_group.is_mixin and code_model.options["multiapi"] %}
     @property
     def _api_version(self) -> str:
-        try:
-            return self._get_api_version(None)
-        except:  # pylint: disable=bare-except
-            return ""
+        return self._config.api_version
 {% endif %}
 {% for operation in operation_group.operations if not operation.abstract %}
 
