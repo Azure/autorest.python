@@ -21,14 +21,14 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ..._operations._operations import build_http_invalid_request, build_http_valid_request
-from .._vendor import HttpClientMixinABC
+from ..._operations._operations import build_custom_invalid_request, build_custom_valid_request
+from .._vendor import CustomClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class HttpClientOperationsMixin(HttpClientMixinABC):
+class CustomClientOperationsMixin(CustomClientMixinABC):
     @distributed_trace_async
     async def valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Check whether client is authenticated.
@@ -52,7 +52,7 @@ class HttpClientOperationsMixin(HttpClientMixinABC):
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_http_valid_request(
+        request = build_custom_valid_request(
             headers=_headers,
             params=_params,
         )
@@ -95,7 +95,7 @@ class HttpClientOperationsMixin(HttpClientMixinABC):
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_http_invalid_request(
+        request = build_custom_invalid_request(
             headers=_headers,
             params=_params,
         )

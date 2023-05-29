@@ -4,6 +4,7 @@ pytest
 pytest-asyncio==0.14.0;python_full_version>="3.5.2"
 azure-core==1.24.0
 -e ./generated/authentication-api-key
+-e ./generated/authentication-http-custom
 -e ./generated/authentication-oauth2
 -e ./generated/authentication-union
 -e ./generated/azure-core-basic

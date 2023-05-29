@@ -9,12 +9,12 @@
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "httpclient"
+PACKAGE_NAME = "authentication-http-custom"
 version = "1.0.0b1"
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="HttpClient",
+    description="authentication-http-custom",
     author_email="",
     url="",
     keywords="azure, azure sdk",

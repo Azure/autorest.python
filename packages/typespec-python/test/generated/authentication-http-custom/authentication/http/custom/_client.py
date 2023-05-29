@@ -13,12 +13,12 @@ from azure.core import PipelineClient
 from azure.core.credentials import AzureKeyCredential
 from azure.core.rest import HttpRequest, HttpResponse
 
-from ._configuration import HttpClientConfiguration
-from ._operations import HttpClientOperationsMixin
+from ._configuration import CustomClientConfiguration
+from ._operations import CustomClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class HttpClient(HttpClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class CustomClient(CustomClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates clients generated with generic HTTP auth.
 
     :param credential: Credential needed for the client to connect to Azure. Required.
@@ -27,7 +27,7 @@ class HttpClient(HttpClientOperationsMixin):  # pylint: disable=client-accepts-a
 
     def __init__(self, credential: AzureKeyCredential, **kwargs: Any) -> None:
         _endpoint = "http://localhost:3000"
-        self._config = HttpClientConfiguration(credential=credential, **kwargs)
+        self._config = CustomClientConfiguration(credential=credential, **kwargs)
         self._client: PipelineClient = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
@@ -59,7 +59,7 @@ class HttpClient(HttpClientOperationsMixin):  # pylint: disable=client-accepts-a
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "HttpClient":
+    def __enter__(self) -> "CustomClient":
         self._client.__enter__()
         return self
 

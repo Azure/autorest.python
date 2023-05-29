@@ -23,7 +23,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._serialization import Serializer
-from .._vendor import HttpClientMixinABC
+from .._vendor import CustomClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -32,20 +32,20 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_http_valid_request(**kwargs: Any) -> HttpRequest:
+def build_custom_valid_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
-    _url = "/authentication/http/valid"
+    _url = "/authentication/http/custom/valid"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_http_invalid_request(**kwargs: Any) -> HttpRequest:
+def build_custom_invalid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/authentication/http/invalid"
+    _url = "/authentication/http/custom/invalid"
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -53,7 +53,7 @@ def build_http_invalid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class HttpClientOperationsMixin(HttpClientMixinABC):
+class CustomClientOperationsMixin(CustomClientMixinABC):
     @distributed_trace
     def valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Check whether client is authenticated.
@@ -77,7 +77,7 @@ class HttpClientOperationsMixin(HttpClientMixinABC):
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_http_valid_request(
+        request = build_custom_valid_request(
             headers=_headers,
             params=_params,
         )
@@ -120,7 +120,7 @@ class HttpClientOperationsMixin(HttpClientMixinABC):
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_http_invalid_request(
+        request = build_custom_invalid_request(
             headers=_headers,
             params=_params,
         )
