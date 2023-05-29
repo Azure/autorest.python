@@ -51,6 +51,9 @@ EMITTER_OPTIONS = {
     "type/enum/fixed/main.tsp": {
         "package-name": "typetest-enum-fixed",
     },
+    "type/model/empty/main.tsp": {
+        "package-name": "typetest-model-empty",
+    },
     "type/model/inheritance/main.tsp": {
         "package-name": "typetest-model-inheritance",
     },
@@ -97,8 +100,7 @@ def regenerate(c, name=None, debug=False):
     specs = [
         s / "main.tsp"
         for s in CADL_RANCH_DIR.glob("**/*")
-        if s.is_dir()
-        and any(f for f in s.iterdir() if f.name == "main.tsp")
+        if s.is_dir() and any(f for f in s.iterdir() if f.name == "main.tsp")
     ]
     if name:
         specs = [s for s in specs if name.lower() in str(s)]
