@@ -128,6 +128,7 @@ def update_property(
             op["language"]["default"]["name"].lstrip("_")  # TODO: patching m4
             for op in yaml_data.get("originalParameter", [])
         ],
+        "clientDefaultValue": yaml_data.get("clientDefaultValue"),
     }
 
 
