@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import pytest
 from typetest.model.empty import EmptyClient
-from typetest.model.empty.models import EmptyInput, EmptyOutput
+from typetest.model.empty.models import EmptyInput, EmptyOutput, EmptyInputOutput
 
 
 @pytest.fixture
@@ -29,5 +29,5 @@ def test_get(client: EmptyClient):
 
 
 def test_post_round(client: EmptyClient):
-    assert client.post_round_trip_empty(EmptyInput()) == EmptyOutput()
+    assert client.post_round_trip_empty(EmptyInputOutput()) == EmptyInputOutput()
     assert client.post_round_trip_empty({}) == {}
