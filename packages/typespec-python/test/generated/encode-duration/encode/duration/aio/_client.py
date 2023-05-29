@@ -14,7 +14,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
 from ._configuration import DurationClientConfiguration
-from .operations import PropertyOperations, QueryOperations
+from .operations import HeaderOperations, PropertyOperations, QueryOperations
 
 
 class DurationClient:  # pylint: disable=client-accepts-api-version-keyword
@@ -24,6 +24,8 @@ class DurationClient:  # pylint: disable=client-accepts-api-version-keyword
     :vartype query: encode.duration.aio.operations.QueryOperations
     :ivar property: PropertyOperations operations
     :vartype property: encode.duration.aio.operations.PropertyOperations
+    :ivar header: HeaderOperations operations
+    :vartype header: encode.duration.aio.operations.HeaderOperations
     """
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
@@ -36,6 +38,7 @@ class DurationClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize.client_side_validation = False
         self.query = QueryOperations(self._client, self._config, self._serialize, self._deserialize)
         self.property = PropertyOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.

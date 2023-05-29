@@ -21,7 +21,6 @@ import {
     Type,
     getNamespaceFullName,
     IntrinsicType,
-    Program,
 } from "@typespec/compiler";
 import {
     getAuthentication,

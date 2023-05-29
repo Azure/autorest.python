@@ -18,7 +18,9 @@
 
 **Bug Fixes**
 
+- Fix encode on duration scalar #1927
 - Support scenario `model MyModel is/extends Record<>` #1925
+
 
 ## 2023-05-19 - 0.9.2
 

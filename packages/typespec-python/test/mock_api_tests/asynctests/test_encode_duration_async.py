@@ -12,6 +12,7 @@ from encode.duration.models import (
     ISO8601DurationProperty,
     FloatSecondsDurationProperty,
     DefaultDurationProperty,
+    FloatSecondsDurationArrayProperty,
 )
 
 
@@ -26,6 +27,7 @@ async def test_query(client: DurationClient):
     await client.query.default(input=datetime.timedelta(days=40))
     await client.query.iso8601(input=datetime.timedelta(days=40))
     await client.query.int32_seconds(input=36)
+    await client.query.int32_seconds_array(input=[36, 47])
     await client.query.float_seconds(input=35.621)
 
 
@@ -49,3 +51,19 @@ async def test_property(client: DurationClient):
         FloatSecondsDurationProperty(value=35.621)
     )
     assert abs(result.value - 35.621) < 0.0001
+    result = await client.property.float_seconds_array(
+        FloatSecondsDurationArrayProperty(value=[35.621, 46.781])
+    )
+    assert abs(result.value[0] - 35.621) < 0.0001
+    assert abs(result.value[1] - 46.781) < 0.0001
+
+
+@pytest.mark.asyncio
+async def test_header(client: DurationClient):
+    await client.header.default(duration=datetime.timedelta(days=40))
+    await client.header.iso8601(duration=datetime.timedelta(days=40))
+    await client.header.iso8601_array(
+        duration=[datetime.timedelta(days=40), datetime.timedelta(days=50)]
+    )
+    await client.header.int32_seconds(duration=36)
+    await client.header.float_seconds(duration=35.621)

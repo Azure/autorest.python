@@ -25,6 +25,7 @@
 # --------------------------------------------------------------------------
 import pytest
 from constants import AutoRestSwaggerConstantService
+from constants import models
 
 @pytest.fixture
 def client():
@@ -46,3 +47,12 @@ def test_put_client_constants_override():
         assert client._config.header_constant == False
         assert client._config.query_constant == 0
         assert client._config.path_constant == "new_path"
+
+def test_models():
+    assert models.ModelAsStringNoRequiredOneValueDefault().parameter == "value1"
+    assert models.ModelAsStringNoRequiredTwoValueDefault().parameter == "value1"
+    assert models.ModelAsStringRequiredOneValueDefault().parameter == "value1"
+    assert models.ModelAsStringRequiredTwoValueDefault().parameter == "value1"
+    assert models.NoModelAsStringNoRequiredOneValueDefault().parameter == "value1"
+    assert models.NoModelAsStringNoRequiredTwoValueDefault().parameter == "value1"
+    assert models.NoModelAsStringRequiredTwoValueDefault().parameter == "value1"

@@ -11,6 +11,7 @@ from azure.core import CaseInsensitiveEnumMeta
 
 
 class Versions(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Versions."""
+    """Service versions."""
 
     V1_0 = "v1.0"
+    """Version 1.0"""
