@@ -73,5 +73,18 @@ class TestMultiapiClient(NotTested.TestMultiapiBase):
         response = default_client.test_one(id=1, message=None)
         assert response == namespace_models.ModelTwo(id=1, message="This was called with api-version 2.0.0")
 
+    @pytest.mark.parametrize('api_version', ["1.0.0"])
+    def test_version_one_operation_group_one(self, client):
+        response = client.operation_group_one.test_two()
+        assert response is None
 
+        with pytest.raises(ValueError):
+            client.operation_group_one.test_three()
 
+    @pytest.mark.parametrize('api_version', ["2.0.0"])
+    def test_version_two_operation_group_one(self, client, namespace_models):
+        pass
+
+    @pytest.mark.parametrize('api_version', ["2.0.0"])
+    def test_version_two_operation_group_two(self, client):
+        pass
