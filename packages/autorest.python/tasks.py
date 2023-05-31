@@ -13,6 +13,8 @@ from colorama import init, Fore
 from invoke import task, run
 import shutil
 import re
+from subprocess import check_call
+from pathlib import Path
 
 #######################################################
 # Working around for issue https://github.com/pyinvoke/invoke/issues/833 in python3.11
@@ -541,22 +543,24 @@ def _multiapi_command_line(location, debug):
 def regenerate_multiapi(c, debug=False, swagger_name="test"):
     # being hacky: making default swagger_name 'test', since it appears in each spec name
     available_specifications = [
-        # create basic multiapi client (package-name=multapi)
-        "test/multiapi/specification/multiapi/README.md",
-        # create multiapi client with submodule (package-name=multiapi#submodule)
-        "test/multiapi/specification/multiapiwithsubmodule/README.md",
-        # create multiapi client with no aio folder (package-name=multiapinoasync)
-        "test/multiapi/specification/multiapinoasync/README.md",
-        # create multiapi client with AzureKeyCredentialPolicy (package-name=multiapicredentialdefaultpolicy)
-        "test/multiapi/specification/multiapicredentialdefaultpolicy/README.md",
-        # create multiapi client data plane (package-name=multiapidataplane)
-        "test/multiapi/specification/multiapidataplane/README.md",
-        # multiapi client with custom base url (package-name=multiapicustombaseurl)
-        "test/multiapi/specification/multiapicustombaseurl/README.md",
-        # create multiapi client with security definition (package-name=multapisecurity)
-        "test/multiapi/specification/multiapisecurity/README.md",
-        # create multiapi client with keyword only params
-        "test/multiapi/specification/multiapikeywordonly/README.md",
+        # # create basic multiapi client (package-name=multapi)
+        # "test/multiapi/specification/multiapi/README.md",
+        # # create multiapi client with submodule (package-name=multiapi#submodule)
+        # "test/multiapi/specification/multiapiwithsubmodule/README.md",
+        # # create multiapi client with no aio folder (package-name=multiapinoasync)
+        # "test/multiapi/specification/multiapinoasync/README.md",
+        # # create multiapi client with AzureKeyCredentialPolicy (package-name=multiapicredentialdefaultpolicy)
+        # "test/multiapi/specification/multiapicredentialdefaultpolicy/README.md",
+        # # create multiapi client data plane (package-name=multiapidataplane)
+        # "test/multiapi/specification/multiapidataplane/README.md",
+        # # multiapi client with custom base url (package-name=multiapicustombaseurl)
+        # "test/multiapi/specification/multiapicustombaseurl/README.md",
+        # # create multiapi client with security definition (package-name=multapisecurity)
+        # "test/multiapi/specification/multiapisecurity/README.md",
+        # # create multiapi client with keyword only params
+        # "test/multiapi/specification/multiapikeywordonly/README.md",
+        # create basic multiapi client (package-name=multapicombiner)
+        "test/multiapi/specification/multiapicombiner/README.md",
     ]
 
     cmds = [_multiapi_command_line(
@@ -564,6 +568,7 @@ def regenerate_multiapi(c, debug=False, swagger_name="test"):
 
     _run_autorest(cmds, debug)
 
+    # check_call(f"python {Path('test/multiapi/run_multiapi_combiner.py')} multiapicombiner", shell=True)
 
 @task
 def regenerate_package_mode(c, debug=False, swagger_group=None):

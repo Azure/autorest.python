@@ -123,3 +123,6 @@ node_modules/
 
 # Generated test folders
 test/services/*/_generated
+
+# remote Python SDK repo
+**/azure-sdk-for-python
