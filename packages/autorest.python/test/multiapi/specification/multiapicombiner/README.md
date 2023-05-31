@@ -1,14 +1,5 @@
 # Testing multiapicombiner
 
-### Tag: v1
-
-These settings apply only when `--tag=v1` is specified on the command line.
-
-``` yaml $(tag) == 'v0'
-input-file: ../../../../node_modules/@microsoft.azure/autorest.testserver/swagger/multiapi-v0.json
-namespace: multiapicombiner.v0
-output-folder: $(python-sdks-folder)/multiapi/Expected/AcceptanceTests/multiapicombiner/multiapicombiner/v0
-```
 
 ``` yaml $(tag) == 'v1'
 input-file: ../../../../node_modules/@microsoft.azure/autorest.testserver/swagger/multiapi-v1.json
@@ -44,7 +35,6 @@ only-path-and-body-params-positional: true
 ``` yaml $(multiapi)
 clear-output-folder: true
 batch:
-    - tag: v0
     - tag: v1
     - tag: v2
     - tag: v3

@@ -568,7 +568,7 @@ def regenerate_multiapi(c, debug=False, swagger_name="test"):
 
     _run_autorest(cmds, debug)
 
-    # check_call(f"python {Path('test/multiapi/run_multiapi_combiner.py')} multiapicombiner", shell=True)
+    check_call(f"python {Path('test/multiapi/run_multiapi_combiner.py')} multiapicombiner", shell=True)
 
 @task
 def regenerate_package_mode(c, debug=False, swagger_group=None):
