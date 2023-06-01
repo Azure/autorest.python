@@ -31,3 +31,4 @@ azure-core==1.24.0
 -e ./generated/typetest-property-valuetypes
 -e ./generated/typetest-union
 -e ./generated/azure-client-generator-core-internal
+-e ./generated/typetest-model-empty
