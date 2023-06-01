@@ -95,7 +95,7 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         """put_empty.
 
         :param input: Required.
-        :type input: ~type.model.empty.models.EmptyInput
+        :type input: ~typetest.model.empty.models.EmptyInput
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -149,7 +149,7 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         """put_empty.
 
         :param input: Is one of the following types: EmptyInput, JSON, IO Required.
-        :type input: ~type.model.empty.models.EmptyInput or JSON or IO
+        :type input: ~typetest.model.empty.models.EmptyInput or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -209,7 +209,7 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: EmptyOutput. The EmptyOutput is compatible with MutableMapping
-        :rtype: ~type.model.empty.models.EmptyOutput
+        :rtype: ~typetest.model.empty.models.EmptyOutput
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -259,14 +259,14 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         """post_round_trip_empty.
 
         :param body: Required.
-        :type body: ~type.model.empty.models.EmptyInputOutput
+        :type body: ~typetest.model.empty.models.EmptyInputOutput
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: EmptyInputOutput. The EmptyInputOutput is compatible with MutableMapping
-        :rtype: ~type.model.empty.models.EmptyInputOutput
+        :rtype: ~typetest.model.empty.models.EmptyInputOutput
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -284,7 +284,7 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: EmptyInputOutput. The EmptyInputOutput is compatible with MutableMapping
-        :rtype: ~type.model.empty.models.EmptyInputOutput
+        :rtype: ~typetest.model.empty.models.EmptyInputOutput
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -302,7 +302,7 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: EmptyInputOutput. The EmptyInputOutput is compatible with MutableMapping
-        :rtype: ~type.model.empty.models.EmptyInputOutput
+        :rtype: ~typetest.model.empty.models.EmptyInputOutput
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -313,14 +313,14 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         """post_round_trip_empty.
 
         :param body: Is one of the following types: EmptyInputOutput, JSON, IO Required.
-        :type body: ~type.model.empty.models.EmptyInputOutput or JSON or IO
+        :type body: ~typetest.model.empty.models.EmptyInputOutput or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: EmptyInputOutput. The EmptyInputOutput is compatible with MutableMapping
-        :rtype: ~type.model.empty.models.EmptyInputOutput
+        :rtype: ~typetest.model.empty.models.EmptyInputOutput
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {

@@ -9,12 +9,12 @@
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "emptyclient"
+PACKAGE_NAME = "typetest-model-empty"
 version = "1.0.0b1"
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="EmptyClient",
+    description="typetest-model-empty",
     author_email="",
     url="",
     keywords="azure, azure sdk",

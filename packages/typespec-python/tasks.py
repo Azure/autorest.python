@@ -51,6 +51,9 @@ EMITTER_OPTIONS = {
     "type/enum/fixed/main.tsp": {
         "package-name": "typetest-enum-fixed",
     },
+    "type/model/empty/main.tsp": {
+        "package-name": "typetest-model-empty",
+    },
     "type/model/inheritance/main.tsp": {
         "package-name": "typetest-model-inheritance",
     },

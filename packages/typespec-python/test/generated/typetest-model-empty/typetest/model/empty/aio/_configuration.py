@@ -24,7 +24,7 @@ class EmptyClientConfiguration(Configuration):  # pylint: disable=too-many-insta
     def __init__(self, **kwargs: Any) -> None:
         super(EmptyClientConfiguration, self).__init__(**kwargs)
 
-        kwargs.setdefault("sdk_moniker", "emptyclient/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "typetest-model-empty/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:
