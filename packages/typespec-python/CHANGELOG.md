@@ -1,6 +1,6 @@
 # Release
 
-## 2023-xx-xx - 0.9.3
+## 2023-xx-xx - 0.10.0
 
 | Library                                                                 | Min Version   |
 | ----------------------------------------------------------------------- | ------------- |
@@ -15,6 +15,10 @@
 | `msrest` dep of generated code (If generating legacy code)              | `0.7.1`       |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
 | `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**New Features**
+
+- Support Http auth #1860
 
 **Bug Fixes**
 
