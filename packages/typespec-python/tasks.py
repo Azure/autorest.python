@@ -31,48 +31,51 @@ EMITTER_OPTIONS = {
         "package-mode": "dataplane",
         "package-pprint-name": "ResiliencySrvDriven1",
     },
-    "resiliency/srv-driven/main.tsp": {
+    "resiliency/srv-driven": {
         "package-name": "resiliency-srv-driven2",
         "package-mode": "dataplane",
         "package-pprint-name": "ResiliencySrvDriven2",
     },
-    "authentication/http/custom/main.tsp": {
+    "authentication/http/custom": {
         "package-name": "authentication-http-custom",
     },
-    "authentication/union/main.tsp": {
+    "authentication/union": {
         "package-name": "authentication-union",
     },
-    "type/array/main.tsp": {
+    "type/array": {
         "package-name": "typetest-array",
     },
-    "type/dictionary/main.tsp": {
+    "type/dictionary": {
         "package-name": "typetest-dictionary",
     },
-    "type/enum/extensible/main.tsp": {
+    "type/enum/extensible": {
         "package-name": "typetest-enum-extensible",
     },
-    "type/enum/fixed/main.tsp": {
+    "type/enum/fixed": {
         "package-name": "typetest-enum-fixed",
     },
-    "type/model/inheritance/main.tsp": {
+    "type/model/empty": {
+        "package-name": "typetest-model-empty",
+    },
+    "type/model/inheritance": {
         "package-name": "typetest-model-inheritance",
     },
-    "type/model/usage/main.tsp": {
+    "type/model/usage": {
         "package-name": "typetest-model-usage",
     },
-    "type/model/visibility/main.tsp": {
+    "type/model/visibility": {
         "package-name": "typetest-model-visibility",
     },
-    "type/property/nullable/main.tsp": {
+    "type/property/nullable": {
         "package-name": "typetest-property-nullable",
     },
-    "type/property/optional/main.tsp": {
+    "type/property/optional": {
         "package-name": "typetest-property-optional",
     },
-    "type/property/value-types/main.tsp": {
+    "type/property/value-types": {
         "package-name": "typetest-property-valuetypes",
     },
-    "type/union/main.tsp": {
+    "type/union": {
         "package-name": "typetest-union",
     },
 }
@@ -95,13 +98,16 @@ def _add_options(spec: Path, debug=False) -> str:
     )
 
 
+def _entry_file_name(path: Path) -> Path:
+    if path.is_file():
+        return path
+    return (path / "client.tsp") if (path / "client.tsp").exists() else (path / "main.tsp")
+
 @task
 def regenerate(c, name=None, debug=False):
     specs = [
-        s / "main.tsp"
-        for s in CADL_RANCH_DIR.glob("**/*")
-        if s.is_dir()
-        and any(f for f in s.iterdir() if f.name == "main.tsp")
+        s for s in CADL_RANCH_DIR.glob("**/*")
+        if s.is_dir() and any(f for f in s.iterdir() if f.name == "main.tsp" and "authentication/http/custom" not in s.as_posix())
     ]
     if name:
         specs = [s for s in specs if name.lower() in str(s)]
@@ -119,7 +125,7 @@ def regenerate(c, name=None, debug=False):
         )
     _run_cadl(
         [
-            f"tsp compile {spec} --emit={PLUGIN_DIR} --option {_add_options(spec, debug)}"
+            f"tsp compile {_entry_file_name(spec)} --emit={PLUGIN_DIR} --option {_add_options(spec, debug)}"
             for spec in specs
         ]
     )
@@ -130,7 +136,6 @@ def _get_package_name(spec: Path):
         return _get_emitter_option(spec)["package-name"]
     return (
         str(spec.relative_to(CADL_RANCH_DIR).as_posix())
-        .replace("/main.tsp", "")
         .replace("/", "-")
     )
 
