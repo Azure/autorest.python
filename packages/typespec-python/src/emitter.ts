@@ -862,8 +862,7 @@ function emitCredential(auth: HttpAuth): Record<string, any> {
                 key: auth.name,
             },
         };
-    }
-    else if (auth.type === "http") {
+    } else if (auth.type === "http") {
         credential_type = {
             type: "Key",
             policy: {
