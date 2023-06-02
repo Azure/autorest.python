@@ -12,6 +12,10 @@
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
 | `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
 
+**New Features**
+
+- Support `x-ms-internal` for swagger #1947
+
 **Bug Fixes**
 
 - Fix `x-ms-client-default` for model property  #1937
