@@ -868,7 +868,7 @@ function emitCredential(auth: HttpAuth): Record<string, any> {
             type: "Key",
             policy: {
                 type: "AzureKeyCredentialPolicy",
-                key: "Authorization",
+                key: "authorization",
                 scheme: auth.scheme,
             },
         };
