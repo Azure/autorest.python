@@ -27,6 +27,7 @@ steps:
         folderName: "typespec-python"
         regenerate: true
         updateToLatestTypespec: true
+        checkChange: false
 
     - template: generated-code-checks-template.yml
       parameters:
