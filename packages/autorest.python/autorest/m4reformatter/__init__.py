@@ -499,6 +499,9 @@ class M4Reformatter(
             overload = self.update_overload(
                 group_name, yaml_data, body_type, content_types=content_types
             )
+            overload["internal"] = yaml_data.get("extensions", {}).get(
+                "x-ms-internal", False
+            )
             for parameter in overload["parameters"]:
                 if parameter["wireName"].lower() == "content-type":
                     parameter["clientDefaultValue"] = overload["bodyParameter"][
@@ -580,6 +583,9 @@ class M4Reformatter(
         )
         content_types = None
         operation = self._update_operation_helper(group_name, yaml_data, body_parameter)
+        operation["internal"] = yaml_data.get("extensions", {}).get(
+            "x-ms-internal", False
+        )
         operation["overloads"] = self.update_overloads(
             group_name, yaml_data, body_parameter, content_types=content_types
         )
