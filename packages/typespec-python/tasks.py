@@ -36,6 +36,9 @@ EMITTER_OPTIONS = {
         "package-mode": "dataplane",
         "package-pprint-name": "ResiliencySrvDriven2",
     },
+    "authentication/http/custom": {
+        "package-name": "authentication-http-custom",
+    },
     "authentication/union": {
         "package-name": "authentication-union",
     },

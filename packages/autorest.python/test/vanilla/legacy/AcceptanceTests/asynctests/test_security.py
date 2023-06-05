@@ -46,8 +46,8 @@ async def test_security_key_swagger():
     await client.head()
 
 @pytest.mark.asyncio
-async def test_security_aad_swagger_cred_flag(credential):
-    client = SecurityAadSwaggerCredentialFlag(credential=credential)
+async def test_security_aad_swagger_cred_flag():
+    client = SecurityAadSwaggerCredentialFlag(credential=AzureKeyCredential('123456789'))
     assert isinstance(client._config.authentication_policy, AzureKeyCredentialPolicy)
 
 @pytest.mark.asyncio
