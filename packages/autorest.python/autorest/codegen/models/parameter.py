@@ -52,6 +52,9 @@ class ParameterDelimeter(str, Enum):
     COMMA = "comma"
 
 
+SPECIAL_HANDLE_HEADERS = ["repeatability-request-id", "repeatability-first-sent"]
+
+
 class _ParameterBase(
     BaseModel, abc.ABC
 ):  # pylint: disable=too-many-instance-attributes
@@ -89,6 +92,9 @@ class _ParameterBase(
         self.in_overload: bool = self.yaml_data.get("inOverload", False)
         self.default_to_unset_sentinel: bool = self.yaml_data.get(
             "defaultToUnsetSentinel", False
+        )
+        self.is_special_handle_header: bool = (
+            self.location == ParameterLocation.HEADER and self.wire_name.lower() in SPECIAL_HANDLE_HEADERS
         )
 
     @property
@@ -176,6 +182,11 @@ class _ParameterBase(
                 ImportType.LOCAL,
                 TypingSection.TYPING,
             )
+        if self.is_special_handle_header:
+            if self.wire_name.lower() == "repeatability-request-id":
+                file_import.add_import("uuid", ImportType.STDLIB)
+            elif self.wire_name.lower() == "repeatability-first-sent":
+                file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
 
     def imports(self, async_mode: bool, **kwargs: Any) -> FileImport:

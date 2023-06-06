@@ -213,7 +213,7 @@ class _ParameterListBase(
         method_params: List[Union[ParameterType, BodyParameterType]] = [
             p
             for p in self.parameters
-            if p.in_method_signature and p.implementation == self.implementation
+            if p.in_method_signature and p.implementation == self.implementation and not p.is_special_handle_header
         ]
         if self._body_parameter:
             if self._body_parameter.in_method_signature:

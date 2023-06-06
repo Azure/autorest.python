@@ -356,6 +356,15 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             file_import.merge(
                 self.parameters.body_parameter.type.imports(operation=self, **kwargs)
             )
+        for param in self.parameters.headers:
+            if param.is_special_handle_header:
+                file_import.merge(
+                    param.imports(
+                        async_mode,
+                        operation=self,
+                        **kwargs,
+                    )
+                )
 
         # Exceptions
         errors = [
