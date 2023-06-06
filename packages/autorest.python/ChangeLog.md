@@ -15,6 +15,7 @@
 **New Features**
 
 - Support Http auth #1860
+- Support repeatable headers #1958
 
 ### 2023-06-02 - 6.5.0
 

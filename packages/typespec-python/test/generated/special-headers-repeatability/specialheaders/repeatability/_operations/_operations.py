@@ -88,5 +88,10 @@ class RepeatabilityClientOperationsMixin(RepeatabilityClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        response_headers = {}
+        response_headers["Repeatability-Result"] = self._deserialize(
+            "str", response.headers.get("Repeatability-Result")
+        )
+
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, response_headers)

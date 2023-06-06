@@ -7,6 +7,7 @@ from datetime import datetime
 
 import pytest
 from _specs_.azure.core.traits import TraitsClient
+from _specs_.azure.core.traits.models import UserActionParam
 
 
 @pytest.fixture
@@ -35,3 +36,13 @@ def test_get(client: TraitsClient):
     assert header["ETag"] == "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
     assert header["bar"] == "456"
     assert header["x-ms-client-request-id"] == "test-id"
+
+
+def test_repeatable_action(client: TraitsClient):
+    result, header = client.repeatable_action(
+        id=1,
+        body=UserActionParam(user_action_value="test"),
+        cls=lambda x, y, z: (y, z),
+    )
+    assert result.user_action_result == "test"
+    assert header["Repeatability-Result"] == "accepted"

@@ -7,6 +7,7 @@ from datetime import datetime
 
 import pytest
 from _specs_.azure.core.traits.aio import TraitsClient
+from _specs_.azure.core.traits.models import UserActionParam
 
 
 @pytest.fixture
@@ -20,8 +21,8 @@ async def test_get(client: TraitsClient):
     result, header = await client.smoke_test(
         id=1,
         foo="123",
-        if_match="\"valid\"",
-        if_none_match="\"invalid\"",
+        if_match='"valid"',
+        if_none_match='"invalid"',
         if_unmodified_since=datetime(
             year=2022, month=8, day=26, hour=14, minute=38, second=0
         ),
@@ -36,3 +37,14 @@ async def test_get(client: TraitsClient):
     assert header["ETag"] == "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
     assert header["bar"] == "456"
     assert header["x-ms-client-request-id"] == "test-id"
+
+
+@pytest.mark.asyncio
+async def test_repeatable_action(client: TraitsClient):
+    result, header = await client.repeatable_action(
+        id=1,
+        body=UserActionParam(user_action_value="test"),
+        cls=lambda x, y, z: (y, z),
+    )
+    assert result.user_action_result == "test"
+    assert header["Repeatability-Result"] == "accepted"
