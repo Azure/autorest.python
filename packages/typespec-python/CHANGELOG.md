@@ -19,6 +19,7 @@
 **New Features**
 
 - Support Http auth #1860
+- Support global config for `head-as-boolean` #1949
 
 ## 2023-06-02 - 0.9.3
 

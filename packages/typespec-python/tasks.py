@@ -10,7 +10,7 @@ from multiprocessing import Pool
 from colorama import init, Fore
 from invoke import task, run
 import shutil
-from typing import Dict
+from typing import Dict, Any
 
 #######################################################
 # Working around for issue https://github.com/pyinvoke/invoke/issues/833 in python3.11
@@ -80,19 +80,30 @@ EMITTER_OPTIONS = {
     },
 }
 
+ADDITIONAL_OPTIONS = {
+    "type/model/visibility": {
+        "package-name": "headasboolean",
+        "head-as-boolean": "false",
+    },
+}
 
-def _get_emitter_option(spec: Path) -> Dict[str, str]:
-    name = str(spec.relative_to(CADL_RANCH_DIR).as_posix())
-    return EMITTER_OPTIONS.get(name, {})
+
+def _partial_name(name: Path) -> str:
+    return str(name.relative_to(CADL_RANCH_DIR).as_posix())
 
 
-def _add_options(spec: Path, debug=False) -> str:
+def _get_emitter_option(spec: Path, emitter_options: Dict[str, Any]) -> Dict[str, str]:
+    name = _partial_name(spec)
+    return emitter_options.get(name, {})
+
+
+def _add_options(spec: Path, emitter_options: Dict[str, Any], debug=False) -> str:
     options = {
-        "emitter-output-dir": f"{PLUGIN_DIR}/test/generated/{_get_package_name(spec)}"
+        "emitter-output-dir": f"{PLUGIN_DIR}/test/generated/{_get_package_name(spec, emitter_options)}"
     }
     # if debug:
     #   options["debug"] = "true"
-    options.update(_get_emitter_option(spec))
+    options.update(_get_emitter_option(spec, emitter_options))
     return " --option ".join(
         [f"@azure-tools/typespec-python.{k}={v} " for k, v in options.items()]
     )
@@ -102,6 +113,20 @@ def _entry_file_name(path: Path) -> Path:
     if path.is_file():
         return path
     return (path / "client.tsp") if (path / "client.tsp").exists() else (path / "main.tsp")
+
+
+def _run_specs(specs, emitter_options: Dict[str, Any], debug=False):
+    for spec in specs:
+        Path(f"{PLUGIN_DIR}/test/generated/{_get_package_name(spec, emitter_options)}").mkdir(
+            parents=True, exist_ok=True
+        )
+    _run_cadl(
+        [
+            f"tsp compile {_entry_file_name(spec)} --emit={PLUGIN_DIR} --option {_add_options(spec, emitter_options, debug)}"
+            for spec in specs
+        ]
+    )
+
 
 @task
 def regenerate(c, name=None, debug=False):
@@ -119,21 +144,17 @@ def regenerate(c, name=None, debug=False):
                 if s.is_dir() and any(f for f in s.iterdir() if f.name == "old.tsp")
             ]
         )
-    for spec in specs:
-        Path(f"{PLUGIN_DIR}/test/generated/{_get_package_name(spec)}").mkdir(
-            parents=True, exist_ok=True
-        )
-    _run_cadl(
-        [
-            f"tsp compile {_entry_file_name(spec)} --emit={PLUGIN_DIR} --option {_add_options(spec, debug)}"
-            for spec in specs
-        ]
-    )
+    _run_specs(specs, EMITTER_OPTIONS, debug)
+
+    # run specs with customized configuration
+    candidates = {_partial_name(s): s  for s in specs}
+    additional_specs = [v for k, v in candidates.items() if k in ADDITIONAL_OPTIONS]
+    _run_specs(additional_specs, ADDITIONAL_OPTIONS, debug)
 
 
-def _get_package_name(spec: Path):
-    if _get_emitter_option(spec).get("package-name"):
-        return _get_emitter_option(spec)["package-name"]
+def _get_package_name(spec: Path, emitter_options: Dict[str, Any]):
+    if _get_emitter_option(spec, emitter_options).get("package-name"):
+        return _get_emitter_option(spec, emitter_options)["package-name"]
     return (
         str(spec.relative_to(CADL_RANCH_DIR).as_posix())
         .replace("/", "-")
