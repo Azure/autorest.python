@@ -105,7 +105,7 @@ def _add_options(spec: Path, debug=False) -> List[str]:
         result.append(config_copy)
     if not result:
         result.append({"emitter-output-dir": _default_output_dir(spec)})
-    return [" --option " + " --option ".join(
+    return [" --option ".join(
         [f"@azure-tools/typespec-python.{k}={v} " for k, v in options.items()]
     ) for options in result]
 
@@ -138,7 +138,7 @@ def regenerate(c, name=None, debug=False):
             )
     _run_cadl(
         [
-            f"tsp compile {_entry_file_name(spec)} --emit={PLUGIN_DIR} {option}"
+            f"tsp compile {_entry_file_name(spec)} --emit={PLUGIN_DIR} --option {option}"
             for spec in specs for option in _add_options(spec, debug)
         ]
     )
