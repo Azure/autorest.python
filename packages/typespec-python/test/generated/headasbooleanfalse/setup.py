@@ -9,12 +9,12 @@
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "headasboolean"
+PACKAGE_NAME = "headasbooleanfalse"
 version = "1.0.0b1"
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="headasboolean",
+    description="headasbooleanfalse",
     author_email="",
     url="",
     keywords="azure, azure sdk",

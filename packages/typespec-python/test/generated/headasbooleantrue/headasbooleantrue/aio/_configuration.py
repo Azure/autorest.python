@@ -24,7 +24,7 @@ class VisibilityClientConfiguration(Configuration):  # pylint: disable=too-many-
     def __init__(self, **kwargs: Any) -> None:
         super(VisibilityClientConfiguration, self).__init__(**kwargs)
 
-        kwargs.setdefault("sdk_moniker", "headasboolean/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "headasbooleantrue/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

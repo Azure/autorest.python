@@ -20,21 +20,14 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
-from azure.core.tracing.decorator_async import distributed_trace_async
+from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from ... import models as _models
-from ..._model_base import AzureJSONEncoder, _deserialize
-from ..._operations._operations import (
-    build_visibility_delete_model_request,
-    build_visibility_get_model_request,
-    build_visibility_head_model_request,
-    build_visibility_patch_model_request,
-    build_visibility_post_model_request,
-    build_visibility_put_model_request,
-)
+from .. import models as _models
+from .._model_base import AzureJSONEncoder, _deserialize
+from .._serialization import Serializer
 from .._vendor import VisibilityClientMixinABC
 
 if sys.version_info >= (3, 9):
@@ -43,30 +36,120 @@ else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+
+_SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
+
+
+def build_visibility_get_model_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/type/model/visibility"
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+
+
+def build_visibility_head_model_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    # Construct URL
+    _url = "/type/model/visibility"
+
+    # Construct headers
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="HEAD", url=_url, headers=_headers, **kwargs)
+
+
+def build_visibility_put_model_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    # Construct URL
+    _url = "/type/model/visibility"
+
+    # Construct headers
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
+
+
+def build_visibility_patch_model_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    # Construct URL
+    _url = "/type/model/visibility"
+
+    # Construct headers
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
+
+
+def build_visibility_post_model_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    # Construct URL
+    _url = "/type/model/visibility"
+
+    # Construct headers
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+
+
+def build_visibility_delete_model_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    # Construct URL
+    _url = "/type/model/visibility"
+
+    # Construct headers
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
 class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
     @overload
-    async def get_model(
+    def get_model(
         self, input: _models.VisibilityModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.VisibilityModel:
         """get_model.
 
         :param input: Required.
-        :type input: ~headasboolean.models.VisibilityModel
+        :type input: ~headasbooleantrue.models.VisibilityModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
-        :rtype: ~headasboolean.models.VisibilityModel
+        :rtype: ~headasbooleantrue.models.VisibilityModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
-    async def get_model(
+    def get_model(
         self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.VisibilityModel:
         """get_model.
@@ -79,14 +162,12 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
-        :rtype: ~headasboolean.models.VisibilityModel
+        :rtype: ~headasbooleantrue.models.VisibilityModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
-    async def get_model(
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.VisibilityModel:
+    def get_model(self, input: IO, *, content_type: str = "application/json", **kwargs: Any) -> _models.VisibilityModel:
         """get_model.
 
         :param input: Required.
@@ -97,25 +178,23 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
-        :rtype: ~headasboolean.models.VisibilityModel
+        :rtype: ~headasbooleantrue.models.VisibilityModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-    @distributed_trace_async
-    async def get_model(
-        self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any
-    ) -> _models.VisibilityModel:
+    @distributed_trace
+    def get_model(self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any) -> _models.VisibilityModel:
         """get_model.
 
         :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
-        :type input: ~headasboolean.models.VisibilityModel or JSON or IO
+        :type input: ~headasbooleantrue.models.VisibilityModel or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
-        :rtype: ~headasboolean.models.VisibilityModel
+        :rtype: ~headasbooleantrue.models.VisibilityModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -148,7 +227,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -169,27 +248,25 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         return deserialized  # type: ignore
 
     @overload
-    async def head_model(  # pylint: disable=inconsistent-return-statements
+    def head_model(
         self, input: _models.VisibilityModel, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    ) -> bool:
         """head_model.
 
         :param input: Required.
-        :type input: ~headasboolean.models.VisibilityModel
+        :type input: ~headasbooleantrue.models.VisibilityModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: None
-        :rtype: None
+        :return: bool
+        :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
-    async def head_model(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def head_model(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> bool:
         """head_model.
 
         :param input: Required.
@@ -199,15 +276,13 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: None
-        :rtype: None
+        :return: bool
+        :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
-    async def head_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def head_model(self, input: IO, *, content_type: str = "application/json", **kwargs: Any) -> bool:
         """head_model.
 
         :param input: Required.
@@ -217,26 +292,24 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: None
-        :rtype: None
+        :return: bool
+        :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-    @distributed_trace_async
-    async def head_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any
-    ) -> None:
+    @distributed_trace
+    def head_model(self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any) -> bool:
         """head_model.
 
         :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
-        :type input: ~headasboolean.models.VisibilityModel or JSON or IO
+        :type input: ~headasbooleantrue.models.VisibilityModel or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: None
-        :rtype: None
+        :return: bool
+        :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -269,7 +342,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -281,15 +354,16 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
 
         if cls:
             return cls(pipeline_response, None, {})
+        return 200 <= response.status_code <= 299
 
     @overload
-    async def put_model(  # pylint: disable=inconsistent-return-statements
+    def put_model(  # pylint: disable=inconsistent-return-statements
         self, input: _models.VisibilityModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put_model.
 
         :param input: Required.
-        :type input: ~headasboolean.models.VisibilityModel
+        :type input: ~headasbooleantrue.models.VisibilityModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -301,7 +375,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @overload
-    async def put_model(  # pylint: disable=inconsistent-return-statements
+    def put_model(  # pylint: disable=inconsistent-return-statements
         self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put_model.
@@ -319,7 +393,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @overload
-    async def put_model(  # pylint: disable=inconsistent-return-statements
+    def put_model(  # pylint: disable=inconsistent-return-statements
         self, input: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put_model.
@@ -336,14 +410,14 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-    @distributed_trace_async
-    async def put_model(  # pylint: disable=inconsistent-return-statements
+    @distributed_trace
+    def put_model(  # pylint: disable=inconsistent-return-statements
         self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any
     ) -> None:
         """put_model.
 
         :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
-        :type input: ~headasboolean.models.VisibilityModel or JSON or IO
+        :type input: ~headasbooleantrue.models.VisibilityModel or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -383,7 +457,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -397,13 +471,13 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
             return cls(pipeline_response, None, {})
 
     @overload
-    async def patch_model(  # pylint: disable=inconsistent-return-statements
+    def patch_model(  # pylint: disable=inconsistent-return-statements
         self, input: _models.VisibilityModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """patch_model.
 
         :param input: Required.
-        :type input: ~headasboolean.models.VisibilityModel
+        :type input: ~headasbooleantrue.models.VisibilityModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -415,7 +489,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @overload
-    async def patch_model(  # pylint: disable=inconsistent-return-statements
+    def patch_model(  # pylint: disable=inconsistent-return-statements
         self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """patch_model.
@@ -433,7 +507,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @overload
-    async def patch_model(  # pylint: disable=inconsistent-return-statements
+    def patch_model(  # pylint: disable=inconsistent-return-statements
         self, input: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """patch_model.
@@ -450,14 +524,14 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-    @distributed_trace_async
-    async def patch_model(  # pylint: disable=inconsistent-return-statements
+    @distributed_trace
+    def patch_model(  # pylint: disable=inconsistent-return-statements
         self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any
     ) -> None:
         """patch_model.
 
         :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
-        :type input: ~headasboolean.models.VisibilityModel or JSON or IO
+        :type input: ~headasbooleantrue.models.VisibilityModel or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -497,7 +571,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -511,13 +585,13 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
             return cls(pipeline_response, None, {})
 
     @overload
-    async def post_model(  # pylint: disable=inconsistent-return-statements
+    def post_model(  # pylint: disable=inconsistent-return-statements
         self, input: _models.VisibilityModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """post_model.
 
         :param input: Required.
-        :type input: ~headasboolean.models.VisibilityModel
+        :type input: ~headasbooleantrue.models.VisibilityModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -529,7 +603,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @overload
-    async def post_model(  # pylint: disable=inconsistent-return-statements
+    def post_model(  # pylint: disable=inconsistent-return-statements
         self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """post_model.
@@ -547,7 +621,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @overload
-    async def post_model(  # pylint: disable=inconsistent-return-statements
+    def post_model(  # pylint: disable=inconsistent-return-statements
         self, input: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """post_model.
@@ -564,14 +638,14 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-    @distributed_trace_async
-    async def post_model(  # pylint: disable=inconsistent-return-statements
+    @distributed_trace
+    def post_model(  # pylint: disable=inconsistent-return-statements
         self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any
     ) -> None:
         """post_model.
 
         :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
-        :type input: ~headasboolean.models.VisibilityModel or JSON or IO
+        :type input: ~headasbooleantrue.models.VisibilityModel or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -611,7 +685,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -625,13 +699,13 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
             return cls(pipeline_response, None, {})
 
     @overload
-    async def delete_model(  # pylint: disable=inconsistent-return-statements
+    def delete_model(  # pylint: disable=inconsistent-return-statements
         self, input: _models.VisibilityModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """delete_model.
 
         :param input: Required.
-        :type input: ~headasboolean.models.VisibilityModel
+        :type input: ~headasbooleantrue.models.VisibilityModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -643,7 +717,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @overload
-    async def delete_model(  # pylint: disable=inconsistent-return-statements
+    def delete_model(  # pylint: disable=inconsistent-return-statements
         self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """delete_model.
@@ -661,7 +735,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @overload
-    async def delete_model(  # pylint: disable=inconsistent-return-statements
+    def delete_model(  # pylint: disable=inconsistent-return-statements
         self, input: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """delete_model.
@@ -678,14 +752,14 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-    @distributed_trace_async
-    async def delete_model(  # pylint: disable=inconsistent-return-statements
+    @distributed_trace
+    def delete_model(  # pylint: disable=inconsistent-return-statements
         self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any
     ) -> None:
         """delete_model.
 
         :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
-        :type input: ~headasboolean.models.VisibilityModel or JSON or IO
+        :type input: ~headasbooleantrue.models.VisibilityModel or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -725,7 +799,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
