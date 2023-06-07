@@ -441,14 +441,18 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
     def _serialize_special_handle_header(param: Parameter) -> List[str]:
         if param.wire_name.lower() == "repeatability-request-id":
             return [
-                """if "Repeatability-Request-ID" not in _headers:"""
-                """    _headers["Repeatability-Request-ID"] = str(uuid.uuid4())"""
+                """if "Repeatability-Request-ID" not in _headers:""",
+                """    _headers["Repeatability-Request-ID"] = str(uuid.uuid4())""",
             ]
         if param.wire_name.lower() == "repeatability-first-sent":
             return [
-                """if "Repeatability-First-Sent" not in _headers:"""
-                """    _headers["Repeatability-First-Sent"] = _SERIALIZER.serialize_data(datetime.datetime.now(), "rfc-1123")"""
+                """if "Repeatability-First-Sent" not in _headers:""",
+                """    _headers["Repeatability-First-Sent"] = _SERIALIZER.serialize_data(datetime.datetime.now(),
+                "rfc-1123")""",
             ]
+        raise ValueError(
+            f"Unsupported special header: {param}"
+        )
 
     def serialize_path(self, builder: BuilderType) -> List[str]:
         return self.parameter_serializer.serialize_path(
