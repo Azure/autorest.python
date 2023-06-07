@@ -6,6 +6,8 @@
 from datetime import datetime
 
 import pytest
+from azure.core.exceptions import HttpResponseError
+
 from _specs_.azure.core.traits.aio import TraitsClient
 from _specs_.azure.core.traits.models import UserActionParam
 
@@ -48,3 +50,31 @@ async def test_repeatable_action(client: TraitsClient):
     )
     assert result.user_action_result == "test"
     assert header["Repeatability-Result"] == "accepted"
+
+    result, header = await client.repeatable_action(
+        id=1,
+        body=UserActionParam(user_action_value="test"),
+        cls=lambda x, y, z: (y, z),
+        headers={
+            "Repeatability-Request-ID": "5942d803-e3fa-4f96-8f67-607d7bd607f5",
+            "Repeatability-First-Sent": "Sun, 06 Nov 1994 08:49:37 GMT",
+        },
+    )
+    assert result.user_action_result == "test"
+    assert header["Repeatability-Result"] == "accepted"
+
+    with pytest.raises(HttpResponseError):
+        await client.repeatable_action(
+            id=1,
+            body=UserActionParam(user_action_value="test"),
+            cls=lambda x, y, z: (y, z),
+            headers={"Repeatability-Request-ID": "wrong-id"},
+        )
+
+    with pytest.raises(HttpResponseError):
+        await client.repeatable_action(
+            id=1,
+            body=UserActionParam(user_action_value="test"),
+            cls=lambda x, y, z: (y, z),
+            headers={"Repeatability-First-Sent": "wrong-datetime"},
+        )
