@@ -450,9 +450,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
                 """    _headers["Repeatability-First-Sent"] = _SERIALIZER.serialize_data(datetime.datetime.now(),
                 "rfc-1123")""",
             ]
-        raise ValueError(
-            f"Unsupported special header: {param}"
-        )
+        raise ValueError(f"Unsupported special header: {param}")
 
     def serialize_path(self, builder: BuilderType) -> List[str]:
         return self.parameter_serializer.serialize_path(

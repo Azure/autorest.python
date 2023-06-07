@@ -94,7 +94,8 @@ class _ParameterBase(
             "defaultToUnsetSentinel", False
         )
         self.is_special_handle_header: bool = (
-            self.location == ParameterLocation.HEADER and self.wire_name.lower() in SPECIAL_HANDLE_HEADERS
+            self.location == ParameterLocation.HEADER
+            and self.wire_name.lower() in SPECIAL_HANDLE_HEADERS
         )
 
     @property
