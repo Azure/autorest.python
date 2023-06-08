@@ -331,7 +331,9 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             )
         return file_import
 
-    def imports(self, async_mode: bool, **kwargs: Any) -> FileImport:
+    def imports(  # pylint: disable=too-many-branches
+        self, async_mode: bool, **kwargs: Any
+    ) -> FileImport:
         if self.abstract:
             return FileImport()
         file_import = self._imports_shared(async_mode, **kwargs)
