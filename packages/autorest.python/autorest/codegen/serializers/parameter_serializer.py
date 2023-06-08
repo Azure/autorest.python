@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import List, Sequence, Union
+from typing import List, Sequence, Union, Optional
 from enum import Enum, auto
 
 
@@ -111,7 +111,7 @@ class ParameterSerializer:
         pop_headers_kwarg: PopKwargType,
         pop_params_kwarg: PopKwargType,
         check_client_input: bool = False,
-        in_operation: bool = False,
+        operation_name: Optional[str] = None,
     ) -> List[str]:
         retval = []
 
@@ -146,9 +146,9 @@ class ParameterSerializer:
                     if (
                         kwarg.client_name == "api_version"
                         and kwarg.code_model.options["multiapi"]
-                        and in_operation
+                        and operation_name is not None
                     ):
-                        default_value = f"self._api_version or {default_value}"
+                        default_value = f"self._api_version{operation_name} or {default_value}"
                     default_value = (
                         f"_{kwarg_dict}.pop('{kwarg.wire_name}', {default_value})"
                     )
