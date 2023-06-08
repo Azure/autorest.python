@@ -710,7 +710,7 @@ class _OperationSerializer(
             )
             else PopKwargType.SIMPLE,
             check_client_input=not self.code_model.options["multiapi"],
-            operation_name= f"('{builder.name}')" if builder.group_name == "" else "",
+            operation_name=f"('{builder.name}')" if builder.group_name == "" else "",
         )
         cls_annotation = builder.cls_type_annotation(async_mode=self.async_mode)
         pylint_disable = ""

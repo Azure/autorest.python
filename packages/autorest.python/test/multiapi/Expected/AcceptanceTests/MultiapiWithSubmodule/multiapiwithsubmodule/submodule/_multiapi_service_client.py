@@ -72,6 +72,8 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
         profile: KnownProfiles=KnownProfiles.default,
         **kwargs: Any
     ):
+        if api_version:
+            kwargs.setdefault('api_version', api_version)
         self._config = MultiapiServiceClientConfiguration(credential, **kwargs)
         self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
         super(MultiapiServiceClient, self).__init__(
