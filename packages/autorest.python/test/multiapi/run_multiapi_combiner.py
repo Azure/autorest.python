@@ -13,15 +13,16 @@ import venv
 
 def main():
     test_root = Path(os.getcwd()) / "test/multiapi"
-    # clone subfolder of azure-sdk-for-python
-    os.chdir(test_root)
-    call("git clone --filter=blob:none --sparse https://github.com/Azure/azure-sdk-for-python.git", shell=True)
-    os.chdir("azure-sdk-for-python")
-    check_call("git sparse-checkout add tools/azure-sdk-tools", shell=True)
-    # check_call("git pull origin main", shell=True)
-    check_call("git pull origin multicombiner-fix", shell=True)
 
     with tempfile.TemporaryDirectory() as temp_dir:
+        os.chdir(temp_dir)
+        # clone subfolder of azure-sdk-for-python
+        call("git clone --filter=blob:none --sparse https://github.com/Azure/azure-sdk-for-python.git", shell=True)
+        os.chdir("azure-sdk-for-python")
+        check_call("git sparse-checkout add tools/azure-sdk-tools", shell=True)
+        # check_call("git pull origin main", shell=True)
+        check_call("git pull origin multicombiner-fix", shell=True)
+
         # install multiapi_combiner in venv
         env_builder = venv.EnvBuilder(with_pip=True)
         env_builder.create(temp_dir)
@@ -35,6 +36,7 @@ def main():
             os.chdir(test_root / f"Expected/AcceptanceTests/{test_module}")
             check_call([venv_context.env_exe, "-m", "pip", "install", "-e", "."])
             check_call([venv_context.env_exe, "-m", "packaging_tools.multiapi_combiner", "--pkg-path", os.getcwd()])
+
 
 if __name__ == '__main__':
     main()
