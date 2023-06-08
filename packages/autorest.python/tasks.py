@@ -543,22 +543,22 @@ def _multiapi_command_line(location, debug):
 def regenerate_multiapi(c, debug=False, swagger_name="test"):
     # being hacky: making default swagger_name 'test', since it appears in each spec name
     available_specifications = [
-        # # create basic multiapi client (package-name=multapi)
-        # "test/multiapi/specification/multiapi/README.md",
-        # # create multiapi client with submodule (package-name=multiapi#submodule)
-        # "test/multiapi/specification/multiapiwithsubmodule/README.md",
-        # # create multiapi client with no aio folder (package-name=multiapinoasync)
-        # "test/multiapi/specification/multiapinoasync/README.md",
-        # # create multiapi client with AzureKeyCredentialPolicy (package-name=multiapicredentialdefaultpolicy)
-        # "test/multiapi/specification/multiapicredentialdefaultpolicy/README.md",
-        # # create multiapi client data plane (package-name=multiapidataplane)
-        # "test/multiapi/specification/multiapidataplane/README.md",
-        # # multiapi client with custom base url (package-name=multiapicustombaseurl)
-        # "test/multiapi/specification/multiapicustombaseurl/README.md",
-        # # create multiapi client with security definition (package-name=multapisecurity)
-        # "test/multiapi/specification/multiapisecurity/README.md",
-        # # create multiapi client with keyword only params
-        # "test/multiapi/specification/multiapikeywordonly/README.md",
+        # create basic multiapi client (package-name=multapi)
+        "test/multiapi/specification/multiapi/README.md",
+        # create multiapi client with submodule (package-name=multiapi#submodule)
+        "test/multiapi/specification/multiapiwithsubmodule/README.md",
+        # create multiapi client with no aio folder (package-name=multiapinoasync)
+        "test/multiapi/specification/multiapinoasync/README.md",
+        # create multiapi client with AzureKeyCredentialPolicy (package-name=multiapicredentialdefaultpolicy)
+        "test/multiapi/specification/multiapicredentialdefaultpolicy/README.md",
+        # create multiapi client data plane (package-name=multiapidataplane)
+        "test/multiapi/specification/multiapidataplane/README.md",
+        # multiapi client with custom base url (package-name=multiapicustombaseurl)
+        "test/multiapi/specification/multiapicustombaseurl/README.md",
+        # create multiapi client with security definition (package-name=multapisecurity)
+        "test/multiapi/specification/multiapisecurity/README.md",
+        # create multiapi client with keyword only params
+        "test/multiapi/specification/multiapikeywordonly/README.md",
         # create basic multiapi client (package-name=multapicombiner)
         "test/multiapi/specification/multiapicombiner/README.md",
     ]

@@ -88,3 +88,7 @@ class TestMultiapiClient(NotTested.TestMultiapiBase):
     @pytest.mark.parametrize('api_version', ["2.0.0"])
     def test_version_two_operation_group_two(self, client):
         pass
+
+    @pytest.mark.parametrize('api_version', ["1.0.0"])
+    def test_lro_and_paging(self, client, namespace_models):
+        pass
