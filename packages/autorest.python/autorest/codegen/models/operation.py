@@ -356,15 +356,13 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             file_import.merge(
                 self.parameters.body_parameter.type.imports(operation=self, **kwargs)
             )
-        for param in self.parameters.headers:
-            if param.is_special_handle_header:
-                file_import.merge(
-                    param.imports(
-                        async_mode,
-                        operation=self,
-                        **kwargs,
-                    )
-                )
+        if not async_mode:
+            for param in self.parameters.headers:
+                if param.is_special_handle_header:
+                    if param.wire_name.lower() == "repeatability-request-id":
+                        file_import.add_import("uuid", ImportType.STDLIB)
+                    elif param.wire_name.lower() == "repeatability-first-sent":
+                        file_import.add_import("datetime", ImportType.STDLIB)
 
         # Exceptions
         errors = [

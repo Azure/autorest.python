@@ -11,7 +11,6 @@ from io import IOBase
 import json
 import sys
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
-import uuid
 
 from azure.core.exceptions import (
     ClientAuthenticationError,

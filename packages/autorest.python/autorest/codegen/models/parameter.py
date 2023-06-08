@@ -183,11 +183,6 @@ class _ParameterBase(
                 ImportType.LOCAL,
                 TypingSection.TYPING,
             )
-        if self.is_special_handle_header:
-            if self.wire_name.lower() == "repeatability-request-id":
-                file_import.add_import("uuid", ImportType.STDLIB)
-            elif self.wire_name.lower() == "repeatability-first-sent":
-                file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
 
     def imports(self, async_mode: bool, **kwargs: Any) -> FileImport:
