@@ -1,6 +1,6 @@
 {
     "name": "@azure-tools/typespec-python",
-    "version": "0.9.3",
+    "version": "0.10.0",
     "author": "Microsoft Corporation",
     "description": "Cadl emitter for Python SDKs",
     "homepage": "https://github.com/Azure/autorest.python",
@@ -43,25 +43,25 @@
       "get-autorest-python-path.cjs"
     ],
     "peerDependencies": {
-      "@azure-tools/typespec-azure-core": ">=0.30.0 <1.0.0",
-      "@azure-tools/typespec-client-generator-core": ">=0.31.0-dev.4 <1.0.0",
-      "@typespec/compiler": ">=0.44.0 <1.0.0",
-      "@typespec/http": ">=0.44.0 <1.0.0",
-      "@typespec/rest": ">=0.44.0 <1.0.0",
-      "@typespec/versioning": ">=0.44.0 <1.0.0"
+      "@azure-tools/typespec-azure-core": ">=0.31.0 <1.0.0",
+      "@azure-tools/typespec-client-generator-core": ">=0.31.0 <1.0.0",
+      "@typespec/compiler": ">=0.45.0 <1.0.0",
+      "@typespec/http": ">=0.45.0 <1.0.0",
+      "@typespec/rest": ">=0.45.0 <1.0.0",
+      "@typespec/versioning": ">=0.45.0 <1.0.0"
     },
     "dependencies": {
       "@autorest/python": "workspace:^",
       "js-yaml": "~4.1.0"
     },
     "devDependencies": {
-      "@azure-tools/cadl-ranch-expect": "~0.3.2",
-      "@azure-tools/cadl-ranch-specs": "~0.15.5",
+      "@azure-tools/cadl-ranch-expect": "~0.4.0",
+      "@azure-tools/cadl-ranch-specs": "~0.16.0",
       "@types/js-yaml": "~4.0.5",
       "@types/mocha": "~10.0.1",
       "@types/node": "^18.16.3",
       "@typespec/eslint-config-typespec": "~0.7.0",
-      "@typespec/openapi": ">=0.44.0 <1.0.0",
+      "@typespec/openapi": ">=0.45.0 <1.0.0",
       "c8": "~7.13.0",
       "eslint": "^8.39.0",
       "eslint-plugin-deprecation": "^1.4.1",
