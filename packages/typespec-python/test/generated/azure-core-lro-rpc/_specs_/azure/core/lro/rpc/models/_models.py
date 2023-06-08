@@ -36,7 +36,6 @@ class Error(_model_base.Model):
     :ivar target: The target of the error.
     :vartype target: str
     :ivar details: An array of details about specific errors that led to this reported error.
-     Required.
     :vartype details: list[~_specs_.azure.core.lro.rpc.models.Error]
     :ivar innererror: An object containing more specific information than the current object about
      the error.
@@ -49,8 +48,8 @@ class Error(_model_base.Model):
     """A human-readable representation of the error. Required."""
     target: Optional[str] = rest_field()
     """The target of the error."""
-    details: List["_models.Error"] = rest_field()
-    """An array of details about specific errors that led to this reported error. Required."""
+    details: Optional[List["_models.Error"]] = rest_field()
+    """An array of details about specific errors that led to this reported error."""
     innererror: Optional["_models.InnerError"] = rest_field()
     """An object containing more specific information than the current object about the error."""
 
@@ -60,8 +59,8 @@ class Error(_model_base.Model):
         *,
         code: str,
         message: str,
-        details: List["_models.Error"],
         target: Optional[str] = None,
+        details: Optional[List["_models.Error"]] = None,
         innererror: Optional["_models.InnerError"] = None,
     ):
         ...
@@ -113,16 +112,14 @@ class InnerError(_model_base.Model):
     guidelines -
     https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses.
 
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar code: One of a server-defined set of error codes. Required.
+    :ivar code: One of a server-defined set of error codes.
     :vartype code: str
     :ivar innererror: Inner error.
     :vartype innererror: ~_specs_.azure.core.lro.rpc.models.InnerError
     """
 
-    code: str = rest_field()
-    """One of a server-defined set of error codes. Required."""
+    code: Optional[str] = rest_field()
+    """One of a server-defined set of error codes."""
     innererror: Optional["_models.InnerError"] = rest_field()
     """Inner error."""
 
@@ -130,7 +127,7 @@ class InnerError(_model_base.Model):
     def __init__(
         self,
         *,
-        code: str,
+        code: Optional[str] = None,
         innererror: Optional["_models.InnerError"] = None,
     ):
         ...
