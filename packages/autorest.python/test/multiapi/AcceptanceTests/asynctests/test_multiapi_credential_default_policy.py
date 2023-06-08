@@ -26,6 +26,7 @@
 import pytest
 from async_generator import yield_, async_generator
 from azure.core.pipeline.policies import AzureKeyCredentialPolicy
+from azure.core.credentials import AzureKeyCredential
 
 @pytest.fixture
 @async_generator
@@ -33,7 +34,7 @@ async def default_client(credential, authentication_policy):
     from multiapicredentialdefaultpolicy.aio import MultiapiServiceClient
     async with MultiapiServiceClient(
 		base_url="http://localhost:3000",
-        credential="12345"
+        credential=AzureKeyCredential("12345")
     ) as default_client:
         await yield_(default_client)
 

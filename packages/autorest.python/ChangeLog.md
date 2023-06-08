@@ -1,6 +1,22 @@
 # Release
 
-### 2023-05-XX - 6.4.16
+### 2023-06-08 - 6.5.1
+
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.9.2`     |
+| `@autorest/modelerfour`                                                 | `4.24.3`    |
+| `azure-core` dep of generated code                                      | `1.27.0`    |
+| `isodate` dep of generated code                                         | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+
+**New Features**
+
+- Support Http auth #1860
+
+### 2023-06-02 - 6.5.0
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -11,6 +27,10 @@
 | `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
 | `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+
+**New Features**
+
+- Support `x-ms-internal` for swagger #1947
 
 **Bug Fixes**
 

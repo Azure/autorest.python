@@ -581,6 +581,7 @@ def regenerate_package_mode(c, debug=False, swagger_group=None):
     ]
     vanilla_packages = [
         'test/vanilla/legacy/specification/packagemodedataplane/README.md',
+        'test/vanilla/legacy/specification/internaloperation/README.md',
     ]
     if swagger_group == _SwaggerGroup.VANILLA:
         package_mode = vanilla_packages

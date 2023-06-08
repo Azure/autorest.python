@@ -11,9 +11,13 @@ from azure.core import CaseInsensitiveEnumMeta
 
 
 class OperationState(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """OperationState."""
+    """Enum describing allowed operation states."""
 
     IN_PROGRESS = "InProgress"
+    """The operation is in progress."""
     SUCCEEDED = "Succeeded"
+    """The operation has completed successfully."""
     FAILED = "Failed"
+    """The operation has failed."""
     CANCELED = "Canceled"
+    """The operation has been canceled by the user."""

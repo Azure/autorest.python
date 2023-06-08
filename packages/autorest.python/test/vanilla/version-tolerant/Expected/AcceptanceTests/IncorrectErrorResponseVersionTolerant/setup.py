@@ -22,7 +22,7 @@ setup(
     include_package_data=True,
     install_requires=[
         "isodate<1.0.0,>=0.6.1",
-        "azure-core<2.0.0,>=1.24.0",
+        "azure-core<2.0.0,>=1.27.0",
     ],
     long_description="""\
     Test to see when throwing an HttpResponseError whether we swallow error model deserialization errors.

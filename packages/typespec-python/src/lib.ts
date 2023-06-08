@@ -12,7 +12,7 @@ export interface PythonEmitterOptions {
 
 const EmitterOptionsSchema: JSONSchemaType<PythonEmitterOptions> = {
     type: "object",
-    additionalProperties: false,
+    additionalProperties: true,
     properties: {
         "basic-setup-py": { type: "boolean", nullable: true },
         "package-version": { type: "string", nullable: true },

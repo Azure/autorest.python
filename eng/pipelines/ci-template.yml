@@ -6,6 +6,7 @@ parameters:
     pythonCodeChecks: false
     pythonFolderName: ""
     regenerate: false
+    checkChange: true
     updateToLatestTypespec: false
 
 steps:
@@ -117,12 +118,12 @@ steps:
     - script: node ../../../eng/scripts/check-for-changed-files.js
       displayName: Fail on regeneration diff in Typespec
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/test
-      condition: and(succeeded(), ${{ parameters.regenerate }})
+      condition: and(succeeded(), ${{ parameters.regenerate }}, ${{ parameters.checkChange }})
 
     - script: node ../../../eng/scripts/check-for-changed-files.js
       displayName: Fail on regeneration diff in Autorest
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test
-      condition: and(succeeded(), ${{ parameters.regenerate }})
+      condition: and(succeeded(), ${{ parameters.regenerate }}, ${{ parameters.checkChange }})
 
     - task: UsePythonVersion@0
       displayName: "Use Python $(PythonVersion)"

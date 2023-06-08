@@ -43,8 +43,8 @@ def test_security_key_swagger():
     assert isinstance(client._config.authentication_policy, AzureKeyCredentialPolicy)
     client.head()
 
-def test_security_aad_swagger_cred_flag(credential):
-    client = SecurityAadSwaggerCredentialFlag(credential=credential)
+def test_security_aad_swagger_cred_flag():
+    client = SecurityAadSwaggerCredentialFlag(credential=AzureKeyCredential('123456789'))
     assert isinstance(client._config.authentication_policy, AzureKeyCredentialPolicy)
 
 def test_security_key_swagger_cred_flag(credential):

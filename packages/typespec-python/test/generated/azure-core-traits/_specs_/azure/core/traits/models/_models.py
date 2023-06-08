@@ -48,3 +48,65 @@ class User(_model_base.Model):
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
+
+
+class UserActionParam(_model_base.Model):
+    """User action param.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar user_action_value: User action value. Required.
+    :vartype user_action_value: str
+    """
+
+    user_action_value: str = rest_field(name="userActionValue")
+    """User action value. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        user_action_value: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class UserActionResponse(_model_base.Model):
+    """User action response.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar user_action_result: User action result. Required.
+    :vartype user_action_result: str
+    """
+
+    user_action_result: str = rest_field(name="userActionResult")
+    """User action result. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        user_action_result: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
