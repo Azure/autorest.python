@@ -6,7 +6,7 @@
 import re
 
 _VALID_UUID = re.compile(r"^[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}$")
-_VALID_RFC7123 = re.compile(
+_VALID_RFC7231 = re.compile(
     r"^(Mon|Tue|Wed|Thu|Fri|Sat|Sun),\s\d{2}\s"
     r"(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s\d{4}\s\d{2}:\d{2}:\d{2}\sGMT$"
 )
@@ -14,13 +14,13 @@ _VALID_RFC7123 = re.compile(
 
 class Format(str):
     UUID = "uuid"
-    RFC7123 = "rfc7123"
+    RFC7231 = "rfc7231"
 
 
 def validate_format(value: str, format: Format):
     if format == Format.UUID:
         assert _VALID_UUID.match(value)
-    elif format == Format.RFC7123:
-        assert _VALID_RFC7123.match(value)
+    elif format == Format.RFC7231:
+        assert _VALID_RFC7231.match(value)
     else:
         raise ValueError("Unknown format")
