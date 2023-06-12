@@ -8,6 +8,7 @@
 # --------------------------------------------------------------------------
 import datetime
 from typing import Any, Callable, Dict, Optional, TypeVar
+import uuid
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -33,36 +34,26 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_repeatability_immediate_success_request(
-    *, repeatability_request_i_d: str, repeatability_first_sent: datetime.datetime, **kwargs: Any
-) -> HttpRequest:
+def build_repeatability_immediate_success_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
     _url = "/special-headers/repeatability/immediateSuccess"
 
     # Construct headers
-    _headers["Repeatability-Request-ID"] = _SERIALIZER.header(
-        "repeatability_request_i_d", repeatability_request_i_d, "str"
-    )
-    _headers["Repeatability-First-Sent"] = _SERIALIZER.header(
-        "repeatability_first_sent", repeatability_first_sent, "rfc-1123"
-    )
+    if "Repeatability-Request-ID" not in _headers:
+        _headers["Repeatability-Request-ID"] = str(uuid.uuid4())
+    if "Repeatability-First-Sent" not in _headers:
+        _headers["Repeatability-First-Sent"] = _SERIALIZER.serialize_data(datetime.datetime.now(), "rfc-1123")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 class RepeatabilityClientOperationsMixin(RepeatabilityClientMixinABC):
     @distributed_trace
-    def immediate_success(  # pylint: disable=inconsistent-return-statements
-        self, *, repeatability_request_i_d: str, repeatability_first_sent: datetime.datetime, **kwargs: Any
-    ) -> None:
+    def immediate_success(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Check we recognize Repeatability-Request-ID and Repeatability-First-Sent.
 
-        :keyword repeatability_request_i_d: Required.
-        :paramtype repeatability_request_i_d: str
-        :keyword repeatability_first_sent: Required.
-        :paramtype repeatability_first_sent: ~datetime.datetime
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: None
@@ -83,8 +74,6 @@ class RepeatabilityClientOperationsMixin(RepeatabilityClientMixinABC):
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_repeatability_immediate_success_request(
-            repeatability_request_i_d=repeatability_request_i_d,
-            repeatability_first_sent=repeatability_first_sent,
             headers=_headers,
             params=_params,
         )

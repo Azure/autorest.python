@@ -11,6 +11,7 @@ from io import IOBase
 import json
 import sys
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+import uuid
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -88,13 +89,7 @@ def build_traits_smoke_test_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_traits_repeatable_action_request(
-    id: int,
-    *,
-    repeatability_request_id: Optional[str] = None,
-    repeatability_first_sent: Optional[datetime.datetime] = None,
-    **kwargs: Any
-) -> HttpRequest:
+def build_traits_repeatable_action_request(id: int, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -114,14 +109,10 @@ def build_traits_repeatable_action_request(
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    if repeatability_request_id is not None:
-        _headers["Repeatability-Request-ID"] = _SERIALIZER.header(
-            "repeatability_request_id", repeatability_request_id, "str"
-        )
-    if repeatability_first_sent is not None:
-        _headers["Repeatability-First-Sent"] = _SERIALIZER.header(
-            "repeatability_first_sent", repeatability_first_sent, "rfc-1123"
-        )
+    if "Repeatability-Request-ID" not in _headers:
+        _headers["Repeatability-Request-ID"] = str(uuid.uuid4())
+    if "Repeatability-First-Sent" not in _headers:
+        _headers["Repeatability-First-Sent"] = _SERIALIZER.serialize_data(datetime.datetime.now(), "rfc-1123")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
@@ -227,14 +218,7 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
     @overload
     def repeatable_action(
-        self,
-        id: int,
-        body: _models.UserActionParam,
-        *,
-        repeatability_request_id: Optional[str] = None,
-        repeatability_first_sent: Optional[datetime.datetime] = None,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, id: int, body: _models.UserActionParam, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.UserActionResponse:
         """Test for repeatable requests.
 
@@ -242,12 +226,6 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :type id: int
         :param body: Required.
         :type body: ~_specs_.azure.core.traits.models.UserActionParam
-        :keyword repeatability_request_id: An opaque, globally-unique, client-generated string
-         identifier for the request. Default value is None.
-        :paramtype repeatability_request_id: str
-        :keyword repeatability_first_sent: Specifies the date and time at which the request was first
-         created. Default value is None.
-        :paramtype repeatability_first_sent: ~datetime.datetime
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -260,14 +238,7 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
     @overload
     def repeatable_action(
-        self,
-        id: int,
-        body: JSON,
-        *,
-        repeatability_request_id: Optional[str] = None,
-        repeatability_first_sent: Optional[datetime.datetime] = None,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, id: int, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.UserActionResponse:
         """Test for repeatable requests.
 
@@ -275,12 +246,6 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :type id: int
         :param body: Required.
         :type body: JSON
-        :keyword repeatability_request_id: An opaque, globally-unique, client-generated string
-         identifier for the request. Default value is None.
-        :paramtype repeatability_request_id: str
-        :keyword repeatability_first_sent: Specifies the date and time at which the request was first
-         created. Default value is None.
-        :paramtype repeatability_first_sent: ~datetime.datetime
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -293,14 +258,7 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
     @overload
     def repeatable_action(
-        self,
-        id: int,
-        body: IO,
-        *,
-        repeatability_request_id: Optional[str] = None,
-        repeatability_first_sent: Optional[datetime.datetime] = None,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, id: int, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.UserActionResponse:
         """Test for repeatable requests.
 
@@ -308,12 +266,6 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :type id: int
         :param body: Required.
         :type body: IO
-        :keyword repeatability_request_id: An opaque, globally-unique, client-generated string
-         identifier for the request. Default value is None.
-        :paramtype repeatability_request_id: str
-        :keyword repeatability_first_sent: Specifies the date and time at which the request was first
-         created. Default value is None.
-        :paramtype repeatability_first_sent: ~datetime.datetime
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -326,13 +278,7 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
     @distributed_trace
     def repeatable_action(
-        self,
-        id: int,
-        body: Union[_models.UserActionParam, JSON, IO],
-        *,
-        repeatability_request_id: Optional[str] = None,
-        repeatability_first_sent: Optional[datetime.datetime] = None,
-        **kwargs: Any
+        self, id: int, body: Union[_models.UserActionParam, JSON, IO], **kwargs: Any
     ) -> _models.UserActionResponse:
         """Test for repeatable requests.
 
@@ -340,12 +286,6 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :type id: int
         :param body: Is one of the following types: UserActionParam, JSON, IO Required.
         :type body: ~_specs_.azure.core.traits.models.UserActionParam or JSON or IO
-        :keyword repeatability_request_id: An opaque, globally-unique, client-generated string
-         identifier for the request. Default value is None.
-        :paramtype repeatability_request_id: str
-        :keyword repeatability_first_sent: Specifies the date and time at which the request was first
-         created. Default value is None.
-        :paramtype repeatability_first_sent: ~datetime.datetime
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -378,8 +318,6 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
         request = build_traits_repeatable_action_request(
             id=id,
-            repeatability_request_id=repeatability_request_id,
-            repeatability_first_sent=repeatability_first_sent,
             content_type=content_type,
             api_version=self._config.api_version,
             content=_content,
