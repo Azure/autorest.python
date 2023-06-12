@@ -1,6 +1,6 @@
 # Release
 
-### 2023-06-XX - 6.5.2
+### 2023-06-xx - 6.5.2
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -12,9 +12,14 @@
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
 | `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
 
+**New Features**
+
+- Support repeatable headers #1958
+
 **Bug Fixes**
 
 - Optimize default value for `api_version` for better compatibility of multiapi package #1934
+
 
 ### 2023-06-08 - 6.5.1
 
