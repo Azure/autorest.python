@@ -7,11 +7,9 @@ from datetime import datetime
 
 import pytest
 from azure.core.exceptions import HttpResponseError
-from azure.core.pipeline import PipelineRequest
-
 from _specs_.azure.core.traits import TraitsClient
 from _specs_.azure.core.traits.models import UserActionParam
-from .utils.validation import validate_format, Format
+from .test_repeatability_utils import check_header
 
 
 @pytest.fixture
@@ -40,15 +38,6 @@ def test_get(client: TraitsClient):
     assert header["ETag"] == "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
     assert header["bar"] == "456"
     assert header["x-ms-client-request-id"] == "test-id"
-
-
-def check_header(request: PipelineRequest):
-    validate_format(
-        request.http_request.headers["Repeatability-Request-ID"], Format.UUID
-    )
-    validate_format(
-        request.http_request.headers["Repeatability-First-Sent"], Format.RFC7123
-    )
 
 
 def test_repeatable_action(client: TraitsClient):

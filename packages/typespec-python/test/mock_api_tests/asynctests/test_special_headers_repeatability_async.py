@@ -5,25 +5,15 @@
 # --------------------------------------------------------------------------
 import pytest
 from azure.core.exceptions import HttpResponseError
-from azure.core.pipeline import PipelineRequest
 
 from specialheaders.repeatability.aio import RepeatabilityClient
-from ..utils.validation import validate_format, Format
+from ..test_repeatability_utils import check_header
 
 
 @pytest.fixture
 async def client():
     async with RepeatabilityClient() as client:
         yield client
-
-
-def check_header(request: PipelineRequest):
-    validate_format(
-        request.http_request.headers["Repeatability-Request-ID"], Format.UUID
-    )
-    validate_format(
-        request.http_request.headers["Repeatability-First-Sent"], Format.RFC7123
-    )
 
 
 @pytest.mark.asyncio
