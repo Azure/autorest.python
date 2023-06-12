@@ -7,21 +7,14 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import sys
 from typing import Any, List, Mapping, Optional, TYPE_CHECKING, Union, overload
 
 from .. import _model_base
 from .._model_base import rest_field
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 
 class Error(_model_base.Model):
@@ -174,27 +167,6 @@ class JobData(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class JobPollResult(_model_base.Model):
-    """Result of the poll.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar operation_id: Operation identifier. Required.
-    :vartype operation_id: str
-    :ivar status: The status of the processing job. Required. Known values are: "InProgress",
-     "Succeeded", "Failed", and "Canceled".
-    :vartype status: str or ~_specs_.azure.core.lro.rpc.models.OperationState
-    """
-
-    operation_id: str = rest_field(name="operationId", readonly=True)
-    """Operation identifier. Required."""
-    status: Union[str, "_models.OperationState"] = rest_field(readonly=True)
-    """The status of the processing job. Required. Known values are: \"InProgress\", \"Succeeded\",
-     \"Failed\", and \"Canceled\"."""
-
-
 class JobResult(_model_base.Model):
     """Result of the job.
 
@@ -206,12 +178,12 @@ class JobResult(_model_base.Model):
     :vartype job_id: str
     :ivar comment: Comment. Required.
     :vartype comment: str
-    :ivar status: The status of the processing job. Required. Known values are: "InProgress",
-     "Succeeded", "Failed", and "Canceled".
-    :vartype status: str or ~_specs_.azure.core.lro.rpc.models.OperationState
+    :ivar status: The status of the processing job. Required. Known values are: "notStarted",
+     "running", "succeeded", "failed", "canceled", and "partiallyCompleted".
+    :vartype status: str or ~_specs_.azure.core.lro.rpc.models.JobStatus
     :ivar errors: Error objects that describes the error when status is "Failed".
     :vartype errors: list[~_specs_.azure.core.lro.rpc.models.ErrorResponse]
-    :ivar results: The results. Required.
+    :ivar results: The results.
     :vartype results: list[str]
     """
 
@@ -219,10 +191,10 @@ class JobResult(_model_base.Model):
     """A processing job identifier. Required."""
     comment: str = rest_field(readonly=True)
     """Comment. Required."""
-    status: Union[str, "_models.OperationState"] = rest_field(readonly=True)
-    """The status of the processing job. Required. Known values are: \"InProgress\", \"Succeeded\",
-     \"Failed\", and \"Canceled\"."""
+    status: Union[str, "_models.JobStatus"] = rest_field(readonly=True)
+    """The status of the processing job. Required. Known values are: \"notStarted\", \"running\",
+     \"succeeded\", \"failed\", \"canceled\", and \"partiallyCompleted\"."""
     errors: Optional[List["_models.ErrorResponse"]] = rest_field(readonly=True)
     """Error objects that describes the error when status is \"Failed\"."""
-    results: List[str] = rest_field(readonly=True)
-    """The results. Required."""
+    results: Optional[List[str]] = rest_field(readonly=True)
+    """The results."""
