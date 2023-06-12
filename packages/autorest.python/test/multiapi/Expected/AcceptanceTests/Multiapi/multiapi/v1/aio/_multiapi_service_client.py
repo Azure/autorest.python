@@ -49,7 +49,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):  # pylint: di
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
         self.operation_group_one = OperationGroupOneOperations(
-            self._client, self._config, self._serialize, self._deserialize
+            self._client, self._config, self._serialize, self._deserialize, "1.0.0"
         )
 
     def _send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:

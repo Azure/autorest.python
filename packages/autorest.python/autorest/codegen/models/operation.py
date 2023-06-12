@@ -331,7 +331,9 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             )
         return file_import
 
-    def imports(self, async_mode: bool, **kwargs: Any) -> FileImport:
+    def imports(  # pylint: disable=too-many-branches
+        self, async_mode: bool, **kwargs: Any
+    ) -> FileImport:
         if self.abstract:
             return FileImport()
         file_import = self._imports_shared(async_mode, **kwargs)
@@ -356,6 +358,12 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             file_import.merge(
                 self.parameters.body_parameter.type.imports(operation=self, **kwargs)
             )
+        if not async_mode:
+            for param in self.parameters.headers:
+                if param.wire_name.lower() == "repeatability-request-id":
+                    file_import.add_import("uuid", ImportType.STDLIB)
+                elif param.wire_name.lower() == "repeatability-first-sent":
+                    file_import.add_import("datetime", ImportType.STDLIB)
 
         # Exceptions
         errors = [

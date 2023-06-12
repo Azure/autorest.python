@@ -437,6 +437,21 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
             ]
         return retval
 
+    @staticmethod
+    def _serialize_special_handle_header(param: Parameter) -> List[str]:
+        if param.wire_name.lower() == "repeatability-request-id":
+            return [
+                """if "Repeatability-Request-ID" not in _headers:""",
+                """    _headers["Repeatability-Request-ID"] = str(uuid.uuid4())""",
+            ]
+        if param.wire_name.lower() == "repeatability-first-sent":
+            return [
+                """if "Repeatability-First-Sent" not in _headers:""",
+                """    _headers["Repeatability-First-Sent"] = _SERIALIZER.serialize_data(datetime.datetime.now(),
+                "rfc-1123")""",
+            ]
+        raise ValueError(f"Unsupported special header: {param}")
+
     def serialize_path(self, builder: BuilderType) -> List[str]:
         return self.parameter_serializer.serialize_path(
             builder.parameters.path, self.serializer_name
@@ -548,12 +563,15 @@ class RequestBuilderSerializer(
     def serialize_headers(self, builder: RequestBuilderType) -> List[str]:
         retval = ["# Construct headers"]
         for parameter in builder.parameters.headers:
-            retval.extend(
-                self._serialize_parameter(
-                    parameter,
-                    kwarg_name="headers",
+            if parameter.is_special_handle_header:
+                retval.extend(self._serialize_special_handle_header(parameter))
+            else:
+                retval.extend(
+                    self._serialize_parameter(
+                        parameter,
+                        kwarg_name="headers",
+                    )
                 )
-            )
         return retval
 
     def serialize_query(self, builder: RequestBuilderType) -> List[str]:
@@ -710,6 +728,7 @@ class _OperationSerializer(
             )
             else PopKwargType.SIMPLE,
             check_client_input=not self.code_model.options["multiapi"],
+            operation_name=f"('{builder.name}')" if builder.group_name == "" else "",
         )
         cls_annotation = builder.cls_type_annotation(async_mode=self.async_mode)
         pylint_disable = ""

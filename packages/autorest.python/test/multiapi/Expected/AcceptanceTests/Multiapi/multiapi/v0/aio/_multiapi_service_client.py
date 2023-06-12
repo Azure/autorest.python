@@ -47,7 +47,7 @@ class MultiapiServiceClient:  # pylint: disable=client-accepts-api-version-keywo
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
         self.operation_group_one = OperationGroupOneOperations(
-            self._client, self._config, self._serialize, self._deserialize
+            self._client, self._config, self._serialize, self._deserialize, "0.0.0"
         )
 
     def _send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
