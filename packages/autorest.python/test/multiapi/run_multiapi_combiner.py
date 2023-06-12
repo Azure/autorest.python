@@ -20,8 +20,7 @@ def main():
         call("git clone --filter=blob:none --sparse https://github.com/Azure/azure-sdk-for-python.git", shell=True)
         os.chdir("azure-sdk-for-python")
         check_call("git sparse-checkout add tools/azure-sdk-tools", shell=True)
-        # check_call("git pull origin main", shell=True)
-        check_call("git pull origin multicombiner-fix", shell=True)
+        check_call("git pull origin main", shell=True)
 
         # install multiapi_combiner in venv
         env_builder = venv.EnvBuilder(with_pip=True)
