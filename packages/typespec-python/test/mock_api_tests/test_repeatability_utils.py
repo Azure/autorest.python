@@ -13,5 +13,5 @@ def check_header(request: PipelineRequest):
         request.http_request.headers["Repeatability-Request-ID"], Format.UUID
     )
     validate_format(
-        request.http_request.headers["Repeatability-First-Sent"], Format.RFC7123
+        request.http_request.headers["Repeatability-First-Sent"], Format.RFC7231
     )
