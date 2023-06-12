@@ -7,9 +7,11 @@ from datetime import datetime
 
 import pytest
 from azure.core.exceptions import HttpResponseError
+from azure.core.pipeline import PipelineRequest
 
 from _specs_.azure.core.traits.aio import TraitsClient
 from _specs_.azure.core.traits.models import UserActionParam
+from ..utils.validation import validate_format, Format
 
 
 @pytest.fixture
@@ -41,12 +43,22 @@ async def test_get(client: TraitsClient):
     assert header["x-ms-client-request-id"] == "test-id"
 
 
+def check_header(request: PipelineRequest):
+    validate_format(
+        request.http_request.headers["Repeatability-Request-ID"], Format.UUID
+    )
+    validate_format(
+        request.http_request.headers["Repeatability-First-Sent"], Format.RFC7123
+    )
+
+
 @pytest.mark.asyncio
 async def test_repeatable_action(client: TraitsClient):
     result, header = await client.repeatable_action(
         id=1,
         body=UserActionParam(user_action_value="test"),
         cls=lambda x, y, z: (y, z),
+        raw_request_hook=check_header,
     )
     assert result.user_action_result == "test"
     assert header["Repeatability-Result"] == "accepted"
@@ -59,6 +71,7 @@ async def test_repeatable_action(client: TraitsClient):
             "Repeatability-Request-ID": "5942d803-e3fa-4f96-8f67-607d7bd607f5",
             "Repeatability-First-Sent": "Sun, 06 Nov 1994 08:49:37 GMT",
         },
+        raw_request_hook=check_header,
     )
     assert result.user_action_result == "test"
     assert header["Repeatability-Result"] == "accepted"
