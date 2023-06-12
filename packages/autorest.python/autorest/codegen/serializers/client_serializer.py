@@ -150,10 +150,16 @@ class ClientSerializer:
             og for og in self.client.operation_groups if not og.is_mixin
         ]
         for og in operation_groups:
+            if og.code_model.options["multiapi"]:
+                api_version = (
+                    f", '{og.api_versions[0]}'" if og.api_versions else ", None"
+                )
+            else:
+                api_version = ""
             retval.extend(
                 [
                     f"self.{og.property_name} = {og.class_name}({og.pylint_disable}",
-                    "    self._client, self._config, self._serialize, self._deserialize",
+                    f"    self._client, self._config, self._serialize, self._deserialize{api_version}",
                     ")",
                 ]
             )

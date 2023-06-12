@@ -16,6 +16,11 @@
 
 - Support repeatable headers #1958
 
+**Bug Fixes**
+
+- Optimize default value for `api_version` for better compatibility of multiapi package #1934
+
+
 ### 2023-06-08 - 6.5.1
 
 | Library                                                                 | Min Version |
@@ -52,7 +57,7 @@
 
 - Fix `x-ms-client-default` for model property  #1937
 - Added sub-namespace folder when generating samples #1920
-- Optimize logic to find realted params in example files #1916
+- Optimize logic to find related params in example files #1916
 
 ### 2023-05-19 - 6.4.15
 

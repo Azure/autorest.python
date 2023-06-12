@@ -30,11 +30,21 @@ class {{ operation_group.class_name }}{{ base_class }}:{{ disable }}
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        {% if code_model.options["multiapi"] %}
+        self._api_version = input_args.pop(0) if input_args else kwargs.pop("api_version")
+        {% endif %}
 {{ check_abstract_methods() }}
 {% elif operation_group.has_abstract_operations %}
 
     def __init__(self){{ return_none_type_annotation }}:
 {{ check_abstract_methods() }}
+{% endif %}
+{% if operation_group.is_mixin and code_model.options["multiapi"] %}
+    def _api_version(self, op_name: str) -> str:  # pylint: disable=unused-argument
+        try:
+            return self._config.api_version
+        except:  # pylint: disable=bare-except
+            return ""
 {% endif %}
 {% for operation in operation_group.operations if not operation.abstract %}
 

@@ -54,6 +54,12 @@ def build_test_request(*, id: int, **kwargs: Any) -> HttpRequest:
 
 
 class MultiapiCustomBaseUrlServiceClientOperationsMixin(MultiapiCustomBaseUrlServiceClientMixinABC):
+    def _api_version(self, op_name: str) -> str:  # pylint: disable=unused-argument
+        try:
+            return self._config.api_version
+        except:  # pylint: disable=bare-except
+            return ""
+
     @distributed_trace
     def test(self, id: int, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Should be a mixin operation. Put in 2 for the required parameter and have the correct api
@@ -77,7 +83,7 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(MultiapiCustomBaseUrlSer
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2.0.0"))
+        api_version: str = kwargs.pop("api_version", _params.pop("api-version", self._api_version("test") or "2.0.0"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_test_request(
