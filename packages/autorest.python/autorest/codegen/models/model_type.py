@@ -207,7 +207,10 @@ class ModelType(  # pylint: disable=abstract-method
 
     @property
     def has_readonly_or_constant_property(self) -> bool:
-        return any(x.readonly or x.constant or x.visibility == ["read"] for x in self.properties)
+        return any(
+            x.readonly or x.constant or x.visibility == ["read"]
+            for x in self.properties
+        )
 
     @property
     def discriminator(self) -> Optional[Property]:

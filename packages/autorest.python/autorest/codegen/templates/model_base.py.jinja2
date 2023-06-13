@@ -634,7 +634,7 @@ class _RestField:
         name: typing.Optional[str] = None,
         type: typing.Optional[typing.Callable] = None,  # pylint: disable=redefined-builtin
         is_discriminator: bool = False,
-        visibility: typing.List[str] = [],
+        visibility: typing.Optional[typing.List[str]] = None,
         default: typing.Any = _UNSET,
     ):
         self._type = type
@@ -681,7 +681,7 @@ def rest_field(
     *,
     name: typing.Optional[str] = None,
     type: typing.Optional[typing.Callable] = None,  # pylint: disable=redefined-builtin
-    visibility: typing.List[str] = [],
+    visibility: typing.Optional[typing.List[str]] = None,
     default: typing.Any = _UNSET,
 ) -> typing.Any:
     return _RestField(name=name, type=type, visibility=visibility, default=default)
