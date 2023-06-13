@@ -35,3 +35,5 @@ azure-core==1.27.0
 -e ./generated/typetest-model-empty
 -e ./generated/parameters-body-optionality
 -e ./generated/special-headers-repeatability
+-e ./generated/encode-datetime
+-e ./generated/encode-bytes
