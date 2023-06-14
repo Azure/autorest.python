@@ -9,12 +9,12 @@
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "authentication-http-custom"
+PACKAGE_NAME = "headasbooleantrue"
 version = "1.0.0b1"
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="authentication-http-custom",
+    description="headasbooleantrue",
     author_email="",
     url="",
     keywords="azure, azure sdk",
@@ -25,6 +25,6 @@ setup(
         "azure-core<2.0.0,>=1.27.0",
     ],
     long_description="""\
-    Illustrates clients generated with generic HTTP auth.
+    Illustrates models with visibility properties.
     """,
 )
