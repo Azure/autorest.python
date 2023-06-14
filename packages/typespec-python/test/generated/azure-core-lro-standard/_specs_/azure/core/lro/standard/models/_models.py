@@ -62,7 +62,7 @@ class User(_model_base.Model):
     :vartype role: str
     """
 
-    name: str = rest_field(readonly=True)
+    name: str = rest_field(visibility=["read"])
     """The name of user. Required."""
     role: str = rest_field()
     """The role of user. Required."""

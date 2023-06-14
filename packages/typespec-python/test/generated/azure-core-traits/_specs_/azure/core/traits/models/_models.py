@@ -26,7 +26,7 @@ class User(_model_base.Model):
     :vartype name: str
     """
 
-    id: int = rest_field(readonly=True)
+    id: int = rest_field(visibility=["read"])
     """The user's id. Required."""
     name: Optional[str] = rest_field()
     """The user's name."""

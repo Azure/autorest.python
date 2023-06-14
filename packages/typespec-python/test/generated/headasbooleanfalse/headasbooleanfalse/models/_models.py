@@ -32,15 +32,15 @@ class VisibilityModel(_model_base.Model):
     :vartype delete_prop: bool
     """
 
-    read_prop: str = rest_field(name="readProp", readonly=True)
+    read_prop: str = rest_field(name="readProp", visibility=["read"])
     """Required string, illustrating a readonly property. Required."""
-    query_prop: int = rest_field(name="queryProp")
+    query_prop: int = rest_field(name="queryProp", visibility=["query"])
     """Required int32, illustrating a query property. Required."""
-    create_prop: List[str] = rest_field(name="createProp")
+    create_prop: List[str] = rest_field(name="createProp", visibility=["create"])
     """Required string[], illustrating a create property. Required."""
-    update_prop: List[int] = rest_field(name="updateProp")
+    update_prop: List[int] = rest_field(name="updateProp", visibility=["update"])
     """Required int32[], illustrating a update property. Required."""
-    delete_prop: bool = rest_field(name="deleteProp")
+    delete_prop: bool = rest_field(name="deleteProp", visibility=["delete"])
     """Required bool, illustrating a delete property. Required."""
 
     @overload

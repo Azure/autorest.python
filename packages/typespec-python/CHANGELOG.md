@@ -18,6 +18,7 @@
 
 **New Features**
 
+- Change readonly to visibility #1968
 - Support global config for `head-as-boolean` #1949
 
 ## 2023-06-12 - 0.11.0
