@@ -83,7 +83,8 @@ EMITTER_OPTIONS = {
     },
 }
 
-def _default_output_dir(spec: Path) -> str:
+
+def _default_package_name(spec: Path) -> str:
     return str(spec.relative_to(CADL_RANCH_DIR).as_posix()).replace("/", "-")
 
 
@@ -104,7 +105,7 @@ def _add_options(spec: Path, debug=False) -> List[str]:
         config_copy["emitter-output-dir"] = f"{PLUGIN_DIR}/test/generated/{config['package-name']}"
         result.append(config_copy)
     if not result:
-        result.append({"emitter-output-dir": _default_output_dir(spec)})
+        result.append({"emitter-output-dir": f"{PLUGIN_DIR}/test/generated/{_default_package_name(spec)}"})
     return [" --option ".join(
         [f"@azure-tools/typespec-python.{k}={v} " for k, v in options.items()]
     ) for options in result]
@@ -147,7 +148,7 @@ def regenerate(c, name=None, debug=False):
 def _get_package_names(spec: Path) -> List[str]:
     result = [config["package-name"] for config in _get_emitter_option(spec)]
     if not result:
-        result.append(_default_output_dir(spec))
+        result.append(_default_package_name(spec))
     return result
 
 
