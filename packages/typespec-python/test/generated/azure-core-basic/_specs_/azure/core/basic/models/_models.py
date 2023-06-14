@@ -34,13 +34,13 @@ class User(_model_base.Model):
     :vartype etag: str
     """
 
-    id: int = rest_field(readonly=True)
+    id: int = rest_field(visibility=["read"])
     """The user's id. Required."""
     name: str = rest_field()
     """The user's name. Required."""
     orders: Optional[List["_models.UserOrder"]] = rest_field()
     """The user's order list."""
-    etag: str = rest_field(readonly=True)
+    etag: str = rest_field(visibility=["read"])
     """The entity tag for this resource. Required."""
 
     @overload
@@ -78,7 +78,7 @@ class UserOrder(_model_base.Model):
     :vartype detail: str
     """
 
-    id: int = rest_field(readonly=True)
+    id: int = rest_field(visibility=["read"])
     """The user's id. Required."""
     user_id: int = rest_field(name="userId")
     """The user's id. Required."""

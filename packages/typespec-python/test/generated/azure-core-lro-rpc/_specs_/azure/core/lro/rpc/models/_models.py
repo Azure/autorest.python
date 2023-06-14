@@ -188,9 +188,9 @@ class JobPollResult(_model_base.Model):
     :vartype status: str or ~_specs_.azure.core.lro.rpc.models.OperationState
     """
 
-    operation_id: str = rest_field(name="operationId", readonly=True)
+    operation_id: str = rest_field(name="operationId", visibility=["read"])
     """Operation identifier. Required."""
-    status: Union[str, "_models.OperationState"] = rest_field(readonly=True)
+    status: Union[str, "_models.OperationState"] = rest_field(visibility=["read"])
     """The status of the processing job. Required. Known values are: \"InProgress\", \"Succeeded\",
      \"Failed\", and \"Canceled\"."""
 
@@ -215,14 +215,14 @@ class JobResult(_model_base.Model):
     :vartype results: list[str]
     """
 
-    job_id: str = rest_field(name="jobId", readonly=True)
+    job_id: str = rest_field(name="jobId", visibility=["read"])
     """A processing job identifier. Required."""
-    comment: str = rest_field(readonly=True)
+    comment: str = rest_field(visibility=["read"])
     """Comment. Required."""
-    status: Union[str, "_models.OperationState"] = rest_field(readonly=True)
+    status: Union[str, "_models.OperationState"] = rest_field(visibility=["read"])
     """The status of the processing job. Required. Known values are: \"InProgress\", \"Succeeded\",
      \"Failed\", and \"Canceled\"."""
-    errors: Optional[List["_models.ErrorResponse"]] = rest_field(readonly=True)
+    errors: Optional[List["_models.ErrorResponse"]] = rest_field(visibility=["read"])
     """Error objects that describes the error when status is \"Failed\"."""
-    results: List[str] = rest_field(readonly=True)
+    results: List[str] = rest_field(visibility=["read"])
     """The results. Required."""

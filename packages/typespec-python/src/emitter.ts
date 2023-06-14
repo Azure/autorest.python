@@ -5,6 +5,7 @@ import {
     getEncode,
     getFriendlyName,
     getSummary,
+    getVisibility,
     ignoreDiagnostics,
     isErrorModel,
     isNeverType,
@@ -771,7 +772,7 @@ function emitProperty(context: SdkContext, type: ModelProperty): Record<string, 
         optional: sdkProperty.optional,
         description: sdkProperty.doc,
         addedOn: getAddedOnVersion(context, type),
-        readonly: sdkProperty.readonly,
+        visibility: getVisibility(context.program, type),
     };
 }
 
