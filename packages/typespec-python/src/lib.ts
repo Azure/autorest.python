@@ -7,6 +7,7 @@ export interface PythonEmitterOptions {
     "output-dir"?: string;
     "package-mode"?: string;
     "package-pprint-name"?: string;
+    "head-as-boolean"?: boolean;
     "debug"?: boolean;
 }
 
@@ -20,6 +21,7 @@ const EmitterOptionsSchema: JSONSchemaType<PythonEmitterOptions> = {
         "output-dir": { type: "string", nullable: true },
         "package-mode": { type: "string", nullable: true },
         "package-pprint-name": { type: "string", nullable: true },
+        "head-as-boolean": { type: "boolean", nullable: true },
         "debug": { type: "boolean", nullable: true },
     },
     required: [],

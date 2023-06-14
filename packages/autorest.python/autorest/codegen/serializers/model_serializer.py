@@ -257,6 +257,9 @@ class DpgModelSerializer(_ModelSerializer):
             args.append(f'name="{prop.wire_name}"')
         if prop.readonly:
             args.append("readonly=True")
+        if prop.visibility:
+            v_list = ", ".join(f'"{x}"' for x in prop.visibility)
+            args.append(f"visibility=[{v_list}]")
         if prop.client_default_value is not None:
             args.append(f"default={prop.client_default_value_declaration}")
 
@@ -280,3 +283,11 @@ class DpgModelSerializer(_ModelSerializer):
                     f"{cast(ConstantType, prop.type).get_declaration()}"
                 )
         return init_args
+
+    @staticmethod
+    def _init_line_parameters(model: ModelType):
+        return [
+            p
+            for p in model.properties
+            if not p.is_discriminator and not p.constant and p.visibility != ["read"]
+        ]

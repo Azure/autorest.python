@@ -167,6 +167,30 @@ class JobData(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
+<<<<<<< HEAD
+=======
+class JobPollResult(_model_base.Model):
+    """Result of the poll.
+
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar operation_id: Operation identifier. Required.
+    :vartype operation_id: str
+    :ivar status: The status of the processing job. Required. Known values are: "InProgress",
+     "Succeeded", "Failed", and "Canceled".
+    :vartype status: str or ~_specs_.azure.core.lro.rpc.models.OperationState
+    """
+
+    operation_id: str = rest_field(name="operationId", visibility=["read"])
+    """Operation identifier. Required."""
+    status: Union[str, "_models.OperationState"] = rest_field(visibility=["read"])
+    """The status of the processing job. Required. Known values are: \"InProgress\", \"Succeeded\",
+     \"Failed\", and \"Canceled\"."""
+
+
+>>>>>>> 456938a374c2f9867b55b9a0deb848bc70485727
 class JobResult(_model_base.Model):
     """Result of the job.
 
@@ -187,10 +211,11 @@ class JobResult(_model_base.Model):
     :vartype results: list[str]
     """
 
-    job_id: str = rest_field(name="jobId", readonly=True)
+    job_id: str = rest_field(name="jobId", visibility=["read"])
     """A processing job identifier. Required."""
-    comment: str = rest_field(readonly=True)
+    comment: str = rest_field(visibility=["read"])
     """Comment. Required."""
+<<<<<<< HEAD
     status: Union[str, "_models.JobStatus"] = rest_field(readonly=True)
     """The status of the processing job. Required. Known values are: \"notStarted\", \"running\",
      \"succeeded\", \"failed\", \"canceled\", and \"partiallyCompleted\"."""
@@ -198,3 +223,12 @@ class JobResult(_model_base.Model):
     """Error objects that describes the error when status is \"Failed\"."""
     results: Optional[List[str]] = rest_field(readonly=True)
     """The results."""
+=======
+    status: Union[str, "_models.OperationState"] = rest_field(visibility=["read"])
+    """The status of the processing job. Required. Known values are: \"InProgress\", \"Succeeded\",
+     \"Failed\", and \"Canceled\"."""
+    errors: Optional[List["_models.ErrorResponse"]] = rest_field(visibility=["read"])
+    """Error objects that describes the error when status is \"Failed\"."""
+    results: List[str] = rest_field(visibility=["read"])
+    """The results. Required."""
+>>>>>>> 456938a374c2f9867b55b9a0deb848bc70485727
