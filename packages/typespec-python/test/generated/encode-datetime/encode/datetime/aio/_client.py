@@ -14,11 +14,19 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
 from ._configuration import DatetimeClientConfiguration
-from ._operations import DatetimeClientOperationsMixin
+from .operations import HeaderOperations, PropertyOperations, QueryOperations
 
 
-class DatetimeClient(DatetimeClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
-    """Test for encode decorator on datetime."""
+class DatetimeClient:  # pylint: disable=client-accepts-api-version-keyword
+    """Test for encode decorator on datetime.
+
+    :ivar query: QueryOperations operations
+    :vartype query: encode.datetime.aio.operations.QueryOperations
+    :ivar property: PropertyOperations operations
+    :vartype property: encode.datetime.aio.operations.PropertyOperations
+    :ivar header: HeaderOperations operations
+    :vartype header: encode.datetime.aio.operations.HeaderOperations
+    """
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
@@ -28,6 +36,9 @@ class DatetimeClient(DatetimeClientOperationsMixin):  # pylint: disable=client-a
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
+        self.query = QueryOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.property = PropertyOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.

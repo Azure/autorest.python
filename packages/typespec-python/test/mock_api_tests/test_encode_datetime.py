@@ -19,28 +19,28 @@ def client():
 
 
 def test_query(client: DatetimeClient):
-    client.query(
+    client.query.get(
         default=datetime.datetime(2022, 8, 26, 18, 38, 0),
         rfc3339=datetime.datetime(2022, 8, 26, 18, 38, 0),
         rfc7231=datetime.datetime(2022, 8, 26, 14, 38, 0),
         unix_timestamp=1686566864,
-        rfc3339_array=[
-            datetime.datetime(2022, 8, 26, 18, 38, 0),
-            datetime.datetime(2022, 9, 26, 18, 38, 0),
+        rfc7231_array=[
+            datetime.datetime(2022, 8, 26, 14, 38, 0),
+            datetime.datetime(2022, 8, 26, 16, 38, 0),
         ],
     )
 
 
 def test_property(client: DatetimeClient):
-    result = client.property(
+    result = client.property.post(
         DatetimeProperty(
             default=datetime.datetime(2022, 8, 26, 18, 38, 0),
             rfc3339=datetime.datetime(2022, 8, 26, 18, 38, 0),
             rfc7231=datetime.datetime(2022, 8, 26, 14, 38, 0),
             unix_timestamp=1686566864,
-            rfc3339_array=[
-                datetime.datetime(2022, 8, 26, 18, 38, 0),
-                datetime.datetime(2022, 9, 26, 18, 38, 0),
+            rfc7231_array=[
+                datetime.datetime(2022, 8, 26, 14, 38, 0),
+                datetime.datetime(2022, 8, 26, 16, 38, 0),
             ],
         )
     )
@@ -48,20 +48,20 @@ def test_property(client: DatetimeClient):
     assert result.rfc3339 == datetime.datetime(2022, 8, 26, 18, 38, 0)
     assert result.rfc7231 == datetime.datetime(2022, 8, 26, 14, 38, 0)
     assert result.unix_timestamp == 1686566864
-    assert result.rfc3339_array == [
-        datetime.datetime(2022, 8, 26, 18, 38, 0),
-        datetime.datetime(2022, 9, 26, 18, 38, 0),
+    assert result.rfc7231_array == [
+        datetime.datetime(2022, 8, 26, 14, 38, 0),
+        datetime.datetime(2022, 8, 26, 16, 38, 0),
     ]
 
 
 def test_header(client: DatetimeClient):
-    client.header(
+    client.header.get(
         default=datetime.datetime(2022, 8, 26, 14, 38, 0),
         rfc3339=datetime.datetime(2022, 8, 26, 18, 38, 0),
         rfc7231=datetime.datetime(2022, 8, 26, 14, 38, 0),
         unix_timestamp=1686566864,
-        rfc3339_array=[
-            datetime.datetime(2022, 8, 26, 18, 38, 0),
-            datetime.datetime(2022, 9, 26, 18, 38, 0),
+        rfc7231_array=[
+            datetime.datetime(2022, 8, 26, 14, 38, 0),
+            datetime.datetime(2022, 8, 26, 16, 38, 0),
         ],
     )

@@ -19,11 +19,11 @@ def client():
 
 
 def test_query(client: BytesClient):
-    client.query(
+    client.query.get(
         default=bytes("test", "utf-8"),
         base64=bytes("test", "utf-8"),
         base64url=bytes("test", "utf-8"),
-        base64_array=[
+        base64url_array=[
             bytes("test", "utf-8"),
             bytes("test", "utf-8"),
         ],
@@ -31,12 +31,12 @@ def test_query(client: BytesClient):
 
 
 def test_property(client: BytesClient):
-    result = client.property(
+    result = client.property.post(
         BytesProperty(
             default=bytes("test", "utf-8"),
             base64=bytes("test", "utf-8"),
             base64url=bytes("test", "utf-8"),
-            base64_array=[
+            base64url_array=[
                 bytes("test", "utf-8"),
                 bytes("test", "utf-8"),
             ],
@@ -45,18 +45,18 @@ def test_property(client: BytesClient):
     assert result.default == bytes("test", "utf-8")
     assert result.base64 == bytes("test", "utf-8")
     assert result.base64url == bytes("test", "utf-8")
-    assert result.base64_array == [
+    assert result.base64url_array == [
         bytes("test", "utf-8"),
         bytes("test", "utf-8"),
     ]
 
 
 def test_header(client: BytesClient):
-    client.header(
+    client.header.get(
         default=bytes("test", "utf-8"),
         base64=bytes("test", "utf-8"),
         base64url=bytes("test", "utf-8"),
-        base64_array=[
+        base64url_array=[
             bytes("test", "utf-8"),
             bytes("test", "utf-8"),
         ],

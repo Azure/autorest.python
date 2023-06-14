@@ -13,12 +13,20 @@ from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import BytesClientConfiguration
-from ._operations import BytesClientOperationsMixin
 from ._serialization import Deserializer, Serializer
+from .operations import HeaderOperations, PropertyOperations, QueryOperations
 
 
-class BytesClient(BytesClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
-    """Test for encode decorator on bytes."""
+class BytesClient:  # pylint: disable=client-accepts-api-version-keyword
+    """Test for encode decorator on bytes.
+
+    :ivar query: QueryOperations operations
+    :vartype query: encode.bytes.operations.QueryOperations
+    :ivar property: PropertyOperations operations
+    :vartype property: encode.bytes.operations.PropertyOperations
+    :ivar header: HeaderOperations operations
+    :vartype header: encode.bytes.operations.HeaderOperations
+    """
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
@@ -28,6 +36,9 @@ class BytesClient(BytesClientOperationsMixin):  # pylint: disable=client-accepts
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
+        self.query = QueryOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.property = PropertyOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

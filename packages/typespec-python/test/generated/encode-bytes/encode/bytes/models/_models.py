@@ -24,8 +24,8 @@ class BytesProperty(_model_base.Model):
     :vartype base64: bytes
     :ivar base64url: Required.
     :vartype base64url: bytes
-    :ivar base64_array: Required.
-    :vartype base64_array: list[bytes]
+    :ivar base64url_array: Required.
+    :vartype base64url_array: list[bytes]
     """
 
     default: bytes = rest_field()
@@ -34,7 +34,7 @@ class BytesProperty(_model_base.Model):
     """Required."""
     base64url: bytes = rest_field()
     """Required."""
-    base64_array: List[bytes] = rest_field(name="base64Array")
+    base64url_array: List[bytes] = rest_field(name="base64urlArray")
     """Required."""
 
     @overload
@@ -44,7 +44,7 @@ class BytesProperty(_model_base.Model):
         default: bytes,
         base64: bytes,
         base64url: bytes,
-        base64_array: List[bytes],
+        base64url_array: List[bytes],
     ):
         ...
 

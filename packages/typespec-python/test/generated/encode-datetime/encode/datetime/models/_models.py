@@ -27,8 +27,8 @@ class DatetimeProperty(_model_base.Model):
     :vartype rfc7231: ~datetime.datetime
     :ivar unix_timestamp: Required.
     :vartype unix_timestamp: int
-    :ivar rfc3339_array: Required.
-    :vartype rfc3339_array: list[~datetime.datetime]
+    :ivar rfc7231_array: Required.
+    :vartype rfc7231_array: list[~datetime.datetime]
     """
 
     default: datetime.datetime = rest_field()
@@ -39,7 +39,7 @@ class DatetimeProperty(_model_base.Model):
     """Required."""
     unix_timestamp: int = rest_field(name="unixTimestamp")
     """Required."""
-    rfc3339_array: List[datetime.datetime] = rest_field(name="rfc3339Array")
+    rfc7231_array: List[datetime.datetime] = rest_field(name="rfc7231Array")
     """Required."""
 
     @overload
@@ -50,7 +50,7 @@ class DatetimeProperty(_model_base.Model):
         rfc3339: datetime.datetime,
         rfc7231: datetime.datetime,
         unix_timestamp: int,
-        rfc3339_array: List[datetime.datetime],
+        rfc7231_array: List[datetime.datetime],
     ):
         ...
 
