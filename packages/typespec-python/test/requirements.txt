@@ -33,5 +33,7 @@ azure-core==1.27.0
 -e ./generated/typetest-union
 -e ./generated/azure-client-generator-core-internal
 -e ./generated/typetest-model-empty
+-e ./generated/headasbooleantrue
+-e ./generated/headasbooleanfalse
 -e ./generated/parameters-body-optionality
 -e ./generated/special-headers-repeatability
