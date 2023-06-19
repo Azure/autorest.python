@@ -15,6 +15,7 @@ from typing import (
     TypeVar,
     Union,
     Generic,
+    Set,
 )
 
 from .imports import FileImport, ImportType, TypingSection
@@ -52,7 +53,7 @@ class ParameterDelimeter(str, Enum):
     COMMA = "comma"
 
 
-SPECIAL_HANDLE_HEADERS = ["repeatability-request-id", "repeatability-first-sent"]
+SKIP_SPECIAL_HEADERS = ["repeatability-request-id", "repeatability-first-sent"]
 
 
 class _ParameterBase(
@@ -93,9 +94,15 @@ class _ParameterBase(
         self.default_to_unset_sentinel: bool = self.yaml_data.get(
             "defaultToUnsetSentinel", False
         )
-        self.is_special_handle_header: bool = (
+        self._skip_special_headers: Set[str] = set(
+            self.code_model.options["skip_special_headers"].extend(SKIP_SPECIAL_HEADERS)
+        )
+
+    @property
+    def is_special_handle_header(self) -> bool:
+        return (
             self.location == ParameterLocation.HEADER
-            and self.wire_name.lower() in SPECIAL_HANDLE_HEADERS
+            and self.wire_name.lower() in self._skip_special_headers
         )
 
     @property
