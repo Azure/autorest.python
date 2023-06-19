@@ -95,7 +95,7 @@ class _ParameterBase(
             "defaultToUnsetSentinel", False
         )
         self._skip_special_headers: Set[str] = set(
-            self.code_model.options["skip_special_headers"].extend(SKIP_SPECIAL_HEADERS)
+            self.code_model.options["skip_special_headers"] + SKIP_SPECIAL_HEADERS
         )
 
     @property

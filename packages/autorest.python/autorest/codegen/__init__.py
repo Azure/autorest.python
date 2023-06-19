@@ -170,7 +170,7 @@ class CodeGenerator(Plugin):
             ),
             "generate_sample": self.options.get("generate-sample", False),
             "default_api_version": self.options.get("default-api-version"),
-            "skip_special_headers": self.options.get("skip-special-headers", []),
+            "skip_special_headers": self.options.get("skip-special-headers") or [],
         }
 
         if options["builders_visibility"] is None:
