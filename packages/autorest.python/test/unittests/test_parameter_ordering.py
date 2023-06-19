@@ -28,6 +28,7 @@ def get_code_model():
             "show_operations": True,
             "models_mode": "dpg",
             "only_path_and_body_params_positional": True,
+            "skip_special_headers": [],
         },
     )
 
