@@ -78,7 +78,7 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: User. The User is compatible with MutableMapping
-        :rtype: ~_specs_.azure.core.traits.models.User
+        :rtype: ~azure.core.traits.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -145,14 +145,14 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :param id: The user's id. Required.
         :type id: int
         :param body: Required.
-        :type body: ~_specs_.azure.core.traits.models.UserActionParam
+        :type body: ~azure.core.traits.models.UserActionParam
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: UserActionResponse. The UserActionResponse is compatible with MutableMapping
-        :rtype: ~_specs_.azure.core.traits.models.UserActionResponse
+        :rtype: ~azure.core.traits.models.UserActionResponse
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -172,7 +172,7 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: UserActionResponse. The UserActionResponse is compatible with MutableMapping
-        :rtype: ~_specs_.azure.core.traits.models.UserActionResponse
+        :rtype: ~azure.core.traits.models.UserActionResponse
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -192,7 +192,7 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: UserActionResponse. The UserActionResponse is compatible with MutableMapping
-        :rtype: ~_specs_.azure.core.traits.models.UserActionResponse
+        :rtype: ~azure.core.traits.models.UserActionResponse
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -205,14 +205,14 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :param id: The user's id. Required.
         :type id: int
         :param body: Is one of the following types: UserActionParam, JSON, IO Required.
-        :type body: ~_specs_.azure.core.traits.models.UserActionParam or JSON or IO
+        :type body: ~azure.core.traits.models.UserActionParam or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: UserActionResponse. The UserActionResponse is compatible with MutableMapping
-        :rtype: ~_specs_.azure.core.traits.models.UserActionResponse
+        :rtype: ~azure.core.traits.models.UserActionResponse
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {

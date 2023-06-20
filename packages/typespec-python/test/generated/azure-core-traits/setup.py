@@ -9,12 +9,12 @@
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "traitsclient"
+PACKAGE_NAME = "azure-core-traits"
 version = "1.0.0b1"
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="TraitsClient",
+    description="azure-core-traits",
     author_email="",
     url="",
     keywords="azure, azure sdk",

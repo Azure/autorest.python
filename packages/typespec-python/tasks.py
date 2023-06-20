@@ -81,6 +81,9 @@ EMITTER_OPTIONS = {
     "type/union": {
         "package-name": "typetest-union",
     },
+    "azure/core/traits": [
+        {"package-name": "azure-core-traits"},
+    ]
 }
 
 
