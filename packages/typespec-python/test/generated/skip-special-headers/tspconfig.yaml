@@ -1,0 +1,7 @@
+emit:
+  - "@azure-tools/typespec-python"
+options:
+  "@azure-tools/typespec-python":
+    skip-special-headers:
+      - x-ms-client-request-id
+      - if-match

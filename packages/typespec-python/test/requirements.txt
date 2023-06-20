@@ -10,7 +10,7 @@ azure-core==1.27.0
 -e ./generated/azure-core-basic
 -e ./generated/azure-core-lro-rpc
 -e ./generated/azure-core-lro-standard
--e ./generated/azure-core-traits
+-e ./generated/azurecore-traits
 -e ./generated/encode-duration
 -e ./generated/parameters-collection-format
 -e ./generated/parameters-spread
@@ -37,3 +37,4 @@ azure-core==1.27.0
 -e ./generated/headasbooleanfalse
 -e ./generated/parameters-body-optionality
 -e ./generated/special-headers-repeatability
+-e ./generated/skip-special-headers

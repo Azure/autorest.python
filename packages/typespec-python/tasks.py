@@ -26,6 +26,7 @@ init()
 PLUGIN_DIR = Path(os.path.dirname(__file__))
 PLUGIN = (PLUGIN_DIR / "dist/src/index.js").as_posix()
 CADL_RANCH_DIR = PLUGIN_DIR / Path("node_modules/@azure-tools/cadl-ranch-specs/http")
+# "tsp-config" means there are tspconfig.yaml in emitter-output-folder
 EMITTER_OPTIONS = {
     "resiliency/srv-driven/old.tsp": {
         "package-name": "resiliency-srv-driven1",
@@ -82,7 +83,8 @@ EMITTER_OPTIONS = {
         "package-name": "typetest-union",
     },
     "azure/core/traits": [
-        {"package-name": "azure-core-traits"},
+        {"package-name": "azurecore-traits"},
+        {"package-name": "skip-special-headers", "tsp-config": True},
     ]
 }
 
@@ -98,6 +100,8 @@ def _get_emitter_option(spec: Path) -> List[Dict[str, str]]:
         return [result]
     return result
 
+def _tsp_config(output_dir: str) -> Path:
+    return Path(output_dir) / "tspconfig.yaml"
 
 def _add_options(spec: Path, debug=False) -> List[str]:
     # if debug:
@@ -109,8 +113,8 @@ def _add_options(spec: Path, debug=False) -> List[str]:
         result.append(config_copy)
     if not result:
         result.append({"emitter-output-dir": f"{PLUGIN_DIR}/test/generated/{_default_package_name(spec)}"})
-    return [" --option ".join(
-        [f"@azure-tools/typespec-python.{k}={v} " for k, v in options.items()]
+    return ["".join(
+        [f" --option @azure-tools/typespec-python.{k}={v}" if k != "tsp-config" else f" --config {_tsp_config(options['emitter-output-dir'])}" for k, v in options.items()]
     ) for options in result]
 
 
@@ -142,7 +146,7 @@ def regenerate(c, name=None, debug=False):
             )
     _run_cadl(
         [
-            f"tsp compile {_entry_file_name(spec)} --emit={PLUGIN_DIR} --option {option}"
+            f"tsp compile {_entry_file_name(spec)} --emit={PLUGIN_DIR} {option}"
             for spec in specs for option in _add_options(spec, debug)
         ]
     )

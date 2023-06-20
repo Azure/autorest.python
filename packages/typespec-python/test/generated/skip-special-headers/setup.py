@@ -9,12 +9,12 @@
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "azure-core-traits"
+PACKAGE_NAME = "skip-special-headers"
 version = "1.0.0b1"
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="azure-core-traits",
+    description="skip-special-headers",
     author_email="",
     url="",
     keywords="azure, azure sdk",

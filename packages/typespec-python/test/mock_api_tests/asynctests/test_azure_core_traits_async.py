@@ -8,8 +8,8 @@ from datetime import datetime
 import pytest
 from azure.core.exceptions import HttpResponseError
 
-from azure.core.traits.aio import TraitsClient
-from azure.core.traits.models import UserActionParam
+from azurecore.traits.aio import TraitsClient
+from azurecore.traits.models import UserActionParam
 from ..test_repeatability_utils import check_header
 
 
