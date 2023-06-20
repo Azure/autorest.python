@@ -565,7 +565,7 @@ class RequestBuilderSerializer(
         for parameter in builder.parameters.headers:
             if parameter.is_special_handle_header:
                 retval.extend(self._serialize_special_handle_header(parameter))
-            else:
+            elif not parameter.is_special_skip_header:
                 retval.extend(
                     self._serialize_parameter(
                         parameter,
