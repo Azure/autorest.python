@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import List, Dict, Any, Set, Union
+from typing import List, Dict, Any, Set, Union, Optional
 
 from .base import BaseType
 from .enum_type import EnumType
@@ -76,7 +76,21 @@ class CodeModel:  # pylint: disable=too-many-public-methods
         self.named_unions: List[CombinedType] = [
             t for t in self.types_map.values() if isinstance(t, CombinedType) and t.name
         ]
+        self._has_etag: Optional[bool] = None
 
+    @property
+    def has_etag(self) -> bool:
+        if self._has_etag is None:
+            self._has_etag = False
+            for client in self.clients:
+                for og in client.operation_groups:
+                    for op in og.operations:
+                        for h in op.parameters.headers:
+                            if h.wire_name.lower() in ("if-match", "if-none-match"):
+                                self._has_etag = True
+                                break
+        return self._has_etag
+    
     @property
     def has_operations(self) -> bool:
         if any(c for c in self.clients if c.has_operations):
@@ -130,7 +144,7 @@ class CodeModel:  # pylint: disable=too-many-public-methods
         if async_mode:
             return self.need_mixin_abc
         return (
-            self.need_request_converter or self.need_format_url or self.need_mixin_abc
+            self.need_request_converter or self.need_format_url or self.need_mixin_abc or self.has_etag
         )
 
     @property
