@@ -15,7 +15,6 @@ from typing import (
     TypeVar,
     Union,
     Generic,
-    Set,
 )
 
 from .imports import FileImport, ImportType, TypingSection
@@ -100,7 +99,8 @@ class _ParameterBase(
         )
         self.is_special_skip_header: bool = (
             self.location == ParameterLocation.HEADER
-            and self.wire_name.lower() in self.code_model.options["skip_special_headers"]
+            and self.wire_name.lower()
+            in self.code_model.options["skip_special_headers"]
         )
 
     @property

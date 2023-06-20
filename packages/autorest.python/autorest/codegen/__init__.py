@@ -86,6 +86,7 @@ _LOGGER = logging.getLogger(__name__)
 def _skip_special_headers(headers: str) -> List[str]:
     return [header.strip() for header in headers.split(",")]
 
+
 class CodeGenerator(Plugin):
     @staticmethod
     def remove_cloud_errors(yaml_data: Dict[str, Any]) -> None:
@@ -173,7 +174,9 @@ class CodeGenerator(Plugin):
             ),
             "generate_sample": self.options.get("generate-sample", False),
             "default_api_version": self.options.get("default-api-version"),
-            "skip_special_headers": _skip_special_headers(self.options.get("skip-special-headers") or ""),
+            "skip_special_headers": _skip_special_headers(
+                self.options.get("skip-special-headers") or ""
+            ),
         }
 
         if options["builders_visibility"] is None:
