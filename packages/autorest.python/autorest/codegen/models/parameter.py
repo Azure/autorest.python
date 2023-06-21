@@ -104,10 +104,6 @@ class _ParameterBase(
         )
 
     @property
-    def is_special_header(self) -> bool:
-        return self.is_special_handle_header or self.is_special_skip_header
-
-    @property
     def constant(self) -> bool:
         """Returns whether a parameter is a constant or not.
         Checking to see if it's required, because if not, we don't consider it

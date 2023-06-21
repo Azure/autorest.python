@@ -215,7 +215,8 @@ class _ParameterListBase(
             for p in self.parameters
             if p.in_method_signature
             and p.implementation == self.implementation
-            and not p.is_special_header
+            and not p.is_special_handle_header
+            and not p.is_special_skip_header
         ]
         if self._body_parameter:
             if self._body_parameter.in_method_signature:
