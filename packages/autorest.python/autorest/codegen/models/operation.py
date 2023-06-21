@@ -399,16 +399,28 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             file_import.add_submodule_import(
                 f"{relative_path}_vendor", "_convert_request", ImportType.LOCAL
             )
-        if async_mode:
-            file_import.add_submodule_import(
-                "azure.core.pipeline.transport",
-                "AsyncHttpResponse",
-                ImportType.AZURECORE,
-            )
+        if self.code_model.need_request_converter:
+            if async_mode:
+                file_import.add_submodule_import(
+                    "azure.core.pipeline.transport",
+                    "AsyncHttpResponse",
+                    ImportType.AZURECORE,
+                )
+            else:
+                file_import.add_submodule_import(
+                    "azure.core.pipeline.transport", "HttpResponse", ImportType.AZURECORE
+                )
         else:
-            file_import.add_submodule_import(
-                "azure.core.pipeline.transport", "HttpResponse", ImportType.AZURECORE
-            )
+            if async_mode:
+                file_import.add_submodule_import(
+                    "azure.core.rest",
+                    "AsyncHttpResponse",
+                    ImportType.AZURECORE,
+                )
+            else:
+                file_import.add_submodule_import(
+                    "azure.core.rest", "HttpResponse", ImportType.AZURECORE
+                )
         if (
             self.code_model.options["builders_visibility"] == "embedded"
             and not async_mode
