@@ -408,7 +408,9 @@ class OperationBase(  # pylint: disable=too-many-public-methods
                 )
             else:
                 file_import.add_submodule_import(
-                    "azure.core.pipeline.transport", "HttpResponse", ImportType.AZURECORE
+                    "azure.core.pipeline.transport",
+                    "HttpResponse",
+                    ImportType.AZURECORE,
                 )
         else:
             if async_mode:
