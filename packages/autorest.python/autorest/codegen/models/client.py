@@ -269,8 +269,8 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
     @property
     def need_request_converter(self) -> bool:
         """
-        Whether we need to convert our created azure.core.rest.HttpRequests to
-        azure.core.pipeline.transport.HttpRequests
+        Whether we need to convert our created azure.core.rest.HttpRequest to
+        azure.core.pipeline.transport.HttpRequest
         """
         return (
             self.code_model.options["show_operations"]
