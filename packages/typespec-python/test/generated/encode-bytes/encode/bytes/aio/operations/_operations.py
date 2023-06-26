@@ -27,7 +27,20 @@ from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._model_base import AzureJSONEncoder, _deserialize
-from ...operations._operations import build_header_get_request, build_property_post_request, build_query_get_request
+from ...operations._operations import (
+    build_header_base64_request,
+    build_header_base64url_array_request,
+    build_header_base64url_request,
+    build_header_default_request,
+    build_property_base64_request,
+    build_property_base64url_array_request,
+    build_property_base64url_request,
+    build_property_default_request,
+    build_query_base64_request,
+    build_query_base64url_array_request,
+    build_query_base64url_request,
+    build_query_default_request,
+)
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -56,19 +69,11 @@ class QueryOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get(  # pylint: disable=inconsistent-return-statements
-        self, *, default: bytes, base64: bytes, base64url: bytes, base64url_array: List[bytes], **kwargs: Any
-    ) -> None:
-        """get.
+    async def default(self, *, value: bytes, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """default.
 
-        :keyword default: Required.
-        :paramtype default: bytes
-        :keyword base64: Required.
-        :paramtype base64: bytes
-        :keyword base64url: Required.
-        :paramtype base64url: bytes
-        :keyword base64url_array: Required.
-        :paramtype base64url_array: list[bytes]
+        :keyword value: Required.
+        :paramtype value: bytes
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: None
@@ -88,11 +93,148 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_query_get_request(
-            default=default,
-            base64=base64,
-            base64url=base64url,
-            base64url_array=base64url_array,
+        request = build_query_default_request(
+            value=value,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    @distributed_trace_async
+    async def base64(self, *, value: bytes, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """base64.
+
+        :keyword value: Required.
+        :paramtype value: bytes
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        request = build_query_base64_request(
+            value=value,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    @distributed_trace_async
+    async def base64url(self, *, value: bytes, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """base64url.
+
+        :keyword value: Required.
+        :paramtype value: bytes
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        request = build_query_base64url_request(
+            value=value,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    @distributed_trace_async
+    async def base64url_array(  # pylint: disable=inconsistent-return-statements
+        self, *, value: List[bytes], **kwargs: Any
+    ) -> None:
+        """base64url_array.
+
+        :keyword value: Required.
+        :paramtype value: list[bytes]
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        request = build_query_base64url_array_request(
+            value=value,
             headers=_headers,
             params=_params,
         )
@@ -131,26 +273,28 @@ class PropertyOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    async def post(
-        self, body: _models.BytesProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.BytesProperty:
-        """post.
+    async def default(
+        self, body: _models.DefaultBytesProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.DefaultBytesProperty:
+        """default.
 
         :param body: Required.
-        :type body: ~encode.bytes.models.BytesProperty
+        :type body: ~encode.bytes.models.DefaultBytesProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: BytesProperty. The BytesProperty is compatible with MutableMapping
-        :rtype: ~encode.bytes.models.BytesProperty
+        :return: DefaultBytesProperty. The DefaultBytesProperty is compatible with MutableMapping
+        :rtype: ~encode.bytes.models.DefaultBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
-    async def post(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> _models.BytesProperty:
-        """post.
+    async def default(
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.DefaultBytesProperty:
+        """default.
 
         :param body: Required.
         :type body: JSON
@@ -159,14 +303,16 @@ class PropertyOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: BytesProperty. The BytesProperty is compatible with MutableMapping
-        :rtype: ~encode.bytes.models.BytesProperty
+        :return: DefaultBytesProperty. The DefaultBytesProperty is compatible with MutableMapping
+        :rtype: ~encode.bytes.models.DefaultBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
-    async def post(self, body: IO, *, content_type: str = "application/json", **kwargs: Any) -> _models.BytesProperty:
-        """post.
+    async def default(
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.DefaultBytesProperty:
+        """default.
 
         :param body: Required.
         :type body: IO
@@ -175,24 +321,26 @@ class PropertyOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: BytesProperty. The BytesProperty is compatible with MutableMapping
-        :rtype: ~encode.bytes.models.BytesProperty
+        :return: DefaultBytesProperty. The DefaultBytesProperty is compatible with MutableMapping
+        :rtype: ~encode.bytes.models.DefaultBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace_async
-    async def post(self, body: Union[_models.BytesProperty, JSON, IO], **kwargs: Any) -> _models.BytesProperty:
-        """post.
+    async def default(
+        self, body: Union[_models.DefaultBytesProperty, JSON, IO], **kwargs: Any
+    ) -> _models.DefaultBytesProperty:
+        """default.
 
-        :param body: Is one of the following types: BytesProperty, JSON, IO Required.
-        :type body: ~encode.bytes.models.BytesProperty or JSON or IO
+        :param body: Is one of the following types: DefaultBytesProperty, JSON, IO Required.
+        :type body: ~encode.bytes.models.DefaultBytesProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: BytesProperty. The BytesProperty is compatible with MutableMapping
-        :rtype: ~encode.bytes.models.BytesProperty
+        :return: DefaultBytesProperty. The DefaultBytesProperty is compatible with MutableMapping
+        :rtype: ~encode.bytes.models.DefaultBytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -207,7 +355,7 @@ class PropertyOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.BytesProperty] = kwargs.pop("cls", None)
+        cls: ClsType[_models.DefaultBytesProperty] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -216,7 +364,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
-        request = build_property_post_request(
+        request = build_property_default_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -238,7 +386,374 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.BytesProperty, response.json())
+            deserialized = _deserialize(_models.DefaultBytesProperty, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    async def base64(
+        self, body: _models.Base64BytesProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Base64BytesProperty:
+        """base64.
+
+        :param body: Required.
+        :type body: ~encode.bytes.models.Base64BytesProperty
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: Base64BytesProperty. The Base64BytesProperty is compatible with MutableMapping
+        :rtype: ~encode.bytes.models.Base64BytesProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def base64(
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Base64BytesProperty:
+        """base64.
+
+        :param body: Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: Base64BytesProperty. The Base64BytesProperty is compatible with MutableMapping
+        :rtype: ~encode.bytes.models.Base64BytesProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def base64(
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Base64BytesProperty:
+        """base64.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: Base64BytesProperty. The Base64BytesProperty is compatible with MutableMapping
+        :rtype: ~encode.bytes.models.Base64BytesProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def base64(
+        self, body: Union[_models.Base64BytesProperty, JSON, IO], **kwargs: Any
+    ) -> _models.Base64BytesProperty:
+        """base64.
+
+        :param body: Is one of the following types: Base64BytesProperty, JSON, IO Required.
+        :type body: ~encode.bytes.models.Base64BytesProperty or JSON or IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: Base64BytesProperty. The Base64BytesProperty is compatible with MutableMapping
+        :rtype: ~encode.bytes.models.Base64BytesProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.Base64BytesProperty] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+
+        request = build_property_base64_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.Base64BytesProperty, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    async def base64url(
+        self, body: _models.Base64urlBytesProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Base64urlBytesProperty:
+        """base64url.
+
+        :param body: Required.
+        :type body: ~encode.bytes.models.Base64urlBytesProperty
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: Base64urlBytesProperty. The Base64urlBytesProperty is compatible with MutableMapping
+        :rtype: ~encode.bytes.models.Base64urlBytesProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def base64url(
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Base64urlBytesProperty:
+        """base64url.
+
+        :param body: Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: Base64urlBytesProperty. The Base64urlBytesProperty is compatible with MutableMapping
+        :rtype: ~encode.bytes.models.Base64urlBytesProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def base64url(
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Base64urlBytesProperty:
+        """base64url.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: Base64urlBytesProperty. The Base64urlBytesProperty is compatible with MutableMapping
+        :rtype: ~encode.bytes.models.Base64urlBytesProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def base64url(
+        self, body: Union[_models.Base64urlBytesProperty, JSON, IO], **kwargs: Any
+    ) -> _models.Base64urlBytesProperty:
+        """base64url.
+
+        :param body: Is one of the following types: Base64urlBytesProperty, JSON, IO Required.
+        :type body: ~encode.bytes.models.Base64urlBytesProperty or JSON or IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: Base64urlBytesProperty. The Base64urlBytesProperty is compatible with MutableMapping
+        :rtype: ~encode.bytes.models.Base64urlBytesProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.Base64urlBytesProperty] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+
+        request = build_property_base64url_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.Base64urlBytesProperty, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    async def base64url_array(
+        self, body: _models.Base64urlArrayBytesProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Base64urlArrayBytesProperty:
+        """base64url_array.
+
+        :param body: Required.
+        :type body: ~encode.bytes.models.Base64urlArrayBytesProperty
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: Base64urlArrayBytesProperty. The Base64urlArrayBytesProperty is compatible with
+         MutableMapping
+        :rtype: ~encode.bytes.models.Base64urlArrayBytesProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def base64url_array(
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Base64urlArrayBytesProperty:
+        """base64url_array.
+
+        :param body: Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: Base64urlArrayBytesProperty. The Base64urlArrayBytesProperty is compatible with
+         MutableMapping
+        :rtype: ~encode.bytes.models.Base64urlArrayBytesProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def base64url_array(
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Base64urlArrayBytesProperty:
+        """base64url_array.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: Base64urlArrayBytesProperty. The Base64urlArrayBytesProperty is compatible with
+         MutableMapping
+        :rtype: ~encode.bytes.models.Base64urlArrayBytesProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def base64url_array(
+        self, body: Union[_models.Base64urlArrayBytesProperty, JSON, IO], **kwargs: Any
+    ) -> _models.Base64urlArrayBytesProperty:
+        """base64url_array.
+
+        :param body: Is one of the following types: Base64urlArrayBytesProperty, JSON, IO Required.
+        :type body: ~encode.bytes.models.Base64urlArrayBytesProperty or JSON or IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: Base64urlArrayBytesProperty. The Base64urlArrayBytesProperty is compatible with
+         MutableMapping
+        :rtype: ~encode.bytes.models.Base64urlArrayBytesProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.Base64urlArrayBytesProperty] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+
+        request = build_property_base64url_array_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.Base64urlArrayBytesProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -264,19 +779,11 @@ class HeaderOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get(  # pylint: disable=inconsistent-return-statements
-        self, *, default: bytes, base64: bytes, base64url: bytes, base64url_array: List[bytes], **kwargs: Any
-    ) -> None:
-        """get.
+    async def default(self, *, value: bytes, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """default.
 
-        :keyword default: Required.
-        :paramtype default: bytes
-        :keyword base64: Required.
-        :paramtype base64: bytes
-        :keyword base64url: Required.
-        :paramtype base64url: bytes
-        :keyword base64url_array: Required.
-        :paramtype base64url_array: list[bytes]
+        :keyword value: Required.
+        :paramtype value: bytes
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: None
@@ -296,11 +803,148 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_header_get_request(
-            default=default,
-            base64=base64,
-            base64url=base64url,
-            base64url_array=base64url_array,
+        request = build_header_default_request(
+            value=value,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    @distributed_trace_async
+    async def base64(self, *, value: bytes, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """base64.
+
+        :keyword value: Required.
+        :paramtype value: bytes
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        request = build_header_base64_request(
+            value=value,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    @distributed_trace_async
+    async def base64url(self, *, value: bytes, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """base64url.
+
+        :keyword value: Required.
+        :paramtype value: bytes
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        request = build_header_base64url_request(
+            value=value,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    @distributed_trace_async
+    async def base64url_array(  # pylint: disable=inconsistent-return-statements
+        self, *, value: List[bytes], **kwargs: Any
+    ) -> None:
+        """base64url_array.
+
+        :keyword value: Required.
+        :paramtype value: list[bytes]
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        request = build_header_base64url_array_request(
+            value=value,
             headers=_headers,
             params=_params,
         )

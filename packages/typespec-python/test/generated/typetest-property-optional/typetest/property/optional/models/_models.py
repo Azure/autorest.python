@@ -26,7 +26,7 @@ class BytesProperty(_model_base.Model):
     :vartype property: bytes
     """
 
-    property: Optional[bytes] = rest_field()
+    property: Optional[bytes] = rest_field(format="base64")
     """Property."""
 
     @overload
@@ -55,7 +55,7 @@ class CollectionsByteProperty(_model_base.Model):
     :vartype property: list[bytes]
     """
 
-    property: Optional[List[bytes]] = rest_field()
+    property: Optional[List[bytes]] = rest_field(format="base64")
     """Property."""
 
     @overload
@@ -84,7 +84,7 @@ class CollectionsModelProperty(_model_base.Model):
     :vartype property: list[~typetest.property.optional.models.StringProperty]
     """
 
-    property: Optional[List["_models.StringProperty"]] = rest_field()
+    property: Optional[List["_models.StringProperty"]] = rest_field(format="None")
     """Property."""
 
     @overload
@@ -113,7 +113,7 @@ class DatetimeProperty(_model_base.Model):
     :vartype property: ~datetime.datetime
     """
 
-    property: Optional[datetime.datetime] = rest_field()
+    property: Optional[datetime.datetime] = rest_field(format="rfc3339")
     """Property."""
 
     @overload

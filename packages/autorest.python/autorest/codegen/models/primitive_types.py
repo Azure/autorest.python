@@ -356,17 +356,13 @@ class StringType(PrimitiveType):
 class DatetimeType(PrimitiveType):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
-        self.format = self.Formats(yaml_data.get("format", "date-time"))
-
-    class Formats(str, Enum):
-        datetime = "date-time"
-        rfc1123 = "date-time-rfc1123"
+        self.format = "rfc3339" if yaml_data.get("format", "date-time") == "date-time" else "rfc7231"
 
     @property
     def serialization_type(self) -> str:
         formats_to_attribute_type = {
-            self.Formats.datetime: "iso-8601",
-            self.Formats.rfc1123: "rfc-1123",
+            "rfc3339": "iso-8601",
+            "rfc7231": "rfc-1123",
         }
         return formats_to_attribute_type[self.format]
 
@@ -454,6 +450,10 @@ class TimeType(PrimitiveType):
 
 
 class UnixTimeType(PrimitiveType):
+    @property
+    def format(self) -> str:
+        return "unix-timestamp"
+
     @property
     def serialization_type(self) -> str:
         return "unix-time"
@@ -588,7 +588,7 @@ class DurationType(PrimitiveType):
 class ByteArraySchema(PrimitiveType):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
-        self.format = yaml_data.get("format", "bytes")
+        self.format = yaml_data.get("format", "base64")
 
     @property
     def serialization_type(self) -> str:

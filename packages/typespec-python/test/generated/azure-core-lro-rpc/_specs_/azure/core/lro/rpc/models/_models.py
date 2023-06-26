@@ -48,7 +48,7 @@ class Error(_model_base.Model):
     """A human-readable representation of the error. Required."""
     target: Optional[str] = rest_field()
     """The target of the error."""
-    details: Optional[List["_models.Error"]] = rest_field()
+    details: Optional[List["_models.Error"]] = rest_field(format="None")
     """An array of details about specific errors that led to this reported error."""
     innererror: Optional["_models.InnerError"] = rest_field()
     """An object containing more specific information than the current object about the error."""
@@ -222,7 +222,7 @@ class JobResult(_model_base.Model):
     status: Union[str, "_models.OperationState"] = rest_field(visibility=["read"])
     """The status of the processing job. Required. Known values are: \"InProgress\", \"Succeeded\",
      \"Failed\", and \"Canceled\"."""
-    errors: Optional[List["_models.ErrorResponse"]] = rest_field(visibility=["read"])
+    errors: Optional[List["_models.ErrorResponse"]] = rest_field(visibility=["read"], format="None")
     """Error objects that describes the error when status is \"Failed\"."""
-    results: List[str] = rest_field(visibility=["read"])
+    results: List[str] = rest_field(visibility=["read"], format="None")
     """The results. Required."""

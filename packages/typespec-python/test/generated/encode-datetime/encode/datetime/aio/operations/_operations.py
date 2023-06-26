@@ -28,7 +28,23 @@ from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._model_base import AzureJSONEncoder, _deserialize
-from ...operations._operations import build_header_get_request, build_property_post_request, build_query_get_request
+from ...operations._operations import (
+    build_header_default_request,
+    build_header_rfc3339_request,
+    build_header_rfc7231_request,
+    build_header_unix_timestamp_array_request,
+    build_header_unix_timestamp_request,
+    build_property_default_request,
+    build_property_rfc3339_request,
+    build_property_rfc7231_request,
+    build_property_unix_timestamp_array_request,
+    build_property_unix_timestamp_request,
+    build_query_default_request,
+    build_query_rfc3339_request,
+    build_query_rfc7231_request,
+    build_query_unix_timestamp_array_request,
+    build_query_unix_timestamp_request,
+)
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -57,28 +73,13 @@ class QueryOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get(  # pylint: disable=inconsistent-return-statements
-        self,
-        *,
-        default: datetime.datetime,
-        rfc3339: datetime.datetime,
-        rfc7231: datetime.datetime,
-        unix_timestamp: int,
-        rfc7231_array: List[datetime.datetime],
-        **kwargs: Any
+    async def default(  # pylint: disable=inconsistent-return-statements
+        self, *, value: datetime.datetime, **kwargs: Any
     ) -> None:
-        """get.
+        """default.
 
-        :keyword default: Required.
-        :paramtype default: ~datetime.datetime
-        :keyword rfc3339: Required.
-        :paramtype rfc3339: ~datetime.datetime
-        :keyword rfc7231: Required.
-        :paramtype rfc7231: ~datetime.datetime
-        :keyword unix_timestamp: Required.
-        :paramtype unix_timestamp: int
-        :keyword rfc7231_array: Required.
-        :paramtype rfc7231_array: list[~datetime.datetime]
+        :keyword value: Required.
+        :paramtype value: ~datetime.datetime
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: None
@@ -98,12 +99,200 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_query_get_request(
-            default=default,
-            rfc3339=rfc3339,
-            rfc7231=rfc7231,
-            unix_timestamp=unix_timestamp,
-            rfc7231_array=rfc7231_array,
+        request = build_query_default_request(
+            value=value,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    @distributed_trace_async
+    async def rfc3339(  # pylint: disable=inconsistent-return-statements
+        self, *, value: datetime.datetime, **kwargs: Any
+    ) -> None:
+        """rfc3339.
+
+        :keyword value: Required.
+        :paramtype value: ~datetime.datetime
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        request = build_query_rfc3339_request(
+            value=value,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    @distributed_trace_async
+    async def rfc7231(  # pylint: disable=inconsistent-return-statements
+        self, *, value: datetime.datetime, **kwargs: Any
+    ) -> None:
+        """rfc7231.
+
+        :keyword value: Required.
+        :paramtype value: ~datetime.datetime
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        request = build_query_rfc7231_request(
+            value=value,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    @distributed_trace_async
+    async def unix_timestamp(  # pylint: disable=inconsistent-return-statements
+        self, *, value: datetime.datetime, **kwargs: Any
+    ) -> None:
+        """unix_timestamp.
+
+        :keyword value: Required.
+        :paramtype value: ~datetime.datetime
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        request = build_query_unix_timestamp_request(
+            value=value,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    @distributed_trace_async
+    async def unix_timestamp_array(  # pylint: disable=inconsistent-return-statements
+        self, *, value: List[datetime.datetime], **kwargs: Any
+    ) -> None:
+        """unix_timestamp_array.
+
+        :keyword value: Required.
+        :paramtype value: list[~datetime.datetime]
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        request = build_query_unix_timestamp_array_request(
+            value=value,
             headers=_headers,
             params=_params,
         )
@@ -142,28 +331,28 @@ class PropertyOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    async def post(
-        self, body: _models.DatetimeProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.DatetimeProperty:
-        """post.
+    async def default(
+        self, body: _models.DefaultDatetimeProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.DefaultDatetimeProperty:
+        """default.
 
         :param body: Required.
-        :type body: ~encode.datetime.models.DatetimeProperty
+        :type body: ~encode.datetime.models.DefaultDatetimeProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
-        :rtype: ~encode.datetime.models.DatetimeProperty
+        :return: DefaultDatetimeProperty. The DefaultDatetimeProperty is compatible with MutableMapping
+        :rtype: ~encode.datetime.models.DefaultDatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
-    async def post(
+    async def default(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.DatetimeProperty:
-        """post.
+    ) -> _models.DefaultDatetimeProperty:
+        """default.
 
         :param body: Required.
         :type body: JSON
@@ -172,16 +361,16 @@ class PropertyOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
-        :rtype: ~encode.datetime.models.DatetimeProperty
+        :return: DefaultDatetimeProperty. The DefaultDatetimeProperty is compatible with MutableMapping
+        :rtype: ~encode.datetime.models.DefaultDatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
-    async def post(
+    async def default(
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.DatetimeProperty:
-        """post.
+    ) -> _models.DefaultDatetimeProperty:
+        """default.
 
         :param body: Required.
         :type body: IO
@@ -190,24 +379,26 @@ class PropertyOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
-        :rtype: ~encode.datetime.models.DatetimeProperty
+        :return: DefaultDatetimeProperty. The DefaultDatetimeProperty is compatible with MutableMapping
+        :rtype: ~encode.datetime.models.DefaultDatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace_async
-    async def post(self, body: Union[_models.DatetimeProperty, JSON, IO], **kwargs: Any) -> _models.DatetimeProperty:
-        """post.
+    async def default(
+        self, body: Union[_models.DefaultDatetimeProperty, JSON, IO], **kwargs: Any
+    ) -> _models.DefaultDatetimeProperty:
+        """default.
 
-        :param body: Is one of the following types: DatetimeProperty, JSON, IO Required.
-        :type body: ~encode.datetime.models.DatetimeProperty or JSON or IO
+        :param body: Is one of the following types: DefaultDatetimeProperty, JSON, IO Required.
+        :type body: ~encode.datetime.models.DefaultDatetimeProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
-        :rtype: ~encode.datetime.models.DatetimeProperty
+        :return: DefaultDatetimeProperty. The DefaultDatetimeProperty is compatible with MutableMapping
+        :rtype: ~encode.datetime.models.DefaultDatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -222,7 +413,7 @@ class PropertyOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.DatetimeProperty] = kwargs.pop("cls", None)
+        cls: ClsType[_models.DefaultDatetimeProperty] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -231,7 +422,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
 
-        request = build_property_post_request(
+        request = build_property_default_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -253,7 +444,500 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.DatetimeProperty, response.json())
+            deserialized = _deserialize(_models.DefaultDatetimeProperty, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    async def rfc3339(
+        self, body: _models.Rfc3339DatetimeProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Rfc3339DatetimeProperty:
+        """rfc3339.
+
+        :param body: Required.
+        :type body: ~encode.datetime.models.Rfc3339DatetimeProperty
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: Rfc3339DatetimeProperty. The Rfc3339DatetimeProperty is compatible with MutableMapping
+        :rtype: ~encode.datetime.models.Rfc3339DatetimeProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def rfc3339(
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Rfc3339DatetimeProperty:
+        """rfc3339.
+
+        :param body: Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: Rfc3339DatetimeProperty. The Rfc3339DatetimeProperty is compatible with MutableMapping
+        :rtype: ~encode.datetime.models.Rfc3339DatetimeProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def rfc3339(
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Rfc3339DatetimeProperty:
+        """rfc3339.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: Rfc3339DatetimeProperty. The Rfc3339DatetimeProperty is compatible with MutableMapping
+        :rtype: ~encode.datetime.models.Rfc3339DatetimeProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def rfc3339(
+        self, body: Union[_models.Rfc3339DatetimeProperty, JSON, IO], **kwargs: Any
+    ) -> _models.Rfc3339DatetimeProperty:
+        """rfc3339.
+
+        :param body: Is one of the following types: Rfc3339DatetimeProperty, JSON, IO Required.
+        :type body: ~encode.datetime.models.Rfc3339DatetimeProperty or JSON or IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: Rfc3339DatetimeProperty. The Rfc3339DatetimeProperty is compatible with MutableMapping
+        :rtype: ~encode.datetime.models.Rfc3339DatetimeProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.Rfc3339DatetimeProperty] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+
+        request = build_property_rfc3339_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.Rfc3339DatetimeProperty, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    async def rfc7231(
+        self, body: _models.Rfc7231DatetimeProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Rfc7231DatetimeProperty:
+        """rfc7231.
+
+        :param body: Required.
+        :type body: ~encode.datetime.models.Rfc7231DatetimeProperty
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: Rfc7231DatetimeProperty. The Rfc7231DatetimeProperty is compatible with MutableMapping
+        :rtype: ~encode.datetime.models.Rfc7231DatetimeProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def rfc7231(
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Rfc7231DatetimeProperty:
+        """rfc7231.
+
+        :param body: Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: Rfc7231DatetimeProperty. The Rfc7231DatetimeProperty is compatible with MutableMapping
+        :rtype: ~encode.datetime.models.Rfc7231DatetimeProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def rfc7231(
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Rfc7231DatetimeProperty:
+        """rfc7231.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: Rfc7231DatetimeProperty. The Rfc7231DatetimeProperty is compatible with MutableMapping
+        :rtype: ~encode.datetime.models.Rfc7231DatetimeProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def rfc7231(
+        self, body: Union[_models.Rfc7231DatetimeProperty, JSON, IO], **kwargs: Any
+    ) -> _models.Rfc7231DatetimeProperty:
+        """rfc7231.
+
+        :param body: Is one of the following types: Rfc7231DatetimeProperty, JSON, IO Required.
+        :type body: ~encode.datetime.models.Rfc7231DatetimeProperty or JSON or IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: Rfc7231DatetimeProperty. The Rfc7231DatetimeProperty is compatible with MutableMapping
+        :rtype: ~encode.datetime.models.Rfc7231DatetimeProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.Rfc7231DatetimeProperty] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+
+        request = build_property_rfc7231_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.Rfc7231DatetimeProperty, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    async def unix_timestamp(
+        self, body: _models.UnixTimestampDatetimeProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.UnixTimestampDatetimeProperty:
+        """unix_timestamp.
+
+        :param body: Required.
+        :type body: ~encode.datetime.models.UnixTimestampDatetimeProperty
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: UnixTimestampDatetimeProperty. The UnixTimestampDatetimeProperty is compatible with
+         MutableMapping
+        :rtype: ~encode.datetime.models.UnixTimestampDatetimeProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def unix_timestamp(
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.UnixTimestampDatetimeProperty:
+        """unix_timestamp.
+
+        :param body: Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: UnixTimestampDatetimeProperty. The UnixTimestampDatetimeProperty is compatible with
+         MutableMapping
+        :rtype: ~encode.datetime.models.UnixTimestampDatetimeProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def unix_timestamp(
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.UnixTimestampDatetimeProperty:
+        """unix_timestamp.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: UnixTimestampDatetimeProperty. The UnixTimestampDatetimeProperty is compatible with
+         MutableMapping
+        :rtype: ~encode.datetime.models.UnixTimestampDatetimeProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def unix_timestamp(
+        self, body: Union[_models.UnixTimestampDatetimeProperty, JSON, IO], **kwargs: Any
+    ) -> _models.UnixTimestampDatetimeProperty:
+        """unix_timestamp.
+
+        :param body: Is one of the following types: UnixTimestampDatetimeProperty, JSON, IO Required.
+        :type body: ~encode.datetime.models.UnixTimestampDatetimeProperty or JSON or IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: UnixTimestampDatetimeProperty. The UnixTimestampDatetimeProperty is compatible with
+         MutableMapping
+        :rtype: ~encode.datetime.models.UnixTimestampDatetimeProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.UnixTimestampDatetimeProperty] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+
+        request = build_property_unix_timestamp_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.UnixTimestampDatetimeProperty, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    async def unix_timestamp_array(
+        self, body: _models.UnixTimestampArrayDatetimeProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.UnixTimestampArrayDatetimeProperty:
+        """unix_timestamp_array.
+
+        :param body: Required.
+        :type body: ~encode.datetime.models.UnixTimestampArrayDatetimeProperty
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: UnixTimestampArrayDatetimeProperty. The UnixTimestampArrayDatetimeProperty is
+         compatible with MutableMapping
+        :rtype: ~encode.datetime.models.UnixTimestampArrayDatetimeProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def unix_timestamp_array(
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.UnixTimestampArrayDatetimeProperty:
+        """unix_timestamp_array.
+
+        :param body: Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: UnixTimestampArrayDatetimeProperty. The UnixTimestampArrayDatetimeProperty is
+         compatible with MutableMapping
+        :rtype: ~encode.datetime.models.UnixTimestampArrayDatetimeProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def unix_timestamp_array(
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.UnixTimestampArrayDatetimeProperty:
+        """unix_timestamp_array.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: UnixTimestampArrayDatetimeProperty. The UnixTimestampArrayDatetimeProperty is
+         compatible with MutableMapping
+        :rtype: ~encode.datetime.models.UnixTimestampArrayDatetimeProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def unix_timestamp_array(
+        self, body: Union[_models.UnixTimestampArrayDatetimeProperty, JSON, IO], **kwargs: Any
+    ) -> _models.UnixTimestampArrayDatetimeProperty:
+        """unix_timestamp_array.
+
+        :param body: Is one of the following types: UnixTimestampArrayDatetimeProperty, JSON, IO
+         Required.
+        :type body: ~encode.datetime.models.UnixTimestampArrayDatetimeProperty or JSON or IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: UnixTimestampArrayDatetimeProperty. The UnixTimestampArrayDatetimeProperty is
+         compatible with MutableMapping
+        :rtype: ~encode.datetime.models.UnixTimestampArrayDatetimeProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.UnixTimestampArrayDatetimeProperty] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+
+        request = build_property_unix_timestamp_array_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.UnixTimestampArrayDatetimeProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -279,28 +963,13 @@ class HeaderOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get(  # pylint: disable=inconsistent-return-statements
-        self,
-        *,
-        default: datetime.datetime,
-        rfc3339: datetime.datetime,
-        rfc7231: datetime.datetime,
-        unix_timestamp: int,
-        rfc7231_array: List[datetime.datetime],
-        **kwargs: Any
+    async def default(  # pylint: disable=inconsistent-return-statements
+        self, *, value: datetime.datetime, **kwargs: Any
     ) -> None:
-        """get.
+        """default.
 
-        :keyword default: Required.
-        :paramtype default: ~datetime.datetime
-        :keyword rfc3339: Required.
-        :paramtype rfc3339: ~datetime.datetime
-        :keyword rfc7231: Required.
-        :paramtype rfc7231: ~datetime.datetime
-        :keyword unix_timestamp: Required.
-        :paramtype unix_timestamp: int
-        :keyword rfc7231_array: Required.
-        :paramtype rfc7231_array: list[~datetime.datetime]
+        :keyword value: Required.
+        :paramtype value: ~datetime.datetime
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: None
@@ -320,12 +989,200 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_header_get_request(
-            default=default,
-            rfc3339=rfc3339,
-            rfc7231=rfc7231,
-            unix_timestamp=unix_timestamp,
-            rfc7231_array=rfc7231_array,
+        request = build_header_default_request(
+            value=value,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    @distributed_trace_async
+    async def rfc3339(  # pylint: disable=inconsistent-return-statements
+        self, *, value: datetime.datetime, **kwargs: Any
+    ) -> None:
+        """rfc3339.
+
+        :keyword value: Required.
+        :paramtype value: ~datetime.datetime
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        request = build_header_rfc3339_request(
+            value=value,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    @distributed_trace_async
+    async def rfc7231(  # pylint: disable=inconsistent-return-statements
+        self, *, value: datetime.datetime, **kwargs: Any
+    ) -> None:
+        """rfc7231.
+
+        :keyword value: Required.
+        :paramtype value: ~datetime.datetime
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        request = build_header_rfc7231_request(
+            value=value,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    @distributed_trace_async
+    async def unix_timestamp(  # pylint: disable=inconsistent-return-statements
+        self, *, value: datetime.datetime, **kwargs: Any
+    ) -> None:
+        """unix_timestamp.
+
+        :keyword value: Required.
+        :paramtype value: ~datetime.datetime
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        request = build_header_unix_timestamp_request(
+            value=value,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})
+
+    @distributed_trace_async
+    async def unix_timestamp_array(  # pylint: disable=inconsistent-return-statements
+        self, *, value: List[datetime.datetime], **kwargs: Any
+    ) -> None:
+        """unix_timestamp_array.
+
+        :keyword value: Required.
+        :paramtype value: list[~datetime.datetime]
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        request = build_header_unix_timestamp_array_request(
+            value=value,
             headers=_headers,
             params=_params,
         )

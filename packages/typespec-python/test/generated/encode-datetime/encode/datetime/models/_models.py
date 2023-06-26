@@ -14,43 +14,147 @@ from .. import _model_base
 from .._model_base import rest_field
 
 
-class DatetimeProperty(_model_base.Model):
-    """DatetimeProperty.
+class DefaultDatetimeProperty(_model_base.Model):
+    """DefaultDatetimeProperty.
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar default: Required.
-    :vartype default: ~datetime.datetime
-    :ivar rfc3339: Required.
-    :vartype rfc3339: ~datetime.datetime
-    :ivar rfc7231: Required.
-    :vartype rfc7231: ~datetime.datetime
-    :ivar unix_timestamp: Required.
-    :vartype unix_timestamp: int
-    :ivar rfc7231_array: Required.
-    :vartype rfc7231_array: list[~datetime.datetime]
+    :ivar value: Required.
+    :vartype value: ~datetime.datetime
     """
 
-    default: datetime.datetime = rest_field()
-    """Required."""
-    rfc3339: datetime.datetime = rest_field()
-    """Required."""
-    rfc7231: datetime.datetime = rest_field()
-    """Required."""
-    unix_timestamp: int = rest_field(name="unixTimestamp")
-    """Required."""
-    rfc7231_array: List[datetime.datetime] = rest_field(name="rfc7231Array")
+    value: datetime.datetime = rest_field(format="rfc3339")
     """Required."""
 
     @overload
     def __init__(
         self,
         *,
-        default: datetime.datetime,
-        rfc3339: datetime.datetime,
-        rfc7231: datetime.datetime,
-        unix_timestamp: int,
-        rfc7231_array: List[datetime.datetime],
+        value: datetime.datetime,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class Rfc3339DatetimeProperty(_model_base.Model):
+    """Rfc3339DatetimeProperty.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar value: Required.
+    :vartype value: ~datetime.datetime
+    """
+
+    value: datetime.datetime = rest_field(format="rfc3339")
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        value: datetime.datetime,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class Rfc7231DatetimeProperty(_model_base.Model):
+    """Rfc7231DatetimeProperty.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar value: Required.
+    :vartype value: ~datetime.datetime
+    """
+
+    value: datetime.datetime = rest_field(format="rfc7231")
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        value: datetime.datetime,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class UnixTimestampArrayDatetimeProperty(_model_base.Model):
+    """UnixTimestampArrayDatetimeProperty.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar value: Required.
+    :vartype value: list[~datetime.datetime]
+    """
+
+    value: List[datetime.datetime] = rest_field(format="unix-timestamp")
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        value: List[datetime.datetime],
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class UnixTimestampDatetimeProperty(_model_base.Model):
+    """UnixTimestampDatetimeProperty.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar value: Required.
+    :vartype value: ~datetime.datetime
+    """
+
+    value: datetime.datetime = rest_field(format="unix-timestamp")
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        value: datetime.datetime,
     ):
         ...
 

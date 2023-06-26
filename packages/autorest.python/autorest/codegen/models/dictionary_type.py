@@ -31,6 +31,10 @@ class DictionaryType(BaseType):
         self.element_type = element_type
 
     @property
+    def format(self) -> str:
+        return self.element_type.format if hasattr(self.element_type, "format") else None
+
+    @property
     def serialization_type(self) -> str:
         """Returns the serialization value for msrest.
 

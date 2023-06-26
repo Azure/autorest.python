@@ -1026,7 +1026,7 @@ function updateWithEncode(context: SdkContext, entity: ModelProperty | Scalar, r
         } else if (encode.encoding === "rfc7231") {
             result["format"] = "date-time-rfc1123";
         } else if (encode.encoding === "unixTimestamp") {
-            result["type"] = encode.type.name.includes("float") ? "float" : "integer";
+            result["type"] = "unixtime";
         } else if (encode.encoding === "base64url") {
             result["format"] = "base64url";
         }

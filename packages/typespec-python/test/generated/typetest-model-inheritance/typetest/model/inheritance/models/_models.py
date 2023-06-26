@@ -228,8 +228,8 @@ class Salmon(Fish, discriminator="salmon"):
 
     kind: Literal["salmon"] = rest_discriminator(name="kind")  # type: ignore
     """Required. Default value is \"salmon\"."""
-    friends: Optional[List["_models.Fish"]] = rest_field()
-    hate: Optional[Dict[str, "_models.Fish"]] = rest_field()
+    friends: Optional[List["_models.Fish"]] = rest_field(format="None")
+    hate: Optional[Dict[str, "_models.Fish"]] = rest_field(format="None")
     partner: Optional["_models.Fish"] = rest_field()
 
     @overload

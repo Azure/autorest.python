@@ -36,9 +36,9 @@ class VisibilityModel(_model_base.Model):
     """Required string, illustrating a readonly property. Required."""
     query_prop: int = rest_field(name="queryProp", visibility=["query"])
     """Required int32, illustrating a query property. Required."""
-    create_prop: List[str] = rest_field(name="createProp", visibility=["create"])
+    create_prop: List[str] = rest_field(name="createProp", visibility=["create"], format="None")
     """Required string[], illustrating a create property. Required."""
-    update_prop: List[int] = rest_field(name="updateProp", visibility=["update"])
+    update_prop: List[int] = rest_field(name="updateProp", visibility=["update"], format="None")
     """Required int32[], illustrating a update property. Required."""
     delete_prop: bool = rest_field(name="deleteProp", visibility=["delete"])
     """Required bool, illustrating a delete property. Required."""

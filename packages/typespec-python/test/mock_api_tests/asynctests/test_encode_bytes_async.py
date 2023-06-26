@@ -8,7 +8,10 @@ import datetime
 import pytest
 from encode.bytes.aio import BytesClient
 from encode.bytes.models import (
-    BytesProperty,
+    DefaultBytesProperty,
+    Base64urlBytesProperty,
+    Base64BytesProperty,
+    Base64urlArrayBytesProperty,
 )
 
 
@@ -18,45 +21,75 @@ async def client():
         yield client
 
 
+@pytest.mark.asyncio
 async def test_query(client: BytesClient):
-    await client.query(
-        default=bytes("test", "utf-8"),
-        base64=bytes("test", "utf-8"),
-        base64url=bytes("test", "utf-8"),
-        base64_array=[
+    await client.query.default(
+        value=bytes("test", "utf-8"),
+    )
+    await client.query.base64(
+        value=bytes("test", "utf-8"),
+    )
+    await client.query.base64url(
+        value=bytes("test", "utf-8"),
+    )
+    await client.query.base64url_array(
+        value=[
             bytes("test", "utf-8"),
             bytes("test", "utf-8"),
         ],
     )
 
 
+@pytest.mark.asyncio
 async def test_property(client: BytesClient):
-    result = await client.property(
-        BytesProperty(
-            default=bytes("test", "utf-8"),
-            base64=bytes("test", "utf-8"),
-            base64url=bytes("test", "utf-8"),
-            base64_array=[
+    result = await client.property.default(
+        DefaultBytesProperty(
+            value=bytes("test", "utf-8"),
+        )
+    )
+    assert result.value == bytes("test", "utf-8")
+
+    result = await client.property.base64(
+        Base64BytesProperty(
+            value=bytes("test", "utf-8"),
+        )
+    )
+    assert result.value == bytes("test", "utf-8")
+
+    result = await client.property.base64url(
+        Base64urlBytesProperty(
+            value=bytes("test", "utf-8"),
+        )
+    )
+    assert result.value == bytes("test", "utf-8")
+
+    result = await client.property.base64url_array(
+        Base64urlArrayBytesProperty(
+            value=[
                 bytes("test", "utf-8"),
                 bytes("test", "utf-8"),
             ],
         )
     )
-    assert result.default == bytes("test", "utf-8")
-    assert result.base64 == bytes("test", "utf-8")
-    assert result.base64url == bytes("test", "utf-8")
-    assert result.base64_array == [
+    assert result.value == [
         bytes("test", "utf-8"),
         bytes("test", "utf-8"),
     ]
 
 
+@pytest.mark.asyncio
 async def test_header(client: BytesClient):
-    await client.header(
-        default=bytes("test", "utf-8"),
-        base64=bytes("test", "utf-8"),
-        base64url=bytes("test", "utf-8"),
-        base64_array=[
+    await client.header.default(
+        value=bytes("test", "utf-8"),
+    )
+    await client.header.base64(
+        value=bytes("test", "utf-8"),
+    )
+    await client.header.base64url(
+        value=bytes("test", "utf-8"),
+    )
+    await client.header.base64url_array(
+        value=[
             bytes("test", "utf-8"),
             bytes("test", "utf-8"),
         ],

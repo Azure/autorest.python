@@ -58,7 +58,7 @@ class BytesProperty(_model_base.Model):
     :vartype property: bytes
     """
 
-    property: bytes = rest_field()
+    property: bytes = rest_field(format="base64")
     """Property. Required."""
 
     @overload
@@ -89,7 +89,7 @@ class CollectionsIntProperty(_model_base.Model):
     :vartype property: list[int]
     """
 
-    property: List[int] = rest_field()
+    property: List[int] = rest_field(format="None")
     """Property. Required."""
 
     @overload
@@ -120,7 +120,7 @@ class CollectionsModelProperty(_model_base.Model):
     :vartype property: list[~typetest.property.valuetypes.models.InnerModel]
     """
 
-    property: List["_models.InnerModel"] = rest_field()
+    property: List["_models.InnerModel"] = rest_field(format="None")
     """Property. Required."""
 
     @overload
@@ -151,7 +151,7 @@ class CollectionsStringProperty(_model_base.Model):
     :vartype property: list[str]
     """
 
-    property: List[str] = rest_field()
+    property: List[str] = rest_field(format="None")
     """Property. Required."""
 
     @overload
@@ -182,7 +182,7 @@ class DatetimeProperty(_model_base.Model):
     :vartype property: ~datetime.datetime
     """
 
-    property: datetime.datetime = rest_field()
+    property: datetime.datetime = rest_field(format="rfc3339")
     """Property. Required."""
 
     @overload
@@ -213,7 +213,7 @@ class DictionaryStringProperty(_model_base.Model):
     :vartype property: dict[str, str]
     """
 
-    property: Dict[str, str] = rest_field()
+    property: Dict[str, str] = rest_field(format="None")
     """Property. Required."""
 
     @overload
