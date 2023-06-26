@@ -61,7 +61,6 @@ import {
     getSdkEnum,
     getSdkConstant,
     getSdkModelPropertyType,
-    getClientFormat,
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
@@ -1030,10 +1029,12 @@ function updateWithEncode(context: SdkContext, entity: ModelProperty | Scalar, r
         } else if (encode.encoding === "base64url") {
             result["format"] = "base64url";
         }
-    } else if (entity.kind === "ModelProperty" &&
+    } else if (
+        entity.kind === "ModelProperty" &&
         entity.type.kind === "Scalar" &&
         isHeader(context.program, entity) &&
-        (entity.type.name === "utcDateTime" || entity.type.name === "offsetDateTime")) {
+        (entity.type.name === "utcDateTime" || entity.type.name === "offsetDateTime")
+    ) {
         result["format"] = "date-time-rfc1123";
     }
 }
