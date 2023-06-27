@@ -4,7 +4,6 @@
 # license information.
 # --------------------------------------------------------------------------
 import datetime
-from enum import Enum
 from typing import Any, Dict, List, Optional, Union, TYPE_CHECKING
 
 from .base import BaseType

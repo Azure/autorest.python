@@ -6,10 +6,10 @@
 # --------------------------------------------------------------------------
 # pylint: disable=protected-access, arguments-differ, signature-differs, broad-except
 # pyright: reportGeneralTypeIssues=false
+
 import calendar
 import functools
 import sys
-import logging
 import base64
 import re
 import copy
@@ -21,16 +21,28 @@ import isodate
 from azure.core.exceptions import DeserializationError
 from azure.core import CaseInsensitiveEnumMeta
 from azure.core.pipeline import PipelineResponse
-from azure.core.serialization import _Null  # pylint: disable=protected-access
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping
 
-_LOGGER = logging.getLogger(__name__)
+__all__ = ["NULL", "AzureJSONEncoder", "Model", "rest_field", "rest_discriminator"]
+TZ_UTC = timezone.utc
 
-__all__ = ["AzureJSONEncoder", "Model", "rest_field", "rest_discriminator"]
+
+class _Null:
+    """To create a Falsy object"""
+
+    def __bool__(self):
+        return False
+
+
+NULL = _Null()
+"""
+A falsy sentinel object which is supposed to be used to specify attributes
+with no data. This gets serialized to `null` on the wire.
+"""
 
 TZ_UTC = timezone.utc
 
@@ -92,53 +104,27 @@ def _timedelta_as_isostr(td: timedelta) -> str:
     return "P" + date_str + time_str
 
 
-def _serialize_bytes(o, format: typing.Optional[str]) -> str:
+def _serialize_bytes(o, format: typing.Optional[str] = None) -> str:
     encoded = base64.b64encode(o).decode()
     if format == "base64url":
         return encoded.strip("=").replace("+", "-").replace("/", "_")
     return encoded
 
 
-DAYS = {0: "Mon", 1: "Tue", 2: "Wed", 3: "Thu", 4: "Fri", 5: "Sat", 6: "Sun"}
-MONTHS = {
-    1: "Jan",
-    2: "Feb",
-    3: "Mar",
-    4: "Apr",
-    5: "May",
-    6: "Jun",
-    7: "Jul",
-    8: "Aug",
-    9: "Sep",
-    10: "Oct",
-    11: "Nov",
-    12: "Dec",
-}
-
-
 def _serialize_datetime(o, format: typing.Optional[str] = None):
     if hasattr(o, "year") and hasattr(o, "hour"):
         if format == "rfc7231":
-            utc = o.utctimetuple()
-            return "{}, {:02} {} {:04} {:02}:{:02}:{:02} GMT".format(
-                DAYS[utc.tm_wday],
-                utc.tm_mday,
-                MONTHS[utc.tm_mon],
-                utc.tm_year,
-                utc.tm_hour,
-                utc.tm_min,
-                utc.tm_sec,
-            )
-        elif format == "unix-timestamp":
+            return email.utils.format_datetime(o, usegmt=True)
+        if format == "unix-timestamp":
             return int(calendar.timegm(o.utctimetuple()))
+
+        # astimezone() fails for naive times in Python 2.7, so make make sure o is aware (tzinfo is set)
+        if not o.tzinfo:
+            iso_formatted = o.replace(tzinfo=TZ_UTC).isoformat()
         else:
-            # astimezone() fails for naive times in Python 2.7, so make make sure o is aware (tzinfo is set)
-            if not o.tzinfo:
-                iso_formatted = o.replace(tzinfo=TZ_UTC).isoformat()
-            else:
-                iso_formatted = o.astimezone(TZ_UTC).isoformat()
-            # Replace the trailing "+00:00" UTC offset with "Z" (RFC 3339: https://www.ietf.org/rfc/rfc3339.txt)
-            return iso_formatted.replace("+00:00", "Z")
+            iso_formatted = o.astimezone(TZ_UTC).isoformat()
+        # Replace the trailing "+00:00" UTC offset with "Z" (RFC 3339: https://www.ietf.org/rfc/rfc3339.txt)
+        return iso_formatted.replace("+00:00", "Z")
     # Next try datetime.date or datetime.time
     return o.isoformat()
 
@@ -238,12 +224,7 @@ def _deserialize_datetime_rfc7231(attr: typing.Union[str, datetime]) -> datetime
     if not match:
         raise ValueError("Invalid datetime string: " + attr)
 
-    try:
-        date_obj = email.utils.parsedate_to_datetime(attr)
-    except ValueError:
-        raise ValueError("Invalid datetime string: " + attr)
-    else:
-        return date_obj
+    return email.utils.parsedate_to_datetime(attr)
 
 
 def _deserialize_datetime_unix_timestamp(attr: typing.Union[str, datetime]) -> datetime:
@@ -256,12 +237,7 @@ def _deserialize_datetime_unix_timestamp(attr: typing.Union[str, datetime]) -> d
     if isinstance(attr, datetime):
         # i'm already deserialized
         return attr
-    try:
-        date_obj = datetime.fromtimestamp(attr, TZ_UTC)
-    except ValueError:
-        raise ValueError("Invalid datetime string: " + attr)
-    else:
-        return date_obj
+    return datetime.fromtimestamp(attr, TZ_UTC)
 
 
 def _deserialize_date(attr: typing.Union[str, date]) -> date:
@@ -314,6 +290,7 @@ _DESERIALIZE_MAPPING = {
     date: _deserialize_date,
     time: _deserialize_time,
     bytes: _deserialize_bytes,
+    bytearray: _deserialize_bytes,
     timedelta: _deserialize_duration,
     typing.Any: lambda x: x,
 }
@@ -330,8 +307,7 @@ _DESERIALIZE_MAPPING_WITHFORMAT = {
 def get_deserializer(annotation: typing.Any, rf: typing.Optional["_RestField"] = None):
     if rf and rf._format:
         return _DESERIALIZE_MAPPING_WITHFORMAT.get(rf._format)
-    else:
-        return _DESERIALIZE_MAPPING.get(annotation)
+    return _DESERIALIZE_MAPPING.get(annotation)
 
 
 def _get_model(module_name: str, model_name: str):
@@ -450,6 +426,10 @@ def _serialize(o, format: typing.Optional[str] = None):
         return [_serialize(x, format) for x in o]
     if isinstance(o, dict):
         return {k: _serialize(v, format) for k, v in o.items()}
+    if isinstance(o, set):
+        return {_serialize(x, format) for x in o}
+    if isinstance(o, tuple):
+        return tuple(_serialize(x, format) for x in o)
     if isinstance(o, (bytes, bytearray)):
         return _serialize_bytes(o, format)
     try:
@@ -467,7 +447,7 @@ def _serialize(o, format: typing.Optional[str] = None):
 
 
 def _get_rest_field(
-    attr_to_rest_field: typing.Dict[str, "_RestField"], rest_name: str
+        attr_to_rest_field: typing.Dict[str, "_RestField"], rest_name: str
 ) -> typing.Optional["_RestField"]:
     try:
         return next(
@@ -481,7 +461,7 @@ def _create_value(rf: typing.Optional["_RestField"], value: typing.Any) -> typin
     return (
         _deserialize(rf._type, value)
         if (rf and rf._is_model)
-        else _serialize(value, rf._format)
+        else _serialize(value, rf._format if rf else None)
     )
 
 
@@ -528,12 +508,12 @@ class Model(_MyMutableMapping):
         return Model(self.__dict__)
 
     def __new__(
-        cls, *args: typing.Any, **kwargs: typing.Any
+            cls, *args: typing.Any, **kwargs: typing.Any
     ) -> "Model":  # pylint: disable=unused-argument
         # we know the last three classes in mro are going to be 'Model', 'dict', and 'object'
         mros = cls.__mro__[:-3][
-            ::-1
-        ]  # ignore model, dict, and object parents, and reverse the mro order
+               ::-1
+               ]  # ignore model, dict, and object parents, and reverse the mro order
         attr_to_rest_field: typing.Dict[
             str, _RestField
         ] = {  # map attribute name to rest_field property
@@ -571,7 +551,7 @@ class Model(_MyMutableMapping):
     def _get_discriminator(cls) -> typing.Optional[str]:
         for v in cls.__dict__.values():
             if (
-                isinstance(v, _RestField) and v._is_discriminator
+                    isinstance(v, _RestField) and v._is_discriminator
             ):  # pylint: disable=protected-access
                 return v._rest_name  # pylint: disable=protected-access
         return None
@@ -590,9 +570,9 @@ class Model(_MyMutableMapping):
 
 
 def _get_deserialize_callable_from_annotation(  # pylint: disable=too-many-return-statements, too-many-statements
-    annotation: typing.Any,
-    module: typing.Optional[str],
-    rf: typing.Optional["_RestField"] = None,
+        annotation: typing.Any,
+        module: typing.Optional[str],
+        rf: typing.Optional["_RestField"] = None,
 ) -> typing.Optional[typing.Callable[[typing.Any], typing.Any]]:
     if not annotation or annotation in [int, float]:
         return None
@@ -603,7 +583,7 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=too-many-retur
                 rf._is_model = True
 
             def _deserialize_model(
-                model_deserializer: typing.Optional[typing.Callable], obj
+                    model_deserializer: typing.Optional[typing.Callable], obj
             ):
                 if _is_model(obj):
                     return obj
@@ -632,7 +612,7 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=too-many-retur
         def _deserialize_with_union(union_annotation, obj):
             for t in union_annotation.__args__:
                 try:
-                    return _deserialize(t, obj, module)
+                    return _deserialize(t, obj, module, rf)
                 except DeserializationError:
                     pass
             raise DeserializationError()
@@ -649,7 +629,7 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=too-many-retur
             )
 
             def _deserialize_with_optional(
-                if_obj_deserializer: typing.Optional[typing.Callable], obj
+                    if_obj_deserializer: typing.Optional[typing.Callable], obj
             ):
                 if obj is None:
                     return obj
@@ -678,9 +658,9 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=too-many-retur
             )
 
             def _deserialize_dict(
-                key_deserializer: typing.Optional[typing.Callable],
-                value_deserializer: typing.Optional[typing.Callable],
-                obj: typing.Dict[typing.Any, typing.Any],
+                    key_deserializer: typing.Optional[typing.Callable],
+                    value_deserializer: typing.Optional[typing.Callable],
+                    obj: typing.Dict[typing.Any, typing.Any],
             ):
                 if obj is None:
                     return obj
@@ -703,8 +683,8 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=too-many-retur
             if len(annotation.__args__) > 1:
 
                 def _deserialize_multiple_sequence(
-                    entry_deserializers: typing.List[typing.Optional[typing.Callable]],
-                    obj,
+                        entry_deserializers: typing.List[typing.Optional[typing.Callable]],
+                        obj,
                 ):
                     if obj is None:
                         return obj
@@ -725,8 +705,8 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=too-many-retur
             )
 
             def _deserialize_sequence(
-                deserializer: typing.Optional[typing.Callable],
-                obj,
+                    deserializer: typing.Optional[typing.Callable],
+                    obj,
             ):
                 if obj is None:
                     return obj
@@ -739,9 +719,9 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=too-many-retur
         pass
 
     def _deserialize_default(
-        annotation,
-        deserializer_from_mapping,
-        obj,
+            annotation,
+            deserializer_from_mapping,
+            obj,
     ):
         if obj is None:
             return obj
@@ -757,8 +737,8 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=too-many-retur
 
 
 def _deserialize_with_callable(
-    deserializer: typing.Optional[typing.Callable[[typing.Any], typing.Any]],
-    value: typing.Any,
+        deserializer: typing.Optional[typing.Callable[[typing.Any], typing.Any]],
+        value: typing.Any,
 ):
     try:
         if value is None:
@@ -781,10 +761,10 @@ def _deserialize_with_callable(
 
 
 def _deserialize(
-    deserializer: typing.Any,
-    value: typing.Any,
-    module: typing.Optional[str] = None,
-    rf: typing.Optional["_RestField"] = None,
+        deserializer: typing.Any,
+        value: typing.Any,
+        module: typing.Optional[str] = None,
+        rf: typing.Optional["_RestField"] = None,
 ) -> typing.Any:
     if isinstance(value, PipelineResponse):
         value = value.http_response.json()
@@ -794,16 +774,16 @@ def _deserialize(
 
 class _RestField:
     def __init__(
-        self,
-        *,
-        name: typing.Optional[str] = None,
-        type: typing.Optional[
-            typing.Callable
-        ] = None,  # pylint: disable=redefined-builtin
-        is_discriminator: bool = False,
-        visibility: typing.Optional[typing.List[str]] = None,
-        default: typing.Any = _UNSET,
-        format: typing.Optional[str] = None,
+            self,
+            *,
+            name: typing.Optional[str] = None,
+            type: typing.Optional[
+                typing.Callable
+            ] = None,  # pylint: disable=redefined-builtin
+            is_discriminator: bool = False,
+            visibility: typing.Optional[typing.List[str]] = None,
+            default: typing.Any = _UNSET,
+            format: typing.Optional[str] = None,
     ):
         self._type = type
         self._rest_name_input = name
@@ -826,7 +806,7 @@ class _RestField:
         item = obj.get(self._rest_name)
         if item is None:
             return item
-        return _deserialize(self._type, _serialize(item, self._format), self)
+        return _deserialize(self._type, _serialize(item, self._format), rf=self)
 
     def __set__(self, obj: Model, value) -> None:
         if value is None:
@@ -841,18 +821,18 @@ class _RestField:
         obj.__setitem__(self._rest_name, _serialize(value, self._format))
 
     def _get_deserialize_callable_from_annotation(
-        self, annotation: typing.Any
+            self, annotation: typing.Any
     ) -> typing.Optional[typing.Callable[[typing.Any], typing.Any]]:
         return _get_deserialize_callable_from_annotation(annotation, self._module, self)
 
 
 def rest_field(
-    *,
-    name: typing.Optional[str] = None,
-    type: typing.Optional[typing.Callable] = None,  # pylint: disable=redefined-builtin
-    visibility: typing.Optional[typing.List[str]] = None,
-    default: typing.Any = _UNSET,
-    format: typing.Optional[str] = None,
+        *,
+        name: typing.Optional[str] = None,
+        type: typing.Optional[typing.Callable] = None,  # pylint: disable=redefined-builtin
+        visibility: typing.Optional[typing.List[str]] = None,
+        default: typing.Any = _UNSET,
+        format: typing.Optional[str] = None,
 ) -> typing.Any:
     return _RestField(
         name=name, type=type, visibility=visibility, default=default, format=format
@@ -860,8 +840,8 @@ def rest_field(
 
 
 def rest_discriminator(
-    *,
-    name: typing.Optional[str] = None,
-    type: typing.Optional[typing.Callable] = None,  # pylint: disable=redefined-builtin
+        *,
+        name: typing.Optional[str] = None,
+        type: typing.Optional[typing.Callable] = None,  # pylint: disable=redefined-builtin
 ) -> typing.Any:
     return _RestField(name=name, type=type, is_discriminator=True)

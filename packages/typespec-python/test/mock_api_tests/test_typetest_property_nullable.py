@@ -4,12 +4,11 @@
 # license information.
 # --------------------------------------------------------------------------
 import json
-from typing import Any
 import pytest
 from typetest.property.nullable import NullableClient, models
-from azure.core.serialization import NULL
 from typetest.property.nullable._model_base import (  # pylint: disable=protected-access
     AzureJSONEncoder,
+    NULL,
 )
 
 

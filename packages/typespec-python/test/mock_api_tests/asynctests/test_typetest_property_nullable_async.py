@@ -3,10 +3,14 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any
+import json
 import pytest
 from typetest.property.nullable.aio import NullableClient
-from typetest.property.nullable import models\
+from typetest.property.nullable import models
+from typetest.property.nullable._model_base import (  # pylint: disable=protected-access
+    AzureJSONEncoder,
+    NULL,
+)
 
 
 @pytest.fixture
@@ -27,22 +31,25 @@ async def client():
             models.CollectionsByteProperty,
             ["aGVsbG8sIHdvcmxkIQ==", "aGVsbG8sIHdvcmxkIQ=="],
         ),
-        # (
-        #     "collections_model",
-        #     models.CollectionsModelProperty,
-        #     [
-        #         models.InnerModel(property="hello"),
-        #         models.InnerModel(property="world"),
-        #     ],
-        # ),
+        (
+            "collections_model",
+            models.CollectionsModelProperty,
+            [
+                models.InnerModel(property="hello"),
+                models.InnerModel(property="world"),
+            ],
+        ),
     ],
 )
 @pytest.mark.asyncio
 async def test(client, og_name, model, val):
     og_group = getattr(client, og_name)
     non_null_model = model(required_property="foo", nullable_property=val)
-    # non_model = model(required_property="foo", nullable_property=NULL)
+    non_model = model(required_property="foo", nullable_property=NULL)
+    assert '{"requiredProperty": "foo", "nullableProperty": null}' == json.dumps(
+        non_model, cls=AzureJSONEncoder
+    )
     assert await og_group.get_non_null() == non_null_model
     assert (await og_group.get_null())["nullableProperty"] is None
     await og_group.patch_non_null(body=non_null_model)
-    # await og_group.patch_null(body=non_model)
+    await og_group.patch_null(body=non_model)

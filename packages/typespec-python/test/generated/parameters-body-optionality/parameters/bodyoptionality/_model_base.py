@@ -6,10 +6,10 @@
 # --------------------------------------------------------------------------
 # pylint: disable=protected-access, arguments-differ, signature-differs, broad-except
 # pyright: reportGeneralTypeIssues=false
+
 import calendar
 import functools
 import sys
-import logging
 import base64
 import re
 import copy
@@ -21,16 +21,28 @@ import isodate
 from azure.core.exceptions import DeserializationError
 from azure.core import CaseInsensitiveEnumMeta
 from azure.core.pipeline import PipelineResponse
-from azure.core.serialization import _Null  # pylint: disable=protected-access
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping
 
-_LOGGER = logging.getLogger(__name__)
+__all__ = ["NULL", "AzureJSONEncoder", "Model", "rest_field", "rest_discriminator"]
+TZ_UTC = timezone.utc
 
-__all__ = ["AzureJSONEncoder", "Model", "rest_field", "rest_discriminator"]
+
+class _Null:
+    """To create a Falsy object"""
+
+    def __bool__(self):
+        return False
+
+
+NULL = _Null()
+"""
+A falsy sentinel object which is supposed to be used to specify attributes
+with no data. This gets serialized to `null` on the wire.
+"""
 
 TZ_UTC = timezone.utc
 
@@ -92,53 +104,27 @@ def _timedelta_as_isostr(td: timedelta) -> str:
     return "P" + date_str + time_str
 
 
-def _serialize_bytes(o, format: typing.Optional[str]) -> str:
+def _serialize_bytes(o, format: typing.Optional[str] = None) -> str:
     encoded = base64.b64encode(o).decode()
     if format == "base64url":
         return encoded.strip("=").replace("+", "-").replace("/", "_")
     return encoded
 
 
-DAYS = {0: "Mon", 1: "Tue", 2: "Wed", 3: "Thu", 4: "Fri", 5: "Sat", 6: "Sun"}
-MONTHS = {
-    1: "Jan",
-    2: "Feb",
-    3: "Mar",
-    4: "Apr",
-    5: "May",
-    6: "Jun",
-    7: "Jul",
-    8: "Aug",
-    9: "Sep",
-    10: "Oct",
-    11: "Nov",
-    12: "Dec",
-}
-
-
 def _serialize_datetime(o, format: typing.Optional[str] = None):
     if hasattr(o, "year") and hasattr(o, "hour"):
         if format == "rfc7231":
-            utc = o.utctimetuple()
-            return "{}, {:02} {} {:04} {:02}:{:02}:{:02} GMT".format(
-                DAYS[utc.tm_wday],
-                utc.tm_mday,
-                MONTHS[utc.tm_mon],
-                utc.tm_year,
-                utc.tm_hour,
-                utc.tm_min,
-                utc.tm_sec,
-            )
-        elif format == "unix-timestamp":
+            return email.utils.format_datetime(o, usegmt=True)
+        if format == "unix-timestamp":
             return int(calendar.timegm(o.utctimetuple()))
+
+        # astimezone() fails for naive times in Python 2.7, so make make sure o is aware (tzinfo is set)
+        if not o.tzinfo:
+            iso_formatted = o.replace(tzinfo=TZ_UTC).isoformat()
         else:
-            # astimezone() fails for naive times in Python 2.7, so make make sure o is aware (tzinfo is set)
-            if not o.tzinfo:
-                iso_formatted = o.replace(tzinfo=TZ_UTC).isoformat()
-            else:
-                iso_formatted = o.astimezone(TZ_UTC).isoformat()
-            # Replace the trailing "+00:00" UTC offset with "Z" (RFC 3339: https://www.ietf.org/rfc/rfc3339.txt)
-            return iso_formatted.replace("+00:00", "Z")
+            iso_formatted = o.astimezone(TZ_UTC).isoformat()
+        # Replace the trailing "+00:00" UTC offset with "Z" (RFC 3339: https://www.ietf.org/rfc/rfc3339.txt)
+        return iso_formatted.replace("+00:00", "Z")
     # Next try datetime.date or datetime.time
     return o.isoformat()
 
@@ -234,12 +220,7 @@ def _deserialize_datetime_rfc7231(attr: typing.Union[str, datetime]) -> datetime
     if not match:
         raise ValueError("Invalid datetime string: " + attr)
 
-    try:
-        date_obj = email.utils.parsedate_to_datetime(attr)
-    except ValueError:
-        raise ValueError("Invalid datetime string: " + attr)
-    else:
-        return date_obj
+    return email.utils.parsedate_to_datetime(attr)
 
 
 def _deserialize_datetime_unix_timestamp(attr: typing.Union[str, datetime]) -> datetime:
@@ -252,12 +233,7 @@ def _deserialize_datetime_unix_timestamp(attr: typing.Union[str, datetime]) -> d
     if isinstance(attr, datetime):
         # i'm already deserialized
         return attr
-    try:
-        date_obj = datetime.fromtimestamp(attr, TZ_UTC)
-    except ValueError:
-        raise ValueError("Invalid datetime string: " + attr)
-    else:
-        return date_obj
+    return datetime.fromtimestamp(attr, TZ_UTC)
 
 
 def _deserialize_date(attr: typing.Union[str, date]) -> date:
@@ -310,6 +286,7 @@ _DESERIALIZE_MAPPING = {
     date: _deserialize_date,
     time: _deserialize_time,
     bytes: _deserialize_bytes,
+    bytearray: _deserialize_bytes,
     timedelta: _deserialize_duration,
     typing.Any: lambda x: x,
 }
@@ -326,8 +303,7 @@ _DESERIALIZE_MAPPING_WITHFORMAT = {
 def get_deserializer(annotation: typing.Any, rf: typing.Optional["_RestField"] = None):
     if rf and rf._format:
         return _DESERIALIZE_MAPPING_WITHFORMAT.get(rf._format)
-    else:
-        return _DESERIALIZE_MAPPING.get(annotation)
+    return _DESERIALIZE_MAPPING.get(annotation)
 
 
 def _get_model(module_name: str, model_name: str):
@@ -440,6 +416,10 @@ def _serialize(o, format: typing.Optional[str] = None):
         return [_serialize(x, format) for x in o]
     if isinstance(o, dict):
         return {k: _serialize(v, format) for k, v in o.items()}
+    if isinstance(o, set):
+        return {_serialize(x, format) for x in o}
+    if isinstance(o, tuple):
+        return tuple(_serialize(x, format) for x in o)
     if isinstance(o, (bytes, bytearray)):
         return _serialize_bytes(o, format)
     try:
@@ -466,7 +446,7 @@ def _get_rest_field(
 
 
 def _create_value(rf: typing.Optional["_RestField"], value: typing.Any) -> typing.Any:
-    return _deserialize(rf._type, value) if (rf and rf._is_model) else _serialize(value, rf._format)
+    return _deserialize(rf._type, value) if (rf and rf._is_model) else _serialize(value, rf._format if rf else None)
 
 
 class Model(_MyMutableMapping):
@@ -588,7 +568,7 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=too-many-retur
         def _deserialize_with_union(union_annotation, obj):
             for t in union_annotation.__args__:
                 try:
-                    return _deserialize(t, obj, module)
+                    return _deserialize(t, obj, module, rf)
                 except DeserializationError:
                     pass
             raise DeserializationError()
@@ -761,7 +741,7 @@ class _RestField:
         item = obj.get(self._rest_name)
         if item is None:
             return item
-        return _deserialize(self._type, _serialize(item, self._format), self)
+        return _deserialize(self._type, _serialize(item, self._format), rf=self)
 
     def __set__(self, obj: Model, value) -> None:
         if value is None:
