@@ -355,7 +355,11 @@ class StringType(PrimitiveType):
 class DatetimeType(PrimitiveType):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
-        self.format = "rfc3339" if yaml_data.get("format", "date-time") == "date-time" else "rfc7231"
+        self.format = (
+            "rfc3339"
+            if yaml_data.get("format", "date-time") == "date-time"
+            else "rfc7231"
+        )
 
     @property
     def serialization_type(self) -> str:

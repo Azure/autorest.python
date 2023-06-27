@@ -421,7 +421,7 @@ def _is_model(obj: typing.Any) -> bool:
     return getattr(obj, "_is_model", False)
 
 
-def _serialize(o, format: typing.Optional[str] = None):
+def _serialize(o, format: typing.Optional[str] = None):  # pylint: disable=too-many-return-statements
     if isinstance(o, list):
         return [_serialize(x, format) for x in o]
     if isinstance(o, dict):
