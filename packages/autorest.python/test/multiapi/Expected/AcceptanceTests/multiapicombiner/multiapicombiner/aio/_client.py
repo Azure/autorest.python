@@ -111,7 +111,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
 
     @property
     @api_version_validation(
-        api_versions=['2.0.0', '3.0.0']
+        method_valid_on=['2.0.0', '3.0.0']
     )
     def operation_group_two(self):
         api_version = self._get_api_version("operation_group_two")
