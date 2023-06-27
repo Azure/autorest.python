@@ -260,7 +260,7 @@ class DpgModelSerializer(_ModelSerializer):
             args.append(f"visibility=[{v_list}]")
         if prop.client_default_value is not None:
             args.append(f"default={prop.client_default_value_declaration}")
-        if hasattr(prop.type, "format"):
+        if hasattr(prop.type, "format") and prop.type.format:  # type: ignore
             args.append(f'format="{prop.type.format}"')  # type: ignore
 
         field = "rest_discriminator" if prop.is_discriminator else "rest_field"
