@@ -38,7 +38,7 @@ class User(_model_base.Model):
     """The user's id. Required."""
     name: str = rest_field()
     """The user's name. Required."""
-    orders: Optional[List["_models.UserOrder"]] = rest_field(format="None")
+    orders: Optional[List["_models.UserOrder"]] = rest_field()
     """The user's order list."""
     etag: str = rest_field(visibility=["read"])
     """The entity tag for this resource. Required."""

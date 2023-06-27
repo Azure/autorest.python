@@ -84,7 +84,7 @@ class CollectionsModelProperty(_model_base.Model):
     :vartype property: list[~typetest.property.optional.models.StringProperty]
     """
 
-    property: Optional[List["_models.StringProperty"]] = rest_field(format="None")
+    property: Optional[List["_models.StringProperty"]] = rest_field()
     """Property."""
 
     @overload

@@ -104,7 +104,7 @@ class CollectionsModelProperty(_model_base.Model):
 
     required_property: str = rest_field(name="requiredProperty")
     """Required property. Required."""
-    nullable_property: List["_models.InnerModel"] = rest_field(name="nullableProperty", format="None")
+    nullable_property: List["_models.InnerModel"] = rest_field(name="nullableProperty")
     """Property. Required."""
 
     @overload

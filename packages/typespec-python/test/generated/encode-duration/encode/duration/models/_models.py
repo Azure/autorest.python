@@ -54,7 +54,7 @@ class FloatSecondsDurationArrayProperty(_model_base.Model):
     :vartype value: list[float]
     """
 
-    value: List[float] = rest_field(format="None")
+    value: List[float] = rest_field()
     """Required."""
 
     @overload

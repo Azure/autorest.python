@@ -89,7 +89,7 @@ class CollectionsIntProperty(_model_base.Model):
     :vartype property: list[int]
     """
 
-    property: List[int] = rest_field(format="None")
+    property: List[int] = rest_field()
     """Property. Required."""
 
     @overload
@@ -120,7 +120,7 @@ class CollectionsModelProperty(_model_base.Model):
     :vartype property: list[~typetest.property.valuetypes.models.InnerModel]
     """
 
-    property: List["_models.InnerModel"] = rest_field(format="None")
+    property: List["_models.InnerModel"] = rest_field()
     """Property. Required."""
 
     @overload
@@ -151,7 +151,7 @@ class CollectionsStringProperty(_model_base.Model):
     :vartype property: list[str]
     """
 
-    property: List[str] = rest_field(format="None")
+    property: List[str] = rest_field()
     """Property. Required."""
 
     @overload
@@ -213,7 +213,7 @@ class DictionaryStringProperty(_model_base.Model):
     :vartype property: dict[str, str]
     """
 
-    property: Dict[str, str] = rest_field(format="None")
+    property: Dict[str, str] = rest_field()
     """Property. Required."""
 
     @overload
