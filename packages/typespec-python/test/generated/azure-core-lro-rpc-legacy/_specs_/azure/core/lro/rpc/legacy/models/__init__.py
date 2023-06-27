@@ -6,14 +6,24 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._operations import RpcClientOperationsMixin
+from ._models import Error
+from ._models import ErrorResponse
+from ._models import InnerError
+from ._models import JobData
+from ._models import JobResult
 
+from ._enums import JobStatus
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "RpcClientOperationsMixin",
+    "Error",
+    "ErrorResponse",
+    "InnerError",
+    "JobData",
+    "JobResult",
+    "JobStatus",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()

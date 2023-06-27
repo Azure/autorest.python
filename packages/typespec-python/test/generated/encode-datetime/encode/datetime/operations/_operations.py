@@ -72,7 +72,7 @@ def build_query_rfc7231_request(*, value: datetime.datetime, **kwargs: Any) -> H
     _url = "/encode/datetime/query/rfc7231"
 
     # Construct parameters
-    _params["value"] = _SERIALIZER.query("value", value, "rfc-1123")
+    _params["value"] = _SERIALIZER.query("value", value, "iso-8601")
 
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
@@ -84,7 +84,7 @@ def build_query_unix_timestamp_request(*, value: datetime.datetime, **kwargs: An
     _url = "/encode/datetime/query/unix-timestamp"
 
     # Construct parameters
-    _params["value"] = _SERIALIZER.query("value", value, "unix-time")
+    _params["value"] = _SERIALIZER.query("value", value, "iso-8601")
 
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
@@ -96,7 +96,7 @@ def build_query_unix_timestamp_array_request(*, value: List[datetime.datetime], 
     _url = "/encode/datetime/query/unix-timestamp-array"
 
     # Construct parameters
-    _params["value"] = _SERIALIZER.query("value", value, "[unix-time]", div=",")
+    _params["value"] = _SERIALIZER.query("value", value, "[iso-8601]", div=",")
 
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
@@ -205,7 +205,7 @@ def build_header_rfc3339_request(*, value: datetime.datetime, **kwargs: Any) -> 
     _url = "/encode/datetime/header/rfc3339"
 
     # Construct headers
-    _headers["value"] = _SERIALIZER.header("value", value, "iso-8601")
+    _headers["value"] = _SERIALIZER.header("value", value, "rfc-1123")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
@@ -229,7 +229,7 @@ def build_header_unix_timestamp_request(*, value: datetime.datetime, **kwargs: A
     _url = "/encode/datetime/header/unix-timestamp"
 
     # Construct headers
-    _headers["value"] = _SERIALIZER.header("value", value, "unix-time")
+    _headers["value"] = _SERIALIZER.header("value", value, "rfc-1123")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
@@ -241,7 +241,7 @@ def build_header_unix_timestamp_array_request(*, value: List[datetime.datetime],
     _url = "/encode/datetime/header/unix-timestamp-array"
 
     # Construct headers
-    _headers["value"] = _SERIALIZER.header("value", value, "[unix-time]", div=",")
+    _headers["value"] = _SERIALIZER.header("value", value, "[iso-8601]", div=",")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 

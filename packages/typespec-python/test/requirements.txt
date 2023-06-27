@@ -8,7 +8,7 @@ azure-core==1.27.0
 -e ./generated/authentication-oauth2
 -e ./generated/authentication-union
 -e ./generated/azure-core-basic
--e ./generated/azure-core-lro-rpc
+-e ./generated/azure-core-lro-rpc-legacy
 -e ./generated/azure-core-lro-standard
 -e ./generated/azure-core-traits
 -e ./generated/encode-duration

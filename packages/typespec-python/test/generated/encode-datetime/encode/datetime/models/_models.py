@@ -23,7 +23,7 @@ class DefaultDatetimeProperty(_model_base.Model):
     :vartype value: ~datetime.datetime
     """
 
-    value: datetime.datetime = rest_field(format="rfc3339")
+    value: datetime.datetime = rest_field()
     """Required."""
 
     @overload
@@ -54,7 +54,7 @@ class Rfc3339DatetimeProperty(_model_base.Model):
     :vartype value: ~datetime.datetime
     """
 
-    value: datetime.datetime = rest_field(format="rfc3339")
+    value: datetime.datetime = rest_field()
     """Required."""
 
     @overload
@@ -85,7 +85,7 @@ class Rfc7231DatetimeProperty(_model_base.Model):
     :vartype value: ~datetime.datetime
     """
 
-    value: datetime.datetime = rest_field(format="rfc7231")
+    value: datetime.datetime = rest_field()
     """Required."""
 
     @overload
@@ -116,7 +116,7 @@ class UnixTimestampArrayDatetimeProperty(_model_base.Model):
     :vartype value: list[~datetime.datetime]
     """
 
-    value: List[datetime.datetime] = rest_field(format="unix-timestamp")
+    value: List[datetime.datetime] = rest_field()
     """Required."""
 
     @overload
@@ -147,7 +147,7 @@ class UnixTimestampDatetimeProperty(_model_base.Model):
     :vartype value: ~datetime.datetime
     """
 
-    value: datetime.datetime = rest_field(format="unix-timestamp")
+    value: datetime.datetime = rest_field()
     """Required."""
 
     @overload

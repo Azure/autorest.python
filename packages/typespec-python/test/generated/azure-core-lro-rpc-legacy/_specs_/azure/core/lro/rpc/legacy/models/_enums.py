@@ -10,14 +10,18 @@ from enum import Enum
 from azure.core import CaseInsensitiveEnumMeta
 
 
-class OperationState(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Enum describing allowed operation states."""
+class JobStatus(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """The status of the processing job."""
 
-    IN_PROGRESS = "InProgress"
+    NOT_STARTED = "notStarted"
+    """The operation is not started."""
+    RUNNING = "running"
     """The operation is in progress."""
-    SUCCEEDED = "Succeeded"
+    SUCCEEDED = "succeeded"
     """The operation has completed successfully."""
-    FAILED = "Failed"
+    FAILED = "failed"
     """The operation has failed."""
-    CANCELED = "Canceled"
+    CANCELED = "canceled"
     """The operation has been canceled by the user."""
+    PARTIALLY_COMPLETED = "partiallyCompleted"
+    """The operation has partially completed."""

@@ -70,8 +70,8 @@ importers:
         specifier: ~0.4.0
         version: 0.4.0(@typespec/compiler@0.45.0)(@typespec/http@0.45.0)(@typespec/rest@0.45.0)(@typespec/versioning@0.45.0)
       '@azure-tools/cadl-ranch-specs':
-        specifier: ~0.16.1
-        version: 0.16.1(@azure-tools/cadl-ranch-expect@0.4.0)(@azure-tools/typespec-azure-core@0.31.0)(@typespec/compiler@0.45.0)(@typespec/http@0.45.0)(@typespec/rest@0.45.0)(@typespec/versioning@0.45.0)
+        specifier: ~0.16.2
+        version: 0.16.2(@azure-tools/cadl-ranch-expect@0.4.0)(@azure-tools/typespec-azure-core@0.31.0)(@typespec/compiler@0.45.0)(@typespec/http@0.45.0)(@typespec/rest@0.45.0)(@typespec/versioning@0.45.0)
       '@types/js-yaml':
         specifier: ~4.0.5
         version: 4.0.5
@@ -165,8 +165,8 @@ packages:
       '@typespec/versioning': 0.45.0(@typespec/compiler@0.45.0)
     dev: true
 
-  /@azure-tools/cadl-ranch-specs@0.16.1(@azure-tools/cadl-ranch-expect@0.4.0)(@azure-tools/typespec-azure-core@0.31.0)(@typespec/compiler@0.45.0)(@typespec/http@0.45.0)(@typespec/rest@0.45.0)(@typespec/versioning@0.45.0):
-    resolution: {integrity: sha512-0Fdeb6F3xL1h5rjfmWaVdtoBMc1Sx8Sxq0Cf1F1S9ABqql1Uvbr8DAH37hX/erx96+V2xK1zPLFL46bGnNEGXQ==}
+  /@azure-tools/cadl-ranch-specs@0.16.2(@azure-tools/cadl-ranch-expect@0.4.0)(@azure-tools/typespec-azure-core@0.31.0)(@typespec/compiler@0.45.0)(@typespec/http@0.45.0)(@typespec/rest@0.45.0)(@typespec/versioning@0.45.0):
+    resolution: {integrity: sha512-jI9v/Cpcd5InaVOm+yZYWQa7WHvZg/m4dCi8wAznQsk+IjhC5R1gilPaLQGdsZJymqZPJRB6p3HAkPYPtqRRUQ==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       '@azure-tools/cadl-ranch-expect': ~0.4.0

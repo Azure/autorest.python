@@ -71,7 +71,7 @@ def build_query_base64url_request(*, value: bytes, **kwargs: Any) -> HttpRequest
     _url = "/encode/bytes/query/base64url"
 
     # Construct parameters
-    _params["value"] = _SERIALIZER.query("value", value, "base64")
+    _params["value"] = _SERIALIZER.query("value", value, "bytearray")
 
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
@@ -83,7 +83,7 @@ def build_query_base64url_array_request(*, value: List[bytes], **kwargs: Any) ->
     _url = "/encode/bytes/query/base64url-array"
 
     # Construct parameters
-    _params["value"] = _SERIALIZER.query("value", value, "[base64]", div=",")
+    _params["value"] = _SERIALIZER.query("value", value, "[bytearray]", div=",")
 
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
@@ -187,7 +187,7 @@ def build_header_base64url_request(*, value: bytes, **kwargs: Any) -> HttpReques
     _url = "/encode/bytes/header/base64url"
 
     # Construct headers
-    _headers["value"] = _SERIALIZER.header("value", value, "base64")
+    _headers["value"] = _SERIALIZER.header("value", value, "bytearray")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
@@ -199,7 +199,7 @@ def build_header_base64url_array_request(*, value: List[bytes], **kwargs: Any) -
     _url = "/encode/bytes/header/base64url-array"
 
     # Construct headers
-    _headers["value"] = _SERIALIZER.header("value", value, "[base64]", div=",")
+    _headers["value"] = _SERIALIZER.header("value", value, "[bytearray]", div=",")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 

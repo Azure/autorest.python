@@ -11,11 +11,11 @@ from typing import Any
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
-from .._version import VERSION
+from ._version import VERSION
 
 
-class RpcClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
-    """Configuration for RpcClient.
+class LegacyClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+    """Configuration for LegacyClient.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
@@ -27,11 +27,11 @@ class RpcClientConfiguration(Configuration):  # pylint: disable=too-many-instanc
     """
 
     def __init__(self, **kwargs: Any) -> None:
-        super(RpcClientConfiguration, self).__init__(**kwargs)
+        super(LegacyClientConfiguration, self).__init__(**kwargs)
         api_version: str = kwargs.pop("api_version", "2022-12-01-preview")
 
         self.api_version = api_version
-        kwargs.setdefault("sdk_moniker", "rpcclient/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "legacyclient/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:
@@ -40,7 +40,7 @@ class RpcClientConfiguration(Configuration):  # pylint: disable=too-many-instanc
         self.proxy_policy = kwargs.get("proxy_policy") or policies.ProxyPolicy(**kwargs)
         self.logging_policy = kwargs.get("logging_policy") or policies.NetworkTraceLoggingPolicy(**kwargs)
         self.http_logging_policy = kwargs.get("http_logging_policy") or policies.HttpLoggingPolicy(**kwargs)
-        self.retry_policy = kwargs.get("retry_policy") or policies.AsyncRetryPolicy(**kwargs)
+        self.retry_policy = kwargs.get("retry_policy") or policies.RetryPolicy(**kwargs)
         self.custom_hook_policy = kwargs.get("custom_hook_policy") or policies.CustomHookPolicy(**kwargs)
-        self.redirect_policy = kwargs.get("redirect_policy") or policies.AsyncRedirectPolicy(**kwargs)
+        self.redirect_policy = kwargs.get("redirect_policy") or policies.RedirectPolicy(**kwargs)
         self.authentication_policy = kwargs.get("authentication_policy")

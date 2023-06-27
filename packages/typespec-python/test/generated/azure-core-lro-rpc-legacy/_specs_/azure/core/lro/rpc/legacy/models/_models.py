@@ -7,21 +7,14 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import sys
 from typing import Any, List, Mapping, Optional, TYPE_CHECKING, Union, overload
 
 from .. import _model_base
 from .._model_base import rest_field
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 
 class Error(_model_base.Model):
@@ -36,10 +29,10 @@ class Error(_model_base.Model):
     :ivar target: The target of the error.
     :vartype target: str
     :ivar details: An array of details about specific errors that led to this reported error.
-    :vartype details: list[~_specs_.azure.core.lro.rpc.models.Error]
+    :vartype details: list[~_specs_.azure.core.lro.rpc.legacy.models.Error]
     :ivar innererror: An object containing more specific information than the current object about
      the error.
-    :vartype innererror: ~_specs_.azure.core.lro.rpc.models.InnerError
+    :vartype innererror: ~_specs_.azure.core.lro.rpc.legacy.models.InnerError
     """
 
     code: str = rest_field()
@@ -48,7 +41,7 @@ class Error(_model_base.Model):
     """A human-readable representation of the error. Required."""
     target: Optional[str] = rest_field()
     """The target of the error."""
-    details: Optional[List["_models.Error"]] = rest_field(format="None")
+    details: Optional[List["_models.Error"]] = rest_field()
     """An array of details about specific errors that led to this reported error."""
     innererror: Optional["_models.InnerError"] = rest_field()
     """An object containing more specific information than the current object about the error."""
@@ -82,7 +75,7 @@ class ErrorResponse(_model_base.Model):
     All required parameters must be populated in order to send to Azure.
 
     :ivar error: The error object. Required.
-    :vartype error: ~_specs_.azure.core.lro.rpc.models.Error
+    :vartype error: ~_specs_.azure.core.lro.rpc.legacy.models.Error
     """
 
     error: "_models.Error" = rest_field()
@@ -115,7 +108,7 @@ class InnerError(_model_base.Model):
     :ivar code: One of a server-defined set of error codes.
     :vartype code: str
     :ivar innererror: Inner error.
-    :vartype innererror: ~_specs_.azure.core.lro.rpc.models.InnerError
+    :vartype innererror: ~_specs_.azure.core.lro.rpc.legacy.models.InnerError
     """
 
     code: Optional[str] = rest_field()
@@ -174,27 +167,6 @@ class JobData(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class JobPollResult(_model_base.Model):
-    """Result of the poll.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar operation_id: Operation identifier. Required.
-    :vartype operation_id: str
-    :ivar status: The status of the processing job. Required. Known values are: "InProgress",
-     "Succeeded", "Failed", and "Canceled".
-    :vartype status: str or ~_specs_.azure.core.lro.rpc.models.OperationState
-    """
-
-    operation_id: str = rest_field(name="operationId", visibility=["read"])
-    """Operation identifier. Required."""
-    status: Union[str, "_models.OperationState"] = rest_field(visibility=["read"])
-    """The status of the processing job. Required. Known values are: \"InProgress\", \"Succeeded\",
-     \"Failed\", and \"Canceled\"."""
-
-
 class JobResult(_model_base.Model):
     """Result of the job.
 
@@ -206,12 +178,12 @@ class JobResult(_model_base.Model):
     :vartype job_id: str
     :ivar comment: Comment. Required.
     :vartype comment: str
-    :ivar status: The status of the processing job. Required. Known values are: "InProgress",
-     "Succeeded", "Failed", and "Canceled".
-    :vartype status: str or ~_specs_.azure.core.lro.rpc.models.OperationState
+    :ivar status: The status of the processing job. Required. Known values are: "notStarted",
+     "running", "succeeded", "failed", "canceled", and "partiallyCompleted".
+    :vartype status: str or ~_specs_.azure.core.lro.rpc.legacy.models.JobStatus
     :ivar errors: Error objects that describes the error when status is "Failed".
-    :vartype errors: list[~_specs_.azure.core.lro.rpc.models.ErrorResponse]
-    :ivar results: The results. Required.
+    :vartype errors: list[~_specs_.azure.core.lro.rpc.legacy.models.ErrorResponse]
+    :ivar results: The results.
     :vartype results: list[str]
     """
 
@@ -219,10 +191,10 @@ class JobResult(_model_base.Model):
     """A processing job identifier. Required."""
     comment: str = rest_field(visibility=["read"])
     """Comment. Required."""
-    status: Union[str, "_models.OperationState"] = rest_field(visibility=["read"])
-    """The status of the processing job. Required. Known values are: \"InProgress\", \"Succeeded\",
-     \"Failed\", and \"Canceled\"."""
-    errors: Optional[List["_models.ErrorResponse"]] = rest_field(visibility=["read"], format="None")
+    status: Union[str, "_models.JobStatus"] = rest_field(visibility=["read"])
+    """The status of the processing job. Required. Known values are: \"notStarted\", \"running\",
+     \"succeeded\", \"failed\", \"canceled\", and \"partiallyCompleted\"."""
+    errors: Optional[List["_models.ErrorResponse"]] = rest_field(visibility=["read"])
     """Error objects that describes the error when status is \"Failed\"."""
-    results: List[str] = rest_field(visibility=["read"], format="None")
-    """The results. Required."""
+    results: Optional[List[str]] = rest_field(visibility=["read"])
+    """The results."""
