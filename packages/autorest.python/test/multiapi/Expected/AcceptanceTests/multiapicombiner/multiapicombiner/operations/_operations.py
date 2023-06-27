@@ -117,7 +117,7 @@ class OperationGroupOneOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
         self._api_version = input_args.pop(0) if input_args else kwargs.pop("api_version")
     @api_version_validation(
-        params={
+        params_valid_on={
             "parameter_one": ['2.0.0', '3.0.0'],
         }
     )
@@ -198,7 +198,7 @@ class OperationGroupOneOperations:
     test_two.metadata = {'url': '/multiapi/one/testTwoEndpoint'}
 
     @api_version_validation(
-        api_versions=['2.0.0'],
+       method_valid_on=['2.0.0'],
     )
     @distributed_trace
     def test_three(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -250,7 +250,7 @@ class OperationGroupOneOperations:
     test_three.metadata = {'url': '/multiapi/one/testThreeEndpoint'}
 
     @api_version_validation(
-        api_versions=['3.0.0'],
+       method_valid_on=['3.0.0'],
     )
     @distributed_trace
     def test_operation_group_paging(self, **kwargs: Any) -> Iterable["_models.ModelThree"]:
@@ -389,7 +389,7 @@ class OperationGroupTwoOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
         self._api_version = input_args.pop(0) if input_args else kwargs.pop("api_version")
     @api_version_validation(
-        params={
+        params_valid_on={
             "parameter_one": ['2.0.0'],
             "input": ['3.0.0'],
         }
@@ -466,7 +466,7 @@ class OperationGroupTwoOperations:
     test_four.metadata = {'url': '/multiapi/two/testFourEndpoint'}
 
     @api_version_validation(
-        api_versions=['3.0.0'],
+       method_valid_on=['3.0.0'],
     )
     @distributed_trace
     def test_five(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -741,7 +741,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
     _test_lro_initial.metadata = {'url': '/multiapi/lro'}
 
     @api_version_validation(
-        api_versions=['1.0.0'],
+       method_valid_on=['1.0.0'],
     )
     @distributed_trace
     def begin_test_lro(
@@ -809,7 +809,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
     begin_test_lro.metadata = {'url': '/multiapi/lro'}
 
     @api_version_validation(
-        api_versions=['1.0.0'],
+       method_valid_on=['1.0.0'],
     )
     @distributed_trace
     def begin_test_lro_and_paging(
@@ -952,7 +952,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
     begin_test_lro_and_paging.metadata = {'url': '/multiapi/lroAndPaging'}
 
     @api_version_validation(
-        params={
+        params_valid_on={
             "greeting_in_chinese": ['2.0.0', '3.0.0'],
             "greeting_in_french": ['3.0.0'],
         }
@@ -1025,7 +1025,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
     test_different_calls.metadata = {'url': '/multiapi/testDifferentCalls'}
 
     @api_version_validation(
-        api_versions=['1.0.0', '2.0.0'],
+       method_valid_on=['1.0.0', '2.0.0'],
     )
     @distributed_trace
     def test_one(self, *, id: int, message: Optional[str] = None, **kwargs: Any) -> _models.ModelTwo:
@@ -1089,7 +1089,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
     test_one.metadata = {'url': '/multiapi/testOneEndpoint'}
 
     @api_version_validation(
-        api_versions=['3.0.0'],
+       method_valid_on=['3.0.0'],
     )
     @distributed_trace
     def test_paging(self, **kwargs: Any) -> Iterable["_models.ModelThree"]:
