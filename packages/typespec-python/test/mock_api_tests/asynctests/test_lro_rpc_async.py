@@ -4,15 +4,15 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from _specs_.azure.core.lro.rpc.aio import RpcClient
-from _specs_.azure.core.lro.rpc.models import JobResult, JobData
+from _specs_.azure.core.lro.rpc.legacy.aio import LegacyClient
+from _specs_.azure.core.lro.rpc.legacy.models import JobResult, JobData
 
 @pytest.fixture
 async def client():
-    async with RpcClient() as client:
+    async with LegacyClient() as client:
         yield client
 
 @pytest.mark.asyncio
 async def test_lro_rpc_create_job(client):
     result = await (await client.begin_create_job(JobData(comment="async job"), polling_interval=0)).result()
-    assert result == JobResult({"jobId": "job1", "comment": "async job", "status": "Succeeded", "results": ["job1 result"]})
+    assert result == JobResult({"jobId": "job1", "comment": "async job", "status": "succeeded", "results": ["job1 result"]})
