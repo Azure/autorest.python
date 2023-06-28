@@ -28,7 +28,7 @@ from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
-from ..._vendor import _convert_request
+from ..._vendor import _convert_request, _curly_braces_encode
 from ...operations._operation_group_one_operations import (
     build_test_operation_group_paging_request,
     build_test_two_request,
@@ -93,6 +93,8 @@ class OperationGroupOneOperations:
                 request.url = self._client.format_url(request.url)
 
             else:
+                # in case next_link contains braces, we need to encode them
+                next_link = _curly_braces_encode(next_link)
                 # make call to next link with the client's api-version
                 _parsed_next_link = urllib.parse.urlparse(next_link)
                 _next_request_params = case_insensitive_dict(

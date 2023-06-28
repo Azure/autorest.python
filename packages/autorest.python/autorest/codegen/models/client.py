@@ -256,7 +256,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             bool(operation_group.operations)
             for operation_group in self.operation_groups
         )
-    
+
     @property
     def has_paging_operations(self) -> bool:
         return any(

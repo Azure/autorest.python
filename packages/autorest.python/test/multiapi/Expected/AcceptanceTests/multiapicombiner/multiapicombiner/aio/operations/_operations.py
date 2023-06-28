@@ -28,7 +28,7 @@ from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
-from ..._vendor import _convert_request
+from ..._vendor import _convert_request, _curly_braces_encode
 from ...operations._operations import (
     build_multiapi_service_test_different_calls_request,
     build_multiapi_service_test_paging_request,
@@ -48,6 +48,7 @@ from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, TypeVar, Un
 from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMethod
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from ..._vendor import _convert_request
 from ..._validation import api_version_validation
 
 from ...operations._operations import build_operation_group_one_test_three_request
@@ -244,6 +245,8 @@ class OperationGroupOneOperations:
                 request.url = self._client.format_url(request.url)
 
             else:
+                # in case next_link contains braces, we need to encode them
+                next_link = _curly_braces_encode(next_link)
                 # make call to next link with the client's api-version
                 _parsed_next_link = urllib.parse.urlparse(next_link)
                 _next_request_params = case_insensitive_dict(
@@ -693,6 +696,8 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
                 request.url = self._client.format_url(request.url)
 
             else:
+                # in case next_link contains braces, we need to encode them
+                next_link = _curly_braces_encode(next_link)
                 # make call to next link with the client's api-version
                 _parsed_next_link = urllib.parse.urlparse(next_link)
                 _next_request_params = case_insensitive_dict(
@@ -945,6 +950,8 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
                 request.url = self._client.format_url(request.url)
 
             else:
+                # in case next_link contains braces, we need to encode them
+                next_link = _curly_braces_encode(next_link)
                 # make call to next link with the client's api-version
                 _parsed_next_link = urllib.parse.urlparse(next_link)
                 _next_request_params = case_insensitive_dict(

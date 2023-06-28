@@ -26,7 +26,7 @@ from azure.core.utils import case_insensitive_dict
 from my.library import CustomDefaultPollingMethod, CustomPager, CustomPoller
 
 from .._serialization import Serializer
-from .._vendor import PollingPagingExampleMixinABC
+from .._vendor import PollingPagingExampleMixinABC, _curly_braces_encode
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -331,6 +331,8 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
                 request.url = self._client.format_url(request.url)
 
             else:
+                # in case next_link contains braces, we need to encode them
+                next_link = _curly_braces_encode(next_link)
                 request = HttpRequest("GET", next_link)
                 request.url = self._client.format_url(request.url)
 

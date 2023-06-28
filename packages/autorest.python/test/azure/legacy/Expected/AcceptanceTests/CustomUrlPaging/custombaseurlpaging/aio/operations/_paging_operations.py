@@ -23,7 +23,7 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from ... import models as _models
-from ..._vendor import _convert_request
+from ..._vendor import _convert_request, _curly_braces_encode
 from ...operations._paging_operations import (
     build_get_pages_partial_url_operation_next_request,
     build_get_pages_partial_url_operation_request,
@@ -94,6 +94,8 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url, **path_format_arguments)
 
             else:
+                # in case next_link contains braces, we need to encode them
+                next_link = _curly_braces_encode(next_link)
                 request = HttpRequest("GET", next_link)
                 request = _convert_request(request)
                 path_format_arguments = {

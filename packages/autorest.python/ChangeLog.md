@@ -16,6 +16,10 @@
 
 - Support visibility for dpg #1968
 
+**Bug Fixes**
+
+- escape "{}" for next_link  #1984
+
 ### 2023-06-12 - 6.6.0
 
 | Library                                                                 | Min Version |

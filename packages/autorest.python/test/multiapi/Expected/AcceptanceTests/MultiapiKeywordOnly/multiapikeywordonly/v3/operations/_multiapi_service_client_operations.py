@@ -26,7 +26,7 @@ from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
 from ..._serialization import Serializer
-from .._vendor import MultiapiServiceClientMixinABC, _convert_request
+from .._vendor import MultiapiServiceClientMixinABC, _convert_request, _curly_braces_encode
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -120,6 +120,8 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
                 request.url = self._client.format_url(request.url)
 
             else:
+                # in case next_link contains braces, we need to encode them
+                next_link = _curly_braces_encode(next_link)
                 # make call to next link with the client's api-version
                 _parsed_next_link = urllib.parse.urlparse(next_link)
                 _next_request_params = case_insensitive_dict(

@@ -141,7 +141,10 @@ class CodeModel:  # pylint: disable=too-many-public-methods
         if async_mode:
             return self.need_mixin_abc
         return (
-            self.need_request_converter or self.need_format_url or self.need_mixin_abc or self.has_paging_operations
+            self.need_request_converter
+            or self.need_format_url
+            or self.need_mixin_abc
+            or self.has_paging_operations
         )
 
     @property

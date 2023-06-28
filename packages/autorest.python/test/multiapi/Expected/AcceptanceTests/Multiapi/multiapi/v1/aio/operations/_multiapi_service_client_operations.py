@@ -30,7 +30,7 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
 from ... import models as _models
-from ..._vendor import _convert_request
+from ..._vendor import _convert_request, _curly_braces_encode
 from ...operations._multiapi_service_client_operations import (
     build_test_different_calls_request,
     build_test_lro_and_paging_request,
@@ -404,6 +404,8 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
                 request.url = self._client.format_url(request.url)
 
             else:
+                # in case next_link contains braces, we need to encode them
+                next_link = _curly_braces_encode(next_link)
                 # make call to next link with the client's api-version
                 _parsed_next_link = urllib.parse.urlparse(next_link)
                 _next_request_params = case_insensitive_dict(

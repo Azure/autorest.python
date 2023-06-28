@@ -31,6 +31,7 @@ from ..._operations._operations import (
     build_polling_paging_example_basic_paging_request,
     build_polling_paging_example_basic_polling_request,
 )
+from ..._vendor import _curly_braces_encode
 from .._vendor import PollingPagingExampleMixinABC
 
 if sys.version_info >= (3, 9):
@@ -306,6 +307,8 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
                 request.url = self._client.format_url(request.url)
 
             else:
+                # in case next_link contains braces, we need to encode them
+                next_link = _curly_braces_encode(next_link)
                 request = HttpRequest("GET", next_link)
                 request.url = self._client.format_url(request.url)
 

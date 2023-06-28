@@ -22,6 +22,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
+from ..._vendor import _curly_braces_encode
 from ...operations._operations import (
     build_paging_get_pages_partial_url_operation_next_request,
     build_paging_get_pages_partial_url_operation_request,
@@ -103,6 +104,8 @@ class PagingOperations:
                 request.url = self._client.format_url(request.url, **path_format_arguments)
 
             else:
+                # in case next_link contains braces, we need to encode them
+                next_link = _curly_braces_encode(next_link)
                 request = HttpRequest("GET", next_link)
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),

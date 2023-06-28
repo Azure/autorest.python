@@ -28,3 +28,9 @@ def _format_url_section(template, **kwargs):
             formatted_components = cast(List[str], template.split("/"))
             components = [c for c in formatted_components if "{}".format(key.args[0]) not in c]
             template = "/".join(components)
+
+
+def _curly_braces_encode(http_url: str) -> str:
+    for item in ("{", "}"):
+        http_url = http_url.replace(item, item * 2)
+    return http_url
