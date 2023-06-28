@@ -24,3 +24,9 @@ class BasicClientMixinABC(ABC):
     _config: BasicClientConfiguration
     _serialize: "Serializer"
     _deserialize: "Deserializer"
+
+
+def _curly_braces_encode(http_url: str) -> str:
+    for item in ("{", "}"):
+        http_url = http_url.replace(item, item * 2)
+    return http_url

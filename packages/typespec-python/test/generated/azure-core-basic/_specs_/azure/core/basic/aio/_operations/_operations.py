@@ -39,6 +39,7 @@ from ..._operations._operations import (
     build_basic_list_with_custom_page_model_request,
     build_basic_list_with_page_request,
 )
+from ..._vendor import _curly_braces_encode
 from .._vendor import BasicClientMixinABC
 
 if sys.version_info >= (3, 9):
@@ -458,6 +459,8 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
                 request.url = self._client.format_url(request.url)
 
             else:
+                # in case next_link contains braces, we need to encode them
+                next_link = _curly_braces_encode(next_link)
                 # make call to next link with the client's api-version
                 _parsed_next_link = urllib.parse.urlparse(next_link)
                 _next_request_params = case_insensitive_dict(
@@ -530,6 +533,8 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
                 request.url = self._client.format_url(request.url)
 
             else:
+                # in case next_link contains braces, we need to encode them
+                next_link = _curly_braces_encode(next_link)
                 # make call to next link with the client's api-version
                 _parsed_next_link = urllib.parse.urlparse(next_link)
                 _next_request_params = case_insensitive_dict(
@@ -602,6 +607,8 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
                 request.url = self._client.format_url(request.url)
 
             else:
+                # in case next_link contains braces, we need to encode them
+                next_link = _curly_braces_encode(next_link)
                 # make call to next link with the client's api-version
                 _parsed_next_link = urllib.parse.urlparse(next_link)
                 _next_request_params = case_insensitive_dict(

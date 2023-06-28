@@ -29,7 +29,7 @@ from azure.core.utils import case_insensitive_dict
 from .. import models as _models
 from .._model_base import AzureJSONEncoder, _deserialize
 from .._serialization import Serializer
-from .._vendor import BasicClientMixinABC, _format_url_section
+from .._vendor import BasicClientMixinABC, _curly_braces_encode, _format_url_section
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -650,6 +650,8 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
                 request.url = self._client.format_url(request.url)
 
             else:
+                # in case next_link contains braces, we need to encode them
+                next_link = _curly_braces_encode(next_link)
                 # make call to next link with the client's api-version
                 _parsed_next_link = urllib.parse.urlparse(next_link)
                 _next_request_params = case_insensitive_dict(
@@ -722,6 +724,8 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
                 request.url = self._client.format_url(request.url)
 
             else:
+                # in case next_link contains braces, we need to encode them
+                next_link = _curly_braces_encode(next_link)
                 # make call to next link with the client's api-version
                 _parsed_next_link = urllib.parse.urlparse(next_link)
                 _next_request_params = case_insensitive_dict(
@@ -794,6 +798,8 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
                 request.url = self._client.format_url(request.url)
 
             else:
+                # in case next_link contains braces, we need to encode them
+                next_link = _curly_braces_encode(next_link)
                 # make call to next link with the client's api-version
                 _parsed_next_link = urllib.parse.urlparse(next_link)
                 _next_request_params = case_insensitive_dict(
