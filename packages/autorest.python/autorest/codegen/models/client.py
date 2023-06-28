@@ -256,6 +256,14 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             bool(operation_group.operations)
             for operation_group in self.operation_groups
         )
+    
+    @property
+    def has_paging_operations(self) -> bool:
+        return any(
+            operation.operation_type in ("paging", "lropaging")
+            for operation_group in self.operation_groups
+            for operation in operation_group.operations
+        )
 
     def link_lro_initial_operations(self) -> None:
         """Link each LRO operation to its initial operation"""

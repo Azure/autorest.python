@@ -1357,6 +1357,8 @@ class _PagingOperationSerializer(
         retval: List[str] = []
         query_str = ""
         next_link_str = "next_link"
+        retval.append("# in case next_link contains braces, we need to encode them")
+        retval.append("next_link = _curly_braces_encode(next_link)")
         try:
             api_version_param = next(
                 p

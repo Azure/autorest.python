@@ -89,6 +89,17 @@ class CodeModel:  # pylint: disable=too-many-public-methods
         )
 
     @property
+    def has_paging_operations(self) -> bool:
+        if any(c for c in self.clients if c.has_paging_operations):
+            return True
+        return any(
+            c
+            for clients in self.subnamespace_to_clients.values()
+            for c in clients
+            if c.has_paging_operations
+        )
+
+    @property
     def has_non_abstract_operations(self) -> bool:
         for client in self.clients:
             for operation_group in client.operation_groups:
@@ -130,7 +141,7 @@ class CodeModel:  # pylint: disable=too-many-public-methods
         if async_mode:
             return self.need_mixin_abc
         return (
-            self.need_request_converter or self.need_format_url or self.need_mixin_abc
+            self.need_request_converter or self.need_format_url or self.need_mixin_abc or self.has_paging_operations
         )
 
     @property

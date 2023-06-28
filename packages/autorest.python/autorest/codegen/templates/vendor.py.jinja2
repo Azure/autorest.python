@@ -47,3 +47,8 @@ def raise_if_not_implemented(cls, abstract_methods):
         cls.__name__, '\', \''.join(not_implemented))
         )
 {% endif %}
+{% if code_model.has_paging_operations %}
+
+def _curly_braces_encode(url: str) -> str:
+  return url.replace("{", "{{").replace("}", "}}")
+{% endif %}
