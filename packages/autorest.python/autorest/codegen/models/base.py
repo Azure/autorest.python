@@ -7,6 +7,20 @@ from typing import Any, Dict, TYPE_CHECKING, List, Optional
 from abc import ABC, abstractmethod
 from .imports import FileImport
 
+SIGNATURE_CONVERT = {
+    "if_match": {
+        "name": "etag",
+        "type": "str",
+        "type_annotation": "Optional[str]",
+        "description": "check if resource is changed. Set None to skip checking etag",
+    },
+    "if_none_match": {
+        "name": "match_condition",
+        "type": "~azure.core.MatchConditions",
+        "type_annotation": "Optional[MatchConditions]",
+        "description": "The match condition to use upon the etag",
+    },
+}
 
 if TYPE_CHECKING:
     from .code_model import CodeModel

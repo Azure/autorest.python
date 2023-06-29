@@ -18,7 +18,7 @@ from typing import (
 )
 
 from .imports import FileImport, ImportType, TypingSection
-from .base import BaseModel
+from .base import BaseModel, SIGNATURE_CONVERT
 from .base import BaseType
 from .constant_type import ConstantType
 from .utils import add_to_description
@@ -230,13 +230,18 @@ class _ParameterBase(
     def in_method_signature(self) -> bool:
         ...
 
-    def method_signature(self, async_mode: bool) -> str:
+    def method_signature(self, async_mode: bool, enable_signature_convert: bool = False) -> str:
+        client_name = self.client_name
         type_annot = self.type_annotation(async_mode=async_mode)
+        if enable_signature_convert and client_name in SIGNATURE_CONVERT:
+            type_annot = SIGNATURE_CONVERT[client_name]["type_annotation"]
+            client_name = SIGNATURE_CONVERT[client_name]["name"]
+
         if self.client_default_value is not None or self.optional:
-            return f"{self.client_name}: {type_annot} = {self.client_default_value_declaration},"
+            return f"{client_name}: {type_annot} = {self.client_default_value_declaration},"
         if self.default_to_unset_sentinel:
-            return f"{self.client_name}: {type_annot} = _Unset,"
-        return f"{self.client_name}: {type_annot},"
+            return f"{client_name}: {type_annot} = _Unset,"
+        return f"{client_name}: {type_annot},"
 
 
 class BodyParameter(_ParameterBase):

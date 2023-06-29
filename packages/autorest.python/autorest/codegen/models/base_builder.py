@@ -107,7 +107,9 @@ class BaseBuilder(
             )
         return self._description or self.name
 
-    def method_signature(self, async_mode: bool) -> List[str]:
+    def method_signature(self, async_mode: bool, enable_signature_convert: bool = False) -> List[str]:
         if self.abstract:
             return ["*args,", "**kwargs"]
-        return self.parameters.method_signature(async_mode)
+        # only operation signature needs to be converted, builder signature is always the same
+        enable_signature_convert = hasattr(self, "request_builder")
+        return self.parameters.method_signature(async_mode, enable_signature_convert)
