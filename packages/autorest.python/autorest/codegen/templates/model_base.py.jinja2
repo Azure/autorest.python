@@ -10,6 +10,7 @@
 import calendar
 import functools
 import sys
+import logging
 import base64
 import re
 import copy
@@ -21,28 +22,16 @@ import isodate
 from azure.core.exceptions import DeserializationError
 from azure.core import CaseInsensitiveEnumMeta
 from azure.core.pipeline import PipelineResponse
+from azure.core.serialization import _Null
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping
 
-__all__ = ["NULL", "AzureJSONEncoder", "Model", "rest_field", "rest_discriminator"]
-TZ_UTC = timezone.utc
+_LOGGER = logging.getLogger(__name__)
 
-
-class _Null:
-    """To create a Falsy object"""
-
-    def __bool__(self):
-        return False
-
-
-NULL = _Null()
-"""
-A falsy sentinel object which is supposed to be used to specify attributes
-with no data. This gets serialized to `null` on the wire.
-"""
+__all__ = ["AzureJSONEncoder", "Model", "rest_field", "rest_discriminator"]
 
 TZ_UTC = timezone.utc
 
