@@ -46,8 +46,8 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         id: int,
         *,
         foo: str,
-        if_match: Optional[str] = None,
-        if_none_match: Optional[str] = None,
+        etag: Optional[str] = None,
+        match_condition: Optional[MatchConditions] = None,
         if_unmodified_since: Optional[datetime.datetime] = None,
         if_modified_since: Optional[datetime.datetime] = None,
         client_request_id: Optional[str] = None,
@@ -59,12 +59,11 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :type id: int
         :keyword foo: header in request. Required.
         :paramtype foo: str
-        :keyword if_match: The request should only proceed if an entity matches this string. Default
-         value is None.
-        :paramtype if_match: str
-        :keyword if_none_match: The request should only proceed if no entity matches this string.
-         Default value is None.
-        :paramtype if_none_match: str
+        :keyword etag: check if resource is changed. Set None to skip checking etag. Default value is
+         None
+        :paramtype etag: str
+        :keyword match_condition: The match condition to use upon the etag. Default value is None
+        :paramtype match_condition: ~azure.core.MatchConditions
         :keyword if_unmodified_since: The request should only proceed if the entity was not modified
          after this time. Default value is None.
         :paramtype if_unmodified_since: ~datetime.datetime

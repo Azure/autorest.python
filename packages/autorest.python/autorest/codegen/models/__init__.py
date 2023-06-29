@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import logging
 from typing import Any, Dict, Union
-from .base import BaseModel
+from .base import BaseModel, SIGNATURE_CONVERT
 from .base_builder import BaseBuilder, ParameterListType
 from .code_model import CodeModel
 from .client import Client
@@ -117,6 +117,7 @@ __all__ = [
     "ClientParameter",
     "ConfigParameter",
     "ParameterListType",
+    "SIGNATURE_CONVERT",
 ]
 
 TYPE_TO_OBJECT = {

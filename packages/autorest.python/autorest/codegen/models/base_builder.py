@@ -107,7 +107,7 @@ class BaseBuilder(
             )
         return self._description or self.name
 
-    def method_signature(self, async_mode: bool, enable_signature_convert: bool = False) -> List[str]:
+    def method_signature(self, async_mode: bool) -> List[str]:
         if self.abstract:
             return ["*args,", "**kwargs"]
         # only operation signature needs to be converted, builder signature is always the same

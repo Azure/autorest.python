@@ -33,6 +33,7 @@ from ..models import (
     RequestBuilderType,
     CombinedType,
     ParameterListType,
+    SIGNATURE_CONVERT,
 )
 from .parameter_serializer import ParameterSerializer, PopKwargType
 from ..models.parameter_list import ParameterType
@@ -332,19 +333,26 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
 
     def param_description(self, builder: BuilderType) -> List[str]:
         description_list: List[str] = []
+        enable_signature_convert = hasattr(builder, "request_builder")
         for param in builder.parameters.method:
             if not param.in_docstring:
                 continue
+            client_name = param.client_name
+            description = param.description
+            docstring_type = param.docstring_type(async_mode=self.async_mode)
+            if enable_signature_convert and client_name in SIGNATURE_CONVERT:
+                description = SIGNATURE_CONVERT[client_name]["description"]
+                docstring_type = SIGNATURE_CONVERT[client_name]["docstring_type"]
+                client_name = SIGNATURE_CONVERT[client_name]["name"]
             description_list.extend(
-                f":{param.description_keyword} {param.client_name}: {param.description}".replace(
+                f":{param.description_keyword} {client_name}: {description}".replace(
                     "\n", "\n "
                 ).split(
                     "\n"
                 )
             )
-            docstring_type = param.docstring_type(async_mode=self.async_mode)
             description_list.append(
-                f":{param.docstring_type_keyword} {param.client_name}: {docstring_type}"
+                f":{param.docstring_type_keyword} {client_name}: {docstring_type}"
             )
         return description_list
 

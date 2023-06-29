@@ -10,15 +10,15 @@ from .imports import FileImport
 SIGNATURE_CONVERT = {
     "if_match": {
         "name": "etag",
-        "type": "str",
+        "docstring_type": "str",
         "type_annotation": "Optional[str]",
-        "description": "check if resource is changed. Set None to skip checking etag",
+        "description": "check if resource is changed. Set None to skip checking etag. Default value is None",
     },
     "if_none_match": {
         "name": "match_condition",
-        "type": "~azure.core.MatchConditions",
+        "docstring_type": "~azure.core.MatchConditions",
         "type_annotation": "Optional[MatchConditions]",
-        "description": "The match condition to use upon the etag",
+        "description": "The match condition to use upon the etag. Default value is None",
     },
 }
 
