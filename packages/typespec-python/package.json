@@ -1,6 +1,6 @@
 {
     "name": "@azure-tools/typespec-python",
-    "version": "0.11.0",
+    "version": "0.12.0",
     "author": "Microsoft Corporation",
     "description": "Cadl emitter for Python SDKs",
     "homepage": "https://github.com/Azure/autorest.python",

@@ -1,6 +1,6 @@
 # Release
 
-## 2023-06-XX - 0.12.0
+## 2023-06-30 - 0.12.0
 
 | Library                                                                 | Min Version   |
 | ----------------------------------------------------------------------- | ------------- |
@@ -20,6 +20,10 @@
 
 - Change readonly to visibility #1968
 - Support global config for `head-as-boolean` #1949
+
+**Bug Fixes**
+
+- Ensure that LRO final results are the final result returned by our generated LRO pollers #1992
 
 ## 2023-06-12 - 0.11.0
 
