@@ -504,20 +504,6 @@ function emitAcceptParameter(inOverload: boolean, inOverriden: boolean): Record<
     };
 }
 
-function emitResponseHeaders(context: SdkContext, headers?: Record<string, ModelProperty>): Record<string, any>[] {
-    const retval: Record<string, any>[] = [];
-    if (!headers) {
-        return retval;
-    }
-    for (const [key, value] of Object.entries(headers)) {
-        retval.push({
-            type: getType(context, value),
-            wireName: key,
-        });
-    }
-    return retval;
-}
-
 function isAzureCoreModel(t: Type): boolean {
     return (
         t.kind === "Model" &&
@@ -530,33 +516,41 @@ function hasDefaultStatusCode(response: HttpOperationResponse): boolean {
     return response.statusCode === "*";
 }
 
-function emitResponse(
-    context: SdkContext,
-    response: HttpOperationResponse,
-    innerResponse: HttpOperationResponseContent,
-    operation: Operation,
-): Record<string, any> {
+function emitResponse(context: SdkContext, response: HttpOperationResponse, operation: Operation): Record<string, any> {
     let type = undefined;
     let resultProperty = undefined;
-    if (innerResponse.body?.type) {
-        let modelType = undefined;
-        if (innerResponse.body.type.kind === "Model") {
-            const lroMeta = getLroMetadata(context.program, operation);
-            if (!hasDefaultStatusCode(response) && lroMeta) {
-                modelType = lroMeta.logicalResult;
-                if (lroMeta.finalStep?.target.kind === "ModelProperty") {
-                    resultProperty = lroMeta.finalStep.target.name;
-                }
-            } else {
-                modelType = getEffectiveSchemaType(context, innerResponse.body.type);
+    let body: Type | undefined = undefined;
+    const headers: Record<string, any>[] = [];
+    const lroMeta = getLroMetadata(context.program, operation);
+    if (!hasDefaultStatusCode(response) && lroMeta) {
+        body = lroMeta.logicalResult;
+        if (lroMeta.finalStep?.target.kind === "ModelProperty") {
+            resultProperty = lroMeta.finalStep.target.name;
+        }
+    }
+    for (const innerResponse of response.responses) {
+        if (innerResponse.headers && Object.keys(innerResponse.headers).length > 0) {
+            for (const [key, value] of Object.entries(innerResponse.headers)) {
+                headers.push({
+                    type: getType(context, value),
+                    wireName: key,
+                });
             }
         }
-        if (modelType && modelType.decorators.find((d) => d.decorator.name === "$pagedResult")) {
-            type = getType(context, Array.from(modelType.properties.values())[0].type);
-        } else if (modelType && !isAzureCoreModel(modelType)) {
-            type = getType(context, modelType);
-        } else if (!modelType) {
-            type = getType(context, innerResponse.body.type);
+        if (!body && innerResponse.body) {
+            body = innerResponse.body.type;
+        }
+    }
+    if (body) {
+        if (body.kind === "Model") {
+            body = getEffectiveSchemaType(context, body);
+            if (body && body.decorators.find((d) => d.decorator.name === "$pagedResult")) {
+                type = getType(context, Array.from(body.properties.values())[0].type);
+            } else if (body && !isAzureCoreModel(body)) {
+                type = getType(context, body);
+            }
+        } else {
+            type = getType(context, body);
         }
     }
     const statusCodes = [];
@@ -566,7 +560,7 @@ function emitResponse(
         statusCodes.push(parseInt(response.statusCode));
     }
     return {
-        headers: emitResponseHeaders(context, innerResponse.headers),
+        headers,
         statusCodes: statusCodes,
         addedOn: getAddedOnVersion(context, response.type),
         discriminator: "basic",
@@ -700,22 +694,17 @@ function emitBasicOperation(
     const isOverload: boolean = false;
     const isOverriden: boolean = false;
     for (const response of httpOperation.responses) {
-        for (const innerResponse of response.responses) {
-            const emittedResponse = emitResponse(context, response, innerResponse, operation);
-            if (
-                emittedResponse["type"] &&
-                parameters.filter((e) => e.wireName.toLowerCase() === "accept").length === 0
-            ) {
-                parameters.push(emitAcceptParameter(isOverload, isOverriden));
+        const emittedResponse = emitResponse(context, response, operation);
+        if (emittedResponse["type"] && parameters.filter((e) => e.wireName.toLowerCase() === "accept").length === 0) {
+            parameters.push(emitAcceptParameter(isOverload, isOverriden));
+        }
+        if (isErrorModel(context.program, response.type)) {
+            // * is valid status code in cadl but invalid for autorest.python
+            if (response.statusCode === "*") {
+                exceptions.push(emittedResponse);
             }
-            if (isErrorModel(context.program, response.type)) {
-                // * is valid status code in cadl but invalid for autorest.python
-                if (response.statusCode === "*") {
-                    exceptions.push(emittedResponse);
-                }
-            } else {
-                responses.push(emittedResponse);
-            }
+        } else {
+            responses.push(emittedResponse);
         }
     }
 

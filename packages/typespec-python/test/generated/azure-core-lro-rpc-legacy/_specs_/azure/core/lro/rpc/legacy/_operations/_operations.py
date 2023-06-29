@@ -66,7 +66,7 @@ def build_legacy_create_job_request(**kwargs: Any) -> HttpRequest:
 
 
 class LegacyClientOperationsMixin(LegacyClientMixinABC):
-    def _create_job_initial(self, body: Union[_models.JobData, JSON, IO], **kwargs: Any) -> Optional[_models.JobResult]:
+    def _create_job_initial(self, body: Union[_models.JobData, JSON, IO], **kwargs: Any) -> _models.JobResult:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -79,7 +79,7 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[Optional[_models.JobResult]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.JobResult] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -108,7 +108,6 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = None
         response_headers = {}
         if response.status_code == 200:
             deserialized = _deserialize(_models.JobResult, response.json())
@@ -119,10 +118,12 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
             )
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-        if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            deserialized = _deserialize(_models.JobResult, response.json())
 
-        return deserialized
+        if cls:
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
 
     @overload
     def begin_create_job(
