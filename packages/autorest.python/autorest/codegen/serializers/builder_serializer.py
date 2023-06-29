@@ -963,8 +963,11 @@ class _OperationSerializer(
                     if p.grouper and p.client_name == parameter.grouped_by
                 ).optional
             )
+            name_in_high_level_operation = parameter.name_in_high_level_operation
+            if parameter.client_name in SIGNATURE_CONVERT:
+                name_in_high_level_operation = SIGNATURE_CONVERT[parameter.client_name]["call_builder_value"]
             retval.append(
-                f"    {parameter.client_name}={parameter.name_in_high_level_operation},"
+                f"    {parameter.client_name}={name_in_high_level_operation},"
                 f"{'  # type: ignore' if type_ignore else ''}"
             )
         if request_builder.overloads:
