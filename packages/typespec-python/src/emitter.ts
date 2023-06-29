@@ -522,7 +522,7 @@ function emitResponse(context: SdkContext, response: HttpOperationResponse, oper
     let body: Type | undefined = undefined;
     const headers: Record<string, any>[] = [];
     const lroMeta = getLroMetadata(context.program, operation);
-    if (!hasDefaultStatusCode(response) && lroMeta) {
+    if (lroMeta) {
         body = lroMeta.logicalResult;
         if (lroMeta.finalStep?.target.kind === "ModelProperty") {
             resultProperty = lroMeta.finalStep.target.name;
