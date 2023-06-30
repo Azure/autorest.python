@@ -21,7 +21,6 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.pipeline import PipelineResponse
 
 from ._operations import FormdataurlencodedOperations as _FormdataurlencodedOperations
-from .._vendor import _format_url_section
 
 
 class Helpers:
@@ -35,7 +34,7 @@ class Helpers:
             "petId": pet_id,
         }
 
-        _url = _format_url_section(_url, **path_format_arguments)
+        _url = _url.format(**path_format_arguments)
 
         if content_type is not None:
             _headers["Content-Type"] = content_type

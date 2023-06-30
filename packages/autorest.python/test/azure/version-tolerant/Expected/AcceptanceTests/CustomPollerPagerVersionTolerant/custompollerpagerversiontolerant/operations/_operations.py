@@ -30,7 +30,6 @@ from azure.mgmt.core.polling.arm_polling import ARMPolling
 from custompollerpagerdefinitions import CustomPager, CustomPoller
 
 from .._serialization import Serializer
-from .._vendor import _format_url_section
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -269,7 +268,7 @@ def build_paging_get_multiple_pages_with_offset_request(
         "offset": _SERIALIZER.url("offset", offset, "int"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     if client_request_id is not None:
@@ -367,7 +366,7 @@ def build_paging_get_multiple_pages_fragment_next_link_request(
         "tenant": _SERIALIZER.url("tenant", tenant, "str"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct parameters
     _params["api_version"] = _SERIALIZER.query("api_version", api_version, "str")
@@ -391,7 +390,7 @@ def build_paging_next_fragment_request(tenant: str, next_link: str, *, api_versi
         "nextLink": _SERIALIZER.url("next_link", next_link, "str", skip_quote=True),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct parameters
     _params["api_version"] = _SERIALIZER.query("api_version", api_version, "str")
@@ -416,7 +415,7 @@ def build_paging_get_multiple_pages_fragment_with_grouping_next_link_request(
         "tenant": _SERIALIZER.url("tenant", tenant, "str"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct parameters
     _params["api_version"] = _SERIALIZER.query("api_version", api_version, "str")
@@ -442,7 +441,7 @@ def build_paging_next_fragment_with_grouping_request(
         "nextLink": _SERIALIZER.url("next_link", next_link, "str", skip_quote=True),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct parameters
     _params["api_version"] = _SERIALIZER.query("api_version", api_version, "str")

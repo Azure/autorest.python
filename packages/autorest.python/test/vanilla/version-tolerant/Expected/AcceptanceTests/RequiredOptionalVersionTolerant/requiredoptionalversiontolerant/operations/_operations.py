@@ -24,7 +24,6 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._serialization import Serializer
-from .._vendor import _format_url_section
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -49,7 +48,7 @@ def build_implicit_get_required_path_request(path_parameter: str, **kwargs: Any)
         "pathParameter": _SERIALIZER.url("path_parameter", path_parameter, "str"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -137,7 +136,7 @@ def build_implicit_get_required_global_path_request(required_global_path: str, *
         "required-global-path": _SERIALIZER.url("required_global_path", required_global_path, "str"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")

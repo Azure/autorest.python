@@ -92,10 +92,6 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
             ImportType.AZURECORE,
         )
 
-        if self.parameters.path:
-            file_import.add_submodule_import(
-                f"{relative_path}_vendor", "_format_url_section", ImportType.LOCAL
-            )
         if self.parameters.headers or self.parameters.query:
             file_import.add_submodule_import(
                 "azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE

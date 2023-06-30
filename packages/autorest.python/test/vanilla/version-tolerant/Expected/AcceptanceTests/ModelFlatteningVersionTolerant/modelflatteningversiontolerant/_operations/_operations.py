@@ -24,7 +24,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._serialization import Serializer
-from .._vendor import AutoRestResourceFlatteningTestServiceMixinABC, _format_url_section
+from .._vendor import AutoRestResourceFlatteningTestServiceMixinABC
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -212,7 +212,7 @@ def build_auto_rest_resource_flattening_test_service_put_simple_product_with_gro
         "name": _SERIALIZER.url("name", name, "str"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     if content_type is not None:
