@@ -20,6 +20,7 @@
 
 - Change readonly to visibility #1968
 - Support global config for `head-as-boolean` #1949
+  Covert method signature `if_match/if_none_match` to `etag/match_condition` #1993
 
 ## 2023-06-12 - 0.11.0
 
