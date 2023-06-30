@@ -15,6 +15,7 @@
 **New Features**
 
 - Support visibility for dpg #1968
+- Covert method signature `if_match/if_none_match` to `etag/match_condition` #1993
 
 ### 2023-06-12 - 6.6.0
 
