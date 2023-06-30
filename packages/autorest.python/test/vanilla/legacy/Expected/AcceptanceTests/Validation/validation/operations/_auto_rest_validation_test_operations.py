@@ -27,7 +27,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._vendor import AutoRestValidationTestMixinABC, _convert_request, _format_url_section
+from .._vendor import AutoRestValidationTestMixinABC, _convert_request
 
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
@@ -58,7 +58,7 @@ def build_validation_of_method_parameters_request(
         "id": _SERIALIZER.url("id", id, "int", maximum=1000, minimum=100, multiple=10),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct parameters
     _params["apiVersion"] = _SERIALIZER.query("api_version", api_version, "str")
@@ -89,7 +89,7 @@ def build_validation_of_body_request(
         "id": _SERIALIZER.url("id", id, "int", maximum=1000, minimum=100, multiple=10),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct parameters
     _params["apiVersion"] = _SERIALIZER.query("api_version", api_version, "str")
@@ -110,7 +110,7 @@ def build_get_with_constant_in_path_request(**kwargs: Any) -> HttpRequest:
         "constantParam": _SERIALIZER.url("constant_param", constant_param, "str"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
@@ -128,7 +128,7 @@ def build_post_with_constant_in_body_request(**kwargs: Any) -> HttpRequest:
         "constantParam": _SERIALIZER.url("constant_param", constant_param, "str"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     if content_type is not None:
