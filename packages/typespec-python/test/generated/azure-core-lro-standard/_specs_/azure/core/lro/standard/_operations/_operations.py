@@ -89,9 +89,12 @@ def build_standard_delete_request(name: str, **kwargs: Any) -> HttpRequest:
 
 
 def build_standard_export_request(name: str, *, format: str, **kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-12-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/azure/core/lro/standard/users/{name}:export"
     path_format_arguments = {
@@ -104,7 +107,10 @@ def build_standard_export_request(name: str, *, format: str, **kwargs: Any) -> H
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
     _params["format"] = _SERIALIZER.query("format", format, "str")
 
-    return HttpRequest(method="POST", url=_url, params=_params, **kwargs)
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 class StandardClientOperationsMixin(StandardClientMixinABC):
@@ -417,9 +423,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    def _export_initial(  # pylint: disable=inconsistent-return-statements
-        self, name: str, *, format: str, **kwargs: Any
-    ) -> None:
+    def _export_initial(self, name: str, *, format: str, **kwargs: Any) -> _models.ExportedUser:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -431,7 +435,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[_models.ExportedUser] = kwargs.pop("cls", None)
 
         request = build_standard_export_request(
             name=name,
@@ -456,8 +460,12 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         response_headers = {}
         response_headers["Operation-Location"] = self._deserialize("str", response.headers.get("Operation-Location"))
 
+        deserialized = _deserialize(_models.ExportedUser, response.json().get("result"))
+
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
 
     @distributed_trace
     def begin_export(self, name: str, *, format: str, **kwargs: Any) -> LROPoller[_models.ExportedUser]:
@@ -501,7 +509,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
                 "str", response.headers.get("Operation-Location")
             )
 
-            deserialized = _deserialize(_models.ExportedUser, response.json())
+            deserialized = _deserialize(_models.ExportedUser, response.json().get("result"))
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)  # type: ignore
             return deserialized
