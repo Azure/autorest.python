@@ -517,16 +517,8 @@ function hasDefaultStatusCode(response: HttpOperationResponse): boolean {
 
 function emitResponse(context: SdkContext, response: HttpOperationResponse, operation: Operation): Record<string, any> {
     let type = undefined;
-    let resultProperty = undefined;
     let body: Type | undefined = undefined;
     const headers: Record<string, any>[] = [];
-    const lroMeta = getLroMetadata(context.program, operation);
-    if (!hasDefaultStatusCode(response) && lroMeta) {
-        body = lroMeta.logicalResult;
-        if (lroMeta.finalStep?.target.kind === "ModelProperty") {
-            resultProperty = lroMeta.finalStep.target.name;
-        }
-    }
     for (const innerResponse of response.responses) {
         if (innerResponse.headers && Object.keys(innerResponse.headers).length > 0) {
             for (const [key, value] of Object.entries(innerResponse.headers)) {
@@ -564,7 +556,6 @@ function emitResponse(context: SdkContext, response: HttpOperationResponse, oper
         addedOn: getAddedOnVersion(context, response.type),
         discriminator: "basic",
         type: type,
-        resultProperty: resultProperty,
     };
 }
 
@@ -581,12 +572,21 @@ function emitOperation(context: SdkContext, operation: Operation, operationGroup
     return emitBasicOperation(context, operation, operationGroupName);
 }
 
-function addLroInformation(emittedOperation: Record<string, any>, initialOperation: Record<string, any>) {
+function addLroInformation(
+    context: SdkContext,
+    tspOperation: Operation,
+    emittedOperation: Record<string, any>,
+    initialOperation: Record<string, any>,
+) {
     emittedOperation["discriminator"] = "lro";
     emittedOperation["initialOperation"] = initialOperation;
     emittedOperation["exposeStreamKeyword"] = false;
+    const lroMeta = getLroMetadata(context.program, tspOperation);
+    if (!isAzureCoreModel(lroMeta!.logicalResult)) {
+        emittedOperation["responses"][0]["type"] = getType(context, lroMeta!.logicalResult);
+        addAcceptParameter(emittedOperation, emittedOperation["parameters"]);
+    }
 }
-
 function addPagingInformation(context: SdkContext, operation: Operation, emittedOperation: Record<string, any>) {
     emittedOperation["discriminator"] = "paging";
     const pagedResult = getPagedResult(context.program, operation);
@@ -625,7 +625,7 @@ function emitLroPagingOperation(
     const retval: Record<string, any>[] = [];
     for (const emittedOperation of emitBasicOperation(context, operation, operationGroupName)) {
         const initialOperation = getLroInitialOperation(context, operation, operationGroupName);
-        addLroInformation(emittedOperation, initialOperation);
+        addLroInformation(context, operation, emittedOperation, initialOperation);
         addPagingInformation(context, operation, emittedOperation);
         emittedOperation["discriminator"] = "lropaging";
         retval.push(emittedOperation);
@@ -641,7 +641,7 @@ function emitLroOperation(
     const retval = [];
     for (const emittedOperation of emitBasicOperation(context, operation, operationGroupName)) {
         const initialOperation = getLroInitialOperation(context, operation, operationGroupName);
-        addLroInformation(emittedOperation, initialOperation);
+        addLroInformation(context, operation, emittedOperation, initialOperation);
         retval.push(initialOperation);
         retval.push(emittedOperation);
     }
@@ -664,6 +664,12 @@ function emitPagingOperation(
 function isAbstract(operation: HttpOperation): boolean {
     const body = operation.parameters.body;
     return body !== undefined && body.contentTypes.length > 1;
+}
+
+function addAcceptParameter(emittedResponse: Record<string, any>, parameters: Record<string, any>[]) {
+    if (emittedResponse["type"] && parameters.filter((e) => e.wireName.toLowerCase() === "accept").length === 0) {
+        parameters.push(emitAcceptParameter(false, false));
+    }
 }
 
 function emitBasicOperation(
@@ -694,9 +700,7 @@ function emitBasicOperation(
     const isOverriden: boolean = false;
     for (const response of httpOperation.responses) {
         const emittedResponse = emitResponse(context, response, operation);
-        if (emittedResponse["type"] && parameters.filter((e) => e.wireName.toLowerCase() === "accept").length === 0) {
-            parameters.push(emitAcceptParameter(isOverload, isOverriden));
-        }
+        addAcceptParameter(emittedResponse, parameters);
         if (isErrorModel(context.program, response.type)) {
             // * is valid status code in cadl but invalid for autorest.python
             if (response.statusCode === "*") {

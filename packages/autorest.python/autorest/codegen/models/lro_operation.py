@@ -128,6 +128,11 @@ class LROOperationBase(OperationBase[LROResponseType]):
                 "distributed_trace_async",
                 ImportType.AZURECORE,
             )
+        if self.lro_response:
+            relative_path = "..." if async_mode else ".."
+            file_import.add_submodule_import(
+                f"{relative_path}_model_base", "_deserialize", ImportType.LOCAL
+            )
         file_import.add_submodule_import(
             "typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
