@@ -23,7 +23,6 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._serialization import Serializer
-from .._vendor import _format_url_section
 
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
@@ -279,7 +278,7 @@ def build_contants_put_client_constants_request(**kwargs: Any) -> HttpRequest:
         "path-constant": _SERIALIZER.url("path_constant", path_constant, "str"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct parameters
     _params["query-constant"] = _SERIALIZER.query("query_constant", query_constant, "int")

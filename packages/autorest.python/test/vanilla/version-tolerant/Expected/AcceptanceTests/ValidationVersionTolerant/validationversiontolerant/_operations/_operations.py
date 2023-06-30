@@ -24,7 +24,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._serialization import Serializer
-from .._vendor import AutoRestValidationTestMixinABC, _format_url_section
+from .._vendor import AutoRestValidationTestMixinABC
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -61,7 +61,7 @@ def build_auto_rest_validation_test_validation_of_method_parameters_request(
         "id": _SERIALIZER.url("id", id, "int", maximum=1000, minimum=100, multiple=10),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct parameters
     _params["apiVersion"] = _SERIALIZER.query("api_version", api_version, "str")
@@ -92,7 +92,7 @@ def build_auto_rest_validation_test_validation_of_body_request(
         "id": _SERIALIZER.url("id", id, "int", maximum=1000, minimum=100, multiple=10),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct parameters
     _params["apiVersion"] = _SERIALIZER.query("api_version", api_version, "str")
@@ -113,7 +113,7 @@ def build_auto_rest_validation_test_get_with_constant_in_path_request(**kwargs: 
         "constantParam": _SERIALIZER.url("constant_param", constant_param, "str"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
@@ -131,7 +131,7 @@ def build_auto_rest_validation_test_post_with_constant_in_body_request(**kwargs:
         "constantParam": _SERIALIZER.url("constant_param", constant_param, "str"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     if content_type is not None:

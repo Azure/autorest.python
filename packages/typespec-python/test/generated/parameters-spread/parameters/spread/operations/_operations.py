@@ -27,7 +27,6 @@ from azure.core.utils import case_insensitive_dict
 from .. import models as _models
 from .._model_base import AzureJSONEncoder
 from .._serialization import Serializer
-from .._vendor import _format_url_section
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -80,7 +79,7 @@ def build_alias_spread_as_request_parameter_request(id: str, *, x_ms_test_header
         "id": _SERIALIZER.url("id", id, "str"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["x-ms-test-header"] = _SERIALIZER.header("x_ms_test_header", x_ms_test_header, "str")
@@ -102,7 +101,7 @@ def build_alias_spread_with_multiple_parameters_request(
         "id": _SERIALIZER.url("id", id, "str"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["x-ms-test-header"] = _SERIALIZER.header("x_ms_test_header", x_ms_test_header, "str")
