@@ -7,21 +7,22 @@ from typing import Any, Dict, TYPE_CHECKING, List, Optional
 from abc import ABC, abstractmethod
 from .imports import FileImport
 
+# pylint: disable=line-too-long
 SIGNATURE_CONVERT = {
     "if_match": {
         "name": "etag",
-        "default_value": "\"*\"",
+        "default_value": "None",
         "docstring_type": "str",
         "type_annotation": "Optional[str]",
-        "description": "check if resource is changed. Set None to skip checking etag. Default value is '*'",
+        "description": "check if resource is changed. Set None to skip checking etag. Default value is None",
         "call_builder_value": "prep_if_match(etag, match_condition)",
     },
     "if_none_match": {
         "name": "match_condition",
-        "default_value": "MatchConditions.Unconditionally",
+        "default_value": "None",
         "docstring_type": "~azure.core.MatchConditions",
         "type_annotation": "Optional[MatchConditions]",
-        "description": "The match condition to use upon the etag. Default value is ~azure.core.MatchConditions.Unconditionally",
+        "description": "The match condition to use upon the etag. Default value None",
         "call_builder_value": "prep_if_none_match(etag, match_condition)",
     },
 }

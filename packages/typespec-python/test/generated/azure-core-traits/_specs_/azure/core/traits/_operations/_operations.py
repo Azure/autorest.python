@@ -13,6 +13,7 @@ import sys
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 import uuid
 
+from azure.core import MatchConditions
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -126,8 +127,8 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         id: int,
         *,
         foo: str,
-        etag: Optional[str] = "*",
-        match_condition: Optional[MatchConditions] = MatchConditions.Unconditionally,
+        etag: Optional[str] = None,
+        match_condition: Optional[MatchConditions] = None,
         if_unmodified_since: Optional[datetime.datetime] = None,
         if_modified_since: Optional[datetime.datetime] = None,
         client_request_id: Optional[str] = None,
@@ -140,10 +141,9 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :keyword foo: header in request. Required.
         :paramtype foo: str
         :keyword etag: check if resource is changed. Set None to skip checking etag. Default value is
-         '*'
+         None
         :paramtype etag: str
-        :keyword match_condition: The match condition to use upon the etag. Default value is
-         ~azure.core.MatchConditions.Unconditionally
+        :keyword match_condition: The match condition to use upon the etag. Default value None
         :paramtype match_condition: ~azure.core.MatchConditions
         :keyword if_unmodified_since: The request should only proceed if the entity was not modified
          after this time. Default value is None.

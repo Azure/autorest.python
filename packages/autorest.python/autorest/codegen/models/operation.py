@@ -331,7 +331,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             )
         return file_import
 
-    def imports(  # pylint: disable=too-many-branches
+    def imports(  # pylint: disable=too-many-branches, disable=too-many-statements
         self, async_mode: bool, **kwargs: Any
     ) -> FileImport:
         if self.abstract:
@@ -400,6 +400,9 @@ class OperationBase(  # pylint: disable=too-many-public-methods
                 f"{relative_path}_vendor", "_convert_request", ImportType.LOCAL
             )
         if self.code_model.has_etag:
+            file_import.add_submodule_import(
+                "azure.core", "MatchConditions", ImportType.AZURECORE
+            )
             file_import.add_submodule_import(
                 f"{relative_path}_vendor", "prep_if_match", ImportType.LOCAL
             )

@@ -18,6 +18,7 @@ def _is_legacy(options) -> bool:
     return not (options["version_tolerant"] or options["low_level_client"])
 
 
+# pylint: disable=too-many-instance-attributes
 class CodeModel:  # pylint: disable=too-many-public-methods
     """Top level code model
 
@@ -80,6 +81,7 @@ class CodeModel:  # pylint: disable=too-many-public-methods
 
     @property
     def has_etag(self) -> bool:
+        # pylint: disable=too-many-nested-blocks
         if self._has_etag is None:
             self._has_etag = False
             for client in self.clients:
@@ -90,7 +92,7 @@ class CodeModel:  # pylint: disable=too-many-public-methods
                                 self._has_etag = True
                                 break
         return self._has_etag
-    
+
     @property
     def has_operations(self) -> bool:
         if any(c for c in self.clients if c.has_operations):
@@ -144,7 +146,10 @@ class CodeModel:  # pylint: disable=too-many-public-methods
         if async_mode:
             return self.need_mixin_abc
         return (
-            self.need_request_converter or self.need_format_url or self.need_mixin_abc or self.has_etag
+            self.need_request_converter
+            or self.need_format_url
+            or self.need_mixin_abc
+            or self.has_etag
         )
 
     @property

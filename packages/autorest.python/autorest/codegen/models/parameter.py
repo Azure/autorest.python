@@ -230,13 +230,17 @@ class _ParameterBase(
     def in_method_signature(self) -> bool:
         ...
 
-    def method_signature(self, async_mode: bool, enable_signature_convert: bool = False) -> str:
+    def method_signature(
+        self, async_mode: bool, enable_signature_convert: bool = False
+    ) -> str:
         client_name = self.client_name
         type_annot = self.type_annotation(async_mode=async_mode)
         client_default_value_declaration = self.client_default_value_declaration
         if enable_signature_convert and client_name in SIGNATURE_CONVERT:
             type_annot = SIGNATURE_CONVERT[client_name]["type_annotation"]
-            client_default_value_declaration = SIGNATURE_CONVERT[client_name]["default_value"]
+            client_default_value_declaration = SIGNATURE_CONVERT[client_name][
+                "default_value"
+            ]
             client_name = SIGNATURE_CONVERT[client_name]["name"]
 
         if self.client_default_value is not None or self.optional:

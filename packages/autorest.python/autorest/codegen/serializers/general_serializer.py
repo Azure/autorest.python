@@ -137,7 +137,7 @@ class GeneralSerializer:
                     f"{client.name}Configuration",
                     ImportType.LOCAL,
                 )
-        
+
         if self.code_model.has_etag:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
             file_import.add_submodule_import(

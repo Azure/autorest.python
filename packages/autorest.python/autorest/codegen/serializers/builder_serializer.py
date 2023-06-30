@@ -347,9 +347,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
             description_list.extend(
                 f":{param.description_keyword} {client_name}: {description}".replace(
                     "\n", "\n "
-                ).split(
-                    "\n"
-                )
+                ).split("\n")
             )
             description_list.append(
                 f":{param.docstring_type_keyword} {client_name}: {docstring_type}"
@@ -965,7 +963,9 @@ class _OperationSerializer(
             )
             name_in_high_level_operation = parameter.name_in_high_level_operation
             if parameter.client_name in SIGNATURE_CONVERT:
-                name_in_high_level_operation = SIGNATURE_CONVERT[parameter.client_name]["call_builder_value"]
+                name_in_high_level_operation = SIGNATURE_CONVERT[parameter.client_name][
+                    "call_builder_value"
+                ]
             retval.append(
                 f"    {parameter.client_name}={name_in_high_level_operation},"
                 f"{'  # type: ignore' if type_ignore else ''}"
