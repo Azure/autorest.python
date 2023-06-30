@@ -109,10 +109,6 @@ class GeneralSerializer:
                 ImportType.AZURECORE,
             )
 
-        if self.code_model.need_format_url and not self.async_mode:
-            file_import.add_submodule_import("typing", "List", ImportType.STDLIB)
-            file_import.add_submodule_import("typing", "cast", ImportType.STDLIB)
-
         if self.code_model.need_mixin_abc:
             file_import.add_submodule_import(
                 "abc",
