@@ -283,6 +283,16 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         """Whether there is abstract operation in any operation group."""
         return any(og.has_abstract_operations for og in self.operation_groups)
 
+    @property
+    def special_request_id_header_name(self) -> Optional[str]:
+        """Non-standard header name for request id"""
+        for og in self.operation_groups:
+            for o in og.operations:
+                for p in o.parameters:
+                    if p.is_special_request_id:
+                        return p.wire_name
+
+
     def imports(self, async_mode: bool) -> FileImport:
         file_import = self._imports_shared(async_mode)
         if async_mode:

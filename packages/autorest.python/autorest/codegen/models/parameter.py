@@ -97,6 +97,10 @@ class _ParameterBase(
             self.location == ParameterLocation.HEADER
             and self.wire_name.lower() in SPECIAL_HANDLE_HEADERS
         )
+        self.is_special_request_id: bool = (
+            self.location == ParameterLocation.HEADER
+            and self.wire_name.lower() == "client-request-id"
+        )
 
     @property
     def constant(self) -> bool:
