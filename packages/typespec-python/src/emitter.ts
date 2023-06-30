@@ -33,7 +33,6 @@ import {
     HttpAuth,
     HttpOperationParameter,
     HttpOperationResponse,
-    HttpOperationResponseContent,
     HttpServer,
     isStatusCode,
     HttpOperation,
