@@ -28,6 +28,7 @@ from azure.core.utils import case_insensitive_dict
 from ... import models as _models
 from ..._model_base import AzureJSONEncoder, _deserialize
 from ..._operations._operations import build_traits_repeatable_action_request, build_traits_smoke_test_request
+from ..._vendor import prep_if_match, prep_if_none_match
 from .._vendor import TraitsClientMixinABC
 
 if sys.version_info >= (3, 9):

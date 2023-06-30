@@ -29,7 +29,7 @@ from azure.core.utils import case_insensitive_dict
 from .. import models as _models
 from .._model_base import AzureJSONEncoder, _deserialize
 from .._serialization import Serializer
-from .._vendor import TraitsClientMixinABC, _format_url_section
+from .._vendor import TraitsClientMixinABC, _format_url_section, prep_if_match, prep_if_none_match
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
