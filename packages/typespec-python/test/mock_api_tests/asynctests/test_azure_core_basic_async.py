@@ -60,17 +60,22 @@ async def test_list(client: aio.BasicClient):
     assert result[1].orders[0].user_id == 2
     assert result[1].orders[0].detail == "a TV"
 
-async def _list_with_page_tests(pager: AsyncIterable[models.User]):
+async def _list_with_page_tests(pager: AsyncIterable[models.User], num: int = 1):
     result = [p async for p in pager]
-    assert len(result) == 1
-    assert result[0].id == 1
-    assert result[0].name == "Madge"
-    assert result[0].etag == "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-    assert result[0].orders is None
+    assert len(result) == num
+    for item in result:
+        assert item.id == 1
+        assert item.name == "Madge"
+        assert item.etag == "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+        assert item.orders is None
 
 @pytest.mark.asyncio
 async def test_list_with_page(client: aio.BasicClient):
     await _list_with_page_tests(client.list_with_page())
+
+@pytest.mark.asyncio
+async def test_list_with_page_next_link(client: aio.BasicClient):
+    await _list_with_page_tests(client.list_with_page_next_link(), 2)
 
 @pytest.mark.asyncio
 async def test_list_with_custom_page_model(client: aio.BasicClient):
