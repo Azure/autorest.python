@@ -16,6 +16,9 @@ import {
     listServices,
     Type,
     getNamespaceFullName,
+    BooleanLiteral,
+    StringLiteral,
+    NumericLiteral,
 } from "@typespec/compiler";
 import {
     getAuthentication,
@@ -59,6 +62,8 @@ import {
     SdkBuiltInType,
     SdkArrayType,
     SdkDictionaryType,
+    getSdkArrayOrDict,
+    SdkConstantType,
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
@@ -748,8 +753,7 @@ function emitModel(context: SdkContext, type: SdkModelType): Record<string, any>
         parents: type.baseModel ? [emitModel(context, type.baseModel)] : [],
         discriminatedSubtypes: {},
         properties: [],
-        snakeCaseName: camelToSnakeCase(type.name),
-        base: type.name === "" ? "json" : "dpg",
+
         internal: type.internal,
     };
 }
@@ -836,24 +840,40 @@ function emitBuiltInType(context: SdkContext, type: SdkBuiltInType): Record<stri
     };
 }
 
-function emitArrayOrDict(context: SdkContext, type: SdkArrayType | SdkDictionaryType): Record<string, any> | undefined {
+function emitArrayOrDict(
+    context: SdkContext,
+    type: SdkArrayType | SdkDictionaryType | Model,
+): Record<string, any> | undefined {
+    if (type.kind === "Model") {
+        const convertedType = getSdkArrayOrDict(context, type);
+        if (convertedType === undefined) return undefined;
+        type = convertedType;
+    }
     return {
         type: type.kind,
         elementType: getType(context, type.valueType),
     };
 }
 
-function mapCadlType(context: SdkContext, type: Type | SdkType): any {
+function emitConstant(context: SdkContext, type: StringLiteral | NumericLiteral | BooleanLiteral | SdkConstantType) {
+    if (type.kind !== "constant") {
+        const convertedType = getSdkConstant(context, type);
+        if (convertedType === undefined) return convertedType;
+        type = convertedType;
+    }
+    return {
+        type: type.kind,
+        value: type.value,
+        valueType: emitBuiltInType(context, type.valueType),
+    };
+}
+
+function mapCadlType(context: SdkContext, type: Type): any {
     switch (type.kind) {
         case "Number":
         case "String":
         case "Boolean":
-            const sdkType = getSdkConstant(context, type)!;
-            return {
-                type: sdkType.kind,
-                value: sdkType.value,
-                valueType: emitBuiltInType(context, sdkType.valueType),
-            };
+            return emitConstant(context, type);
         case "Model":
             return emitArrayOrDict(context, type);
     }
@@ -922,8 +942,7 @@ function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
         case "Enum":
             return emitEnum(context, type);
         default:
-            if (SdkBuiltInKinds)
-            throw Error(`Not supported ${type.kind}`);
+            if (SdkBuiltInKinds) throw Error(`Not supported ${type.kind}`);
     }
 }
 
