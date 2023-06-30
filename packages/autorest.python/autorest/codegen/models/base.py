@@ -22,7 +22,7 @@ SIGNATURE_CONVERT = {
         "default_value": "None",
         "docstring_type": "~azure.core.MatchConditions",
         "type_annotation": "Optional[MatchConditions]",
-        "description": "The match condition to use upon the etag. Default value None",
+        "description": "The match condition to use upon the etag. Default value is None",
         "call_builder_value": "prep_if_none_match(etag, match_condition)",
     },
 }
