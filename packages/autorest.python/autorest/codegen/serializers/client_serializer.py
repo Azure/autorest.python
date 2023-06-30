@@ -114,10 +114,12 @@ class ClientSerializer:
             "config": "self._config",
         }
         if self.client.special_request_id_header_name:
-            params["request_id_header_name"] = f'"{self.client.special_request_id_header_name}"'
+            params[
+                "request_id_header_name"
+            ] = f'"{self.client.special_request_id_header_name}"'
         return (
             f"self._client: {pipeline_client_name} = {pipeline_client_name}("
-            f"{', '.join(k + '=' + params[k] for k in params.keys())}, **kwargs)"
+            f"{', '.join(f'{k}={v}' for k, v in params.items())}, **kwargs)"
         )
 
     def serializers_and_operation_groups_properties(self) -> List[str]:
