@@ -44,6 +44,9 @@ importers:
       '@autorest/python':
         specifier: workspace:^
         version: link:../autorest.python
+      '@azure-tools/typespec-autorest':
+        specifier: '>=0.31.0 <1.0.0'
+        version: 0.31.0(@azure-tools/typespec-azure-core@0.31.0)(@typespec/compiler@0.45.0)(@typespec/http@0.45.0)(@typespec/openapi@0.45.0)(@typespec/rest@0.45.0)(@typespec/versioning@0.45.0)
       '@azure-tools/typespec-azure-core':
         specifier: '>=0.31.0 <1.0.0'
         version: 0.31.0(@typespec/compiler@0.45.0)(@typespec/http@0.45.0)(@typespec/rest@0.45.0)
@@ -225,6 +228,25 @@ packages:
       - encoding
       - supports-color
     dev: true
+
+  /@azure-tools/typespec-autorest@0.31.0(@azure-tools/typespec-azure-core@0.31.0)(@typespec/compiler@0.45.0)(@typespec/http@0.45.0)(@typespec/openapi@0.45.0)(@typespec/rest@0.45.0)(@typespec/versioning@0.45.0):
+    resolution: {integrity: sha512-l/C4HyGr0ByC7FnlsoorXDIp46pbDxVPbq59XNX9sKJJ8p2297BJv7FdPlLi0BXGjEmzy93Ag4hoH9H/u54AhQ==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      '@azure-tools/typespec-azure-core': ~0.31.0
+      '@typespec/compiler': ~0.45.0
+      '@typespec/http': ~0.45.0
+      '@typespec/openapi': ~0.45.0
+      '@typespec/rest': ~0.45.0
+      '@typespec/versioning': ~0.45.0
+    dependencies:
+      '@azure-tools/typespec-azure-core': 0.31.0(@typespec/compiler@0.45.0)(@typespec/http@0.45.0)(@typespec/rest@0.45.0)
+      '@typespec/compiler': 0.45.0
+      '@typespec/http': 0.45.0(@typespec/compiler@0.45.0)
+      '@typespec/openapi': 0.45.0(@typespec/compiler@0.45.0)(@typespec/http@0.45.0)(@typespec/rest@0.45.0)
+      '@typespec/rest': 0.45.0(@typespec/compiler@0.45.0)
+      '@typespec/versioning': 0.45.0(@typespec/compiler@0.45.0)
+    dev: false
 
   /@azure-tools/typespec-azure-core@0.31.0(@typespec/compiler@0.45.0)(@typespec/http@0.45.0)(@typespec/rest@0.45.0):
     resolution: {integrity: sha512-sfJyRKGzQeBAm0Tw/CWFnWnHnxZDVbkXXLHeLb76VbRwkAu1P65eENRXXQTkUX5+PxnQH7qU/3MD5WT42AFsyA==}
@@ -1017,7 +1039,6 @@ packages:
       '@typespec/compiler': 0.45.0
       '@typespec/http': 0.45.0(@typespec/compiler@0.45.0)
       '@typespec/rest': 0.45.0(@typespec/compiler@0.45.0)
-    dev: true
 
   /@typespec/prettier-plugin-typespec@0.43.0:
     resolution: {integrity: sha512-00Cqq0oBpE5nngex8m2se+3MZNQaAP+YRLwFjy+sGN5WgLGQtjxyO9Mr4zIj1TyMSXhpNoIab8MpTjN+xLvtQg==}

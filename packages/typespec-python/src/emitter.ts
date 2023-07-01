@@ -585,6 +585,7 @@ function addLroInformation(
     if (!isAzureCoreModel(lroMeta!.logicalResult)) {
         emittedOperation["responses"][0]["type"] = getType(context, lroMeta!.logicalResult);
         addAcceptParameter(emittedOperation, emittedOperation["parameters"]);
+        addAcceptParameter(emittedOperation["initialOperation"], emittedOperation["initialOperation"]["parameters"]);
     }
 }
 function addPagingInformation(context: SdkContext, operation: Operation, emittedOperation: Record<string, any>) {
