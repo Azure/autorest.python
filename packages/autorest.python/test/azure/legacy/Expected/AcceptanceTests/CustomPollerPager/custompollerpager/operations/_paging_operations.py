@@ -31,7 +31,7 @@ from custompollerpagerdefinitions import CustomPager, CustomPoller
 
 from .. import models as _models
 from .._serialization import Serializer
-from .._vendor import _convert_request, _format_url_section
+from .._vendor import _convert_request
 
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
@@ -270,7 +270,7 @@ def build_get_multiple_pages_with_offset_request(
         "offset": _SERIALIZER.url("offset", offset, "int"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     if client_request_id is not None:
@@ -366,7 +366,7 @@ def build_get_multiple_pages_fragment_next_link_request(tenant: str, *, api_vers
         "tenant": _SERIALIZER.url("tenant", tenant, "str"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct parameters
     _params["api_version"] = _SERIALIZER.query("api_version", api_version, "str")
@@ -390,7 +390,7 @@ def build_next_fragment_request(tenant: str, next_link: str, *, api_version: str
         "nextLink": _SERIALIZER.url("next_link", next_link, "str", skip_quote=True),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct parameters
     _params["api_version"] = _SERIALIZER.query("api_version", api_version, "str")
@@ -415,7 +415,7 @@ def build_get_multiple_pages_fragment_with_grouping_next_link_request(
         "tenant": _SERIALIZER.url("tenant", tenant, "str"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct parameters
     _params["api_version"] = _SERIALIZER.query("api_version", api_version, "str")
@@ -441,7 +441,7 @@ def build_next_fragment_with_grouping_request(
         "nextLink": _SERIALIZER.url("next_link", next_link, "str", skip_quote=True),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct parameters
     _params["api_version"] = _SERIALIZER.query("api_version", api_version, "str")

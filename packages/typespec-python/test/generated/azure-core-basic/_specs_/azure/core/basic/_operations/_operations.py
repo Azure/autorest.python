@@ -29,7 +29,7 @@ from azure.core.utils import case_insensitive_dict
 from .. import models as _models
 from .._model_base import AzureJSONEncoder, _deserialize
 from .._serialization import Serializer
-from .._vendor import BasicClientMixinABC, _format_url_section
+from .._vendor import BasicClientMixinABC
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -57,7 +57,7 @@ def build_basic_create_or_update_request(id: int, **kwargs: Any) -> HttpRequest:
         "id": _SERIALIZER.url("id", id, "int"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct parameters
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
@@ -84,7 +84,7 @@ def build_basic_create_or_replace_request(id: int, **kwargs: Any) -> HttpRequest
         "id": _SERIALIZER.url("id", id, "int"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct parameters
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
@@ -110,7 +110,7 @@ def build_basic_get_request(id: int, **kwargs: Any) -> HttpRequest:
         "id": _SERIALIZER.url("id", id, "int"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct parameters
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
@@ -209,7 +209,7 @@ def build_basic_delete_request(id: int, **kwargs: Any) -> HttpRequest:
         "id": _SERIALIZER.url("id", id, "int"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct parameters
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
@@ -230,7 +230,7 @@ def build_basic_export_request(id: int, *, format: str, **kwargs: Any) -> HttpRe
         "id": _SERIALIZER.url("id", id, "int"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct parameters
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")

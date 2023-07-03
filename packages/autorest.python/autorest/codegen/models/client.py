@@ -237,11 +237,6 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         return any(o for o in self.operation_groups if o.is_mixin)
 
     @property
-    def need_format_url(self) -> bool:
-        """Whether we need to format urls. If so, we need to vendor core."""
-        return any(rq for rq in self.request_builders if rq.parameters.path)
-
-    @property
     def has_lro_operations(self) -> bool:
         """Are there any LRO operations in this SDK?"""
         return any(

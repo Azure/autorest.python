@@ -26,7 +26,7 @@ from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
 from .._serialization import Serializer
-from .._vendor import AutoRestResourceFlatteningTestServiceMixinABC, _convert_request, _format_url_section
+from .._vendor import AutoRestResourceFlatteningTestServiceMixinABC, _convert_request
 
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
@@ -209,7 +209,7 @@ def build_put_simple_product_with_grouping_request(name: str, **kwargs: Any) -> 
         "name": _SERIALIZER.url("name", name, "str"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     if content_type is not None:

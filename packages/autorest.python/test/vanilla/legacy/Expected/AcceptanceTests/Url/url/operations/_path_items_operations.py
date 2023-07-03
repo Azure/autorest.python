@@ -25,7 +25,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._vendor import _convert_request, _format_url_section
+from .._vendor import _convert_request
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -59,7 +59,7 @@ def build_get_all_with_values_request(
         "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, "str"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct parameters
     if path_item_string_query is not None:
@@ -101,7 +101,7 @@ def build_get_global_query_null_request(
         "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, "str"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct parameters
     if path_item_string_query is not None:
@@ -143,7 +143,7 @@ def build_get_global_and_local_query_null_request(
         "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, "str"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct parameters
     if path_item_string_query is not None:
@@ -185,7 +185,7 @@ def build_get_local_path_item_query_null_request(
         "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, "str"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct parameters
     if path_item_string_query is not None:

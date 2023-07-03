@@ -24,7 +24,6 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._serialization import Serializer
-from .._vendor import _format_url_section
 
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
@@ -49,7 +48,7 @@ def build_paths_get_boolean_true_request(**kwargs: Any) -> HttpRequest:
         "boolPath": _SERIALIZER.url("bool_path", bool_path, "bool"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -69,7 +68,7 @@ def build_paths_get_boolean_false_request(**kwargs: Any) -> HttpRequest:
         "boolPath": _SERIALIZER.url("bool_path", bool_path, "bool"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -89,7 +88,7 @@ def build_paths_get_int_one_million_request(**kwargs: Any) -> HttpRequest:
         "intPath": _SERIALIZER.url("int_path", int_path, "int"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -109,7 +108,7 @@ def build_paths_get_int_negative_one_million_request(**kwargs: Any) -> HttpReque
         "intPath": _SERIALIZER.url("int_path", int_path, "int"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -129,7 +128,7 @@ def build_paths_get_ten_billion_request(**kwargs: Any) -> HttpRequest:
         "longPath": _SERIALIZER.url("long_path", long_path, "int"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -149,7 +148,7 @@ def build_paths_get_negative_ten_billion_request(**kwargs: Any) -> HttpRequest:
         "longPath": _SERIALIZER.url("long_path", long_path, "int"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -169,7 +168,7 @@ def build_paths_float_scientific_positive_request(**kwargs: Any) -> HttpRequest:
         "floatPath": _SERIALIZER.url("float_path", float_path, "float"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -189,7 +188,7 @@ def build_paths_float_scientific_negative_request(**kwargs: Any) -> HttpRequest:
         "floatPath": _SERIALIZER.url("float_path", float_path, "float"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -209,7 +208,7 @@ def build_paths_double_decimal_positive_request(**kwargs: Any) -> HttpRequest:
         "doublePath": _SERIALIZER.url("double_path", double_path, "float"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -229,7 +228,7 @@ def build_paths_double_decimal_negative_request(**kwargs: Any) -> HttpRequest:
         "doublePath": _SERIALIZER.url("double_path", double_path, "float"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -249,7 +248,7 @@ def build_paths_string_unicode_request(**kwargs: Any) -> HttpRequest:
         "stringPath": _SERIALIZER.url("string_path", string_path, "str"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -269,7 +268,7 @@ def build_paths_string_url_encoded_request(**kwargs: Any) -> HttpRequest:
         "stringPath": _SERIALIZER.url("string_path", string_path, "str"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -289,7 +288,7 @@ def build_paths_string_url_non_encoded_request(**kwargs: Any) -> HttpRequest:
         "stringPath": _SERIALIZER.url("string_path", string_path, "str", skip_quote=True),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -309,7 +308,7 @@ def build_paths_string_empty_request(**kwargs: Any) -> HttpRequest:
         "stringPath": _SERIALIZER.url("string_path", string_path, "str"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -328,7 +327,7 @@ def build_paths_string_null_request(string_path: str, **kwargs: Any) -> HttpRequ
         "stringPath": _SERIALIZER.url("string_path", string_path, "str"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -347,7 +346,7 @@ def build_paths_enum_valid_request(enum_path: str, **kwargs: Any) -> HttpRequest
         "enumPath": _SERIALIZER.url("enum_path", enum_path, "str"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -366,7 +365,7 @@ def build_paths_enum_null_request(enum_path: str, **kwargs: Any) -> HttpRequest:
         "enumPath": _SERIALIZER.url("enum_path", enum_path, "str"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -385,7 +384,7 @@ def build_paths_byte_multi_byte_request(byte_path: bytes, **kwargs: Any) -> Http
         "bytePath": _SERIALIZER.url("byte_path", byte_path, "bytearray"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -405,7 +404,7 @@ def build_paths_byte_empty_request(**kwargs: Any) -> HttpRequest:
         "bytePath": _SERIALIZER.url("byte_path", byte_path, "bytearray"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -424,7 +423,7 @@ def build_paths_byte_null_request(byte_path: bytes, **kwargs: Any) -> HttpReques
         "bytePath": _SERIALIZER.url("byte_path", byte_path, "bytearray"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -444,7 +443,7 @@ def build_paths_date_valid_request(**kwargs: Any) -> HttpRequest:
         "datePath": _SERIALIZER.url("date_path", date_path, "date"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -463,7 +462,7 @@ def build_paths_date_null_request(date_path: datetime.date, **kwargs: Any) -> Ht
         "datePath": _SERIALIZER.url("date_path", date_path, "date"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -483,7 +482,7 @@ def build_paths_date_time_valid_request(**kwargs: Any) -> HttpRequest:
         "dateTimePath": _SERIALIZER.url("date_time_path", date_time_path, "iso-8601"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -502,7 +501,7 @@ def build_paths_date_time_null_request(date_time_path: datetime.datetime, **kwar
         "dateTimePath": _SERIALIZER.url("date_time_path", date_time_path, "iso-8601"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -521,7 +520,7 @@ def build_paths_base64_url_request(base64_url_path: bytes, **kwargs: Any) -> Htt
         "base64UrlPath": _SERIALIZER.url("base64_url_path", base64_url_path, "base64"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -542,7 +541,7 @@ def build_paths_array_csv_in_path_request(array_path: List[str], **kwargs: Any) 
         "arrayPath": _SERIALIZER.url("array_path", array_path, "[str]", div=","),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -561,7 +560,7 @@ def build_paths_unix_time_url_request(unix_time_url_path: datetime.datetime, **k
         "unixTimeUrlPath": _SERIALIZER.url("unix_time_url_path", unix_time_url_path, "unix-time"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -1277,7 +1276,7 @@ def build_path_items_get_all_with_values_request(
         "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, "str"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct parameters
     if path_item_string_query is not None:
@@ -1316,7 +1315,7 @@ def build_path_items_get_global_query_null_request(
         "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, "str"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct parameters
     if path_item_string_query is not None:
@@ -1355,7 +1354,7 @@ def build_path_items_get_global_and_local_query_null_request(
         "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, "str"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct parameters
     if path_item_string_query is not None:
@@ -1394,7 +1393,7 @@ def build_path_items_get_local_path_item_query_null_request(
         "localStringPath": _SERIALIZER.url("local_string_path", local_string_path, "str"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct parameters
     if path_item_string_query is not None:

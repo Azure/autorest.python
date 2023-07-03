@@ -15,7 +15,7 @@
     {{ request_builder_serializer.construct_url(request_builder) }}
     {% if request_builder.parameters.path %}
     {{ op_tools.serialize(request_builder_serializer.serialize_path(request_builder)) | indent }}
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
         {% endif %}
 
         {% if request_builder.parameters.query %}

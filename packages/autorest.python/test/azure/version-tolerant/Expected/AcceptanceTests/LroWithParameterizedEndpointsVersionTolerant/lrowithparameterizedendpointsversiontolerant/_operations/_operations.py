@@ -25,7 +25,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._serialization import Serializer
-from .._vendor import LROWithParamaterizedEndpointsMixinABC, _format_url_section
+from .._vendor import LROWithParamaterizedEndpointsMixinABC
 
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
@@ -66,7 +66,7 @@ def build_lro_with_paramaterized_endpoints_poll_with_constant_parameterized_endp
         "constantParameter": _SERIALIZER.url("constant_parameter", constant_parameter, "str", skip_quote=True),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
