@@ -52,7 +52,13 @@ class ParameterDelimeter(str, Enum):
     COMMA = "comma"
 
 
-SPECIAL_HANDLE_HEADERS = ["repeatability-request-id", "repeatability-first-sent"]
+SPECIAL_HANDLE_HEADERS = [
+    "repeatability-request-id",
+    "repeatability-first-sent",
+    "x-ms-client-request-id",
+    "client-request-id",
+    "return-client-request-id",
+]
 
 
 class _ParameterBase(

@@ -37,3 +37,4 @@ azure-core==1.27.0
 -e ./generated/headasbooleanfalse
 -e ./generated/parameters-body-optionality
 -e ./generated/special-headers-repeatability
+-e ./generated/special-headers-request-id

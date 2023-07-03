@@ -450,7 +450,12 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
                 """    _headers["Repeatability-First-Sent"] = _SERIALIZER.serialize_data(datetime.datetime.now(),
                 "rfc-1123")""",
             ]
-        raise ValueError(f"Unsupported special header: {param}")
+        if param.wire_name.lower() == "return-client-request-id":
+            return [
+                """if "return-client-request-id" not in _headers:""",
+                """    _headers["return-client-request-id"] = _SERIALIZER.serialize_data(True, "bool")""",
+            ]
+        return []
 
     def serialize_path(self, builder: BuilderType) -> List[str]:
         return self.parameter_serializer.serialize_path(
