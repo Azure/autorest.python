@@ -19,6 +19,7 @@ import {
     BooleanLiteral,
     StringLiteral,
     NumericLiteral,
+    Union,
 } from "@typespec/compiler";
 import {
     getAuthentication,
@@ -51,7 +52,7 @@ import {
     isInternal,
     SdkBuiltInKinds,
     SdkEnumValueType,
-    getSdkEnum,
+    getSdkModel,
     getSdkConstant,
     getClientFormat,
     SdkType,
@@ -64,6 +65,9 @@ import {
     SdkDictionaryType,
     getSdkArrayOrDict,
     SdkConstantType,
+    getSdkBuiltInType,
+    SdkDatetimeType,
+    SdkDurationType,
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
@@ -188,7 +192,10 @@ export function getType(context: SdkContext, type: EmitterType): any {
         type = type.type;
     }
     const enableCache = type.kind !== "Scalar" && !isEmptyModel(context, type);
-    const effectiveModel = type.kind === "Model" ? getEffectiveSchemaType(context, type) : type;
+    let effectiveModel = type;
+    if (type.kind === "Model") {
+        effectiveModel = getSdkModel(context, type);
+    }
     if (enableCache) {
         const cached = typesMap.get(effectiveModel);
         if (cached) {
@@ -758,29 +765,21 @@ function emitModel(context: SdkContext, type: SdkModelType): Record<string, any>
     };
 }
 
-function enumName(name: string): string {
-    if (name.toUpperCase() === name) {
-        return name;
-    }
-    return camelToSnakeCase(name).toUpperCase();
-}
-
 function emitEnumMember(type: SdkEnumValueType): Record<string, any> {
     return {
-        name: enumName(type.name),
+        name: type.name.toUpperCase(),
         value: type.value,
         description: type.doc,
     };
 }
 
-function emitEnum(context: SdkContext, type: Enum): Record<string, any> {
-    const sdkType = getSdkEnum(context, type);
+function emitEnum(context: SdkContext, type: SdkEnumType): Record<string, any> {
     return {
-        type: sdkType.kind,
-        name: sdkType.name,
-        description: sdkType.doc,
-        valueType: emitBuiltInType(context, sdkType.valueType),
-        values: sdkType.values.map((x) => emitEnumMember(x)),
+        type: type.kind,
+        name: type.name,
+        description: type.doc,
+        valueType: emitBuiltInType(context, type.valueType),
+        values: type.values.map((x) => emitEnumMember(x)),
     };
 }
 
@@ -833,10 +832,23 @@ function emitCredentialUnion(cred_types: CredentialTypeUnion): Record<string, an
     return result;
 }
 
-function emitBuiltInType(context: SdkContext, type: SdkBuiltInType): Record<string, any> {
+function emitBuiltInType(
+    context: SdkContext,
+    type: Scalar | SdkBuiltInType | SdkDurationType | SdkDatetimeType,
+): Record<string, any> {
+    if (type.kind === "Scalar") {
+        type = getSdkBuiltInType(context, type);
+    }
     return {
         type: sdkScalarKindToPythonKind[type.kind] || type.kind, // TODO: switch to kind
         format: type.encode,
+    };
+}
+
+function emitDurationOrDateType(context: SdkContext, type: SdkDurationType | SdkDatetimeType): Record<string, any> {
+    return {
+        ...emitBuiltInType(context, type),
+        wireType: emitBuiltInType(context, type.wireType),
     };
 }
 
@@ -868,7 +880,7 @@ function emitConstant(context: SdkContext, type: StringLiteral | NumericLiteral 
     };
 }
 
-function mapCadlType(context: SdkContext, type: Type): any {
+function mapCadlType(context: SdkContext, type: SdkType | Type): any {
     switch (type.kind) {
         case "Number":
         case "String":
@@ -883,7 +895,7 @@ function capitalize(name: string): string {
     return name[0].toUpperCase() + name.slice(1);
 }
 
-function emitUnion(context: SdkContext, type: SdkUnionType | SdkEnumType): Record<string, any> {
+function emitUnion(context: SdkContext, type: SdkUnionType | SdkEnumType | Union): Record<string, any> {
     if (type.kind === "union") {
         return {
             name: type.name,
@@ -918,31 +930,54 @@ function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
     }
     const builtinType = mapCadlType(context, type);
     if (builtinType !== undefined) {
-        // add in description elements for types derived from primitive types (SecureString, etc.)
-        const doc = getDoc(context.program, type);
-        if (doc) {
-            builtinType.description = doc;
-        }
         return builtinType;
     }
 
     switch (type.kind) {
         case "Intrinsic":
             return { type: "any" };
-        case "Model":
+        case "model":
             return emitModel(context, type);
-        case "Scalar":
-            const result = emitBuiltInType(context, type);
-            updateWithEncode(context, type, result);
-            return result;
+        case "union":
         case "Union":
             return emitUnion(context, type);
         case "UnionVariant":
             return {};
-        case "Enum":
+        case "enum":
             return emitEnum(context, type);
+        case "constant":
+            return emitConstant(context, type)!;
+        case "array":
+        case "dict":
+            return emitArrayOrDict(context, type)!;
+        case "datetime":
+        case "duration":
+            return emitDurationOrDateType(context, type);
+        case "Scalar":
+            const result = emitBuiltInType(context, type);
+            updateWithEncode(context, type, result);
+            return result;
+        case "bytes":
+        case "boolean":
+        case "date":
+        case "time":
+        case "any":
+        case "int32":
+        case "int64":
+        case "float32":
+        case "float64":
+        case "string":
+        case "guid":
+        case "url":
+        case "uuid":
+        case "password":
+        case "armId":
+        case "ipAddress":
+        case "azureLocation":
+        case "etag":
+            return emitBuiltInType(context, type);
         default:
-            if (SdkBuiltInKinds) throw Error(`Not supported ${type.kind}`);
+            throw Error(`Not supported ${type.kind}`);
     }
 }
 
