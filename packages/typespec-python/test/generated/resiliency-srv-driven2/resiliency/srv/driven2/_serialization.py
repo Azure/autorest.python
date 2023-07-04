@@ -749,11 +749,8 @@ class Serializer(object):
             # Treat the list aside, since we don't want to encode the div separator
             if data_type.startswith("["):
                 internal_data_type = data_type[1:-1]
-                data = [self.serialize_data(d, internal_data_type, **kwargs) if d is not None else "" for d in data]
-                data = ["" if s is None else str(s) for s in data]
-                if not kwargs.get("skip_quote", False):
-                    data = [quote(str(d), safe="") for d in data]
-                return kwargs["div"].join(data)
+                do_quote = not kwargs.get("skip_quote", False)
+                return str(self.serialize_iter(data, internal_data_type, do_quote=do_quote, **kwargs))
 
             # Not a list, regular serialization
             output = self.serialize_data(data, data_type, **kwargs)
@@ -906,6 +903,9 @@ class Serializer(object):
                 serialized.append(self.serialize_data(d, iter_type, **kwargs))
             except ValueError:
                 serialized.append(None)
+
+        if kwargs.get("do_quote", False):
+            serialized = ["" if s is None else quote(str(s), safe="") for s in serialized]
 
         if div:
             serialized = ["" if s is None else str(s) for s in serialized]
