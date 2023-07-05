@@ -7,7 +7,7 @@ import pytest
 from azure.core.exceptions import HttpResponseError
 
 from specialheaders.repeatability.aio import RepeatabilityClient
-from ..test_repeatability_utils import check_header
+from ..test_header_utils import check_repeatability_header
 
 
 @pytest.fixture
@@ -20,7 +20,7 @@ async def client():
 async def test_immediate_success(client: RepeatabilityClient):
     result, header = await client.immediate_success(
         cls=lambda x, y, z: (y, z),
-        raw_request_hook=check_header,
+        raw_request_hook=check_repeatability_header,
     )
     assert result is None
     assert header["Repeatability-Result"] == "accepted"
@@ -31,7 +31,7 @@ async def test_immediate_success(client: RepeatabilityClient):
             "Repeatability-Request-ID": "5942d803-e3fa-4f96-8f67-607d7bd607f5",
             "Repeatability-First-Sent": "Sun, 06 Nov 1994 08:49:37 GMT",
         },
-        raw_request_hook=check_header,
+        raw_request_hook=check_repeatability_header,
     )
     assert result is None
     assert header["Repeatability-Result"] == "accepted"
