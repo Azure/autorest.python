@@ -8,7 +8,7 @@
 from abc import ABC
 from typing import TYPE_CHECKING
 
-from ._configuration import DefaultClientConfiguration, NonStandardClientConfiguration, StandardClientConfiguration
+from ._configuration import RequestIdClientConfiguration
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -17,28 +17,10 @@ if TYPE_CHECKING:
     from ._serialization import Deserializer, Serializer
 
 
-class DefaultClientMixinABC(ABC):
+class RequestIdClientMixinABC(ABC):
     """DO NOT use this class. It is for internal typing use only."""
 
     _client: "PipelineClient"
-    _config: DefaultClientConfiguration
-    _serialize: "Serializer"
-    _deserialize: "Deserializer"
-
-
-class StandardClientMixinABC(ABC):
-    """DO NOT use this class. It is for internal typing use only."""
-
-    _client: "PipelineClient"
-    _config: StandardClientConfiguration
-    _serialize: "Serializer"
-    _deserialize: "Deserializer"
-
-
-class NonStandardClientMixinABC(ABC):
-    """DO NOT use this class. It is for internal typing use only."""
-
-    _client: "PipelineClient"
-    _config: NonStandardClientConfiguration
+    _config: RequestIdClientConfiguration
     _serialize: "Serializer"
     _deserialize: "Deserializer"

@@ -9,12 +9,12 @@
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "defaultclient"
+PACKAGE_NAME = "requestidclient"
 version = "1.0.0b1"
 setup(
     name=PACKAGE_NAME,
     version=version,
-    description="DefaultClient",
+    description="RequestIdClient",
     author_email="",
     url="",
     keywords="azure, azure sdk",
@@ -25,6 +25,6 @@ setup(
         "azure-core<2.0.0,>=1.27.0",
     ],
     long_description="""\
-    DefaultClient.
+    Non-standard azure request id header configurations.
     """,
 )

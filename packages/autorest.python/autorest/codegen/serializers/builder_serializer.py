@@ -18,7 +18,6 @@ from ..models import (
     ModelType,
     DictionaryType,
     ListType,
-    Parameter,
     RequestBuilder,
     ParameterLocation,
     Response,

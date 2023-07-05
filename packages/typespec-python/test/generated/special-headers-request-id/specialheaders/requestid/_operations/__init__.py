@@ -6,18 +6,14 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._operations import DefaultClientOperationsMixin
-from ._operations import StandardClientOperationsMixin
-from ._operations import NonStandardClientOperationsMixin
+from ._operations import RequestIdClientOperationsMixin
 
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "DefaultClientOperationsMixin",
-    "StandardClientOperationsMixin",
-    "NonStandardClientOperationsMixin",
+    "RequestIdClientOperationsMixin",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()
