@@ -96,7 +96,9 @@ class ParameterSerializer:
             [
                 '    "{}": {},'.format(
                     path_parameter.wire_name,
-                    ParameterSerializer.serialize_parameter(path_parameter, serializer_name),
+                    ParameterSerializer.serialize_parameter(
+                        path_parameter, serializer_name
+                    ),
                 )
                 for path_parameter in parameters
             ]
@@ -105,13 +107,21 @@ class ParameterSerializer:
         return retval
 
     @staticmethod
-    def serialize_query_header(param: Parameter, kwarg_name: str, serializer_name: str) -> List[str]:
-        if param.location == ParameterLocation.HEADER and param.wire_name.lower() == "repeatability-request-id":
+    def serialize_query_header(
+        param: Parameter, kwarg_name: str, serializer_name: str
+    ) -> List[str]:
+        if (
+            param.location == ParameterLocation.HEADER
+            and param.wire_name.lower() == "repeatability-request-id"
+        ):
             return [
                 """if "Repeatability-Request-ID" not in _headers:""",
                 """    _headers["Repeatability-Request-ID"] = str(uuid.uuid4())""",
             ]
-        if param.location == ParameterLocation.HEADER and param.wire_name.lower() == "repeatability-first-sent":
+        if (
+            param.location == ParameterLocation.HEADER
+            and param.wire_name.lower() == "repeatability-first-sent"
+        ):
             return [
                 """if "Repeatability-First-Sent" not in _headers:""",
                 """    _headers["Repeatability-First-Sent"] = _SERIALIZER.serialize_data(datetime.datetime.now(),
@@ -122,7 +132,10 @@ class ParameterSerializer:
             or param.wire_name.lower() == "x-ms-client-request-id"
         ):
             return []
-        if param.location == ParameterLocation.HEADER and param.wire_name.lower() == "return-client-request-id":
+        if (
+            param.location == ParameterLocation.HEADER
+            and param.wire_name.lower() == "return-client-request-id"
+        ):
             return [
                 """if "return-client-request-id" not in _headers:""",
                 """    _headers["return-client-request-id"] = _SERIALIZER.serialize_data(True, "bool")""",

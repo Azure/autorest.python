@@ -533,13 +533,21 @@ class RequestBuilderSerializer(
     def serialize_headers(self, builder: RequestBuilderType) -> List[str]:
         retval = ["# Construct headers"]
         for parameter in builder.parameters.headers:
-            retval.extend(self.parameter_serializer.serialize_query_header(parameter, "headers", self.serializer_name))
+            retval.extend(
+                self.parameter_serializer.serialize_query_header(
+                    parameter, "headers", self.serializer_name
+                )
+            )
         return retval
 
     def serialize_query(self, builder: RequestBuilderType) -> List[str]:
         retval = ["# Construct parameters"]
         for parameter in builder.parameters.query:
-            retval.extend(self.parameter_serializer.serialize_query_header(parameter, "params", self.serializer_name))
+            retval.extend(
+                self.parameter_serializer.serialize_query_header(
+                    parameter, "params", self.serializer_name
+                )
+            )
         return retval
 
     def construct_url(self, builder: RequestBuilderType) -> str:

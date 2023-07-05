@@ -256,7 +256,10 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         for og in yaml_data["operationGroups"]:
             for o in og["operations"]:
                 for p in o["parameters"]:
-                    if p["location"] == "header" and p["wireName"] == "client-request-id":
+                    if (
+                        p["location"] == "header"
+                        and p["wireName"] == "client-request-id"
+                    ):
                         yaml_data["requestIdHeaderName"] = p["wireName"]
                         return
 
