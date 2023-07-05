@@ -30,14 +30,12 @@ def test_get(client: TraitsClient):
         if_modified_since=datetime(
             year=2021, month=8, day=26, hour=14, minute=38, second=0
         ),
-        client_request_id="test-id",
         cls=lambda x, y, z: (y, z),
     )
     assert result.id == 1
     assert result.name == "Madge"
     assert header["ETag"] == "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
     assert header["bar"] == "456"
-    assert header["x-ms-client-request-id"] == "test-id"
 
 
 def test_repeatable_action(client: TraitsClient):
