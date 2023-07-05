@@ -76,6 +76,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
                 for op_group in self.yaml_data.get("operationGroups", [])
             ]
             self.link_lro_initial_operations()
+        self.request_id_header_name = self.yaml_data.get("requestIdHeaderName", None)
 
     def _build_request_builders(
         self,
@@ -277,16 +278,6 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
     def has_abstract_operations(self) -> bool:
         """Whether there is abstract operation in any operation group."""
         return any(og.has_abstract_operations for og in self.operation_groups)
-
-    @property
-    def special_request_id_header_name(self) -> Optional[str]:
-        """Non-standard header name for request id"""
-        for og in self.operation_groups:
-            for o in og.operations:
-                for p in o.parameters:
-                    if p.is_special_request_id:
-                        return p.wire_name
-
 
     def imports(self, async_mode: bool) -> FileImport:
         file_import = self._imports_shared(async_mode)

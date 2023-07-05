@@ -50,7 +50,6 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         if_none_match: Optional[str] = None,
         if_unmodified_since: Optional[datetime.datetime] = None,
         if_modified_since: Optional[datetime.datetime] = None,
-        client_request_id: Optional[str] = None,
         **kwargs: Any
     ) -> _models.User:
         """Get a resource, sending and receiving headers.
@@ -71,9 +70,6 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :keyword if_modified_since: The request should only proceed if the entity was modified after
          this time. Default value is None.
         :paramtype if_modified_since: ~datetime.datetime
-        :keyword client_request_id: An opaque, globally-unique, client-generated string identifier for
-         the request. Default value is None.
-        :paramtype client_request_id: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: User. The User is compatible with MutableMapping
@@ -100,7 +96,6 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
             if_none_match=if_none_match,
             if_unmodified_since=if_unmodified_since,
             if_modified_since=if_modified_since,
-            client_request_id=client_request_id,
             api_version=self._config.api_version,
             headers=_headers,
             params=_params,

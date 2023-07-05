@@ -52,15 +52,6 @@ class ParameterDelimeter(str, Enum):
     COMMA = "comma"
 
 
-SPECIAL_HANDLE_HEADERS = [
-    "repeatability-request-id",
-    "repeatability-first-sent",
-    "x-ms-client-request-id",
-    "client-request-id",
-    "return-client-request-id",
-]
-
-
 class _ParameterBase(
     BaseModel, abc.ABC
 ):  # pylint: disable=too-many-instance-attributes
@@ -99,14 +90,7 @@ class _ParameterBase(
         self.default_to_unset_sentinel: bool = self.yaml_data.get(
             "defaultToUnsetSentinel", False
         )
-        self.is_special_handle_header: bool = (
-            self.location == ParameterLocation.HEADER
-            and self.wire_name.lower() in SPECIAL_HANDLE_HEADERS
-        )
-        self.is_special_request_id: bool = (
-            self.location == ParameterLocation.HEADER
-            and self.wire_name.lower() == "client-request-id"
-        )
+        self.hide_in_method: bool = self.yaml_data.get("hideInMethod", False)
 
     @property
     def constant(self) -> bool:

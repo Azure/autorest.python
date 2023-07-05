@@ -81,8 +81,8 @@ class ParameterSerializer:
             return f"[{serialize_line} if q is not None else '' for q in {origin_name}]"
         return serialize_line
 
+    @staticmethod
     def serialize_path(
-        self,
         parameters: Union[
             List[Parameter],
             List[RequestBuilderParameter],
@@ -96,12 +96,50 @@ class ParameterSerializer:
             [
                 '    "{}": {},'.format(
                     path_parameter.wire_name,
-                    self.serialize_parameter(path_parameter, serializer_name),
+                    ParameterSerializer.serialize_parameter(path_parameter, serializer_name),
                 )
                 for path_parameter in parameters
             ]
         )
         retval.append("}")
+        return retval
+
+    @staticmethod
+    def serialize_query_header(param: Parameter, kwarg_name: str, serializer_name: str) -> List[str]:
+        if param.location == ParameterLocation.HEADER and param.wire_name.lower() == "repeatability-request-id":
+            return [
+                """if "Repeatability-Request-ID" not in _headers:""",
+                """    _headers["Repeatability-Request-ID"] = str(uuid.uuid4())""",
+            ]
+        if param.location == ParameterLocation.HEADER and param.wire_name.lower() == "repeatability-first-sent":
+            return [
+                """if "Repeatability-First-Sent" not in _headers:""",
+                """    _headers["Repeatability-First-Sent"] = _SERIALIZER.serialize_data(datetime.datetime.now(),
+                "rfc-1123")""",
+            ]
+        if param.location == ParameterLocation.HEADER and (
+            param.wire_name.lower() == "client-request-id"
+            or param.wire_name.lower() == "x-ms-client-request-id"
+        ):
+            return []
+        if param.location == ParameterLocation.HEADER and param.wire_name.lower() == "return-client-request-id":
+            return [
+                """if "return-client-request-id" not in _headers:""",
+                """    _headers["return-client-request-id"] = _SERIALIZER.serialize_data(True, "bool")""",
+            ]
+
+        set_parameter = "_{}['{}'] = {}".format(
+            kwarg_name,
+            param.wire_name,
+            ParameterSerializer.serialize_parameter(param, serializer_name),
+        )
+        if not param.optional:
+            retval = [set_parameter]
+        else:
+            retval = [
+                f"if {param.full_client_name} is not None:",
+                f"    {set_parameter}",
+            ]
         return retval
 
     @staticmethod

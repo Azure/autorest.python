@@ -113,10 +113,10 @@ class ClientSerializer:
             "base_url": self.host_variable_name,
             "config": "self._config",
         }
-        if self.client.special_request_id_header_name:
+        if self.client.request_id_header_name:
             params[
                 "request_id_header_name"
-            ] = f'"{self.client.special_request_id_header_name}"'
+            ] = f'"{self.client.request_id_header_name}"'
         return (
             f"self._client: {pipeline_client_name} = {pipeline_client_name}("
             f"{', '.join(f'{k}={v}' for k, v in params.items())}, **kwargs)"
