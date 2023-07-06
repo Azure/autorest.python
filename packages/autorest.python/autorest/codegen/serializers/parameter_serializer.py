@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import List, Sequence, Union, Optional
+from typing import List, Sequence, Union, Optional, Dict
 from enum import Enum, auto
 
 from ..models import (
@@ -25,7 +25,7 @@ class PopKwargType(Enum):
     CASE_INSENSITIVE = auto()
 
 
-SPECIAL_HEADER_SERIALIZATION = {
+SPECIAL_HEADER_SERIALIZATION: Dict[str, List[str]] = {
     "repeatability-request-id": [
         """if "Repeatability-Request-ID" not in _headers:""",
         """    _headers["Repeatability-Request-ID"] = str(uuid.uuid4())""",
