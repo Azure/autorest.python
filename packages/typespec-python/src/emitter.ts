@@ -618,6 +618,11 @@ function getLroInitialOperation(
     initialOperation["isLroInitialOperation"] = true;
     initialOperation["wantTracing"] = false;
     initialOperation["exposeStreamKeyword"] = false;
+    for (const resp of initialOperation["responses"]) {
+        if (resp["type"]) {
+            resp["type"] = KnownTypes.anyObject;
+        }
+    }
     return initialOperation;
 }
 
@@ -1263,4 +1268,5 @@ function emitCodeModel(context: EmitContext<PythonEmitterOptions>) {
 
 const KnownTypes = {
     string: { type: "string" },
+    anyObject: { type: "any-object" },
 };

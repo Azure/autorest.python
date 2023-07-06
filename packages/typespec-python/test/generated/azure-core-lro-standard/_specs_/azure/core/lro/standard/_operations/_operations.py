@@ -108,9 +108,7 @@ def build_standard_export_request(name: str, *, format: str, **kwargs: Any) -> H
 
 
 class StandardClientOperationsMixin(StandardClientMixinABC):
-    def _create_or_replace_initial(
-        self, name: str, resource: Union[_models.User, JSON, IO], **kwargs: Any
-    ) -> _models.User:
+    def _create_or_replace_initial(self, name: str, resource: Union[_models.User, JSON, IO], **kwargs: Any) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -123,7 +121,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.User] = kwargs.pop("cls", None)
+        cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -159,14 +157,14 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
                 "str", response.headers.get("Operation-Location")
             )
 
-            deserialized = _deserialize(_models.User, response.json())
+            deserialized = _deserialize(JSON, response.json())
 
         if response.status_code == 201:
             response_headers["Operation-Location"] = self._deserialize(
                 "str", response.headers.get("Operation-Location")
             )
 
-            deserialized = _deserialize(_models.User, response.json())
+            deserialized = _deserialize(JSON, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
