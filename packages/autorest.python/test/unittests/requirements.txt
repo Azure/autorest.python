@@ -1,0 +1,6 @@
+isodate<1.0.0,>=0.6.1
+requests==2.28.2
+pytest
+pytest-cov
+azure-core==1.27.0
+-e ../../.
