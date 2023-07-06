@@ -518,7 +518,7 @@ class OperationGroupTwoOperations:
     test_five.metadata = {'url': '/multiapi/two/testFiveEndpoint'}
 
 def build_multiapi_service_test_lro_and_paging_request(
-    *, client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
+    *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -528,8 +528,6 @@ def build_multiapi_service_test_lro_and_paging_request(
     _url = kwargs.pop("template_url", "/multiapi/lroAndPaging")
 
     # Construct headers
-    if client_request_id is not None:
-        _headers["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
     if maxresults is not None:
         _headers["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
     if timeout is not None:
@@ -622,11 +620,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
        return self._get_api_version(op_name)
 
     def _test_lro_and_paging_initial(
-        self,
-        test_lro_and_paging_options: Optional[_models.TestLroAndPagingOptions] = None,
-        *,
-        client_request_id: Optional[str] = None,
-        **kwargs: Any
+        self, test_lro_and_paging_options: Optional[_models.TestLroAndPagingOptions] = None, **kwargs: Any
     ) -> _models.PagingResult:
         error_map = {
             401: ClientAuthenticationError,
@@ -648,7 +642,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             _timeout = test_lro_and_paging_options.timeout
 
         request = build_multiapi_service_test_lro_and_paging_request(
-            client_request_id=client_request_id,
             maxresults=_maxresults,
             timeout=_timeout,  # type: ignore
             template_url=self._test_lro_and_paging_initial.metadata["url"],
@@ -813,18 +806,12 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
     )
     @distributed_trace
     def begin_test_lro_and_paging(
-        self,
-        test_lro_and_paging_options: Optional[_models.TestLroAndPagingOptions] = None,
-        *,
-        client_request_id: Optional[str] = None,
-        **kwargs: Any
+        self, test_lro_and_paging_options: Optional[_models.TestLroAndPagingOptions] = None, **kwargs: Any
     ) -> LROPoller[Iterable["_models.Product"]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :param test_lro_and_paging_options: Parameter group. Default value is None.
         :type test_lro_and_paging_options: ~multiapicombiner.v1.models.TestLroAndPagingOptions
-        :keyword client_request_id: Default value is None.
-        :paramtype client_request_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be ARMPolling. Pass in False for this
@@ -862,7 +849,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
                     _timeout = test_lro_and_paging_options.timeout
 
                 request = build_multiapi_service_test_lro_and_paging_request(
-                    client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,  # type: ignore
                     template_url=self.begin_test_lro_and_paging.metadata["url"],
@@ -918,7 +904,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         if cont_token is None:
             raw_result = self._test_lro_and_paging_initial(
                 test_lro_and_paging_options=test_lro_and_paging_options,
-                client_request_id=client_request_id,
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,

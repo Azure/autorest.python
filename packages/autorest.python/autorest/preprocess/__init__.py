@@ -176,6 +176,15 @@ def update_paging_response(yaml_data: Dict[str, Any]) -> None:
     )
 
 
+HEADERS_HIDE_IN_METHOD = (
+    "repeatability-request-id",
+    "repeatability-first-sent",
+    "x-ms-client-request-id",
+    "client-request-id",
+    "return-client-request-id",
+)
+
+
 class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
     """Add Python naming information."""
 
@@ -291,13 +300,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                 .lower()
                 for prop, param_name in yaml_data["propertyToParameterName"].items()
             }
-        if yaml_data["location"] == "header" and yaml_data["wireName"].lower() in (
-            "repeatability-request-id",
-            "repeatability-first-sent",
-            "x-ms-client-request-id",
-            "client-request-id",
-            "return-client-request-id",
-        ):
+        if yaml_data["location"] == "header" and yaml_data["wireName"].lower() in HEADERS_HIDE_IN_METHOD:
             yaml_data["hideInMethod"] = True
 
     def update_operation(

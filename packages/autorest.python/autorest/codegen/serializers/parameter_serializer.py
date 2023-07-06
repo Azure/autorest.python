@@ -6,7 +6,6 @@
 from typing import List, Sequence, Union, Optional
 from enum import Enum, auto
 
-
 from ..models import (
     Parameter,
     ParameterLocation,
@@ -24,6 +23,22 @@ class PopKwargType(Enum):
     NO = auto()
     SIMPLE = auto()
     CASE_INSENSITIVE = auto()
+
+
+SPECIAL_HEADER_SERIALIZATION = {
+    "repeatability-request-id": [
+        """if "Repeatability-Request-ID" not in _headers:""",
+        """    _headers["Repeatability-Request-ID"] = str(uuid.uuid4())""",
+    ],
+    "repeatability-first-sent": [
+        """if "Repeatability-First-Sent" not in _headers:""",
+        """    _headers["Repeatability-First-Sent"] = _SERIALIZER.serialize_data(datetime.datetime.now(),
+        "rfc-1123")""",
+    ],
+    "client-request-id": [],
+    "x-ms-client-request-id": [],
+    "return-client-request-id": [],
+}
 
 
 class ParameterSerializer:
@@ -112,34 +127,9 @@ class ParameterSerializer:
     ) -> List[str]:
         if (
             param.location == ParameterLocation.HEADER
-            and param.wire_name.lower() == "repeatability-request-id"
+            and param.wire_name.lower() in SPECIAL_HEADER_SERIALIZATION
         ):
-            return [
-                """if "Repeatability-Request-ID" not in _headers:""",
-                """    _headers["Repeatability-Request-ID"] = str(uuid.uuid4())""",
-            ]
-        if (
-            param.location == ParameterLocation.HEADER
-            and param.wire_name.lower() == "repeatability-first-sent"
-        ):
-            return [
-                """if "Repeatability-First-Sent" not in _headers:""",
-                """    _headers["Repeatability-First-Sent"] = _SERIALIZER.serialize_data(datetime.datetime.now(),
-                "rfc-1123")""",
-            ]
-        if param.location == ParameterLocation.HEADER and (
-            param.wire_name.lower() == "client-request-id"
-            or param.wire_name.lower() == "x-ms-client-request-id"
-        ):
-            return []
-        if (
-            param.location == ParameterLocation.HEADER
-            and param.wire_name.lower() == "return-client-request-id"
-        ):
-            return [
-                """if "return-client-request-id" not in _headers:""",
-                """    _headers["return-client-request-id"] = _SERIALIZER.serialize_data(True, "bool")""",
-            ]
+            return SPECIAL_HEADER_SERIALIZATION[param.wire_name.lower()]
 
         set_parameter = "_{}['{}'] = {}".format(
             kwarg_name,

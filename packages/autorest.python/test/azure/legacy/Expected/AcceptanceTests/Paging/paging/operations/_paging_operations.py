@@ -130,7 +130,7 @@ def build_first_response_empty_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_get_multiple_pages_request(
-    *, client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
+    *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -140,8 +140,6 @@ def build_get_multiple_pages_request(
     _url = kwargs.pop("template_url", "/paging/multiple")
 
     # Construct headers
-    if client_request_id is not None:
-        _headers["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
     if maxresults is not None:
         _headers["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
     if timeout is not None:
@@ -229,7 +227,7 @@ def build_page_with_max_page_size_request(*, maxpagesize: Literal["5"] = "5", **
 
 
 def build_get_odata_multiple_pages_request(
-    *, client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
+    *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -239,8 +237,6 @@ def build_get_odata_multiple_pages_request(
     _url = kwargs.pop("template_url", "/paging/multiple/odata")
 
     # Construct headers
-    if client_request_id is not None:
-        _headers["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
     if maxresults is not None:
         _headers["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
     if timeout is not None:
@@ -251,12 +247,7 @@ def build_get_odata_multiple_pages_request(
 
 
 def build_get_multiple_pages_with_offset_request(
-    offset: int,
-    *,
-    client_request_id: Optional[str] = None,
-    maxresults: Optional[int] = None,
-    timeout: int = 30,
-    **kwargs: Any
+    offset: int, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -271,8 +262,6 @@ def build_get_multiple_pages_with_offset_request(
     _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
-    if client_request_id is not None:
-        _headers["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
     if maxresults is not None:
         _headers["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
     if timeout is not None:
@@ -451,7 +440,7 @@ def build_next_fragment_with_grouping_request(
 
 
 def build_get_multiple_pages_lro_request(
-    *, client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
+    *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -461,8 +450,6 @@ def build_get_multiple_pages_lro_request(
     _url = kwargs.pop("template_url", "/paging/multiple/lro")
 
     # Construct headers
-    if client_request_id is not None:
-        _headers["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
     if maxresults is not None:
         _headers["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
     if timeout is not None:
@@ -1017,15 +1004,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def get_multiple_pages(
-        self,
-        client_request_id: Optional[str] = None,
-        paging_get_multiple_pages_options: Optional[_models.PagingGetMultiplePagesOptions] = None,
-        **kwargs: Any
+        self, paging_get_multiple_pages_options: Optional[_models.PagingGetMultiplePagesOptions] = None, **kwargs: Any
     ) -> Iterable["_models.Product"]:
         """A paging operation that includes a nextLink that has 10 pages.
 
-        :param client_request_id: Default value is None.
-        :type client_request_id: str
         :param paging_get_multiple_pages_options: Parameter group. Default value is None.
         :type paging_get_multiple_pages_options: ~paging.models.PagingGetMultiplePagesOptions
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1055,7 +1037,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     _timeout = paging_get_multiple_pages_options.timeout
 
                 request = build_get_multiple_pages_request(
-                    client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,  # type: ignore
                     template_url=self.get_multiple_pages.metadata["url"],
@@ -1358,14 +1339,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def get_odata_multiple_pages(
         self,
-        client_request_id: Optional[str] = None,
         paging_get_odata_multiple_pages_options: Optional[_models.PagingGetOdataMultiplePagesOptions] = None,
         **kwargs: Any
     ) -> Iterable["_models.Product"]:
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
-        :param client_request_id: Default value is None.
-        :type client_request_id: str
         :param paging_get_odata_multiple_pages_options: Parameter group. Default value is None.
         :type paging_get_odata_multiple_pages_options:
          ~paging.models.PagingGetOdataMultiplePagesOptions
@@ -1396,7 +1374,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     _timeout = paging_get_odata_multiple_pages_options.timeout
 
                 request = build_get_odata_multiple_pages_request(
-                    client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,  # type: ignore
                     template_url=self.get_odata_multiple_pages.metadata["url"],
@@ -1454,7 +1431,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     def get_multiple_pages_with_offset(
         self,
         paging_get_multiple_pages_with_offset_options: _models.PagingGetMultiplePagesWithOffsetOptions,
-        client_request_id: Optional[str] = None,
         **kwargs: Any
     ) -> Iterable["_models.Product"]:
         """A paging operation that includes a nextLink that has 10 pages.
@@ -1462,8 +1438,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         :param paging_get_multiple_pages_with_offset_options: Parameter group. Required.
         :type paging_get_multiple_pages_with_offset_options:
          ~paging.models.PagingGetMultiplePagesWithOffsetOptions
-        :param client_request_id: Default value is None.
-        :type client_request_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either Product or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.Product]
@@ -1494,7 +1468,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 request = build_get_multiple_pages_with_offset_request(
                     offset=_offset,
-                    client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=self.get_multiple_pages_with_offset.metadata["url"],
@@ -2111,7 +2084,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
     def _get_multiple_pages_lro_initial(
         self,
-        client_request_id: Optional[str] = None,
         paging_get_multiple_pages_lro_options: Optional[_models.PagingGetMultiplePagesLroOptions] = None,
         **kwargs: Any
     ) -> _models.ProductResult:
@@ -2135,7 +2107,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             _timeout = paging_get_multiple_pages_lro_options.timeout
 
         request = build_get_multiple_pages_lro_request(
-            client_request_id=client_request_id,
             maxresults=_maxresults,
             timeout=_timeout,  # type: ignore
             template_url=self._get_multiple_pages_lro_initial.metadata["url"],
@@ -2168,14 +2139,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def begin_get_multiple_pages_lro(
         self,
-        client_request_id: Optional[str] = None,
         paging_get_multiple_pages_lro_options: Optional[_models.PagingGetMultiplePagesLroOptions] = None,
         **kwargs: Any
     ) -> LROPoller[Iterable["_models.Product"]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
-        :param client_request_id: Default value is None.
-        :type client_request_id: str
         :param paging_get_multiple_pages_lro_options: Parameter group. Default value is None.
         :type paging_get_multiple_pages_lro_options: ~paging.models.PagingGetMultiplePagesLroOptions
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2214,7 +2182,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     _timeout = paging_get_multiple_pages_lro_options.timeout
 
                 request = build_get_multiple_pages_lro_request(
-                    client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,  # type: ignore
                     template_url=self.begin_get_multiple_pages_lro.metadata["url"],
@@ -2269,7 +2236,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
             raw_result = self._get_multiple_pages_lro_initial(
-                client_request_id=client_request_id,
                 paging_get_multiple_pages_lro_options=paging_get_multiple_pages_lro_options,
                 cls=lambda x, y, z: x,
                 headers=_headers,
