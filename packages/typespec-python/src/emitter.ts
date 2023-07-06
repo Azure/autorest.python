@@ -584,6 +584,9 @@ function addLroInformation(
     const lroMeta = getLroMetadata(context.program, tspOperation);
     if (!isAzureCoreModel(lroMeta!.logicalResult)) {
         emittedOperation["responses"][0]["type"] = getType(context, lroMeta!.logicalResult);
+        if (lroMeta!.finalStep?.target.kind === "ModelProperty") {
+            emittedOperation["responses"][0]["resultProperty"] = lroMeta!.finalStep.target.name;
+        }
         addAcceptParameter(emittedOperation, emittedOperation["parameters"]);
         addAcceptParameter(emittedOperation["initialOperation"], emittedOperation["initialOperation"]["parameters"]);
     }
@@ -615,6 +618,11 @@ function getLroInitialOperation(
     initialOperation["isLroInitialOperation"] = true;
     initialOperation["wantTracing"] = false;
     initialOperation["exposeStreamKeyword"] = false;
+    for (const resp of initialOperation["responses"]) {
+        if (resp["type"]) {
+            resp["type"] = KnownTypes.anyObject;
+        }
+    }
     return initialOperation;
 }
 
@@ -1260,4 +1268,5 @@ function emitCodeModel(context: EmitContext<PythonEmitterOptions>) {
 
 const KnownTypes = {
     string: { type: "string" },
+    anyObject: { type: "any-object" },
 };
