@@ -502,13 +502,13 @@ def regenerate(
     for func in funcs:
         func(c, swagger_name, debug)
 
-    regenerate_unittests()
+    regenerate_unittests(c)
 
 @task
-def regenerate_unittests():
+def regenerate_unittests(c):
     shutil.copyfile(
         "test/azure/legacy/Expected/AcceptanceTests/AzureBodyDuration/bodyduration/_serialization.py",
-        "test/unittests/serialization.py"
+        "test/unittests/storage_models/serialization.py"
     )
 
 @task

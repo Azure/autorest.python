@@ -230,9 +230,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> None:
         """Put External Resource as an Array.
 
-        .. seealso::
-           - http://tempuri.org
-
         :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: list[~modelflattening.models.Resource]
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
@@ -250,9 +247,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> None:
         """Put External Resource as an Array.
 
-        .. seealso::
-           - http://tempuri.org
-
         :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
@@ -269,9 +263,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         self, resource_array: Optional[Union[List[_models.Resource], IO]] = None, **kwargs: Any
     ) -> None:
         """Put External Resource as an Array.
-
-        .. seealso::
-           - http://tempuri.org
 
         :param resource_array: External Resource as an Array to put. Is either a [Resource] type or a
          IO type. Default value is None.
@@ -341,9 +332,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     def get_array(self, **kwargs: Any) -> List[_models.FlattenedProduct]:
         """Get External Resource as an Array.
 
-        .. seealso::
-           - http://tempuri.org
-
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list of FlattenedProduct or the result of cls(response)
         :rtype: list[~modelflattening.models.FlattenedProduct]
@@ -402,9 +390,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
 
-        .. seealso::
-           - http://tempuri.org
-
         :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: list[~modelflattening.models.WrappedProduct]
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
@@ -423,9 +408,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
 
-        .. seealso::
-           - http://tempuri.org
-
         :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
@@ -443,9 +425,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
-
-        .. seealso::
-           - http://tempuri.org
 
         :param resource_array: External Resource as an Array to put. Is either a [WrappedProduct] type
          or a IO type. Default value is None.
@@ -516,9 +495,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
 
-        .. seealso::
-           - http://tempuri.org
-
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list of ProductWrapper or the result of cls(response)
         :rtype: list[~modelflattening.models.ProductWrapper]
@@ -576,9 +552,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> None:
         """Put External Resource as a Dictionary.
 
-        .. seealso::
-           - http://tempuri.org
-
         :param resource_dictionary: External Resource as a Dictionary to put. Default value is None.
         :type resource_dictionary: dict[str, ~modelflattening.models.FlattenedProduct]
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
@@ -596,9 +569,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> None:
         """Put External Resource as a Dictionary.
 
-        .. seealso::
-           - http://tempuri.org
-
         :param resource_dictionary: External Resource as a Dictionary to put. Default value is None.
         :type resource_dictionary: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
@@ -615,9 +585,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         self, resource_dictionary: Optional[Union[Dict[str, _models.FlattenedProduct], IO]] = None, **kwargs: Any
     ) -> None:
         """Put External Resource as a Dictionary.
-
-        .. seealso::
-           - http://tempuri.org
 
         :param resource_dictionary: External Resource as a Dictionary to put. Is either a {str:
          FlattenedProduct} type or a IO type. Default value is None.
@@ -687,9 +654,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     def get_dictionary(self, **kwargs: Any) -> Dict[str, _models.FlattenedProduct]:
         """Get External Resource as a Dictionary.
 
-        .. seealso::
-           - http://tempuri.org
-
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict mapping str to FlattenedProduct or the result of cls(response)
         :rtype: dict[str, ~modelflattening.models.FlattenedProduct]
@@ -747,9 +711,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> None:
         """Put External Resource as a ResourceCollection.
 
-        .. seealso::
-           - http://tempuri.org
-
         :param resource_complex_object: External Resource as a ResourceCollection to put. Default value
          is None.
         :type resource_complex_object: ~modelflattening.models.ResourceCollection
@@ -768,9 +729,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> None:
         """Put External Resource as a ResourceCollection.
 
-        .. seealso::
-           - http://tempuri.org
-
         :param resource_complex_object: External Resource as a ResourceCollection to put. Default value
          is None.
         :type resource_complex_object: IO
@@ -788,9 +746,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         self, resource_complex_object: Optional[Union[_models.ResourceCollection, IO]] = None, **kwargs: Any
     ) -> None:
         """Put External Resource as a ResourceCollection.
-
-        .. seealso::
-           - http://tempuri.org
 
         :param resource_complex_object: External Resource as a ResourceCollection to put. Is either a
          ResourceCollection type or a IO type. Default value is None.
@@ -860,9 +815,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     def get_resource_collection(self, **kwargs: Any) -> _models.ResourceCollection:
         """Get External Resource as a ResourceCollection.
 
-        .. seealso::
-           - http://tempuri.org
-
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ResourceCollection or the result of cls(response)
         :rtype: ~modelflattening.models.ResourceCollection
@@ -920,9 +872,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> _models.SimpleProduct:
         """Put Simple Product with client flattening true on the model.
 
-        .. seealso::
-           - http://tempuri.org
-
         :param simple_body_product: Simple body product to put. Default value is None.
         :type simple_body_product: ~modelflattening.models.SimpleProduct
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
@@ -940,9 +889,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> _models.SimpleProduct:
         """Put Simple Product with client flattening true on the model.
 
-        .. seealso::
-           - http://tempuri.org
-
         :param simple_body_product: Simple body product to put. Default value is None.
         :type simple_body_product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
@@ -959,9 +905,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         self, simple_body_product: Optional[Union[_models.SimpleProduct, IO]] = None, **kwargs: Any
     ) -> _models.SimpleProduct:
         """Put Simple Product with client flattening true on the model.
-
-        .. seealso::
-           - http://tempuri.org
 
         :param simple_body_product: Simple body product to put. Is either a SimpleProduct type or a IO
          type. Default value is None.
@@ -1043,9 +986,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         **kwargs: Any
     ) -> _models.SimpleProduct:
         """Put Flattened Simple Product with client flattening true on the parameter.
-
-        .. seealso::
-           - http://tempuri.org
 
         :param product_id: Unique identifier representing a specific product for a given latitude &
          longitude. For example, uberX in San Francisco will have a different product_id than uberX in
@@ -1130,9 +1070,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         self, flatten_parameter_group: _models.FlattenParameterGroup, **kwargs: Any
     ) -> _models.SimpleProduct:
         """Put Simple Product with client flattening true on the model.
-
-        .. seealso::
-           - http://tempuri.org
 
         :param flatten_parameter_group: Parameter group. Required.
         :type flatten_parameter_group: ~modelflattening.models.FlattenParameterGroup
