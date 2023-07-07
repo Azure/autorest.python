@@ -15,7 +15,7 @@ from .constant_type import ConstantType
 
 
 def _is_legacy(options) -> bool:
-    return not (options["version_tolerant"] or options["low_level_client"])
+    return not (options.get("version_tolerant") or options.get("low_level_client"))
 
 
 class CodeModel:  # pylint: disable=too-many-public-methods
