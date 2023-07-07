@@ -534,7 +534,10 @@ class RequestBuilderSerializer(
         for parameter in builder.parameters.headers:
             retval.extend(
                 self.parameter_serializer.serialize_query_header(
-                    parameter, "headers", self.serializer_name
+                    parameter,
+                    "headers",
+                    self.serializer_name,
+                    self.code_model.is_legacy,
                 )
             )
         return retval
@@ -544,7 +547,10 @@ class RequestBuilderSerializer(
         for parameter in builder.parameters.query:
             retval.extend(
                 self.parameter_serializer.serialize_query_header(
-                    parameter, "params", self.serializer_name
+                    parameter,
+                    "params",
+                    self.serializer_name,
+                    self.code_model.is_legacy,
                 )
             )
         return retval

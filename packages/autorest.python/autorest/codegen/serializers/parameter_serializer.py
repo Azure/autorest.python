@@ -123,10 +123,14 @@ class ParameterSerializer:
 
     @staticmethod
     def serialize_query_header(
-        param: Parameter, kwarg_name: str, serializer_name: str
+        param: Parameter,
+        kwarg_name: str,
+        serializer_name: str,
+        is_legacy: bool,
     ) -> List[str]:
         if (
-            param.location == ParameterLocation.HEADER
+            not is_legacy
+            and param.location == ParameterLocation.HEADER
             and param.wire_name.lower() in SPECIAL_HEADER_SERIALIZATION
         ):
             return SPECIAL_HEADER_SERIALIZATION[param.wire_name.lower()]

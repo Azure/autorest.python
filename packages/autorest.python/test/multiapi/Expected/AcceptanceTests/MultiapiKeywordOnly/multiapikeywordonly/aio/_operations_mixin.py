@@ -62,12 +62,16 @@ class MultiapiServiceClientOperationsMixin(object):
     async def begin_test_lro_and_paging(
         self,
         test_lro_and_paging_options: Optional[_models.TestLroAndPagingOptions] = None,
+        *,
+        client_request_id: Optional[str] = None,
         **kwargs: Any
     ) -> AsyncLROPoller[AsyncIterable["_models.Product"]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :param test_lro_and_paging_options: Parameter group. Default value is None.
         :type test_lro_and_paging_options: ~multiapikeywordonly.v1.models.TestLroAndPagingOptions
+        :keyword client_request_id: Default value is None.
+        :paramtype client_request_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword str continuation_token: A continuation token to restart a poller from a saved state.
         :keyword polling: By default, your polling method will be AsyncLROBasePolling. Pass in False
@@ -94,7 +98,7 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
         mixin_instance._serialize.client_side_validation = False
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
-        return await mixin_instance.begin_test_lro_and_paging(test_lro_and_paging_options, **kwargs)
+        return await mixin_instance.begin_test_lro_and_paging(test_lro_and_paging_options, client_request_id=client_request_id, **kwargs)
 
     async def test_different_calls(  # pylint: disable=inconsistent-return-statements
         self,

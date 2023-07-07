@@ -560,10 +560,15 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def get_multiple_pages(
-        self, paging_get_multiple_pages_options: Optional[_models.PagingGetMultiplePagesOptions] = None, **kwargs: Any
+        self,
+        client_request_id: Optional[str] = None,
+        paging_get_multiple_pages_options: Optional[_models.PagingGetMultiplePagesOptions] = None,
+        **kwargs: Any
     ) -> AsyncIterable["_models.Product"]:
         """A paging operation that includes a nextLink that has 10 pages.
 
+        :param client_request_id: Default value is None.
+        :type client_request_id: str
         :param paging_get_multiple_pages_options: Parameter group. Default value is None.
         :type paging_get_multiple_pages_options: ~paging.models.PagingGetMultiplePagesOptions
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -593,6 +598,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     _timeout = paging_get_multiple_pages_options.timeout
 
                 request = build_get_multiple_pages_request(
+                    client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,  # type: ignore
                     template_url=self.get_multiple_pages.metadata["url"],
@@ -897,11 +903,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def get_odata_multiple_pages(
         self,
+        client_request_id: Optional[str] = None,
         paging_get_odata_multiple_pages_options: Optional[_models.PagingGetOdataMultiplePagesOptions] = None,
         **kwargs: Any
     ) -> AsyncIterable["_models.Product"]:
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
+        :param client_request_id: Default value is None.
+        :type client_request_id: str
         :param paging_get_odata_multiple_pages_options: Parameter group. Default value is None.
         :type paging_get_odata_multiple_pages_options:
          ~paging.models.PagingGetOdataMultiplePagesOptions
@@ -932,6 +941,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     _timeout = paging_get_odata_multiple_pages_options.timeout
 
                 request = build_get_odata_multiple_pages_request(
+                    client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,  # type: ignore
                     template_url=self.get_odata_multiple_pages.metadata["url"],
@@ -989,6 +999,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     def get_multiple_pages_with_offset(
         self,
         paging_get_multiple_pages_with_offset_options: _models.PagingGetMultiplePagesWithOffsetOptions,
+        client_request_id: Optional[str] = None,
         **kwargs: Any
     ) -> AsyncIterable["_models.Product"]:
         """A paging operation that includes a nextLink that has 10 pages.
@@ -996,6 +1007,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         :param paging_get_multiple_pages_with_offset_options: Parameter group. Required.
         :type paging_get_multiple_pages_with_offset_options:
          ~paging.models.PagingGetMultiplePagesWithOffsetOptions
+        :param client_request_id: Default value is None.
+        :type client_request_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of either Product or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.Product]
@@ -1026,6 +1039,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 request = build_get_multiple_pages_with_offset_request(
                     offset=_offset,
+                    client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
                     template_url=self.get_multiple_pages_with_offset.metadata["url"],
@@ -1642,6 +1656,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
     async def _get_multiple_pages_lro_initial(
         self,
+        client_request_id: Optional[str] = None,
         paging_get_multiple_pages_lro_options: Optional[_models.PagingGetMultiplePagesLroOptions] = None,
         **kwargs: Any
     ) -> _models.ProductResult:
@@ -1665,6 +1680,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             _timeout = paging_get_multiple_pages_lro_options.timeout
 
         request = build_get_multiple_pages_lro_request(
+            client_request_id=client_request_id,
             maxresults=_maxresults,
             timeout=_timeout,  # type: ignore
             template_url=self._get_multiple_pages_lro_initial.metadata["url"],
@@ -1697,11 +1713,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace_async
     async def begin_get_multiple_pages_lro(
         self,
+        client_request_id: Optional[str] = None,
         paging_get_multiple_pages_lro_options: Optional[_models.PagingGetMultiplePagesLroOptions] = None,
         **kwargs: Any
     ) -> AsyncLROPoller[AsyncIterable["_models.Product"]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
+        :param client_request_id: Default value is None.
+        :type client_request_id: str
         :param paging_get_multiple_pages_lro_options: Parameter group. Default value is None.
         :type paging_get_multiple_pages_lro_options: ~paging.models.PagingGetMultiplePagesLroOptions
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1741,6 +1760,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     _timeout = paging_get_multiple_pages_lro_options.timeout
 
                 request = build_get_multiple_pages_lro_request(
+                    client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,  # type: ignore
                     template_url=self.begin_get_multiple_pages_lro.metadata["url"],
@@ -1795,6 +1815,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
             raw_result = await self._get_multiple_pages_lro_initial(
+                client_request_id=client_request_id,
                 paging_get_multiple_pages_lro_options=paging_get_multiple_pages_lro_options,
                 cls=lambda x, y, z: x,
                 headers=_headers,

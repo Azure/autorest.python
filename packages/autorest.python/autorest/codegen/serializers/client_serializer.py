@@ -113,7 +113,7 @@ class ClientSerializer:
             "base_url": self.host_variable_name,
             "config": "self._config",
         }
-        if self.client.request_id_header_name:
+        if not self.client.code_model.is_legacy and self.client.request_id_header_name:
             params["request_id_header_name"] = f'"{self.client.request_id_header_name}"'
         return (
             f"self._client: {pipeline_client_name} = {pipeline_client_name}("

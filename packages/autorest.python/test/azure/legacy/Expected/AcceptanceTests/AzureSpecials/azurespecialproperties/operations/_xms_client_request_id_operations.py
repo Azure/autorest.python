@@ -41,7 +41,7 @@ def build_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_param_get_request(**kwargs: Any) -> HttpRequest:
+def build_param_get_request(*, x_ms_client_request_id: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -50,6 +50,7 @@ def build_param_get_request(**kwargs: Any) -> HttpRequest:
     _url = kwargs.pop("template_url", "/azurespecials/overwrite/x-ms-client-request-id/via-param/method/")
 
     # Construct headers
+    _headers["x-ms-client-request-id"] = _SERIALIZER.header("x_ms_client_request_id", x_ms_client_request_id, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
@@ -122,10 +123,15 @@ class XMsClientRequestIdOperations:
     get.metadata = {"url": "/azurespecials/overwrite/x-ms-client-request-id/method/"}
 
     @distributed_trace
-    def param_get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def param_get(  # pylint: disable=inconsistent-return-statements
+        self, x_ms_client_request_id: str, **kwargs: Any
+    ) -> None:
         """Get method that overwrites x-ms-client-request header with value
         9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 
+        :param x_ms_client_request_id: This should appear as a method parameter, use value
+         '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'. Required.
+        :type x_ms_client_request_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -145,6 +151,7 @@ class XMsClientRequestIdOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_param_get_request(
+            x_ms_client_request_id=x_ms_client_request_id,
             template_url=self.param_get.metadata["url"],
             headers=_headers,
             params=_params,
