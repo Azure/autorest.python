@@ -622,20 +622,23 @@ function getLroInitialOperation(
     operation: Operation,
     operationGroupName: string,
 ): Record<string, any> {
-    const initialOperation = emitBasicOperation(
-        context,
-        getLroMetadata(context.program, operation)!.operation,
-        operationGroupName,
-    )[0];
+    const initialTspOperation = getLroMetadata(context.program, operation)!.operation;
+    const initialOperation = emitBasicOperation(context, initialTspOperation, operationGroupName)[0];
     initialOperation["name"] = `_${initialOperation["name"]}_initial`;
     initialOperation["isLroInitialOperation"] = true;
     initialOperation["wantTracing"] = false;
     initialOperation["exposeStreamKeyword"] = false;
-    for (const resp of initialOperation["responses"]) {
-        if (resp["type"]) {
+    initialOperation["responses"].forEach((resp: Record<string, any>, index: number) => {
+        if (
+            getBodyFromResponse(
+                context,
+                ignoreDiagnostics(getHttpOperation(context.program, initialTspOperation)).responses[index],
+            )
+        ) {
+            // if there's a body, even if it's an Azure.Core model, we want to use anyObject
             resp["type"] = KnownTypes.anyObject;
         }
-    }
+    });
     return initialOperation;
 }
 
