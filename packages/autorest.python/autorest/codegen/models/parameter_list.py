@@ -215,9 +215,7 @@ class _ParameterListBase(
             for p in self.parameters
             if p.in_method_signature
             and p.implementation == self.implementation
-            and (
-                self.code_model.is_legacy or not p.hide_in_method
-            )
+            and (self.code_model.is_legacy or not p.hide_in_method)
         ]
         if self._body_parameter:
             if self._body_parameter.in_method_signature:
