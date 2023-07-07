@@ -71,9 +71,12 @@ def build_standard_create_or_replace_request(name: str, **kwargs: Any) -> HttpRe
 
 
 def build_standard_delete_request(name: str, **kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-12-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/azure/core/lro/standard/users/{name}"
     path_format_arguments = {
@@ -85,13 +88,19 @@ def build_standard_delete_request(name: str, **kwargs: Any) -> HttpRequest:
     # Construct parameters
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
-    return HttpRequest(method="DELETE", url=_url, params=_params, **kwargs)
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="DELETE", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_standard_export_request(name: str, *, format: str, **kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-12-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/azure/core/lro/standard/users/{name}:export"
     path_format_arguments = {
@@ -104,7 +113,10 @@ def build_standard_export_request(name: str, *, format: str, **kwargs: Any) -> H
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
     _params["format"] = _SERIALIZER.query("format", format, "str")
 
-    return HttpRequest(method="POST", url=_url, params=_params, **kwargs)
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 class StandardClientOperationsMixin(StandardClientMixinABC):
