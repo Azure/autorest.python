@@ -358,7 +358,9 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _export_initial(self, name: str, *, format: str, **kwargs: Any) -> _models.ExportedUser:
+    async def _export_initial(  # pylint: disable=inconsistent-return-statements
+        self, name: str, *, format: str, **kwargs: Any
+    ) -> None:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -370,7 +372,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ExportedUser] = kwargs.pop("cls", None)
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_standard_export_request(
             name=name,
@@ -395,12 +397,8 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         response_headers = {}
         response_headers["Operation-Location"] = self._deserialize("str", response.headers.get("Operation-Location"))
 
-        deserialized = _deserialize(_models.ExportedUser, response.json().get("result"))
-
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
-
-        return deserialized  # type: ignore
+            return cls(pipeline_response, None, response_headers)
 
     @distributed_trace_async
     async def begin_export(self, name: str, *, format: str, **kwargs: Any) -> AsyncLROPoller[_models.ExportedUser]:
