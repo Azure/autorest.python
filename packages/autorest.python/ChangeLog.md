@@ -1,6 +1,6 @@
 # Release
 
-### 2023-06-xx - 6.7.0
+### 2023-07-xx - 6.7.0
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -15,6 +15,10 @@
 **New Features**
 
 - Support visibility for dpg #1968
+
+**Bug Fixes**
+
+- Fix LRO init operation mypy issue #1992
 
 ### 2023-06-12 - 6.6.0
 
