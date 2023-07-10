@@ -664,7 +664,7 @@ class Serializer(object):
                             _serialized = _serialized[k]
                 except ValueError as err:
                     if isinstance(err, SerializationError):
-                        raise err
+                        raise
 
         except (AttributeError, KeyError, TypeError) as err:
             msg = "Attribute {} in object {} cannot be serialized.\n{}".format(attr_name, class_name, str(target_obj))
@@ -906,7 +906,7 @@ class Serializer(object):
                 serialized.append(self.serialize_data(d, iter_type, **kwargs))
             except ValueError as err:
                 if isinstance(err, SerializationError):
-                    raise err
+                    raise
                 serialized.append(None)
 
         if div:
@@ -955,7 +955,7 @@ class Serializer(object):
                 serialized[self.serialize_unicode(key)] = self.serialize_data(value, dict_type, **kwargs)
             except ValueError as err:
                 if isinstance(err, SerializationError):
-                    raise err
+                    raise
                 serialized[self.serialize_unicode(key)] = None
 
         if "xml" in serialization_ctxt:
