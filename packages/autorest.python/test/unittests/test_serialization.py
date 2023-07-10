@@ -116,6 +116,7 @@ class TestModelDeserialization(unittest.TestCase):
         self.d = Deserializer({'Resource':Resource, 'GenericResource':GenericResource})
         return super(TestModelDeserialization, self).setUp()
 
+    @pytest.mark.skip("validation is not priority: https://github.com/Azure/autorest.python/pull/2002#discussion_r1256223428")
     def test_model_kwargs(self):
 
         class MyModel(Model):
@@ -134,8 +135,8 @@ class TestModelDeserialization(unittest.TestCase):
                 self.name = kwargs.get('name', None)
                 self.location = kwargs.get('location', None)
 
-        # validation = MyModel().validate()
-        # self.assertEqual(str(validation[0]), "Parameter 'MyModel.name' can not be None.")
+        validation = MyModel().validate()
+        self.assertEqual(str(validation[0]), "Parameter 'MyModel.name' can not be None.")
 
     @unittest.skipIf(sys.version_info < (3,4), "assertLogs not supported before 3.4")
     def test_model_kwargs_logs(self):
@@ -249,6 +250,7 @@ class TestRuntimeSerialized(unittest.TestCase):
         self.s = Serializer({'TestObj': self.TestObj})
         return super(TestRuntimeSerialized, self).setUp()
 
+    @pytest.mark.skip("validation is not priority: https://github.com/Azure/autorest.python/pull/2002#discussion_r1256223428")
     def test_validation_type(self):
         # https://github.com/Azure/msrest-for-python/issues/85
         s = Serializer()
@@ -266,14 +268,14 @@ class TestRuntimeSerialized(unittest.TestCase):
             }
 
 
-        # test_obj = TestValidationObj()
-        # test_obj.attr_a = 186
-        # errors_found = test_obj.validate()
-        # assert not errors_found
+        test_obj = TestValidationObj()
+        test_obj.attr_a = 186
+        errors_found = test_obj.validate()
+        assert not errors_found
 
-        # test_obj.attr_a = '186'
-        # errors_found = test_obj.validate()
-        # assert not errors_found
+        test_obj.attr_a = '186'
+        errors_found = test_obj.validate()
+        assert not errors_found
 
     def test_validation_flag(self):
         s = Serializer()
@@ -416,11 +418,13 @@ class TestRuntimeSerialized(unittest.TestCase):
         self.assertDictEqual(expected, json.loads(jsonable))
 
 
-    # def test_validate(self):
-    #     # Assert not necessary, should not raise exception
-    #     self.s.validate("simplestring", "StringForLog", pattern="^[a-z]+$")
-    #     self.s.validate(u"UTF8ééééé", "StringForLog", pattern=r"^[\w]+$")
+    @pytest.mark.skip("validation is not priority: https://github.com/Azure/autorest.python/pull/2002#discussion_r1256223428")
+    def test_validate(self):
+        # Assert not necessary, should not raise exception
+        self.s.validate("simplestring", "StringForLog", pattern="^[a-z]+$")
+        self.s.validate(u"UTF8ééééé", "StringForLog", pattern=r"^[\w]+$")
 
+    @pytest.mark.skip("validation is not priority: https://github.com/Azure/autorest.python/pull/2002#discussion_r1256223428")
     def test_model_validate(self):
 
         class TestObj(Model):
@@ -450,17 +454,17 @@ class TestRuntimeSerialized(unittest.TestCase):
         obj.display_names = ["ab"]
         obj.obj = TestObj("ab")
 
-        # broken_rules = obj.validate()
-        # self.assertEqual(5, len(broken_rules))
-        # str_broken_rules = [str(v) for v in broken_rules]
-        # self.assertIn(
-        #     "Parameter 'TestObj.name' must have length greater than 3.",
-        #     str_broken_rules
-        # )
-        # self.assertIn(
-        #     "Parameter 'TestObj.display_names' must contain at least 2 items.",
-        #     str_broken_rules
-        # )
+        broken_rules = obj.validate()
+        self.assertEqual(5, len(broken_rules))
+        str_broken_rules = [str(v) for v in broken_rules]
+        self.assertIn(
+            "Parameter 'TestObj.name' must have length greater than 3.",
+            str_broken_rules
+        )
+        self.assertIn(
+            "Parameter 'TestObj.display_names' must contain at least 2 items.",
+            str_broken_rules
+        )
 
     def test_obj_serialize_none(self):
         """Test that serialize None in object is still None.
