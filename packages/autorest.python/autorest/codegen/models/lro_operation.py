@@ -129,7 +129,8 @@ class LROOperationBase(OperationBase[LROResponseType]):
                 ImportType.AZURECORE,
             )
         if (
-            self.lro_response
+            self.code_model.options["models_mode"] == "dpg"
+            and self.lro_response
             and self.lro_response.type
             and self.lro_response.type.type == "model"
         ):
