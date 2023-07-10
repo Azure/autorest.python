@@ -316,6 +316,10 @@ class TestRuntimeSerialized(unittest.TestCase):
         assert s.query("filter", ['a', None, 'c'], "[str]", div=",") == "a,,c"
         assert s.query("filter", [',', ',', ','], "[str]", div=",") == "%2C,%2C,%2C"
         assert s.query("filter", [',', ',', ','], "[str]", div="|", skip_quote=True) == ",|,|,"
+
+    def test_serialize_query_datetime_list(self):
+        s = Serializer()
+
         assert s.query("filter", [
             datetime(2022, 8, 26, 17, 38, 0),
             datetime(2022, 8, 26, 18, 38, 0),
