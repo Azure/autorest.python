@@ -104,14 +104,14 @@ def build_projected_name_client_name_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, **kwargs)
 
 
-def build_projected_name_parameter_request(*, default_name: str, **kwargs: Any) -> HttpRequest:
+def build_projected_name_parameter_request(*, client_name: str, **kwargs: Any) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
     _url = "/projection/projected-name/parameter"
 
     # Construct parameters
-    _params["default-name"] = _SERIALIZER.query("default_name", default_name, "str")
+    _params["default-name"] = _SERIALIZER.query("client_name", client_name, "str")
 
     return HttpRequest(method="POST", url=_url, params=_params, **kwargs)
 
@@ -635,11 +635,11 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def parameter(self, *, default_name: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def parameter(self, *, client_name: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """parameter.
 
-        :keyword default_name: Required.
-        :paramtype default_name: str
+        :keyword client_name: Required.
+        :paramtype client_name: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: None
@@ -660,7 +660,7 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_projected_name_parameter_request(
-            default_name=default_name,
+            client_name=client_name,
             headers=_headers,
             params=_params,
         )
