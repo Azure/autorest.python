@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 import pytest
 from _specs_.azure.clientgenerator.core.internal import InternalClient
+from _specs_.azure.clientgenerator.core.internal.models import InternalIncludeModel
 
 
 @pytest.fixture
@@ -33,10 +34,17 @@ def test_shared_internal(client: InternalClient):
     assert result.name == "test"
 
 
+def test_shared_internal(client: InternalClient):
+    result = client._internal_with_include_model(InternalIncludeModel(name="test"))
+    assert result.name == "test"
+
+
 def test_visibility(client: InternalClient):
     from _specs_.azure.clientgenerator.core.internal.models import (
         PublicModel,
         SharedModel,
+        InternalIncludeModel,
+        # NestedIncludeModel
     )
 
     with pytest.raises(ImportError):

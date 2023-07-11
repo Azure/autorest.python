@@ -53,6 +53,7 @@ import {
     getLibraryName,
     getAllModels,
     isInternal,
+    isInclude,
     getSdkSimpleType,
     getSdkListOrDict,
     getSdkUnion,
@@ -836,7 +837,7 @@ function emitModel(context: SdkContext, type: Model): Record<string, any> {
         addedOn: getAddedOnVersion(context, type),
         snakeCaseName: modelName ? camelToSnakeCase(modelName) : modelName,
         base: modelName === "" ? "json" : "dpg",
-        internal: isInternal(context, type),
+        internal: isInternal(context, type) && !isInclude(context, type),
     };
 }
 
