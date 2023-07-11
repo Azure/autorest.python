@@ -37,6 +37,7 @@ import {
     isStatusCode,
     HttpOperation,
     isHeader,
+    isQueryParam,
 } from "@typespec/http";
 import { getAddedOnVersions } from "@typespec/versioning";
 import {
@@ -241,7 +242,12 @@ export function getType(context: SdkContext, type: EmitterType): any {
         if (type.kind === "Model") {
             // need to do properties after insertion to avoid infinite recursion
             for (const property of type.properties.values()) {
-                if (isStatusCode(program, property) || isNeverType(property.type) || isHeader(program, property)) {
+                if (
+                    isStatusCode(program, property) ||
+                    isNeverType(property.type) ||
+                    isHeader(program, property) ||
+                    isQueryParam(program, property)
+                ) {
                     continue;
                 }
                 newValue.properties.push(emitProperty(context, property));
@@ -286,7 +292,7 @@ function emitParamBase(context: SdkContext, parameter: ModelProperty | Type): Pa
 
     if (parameter.kind === "ModelProperty") {
         optional = parameter.optional;
-        name = parameter.name;
+        name = getSdkModelPropertyType(context, parameter).name;
         description = getDocStr(context, parameter);
         addedOn = getAddedOnVersion(context, parameter);
     } else {
