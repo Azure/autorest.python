@@ -28,4 +28,4 @@ def test_operation(client: ProjectedNameClient):
     client.client_name()
 
 def test_parameter(client: ProjectedNameClient):
-    client.parameter(default_name="true")
+    client.parameter(client_name="true")

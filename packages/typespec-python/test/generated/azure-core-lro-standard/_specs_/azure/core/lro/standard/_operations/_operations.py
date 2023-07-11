@@ -71,9 +71,12 @@ def build_standard_create_or_replace_request(name: str, **kwargs: Any) -> HttpRe
 
 
 def build_standard_delete_request(name: str, **kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-12-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/azure/core/lro/standard/users/{name}"
     path_format_arguments = {
@@ -85,7 +88,10 @@ def build_standard_delete_request(name: str, **kwargs: Any) -> HttpRequest:
     # Construct parameters
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
-    return HttpRequest(method="DELETE", url=_url, params=_params, **kwargs)
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="DELETE", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_standard_export_request(name: str, *, format: str, **kwargs: Any) -> HttpRequest:
@@ -114,9 +120,7 @@ def build_standard_export_request(name: str, *, format: str, **kwargs: Any) -> H
 
 
 class StandardClientOperationsMixin(StandardClientMixinABC):
-    def _create_or_replace_initial(
-        self, name: str, resource: Union[_models.User, JSON, IO], **kwargs: Any
-    ) -> _models.User:
+    def _create_or_replace_initial(self, name: str, resource: Union[_models.User, JSON, IO], **kwargs: Any) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -129,7 +133,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.User] = kwargs.pop("cls", None)
+        cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -165,14 +169,14 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
                 "str", response.headers.get("Operation-Location")
             )
 
-            deserialized = _deserialize(_models.User, response.json())
+            deserialized = _deserialize(JSON, response.json())
 
         if response.status_code == 201:
             response_headers["Operation-Location"] = self._deserialize(
                 "str", response.headers.get("Operation-Location")
             )
 
-            deserialized = _deserialize(_models.User, response.json())
+            deserialized = _deserialize(JSON, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -333,7 +337,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    def _delete_initial(self, name: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def _delete_initial(self, name: str, **kwargs: Any) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -345,7 +349,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         request = build_standard_delete_request(
             name=name,
@@ -369,8 +373,12 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         response_headers = {}
         response_headers["Operation-Location"] = self._deserialize("str", response.headers.get("Operation-Location"))
 
+        deserialized = _deserialize(JSON, response.json())
+
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
 
     @distributed_trace
     def begin_delete(self, name: str, **kwargs: Any) -> LROPoller[None]:
@@ -399,7 +407,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = self._delete_initial(  # type: ignore
+            raw_result = self._delete_initial(
                 name=name, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
         kwargs.pop("error_map", None)
@@ -423,7 +431,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    def _export_initial(self, name: str, *, format: str, **kwargs: Any) -> _models.ExportedUser:
+    def _export_initial(self, name: str, *, format: str, **kwargs: Any) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -435,7 +443,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ExportedUser] = kwargs.pop("cls", None)
+        cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         request = build_standard_export_request(
             name=name,
@@ -460,7 +468,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         response_headers = {}
         response_headers["Operation-Location"] = self._deserialize("str", response.headers.get("Operation-Location"))
 
-        deserialized = _deserialize(_models.ExportedUser, response.json().get("result"))
+        deserialized = _deserialize(JSON, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore

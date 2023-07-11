@@ -33,11 +33,11 @@ import {
     HttpAuth,
     HttpOperationParameter,
     HttpOperationResponse,
-    HttpOperationResponseContent,
     HttpServer,
     isStatusCode,
     HttpOperation,
     isHeader,
+    isQueryParam,
 } from "@typespec/http";
 import { getAddedOnVersions } from "@typespec/versioning";
 import {
@@ -242,7 +242,12 @@ export function getType(context: SdkContext, type: EmitterType): any {
         if (type.kind === "Model") {
             // need to do properties after insertion to avoid infinite recursion
             for (const property of type.properties.values()) {
-                if (isStatusCode(program, property) || isNeverType(property.type) || isHeader(program, property)) {
+                if (
+                    isStatusCode(program, property) ||
+                    isNeverType(property.type) ||
+                    isHeader(program, property) ||
+                    isQueryParam(program, property)
+                ) {
                     continue;
                 }
                 newValue.properties.push(emitProperty(context, property));
@@ -287,7 +292,7 @@ function emitParamBase(context: SdkContext, parameter: ModelProperty | Type): Pa
 
     if (parameter.kind === "ModelProperty") {
         optional = parameter.optional;
-        name = parameter.name;
+        name = getSdkModelPropertyType(context, parameter).name;
         description = getDocStr(context, parameter);
         addedOn = getAddedOnVersion(context, parameter);
     } else {
@@ -504,18 +509,19 @@ function emitAcceptParameter(inOverload: boolean, inOverriden: boolean): Record<
     };
 }
 
-function emitResponseHeaders(context: SdkContext, headers?: Record<string, ModelProperty>): Record<string, any>[] {
-    const retval: Record<string, any>[] = [];
-    if (!headers) {
-        return retval;
+function emitResponseHeaders(context: SdkContext, response: HttpOperationResponse): Record<string, any>[] {
+    const headers: Record<string, any>[] = [];
+    for (const innerResponse of response.responses) {
+        if (innerResponse.headers && Object.keys(innerResponse.headers).length > 0) {
+            for (const [key, value] of Object.entries(innerResponse.headers)) {
+                headers.push({
+                    type: getType(context, value),
+                    wireName: key,
+                });
+            }
+        }
     }
-    for (const [key, value] of Object.entries(headers)) {
-        retval.push({
-            type: getType(context, value),
-            wireName: key,
-        });
-    }
-    return retval;
+    return headers;
 }
 
 function isAzureCoreModel(t: Type): boolean {
@@ -530,33 +536,31 @@ function hasDefaultStatusCode(response: HttpOperationResponse): boolean {
     return response.statusCode === "*";
 }
 
-function emitResponse(
-    context: SdkContext,
-    response: HttpOperationResponse,
-    innerResponse: HttpOperationResponseContent,
-    operation: Operation,
-): Record<string, any> {
-    let type = undefined;
-    let resultProperty = undefined;
-    if (innerResponse.body?.type) {
-        let modelType = undefined;
-        if (innerResponse.body.type.kind === "Model") {
-            const lroMeta = getLroMetadata(context.program, operation);
-            if (!hasDefaultStatusCode(response) && lroMeta) {
-                modelType = lroMeta.logicalResult;
-                if (lroMeta.finalStep?.target.kind === "ModelProperty") {
-                    resultProperty = lroMeta.finalStep.target.name;
-                }
-            } else {
-                modelType = getEffectiveSchemaType(context, innerResponse.body.type);
-            }
+function getBodyFromResponse(context: SdkContext, response: HttpOperationResponse): Type | undefined {
+    let body: Type | undefined = undefined;
+    for (const innerResponse of response.responses) {
+        if (!body && innerResponse.body) {
+            body = innerResponse.body.type;
         }
-        if (modelType && modelType.decorators.find((d) => d.decorator.name === "$pagedResult")) {
-            type = getType(context, Array.from(modelType.properties.values())[0].type);
-        } else if (modelType && !isAzureCoreModel(modelType)) {
-            type = getType(context, modelType);
-        } else if (!modelType) {
-            type = getType(context, innerResponse.body.type);
+    }
+    if (body && body.kind === "Model") {
+        body = getEffectiveSchemaType(context, body);
+    }
+    return body;
+}
+
+function emitResponse(context: SdkContext, response: HttpOperationResponse): Record<string, any> {
+    let type = undefined;
+    const body = getBodyFromResponse(context, response);
+    if (body) {
+        if (body.kind === "Model") {
+            if (body && body.decorators.find((d) => d.decorator.name === "$pagedResult")) {
+                type = getType(context, Array.from(body.properties.values())[0].type);
+            } else if (body && !isAzureCoreModel(body)) {
+                type = getType(context, body);
+            }
+        } else {
+            type = getType(context, body);
         }
     }
     const statusCodes = [];
@@ -566,12 +570,11 @@ function emitResponse(
         statusCodes.push(parseInt(response.statusCode));
     }
     return {
-        headers: emitResponseHeaders(context, innerResponse.headers),
+        headers: emitResponseHeaders(context, response),
         statusCodes: statusCodes,
         addedOn: getAddedOnVersion(context, response.type),
         discriminator: "basic",
         type: type,
-        resultProperty: resultProperty,
     };
 }
 
@@ -588,12 +591,25 @@ function emitOperation(context: SdkContext, operation: Operation, operationGroup
     return emitBasicOperation(context, operation, operationGroupName);
 }
 
-function addLroInformation(emittedOperation: Record<string, any>, initialOperation: Record<string, any>) {
+function addLroInformation(
+    context: SdkContext,
+    tspOperation: Operation,
+    emittedOperation: Record<string, any>,
+    initialOperation: Record<string, any>,
+) {
     emittedOperation["discriminator"] = "lro";
     emittedOperation["initialOperation"] = initialOperation;
     emittedOperation["exposeStreamKeyword"] = false;
+    const lroMeta = getLroMetadata(context.program, tspOperation);
+    if (!isAzureCoreModel(lroMeta!.logicalResult)) {
+        emittedOperation["responses"][0]["type"] = getType(context, lroMeta!.logicalResult);
+        if (lroMeta!.finalStep?.target.kind === "ModelProperty") {
+            emittedOperation["responses"][0]["resultProperty"] = lroMeta!.finalStep.target.name;
+        }
+        addAcceptParameter(context, tspOperation, emittedOperation["parameters"]);
+        addAcceptParameter(context, lroMeta!.operation, emittedOperation["initialOperation"]["parameters"]);
+    }
 }
-
 function addPagingInformation(context: SdkContext, operation: Operation, emittedOperation: Record<string, any>) {
     emittedOperation["discriminator"] = "paging";
     const pagedResult = getPagedResult(context.program, operation);
@@ -612,15 +628,23 @@ function getLroInitialOperation(
     operation: Operation,
     operationGroupName: string,
 ): Record<string, any> {
-    const initialOperation = emitBasicOperation(
-        context,
-        getLroMetadata(context.program, operation)!.operation,
-        operationGroupName,
-    )[0];
+    const initialTspOperation = getLroMetadata(context.program, operation)!.operation;
+    const initialOperation = emitBasicOperation(context, initialTspOperation, operationGroupName)[0];
     initialOperation["name"] = `_${initialOperation["name"]}_initial`;
     initialOperation["isLroInitialOperation"] = true;
     initialOperation["wantTracing"] = false;
     initialOperation["exposeStreamKeyword"] = false;
+    initialOperation["responses"].forEach((resp: Record<string, any>, index: number) => {
+        if (
+            getBodyFromResponse(
+                context,
+                ignoreDiagnostics(getHttpOperation(context.program, initialTspOperation)).responses[index],
+            )
+        ) {
+            // if there's a body, even if it's an Azure.Core model, we want to use anyObject
+            resp["type"] = KnownTypes.anyObject;
+        }
+    });
     return initialOperation;
 }
 
@@ -632,7 +656,7 @@ function emitLroPagingOperation(
     const retval: Record<string, any>[] = [];
     for (const emittedOperation of emitBasicOperation(context, operation, operationGroupName)) {
         const initialOperation = getLroInitialOperation(context, operation, operationGroupName);
-        addLroInformation(emittedOperation, initialOperation);
+        addLroInformation(context, operation, emittedOperation, initialOperation);
         addPagingInformation(context, operation, emittedOperation);
         emittedOperation["discriminator"] = "lropaging";
         retval.push(emittedOperation);
@@ -648,7 +672,7 @@ function emitLroOperation(
     const retval = [];
     for (const emittedOperation of emitBasicOperation(context, operation, operationGroupName)) {
         const initialOperation = getLroInitialOperation(context, operation, operationGroupName);
-        addLroInformation(emittedOperation, initialOperation);
+        addLroInformation(context, operation, emittedOperation, initialOperation);
         retval.push(initialOperation);
         retval.push(emittedOperation);
     }
@@ -671,6 +695,16 @@ function emitPagingOperation(
 function isAbstract(operation: HttpOperation): boolean {
     const body = operation.parameters.body;
     return body !== undefined && body.contentTypes.length > 1;
+}
+
+function addAcceptParameter(context: SdkContext, operation: Operation, parameters: Record<string, any>[]) {
+    const httpOperation = ignoreDiagnostics(getHttpOperation(context.program, operation));
+    if (
+        getBodyFromResponse(context, httpOperation.responses[0]) &&
+        parameters.filter((e) => e.wireName.toLowerCase() === "accept").length === 0
+    ) {
+        parameters.push(emitAcceptParameter(false, false));
+    }
 }
 
 function emitBasicOperation(
@@ -700,22 +734,15 @@ function emitBasicOperation(
     const isOverload: boolean = false;
     const isOverriden: boolean = false;
     for (const response of httpOperation.responses) {
-        for (const innerResponse of response.responses) {
-            const emittedResponse = emitResponse(context, response, innerResponse, operation);
-            if (
-                emittedResponse["type"] &&
-                parameters.filter((e) => e.wireName.toLowerCase() === "accept").length === 0
-            ) {
-                parameters.push(emitAcceptParameter(isOverload, isOverriden));
+        const emittedResponse = emitResponse(context, response);
+        addAcceptParameter(context, operation, parameters);
+        if (isErrorModel(context.program, response.type)) {
+            // * is valid status code in cadl but invalid for autorest.python
+            if (response.statusCode === "*") {
+                exceptions.push(emittedResponse);
             }
-            if (isErrorModel(context.program, response.type)) {
-                // * is valid status code in cadl but invalid for autorest.python
-                if (response.statusCode === "*") {
-                    exceptions.push(emittedResponse);
-                }
-            } else {
-                responses.push(emittedResponse);
-            }
+        } else {
+            responses.push(emittedResponse);
         }
     }
 
@@ -1267,4 +1294,5 @@ function emitCodeModel(context: EmitContext<PythonEmitterOptions>) {
 
 const KnownTypes = {
     string: { type: "string" },
+    anyObject: { type: "any-object" },
 };
