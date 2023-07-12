@@ -51,7 +51,6 @@ def build_traits_smoke_test_request(
     if_none_match: Optional[str] = None,
     if_unmodified_since: Optional[datetime.datetime] = None,
     if_modified_since: Optional[datetime.datetime] = None,
-    client_request_id: Optional[str] = None,
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -81,8 +80,6 @@ def build_traits_smoke_test_request(
         _headers["If-Unmodified-Since"] = _SERIALIZER.header("if_unmodified_since", if_unmodified_since, "rfc-1123")
     if if_modified_since is not None:
         _headers["If-Modified-Since"] = _SERIALIZER.header("if_modified_since", if_modified_since, "rfc-1123")
-    if client_request_id is not None:
-        _headers["x-ms-client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
@@ -130,7 +127,6 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         if_none_match: Optional[str] = None,
         if_unmodified_since: Optional[datetime.datetime] = None,
         if_modified_since: Optional[datetime.datetime] = None,
-        client_request_id: Optional[str] = None,
         **kwargs: Any
     ) -> _models.User:
         """Get a resource, sending and receiving headers.
@@ -151,9 +147,6 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :keyword if_modified_since: The request should only proceed if the entity was modified after
          this time. Default value is None.
         :paramtype if_modified_since: ~datetime.datetime
-        :keyword client_request_id: An opaque, globally-unique, client-generated string identifier for
-         the request. Default value is None.
-        :paramtype client_request_id: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: User. The User is compatible with MutableMapping
@@ -180,7 +173,6 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
             if_none_match=if_none_match,
             if_unmodified_since=if_unmodified_since,
             if_modified_since=if_modified_since,
-            client_request_id=client_request_id,
             api_version=self._config.api_version,
             headers=_headers,
             params=_params,

@@ -665,17 +665,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def get_multiple_pages(
-        self,
-        *,
-        client_request_id: Optional[str] = None,
-        maxresults: Optional[int] = None,
-        timeout: int = 30,
-        **kwargs: Any
+        self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
     ) -> AsyncIterable[JSON]:
         """A paging operation that includes a nextLink that has 10 pages.
 
-        :keyword client_request_id: Default value is None.
-        :paramtype client_request_id: str
         :keyword maxresults: Sets the maximum number of items to return in the response. Default value
          is None.
         :paramtype maxresults: int
@@ -714,7 +707,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             if not next_link:
 
                 request = build_paging_get_multiple_pages_request(
-                    client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
                     headers=_headers,
@@ -1021,17 +1013,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def get_odata_multiple_pages(
-        self,
-        *,
-        client_request_id: Optional[str] = None,
-        maxresults: Optional[int] = None,
-        timeout: int = 30,
-        **kwargs: Any
+        self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
     ) -> AsyncIterable[JSON]:
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
-        :keyword client_request_id: Default value is None.
-        :paramtype client_request_id: str
         :keyword maxresults: Sets the maximum number of items to return in the response. Default value
          is None.
         :paramtype maxresults: int
@@ -1070,7 +1055,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             if not next_link:
 
                 request = build_paging_get_odata_multiple_pages_request(
-                    client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
                     headers=_headers,
@@ -1121,20 +1105,12 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def get_multiple_pages_with_offset(
-        self,
-        offset: int,
-        *,
-        client_request_id: Optional[str] = None,
-        maxresults: Optional[int] = None,
-        timeout: int = 30,
-        **kwargs: Any
+        self, offset: int, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
     ) -> AsyncIterable[JSON]:
         """A paging operation that includes a nextLink that has 10 pages.
 
         :param offset: Offset of return value. Required.
         :type offset: int
-        :keyword client_request_id: Default value is None.
-        :paramtype client_request_id: str
         :keyword maxresults: Sets the maximum number of items to return in the response. Default value
          is None.
         :paramtype maxresults: int
@@ -1174,7 +1150,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 request = build_paging_get_multiple_pages_with_offset_request(
                     offset=offset,
-                    client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
                     headers=_headers,
@@ -1808,12 +1783,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return AsyncItemPaged(get_next, extract_data)
 
     async def _get_multiple_pages_lro_initial(
-        self,
-        *,
-        client_request_id: Optional[str] = None,
-        maxresults: Optional[int] = None,
-        timeout: int = 30,
-        **kwargs: Any
+        self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
     ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
@@ -1829,7 +1799,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         request = build_paging_get_multiple_pages_lro_request(
-            client_request_id=client_request_id,
             maxresults=maxresults,
             timeout=timeout,
             headers=_headers,
@@ -1860,17 +1829,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_get_multiple_pages_lro(
-        self,
-        *,
-        client_request_id: Optional[str] = None,
-        maxresults: Optional[int] = None,
-        timeout: int = 30,
-        **kwargs: Any
+        self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
     ) -> AsyncCustomPoller[AsyncIterable[JSON]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
-        :keyword client_request_id: Default value is None.
-        :paramtype client_request_id: str
         :keyword maxresults: Sets the maximum number of items to return in the response. Default value
          is None.
         :paramtype maxresults: int
@@ -1918,7 +1880,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             if not next_link:
 
                 request = build_paging_get_multiple_pages_lro_request(
-                    client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
                     headers=_headers,
@@ -1970,7 +1931,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
             raw_result = await self._get_multiple_pages_lro_initial(
-                client_request_id=client_request_id,
                 maxresults=maxresults,
                 timeout=timeout,
                 cls=lambda x, y, z: x,

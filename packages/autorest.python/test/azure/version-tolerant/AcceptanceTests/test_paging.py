@@ -160,7 +160,7 @@ def test_get_multiple_pages_lro(client):
     """LRO + Paging at the same time.
     """
     from azure.mgmt.core.polling.arm_polling import ARMPolling
-    poller = client.paging.begin_get_multiple_pages_lro(polling=ARMPolling(timeout=0))
+    poller = client.paging.begin_get_multiple_pages_lro(polling=ARMPolling(timeout=0, request_id="test"))
     pager = poller.result()
 
     items = list(pager)

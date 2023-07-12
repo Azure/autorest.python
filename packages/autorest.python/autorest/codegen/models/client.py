@@ -76,6 +76,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
                 for op_group in self.yaml_data.get("operationGroups", [])
             ]
             self.link_lro_initial_operations()
+        self.request_id_header_name = self.yaml_data.get("requestIdHeaderName", None)
 
     def _build_request_builders(
         self,
