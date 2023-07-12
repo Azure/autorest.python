@@ -109,9 +109,15 @@ class ClientSerializer:
 
     def initialize_pipeline_client(self, async_mode: bool) -> str:
         pipeline_client_name = self.client.pipeline_class(async_mode)
+        params = {
+            "base_url": self.host_variable_name,
+            "config": "self._config",
+        }
+        if not self.client.code_model.is_legacy and self.client.request_id_header_name:
+            params["request_id_header_name"] = f'"{self.client.request_id_header_name}"'
         return (
-            f"self._client: {pipeline_client_name} = {pipeline_client_name}(base_url={self.host_variable_name}, "
-            "config=self._config, **kwargs)"
+            f"self._client: {pipeline_client_name} = {pipeline_client_name}("
+            f"{', '.join(f'{k}={v}' for k, v in params.items())}, **kwargs)"
         )
 
     def serializers_and_operation_groups_properties(self) -> List[str]:

@@ -3,9 +3,8 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import List, Sequence, Union, Optional
+from typing import List, Sequence, Union, Optional, Dict
 from enum import Enum, auto
-
 
 from ..models import (
     Parameter,
@@ -24,6 +23,22 @@ class PopKwargType(Enum):
     NO = auto()
     SIMPLE = auto()
     CASE_INSENSITIVE = auto()
+
+
+SPECIAL_HEADER_SERIALIZATION: Dict[str, List[str]] = {
+    "repeatability-request-id": [
+        """if "Repeatability-Request-ID" not in _headers:""",
+        """    _headers["Repeatability-Request-ID"] = str(uuid.uuid4())""",
+    ],
+    "repeatability-first-sent": [
+        """if "Repeatability-First-Sent" not in _headers:""",
+        """    _headers["Repeatability-First-Sent"] = _SERIALIZER.serialize_data(datetime.datetime.now(),
+        "rfc-1123")""",
+    ],
+    "client-request-id": [],
+    "x-ms-client-request-id": [],
+    "return-client-request-id": [],
+}
 
 
 class ParameterSerializer:
@@ -81,8 +96,8 @@ class ParameterSerializer:
             return f"[{serialize_line} if q is not None else '' for q in {origin_name}]"
         return serialize_line
 
+    @staticmethod
     def serialize_path(
-        self,
         parameters: Union[
             List[Parameter],
             List[RequestBuilderParameter],
@@ -96,12 +111,42 @@ class ParameterSerializer:
             [
                 '    "{}": {},'.format(
                     path_parameter.wire_name,
-                    self.serialize_parameter(path_parameter, serializer_name),
+                    ParameterSerializer.serialize_parameter(
+                        path_parameter, serializer_name
+                    ),
                 )
                 for path_parameter in parameters
             ]
         )
         retval.append("}")
+        return retval
+
+    @staticmethod
+    def serialize_query_header(
+        param: Parameter,
+        kwarg_name: str,
+        serializer_name: str,
+        is_legacy: bool,
+    ) -> List[str]:
+        if (
+            not is_legacy
+            and param.location == ParameterLocation.HEADER
+            and param.wire_name.lower() in SPECIAL_HEADER_SERIALIZATION
+        ):
+            return SPECIAL_HEADER_SERIALIZATION[param.wire_name.lower()]
+
+        set_parameter = "_{}['{}'] = {}".format(
+            kwarg_name,
+            param.wire_name,
+            ParameterSerializer.serialize_parameter(param, serializer_name),
+        )
+        if not param.optional:
+            retval = [set_parameter]
+        else:
+            retval = [
+                f"if {param.full_client_name} is not None:",
+                f"    {set_parameter}",
+            ]
         return retval
 
     @staticmethod

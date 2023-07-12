@@ -34,4 +34,4 @@ async def test_operation(client: aio.ProjectedNameClient):
 
 @pytest.mark.asyncio
 async def test_parameter(client: aio.ProjectedNameClient):
-    await client.parameter(default_name="true")
+    await client.parameter(client_name="true")

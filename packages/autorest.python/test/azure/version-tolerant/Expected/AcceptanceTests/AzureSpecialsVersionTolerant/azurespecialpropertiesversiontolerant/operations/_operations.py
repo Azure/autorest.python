@@ -43,7 +43,7 @@ def build_xms_client_request_id_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_xms_client_request_id_param_get_request(*, x_ms_client_request_id: str, **kwargs: Any) -> HttpRequest:
+def build_xms_client_request_id_param_get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -52,7 +52,6 @@ def build_xms_client_request_id_param_get_request(*, x_ms_client_request_id: str
     _url = "/azurespecials/overwrite/x-ms-client-request-id/via-param/method/"
 
     # Construct headers
-    _headers["x-ms-client-request-id"] = _SERIALIZER.header("x_ms_client_request_id", x_ms_client_request_id, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
@@ -664,15 +663,10 @@ class XMsClientRequestIdOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def param_get(  # pylint: disable=inconsistent-return-statements
-        self, *, x_ms_client_request_id: str, **kwargs: Any
-    ) -> None:
+    def param_get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method that overwrites x-ms-client-request header with value
         9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 
-        :keyword x_ms_client_request_id: This should appear as a method parameter, use value
-         '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'. Required.
-        :paramtype x_ms_client_request_id: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -691,7 +685,6 @@ class XMsClientRequestIdOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_xms_client_request_id_param_get_request(
-            x_ms_client_request_id=x_ms_client_request_id,
             headers=_headers,
             params=_params,
         )

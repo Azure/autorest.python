@@ -1,6 +1,6 @@
 # Release
 
-## 2023-07-10 - 0.12.0
+## 2023-07-11 - 0.12.0
 
 | Library                                                                 | Min Version   |
 | ----------------------------------------------------------------------- | ------------- |
@@ -24,6 +24,7 @@
 **Bug Fixes**
 
 - Ensure that LRO final results are the final result returned by our generated LRO pollers #1992
+- Support `@projectedName` in typespec for query parameter #2006
 
 ## 2023-06-12 - 0.11.0
 

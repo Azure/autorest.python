@@ -22,7 +22,7 @@ setup(
     include_package_data=True,
     install_requires=[
         "msrest>=0.7.1",
-        "azure-core<2.0.0,>=1.27.0",
+        "azure-core<2.0.0,>=1.28.0",
     ],
     long_description="""\
     Service client for testing basic anything types. Those schemas without types can be anything:  primitive, object, array.
