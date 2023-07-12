@@ -116,6 +116,7 @@ async def assert_raises_with_message(msg, func, *args, **kwargs):
 
 async def lro_result(func, *args, **kwargs):
     if "polling" not in kwargs:
+        AutorestTestARMPolling.__name__ = "AsyncARMPolling"
         kwargs["polling"] = AutorestTestARMPolling(0)
     return await (await func(*args, **kwargs)).result()
 

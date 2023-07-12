@@ -128,6 +128,18 @@ class LROOperationBase(OperationBase[LROResponseType]):
                 "distributed_trace_async",
                 ImportType.AZURECORE,
             )
+        if (
+            self.code_model.options["models_mode"] == "dpg"
+            and self.lro_response
+            and self.lro_response.type
+            and self.lro_response.type.type == "model"
+        ):
+            # used in the case if initial operation returns none
+            # but final call returns a model
+            relative_path = "..." if async_mode else ".."
+            file_import.add_submodule_import(
+                f"{relative_path}_model_base", "_deserialize", ImportType.LOCAL
+            )
         file_import.add_submodule_import(
             "typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL
         )

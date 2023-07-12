@@ -18,7 +18,6 @@ from ..models import (
     ModelType,
     DictionaryType,
     ListType,
-    Parameter,
     RequestBuilder,
     ParameterLocation,
     Response,
@@ -422,36 +421,6 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
         )
         return template
 
-    def _serialize_parameter(self, param: Parameter, kwarg_name: str) -> List[str]:
-        set_parameter = "_{}['{}'] = {}".format(
-            kwarg_name,
-            param.wire_name,
-            self.parameter_serializer.serialize_parameter(param, self.serializer_name),
-        )
-        if not param.optional:
-            retval = [set_parameter]
-        else:
-            retval = [
-                f"if {param.full_client_name} is not None:",
-                f"    {set_parameter}",
-            ]
-        return retval
-
-    @staticmethod
-    def _serialize_special_handle_header(param: Parameter) -> List[str]:
-        if param.wire_name.lower() == "repeatability-request-id":
-            return [
-                """if "Repeatability-Request-ID" not in _headers:""",
-                """    _headers["Repeatability-Request-ID"] = str(uuid.uuid4())""",
-            ]
-        if param.wire_name.lower() == "repeatability-first-sent":
-            return [
-                """if "Repeatability-First-Sent" not in _headers:""",
-                """    _headers["Repeatability-First-Sent"] = _SERIALIZER.serialize_data(datetime.datetime.now(),
-                "rfc-1123")""",
-            ]
-        raise ValueError(f"Unsupported special header: {param}")
-
     def serialize_path(self, builder: BuilderType) -> List[str]:
         return self.parameter_serializer.serialize_path(
             builder.parameters.path, self.serializer_name
@@ -563,24 +532,25 @@ class RequestBuilderSerializer(
     def serialize_headers(self, builder: RequestBuilderType) -> List[str]:
         retval = ["# Construct headers"]
         for parameter in builder.parameters.headers:
-            if parameter.is_special_handle_header:
-                retval.extend(self._serialize_special_handle_header(parameter))
-            else:
-                retval.extend(
-                    self._serialize_parameter(
-                        parameter,
-                        kwarg_name="headers",
-                    )
+            retval.extend(
+                self.parameter_serializer.serialize_query_header(
+                    parameter,
+                    "headers",
+                    self.serializer_name,
+                    self.code_model.is_legacy,
                 )
+            )
         return retval
 
     def serialize_query(self, builder: RequestBuilderType) -> List[str]:
         retval = ["# Construct parameters"]
         for parameter in builder.parameters.query:
             retval.extend(
-                self._serialize_parameter(
+                self.parameter_serializer.serialize_query_header(
                     parameter,
-                    kwarg_name="params",
+                    "params",
+                    self.serializer_name,
+                    self.code_model.is_legacy,
                 )
             )
         return retval
@@ -1543,7 +1513,7 @@ class _LROOperationSerializer(_OperationSerializer[LROOperationType]):
         retval.append("if cont_token is None:")
         retval.append(
             f"    raw_result = {self._call_method}self.{builder.initial_operation.name}("
-            f"{'' if builder.lro_response and builder.lro_response.type else '  # type: ignore'}"
+            f"{'' if any(rsp.type for rsp in builder.initial_operation.responses) else '  # type: ignore'}"
         )
         retval.extend(
             [

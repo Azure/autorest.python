@@ -1,6 +1,6 @@
 {
     "name": "@azure-tools/typespec-python",
-    "version": "0.11.0",
+    "version": "0.12.0",
     "author": "Microsoft Corporation",
     "description": "Cadl emitter for Python SDKs",
     "homepage": "https://github.com/Azure/autorest.python",
@@ -55,19 +55,19 @@
         "js-yaml": "~4.1.0"
     },
     "devDependencies": {
-        "@azure-tools/cadl-ranch-expect": "~0.4.0",
-        "@azure-tools/cadl-ranch-specs": "~0.16.2",
-        "@types/js-yaml": "~4.0.5",
-        "@types/mocha": "~10.0.1",
-        "@types/node": "^18.16.3",
-        "@typespec/eslint-config-typespec": "~0.7.0",
-        "@typespec/openapi": ">=0.45.0 <1.0.0",
-        "c8": "~7.13.0",
-        "eslint": "^8.39.0",
-        "eslint-plugin-deprecation": "^1.4.1",
-        "mocha": "~10.2.0",
-        "prettier": "^2.8.8",
-        "rimraf": "~5.0.0",
-        "typescript": "^5.0.4"
+      "@azure-tools/cadl-ranch-expect": "~0.4.0",
+      "@azure-tools/cadl-ranch-specs": "~0.16.2",
+      "@types/js-yaml": "~4.0.5",
+      "@types/mocha": "~10.0.1",
+      "@types/node": "^18.16.3",
+      "@typespec/eslint-config-typespec": "~0.7.0",
+      "@typespec/openapi": ">=0.45.0 <1.0.0",
+      "c8": "~7.13.0",
+      "eslint": "^8.39.0",
+      "eslint-plugin-deprecation": "^1.4.1",
+      "mocha": "~10.2.0",
+      "prettier": "^2.8.8",
+      "rimraf": "~5.0.0",
+      "typescript": "~5.1.3"
     }
 }
