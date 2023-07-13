@@ -742,6 +742,8 @@ class Serializer(object):
 
         :param data: The data to be serialized.
         :param str data_type: The type to be serialized from.
+        :keyword bool skip_quote: Whether to skip quote the serialized result.
+        Defaults to False.
         :rtype: str
         :raises: TypeError if serialization fails.
         :raises: ValueError if data is None
@@ -890,6 +892,8 @@ class Serializer(object):
          not be None or empty.
         :param str div: If set, this str will be used to combine the elements
          in the iterable into a combined string. Default is 'None'.
+        :keyword bool do_quote: Whether to quote the serialized result of each iterable element.
+        Defaults to False.
         :rtype: list, str
         """
         if isinstance(data, str):
