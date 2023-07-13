@@ -18,7 +18,7 @@
 
 **New Features**
 
-- Covert method signature `if_match/if_none_match` to `etag/match_condition` 
+- Covert method signature `if_match/if_none_match` to `etag/match_condition` #2013
 
 ## 2023-07-11 - 0.12.0
 
