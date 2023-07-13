@@ -48,8 +48,8 @@ importers:
         specifier: '>=0.32.0 <1.0.0'
         version: 0.32.0(@typespec/compiler@0.46.0)(@typespec/http@0.46.0)(@typespec/rest@0.46.0)
       '@azure-tools/typespec-client-generator-core':
-        specifier: '>=0.32.0 <1.0.0'
-        version: 0.32.0(@typespec/compiler@0.46.0)(@typespec/http@0.46.0)(@typespec/rest@0.46.0)(@typespec/versioning@0.46.0)
+        specifier: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvMjkxNjU3NC9hcnRpZmFjdE5hbWUvcGFja2FnZXM1/content?format=file&subPath=%2Fazure-tools-typespec-client-generator-core-0.32.0.tgz
+        version: '@artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvMjkxNjU3NC9hcnRpZmFjdE5hbWUvcGFja2FnZXM1/content?format=file&subPath=%252Fazure-tools-typespec-client-generator-core-0.32.0.tgz(@typespec/compiler@0.46.0)(@typespec/http@0.46.0)(@typespec/rest@0.46.0)(@typespec/versioning@0.46.0)'
       '@typespec/compiler':
         specifier: '>=0.46.0 <1.0.0'
         version: 0.46.0
@@ -108,6 +108,9 @@ importers:
       typescript:
         specifier: ~5.1.3
         version: 5.1.3
+    dependenciesMeta:
+      '@azure-tools/typespec-client-generator-core':
+        injected: true
 
 packages:
 
@@ -243,22 +246,6 @@ packages:
       '@typespec/http': 0.46.0(@typespec/compiler@0.46.0)
       '@typespec/lint': 0.46.0(@typespec/compiler@0.46.0)
       '@typespec/rest': 0.46.0(@typespec/compiler@0.46.0)
-
-  /@azure-tools/typespec-client-generator-core@0.32.0(@typespec/compiler@0.46.0)(@typespec/http@0.46.0)(@typespec/rest@0.46.0)(@typespec/versioning@0.46.0):
-    resolution: {integrity: sha512-jukmmipTgyhnVe+Bzo8b8qQNZOTyZGxHZLsBryMEJJSJQwGPIz4eZ5O/GNSRmmBSau9+Fg/TE9rB/4lelE/c0w==}
-    engines: {node: '>=16.0.0'}
-    peerDependencies:
-      '@typespec/compiler': ~0.46.0
-      '@typespec/http': ~0.46.0
-      '@typespec/rest': ~0.46.0
-      '@typespec/versioning': ~0.46.0
-    dependencies:
-      '@typespec/compiler': 0.46.0
-      '@typespec/http': 0.46.0(@typespec/compiler@0.46.0)
-      '@typespec/lint': 0.46.0(@typespec/compiler@0.46.0)
-      '@typespec/rest': 0.46.0(@typespec/compiler@0.46.0)
-      '@typespec/versioning': 0.46.0(@typespec/compiler@0.46.0)
-    dev: false
 
   /@azure/abort-controller@1.1.0:
     resolution: {integrity: sha512-TrRLIoSQVzfAJX9H1JeFjzAoDGcoK1IYX1UImfceTZpsyYfWr09Ss1aHW1y5TrrR3iq6RZLBwJ3E24uwPhwahw==}
@@ -5002,19 +4989,21 @@ packages:
     resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
     dev: true
 
-  '@artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvMjg4NzY3OC9hcnRpZmFjdE5hbWUvcGFja2FnZXM1/content?format=file&subPath=%252Fazure-tools-typespec-azure-core-0.31.0.tgz(@typespec/compiler@0.45.0)(@typespec/http@0.45.0)(@typespec/rest@0.45.0)':
-    resolution: {tarball: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvMjg4NzY3OC9hcnRpZmFjdE5hbWUvcGFja2FnZXM1/content?format=file&subPath=%2Fazure-tools-typespec-azure-core-0.31.0.tgz}
-    id: '@artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvMjg4NzY3OC9hcnRpZmFjdE5hbWUvcGFja2FnZXM1/content?format=file&subPath=%252Fazure-tools-typespec-azure-core-0.31.0.tgz'
-    name: '@azure-tools/typespec-azure-core'
-    version: 0.31.0
+  '@artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvMjkxNjU3NC9hcnRpZmFjdE5hbWUvcGFja2FnZXM1/content?format=file&subPath=%252Fazure-tools-typespec-client-generator-core-0.32.0.tgz(@typespec/compiler@0.46.0)(@typespec/http@0.46.0)(@typespec/rest@0.46.0)(@typespec/versioning@0.46.0)':
+    resolution: {tarball: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvMjkxNjU3NC9hcnRpZmFjdE5hbWUvcGFja2FnZXM1/content?format=file&subPath=%2Fazure-tools-typespec-client-generator-core-0.32.0.tgz}
+    id: '@artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvMjkxNjU3NC9hcnRpZmFjdE5hbWUvcGFja2FnZXM1/content?format=file&subPath=%252Fazure-tools-typespec-client-generator-core-0.32.0.tgz'
+    name: '@azure-tools/typespec-client-generator-core'
+    version: 0.32.0
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@typespec/compiler': ~0.45.2
-      '@typespec/http': ~0.45.0
-      '@typespec/rest': ~0.45.0
+      '@typespec/compiler': ~0.46.0
+      '@typespec/http': ~0.46.0
+      '@typespec/rest': ~0.46.0
+      '@typespec/versioning': ~0.46.0
     dependencies:
-      '@typespec/compiler': 0.45.0
-      '@typespec/http': 0.45.0(@typespec/compiler@0.45.0)
-      '@typespec/lint': 0.45.0(@typespec/compiler@0.45.0)
-      '@typespec/rest': 0.45.0(@typespec/compiler@0.45.0)
+      '@typespec/compiler': 0.46.0
+      '@typespec/http': 0.46.0(@typespec/compiler@0.46.0)
+      '@typespec/lint': 0.46.0(@typespec/compiler@0.46.0)
+      '@typespec/rest': 0.46.0(@typespec/compiler@0.46.0)
+      '@typespec/versioning': 0.46.0(@typespec/compiler@0.46.0)
     dev: false

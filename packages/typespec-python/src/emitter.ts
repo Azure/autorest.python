@@ -1,6 +1,5 @@
 import { getPagedResult, getLroMetadata } from "@azure-tools/typespec-azure-core";
 import {
-    Enum,
     getDoc,
     getEncode,
     getSummary,
@@ -34,8 +33,6 @@ import {
     HttpServer,
     isStatusCode,
     HttpOperation,
-    isHeader,
-    isQueryParam,
 } from "@typespec/http";
 import { getAddedOnVersions } from "@typespec/versioning";
 import {
@@ -263,7 +260,7 @@ function emitParamBase(context: SdkContext, parameter: ModelProperty | Type): Pa
 
     if (parameter.kind === "ModelProperty") {
         optional = parameter.optional;
-        name = getSdkModelPropertyType(context, parameter).name;
+        name = parameter.name;
         description = getDocStr(context, parameter);
         addedOn = getAddedOnVersion(context, parameter);
     } else {
@@ -770,7 +767,7 @@ function emitProperty(context: SdkContext, type: SdkBodyModelPropertyType): Reco
         optional: type.optional,
         description: type.doc,
         addedOn: type.apiVersions[0],
-        visibility: [type.readonly],
+        visibility: type.visibility,
     };
 }
 
