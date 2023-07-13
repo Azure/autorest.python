@@ -28,6 +28,7 @@ from .primitive_types import (
     BooleanType,
     AnyObjectType,
     UnixTimeType,
+    AzureCoreType,
 )
 from .enum_type import EnumType
 from .base import BaseType
@@ -144,6 +145,7 @@ TYPE_TO_OBJECT = {
     "any-object": AnyObjectType,
     "unixtime": UnixTimeType,
     "credential": StringType,
+    "azurecore": AzureCoreType,
 }
 _LOGGER = logging.getLogger(__name__)
 

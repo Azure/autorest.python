@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import List, Dict, Any, Set, Union
+from typing import List, Dict, Any, Set, Union, Optional
 
 from .base import BaseType
 from .enum_type import EnumType
@@ -18,7 +18,7 @@ def _is_legacy(options) -> bool:
     return not (options.get("version_tolerant") or options.get("low_level_client"))
 
 
-class CodeModel:  # pylint: disable=too-many-public-methods
+class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-instance-attributes
     """Top level code model
 
     :param options: Options of the code model. I.e., whether this is for management generation
@@ -76,6 +76,21 @@ class CodeModel:  # pylint: disable=too-many-public-methods
         self.named_unions: List[CombinedType] = [
             t for t in self.types_map.values() if isinstance(t, CombinedType) and t.name
         ]
+        self._has_etag: Optional[bool] = None
+
+    @property
+    def has_etag(self) -> bool:
+        # pylint: disable=too-many-nested-blocks
+        if self._has_etag is None:
+            self._has_etag = False
+            for client in self.clients:
+                for og in client.operation_groups:
+                    for op in og.operations:
+                        for h in op.parameters.headers:
+                            if h.wire_name.lower() in ("if-match", "if-none-match"):
+                                self._has_etag = True
+                                break
+        return self._has_etag
 
     @property
     def has_operations(self) -> bool:
