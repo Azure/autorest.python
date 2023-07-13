@@ -87,7 +87,7 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
                 for og in client.operation_groups:
                     for op in og.operations:
                         for h in op.parameters.headers:
-                            if h.wire_name.lower() in ("if-match", "if-none-match"):
+                            if h.wire_name.lower() in ("etag", "match-condition"):
                                 self._has_etag = True
                                 break
         return self._has_etag

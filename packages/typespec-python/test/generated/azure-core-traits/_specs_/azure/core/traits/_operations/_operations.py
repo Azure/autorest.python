@@ -74,10 +74,10 @@ def build_traits_smoke_test_request(
 
     # Construct headers
     _headers["foo"] = _SERIALIZER.header("foo", foo, "str")
-    if etag is not None:
-        _headers["If-Match"] = _SERIALIZER.header("etag", etag, "str")
-    if match_condition is not None:
-        _headers["If-None-Match"] = _SERIALIZER.header("match_condition", match_condition, "MatchConditions")
+    if "If-Match" not in _headers:
+        _headers["If-Match"] = _SERIALIZER.header("if_match", prep_if_match(etag, match_condition))
+    if "If-None-Match" not in _headers:
+        _headers["If-None-Match"] = _SERIALIZER.header("if_none_match", prep_if_none_match(etag, match_condition))
     if if_unmodified_since is not None:
         _headers["If-Unmodified-Since"] = _SERIALIZER.header("if_unmodified_since", if_unmodified_since, "rfc-1123")
     if if_modified_since is not None:

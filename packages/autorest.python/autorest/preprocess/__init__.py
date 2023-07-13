@@ -186,10 +186,12 @@ HEADERS_HIDE_IN_METHOD = (
 HEADERS_CONVERT_IN_METHOD = {
     "if-match": {
         "clientName": "etag",
+        "wireName": "etag",
         "description": "check if resource is changed. Set None to skip checking etag",
     },
     "if-none-match": {
         "clientName": "match_condition",
+        "wireName": "match-condition",
         "description": "The match condition to use upon the etag",
         "type": {
             "type": "azurecore",
@@ -200,7 +202,7 @@ HEADERS_CONVERT_IN_METHOD = {
 
 
 def headers_convert(yaml_data: Dict[str, Any], replace_data: Any) -> None:
-    if not isinstance(replace_data, dict):
+    if isinstance(replace_data, dict):
         for k, v in replace_data.items():
             yaml_data[k] = v
 
@@ -325,14 +327,14 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                 .lower()
                 for prop, param_name in yaml_data["propertyToParameterName"].items()
             }
-        wire_name_lower = yaml_data["wireName"].lower()
+        wire_name_lower = (yaml_data.get("wireName") or "").lower()
         if (
             yaml_data["location"] == "header"
             and wire_name_lower in HEADERS_HIDE_IN_METHOD
         ):
             yaml_data["hideInMethod"] = True
         if (
-            self.is_cadl
+            self.version_tolerant
             and yaml_data["location"] == "header"
             and wire_name_lower in HEADERS_CONVERT_IN_METHOD
         ):
