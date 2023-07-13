@@ -187,12 +187,12 @@ HEADERS_CONVERT_IN_METHOD = {
     "if-match": {
         "clientName": "etag",
         "wireName": "etag",
-        "description": "check if resource is changed. Set None to skip checking etag",
+        "description": "check if resource is changed. Set None to skip checking etag.",
     },
     "if-none-match": {
         "clientName": "match_condition",
         "wireName": "match-condition",
-        "description": "The match condition to use upon the etag",
+        "description": "The match condition to use upon the etag.",
         "type": {
             "type": "azurecore",
             "name": "MatchConditions",

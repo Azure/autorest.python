@@ -139,10 +139,10 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :type id: int
         :keyword foo: header in request. Required.
         :paramtype foo: str
-        :keyword etag: check if resource is changed. Set None to skip checking etag Default value is
+        :keyword etag: check if resource is changed. Set None to skip checking etag. Default value is
          None.
         :paramtype etag: str
-        :keyword match_condition: The match condition to use upon the etag Default value is None.
+        :keyword match_condition: The match condition to use upon the etag. Default value is None.
         :paramtype match_condition: ~azure.core.MatchConditions
         :keyword if_unmodified_since: The request should only proceed if the entity was not modified
          after this time. Default value is None.
