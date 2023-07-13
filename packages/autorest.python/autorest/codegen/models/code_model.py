@@ -80,16 +80,14 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
 
     @property
     def has_etag(self) -> bool:
-        # pylint: disable=too-many-nested-blocks
         if self._has_etag is None:
             self._has_etag = False
             for client in self.clients:
                 for og in client.operation_groups:
                     for op in og.operations:
-                        for h in op.parameters.headers:
-                            if h.wire_name.lower() in ("etag", "match-condition"):
-                                self._has_etag = True
-                                break
+                        if op.has_etag:
+                            self._has_etag = True
+                            break
         return self._has_etag
 
     @property

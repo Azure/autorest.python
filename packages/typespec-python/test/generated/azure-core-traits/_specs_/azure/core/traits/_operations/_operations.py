@@ -74,10 +74,12 @@ def build_traits_smoke_test_request(
 
     # Construct headers
     _headers["foo"] = _SERIALIZER.header("foo", foo, "str")
-    if "If-Match" not in _headers:
-        _headers["If-Match"] = _SERIALIZER.header("if_match", prep_if_match(etag, match_condition))
-    if "If-None-Match" not in _headers:
-        _headers["If-None-Match"] = _SERIALIZER.header("if_none_match", prep_if_none_match(etag, match_condition))
+    if_match = prep_if_match(etag, match_condition)
+    if if_match is not None:
+        _headers["If-Match"] = _SERIALIZER.header("if_match", if_match, "str")
+    if_none_match = prep_if_none_match(etag, match_condition)
+    if if_none_match is not None:
+        _headers["If-None-Match"] = _SERIALIZER.header("if_none_match", if_none_match, "str")
     if if_unmodified_since is not None:
         _headers["If-Unmodified-Since"] = _SERIALIZER.header("if_unmodified_since", if_unmodified_since, "rfc-1123")
     if if_modified_since is not None:
@@ -299,12 +301,6 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        if match_condition == MatchConditions.IfNotModified:
-            error_map[412] = ResourceModifiedError
-        elif match_condition == MatchConditions.IfPresent:
-            error_map[412] = ResourceNotFoundError
-        elif match_condition == MatchConditions.IfMissing:
-            error_map[412] = ResourceExistsError
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})

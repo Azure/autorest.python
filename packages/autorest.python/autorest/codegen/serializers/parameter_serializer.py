@@ -39,13 +39,14 @@ SPECIAL_HEADER_SERIALIZATION: Dict[str, List[str]] = {
     "x-ms-client-request-id": [],
     "return-client-request-id": [],
     "etag": [
-        """if "If-Match" not in _headers:""",
-        """    _headers["If-Match"] = _SERIALIZER.header("if_match", prep_if_match(etag, match_condition))""",
+        """if_match = prep_if_match(etag, match_condition)""",
+        """if if_match is not None:""",
+        """    _headers["If-Match"] = _SERIALIZER.header("if_match", if_match, "str")""",
     ],
     "match-condition": [
-        """if "If-None-Match" not in _headers:""",
-        """    _headers["If-None-Match"] = _SERIALIZER.header("if_none_match", 
-        prep_if_none_match(etag, match_condition))""",
+        """if_none_match = prep_if_none_match(etag, match_condition)""",
+        """if if_none_match is not None:""",
+        """    _headers["If-None-Match"] = _SERIALIZER.header("if_none_match", if_none_match, "str")""",
     ],
 }
 

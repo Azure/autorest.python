@@ -9,26 +9,25 @@ from datetime import datetime
 import pytest
 from azure.core.exceptions import HttpResponseError
 from azure.core import MatchConditions
-from _specs_.azure.core.traits.aio import TraitsClient
+from _specs_.azure.core.traits import TraitsClient
 from _specs_.azure.core.traits.models import UserActionParam
-from ..test_header_utils import check_repeatability_header, check_request_id_header
+from .test_header_utils import check_repeatability_header, check_request_id_header
 
 
 @pytest.fixture
-async def client():
-    async with TraitsClient() as client:
+def client():
+    with TraitsClient() as client:
         yield client
 
 
-@pytest.mark.asyncio
-async def test_get(client: TraitsClient):
-    async def assert_test_get(**kwargs):
+def test_get(client: TraitsClient):
+    def assert_test_get(**kwargs):
         checked = {}
-        result, header = await client.smoke_test(
+        result, header = client.smoke_test(
             id=1,
             foo="123",
-            if_match='"valid"',
-            if_none_match='"invalid"',
+            # if_match='"valid"',
+            # if_none_match='"invalid"',
             if_unmodified_since=datetime(
                 year=2022, month=8, day=26, hour=14, minute=38, second=0
             ),
@@ -39,6 +38,7 @@ async def test_get(client: TraitsClient):
             raw_request_hook=functools.partial(
                 check_request_id_header, header="x-ms-client-request-id", checked=checked
             ),
+            **kwargs,
         )
         assert result.id == 1
         assert result.name == "Madge"
@@ -46,14 +46,13 @@ async def test_get(client: TraitsClient):
         assert header["bar"] == "456"
         assert header["x-ms-client-request-id"] == checked["x-ms-client-request-id"]
 
-    await assert_test_get(etag="valid", match_condition=MatchConditions.IfNotModified)
-    await assert_test_get(etag="invalid", match_condition=MatchConditions.IfModified)
+    assert_test_get(etag="valid", match_condition=MatchConditions.IfNotModified)
+    assert_test_get(etag="invalid", match_condition=MatchConditions.IfModified)
     with pytest.raises(HttpResponseError):
-        await assert_test_get()
+        assert_test_get()
 
-@pytest.mark.asyncio
-async def test_repeatable_action(client: TraitsClient):
-    result, header = await client.repeatable_action(
+def test_repeatable_action(client: TraitsClient):
+    result, header = client.repeatable_action(
         id=1,
         body=UserActionParam(user_action_value="test"),
         cls=lambda x, y, z: (y, z),
@@ -62,7 +61,7 @@ async def test_repeatable_action(client: TraitsClient):
     assert result.user_action_result == "test"
     assert header["Repeatability-Result"] == "accepted"
 
-    result, header = await client.repeatable_action(
+    result, header = client.repeatable_action(
         id=1,
         body=UserActionParam(user_action_value="test"),
         cls=lambda x, y, z: (y, z),
@@ -76,7 +75,7 @@ async def test_repeatable_action(client: TraitsClient):
     assert header["Repeatability-Result"] == "accepted"
 
     with pytest.raises(HttpResponseError):
-        await client.repeatable_action(
+        client.repeatable_action(
             id=1,
             body=UserActionParam(user_action_value="test"),
             cls=lambda x, y, z: (y, z),
@@ -84,7 +83,7 @@ async def test_repeatable_action(client: TraitsClient):
         )
 
     with pytest.raises(HttpResponseError):
-        await client.repeatable_action(
+        client.repeatable_action(
             id=1,
             body=UserActionParam(user_action_value="test"),
             cls=lambda x, y, z: (y, z),

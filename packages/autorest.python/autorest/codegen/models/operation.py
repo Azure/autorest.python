@@ -90,6 +90,16 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         self.internal: bool = self.yaml_data.get("internal", False)
         if self.internal:
             self.name = "_" + self.name
+        self._has_etag: Optional[bool] = None
+
+    @property
+    def has_etag(self) -> bool:
+        if self._has_etag is None:
+            self._has_etag = any(
+                h.wire_name.lower() in ("etag", "match-condition")
+                for h in self.parameters.headers
+            )
+        return self._has_etag
 
     @property
     def expose_stream_keyword(self) -> bool:

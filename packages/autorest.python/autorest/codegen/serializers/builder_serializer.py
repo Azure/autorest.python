@@ -1253,7 +1253,7 @@ class _OperationSerializer(
                 "304: ResourceNotModifiedError"
             )
         retval.append("}")
-        if self.code_model.has_etag:
+        if builder.has_etag:
             retval.extend(
                 [
                     "if match_condition == MatchConditions.IfNotModified:",
