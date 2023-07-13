@@ -27,7 +27,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._serialization import Serializer
-from .._vendor import DPGClientMixinABC, _format_url_section
+from .._vendor import DPGClientMixinABC
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -52,7 +52,7 @@ def build_dpg_get_model_request(mode: str, **kwargs: Any) -> HttpRequest:
         "mode": _SERIALIZER.url("mode", mode, "str", skip_quote=True),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -72,7 +72,7 @@ def build_dpg_post_model_request(mode: str, **kwargs: Any) -> HttpRequest:
         "mode": _SERIALIZER.url("mode", mode, "str", skip_quote=True),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     if content_type is not None:
@@ -93,7 +93,7 @@ def build_dpg_get_pages_request(mode: str, **kwargs: Any) -> HttpRequest:
         "mode": _SERIALIZER.url("mode", mode, "str", skip_quote=True),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -112,7 +112,7 @@ def build_dpg_lro_request(mode: str, **kwargs: Any) -> HttpRequest:
         "mode": _SERIALIZER.url("mode", mode, "str", skip_quote=True),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")

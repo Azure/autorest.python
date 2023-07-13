@@ -565,12 +565,12 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
 
     @distributed_trace_async
     async def parameter(  # pylint: disable=inconsistent-return-statements
-        self, *, default_name: str, **kwargs: Any
+        self, *, client_name: str, **kwargs: Any
     ) -> None:
         """parameter.
 
-        :keyword default_name: Required.
-        :paramtype default_name: str
+        :keyword client_name: Required.
+        :paramtype client_name: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: None
@@ -591,7 +591,7 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_projected_name_parameter_request(
-            default_name=default_name,
+            client_name=client_name,
             headers=_headers,
             params=_params,
         )

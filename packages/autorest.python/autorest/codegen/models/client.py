@@ -76,6 +76,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
                 for op_group in self.yaml_data.get("operationGroups", [])
             ]
             self.link_lro_initial_operations()
+        self.request_id_header_name = self.yaml_data.get("requestIdHeaderName", None)
 
     def _build_request_builders(
         self,
@@ -235,11 +236,6 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
     def has_mixin(self) -> bool:
         """Do we want a mixin ABC class for typing purposes?"""
         return any(o for o in self.operation_groups if o.is_mixin)
-
-    @property
-    def need_format_url(self) -> bool:
-        """Whether we need to format urls. If so, we need to vendor core."""
-        return any(rq for rq in self.request_builders if rq.parameters.path)
 
     @property
     def has_lro_operations(self) -> bool:

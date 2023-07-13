@@ -502,6 +502,14 @@ def regenerate(
     for func in funcs:
         func(c, swagger_name, debug)
 
+    regenerate_unittests(c)
+
+@task
+def regenerate_unittests(c):
+    shutil.copyfile(
+        "test/azure/legacy/Expected/AcceptanceTests/AzureBodyDuration/bodyduration/_serialization.py",
+        "test/unittests/storage_models/serialization.py"
+    )
 
 @task
 def regenerate_version_tolerant(c, swagger_name=None, debug=False):

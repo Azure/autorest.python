@@ -15,7 +15,7 @@ from .constant_type import ConstantType
 
 
 def _is_legacy(options) -> bool:
-    return not (options["version_tolerant"] or options["low_level_client"])
+    return not (options.get("version_tolerant") or options.get("low_level_client"))
 
 
 class CodeModel:  # pylint: disable=too-many-public-methods
@@ -129,17 +129,11 @@ class CodeModel:  # pylint: disable=too-many-public-methods
             return True
         if async_mode:
             return self.need_mixin_abc
-        return (
-            self.need_request_converter or self.need_format_url or self.need_mixin_abc
-        )
+        return self.need_request_converter or self.need_mixin_abc
 
     @property
     def need_request_converter(self) -> bool:
         return any(c for c in self.clients if c.need_request_converter)
-
-    @property
-    def need_format_url(self) -> bool:
-        return any(c for c in self.clients if c.need_format_url)
 
     @property
     def need_mixin_abc(self) -> bool:

@@ -23,7 +23,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._serialization import Serializer
-from .._vendor import ReservedWordsClientMixinABC, _format_url_section, raise_if_not_implemented
+from .._vendor import ReservedWordsClientMixinABC, raise_if_not_implemented
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -103,7 +103,7 @@ def build_reserved_words_operation_with_url_request(
         "url": _SERIALIZER.url("url", url, "str"),
     }
 
-    _url: str = _format_url_section(_url, **path_format_arguments)  # type: ignore
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct parameters
     if query_parameters is not None:
