@@ -317,6 +317,22 @@ class TestRuntimeSerialized(unittest.TestCase):
         assert s.query("filter", [',', ',', ','], "[str]", div=",") == "%2C,%2C,%2C"
         assert s.query("filter", [',', ',', ','], "[str]", div="|", skip_quote=True) == ",|,|,"
 
+    def test_serialize_query_datetime_list(self):
+        s = Serializer()
+
+        assert s.query("filter", [
+            datetime(2022, 8, 26, 17, 38, 0),
+            datetime(2022, 8, 26, 18, 38, 0),
+            datetime(2022, 8, 26, 19, 38, 0),
+        ], "[iso-8601]", div=","
+                       ) == "2022-08-26T17%3A38%3A00.000Z,2022-08-26T18%3A38%3A00.000Z,2022-08-26T19%3A38%3A00.000Z"
+        assert s.query("filter", [
+            datetime(2022, 8, 26, 17, 38, 0),
+            datetime(2022, 8, 26, 18, 38, 0),
+            datetime(2022, 8, 26, 19, 38, 0),
+        ], "[iso-8601]", div=",", skip_quote=True
+                       ) == "2022-08-26T17:38:00.000Z,2022-08-26T18:38:00.000Z,2022-08-26T19:38:00.000Z"
+
     def test_serialize_custom_model(self):
 
         class CustomSample(Model):

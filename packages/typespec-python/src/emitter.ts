@@ -61,7 +61,6 @@ import {
     getSdkEnum,
     getSdkConstant,
     getSdkModelPropertyType,
-    getClientFormat,
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
@@ -233,7 +232,6 @@ export function getType(context: SdkContext, type: EmitterType): any {
     }
 
     if (oriType?.kind === "ModelProperty") {
-        updateWithClientFormat(context, oriType, newValue);
         updateWithEncode(context, oriType, newValue);
     }
 
@@ -1051,18 +1049,20 @@ function updateWithEncode(context: SdkContext, entity: ModelProperty | Scalar, r
     if (encode) {
         if (encode.encoding === "seconds") {
             result["type"] = encode.type.name.includes("float") ? "float" : "integer";
-        }
-    }
-}
-
-function updateWithClientFormat(context: SdkContext, entity: ModelProperty, result: Record<string, any>) {
-    const format = getClientFormat(context, entity);
-    if (format) {
-        if (format === "rfc1123") {
+        } else if (encode.encoding === "rfc7231") {
             result["format"] = "date-time-rfc1123";
-        } else if (format === "iso8601") {
-            result["format"] = "date-time";
+        } else if (encode.encoding === "unixTimestamp") {
+            result["type"] = "unixtime";
+        } else if (encode.encoding === "base64url") {
+            result["format"] = "base64url";
         }
+    } else if (
+        entity.kind === "ModelProperty" &&
+        entity.type.kind === "Scalar" &&
+        isHeader(context.program, entity) &&
+        (entity.type.name === "utcDateTime" || entity.type.name === "offsetDateTime")
+    ) {
+        result["format"] = "date-time-rfc1123";
     }
 }
 

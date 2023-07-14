@@ -58,7 +58,7 @@ class BytesProperty(_model_base.Model):
     :vartype property: bytes
     """
 
-    property: bytes = rest_field()
+    property: bytes = rest_field(format="base64")
     """Property. Required."""
 
     @overload
@@ -182,7 +182,7 @@ class DatetimeProperty(_model_base.Model):
     :vartype property: ~datetime.datetime
     """
 
-    property: datetime.datetime = rest_field()
+    property: datetime.datetime = rest_field(format="rfc3339")
     """Property. Required."""
 
     @overload
