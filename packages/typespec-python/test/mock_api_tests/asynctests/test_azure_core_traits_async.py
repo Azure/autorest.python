@@ -11,7 +11,7 @@ from azure.core.exceptions import HttpResponseError
 
 from _specs_.azure.core.traits.aio import TraitsClient
 from _specs_.azure.core.traits.models import UserActionParam
-from ..test_header_utils import check_repeatability_header, check_request_id_header
+from ..test_header_utils import check_repeatability_header, check_client_request_id_header
 
 
 @pytest.fixture
@@ -36,7 +36,7 @@ async def test_get(client: TraitsClient):
         ),
         cls=lambda x, y, z: (y, z),
         raw_request_hook=functools.partial(
-            check_request_id_header, header="x-ms-client-request-id", checked=checked
+            check_client_request_id_header, header="x-ms-client-request-id", checked=checked
         ),
     )
     assert result.id == 1

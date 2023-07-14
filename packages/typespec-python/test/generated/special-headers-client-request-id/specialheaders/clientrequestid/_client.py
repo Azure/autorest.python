@@ -12,17 +12,17 @@ from typing import Any
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 
-from ._configuration import RequestIdClientConfiguration
-from ._operations import RequestIdClientOperationsMixin
+from ._configuration import ClientRequestIdClientConfiguration
+from ._operations import ClientRequestIdClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class RequestIdClient(RequestIdClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
-    """Non-standard azure request id header configurations."""
+class ClientRequestIdClient(ClientRequestIdClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+    """Azure client request id header configurations."""
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
-        self._config = RequestIdClientConfiguration(**kwargs)
+        self._config = ClientRequestIdClientConfiguration(**kwargs)
         self._client: PipelineClient = PipelineClient(
             base_url=_endpoint, config=self._config, request_id_header_name="client-request-id", **kwargs
         )
@@ -56,7 +56,7 @@ class RequestIdClient(RequestIdClientOperationsMixin):  # pylint: disable=client
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "RequestIdClient":
+    def __enter__(self) -> "ClientRequestIdClient":
         self._client.__enter__()
         return self
 

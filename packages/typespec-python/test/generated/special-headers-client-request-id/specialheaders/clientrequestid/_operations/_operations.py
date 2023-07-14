@@ -22,7 +22,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._serialization import Serializer
-from .._vendor import RequestIdClientMixinABC
+from .._vendor import ClientRequestIdClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -31,21 +31,21 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_request_id_non_standard_request(**kwargs: Any) -> HttpRequest:
+def build_client_request_id_get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
-    _url = "/special-headers/request-id/non-standard"
+    _url = "/special-headers/client-request-id"
 
     # Construct headers
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class RequestIdClientOperationsMixin(RequestIdClientMixinABC):
+class ClientRequestIdClientOperationsMixin(ClientRequestIdClientMixinABC):
     @distributed_trace
-    def non_standard(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        """Non-standard request id header.
+    def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """Get operation with azure client request id header.
 
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -66,7 +66,7 @@ class RequestIdClientOperationsMixin(RequestIdClientMixinABC):
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_request_id_non_standard_request(
+        request = build_client_request_id_get_request(
             headers=_headers,
             params=_params,
         )
