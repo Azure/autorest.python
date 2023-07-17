@@ -61,7 +61,7 @@
     },
     "devDependencies": {
       "@azure-tools/cadl-ranch-expect": "~0.5.0",
-      "@azure-tools/cadl-ranch-specs": "~0.17.0",
+      "@azure-tools/cadl-ranch-specs": "~0.17.1",
       "@types/js-yaml": "~4.0.5",
       "@types/mocha": "~10.0.1",
       "@types/node": "^18.16.3",

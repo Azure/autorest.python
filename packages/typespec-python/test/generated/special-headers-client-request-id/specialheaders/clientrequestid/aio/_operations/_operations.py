@@ -20,17 +20,17 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ..._operations._operations import build_request_id_non_standard_request
-from .._vendor import RequestIdClientMixinABC
+from ..._operations._operations import build_client_request_id_get_request
+from .._vendor import ClientRequestIdClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class RequestIdClientOperationsMixin(RequestIdClientMixinABC):
+class ClientRequestIdClientOperationsMixin(ClientRequestIdClientMixinABC):
     @distributed_trace_async
-    async def non_standard(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        """Non-standard request id header.
+    async def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """Get operation with azure client request id header.
 
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
@@ -51,7 +51,7 @@ class RequestIdClientOperationsMixin(RequestIdClientMixinABC):
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_request_id_non_standard_request(
+        request = build_client_request_id_get_request(
             headers=_headers,
             params=_params,
         )

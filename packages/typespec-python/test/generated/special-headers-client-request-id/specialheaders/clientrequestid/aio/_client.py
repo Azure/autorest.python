@@ -13,16 +13,16 @@ from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
-from ._configuration import RequestIdClientConfiguration
-from ._operations import RequestIdClientOperationsMixin
+from ._configuration import ClientRequestIdClientConfiguration
+from ._operations import ClientRequestIdClientOperationsMixin
 
 
-class RequestIdClient(RequestIdClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
-    """Non-standard azure request id header configurations."""
+class ClientRequestIdClient(ClientRequestIdClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+    """Azure client request id header configurations."""
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
-        self._config = RequestIdClientConfiguration(**kwargs)
+        self._config = ClientRequestIdClientConfiguration(**kwargs)
         self._client: AsyncPipelineClient = AsyncPipelineClient(
             base_url=_endpoint, config=self._config, request_id_header_name="client-request-id", **kwargs
         )
@@ -56,7 +56,7 @@ class RequestIdClient(RequestIdClientOperationsMixin):  # pylint: disable=client
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "RequestIdClient":
+    async def __aenter__(self) -> "ClientRequestIdClient":
         await self._client.__aenter__()
         return self
 
