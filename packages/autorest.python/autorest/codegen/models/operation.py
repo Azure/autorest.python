@@ -419,12 +419,13 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             file_import.add_submodule_import(
                 "azure.core.exceptions", "ResourceExistsError", ImportType.AZURECORE
             )
-            file_import.add_submodule_import(
-                f"{relative_path}_vendor", "prep_if_match", ImportType.LOCAL
-            )
-            file_import.add_submodule_import(
-                f"{relative_path}_vendor", "prep_if_none_match", ImportType.LOCAL
-            )
+            if not async_mode:
+                file_import.add_submodule_import(
+                    f"{relative_path}_vendor", "prep_if_match", ImportType.LOCAL
+                )
+                file_import.add_submodule_import(
+                    f"{relative_path}_vendor", "prep_if_none_match", ImportType.LOCAL
+                )
         if self.code_model.need_request_converter:
             if async_mode:
                 file_import.add_submodule_import(
