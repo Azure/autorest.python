@@ -4,7 +4,6 @@
 # license information.
 # --------------------------------------------------------------------------
 import json
-from typing import Any
 import pytest
 from typetest.property.nullable import NullableClient, models
 from azure.core.serialization import NULL
