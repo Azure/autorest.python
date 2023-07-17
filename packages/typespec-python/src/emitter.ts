@@ -185,7 +185,9 @@ function isEmptyModel(type: EmitterType | SdkType): boolean {
 }
 
 export function getType(context: SdkContext, type: EmitterType | SdkType): any {
-    const enableCache = !isEmptyModel(type) && (type.kind === "model" || type.kind === "enum" || type.kind === "Model" || type.kind === "Enum");
+    const enableCache =
+        !isEmptyModel(type) &&
+        (type.kind === "model" || type.kind === "enum" || type.kind === "Model" || type.kind === "Enum");
     if (enableCache && typesMap.has((type as any).name)) {
         return typesMap.get((type as any).name);
     }
@@ -866,12 +868,10 @@ function emitDurationOrDateType(context: SdkContext, type: SdkDurationType | Sdk
     };
 }
 
-function emitArrayOrDict(
-    context: SdkContext,
-    type: SdkArrayType | SdkDictionaryType,
-): Record<string, any> {
+function emitArrayOrDict(context: SdkContext, type: SdkArrayType | SdkDictionaryType): Record<string, any> {
+    const kind = type.kind === "array" ? "list" : type.kind;
     return {
-        type: type.kind,
+        type: kind,
         elementType: getType(context, type.valueType),
     };
 }
