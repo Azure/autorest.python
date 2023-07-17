@@ -255,13 +255,13 @@ class DpgModelSerializer(_ModelSerializer):
         args = []
         if prop.client_name != prop.wire_name or prop.is_discriminator:
             args.append(f'name="{prop.wire_name}"')
-        if prop.readonly:
-            args.append("readonly=True")
         if prop.visibility:
             v_list = ", ".join(f'"{x}"' for x in prop.visibility)
             args.append(f"visibility=[{v_list}]")
         if prop.client_default_value is not None:
             args.append(f"default={prop.client_default_value_declaration}")
+        if hasattr(prop.type, "format") and prop.type.format:  # type: ignore
+            args.append(f'format="{prop.type.format}"')  # type: ignore
 
         field = "rest_discriminator" if prop.is_discriminator else "rest_field"
         type_ignore = (

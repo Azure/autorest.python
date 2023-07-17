@@ -52,6 +52,7 @@ _PACKAGE_FILES = [
 
 _REGENERATE_FILES = {"setup.py", "MANIFEST.in"}
 
+
 # extract sub folders. For example, source_file_path is like:
 # "xxx/resource-manager/Microsoft.XX/stable/2023-04-01/examples/Compute/createOrUpdate/AKSCompute.json",
 # and we want to extract the sub folders after "examples/", which is "compute/create_or_update"
