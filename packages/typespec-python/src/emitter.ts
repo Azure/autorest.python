@@ -33,6 +33,7 @@ import {
     HttpServer,
     isStatusCode,
     HttpOperation,
+    isHeader,
 } from "@typespec/http";
 import { getAddedOnVersions } from "@typespec/versioning";
 import {
@@ -62,8 +63,11 @@ import {
     getSdkArrayOrDict,
     SdkConstantType,
     getSdkBuiltInType,
+    getSdkDatetimeType,
+    getSdkDurationType,
     SdkDatetimeType,
     SdkDurationType,
+    getSdkUnion,
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
@@ -89,7 +93,7 @@ interface CredentialTypeUnion {
     types: CredentialType[];
 }
 
-type EmitterType = CredentialType | CredentialTypeUnion | SdkType | Type;
+type EmitterType = CredentialType | CredentialTypeUnion | Type;
 
 const defaultOptions = {
     "basic-setup-py": true,
@@ -141,7 +145,7 @@ function camelToSnakeCase(name: string): string {
     return camelToSnakeCaseRe(name[0].toLowerCase() + name.slice(1));
 }
 
-const typesMap = new Map<EmitterType, Record<string, any>>();
+const typesMap = new Map<string, Record<string, any>>();
 const simpleTypesMap = new Map<string, Record<string, any>>();
 const endpointPathParameters: Record<string, any>[] = [];
 let apiVersionParam: Record<string, any> | undefined = undefined;
@@ -167,56 +171,40 @@ function getEffectiveSchemaType(context: SdkContext, type: Model): Model {
     return type;
 }
 
-function isEmptyModel(context: SdkContext, type: EmitterType): boolean {
+function isEmptyModel(type: EmitterType | SdkType): boolean {
     // object, {} will be treated as empty model, user defined empty model will not
-    const [objectType] = context.program.resolveTypeReference("TypeSpec.object");
     return (
-        type.kind === "Model" &&
-        type.properties.size === 0 &&
+        type.kind === "model" &&
+        type.properties.length === 0 &&
         !type.baseModel &&
-        type.derivedModels.length === 0 &&
-        !type.indexer &&
-        (type === objectType || type.name === "")
+        !type.discriminatedSubtypes &&
+        !type.discriminatorValue &&
+        (type.name === "" || type.name === "object")
     );
 }
 
-export function getType(context: SdkContext, type: EmitterType): any {
-    // don't cache simple type(string, int, etc) since decorators may change the result
-    let oriType;
-    if (type.kind === "ModelProperty") {
-        oriType = type;
-        type = type.type;
-    }
-    const enableCache = type.kind !== "Scalar" && !isEmptyModel(context, type);
-    let effectiveModel = type;
-    if (type.kind === "Model") {
-        effectiveModel = getSdkModel(context, type);
-    }
-    if (enableCache) {
-        const cached = typesMap.get(effectiveModel);
-        if (cached) {
-            return cached;
-        }
+export function getType(context: SdkContext, type: EmitterType | SdkType): any {
+    const enableCache = !isEmptyModel(type) && (type.kind === "model" || type.kind === "enum" || type.kind === "Model" || type.kind === "Enum");
+    if (enableCache && typesMap.has((type as any).name)) {
+        return typesMap.get((type as any).name);
     }
     let newValue;
-    if (isEmptyModel(context, type)) {
-        // do not generate model for empty model, treat it as any
+    if (isEmptyModel(type)) {
         newValue = { type: "any" };
     } else {
         newValue = emitType(context, type);
     }
-
-    if (oriType?.kind === "ModelProperty") {
-        updateWithEncode(context, oriType, newValue);
-    }
-
     if (enableCache) {
-        typesMap.set(effectiveModel, newValue);
+        typesMap.set((type as SdkModelType | SdkEnumType).name, newValue);
         if (type.kind === "model") {
-            // need to do properties after insertion to avoid infinite recursion
             for (const property of type.properties.values()) {
                 if (property.kind === "property") {
                     newValue.properties.push(emitProperty(context, property));
+                }
+            }
+            if (type.discriminatedSubtypes) {
+                for (const key in type.discriminatedSubtypes) {
+                    newValue.discriminatedSubtypes[key] = getType(context, type.discriminatedSubtypes[key]);
                 }
             }
         }
@@ -229,7 +217,6 @@ export function getType(context: SdkContext, type: EmitterType): any {
             simpleTypesMap.set(key, newValue);
         }
     }
-
     return newValue;
 }
 
@@ -343,7 +330,7 @@ function emitParameter(
     implementation: string,
 ): Record<string, any> {
     const base = emitParamBase(context, parameter.param);
-    let type = getType(context, parameter.param);
+    let type = getType(context, parameter.param.type);
     let clientDefaultValue = undefined;
     if (parameter.name.toLowerCase() === "content-type" && type["type"] === "constant") {
         /// We don't want constant types for content types, so we make sure if it's
@@ -480,7 +467,7 @@ function emitResponseHeaders(context: SdkContext, response: HttpOperationRespons
         if (innerResponse.headers && Object.keys(innerResponse.headers).length > 0) {
             for (const [key, value] of Object.entries(innerResponse.headers)) {
                 headers.push({
-                    type: getType(context, value),
+                    type: getType(context, value.type),
                     wireName: key,
                 });
             }
@@ -581,7 +568,9 @@ function addPagingInformation(context: SdkContext, operation: Operation, emitted
     if (pagedResult === undefined) {
         throw Error("Trying to add paging information, but not paging metadata for this operation");
     }
-    getType(context, pagedResult.modelType)["pageResultModel"] = true;
+    if (!isAzureCoreModel(pagedResult.modelType)) {
+        getType(context, pagedResult.modelType)["pageResultModel"] = true;
+    }
     emittedOperation["itemName"] = pagedResult.itemsPath;
     emittedOperation["itemType"] = getType(context, pagedResult.itemsProperty!.type);
     emittedOperation["continuationTokenName"] = pagedResult.nextLinkPath;
@@ -765,19 +754,20 @@ function emitProperty(context: SdkContext, type: SdkBodyModelPropertyType): Reco
         description: type.doc,
         addedOn: type.apiVersions[0],
         visibility: type.visibility,
+        isDiscriminator: type.discriminator,
     };
 }
 
 function emitModel(context: SdkContext, type: SdkModelType): Record<string, any> {
-    // Now we know it's a defined model
     return {
         type: type.kind,
         name: type.name,
         description: type.doc,
-        parents: type.baseModel ? [emitModel(context, type.baseModel)] : [],
+        parents: type.baseModel ? [getType(context, type.baseModel)] : [],
         discriminatedSubtypes: {},
         properties: [],
-
+        snakeCaseName: type.name ? camelToSnakeCase(type.name) : type.name,
+        base: "dpg",
         internal: type.internal,
     };
 }
@@ -854,7 +844,13 @@ function emitBuiltInType(
     type: Scalar | SdkBuiltInType | SdkDurationType | SdkDatetimeType,
 ): Record<string, any> {
     if (type.kind === "Scalar") {
-        type = getSdkBuiltInType(context, type);
+        if (type.name === "utcDateTime" || type.name === "offsetDateTime") {
+            type = getSdkDatetimeType(context, type);
+        } else if (type.name === "duration") {
+            type = getSdkDurationType(context, type);
+        } else {
+            type = getSdkBuiltInType(context, type);
+        }
     }
     return {
         type: sdkScalarKindToPythonKind[type.kind] || type.kind, // TODO: switch to kind
@@ -871,13 +867,8 @@ function emitDurationOrDateType(context: SdkContext, type: SdkDurationType | Sdk
 
 function emitArrayOrDict(
     context: SdkContext,
-    type: SdkArrayType | SdkDictionaryType | Model,
-): Record<string, any> | undefined {
-    if (type.kind === "Model") {
-        const convertedType = getSdkArrayOrDict(context, type);
-        if (convertedType === undefined) return undefined;
-        type = convertedType;
-    }
+    type: SdkArrayType | SdkDictionaryType,
+): Record<string, any> {
     return {
         type: type.kind,
         elementType: getType(context, type.valueType),
@@ -887,25 +878,13 @@ function emitArrayOrDict(
 function emitConstant(context: SdkContext, type: StringLiteral | NumericLiteral | BooleanLiteral | SdkConstantType) {
     if (type.kind !== "constant") {
         const convertedType = getSdkConstant(context, type);
-        if (convertedType === undefined) return convertedType;
-        type = convertedType;
+        type = convertedType!;
     }
     return {
         type: type.kind,
         value: type.value,
         valueType: emitBuiltInType(context, type.valueType),
     };
-}
-
-function mapCadlType(context: SdkContext, type: SdkType | Type): any {
-    switch (type.kind) {
-        case "Number":
-        case "String":
-        case "Boolean":
-            return emitConstant(context, type);
-        case "Model":
-            return emitArrayOrDict(context, type);
-    }
 }
 
 function capitalize(name: string): string {
@@ -919,7 +898,7 @@ function emitUnion(context: SdkContext, type: SdkUnionType | SdkEnumType | Union
             snakeCaseName: camelToSnakeCase(type.name || ""),
             internal: true,
             type: "combined",
-            types: type.values.map((x) => getType(context, x.__raw)),
+            types: type.values.map((x) => getType(context, x)),
             xmlMetadata: {},
         };
     } else if (type.kind === "enum") {
@@ -934,29 +913,22 @@ function emitUnion(context: SdkContext, type: SdkUnionType | SdkEnumType | Union
             xmlMetadata: {},
         };
     } else {
-        return emitType(context, type);
+        return emitUnion(context, getSdkUnion(context, type)! as SdkUnionType);
     }
 }
 
-function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
+function emitType(context: SdkContext, type: EmitterType | SdkType): Record<string, any> {
     if (type.kind === "Credential") {
         return emitCredential(type.scheme);
     }
     if (type.kind === "CredentialTypeUnion") {
         return emitCredentialUnion(type);
     }
-    const builtinType = mapCadlType(context, type);
-    if (builtinType !== undefined) {
-        return builtinType;
-    }
 
     switch (type.kind) {
-        case "Intrinsic":
-            return { type: "any" };
         case "model":
             return emitModel(context, type);
         case "union":
-        case "Union":
             return emitUnion(context, type);
         case "UnionVariant":
             return {};
@@ -970,10 +942,6 @@ function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
         case "datetime":
         case "duration":
             return emitDurationOrDateType(context, type);
-        case "Scalar":
-            const result = emitBuiltInType(context, type);
-            updateWithEncode(context, type, result);
-            return result;
         case "bytes":
         case "boolean":
         case "date":
@@ -993,6 +961,21 @@ function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
         case "azureLocation":
         case "etag":
             return emitBuiltInType(context, type);
+        case "Intrinsic":
+            return { type: "any" };
+        case "Scalar":
+            const result = emitBuiltInType(context, type);
+            updateWithEncode(context, type, result);
+            return result;
+        case "Number":
+        case "String":
+        case "Boolean":
+            return emitConstant(context, type);
+        case "Union":
+            return emitUnion(context, type);
+        case "Model":
+            // only any/dict param Model and lro logical result Model will be left
+            return emitArrayOrDict(context, getSdkArrayOrDict(context, type)!);
         default:
             throw Error(`Not supported ${type.kind}`);
     }
