@@ -1089,9 +1089,17 @@ class _OperationSerializer(
         return retval
 
     def handle_error_response(self, builder: OperationType) -> List[str]:
+        async_await = "await " if self.async_mode else ""
         retval = [
             f"if response.status_code not in {str(builder.success_status_codes)}:"
         ]
+        if not self.code_model.need_request_converter:
+            retval.extend(
+                [
+                    "    if _stream:",
+                    f"        {async_await} response.read()  # Load the body in memory and close the socket",
+                ]
+            )
         retval.append(
             "    map_error(status_code=response.status_code, response=response, error_map=error_map)"
         )
