@@ -41,9 +41,5 @@ def test_upload_binary(client):
     client.upload.binary(b"Hello, world!")
 
 def test_error(client):
-    try:
+    with pytest.raises(HttpResponseError):
         client.download.error_stream()
-    except HttpResponseError as err:
-        assert err.error is not None
-    else:
-        assert Exception("HttpResponseError was expected")
