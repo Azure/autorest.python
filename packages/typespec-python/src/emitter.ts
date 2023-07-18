@@ -35,6 +35,7 @@ import {
     isStatusCode,
     HttpOperation,
     isHeader,
+    Visibility,
 } from "@typespec/http";
 import { getAddedOnVersions } from "@typespec/versioning";
 import {
@@ -185,9 +186,11 @@ function isEmptyModel(type: EmitterType | SdkType): boolean {
 }
 
 export function getType(context: SdkContext, type: EmitterType | SdkType): any {
-    const enableCache =
-        !isEmptyModel(type) &&
-        (type.kind === "model" || type.kind === "enum" || type.kind === "Model" || type.kind === "Enum");
+    const enableCache = !isEmptyModel(type) && (type.kind === "model" || type.kind === "enum" || type.kind === "Model" || type.kind === "Enum");
+    if (type.kind === "Model") {
+        type = getEffectiveSchemaType(context, type);
+    }
+    // using name to cache will have some problem for template
     if (enableCache && typesMap.has((type as any).name)) {
         return typesMap.get((type as any).name);
     }
@@ -748,6 +751,27 @@ function emitBasicOperation(
     ];
 }
 
+function visibilityMapping(visibility?: Visibility[]): string[] | undefined {
+    if (visibility === undefined) {
+        return undefined;
+    }
+    const result = [];
+    for (const v of visibility) {
+        if (v === Visibility.Read) {
+            result.push("read");
+        } else if (v === Visibility.Create) {
+            result.push("create");
+        } else if (v === Visibility.Update) {
+            result.push("update");
+        } else if (v === Visibility.Delete) {
+            result.push("delete");
+        } else if (v === Visibility.Query) {
+            result.push("query");
+        }
+    }
+    return result;
+}
+
 function emitProperty(context: SdkContext, type: SdkBodyModelPropertyType): Record<string, any> {
     return {
         clientName: camelToSnakeCase(type.nameInClient),
@@ -756,7 +780,7 @@ function emitProperty(context: SdkContext, type: SdkBodyModelPropertyType): Reco
         optional: type.optional,
         description: type.doc,
         addedOn: type.apiVersions[0],
-        visibility: type.visibility,
+        visibility: visibilityMapping(type.visibility),
         isDiscriminator: type.discriminator,
     };
 }
@@ -847,10 +871,13 @@ function emitBuiltInType(
     type: Scalar | SdkBuiltInType | SdkDurationType | SdkDatetimeType,
 ): Record<string, any> {
     if (type.kind === "Scalar") {
+        while (type.baseScalar) {
+            type = type.baseScalar;
+        }
         if (type.name === "utcDateTime" || type.name === "offsetDateTime") {
-            type = getSdkDatetimeType(context, type);
+            type = getSdkDatetimeType(type);
         } else if (type.name === "duration") {
-            type = getSdkDurationType(context, type);
+            type = getSdkDurationType(type);
         } else {
             type = getSdkBuiltInType(context, type);
         }
@@ -897,6 +924,7 @@ function emitUnion(context: SdkContext, type: SdkUnionType | SdkEnumType | Union
         return {
             name: type.name,
             snakeCaseName: camelToSnakeCase(type.name || ""),
+            description: `Type of ${type.name}`,
             internal: true,
             type: "combined",
             types: type.values.map((x) => getType(context, x)),
@@ -906,7 +934,7 @@ function emitUnion(context: SdkContext, type: SdkUnionType | SdkEnumType | Union
         return {
             name: type.name,
             snakeCaseName: camelToSnakeCase(type.name),
-            description: type.doc,
+            description: type.doc || `Type of ${type.name}`,
             internal: true,
             type: type.kind,
             valueType: emitBuiltInType(context, type.valueType),
@@ -931,8 +959,6 @@ function emitType(context: SdkContext, type: EmitterType | SdkType): Record<stri
             return emitModel(context, type);
         case "union":
             return emitUnion(context, type);
-        case "UnionVariant":
-            return {};
         case "enum":
             return emitEnum(context, type);
         case "constant":
@@ -974,6 +1000,8 @@ function emitType(context: SdkContext, type: EmitterType | SdkType): Record<stri
             return emitConstant(context, type);
         case "Union":
             return emitUnion(context, type);
+        case "UnionVariant":
+            return {};
         case "Model":
             // only any/dict param Model and lro logical result Model will be left
             return emitArrayOrDict(context, getSdkArrayOrDict(context, type)!);
