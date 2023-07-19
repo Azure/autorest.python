@@ -77,6 +77,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             ]
             self.link_lro_initial_operations()
         self.request_id_header_name = self.yaml_data.get("requestIdHeaderName", None)
+        self.has_etag: bool = yaml_data.get("hasEtag", False)
 
     def _build_request_builders(
         self,

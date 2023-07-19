@@ -297,7 +297,13 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                         and p["wireName"] == "client-request-id"
                     ):
                         yaml_data["requestIdHeaderName"] = p["wireName"]
-                        return
+                    if (
+                        self.version_tolerant
+                        and p["location"] == "header"
+                        and p["clientName"] in ("if_match", "if_none_match")
+                    ):
+                        o["hasEtag"] = True
+                        yaml_data["hasEtag"] = True
 
     def get_operation_updater(
         self, yaml_data: Dict[str, Any]

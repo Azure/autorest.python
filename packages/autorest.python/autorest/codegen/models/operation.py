@@ -90,16 +90,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         self.internal: bool = self.yaml_data.get("internal", False)
         if self.internal:
             self.name = "_" + self.name
-        self._has_etag: Optional[bool] = None
-
-    @property
-    def has_etag(self) -> bool:
-        if self._has_etag is None:
-            self._has_etag = any(
-                h.wire_name.lower() in ("etag", "match-condition")
-                for h in self.parameters.headers
-            )
-        return self._has_etag
+        self.has_etag: bool = self.yaml_data.get("hasEtag", False)
 
     @property
     def expose_stream_keyword(self) -> bool:
@@ -409,15 +400,9 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             file_import.add_submodule_import(
                 f"{relative_path}_vendor", "_convert_request", ImportType.LOCAL
             )
-        if self.code_model.has_etag:
+        if self.has_etag:
             file_import.add_submodule_import(
                 "azure.core.exceptions", "ResourceModifiedError", ImportType.AZURECORE
-            )
-            file_import.add_submodule_import(
-                "azure.core.exceptions", "ResourceNotFoundError", ImportType.AZURECORE
-            )
-            file_import.add_submodule_import(
-                "azure.core.exceptions", "ResourceExistsError", ImportType.AZURECORE
             )
             if not async_mode:
                 file_import.add_submodule_import(

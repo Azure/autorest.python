@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import List, Dict, Any, Set, Union, Optional
+from typing import List, Dict, Any, Set, Union
 
 from .base import BaseType
 from .enum_type import EnumType
@@ -76,19 +76,10 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
         self.named_unions: List[CombinedType] = [
             t for t in self.types_map.values() if isinstance(t, CombinedType) and t.name
         ]
-        self._has_etag: Optional[bool] = None
 
     @property
     def has_etag(self) -> bool:
-        if self._has_etag is None:
-            self._has_etag = False
-            for client in self.clients:
-                for og in client.operation_groups:
-                    for op in og.operations:
-                        if op.has_etag:
-                            self._has_etag = True
-                            break
-        return self._has_etag
+        return any(client.has_etag for client in self.clients)
 
     @property
     def has_operations(self) -> bool:
