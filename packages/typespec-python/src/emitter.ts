@@ -19,7 +19,6 @@ import {
     StringLiteral,
     NumericLiteral,
     Union,
-    isNeverType,
 } from "@typespec/compiler";
 import {
     getAuthentication,
@@ -70,6 +69,7 @@ import {
     SdkDatetimeType,
     SdkDurationType,
     getSdkUnion,
+    getPropertyNames,
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
@@ -215,6 +215,9 @@ export function getType(context: SdkContext, type: EmitterType | SdkType): Recor
             for (const property of type.properties.values()) {
                 if (property.kind === "property") {
                     newValue.properties.push(emitProperty(context, property));
+                    if (type.discriminatedSubtypes && property.discriminator && property.type.kind === "constant" && !property.type.value) {
+                        newValue.properties[newValue.properties.length - 1].isPolymorphic = true;
+                    }
                 }
             }
             if (type.discriminatedSubtypes) {
@@ -345,6 +348,7 @@ function emitParameter(
     implementation: string,
 ): Record<string, any> {
     const base = emitParamBase(context, parameter.param);
+    base.clientName = camelToSnakeCase(getPropertyNames(context, parameter.param)[0]);
     let type = getType(context, parameter.param);
     let clientDefaultValue = undefined;
     if (parameter.name.toLowerCase() === "content-type" && type["type"] === "constant") {
@@ -800,6 +804,7 @@ function emitModel(context: SdkContext, type: SdkModelType): Record<string, any>
         name: type.name,
         description: type.doc,
         parents: type.baseModel ? [getType(context, type.baseModel)] : [],
+        discriminatorValue: type.discriminatorValue,
         discriminatedSubtypes: {},
         properties: [],
         snakeCaseName: type.name ? camelToSnakeCase(type.name) : type.name,
