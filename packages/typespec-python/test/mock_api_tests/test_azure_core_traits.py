@@ -26,8 +26,6 @@ def test_get(client: TraitsClient):
         result, header = client.smoke_test(
             id=1,
             foo="123",
-            if_match='"valid"',
-            if_none_match='"invalid"',
             if_unmodified_since=datetime(
                 year=2022, month=8, day=26, hour=14, minute=38, second=0
             ),
@@ -38,6 +36,7 @@ def test_get(client: TraitsClient):
             raw_request_hook=functools.partial(
                 check_client_request_id_header, header="x-ms-client-request-id", checked=checked
             ),
+            **kwargs,
         )
         assert result.id == 1
         assert result.name == "Madge"
