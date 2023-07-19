@@ -11,7 +11,7 @@ from azure.core.exceptions import HttpResponseError
 from azure.core import MatchConditions
 from _specs_.azure.core.traits import TraitsClient
 from _specs_.azure.core.traits.models import UserActionParam
-from .test_header_utils import check_repeatability_header, check_request_id_header
+from .test_header_utils import check_repeatability_header, check_client_request_id_header
 
 
 @pytest.fixture
@@ -26,6 +26,8 @@ def test_get(client: TraitsClient):
         result, header = client.smoke_test(
             id=1,
             foo="123",
+            if_match='"valid"',
+            if_none_match='"invalid"',
             if_unmodified_since=datetime(
                 year=2022, month=8, day=26, hour=14, minute=38, second=0
             ),
@@ -34,9 +36,8 @@ def test_get(client: TraitsClient):
             ),
             cls=lambda x, y, z: (y, z),
             raw_request_hook=functools.partial(
-                check_request_id_header, header="x-ms-client-request-id", checked=checked
+                check_client_request_id_header, header="x-ms-client-request-id", checked=checked
             ),
-            **kwargs,
         )
         assert result.id == 1
         assert result.name == "Madge"

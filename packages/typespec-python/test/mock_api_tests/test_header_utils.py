@@ -17,6 +17,6 @@ def check_repeatability_header(request: PipelineRequest):
     )
 
 
-def check_request_id_header(request: PipelineRequest, header: str, checked: dict):
+def check_client_request_id_header(request: PipelineRequest, header: str, checked: dict):
     validate_format(request.http_request.headers[header], Format.UUID)
     checked[header] = request.http_request.headers[header]

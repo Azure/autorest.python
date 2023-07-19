@@ -37,6 +37,6 @@ azure-core==1.28.0
 -e ./generated/headasbooleanfalse
 -e ./generated/parameters-body-optionality
 -e ./generated/special-headers-repeatability
--e ./generated/special-headers-request-id
+-e ./generated/special-headers-client-request-id
 -e ./generated/encode-datetime
 -e ./generated/encode-bytes
