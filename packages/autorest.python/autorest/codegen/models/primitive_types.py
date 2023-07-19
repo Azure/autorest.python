@@ -358,6 +358,7 @@ class DatetimeType(PrimitiveType):
         self.format = (
             "rfc3339"
             if yaml_data.get("format", "date-time") == "date-time"
+            or yaml_data.get("format", "date-time") == "rfc3339"
             else "rfc7231"
         )
 

@@ -185,20 +185,29 @@ function isEmptyModel(type: EmitterType | SdkType): boolean {
     );
 }
 
-export function getType(context: SdkContext, type: EmitterType | SdkType): any {
-    const enableCache = !isEmptyModel(type) && (type.kind === "model" || type.kind === "enum" || type.kind === "Model" || type.kind === "Enum");
+export function getType(context: SdkContext, type: EmitterType | SdkType): Record<string, any> {
+    let oriType;
+    if (type.kind === "ModelProperty") {
+        oriType = type;
+        type = type.type;
+    }
+    const isArrayDict = type.kind === "Model" && type.indexer;
+    const enableCache = !isEmptyModel(type) && (type.kind === "model" || type.kind === "enum" || type.kind === "Model" || type.kind === "Enum") && !isArrayDict;
     if (type.kind === "Model") {
         type = getEffectiveSchemaType(context, type);
     }
     // using name to cache will have some problem for template
     if (enableCache && typesMap.has((type as any).name)) {
-        return typesMap.get((type as any).name);
+        return typesMap.get((type as any).name)!;
     }
     let newValue;
     if (isEmptyModel(type)) {
         newValue = { type: "any" };
     } else {
         newValue = emitType(context, type);
+    }
+    if (oriType?.kind === "ModelProperty") {
+        updateWithEncode(context, oriType, newValue);
     }
     if (enableCache) {
         typesMap.set((type as SdkModelType | SdkEnumType).name, newValue);
@@ -269,7 +278,7 @@ function emitParamBase(context: SdkContext, parameter: ModelProperty | Type): Pa
 
 type BodyParameter = ParamBase & {
     contentTypes: string[];
-    type: Type;
+    type: any;
     wireName: string;
     location: "body";
     defaultContentType: string;
@@ -336,7 +345,7 @@ function emitParameter(
     implementation: string,
 ): Record<string, any> {
     const base = emitParamBase(context, parameter.param);
-    let type = getType(context, parameter.param.type);
+    let type = getType(context, parameter.param);
     let clientDefaultValue = undefined;
     if (parameter.name.toLowerCase() === "content-type" && type["type"] === "constant") {
         /// We don't want constant types for content types, so we make sure if it's
@@ -513,7 +522,7 @@ function emitResponse(context: SdkContext, response: HttpOperationResponse): Rec
     if (body) {
         if (body.kind === "Model") {
             if (body && body.decorators.find((d) => d.decorator.name === "$pagedResult")) {
-                type = getType(context, Array.from(body.properties.values())[0].type);
+                type = getType(context, Array.from(body.properties.values())[0]);
             } else if (body && !isAzureCoreModel(body)) {
                 type = getType(context, body);
             }
@@ -799,9 +808,16 @@ function emitModel(context: SdkContext, type: SdkModelType): Record<string, any>
     };
 }
 
+function enumName(name: string): string {
+    if (name.toUpperCase() === name) {
+        return name;
+    }
+    return camelToSnakeCase(name).toUpperCase();
+}
+
 function emitEnumMember(type: SdkEnumValueType): Record<string, any> {
     return {
-        name: type.name.toUpperCase(),
+        name: enumName(type.name),
         value: type.value,
         description: type.doc,
     };
@@ -880,6 +896,18 @@ function emitBuiltInType(
             type = getSdkDurationType(type);
         } else {
             type = getSdkBuiltInType(context, type);
+        }
+    }
+    if (type.kind === "duration" && type.encode === "seconds") {
+        return {
+            type: sdkScalarKindToPythonKind[type.wireType.kind],
+            format: type.encode
+        }
+    }
+    if (type.encode === "unixTimestamp") {
+        return {
+            type: "unixtime",
+            format: type.encode,
         }
     }
     return {
