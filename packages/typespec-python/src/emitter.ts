@@ -147,7 +147,7 @@ function camelToSnakeCase(name: string): string {
     return camelToSnakeCaseRe(name[0].toLowerCase() + name.slice(1));
 }
 
-const typesMap = new Map<string, Record<string, any>>();
+const typesMap = new Map<string | EmitterType | SdkType, Record<string, any>>();
 const simpleTypesMap = new Map<string, Record<string, any>>();
 const endpointPathParameters: Record<string, any>[] = [];
 let apiVersionParam: Record<string, any> | undefined = undefined;
@@ -192,13 +192,21 @@ export function getType(context: SdkContext, type: EmitterType | SdkType): Recor
         type = type.type;
     }
     const isArrayDict = type.kind === "Model" && type.indexer;
-    const enableCache = !isEmptyModel(type) && (type.kind === "model" || type.kind === "enum" || type.kind === "Model" || type.kind === "Enum") && !isArrayDict;
-    if (type.kind === "Model") {
-        type = getEffectiveSchemaType(context, type);
+    const enableCache =
+        !isEmptyModel(type) &&
+        (type.kind === "model" || type.kind === "enum" || type.kind === "Model" || type.kind === "Enum") &&
+        !isArrayDict;
+    const effectiveModel = type.kind === "Model" ? getEffectiveSchemaType(context, type) : type;
+    if (type.kind === "Model" && !isArrayDict) {
+        type = getSdkModel(context, getEffectiveSchemaType(context, type));
     }
     // using name to cache will have some problem for template
-    if (enableCache && typesMap.has((type as any).name)) {
-        return typesMap.get((type as any).name)!;
+    let lookupVal: string | EmitterType | SdkType = effectiveModel;
+    if ((type as any).name && (type as any).name !== "") {
+        lookupVal = (type as any).name;
+    }
+    if (enableCache && typesMap.has(lookupVal)) {
+        return typesMap.get((type as any).name || effectiveModel)!;
     }
     let newValue;
     if (isEmptyModel(type)) {
@@ -210,12 +218,17 @@ export function getType(context: SdkContext, type: EmitterType | SdkType): Recor
         updateWithEncode(context, oriType, newValue);
     }
     if (enableCache) {
-        typesMap.set((type as SdkModelType | SdkEnumType).name, newValue);
+        typesMap.set((type as SdkModelType | SdkEnumType).name || effectiveModel, newValue);
         if (type.kind === "model") {
             for (const property of type.properties.values()) {
                 if (property.kind === "property") {
                     newValue.properties.push(emitProperty(context, property));
-                    if (type.discriminatedSubtypes && property.discriminator && property.type.kind === "constant" && !property.type.value) {
+                    if (
+                        type.discriminatedSubtypes &&
+                        property.discriminator &&
+                        property.type.kind === "constant" &&
+                        !property.type.value
+                    ) {
                         newValue.properties[newValue.properties.length - 1].isPolymorphic = true;
                     }
                 }
@@ -808,7 +821,7 @@ function emitModel(context: SdkContext, type: SdkModelType): Record<string, any>
         discriminatedSubtypes: {},
         properties: [],
         snakeCaseName: type.name ? camelToSnakeCase(type.name) : type.name,
-        base: "dpg",
+        base: type.name === "" ? "json" : "dpg",
         internal: type.internal,
     };
 }
@@ -906,14 +919,14 @@ function emitBuiltInType(
     if (type.kind === "duration" && type.encode === "seconds") {
         return {
             type: sdkScalarKindToPythonKind[type.wireType.kind],
-            format: type.encode
-        }
+            format: type.encode,
+        };
     }
     if (type.encode === "unixTimestamp") {
         return {
             type: "unixtime",
             format: type.encode,
-        }
+        };
     }
     return {
         type: sdkScalarKindToPythonKind[type.kind] || type.kind, // TODO: switch to kind
