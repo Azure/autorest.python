@@ -1,5 +1,25 @@
 # Release
 
+## 2023-07-XX - 0.13.0
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.46.0`      |
+| `@typespec/http`                                                        | `0.46.0`      |
+| `@typespec/rest`                                                        | `0.46.0`      |
+| `@typespec/versioning`                                                  | `0.46.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.32.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.32.0`|
+| `azure-core` dep of generated code                                      | `1.28.0`      |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**New Features**
+
+- Covert method signature `if_match/if_none_match` to `etag/match_condition` #2013
+
 ## 2023-07-11 - 0.12.0
 
 | Library                                                                 | Min Version   |

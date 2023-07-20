@@ -1253,6 +1253,17 @@ class _OperationSerializer(
                 "304: ResourceNotModifiedError"
             )
         retval.append("}")
+        if builder.has_etag:
+            retval.extend(
+                [
+                    "if match_condition == MatchConditions.IfNotModified:",
+                    "    error_map[412] = ResourceModifiedError",
+                    "elif match_condition == MatchConditions.IfPresent:",
+                    "    error_map[412] = ResourceNotFoundError",
+                    "elif match_condition == MatchConditions.IfMissing:",
+                    "    error_map[412] = ResourceExistsError",
+                ]
+            )
         retval.append("error_map.update(kwargs.pop('error_map', {}) or {})")
         return retval
 

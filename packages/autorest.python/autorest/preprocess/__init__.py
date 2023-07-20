@@ -183,6 +183,28 @@ HEADERS_HIDE_IN_METHOD = (
     "client-request-id",
     "return-client-request-id",
 )
+HEADERS_CONVERT_IN_METHOD = {
+    "if-match": {
+        "clientName": "etag",
+        "wireName": "etag",
+        "description": "check if resource is changed. Set None to skip checking etag.",
+    },
+    "if-none-match": {
+        "clientName": "match_condition",
+        "wireName": "match-condition",
+        "description": "The match condition to use upon the etag.",
+        "type": {
+            "type": "azurecore",
+            "name": "MatchConditions",
+        },
+    },
+}
+
+
+def headers_convert(yaml_data: Dict[str, Any], replace_data: Any) -> None:
+    if isinstance(replace_data, dict):
+        for k, v in replace_data.items():
+            yaml_data[k] = v
 
 
 class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
@@ -251,6 +273,11 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                         )
                 type["values"].extend(values_to_add)
 
+        # add type for reference
+        for v in HEADERS_CONVERT_IN_METHOD.values():
+            if isinstance(v, dict) and "type" in v:
+                yaml_data.append(v["type"])
+
     def update_client(self, yaml_data: Dict[str, Any]) -> None:
         yaml_data["description"] = update_description(
             yaml_data["description"], default_description=yaml_data["name"]
@@ -270,7 +297,13 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                         and p["wireName"] == "client-request-id"
                     ):
                         yaml_data["requestIdHeaderName"] = p["wireName"]
-                        return
+                    if (
+                        self.version_tolerant
+                        and p["location"] == "header"
+                        and p["clientName"] in ("if_match", "if_none_match")
+                    ):
+                        o["hasEtag"] = True
+                        yaml_data["hasEtag"] = True
 
     def get_operation_updater(
         self, yaml_data: Dict[str, Any]
@@ -300,11 +333,18 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                 .lower()
                 for prop, param_name in yaml_data["propertyToParameterName"].items()
             }
+        wire_name_lower = (yaml_data.get("wireName") or "").lower()
         if (
             yaml_data["location"] == "header"
-            and yaml_data["wireName"].lower() in HEADERS_HIDE_IN_METHOD
+            and wire_name_lower in HEADERS_HIDE_IN_METHOD
         ):
             yaml_data["hideInMethod"] = True
+        if (
+            self.version_tolerant
+            and yaml_data["location"] == "header"
+            and wire_name_lower in HEADERS_CONVERT_IN_METHOD
+        ):
+            headers_convert(yaml_data, HEADERS_CONVERT_IN_METHOD[wire_name_lower])
 
     def update_operation(
         self,

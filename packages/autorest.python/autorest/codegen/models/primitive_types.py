@@ -608,3 +608,28 @@ class ByteArraySchema(PrimitiveType):
     @property
     def instance_check_template(self) -> str:
         return "isinstance({}, bytes)"
+
+
+class AzureCoreType(PrimitiveType):
+    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
+        super().__init__(yaml_data=yaml_data, code_model=code_model)
+        self.name = yaml_data.get("name", "")
+
+    def docstring_type(self, **kwargs: Any) -> str:
+        return "~azure.core." + self.type_annotation(**kwargs)
+
+    def type_annotation(self, **kwargs: Any) -> str:
+        return self.name
+
+    def imports(self, **kwargs: Any) -> FileImport:
+        file_import = FileImport()
+        file_import.add_submodule_import("azure.core", self.name, ImportType.AZURECORE)
+        return file_import
+
+    @property
+    def instance_check_template(self) -> str:
+        return f"isinstance({{}}, {self.name})"
+
+    @property
+    def serialization_type(self) -> str:
+        return self.name
