@@ -1,6 +1,6 @@
 # Release
 
-## 2023-07-XX - 0.13.0
+## 2023-07-20 - 0.13.0
 
 | Library                                                                 | Min Version   |
 | ----------------------------------------------------------------------- | ------------- |
@@ -18,7 +18,11 @@
 
 **New Features**
 
-- Covert method signature `if_match/if_none_match` to `etag/match_condition` #2013
+- Convert method signature `if_match/if_none_match` to `etag/match_condition` #2013
+
+**Bug Fixes**
+
+- Read error into disk to correctly deserialize #2020
 
 ## 2023-07-11 - 0.12.0
 
