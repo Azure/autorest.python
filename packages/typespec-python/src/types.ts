@@ -222,7 +222,7 @@ function emitModel(context: SdkContext, type: SdkModelType): Record<string, any>
         properties: new Array<Record<string, any>>(),
         snakeCaseName: type.name ? camelToSnakeCase(type.name) : type.name,
         base: type.name === "" ? "json" : "dpg",
-        internal: type.internal,
+        internal: type.access === "internal",
     };
 
     typesMap.set(type, newValue);
@@ -255,7 +255,7 @@ function emitEnum(type: SdkEnumType): Record<string, any> {
         name: type.name,
         snakeCaseName: camelToSnakeCase(type.name),
         description: type.doc || `Type of ${type.name}`,
-        internal: true,
+        internal: type.access === "internal",
         type: type.kind,
         valueType: emitBuiltInType(type.valueType),
         values: type.values.map((x) => emitEnumMember(x)),
