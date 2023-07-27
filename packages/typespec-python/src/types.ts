@@ -195,7 +195,7 @@ function emitProperty(context: SdkContext, type: SdkBodyModelPropertyType): Reco
         wireName: type.serializedName,
         type: getType(context, type.type),
         optional: type.optional,
-        description: type.doc,
+        description: type.description,
         addedOn: type.apiVersions[0],
         visibility: visibilityMapping(type.visibility),
         isDiscriminator: type.discriminator,
@@ -206,7 +206,7 @@ function emitModel(context: SdkContext, type: SdkModelType): Record<string, any>
     if (isEmptyModel(type)) {
         return {
             type: "any",
-            description: type.doc,
+            description: type.description,
         };
     }
     if (typesMap.has(type)) {
@@ -215,7 +215,7 @@ function emitModel(context: SdkContext, type: SdkModelType): Record<string, any>
     const newValue = {
         type: type.kind,
         name: type.name,
-        description: type.doc,
+        description: type.description,
         parents: type.baseModel ? [getType(context, type.baseModel)] : [],
         discriminatorValue: type.discriminatorValue,
         discriminatedSubtypes: {} as Record<string, Record<string, any>>,
@@ -254,7 +254,7 @@ function emitEnum(type: SdkEnumType): Record<string, any> {
     const newValue = {
         name: type.name,
         snakeCaseName: camelToSnakeCase(type.name),
-        description: type.doc || `Type of ${type.name}`,
+        description: type.description || `Type of ${type.name}`,
         internal: type.access === "internal",
         type: type.kind,
         valueType: emitBuiltInType(type.valueType),
@@ -276,7 +276,7 @@ function emitEnumMember(type: SdkEnumValueType): Record<string, any> {
     return {
         name: enumName(type.name),
         value: type.value,
-        description: type.doc,
+        description: type.description,
     };
 }
 
