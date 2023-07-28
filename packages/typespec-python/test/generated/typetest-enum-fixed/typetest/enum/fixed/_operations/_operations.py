@@ -161,7 +161,7 @@ class FixedClientOperationsMixin(FixedClientMixinABC):
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+        _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True, exclude_none=False)  # type: ignore
 
         request = build_fixed_put_known_value_request(
             content_type=content_type,
@@ -219,7 +219,7 @@ class FixedClientOperationsMixin(FixedClientMixinABC):
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+        _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True, exclude_none=False)  # type: ignore
 
         request = build_fixed_put_unknown_value_request(
             content_type=content_type,
