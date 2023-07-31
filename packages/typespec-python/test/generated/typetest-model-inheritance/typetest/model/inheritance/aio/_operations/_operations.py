@@ -139,7 +139,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         if isinstance(input, (IOBase, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True, exclude_none=False)  # type: ignore
+            _content = json.dumps(
+                input, cls=AzureJSONEncoder, exclude_readonly=True, exclude_none=False
+            )  # type: ignore
 
         request = build_inheritance_post_valid_request(
             content_type=content_type,
@@ -301,7 +303,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         if isinstance(input, (IOBase, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True, exclude_none=False)  # type: ignore
+            _content = json.dumps(
+                input, cls=AzureJSONEncoder, exclude_readonly=True, exclude_none=False
+            )  # type: ignore
 
         request = build_inheritance_put_valid_request(
             content_type=content_type,
@@ -476,7 +480,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         if isinstance(input, (IOBase, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True, exclude_none=False)  # type: ignore
+            _content = json.dumps(
+                input, cls=AzureJSONEncoder, exclude_readonly=True, exclude_none=False
+            )  # type: ignore
 
         request = build_inheritance_put_model_request(
             content_type=content_type,
@@ -644,7 +650,9 @@ class InheritanceClientOperationsMixin(InheritanceClientMixinABC):
         if isinstance(input, (IOBase, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True, exclude_none=False)  # type: ignore
+            _content = json.dumps(
+                input, cls=AzureJSONEncoder, exclude_readonly=True, exclude_none=False
+            )  # type: ignore
 
         request = build_inheritance_put_recursive_model_request(
             content_type=content_type,

@@ -151,7 +151,9 @@ class OptionalExplicitOperations:
             _content = body
         else:
             if body is not None:
-                _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True, exclude_none=False)  # type: ignore
+                _content = json.dumps(
+                    body, cls=AzureJSONEncoder, exclude_readonly=True, exclude_none=False
+                )  # type: ignore
             else:
                 _content = None
 
@@ -270,7 +272,9 @@ class OptionalExplicitOperations:
             _content = body
         else:
             if body is not None:
-                _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True, exclude_none=False)  # type: ignore
+                _content = json.dumps(
+                    body, cls=AzureJSONEncoder, exclude_readonly=True, exclude_none=False
+                )  # type: ignore
             else:
                 _content = None
 

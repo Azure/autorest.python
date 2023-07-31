@@ -346,7 +346,9 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         if isinstance(resource, (IOBase, bytes)):
             _content = resource
         else:
-            _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True, exclude_none=False)  # type: ignore
+            _content = json.dumps(
+                resource, cls=AzureJSONEncoder, exclude_readonly=True, exclude_none=False
+            )  # type: ignore
 
         request = build_basic_create_or_update_request(
             id=id,
@@ -492,7 +494,9 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         if isinstance(resource, (IOBase, bytes)):
             _content = resource
         else:
-            _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True, exclude_none=False)  # type: ignore
+            _content = json.dumps(
+                resource, cls=AzureJSONEncoder, exclude_readonly=True, exclude_none=False
+            )  # type: ignore
 
         request = build_basic_create_or_replace_request(
             id=id,

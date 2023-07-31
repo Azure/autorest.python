@@ -134,7 +134,9 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         if isinstance(input, (IOBase, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True, exclude_none=False)  # type: ignore
+            _content = json.dumps(
+                input, cls=AzureJSONEncoder, exclude_readonly=True, exclude_none=False
+            )  # type: ignore
 
         request = build_union_send_int_request(
             content_type=content_type,
@@ -250,7 +252,9 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         if isinstance(input, (IOBase, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True, exclude_none=False)  # type: ignore
+            _content = json.dumps(
+                input, cls=AzureJSONEncoder, exclude_readonly=True, exclude_none=False
+            )  # type: ignore
 
         request = build_union_send_int_array_request(
             content_type=content_type,
@@ -366,7 +370,9 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         if isinstance(input, (IOBase, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True, exclude_none=False)  # type: ignore
+            _content = json.dumps(
+                input, cls=AzureJSONEncoder, exclude_readonly=True, exclude_none=False
+            )  # type: ignore
 
         request = build_union_send_first_named_union_value_request(
             content_type=content_type,
@@ -482,7 +488,9 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         if isinstance(input, (IOBase, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True, exclude_none=False)  # type: ignore
+            _content = json.dumps(
+                input, cls=AzureJSONEncoder, exclude_readonly=True, exclude_none=False
+            )  # type: ignore
 
         request = build_union_send_second_named_union_value_request(
             content_type=content_type,
