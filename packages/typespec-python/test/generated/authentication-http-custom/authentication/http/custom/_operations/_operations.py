@@ -19,7 +19,6 @@ from azure.core.exceptions import (
 from azure.core.pipeline import PipelineResponse
 from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
-from azure.core.utils import case_insensitive_dict
 
 from .._serialization import Serializer
 from .._vendor import CustomClientMixinABC
@@ -39,17 +38,10 @@ def build_custom_valid_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_custom_invalid_request(**kwargs: Any) -> HttpRequest:
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    accept = _headers.pop("Accept", "application/json")
-
     # Construct URL
     _url = "/authentication/http/custom/invalid"
 
-    # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="GET", url=_url, **kwargs)
 
 
 class CustomClientOperationsMixin(CustomClientMixinABC):
@@ -90,6 +82,8 @@ class CustomClientOperationsMixin(CustomClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -133,6 +127,8 @@ class CustomClientOperationsMixin(CustomClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 

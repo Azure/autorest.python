@@ -65,7 +65,7 @@ def test_xms_request_client_id_in_client(client):
 def test_xms_request_client_overwrite_via_parameter(client_no_request_id):
     # We DON'T support a Swagger parameter for request_id, the request_id policy will overwrite it.
     # We disable the request_id policy for this test
-    client_no_request_id.xms_client_request_id.param_get(x_ms_client_request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
+    client_no_request_id.xms_client_request_id.param_get(headers={"x-ms-client-request-id": "9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"})
 
 def test_xms_custom_named_request_id(client):
     client.header.custom_named_request_id(foo_client_request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")

@@ -41,9 +41,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class LegacyClientOperationsMixin(LegacyClientMixinABC):
-    async def _create_job_initial(
-        self, body: Union[_models.JobData, JSON, IO], **kwargs: Any
-    ) -> Optional[_models.JobResult]:
+    async def _create_job_initial(self, body: Union[_models.JobData, JSON, IO], **kwargs: Any) -> Optional[JSON]:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -56,7 +54,7 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[Optional[_models.JobResult]] = kwargs.pop("cls", None)
+        cls: ClsType[Optional[JSON]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -82,13 +80,15 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
         deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            deserialized = _deserialize(_models.JobResult, response.json())
+            deserialized = _deserialize(JSON, response.json())
 
         if response.status_code == 202:
             response_headers["Operation-Location"] = self._deserialize(

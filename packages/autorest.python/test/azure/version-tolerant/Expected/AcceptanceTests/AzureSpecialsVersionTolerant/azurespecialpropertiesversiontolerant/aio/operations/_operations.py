@@ -117,6 +117,8 @@ class XMsClientRequestIdOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -124,15 +126,10 @@ class XMsClientRequestIdOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def param_get(  # pylint: disable=inconsistent-return-statements
-        self, *, x_ms_client_request_id: str, **kwargs: Any
-    ) -> None:
+    async def param_get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get method that overwrites x-ms-client-request header with value
         9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 
-        :keyword x_ms_client_request_id: This should appear as a method parameter, use value
-         '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'. Required.
-        :paramtype x_ms_client_request_id: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -151,7 +148,6 @@ class XMsClientRequestIdOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_xms_client_request_id_param_get_request(
-            x_ms_client_request_id=x_ms_client_request_id,
             headers=_headers,
             params=_params,
         )
@@ -165,6 +161,8 @@ class XMsClientRequestIdOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -226,6 +224,8 @@ class SubscriptionInCredentialsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -269,6 +269,8 @@ class SubscriptionInCredentialsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -315,6 +317,8 @@ class SubscriptionInCredentialsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -358,6 +362,8 @@ class SubscriptionInCredentialsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -401,6 +407,8 @@ class SubscriptionInCredentialsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -467,6 +475,8 @@ class SubscriptionInMethodOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -515,6 +525,8 @@ class SubscriptionInMethodOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -563,6 +575,8 @@ class SubscriptionInMethodOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -611,6 +625,8 @@ class SubscriptionInMethodOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -671,6 +687,8 @@ class ApiVersionDefaultOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -715,6 +733,8 @@ class ApiVersionDefaultOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -757,6 +777,8 @@ class ApiVersionDefaultOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -799,6 +821,8 @@ class ApiVersionDefaultOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -863,6 +887,8 @@ class ApiVersionLocalOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -910,6 +936,8 @@ class ApiVersionLocalOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -956,6 +984,8 @@ class ApiVersionLocalOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1003,6 +1033,8 @@ class ApiVersionLocalOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1067,6 +1099,8 @@ class SkipUrlEncodingOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1113,6 +1147,8 @@ class SkipUrlEncodingOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1160,6 +1196,8 @@ class SkipUrlEncodingOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1206,6 +1244,8 @@ class SkipUrlEncodingOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1252,6 +1292,8 @@ class SkipUrlEncodingOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1298,6 +1340,8 @@ class SkipUrlEncodingOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1345,6 +1389,8 @@ class SkipUrlEncodingOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1416,6 +1462,8 @@ class OdataOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1480,6 +1528,8 @@ class HeaderOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1530,6 +1580,8 @@ class HeaderOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1577,6 +1629,8 @@ class HeaderOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 404]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 

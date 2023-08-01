@@ -1,6 +1,30 @@
 # Release
 
-## 2023-06-XX - 0.12.0
+## 2023-07-20 - 0.13.0
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.46.0`      |
+| `@typespec/http`                                                        | `0.46.0`      |
+| `@typespec/rest`                                                        | `0.46.0`      |
+| `@typespec/versioning`                                                  | `0.46.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.32.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.32.0`|
+| `azure-core` dep of generated code                                      | `1.28.0`      |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**New Features**
+
+- Convert method signature `if_match/if_none_match` to `etag/match_condition` #2013
+
+**Bug Fixes**
+
+- Read error into disk to correctly deserialize #2020
+
+## 2023-07-11 - 0.12.0
 
 | Library                                                                 | Min Version   |
 | ----------------------------------------------------------------------- | ------------- |
@@ -20,6 +44,11 @@
 
 - Change readonly to visibility #1968
 - Support global config for `head-as-boolean` #1949
+
+**Bug Fixes**
+
+- Ensure that LRO final results are the final result returned by our generated LRO pollers #1992
+- Support `@projectedName` in typespec for query parameter #2006
 
 ## 2023-06-12 - 0.11.0
 

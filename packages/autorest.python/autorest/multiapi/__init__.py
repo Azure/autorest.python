@@ -6,7 +6,6 @@
 import sys
 import logging
 import json
-import shutil
 
 from collections import defaultdict
 from pathlib import Path
@@ -173,10 +172,6 @@ class MultiAPI(ReaderAndWriter):  # pylint: disable=abstract-method
             version_path_to_metadata=self.version_path_to_metadata,
             user_specified_default_api=self.user_specified_default_api,
         )
-
-        # In case we are transitioning from a single api generation, clean old folders
-        shutil.rmtree(str(self.output_folder / "operations"), ignore_errors=True)
-        shutil.rmtree(str(self.output_folder / "models"), ignore_errors=True)
 
         multiapi_serializer = self.serializer
         multiapi_serializer.serialize(code_model, self.no_async)

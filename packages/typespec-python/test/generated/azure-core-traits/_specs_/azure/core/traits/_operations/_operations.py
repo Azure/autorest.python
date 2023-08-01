@@ -13,10 +13,12 @@ import sys
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 import uuid
 
+from azure.core import MatchConditions
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
     ResourceExistsError,
+    ResourceModifiedError,
     ResourceNotFoundError,
     ResourceNotModifiedError,
     map_error,
@@ -29,7 +31,7 @@ from azure.core.utils import case_insensitive_dict
 from .. import models as _models
 from .._model_base import AzureJSONEncoder, _deserialize
 from .._serialization import Serializer
-from .._vendor import TraitsClientMixinABC
+from .._vendor import TraitsClientMixinABC, prep_if_match, prep_if_none_match
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -47,11 +49,10 @@ def build_traits_smoke_test_request(
     id: int,
     *,
     foo: str,
-    if_match: Optional[str] = None,
-    if_none_match: Optional[str] = None,
+    etag: Optional[str] = None,
+    match_condition: Optional[MatchConditions] = None,
     if_unmodified_since: Optional[datetime.datetime] = None,
     if_modified_since: Optional[datetime.datetime] = None,
-    client_request_id: Optional[str] = None,
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -73,16 +74,16 @@ def build_traits_smoke_test_request(
 
     # Construct headers
     _headers["foo"] = _SERIALIZER.header("foo", foo, "str")
+    if_match = prep_if_match(etag, match_condition)
     if if_match is not None:
         _headers["If-Match"] = _SERIALIZER.header("if_match", if_match, "str")
+    if_none_match = prep_if_none_match(etag, match_condition)
     if if_none_match is not None:
         _headers["If-None-Match"] = _SERIALIZER.header("if_none_match", if_none_match, "str")
     if if_unmodified_since is not None:
         _headers["If-Unmodified-Since"] = _SERIALIZER.header("if_unmodified_since", if_unmodified_since, "rfc-1123")
     if if_modified_since is not None:
         _headers["If-Modified-Since"] = _SERIALIZER.header("if_modified_since", if_modified_since, "rfc-1123")
-    if client_request_id is not None:
-        _headers["x-ms-client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
@@ -126,11 +127,10 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         id: int,
         *,
         foo: str,
-        if_match: Optional[str] = None,
-        if_none_match: Optional[str] = None,
+        etag: Optional[str] = None,
+        match_condition: Optional[MatchConditions] = None,
         if_unmodified_since: Optional[datetime.datetime] = None,
         if_modified_since: Optional[datetime.datetime] = None,
-        client_request_id: Optional[str] = None,
         **kwargs: Any
     ) -> _models.User:
         """Get a resource, sending and receiving headers.
@@ -139,21 +139,17 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :type id: int
         :keyword foo: header in request. Required.
         :paramtype foo: str
-        :keyword if_match: The request should only proceed if an entity matches this string. Default
-         value is None.
-        :paramtype if_match: str
-        :keyword if_none_match: The request should only proceed if no entity matches this string.
-         Default value is None.
-        :paramtype if_none_match: str
+        :keyword etag: check if resource is changed. Set None to skip checking etag. Default value is
+         None.
+        :paramtype etag: str
+        :keyword match_condition: The match condition to use upon the etag. Default value is None.
+        :paramtype match_condition: ~azure.core.MatchConditions
         :keyword if_unmodified_since: The request should only proceed if the entity was not modified
          after this time. Default value is None.
         :paramtype if_unmodified_since: ~datetime.datetime
         :keyword if_modified_since: The request should only proceed if the entity was modified after
          this time. Default value is None.
         :paramtype if_modified_since: ~datetime.datetime
-        :keyword client_request_id: An opaque, globally-unique, client-generated string identifier for
-         the request. Default value is None.
-        :paramtype client_request_id: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: User. The User is compatible with MutableMapping
@@ -166,6 +162,12 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
+        if match_condition == MatchConditions.IfNotModified:
+            error_map[412] = ResourceModifiedError
+        elif match_condition == MatchConditions.IfPresent:
+            error_map[412] = ResourceNotFoundError
+        elif match_condition == MatchConditions.IfMissing:
+            error_map[412] = ResourceExistsError
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
@@ -176,11 +178,10 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         request = build_traits_smoke_test_request(
             id=id,
             foo=foo,
-            if_match=if_match,
-            if_none_match=if_none_match,
+            etag=etag,
+            match_condition=match_condition,
             if_unmodified_since=if_unmodified_since,
             if_modified_since=if_modified_since,
-            client_request_id=client_request_id,
             api_version=self._config.api_version,
             headers=_headers,
             params=_params,
@@ -195,6 +196,8 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -333,6 +336,8 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 

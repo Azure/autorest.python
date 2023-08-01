@@ -133,7 +133,7 @@ def build_paging_first_response_empty_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_paging_get_multiple_pages_request(
-    *, client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
+    *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -143,8 +143,6 @@ def build_paging_get_multiple_pages_request(
     _url = "/paging/multiple"
 
     # Construct headers
-    if client_request_id is not None:
-        _headers["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
     if maxresults is not None:
         _headers["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
     if timeout is not None:
@@ -227,7 +225,7 @@ def build_paging_page_with_max_page_size_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_paging_get_odata_multiple_pages_request(
-    *, client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
+    *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -237,8 +235,6 @@ def build_paging_get_odata_multiple_pages_request(
     _url = "/paging/multiple/odata"
 
     # Construct headers
-    if client_request_id is not None:
-        _headers["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
     if maxresults is not None:
         _headers["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
     if timeout is not None:
@@ -249,12 +245,7 @@ def build_paging_get_odata_multiple_pages_request(
 
 
 def build_paging_get_multiple_pages_with_offset_request(
-    offset: int,
-    *,
-    client_request_id: Optional[str] = None,
-    maxresults: Optional[int] = None,
-    timeout: int = 30,
-    **kwargs: Any
+    offset: int, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -269,8 +260,6 @@ def build_paging_get_multiple_pages_with_offset_request(
     _url: str = _url.format(**path_format_arguments)  # type: ignore
 
     # Construct headers
-    if client_request_id is not None:
-        _headers["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
     if maxresults is not None:
         _headers["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
     if timeout is not None:
@@ -451,7 +440,7 @@ def build_paging_next_fragment_with_grouping_request(
 
 
 def build_paging_get_multiple_pages_lro_request(
-    *, client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
+    *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -461,8 +450,6 @@ def build_paging_get_multiple_pages_lro_request(
     _url = "/paging/multiple/lro"
 
     # Construct headers
-    if client_request_id is not None:
-        _headers["client-request-id"] = _SERIALIZER.header("client_request_id", client_request_id, "str")
     if maxresults is not None:
         _headers["maxresults"] = _SERIALIZER.header("maxresults", maxresults, "int")
     if timeout is not None:
@@ -616,6 +603,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
+                if _stream:
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 
@@ -698,6 +687,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
+                if _stream:
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 
@@ -780,6 +771,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
+                if _stream:
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 
@@ -862,6 +855,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
+                if _stream:
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 
@@ -1025,6 +1020,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
+                if _stream:
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 
@@ -1108,6 +1105,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
+                if _stream:
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 
@@ -1117,17 +1116,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def get_multiple_pages(
-        self,
-        *,
-        client_request_id: Optional[str] = None,
-        maxresults: Optional[int] = None,
-        timeout: int = 30,
-        **kwargs: Any
+        self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
     ) -> Iterable[JSON]:
         """A paging operation that includes a nextLink that has 10 pages.
 
-        :keyword client_request_id: Default value is None.
-        :paramtype client_request_id: str
         :keyword maxresults: Sets the maximum number of items to return in the response. Default value
          is None.
         :paramtype maxresults: int
@@ -1166,7 +1158,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             if not next_link:
 
                 request = build_paging_get_multiple_pages_request(
-                    client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
                     headers=_headers,
@@ -1208,6 +1199,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
+                if _stream:
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 
@@ -1295,6 +1288,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
+                if _stream:
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 
@@ -1382,6 +1377,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
+                if _stream:
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 
@@ -1464,6 +1461,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
+                if _stream:
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 
@@ -1473,17 +1472,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def get_odata_multiple_pages(
-        self,
-        *,
-        client_request_id: Optional[str] = None,
-        maxresults: Optional[int] = None,
-        timeout: int = 30,
-        **kwargs: Any
+        self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
     ) -> Iterable[JSON]:
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
-        :keyword client_request_id: Default value is None.
-        :paramtype client_request_id: str
         :keyword maxresults: Sets the maximum number of items to return in the response. Default value
          is None.
         :paramtype maxresults: int
@@ -1522,7 +1514,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             if not next_link:
 
                 request = build_paging_get_odata_multiple_pages_request(
-                    client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
                     headers=_headers,
@@ -1564,6 +1555,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
+                if _stream:
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 
@@ -1573,20 +1566,12 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def get_multiple_pages_with_offset(
-        self,
-        offset: int,
-        *,
-        client_request_id: Optional[str] = None,
-        maxresults: Optional[int] = None,
-        timeout: int = 30,
-        **kwargs: Any
+        self, offset: int, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
     ) -> Iterable[JSON]:
         """A paging operation that includes a nextLink that has 10 pages.
 
         :param offset: Offset of return value. Required.
         :type offset: int
-        :keyword client_request_id: Default value is None.
-        :paramtype client_request_id: str
         :keyword maxresults: Sets the maximum number of items to return in the response. Default value
          is None.
         :paramtype maxresults: int
@@ -1626,7 +1611,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 request = build_paging_get_multiple_pages_with_offset_request(
                     offset=offset,
-                    client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
                     headers=_headers,
@@ -1668,6 +1652,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
+                if _stream:
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 
@@ -1751,6 +1737,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
+                if _stream:
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 
@@ -1834,6 +1822,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
+                if _stream:
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 
@@ -1916,6 +1906,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
+                if _stream:
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 
@@ -1998,6 +1990,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
+                if _stream:
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 
@@ -2080,6 +2074,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
+                if _stream:
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 
@@ -2164,6 +2160,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
+                if _stream:
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 
@@ -2250,6 +2248,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
+                if _stream:
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 
@@ -2258,12 +2258,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return ItemPaged(get_next, extract_data)
 
     def _get_multiple_pages_lro_initial(
-        self,
-        *,
-        client_request_id: Optional[str] = None,
-        maxresults: Optional[int] = None,
-        timeout: int = 30,
-        **kwargs: Any
+        self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
     ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
@@ -2279,7 +2274,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         request = build_paging_get_multiple_pages_lro_request(
-            client_request_id=client_request_id,
             maxresults=maxresults,
             timeout=timeout,
             headers=_headers,
@@ -2295,6 +2289,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2310,17 +2306,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def begin_get_multiple_pages_lro(
-        self,
-        *,
-        client_request_id: Optional[str] = None,
-        maxresults: Optional[int] = None,
-        timeout: int = 30,
-        **kwargs: Any
+        self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
     ) -> LROPoller[Iterable[JSON]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
-        :keyword client_request_id: Default value is None.
-        :paramtype client_request_id: str
         :keyword maxresults: Sets the maximum number of items to return in the response. Default value
          is None.
         :paramtype maxresults: int
@@ -2367,7 +2356,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             if not next_link:
 
                 request = build_paging_get_multiple_pages_lro_request(
-                    client_request_id=client_request_id,
                     maxresults=maxresults,
                     timeout=timeout,
                     headers=_headers,
@@ -2409,6 +2397,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
+                if _stream:
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 
@@ -2419,7 +2409,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
             raw_result = self._get_multiple_pages_lro_initial(
-                client_request_id=client_request_id,
                 maxresults=maxresults,
                 timeout=timeout,
                 cls=lambda x, y, z: x,
@@ -2529,6 +2518,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
+                if _stream:
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 
@@ -2613,6 +2604,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
+                if _stream:
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 
@@ -2696,6 +2689,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
+                if _stream:
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 

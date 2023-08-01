@@ -105,7 +105,9 @@ steps:
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
       condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
 
-    - script: pytest test/unittests
+    - script: |
+            cd test/unittests
+            tox run -e ci
       displayName: Unit tests
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
       condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
