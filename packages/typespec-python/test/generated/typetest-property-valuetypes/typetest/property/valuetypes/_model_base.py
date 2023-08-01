@@ -143,7 +143,7 @@ class AzureJSONEncoder(JSONEncoder):
                         result.pop(k)
             if self.exclude_none:
                 for k in list(result.keys()):
-                    if result[k] is None or isinstance(result[k], _Null):
+                    if result[k] is None:
                         result.pop(k)
             return result
         if isinstance(o, (bytes, bytearray)):
@@ -546,9 +546,9 @@ class Model(_MyMutableMapping):
         if exclude_readonly:
             readonly_props = [p._rest_name for p in self._attr_to_rest_field.values() if _is_readonly(p)]
         for k, v in self.items():
-            if exclude_readonly and k in readonly_props:
+            if exclude_readonly and k in readonly_props:  # pyright: reportUnboundVariable=false
                 continue
-            if exclude_none and (v is None or isinstance(v, _Null)):
+            if exclude_none and v is None:
                 continue
             result[k] = Model._as_dict_value(v, exclude_readonly=exclude_readonly, exclude_none=exclude_none)
         return result
