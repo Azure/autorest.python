@@ -348,7 +348,6 @@ export function getConstantType(key: string): Record<string, any> {
     }
     const type = {
         apiVersions: [],
-        clientDefaultValue: null,
         type: "constant",
         value: key,
         valueType: KnownTypes.string,
