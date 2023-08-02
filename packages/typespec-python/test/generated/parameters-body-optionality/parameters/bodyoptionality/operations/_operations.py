@@ -205,9 +205,7 @@ class OptionalExplicitOperations:
             _content = body
         else:
             if body is not None:
-                _content = json.dumps(
-                    body, cls=AzureJSONEncoder, exclude_readonly=True, exclude_none=False
-                )  # type: ignore
+                _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
             else:
                 _content = None
 
@@ -326,9 +324,7 @@ class OptionalExplicitOperations:
             _content = body
         else:
             if body is not None:
-                _content = json.dumps(
-                    body, cls=AzureJSONEncoder, exclude_readonly=True, exclude_none=False
-                )  # type: ignore
+                _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
             else:
                 _content = None
 
@@ -448,7 +444,7 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
         if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True, exclude_none=False)  # type: ignore
+            _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_body_optionality_required_explicit_request(
             content_type=content_type,
@@ -564,7 +560,7 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
         if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True, exclude_none=False)  # type: ignore
+            _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_body_optionality_required_implicit_request(
             content_type=content_type,

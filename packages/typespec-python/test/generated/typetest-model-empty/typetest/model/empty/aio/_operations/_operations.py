@@ -133,9 +133,7 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         if isinstance(input, (IOBase, bytes)):
             _content = input
         else:
-            _content = json.dumps(
-                input, cls=AzureJSONEncoder, exclude_readonly=True, exclude_none=False
-            )  # type: ignore
+            _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_empty_put_empty_request(
             content_type=content_type,
@@ -303,7 +301,7 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True, exclude_none=False)  # type: ignore
+            _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_empty_post_round_trip_empty_request(
             content_type=content_type,

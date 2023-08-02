@@ -751,7 +751,7 @@ class _OperationSerializer(
         elif self.code_model.options["models_mode"] == "dpg":
             create_body_call = (
                 f"_{body_kwarg_name} = json.dumps({body_param.client_name}, "
-                "cls=AzureJSONEncoder, exclude_readonly=True,\n exclude_none=False)  # type: ignore"
+                "cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore"
             )
         else:
             create_body_call = f"_{body_kwarg_name} = {body_param.client_name}"
