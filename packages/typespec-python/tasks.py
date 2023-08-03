@@ -58,8 +58,17 @@ EMITTER_OPTIONS = {
     "type/model/empty": {
         "package-name": "typetest-model-empty",
     },
-    "type/model/inheritance": {
-        "package-name": "typetest-model-inheritance",
+    "type/model/inheritance/enum-discriminator": {
+        "package-name": "typetest-model-enumdiscriminator",
+    },
+    "type/model/inheritance/nested-discriminator": {
+        "package-name": "typetest-model-nesteddiscriminator",
+    },
+    "type/model/inheritance/not-discriminator": {
+        "package-name": "typetest-model-notdiscriminator",
+    },
+    "type/model/inheritance/single-discriminator": {
+        "package-name": "typetest-model-singlediscriminator",
     },
     "type/model/usage": {
         "package-name": "typetest-model-usage",
