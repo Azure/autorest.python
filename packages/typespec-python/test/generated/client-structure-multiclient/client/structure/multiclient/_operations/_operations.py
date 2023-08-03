@@ -34,42 +34,42 @@ def build_client_a_renamed_one_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/one"
 
-    return HttpRequest(method="GET", url=_url, **kwargs)
+    return HttpRequest(method="PATCH", url=_url, **kwargs)
 
 
 def build_client_a_renamed_three_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/three"
 
-    return HttpRequest(method="GET", url=_url, **kwargs)
+    return HttpRequest(method="PATCH", url=_url, **kwargs)
 
 
 def build_client_a_renamed_five_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/five"
 
-    return HttpRequest(method="GET", url=_url, **kwargs)
+    return HttpRequest(method="PATCH", url=_url, **kwargs)
 
 
 def build_client_b_renamed_two_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/two"
 
-    return HttpRequest(method="GET", url=_url, **kwargs)
+    return HttpRequest(method="PATCH", url=_url, **kwargs)
 
 
 def build_client_b_renamed_four_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/four"
 
-    return HttpRequest(method="GET", url=_url, **kwargs)
+    return HttpRequest(method="PATCH", url=_url, **kwargs)
 
 
 def build_client_b_renamed_six_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/six"
 
-    return HttpRequest(method="GET", url=_url, **kwargs)
+    return HttpRequest(method="PATCH", url=_url, **kwargs)
 
 
 class ClientAClientOperationsMixin(ClientAClientMixinABC):

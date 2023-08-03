@@ -90,7 +90,7 @@ EMITTER_OPTIONS = {
     "type/union": {
         "package-name": "typetest-union",
     },
-    "azure/core/lro/rpc/legacy": {
+    "azure/core/lro/rpc-legacy": {
         "package-name": "azurecore-lro-rpclegacy",
     },
     "azure/core/lro/rpc": {
