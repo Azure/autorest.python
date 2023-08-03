@@ -64,8 +64,8 @@ EMITTER_OPTIONS = {
     "type/model/inheritance/nested-discriminator": {
         "package-name": "typetest-model-nesteddiscriminator",
     },
-    "type/model/inheritance/not-discriminator": {
-        "package-name": "typetest-model-notdiscriminator",
+    "type/model/inheritance/not-discriminated": {
+        "package-name": "typetest-model-notdiscriminated",
     },
     "type/model/inheritance/single-discriminator": {
         "package-name": "typetest-model-singlediscriminator",
@@ -89,6 +89,21 @@ EMITTER_OPTIONS = {
     },
     "type/union": {
         "package-name": "typetest-union",
+    },
+    "azure/core/lro/rpc/legacy": {
+        "package-name": "azurecore-lro-rpclegacy",
+    },
+    "azure/core/lro/rpc": {
+        "package-name": "azurecore-lro-rpc",
+    },
+    "client/structure/multi-client": {
+        "package-name": "client-structure-multiclient",
+    },
+    "client/structure/renamed-operation": {
+        "package-name": "client-structure-renamedoperation",
+    },
+    "client/structure/two-operation-group": {
+        "package-name": "client-structure-twooperationgroup",
     },
 }
 
@@ -149,7 +164,7 @@ def regenerate(c, name=None, debug=False):
     _run_cadl(
         [
             f"tsp compile {_entry_file_name(spec)} --emit={PLUGIN_DIR} --option {option}"
-            for spec in specs for option in _add_options(spec, debug)
+            for spec in specs for option in _add_options(spec, debug) if "type/model/inheritance/enum-discriminator" not in spec.as_posix()
         ]
     )
 
