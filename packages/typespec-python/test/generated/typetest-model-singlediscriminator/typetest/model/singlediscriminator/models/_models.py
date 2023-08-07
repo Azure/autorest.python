@@ -31,27 +31,22 @@ class Bird(_model_base.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar kind: Required.
+    :ivar kind: Required. Default value is None.
     :vartype kind: str
     :ivar wingspan: Required.
     :vartype wingspan: int
-    :ivar kind: Required. Default value is None.
-    :vartype kind: str
     """
 
     __mapping__: Dict[str, _model_base.Model] = {}
-    kind: str = rest_field()
-    """Required."""
-    wingspan: int = rest_field()
-    """Required."""
     kind: Literal[None] = rest_discriminator(name="kind")
     """Required. Default value is None."""
+    wingspan: int = rest_field()
+    """Required."""
 
     @overload
     def __init__(
         self,
         *,
-        kind: str,
         wingspan: int,
     ):
         ...

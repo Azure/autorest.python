@@ -76,8 +76,6 @@ class Shark(Fish, discriminator="shark"):
     :vartype age: int
     :ivar kind: Required. Default value is "shark".
     :vartype kind: str
-    :ivar sharktype: Required.
-    :vartype sharktype: str
     :ivar sharktype: Required. Default value is None.
     :vartype sharktype: str
     """
@@ -85,8 +83,6 @@ class Shark(Fish, discriminator="shark"):
     __mapping__: Dict[str, _model_base.Model] = {}
     kind: Literal["shark"] = rest_discriminator(name="kind")  # type: ignore
     """Required. Default value is \"shark\"."""
-    sharktype: str = rest_field()
-    """Required."""
     sharktype: Literal[None] = rest_discriminator(name="sharktype")
     """Required. Default value is None."""
 
@@ -95,7 +91,6 @@ class Shark(Fish, discriminator="shark"):
         self,
         *,
         age: int,
-        sharktype: str,
     ):
         ...
 
