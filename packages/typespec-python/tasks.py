@@ -168,6 +168,16 @@ def regenerate(c, name=None, debug=False):
         ]
     )
 
+    regenerate_unittests(c)
+
+
+@task
+def regenerate_unittests(c):
+    shutil.copyfile(
+        "../autorest.python/autorest/codegen/templates/model_base.py.jinja2",
+        "test/unittests/generated/model_base.py"
+    )
+
 
 def _get_package_names(spec: Path) -> List[str]:
     result = [config["package-name"] for config in _get_emitter_option(spec)]
