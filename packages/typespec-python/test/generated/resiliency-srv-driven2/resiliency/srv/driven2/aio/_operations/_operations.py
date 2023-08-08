@@ -71,9 +71,6 @@ class ResiliencyServiceDrivenClientOperationsMixin(ResiliencyServiceDrivenClient
                 "str",
                 skip_quote=True,
             ),
-            "apiVersion": self._serialize.url(
-                "self._config.api_version", self._config.api_version, "str", skip_quote=True
-            ),
         }
         request.url = self._client.format_url(request.url, **path_format_arguments)
 
@@ -132,9 +129,6 @@ class ResiliencyServiceDrivenClientOperationsMixin(ResiliencyServiceDrivenClient
                 self._config.service_deployment_version,
                 "str",
                 skip_quote=True,
-            ),
-            "apiVersion": self._serialize.url(
-                "self._config.api_version", self._config.api_version, "str", skip_quote=True
             ),
         }
         request.url = self._client.format_url(request.url, **path_format_arguments)
@@ -202,9 +196,6 @@ class ResiliencyServiceDrivenClientOperationsMixin(ResiliencyServiceDrivenClient
                 "str",
                 skip_quote=True,
             ),
-            "apiVersion": self._serialize.url(
-                "self._config.api_version", self._config.api_version, "str", skip_quote=True
-            ),
         }
         request.url = self._client.format_url(request.url, **path_format_arguments)
 
@@ -269,9 +260,6 @@ class ResiliencyServiceDrivenClientOperationsMixin(ResiliencyServiceDrivenClient
                 self._config.service_deployment_version,
                 "str",
                 skip_quote=True,
-            ),
-            "apiVersion": self._serialize.url(
-                "self._config.api_version", self._config.api_version, "str", skip_quote=True
             ),
         }
         request.url = self._client.format_url(request.url, **path_format_arguments)

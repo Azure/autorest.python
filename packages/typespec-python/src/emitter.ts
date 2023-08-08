@@ -1135,7 +1135,9 @@ function emitServerParams(context: SdkContext, namespace: Namespace): Record<str
                 param: param,
             };
             const emittedParameter = emitParameter(context, serverParameter, "Client");
-            endpointPathParameters.push(emittedParameter);
+            if (!endpointPathParameters.some((p) => p.name === emittedParameter.name)) {
+                endpointPathParameters.push(emittedParameter);
+            }
             if (isApiVersion(context, serverParameter as any) && apiVersionParam === undefined) {
                 apiVersionParam = emittedParameter;
                 continue;
