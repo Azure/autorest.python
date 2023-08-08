@@ -144,7 +144,7 @@ def _entry_file_name(path: Path) -> Path:
 def regenerate(c, name=None, debug=False):
     specs = [
         s for s in CADL_RANCH_DIR.glob("**/*")
-        if s.is_dir() and any(f for f in s.iterdir() if f.name == "main.tsp")
+        if s.is_dir() and any(f for f in s.iterdir() if f.name == "main.tsp") and "type/model/inheritance/enum-discriminator" not in s.as_posix()
     ]
     if name:
         specs = [s for s in specs if name.lower() in str(s)]
@@ -164,7 +164,7 @@ def regenerate(c, name=None, debug=False):
     _run_cadl(
         [
             f"tsp compile {_entry_file_name(spec)} --emit={PLUGIN_DIR} --option {option}"
-            for spec in specs for option in _add_options(spec, debug) if "type/model/inheritance/enum-discriminator" not in spec.as_posix()
+            for spec in specs for option in _add_options(spec, debug)
         ]
     )
 
