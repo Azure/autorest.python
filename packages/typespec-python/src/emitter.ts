@@ -162,7 +162,7 @@ function handleDiscriminator(context: SdkContext, type: Model, model: Record<str
                 }
             }
         }
-        // it is not included in properties of cadl but needed by python codegen
+        // it may not be included in properties of base model but needed by python codegen
         if (discriminatorProperty) {
             const discriminatorType = { ...discriminatorProperty.type };
             discriminatorType.value = null;
@@ -172,6 +172,13 @@ function handleDiscriminator(context: SdkContext, type: Model, model: Record<str
                 type: discriminatorType,
             };
             propertyCopy.description = "";
+            for (let i = 0; i < model.properties.length; i++) {
+                if (model.properties[i].wireName === discriminator.propertyName) {
+                    model.properties[i] = propertyCopy;
+                    return;
+                }
+            }
+
             model.properties.push(propertyCopy);
         }
     }
@@ -1128,7 +1135,9 @@ function emitServerParams(context: SdkContext, namespace: Namespace): Record<str
                 param: param,
             };
             const emittedParameter = emitParameter(context, serverParameter, "Client");
-            endpointPathParameters.push(emittedParameter);
+            if (!endpointPathParameters.some((p) => p.clientName === emittedParameter.clientName)) {
+                endpointPathParameters.push(emittedParameter);
+            }
             if (isApiVersion(context, serverParameter as any) && apiVersionParam === undefined) {
                 apiVersionParam = emittedParameter;
                 continue;
