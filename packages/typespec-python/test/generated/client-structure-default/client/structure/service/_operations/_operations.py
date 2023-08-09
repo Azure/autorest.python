@@ -34,42 +34,42 @@ def build_service_one_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/one"
 
-    return HttpRequest(method="PATCH", url=_url, **kwargs)
+    return HttpRequest(method="POST", url=_url, **kwargs)
 
 
 def build_service_two_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/two"
 
-    return HttpRequest(method="PATCH", url=_url, **kwargs)
+    return HttpRequest(method="POST", url=_url, **kwargs)
 
 
 def build_service_three_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/three"
 
-    return HttpRequest(method="PATCH", url=_url, **kwargs)
+    return HttpRequest(method="POST", url=_url, **kwargs)
 
 
 def build_service_four_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/four"
 
-    return HttpRequest(method="PATCH", url=_url, **kwargs)
+    return HttpRequest(method="POST", url=_url, **kwargs)
 
 
 def build_service_five_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/five"
 
-    return HttpRequest(method="PATCH", url=_url, **kwargs)
+    return HttpRequest(method="POST", url=_url, **kwargs)
 
 
 def build_service_six_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/six"
 
-    return HttpRequest(method="PATCH", url=_url, **kwargs)
+    return HttpRequest(method="POST", url=_url, **kwargs)
 
 
 class ServiceClientOperationsMixin(ServiceClientMixinABC):
