@@ -1,6 +1,6 @@
 # Release
 
-## 2023-08-XX - 0.13.1
+## 2023-08-09 - 0.13.1
 
 | Library                                                                 | Min Version   |
 | ----------------------------------------------------------------------- | ------------- |
@@ -19,6 +19,10 @@
 **Bug Fixes**
 
 - Fix duplicated discriminator of model #2037
+
+**Other Changes**
+
+- Optimize log for `black` when error happens  #2041
 
 ## 2023-07-20 - 0.13.0
 
