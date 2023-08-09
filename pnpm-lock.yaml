@@ -99,9 +99,6 @@ importers:
       mocha:
         specifier: ~10.2.0
         version: 10.2.0
-      prettier:
-        specifier: ^3.0.0
-        version: 3.0.1
       rimraf:
         specifier: ~5.0.0
         version: 5.0.0
