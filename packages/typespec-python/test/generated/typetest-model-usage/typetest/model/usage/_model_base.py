@@ -478,7 +478,7 @@ class Model(_MyMutableMapping):
                 raise TypeError(f"{class_name}.__init__() got an unexpected keyword argument '{non_attr_kwargs[0]}'")
             dict_to_pass.update(
                 {
-                    self._attr_to_rest_field[k]._rest_name: _serialize(v, self._attr_to_rest_field[k]._format)
+                    self._attr_to_rest_field[k]._rest_name: _create_value(self._attr_to_rest_field[k], v)
                     for k, v in kwargs.items()
                     if v is not None
                 }
@@ -781,6 +781,8 @@ class _RestField:
         item = obj.get(self._rest_name)
         if item is None:
             return item
+        if self._is_model:
+            return item
         return _deserialize(self._type, _serialize(item, self._format), rf=self)
 
     def __set__(self, obj: Model, value) -> None:
@@ -791,8 +793,10 @@ class _RestField:
             except KeyError:
                 pass
             return
-        if self._is_model and not _is_model(value):
-            obj.__setitem__(self._rest_name, _deserialize(self._type, value))
+        if self._is_model:
+            if not _is_model(value):
+                value = _deserialize(self._type, value)
+            obj.__setitem__(self._rest_name, value)
             return
         obj.__setitem__(self._rest_name, _serialize(value, self._format))
 

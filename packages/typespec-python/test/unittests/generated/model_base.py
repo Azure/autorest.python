@@ -795,7 +795,9 @@ class _RestField:
         item = obj.get(self._rest_name)
         if item is None:
             return item
-        return _deserialize(self._type, _serialize(item, self._format), rf=self)
+        if self._is_model:
+            return item
+        return _deserialize(self._type, item, rf=self)
 
     def __set__(self, obj: Model, value) -> None:
         if value is None:
@@ -805,8 +807,10 @@ class _RestField:
             except KeyError:
                 pass
             return
-        if self._is_model and not _is_model(value):
-            obj.__setitem__(self._rest_name, _deserialize(self._type, value))
+        if self._is_model:
+            if not _is_model(value):
+                value = _deserialize(self._type, value)
+            obj.__setitem__(self._rest_name, value)
             return
         obj.__setitem__(self._rest_name, _serialize(value, self._format))
 
