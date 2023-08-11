@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, AnyStr, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -106,7 +106,13 @@ class AvailabilitySetsOperations:
 
     @overload
     def update(  # pylint: disable=inconsistent-return-statements
-        self, resource_group_name: str, avset: str, tags: IO, *, content_type: str = "application/json", **kwargs: Any
+        self,
+        resource_group_name: str,
+        avset: str,
+        tags: IO[AnyStr],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> None:
         """Updates the tags for an availability set.
 
@@ -126,7 +132,7 @@ class AvailabilitySetsOperations:
 
     @distributed_trace
     def update(  # pylint: disable=inconsistent-return-statements
-        self, resource_group_name: str, avset: str, tags: Union[JSON, IO], **kwargs: Any
+        self, resource_group_name: str, avset: str, tags: Union[JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Updates the tags for an availability set.
 
@@ -134,7 +140,7 @@ class AvailabilitySetsOperations:
         :type resource_group_name: str
         :param avset: The name of the storage availability set. Required.
         :type avset: str
-        :param tags: The tags. Is either a JSON type or a IO type. Required.
+        :param tags: The tags. Is either a JSON type or a IO[AnyStr] type. Required.
         :type tags: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.

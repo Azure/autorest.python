@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, AnyStr, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -98,7 +98,7 @@ class ModelOperations:
 
     @overload
     async def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_as_request_body.
 
@@ -116,11 +116,11 @@ class ModelOperations:
 
     @distributed_trace_async
     async def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BodyParameter, JSON, IO], **kwargs: Any
+        self, body: Union[_models.BodyParameter, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """spread_as_request_body.
 
-        :param body: Is one of the following types: BodyParameter, JSON, IO Required.
+        :param body: Is one of the following types: BodyParameter, JSON, IO[AnyStr] Required.
         :type body: ~parameters.spread.models.BodyParameter or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -240,7 +240,7 @@ class AliasOperations:
 
     @overload
     async def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_as_request_body.
 
@@ -258,11 +258,11 @@ class AliasOperations:
 
     @distributed_trace_async
     async def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[JSON, IO] = _Unset, *, name: str = _Unset, **kwargs: Any
+        self, body: Union[JSON, IO[AnyStr]] = _Unset, *, name: str = _Unset, **kwargs: Any
     ) -> None:
         """spread_as_request_body.
 
-        :param body: Is either a JSON type or a IO type. Required.
+        :param body: Is either a JSON type or a IO[AnyStr] type. Required.
         :type body: JSON or IO
         :keyword name: Required.
         :paramtype name: str
@@ -387,7 +387,7 @@ class AliasOperations:
 
     @overload
     async def spread_as_request_parameter(  # pylint: disable=inconsistent-return-statements
-        self, id: str, body: IO, *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
+        self, id: str, body: IO[AnyStr], *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_as_request_parameter.
 
@@ -409,13 +409,19 @@ class AliasOperations:
 
     @distributed_trace_async
     async def spread_as_request_parameter(  # pylint: disable=inconsistent-return-statements
-        self, id: str, body: Union[JSON, IO] = _Unset, *, x_ms_test_header: str, name: str = _Unset, **kwargs: Any
+        self,
+        id: str,
+        body: Union[JSON, IO[AnyStr]] = _Unset,
+        *,
+        x_ms_test_header: str,
+        name: str = _Unset,
+        **kwargs: Any
     ) -> None:
         """spread_as_request_parameter.
 
         :param id: Required.
         :type id: str
-        :param body: Is either a JSON type or a IO type. Required.
+        :param body: Is either a JSON type or a IO[AnyStr] type. Required.
         :type body: JSON or IO
         :keyword x_ms_test_header: Required.
         :paramtype x_ms_test_header: str
@@ -570,7 +576,7 @@ class AliasOperations:
 
     @overload
     async def spread_with_multiple_parameters(  # pylint: disable=inconsistent-return-statements
-        self, id: str, body: IO, *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
+        self, id: str, body: IO[AnyStr], *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_with_multiple_parameters.
 
@@ -594,7 +600,7 @@ class AliasOperations:
     async def spread_with_multiple_parameters(  # pylint: disable=inconsistent-return-statements
         self,
         id: str,
-        body: Union[JSON, IO] = _Unset,
+        body: Union[JSON, IO[AnyStr]] = _Unset,
         *,
         x_ms_test_header: str,
         prop1: str = _Unset,
@@ -609,7 +615,7 @@ class AliasOperations:
 
         :param id: Required.
         :type id: str
-        :param body: Is either a JSON type or a IO type. Required.
+        :param body: Is either a JSON type or a IO[AnyStr] type. Required.
         :type body: JSON or IO
         :keyword x_ms_test_header: Required.
         :paramtype x_ms_test_header: str

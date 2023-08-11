@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, AsyncIterable, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
+from typing import Any, AnyStr, AsyncIterable, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
 import urllib.parse
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
@@ -97,7 +97,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
     @overload
     async def create_or_update(
-        self, id: int, resource: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, id: int, resource: IO[AnyStr], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> _models.User:
         """Adds a user or updates a user's fields.
 
@@ -118,14 +118,17 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         """
 
     @distributed_trace_async
-    async def create_or_update(self, id: int, resource: Union[_models.User, JSON, IO], **kwargs: Any) -> _models.User:
+    async def create_or_update(
+        self, id: int, resource: Union[_models.User, JSON, IO[AnyStr]], **kwargs: Any
+    ) -> _models.User:
         """Adds a user or updates a user's fields.
 
         Creates or updates a User.
 
         :param id: The user's id. Required.
         :type id: int
-        :param resource: The resource instance. Is one of the following types: User, JSON, IO Required.
+        :param resource: The resource instance. Is one of the following types: User, JSON, IO[AnyStr]
+         Required.
         :type resource: ~_specs_.azure.core.basic.models.User or JSON or IO
         :keyword content_type: This request has a JSON Merge Patch body. Default value is None.
         :paramtype content_type: str
@@ -242,7 +245,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
     @overload
     async def create_or_replace(
-        self, id: int, resource: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, id: int, resource: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.User:
         """Adds a user or replaces a user's fields.
 
@@ -263,14 +266,17 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         """
 
     @distributed_trace_async
-    async def create_or_replace(self, id: int, resource: Union[_models.User, JSON, IO], **kwargs: Any) -> _models.User:
+    async def create_or_replace(
+        self, id: int, resource: Union[_models.User, JSON, IO[AnyStr]], **kwargs: Any
+    ) -> _models.User:
         """Adds a user or replaces a user's fields.
 
         Creates or replaces a User.
 
         :param id: The user's id. Required.
         :type id: int
-        :param resource: The resource instance. Is one of the following types: User, JSON, IO Required.
+        :param resource: The resource instance. Is one of the following types: User, JSON, IO[AnyStr]
+         Required.
         :type resource: ~_specs_.azure.core.basic.models.User or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.

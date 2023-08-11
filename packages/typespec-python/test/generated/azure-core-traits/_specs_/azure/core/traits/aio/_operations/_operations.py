@@ -10,7 +10,7 @@ import datetime
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, AnyStr, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core import MatchConditions
 from azure.core.exceptions import (
@@ -181,7 +181,7 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
     @overload
     async def repeatable_action(
-        self, id: int, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, id: int, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.UserActionResponse:
         """Test for repeatable requests.
 
@@ -201,13 +201,13 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
     @distributed_trace_async
     async def repeatable_action(
-        self, id: int, body: Union[_models.UserActionParam, JSON, IO], **kwargs: Any
+        self, id: int, body: Union[_models.UserActionParam, JSON, IO[AnyStr]], **kwargs: Any
     ) -> _models.UserActionResponse:
         """Test for repeatable requests.
 
         :param id: The user's id. Required.
         :type id: int
-        :param body: Is one of the following types: UserActionParam, JSON, IO Required.
+        :param body: Is one of the following types: UserActionParam, JSON, IO[AnyStr] Required.
         :type body: ~_specs_.azure.core.traits.models.UserActionParam or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.

@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from io import IOBase
-from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
+from typing import Any, AnyStr, AsyncIterable, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 import urllib.parse
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
@@ -91,7 +91,7 @@ class StorageAccountsOperations:
 
     @overload
     async def check_name_availability(
-        self, account_name: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, account_name: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.CheckNameAvailabilityResult:
         """Checks that account name is valid and is not in use.
 
@@ -110,14 +110,14 @@ class StorageAccountsOperations:
 
     @distributed_trace_async
     async def check_name_availability(
-        self, account_name: Union[_models.StorageAccountCheckNameAvailabilityParameters, IO], **kwargs: Any
+        self, account_name: Union[_models.StorageAccountCheckNameAvailabilityParameters, IO[AnyStr]], **kwargs: Any
     ) -> _models.CheckNameAvailabilityResult:
         """Checks that account name is valid and is not in use.
 
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only. Is either a StorageAccountCheckNameAvailabilityParameters type or a IO
-         type. Required.
+         lower-case letters only. Is either a StorageAccountCheckNameAvailabilityParameters type or a
+         IO[AnyStr] type. Required.
         :type account_name: ~storage.models.StorageAccountCheckNameAvailabilityParameters or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'text/json'. Default value is None.
@@ -189,7 +189,7 @@ class StorageAccountsOperations:
         self,
         resource_group_name: str,
         account_name: str,
-        parameters: Union[_models.StorageAccountCreateParameters, IO],
+        parameters: Union[_models.StorageAccountCreateParameters, IO[AnyStr]],
         **kwargs: Any
     ) -> Optional[_models.StorageAccount]:
         error_map = {
@@ -300,7 +300,7 @@ class StorageAccountsOperations:
         self,
         resource_group_name: str,
         account_name: str,
-        parameters: IO,
+        parameters: IO[AnyStr],
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -341,7 +341,7 @@ class StorageAccountsOperations:
         self,
         resource_group_name: str,
         account_name: str,
-        parameters: Union[_models.StorageAccountCreateParameters, IO],
+        parameters: Union[_models.StorageAccountCreateParameters, IO[AnyStr]],
         **kwargs: Any
     ) -> AsyncLROPoller[_models.StorageAccount]:
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
@@ -357,7 +357,7 @@ class StorageAccountsOperations:
          lower-case letters only. Required.
         :type account_name: str
         :param parameters: The parameters to provide for the created account. Is either a
-         StorageAccountCreateParameters type or a IO type. Required.
+         StorageAccountCreateParameters type or a IO[AnyStr] type. Required.
         :type parameters: ~storage.models.StorageAccountCreateParameters or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'text/json'. Default value is None.
@@ -595,7 +595,7 @@ class StorageAccountsOperations:
         self,
         resource_group_name: str,
         account_name: str,
-        parameters: IO,
+        parameters: IO[AnyStr],
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -632,7 +632,7 @@ class StorageAccountsOperations:
         self,
         resource_group_name: str,
         account_name: str,
-        parameters: Union[_models.StorageAccountUpdateParameters, IO],
+        parameters: Union[_models.StorageAccountUpdateParameters, IO[AnyStr]],
         **kwargs: Any
     ) -> _models.StorageAccount:
         """Updates the account type or tags for a storage account. It can also be used to add a custom
@@ -651,8 +651,8 @@ class StorageAccountsOperations:
          lower-case letters only. Required.
         :type account_name: str
         :param parameters: The parameters to update on the account. Note that only one property can be
-         changed at a time using this API. Is either a StorageAccountUpdateParameters type or a IO type.
-         Required.
+         changed at a time using this API. Is either a StorageAccountUpdateParameters type or a
+         IO[AnyStr] type. Required.
         :type parameters: ~storage.models.StorageAccountUpdateParameters or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'text/json'. Default value is None.

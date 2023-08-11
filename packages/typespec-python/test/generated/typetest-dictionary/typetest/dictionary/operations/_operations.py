@@ -9,7 +9,7 @@
 import datetime
 from io import IOBase
 import json
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, AnyStr, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -432,7 +432,7 @@ class Int32ValueOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
@@ -450,11 +450,11 @@ class Int32ValueOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, int], IO], **kwargs: Any
+        self, body: Union[Dict[str, int], IO[AnyStr]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: int} type or a IO type. Required.
+        :param body: Is either a {str: int} type or a IO[AnyStr] type. Required.
         :type body: dict[str, int] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -600,7 +600,7 @@ class Int64ValueOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
@@ -618,11 +618,11 @@ class Int64ValueOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, int], IO], **kwargs: Any
+        self, body: Union[Dict[str, int], IO[AnyStr]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: int} type or a IO type. Required.
+        :param body: Is either a {str: int} type or a IO[AnyStr] type. Required.
         :type body: dict[str, int] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -768,7 +768,7 @@ class BooleanValueOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
@@ -786,11 +786,11 @@ class BooleanValueOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, bool], IO], **kwargs: Any
+        self, body: Union[Dict[str, bool], IO[AnyStr]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: bool} type or a IO type. Required.
+        :param body: Is either a {str: bool} type or a IO[AnyStr] type. Required.
         :type body: dict[str, bool] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -936,7 +936,7 @@ class StringValueOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
@@ -954,11 +954,11 @@ class StringValueOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, str], IO], **kwargs: Any
+        self, body: Union[Dict[str, str], IO[AnyStr]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: str} type or a IO type. Required.
+        :param body: Is either a {str: str} type or a IO[AnyStr] type. Required.
         :type body: dict[str, str] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1104,7 +1104,7 @@ class Float32ValueOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
@@ -1122,11 +1122,11 @@ class Float32ValueOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, float], IO], **kwargs: Any
+        self, body: Union[Dict[str, float], IO[AnyStr]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: float} type or a IO type. Required.
+        :param body: Is either a {str: float} type or a IO[AnyStr] type. Required.
         :type body: dict[str, float] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1272,7 +1272,7 @@ class DatetimeValueOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
@@ -1290,11 +1290,11 @@ class DatetimeValueOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, datetime.datetime], IO], **kwargs: Any
+        self, body: Union[Dict[str, datetime.datetime], IO[AnyStr]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: datetime.datetime} type or a IO type. Required.
+        :param body: Is either a {str: datetime.datetime} type or a IO[AnyStr] type. Required.
         :type body: dict[str, ~datetime.datetime] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1440,7 +1440,7 @@ class DurationValueOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
@@ -1458,11 +1458,11 @@ class DurationValueOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, datetime.timedelta], IO], **kwargs: Any
+        self, body: Union[Dict[str, datetime.timedelta], IO[AnyStr]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: datetime.timedelta} type or a IO type. Required.
+        :param body: Is either a {str: datetime.timedelta} type or a IO[AnyStr] type. Required.
         :type body: dict[str, ~datetime.timedelta] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1608,7 +1608,7 @@ class UnknownValueOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
@@ -1626,11 +1626,11 @@ class UnknownValueOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, Any], IO], **kwargs: Any
+        self, body: Union[Dict[str, Any], IO[AnyStr]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: Any} type or a IO type. Required.
+        :param body: Is either a {str: Any} type or a IO[AnyStr] type. Required.
         :type body: dict[str, any] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1776,7 +1776,7 @@ class ModelValueOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
@@ -1794,11 +1794,11 @@ class ModelValueOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, _models.InnerModel], IO], **kwargs: Any
+        self, body: Union[Dict[str, _models.InnerModel], IO[AnyStr]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: InnerModel} type or a IO type. Required.
+        :param body: Is either a {str: InnerModel} type or a IO[AnyStr] type. Required.
         :type body: dict[str, ~typetest.dictionary.models.InnerModel] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1944,7 +1944,7 @@ class RecursiveModelValueOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
@@ -1962,11 +1962,11 @@ class RecursiveModelValueOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, _models.InnerModel], IO], **kwargs: Any
+        self, body: Union[Dict[str, _models.InnerModel], IO[AnyStr]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: InnerModel} type or a IO type. Required.
+        :param body: Is either a {str: InnerModel} type or a IO[AnyStr] type. Required.
         :type body: dict[str, ~typetest.dictionary.models.InnerModel] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -2112,7 +2112,7 @@ class NullableFloatValueOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
@@ -2130,11 +2130,11 @@ class NullableFloatValueOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, float], IO], **kwargs: Any
+        self, body: Union[Dict[str, float], IO[AnyStr]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: float} type or a IO type. Required.
+        :param body: Is either a {str: float} type or a IO[AnyStr] type. Required.
         :type body: dict[str, float] or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.

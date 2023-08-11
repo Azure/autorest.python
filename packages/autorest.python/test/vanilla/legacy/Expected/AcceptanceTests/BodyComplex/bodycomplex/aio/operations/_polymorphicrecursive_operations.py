@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from io import IOBase
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, AnyStr, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -172,7 +172,7 @@ class PolymorphicrecursiveOperations:
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic and have recursive references.
 
@@ -241,7 +241,7 @@ class PolymorphicrecursiveOperations:
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.Fish, IO], **kwargs: Any
+        self, complex_body: Union[_models.Fish, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic and have recursive references.
 
@@ -297,7 +297,7 @@ class PolymorphicrecursiveOperations:
                      "age": 105
                  }
              ]
-         }. Is either a Fish type or a IO type. Required.
+         }. Is either a Fish type or a IO[AnyStr] type. Required.
         :type complex_body: ~bodycomplex.models.Fish or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.

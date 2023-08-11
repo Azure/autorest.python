@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from io import IOBase
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, AnyStr, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -122,7 +122,7 @@ class PetOperations:
 
     @overload
     async def add_pet(
-        self, pet_param: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, pet_param: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Pet:
         """add pet.
 
@@ -138,10 +138,10 @@ class PetOperations:
         """
 
     @distributed_trace_async
-    async def add_pet(self, pet_param: Optional[Union[_models.Pet, IO]] = None, **kwargs: Any) -> _models.Pet:
+    async def add_pet(self, pet_param: Optional[Union[_models.Pet, IO[AnyStr]]] = None, **kwargs: Any) -> _models.Pet:
         """add pet.
 
-        :param pet_param: pet param. Is either a Pet type or a IO type. Default value is None.
+        :param pet_param: pet param. Is either a Pet type or a IO[AnyStr] type. Default value is None.
         :type pet_param: ~extensibleenumsswagger.models.Pet or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.

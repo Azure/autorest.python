@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, AnyStr, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -221,7 +221,7 @@ class StringOperations:
 
     @overload
     async def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
@@ -239,11 +239,11 @@ class StringOperations:
 
     @distributed_trace_async
     async def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.StringProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: StringProperty, JSON, IO Required.
+        :param body: Is one of the following types: StringProperty, JSON, IO[AnyStr] Required.
         :type body: ~typetest.property.nullable.models.StringProperty or JSON or IO
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
@@ -336,7 +336,7 @@ class StringOperations:
 
     @overload
     async def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
@@ -354,11 +354,11 @@ class StringOperations:
 
     @distributed_trace_async
     async def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.StringProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: StringProperty, JSON, IO Required.
+        :param body: Is one of the following types: StringProperty, JSON, IO[AnyStr] Required.
         :type body: ~typetest.property.nullable.models.StringProperty or JSON or IO
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
@@ -573,7 +573,7 @@ class BytesOperations:
 
     @overload
     async def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
@@ -591,11 +591,11 @@ class BytesOperations:
 
     @distributed_trace_async
     async def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BytesProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.BytesProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: BytesProperty, JSON, IO Required.
+        :param body: Is one of the following types: BytesProperty, JSON, IO[AnyStr] Required.
         :type body: ~typetest.property.nullable.models.BytesProperty or JSON or IO
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
@@ -688,7 +688,7 @@ class BytesOperations:
 
     @overload
     async def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
@@ -706,11 +706,11 @@ class BytesOperations:
 
     @distributed_trace_async
     async def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BytesProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.BytesProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: BytesProperty, JSON, IO Required.
+        :param body: Is one of the following types: BytesProperty, JSON, IO[AnyStr] Required.
         :type body: ~typetest.property.nullable.models.BytesProperty or JSON or IO
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
@@ -925,7 +925,7 @@ class DatetimeOperations:
 
     @overload
     async def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
@@ -943,11 +943,11 @@ class DatetimeOperations:
 
     @distributed_trace_async
     async def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DatetimeProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DatetimeProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: DatetimeProperty, JSON, IO Required.
+        :param body: Is one of the following types: DatetimeProperty, JSON, IO[AnyStr] Required.
         :type body: ~typetest.property.nullable.models.DatetimeProperty or JSON or IO
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
@@ -1040,7 +1040,7 @@ class DatetimeOperations:
 
     @overload
     async def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
@@ -1058,11 +1058,11 @@ class DatetimeOperations:
 
     @distributed_trace_async
     async def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DatetimeProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DatetimeProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: DatetimeProperty, JSON, IO Required.
+        :param body: Is one of the following types: DatetimeProperty, JSON, IO[AnyStr] Required.
         :type body: ~typetest.property.nullable.models.DatetimeProperty or JSON or IO
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
@@ -1277,7 +1277,7 @@ class DurationOperations:
 
     @overload
     async def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
@@ -1295,11 +1295,11 @@ class DurationOperations:
 
     @distributed_trace_async
     async def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DurationProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DurationProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: DurationProperty, JSON, IO Required.
+        :param body: Is one of the following types: DurationProperty, JSON, IO[AnyStr] Required.
         :type body: ~typetest.property.nullable.models.DurationProperty or JSON or IO
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
@@ -1392,7 +1392,7 @@ class DurationOperations:
 
     @overload
     async def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
@@ -1410,11 +1410,11 @@ class DurationOperations:
 
     @distributed_trace_async
     async def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DurationProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DurationProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: DurationProperty, JSON, IO Required.
+        :param body: Is one of the following types: DurationProperty, JSON, IO[AnyStr] Required.
         :type body: ~typetest.property.nullable.models.DurationProperty or JSON or IO
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
@@ -1633,7 +1633,7 @@ class CollectionsByteOperations:
 
     @overload
     async def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
@@ -1651,11 +1651,11 @@ class CollectionsByteOperations:
 
     @distributed_trace_async
     async def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsByteProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.CollectionsByteProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: CollectionsByteProperty, JSON, IO Required.
+        :param body: Is one of the following types: CollectionsByteProperty, JSON, IO[AnyStr] Required.
         :type body: ~typetest.property.nullable.models.CollectionsByteProperty or JSON or IO
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
@@ -1752,7 +1752,7 @@ class CollectionsByteOperations:
 
     @overload
     async def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
@@ -1770,11 +1770,11 @@ class CollectionsByteOperations:
 
     @distributed_trace_async
     async def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsByteProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.CollectionsByteProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: CollectionsByteProperty, JSON, IO Required.
+        :param body: Is one of the following types: CollectionsByteProperty, JSON, IO[AnyStr] Required.
         :type body: ~typetest.property.nullable.models.CollectionsByteProperty or JSON or IO
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
@@ -1995,7 +1995,7 @@ class CollectionsModelOperations:
 
     @overload
     async def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
@@ -2013,11 +2013,12 @@ class CollectionsModelOperations:
 
     @distributed_trace_async
     async def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsModelProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.CollectionsModelProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: CollectionsModelProperty, JSON, IO Required.
+        :param body: Is one of the following types: CollectionsModelProperty, JSON, IO[AnyStr]
+         Required.
         :type body: ~typetest.property.nullable.models.CollectionsModelProperty or JSON or IO
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str
@@ -2114,7 +2115,7 @@ class CollectionsModelOperations:
 
     @overload
     async def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
@@ -2132,11 +2133,12 @@ class CollectionsModelOperations:
 
     @distributed_trace_async
     async def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsModelProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.CollectionsModelProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: CollectionsModelProperty, JSON, IO Required.
+        :param body: Is one of the following types: CollectionsModelProperty, JSON, IO[AnyStr]
+         Required.
         :type body: ~typetest.property.nullable.models.CollectionsModelProperty or JSON or IO
         :keyword content_type: content-type is application/merge-patch+json. Default value is None.
         :paramtype content_type: str

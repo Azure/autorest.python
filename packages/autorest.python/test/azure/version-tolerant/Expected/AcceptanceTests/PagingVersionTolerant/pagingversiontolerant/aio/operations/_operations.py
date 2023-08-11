@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
+from typing import Any, AnyStr, AsyncIterable, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 import urllib.parse
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
@@ -457,7 +457,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def get_single_pages_with_body_params(
-        self, parameters: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, parameters: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncIterable[JSON]:
         """A paging operation that finishes on the first call with body params without a nextlink.
 
@@ -483,11 +483,13 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace
-    def get_single_pages_with_body_params(self, parameters: Union[JSON, IO], **kwargs: Any) -> AsyncIterable[JSON]:
+    def get_single_pages_with_body_params(
+        self, parameters: Union[JSON, IO[AnyStr]], **kwargs: Any
+    ) -> AsyncIterable[JSON]:
         """A paging operation that finishes on the first call with body params without a nextlink.
 
-        :param parameters: put {'name': 'body'} to pass the test. Is either a JSON type or a IO type.
-         Required.
+        :param parameters: put {'name': 'body'} to pass the test. Is either a JSON type or a IO[AnyStr]
+         type. Required.
         :type parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.

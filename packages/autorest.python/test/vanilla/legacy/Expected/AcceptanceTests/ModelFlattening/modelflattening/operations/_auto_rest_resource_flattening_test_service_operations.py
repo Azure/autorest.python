@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
+from typing import Any, AnyStr, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -246,7 +246,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
     @overload
     def put_array(  # pylint: disable=inconsistent-return-statements
-        self, resource_array: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, resource_array: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put External Resource as an Array.
 
@@ -266,7 +266,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
     @distributed_trace
     def put_array(  # pylint: disable=inconsistent-return-statements
-        self, resource_array: Optional[Union[List[_models.Resource], IO]] = None, **kwargs: Any
+        self, resource_array: Optional[Union[List[_models.Resource], IO[AnyStr]]] = None, **kwargs: Any
     ) -> None:
         """Put External Resource as an Array.
 
@@ -274,7 +274,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
            - http://tempuri.org
 
         :param resource_array: External Resource as an Array to put. Is either a [Resource] type or a
-         IO type. Default value is None.
+         IO[AnyStr] type. Default value is None.
         :type resource_array: list[~modelflattening.models.Resource] or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -418,7 +418,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
     @overload
     def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
-        self, resource_array: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, resource_array: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
@@ -439,7 +439,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
     @distributed_trace
     def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
-        self, resource_array: Optional[Union[List[_models.WrappedProduct], IO]] = None, **kwargs: Any
+        self, resource_array: Optional[Union[List[_models.WrappedProduct], IO[AnyStr]]] = None, **kwargs: Any
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
@@ -448,7 +448,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
            - http://tempuri.org
 
         :param resource_array: External Resource as an Array to put. Is either a [WrappedProduct] type
-         or a IO type. Default value is None.
+         or a IO[AnyStr] type. Default value is None.
         :type resource_array: list[~modelflattening.models.WrappedProduct] or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -592,7 +592,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
     @overload
     def put_dictionary(  # pylint: disable=inconsistent-return-statements
-        self, resource_dictionary: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, resource_dictionary: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put External Resource as a Dictionary.
 
@@ -612,7 +612,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
     @distributed_trace
     def put_dictionary(  # pylint: disable=inconsistent-return-statements
-        self, resource_dictionary: Optional[Union[Dict[str, _models.FlattenedProduct], IO]] = None, **kwargs: Any
+        self,
+        resource_dictionary: Optional[Union[Dict[str, _models.FlattenedProduct], IO[AnyStr]]] = None,
+        **kwargs: Any
     ) -> None:
         """Put External Resource as a Dictionary.
 
@@ -620,7 +622,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
            - http://tempuri.org
 
         :param resource_dictionary: External Resource as a Dictionary to put. Is either a {str:
-         FlattenedProduct} type or a IO type. Default value is None.
+         FlattenedProduct} type or a IO[AnyStr] type. Default value is None.
         :type resource_dictionary: dict[str, ~modelflattening.models.FlattenedProduct] or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -764,7 +766,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
     @overload
     def put_resource_collection(  # pylint: disable=inconsistent-return-statements
-        self, resource_complex_object: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self,
+        resource_complex_object: Optional[IO[AnyStr]] = None,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
     ) -> None:
         """Put External Resource as a ResourceCollection.
 
@@ -785,7 +791,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
     @distributed_trace
     def put_resource_collection(  # pylint: disable=inconsistent-return-statements
-        self, resource_complex_object: Optional[Union[_models.ResourceCollection, IO]] = None, **kwargs: Any
+        self, resource_complex_object: Optional[Union[_models.ResourceCollection, IO[AnyStr]]] = None, **kwargs: Any
     ) -> None:
         """Put External Resource as a ResourceCollection.
 
@@ -793,7 +799,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
            - http://tempuri.org
 
         :param resource_complex_object: External Resource as a ResourceCollection to put. Is either a
-         ResourceCollection type or a IO type. Default value is None.
+         ResourceCollection type or a IO[AnyStr] type. Default value is None.
         :type resource_complex_object: ~modelflattening.models.ResourceCollection or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -936,7 +942,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
     @overload
     def put_simple_product(
-        self, simple_body_product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, simple_body_product: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.SimpleProduct:
         """Put Simple Product with client flattening true on the model.
 
@@ -956,15 +962,15 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
 
     @distributed_trace
     def put_simple_product(
-        self, simple_body_product: Optional[Union[_models.SimpleProduct, IO]] = None, **kwargs: Any
+        self, simple_body_product: Optional[Union[_models.SimpleProduct, IO[AnyStr]]] = None, **kwargs: Any
     ) -> _models.SimpleProduct:
         """Put Simple Product with client flattening true on the model.
 
         .. seealso::
            - http://tempuri.org
 
-        :param simple_body_product: Simple body product to put. Is either a SimpleProduct type or a IO
-         type. Default value is None.
+        :param simple_body_product: Simple body product to put. Is either a SimpleProduct type or a
+         IO[AnyStr] type. Default value is None.
         :type simple_body_product: ~modelflattening.models.SimpleProduct or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.

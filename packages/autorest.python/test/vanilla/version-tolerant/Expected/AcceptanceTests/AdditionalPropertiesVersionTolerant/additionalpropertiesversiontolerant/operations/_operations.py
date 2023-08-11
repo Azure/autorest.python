@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
+from typing import Any, AnyStr, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -188,7 +188,9 @@ class PetsOperations:
         """
 
     @overload
-    def create_ap_true(self, create_parameters: IO, *, content_type: str = "application/json", **kwargs: Any) -> JSON:
+    def create_ap_true(
+        self, create_parameters: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
+    ) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters: Required.
@@ -212,10 +214,10 @@ class PetsOperations:
         """
 
     @distributed_trace
-    def create_ap_true(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
+    def create_ap_true(self, create_parameters: Union[JSON, IO[AnyStr]], **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is either a JSON type or a IO type. Required.
+        :param create_parameters: Is either a JSON type or a IO[AnyStr] type. Required.
         :type create_parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -332,7 +334,7 @@ class PetsOperations:
 
     @overload
     def create_cat_ap_true(
-        self, create_parameters: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, create_parameters: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """Create a CatAPTrue which contains more properties than what is defined.
 
@@ -358,10 +360,10 @@ class PetsOperations:
         """
 
     @distributed_trace
-    def create_cat_ap_true(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
+    def create_cat_ap_true(self, create_parameters: Union[JSON, IO[AnyStr]], **kwargs: Any) -> JSON:
         """Create a CatAPTrue which contains more properties than what is defined.
 
-        :param create_parameters: Is either a JSON type or a IO type. Required.
+        :param create_parameters: Is either a JSON type or a IO[AnyStr] type. Required.
         :type create_parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -477,7 +479,9 @@ class PetsOperations:
         """
 
     @overload
-    def create_ap_object(self, create_parameters: IO, *, content_type: str = "application/json", **kwargs: Any) -> JSON:
+    def create_ap_object(
+        self, create_parameters: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
+    ) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters: Required.
@@ -501,10 +505,10 @@ class PetsOperations:
         """
 
     @distributed_trace
-    def create_ap_object(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
+    def create_ap_object(self, create_parameters: Union[JSON, IO[AnyStr]], **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is either a JSON type or a IO type. Required.
+        :param create_parameters: Is either a JSON type or a IO[AnyStr] type. Required.
         :type create_parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -618,7 +622,9 @@ class PetsOperations:
         """
 
     @overload
-    def create_ap_string(self, create_parameters: IO, *, content_type: str = "application/json", **kwargs: Any) -> JSON:
+    def create_ap_string(
+        self, create_parameters: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
+    ) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters: Required.
@@ -642,10 +648,10 @@ class PetsOperations:
         """
 
     @distributed_trace
-    def create_ap_string(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
+    def create_ap_string(self, create_parameters: Union[JSON, IO[AnyStr]], **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is either a JSON type or a IO type. Required.
+        :param create_parameters: Is either a JSON type or a IO[AnyStr] type. Required.
         :type create_parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -760,7 +766,7 @@ class PetsOperations:
 
     @overload
     def create_ap_in_properties(
-        self, create_parameters: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, create_parameters: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
@@ -785,10 +791,10 @@ class PetsOperations:
         """
 
     @distributed_trace
-    def create_ap_in_properties(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
+    def create_ap_in_properties(self, create_parameters: Union[JSON, IO[AnyStr]], **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is either a JSON type or a IO type. Required.
+        :param create_parameters: Is either a JSON type or a IO[AnyStr] type. Required.
         :type create_parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -911,7 +917,7 @@ class PetsOperations:
 
     @overload
     def create_ap_in_properties_with_ap_string(
-        self, create_parameters: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, create_parameters: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
@@ -940,10 +946,10 @@ class PetsOperations:
         """
 
     @distributed_trace
-    def create_ap_in_properties_with_ap_string(self, create_parameters: Union[JSON, IO], **kwargs: Any) -> JSON:
+    def create_ap_in_properties_with_ap_string(self, create_parameters: Union[JSON, IO[AnyStr]], **kwargs: Any) -> JSON:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is either a JSON type or a IO type. Required.
+        :param create_parameters: Is either a JSON type or a IO[AnyStr] type. Required.
         :type create_parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.

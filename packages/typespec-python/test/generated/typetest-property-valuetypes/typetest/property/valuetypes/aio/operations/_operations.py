@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, AnyStr, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -183,7 +183,7 @@ class BooleanOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -201,11 +201,11 @@ class BooleanOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BooleanProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.BooleanProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: BooleanProperty, JSON, IO Required.
+        :param body: body. Is one of the following types: BooleanProperty, JSON, IO[AnyStr] Required.
         :type body: ~typetest.property.valuetypes.models.BooleanProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -369,7 +369,7 @@ class StringOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -387,11 +387,11 @@ class StringOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.StringProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: StringProperty, JSON, IO Required.
+        :param body: body. Is one of the following types: StringProperty, JSON, IO[AnyStr] Required.
         :type body: ~typetest.property.valuetypes.models.StringProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -555,7 +555,7 @@ class BytesOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -573,11 +573,11 @@ class BytesOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BytesProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.BytesProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: BytesProperty, JSON, IO Required.
+        :param body: body. Is one of the following types: BytesProperty, JSON, IO[AnyStr] Required.
         :type body: ~typetest.property.valuetypes.models.BytesProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -741,7 +741,7 @@ class IntOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -759,11 +759,11 @@ class IntOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IntProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.IntProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: IntProperty, JSON, IO Required.
+        :param body: body. Is one of the following types: IntProperty, JSON, IO[AnyStr] Required.
         :type body: ~typetest.property.valuetypes.models.IntProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -927,7 +927,7 @@ class FloatOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -945,11 +945,11 @@ class FloatOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.FloatProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.FloatProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: FloatProperty, JSON, IO Required.
+        :param body: body. Is one of the following types: FloatProperty, JSON, IO[AnyStr] Required.
         :type body: ~typetest.property.valuetypes.models.FloatProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1113,7 +1113,7 @@ class DatetimeOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -1131,11 +1131,11 @@ class DatetimeOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DatetimeProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DatetimeProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: DatetimeProperty, JSON, IO Required.
+        :param body: body. Is one of the following types: DatetimeProperty, JSON, IO[AnyStr] Required.
         :type body: ~typetest.property.valuetypes.models.DatetimeProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1299,7 +1299,7 @@ class DurationOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -1317,11 +1317,11 @@ class DurationOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DurationProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DurationProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: DurationProperty, JSON, IO Required.
+        :param body: body. Is one of the following types: DurationProperty, JSON, IO[AnyStr] Required.
         :type body: ~typetest.property.valuetypes.models.DurationProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1485,7 +1485,7 @@ class EnumOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -1503,11 +1503,11 @@ class EnumOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.EnumProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.EnumProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: EnumProperty, JSON, IO Required.
+        :param body: body. Is one of the following types: EnumProperty, JSON, IO[AnyStr] Required.
         :type body: ~typetest.property.valuetypes.models.EnumProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1671,7 +1671,7 @@ class ExtensibleEnumOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -1689,11 +1689,12 @@ class ExtensibleEnumOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ExtensibleEnumProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.ExtensibleEnumProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: ExtensibleEnumProperty, JSON, IO Required.
+        :param body: body. Is one of the following types: ExtensibleEnumProperty, JSON, IO[AnyStr]
+         Required.
         :type body: ~typetest.property.valuetypes.models.ExtensibleEnumProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1857,7 +1858,7 @@ class ModelOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -1875,11 +1876,11 @@ class ModelOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ModelProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.ModelProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: ModelProperty, JSON, IO Required.
+        :param body: body. Is one of the following types: ModelProperty, JSON, IO[AnyStr] Required.
         :type body: ~typetest.property.valuetypes.models.ModelProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -2044,7 +2045,7 @@ class CollectionsStringOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -2062,11 +2063,12 @@ class CollectionsStringOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsStringProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.CollectionsStringProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: CollectionsStringProperty, JSON, IO Required.
+        :param body: body. Is one of the following types: CollectionsStringProperty, JSON, IO[AnyStr]
+         Required.
         :type body: ~typetest.property.valuetypes.models.CollectionsStringProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -2230,7 +2232,7 @@ class CollectionsIntOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -2248,11 +2250,12 @@ class CollectionsIntOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsIntProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.CollectionsIntProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: CollectionsIntProperty, JSON, IO Required.
+        :param body: body. Is one of the following types: CollectionsIntProperty, JSON, IO[AnyStr]
+         Required.
         :type body: ~typetest.property.valuetypes.models.CollectionsIntProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -2417,7 +2420,7 @@ class CollectionsModelOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -2435,11 +2438,12 @@ class CollectionsModelOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsModelProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.CollectionsModelProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: CollectionsModelProperty, JSON, IO Required.
+        :param body: body. Is one of the following types: CollectionsModelProperty, JSON, IO[AnyStr]
+         Required.
         :type body: ~typetest.property.valuetypes.models.CollectionsModelProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -2604,7 +2608,7 @@ class DictionaryStringOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -2622,11 +2626,12 @@ class DictionaryStringOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DictionaryStringProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DictionaryStringProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: DictionaryStringProperty, JSON, IO Required.
+        :param body: body. Is one of the following types: DictionaryStringProperty, JSON, IO[AnyStr]
+         Required.
         :type body: ~typetest.property.valuetypes.models.DictionaryStringProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -2790,7 +2795,7 @@ class NeverOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -2808,11 +2813,11 @@ class NeverOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.NeverProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.NeverProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: NeverProperty, JSON, IO Required.
+        :param body: body. Is one of the following types: NeverProperty, JSON, IO[AnyStr] Required.
         :type body: ~typetest.property.valuetypes.models.NeverProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -2976,7 +2981,7 @@ class UnknownStringOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -2994,11 +2999,12 @@ class UnknownStringOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnknownStringProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.UnknownStringProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: UnknownStringProperty, JSON, IO Required.
+        :param body: body. Is one of the following types: UnknownStringProperty, JSON, IO[AnyStr]
+         Required.
         :type body: ~typetest.property.valuetypes.models.UnknownStringProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -3162,7 +3168,7 @@ class UnknownIntOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -3180,11 +3186,12 @@ class UnknownIntOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnknownIntProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.UnknownIntProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: UnknownIntProperty, JSON, IO Required.
+        :param body: body. Is one of the following types: UnknownIntProperty, JSON, IO[AnyStr]
+         Required.
         :type body: ~typetest.property.valuetypes.models.UnknownIntProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -3348,7 +3355,7 @@ class UnknownDictOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -3366,11 +3373,12 @@ class UnknownDictOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnknownDictProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.UnknownDictProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: UnknownDictProperty, JSON, IO Required.
+        :param body: body. Is one of the following types: UnknownDictProperty, JSON, IO[AnyStr]
+         Required.
         :type body: ~typetest.property.valuetypes.models.UnknownDictProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -3534,7 +3542,7 @@ class UnknownArrayOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -3552,11 +3560,12 @@ class UnknownArrayOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnknownArrayProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.UnknownArrayProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: UnknownArrayProperty, JSON, IO Required.
+        :param body: body. Is one of the following types: UnknownArrayProperty, JSON, IO[AnyStr]
+         Required.
         :type body: ~typetest.property.valuetypes.models.UnknownArrayProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.

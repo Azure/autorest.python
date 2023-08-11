@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
+from typing import Any, AnyStr, AsyncIterable, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 import urllib.parse
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
@@ -110,7 +110,7 @@ class StorageAccountsOperations:
 
     @overload
     async def check_name_availability(
-        self, account_name: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, account_name: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """Checks that account name is valid and is not in use.
 
@@ -142,12 +142,12 @@ class StorageAccountsOperations:
         """
 
     @distributed_trace_async
-    async def check_name_availability(self, account_name: Union[JSON, IO], **kwargs: Any) -> JSON:
+    async def check_name_availability(self, account_name: Union[JSON, IO[AnyStr]], **kwargs: Any) -> JSON:
         """Checks that account name is valid and is not in use.
 
         :param account_name: The name of the storage account within the specified resource group.
          Storage account names must be between 3 and 24 characters in length and use numbers and
-         lower-case letters only. Is either a JSON type or a IO type. Required.
+         lower-case letters only. Is either a JSON type or a IO[AnyStr] type. Required.
         :type account_name: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'text/json'. Default value is None.
@@ -235,7 +235,7 @@ class StorageAccountsOperations:
         return cast(JSON, deserialized)
 
     async def _create_initial(
-        self, resource_group_name: str, account_name: str, parameters: Union[JSON, IO], **kwargs: Any
+        self, resource_group_name: str, account_name: str, parameters: Union[JSON, IO[AnyStr]], **kwargs: Any
     ) -> Optional[JSON]:
         error_map = {
             401: ClientAuthenticationError,
@@ -427,7 +427,7 @@ class StorageAccountsOperations:
         self,
         resource_group_name: str,
         account_name: str,
-        parameters: IO,
+        parameters: IO[AnyStr],
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -533,7 +533,7 @@ class StorageAccountsOperations:
 
     @distributed_trace_async
     async def begin_create(
-        self, resource_group_name: str, account_name: str, parameters: Union[JSON, IO], **kwargs: Any
+        self, resource_group_name: str, account_name: str, parameters: Union[JSON, IO[AnyStr]], **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
         cannot be updated with this API and should instead use the Update Storage Account API. If an
@@ -548,7 +548,7 @@ class StorageAccountsOperations:
          lower-case letters only. Required.
         :type account_name: str
         :param parameters: The parameters to provide for the created account. Is either a JSON type or
-         a IO type. Required.
+         a IO[AnyStr] type. Required.
         :type parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'text/json'. Default value is None.
@@ -1021,7 +1021,7 @@ class StorageAccountsOperations:
         self,
         resource_group_name: str,
         account_name: str,
-        parameters: IO,
+        parameters: IO[AnyStr],
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -1124,7 +1124,7 @@ class StorageAccountsOperations:
 
     @distributed_trace_async
     async def update(
-        self, resource_group_name: str, account_name: str, parameters: Union[JSON, IO], **kwargs: Any
+        self, resource_group_name: str, account_name: str, parameters: Union[JSON, IO[AnyStr]], **kwargs: Any
     ) -> JSON:
         """Updates the account type or tags for a storage account. It can also be used to add a custom
         domain (note that custom domains cannot be added via the Create operation). Only one custom
@@ -1142,7 +1142,7 @@ class StorageAccountsOperations:
          lower-case letters only. Required.
         :type account_name: str
         :param parameters: The parameters to update on the account. Note that only one property can be
-         changed at a time using this API. Is either a JSON type or a IO type. Required.
+         changed at a time using this API. Is either a JSON type or a IO[AnyStr] type. Required.
         :type parameters: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'text/json'. Default value is None.
@@ -1716,7 +1716,7 @@ class StorageAccountsOperations:
         self,
         resource_group_name: str,
         account_name: str,
-        regenerate_key: IO,
+        regenerate_key: IO[AnyStr],
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -1751,7 +1751,7 @@ class StorageAccountsOperations:
 
     @distributed_trace_async
     async def regenerate_key(
-        self, resource_group_name: str, account_name: str, regenerate_key: Union[JSON, IO], **kwargs: Any
+        self, resource_group_name: str, account_name: str, regenerate_key: Union[JSON, IO[AnyStr]], **kwargs: Any
     ) -> JSON:
         """Regenerates the access keys for the specified storage account.
 
@@ -1763,7 +1763,7 @@ class StorageAccountsOperations:
          lower-case letters only. Required.
         :type account_name: str
         :param regenerate_key: Specifies name of the key which should be regenerated. Is either a JSON
-         type or a IO type. Required.
+         type or a IO[AnyStr] type. Required.
         :type regenerate_key: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'text/json'. Default value is None.

@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
+from typing import Any, AnyStr, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -990,7 +990,7 @@ class BasicOperations:
 
     @overload
     def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
@@ -1006,12 +1006,12 @@ class BasicOperations:
 
     @distributed_trace
     def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Is either a JSON type
-         or a IO type. Required.
+         or a IO[AnyStr] type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1432,7 +1432,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_int(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with integer properties.
 
@@ -1448,11 +1448,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_int(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put complex types with integer properties.
 
-        :param complex_body: Please put -1 and 2. Is either a JSON type or a IO type. Required.
+        :param complex_body: Please put -1 and 2. Is either a JSON type or a IO[AnyStr] type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1603,7 +1603,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_long(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with long properties.
 
@@ -1619,12 +1619,12 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_long(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put complex types with long properties.
 
-        :param complex_body: Please put 1099511627775 and -999511627788. Is either a JSON type or a IO
-         type. Required.
+        :param complex_body: Please put 1099511627775 and -999511627788. Is either a JSON type or a
+         IO[AnyStr] type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1775,7 +1775,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_float(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with float properties.
 
@@ -1791,11 +1791,12 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_float(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put complex types with float properties.
 
-        :param complex_body: Please put 1.05 and -0.003. Is either a JSON type or a IO type. Required.
+        :param complex_body: Please put 1.05 and -0.003. Is either a JSON type or a IO[AnyStr] type.
+         Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1949,7 +1950,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_double(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with double properties.
 
@@ -1966,13 +1967,13 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_double(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
-         -0.000000000000000000000000000000000000000000000000000000005. Is either a JSON type or a IO
-         type. Required.
+         -0.000000000000000000000000000000000000000000000000000000005. Is either a JSON type or a
+         IO[AnyStr] type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -2124,7 +2125,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_bool(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with bool properties.
 
@@ -2140,11 +2141,12 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_bool(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put complex types with bool properties.
 
-        :param complex_body: Please put true and false. Is either a JSON type or a IO type. Required.
+        :param complex_body: Please put true and false. Is either a JSON type or a IO[AnyStr] type.
+         Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -2297,7 +2299,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_string(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with string properties.
 
@@ -2313,12 +2315,12 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_string(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put complex types with string properties.
 
-        :param complex_body: Please put 'goodrequest', '', and null. Is either a JSON type or a IO
-         type. Required.
+        :param complex_body: Please put 'goodrequest', '', and null. Is either a JSON type or a
+         IO[AnyStr] type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -2470,7 +2472,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_date(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with date properties.
 
@@ -2486,12 +2488,12 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_date(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put complex types with date properties.
 
-        :param complex_body: Please put '0001-01-01' and '2016-02-29'. Is either a JSON type or a IO
-         type. Required.
+        :param complex_body: Please put '0001-01-01' and '2016-02-29'. Is either a JSON type or a
+         IO[AnyStr] type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -2643,7 +2645,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_date_time(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with datetime properties.
 
@@ -2660,12 +2662,12 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_date_time(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put complex types with datetime properties.
 
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'. Is
-         either a JSON type or a IO type. Required.
+         either a JSON type or a IO[AnyStr] type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -2817,7 +2819,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with datetimeRfc1123 properties.
 
@@ -2834,12 +2836,12 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put complex types with datetimeRfc1123 properties.
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
-         GMT'. Is either a JSON type or a IO type. Required.
+         GMT'. Is either a JSON type or a IO[AnyStr] type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -2988,7 +2990,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_duration(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with duration properties.
 
@@ -3004,12 +3006,12 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_duration(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put complex types with duration properties.
 
-        :param complex_body: Please put 'P123DT22H14M12.011S'. Is either a JSON type or a IO type.
-         Required.
+        :param complex_body: Please put 'P123DT22H14M12.011S'. Is either a JSON type or a IO[AnyStr]
+         type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -3158,7 +3160,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_byte(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with byte properties.
 
@@ -3175,12 +3177,12 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_byte(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put complex types with byte properties.
 
         :param complex_body: Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8 F7 F6). Is
-         either a JSON type or a IO type. Required.
+         either a JSON type or a IO[AnyStr] type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -3351,7 +3353,7 @@ class ArrayOperations:
 
     @overload
     def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with array property.
 
@@ -3368,12 +3370,12 @@ class ArrayOperations:
 
     @distributed_trace
     def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put complex types with array property.
 
         :param complex_body: Please put an array with 4 items: "1, 2, 3, 4", "", null, "&S#$(*Y", "The
-         quick brown fox jumps over the lazy dog". Is either a JSON type or a IO type. Required.
+         quick brown fox jumps over the lazy dog". Is either a JSON type or a IO[AnyStr] type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -3527,7 +3529,7 @@ class ArrayOperations:
 
     @overload
     def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with array property which is empty.
 
@@ -3543,11 +3545,12 @@ class ArrayOperations:
 
     @distributed_trace
     def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put complex types with array property which is empty.
 
-        :param complex_body: Please put an empty array. Is either a JSON type or a IO type. Required.
+        :param complex_body: Please put an empty array. Is either a JSON type or a IO[AnyStr] type.
+         Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -3780,7 +3783,7 @@ class DictionaryOperations:
 
     @overload
     def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with dictionary property.
 
@@ -3797,12 +3800,12 @@ class DictionaryOperations:
 
     @distributed_trace
     def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put complex types with dictionary property.
 
         :param complex_body: Please put a dictionary with 5 key-value pairs: "txt":"notepad",
-         "bmp":"mspaint", "xls":"excel", "exe":"", "":null. Is either a JSON type or a IO type.
+         "bmp":"mspaint", "xls":"excel", "exe":"", "":null. Is either a JSON type or a IO[AnyStr] type.
          Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
@@ -3957,7 +3960,7 @@ class DictionaryOperations:
 
     @overload
     def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with dictionary property which is empty.
 
@@ -3973,12 +3976,12 @@ class DictionaryOperations:
 
     @distributed_trace
     def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put complex types with dictionary property which is empty.
 
-        :param complex_body: Please put an empty dictionary. Is either a JSON type or a IO type.
-         Required.
+        :param complex_body: Please put an empty dictionary. Is either a JSON type or a IO[AnyStr]
+         type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -4288,7 +4291,7 @@ class InheritanceOperations:
 
     @overload
     def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that extend others.
 
@@ -4306,14 +4309,14 @@ class InheritanceOperations:
 
     @distributed_trace
     def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put complex types that extend others.
 
         :param complex_body: Please put a siamese with id=2, name="Siameee", color=green,
          breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and
-         the 2nd one named "Tomato" with id=-1 and food="french fries". Is either a JSON type or a IO
-         type. Required.
+         the 2nd one named "Tomato" with id=-1 and food="french fries". Is either a JSON type or a
+         IO[AnyStr] type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -4628,7 +4631,7 @@ class PolymorphismOperations:
 
     @overload
     def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic.
 
@@ -4676,7 +4679,7 @@ class PolymorphismOperations:
 
     @distributed_trace
     def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic.
 
@@ -4712,7 +4715,7 @@ class PolymorphismOperations:
                      'jawsize': 5
                    }
                  ]
-               };. Is either a JSON type or a IO type. Required.
+               };. Is either a JSON type or a IO[AnyStr] type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -5183,7 +5186,7 @@ class PolymorphismOperations:
 
     @overload
     def put_complicated(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
         additional properties.
@@ -5200,12 +5203,12 @@ class PolymorphismOperations:
 
     @distributed_trace
     def put_complicated(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
         additional properties.
 
-        :param complex_body: Is either a JSON type or a IO type. Required.
+        :param complex_body: Is either a JSON type or a IO[AnyStr] type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -5341,7 +5344,7 @@ class PolymorphismOperations:
 
     @overload
     def put_missing_discriminator(
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """Put complex types that are polymorphic, omitting the discriminator.
 
@@ -5377,10 +5380,10 @@ class PolymorphismOperations:
         """
 
     @distributed_trace
-    def put_missing_discriminator(self, complex_body: Union[JSON, IO], **kwargs: Any) -> JSON:
+    def put_missing_discriminator(self, complex_body: Union[JSON, IO[AnyStr]], **kwargs: Any) -> JSON:
         """Put complex types that are polymorphic, omitting the discriminator.
 
-        :param complex_body: Is either a JSON type or a IO type. Required.
+        :param complex_body: Is either a JSON type or a IO[AnyStr] type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -5590,7 +5593,7 @@ class PolymorphismOperations:
 
     @overload
     def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
         request should not be allowed from the client.
@@ -5633,7 +5636,7 @@ class PolymorphismOperations:
 
     @distributed_trace
     def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
         request should not be allowed from the client.
@@ -5664,7 +5667,7 @@ class PolymorphismOperations:
                      "age": 105
                  }
              ]
-         }. Is either a JSON type or a IO type. Required.
+         }. Is either a JSON type or a IO[AnyStr] type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -6043,7 +6046,7 @@ class PolymorphicrecursiveOperations:
 
     @overload
     def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic and have recursive references.
 
@@ -6111,7 +6114,7 @@ class PolymorphicrecursiveOperations:
 
     @distributed_trace
     def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic and have recursive references.
 
@@ -6167,7 +6170,7 @@ class PolymorphicrecursiveOperations:
                      "age": 105
                  }
              ]
-         }. Is either a JSON type or a IO type. Required.
+         }. Is either a JSON type or a IO[AnyStr] type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -6389,7 +6392,7 @@ class ReadonlypropertyOperations:
 
     @overload
     def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that have readonly properties.
 
@@ -6405,11 +6408,11 @@ class ReadonlypropertyOperations:
 
     @distributed_trace
     def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO], **kwargs: Any
+        self, complex_body: Union[JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """Put complex types that have readonly properties.
 
-        :param complex_body: Is either a JSON type or a IO type. Required.
+        :param complex_body: Is either a JSON type or a IO[AnyStr] type. Required.
         :type complex_body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.

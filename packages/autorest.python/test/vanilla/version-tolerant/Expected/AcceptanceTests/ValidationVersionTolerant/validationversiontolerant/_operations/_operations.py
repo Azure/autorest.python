@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
+from typing import Any, AnyStr, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -317,7 +317,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         self,
         resource_group_name: str,
         id: int,
-        body: Optional[IO] = None,
+        body: Optional[IO[AnyStr]] = None,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -370,7 +370,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
     @distributed_trace
     def validation_of_body(
-        self, resource_group_name: str, id: int, body: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, resource_group_name: str, id: int, body: Optional[Union[JSON, IO[AnyStr]]] = None, **kwargs: Any
     ) -> JSON:
         """Validates body parameters on the method. See swagger for details.
 
@@ -379,7 +379,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000. Required.
         :type id: int
-        :param body: Is either a JSON type or a IO type. Default value is None.
+        :param body: Is either a JSON type or a IO[AnyStr] type. Default value is None.
         :type body: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -628,7 +628,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
     @overload
     def post_with_constant_in_body(
-        self, body: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, body: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """post_with_constant_in_body.
 
@@ -675,10 +675,10 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         """
 
     @distributed_trace
-    def post_with_constant_in_body(self, body: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:
+    def post_with_constant_in_body(self, body: Optional[Union[JSON, IO[AnyStr]]] = None, **kwargs: Any) -> JSON:
         """post_with_constant_in_body.
 
-        :param body: Is either a JSON type or a IO type. Default value is None.
+        :param body: Is either a JSON type or a IO[AnyStr] type. Default value is None.
         :type body: JSON or IO
         :keyword constant_param: Default value is "constant". Note that overriding this default value
          may result in unsupported behavior.

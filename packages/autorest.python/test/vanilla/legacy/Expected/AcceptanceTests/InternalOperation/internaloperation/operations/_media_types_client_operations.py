@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from io import IOBase
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, AnyStr, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -82,7 +82,7 @@ def build_content_type_with_encoding_request(*, content: Optional[str] = None, *
     return HttpRequest(method="POST", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_binary_body_with_two_content_types_request(*, content: IO, **kwargs: Any) -> HttpRequest:
+def build_binary_body_with_two_content_types_request(*, content: IO[AnyStr], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -99,7 +99,7 @@ def build_binary_body_with_two_content_types_request(*, content: IO, **kwargs: A
     return HttpRequest(method="POST", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_binary_body_with_three_content_types_request(*, content: IO, **kwargs: Any) -> HttpRequest:
+def build_binary_body_with_three_content_types_request(*, content: IO[AnyStr], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -169,7 +169,9 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         """
 
     @overload
-    def analyze_body(self, input: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any) -> str:
+    def analyze_body(
+        self, input: Optional[IO[AnyStr]] = None, *, content_type: Optional[str] = None, **kwargs: Any
+    ) -> str:
         """Analyze body, that could be different media types.
 
         :param input: Input parameter. Default value is None.
@@ -185,10 +187,11 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         """
 
     @distributed_trace
-    def analyze_body(self, input: Optional[Union[_models.SourcePath, IO]] = None, **kwargs: Any) -> str:
+    def analyze_body(self, input: Optional[Union[_models.SourcePath, IO[AnyStr]]] = None, **kwargs: Any) -> str:
         """Analyze body, that could be different media types.
 
-        :param input: Input parameter. Is either a SourcePath type or a IO type. Default value is None.
+        :param input: Input parameter. Is either a SourcePath type or a IO[AnyStr] type. Default value
+         is None.
         :type input: ~internaloperation.models.SourcePath or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Default value is None.
@@ -274,7 +277,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
 
     @overload
     def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
-        self, input: Optional[IO] = None, *, content_type: Optional[str] = None, **kwargs: Any
+        self, input: Optional[IO[AnyStr]] = None, *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
         type.
@@ -293,12 +296,13 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
 
     @distributed_trace
     def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
-        self, input: Optional[Union[_models.SourcePath, IO]] = None, **kwargs: Any
+        self, input: Optional[Union[_models.SourcePath, IO[AnyStr]]] = None, **kwargs: Any
     ) -> None:
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
         type.
 
-        :param input: Input parameter. Is either a SourcePath type or a IO type. Default value is None.
+        :param input: Input parameter. Is either a SourcePath type or a IO[AnyStr] type. Default value
+         is None.
         :type input: ~internaloperation.models.SourcePath or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Default value is None.
@@ -421,7 +425,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
     content_type_with_encoding.metadata = {"url": "/mediatypes/contentTypeWithEncoding"}
 
     @distributed_trace
-    def binary_body_with_two_content_types(self, message: IO, **kwargs: Any) -> str:
+    def binary_body_with_two_content_types(self, message: IO[AnyStr], **kwargs: Any) -> str:
         """Binary body with two content types. Pass in of {'hello': 'world'} for the application/json
         content type, and a byte stream of 'hello, world!' for application/octet-stream.
 
@@ -479,7 +483,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
     binary_body_with_two_content_types.metadata = {"url": "/mediatypes/binaryBodyTwoContentTypes"}
 
     @distributed_trace
-    def binary_body_with_three_content_types(self, message: IO, **kwargs: Any) -> str:
+    def binary_body_with_three_content_types(self, message: IO[AnyStr], **kwargs: Any) -> str:
         """Binary body with three content types. Pass in string 'hello, world' with content type
         'text/plain', {'hello': world'} with content type 'application/json' and a byte string for
         'application/octet-stream'.
@@ -542,7 +546,9 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         ...
 
     @overload
-    def _body_three_types(self, message: IO, *, content_type: str = "application/octet-stream", **kwargs: Any) -> str:
+    def _body_three_types(
+        self, message: IO[AnyStr], *, content_type: str = "application/octet-stream", **kwargs: Any
+    ) -> str:
         ...
 
     @overload
@@ -550,12 +556,12 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         ...
 
     @distributed_trace
-    def _body_three_types(self, message: Union[Any, IO, str], **kwargs: Any) -> str:
+    def _body_three_types(self, message: Union[Any, IO[AnyStr], str], **kwargs: Any) -> str:
         """Body with three types. Can be stream, string, or JSON. Pass in string 'hello, world' with
         content type 'text/plain', {'hello': world'} with content type 'application/json' and a byte
         string for 'application/octet-stream'.
 
-        :param message: The payload body. Is one of the following types: Any, IO, str Required.
+        :param message: The payload body. Is one of the following types: Any, IO[AnyStr], str Required.
         :type message: any or IO or str
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'application/octet-stream', 'text/plain'. Default value is None.

@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, AnyStr, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -331,7 +331,7 @@ class ModelOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
@@ -349,11 +349,11 @@ class ModelOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BaseModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.BaseModel, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is one of the following types: BaseModel, JSON, IO Required.
+        :param body: Is one of the following types: BaseModel, JSON, IO[AnyStr] Required.
         :type body: ~specialwords.models.BaseModel or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.

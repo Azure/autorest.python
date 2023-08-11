@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, AnyStr, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -98,7 +98,7 @@ class OptionalExplicitOperations:
 
     @overload
     async def set(  # pylint: disable=inconsistent-return-statements
-        self, body: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, body: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """set.
 
@@ -116,11 +116,11 @@ class OptionalExplicitOperations:
 
     @distributed_trace_async
     async def set(  # pylint: disable=inconsistent-return-statements
-        self, body: Optional[Union[_models.BodyModel, JSON, IO]] = None, **kwargs: Any
+        self, body: Optional[Union[_models.BodyModel, JSON, IO[AnyStr]]] = None, **kwargs: Any
     ) -> None:
         """set.
 
-        :param body: Is one of the following types: BodyModel, JSON, IO Default value is None.
+        :param body: Is one of the following types: BodyModel, JSON, IO[AnyStr] Default value is None.
         :type body: ~parameters.bodyoptionality.models.BodyModel or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -217,7 +217,7 @@ class OptionalExplicitOperations:
 
     @overload
     async def omit(  # pylint: disable=inconsistent-return-statements
-        self, body: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, body: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """omit.
 
@@ -235,11 +235,11 @@ class OptionalExplicitOperations:
 
     @distributed_trace_async
     async def omit(  # pylint: disable=inconsistent-return-statements
-        self, body: Optional[Union[_models.BodyModel, JSON, IO]] = None, **kwargs: Any
+        self, body: Optional[Union[_models.BodyModel, JSON, IO[AnyStr]]] = None, **kwargs: Any
     ) -> None:
         """omit.
 
-        :param body: Is one of the following types: BodyModel, JSON, IO Default value is None.
+        :param body: Is one of the following types: BodyModel, JSON, IO[AnyStr] Default value is None.
         :type body: ~parameters.bodyoptionality.models.BodyModel or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -338,7 +338,7 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
 
     @overload
     async def required_explicit(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """required_explicit.
 
@@ -356,11 +356,11 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
 
     @distributed_trace_async
     async def required_explicit(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BodyModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.BodyModel, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """required_explicit.
 
-        :param body: Is one of the following types: BodyModel, JSON, IO Required.
+        :param body: Is one of the following types: BodyModel, JSON, IO[AnyStr] Required.
         :type body: ~parameters.bodyoptionality.models.BodyModel or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -454,7 +454,7 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
 
     @overload
     async def required_implicit(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """required_implicit.
 
@@ -472,11 +472,11 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
 
     @distributed_trace_async
     async def required_implicit(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BodyModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.BodyModel, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """required_implicit.
 
-        :param body: Is one of the following types: BodyModel, JSON, IO Required.
+        :param body: Is one of the following types: BodyModel, JSON, IO[AnyStr] Required.
         :type body: ~parameters.bodyoptionality.models.BodyModel or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.

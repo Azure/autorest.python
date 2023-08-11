@@ -10,7 +10,7 @@
 # --------------------------------------------------------------------------
 from .._serialization import Serializer, Deserializer
 from io import IOBase
-from typing import Any, AsyncIterable, IO, Optional, Union
+from typing import Any, AnyStr, AsyncIterable, IO, Optional, Union
 
 from azure.core.async_paging import AsyncItemPaged
 from azure.core.polling import AsyncLROPoller
@@ -22,12 +22,13 @@ class MultiapiServiceClientOperationsMixin(object):
 
     async def begin_test_lro(
         self,
-        product: Optional[Union[_models.Product, IO]] = None,
+        product: Optional[Union[_models.Product, IO[AnyStr]]] = None,
         **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
-        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO[AnyStr] type. Default value is
+         None.
         :type product: ~multiapiwithsubmodule.submodule.v1.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.

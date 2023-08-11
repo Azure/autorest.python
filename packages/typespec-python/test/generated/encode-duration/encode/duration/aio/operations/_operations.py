@@ -10,7 +10,7 @@ import datetime
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
+from typing import Any, AnyStr, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -377,7 +377,7 @@ class PropertyOperations:
 
     @overload
     async def default(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.DefaultDurationProperty:
         """default.
 
@@ -395,11 +395,11 @@ class PropertyOperations:
 
     @distributed_trace_async
     async def default(
-        self, body: Union[_models.DefaultDurationProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DefaultDurationProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> _models.DefaultDurationProperty:
         """default.
 
-        :param body: Is one of the following types: DefaultDurationProperty, JSON, IO Required.
+        :param body: Is one of the following types: DefaultDurationProperty, JSON, IO[AnyStr] Required.
         :type body: ~encode.duration.models.DefaultDurationProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -500,7 +500,7 @@ class PropertyOperations:
 
     @overload
     async def iso8601(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.ISO8601DurationProperty:
         """iso8601.
 
@@ -518,11 +518,11 @@ class PropertyOperations:
 
     @distributed_trace_async
     async def iso8601(
-        self, body: Union[_models.ISO8601DurationProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.ISO8601DurationProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> _models.ISO8601DurationProperty:
         """iso8601.
 
-        :param body: Is one of the following types: ISO8601DurationProperty, JSON, IO Required.
+        :param body: Is one of the following types: ISO8601DurationProperty, JSON, IO[AnyStr] Required.
         :type body: ~encode.duration.models.ISO8601DurationProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -625,7 +625,7 @@ class PropertyOperations:
 
     @overload
     async def int32_seconds(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Int32SecondsDurationProperty:
         """int32_seconds.
 
@@ -644,11 +644,12 @@ class PropertyOperations:
 
     @distributed_trace_async
     async def int32_seconds(
-        self, body: Union[_models.Int32SecondsDurationProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.Int32SecondsDurationProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> _models.Int32SecondsDurationProperty:
         """int32_seconds.
 
-        :param body: Is one of the following types: Int32SecondsDurationProperty, JSON, IO Required.
+        :param body: Is one of the following types: Int32SecondsDurationProperty, JSON, IO[AnyStr]
+         Required.
         :type body: ~encode.duration.models.Int32SecondsDurationProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -752,7 +753,7 @@ class PropertyOperations:
 
     @overload
     async def float_seconds(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.FloatSecondsDurationProperty:
         """float_seconds.
 
@@ -771,11 +772,12 @@ class PropertyOperations:
 
     @distributed_trace_async
     async def float_seconds(
-        self, body: Union[_models.FloatSecondsDurationProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.FloatSecondsDurationProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> _models.FloatSecondsDurationProperty:
         """float_seconds.
 
-        :param body: Is one of the following types: FloatSecondsDurationProperty, JSON, IO Required.
+        :param body: Is one of the following types: FloatSecondsDurationProperty, JSON, IO[AnyStr]
+         Required.
         :type body: ~encode.duration.models.FloatSecondsDurationProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -879,7 +881,7 @@ class PropertyOperations:
 
     @overload
     async def float_seconds_array(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.FloatSecondsDurationArrayProperty:
         """float_seconds_array.
 
@@ -898,11 +900,11 @@ class PropertyOperations:
 
     @distributed_trace_async
     async def float_seconds_array(
-        self, body: Union[_models.FloatSecondsDurationArrayProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.FloatSecondsDurationArrayProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> _models.FloatSecondsDurationArrayProperty:
         """float_seconds_array.
 
-        :param body: Is one of the following types: FloatSecondsDurationArrayProperty, JSON, IO
+        :param body: Is one of the following types: FloatSecondsDurationArrayProperty, JSON, IO[AnyStr]
          Required.
         :type body: ~encode.duration.models.FloatSecondsDurationArrayProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default

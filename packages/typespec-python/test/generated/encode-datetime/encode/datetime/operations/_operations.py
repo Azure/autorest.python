@@ -10,7 +10,7 @@ import datetime
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
+from typing import Any, AnyStr, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -569,7 +569,7 @@ class PropertyOperations:
 
     @overload
     def default(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.DefaultDatetimeProperty:
         """default.
 
@@ -587,11 +587,11 @@ class PropertyOperations:
 
     @distributed_trace
     def default(
-        self, body: Union[_models.DefaultDatetimeProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DefaultDatetimeProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> _models.DefaultDatetimeProperty:
         """default.
 
-        :param body: Is one of the following types: DefaultDatetimeProperty, JSON, IO Required.
+        :param body: Is one of the following types: DefaultDatetimeProperty, JSON, IO[AnyStr] Required.
         :type body: ~encode.datetime.models.DefaultDatetimeProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -692,7 +692,7 @@ class PropertyOperations:
 
     @overload
     def rfc3339(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Rfc3339DatetimeProperty:
         """rfc3339.
 
@@ -710,11 +710,11 @@ class PropertyOperations:
 
     @distributed_trace
     def rfc3339(
-        self, body: Union[_models.Rfc3339DatetimeProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.Rfc3339DatetimeProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> _models.Rfc3339DatetimeProperty:
         """rfc3339.
 
-        :param body: Is one of the following types: Rfc3339DatetimeProperty, JSON, IO Required.
+        :param body: Is one of the following types: Rfc3339DatetimeProperty, JSON, IO[AnyStr] Required.
         :type body: ~encode.datetime.models.Rfc3339DatetimeProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -815,7 +815,7 @@ class PropertyOperations:
 
     @overload
     def rfc7231(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Rfc7231DatetimeProperty:
         """rfc7231.
 
@@ -833,11 +833,11 @@ class PropertyOperations:
 
     @distributed_trace
     def rfc7231(
-        self, body: Union[_models.Rfc7231DatetimeProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.Rfc7231DatetimeProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> _models.Rfc7231DatetimeProperty:
         """rfc7231.
 
-        :param body: Is one of the following types: Rfc7231DatetimeProperty, JSON, IO Required.
+        :param body: Is one of the following types: Rfc7231DatetimeProperty, JSON, IO[AnyStr] Required.
         :type body: ~encode.datetime.models.Rfc7231DatetimeProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -940,7 +940,7 @@ class PropertyOperations:
 
     @overload
     def unix_timestamp(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.UnixTimestampDatetimeProperty:
         """unix_timestamp.
 
@@ -959,11 +959,12 @@ class PropertyOperations:
 
     @distributed_trace
     def unix_timestamp(
-        self, body: Union[_models.UnixTimestampDatetimeProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.UnixTimestampDatetimeProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> _models.UnixTimestampDatetimeProperty:
         """unix_timestamp.
 
-        :param body: Is one of the following types: UnixTimestampDatetimeProperty, JSON, IO Required.
+        :param body: Is one of the following types: UnixTimestampDatetimeProperty, JSON, IO[AnyStr]
+         Required.
         :type body: ~encode.datetime.models.UnixTimestampDatetimeProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -1067,7 +1068,7 @@ class PropertyOperations:
 
     @overload
     def unix_timestamp_array(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.UnixTimestampArrayDatetimeProperty:
         """unix_timestamp_array.
 
@@ -1086,12 +1087,12 @@ class PropertyOperations:
 
     @distributed_trace
     def unix_timestamp_array(
-        self, body: Union[_models.UnixTimestampArrayDatetimeProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.UnixTimestampArrayDatetimeProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> _models.UnixTimestampArrayDatetimeProperty:
         """unix_timestamp_array.
 
-        :param body: Is one of the following types: UnixTimestampArrayDatetimeProperty, JSON, IO
-         Required.
+        :param body: Is one of the following types: UnixTimestampArrayDatetimeProperty, JSON,
+         IO[AnyStr] Required.
         :type body: ~encode.datetime.models.UnixTimestampArrayDatetimeProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.

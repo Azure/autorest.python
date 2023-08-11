@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union
+from typing import Any, AnyStr, Callable, Dict, IO, List, Optional, TypeVar, Union
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -39,7 +39,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_operation_with_content_param_request(*, content: IO, **kwargs: Any) -> HttpRequest:
+def build_operation_with_content_param_request(*, content: IO[AnyStr], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -153,7 +153,7 @@ def build_reserved_enum_request(*, enum_parameter: Union[str, _models.MyEnum], *
 
 class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
     @distributed_trace
-    def operation_with_content_param(self, content: IO, **kwargs: Any) -> JSON:
+    def operation_with_content_param(self, content: IO[AnyStr], **kwargs: Any) -> JSON:
         """Operation with body param called content. Pass in b'hello, world'.
 
         :param content: Pass in b'hello, world'. Required.
@@ -332,7 +332,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
     operation_with_data_param.metadata = {"url": "/reservedWords/operation/data"}
 
     @distributed_trace
-    def operation_with_files_param(self, files: IO, file_name: str, **kwargs: Any) -> JSON:
+    def operation_with_files_param(self, files: IO[AnyStr], file_name: str, **kwargs: Any) -> JSON:
         """Operation with multipart body param called 'files'.
 
         :param files: Files to upload. Pass in list of input streams. Required.

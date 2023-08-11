@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, cast, overload
+from typing import Any, AnyStr, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -218,7 +218,9 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         """
 
     @overload
-    def post_model(self, mode: str, input: IO, *, content_type: str = "application/json", **kwargs: Any) -> JSON:
+    def post_model(
+        self, mode: str, input: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
+    ) -> JSON:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
 
@@ -245,7 +247,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         """
 
     @distributed_trace
-    def post_model(self, mode: str, input: Union[JSON, IO], **kwargs: Any) -> JSON:
+    def post_model(self, mode: str, input: Union[JSON, IO[AnyStr]], **kwargs: Any) -> JSON:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
 
@@ -253,7 +255,8 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
          before returning to users. Required.
         :type mode: str
-        :param input: Please put {'hello': 'world!'}. Is either a JSON type or a IO type. Required.
+        :param input: Please put {'hello': 'world!'}. Is either a JSON type or a IO[AnyStr] type.
+         Required.
         :type input: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.

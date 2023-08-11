@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, AnyStr, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -136,7 +136,7 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
 
     @overload
     def send_int(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send_int.
 
@@ -154,11 +154,12 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
 
     @distributed_trace
     def send_int(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.ModelWithSimpleUnionProperty, JSON, IO], **kwargs: Any
+        self, input: Union[_models.ModelWithSimpleUnionProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """send_int.
 
-        :param input: Is one of the following types: ModelWithSimpleUnionProperty, JSON, IO Required.
+        :param input: Is one of the following types: ModelWithSimpleUnionProperty, JSON, IO[AnyStr]
+         Required.
         :type input: ~typetest.union.models.ModelWithSimpleUnionProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -252,7 +253,7 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
 
     @overload
     def send_int_array(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send_int_array.
 
@@ -270,11 +271,12 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
 
     @distributed_trace
     def send_int_array(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.ModelWithSimpleUnionProperty, JSON, IO], **kwargs: Any
+        self, input: Union[_models.ModelWithSimpleUnionProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """send_int_array.
 
-        :param input: Is one of the following types: ModelWithSimpleUnionProperty, JSON, IO Required.
+        :param input: Is one of the following types: ModelWithSimpleUnionProperty, JSON, IO[AnyStr]
+         Required.
         :type input: ~typetest.union.models.ModelWithSimpleUnionProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -368,7 +370,7 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
 
     @overload
     def send_first_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send_first_named_union_value.
 
@@ -386,11 +388,12 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
 
     @distributed_trace
     def send_first_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.ModelWithNamedUnionProperty, JSON, IO], **kwargs: Any
+        self, input: Union[_models.ModelWithNamedUnionProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """send_first_named_union_value.
 
-        :param input: Is one of the following types: ModelWithNamedUnionProperty, JSON, IO Required.
+        :param input: Is one of the following types: ModelWithNamedUnionProperty, JSON, IO[AnyStr]
+         Required.
         :type input: ~typetest.union.models.ModelWithNamedUnionProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -484,7 +487,7 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
 
     @overload
     def send_second_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send_second_named_union_value.
 
@@ -502,11 +505,12 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
 
     @distributed_trace
     def send_second_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.ModelWithNamedUnionProperty, JSON, IO], **kwargs: Any
+        self, input: Union[_models.ModelWithNamedUnionProperty, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """send_second_named_union_value.
 
-        :param input: Is one of the following types: ModelWithNamedUnionProperty, JSON, IO Required.
+        :param input: Is one of the following types: ModelWithNamedUnionProperty, JSON, IO[AnyStr]
+         Required.
         :type input: ~typetest.union.models.ModelWithNamedUnionProperty or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.

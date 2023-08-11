@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from io import IOBase
-from typing import Any, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, overload
+from typing import Any, AnyStr, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, overload
 import urllib.parse
 
 from azure.core.exceptions import (
@@ -38,10 +38,10 @@ _SERIALIZER.client_side_validation = False
 
 
 
-from typing import Any, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, cast, overload
+from typing import Any, AnyStr, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, cast, overload
 from azure.core.polling import LROPoller, NoPolling, PollingMethod
 from azure.mgmt.core.polling.arm_polling import ARMPolling
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, AnyStr, Callable, Dict, IO, Optional, TypeVar, Union, overload
 from .._validation import api_version_validation
 
 def build_operation_group_one_test_two_request(**kwargs: Any) -> HttpRequest:
@@ -123,12 +123,12 @@ class OperationGroupOneOperations:
     )
     @distributed_trace
     def test_two(
-        self, parameter_one: Optional[Union[_models.ModelThree, IO]] = None, **kwargs: Any
+        self, parameter_one: Optional[Union[_models.ModelThree, IO[AnyStr]]] = None, **kwargs: Any
     ) -> _models.ModelThree:
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelThree and ouputs ModelThree.
 
-        :param parameter_one: A ModelThree parameter. Is either a ModelThree type or a IO type. Default
-         value is None.
+        :param parameter_one: A ModelThree parameter. Is either a ModelThree type or a IO[AnyStr] type.
+         Default value is None.
         :type parameter_one: ~multiapicombiner.v3.models.ModelThree or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -396,11 +396,12 @@ class OperationGroupTwoOperations:
     )
     @distributed_trace
     def test_four(  # pylint: disable=inconsistent-return-statements
-        self, input: Optional[Union[_models.SourcePath, IO]] = None, **kwargs: Any
+        self, input: Optional[Union[_models.SourcePath, IO[AnyStr]]] = None, **kwargs: Any
     ) -> None:
         """TestFour should be in OperationGroupTwoOperations.
 
-        :param input: Input parameter. Is either a SourcePath type or a IO type. Default value is None.
+        :param input: Input parameter. Is either a SourcePath type or a IO[AnyStr] type. Default value
+         is None.
         :type input: ~multiapicombiner.v3.models.SourcePath or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Default value is None.
@@ -679,7 +680,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
     _test_lro_and_paging_initial.metadata = {'url': '/multiapi/lroAndPaging'}
 
     def _test_lro_initial(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> Optional[_models.Product]:
         error_map = {
             401: ClientAuthenticationError,
@@ -745,11 +746,12 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
     )
     @distributed_trace
     def begin_test_lro(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> LROPoller[_models.Product]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
-        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO[AnyStr] type. Default value is
+         None.
         :type product: ~multiapicombiner.v1.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.

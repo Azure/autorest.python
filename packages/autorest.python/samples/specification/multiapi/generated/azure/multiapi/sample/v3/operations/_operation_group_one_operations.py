@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from io import IOBase
-from typing import Any, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, overload
+from typing import Any, AnyStr, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, overload
 import urllib.parse
 
 from azure.core.exceptions import (
@@ -193,7 +193,7 @@ class OperationGroupOneOperations:
 
     @overload
     def test_two(
-        self, parameter_one: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, parameter_one: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.ModelThree:
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelThree and ouputs ModelThree.
 
@@ -210,12 +210,12 @@ class OperationGroupOneOperations:
 
     @distributed_trace
     def test_two(
-        self, parameter_one: Optional[Union[_models.ModelThree, IO]] = None, **kwargs: Any
+        self, parameter_one: Optional[Union[_models.ModelThree, IO[AnyStr]]] = None, **kwargs: Any
     ) -> _models.ModelThree:
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelThree and ouputs ModelThree.
 
-        :param parameter_one: A ModelThree parameter. Is either a ModelThree type or a IO type. Default
-         value is None.
+        :param parameter_one: A ModelThree parameter. Is either a ModelThree type or a IO[AnyStr] type.
+         Default value is None.
         :type parameter_one: ~azure.multiapi.sample.v3.models.ModelThree or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.

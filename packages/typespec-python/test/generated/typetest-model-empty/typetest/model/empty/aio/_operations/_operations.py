@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, AnyStr, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -81,7 +81,7 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
 
     @overload
     async def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put_empty.
 
@@ -99,11 +99,11 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
 
     @distributed_trace_async
     async def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.EmptyInput, JSON, IO], **kwargs: Any
+        self, input: Union[_models.EmptyInput, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """put_empty.
 
-        :param input: Is one of the following types: EmptyInput, JSON, IO Required.
+        :param input: Is one of the following types: EmptyInput, JSON, IO[AnyStr] Required.
         :type input: ~typetest.model.empty.models.EmptyInput or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -249,7 +249,7 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
 
     @overload
     async def post_round_trip_empty(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.EmptyInputOutput:
         """post_round_trip_empty.
 
@@ -267,11 +267,11 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
 
     @distributed_trace_async
     async def post_round_trip_empty(
-        self, body: Union[_models.EmptyInputOutput, JSON, IO], **kwargs: Any
+        self, body: Union[_models.EmptyInputOutput, JSON, IO[AnyStr]], **kwargs: Any
     ) -> _models.EmptyInputOutput:
         """post_round_trip_empty.
 
-        :param body: Is one of the following types: EmptyInputOutput, JSON, IO Required.
+        :param body: Is one of the following types: EmptyInputOutput, JSON, IO[AnyStr] Required.
         :type body: ~typetest.model.empty.models.EmptyInputOutput or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.

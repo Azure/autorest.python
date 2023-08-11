@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
+from typing import Any, AnyStr, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -383,7 +383,7 @@ class ParamsOperations:
         """
 
     @overload
-    def post_parameters(self, parameter: IO, *, content_type: str, **kwargs: Any) -> JSON:
+    def post_parameters(self, parameter: IO[AnyStr], *, content_type: str, **kwargs: Any) -> JSON:
         """POST a JSON or a JPEG.
 
         :param parameter: I am a body parameter with a new content type. My only valid JSON entry is {
@@ -398,11 +398,11 @@ class ParamsOperations:
         """
 
     @distributed_trace
-    def post_parameters(self, parameter: Union[JSON, IO], **kwargs: Any) -> JSON:
+    def post_parameters(self, parameter: Union[JSON, IO[AnyStr]], **kwargs: Any) -> JSON:
         """POST a JSON or a JPEG.
 
         :param parameter: I am a body parameter with a new content type. My only valid JSON entry is {
-         url: "http://example.org/myimage.jpeg" }. Is either a JSON type or a IO type. Required.
+         url: "http://example.org/myimage.jpeg" }. Is either a JSON type or a IO[AnyStr] type. Required.
         :type parameter: JSON or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json',
          'image/jpeg'. Default value is None.

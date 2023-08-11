@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
+from typing import Any, AnyStr, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -1499,7 +1499,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def json_input(  # pylint: disable=inconsistent-return-statements
-        self, properties: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, properties: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
         number 42.
@@ -1516,12 +1516,12 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def json_input(  # pylint: disable=inconsistent-return-statements
-        self, properties: Union[_models.JSONInput, IO], **kwargs: Any
+        self, properties: Union[_models.JSONInput, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
         number 42.
 
-        :param properties: Is either a JSONInput type or a IO type. Required.
+        :param properties: Is either a JSONInput type or a IO[AnyStr] type. Required.
         :type properties: ~xmlserviceversiontolerant.models.JSONInput or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.

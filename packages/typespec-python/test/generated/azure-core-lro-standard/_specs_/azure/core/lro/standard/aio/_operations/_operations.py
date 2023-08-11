@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
+from typing import Any, AnyStr, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -46,7 +46,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class StandardClientOperationsMixin(StandardClientMixinABC):
     async def _create_or_replace_initial(
-        self, name: str, resource: Union[_models.User, JSON, IO], **kwargs: Any
+        self, name: str, resource: Union[_models.User, JSON, IO[AnyStr]], **kwargs: Any
     ) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
@@ -170,7 +170,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
 
     @overload
     async def begin_create_or_replace(
-        self, name: str, resource: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, name: str, resource: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.User]:
         """Adds a user or replaces a user's fields.
 
@@ -198,7 +198,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
 
     @distributed_trace_async
     async def begin_create_or_replace(
-        self, name: str, resource: Union[_models.User, JSON, IO], **kwargs: Any
+        self, name: str, resource: Union[_models.User, JSON, IO[AnyStr]], **kwargs: Any
     ) -> AsyncLROPoller[_models.User]:
         """Adds a user or replaces a user's fields.
 
@@ -206,7 +206,8 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
 
         :param name: The name of user. Required.
         :type name: str
-        :param resource: The resource instance. Is one of the following types: User, JSON, IO Required.
+        :param resource: The resource instance. Is one of the following types: User, JSON, IO[AnyStr]
+         Required.
         :type resource: ~_specs_.azure.core.lro.standard.models.User or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.

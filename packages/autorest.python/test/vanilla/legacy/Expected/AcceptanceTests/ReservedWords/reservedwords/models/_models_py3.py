@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, IO
+from typing import Any, AnyStr, IO
 
 from .. import _serialization
 
@@ -68,7 +68,7 @@ class PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDa
         "file_name": {"key": "fileName", "type": "str"},
     }
 
-    def __init__(self, *, files: IO, file_name: str, **kwargs: Any) -> None:
+    def __init__(self, *, files: IO[AnyStr], file_name: str, **kwargs: Any) -> None:
         """
         :keyword files: Files to upload. Pass in list of input streams. Required.
         :paramtype files: IO

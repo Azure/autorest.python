@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from io import IOBase
-from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, cast, overload
+from typing import Any, AnyStr, Callable, Dict, IO, List, Optional, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -99,7 +99,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     async def _put200_succeeded_initial(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> Optional[_models.Product]:
         error_map = {
             401: ClientAuthenticationError,
@@ -187,7 +187,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put200_succeeded(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Succeeded’.
@@ -213,12 +213,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put200_succeeded(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Succeeded’.
 
-        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO[AnyStr] type. Default value is
+         None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -279,7 +280,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     begin_put200_succeeded.metadata = {"url": "/lro/put/200/succeeded"}
 
     async def _patch200_succeeded_ignore_headers_initial(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> _models.Product:
         error_map = {
             401: ClientAuthenticationError,
@@ -370,7 +371,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_patch200_succeeded_ignore_headers(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request with location header. We
         should not have any subsequent calls after receiving this first response.
@@ -396,12 +397,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_patch200_succeeded_ignore_headers(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request with location header. We
         should not have any subsequent calls after receiving this first response.
 
-        :param product: Product to patch. Is either a Product type or a IO type. Default value is None.
+        :param product: Product to patch. Is either a Product type or a IO[AnyStr] type. Default value
+         is None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -468,7 +470,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     begin_patch200_succeeded_ignore_headers.metadata = {"url": "/lro/patch/200/succeeded/ignoreheaders"}
 
     async def _patch201_retry_with_async_header_initial(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> _models.Product:
         error_map = {
             401: ClientAuthenticationError,
@@ -562,7 +564,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_patch201_retry_with_async_header(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running patch request, service returns a 201 to the initial request with async header.
 
@@ -587,11 +589,12 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_patch201_retry_with_async_header(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running patch request, service returns a 201 to the initial request with async header.
 
-        :param product: Product to patch. Is either a Product type or a IO type. Default value is None.
+        :param product: Product to patch. Is either a Product type or a IO[AnyStr] type. Default value
+         is None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -655,7 +658,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     begin_patch201_retry_with_async_header.metadata = {"url": "/lro/patch/201/retry/onlyAsyncHeader"}
 
     async def _patch202_retry_with_async_and_location_header_initial(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> _models.Product:
         error_map = {
             401: ClientAuthenticationError,
@@ -753,7 +756,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_patch202_retry_with_async_and_location_header(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running patch request, service returns a 202 to the initial request with async and
         location header.
@@ -779,12 +782,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_patch202_retry_with_async_and_location_header(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running patch request, service returns a 202 to the initial request with async and
         location header.
 
-        :param product: Product to patch. Is either a Product type or a IO type. Default value is None.
+        :param product: Product to patch. Is either a Product type or a IO[AnyStr] type. Default value
+         is None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -847,7 +851,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     }
 
     async def _put201_succeeded_initial(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> _models.Product:
         error_map = {
             401: ClientAuthenticationError,
@@ -933,7 +937,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put201_succeeded(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Succeeded’.
@@ -959,12 +963,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put201_succeeded(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Succeeded’.
 
-        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO[AnyStr] type. Default value is
+         None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1130,7 +1135,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     begin_post202_list.metadata = {"url": "/lro/list"}
 
     async def _put200_succeeded_no_state_initial(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> _models.Product:
         error_map = {
             401: ClientAuthenticationError,
@@ -1216,7 +1221,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put200_succeeded_no_state(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         does not contain ProvisioningState=’Succeeded’.
@@ -1242,12 +1247,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put200_succeeded_no_state(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         does not contain ProvisioningState=’Succeeded’.
 
-        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO[AnyStr] type. Default value is
+         None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1308,7 +1314,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     begin_put200_succeeded_no_state.metadata = {"url": "/lro/put/200/succeeded/nostate"}
 
     async def _put202_retry200_initial(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> _models.Product:
         error_map = {
             401: ClientAuthenticationError,
@@ -1395,7 +1401,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put202_retry200(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 202 to the initial request, with a location header
         that points to a polling URL that returns a 200 and an entity that doesn't contains
@@ -1422,13 +1428,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put202_retry200(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 202 to the initial request, with a location header
         that points to a polling URL that returns a 200 and an entity that doesn't contains
         ProvisioningState.
 
-        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO[AnyStr] type. Default value is
+         None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1489,7 +1496,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     begin_put202_retry200.metadata = {"url": "/lro/put/202/retry/200"}
 
     async def _put201_creating_succeeded200_initial(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> _models.Product:
         error_map = {
             401: ClientAuthenticationError,
@@ -1580,7 +1587,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put201_creating_succeeded200(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
@@ -1607,13 +1614,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put201_creating_succeeded200(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Succeeded’.
 
-        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO[AnyStr] type. Default value is
+         None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1674,7 +1682,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     begin_put201_creating_succeeded200.metadata = {"url": "/lro/put/201/creating/succeeded/200"}
 
     async def _put200_updating_succeeded204_initial(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> _models.Product:
         error_map = {
             401: ClientAuthenticationError,
@@ -1761,7 +1769,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put200_updating_succeeded204(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a
@@ -1788,13 +1796,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put200_updating_succeeded204(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Succeeded’.
 
-        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO[AnyStr] type. Default value is
+         None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -1855,7 +1864,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     begin_put200_updating_succeeded204.metadata = {"url": "/lro/put/200/updating/succeeded/200"}
 
     async def _put201_creating_failed200_initial(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> _models.Product:
         error_map = {
             401: ClientAuthenticationError,
@@ -1946,7 +1955,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put201_creating_failed200(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a
@@ -1973,13 +1982,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put201_creating_failed200(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Failed’.
 
-        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO[AnyStr] type. Default value is
+         None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -2040,7 +2050,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     begin_put201_creating_failed200.metadata = {"url": "/lro/put/201/created/failed/200"}
 
     async def _put200_acceptedcanceled200_initial(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> _models.Product:
         error_map = {
             401: ClientAuthenticationError,
@@ -2127,7 +2137,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put200_acceptedcanceled200(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
@@ -2154,13 +2164,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put200_acceptedcanceled200(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 201 to the initial request, with an entity that
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Canceled’.
 
-        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO[AnyStr] type. Default value is
+         None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -2221,7 +2232,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     begin_put200_acceptedcanceled200.metadata = {"url": "/lro/put/200/accepted/canceled/200"}
 
     async def _put_no_header_in_retry_initial(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> _models.Product:
         error_map = {
             401: ClientAuthenticationError,
@@ -2310,7 +2321,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_no_header_in_retry(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 202 to the initial request with location header.
         Subsequent calls to operation status do not contain location header.
@@ -2336,12 +2347,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put_no_header_in_retry(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 202 to the initial request with location header.
         Subsequent calls to operation status do not contain location header.
 
-        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO[AnyStr] type. Default value is
+         None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -2406,7 +2418,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     begin_put_no_header_in_retry.metadata = {"url": "/lro/put/noheader/202/200"}
 
     async def _put_async_retry_succeeded_initial(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> _models.Product:
         error_map = {
             401: ClientAuthenticationError,
@@ -2500,7 +2512,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_async_retry_succeeded(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -2527,13 +2539,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put_async_retry_succeeded(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO[AnyStr] type. Default value is
+         None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -2602,7 +2615,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     begin_put_async_retry_succeeded.metadata = {"url": "/lro/putasync/retry/succeeded"}
 
     async def _put_async_no_retry_succeeded_initial(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> _models.Product:
         error_map = {
             401: ClientAuthenticationError,
@@ -2695,7 +2708,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_async_no_retry_succeeded(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -2722,13 +2735,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put_async_no_retry_succeeded(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO[AnyStr] type. Default value is
+         None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -2796,7 +2810,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     begin_put_async_no_retry_succeeded.metadata = {"url": "/lro/putasync/noretry/succeeded"}
 
     async def _put_async_retry_failed_initial(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> _models.Product:
         error_map = {
             401: ClientAuthenticationError,
@@ -2890,7 +2904,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_async_retry_failed(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -2917,13 +2931,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put_async_retry_failed(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO[AnyStr] type. Default value is
+         None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -2992,7 +3007,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     begin_put_async_retry_failed.metadata = {"url": "/lro/putasync/retry/failed"}
 
     async def _put_async_no_retrycanceled_initial(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> _models.Product:
         error_map = {
             401: ClientAuthenticationError,
@@ -3085,7 +3100,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_async_no_retrycanceled(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -3112,13 +3127,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put_async_no_retrycanceled(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO[AnyStr] type. Default value is
+         None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -3186,7 +3202,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     begin_put_async_no_retrycanceled.metadata = {"url": "/lro/putasync/noretry/canceled"}
 
     async def _put_async_no_header_in_retry_initial(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> _models.Product:
         error_map = {
             401: ClientAuthenticationError,
@@ -3278,7 +3294,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_async_no_header_in_retry(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 202 to the initial request with
         Azure-AsyncOperation header. Subsequent calls to operation status do not contain
@@ -3305,13 +3321,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put_async_no_header_in_retry(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 202 to the initial request with
         Azure-AsyncOperation header. Subsequent calls to operation status do not contain
         Azure-AsyncOperation header.
 
-        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO[AnyStr] type. Default value is
+         None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -3378,7 +3395,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     begin_put_async_no_header_in_retry.metadata = {"url": "/lro/putasync/noheader/201/200"}
 
     async def _put_non_resource_initial(
-        self, sku: Optional[Union[_models.Sku, IO]] = None, **kwargs: Any
+        self, sku: Optional[Union[_models.Sku, IO[AnyStr]]] = None, **kwargs: Any
     ) -> _models.Sku:
         error_map = {
             401: ClientAuthenticationError,
@@ -3462,7 +3479,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_non_resource(
-        self, sku: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, sku: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Sku]:
         """Long running put request with non resource.
 
@@ -3486,11 +3503,11 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put_non_resource(
-        self, sku: Optional[Union[_models.Sku, IO]] = None, **kwargs: Any
+        self, sku: Optional[Union[_models.Sku, IO[AnyStr]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[_models.Sku]:
         """Long running put request with non resource.
 
-        :param sku: sku to put. Is either a Sku type or a IO type. Default value is None.
+        :param sku: sku to put. Is either a Sku type or a IO[AnyStr] type. Default value is None.
         :type sku: ~lro.models.Sku or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -3545,7 +3562,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     begin_put_non_resource.metadata = {"url": "/lro/putnonresource/202/200"}
 
     async def _put_async_non_resource_initial(
-        self, sku: Optional[Union[_models.Sku, IO]] = None, **kwargs: Any
+        self, sku: Optional[Union[_models.Sku, IO[AnyStr]]] = None, **kwargs: Any
     ) -> _models.Sku:
         error_map = {
             401: ClientAuthenticationError,
@@ -3629,7 +3646,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_put_async_non_resource(
-        self, sku: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, sku: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Sku]:
         """Long running put request with non resource.
 
@@ -3653,11 +3670,11 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_put_async_non_resource(
-        self, sku: Optional[Union[_models.Sku, IO]] = None, **kwargs: Any
+        self, sku: Optional[Union[_models.Sku, IO[AnyStr]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[_models.Sku]:
         """Long running put request with non resource.
 
-        :param sku: Sku to put. Is either a Sku type or a IO type. Default value is None.
+        :param sku: Sku to put. Is either a Sku type or a IO[AnyStr] type. Default value is None.
         :type sku: ~lro.models.Sku or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -5250,7 +5267,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     begin_post200_with_payload.metadata = {"url": "/lro/post/payload/200"}
 
     async def _post202_retry200_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> None:
         error_map = {
             401: ClientAuthenticationError,
@@ -5335,7 +5352,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_post202_retry200(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with 'Location' and
         'Retry-After' headers, Polls return a 200 with a response body after success.
@@ -5360,12 +5377,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post202_retry200(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with 'Location' and
         'Retry-After' headers, Polls return a 200 with a response body after success.
 
-        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO[AnyStr] type. Default value is
+         None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -5423,7 +5441,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     begin_post202_retry200.metadata = {"url": "/lro/post/202/retry/200"}
 
     async def _post202_no_retry204_initial(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> _models.Product:
         error_map = {
             401: ClientAuthenticationError,
@@ -5513,7 +5531,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_post202_no_retry204(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running post request, service returns a 202 to the initial request, with 'Location'
         header, 204 with noresponse body after success.
@@ -5539,12 +5557,13 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post202_no_retry204(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running post request, service returns a 202 to the initial request, with 'Location'
         header, 204 with noresponse body after success.
 
-        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO[AnyStr] type. Default value is
+         None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -5914,7 +5933,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     }
 
     async def _post_async_retry_succeeded_initial(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> Optional[_models.Product]:
         error_map = {
             401: ClientAuthenticationError,
@@ -6011,7 +6030,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_post_async_retry_succeeded(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -6038,13 +6057,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post_async_retry_succeeded(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO[AnyStr] type. Default value is
+         None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -6105,7 +6125,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     begin_post_async_retry_succeeded.metadata = {"url": "/lro/postasync/retry/succeeded"}
 
     async def _post_async_no_retry_succeeded_initial(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> Optional[_models.Product]:
         error_map = {
             401: ClientAuthenticationError,
@@ -6202,7 +6222,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_post_async_no_retry_succeeded(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -6229,13 +6249,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post_async_no_retry_succeeded(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO[AnyStr] type. Default value is
+         None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -6296,7 +6317,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     begin_post_async_no_retry_succeeded.metadata = {"url": "/lro/postasync/noretry/succeeded"}
 
     async def _post_async_retry_failed_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> None:
         error_map = {
             401: ClientAuthenticationError,
@@ -6385,7 +6406,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_post_async_retry_failed(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -6411,13 +6432,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post_async_retry_failed(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO[AnyStr] type. Default value is
+         None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
@@ -6475,7 +6497,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     begin_post_async_retry_failed.metadata = {"url": "/lro/postasync/retry/failed"}
 
     async def _post_async_retrycanceled_initial(  # pylint: disable=inconsistent-return-statements
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> None:
         error_map = {
             401: ClientAuthenticationError,
@@ -6564,7 +6586,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def begin_post_async_retrycanceled(
-        self, product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
@@ -6590,13 +6612,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def begin_post_async_retrycanceled(
-        self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
         header for operation status.
 
-        :param product: Product to put. Is either a Product type or a IO type. Default value is None.
+        :param product: Product to put. Is either a Product type or a IO[AnyStr] type. Default value is
+         None.
         :type product: ~lro.models.Product or IO
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
