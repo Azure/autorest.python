@@ -137,8 +137,7 @@ class AzureJSONEncoder(JSONEncoder):
             if self.exclude_readonly:
                 readonly_props = [p._rest_name for p in o._attr_to_rest_field.values() if _is_readonly(p)]
                 return {k: v for k, v in o.items() if k not in readonly_props}
-            else:
-                return dict(o.items())
+            return dict(o.items())
         if isinstance(o, (bytes, bytearray)):
             return base64.b64encode(o).decode()
         if isinstance(o, _Null):
@@ -577,7 +576,7 @@ class Model(_MyMutableMapping):
         return v.as_dict(exclude_readonly=exclude_readonly) if hasattr(v, "as_dict") else v
 
 
-def _get_deserialize_callable_from_annotation(  # pylint: disable=too-many-return-statements, too-many-statements
+def _get_deserialize_callable_from_annotation(  # pylint: disable=R0911, R0915, R0912
     annotation: typing.Any,
     module: typing.Optional[str],
     rf: typing.Optional["_RestField"] = None,
