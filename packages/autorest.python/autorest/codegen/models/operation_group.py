@@ -88,18 +88,26 @@ class OperationGroup(BaseModel):
         if not self.is_mixin:
             if self.code_model.options["azure_arm"]:
                 file_import.add_submodule_import(
-                    "azure.mgmt.core", self.client.pipeline_class(async_mode), ImportType.AZURECORE
+                    "azure.mgmt.core",
+                    self.client.pipeline_class(async_mode),
+                    ImportType.AZURECORE,
                 )
             else:
                 file_import.add_submodule_import(
-                    "azure.core", self.client.pipeline_class(async_mode), ImportType.AZURECORE
+                    "azure.core",
+                    self.client.pipeline_class(async_mode),
+                    ImportType.AZURECORE,
                 )
-            file_import.add_submodule_import(f"{relative_path}_configuration", f"{self.client.name}Configuration", ImportType.LOCAL)
+            file_import.add_submodule_import(
+                f"{relative_path}_configuration",
+                f"{self.client.name}Configuration",
+                ImportType.LOCAL,
+            )
             file_import.add_msrest_import(
                 self.code_model,
                 relative_path,
                 MsrestImportType.SerializerDeserializer,
-                TypingSection.REGULAR
+                TypingSection.REGULAR,
             )
         # for multiapi
         if (

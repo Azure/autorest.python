@@ -1,6 +1,6 @@
 {% set disable = "  # pylint: disable=too-many-public-methods" if operation_group.operations | length > 20 else "" %}
 {% set base_class = ("(" + operation_group.base_class + ")") if operation_group.base_class else "" %}
-{%  set async_prefix = "Async" if async_mode else "" %}
+{% set async_prefix = "Async" if async_mode else "" %}
 {% set pipeline_client = "ARMPipelineClient" if code_model.options["azure_arm"] else "PipelineClient" %}
 {% macro check_abstract_methods() %}
 {% if operation_group.has_abstract_operations %}
