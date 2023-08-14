@@ -125,9 +125,9 @@ class SampleSerializer:
             param_value = self.sample_params.get(name)
             if not param.optional:
                 if not param_value:
-                    raise Exception(
+                    raise Exception(  # pylint: disable=broad-exception-raised
                         failure_info.format(name)
-                    )  # pylint: disable=broad-exception-raised
+                    )
                 operation_params[param.client_name] = self.handle_param(
                     param, param_value
                 )
