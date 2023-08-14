@@ -128,9 +128,7 @@ class ApiVersionDefaultOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client: ARMPipelineClient[HttpRequest, HttpResponse] = (
-            input_args.pop(0) if input_args else kwargs.pop("client")
-        )
+        self._client: ARMPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestAzureSpecialParametersTestClientConfiguration = (
             input_args.pop(0) if input_args else kwargs.pop("config")
         )

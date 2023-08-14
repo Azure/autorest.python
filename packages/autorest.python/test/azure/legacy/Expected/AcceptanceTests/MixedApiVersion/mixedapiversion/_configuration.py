@@ -10,6 +10,7 @@ from typing import Any, TYPE_CHECKING
 
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
+from azure.core.rest import HttpRequest, HttpResponse
 
 from ._version import VERSION
 
@@ -18,7 +19,9 @@ if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
 
 
-class MixedApiVersionClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class MixedApiVersionClientConfiguration(  # pylint: disable=too-many-instance-attributes
+    Configuration[HttpRequest, HttpResponse]
+):
     """Configuration for MixedApiVersionClient.
 
     Note that all parameters used to create this instance are saved as instance

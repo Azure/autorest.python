@@ -10,11 +10,14 @@ from typing import Any
 
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
+from azure.core.rest import HttpRequest, HttpResponse
 
 from ._version import VERSION
 
 
-class SingleClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class SingleClientConfiguration(  # pylint: disable=too-many-instance-attributes
+    Configuration[HttpRequest, HttpResponse]
+):
     """Configuration for SingleClient.
 
     Note that all parameters used to create this instance are saved as instance

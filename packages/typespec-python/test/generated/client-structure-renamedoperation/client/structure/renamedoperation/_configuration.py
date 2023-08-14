@@ -10,12 +10,15 @@ from typing import Any, Union
 
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
+from azure.core.rest import HttpRequest, HttpResponse
 
 from . import models as _models
 from ._version import VERSION
 
 
-class RenamedOperationClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class RenamedOperationClientConfiguration(  # pylint: disable=too-many-instance-attributes
+    Configuration[HttpRequest, HttpResponse]
+):
     """Configuration for RenamedOperationClient.
 
     Note that all parameters used to create this instance are saved as instance

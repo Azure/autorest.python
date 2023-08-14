@@ -11,11 +11,14 @@ from typing import Any
 from azure.core.configuration import Configuration
 from azure.core.credentials import AzureKeyCredential
 from azure.core.pipeline import policies
+from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._version import VERSION
 
 
-class SecurityAadSwaggerCredentialFlagConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class SecurityAadSwaggerCredentialFlagConfiguration(  # pylint: disable=too-many-instance-attributes
+    Configuration[HttpRequest, AsyncHttpResponse]
+):
     """Configuration for SecurityAadSwaggerCredentialFlag.
 
     Note that all parameters used to create this instance are saved as instance

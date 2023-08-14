@@ -10,12 +10,15 @@ from typing import Any, Union
 
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
+from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .. import models as _models
 from .._version import VERSION
 
 
-class ClientAClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class ClientAClientConfiguration(  # pylint: disable=too-many-instance-attributes
+    Configuration[HttpRequest, AsyncHttpResponse]
+):
     """Configuration for ClientAClient.
 
     Note that all parameters used to create this instance are saved as instance
@@ -47,7 +50,9 @@ class ClientAClientConfiguration(Configuration):  # pylint: disable=too-many-ins
         self.authentication_policy = kwargs.get("authentication_policy")
 
 
-class ClientBClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class ClientBClientConfiguration(  # pylint: disable=too-many-instance-attributes
+    Configuration[HttpRequest, AsyncHttpResponse]
+):
     """Configuration for ClientBClient.
 
     Note that all parameters used to create this instance are saved as instance

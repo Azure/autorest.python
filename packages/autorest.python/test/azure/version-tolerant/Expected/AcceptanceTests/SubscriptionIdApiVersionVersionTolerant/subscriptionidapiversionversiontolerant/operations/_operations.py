@@ -78,9 +78,7 @@ class GroupOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client: ARMPipelineClient[HttpRequest, HttpResponse] = (
-            input_args.pop(0) if input_args else kwargs.pop("client")
-        )
+        self._client: ARMPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: MicrosoftAzureTestUrlConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")

@@ -10,6 +10,7 @@ from typing import Any, TYPE_CHECKING
 
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
+from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -18,7 +19,9 @@ if TYPE_CHECKING:
 VERSION = "unknown"
 
 
-class MultiapiServiceClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class MultiapiServiceClientConfiguration(  # pylint: disable=too-many-instance-attributes
+    Configuration[HttpRequest, AsyncHttpResponse]
+):
     """Configuration for MultiapiServiceClient.
 
     Note that all parameters used to create this instance are saved as instance

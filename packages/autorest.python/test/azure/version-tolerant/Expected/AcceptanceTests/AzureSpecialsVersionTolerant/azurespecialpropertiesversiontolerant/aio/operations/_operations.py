@@ -79,9 +79,7 @@ class XMsClientRequestIdOperations:
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client: AsyncARMPipelineClient[HttpRequest, AsyncHttpResponse] = (
-            input_args.pop(0) if input_args else kwargs.pop("client")
-        )
+        self._client: AsyncARMPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestAzureSpecialParametersTestClientConfiguration = (
             input_args.pop(0) if input_args else kwargs.pop("config")
         )
@@ -189,9 +187,7 @@ class SubscriptionInCredentialsOperations:
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client: AsyncARMPipelineClient[HttpRequest, AsyncHttpResponse] = (
-            input_args.pop(0) if input_args else kwargs.pop("client")
-        )
+        self._client: AsyncARMPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestAzureSpecialParametersTestClientConfiguration = (
             input_args.pop(0) if input_args else kwargs.pop("config")
         )
@@ -439,9 +435,7 @@ class SubscriptionInMethodOperations:
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client: AsyncARMPipelineClient[HttpRequest, AsyncHttpResponse] = (
-            input_args.pop(0) if input_args else kwargs.pop("client")
-        )
+        self._client: AsyncARMPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestAzureSpecialParametersTestClientConfiguration = (
             input_args.pop(0) if input_args else kwargs.pop("config")
         )
@@ -661,9 +655,7 @@ class ApiVersionDefaultOperations:
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client: AsyncARMPipelineClient[HttpRequest, AsyncHttpResponse] = (
-            input_args.pop(0) if input_args else kwargs.pop("client")
-        )
+        self._client: AsyncARMPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestAzureSpecialParametersTestClientConfiguration = (
             input_args.pop(0) if input_args else kwargs.pop("config")
         )
@@ -861,9 +853,7 @@ class ApiVersionLocalOperations:
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client: AsyncARMPipelineClient[HttpRequest, AsyncHttpResponse] = (
-            input_args.pop(0) if input_args else kwargs.pop("client")
-        )
+        self._client: AsyncARMPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestAzureSpecialParametersTestClientConfiguration = (
             input_args.pop(0) if input_args else kwargs.pop("config")
         )
@@ -1077,9 +1067,7 @@ class SkipUrlEncodingOperations:
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client: AsyncARMPipelineClient[HttpRequest, AsyncHttpResponse] = (
-            input_args.pop(0) if input_args else kwargs.pop("client")
-        )
+        self._client: AsyncARMPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestAzureSpecialParametersTestClientConfiguration = (
             input_args.pop(0) if input_args else kwargs.pop("config")
         )
@@ -1437,9 +1425,7 @@ class OdataOperations:
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client: AsyncARMPipelineClient[HttpRequest, AsyncHttpResponse] = (
-            input_args.pop(0) if input_args else kwargs.pop("client")
-        )
+        self._client: AsyncARMPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestAzureSpecialParametersTestClientConfiguration = (
             input_args.pop(0) if input_args else kwargs.pop("config")
         )
@@ -1514,9 +1500,7 @@ class HeaderOperations:
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client: AsyncARMPipelineClient[HttpRequest, AsyncHttpResponse] = (
-            input_args.pop(0) if input_args else kwargs.pop("client")
-        )
+        self._client: AsyncARMPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestAzureSpecialParametersTestClientConfiguration = (
             input_args.pop(0) if input_args else kwargs.pop("config")
         )

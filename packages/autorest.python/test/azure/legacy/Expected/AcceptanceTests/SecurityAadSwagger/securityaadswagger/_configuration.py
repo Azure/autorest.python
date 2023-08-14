@@ -10,6 +10,7 @@ from typing import Any, TYPE_CHECKING
 
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
+from azure.core.rest import HttpRequest, HttpResponse
 from azure.mgmt.core.policies import ARMChallengeAuthenticationPolicy, ARMHttpLoggingPolicy
 
 from ._version import VERSION
@@ -19,7 +20,9 @@ if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
 
 
-class AutorestSecurityAadConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class AutorestSecurityAadConfiguration(  # pylint: disable=too-many-instance-attributes
+    Configuration[HttpRequest, HttpResponse]
+):
     """Configuration for AutorestSecurityAad.
 
     Note that all parameters used to create this instance are saved as instance

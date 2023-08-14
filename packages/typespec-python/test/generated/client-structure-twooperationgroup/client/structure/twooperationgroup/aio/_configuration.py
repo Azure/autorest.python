@@ -10,12 +10,15 @@ from typing import Any, Union
 
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
+from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .. import models as _models
 from .._version import VERSION
 
 
-class TwoOperationGroupClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class TwoOperationGroupClientConfiguration(  # pylint: disable=too-many-instance-attributes
+    Configuration[HttpRequest, AsyncHttpResponse]
+):
     """Configuration for TwoOperationGroupClient.
 
     Note that all parameters used to create this instance are saved as instance

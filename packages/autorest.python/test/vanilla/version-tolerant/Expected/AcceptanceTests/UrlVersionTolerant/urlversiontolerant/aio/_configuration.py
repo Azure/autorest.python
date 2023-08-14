@@ -10,11 +10,14 @@ from typing import Any, Optional
 
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
+from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._version import VERSION
 
 
-class AutoRestUrlTestServiceConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class AutoRestUrlTestServiceConfiguration(  # pylint: disable=too-many-instance-attributes
+    Configuration[HttpRequest, AsyncHttpResponse]
+):
     """Configuration for AutoRestUrlTestService.
 
     Note that all parameters used to create this instance are saved as instance

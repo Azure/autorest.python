@@ -10,11 +10,14 @@ from typing import Any
 
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
+from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._version import VERSION
 
 
-class SingleDiscriminatorClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class SingleDiscriminatorClientConfiguration(  # pylint: disable=too-many-instance-attributes
+    Configuration[HttpRequest, AsyncHttpResponse]
+):
     """Configuration for SingleDiscriminatorClient.
 
     Note that all parameters used to create this instance are saved as instance

@@ -10,6 +10,7 @@ from typing import Any, TYPE_CHECKING
 
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
+from azure.core.rest import HttpRequest, HttpResponse
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
@@ -18,7 +19,9 @@ if TYPE_CHECKING:
 VERSION = "unknown"
 
 
-class MultiapiCustomBaseUrlServiceClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class MultiapiCustomBaseUrlServiceClientConfiguration(  # pylint: disable=too-many-instance-attributes
+    Configuration[HttpRequest, HttpResponse]
+):
     """Configuration for MultiapiCustomBaseUrlServiceClient.
 
     Note that all parameters used to create this instance are saved as instance

@@ -96,9 +96,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client: AsyncARMPipelineClient[HttpRequest, AsyncHttpResponse] = (
-            input_args.pop(0) if input_args else kwargs.pop("client")
-        )
+        self._client: AsyncARMPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestLongRunningOperationTestServiceConfiguration = (
             input_args.pop(0) if input_args else kwargs.pop("config")
         )

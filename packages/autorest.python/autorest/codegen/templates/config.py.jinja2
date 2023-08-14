@@ -1,4 +1,7 @@
-class {{ client.name }}Configuration(Configuration):  # pylint: disable=too-many-instance-attributes
+{% set async_prefix = "Async" if async_mode else "" %}
+class {{ client.name }}Configuration(  # pylint: disable=too-many-instance-attributes
+    Configuration[HttpRequest, {{ async_prefix }}HttpResponse]
+):
     """Configuration for {{ client.name }}.
 
     Note that all parameters used to create this instance are saved as instance

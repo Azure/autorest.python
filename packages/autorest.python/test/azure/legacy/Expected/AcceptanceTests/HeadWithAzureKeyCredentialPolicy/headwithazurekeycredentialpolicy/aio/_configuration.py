@@ -11,12 +11,15 @@ from typing import Any
 from azure.core.configuration import Configuration
 from azure.core.credentials import AzureKeyCredential
 from azure.core.pipeline import policies
+from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.mgmt.core.policies import ARMHttpLoggingPolicy, AsyncARMChallengeAuthenticationPolicy
 
 from .._version import VERSION
 
 
-class AutoRestHeadTestServiceConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class AutoRestHeadTestServiceConfiguration(  # pylint: disable=too-many-instance-attributes
+    Configuration[HttpRequest, AsyncHttpResponse]
+):
     """Configuration for AutoRestHeadTestService.
 
     Note that all parameters used to create this instance are saved as instance

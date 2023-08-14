@@ -10,11 +10,12 @@ from typing import Any
 
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
+from azure.core.rest import HttpRequest, HttpResponse
 
 from ._version import VERSION
 
 
-class DPGClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class DPGClientConfiguration(Configuration[HttpRequest, HttpResponse]):  # pylint: disable=too-many-instance-attributes
     """Configuration for DPGClient.
 
     Note that all parameters used to create this instance are saved as instance

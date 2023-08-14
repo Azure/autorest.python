@@ -434,6 +434,26 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
                     operation=True,
                 )
             )
+        if async_mode:
+            file_import.add_submodule_import(
+                "azure.core.rest",
+                "AsyncHttpResponse",
+                ImportType.AZURECORE,
+                TypingSection.REGULAR,
+            )
+        else:
+            file_import.add_submodule_import(
+                "azure.core.rest",
+                "HttpResponse",
+                ImportType.AZURECORE,
+                TypingSection.REGULAR,
+            )
+        file_import.add_submodule_import(
+            "azure.core.rest",
+            "HttpRequest",
+            ImportType.AZURECORE,
+            TypingSection.REGULAR,
+        )
         return file_import
 
     def imports_for_multiapi(self, async_mode: bool) -> FileImport:
