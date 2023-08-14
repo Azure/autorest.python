@@ -58,8 +58,17 @@ EMITTER_OPTIONS = {
     "type/model/empty": {
         "package-name": "typetest-model-empty",
     },
-    "type/model/inheritance": {
-        "package-name": "typetest-model-inheritance",
+    "type/model/inheritance/enum-discriminator": {
+        "package-name": "typetest-model-enumdiscriminator",
+    },
+    "type/model/inheritance/nested-discriminator": {
+        "package-name": "typetest-model-nesteddiscriminator",
+    },
+    "type/model/inheritance/not-discriminated": {
+        "package-name": "typetest-model-notdiscriminated",
+    },
+    "type/model/inheritance/single-discriminator": {
+        "package-name": "typetest-model-singlediscriminator",
     },
     "type/model/usage": {
         "package-name": "typetest-model-usage",
@@ -80,6 +89,21 @@ EMITTER_OPTIONS = {
     },
     "type/union": {
         "package-name": "typetest-union",
+    },
+    "azure/core/lro/rpc-legacy": {
+        "package-name": "azurecore-lro-rpclegacy",
+    },
+    "azure/core/lro/rpc": {
+        "package-name": "azurecore-lro-rpc",
+    },
+    "client/structure/multi-client": {
+        "package-name": "client-structure-multiclient",
+    },
+    "client/structure/renamed-operation": {
+        "package-name": "client-structure-renamedoperation",
+    },
+    "client/structure/two-operation-group": {
+        "package-name": "client-structure-twooperationgroup",
     },
 }
 
@@ -120,7 +144,7 @@ def _entry_file_name(path: Path) -> Path:
 def regenerate(c, name=None, debug=False):
     specs = [
         s for s in CADL_RANCH_DIR.glob("**/*")
-        if s.is_dir() and any(f for f in s.iterdir() if f.name == "main.tsp")
+        if s.is_dir() and any(f for f in s.iterdir() if f.name == "main.tsp") and "type/model/inheritance/enum-discriminator" not in s.as_posix()
     ]
     if name:
         specs = [s for s in specs if name.lower() in str(s)]
@@ -142,6 +166,16 @@ def regenerate(c, name=None, debug=False):
             f"tsp compile {_entry_file_name(spec)} --emit={PLUGIN_DIR} --option {option}"
             for spec in specs for option in _add_options(spec, debug)
         ]
+    )
+
+    regenerate_unittests(c)
+
+
+@task
+def regenerate_unittests(c):
+    shutil.copyfile(
+        "../autorest.python/autorest/codegen/templates/model_base.py.jinja2",
+        "test/unittests/generated/model_base.py"
     )
 
 

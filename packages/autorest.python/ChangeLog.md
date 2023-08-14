@@ -1,6 +1,6 @@
 # Release
 
-### 2023-07-XX - 6.7.2
+### 2023-08-09 - 6.7.2
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -15,6 +15,7 @@
 **Other Changes**
 
 - Do not delete `models` and `operations` folder by default for multiapi package  #2024
+- Optimize log for `black` when error happens  #2041
 
 ### 2023-07-20 - 6.7.1
 
