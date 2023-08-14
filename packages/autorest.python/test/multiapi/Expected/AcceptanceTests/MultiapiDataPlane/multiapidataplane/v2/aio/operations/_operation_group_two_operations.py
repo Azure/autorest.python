@@ -54,7 +54,7 @@ class OperationGroupTwoOperations:
         self._config: MultiapiServiceClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
-        self._api_version = input_args.pop(0) if input_args else kwargs.pop("api_version")
+        self._api_version: str = input_args.pop(0) if input_args else kwargs.pop("api_version")
 
     @distributed_trace_async
     async def test_four(  # pylint: disable=inconsistent-return-statements

@@ -33,7 +33,7 @@ class {{ operation_group.class_name }}{{ base_class }}:{{ disable }}
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
         {% if code_model.options["multiapi"] %}
-        self._api_version = input_args.pop(0) if input_args else kwargs.pop("api_version")
+        self._api_version: str = input_args.pop(0) if input_args else kwargs.pop("api_version")
         {% endif %}
 {{ check_abstract_methods() }}
 {% elif operation_group.has_abstract_operations %}
