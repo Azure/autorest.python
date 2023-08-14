@@ -54,6 +54,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> None:
         """Put External Resource as an Array.
 
+        .. seealso::
+           - http://tempuri.org
+
         :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: list[JSON]
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
@@ -86,6 +89,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> None:
         """Put External Resource as an Array.
 
+        .. seealso::
+           - http://tempuri.org
+
         :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
@@ -101,6 +107,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         self, resource_array: Optional[Union[List[JSON], IO]] = None, **kwargs: Any
     ) -> None:
         """Put External Resource as an Array.
+
+        .. seealso::
+           - http://tempuri.org
 
         :param resource_array: External Resource as an Array to put. Is either a [JSON] type or a IO
          type. Default value is None.
@@ -165,6 +174,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     @distributed_trace_async
     async def get_array(self, **kwargs: Any) -> List[JSON]:
         """Get External Resource as an Array.
+
+        .. seealso::
+           - http://tempuri.org
 
         :return: list of JSON object
         :rtype: list[JSON]
@@ -243,6 +255,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
 
+        .. seealso::
+           - http://tempuri.org
+
         :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: list[JSON]
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
@@ -270,6 +285,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
 
+        .. seealso::
+           - http://tempuri.org
+
         :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
@@ -286,6 +304,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
+
+        .. seealso::
+           - http://tempuri.org
 
         :param resource_array: External Resource as an Array to put. Is either a [JSON] type or a IO
          type. Default value is None.
@@ -351,6 +372,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     async def get_wrapped_array(self, **kwargs: Any) -> List[JSON]:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
+
+        .. seealso::
+           - http://tempuri.org
 
         :return: list of JSON object
         :rtype: list[JSON]
@@ -420,6 +444,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> None:
         """Put External Resource as a Dictionary.
 
+        .. seealso::
+           - http://tempuri.org
+
         :param resource_dictionary: External Resource as a Dictionary to put. Default value is None.
         :type resource_dictionary: dict[str, JSON]
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
@@ -460,6 +487,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> None:
         """Put External Resource as a Dictionary.
 
+        .. seealso::
+           - http://tempuri.org
+
         :param resource_dictionary: External Resource as a Dictionary to put. Default value is None.
         :type resource_dictionary: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
@@ -475,6 +505,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         self, resource_dictionary: Optional[Union[Dict[str, JSON], IO]] = None, **kwargs: Any
     ) -> None:
         """Put External Resource as a Dictionary.
+
+        .. seealso::
+           - http://tempuri.org
 
         :param resource_dictionary: External Resource as a Dictionary to put. Is either a {str: JSON}
          type or a IO type. Default value is None.
@@ -539,6 +572,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     @distributed_trace_async
     async def get_dictionary(self, **kwargs: Any) -> Dict[str, JSON]:
         """Get External Resource as a Dictionary.
+
+        .. seealso::
+           - http://tempuri.org
 
         :return: dict mapping str to JSON object
         :rtype: dict[str, JSON]
@@ -615,6 +651,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         self, resource_complex_object: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put External Resource as a ResourceCollection.
+
+        .. seealso::
+           - http://tempuri.org
 
         :param resource_complex_object: External Resource as a ResourceCollection to put. Default value
          is None.
@@ -702,6 +741,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> None:
         """Put External Resource as a ResourceCollection.
 
+        .. seealso::
+           - http://tempuri.org
+
         :param resource_complex_object: External Resource as a ResourceCollection to put. Default value
          is None.
         :type resource_complex_object: IO
@@ -718,6 +760,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         self, resource_complex_object: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> None:
         """Put External Resource as a ResourceCollection.
+
+        .. seealso::
+           - http://tempuri.org
 
         :param resource_complex_object: External Resource as a ResourceCollection to put. Is either a
          JSON type or a IO type. Default value is None.
@@ -852,6 +897,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     async def get_resource_collection(self, **kwargs: Any) -> JSON:
         """Get External Resource as a ResourceCollection.
 
+        .. seealso::
+           - http://tempuri.org
+
         :return: JSON object
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -973,6 +1021,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> JSON:
         """Put Simple Product with client flattening true on the model.
 
+        .. seealso::
+           - http://tempuri.org
+
         :param simple_body_product: Simple body product to put. Default value is None.
         :type simple_body_product: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
@@ -1028,6 +1079,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> JSON:
         """Put Simple Product with client flattening true on the model.
 
+        .. seealso::
+           - http://tempuri.org
+
         :param simple_body_product: Simple body product to put. Default value is None.
         :type simple_body_product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
@@ -1062,6 +1116,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     @distributed_trace_async
     async def put_simple_product(self, simple_body_product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:
         """Put Simple Product with client flattening true on the model.
+
+        .. seealso::
+           - http://tempuri.org
 
         :param simple_body_product: Simple body product to put. Is either a JSON type or a IO type.
          Default value is None.
@@ -1175,6 +1232,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> JSON:
         """Put Flattened Simple Product with client flattening true on the parameter.
 
+        .. seealso::
+           - http://tempuri.org
+
         :param simple_body_product: Simple body product to post. Default value is None.
         :type simple_body_product: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
@@ -1230,6 +1290,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> JSON:
         """Put Flattened Simple Product with client flattening true on the parameter.
 
+        .. seealso::
+           - http://tempuri.org
+
         :param simple_body_product: Simple body product to post. Default value is None.
         :type simple_body_product: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
@@ -1266,6 +1329,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         self, simple_body_product: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> JSON:
         """Put Flattened Simple Product with client flattening true on the parameter.
+
+        .. seealso::
+           - http://tempuri.org
 
         :param simple_body_product: Simple body product to post. Is either a JSON type or a IO type.
          Default value is None.
@@ -1384,6 +1450,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> JSON:
         """Put Simple Product with client flattening true on the model.
 
+        .. seealso::
+           - http://tempuri.org
+
         :param name: Product name with value 'groupproduct'. Required.
         :type name: str
         :param simple_body_product: Simple body product to put. Default value is None.
@@ -1446,6 +1515,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
     ) -> JSON:
         """Put Simple Product with client flattening true on the model.
 
+        .. seealso::
+           - http://tempuri.org
+
         :param name: Product name with value 'groupproduct'. Required.
         :type name: str
         :param simple_body_product: Simple body product to put. Default value is None.
@@ -1484,6 +1556,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatt
         self, name: str, simple_body_product: Optional[Union[JSON, IO]] = None, **kwargs: Any
     ) -> JSON:
         """Put Simple Product with client flattening true on the model.
+
+        .. seealso::
+           - http://tempuri.org
 
         :param name: Product name with value 'groupproduct'. Required.
         :type name: str
