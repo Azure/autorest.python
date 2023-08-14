@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, AnyStr, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -125,7 +125,7 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
 
     @overload
     def post_valid(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """post_valid.
 
@@ -143,11 +143,11 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
 
     @distributed_trace
     def post_valid(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.Siamese, JSON, IO], **kwargs: Any
+        self, input: Union[_models.Siamese, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """post_valid.
 
-        :param input: Is one of the following types: Siamese, JSON, IO Required.
+        :param input: Is one of the following types: Siamese, JSON, IO[AnyStr] Required.
         :type input: ~typetest.model.notdiscriminated.models.Siamese or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -290,7 +290,7 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         """
 
     @overload
-    def put_valid(self, input: IO, *, content_type: str = "application/json", **kwargs: Any) -> _models.Siamese:
+    def put_valid(self, input: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any) -> _models.Siamese:
         """put_valid.
 
         :param input: Required.
@@ -306,10 +306,10 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         """
 
     @distributed_trace
-    def put_valid(self, input: Union[_models.Siamese, JSON, IO], **kwargs: Any) -> _models.Siamese:
+    def put_valid(self, input: Union[_models.Siamese, JSON, IO[AnyStr]], **kwargs: Any) -> _models.Siamese:
         """put_valid.
 
-        :param input: Is one of the following types: Siamese, JSON, IO Required.
+        :param input: Is one of the following types: Siamese, JSON, IO[AnyStr] Required.
         :type input: ~typetest.model.notdiscriminated.models.Siamese or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.

@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, AnyStr, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -216,7 +216,7 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
 
     @overload
     def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put_model.
 
@@ -234,11 +234,11 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
 
     @distributed_trace
     def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.Fish, JSON, IO], **kwargs: Any
+        self, input: Union[_models.Fish, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """put_model.
 
-        :param input: Is one of the following types: Fish, JSON, IO Required.
+        :param input: Is one of the following types: Fish, JSON, IO[AnyStr] Required.
         :type input: ~typetest.model.nesteddiscriminator.models.Fish or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
@@ -384,7 +384,7 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
 
     @overload
     def put_recursive_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put_recursive_model.
 
@@ -402,11 +402,11 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
 
     @distributed_trace
     def put_recursive_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.Fish, JSON, IO], **kwargs: Any
+        self, input: Union[_models.Fish, JSON, IO[AnyStr]], **kwargs: Any
     ) -> None:
         """put_recursive_model.
 
-        :param input: Is one of the following types: Fish, JSON, IO Required.
+        :param input: Is one of the following types: Fish, JSON, IO[AnyStr] Required.
         :type input: ~typetest.model.nesteddiscriminator.models.Fish or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
