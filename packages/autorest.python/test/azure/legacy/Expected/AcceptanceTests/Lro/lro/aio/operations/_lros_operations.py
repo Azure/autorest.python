@@ -23,10 +23,13 @@ from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMetho
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
+from azure.mgmt.core import AsyncARMPipelineClient
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
 from ... import models as _models
+from ..._configuration import AutoRestLongRunningOperationTestServiceConfiguration
+from ..._serialization import Deserializer, Serializer
 from ..._vendor import _convert_request
 from ...operations._lros_operations import (
     build_delete202_no_retry204_request,
@@ -93,10 +96,14 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: AsyncARMPipelineClient[HttpRequest, AsyncHttpResponse] = (
+            input_args.pop(0) if input_args else kwargs.pop("client")
+        )
+        self._config: AutoRestLongRunningOperationTestServiceConfiguration = (
+            input_args.pop(0) if input_args else kwargs.pop("config")
+        )
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     async def _put200_succeeded_initial(
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any

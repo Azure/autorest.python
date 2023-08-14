@@ -8,6 +8,8 @@
 # --------------------------------------------------------------------------
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from msrest import Deserializer, Serializer
+
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -21,9 +23,11 @@ from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
+from azure.mgmt.core import AsyncARMPipelineClient
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
+from ..._configuration import AutoRestAzureSpecialParametersTestClientConfiguration
 from ..._vendor import _convert_request
 from ...operations._subscription_in_credentials_operations import (
     build_post_method_global_not_provided_valid_request,
@@ -51,10 +55,14 @@ class SubscriptionInCredentialsOperations:
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: AsyncARMPipelineClient[HttpRequest, AsyncHttpResponse] = (
+            input_args.pop(0) if input_args else kwargs.pop("client")
+        )
+        self._config: AutoRestAzureSpecialParametersTestClientConfiguration = (
+            input_args.pop(0) if input_args else kwargs.pop("config")
+        )
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def post_method_global_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

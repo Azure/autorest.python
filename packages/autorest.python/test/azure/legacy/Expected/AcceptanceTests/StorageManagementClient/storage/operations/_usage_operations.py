@@ -21,10 +21,12 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
+from azure.mgmt.core import ARMPipelineClient
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models as _models
-from .._serialization import Serializer
+from .._configuration import StorageManagementClientConfiguration
+from .._serialization import Deserializer, Serializer
 from .._vendor import _convert_request
 
 T = TypeVar("T")
@@ -72,10 +74,12 @@ class UsageOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: ARMPipelineClient[HttpRequest, HttpResponse] = (
+            input_args.pop(0) if input_args else kwargs.pop("client")
+        )
+        self._config: StorageManagementClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def list(self, **kwargs: Any) -> _models.UsageListResult:

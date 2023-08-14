@@ -19,8 +19,11 @@ from azure.core.exceptions import (
 from azure.core.pipeline import PipelineResponse
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
+from azure.mgmt.core import AsyncARMPipelineClient
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
+from ..._configuration import AutoRestHeadExceptionTestServiceConfiguration
+from ..._serialization import Deserializer, Serializer
 from ...operations._operations import (
     build_head_exception_head200_request,
     build_head_exception_head204_request,
@@ -43,10 +46,14 @@ class HeadExceptionOperations:
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: AsyncARMPipelineClient[HttpRequest, AsyncHttpResponse] = (
+            input_args.pop(0) if input_args else kwargs.pop("client")
+        )
+        self._config: AutoRestHeadExceptionTestServiceConfiguration = (
+            input_args.pop(0) if input_args else kwargs.pop("config")
+        )
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def head200(self, **kwargs: Any) -> bool:

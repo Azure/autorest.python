@@ -25,9 +25,12 @@ from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
+from azure.mgmt.core import AsyncARMPipelineClient
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
+from ...._serialization import Deserializer, Serializer
+from ..._configuration import MultiapiServiceClientConfiguration
 from ..._vendor import _convert_request
 from ...operations._operations import (
     build_multiapi_service_test_different_calls_request,

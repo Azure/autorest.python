@@ -24,10 +24,12 @@ from azure.core.pipeline.transport import HttpResponse
 from azure.core.rest import HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
+from azure.mgmt.core import ARMPipelineClient
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models as _models
-from ..._serialization import Serializer
+from ..._serialization import Deserializer, Serializer
+from .._configuration import MultiapiServiceClientConfiguration
 from .._vendor import MultiapiServiceClientMixinABC, _convert_request
 
 T = TypeVar("T")
@@ -87,10 +89,12 @@ class OperationGroupOneOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: ARMPipelineClient[HttpRequest, HttpResponse] = (
+            input_args.pop(0) if input_args else kwargs.pop("client")
+        )
+        self._config: MultiapiServiceClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
         self._api_version = input_args.pop(0) if input_args else kwargs.pop("api_version")
 
     @distributed_trace

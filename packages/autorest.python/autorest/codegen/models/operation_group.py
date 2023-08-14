@@ -9,7 +9,7 @@ from autorest.codegen.models.utils import OrderedSet
 
 from .base import BaseModel
 from .operation import get_operation
-from .imports import FileImport, ImportType, TypingSection
+from .imports import FileImport, ImportType, TypingSection, MsrestImportType
 from .utils import add_to_pylint_disable
 
 if TYPE_CHECKING:
@@ -83,6 +83,23 @@ class OperationGroup(BaseModel):
         for operation in self.operations:
             file_import.merge(
                 operation.imports(async_mode, relative_path=relative_path)
+            )
+        # for typing of __init__
+        if not self.is_mixin:
+            if self.code_model.options["azure_arm"]:
+                file_import.add_submodule_import(
+                    "azure.mgmt.core", self.client.pipeline_class(async_mode), ImportType.AZURECORE
+                )
+            else:
+                file_import.add_submodule_import(
+                    "azure.core", self.client.pipeline_class(async_mode), ImportType.AZURECORE
+                )
+            file_import.add_submodule_import(f"{relative_path}_configuration", f"{self.client.name}Configuration", ImportType.LOCAL)
+            file_import.add_msrest_import(
+                self.code_model,
+                relative_path,
+                MsrestImportType.SerializerDeserializer,
+                TypingSection.REGULAR
             )
         # for multiapi
         if (
