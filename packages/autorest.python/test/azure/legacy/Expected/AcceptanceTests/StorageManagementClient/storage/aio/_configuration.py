@@ -6,11 +6,11 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, TYPE_CHECKING
+from typing import Any, TYPE_CHECKING, cast
 
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
-from azure.core.rest import AsyncHttpResponse, HttpRequest
+from azure.core.rest import HttpRequest, HttpResponse
 from azure.mgmt.core.policies import ARMHttpLoggingPolicy, AsyncARMChallengeAuthenticationPolicy
 
 from .._version import VERSION
@@ -21,7 +21,7 @@ if TYPE_CHECKING:
 
 
 class StorageManagementClientConfiguration(  # pylint: disable=too-many-instance-attributes
-    Configuration[HttpRequest, AsyncHttpResponse]
+    Configuration[HttpRequest, HttpResponse]
 ):
     """Configuration for StorageManagementClient.
 
@@ -55,16 +55,33 @@ class StorageManagementClientConfiguration(  # pylint: disable=too-many-instance
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:
-        self.user_agent_policy = kwargs.get("user_agent_policy") or policies.UserAgentPolicy(**kwargs)
-        self.headers_policy = kwargs.get("headers_policy") or policies.HeadersPolicy(**kwargs)
-        self.proxy_policy = kwargs.get("proxy_policy") or policies.ProxyPolicy(**kwargs)
-        self.logging_policy = kwargs.get("logging_policy") or policies.NetworkTraceLoggingPolicy(**kwargs)
-        self.http_logging_policy = kwargs.get("http_logging_policy") or ARMHttpLoggingPolicy(**kwargs)
-        self.retry_policy = kwargs.get("retry_policy") or policies.AsyncRetryPolicy(**kwargs)
-        self.custom_hook_policy = kwargs.get("custom_hook_policy") or policies.CustomHookPolicy(**kwargs)
-        self.redirect_policy = kwargs.get("redirect_policy") or policies.AsyncRedirectPolicy(**kwargs)
+        self.user_agent_policy = kwargs.get("user_agent_policy") or cast(
+            policies.SansIOHTTPPolicy[HttpRequest, HttpResponse], policies.UserAgentPolicy(**kwargs)
+        )
+        self.headers_policy = kwargs.get("headers_policy") or cast(
+            policies.SansIOHTTPPolicy[HttpRequest, HttpResponse], policies.HeadersPolicy(**kwargs)
+        )
+        self.proxy_policy = kwargs.get("proxy_policy") or cast(
+            policies.SansIOHTTPPolicy[HttpRequest, HttpResponse], policies.ProxyPolicy(**kwargs)
+        )
+        self.logging_policy = kwargs.get("logging_policy") or cast(
+            policies.SansIOHTTPPolicy[HttpRequest, HttpResponse], policies.NetworkTraceLoggingPolicy(**kwargs)
+        )
+        self.http_logging_policy = kwargs.get("http_logging_policy") or cast(
+            policies.SansIOHTTPPolicy[HttpRequest, HttpResponse], ARMHttpLoggingPolicy(**kwargs)
+        )
+        self.retry_policy = kwargs.get("retry_policy") or cast(
+            policies.AsyncHTTPPolicy[HttpRequest, HttpResponse], policies.AsyncRetryPolicy(**kwargs)
+        )
+        self.custom_hook_policy = kwargs.get("custom_hook_policy") or cast(
+            policies.SansIOHTTPPolicy[HttpRequest, HttpResponse], policies.CustomHookPolicy(**kwargs)
+        )
+        self.redirect_policy = kwargs.get("redirect_policy") or cast(
+            policies.AsyncHTTPPolicy[HttpRequest, HttpResponse], policies.AsyncRedirectPolicy(**kwargs)
+        )
         self.authentication_policy = kwargs.get("authentication_policy")
         if self.credential and not self.authentication_policy:
-            self.authentication_policy = AsyncARMChallengeAuthenticationPolicy(
-                self.credential, *self.credential_scopes, **kwargs
+            self.authentication_policy = cast(
+                policies.SansIOHTTPPolicy[HttpRequest, HttpResponse],
+                AsyncARMChallengeAuthenticationPolicy(self.credential, *self.credential_scopes, **kwargs),
             )

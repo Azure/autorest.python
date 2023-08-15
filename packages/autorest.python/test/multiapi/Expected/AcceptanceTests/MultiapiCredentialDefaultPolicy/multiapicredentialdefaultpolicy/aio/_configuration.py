@@ -8,7 +8,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is
 # regenerated.
 # --------------------------------------------------------------------------
-from typing import Any
+from typing import Any, cast
 
 from azure.core.configuration import Configuration
 from azure.core.credentials import AzureKeyCredential
