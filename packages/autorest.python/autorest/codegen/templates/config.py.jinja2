@@ -1,6 +1,5 @@
-{% set async_prefix = "Async" if async_mode else "" %}
 class {{ client.name }}Configuration(  # pylint: disable=too-many-instance-attributes
-    Configuration[HttpRequest, {{ async_prefix }}HttpResponse]
+    Configuration[HttpRequest, HttpResponse]
 ):
     """Configuration for {{ client.name }}.
 
@@ -50,14 +49,14 @@ class {{ client.name }}Configuration(  # pylint: disable=too-many-instance-attri
         self,
         **kwargs: Any
     ) -> None:
-        self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)
-        self.headers_policy = kwargs.get('headers_policy') or policies.HeadersPolicy(**kwargs)
-        self.proxy_policy = kwargs.get('proxy_policy') or policies.ProxyPolicy(**kwargs)
-        self.logging_policy = kwargs.get('logging_policy') or policies.NetworkTraceLoggingPolicy(**kwargs)
-        self.http_logging_policy = kwargs.get('http_logging_policy') or {{ "ARM" if client.code_model.options['azure_arm'] else "policies." }}HttpLoggingPolicy(**kwargs)
-        self.retry_policy = kwargs.get('retry_policy') or policies.{{ keywords.async_class }}RetryPolicy(**kwargs)
-        self.custom_hook_policy = kwargs.get('custom_hook_policy') or policies.CustomHookPolicy(**kwargs)
-        self.redirect_policy = kwargs.get('redirect_policy') or policies.{{ keywords.async_class }}RedirectPolicy(**kwargs)
+        self.user_agent_policy = kwargs.get('user_agent_policy') or cast(policies.SansIOHTTPPolicy[HttpRequest, HttpResponse], policies.UserAgentPolicy(**kwargs))
+        self.headers_policy = kwargs.get('headers_policy') or cast(policies.SansIOHTTPPolicy[HttpRequest, HttpResponse], policies.HeadersPolicy(**kwargs))
+        self.proxy_policy = kwargs.get('proxy_policy') or cast(policies.SansIOHTTPPolicy[HttpRequest, HttpResponse], policies.ProxyPolicy(**kwargs))
+        self.logging_policy = kwargs.get('logging_policy') or cast(policies.SansIOHTTPPolicy[HttpRequest, HttpResponse], policies.NetworkTraceLoggingPolicy(**kwargs))
+        self.http_logging_policy = kwargs.get('http_logging_policy') or cast(policies.SansIOHTTPPolicy[HttpRequest, HttpResponse], {{ "ARM" if client.code_model.options['azure_arm'] else "policies." }}HttpLoggingPolicy(**kwargs))
+        self.retry_policy = kwargs.get('retry_policy') or cast(policies.{{ keywords.async_class }}HTTPPolicy[HttpRequest, HttpResponse], policies.{{ keywords.async_class }}RetryPolicy(**kwargs))
+        self.custom_hook_policy = kwargs.get('custom_hook_policy') or cast(policies.SansIOHTTPPolicy[HttpRequest, HttpResponse], policies.CustomHookPolicy(**kwargs))
+        self.redirect_policy = kwargs.get('redirect_policy') or cast(policies.{{ keywords.async_class }}HTTPPolicy[HttpRequest, HttpResponse], policies.{{ keywords.async_class }}RedirectPolicy(**kwargs))
         self.authentication_policy = kwargs.get('authentication_policy')
         {% if client.credential and client.credential.type.policy is defined %}
             {# only adding this if credential_scopes is not passed during code generation #}
@@ -66,9 +65,9 @@ class {{ client.name }}Configuration(  # pylint: disable=too-many-instance-attri
             raise ValueError("You must provide either credential_scopes or authentication_policy as kwargs")
             {% endif %}
         if self.credential and not self.authentication_policy:
-            self.authentication_policy = {{ client.credential.type.policy.call(async_mode) }}
+            self.authentication_policy = cast(policies.SansIOHTTPPolicy[HttpRequest, HttpResponse], {{ client.credential.type.policy.call(async_mode) }})
         {% endif %}
         {% if client.credential and client.credential.type.types is defined %}
         if self.credential and not self.authentication_policy:
-            self.authentication_policy = self._infer_policy(**kwargs)
+            self.authentication_policy = cast(policies.SansIOHTTPPolicy[HttpRequest, HttpResponse], self._infer_policy(**kwargs))
         {% endif %}

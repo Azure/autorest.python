@@ -400,6 +400,9 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
+        file_import.add_submodule_import(
+            "typing", "cast", ImportType.STDLIB, TypingSection.CONDITIONAL
+        )
         if self.code_model.options["package_version"]:
             file_import.add_submodule_import(
                 ".._version" if async_mode else "._version", "VERSION", ImportType.LOCAL
@@ -434,26 +437,13 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
                     operation=True,
                 )
             )
-        if async_mode:
+        for item in ("HttpRequest", "HttpResponse"):
             file_import.add_submodule_import(
                 "azure.core.rest",
-                "AsyncHttpResponse",
+                item,
                 ImportType.AZURECORE,
                 TypingSection.REGULAR,
             )
-        else:
-            file_import.add_submodule_import(
-                "azure.core.rest",
-                "HttpResponse",
-                ImportType.AZURECORE,
-                TypingSection.REGULAR,
-            )
-        file_import.add_submodule_import(
-            "azure.core.rest",
-            "HttpRequest",
-            ImportType.AZURECORE,
-            TypingSection.REGULAR,
-        )
         return file_import
 
     def imports_for_multiapi(self, async_mode: bool) -> FileImport:

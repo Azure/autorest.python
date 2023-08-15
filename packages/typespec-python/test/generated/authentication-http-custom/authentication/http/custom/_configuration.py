@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any
+from typing import Any, cast
 
 from azure.core.configuration import Configuration
 from azure.core.credentials import AzureKeyCredential
@@ -38,16 +38,33 @@ class CustomClientConfiguration(  # pylint: disable=too-many-instance-attributes
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:
-        self.user_agent_policy = kwargs.get("user_agent_policy") or policies.UserAgentPolicy(**kwargs)
-        self.headers_policy = kwargs.get("headers_policy") or policies.HeadersPolicy(**kwargs)
-        self.proxy_policy = kwargs.get("proxy_policy") or policies.ProxyPolicy(**kwargs)
-        self.logging_policy = kwargs.get("logging_policy") or policies.NetworkTraceLoggingPolicy(**kwargs)
-        self.http_logging_policy = kwargs.get("http_logging_policy") or policies.HttpLoggingPolicy(**kwargs)
-        self.retry_policy = kwargs.get("retry_policy") or policies.RetryPolicy(**kwargs)
-        self.custom_hook_policy = kwargs.get("custom_hook_policy") or policies.CustomHookPolicy(**kwargs)
-        self.redirect_policy = kwargs.get("redirect_policy") or policies.RedirectPolicy(**kwargs)
+        self.user_agent_policy = kwargs.get("user_agent_policy") or cast(
+            policies.SansIOHTTPPolicy[HttpRequest, HttpResponse], policies.UserAgentPolicy(**kwargs)
+        )
+        self.headers_policy = kwargs.get("headers_policy") or cast(
+            policies.SansIOHTTPPolicy[HttpRequest, HttpResponse], policies.HeadersPolicy(**kwargs)
+        )
+        self.proxy_policy = kwargs.get("proxy_policy") or cast(
+            policies.SansIOHTTPPolicy[HttpRequest, HttpResponse], policies.ProxyPolicy(**kwargs)
+        )
+        self.logging_policy = kwargs.get("logging_policy") or cast(
+            policies.SansIOHTTPPolicy[HttpRequest, HttpResponse], policies.NetworkTraceLoggingPolicy(**kwargs)
+        )
+        self.http_logging_policy = kwargs.get("http_logging_policy") or cast(
+            policies.SansIOHTTPPolicy[HttpRequest, HttpResponse], policies.HttpLoggingPolicy(**kwargs)
+        )
+        self.retry_policy = kwargs.get("retry_policy") or cast(
+            policies.HTTPPolicy[HttpRequest, HttpResponse], policies.RetryPolicy(**kwargs)
+        )
+        self.custom_hook_policy = kwargs.get("custom_hook_policy") or cast(
+            policies.SansIOHTTPPolicy[HttpRequest, HttpResponse], policies.CustomHookPolicy(**kwargs)
+        )
+        self.redirect_policy = kwargs.get("redirect_policy") or cast(
+            policies.HTTPPolicy[HttpRequest, HttpResponse], policies.RedirectPolicy(**kwargs)
+        )
         self.authentication_policy = kwargs.get("authentication_policy")
         if self.credential and not self.authentication_policy:
-            self.authentication_policy = policies.AzureKeyCredentialPolicy(
-                self.credential, "Authorization", prefix="SharedAccessKey", **kwargs
+            self.authentication_policy = cast(
+                policies.SansIOHTTPPolicy[HttpRequest, HttpResponse],
+                policies.AzureKeyCredentialPolicy(self.credential, "Authorization", prefix="SharedAccessKey", **kwargs),
             )
