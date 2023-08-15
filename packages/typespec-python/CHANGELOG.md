@@ -10,11 +10,11 @@
 | `@typespec/versioning`                                                  | `0.46.0`      |
 | `@azure-tools/typespec-azure-core`                                      | `0.32.0`      |
 | `@azure-tools/typespec-client-generator-core`                           | `0.32.0`      |
-| `azure-core` dep of generated code                                      | `1.28.0`      |
+| `azure-core` dep of generated code                                      | `1.29.2`      |
 | `isodate` dep of generated code                                         | `0.6.1`       |
 | `msrest` dep of generated code (If generating legacy code)              | `0.7.1`       |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
-| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.4.0`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.6.0`       |
 
 **Other Changes**
 

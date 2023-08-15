@@ -22,7 +22,7 @@ setup(
     include_package_data=True,
     install_requires=[
         "isodate<1.0.0,>=0.6.1",
-        "azure-core<2.0.0,>=1.28.0",
+        "azure-core<2.0.0,>=1.29.2",
     ],
     long_description="""\
     Illustrates not-discriminated inheritance model.
