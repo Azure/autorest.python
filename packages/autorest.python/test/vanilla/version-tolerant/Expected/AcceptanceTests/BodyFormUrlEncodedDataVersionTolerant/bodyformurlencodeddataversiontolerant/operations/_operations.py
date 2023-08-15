@@ -7,6 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from azure.core import PipelineClient
+from azure.core.rest import HttpRequest, HttpResponse
 
 from .._configuration import BodyFormsDataURLEncodedConfiguration
 from .._serialization import Deserializer, Serializer

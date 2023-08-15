@@ -411,30 +411,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
                 file_import.add_submodule_import(
                     f"{relative_path}_vendor", "prep_if_none_match", ImportType.LOCAL
                 )
-        if self.code_model.need_request_converter:
-            if async_mode:
-                file_import.add_submodule_import(
-                    "azure.core.pipeline.transport",
-                    "AsyncHttpResponse",
-                    ImportType.AZURECORE,
-                )
-            else:
-                file_import.add_submodule_import(
-                    "azure.core.pipeline.transport",
-                    "HttpResponse",
-                    ImportType.AZURECORE,
-                )
-        else:
-            if async_mode:
-                file_import.add_submodule_import(
-                    "azure.core.rest",
-                    "AsyncHttpResponse",
-                    ImportType.AZURECORE,
-                )
-            else:
-                file_import.add_submodule_import(
-                    "azure.core.rest", "HttpResponse", ImportType.AZURECORE
-                )
+        http_import(self.code_model.need_request_converter, async_mode, file_import)
         if (
             self.code_model.options["builders_visibility"] == "embedded"
             and not async_mode
@@ -442,9 +419,6 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             file_import.merge(self.request_builder.imports())
         file_import.add_submodule_import(
             "azure.core.pipeline", "PipelineResponse", ImportType.AZURECORE
-        )
-        file_import.add_submodule_import(
-            "azure.core.rest", "HttpRequest", ImportType.AZURECORE
         )
         file_import.add_submodule_import(
             "typing", "Callable", ImportType.STDLIB, TypingSection.CONDITIONAL
@@ -589,3 +563,35 @@ def get_operation(
     else:
         from . import Operation as OperationCls  # type: ignore
     return OperationCls.from_yaml(yaml_data, code_model, client)
+
+
+def http_import(
+    need_request_converter: bool, async_mode: bool, file_import: FileImport
+) -> None:
+    file_import.add_submodule_import(
+        "azure.core.rest", "HttpRequest", ImportType.AZURECORE
+    )
+    if need_request_converter:
+        if async_mode:
+            file_import.add_submodule_import(
+                "azure.core.pipeline.transport",
+                "AsyncHttpResponse",
+                ImportType.AZURECORE,
+            )
+        else:
+            file_import.add_submodule_import(
+                "azure.core.pipeline.transport",
+                "HttpResponse",
+                ImportType.AZURECORE,
+            )
+    else:
+        if async_mode:
+            file_import.add_submodule_import(
+                "azure.core.rest",
+                "AsyncHttpResponse",
+                ImportType.AZURECORE,
+            )
+        else:
+            file_import.add_submodule_import(
+                "azure.core.rest", "HttpResponse", ImportType.AZURECORE
+            )

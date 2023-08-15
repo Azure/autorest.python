@@ -8,7 +8,7 @@ from typing import Dict, List, Any, TYPE_CHECKING
 from autorest.codegen.models.utils import OrderedSet
 
 from .base import BaseModel
-from .operation import get_operation
+from .operation import get_operation, http_import
 from .imports import FileImport, ImportType, TypingSection, MsrestImportType
 from .utils import add_to_pylint_disable
 
@@ -86,6 +86,9 @@ class OperationGroup(BaseModel):
             )
         # for typing of __init__
         if not self.is_mixin:
+            # http_request and http_response
+            http_import(self.code_model.need_request_converter, async_mode, file_import)
+            # pipelineclient
             if self.code_model.options["azure_arm"]:
                 file_import.add_submodule_import(
                     "azure.mgmt.core",
@@ -98,11 +101,13 @@ class OperationGroup(BaseModel):
                     self.client.pipeline_class(async_mode),
                     ImportType.AZURECORE,
                 )
+            # configuration
             file_import.add_submodule_import(
                 f"{relative_path}_configuration",
                 f"{self.client.name}Configuration",
                 ImportType.LOCAL,
             )
+            # serializer and deserializer
             file_import.add_msrest_import(
                 self.code_model,
                 relative_path,
