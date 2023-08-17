@@ -20,9 +20,9 @@ else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 
 
-class AutoRestSwaggerConstantServiceConfiguration(
+class AutoRestSwaggerConstantServiceConfiguration(  # pylint: disable=too-many-instance-attributes,name-too-long
     Configuration
-):  # pylint: disable=too-many-instance-attributes,name-too-long
+):
     """Configuration for AutoRestSwaggerConstantService.
 
     Note that all parameters used to create this instance are saved as instance

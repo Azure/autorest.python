@@ -35,9 +35,7 @@ class AutoRestSwaggerBATArrayService:  # pylint: disable=client-accepts-api-vers
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.array = ArrayOperations(  # pylint: disable=too-many-public-methods
-            self._client, self._config, self._serialize, self._deserialize
-        )
+        self.array = ArrayOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.

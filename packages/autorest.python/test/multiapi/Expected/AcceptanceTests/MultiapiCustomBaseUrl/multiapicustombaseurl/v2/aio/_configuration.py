@@ -18,9 +18,9 @@ if TYPE_CHECKING:
 VERSION = "unknown"
 
 
-class MultiapiCustomBaseUrlServiceClientConfiguration(
+class MultiapiCustomBaseUrlServiceClientConfiguration(  # pylint: disable=too-many-instance-attributes,name-too-long
     Configuration
-):  # pylint: disable=too-many-instance-attributes,name-too-long
+):
     """Configuration for MultiapiCustomBaseUrlServiceClient.
 
     Note that all parameters used to create this instance are saved as instance

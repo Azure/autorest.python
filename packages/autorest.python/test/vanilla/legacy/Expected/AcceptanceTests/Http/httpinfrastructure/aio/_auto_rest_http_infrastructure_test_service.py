@@ -60,14 +60,14 @@ class AutoRestHttpInfrastructureTestService:  # pylint: disable=client-accepts-a
         self.http_failure = HttpFailureOperations(self._client, self._config, self._serialize, self._deserialize)
         self.http_success = HttpSuccessOperations(self._client, self._config, self._serialize, self._deserialize)
         self.http_redirects = HttpRedirectsOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.http_client_failure = HttpClientFailureOperations(  # pylint: disable=too-many-public-methods
+        self.http_client_failure = HttpClientFailureOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
         self.http_server_failure = HttpServerFailureOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
         self.http_retry = HttpRetryOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.multiple_responses = MultipleResponsesOperations(  # pylint: disable=too-many-public-methods
+        self.multiple_responses = MultipleResponsesOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 

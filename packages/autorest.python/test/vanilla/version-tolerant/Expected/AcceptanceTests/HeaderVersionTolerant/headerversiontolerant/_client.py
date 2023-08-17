@@ -35,9 +35,7 @@ class AutoRestSwaggerBATHeaderService:  # pylint: disable=client-accepts-api-ver
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.header = HeaderOperations(  # pylint: disable=too-many-public-methods
-            self._client, self._config, self._serialize, self._deserialize
-        )
+        self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

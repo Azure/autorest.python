@@ -164,7 +164,7 @@ class ClientSerializer:
                 api_version = ""
             retval.extend(
                 [
-                    f"self.{og.property_name} = {og.class_name}({og.pylint_disable}",
+                    f"self.{og.property_name} = {og.class_name}(",
                     f"    self._client, self._config, self._serialize, self._deserialize{api_version}",
                     ")",
                 ]

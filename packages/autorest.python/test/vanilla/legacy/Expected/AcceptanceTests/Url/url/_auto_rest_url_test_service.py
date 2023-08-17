@@ -52,12 +52,8 @@ class AutoRestUrlTestService:  # pylint: disable=client-accepts-api-version-keyw
         client_models = {k: v for k, v in _models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
-        self.paths = PathsOperations(  # pylint: disable=too-many-public-methods
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.queries = QueriesOperations(  # pylint: disable=too-many-public-methods
-            self._client, self._config, self._serialize, self._deserialize
-        )
+        self.paths = PathsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.queries = QueriesOperations(self._client, self._config, self._serialize, self._deserialize)
         self.path_items = PathItemsOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
