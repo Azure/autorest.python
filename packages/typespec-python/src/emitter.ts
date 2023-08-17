@@ -418,7 +418,7 @@ function addLroInformation(
     const lroMeta = getLroMetadata(context.program, tspOperation);
     if (!isAzureCoreModel(lroMeta!.logicalResult)) {
         emittedOperation["responses"][0]["type"] = getType(context, lroMeta!.logicalResult);
-        if (lroMeta!.finalStep?.target.kind === "ModelProperty") {
+        if (lroMeta!.finalStep?.target.kind === "ModelProperty" && emittedOperation.method !== "PUT") {
             emittedOperation["responses"][0]["resultProperty"] = lroMeta!.finalStep.target.name;
         }
         addAcceptParameter(context, tspOperation, emittedOperation["parameters"]);
@@ -674,7 +674,9 @@ function emitServerParams(context: SdkContext, namespace: Namespace): Record<str
                 param: param,
             };
             const emittedParameter = emitParameter(context, serverParameter, "Client");
-            endpointPathParameters.push(emittedParameter);
+            if (!endpointPathParameters.some((p) => p.clientName === emittedParameter.clientName)) {
+                endpointPathParameters.push(emittedParameter);
+            }
             if (isApiVersion(context, serverParameter as any) && apiVersionParam === undefined) {
                 apiVersionParam = emittedParameter;
                 continue;

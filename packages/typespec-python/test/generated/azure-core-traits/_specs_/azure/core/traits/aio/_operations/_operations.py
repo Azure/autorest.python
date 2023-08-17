@@ -12,10 +12,12 @@ import json
 import sys
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
+from azure.core import MatchConditions
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
     ResourceExistsError,
+    ResourceModifiedError,
     ResourceNotFoundError,
     ResourceNotModifiedError,
     map_error,
@@ -46,8 +48,8 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         id: int,
         *,
         foo: str,
-        if_match: Optional[str] = None,
-        if_none_match: Optional[str] = None,
+        etag: Optional[str] = None,
+        match_condition: Optional[MatchConditions] = None,
         if_unmodified_since: Optional[datetime.datetime] = None,
         if_modified_since: Optional[datetime.datetime] = None,
         **kwargs: Any
@@ -58,12 +60,11 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :type id: int
         :keyword foo: header in request. Required.
         :paramtype foo: str
-        :keyword if_match: The request should only proceed if an entity matches this string. Default
-         value is None.
-        :paramtype if_match: str
-        :keyword if_none_match: The request should only proceed if no entity matches this string.
-         Default value is None.
-        :paramtype if_none_match: str
+        :keyword etag: check if resource is changed. Set None to skip checking etag. Default value is
+         None.
+        :paramtype etag: str
+        :keyword match_condition: The match condition to use upon the etag. Default value is None.
+        :paramtype match_condition: ~azure.core.MatchConditions
         :keyword if_unmodified_since: The request should only proceed if the entity was not modified
          after this time. Default value is None.
         :paramtype if_unmodified_since: ~datetime.datetime
@@ -82,6 +83,12 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
+        if match_condition == MatchConditions.IfNotModified:
+            error_map[412] = ResourceModifiedError
+        elif match_condition == MatchConditions.IfPresent:
+            error_map[412] = ResourceNotFoundError
+        elif match_condition == MatchConditions.IfMissing:
+            error_map[412] = ResourceExistsError
         error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
@@ -92,8 +99,8 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         request = build_traits_smoke_test_request(
             id=id,
             foo=foo,
-            if_match=if_match,
-            if_none_match=if_none_match,
+            etag=etag,
+            match_condition=match_condition,
             if_unmodified_since=if_unmodified_since,
             if_modified_since=if_modified_since,
             api_version=self._config.api_version,
@@ -110,6 +117,8 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -248,6 +257,8 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 

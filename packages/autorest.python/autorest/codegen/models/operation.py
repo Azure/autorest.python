@@ -90,6 +90,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         self.internal: bool = self.yaml_data.get("internal", False)
         if self.internal:
             self.name = "_" + self.name
+        self.has_etag: bool = self.yaml_data.get("hasEtag", False)
 
     @property
     def expose_stream_keyword(self) -> bool:
@@ -331,7 +332,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             )
         return file_import
 
-    def imports(  # pylint: disable=too-many-branches
+    def imports(  # pylint: disable=too-many-branches, disable=too-many-statements
         self, async_mode: bool, **kwargs: Any
     ) -> FileImport:
         if self.abstract:
@@ -394,11 +395,22 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         if self.deprecated:
             file_import.add_import("warnings", ImportType.STDLIB)
 
+        relative_path = "..." if async_mode else ".."
         if self.code_model.need_request_converter:
-            relative_path = "..." if async_mode else ".."
             file_import.add_submodule_import(
                 f"{relative_path}_vendor", "_convert_request", ImportType.LOCAL
             )
+        if self.has_etag:
+            file_import.add_submodule_import(
+                "azure.core.exceptions", "ResourceModifiedError", ImportType.AZURECORE
+            )
+            if not async_mode:
+                file_import.add_submodule_import(
+                    f"{relative_path}_vendor", "prep_if_match", ImportType.LOCAL
+                )
+                file_import.add_submodule_import(
+                    f"{relative_path}_vendor", "prep_if_none_match", ImportType.LOCAL
+                )
         if self.code_model.need_request_converter:
             if async_mode:
                 file_import.add_submodule_import(

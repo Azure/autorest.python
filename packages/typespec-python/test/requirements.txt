@@ -8,7 +8,8 @@ azure-core==1.28.0
 -e ./generated/authentication-oauth2
 -e ./generated/authentication-union
 -e ./generated/azure-core-basic
--e ./generated/azure-core-lro-rpc-legacy
+-e ./generated/azurecore-lro-rpclegacy
+-e ./generated/azurecore-lro-rpc
 -e ./generated/azure-core-lro-standard
 -e ./generated/azure-core-traits
 -e ./generated/encode-duration
@@ -24,7 +25,9 @@ azure-core==1.28.0
 -e ./generated/typetest-dictionary
 -e ./generated/typetest-enum-extensible
 -e ./generated/typetest-enum-fixed
--e ./generated/typetest-model-inheritance
+-e ./generated/typetest-model-nesteddiscriminator
+-e ./generated/typetest-model-notdiscriminated
+-e ./generated/typetest-model-singlediscriminator
 -e ./generated/typetest-model-usage
 -e ./generated/typetest-model-visibility
 -e ./generated/typetest-property-nullable
@@ -40,3 +43,7 @@ azure-core==1.28.0
 -e ./generated/special-headers-client-request-id
 -e ./generated/encode-datetime
 -e ./generated/encode-bytes
+-e ./generated/client-structure-default
+-e ./generated/client-structure-multiclient
+-e ./generated/client-structure-renamedoperation
+-e ./generated/client-structure-twooperationgroup

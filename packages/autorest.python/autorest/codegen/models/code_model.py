@@ -18,7 +18,7 @@ def _is_legacy(options) -> bool:
     return not (options.get("version_tolerant") or options.get("low_level_client"))
 
 
-class CodeModel:  # pylint: disable=too-many-public-methods
+class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-instance-attributes
     """Top level code model
 
     :param options: Options of the code model. I.e., whether this is for management generation
@@ -78,6 +78,10 @@ class CodeModel:  # pylint: disable=too-many-public-methods
         ]
 
     @property
+    def has_etag(self) -> bool:
+        return any(client.has_etag for client in self.clients)
+
+    @property
     def has_operations(self) -> bool:
         if any(c for c in self.clients if c.has_operations):
             return True
@@ -129,7 +133,7 @@ class CodeModel:  # pylint: disable=too-many-public-methods
             return True
         if async_mode:
             return self.need_mixin_abc
-        return self.need_request_converter or self.need_mixin_abc
+        return self.need_request_converter or self.need_mixin_abc or self.has_etag
 
     @property
     def need_request_converter(self) -> bool:

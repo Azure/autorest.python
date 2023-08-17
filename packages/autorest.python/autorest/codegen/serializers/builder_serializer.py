@@ -1089,9 +1089,17 @@ class _OperationSerializer(
         return retval
 
     def handle_error_response(self, builder: OperationType) -> List[str]:
+        async_await = "await " if self.async_mode else ""
         retval = [
             f"if response.status_code not in {str(builder.success_status_codes)}:"
         ]
+        if not self.code_model.need_request_converter:
+            retval.extend(
+                [
+                    "    if _stream:",
+                    f"        {async_await} response.read()  # Load the body in memory and close the socket",
+                ]
+            )
         retval.append(
             "    map_error(status_code=response.status_code, response=response, error_map=error_map)"
         )
@@ -1253,6 +1261,17 @@ class _OperationSerializer(
                 "304: ResourceNotModifiedError"
             )
         retval.append("}")
+        if builder.has_etag:
+            retval.extend(
+                [
+                    "if match_condition == MatchConditions.IfNotModified:",
+                    "    error_map[412] = ResourceModifiedError",
+                    "elif match_condition == MatchConditions.IfPresent:",
+                    "    error_map[412] = ResourceNotFoundError",
+                    "elif match_condition == MatchConditions.IfMissing:",
+                    "    error_map[412] = ResourceExistsError",
+                ]
+            )
         retval.append("error_map.update(kwargs.pop('error_map', {}) or {})")
         return retval
 
