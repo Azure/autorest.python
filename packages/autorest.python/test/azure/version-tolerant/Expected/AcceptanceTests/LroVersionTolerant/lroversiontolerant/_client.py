@@ -49,9 +49,13 @@ class AutoRestLongRunningOperationTestService:  # pylint: disable=client-accepts
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.lros = LROsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.lros = LROsOperations(  # pylint: disable=too-many-public-methods
+            self._client, self._config, self._serialize, self._deserialize
+        )
         self.lro_retrys = LRORetrysOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.lrosads = LROSADsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.lrosads = LROSADsOperations(  # pylint: disable=too-many-public-methods
+            self._client, self._config, self._serialize, self._deserialize
+        )
         self.lr_os_custom_header = LROsCustomHeaderOperations(
             self._client, self._config, self._serialize, self._deserialize
         )

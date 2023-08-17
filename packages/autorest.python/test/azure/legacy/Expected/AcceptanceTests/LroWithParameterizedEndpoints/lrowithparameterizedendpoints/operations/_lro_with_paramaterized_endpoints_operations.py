@@ -76,7 +76,9 @@ def build_poll_with_constant_parameterized_endpoints_request(  # pylint: disable
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpointsMixinABC):
+class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-long
+    LROWithParamaterizedEndpointsMixinABC
+):
     def _poll_with_parameterized_endpoints_initial(  # pylint: disable=name-too-long
         self, account_name: str, **kwargs: Any
     ) -> Optional[str]:

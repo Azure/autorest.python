@@ -35,7 +35,9 @@ class AutoRestNumberTestService:  # pylint: disable=client-accepts-api-version-k
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.number = NumberOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.number = NumberOperations(  # pylint: disable=too-many-public-methods
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

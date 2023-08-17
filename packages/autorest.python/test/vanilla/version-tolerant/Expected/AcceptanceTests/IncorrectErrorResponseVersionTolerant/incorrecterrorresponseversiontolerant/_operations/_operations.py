@@ -39,7 +39,7 @@ def build_incorrect_returned_error_model_get_incorrect_error_from_server_request
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-class IncorrectReturnedErrorModelOperationsMixin(IncorrectReturnedErrorModelMixinABC):
+class IncorrectReturnedErrorModelOperationsMixin(IncorrectReturnedErrorModelMixinABC):  # pylint: disable=name-too-long
     @distributed_trace
     def get_incorrect_error_from_server(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get an error response from the server that is not as described in our Error object. Want to

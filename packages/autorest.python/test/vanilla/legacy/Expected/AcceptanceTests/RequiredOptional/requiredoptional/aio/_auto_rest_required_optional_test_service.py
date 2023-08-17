@@ -56,7 +56,9 @@ class AutoRestRequiredOptionalTestService:  # pylint: disable=client-accepts-api
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self.implicit = ImplicitOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.explicit = ExplicitOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.explicit = ExplicitOperations(  # pylint: disable=too-many-public-methods
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def _send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.

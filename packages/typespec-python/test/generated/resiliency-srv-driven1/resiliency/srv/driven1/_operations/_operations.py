@@ -67,7 +67,9 @@ def build_resiliency_service_driven_from_one_optional_request(  # pylint: disabl
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-class ResiliencyServiceDrivenClientOperationsMixin(ResiliencyServiceDrivenClientMixinABC):
+class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-long
+    ResiliencyServiceDrivenClientMixinABC
+):
     @distributed_trace
     def from_none(self, **kwargs: Any) -> bool:
         """Test that currently accepts no parameters, will be updated in next spec to accept a new

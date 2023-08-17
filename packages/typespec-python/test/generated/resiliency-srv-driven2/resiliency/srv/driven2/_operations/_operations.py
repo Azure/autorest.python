@@ -89,7 +89,9 @@ def build_resiliency_service_driven_from_one_optional_request(  # pylint: disabl
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-class ResiliencyServiceDrivenClientOperationsMixin(ResiliencyServiceDrivenClientMixinABC):
+class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-long
+    ResiliencyServiceDrivenClientMixinABC
+):
     @distributed_trace
     @api_version_validation(
         method_added_on="v2",

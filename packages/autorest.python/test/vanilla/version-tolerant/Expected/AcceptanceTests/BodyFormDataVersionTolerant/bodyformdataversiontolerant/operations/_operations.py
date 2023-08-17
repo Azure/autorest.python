@@ -50,7 +50,7 @@ def build_formdata_upload_file_via_body_request(  # pylint: disable=name-too-lon
     return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-class FormdataOperations:
+class FormdataOperations:  # pylint: disable=abstract-class-instantiated
     """
     .. warning::
         **DO NOT** instantiate this class directly.

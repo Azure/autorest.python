@@ -240,7 +240,9 @@ def build_auto_rest_resource_flattening_test_service_put_simple_product_with_gro
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatteningTestServiceMixinABC):
+class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=name-too-long
+    AutoRestResourceFlatteningTestServiceMixinABC
+):
     @overload
     def put_array(  # pylint: disable=inconsistent-return-statements
         self, resource_array: Optional[List[JSON]] = None, *, content_type: str = "application/json", **kwargs: Any

@@ -35,7 +35,9 @@ class AutoRestSwaggerBATDictionaryService:  # pylint: disable=client-accepts-api
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.dictionary = DictionaryOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.dictionary = DictionaryOperations(  # pylint: disable=too-many-public-methods
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
