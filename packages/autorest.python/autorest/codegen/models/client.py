@@ -374,6 +374,13 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
     """Model representing our Config type."""
 
     @property
+    def pylint_disable(self) -> str:
+        retval = add_to_pylint_disable("", "too-many-instance-attributes")
+        if len(self.name) + len("Configuration") > NAME_LENGTH_LIMIT:
+            retval = add_to_pylint_disable(retval, "name-too-long")
+        return retval
+
+    @property
     def description(self) -> str:
         return (
             f"Configuration for {self.yaml_data['name']}.\n\n."

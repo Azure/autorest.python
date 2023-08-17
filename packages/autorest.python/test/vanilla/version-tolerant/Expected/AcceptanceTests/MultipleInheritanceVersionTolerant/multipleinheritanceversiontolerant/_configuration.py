@@ -14,7 +14,9 @@ from azure.core.pipeline import policies
 from ._version import VERSION
 
 
-class MultipleInheritanceServiceClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class MultipleInheritanceServiceClientConfiguration(
+    Configuration
+):  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for MultipleInheritanceServiceClient.
 
     Note that all parameters used to create this instance are saved as instance

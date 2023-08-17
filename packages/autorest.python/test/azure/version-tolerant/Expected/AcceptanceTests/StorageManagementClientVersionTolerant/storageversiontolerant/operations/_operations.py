@@ -42,7 +42,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_storage_accounts_check_name_availability_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
+def build_storage_accounts_check_name_availability_request(  # pylint: disable=name-too-long
+    subscription_id: str, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -122,7 +124,7 @@ def build_storage_accounts_delete_request(
     return HttpRequest(method="DELETE", url=_url, params=_params, **kwargs)
 
 
-def build_storage_accounts_get_properties_request(
+def build_storage_accounts_get_properties_request(  # pylint: disable=name-too-long
     resource_group_name: str, account_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -233,7 +235,7 @@ def build_storage_accounts_list_request(subscription_id: str, **kwargs: Any) -> 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_storage_accounts_list_by_resource_group_request(
+def build_storage_accounts_list_by_resource_group_request(  # pylint: disable=name-too-long
     resource_group_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -262,7 +264,7 @@ def build_storage_accounts_list_by_resource_group_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_storage_accounts_regenerate_key_request(
+def build_storage_accounts_regenerate_key_request(  # pylint: disable=name-too-long
     resource_group_name: str, account_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})

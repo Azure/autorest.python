@@ -15,7 +15,9 @@ from azure.core.pipeline import policies
 from ._version import VERSION
 
 
-class SecurityAadSwaggerCredentialFlagConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class SecurityAadSwaggerCredentialFlagConfiguration(
+    Configuration
+):  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for SecurityAadSwaggerCredentialFlag.
 
     Note that all parameters used to create this instance are saved as instance

@@ -16,7 +16,7 @@ from ._version import VERSION
 
 class AutoRestParameterizedCustomHostTestClientConfiguration(
     Configuration
-):  # pylint: disable=too-many-instance-attributes
+):  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for AutoRestParameterizedCustomHostTestClient.
 
     Note that all parameters used to create this instance are saved as instance
