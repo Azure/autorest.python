@@ -1,4 +1,3 @@
-{% set disable = "  # pylint: disable=too-many-public-methods" if operation_group.operations | length > 20 else "" %}
 {% set base_class = ("(" + operation_group.base_class + ")") if operation_group.base_class else "" %}
 {% macro check_abstract_methods() %}
 {% if operation_group.has_abstract_operations %}
@@ -9,7 +8,13 @@
         ])
 {% endif %}
 {% endmacro %}
-class {{ operation_group.class_name }}{{ base_class }}:{{ disable }}
+{% if operation_group.base_class %}
+class {{ operation_group.class_name }}( {{ operation_group.pylint_disable }}
+    {{ operation_group.base_class }}
+):
+{% else %}
+class {{ operation_group.class_name }}: {{ operation_group.pylint_disable }}
+{% endif %}
 {% if not operation_group.is_mixin %}
     """
     .. warning::

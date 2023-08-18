@@ -46,7 +46,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceServiceClientMixinABC):
+class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-too-long
+    MultipleInheritanceServiceClientMixinABC
+):
     @distributed_trace_async
     async def get_horse(self, **kwargs: Any) -> JSON:
         """Get a horse with name 'Fred' and isAShowHorse true.

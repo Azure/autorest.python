@@ -37,7 +37,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_same_body_get_avatar_as_png_request(**kwargs: Any) -> HttpRequest:
+def build_same_body_get_avatar_as_png_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept: Literal["image/png"] = kwargs.pop("accept", _headers.pop("accept", "image/png"))
@@ -50,7 +50,7 @@ def build_same_body_get_avatar_as_png_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_same_body_get_avatar_as_jpeg_request(**kwargs: Any) -> HttpRequest:
+def build_same_body_get_avatar_as_jpeg_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept: Literal["image/jpeg"] = kwargs.pop("accept", _headers.pop("accept", "image/jpeg"))
@@ -63,7 +63,7 @@ def build_same_body_get_avatar_as_jpeg_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_different_body_get_avatar_as_png_request(**kwargs: Any) -> HttpRequest:
+def build_different_body_get_avatar_as_png_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept: Literal["image/png"] = kwargs.pop("accept", _headers.pop("accept", "image/png"))
@@ -76,7 +76,7 @@ def build_different_body_get_avatar_as_png_request(**kwargs: Any) -> HttpRequest
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_different_body_get_avatar_as_json_request(**kwargs: Any) -> HttpRequest:
+def build_different_body_get_avatar_as_json_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept: Literal["application/json"] = kwargs.pop("accept", _headers.pop("accept", "application/json"))
