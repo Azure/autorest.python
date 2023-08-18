@@ -462,6 +462,14 @@ class StringOperations:
         :return: StringProperty. The StringProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.StringProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": "str"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -514,6 +522,14 @@ class StringOperations:
         :return: StringProperty. The StringProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.StringProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": "str"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -573,6 +589,14 @@ class StringOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "str"  # Optional. Property.
+                }
         """
 
     @overload
@@ -627,6 +651,14 @@ class StringOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "str"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -689,6 +721,14 @@ class StringOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "str"  # Optional. Property.
+                }
         """
 
     @overload
@@ -743,6 +783,14 @@ class StringOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "str"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -816,6 +864,14 @@ class BytesOperations:
         :return: BytesProperty. The BytesProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.BytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": bytes("bytes", encoding="utf-8")  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -868,6 +924,14 @@ class BytesOperations:
         :return: BytesProperty. The BytesProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.BytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": bytes("bytes", encoding="utf-8")  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -927,6 +991,14 @@ class BytesOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": bytes("bytes", encoding="utf-8")  # Optional. Property.
+                }
         """
 
     @overload
@@ -981,6 +1053,14 @@ class BytesOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": bytes("bytes", encoding="utf-8")  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1043,6 +1123,14 @@ class BytesOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": bytes("bytes", encoding="utf-8")  # Optional. Property.
+                }
         """
 
     @overload
@@ -1097,6 +1185,14 @@ class BytesOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": bytes("bytes", encoding="utf-8")  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1170,6 +1266,14 @@ class DatetimeOperations:
         :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.DatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": "2020-02-20 00:00:00"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1222,6 +1326,14 @@ class DatetimeOperations:
         :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.DatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": "2020-02-20 00:00:00"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1281,6 +1393,14 @@ class DatetimeOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "2020-02-20 00:00:00"  # Optional. Property.
+                }
         """
 
     @overload
@@ -1335,6 +1455,14 @@ class DatetimeOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "2020-02-20 00:00:00"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1397,6 +1525,14 @@ class DatetimeOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "2020-02-20 00:00:00"  # Optional. Property.
+                }
         """
 
     @overload
@@ -1451,6 +1587,14 @@ class DatetimeOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "2020-02-20 00:00:00"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1524,6 +1668,14 @@ class DurationOperations:
         :return: DurationProperty. The DurationProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.DurationProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": "1 day, 0:00:00"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1576,6 +1728,14 @@ class DurationOperations:
         :return: DurationProperty. The DurationProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.DurationProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": "1 day, 0:00:00"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1635,6 +1795,14 @@ class DurationOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "1 day, 0:00:00"  # Optional. Property.
+                }
         """
 
     @overload
@@ -1689,6 +1857,14 @@ class DurationOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "1 day, 0:00:00"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1751,6 +1927,14 @@ class DurationOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "1 day, 0:00:00"  # Optional. Property.
+                }
         """
 
     @overload
@@ -1805,6 +1989,14 @@ class DurationOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": "1 day, 0:00:00"  # Optional. Property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1878,6 +2070,16 @@ class CollectionsByteOperations:
         :return: CollectionsByteProperty. The CollectionsByteProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.CollectionsByteProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": [
+                        bytes("bytes", encoding="utf-8")  # Optional. Property.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1930,6 +2132,16 @@ class CollectionsByteOperations:
         :return: CollectionsByteProperty. The CollectionsByteProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.CollectionsByteProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": [
+                        bytes("bytes", encoding="utf-8")  # Optional. Property.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -1989,6 +2201,16 @@ class CollectionsByteOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": [
+                        bytes("bytes", encoding="utf-8")  # Optional. Property.
+                    ]
+                }
         """
 
     @overload
@@ -2043,6 +2265,16 @@ class CollectionsByteOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": [
+                        bytes("bytes", encoding="utf-8")  # Optional. Property.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2105,6 +2337,16 @@ class CollectionsByteOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": [
+                        bytes("bytes", encoding="utf-8")  # Optional. Property.
+                    ]
+                }
         """
 
     @overload
@@ -2159,6 +2401,16 @@ class CollectionsByteOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": [
+                        bytes("bytes", encoding="utf-8")  # Optional. Property.
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2233,6 +2485,18 @@ class CollectionsModelOperations:
          MutableMapping
         :rtype: ~typetest.property.optional.models.CollectionsModelProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": [
+                        {
+                            "property": "str"  # Optional. Property.
+                        }
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2286,6 +2550,18 @@ class CollectionsModelOperations:
          MutableMapping
         :rtype: ~typetest.property.optional.models.CollectionsModelProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "property": [
+                        {
+                            "property": "str"  # Optional. Property.
+                        }
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2345,6 +2621,18 @@ class CollectionsModelOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": [
+                        {
+                            "property": "str"  # Optional. Property.
+                        }
+                    ]
+                }
         """
 
     @overload
@@ -2399,6 +2687,18 @@ class CollectionsModelOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": [
+                        {
+                            "property": "str"  # Optional. Property.
+                        }
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2461,6 +2761,18 @@ class CollectionsModelOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": [
+                        {
+                            "property": "str"  # Optional. Property.
+                        }
+                    ]
+                }
         """
 
     @overload
@@ -2515,6 +2827,18 @@ class CollectionsModelOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "property": [
+                        {
+                            "property": "str"  # Optional. Property.
+                        }
+                    ]
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2589,6 +2913,15 @@ class RequiredAndOptionalOperations:
          MutableMapping
         :rtype: ~typetest.property.optional.models.RequiredAndOptionalProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "requiredProperty": 0,  # required int property. Required.
+                    "optionalProperty": "str"  # Optional. optional string property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2642,6 +2975,15 @@ class RequiredAndOptionalOperations:
          MutableMapping
         :rtype: ~typetest.property.optional.models.RequiredAndOptionalProperty
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "requiredProperty": 0,  # required int property. Required.
+                    "optionalProperty": "str"  # Optional. optional string property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2701,6 +3043,15 @@ class RequiredAndOptionalOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "requiredProperty": 0,  # required int property. Required.
+                    "optionalProperty": "str"  # Optional. optional string property.
+                }
         """
 
     @overload
@@ -2755,6 +3106,15 @@ class RequiredAndOptionalOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "requiredProperty": 0,  # required int property. Required.
+                    "optionalProperty": "str"  # Optional. optional string property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -2817,6 +3177,15 @@ class RequiredAndOptionalOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "requiredProperty": 0,  # required int property. Required.
+                    "optionalProperty": "str"  # Optional. optional string property.
+                }
         """
 
     @overload
@@ -2871,6 +3240,15 @@ class RequiredAndOptionalOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "requiredProperty": 0,  # required int property. Required.
+                    "optionalProperty": "str"  # Optional. optional string property.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,

@@ -250,6 +250,21 @@ class ModelOperations:
         :return: BaseModel. The BaseModel is compatible with MutableMapping
         :rtype: ~specialwords.models.BaseModel
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+                # The response is polymorphic. The following are possible polymorphic responses based
+                  off discriminator "model.kind":
+
+                # JSON input template for discriminator value "derived":
+                base_model = {
+                    "derived.name": "str",  # Required.
+                    "for": "str",  # Required.
+                    "model.kind": "derived"
+                }
+
+                # response body for status code(s): 200
+                response == base_model
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -309,6 +324,22 @@ class ModelOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "model.kind":
+
+                # JSON input template for discriminator value "derived":
+                base_model = {
+                    "derived.name": "str",  # Required.
+                    "for": "str",  # Required.
+                    "model.kind": "derived"
+                }
+
+                # JSON input template you can fill out and use as your body input.
+                body = base_model
         """
 
     @overload
@@ -363,6 +394,22 @@ class ModelOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # The input is polymorphic. The following are possible polymorphic inputs based off
+                  discriminator "model.kind":
+
+                # JSON input template for discriminator value "derived":
+                base_model = {
+                    "derived.name": "str",  # Required.
+                    "for": "str",  # Required.
+                    "model.kind": "derived"
+                }
+
+                # JSON input template you can fill out and use as your body input.
+                body = base_model
         """
         error_map = {
             401: ClientAuthenticationError,

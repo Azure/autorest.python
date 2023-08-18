@@ -123,6 +123,45 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
          MutableMapping
         :rtype: ~azure.core.polling.AsyncLROPoller[~azurecore.lro.rpclegacy.models.JobResult]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "comment": "str"  # Comment. Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "comment": "str",  # Comment. Required.
+                    "jobId": "str",  # A processing job identifier. Required.
+                    "status": "str",  # The status of the processing job. Required. Known values
+                      are: "notStarted", "running", "succeeded", "failed", "canceled", and
+                      "partiallyCompleted".
+                    "errors": [
+                        {
+                            "error": {
+                                "code": "str",  # One of a server-defined set of
+                                  error codes. Required.
+                                "message": "str",  # A human-readable representation
+                                  of the error. Required.
+                                "details": [
+                                    ...
+                                ],
+                                "innererror": {
+                                    "code": "str",  # Optional. One of a
+                                      server-defined set of error codes.
+                                    "innererror": ...
+                                },
+                                "target": "str"  # Optional. The target of the error.
+                            }
+                        }
+                    ],
+                    "results": [
+                        "str"  # Optional. The results.
+                    ]
+                }
         """
 
     @overload
@@ -147,6 +186,40 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
          MutableMapping
         :rtype: ~azure.core.polling.AsyncLROPoller[~azurecore.lro.rpclegacy.models.JobResult]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "comment": "str",  # Comment. Required.
+                    "jobId": "str",  # A processing job identifier. Required.
+                    "status": "str",  # The status of the processing job. Required. Known values
+                      are: "notStarted", "running", "succeeded", "failed", "canceled", and
+                      "partiallyCompleted".
+                    "errors": [
+                        {
+                            "error": {
+                                "code": "str",  # One of a server-defined set of
+                                  error codes. Required.
+                                "message": "str",  # A human-readable representation
+                                  of the error. Required.
+                                "details": [
+                                    ...
+                                ],
+                                "innererror": {
+                                    "code": "str",  # Optional. One of a
+                                      server-defined set of error codes.
+                                    "innererror": ...
+                                },
+                                "target": "str"  # Optional. The target of the error.
+                            }
+                        }
+                    ],
+                    "results": [
+                        "str"  # Optional. The results.
+                    ]
+                }
         """
 
     @overload
@@ -171,6 +244,40 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
          MutableMapping
         :rtype: ~azure.core.polling.AsyncLROPoller[~azurecore.lro.rpclegacy.models.JobResult]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "comment": "str",  # Comment. Required.
+                    "jobId": "str",  # A processing job identifier. Required.
+                    "status": "str",  # The status of the processing job. Required. Known values
+                      are: "notStarted", "running", "succeeded", "failed", "canceled", and
+                      "partiallyCompleted".
+                    "errors": [
+                        {
+                            "error": {
+                                "code": "str",  # One of a server-defined set of
+                                  error codes. Required.
+                                "message": "str",  # A human-readable representation
+                                  of the error. Required.
+                                "details": [
+                                    ...
+                                ],
+                                "innererror": {
+                                    "code": "str",  # Optional. One of a
+                                      server-defined set of error codes.
+                                    "innererror": ...
+                                },
+                                "target": "str"  # Optional. The target of the error.
+                            }
+                        }
+                    ],
+                    "results": [
+                        "str"  # Optional. The results.
+                    ]
+                }
         """
 
     @distributed_trace_async
@@ -195,6 +302,45 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
          MutableMapping
         :rtype: ~azure.core.polling.AsyncLROPoller[~azurecore.lro.rpclegacy.models.JobResult]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "comment": "str"  # Comment. Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "comment": "str",  # Comment. Required.
+                    "jobId": "str",  # A processing job identifier. Required.
+                    "status": "str",  # The status of the processing job. Required. Known values
+                      are: "notStarted", "running", "succeeded", "failed", "canceled", and
+                      "partiallyCompleted".
+                    "errors": [
+                        {
+                            "error": {
+                                "code": "str",  # One of a server-defined set of
+                                  error codes. Required.
+                                "message": "str",  # A human-readable representation
+                                  of the error. Required.
+                                "details": [
+                                    ...
+                                ],
+                                "innererror": {
+                                    "code": "str",  # Optional. One of a
+                                      server-defined set of error codes.
+                                    "innererror": ...
+                                },
+                                "target": "str"  # Optional. The target of the error.
+                            }
+                        }
+                    ],
+                    "results": [
+                        "str"  # Optional. The results.
+                    ]
+                }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}

@@ -60,6 +60,14 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "simpleUnion": 0  # Required. Is either a int type or a [int] type.
+                }
         """
 
     @overload
@@ -114,6 +122,14 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "simpleUnion": 0  # Required. Is either a int type or a [int] type.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -176,6 +192,14 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "simpleUnion": 0  # Required. Is either a int type or a [int] type.
+                }
         """
 
     @overload
@@ -230,6 +254,14 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "simpleUnion": 0  # Required. Is either a int type or a [int] type.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -292,6 +324,17 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "namedUnion": {
+                        "name": "str",  # Required.
+                        "prop1": 0  # Required.
+                    }
+                }
         """
 
     @overload
@@ -346,6 +389,17 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "namedUnion": {
+                        "name": "str",  # Required.
+                        "prop1": 0  # Required.
+                    }
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -408,6 +462,17 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "namedUnion": {
+                        "name": "str",  # Required.
+                        "prop1": 0  # Required.
+                    }
+                }
         """
 
     @overload
@@ -462,6 +527,17 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "namedUnion": {
+                        "name": "str",  # Required.
+                        "prop1": 0  # Required.
+                    }
+                }
         """
         error_map = {
             401: ClientAuthenticationError,

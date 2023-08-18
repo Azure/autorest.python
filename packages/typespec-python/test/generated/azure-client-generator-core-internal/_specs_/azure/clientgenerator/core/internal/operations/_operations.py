@@ -133,6 +133,14 @@ class SharedOperations:
         :return: SharedModel. The SharedModel is compatible with MutableMapping
         :rtype: ~_specs_.azure.clientgenerator.core.internal.models.SharedModel
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -188,6 +196,14 @@ class SharedOperations:
         :return: SharedModel. The SharedModel is compatible with MutableMapping
         :rtype: ~_specs_.azure.clientgenerator.core.internal.models.SharedModel
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -245,6 +261,14 @@ class InternalClientOperationsMixin(InternalClientMixinABC):
         :return: PublicModel. The PublicModel is compatible with MutableMapping
         :rtype: ~_specs_.azure.clientgenerator.core.internal.models.PublicModel
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -302,6 +326,14 @@ class InternalClientOperationsMixin(InternalClientMixinABC):
         :return: InternalModel. The InternalModel is compatible with MutableMapping
         :rtype: ~_specs_.azure.clientgenerator.core.internal.models.InternalModel
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "name": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,

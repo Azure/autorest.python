@@ -7,7 +7,7 @@ from typing import Any, Dict, List, Optional, TYPE_CHECKING
 import re
 from autorest.codegen.models.imports import FileImport, ImportType, TypingSection
 from .base import BaseType
-from .model_type import JSONModelType
+from .model_type import JSONModelType, DPGModelType
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -143,3 +143,20 @@ class CombinedType(BaseType):
     @property
     def json_subtype(self) -> Optional[JSONModelType]:
         return CombinedType._get_json_model_type(self)
+
+    @staticmethod
+    def _get_dpg_model_type(t: BaseType) -> Optional[DPGModelType]:
+        if isinstance(t, DPGModelType):
+            return t
+        if isinstance(t, CombinedType):
+            try:
+                return next(
+                    CombinedType._get_dpg_model_type(sub_t) for sub_t in t.types
+                )
+            except StopIteration:
+                pass
+        return None
+
+    @property
+    def dpg_model_subtype(self) -> Optional[DPGModelType]:
+        return CombinedType._get_dpg_model_type(self)

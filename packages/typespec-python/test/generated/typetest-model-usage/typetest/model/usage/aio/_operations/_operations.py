@@ -59,6 +59,14 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "requiredProp": "str"  # Required.
+                }
         """
 
     @overload
@@ -113,6 +121,14 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                input = {
+                    "requiredProp": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -168,6 +184,14 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :return: OutputRecord. The OutputRecord is compatible with MutableMapping
         :rtype: ~typetest.model.usage.models.OutputRecord
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "requiredProp": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -227,6 +251,19 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :return: InputOutputRecord. The InputOutputRecord is compatible with MutableMapping
         :rtype: ~typetest.model.usage.models.InputOutputRecord
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "requiredProp": "str"  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "requiredProp": "str"  # Required.
+                }
         """
 
     @overload
@@ -245,6 +282,14 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :return: InputOutputRecord. The InputOutputRecord is compatible with MutableMapping
         :rtype: ~typetest.model.usage.models.InputOutputRecord
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "requiredProp": "str"  # Required.
+                }
         """
 
     @overload
@@ -263,6 +308,14 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :return: InputOutputRecord. The InputOutputRecord is compatible with MutableMapping
         :rtype: ~typetest.model.usage.models.InputOutputRecord
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "requiredProp": "str"  # Required.
+                }
         """
 
     @distributed_trace_async
@@ -281,6 +334,19 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :return: InputOutputRecord. The InputOutputRecord is compatible with MutableMapping
         :rtype: ~typetest.model.usage.models.InputOutputRecord
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "requiredProp": "str"  # Required.
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "requiredProp": "str"  # Required.
+                }
         """
         error_map = {
             401: ClientAuthenticationError,

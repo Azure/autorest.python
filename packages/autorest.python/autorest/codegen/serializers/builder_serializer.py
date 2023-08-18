@@ -376,18 +376,21 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
 
         if (
             isinstance(body_param.type, (ListType, DictionaryType))
-            and self.code_model.options["models_mode"]
+            and self.code_model.options["models_mode"] == "msrest"
         ):
             return template
 
-        if isinstance(body_param.type, ModelType) and body_param.type.base != "json":
+        if isinstance(body_param.type, ModelType) and body_param.type.base == "msrest":
             return template
 
         json_type = body_param.type
         if isinstance(body_param.type, CombinedType):
-            if body_param.type.json_subtype is None:
+            if body_param.type.json_subtype:
+                json_type = body_param.type.json_subtype
+            elif body_param.type.dpg_model_subtype:
+                json_type = body_param.type.dpg_model_subtype
+            else:
                 return template
-            json_type = body_param.type.json_subtype
 
         polymorphic_subtypes: List[ModelType] = []
         json_type.get_polymorphic_subtypes(polymorphic_subtypes)
@@ -591,7 +594,7 @@ class _OperationSerializer(
 
     def example_template(self, builder: OperationType) -> List[str]:
         retval = super().example_template(builder)
-        if self.code_model.options["models_mode"]:
+        if self.code_model.options["models_mode"] == "msrest":
             return retval
         for response in builder.responses:
             polymorphic_subtypes: List[ModelType] = []
