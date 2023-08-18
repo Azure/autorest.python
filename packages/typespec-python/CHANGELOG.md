@@ -19,6 +19,7 @@
 **Bug Fixes**
 
 - Fix `_vendor.py` when only `etag` exists  #2056
+- Fix generation error when `next_link` in undefined  #2055
 
 ## 2023-08-09 - 0.13.1
 
