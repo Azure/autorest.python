@@ -14,7 +14,9 @@ from azure.core.pipeline import policies
 from ._version import VERSION
 
 
-class AutoRestSwaggerBATDictionaryServiceConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class AutoRestSwaggerBATDictionaryServiceConfiguration(  # pylint: disable=too-many-instance-attributes,name-too-long
+    Configuration
+):
     """Configuration for AutoRestSwaggerBATDictionaryService.
 
     Note that all parameters used to create this instance are saved as instance

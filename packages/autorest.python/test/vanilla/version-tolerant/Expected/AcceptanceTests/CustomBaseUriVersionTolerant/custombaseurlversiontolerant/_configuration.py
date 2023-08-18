@@ -14,7 +14,9 @@ from azure.core.pipeline import policies
 from ._version import VERSION
 
 
-class AutoRestParameterizedHostTestClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class AutoRestParameterizedHostTestClientConfiguration(  # pylint: disable=too-many-instance-attributes,name-too-long
+    Configuration
+):
     """Configuration for AutoRestParameterizedHostTestClient.
 
     Note that all parameters used to create this instance are saved as instance
