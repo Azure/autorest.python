@@ -18,7 +18,7 @@ if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
 
 
-class AutorestSecurityAadConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class AutorestSecurityAadConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for AutorestSecurityAad.
 
     Note that all parameters used to create this instance are saved as instance

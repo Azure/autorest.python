@@ -76,7 +76,9 @@ def build_post_method_global_null_request(subscription_id: str, **kwargs: Any) -
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_post_method_global_not_provided_valid_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
+def build_post_method_global_not_provided_valid_request(  # pylint: disable=name-too-long
+    subscription_id: str, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 

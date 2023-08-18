@@ -45,7 +45,7 @@ def build_datetimerfc1123_get_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_datetimerfc1123_get_invalid_request(**kwargs: Any) -> HttpRequest:
+def build_datetimerfc1123_get_invalid_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -59,7 +59,7 @@ def build_datetimerfc1123_get_invalid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_datetimerfc1123_get_overflow_request(**kwargs: Any) -> HttpRequest:
+def build_datetimerfc1123_get_overflow_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -73,7 +73,7 @@ def build_datetimerfc1123_get_overflow_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_datetimerfc1123_get_underflow_request(**kwargs: Any) -> HttpRequest:
+def build_datetimerfc1123_get_underflow_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -87,7 +87,9 @@ def build_datetimerfc1123_get_underflow_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_datetimerfc1123_put_utc_max_date_time_request(*, json: datetime.datetime, **kwargs: Any) -> HttpRequest:
+def build_datetimerfc1123_put_utc_max_date_time_request(  # pylint: disable=name-too-long
+    *, json: datetime.datetime, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -104,7 +106,9 @@ def build_datetimerfc1123_put_utc_max_date_time_request(*, json: datetime.dateti
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_datetimerfc1123_get_utc_lowercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
+def build_datetimerfc1123_get_utc_lowercase_max_date_time_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -118,7 +122,9 @@ def build_datetimerfc1123_get_utc_lowercase_max_date_time_request(**kwargs: Any)
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_datetimerfc1123_get_utc_uppercase_max_date_time_request(**kwargs: Any) -> HttpRequest:
+def build_datetimerfc1123_get_utc_uppercase_max_date_time_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -132,7 +138,9 @@ def build_datetimerfc1123_get_utc_uppercase_max_date_time_request(**kwargs: Any)
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_datetimerfc1123_put_utc_min_date_time_request(*, json: datetime.datetime, **kwargs: Any) -> HttpRequest:
+def build_datetimerfc1123_put_utc_min_date_time_request(  # pylint: disable=name-too-long
+    *, json: datetime.datetime, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -149,7 +157,7 @@ def build_datetimerfc1123_put_utc_min_date_time_request(*, json: datetime.dateti
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_datetimerfc1123_get_utc_min_date_time_request(**kwargs: Any) -> HttpRequest:
+def build_datetimerfc1123_get_utc_min_date_time_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")

@@ -40,8 +40,12 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpointsMixinABC):
-    async def _poll_with_parameterized_endpoints_initial(self, account_name: str, **kwargs: Any) -> Optional[str]:
+class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-long
+    LROWithParamaterizedEndpointsMixinABC
+):
+    async def _poll_with_parameterized_endpoints_initial(  # pylint: disable=name-too-long
+        self, account_name: str, **kwargs: Any
+    ) -> Optional[str]:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -161,7 +165,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
 
     begin_poll_with_parameterized_endpoints.metadata = {"url": "/lroParameterizedEndpoints"}
 
-    async def _poll_with_constant_parameterized_endpoints_initial(
+    async def _poll_with_constant_parameterized_endpoints_initial(  # pylint: disable=name-too-long
         self, account_name: str, **kwargs: Any
     ) -> Optional[str]:
         error_map = {
@@ -221,7 +225,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpoints
     }
 
     @distributed_trace_async
-    async def begin_poll_with_constant_parameterized_endpoints(
+    async def begin_poll_with_constant_parameterized_endpoints(  # pylint: disable=name-too-long
         self, account_name: str, **kwargs: Any
     ) -> AsyncLROPoller[str]:
         """Poll with method and client level parameters in endpoint, with a constant value.
