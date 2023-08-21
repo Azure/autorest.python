@@ -85,7 +85,6 @@ export function getType(
         case "boolean":
         case "date":
         case "time":
-        case "any":
         case "int32":
         case "int64":
         case "float32":
@@ -102,7 +101,6 @@ export function getType(
             return emitBuiltInType(type);
         case "any":
             return { type: "any" };
-
         case "String":
         case "Number":
         case "Boolean":
