@@ -44,7 +44,7 @@ class Config(NamedTuple):
 
 
 AUTOREST_DIR = os.path.dirname(__file__)
-AUTOREST_M4_VERSION = "--version=3.9.7 --use=@autorest/modelerfour@4.26.2 "
+AUTOREST_M4_VERSION = "--version=latest --use=@autorest/modelerfour@latest "
 _VANILLA_SWAGGER_MAPPINGS = {
     'AdditionalProperties': 'additionalProperties.json',
     'Anything': 'any-type.json',
