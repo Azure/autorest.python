@@ -96,7 +96,7 @@ def build_paths_get_int_one_million_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_paths_get_int_negative_one_million_request(**kwargs: Any) -> HttpRequest:
+def build_paths_get_int_negative_one_million_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     int_path: Literal[-1000000] = kwargs.pop("int_path", -1000000)
@@ -136,7 +136,7 @@ def build_paths_get_ten_billion_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_paths_get_negative_ten_billion_request(**kwargs: Any) -> HttpRequest:
+def build_paths_get_negative_ten_billion_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     long_path: Literal[-10000000000] = kwargs.pop("long_path", -10000000000)
@@ -156,7 +156,7 @@ def build_paths_get_negative_ten_billion_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_paths_float_scientific_positive_request(**kwargs: Any) -> HttpRequest:
+def build_paths_float_scientific_positive_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     float_path: float = kwargs.pop("float_path", 103400000000000000000)
@@ -176,7 +176,7 @@ def build_paths_float_scientific_positive_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_paths_float_scientific_negative_request(**kwargs: Any) -> HttpRequest:
+def build_paths_float_scientific_negative_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     float_path: float = kwargs.pop("float_path", -1.034e-20)
@@ -196,7 +196,7 @@ def build_paths_float_scientific_negative_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_paths_double_decimal_positive_request(**kwargs: Any) -> HttpRequest:
+def build_paths_double_decimal_positive_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     double_path: float = kwargs.pop("double_path", 9999999.999)
@@ -216,7 +216,7 @@ def build_paths_double_decimal_positive_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_paths_double_decimal_negative_request(**kwargs: Any) -> HttpRequest:
+def build_paths_double_decimal_negative_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     double_path: float = kwargs.pop("double_path", -9999999.999)
@@ -276,7 +276,7 @@ def build_paths_string_url_encoded_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_paths_string_url_non_encoded_request(**kwargs: Any) -> HttpRequest:
+def build_paths_string_url_non_encoded_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     string_path: Literal["begin!*'();:@&=+$,end"] = kwargs.pop("string_path", "begin!*'();:@&=+$,end")
@@ -625,7 +625,7 @@ def build_queries_get_boolean_null_request(*, bool_query: Optional[bool] = None,
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_queries_get_int_one_million_request(**kwargs: Any) -> HttpRequest:
+def build_queries_get_int_one_million_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -644,7 +644,7 @@ def build_queries_get_int_one_million_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_queries_get_int_negative_one_million_request(**kwargs: Any) -> HttpRequest:
+def build_queries_get_int_negative_one_million_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -701,7 +701,7 @@ def build_queries_get_ten_billion_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_queries_get_negative_ten_billion_request(**kwargs: Any) -> HttpRequest:
+def build_queries_get_negative_ten_billion_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -739,7 +739,7 @@ def build_queries_get_long_null_request(*, long_query: Optional[int] = None, **k
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_queries_float_scientific_positive_request(**kwargs: Any) -> HttpRequest:
+def build_queries_float_scientific_positive_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -758,7 +758,7 @@ def build_queries_float_scientific_positive_request(**kwargs: Any) -> HttpReques
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_queries_float_scientific_negative_request(**kwargs: Any) -> HttpRequest:
+def build_queries_float_scientific_negative_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -796,7 +796,7 @@ def build_queries_float_null_request(*, float_query: Optional[float] = None, **k
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_queries_double_decimal_positive_request(**kwargs: Any) -> HttpRequest:
+def build_queries_double_decimal_positive_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -815,7 +815,7 @@ def build_queries_double_decimal_positive_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_queries_double_decimal_negative_request(**kwargs: Any) -> HttpRequest:
+def build_queries_double_decimal_negative_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -1106,7 +1106,7 @@ def build_queries_date_time_null_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_queries_array_string_csv_valid_request(
+def build_queries_array_string_csv_valid_request(  # pylint: disable=name-too-long
     *, array_query: Optional[List[str]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1127,7 +1127,7 @@ def build_queries_array_string_csv_valid_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_queries_array_string_csv_null_request(
+def build_queries_array_string_csv_null_request(  # pylint: disable=name-too-long
     *, array_query: Optional[List[str]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1148,7 +1148,7 @@ def build_queries_array_string_csv_null_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_queries_array_string_csv_empty_request(
+def build_queries_array_string_csv_empty_request(  # pylint: disable=name-too-long
     *, array_query: Optional[List[str]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1169,7 +1169,7 @@ def build_queries_array_string_csv_empty_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_queries_array_string_no_collection_format_empty_request(
+def build_queries_array_string_no_collection_format_empty_request(  # pylint: disable=name-too-long
     *, array_query: Optional[List[str]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1190,7 +1190,7 @@ def build_queries_array_string_no_collection_format_empty_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_queries_array_string_ssv_valid_request(
+def build_queries_array_string_ssv_valid_request(  # pylint: disable=name-too-long
     *, array_query: Optional[List[str]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1211,7 +1211,7 @@ def build_queries_array_string_ssv_valid_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_queries_array_string_tsv_valid_request(
+def build_queries_array_string_tsv_valid_request(  # pylint: disable=name-too-long
     *, array_query: Optional[List[str]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1232,7 +1232,7 @@ def build_queries_array_string_tsv_valid_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_queries_array_string_pipes_valid_request(
+def build_queries_array_string_pipes_valid_request(  # pylint: disable=name-too-long
     *, array_query: Optional[List[str]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1253,7 +1253,7 @@ def build_queries_array_string_pipes_valid_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_path_items_get_all_with_values_request(
+def build_path_items_get_all_with_values_request(  # pylint: disable=name-too-long
     path_item_string_path: str,
     local_string_path: str,
     global_string_path: str,
@@ -1292,7 +1292,7 @@ def build_path_items_get_all_with_values_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_path_items_get_global_query_null_request(
+def build_path_items_get_global_query_null_request(  # pylint: disable=name-too-long
     path_item_string_path: str,
     local_string_path: str,
     global_string_path: str,
@@ -1331,7 +1331,7 @@ def build_path_items_get_global_query_null_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_path_items_get_global_and_local_query_null_request(
+def build_path_items_get_global_and_local_query_null_request(  # pylint: disable=name-too-long
     path_item_string_path: str,
     local_string_path: str,
     global_string_path: str,
@@ -1370,7 +1370,7 @@ def build_path_items_get_global_and_local_query_null_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_path_items_get_local_path_item_query_null_request(
+def build_path_items_get_local_path_item_query_null_request(  # pylint: disable=name-too-long
     path_item_string_path: str,
     local_string_path: str,
     global_string_path: str,

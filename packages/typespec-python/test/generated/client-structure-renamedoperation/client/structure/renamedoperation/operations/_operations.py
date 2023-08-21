@@ -51,21 +51,21 @@ def build_group_renamed_six_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, **kwargs)
 
 
-def build_renamed_operation_renamed_one_request(**kwargs: Any) -> HttpRequest:
+def build_renamed_operation_renamed_one_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     # Construct URL
     _url = "/one"
 
     return HttpRequest(method="POST", url=_url, **kwargs)
 
 
-def build_renamed_operation_renamed_three_request(**kwargs: Any) -> HttpRequest:
+def build_renamed_operation_renamed_three_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     # Construct URL
     _url = "/three"
 
     return HttpRequest(method="POST", url=_url, **kwargs)
 
 
-def build_renamed_operation_renamed_five_request(**kwargs: Any) -> HttpRequest:
+def build_renamed_operation_renamed_five_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     # Construct URL
     _url = "/five"
 

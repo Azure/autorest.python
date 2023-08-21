@@ -18,7 +18,7 @@ from typing import (
 
 from .request_builder_parameter import RequestBuilderParameter
 
-from .utils import OrderedSet, add_to_pylint_disable
+from .utils import OrderedSet, add_to_pylint_disable, NAME_LENGTH_LIMIT
 from .base_builder import BaseBuilder
 from .imports import FileImport, ImportType, TypingSection
 from .response import (
@@ -143,6 +143,8 @@ class OperationBase(  # pylint: disable=too-many-public-methods
                 retval = add_to_pylint_disable(retval, "protected-access")
         except ValueError:
             pass
+        if len(self.name) > NAME_LENGTH_LIMIT:
+            retval = add_to_pylint_disable(retval, "name-too-long")
         return retval
 
     def cls_type_annotation(self, *, async_mode: bool) -> str:

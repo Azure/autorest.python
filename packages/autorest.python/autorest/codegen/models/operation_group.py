@@ -10,7 +10,7 @@ from autorest.codegen.models.utils import OrderedSet
 from .base import BaseModel
 from .operation import get_operation
 from .imports import FileImport, ImportType, TypingSection
-from .utils import add_to_pylint_disable
+from .utils import add_to_pylint_disable, NAME_LENGTH_LIMIT
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -67,6 +67,10 @@ class OperationGroup(BaseModel):
         retval: str = ""
         if self.has_abstract_operations:
             retval = add_to_pylint_disable(retval, "abstract-class-instantiated")
+        if len(self.operations) > 20:
+            retval = add_to_pylint_disable(retval, "too-many-public-methods")
+        if len(self.class_name) > NAME_LENGTH_LIMIT:
+            retval = add_to_pylint_disable(retval, "name-too-long")
         return retval
 
     @property

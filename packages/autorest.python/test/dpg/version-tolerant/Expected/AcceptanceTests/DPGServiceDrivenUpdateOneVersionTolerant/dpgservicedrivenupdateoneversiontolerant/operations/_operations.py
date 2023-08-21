@@ -78,7 +78,7 @@ def build_params_get_required_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_params_put_required_optional_request(
+def build_params_put_required_optional_request(  # pylint: disable=name-too-long
     *, required_param: str, optional_param: Optional[str] = None, new_parameter: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})

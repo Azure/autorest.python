@@ -1,6 +1,6 @@
 {
     "name": "@azure-tools/typespec-python",
-    "version": "0.13.1",
+    "version": "0.13.2",
     "author": "Microsoft Corporation",
     "description": "Cadl emitter for Python SDKs",
     "homepage": "https://github.com/Azure/autorest.python",
@@ -43,7 +43,7 @@
         "get-autorest-python-path.cjs"
     ],
     "peerDependencies": {
-      "@azure-tools/typespec-azure-core": ">=0.33.0 <1.0.0",
+      "@azure-tools/typespec-azure-core": ">=0.33.1 <1.0.0",
       "@azure-tools/typespec-client-generator-core": ">=0.34.0-dev.4 <1.0.0",
       "@typespec/compiler": ">=0.47.1 <1.0.0",
       "@typespec/http": ">=0.47.0 <1.0.0",

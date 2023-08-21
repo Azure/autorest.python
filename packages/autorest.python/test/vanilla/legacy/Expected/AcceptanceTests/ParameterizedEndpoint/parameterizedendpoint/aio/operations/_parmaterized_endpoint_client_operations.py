@@ -29,7 +29,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ParmaterizedEndpointClientOperationsMixin(ParmaterizedEndpointClientMixinABC):
+class ParmaterizedEndpointClientOperationsMixin(ParmaterizedEndpointClientMixinABC):  # pylint: disable=name-too-long
     @distributed_trace_async
     async def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Basic get to make sure base url formatting of 'endpoint' works.

@@ -19,7 +19,7 @@ if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
 
 
-class StorageManagementClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class StorageManagementClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for StorageManagementClient.
 
     Note that all parameters used to create this instance are saved as instance

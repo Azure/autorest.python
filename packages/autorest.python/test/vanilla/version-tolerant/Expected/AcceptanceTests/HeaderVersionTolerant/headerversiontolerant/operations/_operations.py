@@ -46,7 +46,7 @@ def build_header_param_existing_key_request(*, user_agent_parameter: str, **kwar
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_header_response_existing_key_request(**kwargs: Any) -> HttpRequest:
+def build_header_response_existing_key_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -76,7 +76,7 @@ def build_header_param_protected_key_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_header_response_protected_key_request(**kwargs: Any) -> HttpRequest:
+def build_header_response_protected_key_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -339,7 +339,7 @@ def build_header_response_datetime_request(*, scenario: str, **kwargs: Any) -> H
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_header_param_datetime_rfc1123_request(
+def build_header_param_datetime_rfc1123_request(  # pylint: disable=name-too-long
     *, scenario: str, value: Optional[datetime.datetime] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -358,7 +358,9 @@ def build_header_param_datetime_rfc1123_request(
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_header_response_datetime_rfc1123_request(*, scenario: str, **kwargs: Any) -> HttpRequest:
+def build_header_response_datetime_rfc1123_request(  # pylint: disable=name-too-long
+    *, scenario: str, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
