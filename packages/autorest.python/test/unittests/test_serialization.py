@@ -2606,5 +2606,17 @@ class TestAzureCoreExceptions(unittest.TestCase):
         self.assertEqual(SerializationError, AzureCoreSerializationError)
         self.assertEqual(DeserializationError, AzureCoreDeserializationError)
 
+class TestUrlEncoding(unittest.TestCase):
+
+    # https://github.com/Azure/autorest.python/issues/2063
+    def test_skip_url_encoding(self):
+        s = Serializer()
+
+        origin_url = "/database/{Object.value}"
+        result1 = s.url("resource_id", origin_url, "str", skip_quote=True)
+        result2 = s.url("resource_id", origin_url, "str")
+        self.assertEqual("/database/%7BObject.value%7D", result1)
+        self.assertEqual("%2Fdatabase%2F%7BObject.value%7D", result2)
+
 if __name__ == '__main__':
     unittest.main()
