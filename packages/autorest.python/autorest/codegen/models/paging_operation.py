@@ -80,7 +80,7 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
 
     @property
     def continuation_token_name(self) -> Optional[str]:
-        wire_name = self.yaml_data["continuationTokenName"]
+        wire_name = self.yaml_data.get("continuationTokenName")
         if not wire_name:
             # That's an ok scenario, it just means no next page possible
             return None

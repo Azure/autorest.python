@@ -1,58 +1,63 @@
 {
     "name": "@azure-tools/typespec-python",
-    "version": "0.13.1",
+    "version": "0.13.2",
     "author": "Microsoft Corporation",
     "description": "Cadl emitter for Python SDKs",
     "homepage": "https://github.com/Azure/autorest.python",
     "readme": "https://github.com/Azure/autorest.python/packages/typespec-python/README.md",
     "license": "MIT",
     "repository": {
-      "type": "git",
-      "url": "git+https://github.com/Azure/autorest.python.git"
+        "type": "git",
+        "url": "git+https://github.com/Azure/autorest.python.git"
     },
     "bugs": {
-      "url": "https://github.com/Azure/autorest.python/issues"
+        "url": "https://github.com/Azure/autorest.python/issues"
     },
     "keywords": [
-      "cadl",
-      "typespec"
+        "cadl",
+        "typespec"
     ],
     "type": "module",
     "main": "dist/src/index.js",
     "exports": {
-      ".": "./dist/src/index.js",
-      "./testing": "./dist/src/testing/index.js"
+        ".": "./dist/src/index.js",
+        "./testing": "./dist/src/testing/index.js"
     },
     "tspMain": "dist/src/index.js",
     "engines": {
-      "node": ">=14.0.0"
+        "node": ">=14.0.0"
     },
     "scripts": {
-      "clean": "rimraf ./dist ./temp",
-      "build": "tsc -p .",
-      "watch": "tsc -p . --watch",
-      "test": "mocha",
-      "test-official": "c8 mocha --forbid-only",
-      "lint": "eslint . --ext .ts --max-warnings=0",
-      "lint:fix": "eslint . --fix --ext .ts"
+        "clean": "rimraf ./dist ./temp",
+        "build": "tsc -p .",
+        "watch": "tsc -p . --watch",
+        "test": "mocha",
+        "test-official": "c8 mocha --forbid-only",
+        "lint": "eslint . --ext .ts --max-warnings=0",
+        "lint:fix": "eslint . --fix --ext .ts"
     },
     "files": [
-      "lib/*.cadl",
-      "dist/**",
-      "!dist/test/**",
-      "get-autorest-python-path.cjs"
+        "lib/*.cadl",
+        "dist/**",
+        "!dist/test/**",
+        "get-autorest-python-path.cjs"
     ],
     "peerDependencies": {
       "@azure-tools/typespec-azure-core": ">=0.33.1 <1.0.0",
-      "@azure-tools/typespec-client-generator-core": ">=0.33.0 <1.0.0",
-      "@typespec/compiler": ">=0.47.0 <1.0.0",
+      "@azure-tools/typespec-client-generator-core": ">=0.34.0-dev.4 <1.0.0",
+      "@typespec/compiler": ">=0.47.1 <1.0.0",
       "@typespec/http": ">=0.47.0 <1.0.0",
       "@typespec/rest": ">=0.47.0 <1.0.0",
       "@typespec/versioning": ">=0.47.0 <1.0.0"
     },
+    "dependenciesMeta": {
+      "@azure-tools/typespec-client-generator-core": {
+         "injected": true
+      }
+    },
     "dependencies": {
-      "@autorest/python": "workspace:^",
-      "js-yaml": "~4.1.0"
+        "@autorest/python": "workspace:^",
+        "js-yaml": "~4.1.0"
     },
     "devDependencies": {
       "@azure-tools/cadl-ranch-expect": "~0.6.0",
@@ -69,4 +74,4 @@
       "rimraf": "~5.0.0",
       "typescript": "~5.1.3"
     }
-  }
+}
