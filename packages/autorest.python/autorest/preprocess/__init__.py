@@ -211,6 +211,10 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
     """Add Python naming information."""
 
     @property
+    def azure_arm(self) -> bool:
+        return self.options.get("azure-arm", False)
+
+    @property
     def version_tolerant(self) -> bool:
         return self.options.get("version-tolerant", True)
 
@@ -285,6 +289,18 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         yaml_data["legacyFilename"] = to_snake_case(yaml_data["name"].replace(" ", "_"))
         for parameter in yaml_data["parameters"]:
             self.update_parameter(parameter)
+            if parameter["clientName"] == "credential":
+                policy = parameter["type"].get("policy")
+                if (
+                    policy
+                    and policy["type"] == "BearerTokenCredentialPolicy"
+                    and self.azure_arm
+                ):
+                    policy["type"] = "ARMChallengeAuthenticationPolicy"
+                    policy["credentialScopes"] = [
+                        "https://management.azure.com/.default"
+                    ]
+
         prop_name = yaml_data["name"]
         if prop_name.endswith("Client"):
             prop_name = prop_name[: len(prop_name) - len("Client")]
@@ -380,7 +396,6 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             add_overloads_for_body_param(yaml_data)
 
     def _update_lro_operation_helper(self, yaml_data: Dict[str, Any]) -> None:
-        azure_arm = self.options.get("azure-arm", False)
         for response in yaml_data.get("responses", []):
             response["discriminator"] = "lro"
             response["pollerSync"] = (
@@ -392,13 +407,13 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             if not response.get("pollingMethodSync"):
                 response["pollingMethodSync"] = (
                     "azure.mgmt.core.polling.arm_polling.ARMPolling"
-                    if azure_arm
+                    if self.azure_arm
                     else "azure.core.polling.base_polling.LROBasePolling"
                 )
             if not response.get("pollingMethodAsync"):
                 response["pollingMethodAsync"] = (
                     "azure.mgmt.core.polling.async_arm_polling.AsyncARMPolling"
-                    if azure_arm
+                    if self.azure_arm
                     else "azure.core.polling.async_base_polling.AsyncLROBasePolling"
                 )
 
