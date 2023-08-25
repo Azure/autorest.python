@@ -86,6 +86,9 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     if (resolvedOptions.debug) {
         commandArgs.push("--debug");
     }
+    if (yamlMap.clients[0].arm === true) {
+        commandArgs.push("--azure-arm=true");
+    }
     if (!program.compilerOptions.noEmit && !program.hasError()) {
         execFileSync(process.execPath, commandArgs);
     }
@@ -787,6 +790,7 @@ function emitClients(context: SdkContext, namespace: string): Record<string, any
             operationGroups: emitOperationGroups(context, client),
             url: server ? server.url : "",
             apiVersions: [],
+            arm: client.arm,
         };
         const emittedApiVersionParam = getApiVersionParameter(context);
         if (emittedApiVersionParam) {
