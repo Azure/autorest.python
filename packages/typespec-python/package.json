@@ -48,8 +48,7 @@
       "@typespec/compiler": ">=0.47.1 <1.0.0",
       "@typespec/http": ">=0.47.0 <1.0.0",
       "@typespec/rest": ">=0.47.0 <1.0.0",
-      "@typespec/versioning": ">=0.47.0 <1.0.0",
-      "@azure-tools/typespec-azure-resource-manager": ">=0.33.0 <1.0.0"
+      "@typespec/versioning": ">=0.47.0 <1.0.0"
     },
     "dependenciesMeta": {
       "@azure-tools/typespec-client-generator-core": {
