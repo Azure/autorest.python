@@ -27,6 +27,7 @@ from ...operations._operations import (
     build_reserved_words_operation_with_content_param_request,
     build_reserved_words_operation_with_json_param_request,
     build_reserved_words_operation_with_url_request,
+    build_reserved_words_reserved_enum_request,
 )
 from .._vendor import ReservedWordsClientMixinABC, raise_if_not_implemented
 
@@ -270,6 +271,60 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
             url=url,
             header_parameters=header_parameters,
             query_parameters=query_parameters,
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = False
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
+
+        if cls:
+            return cls(pipeline_response, cast(JSON, deserialized), {})
+
+        return cast(JSON, deserialized)
+
+    @distributed_trace_async
+    async def reserved_enum(self, *, enum_parameter: str, **kwargs: Any) -> JSON:
+        """Operation that accepts a reserved enum value.
+
+        :keyword enum_parameter: Pass in MyEnum.IMPORT to pass. Known values are: "import" and "other".
+         Required.
+        :paramtype enum_parameter: str
+        :return: JSON
+        :rtype: JSON
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[JSON] = kwargs.pop("cls", None)
+
+        request = build_reserved_words_reserved_enum_request(
+            enum_parameter=enum_parameter,
             headers=_headers,
             params=_params,
         )
