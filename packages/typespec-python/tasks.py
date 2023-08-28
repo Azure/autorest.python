@@ -81,7 +81,7 @@ EMITTER_OPTIONS = {
     "type/property/nullable": {
         "package-name": "typetest-property-nullable",
     },
-    "type/property/optional": {
+    "type/property/optionality": {
         "package-name": "typetest-property-optional",
     },
     "type/property/value-types": {
