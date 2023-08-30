@@ -114,7 +114,7 @@ class Origin(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Indicates the operation is initiated by a user."""
     SYSTEM = "system"
     """Indicates the operation is initiated by a system."""
-    USER, SYSTEM = "user,system"
+    USER_SYSTEM = "user,system"
     """Indicates the operation is initiated by a user or system."""
 
 
