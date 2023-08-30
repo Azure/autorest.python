@@ -1181,9 +1181,3 @@ class M4Reformatter(
         if yaml_data.get("security"):
             del yaml_data["security"]
         ORIGINAL_ID_TO_UPDATED_TYPE.clear()
-
-        import yaml
-        from pathlib import Path
-        file = "D:\\dev\\autorest.python\\packages\\typespec-python\\alpha\\m4reformatter.yaml"
-        with open(str(Path(file)), "w") as fw:
-            fw.write(yaml.safe_dump(yaml_data))
