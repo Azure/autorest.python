@@ -151,7 +151,7 @@ def build_get_big_double_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_big_double_positive_decimal_request(**kwargs: Any) -> HttpRequest:
+def build_put_big_double_positive_decimal_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -169,7 +169,7 @@ def build_put_big_double_positive_decimal_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_get_big_double_positive_decimal_request(**kwargs: Any) -> HttpRequest:
+def build_get_big_double_positive_decimal_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -183,7 +183,7 @@ def build_get_big_double_positive_decimal_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_big_double_negative_decimal_request(**kwargs: Any) -> HttpRequest:
+def build_put_big_double_negative_decimal_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -201,7 +201,7 @@ def build_put_big_double_negative_decimal_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_get_big_double_negative_decimal_request(**kwargs: Any) -> HttpRequest:
+def build_get_big_double_negative_decimal_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -246,7 +246,7 @@ def build_get_big_decimal_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_big_decimal_positive_decimal_request(**kwargs: Any) -> HttpRequest:
+def build_put_big_decimal_positive_decimal_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -264,7 +264,7 @@ def build_put_big_decimal_positive_decimal_request(**kwargs: Any) -> HttpRequest
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_get_big_decimal_positive_decimal_request(**kwargs: Any) -> HttpRequest:
+def build_get_big_decimal_positive_decimal_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -278,7 +278,7 @@ def build_get_big_decimal_positive_decimal_request(**kwargs: Any) -> HttpRequest
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_big_decimal_negative_decimal_request(**kwargs: Any) -> HttpRequest:
+def build_put_big_decimal_negative_decimal_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -296,7 +296,7 @@ def build_put_big_decimal_negative_decimal_request(**kwargs: Any) -> HttpRequest
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_get_big_decimal_negative_decimal_request(**kwargs: Any) -> HttpRequest:
+def build_get_big_decimal_negative_decimal_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")

@@ -1020,9 +1020,7 @@ class M4Reformatter(
         retval = {
             "type": OAUTH_TYPE,
             "policy": {
-                "type": "ARMChallengeAuthenticationPolicy"
-                if self.azure_arm
-                else "BearerTokenCredentialPolicy",
+                "type": "BearerTokenCredentialPolicy",
                 "credentialScopes": credential_scopes,
             },
         }
@@ -1068,11 +1066,7 @@ class M4Reformatter(
         return credential_scopes
 
     def update_credential_from_flags(self) -> Dict[str, Any]:
-        default_auth_policy = (
-            "ARMChallengeAuthenticationPolicy"
-            if self.azure_arm
-            else "BearerTokenCredentialPolicy"
-        )
+        default_auth_policy = "BearerTokenCredentialPolicy"
         auth_policy = (
             self._autorestapi.get_value("credential-default-policy-type")
             or default_auth_policy

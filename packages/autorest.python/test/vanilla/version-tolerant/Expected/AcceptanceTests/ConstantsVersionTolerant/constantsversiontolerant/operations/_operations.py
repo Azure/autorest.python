@@ -35,7 +35,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_contants_put_no_model_as_string_no_required_two_value_no_default_request(
+def build_contants_put_no_model_as_string_no_required_two_value_no_default_request(  # pylint: disable=name-too-long
     *, input: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -50,7 +50,7 @@ def build_contants_put_no_model_as_string_no_required_two_value_no_default_reque
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_contants_put_no_model_as_string_no_required_two_value_default_request(
+def build_contants_put_no_model_as_string_no_required_two_value_default_request(  # pylint: disable=name-too-long
     *, input: str = "value1", **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -65,7 +65,7 @@ def build_contants_put_no_model_as_string_no_required_two_value_default_request(
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_contants_put_no_model_as_string_no_required_one_value_no_default_request(
+def build_contants_put_no_model_as_string_no_required_one_value_no_default_request(  # pylint: disable=name-too-long
     *, input: Optional[Literal["value1"]] = None, **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -80,7 +80,7 @@ def build_contants_put_no_model_as_string_no_required_one_value_no_default_reque
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_contants_put_no_model_as_string_no_required_one_value_default_request(
+def build_contants_put_no_model_as_string_no_required_one_value_default_request(  # pylint: disable=name-too-long
     *, input: Literal["value1"] = "value1", **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -95,7 +95,7 @@ def build_contants_put_no_model_as_string_no_required_one_value_default_request(
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_contants_put_no_model_as_string_required_two_value_no_default_request(
+def build_contants_put_no_model_as_string_required_two_value_no_default_request(  # pylint: disable=name-too-long
     *, input: str, **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -109,7 +109,7 @@ def build_contants_put_no_model_as_string_required_two_value_no_default_request(
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_contants_put_no_model_as_string_required_two_value_default_request(
+def build_contants_put_no_model_as_string_required_two_value_default_request(  # pylint: disable=name-too-long
     *, input: str = "value1", **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -123,7 +123,9 @@ def build_contants_put_no_model_as_string_required_two_value_default_request(
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_contants_put_no_model_as_string_required_one_value_no_default_request(**kwargs: Any) -> HttpRequest:
+def build_contants_put_no_model_as_string_required_one_value_no_default_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     input: Literal["value1"] = kwargs.pop("input", _params.pop("input", "value1"))
@@ -136,7 +138,9 @@ def build_contants_put_no_model_as_string_required_one_value_no_default_request(
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_contants_put_no_model_as_string_required_one_value_default_request(**kwargs: Any) -> HttpRequest:
+def build_contants_put_no_model_as_string_required_one_value_default_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     input: Literal["value1"] = kwargs.pop("input", _params.pop("input", "value1"))
@@ -149,7 +153,7 @@ def build_contants_put_no_model_as_string_required_one_value_default_request(**k
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_contants_put_model_as_string_no_required_two_value_no_default_request(
+def build_contants_put_model_as_string_no_required_two_value_no_default_request(  # pylint: disable=name-too-long
     *, input: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -164,7 +168,7 @@ def build_contants_put_model_as_string_no_required_two_value_no_default_request(
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_contants_put_model_as_string_no_required_two_value_default_request(
+def build_contants_put_model_as_string_no_required_two_value_default_request(  # pylint: disable=name-too-long
     *, input: str = "value1", **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -179,7 +183,7 @@ def build_contants_put_model_as_string_no_required_two_value_default_request(
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_contants_put_model_as_string_no_required_one_value_no_default_request(
+def build_contants_put_model_as_string_no_required_one_value_no_default_request(  # pylint: disable=name-too-long
     *, input: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -194,7 +198,7 @@ def build_contants_put_model_as_string_no_required_one_value_no_default_request(
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_contants_put_model_as_string_no_required_one_value_default_request(
+def build_contants_put_model_as_string_no_required_one_value_default_request(  # pylint: disable=name-too-long
     *, input: str = "value1", **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -209,7 +213,7 @@ def build_contants_put_model_as_string_no_required_one_value_default_request(
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_contants_put_model_as_string_required_two_value_no_default_request(
+def build_contants_put_model_as_string_required_two_value_no_default_request(  # pylint: disable=name-too-long
     *, input: str, **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -223,7 +227,7 @@ def build_contants_put_model_as_string_required_two_value_no_default_request(
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_contants_put_model_as_string_required_two_value_default_request(
+def build_contants_put_model_as_string_required_two_value_default_request(  # pylint: disable=name-too-long
     *, input: str = "value1", **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -237,7 +241,7 @@ def build_contants_put_model_as_string_required_two_value_default_request(
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_contants_put_model_as_string_required_one_value_no_default_request(
+def build_contants_put_model_as_string_required_one_value_no_default_request(  # pylint: disable=name-too-long
     *, input: str, **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -251,7 +255,7 @@ def build_contants_put_model_as_string_required_one_value_no_default_request(
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_contants_put_model_as_string_required_one_value_default_request(
+def build_contants_put_model_as_string_required_one_value_default_request(  # pylint: disable=name-too-long
     *, input: str = "value1", **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -265,7 +269,7 @@ def build_contants_put_model_as_string_required_one_value_default_request(
     return HttpRequest(method="PUT", url=_url, params=_params, **kwargs)
 
 
-def build_contants_put_client_constants_request(**kwargs: Any) -> HttpRequest:
+def build_contants_put_client_constants_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -307,7 +311,7 @@ class ContantsOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def put_no_model_as_string_no_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements
+    def put_no_model_as_string_no_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, *, input: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -357,7 +361,7 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def put_no_model_as_string_no_required_two_value_default(  # pylint: disable=inconsistent-return-statements
+    def put_no_model_as_string_no_required_two_value_default(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, *, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -407,7 +411,7 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def put_no_model_as_string_no_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements
+    def put_no_model_as_string_no_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, *, input: Optional[Literal["value1"]] = None, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -457,7 +461,7 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def put_no_model_as_string_no_required_one_value_default(  # pylint: disable=inconsistent-return-statements
+    def put_no_model_as_string_no_required_one_value_default(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, *, input: Literal["value1"] = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -507,7 +511,7 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def put_no_model_as_string_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements
+    def put_no_model_as_string_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, *, input: str, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -557,7 +561,7 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def put_no_model_as_string_required_two_value_default(  # pylint: disable=inconsistent-return-statements
+    def put_no_model_as_string_required_two_value_default(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, *, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -607,7 +611,7 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def put_no_model_as_string_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements
+    def put_no_model_as_string_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -659,7 +663,7 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def put_no_model_as_string_required_one_value_default(  # pylint: disable=inconsistent-return-statements
+    def put_no_model_as_string_required_one_value_default(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -711,7 +715,7 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def put_model_as_string_no_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements
+    def put_model_as_string_no_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, *, input: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -761,7 +765,7 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def put_model_as_string_no_required_two_value_default(  # pylint: disable=inconsistent-return-statements
+    def put_model_as_string_no_required_two_value_default(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, *, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -811,7 +815,7 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def put_model_as_string_no_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements
+    def put_model_as_string_no_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, *, input: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -861,7 +865,7 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def put_model_as_string_no_required_one_value_default(  # pylint: disable=inconsistent-return-statements
+    def put_model_as_string_no_required_one_value_default(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, *, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -911,7 +915,7 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def put_model_as_string_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements
+    def put_model_as_string_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, *, input: str, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -961,7 +965,7 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def put_model_as_string_required_two_value_default(  # pylint: disable=inconsistent-return-statements
+    def put_model_as_string_required_two_value_default(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, *, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -1011,7 +1015,7 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def put_model_as_string_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements
+    def put_model_as_string_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, *, input: str, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -1061,7 +1065,7 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def put_model_as_string_required_one_value_default(  # pylint: disable=inconsistent-return-statements
+    def put_model_as_string_required_one_value_default(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, *, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.

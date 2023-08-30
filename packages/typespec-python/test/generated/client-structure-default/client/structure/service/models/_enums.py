@@ -11,7 +11,7 @@ from azure.core import CaseInsensitiveEnumMeta
 
 
 class ClientType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """ClientType."""
+    """Type of ClientType."""
 
     DEFAULT = "default"
     MULTI_CLIENT = "multi-client"

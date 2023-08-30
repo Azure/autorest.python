@@ -15,7 +15,7 @@ from . import models as _models
 from ._version import VERSION
 
 
-class RenamedOperationClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class RenamedOperationClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for RenamedOperationClient.
 
     Note that all parameters used to create this instance are saved as instance

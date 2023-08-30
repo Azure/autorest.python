@@ -14,7 +14,7 @@ from azure.core.pipeline import policies
 from .._version import VERSION
 
 
-class ObjectTypeClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class ObjectTypeClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for ObjectTypeClient.
 
     Note that all parameters used to create this instance are saved as instance

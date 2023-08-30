@@ -9,7 +9,7 @@
 from .._vendor import raise_if_not_implemented
 
 
-class FormdataurlencodedOperations:
+class FormdataurlencodedOperations:  # pylint: disable=abstract-class-instantiated
     """
     .. warning::
         **DO NOT** instantiate this class directly.

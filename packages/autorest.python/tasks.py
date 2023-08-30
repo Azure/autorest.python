@@ -44,6 +44,7 @@ class Config(NamedTuple):
 
 
 AUTOREST_DIR = os.path.dirname(__file__)
+M4_VERSION = "--use=@autorest/modelerfour@latest "
 _VANILLA_SWAGGER_MAPPINGS = {
     'AdditionalProperties': 'additionalProperties.json',
     'Anything': 'any-type.json',
@@ -308,7 +309,7 @@ def _build_command_line(
         f"--{flag}={value}" for flag, value in flags.items()
     ]
     debug_str = " --python.debugger" if debug else ""
-    return "autorest " + " ".join(flag_strings) + debug_str
+    return "autorest " + M4_VERSION + " ".join(flag_strings) + debug_str
 
 
 def _run_autorest(cmds, debug):
@@ -539,7 +540,7 @@ def test(c):
 def _multiapi_command_line(location, debug):
     cwd = os.getcwd()
     cmd = (
-        f'autorest {location} --use=. --multiapi --output-artifact=code-model-v4-no-tags ' +
+        f'autorest {M4_VERSION} {location} --use=. --multiapi --output-artifact=code-model-v4-no-tags ' +
         f'--python-sdks-folder={cwd}/test/'
     )
     if debug:
@@ -598,7 +599,7 @@ def regenerate_package_mode(c, debug=False, swagger_group=None):
     else:
         package_mode = azure_packages + vanilla_packages
     cmds = [
-        f'autorest {readme} --use=. --python-sdks-folder={cwd}/test/' for readme in package_mode
+        f'autorest {M4_VERSION} {readme} --use=. --python-sdks-folder={cwd}/test/' for readme in package_mode
     ]
 
     _run_autorest(cmds, debug=debug)
@@ -608,7 +609,7 @@ def regenerate_package_mode(c, debug=False, swagger_group=None):
 def regenerate_custom_poller_pager_legacy(c, debug=False):
     cwd = os.getcwd()
     cmd = (
-        f'autorest test/azure/legacy/specification/custompollerpager/README.md --use=. --python-sdks-folder={cwd}/test/'
+        f'autorest {M4_VERSION} test/azure/legacy/specification/custompollerpager/README.md --use=. --python-sdks-folder={cwd}/test/'
     )
     _run_autorest([cmd], debug=debug)
 
@@ -617,7 +618,7 @@ def regenerate_custom_poller_pager_legacy(c, debug=False):
 def regenerate_mixed_api_version_legacy(c, debug=False):
     cwd = os.getcwd()
     cmd = (
-        f'autorest test/azure/legacy/specification/mixedapiversion/README.md --use=. --python-sdks-folder={cwd}/test/'
+        f'autorest {M4_VERSION} test/azure/legacy/specification/mixedapiversion/README.md --use=. --python-sdks-folder={cwd}/test/'
     )
     _run_autorest([cmd], debug=debug)
 
@@ -626,7 +627,7 @@ def regenerate_mixed_api_version_legacy(c, debug=False):
 def regenerate_custom_poller_pager_version_tolerant(c, debug=False):
     cwd = os.getcwd()
     cmd = (
-        f'autorest test/azure/version-tolerant/specification/custompollerpager/README.md --use=. --python-sdks-folder={cwd}/test/'
+        f'autorest {M4_VERSION} test/azure/version-tolerant/specification/custompollerpager/README.md --use=. --python-sdks-folder={cwd}/test/'
     )
     _run_autorest([cmd], debug=debug)
 
@@ -647,7 +648,7 @@ def regenerate_samples(c, debug=False):
 
     cmds = []
     for sample, special_flags in sample_to_special_flags.items():
-        cmd = f'autorest samples/specification/{sample}/readme.md --use=.  '
+        cmd = f'autorest {M4_VERSION} samples/specification/{sample}/readme.md --use=.  '
         if special_flags:
             flag_strings = [
                 f"--{flag}={value}" for flag, value in special_flags.items()
