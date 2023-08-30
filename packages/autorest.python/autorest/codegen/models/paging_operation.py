@@ -84,14 +84,14 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
         if not wire_name:
             # That's an ok scenario, it just means no next page possible
             return None
-        if self.code_model.options["models_mode"] == "msrest" and not self.code_model.options["version_tolerant"]:
+        if self.code_model.options["models_mode"] == "msrest":
             return self._get_attr_name(wire_name)
         return wire_name
 
     @property
     def item_name(self) -> str:
         wire_name = self.yaml_data["itemName"]
-        if self.code_model.options["models_mode"] == "msrest" and not self.code_model.options["version_tolerant"]:
+        if self.code_model.options["models_mode"] == "msrest":
             # we don't use the paging model for dpg
             return self._get_attr_name(wire_name)
         return wire_name

@@ -1052,14 +1052,14 @@ class _OperationSerializer(
             pylint_disable = ""
             if isinstance(response.type, ModelType) and response.type.internal:
                 pylint_disable = "  # pylint: disable=protected-access"
-            if self.code_model.options["models_mode"] == "msrest":
+            if self.code_model.options["models_mode"] == "msrest" and not self.code_model.options["version_tolerant"]:
                 deserialize_code.append("deserialized = self._deserialize(")
                 deserialize_code.append(
                     f"    '{response.serialization_type}',{pylint_disable}"
                 )
                 deserialize_code.append("    pipeline_response")
                 deserialize_code.append(")")
-            elif self.code_model.options["models_mode"] == "dpg":
+            elif self.code_model.options["models_mode"] and self.code_model.options["version_tolerant"]:
                 deserialize_code.append("deserialized = _deserialize(")
                 deserialize_code.append(
                     f"    {response.type.type_annotation(is_operation_file=True)},{pylint_disable}"
@@ -1215,12 +1215,12 @@ class _OperationSerializer(
             for excep in builder.non_default_errors:
                 error_model_str = ""
                 if isinstance(excep.type, ModelType):
-                    if self.code_model.options["models_mode"] == "msrest":
+                    if self.code_model.options["models_mode"] == "msrest" and not self.code_model.options["version_tolerant"]:
                         error_model_str = (
                             f", model=self._deserialize("
                             f"_models.{excep.type.serialization_type}, response)"
                         )
-                    elif self.code_model.options["models_mode"] == "dpg":
+                    elif self.code_model.options["models_mode"] and self.code_model.options["version_tolerant"]:
                         error_model_str = f", model=_deserialize(_models.{excep.type.name}, response.json())"
                 error_format_str = (
                     ", error_format=ARMErrorFormat"
@@ -1415,7 +1415,7 @@ class _PagingOperationSerializer(
                 pylint_disable = ""
             deserialized = f"self._deserialize(\n    {deserialize_type},{pylint_disable}\n    pipeline_response\n)"
             retval.append(f"    deserialized = {deserialized}")
-        elif self.code_model.options["models_mode"] == "dpg":
+        elif self.code_model.options["models_mode"] and self.code_model.options["version_tolerant"]:
             # we don't want to generate paging models for DPG
             retval.append(f"    deserialized = {deserialized}")
         else:

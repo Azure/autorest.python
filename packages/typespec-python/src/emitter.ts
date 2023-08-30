@@ -403,7 +403,11 @@ function emitResponse(context: SdkContext, response: HttpOperationResponse): Rec
     if (body) {
         if (body.kind === "Model") {
             if (body && body.decorators.find((d) => d.decorator.name === "$pagedResult")) {
-                type = getType(context, Array.from(body.properties.values())[0]);
+                if (modelsMode !== "msrest") {
+                    type = getType(context, Array.from(body.properties.values())[0]);
+                } else {
+                    type = getType(context, body);
+                }
             } else if (body && !isAzureCoreModel(body)) {
                 type = getType(context, body);
             }

@@ -109,7 +109,7 @@ EMITTER_OPTIONS = {
     },
     "mgmt/sphere": [
         {"package-name": "azure-mgmt-spheredpg", "models-mode": "dpg"},
-        # {"package-name": "azure-mgmt-spheremsrest", "models-mode": "msrest"},
+        {"package-name": "azure-mgmt-spheremsrest"},
     ]
 }
 
