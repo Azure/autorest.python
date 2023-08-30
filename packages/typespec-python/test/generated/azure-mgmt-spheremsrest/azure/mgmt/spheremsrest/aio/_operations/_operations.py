@@ -186,7 +186,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.TrackedResource, response.json())
+            deserialized = self._deserialize("TrackedResource", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -328,7 +328,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.TrackedResource, response.json())
+                deserialized = self._deserialize("TrackedResource", pipeline_response)
 
         if response.status_code == 201:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -336,7 +336,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.TrackedResource, response.json())
+                deserialized = self._deserialize("TrackedResource", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -480,7 +480,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.TrackedResource, response.json())
+            deserialized = self._deserialize("TrackedResource", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -766,7 +766,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.CountDeviceResponse, response.json())
+            deserialized = self._deserialize("CountDeviceResponse", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1327,7 +1327,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ProxyResource, response.json())
+            deserialized = self._deserialize("ProxyResource", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1584,7 +1584,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.ProxyResource, response.json())
+                deserialized = self._deserialize("ProxyResource", pipeline_response)
 
         if response.status_code == 201:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -1592,7 +1592,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.ProxyResource, response.json())
+                deserialized = self._deserialize("ProxyResource", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -1834,7 +1834,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ProxyResource, response.json())
+            deserialized = self._deserialize("ProxyResource", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2003,7 +2003,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.ProxyResource, response.json())
+                deserialized = self._deserialize("ProxyResource", pipeline_response)
 
         if response.status_code == 201:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -2011,7 +2011,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.ProxyResource, response.json())
+                deserialized = self._deserialize("ProxyResource", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -2250,7 +2250,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.ProxyResource, response.json())
+                deserialized = self._deserialize("ProxyResource", pipeline_response)
 
         if response.status_code == 202:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -2325,7 +2325,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.CountDeviceResponse, response.json())
+            deserialized = self._deserialize("CountDeviceResponse", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2556,7 +2556,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ProxyResource, response.json())
+            deserialized = self._deserialize("ProxyResource", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2725,7 +2725,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.CertificateChainResponse, response.json())
+            deserialized = self._deserialize("CertificateChainResponse", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2884,7 +2884,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ProofOfPossessionNonceResponse, response.json())
+            deserialized = self._deserialize("ProofOfPossessionNonceResponse", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2965,7 +2965,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ProxyResource, response.json())
+            deserialized = self._deserialize("ProxyResource", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -3257,7 +3257,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.ProxyResource, response.json())
+                deserialized = self._deserialize("ProxyResource", pipeline_response)
 
         if response.status_code == 201:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -3265,7 +3265,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.ProxyResource, response.json())
+                deserialized = self._deserialize("ProxyResource", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -3424,7 +3424,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ProxyResource, response.json())
+            deserialized = self._deserialize("ProxyResource", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -3603,7 +3603,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.ProxyResource, response.json())
+                deserialized = self._deserialize("ProxyResource", pipeline_response)
 
         if response.status_code == 201:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -3611,7 +3611,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.ProxyResource, response.json())
+                deserialized = self._deserialize("ProxyResource", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -3960,7 +3960,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.ProxyResource, response.json())
+                deserialized = self._deserialize("ProxyResource", pipeline_response)
 
         if response.status_code == 202:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -4148,7 +4148,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.SignedCapabilityImageResponse, response.json())
+                deserialized = self._deserialize("SignedCapabilityImageResponse", pipeline_response)
 
         if response.status_code == 202:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -4304,7 +4304,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ProxyResource, response.json())
+            deserialized = self._deserialize("ProxyResource", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -4463,7 +4463,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.ProxyResource, response.json())
+                deserialized = self._deserialize("ProxyResource", pipeline_response)
 
         if response.status_code == 201:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -4471,7 +4471,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.ProxyResource, response.json())
+                deserialized = self._deserialize("ProxyResource", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -4697,7 +4697,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.ProxyResource, response.json())
+                deserialized = self._deserialize("ProxyResource", pipeline_response)
 
         if response.status_code == 202:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -4858,7 +4858,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.CountDeviceResponse, response.json())
+            deserialized = self._deserialize("CountDeviceResponse", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
