@@ -21,6 +21,7 @@ export async function saveCodeModelAsYaml(name: string, codemodel: unknown): Pro
     await mkdir(cadlCodeGenTempDir, { recursive: true });
     const filename = createTempPath(".yaml", name);
     const yamlStr = jsyaml.dump(codemodel);
+    // await writeFile(joinPaths("D:/dev/autorest.python/packages/typespec-python", "alpha", "output.yaml"), yamlStr);
     await writeFile(filename, yamlStr);
     return filename;
 }

@@ -66,13 +66,25 @@ const defaultOptions = {
     "package-version": "1.0.0b1",
 };
 
+let isArm: boolean = false;
+export let modelsMode: string | undefined = undefined;
+
+function setGlobalFlag(options: Record<string, any>, clients: SdkClient[]) {
+    isArm = clients[0].arm;
+    modelsMode = options["models-mode"] ?? (isArm ? "msrest" : "dpg");
+    options["models-mode"] = modelsMode;
+}
+
 export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     const program = context.program;
     const resolvedOptions = { ...defaultOptions, ...context.options };
+    const sdkContext = createSdkContext(context);
+    const clients = listClients(sdkContext);
+    setGlobalFlag(resolvedOptions, clients);
 
     const root = await resolveModuleRoot(program, "@autorest/python", dirname(fileURLToPath(import.meta.url)));
     const outputDir = context.emitterOutputDir;
-    const yamlMap = emitCodeModel(context);
+    const yamlMap = emitCodeModel(sdkContext, clients);
     const yamlPath = await saveCodeModelAsYaml("typespec-python-yaml-map", yamlMap);
     const commandArgs = [
         `${root}/run-python3.js`,
@@ -80,13 +92,14 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
         `--output-folder=${outputDir}`,
         `--cadl-file=${yamlPath}`,
     ];
+
     for (const [key, value] of Object.entries(resolvedOptions)) {
         commandArgs.push(`--${key}=${value}`);
     }
     if (resolvedOptions.debug) {
         commandArgs.push("--debug");
     }
-    if (yamlMap.clients[0].arm === true) {
+    if (isArm === true) {
         commandArgs.push("--azure-arm=true");
     }
     if (!program.compilerOptions.noEmit && !program.hasError()) {
@@ -96,6 +109,7 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
 
 const endpointPathParameters: Record<string, any>[] = [];
 let apiVersionParam: Record<string, any> | undefined = undefined;
+let subscriptionIdParam: Record<string, any> | undefined = undefined;
 
 function getDocStr(context: SdkContext, target: Type): string {
     return getDoc(context.program, target) ?? "";
@@ -206,6 +220,19 @@ function emitBodyParameter(context: SdkContext, httpOperation: HttpOperation): B
     };
 }
 
+function isSubscriptionId(param: Record<string, any>): boolean {
+    return isArm && param.wireName === "subscriptionId";
+}
+
+function getDefaultApiVersionValue(context: SdkContext): string | undefined {
+    const defaultApiVersion = getDefaultApiVersion(context, getServiceNamespace(context));
+    if (!defaultApiVersion) {
+        const services = listServices(context.program);
+        return services.length > 0 ? services[0].version : undefined;
+    }
+    return defaultApiVersion.value;
+}
+
 function emitParameter(
     context: SdkContext,
     parameter: HttpOperationParameter | HttpServerParameter,
@@ -247,14 +274,17 @@ function emitParameter(
     }
 
     if (isApiVersion(context, parameter as HttpOperationParameter)) {
-        const defaultApiVersion = getDefaultApiVersion(context, getServiceNamespace(context));
-        paramMap.type = defaultApiVersion ? getConstantType(defaultApiVersion.value) : KnownTypes.string;
+        const defaultApiVersion = getDefaultApiVersionValue(context);
+        paramMap.type = defaultApiVersion ? getConstantType(defaultApiVersion) : KnownTypes.string;
         paramMap.implementation = "Client";
         paramMap.in_docstring = false;
         paramMap.isApiVersion = true;
         if (defaultApiVersion) {
-            clientDefaultValue = defaultApiVersion.value;
+            clientDefaultValue = defaultApiVersion;
         }
+    }
+    if (isSubscriptionId(paramMap)) {
+        paramMap.implementation = "Client";
     }
     return { clientDefaultValue, ...base, ...paramMap };
 }
@@ -545,6 +575,9 @@ function emitBasicOperation(
         if (isApiVersion(context, param) && apiVersionParam === undefined) {
             apiVersionParam = emittedParam;
         }
+        if (isSubscriptionId(emittedParam) && subscriptionIdParam === undefined) {
+            subscriptionIdParam = emittedParam;
+        }
         parameters.push(emittedParam);
     }
 
@@ -651,24 +684,26 @@ function getServerHelper(context: SdkContext, namespace: Namespace): HttpServer 
     return servers[0];
 }
 
+function hostParam(clientName: string = "endpoint", clientDefaultValue: string | null = null): Record<string, any> {
+    return {
+        optional: false,
+        description: "Service host",
+        clientName: clientName,
+        clientDefaultValue: clientDefaultValue,
+        wireName: "$host",
+        location: "path",
+        type: KnownTypes.string,
+        implementation: "Client",
+        inOverload: false,
+    };
+}
+
 function emitServerParams(context: SdkContext, namespace: Namespace): Record<string, any>[] {
     const server = getServerHelper(context, namespace);
     if (server === undefined) {
-        return [
-            {
-                optional: false,
-                description: "Service host",
-                clientName: "endpoint",
-                clientDefaultValue: null,
-                wireName: "$host",
-                location: "path",
-                type: KnownTypes.string,
-                implementation: "Client",
-                inOverload: false,
-            },
-        ];
+        return [hostParam()];
     }
-    if (server.parameters) {
+    if (server.parameters.size > 0) {
         const params: Record<string, any>[] = [];
         for (const param of server.parameters.values()) {
             const serverParameter: HttpServerParameter = {
@@ -688,19 +723,7 @@ function emitServerParams(context: SdkContext, namespace: Namespace): Record<str
         }
         return params;
     } else {
-        return [
-            {
-                optional: false,
-                description: "Service host",
-                clientName: "endpoint",
-                clientDefaultValue: server.url,
-                wireName: "$host",
-                location: "path",
-                type: KnownTypes.string,
-                implementation: "Client",
-                inOverload: false,
-            },
-        ];
+        return [hostParam(isArm ? "base_url" : "endpoint", server.url)];
     }
 }
 
@@ -749,17 +772,18 @@ function emitGlobalParameters(context: SdkContext, namespace: Namespace): Record
     if (credentialParam) {
         clientParameters.push(credentialParam);
     }
+
     return clientParameters;
 }
 
 function getApiVersionParameter(context: SdkContext): Record<string, any> | void {
-    const version = getDefaultApiVersion(context, getServiceNamespace(context));
+    const version = getDefaultApiVersionValue(context);
     if (apiVersionParam) {
         return apiVersionParam;
     } else if (version !== undefined) {
         return {
             clientName: "api_version",
-            clientDefaultValue: version.value,
+            clientDefaultValue: version,
             description: "Api Version",
             implementation: "Client",
             location: "query",
@@ -769,14 +793,13 @@ function getApiVersionParameter(context: SdkContext): Record<string, any> | void
             inDocString: true,
             inOverload: false,
             inOverridden: false,
-            type: getConstantType(version.value),
+            type: getConstantType(version),
             isApiVersion: true,
         };
     }
 }
 
-function emitClients(context: SdkContext, namespace: string): Record<string, any>[] {
-    const clients = listClients(context);
+function emitClients(context: SdkContext, namespace: string, clients: SdkClient[]): Record<string, any>[] {
     const retval: Record<string, any>[] = [];
     for (const client of clients) {
         if (getNamespace(context, client.name) !== namespace) {
@@ -795,6 +818,9 @@ function emitClients(context: SdkContext, namespace: string): Record<string, any
         const emittedApiVersionParam = getApiVersionParameter(context);
         if (emittedApiVersionParam) {
             emittedClient.parameters.push(emittedApiVersionParam);
+        }
+        if (subscriptionIdParam) {
+            emittedClient.parameters.unshift(subscriptionIdParam);
         }
         retval.push(emittedClient);
     }
@@ -822,8 +848,7 @@ function getNamespaces(context: SdkContext): Set<string> {
     return namespaces;
 }
 
-function emitCodeModel(context: EmitContext<PythonEmitterOptions>) {
-    const sdkContext = createSdkContext(context);
+function emitCodeModel(sdkContext: SdkContext, clients: SdkClient[]) {
     const clientNamespaceString = getClientNamespaceString(sdkContext)?.toLowerCase();
     // Get types
     const codeModel: Record<string, any> = {
@@ -837,9 +862,9 @@ function emitCodeModel(context: EmitContext<PythonEmitterOptions>) {
     }
     for (const namespace of getNamespaces(sdkContext)) {
         if (namespace === clientNamespaceString) {
-            codeModel["clients"] = emitClients(sdkContext, namespace);
+            codeModel["clients"] = emitClients(sdkContext, namespace, clients);
         } else {
-            codeModel["subnamespaceToClients"][namespace] = emitClients(sdkContext, namespace);
+            codeModel["subnamespaceToClients"][namespace] = emitClients(sdkContext, namespace, clients);
         }
     }
     codeModel["types"] = [...typesMap.values(), ...Object.values(KnownTypes), ...simpleTypesMap.values()];
