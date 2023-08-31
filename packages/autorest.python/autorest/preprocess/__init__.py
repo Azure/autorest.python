@@ -201,6 +201,19 @@ HEADERS_CONVERT_IN_METHOD = {
 }
 
 
+def add_missing_parameter(
+    parameters: List[Dict[str, Any]],
+    idx: int,
+    copy_idx: int,
+    name: str,
+    offset: int = 0,
+):
+    if idx < 0:
+        copy_parameter = (parameters[copy_idx]).copy()
+        copy_parameter["wireName"] = name
+        parameters.insert(copy_idx + offset, copy_parameter)
+
+
 def headers_convert(yaml_data: Dict[str, Any], replace_data: Any) -> None:
     if isinstance(replace_data, dict):
         for k, v in replace_data.items():
@@ -307,19 +320,36 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         yaml_data["builderPadName"] = to_snake_case(prop_name)
         for og in yaml_data["operationGroups"]:
             for o in og["operations"]:
-                for p in o["parameters"]:
+                idx_if_match = -1
+                idx_if_none_match = -1
+                for idx, p in enumerate(o["parameters"]):
+                    wire_name_lower = (p.get("wireName") or "").lower()
                     if (
                         p["location"] == "header"
-                        and p["wireName"] == "client-request-id"
+                        and wire_name_lower == "client-request-id"
                     ):
                         yaml_data["requestIdHeaderName"] = p["wireName"]
-                    if (
-                        self.version_tolerant
-                        and p["location"] == "header"
-                        and p["clientName"] in ("if_match", "if_none_match")
-                    ):
-                        o["hasEtag"] = True
-                        yaml_data["hasEtag"] = True
+                    if self.version_tolerant and p["location"] == "header":
+                        if wire_name_lower == "if-match":
+                            idx_if_match = idx
+                        if wire_name_lower == "if-none-match":
+                            idx_if_none_match = idx
+                if idx_if_match > 0 or idx_if_none_match > 0:
+                    o["hasEtag"] = True
+                    yaml_data["hasEtag"] = True
+                    # pylint: disable=line-too-long
+                    # some service(e.g. https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cosmos-db/data-plane/Microsoft.Tables/preview/2019-02-02/table.json)
+                    # only has one, so we need to add "if-none-match" or "if-match" if it's missing
+                    add_missing_parameter(
+                        o["parameters"], idx_if_match, idx_if_none_match, "if-match"
+                    )
+                    add_missing_parameter(
+                        o["parameters"],
+                        idx_if_none_match,
+                        idx_if_match,
+                        "if-none-match",
+                        1,
+                    )
 
     def get_operation_updater(
         self, yaml_data: Dict[str, Any]
