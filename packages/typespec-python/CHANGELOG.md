@@ -17,7 +17,12 @@
 | `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
 
 **Other changes**
+
 - Refactoring in preparation of mgmt and TSP #2078
+
+**Bug Fixes**
+
+- Fix datetime in response headers  #2083
 
 ## 2023-08-21 - 0.13.2
 

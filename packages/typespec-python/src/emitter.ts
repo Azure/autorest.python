@@ -333,7 +333,7 @@ function emitResponseHeaders(context: SdkContext, response: HttpOperationRespons
         if (innerResponse.headers && Object.keys(innerResponse.headers).length > 0) {
             for (const [key, value] of Object.entries(innerResponse.headers)) {
                 headers.push({
-                    type: getType(context, value.type),
+                    type: getType(context, value),
                     wireName: key,
                 });
             }
