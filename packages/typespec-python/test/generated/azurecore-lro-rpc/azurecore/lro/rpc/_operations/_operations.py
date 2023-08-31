@@ -86,7 +86,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
         if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_rpc_long_running_rpc_request(
             content_type=content_type,
