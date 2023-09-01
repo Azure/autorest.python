@@ -1,6 +1,6 @@
 # Release
 
-### 2023-08-XX - 6.7.4
+### 2023-08-31 - 6.7.4
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -15,6 +15,10 @@
 **Bug Fixes**
 
 - Add missing signature `match_condition` when only `if-match` is defined swagger or typespec  #2084
+
+**Other Changes**
+
+- Fix base model generation and add support for `as_dict` on DPG models #2027
 
 ### 2023-08-21 - 6.7.3
 
