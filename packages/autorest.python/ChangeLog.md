@@ -1,6 +1,6 @@
 # Release
 
-### 2023-08-31 - 6.7.4
+### 2023-09-xx - 6.7.5
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -16,8 +16,19 @@
 
 - Add missing signature `match_condition` when only `if-match` is defined swagger or typespec  #2084
 
-**Other Changes**
+### 2023-08-31 - 6.7.4
 
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@autorest/core`                                                        | `3.9.2`     |
+| `@autorest/modelerfour`                                                 | `4.24.3`    |
+| `azure-core` dep of generated code                                      | `1.27.0`    |
+| `isodate` dep of generated code                                         | `0.6.1`     |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+
+**Other Changes**
 - Fix base model generation and add support for `as_dict` on DPG models #2027
 
 ### 2023-08-21 - 6.7.3
