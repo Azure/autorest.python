@@ -334,7 +334,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                             idx_if_match = idx
                         if wire_name_lower == "if-none-match":
                             idx_if_none_match = idx
-                if idx_if_match > 0 or idx_if_none_match > 0:
+                if idx_if_match >= 0 or idx_if_none_match >= 0:
                     o["hasEtag"] = True
                     yaml_data["hasEtag"] = True
                     # pylint: disable=line-too-long
