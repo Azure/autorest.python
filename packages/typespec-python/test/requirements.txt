@@ -7,6 +7,9 @@ azure-core==1.28.0
 -e ./generated/authentication-http-custom
 -e ./generated/authentication-oauth2
 -e ./generated/authentication-union
+-e ./generated/azure-client-generator-core-access
+-e ./generated/azure-client-generator-core-internal
+-e ./generated/azure-client-generator-core-usage
 -e ./generated/azure-core-basic
 -e ./generated/azurecore-lro-rpclegacy
 -e ./generated/azurecore-lro-rpc
@@ -48,3 +51,4 @@ azure-core==1.28.0
 -e ./generated/client-structure-renamedoperation
 -e ./generated/client-structure-twooperationgroup
 -e ./generated/payload-content-negotiation
+-e ./generated/payload-pageable
