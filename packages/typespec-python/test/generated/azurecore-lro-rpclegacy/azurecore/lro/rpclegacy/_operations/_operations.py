@@ -86,7 +86,7 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
         if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_legacy_create_job_request(
             content_type=content_type,

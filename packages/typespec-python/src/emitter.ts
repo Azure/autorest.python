@@ -86,6 +86,9 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     if (resolvedOptions.debug) {
         commandArgs.push("--debug");
     }
+    if (yamlMap.clients[0].arm === true) {
+        commandArgs.push("--azure-arm=true");
+    }
     if (!program.compilerOptions.noEmit && !program.hasError()) {
         execFileSync(process.execPath, commandArgs);
     }
@@ -330,7 +333,7 @@ function emitResponseHeaders(context: SdkContext, response: HttpOperationRespons
         if (innerResponse.headers && Object.keys(innerResponse.headers).length > 0) {
             for (const [key, value] of Object.entries(innerResponse.headers)) {
                 headers.push({
-                    type: getType(context, value.type),
+                    type: getType(context, value),
                     wireName: key,
                 });
             }
@@ -787,6 +790,7 @@ function emitClients(context: SdkContext, namespace: string): Record<string, any
             operationGroups: emitOperationGroups(context, client),
             url: server ? server.url : "",
             apiVersions: [],
+            arm: client.arm,
         };
         const emittedApiVersionParam = getApiVersionParameter(context);
         if (emittedApiVersionParam) {

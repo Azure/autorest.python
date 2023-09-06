@@ -147,6 +147,37 @@ class ModelWithNamedUnionProperty(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
+class ModelWithNamedUnionPropertyInResponse(_model_base.Model):
+    """ModelWithNamedUnionPropertyInResponse.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar named_union: Required. Is either a Model1 type or a Model2 type.
+    :vartype named_union: ~typetest.union.models.Model1 or ~typetest.union.models.Model2
+    """
+
+    named_union: "_types.MyNamedUnion" = rest_field(name="namedUnion")
+    """Required. Is either a Model1 type or a Model2 type."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        named_union: "_types.MyNamedUnion",
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
 class ModelWithSimpleUnionProperty(_model_base.Model):
     """ModelWithSimpleUnionProperty.
 
@@ -164,6 +195,37 @@ class ModelWithSimpleUnionProperty(_model_base.Model):
         self,
         *,
         simple_union: Union[int, List[int]],
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class ModelWithSimpleUnionPropertyInResponse(_model_base.Model):
+    """ModelWithSimpleUnionPropertyInResponse.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar simple_union: Required. Is either a str type or a [int] type.
+    :vartype simple_union: str or list[int]
+    """
+
+    simple_union: Union[str, List[int]] = rest_field(name="simpleUnion")
+    """Required. Is either a str type or a [int] type."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        simple_union: Union[str, List[int]],
     ):
         ...
 
