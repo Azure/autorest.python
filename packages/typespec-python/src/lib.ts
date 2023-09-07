@@ -8,7 +8,7 @@ export interface PythonEmitterOptions {
     "package-mode"?: string;
     "package-pprint-name"?: string;
     "head-as-boolean"?: boolean;
-    "models-mode"? : string;
+    "models-mode"?: string;
     "debug"?: boolean;
 }
 
