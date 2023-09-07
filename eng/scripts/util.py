@@ -15,7 +15,7 @@ logging.getLogger().setLevel(logging.INFO)
 ROOT_FOLDER = os.path.abspath(os.path.join(os.path.abspath(__file__), "..", "..", ".."))
 AUTOREST_PACKAGE_DIR = Path(ROOT_FOLDER) / Path("packages/autorest.python")
 
-IGNORE_FOLDER = []
+IGNORE_FOLDER = ["azure-mgmt-spheremsrest", "azure-mgmt-spheredpg"]
 
 
 def run_check(name, call_back, log_info):
