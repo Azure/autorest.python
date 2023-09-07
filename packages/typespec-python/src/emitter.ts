@@ -669,16 +669,22 @@ function emitOperationGroups(context: SdkContext, client: SdkClient): Record<str
             operations: operations,
         });
     }
-    let clientOperations: Record<string, any>[] = [];
+    const clientOperations: Map<string, Record<string, any>> = new Map<string, Record<string, any>>();
     for (const operation of listOperationsInOperationGroup(context, client)) {
-        clientOperations = clientOperations.concat(emitOperation(context, operation, ""));
+        const groupName = isArm ? operation.interface?.name ?? "" : "";
+        const emittedOperation = emitOperation(context, operation, groupName);
+        if (!clientOperations.has(groupName)) {
+            clientOperations.set(groupName, {
+                className: groupName,
+                propertyName: groupName,
+                operations: [],
+            });
+        }
+        const og = clientOperations.get(groupName) as Record<string, any>;
+        og.operations = og.operations.concat(emittedOperation);
     }
-    if (clientOperations.length > 0) {
-        operationGroups.push({
-            className: "",
-            propertyName: "",
-            operations: clientOperations,
-        });
+    for (const value of clientOperations.values()) {
+        operationGroups.push(value);
     }
     return operationGroups;
 }

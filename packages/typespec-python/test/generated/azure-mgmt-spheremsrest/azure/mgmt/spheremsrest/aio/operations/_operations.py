@@ -27,35 +27,76 @@ from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
-from ..._operations._operations import (
-    build_azure_sphere_claim_devices_request,
-    build_azure_sphere_count_devices_request,
-    build_azure_sphere_create_or_update_request,
-    build_azure_sphere_delete_request,
-    build_azure_sphere_generate_capability_image_request,
-    build_azure_sphere_generate_default_device_groups_request,
-    build_azure_sphere_get_request,
-    build_azure_sphere_list_by_catalog_request,
-    build_azure_sphere_list_by_device_group_request,
-    build_azure_sphere_list_by_product_request,
-    build_azure_sphere_list_by_resource_group_request,
-    build_azure_sphere_list_by_subscription_request,
-    build_azure_sphere_list_deployments_request,
-    build_azure_sphere_list_device_groups_request,
-    build_azure_sphere_list_device_insights_request,
-    build_azure_sphere_list_devices_request,
-    build_azure_sphere_list_request,
-    build_azure_sphere_retrieve_cert_chain_request,
-    build_azure_sphere_retrieve_proof_of_possession_nonce_request,
-    build_azure_sphere_update_request,
+from ...operations._operations import (
+    build_catalogs_count_devices_request,
+    build_catalogs_create_or_update_request,
+    build_catalogs_delete_request,
+    build_catalogs_get_request,
+    build_catalogs_list_by_resource_group_request,
+    build_catalogs_list_by_subscription_request,
+    build_catalogs_list_deployments_request,
+    build_catalogs_list_device_groups_request,
+    build_catalogs_list_device_insights_request,
+    build_catalogs_list_devices_request,
+    build_catalogs_update_request,
+    build_certificates_get_request,
+    build_certificates_list_by_catalog_request,
+    build_certificates_retrieve_cert_chain_request,
+    build_certificates_retrieve_proof_of_possession_nonce_request,
+    build_deployments_create_or_update_request,
+    build_deployments_delete_request,
+    build_deployments_get_request,
+    build_deployments_list_by_device_group_request,
+    build_device_groups_claim_devices_request,
+    build_device_groups_count_devices_request,
+    build_device_groups_create_or_update_request,
+    build_device_groups_delete_request,
+    build_device_groups_get_request,
+    build_device_groups_list_by_product_request,
+    build_device_groups_update_request,
+    build_devices_create_or_update_request,
+    build_devices_delete_request,
+    build_devices_generate_capability_image_request,
+    build_devices_get_request,
+    build_devices_list_by_device_group_request,
+    build_devices_update_request,
+    build_images_create_or_update_request,
+    build_images_delete_request,
+    build_images_get_request,
+    build_images_list_by_catalog_request,
+    build_operations_list_request,
+    build_products_count_devices_request,
+    build_products_create_or_update_request,
+    build_products_delete_request,
+    build_products_generate_default_device_groups_request,
+    build_products_get_request,
+    build_products_list_by_catalog_request,
+    build_products_update_request,
 )
-from .._vendor import AzureSphereClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: disable=too-many-public-methods
+class Operations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~azure.mgmt.spheremsrest.aio.AzureSphereClient`'s
+        :attr:`operations` attribute.
+    """
+
+    models = _models
+
+    def __init__(self, *args, **kwargs) -> None:
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
     @distributed_trace
     def list(self, **kwargs: Any) -> AsyncIterable["_models.Operation"]:
         """List the operations for the provider.
@@ -80,7 +121,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_azure_sphere_list_request(
+                request = build_operations_list_request(
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -115,7 +156,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
@@ -130,6 +171,26 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
+
+
+class CatalogsOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~azure.mgmt.spheremsrest.aio.AzureSphereClient`'s
+        :attr:`catalogs` attribute.
+    """
+
+    models = _models
+
+    def __init__(self, *args, **kwargs) -> None:
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get(self, resource_group_name: str, catalog_name: str, **kwargs: Any) -> _models.TrackedResource:
@@ -159,7 +220,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[_models.TrackedResource] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_get_request(
+        request = build_catalogs_get_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             subscription_id=self._config.subscription_id,
@@ -170,7 +231,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -296,7 +357,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         else:
             _json = self._serialize.body(resource, "TrackedResource")
 
-        request = build_azure_sphere_create_or_update_request(
+        request = build_catalogs_create_or_update_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             subscription_id=self._config.subscription_id,
@@ -310,7 +371,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -450,7 +511,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         else:
             _json = self._serialize.body(properties, "ResourceUpdateModel")
 
-        request = build_azure_sphere_update_request(
+        request = build_catalogs_update_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             subscription_id=self._config.subscription_id,
@@ -464,7 +525,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -517,7 +578,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_delete_request(
+        request = build_catalogs_delete_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             subscription_id=self._config.subscription_id,
@@ -528,7 +589,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -579,7 +640,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_azure_sphere_list_by_resource_group_request(
+                request = build_catalogs_list_by_resource_group_request(
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
                     api_version=self._config.api_version,
@@ -616,7 +677,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
@@ -657,7 +718,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_azure_sphere_list_by_subscription_request(
+                request = build_catalogs_list_by_subscription_request(
                     subscription_id=self._config.subscription_id,
                     api_version=self._config.api_version,
                     headers=_headers,
@@ -693,7 +754,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
@@ -739,7 +800,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[_models.CountDeviceResponse] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_count_devices_request(
+        request = build_catalogs_count_devices_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             subscription_id=self._config.subscription_id,
@@ -750,7 +811,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -817,7 +878,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_azure_sphere_list_device_insights_request(
+                request = build_catalogs_list_device_insights_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     subscription_id=self._config.subscription_id,
@@ -858,7 +919,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
@@ -918,7 +979,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_azure_sphere_list_devices_request(
+                request = build_catalogs_list_devices_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     subscription_id=self._config.subscription_id,
@@ -959,7 +1020,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
@@ -1019,7 +1080,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_azure_sphere_list_deployments_request(
+                request = build_catalogs_list_deployments_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     subscription_id=self._config.subscription_id,
@@ -1060,7 +1121,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
@@ -1207,7 +1268,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_azure_sphere_list_device_groups_request(
+                request = build_catalogs_list_device_groups_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     subscription_id=self._config.subscription_id,
@@ -1251,7 +1312,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
@@ -1266,6 +1327,26 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
+
+
+class ImagesOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~azure.mgmt.spheremsrest.aio.AzureSphereClient`'s
+        :attr:`images` attribute.
+    """
+
+    models = _models
+
+    def __init__(self, *args, **kwargs) -> None:
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get(
@@ -1299,7 +1380,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[_models.ProxyResource] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_get_request(
+        request = build_images_get_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             image_name=image_name,
@@ -1311,7 +1392,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -1378,7 +1459,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_azure_sphere_list_by_catalog_request(
+                request = build_images_list_by_catalog_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     subscription_id=self._config.subscription_id,
@@ -1419,7 +1500,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
@@ -1551,7 +1632,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         else:
             _json = self._serialize.body(resource, "ProxyResource")
 
-        request = build_azure_sphere_create_or_update_request(
+        request = build_images_create_or_update_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             image_name=image_name,
@@ -1566,7 +1647,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -1631,7 +1712,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_delete_request(
+        request = build_images_delete_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             image_name=image_name,
@@ -1643,7 +1724,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -1663,6 +1744,26 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if cls:
             return cls(pipeline_response, None, response_headers)
+
+
+class DeviceGroupsOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~azure.mgmt.spheremsrest.aio.AzureSphereClient`'s
+        :attr:`device_groups` attribute.
+    """
+
+    models = _models
+
+    def __init__(self, *args, **kwargs) -> None:
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def list_by_product(
@@ -1712,7 +1813,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_azure_sphere_list_by_product_request(
+                request = build_device_groups_list_by_product_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     product_name=product_name,
@@ -1754,7 +1855,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
@@ -1805,7 +1906,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[_models.ProxyResource] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_get_request(
+        request = build_device_groups_get_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -1818,7 +1919,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -1969,7 +2070,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         else:
             _json = self._serialize.body(resource, "ProxyResource")
 
-        request = build_azure_sphere_create_or_update_request(
+        request = build_device_groups_create_or_update_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -1985,7 +2086,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -2053,7 +2154,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_delete_request(
+        request = build_device_groups_delete_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -2066,7 +2167,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -2215,7 +2316,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         else:
             _json = self._serialize.body(properties, "ResourceUpdateModel")
 
-        request = build_azure_sphere_update_request(
+        request = build_device_groups_update_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -2231,7 +2332,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -2296,7 +2397,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[_models.CountDeviceResponse] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_count_devices_request(
+        request = build_device_groups_count_devices_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -2309,7 +2410,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -2460,7 +2561,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         else:
             _json = self._serialize.body(claim_devices_request, "ClaimDevicesRequest")
 
-        request = build_azure_sphere_claim_devices_request(
+        request = build_device_groups_claim_devices_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -2476,7 +2577,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -2494,6 +2595,26 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if cls:
             return cls(pipeline_response, None, response_headers)
+
+
+class CertificatesOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~azure.mgmt.spheremsrest.aio.AzureSphereClient`'s
+        :attr:`certificates` attribute.
+    """
+
+    models = _models
+
+    def __init__(self, *args, **kwargs) -> None:
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get(
@@ -2528,7 +2649,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[_models.ProxyResource] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_get_request(
+        request = build_certificates_get_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             serial_number=serial_number,
@@ -2540,7 +2661,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -2607,7 +2728,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_azure_sphere_list_by_catalog_request(
+                request = build_certificates_list_by_catalog_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     subscription_id=self._config.subscription_id,
@@ -2648,7 +2769,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
@@ -2697,7 +2818,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[_models.CertificateChainResponse] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_retrieve_cert_chain_request(
+        request = build_certificates_retrieve_cert_chain_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             serial_number=serial_number,
@@ -2709,7 +2830,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -2853,7 +2974,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         else:
             _json = self._serialize.body(proof_of_possession_nonce_request, "ProofOfPossessionNonceRequest")
 
-        request = build_azure_sphere_retrieve_proof_of_possession_nonce_request(
+        request = build_certificates_retrieve_proof_of_possession_nonce_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             serial_number=serial_number,
@@ -2868,7 +2989,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -2890,6 +3011,26 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
+
+
+class DeploymentsOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~azure.mgmt.spheremsrest.aio.AzureSphereClient`'s
+        :attr:`deployments` attribute.
+    """
+
+    models = _models
+
+    def __init__(self, *args, **kwargs) -> None:
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get(
@@ -2935,7 +3076,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[_models.ProxyResource] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_get_request(
+        request = build_deployments_get_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -2949,7 +3090,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -3023,7 +3164,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_azure_sphere_list_by_device_group_request(
+                request = build_deployments_list_by_device_group_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     product_name=product_name,
@@ -3066,7 +3207,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
@@ -3222,7 +3363,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         else:
             _json = self._serialize.body(resource, "ProxyResource")
 
-        request = build_azure_sphere_create_or_update_request(
+        request = build_deployments_create_or_update_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -3239,7 +3380,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -3316,7 +3457,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_delete_request(
+        request = build_deployments_delete_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -3330,7 +3471,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -3350,6 +3491,26 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if cls:
             return cls(pipeline_response, None, response_headers)
+
+
+class DevicesOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~azure.mgmt.spheremsrest.aio.AzureSphereClient`'s
+        :attr:`devices` attribute.
+    """
+
+    models = _models
+
+    def __init__(self, *args, **kwargs) -> None:
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get(
@@ -3394,7 +3555,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[_models.ProxyResource] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_get_request(
+        request = build_devices_get_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -3408,7 +3569,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -3568,7 +3729,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         else:
             _json = self._serialize.body(resource, "ProxyResource")
 
-        request = build_azure_sphere_create_or_update_request(
+        request = build_devices_create_or_update_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -3585,7 +3746,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -3654,7 +3815,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_azure_sphere_list_by_device_group_request(
+                request = build_devices_list_by_device_group_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     product_name=product_name,
@@ -3694,7 +3855,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
@@ -3752,7 +3913,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_delete_request(
+        request = build_devices_delete_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -3766,7 +3927,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -3924,7 +4085,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         else:
             _json = self._serialize.body(properties, "ResourceUpdateModel")
 
-        request = build_azure_sphere_update_request(
+        request = build_devices_update_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -3941,7 +4102,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -4112,7 +4273,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         else:
             _json = self._serialize.body(generate_device_capability_request, "GenerateCapabilityImageRequest")
 
-        request = build_azure_sphere_generate_capability_image_request(
+        request = build_devices_generate_capability_image_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -4129,7 +4290,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -4157,6 +4318,26 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
+
+
+class ProductsOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~azure.mgmt.spheremsrest.aio.AzureSphereClient`'s
+        :attr:`products` attribute.
+    """
+
+    models = _models
+
+    def __init__(self, *args, **kwargs) -> None:
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def list_by_catalog(
@@ -4189,7 +4370,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_azure_sphere_list_by_catalog_request(
+                request = build_products_list_by_catalog_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     subscription_id=self._config.subscription_id,
@@ -4227,7 +4408,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
@@ -4276,7 +4457,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[_models.ProxyResource] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_get_request(
+        request = build_products_get_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -4288,7 +4469,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -4430,7 +4611,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         else:
             _json = self._serialize.body(resource, "ProxyResource")
 
-        request = build_azure_sphere_create_or_update_request(
+        request = build_products_create_or_update_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -4445,7 +4626,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -4511,7 +4692,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_delete_request(
+        request = build_products_delete_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -4523,7 +4704,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -4663,7 +4844,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         else:
             _json = self._serialize.body(properties, "ResourceUpdateModel")
 
-        request = build_azure_sphere_update_request(
+        request = build_products_update_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -4678,7 +4859,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -4742,7 +4923,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_azure_sphere_generate_default_device_groups_request(
+                request = build_products_generate_default_device_groups_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     product_name=product_name,
@@ -4781,7 +4962,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
@@ -4830,7 +5011,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[_models.CountDeviceResponse] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_count_devices_request(
+        request = build_products_count_devices_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -4842,7 +5023,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 

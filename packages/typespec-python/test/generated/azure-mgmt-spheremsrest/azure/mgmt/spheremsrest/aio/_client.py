@@ -15,16 +15,41 @@ from azure.mgmt.core import AsyncARMPipelineClient
 from .. import models as _models
 from .._serialization import Deserializer, Serializer
 from ._configuration import AzureSphereClientConfiguration
-from ._operations import AzureSphereClientOperationsMixin
+from .operations import (
+    CatalogsOperations,
+    CertificatesOperations,
+    DeploymentsOperations,
+    DeviceGroupsOperations,
+    DevicesOperations,
+    ImagesOperations,
+    Operations,
+    ProductsOperations,
+)
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials_async import AsyncTokenCredential
 
 
-class AzureSphereClient(AzureSphereClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class AzureSphereClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
     """Azure Sphere resource management API.
 
+    :ivar operations: Operations operations
+    :vartype operations: azure.mgmt.spheremsrest.aio.operations.Operations
+    :ivar catalogs: CatalogsOperations operations
+    :vartype catalogs: azure.mgmt.spheremsrest.aio.operations.CatalogsOperations
+    :ivar images: ImagesOperations operations
+    :vartype images: azure.mgmt.spheremsrest.aio.operations.ImagesOperations
+    :ivar device_groups: DeviceGroupsOperations operations
+    :vartype device_groups: azure.mgmt.spheremsrest.aio.operations.DeviceGroupsOperations
+    :ivar certificates: CertificatesOperations operations
+    :vartype certificates: azure.mgmt.spheremsrest.aio.operations.CertificatesOperations
+    :ivar deployments: DeploymentsOperations operations
+    :vartype deployments: azure.mgmt.spheremsrest.aio.operations.DeploymentsOperations
+    :ivar devices: DevicesOperations operations
+    :vartype devices: azure.mgmt.spheremsrest.aio.operations.DevicesOperations
+    :ivar products: ProductsOperations operations
+    :vartype products: azure.mgmt.spheremsrest.aio.operations.ProductsOperations
     :param subscription_id: The ID of the target subscription. Required.
     :type subscription_id: str
     :param credential: Credential needed for the client to connect to Azure. Required.
@@ -51,6 +76,14 @@ class AzureSphereClient(AzureSphereClientOperationsMixin):  # pylint: disable=cl
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
+        self.operations = Operations(self._client, self._config, self._serialize, self._deserialize)
+        self.catalogs = CatalogsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.images = ImagesOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.device_groups = DeviceGroupsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.certificates = CertificatesOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.deployments = DeploymentsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.devices = DevicesOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.products = ProductsOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.

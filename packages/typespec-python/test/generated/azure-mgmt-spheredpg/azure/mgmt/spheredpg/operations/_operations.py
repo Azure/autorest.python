@@ -9,10 +9,9 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, AsyncIterable, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Iterable, List, Optional, TypeVar, Union, overload
 import urllib.parse
 
-from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -21,55 +20,1518 @@ from azure.core.exceptions import (
     ResourceNotModifiedError,
     map_error,
 )
+from azure.core.paging import ItemPaged
 from azure.core.pipeline import PipelineResponse
-from azure.core.rest import AsyncHttpResponse, HttpRequest
+from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
-from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from ... import models as _models
-from ..._model_base import AzureJSONEncoder, _deserialize
-from ..._operations._operations import (
-    build_azure_sphere_claim_devices_request,
-    build_azure_sphere_count_devices_request,
-    build_azure_sphere_create_or_update_request,
-    build_azure_sphere_delete_request,
-    build_azure_sphere_generate_capability_image_request,
-    build_azure_sphere_generate_default_device_groups_request,
-    build_azure_sphere_get_request,
-    build_azure_sphere_list_by_catalog_request,
-    build_azure_sphere_list_by_device_group_request,
-    build_azure_sphere_list_by_product_request,
-    build_azure_sphere_list_by_resource_group_request,
-    build_azure_sphere_list_by_subscription_request,
-    build_azure_sphere_list_deployments_request,
-    build_azure_sphere_list_device_groups_request,
-    build_azure_sphere_list_device_insights_request,
-    build_azure_sphere_list_devices_request,
-    build_azure_sphere_list_request,
-    build_azure_sphere_retrieve_cert_chain_request,
-    build_azure_sphere_retrieve_proof_of_possession_nonce_request,
-    build_azure_sphere_update_request,
-)
-from .._vendor import AzureSphereClientMixinABC
+from .. import models as _models
+from .._model_base import AzureJSONEncoder, _deserialize
+from .._serialization import Serializer
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+
+_SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
-class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: disable=too-many-public-methods
+def build_operations_list_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/providers/Microsoft.AzureSphere/operations"
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_catalogs_get_request(
+    resource_group_name: str, catalog_name: str, subscription_id: str, **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_catalogs_create_or_update_request(
+    resource_group_name: str, catalog_name: str, subscription_id: str, **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_catalogs_update_request(
+    resource_group_name: str, catalog_name: str, subscription_id: str, **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="PATCH", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_catalogs_delete_request(
+    resource_group_name: str, catalog_name: str, subscription_id: str, **kwargs: Any
+) -> HttpRequest:
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    return HttpRequest(method="DELETE", url=_url, params=_params, **kwargs)
+
+
+def build_catalogs_list_by_resource_group_request(  # pylint: disable=name-too-long
+    resource_group_name: str, subscription_id: str, **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs"
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_catalogs_list_by_subscription_request(  # pylint: disable=name-too-long
+    subscription_id: str, **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/providers/Microsoft.AzureSphere/catalogs"
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_catalogs_count_devices_request(
+    resource_group_name: str, catalog_name: str, subscription_id: str, **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/countDevices"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_catalogs_list_device_insights_request(  # pylint: disable=name-too-long
+    resource_group_name: str,
+    catalog_name: str,
+    subscription_id: str,
+    *,
+    filter: Optional[str] = None,
+    top: Optional[int] = None,
+    skip: Optional[int] = None,
+    **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/listDeviceInsights"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    if filter is not None:
+        _params["$filter"] = _SERIALIZER.query("filter", filter, "str")
+    if top is not None:
+        _params["$top"] = _SERIALIZER.query("top", top, "int")
+    if skip is not None:
+        _params["$skip"] = _SERIALIZER.query("skip", skip, "int")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_catalogs_list_devices_request(
+    resource_group_name: str,
+    catalog_name: str,
+    subscription_id: str,
+    *,
+    filter: Optional[str] = None,
+    top: Optional[int] = None,
+    skip: Optional[int] = None,
+    **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/listDevices"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    if filter is not None:
+        _params["$filter"] = _SERIALIZER.query("filter", filter, "str")
+    if top is not None:
+        _params["$top"] = _SERIALIZER.query("top", top, "int")
+    if skip is not None:
+        _params["$skip"] = _SERIALIZER.query("skip", skip, "int")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_catalogs_list_deployments_request(
+    resource_group_name: str,
+    catalog_name: str,
+    subscription_id: str,
+    *,
+    filter: Optional[str] = None,
+    top: Optional[int] = None,
+    skip: Optional[int] = None,
+    **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/listDeployments"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    if filter is not None:
+        _params["$filter"] = _SERIALIZER.query("filter", filter, "str")
+    if top is not None:
+        _params["$top"] = _SERIALIZER.query("top", top, "int")
+    if skip is not None:
+        _params["$skip"] = _SERIALIZER.query("skip", skip, "int")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_catalogs_list_device_groups_request(  # pylint: disable=name-too-long
+    resource_group_name: str,
+    catalog_name: str,
+    subscription_id: str,
+    *,
+    filter: Optional[str] = None,
+    top: Optional[int] = None,
+    skip: Optional[int] = None,
+    **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/listDeviceGroups"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    if filter is not None:
+        _params["$filter"] = _SERIALIZER.query("filter", filter, "str")
+    if top is not None:
+        _params["$top"] = _SERIALIZER.query("top", top, "int")
+    if skip is not None:
+        _params["$skip"] = _SERIALIZER.query("skip", skip, "int")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_images_get_request(
+    resource_group_name: str, catalog_name: str, image_name: str, subscription_id: str, **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/images/{imageName}"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "imageName": _SERIALIZER.url("image_name", image_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_images_list_by_catalog_request(
+    resource_group_name: str,
+    catalog_name: str,
+    subscription_id: str,
+    *,
+    filter: Optional[str] = None,
+    top: Optional[int] = None,
+    skip: Optional[int] = None,
+    **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/images"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    if filter is not None:
+        _params["$filter"] = _SERIALIZER.query("filter", filter, "str")
+    if top is not None:
+        _params["$top"] = _SERIALIZER.query("top", top, "int")
+    if skip is not None:
+        _params["$skip"] = _SERIALIZER.query("skip", skip, "int")
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_images_create_or_update_request(
+    resource_group_name: str, catalog_name: str, image_name: str, subscription_id: str, **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/images/{imageName}"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "imageName": _SERIALIZER.url("image_name", image_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_images_delete_request(
+    resource_group_name: str, catalog_name: str, image_name: str, subscription_id: str, **kwargs: Any
+) -> HttpRequest:
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/images/{imageName}"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "imageName": _SERIALIZER.url("image_name", image_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    return HttpRequest(method="DELETE", url=_url, params=_params, **kwargs)
+
+
+def build_device_groups_list_by_product_request(  # pylint: disable=name-too-long
+    resource_group_name: str,
+    catalog_name: str,
+    product_name: str,
+    subscription_id: str,
+    *,
+    filter: Optional[str] = None,
+    top: Optional[int] = None,
+    skip: Optional[int] = None,
+    **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "productName": _SERIALIZER.url("product_name", product_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    if filter is not None:
+        _params["$filter"] = _SERIALIZER.query("filter", filter, "str")
+    if top is not None:
+        _params["$top"] = _SERIALIZER.query("top", top, "int")
+    if skip is not None:
+        _params["$skip"] = _SERIALIZER.query("skip", skip, "int")
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_device_groups_get_request(
+    resource_group_name: str,
+    catalog_name: str,
+    product_name: str,
+    device_group_name: str,
+    subscription_id: str,
+    **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "productName": _SERIALIZER.url("product_name", product_name, "str"),
+        "deviceGroupName": _SERIALIZER.url("device_group_name", device_group_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_device_groups_create_or_update_request(  # pylint: disable=name-too-long
+    resource_group_name: str,
+    catalog_name: str,
+    product_name: str,
+    device_group_name: str,
+    subscription_id: str,
+    **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "productName": _SERIALIZER.url("product_name", product_name, "str"),
+        "deviceGroupName": _SERIALIZER.url("device_group_name", device_group_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_device_groups_delete_request(
+    resource_group_name: str,
+    catalog_name: str,
+    product_name: str,
+    device_group_name: str,
+    subscription_id: str,
+    **kwargs: Any
+) -> HttpRequest:
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "productName": _SERIALIZER.url("product_name", product_name, "str"),
+        "deviceGroupName": _SERIALIZER.url("device_group_name", device_group_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    return HttpRequest(method="DELETE", url=_url, params=_params, **kwargs)
+
+
+def build_device_groups_update_request(
+    resource_group_name: str,
+    catalog_name: str,
+    product_name: str,
+    device_group_name: str,
+    subscription_id: str,
+    **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "productName": _SERIALIZER.url("product_name", product_name, "str"),
+        "deviceGroupName": _SERIALIZER.url("device_group_name", device_group_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="PATCH", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_device_groups_count_devices_request(  # pylint: disable=name-too-long
+    resource_group_name: str,
+    catalog_name: str,
+    product_name: str,
+    device_group_name: str,
+    subscription_id: str,
+    **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/countDevices"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "productName": _SERIALIZER.url("product_name", product_name, "str"),
+        "deviceGroupName": _SERIALIZER.url("device_group_name", device_group_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_device_groups_claim_devices_request(  # pylint: disable=name-too-long
+    resource_group_name: str,
+    catalog_name: str,
+    product_name: str,
+    device_group_name: str,
+    subscription_id: str,
+    **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/claimDevices"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "productName": _SERIALIZER.url("product_name", product_name, "str"),
+        "deviceGroupName": _SERIALIZER.url("device_group_name", device_group_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_certificates_get_request(
+    resource_group_name: str, catalog_name: str, serial_number: str, subscription_id: str, **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/certificates/{serialNumber}"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "serialNumber": _SERIALIZER.url("serial_number", serial_number, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_certificates_list_by_catalog_request(  # pylint: disable=name-too-long
+    resource_group_name: str,
+    catalog_name: str,
+    subscription_id: str,
+    *,
+    filter: Optional[str] = None,
+    top: Optional[int] = None,
+    skip: Optional[int] = None,
+    **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/certificates"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    if filter is not None:
+        _params["$filter"] = _SERIALIZER.query("filter", filter, "str")
+    if top is not None:
+        _params["$top"] = _SERIALIZER.query("top", top, "int")
+    if skip is not None:
+        _params["$skip"] = _SERIALIZER.query("skip", skip, "int")
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_certificates_retrieve_cert_chain_request(  # pylint: disable=name-too-long
+    resource_group_name: str, catalog_name: str, serial_number: str, subscription_id: str, **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/certificates/{serialNumber}/retrieveCertChain"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "serialNumber": _SERIALIZER.url("serial_number", serial_number, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_certificates_retrieve_proof_of_possession_nonce_request(  # pylint: disable=name-too-long
+    resource_group_name: str, catalog_name: str, serial_number: str, subscription_id: str, **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/certificates/{serialNumber}/retrieveProofOfPossessionNonce"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "serialNumber": _SERIALIZER.url("serial_number", serial_number, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_deployments_get_request(
+    resource_group_name: str,
+    catalog_name: str,
+    product_name: str,
+    device_group_name: str,
+    deployment_name: str,
+    subscription_id: str,
+    **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/deployments/{deploymentName}"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "productName": _SERIALIZER.url("product_name", product_name, "str"),
+        "deviceGroupName": _SERIALIZER.url("device_group_name", device_group_name, "str"),
+        "deploymentName": _SERIALIZER.url("deployment_name", deployment_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_deployments_list_by_device_group_request(  # pylint: disable=name-too-long
+    resource_group_name: str,
+    catalog_name: str,
+    product_name: str,
+    device_group_name: str,
+    subscription_id: str,
+    *,
+    filter: Optional[str] = None,
+    top: Optional[int] = None,
+    skip: Optional[int] = None,
+    **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/deployments"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "productName": _SERIALIZER.url("product_name", product_name, "str"),
+        "deviceGroupName": _SERIALIZER.url("device_group_name", device_group_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    if filter is not None:
+        _params["$filter"] = _SERIALIZER.query("filter", filter, "str")
+    if top is not None:
+        _params["$top"] = _SERIALIZER.query("top", top, "int")
+    if skip is not None:
+        _params["$skip"] = _SERIALIZER.query("skip", skip, "int")
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_deployments_create_or_update_request(  # pylint: disable=name-too-long
+    resource_group_name: str,
+    catalog_name: str,
+    product_name: str,
+    device_group_name: str,
+    deployment_name: str,
+    subscription_id: str,
+    **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/deployments/{deploymentName}"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "productName": _SERIALIZER.url("product_name", product_name, "str"),
+        "deviceGroupName": _SERIALIZER.url("device_group_name", device_group_name, "str"),
+        "deploymentName": _SERIALIZER.url("deployment_name", deployment_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_deployments_delete_request(
+    resource_group_name: str,
+    catalog_name: str,
+    product_name: str,
+    device_group_name: str,
+    deployment_name: str,
+    subscription_id: str,
+    **kwargs: Any
+) -> HttpRequest:
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/deployments/{deploymentName}"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "productName": _SERIALIZER.url("product_name", product_name, "str"),
+        "deviceGroupName": _SERIALIZER.url("device_group_name", device_group_name, "str"),
+        "deploymentName": _SERIALIZER.url("deployment_name", deployment_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    return HttpRequest(method="DELETE", url=_url, params=_params, **kwargs)
+
+
+def build_devices_get_request(
+    resource_group_name: str,
+    catalog_name: str,
+    product_name: str,
+    device_group_name: str,
+    device_name: str,
+    subscription_id: str,
+    **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/devices/{deviceName}"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "productName": _SERIALIZER.url("product_name", product_name, "str"),
+        "deviceGroupName": _SERIALIZER.url("device_group_name", device_group_name, "str"),
+        "deviceName": _SERIALIZER.url("device_name", device_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_devices_create_or_update_request(
+    resource_group_name: str,
+    catalog_name: str,
+    product_name: str,
+    device_group_name: str,
+    device_name: str,
+    subscription_id: str,
+    **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/devices/{deviceName}"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "productName": _SERIALIZER.url("product_name", product_name, "str"),
+        "deviceGroupName": _SERIALIZER.url("device_group_name", device_group_name, "str"),
+        "deviceName": _SERIALIZER.url("device_name", device_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_devices_list_by_device_group_request(  # pylint: disable=name-too-long
+    resource_group_name: str,
+    catalog_name: str,
+    product_name: str,
+    device_group_name: str,
+    subscription_id: str,
+    **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/devices"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "productName": _SERIALIZER.url("product_name", product_name, "str"),
+        "deviceGroupName": _SERIALIZER.url("device_group_name", device_group_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_devices_delete_request(
+    resource_group_name: str,
+    catalog_name: str,
+    product_name: str,
+    device_group_name: str,
+    device_name: str,
+    subscription_id: str,
+    **kwargs: Any
+) -> HttpRequest:
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/devices/{deviceName}"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "productName": _SERIALIZER.url("product_name", product_name, "str"),
+        "deviceGroupName": _SERIALIZER.url("device_group_name", device_group_name, "str"),
+        "deviceName": _SERIALIZER.url("device_name", device_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    return HttpRequest(method="DELETE", url=_url, params=_params, **kwargs)
+
+
+def build_devices_update_request(
+    resource_group_name: str,
+    catalog_name: str,
+    product_name: str,
+    device_group_name: str,
+    device_name: str,
+    subscription_id: str,
+    **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/devices/{deviceName}"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "productName": _SERIALIZER.url("product_name", product_name, "str"),
+        "deviceGroupName": _SERIALIZER.url("device_group_name", device_group_name, "str"),
+        "deviceName": _SERIALIZER.url("device_name", device_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="PATCH", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_devices_generate_capability_image_request(  # pylint: disable=name-too-long
+    resource_group_name: str,
+    catalog_name: str,
+    product_name: str,
+    device_group_name: str,
+    device_name: str,
+    subscription_id: str,
+    **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/devices/{deviceName}/generateCapabilityImage"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "productName": _SERIALIZER.url("product_name", product_name, "str"),
+        "deviceGroupName": _SERIALIZER.url("device_group_name", device_group_name, "str"),
+        "deviceName": _SERIALIZER.url("device_name", device_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_products_list_by_catalog_request(
+    resource_group_name: str, catalog_name: str, subscription_id: str, **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_products_get_request(
+    resource_group_name: str, catalog_name: str, product_name: str, subscription_id: str, **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "productName": _SERIALIZER.url("product_name", product_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_products_create_or_update_request(
+    resource_group_name: str, catalog_name: str, product_name: str, subscription_id: str, **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "productName": _SERIALIZER.url("product_name", product_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_products_delete_request(
+    resource_group_name: str, catalog_name: str, product_name: str, subscription_id: str, **kwargs: Any
+) -> HttpRequest:
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "productName": _SERIALIZER.url("product_name", product_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    return HttpRequest(method="DELETE", url=_url, params=_params, **kwargs)
+
+
+def build_products_update_request(
+    resource_group_name: str, catalog_name: str, product_name: str, subscription_id: str, **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "productName": _SERIALIZER.url("product_name", product_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="PATCH", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_products_generate_default_device_groups_request(  # pylint: disable=name-too-long
+    resource_group_name: str, catalog_name: str, product_name: str, subscription_id: str, **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/generateDefaultDeviceGroups"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "productName": _SERIALIZER.url("product_name", product_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_products_count_devices_request(
+    resource_group_name: str, catalog_name: str, product_name: str, subscription_id: str, **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-09-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/countDevices"  # pylint: disable=line-too-long
+    path_format_arguments = {
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "productName": _SERIALIZER.url("product_name", product_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+class Operations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~azure.mgmt.spheredpg.AzureSphereClient`'s
+        :attr:`operations` attribute.
+    """
+
+    def __init__(self, *args, **kwargs):
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
     @distributed_trace
-    def list(self, **kwargs: Any) -> AsyncIterable["_models.Operation"]:
+    def list(self, **kwargs: Any) -> Iterable["_models.Operation"]:
         """List the operations for the provider.
 
         :return: An iterator like instance of Operation
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.Operation]
+        :rtype: ~azure.core.paging.ItemPaged[~azure.mgmt.spheredpg.models.Operation]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -88,7 +1550,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_azure_sphere_list_request(
+                request = build_operations_list_request(
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -112,35 +1574,53 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
             return request
 
-        async def extract_data(pipeline_response):
+        def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
             list_of_elem = _deserialize(List[_models.Operation], deserialized["value"])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
+            return deserialized.get("nextLink") or None, iter(list_of_elem)
 
-        async def get_next(next_link=None):
+        def get_next(next_link=None):
             request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
                 if _stream:
-                    await response.read()  # Load the body in memory and close the socket
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 error = _deserialize(_models.ErrorResponse, response.json())
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
             return pipeline_response
 
-        return AsyncItemPaged(get_next, extract_data)
+        return ItemPaged(get_next, extract_data)
 
-    @distributed_trace_async
-    async def get(self, resource_group_name: str, catalog_name: str, **kwargs: Any) -> _models.TrackedResource:
+
+class CatalogsOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~azure.mgmt.spheredpg.AzureSphereClient`'s
+        :attr:`catalogs` attribute.
+    """
+
+    def __init__(self, *args, **kwargs):
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+    @distributed_trace
+    def get(self, resource_group_name: str, catalog_name: str, **kwargs: Any) -> _models.TrackedResource:
         """Get a Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -167,7 +1647,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[_models.TrackedResource] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_get_request(
+        request = build_catalogs_get_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             subscription_id=self._config.subscription_id,
@@ -178,7 +1658,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -186,7 +1666,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -202,7 +1682,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         return deserialized  # type: ignore
 
     @overload
-    async def create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -231,7 +1711,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         """
 
     @overload
-    async def create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -260,7 +1740,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         """
 
     @overload
-    async def create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -288,8 +1768,8 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-    @distributed_trace_async
-    async def create_or_update(
+    @distributed_trace
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -336,7 +1816,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         else:
             _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_azure_sphere_create_or_update_request(
+        request = build_catalogs_create_or_update_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             subscription_id=self._config.subscription_id,
@@ -349,7 +1829,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -357,7 +1837,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if response.status_code not in [200, 201]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -383,7 +1863,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         return deserialized  # type: ignore
 
     @overload
-    async def update(
+    def update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -412,7 +1892,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         """
 
     @overload
-    async def update(
+    def update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -441,7 +1921,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         """
 
     @overload
-    async def update(
+    def update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -469,8 +1949,8 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-    @distributed_trace_async
-    async def update(
+    @distributed_trace
+    def update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -517,7 +1997,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         else:
             _content = json.dumps(properties, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_azure_sphere_update_request(
+        request = build_catalogs_update_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             subscription_id=self._config.subscription_id,
@@ -530,7 +2010,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -538,7 +2018,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -553,8 +2033,8 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         return deserialized  # type: ignore
 
-    @distributed_trace_async
-    async def delete(  # pylint: disable=inconsistent-return-statements
+    @distributed_trace
+    def delete(  # pylint: disable=inconsistent-return-statements
         self, resource_group_name: str, catalog_name: str, **kwargs: Any
     ) -> None:
         """Delete a Catalog.
@@ -583,7 +2063,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_delete_request(
+        request = build_catalogs_delete_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             subscription_id=self._config.subscription_id,
@@ -594,7 +2074,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -602,7 +2082,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if response.status_code not in [200, 202, 204]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -616,16 +2096,14 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def list_by_resource_group(
-        self, resource_group_name: str, **kwargs: Any
-    ) -> AsyncIterable["_models.TrackedResource"]:
+    def list_by_resource_group(self, resource_group_name: str, **kwargs: Any) -> Iterable["_models.TrackedResource"]:
         """List Catalog resources by resource group.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
          Required.
         :type resource_group_name: str
         :return: An iterator like instance of TrackedResource
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.TrackedResource]
+        :rtype: ~azure.core.paging.ItemPaged[~azure.mgmt.spheredpg.models.TrackedResource]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -644,7 +2122,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_azure_sphere_list_by_resource_group_request(
+                request = build_catalogs_list_by_resource_group_request(
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
                     api_version=self._config.api_version,
@@ -670,39 +2148,39 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
             return request
 
-        async def extract_data(pipeline_response):
+        def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
             list_of_elem = _deserialize(List[_models.TrackedResource], deserialized["value"])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
+            return deserialized.get("nextLink") or None, iter(list_of_elem)
 
-        async def get_next(next_link=None):
+        def get_next(next_link=None):
             request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
                 if _stream:
-                    await response.read()  # Load the body in memory and close the socket
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 error = _deserialize(_models.ErrorResponse, response.json())
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
             return pipeline_response
 
-        return AsyncItemPaged(get_next, extract_data)
+        return ItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def list_by_subscription(self, **kwargs: Any) -> AsyncIterable["_models.TrackedResource"]:
+    def list_by_subscription(self, **kwargs: Any) -> Iterable["_models.TrackedResource"]:
         """List Catalog resources by subscription ID.
 
         :return: An iterator like instance of TrackedResource
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.TrackedResource]
+        :rtype: ~azure.core.paging.ItemPaged[~azure.mgmt.spheredpg.models.TrackedResource]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -721,7 +2199,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_azure_sphere_list_by_subscription_request(
+                request = build_catalogs_list_by_subscription_request(
                     subscription_id=self._config.subscription_id,
                     api_version=self._config.api_version,
                     headers=_headers,
@@ -746,37 +2224,35 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
             return request
 
-        async def extract_data(pipeline_response):
+        def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
             list_of_elem = _deserialize(List[_models.TrackedResource], deserialized["value"])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
+            return deserialized.get("nextLink") or None, iter(list_of_elem)
 
-        async def get_next(next_link=None):
+        def get_next(next_link=None):
             request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
                 if _stream:
-                    await response.read()  # Load the body in memory and close the socket
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 error = _deserialize(_models.ErrorResponse, response.json())
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
             return pipeline_response
 
-        return AsyncItemPaged(get_next, extract_data)
+        return ItemPaged(get_next, extract_data)
 
-    @distributed_trace_async
-    async def count_devices(
-        self, resource_group_name: str, catalog_name: str, **kwargs: Any
-    ) -> _models.CountDeviceResponse:
+    @distributed_trace
+    def count_devices(self, resource_group_name: str, catalog_name: str, **kwargs: Any) -> _models.CountDeviceResponse:
         """Counts devices in catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -803,7 +2279,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[_models.CountDeviceResponse] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_count_devices_request(
+        request = build_catalogs_count_devices_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             subscription_id=self._config.subscription_id,
@@ -814,7 +2290,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -822,7 +2298,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -847,7 +2323,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         top: Optional[int] = None,
         skip: Optional[int] = None,
         **kwargs: Any
-    ) -> AsyncIterable["_models.DeviceInsight"]:
+    ) -> Iterable["_models.DeviceInsight"]:
         """Lists device insights for catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -862,7 +2338,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
         :return: An iterator like instance of DeviceInsight
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.DeviceInsight]
+        :rtype: ~azure.core.paging.ItemPaged[~azure.mgmt.spheredpg.models.DeviceInsight]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -881,7 +2357,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_azure_sphere_list_device_insights_request(
+                request = build_catalogs_list_device_insights_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     subscription_id=self._config.subscription_id,
@@ -911,32 +2387,32 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
             return request
 
-        async def extract_data(pipeline_response):
+        def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
             list_of_elem = _deserialize(List[_models.DeviceInsight], deserialized["value"])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
+            return deserialized.get("nextLink") or None, iter(list_of_elem)
 
-        async def get_next(next_link=None):
+        def get_next(next_link=None):
             request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
                 if _stream:
-                    await response.read()  # Load the body in memory and close the socket
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 error = _deserialize(_models.ErrorResponse, response.json())
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
             return pipeline_response
 
-        return AsyncItemPaged(get_next, extract_data)
+        return ItemPaged(get_next, extract_data)
 
     @distributed_trace
     def list_devices(
@@ -948,7 +2424,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         top: Optional[int] = None,
         skip: Optional[int] = None,
         **kwargs: Any
-    ) -> AsyncIterable["_models.ProxyResource"]:
+    ) -> Iterable["_models.ProxyResource"]:
         """Lists devices for catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -963,7 +2439,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
         :return: An iterator like instance of ProxyResource
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.ProxyResource]
+        :rtype: ~azure.core.paging.ItemPaged[~azure.mgmt.spheredpg.models.ProxyResource]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -982,7 +2458,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_azure_sphere_list_devices_request(
+                request = build_catalogs_list_devices_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     subscription_id=self._config.subscription_id,
@@ -1012,32 +2488,32 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
             return request
 
-        async def extract_data(pipeline_response):
+        def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
             list_of_elem = _deserialize(List[_models.ProxyResource], deserialized["value"])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
+            return deserialized.get("nextLink") or None, iter(list_of_elem)
 
-        async def get_next(next_link=None):
+        def get_next(next_link=None):
             request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
                 if _stream:
-                    await response.read()  # Load the body in memory and close the socket
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 error = _deserialize(_models.ErrorResponse, response.json())
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
             return pipeline_response
 
-        return AsyncItemPaged(get_next, extract_data)
+        return ItemPaged(get_next, extract_data)
 
     @distributed_trace
     def list_deployments(
@@ -1049,7 +2525,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         top: Optional[int] = None,
         skip: Optional[int] = None,
         **kwargs: Any
-    ) -> AsyncIterable["_models.ProxyResource"]:
+    ) -> Iterable["_models.ProxyResource"]:
         """Lists deployments for catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1064,7 +2540,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
         :return: An iterator like instance of ProxyResource
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.ProxyResource]
+        :rtype: ~azure.core.paging.ItemPaged[~azure.mgmt.spheredpg.models.ProxyResource]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1083,7 +2559,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_azure_sphere_list_deployments_request(
+                request = build_catalogs_list_deployments_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     subscription_id=self._config.subscription_id,
@@ -1113,32 +2589,32 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
             return request
 
-        async def extract_data(pipeline_response):
+        def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
             list_of_elem = _deserialize(List[_models.ProxyResource], deserialized["value"])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
+            return deserialized.get("nextLink") or None, iter(list_of_elem)
 
-        async def get_next(next_link=None):
+        def get_next(next_link=None):
             request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
                 if _stream:
-                    await response.read()  # Load the body in memory and close the socket
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 error = _deserialize(_models.ErrorResponse, response.json())
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
             return pipeline_response
 
-        return AsyncItemPaged(get_next, extract_data)
+        return ItemPaged(get_next, extract_data)
 
     @overload
     def list_device_groups(
@@ -1152,7 +2628,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         skip: Optional[int] = None,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> AsyncIterable["_models.ProxyResource"]:
+    ) -> Iterable["_models.ProxyResource"]:
         """List the device groups for the catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1172,7 +2648,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
          Default value is "application/json".
         :paramtype content_type: str
         :return: An iterator like instance of ProxyResource
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.ProxyResource]
+        :rtype: ~azure.core.paging.ItemPaged[~azure.mgmt.spheredpg.models.ProxyResource]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -1188,7 +2664,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         skip: Optional[int] = None,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> AsyncIterable["_models.ProxyResource"]:
+    ) -> Iterable["_models.ProxyResource"]:
         """List the device groups for the catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1208,7 +2684,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
          Default value is "application/json".
         :paramtype content_type: str
         :return: An iterator like instance of ProxyResource
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.ProxyResource]
+        :rtype: ~azure.core.paging.ItemPaged[~azure.mgmt.spheredpg.models.ProxyResource]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -1224,7 +2700,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         skip: Optional[int] = None,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> AsyncIterable["_models.ProxyResource"]:
+    ) -> Iterable["_models.ProxyResource"]:
         """List the device groups for the catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1244,7 +2720,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
          Default value is "application/json".
         :paramtype content_type: str
         :return: An iterator like instance of ProxyResource
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.ProxyResource]
+        :rtype: ~azure.core.paging.ItemPaged[~azure.mgmt.spheredpg.models.ProxyResource]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -1259,7 +2735,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         top: Optional[int] = None,
         skip: Optional[int] = None,
         **kwargs: Any
-    ) -> AsyncIterable["_models.ProxyResource"]:
+    ) -> Iterable["_models.ProxyResource"]:
         """List the device groups for the catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1281,7 +2757,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
          value is None.
         :paramtype content_type: str
         :return: An iterator like instance of ProxyResource
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.ProxyResource]
+        :rtype: ~azure.core.paging.ItemPaged[~azure.mgmt.spheredpg.models.ProxyResource]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1307,7 +2783,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_azure_sphere_list_device_groups_request(
+                request = build_catalogs_list_device_groups_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     subscription_id=self._config.subscription_id,
@@ -1339,37 +2815,53 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
             return request
 
-        async def extract_data(pipeline_response):
+        def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
             list_of_elem = _deserialize(List[_models.ProxyResource], deserialized["value"])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
+            return deserialized.get("nextLink") or None, iter(list_of_elem)
 
-        async def get_next(next_link=None):
+        def get_next(next_link=None):
             request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
                 if _stream:
-                    await response.read()  # Load the body in memory and close the socket
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 error = _deserialize(_models.ErrorResponse, response.json())
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
             return pipeline_response
 
-        return AsyncItemPaged(get_next, extract_data)
+        return ItemPaged(get_next, extract_data)
 
-    @distributed_trace_async
-    async def get(
-        self, resource_group_name: str, catalog_name: str, image_name: str, **kwargs: Any
-    ) -> _models.ProxyResource:
+
+class ImagesOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~azure.mgmt.spheredpg.AzureSphereClient`'s
+        :attr:`images` attribute.
+    """
+
+    def __init__(self, *args, **kwargs):
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+    @distributed_trace
+    def get(self, resource_group_name: str, catalog_name: str, image_name: str, **kwargs: Any) -> _models.ProxyResource:
         """Get a Image.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1398,7 +2890,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[_models.ProxyResource] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_get_request(
+        request = build_images_get_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             image_name=image_name,
@@ -1410,7 +2902,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -1418,7 +2910,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -1443,7 +2935,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         top: Optional[int] = None,
         skip: Optional[int] = None,
         **kwargs: Any
-    ) -> AsyncIterable["_models.ProxyResource"]:
+    ) -> Iterable["_models.ProxyResource"]:
         """List Image resources by Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1458,7 +2950,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
         :return: An iterator like instance of ProxyResource
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.ProxyResource]
+        :rtype: ~azure.core.paging.ItemPaged[~azure.mgmt.spheredpg.models.ProxyResource]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1477,7 +2969,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_azure_sphere_list_by_catalog_request(
+                request = build_images_list_by_catalog_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     subscription_id=self._config.subscription_id,
@@ -1507,35 +2999,35 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
             return request
 
-        async def extract_data(pipeline_response):
+        def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
             list_of_elem = _deserialize(List[_models.ProxyResource], deserialized["value"])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
+            return deserialized.get("nextLink") or None, iter(list_of_elem)
 
-        async def get_next(next_link=None):
+        def get_next(next_link=None):
             request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
                 if _stream:
-                    await response.read()  # Load the body in memory and close the socket
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 error = _deserialize(_models.ErrorResponse, response.json())
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
             return pipeline_response
 
-        return AsyncItemPaged(get_next, extract_data)
+        return ItemPaged(get_next, extract_data)
 
     @overload
-    async def create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -1567,7 +3059,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         """
 
     @overload
-    async def create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -1599,7 +3091,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         """
 
     @overload
-    async def create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -1630,8 +3122,8 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-    @distributed_trace_async
-    async def create_or_update(
+    @distributed_trace
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -1681,7 +3173,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         else:
             _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_azure_sphere_create_or_update_request(
+        request = build_images_create_or_update_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             image_name=image_name,
@@ -1695,7 +3187,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -1703,7 +3195,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if response.status_code not in [200, 201]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -1728,8 +3220,8 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         return deserialized  # type: ignore
 
-    @distributed_trace_async
-    async def delete(  # pylint: disable=inconsistent-return-statements
+    @distributed_trace
+    def delete(  # pylint: disable=inconsistent-return-statements
         self, resource_group_name: str, catalog_name: str, image_name: str, **kwargs: Any
     ) -> None:
         """Delete a Image.
@@ -1760,7 +3252,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_delete_request(
+        request = build_images_delete_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             image_name=image_name,
@@ -1772,7 +3264,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -1780,7 +3272,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if response.status_code not in [200, 202, 204]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -1793,6 +3285,24 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         if cls:
             return cls(pipeline_response, None, response_headers)
 
+
+class DeviceGroupsOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~azure.mgmt.spheredpg.AzureSphereClient`'s
+        :attr:`device_groups` attribute.
+    """
+
+    def __init__(self, *args, **kwargs):
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
     @distributed_trace
     def list_by_product(
         self,
@@ -1804,7 +3314,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         top: Optional[int] = None,
         skip: Optional[int] = None,
         **kwargs: Any
-    ) -> AsyncIterable["_models.ProxyResource"]:
+    ) -> Iterable["_models.ProxyResource"]:
         """List DeviceGroup resources by Product. '.default' and '.unassigned' are system defined values
         and cannot be used for product name.
 
@@ -1822,7 +3332,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
         :return: An iterator like instance of ProxyResource
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.ProxyResource]
+        :rtype: ~azure.core.paging.ItemPaged[~azure.mgmt.spheredpg.models.ProxyResource]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1841,7 +3351,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_azure_sphere_list_by_product_request(
+                request = build_device_groups_list_by_product_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     product_name=product_name,
@@ -1872,35 +3382,35 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
             return request
 
-        async def extract_data(pipeline_response):
+        def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
             list_of_elem = _deserialize(List[_models.ProxyResource], deserialized["value"])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
+            return deserialized.get("nextLink") or None, iter(list_of_elem)
 
-        async def get_next(next_link=None):
+        def get_next(next_link=None):
             request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
                 if _stream:
-                    await response.read()  # Load the body in memory and close the socket
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 error = _deserialize(_models.ErrorResponse, response.json())
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
             return pipeline_response
 
-        return AsyncItemPaged(get_next, extract_data)
+        return ItemPaged(get_next, extract_data)
 
-    @distributed_trace_async
-    async def get(
+    @distributed_trace
+    def get(
         self, resource_group_name: str, catalog_name: str, product_name: str, device_group_name: str, **kwargs: Any
     ) -> _models.ProxyResource:
         """Get a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
@@ -1934,7 +3444,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[_models.ProxyResource] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_get_request(
+        request = build_device_groups_get_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -1947,7 +3457,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -1955,7 +3465,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -1971,7 +3481,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         return deserialized  # type: ignore
 
     @overload
-    async def create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -2007,7 +3517,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         """
 
     @overload
-    async def create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -2043,7 +3553,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         """
 
     @overload
-    async def create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -2078,8 +3588,8 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-    @distributed_trace_async
-    async def create_or_update(
+    @distributed_trace
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -2133,7 +3643,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         else:
             _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_azure_sphere_create_or_update_request(
+        request = build_device_groups_create_or_update_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -2148,7 +3658,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -2156,7 +3666,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if response.status_code not in [200, 201]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -2181,8 +3691,8 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         return deserialized  # type: ignore
 
-    @distributed_trace_async
-    async def delete(  # pylint: disable=inconsistent-return-statements
+    @distributed_trace
+    def delete(  # pylint: disable=inconsistent-return-statements
         self, resource_group_name: str, catalog_name: str, product_name: str, device_group_name: str, **kwargs: Any
     ) -> None:
         """Delete a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
@@ -2216,7 +3726,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_delete_request(
+        request = build_device_groups_delete_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -2229,7 +3739,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -2237,7 +3747,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if response.status_code not in [200, 202, 204]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -2251,7 +3761,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             return cls(pipeline_response, None, response_headers)
 
     @overload
-    async def update(
+    def update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -2287,7 +3797,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         """
 
     @overload
-    async def update(
+    def update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -2323,7 +3833,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         """
 
     @overload
-    async def update(
+    def update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -2358,8 +3868,8 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-    @distributed_trace_async
-    async def update(
+    @distributed_trace
+    def update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -2413,7 +3923,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         else:
             _content = json.dumps(properties, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_azure_sphere_update_request(
+        request = build_device_groups_update_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -2428,7 +3938,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -2436,7 +3946,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if response.status_code not in [200, 202]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -2458,8 +3968,8 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         return deserialized
 
-    @distributed_trace_async
-    async def count_devices(
+    @distributed_trace
+    def count_devices(
         self, resource_group_name: str, catalog_name: str, product_name: str, device_group_name: str, **kwargs: Any
     ) -> _models.CountDeviceResponse:
         """Counts devices in device group. '.default' and '.unassigned' are system defined values and
@@ -2493,7 +4003,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[_models.CountDeviceResponse] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_count_devices_request(
+        request = build_device_groups_count_devices_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -2506,7 +4016,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -2514,7 +4024,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -2530,7 +4040,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         return deserialized  # type: ignore
 
     @overload
-    async def claim_devices(  # pylint: disable=inconsistent-return-statements
+    def claim_devices(  # pylint: disable=inconsistent-return-statements
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -2566,7 +4076,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         """
 
     @overload
-    async def claim_devices(  # pylint: disable=inconsistent-return-statements
+    def claim_devices(  # pylint: disable=inconsistent-return-statements
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -2602,7 +4112,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         """
 
     @overload
-    async def claim_devices(  # pylint: disable=inconsistent-return-statements
+    def claim_devices(  # pylint: disable=inconsistent-return-statements
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -2637,8 +4147,8 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-    @distributed_trace_async
-    async def claim_devices(  # pylint: disable=inconsistent-return-statements
+    @distributed_trace
+    def claim_devices(  # pylint: disable=inconsistent-return-statements
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -2692,7 +4202,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         else:
             _content = json.dumps(claim_devices_request, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_azure_sphere_claim_devices_request(
+        request = build_device_groups_claim_devices_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -2707,7 +4217,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -2715,7 +4225,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if response.status_code not in [202]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -2726,8 +4236,26 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    @distributed_trace_async
-    async def get(
+
+class CertificatesOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~azure.mgmt.spheredpg.AzureSphereClient`'s
+        :attr:`certificates` attribute.
+    """
+
+    def __init__(self, *args, **kwargs):
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+    @distributed_trace
+    def get(
         self, resource_group_name: str, catalog_name: str, serial_number: str, **kwargs: Any
     ) -> _models.ProxyResource:
         """Get a Certificate.
@@ -2759,7 +4287,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[_models.ProxyResource] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_get_request(
+        request = build_certificates_get_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             serial_number=serial_number,
@@ -2771,7 +4299,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -2779,7 +4307,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -2804,7 +4332,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         top: Optional[int] = None,
         skip: Optional[int] = None,
         **kwargs: Any
-    ) -> AsyncIterable["_models.ProxyResource"]:
+    ) -> Iterable["_models.ProxyResource"]:
         """List Certificate resources by Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2819,7 +4347,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
         :return: An iterator like instance of ProxyResource
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.ProxyResource]
+        :rtype: ~azure.core.paging.ItemPaged[~azure.mgmt.spheredpg.models.ProxyResource]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -2838,7 +4366,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_azure_sphere_list_by_catalog_request(
+                request = build_certificates_list_by_catalog_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     subscription_id=self._config.subscription_id,
@@ -2868,35 +4396,35 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
             return request
 
-        async def extract_data(pipeline_response):
+        def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
             list_of_elem = _deserialize(List[_models.ProxyResource], deserialized["value"])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
+            return deserialized.get("nextLink") or None, iter(list_of_elem)
 
-        async def get_next(next_link=None):
+        def get_next(next_link=None):
             request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
                 if _stream:
-                    await response.read()  # Load the body in memory and close the socket
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 error = _deserialize(_models.ErrorResponse, response.json())
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
             return pipeline_response
 
-        return AsyncItemPaged(get_next, extract_data)
+        return ItemPaged(get_next, extract_data)
 
-    @distributed_trace_async
-    async def retrieve_cert_chain(
+    @distributed_trace
+    def retrieve_cert_chain(
         self, resource_group_name: str, catalog_name: str, serial_number: str, **kwargs: Any
     ) -> _models.CertificateChainResponse:
         """Retrieves cert chain.
@@ -2929,7 +4457,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[_models.CertificateChainResponse] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_retrieve_cert_chain_request(
+        request = build_certificates_retrieve_cert_chain_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             serial_number=serial_number,
@@ -2941,7 +4469,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -2949,7 +4477,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -2965,7 +4493,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         return deserialized  # type: ignore
 
     @overload
-    async def retrieve_proof_of_possession_nonce(
+    def retrieve_proof_of_possession_nonce(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -3000,7 +4528,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         """
 
     @overload
-    async def retrieve_proof_of_possession_nonce(
+    def retrieve_proof_of_possession_nonce(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -3034,7 +4562,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         """
 
     @overload
-    async def retrieve_proof_of_possession_nonce(
+    def retrieve_proof_of_possession_nonce(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -3067,8 +4595,8 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-    @distributed_trace_async
-    async def retrieve_proof_of_possession_nonce(
+    @distributed_trace
+    def retrieve_proof_of_possession_nonce(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -3121,7 +4649,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         else:
             _content = json.dumps(proof_of_possession_nonce_request, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_azure_sphere_retrieve_proof_of_possession_nonce_request(
+        request = build_certificates_retrieve_proof_of_possession_nonce_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             serial_number=serial_number,
@@ -3135,7 +4663,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -3143,7 +4671,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -3158,8 +4686,26 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         return deserialized  # type: ignore
 
-    @distributed_trace_async
-    async def get(
+
+class DeploymentsOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~azure.mgmt.spheredpg.AzureSphereClient`'s
+        :attr:`deployments` attribute.
+    """
+
+    def __init__(self, *args, **kwargs):
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+    @distributed_trace
+    def get(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -3202,7 +4748,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[_models.ProxyResource] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_get_request(
+        request = build_deployments_get_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -3216,7 +4762,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -3224,7 +4770,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -3251,7 +4797,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         top: Optional[int] = None,
         skip: Optional[int] = None,
         **kwargs: Any
-    ) -> AsyncIterable["_models.ProxyResource"]:
+    ) -> Iterable["_models.ProxyResource"]:
         """List Deployment resources by DeviceGroup. '.default' and '.unassigned' are system defined
         values and cannot be used for product or device group name.
 
@@ -3271,7 +4817,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
         :return: An iterator like instance of ProxyResource
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.ProxyResource]
+        :rtype: ~azure.core.paging.ItemPaged[~azure.mgmt.spheredpg.models.ProxyResource]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -3290,7 +4836,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_azure_sphere_list_by_device_group_request(
+                request = build_deployments_list_by_device_group_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     product_name=product_name,
@@ -3322,35 +4868,35 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
             return request
 
-        async def extract_data(pipeline_response):
+        def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
             list_of_elem = _deserialize(List[_models.ProxyResource], deserialized["value"])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
+            return deserialized.get("nextLink") or None, iter(list_of_elem)
 
-        async def get_next(next_link=None):
+        def get_next(next_link=None):
             request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
                 if _stream:
-                    await response.read()  # Load the body in memory and close the socket
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 error = _deserialize(_models.ErrorResponse, response.json())
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
             return pipeline_response
 
-        return AsyncItemPaged(get_next, extract_data)
+        return ItemPaged(get_next, extract_data)
 
     @overload
-    async def create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -3390,7 +4936,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         """
 
     @overload
-    async def create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -3430,7 +4976,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         """
 
     @overload
-    async def create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -3469,8 +5015,8 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-    @distributed_trace_async
-    async def create_or_update(
+    @distributed_trace
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -3528,7 +5074,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         else:
             _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_azure_sphere_create_or_update_request(
+        request = build_deployments_create_or_update_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -3544,7 +5090,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -3552,7 +5098,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if response.status_code not in [200, 201]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -3577,8 +5123,8 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         return deserialized  # type: ignore
 
-    @distributed_trace_async
-    async def delete(  # pylint: disable=inconsistent-return-statements
+    @distributed_trace
+    def delete(  # pylint: disable=inconsistent-return-statements
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -3621,7 +5167,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_delete_request(
+        request = build_deployments_delete_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -3635,7 +5181,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -3643,7 +5189,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if response.status_code not in [200, 202, 204]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -3656,8 +5202,26 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    @distributed_trace_async
-    async def get(
+
+class DevicesOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~azure.mgmt.spheredpg.AzureSphereClient`'s
+        :attr:`devices` attribute.
+    """
+
+    def __init__(self, *args, **kwargs):
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+    @distributed_trace
+    def get(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -3699,7 +5263,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[_models.ProxyResource] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_get_request(
+        request = build_devices_get_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -3713,7 +5277,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -3721,7 +5285,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -3737,7 +5301,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         return deserialized  # type: ignore
 
     @overload
-    async def create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -3776,7 +5340,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         """
 
     @overload
-    async def create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -3815,7 +5379,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         """
 
     @overload
-    async def create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -3853,8 +5417,8 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-    @distributed_trace_async
-    async def create_or_update(
+    @distributed_trace
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -3911,7 +5475,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         else:
             _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_azure_sphere_create_or_update_request(
+        request = build_devices_create_or_update_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -3927,7 +5491,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -3935,7 +5499,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if response.status_code not in [200, 201]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -3963,7 +5527,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
     @distributed_trace
     def list_by_device_group(
         self, resource_group_name: str, catalog_name: str, product_name: str, device_group_name: str, **kwargs: Any
-    ) -> AsyncIterable["_models.ProxyResource"]:
+    ) -> Iterable["_models.ProxyResource"]:
         """List Device resources by DeviceGroup. '.default' and '.unassigned' are system defined values
         and cannot be used for product or device group name.
 
@@ -3977,7 +5541,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         :param device_group_name: Name of device group. Required.
         :type device_group_name: str
         :return: An iterator like instance of ProxyResource
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.ProxyResource]
+        :rtype: ~azure.core.paging.ItemPaged[~azure.mgmt.spheredpg.models.ProxyResource]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -3996,7 +5560,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_azure_sphere_list_by_device_group_request(
+                request = build_devices_list_by_device_group_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     product_name=product_name,
@@ -4025,35 +5589,35 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
             return request
 
-        async def extract_data(pipeline_response):
+        def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
             list_of_elem = _deserialize(List[_models.ProxyResource], deserialized["value"])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
+            return deserialized.get("nextLink") or None, iter(list_of_elem)
 
-        async def get_next(next_link=None):
+        def get_next(next_link=None):
             request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
                 if _stream:
-                    await response.read()  # Load the body in memory and close the socket
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 error = _deserialize(_models.ErrorResponse, response.json())
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
             return pipeline_response
 
-        return AsyncItemPaged(get_next, extract_data)
+        return ItemPaged(get_next, extract_data)
 
-    @distributed_trace_async
-    async def delete(  # pylint: disable=inconsistent-return-statements
+    @distributed_trace
+    def delete(  # pylint: disable=inconsistent-return-statements
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -4094,7 +5658,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_delete_request(
+        request = build_devices_delete_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -4108,7 +5672,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -4116,7 +5680,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if response.status_code not in [200, 202, 204]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -4130,7 +5694,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             return cls(pipeline_response, None, response_headers)
 
     @overload
-    async def update(
+    def update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -4169,7 +5733,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         """
 
     @overload
-    async def update(
+    def update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -4208,7 +5772,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         """
 
     @overload
-    async def update(
+    def update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -4246,8 +5810,8 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-    @distributed_trace_async
-    async def update(
+    @distributed_trace
+    def update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -4304,7 +5868,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         else:
             _content = json.dumps(properties, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_azure_sphere_update_request(
+        request = build_devices_update_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -4320,7 +5884,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -4328,7 +5892,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if response.status_code not in [200, 202]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -4350,7 +5914,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         return deserialized
 
     @overload
-    async def generate_capability_image(
+    def generate_capability_image(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -4392,7 +5956,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         """
 
     @overload
-    async def generate_capability_image(
+    def generate_capability_image(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -4433,7 +5997,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         """
 
     @overload
-    async def generate_capability_image(
+    def generate_capability_image(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -4473,8 +6037,8 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-    @distributed_trace_async
-    async def generate_capability_image(
+    @distributed_trace
+    def generate_capability_image(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -4534,7 +6098,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         else:
             _content = json.dumps(generate_device_capability_request, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_azure_sphere_generate_capability_image_request(
+        request = build_devices_generate_capability_image_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -4550,7 +6114,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -4558,7 +6122,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if response.status_code not in [200, 202]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -4579,10 +6143,28 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         return deserialized
 
+
+class ProductsOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~azure.mgmt.spheredpg.AzureSphereClient`'s
+        :attr:`products` attribute.
+    """
+
+    def __init__(self, *args, **kwargs):
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
     @distributed_trace
     def list_by_catalog(
         self, resource_group_name: str, catalog_name: str, **kwargs: Any
-    ) -> AsyncIterable["_models.ProxyResource"]:
+    ) -> Iterable["_models.ProxyResource"]:
         """List Product resources by Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -4591,7 +6173,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
         :return: An iterator like instance of ProxyResource
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.ProxyResource]
+        :rtype: ~azure.core.paging.ItemPaged[~azure.mgmt.spheredpg.models.ProxyResource]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -4610,7 +6192,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_azure_sphere_list_by_catalog_request(
+                request = build_products_list_by_catalog_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     subscription_id=self._config.subscription_id,
@@ -4637,35 +6219,35 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
             return request
 
-        async def extract_data(pipeline_response):
+        def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
             list_of_elem = _deserialize(List[_models.ProxyResource], deserialized["value"])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
+            return deserialized.get("nextLink") or None, iter(list_of_elem)
 
-        async def get_next(next_link=None):
+        def get_next(next_link=None):
             request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
                 if _stream:
-                    await response.read()  # Load the body in memory and close the socket
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 error = _deserialize(_models.ErrorResponse, response.json())
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
             return pipeline_response
 
-        return AsyncItemPaged(get_next, extract_data)
+        return ItemPaged(get_next, extract_data)
 
-    @distributed_trace_async
-    async def get(
+    @distributed_trace
+    def get(
         self, resource_group_name: str, catalog_name: str, product_name: str, **kwargs: Any
     ) -> _models.ProxyResource:
         """Get a Product. '.default' and '.unassigned' are system defined values and cannot be used for
@@ -4697,7 +6279,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[_models.ProxyResource] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_get_request(
+        request = build_products_get_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -4709,7 +6291,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -4717,7 +6299,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -4733,7 +6315,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         return deserialized  # type: ignore
 
     @overload
-    async def create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -4766,7 +6348,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         """
 
     @overload
-    async def create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -4799,7 +6381,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         """
 
     @overload
-    async def create_or_update(
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -4831,8 +6413,8 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-    @distributed_trace_async
-    async def create_or_update(
+    @distributed_trace
+    def create_or_update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -4883,7 +6465,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         else:
             _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_azure_sphere_create_or_update_request(
+        request = build_products_create_or_update_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -4897,7 +6479,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -4905,7 +6487,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if response.status_code not in [200, 201]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -4930,8 +6512,8 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         return deserialized  # type: ignore
 
-    @distributed_trace_async
-    async def delete(  # pylint: disable=inconsistent-return-statements
+    @distributed_trace
+    def delete(  # pylint: disable=inconsistent-return-statements
         self, resource_group_name: str, catalog_name: str, product_name: str, **kwargs: Any
     ) -> None:
         """Delete a Product. '.default' and '.unassigned' are system defined values and cannot be used for
@@ -4963,7 +6545,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_delete_request(
+        request = build_products_delete_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -4975,7 +6557,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -4983,7 +6565,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if response.status_code not in [200, 202, 204]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -4997,7 +6579,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
             return cls(pipeline_response, None, response_headers)
 
     @overload
-    async def update(
+    def update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -5030,7 +6612,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         """
 
     @overload
-    async def update(
+    def update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -5063,7 +6645,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         """
 
     @overload
-    async def update(
+    def update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -5095,8 +6677,8 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-    @distributed_trace_async
-    async def update(
+    @distributed_trace
+    def update(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -5147,7 +6729,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         else:
             _content = json.dumps(properties, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_azure_sphere_update_request(
+        request = build_products_update_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -5161,7 +6743,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -5169,7 +6751,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if response.status_code not in [200, 202]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -5194,7 +6776,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
     @distributed_trace
     def generate_default_device_groups(
         self, resource_group_name: str, catalog_name: str, product_name: str, **kwargs: Any
-    ) -> AsyncIterable["_models.ProxyResource"]:
+    ) -> Iterable["_models.ProxyResource"]:
         """Generates default device groups for the product. '.default' and '.unassigned' are system
         defined values and cannot be used for product name.
 
@@ -5206,7 +6788,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         :param product_name: Name of product. Required.
         :type product_name: str
         :return: An iterator like instance of ProxyResource
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheredpg.models.ProxyResource]
+        :rtype: ~azure.core.paging.ItemPaged[~azure.mgmt.spheredpg.models.ProxyResource]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -5225,7 +6807,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_azure_sphere_generate_default_device_groups_request(
+                request = build_products_generate_default_device_groups_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     product_name=product_name,
@@ -5253,35 +6835,35 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
             return request
 
-        async def extract_data(pipeline_response):
+        def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
             list_of_elem = _deserialize(List[_models.ProxyResource], deserialized["value"])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
+            return deserialized.get("nextLink") or None, iter(list_of_elem)
 
-        async def get_next(next_link=None):
+        def get_next(next_link=None):
             request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
                 request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
                 if _stream:
-                    await response.read()  # Load the body in memory and close the socket
+                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 error = _deserialize(_models.ErrorResponse, response.json())
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
             return pipeline_response
 
-        return AsyncItemPaged(get_next, extract_data)
+        return ItemPaged(get_next, extract_data)
 
-    @distributed_trace_async
-    async def count_devices(
+    @distributed_trace
+    def count_devices(
         self, resource_group_name: str, catalog_name: str, product_name: str, **kwargs: Any
     ) -> _models.CountDeviceResponse:
         """Counts devices in product. '.default' and '.unassigned' are system defined values and cannot be
@@ -5313,7 +6895,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         cls: ClsType[_models.CountDeviceResponse] = kwargs.pop("cls", None)
 
-        request = build_azure_sphere_count_devices_request(
+        request = build_products_count_devices_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -5325,7 +6907,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=_stream, **kwargs
         )
 
@@ -5333,7 +6915,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
