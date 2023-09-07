@@ -66,10 +66,7 @@ jobs:
     steps:
       - template: ci-template.yml
         parameters:
-            installAutorest: true
-            folderName: "autorest.python"
-            pythonCodeChecks: true
-            pythonFolderName: autorest
+            packageName: "autorest.python"
             regenerate: true
 
       - script: |
@@ -158,9 +155,7 @@ jobs:
     steps:
       - template: ci-template.yml
         parameters:
-            installTypeSpec: true
-            installCadlRanch: true
-            folderName: "typespec-python"
+            packageName: "typespec-python"
             regenerate: true
 
       - template: generated-code-checks-template.yml
