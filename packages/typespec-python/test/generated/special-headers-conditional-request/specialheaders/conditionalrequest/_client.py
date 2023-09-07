@@ -12,36 +12,24 @@ from typing import Any
 from azure.core import PipelineClient
 from azure.core.rest import HttpRequest, HttpResponse
 
-from ._configuration import DatetimeClientConfiguration
+from ._configuration import ConditionalRequestClientConfiguration
+from ._operations import ConditionalRequestClientOperationsMixin
 from ._serialization import Deserializer, Serializer
-from .operations import HeaderOperations, PropertyOperations, QueryOperations, ResponseHeaderOperations
 
 
-class DatetimeClient:  # pylint: disable=client-accepts-api-version-keyword
-    """Test for encode decorator on datetime.
-
-    :ivar query: QueryOperations operations
-    :vartype query: encode.datetime.operations.QueryOperations
-    :ivar property: PropertyOperations operations
-    :vartype property: encode.datetime.operations.PropertyOperations
-    :ivar header: HeaderOperations operations
-    :vartype header: encode.datetime.operations.HeaderOperations
-    :ivar response_header: ResponseHeaderOperations operations
-    :vartype response_header: encode.datetime.operations.ResponseHeaderOperations
-    """
+class ConditionalRequestClient(
+    ConditionalRequestClientOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
+    """Illustrates conditional request headers."""
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
-        self._config = DatetimeClientConfiguration(**kwargs)
+        self._config = ConditionalRequestClientConfiguration(**kwargs)
         self._client: PipelineClient = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.query = QueryOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.property = PropertyOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.response_header = ResponseHeaderOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
@@ -68,7 +56,7 @@ class DatetimeClient:  # pylint: disable=client-accepts-api-version-keyword
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "DatetimeClient":
+    def __enter__(self) -> "ConditionalRequestClient":
         self._client.__enter__()
         return self
 

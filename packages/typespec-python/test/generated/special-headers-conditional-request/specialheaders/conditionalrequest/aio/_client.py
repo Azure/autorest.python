@@ -13,35 +13,23 @@ from azure.core import AsyncPipelineClient
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
-from ._configuration import DatetimeClientConfiguration
-from .operations import HeaderOperations, PropertyOperations, QueryOperations, ResponseHeaderOperations
+from ._configuration import ConditionalRequestClientConfiguration
+from ._operations import ConditionalRequestClientOperationsMixin
 
 
-class DatetimeClient:  # pylint: disable=client-accepts-api-version-keyword
-    """Test for encode decorator on datetime.
-
-    :ivar query: QueryOperations operations
-    :vartype query: encode.datetime.aio.operations.QueryOperations
-    :ivar property: PropertyOperations operations
-    :vartype property: encode.datetime.aio.operations.PropertyOperations
-    :ivar header: HeaderOperations operations
-    :vartype header: encode.datetime.aio.operations.HeaderOperations
-    :ivar response_header: ResponseHeaderOperations operations
-    :vartype response_header: encode.datetime.aio.operations.ResponseHeaderOperations
-    """
+class ConditionalRequestClient(
+    ConditionalRequestClientOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
+    """Illustrates conditional request headers."""
 
     def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
         _endpoint = "http://localhost:3000"
-        self._config = DatetimeClientConfiguration(**kwargs)
+        self._config = ConditionalRequestClientConfiguration(**kwargs)
         self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.query = QueryOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.property = PropertyOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.response_header = ResponseHeaderOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
@@ -68,7 +56,7 @@ class DatetimeClient:  # pylint: disable=client-accepts-api-version-keyword
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "DatetimeClient":
+    async def __aenter__(self) -> "ConditionalRequestClient":
         await self._client.__aenter__()
         return self
 
