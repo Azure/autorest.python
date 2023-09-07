@@ -334,7 +334,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         if isinstance(resource, (IOBase, bytes)):
             _content = resource
         else:
-            _content = json.dumps(resource, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_azure_sphere_create_or_update_request(
             resource_group_name=resource_group_name,
@@ -515,7 +515,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         if isinstance(properties, (IOBase, bytes)):
             _content = properties
         else:
-            _content = json.dumps(properties, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(properties, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_azure_sphere_update_request(
             resource_group_name=resource_group_name,
@@ -1302,7 +1302,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         if isinstance(list_device_groups_request, (IOBase, bytes)):
             _content = list_device_groups_request
         else:
-            _content = json.dumps(list_device_groups_request, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(list_device_groups_request, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -1679,7 +1679,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         if isinstance(resource, (IOBase, bytes)):
             _content = resource
         else:
-            _content = json.dumps(resource, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_azure_sphere_create_or_update_request(
             resource_group_name=resource_group_name,
@@ -2131,7 +2131,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         if isinstance(resource, (IOBase, bytes)):
             _content = resource
         else:
-            _content = json.dumps(resource, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_azure_sphere_create_or_update_request(
             resource_group_name=resource_group_name,
@@ -2411,7 +2411,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         if isinstance(properties, (IOBase, bytes)):
             _content = properties
         else:
-            _content = json.dumps(properties, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(properties, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_azure_sphere_update_request(
             resource_group_name=resource_group_name,
@@ -2690,7 +2690,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         if isinstance(claim_devices_request, (IOBase, bytes)):
             _content = claim_devices_request
         else:
-            _content = json.dumps(claim_devices_request, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(claim_devices_request, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_azure_sphere_claim_devices_request(
             resource_group_name=resource_group_name,
@@ -3119,7 +3119,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         if isinstance(proof_of_possession_nonce_request, (IOBase, bytes)):
             _content = proof_of_possession_nonce_request
         else:
-            _content = json.dumps(proof_of_possession_nonce_request, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(proof_of_possession_nonce_request, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_azure_sphere_retrieve_proof_of_possession_nonce_request(
             resource_group_name=resource_group_name,
@@ -3526,7 +3526,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         if isinstance(resource, (IOBase, bytes)):
             _content = resource
         else:
-            _content = json.dumps(resource, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_azure_sphere_create_or_update_request(
             resource_group_name=resource_group_name,
@@ -3909,7 +3909,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         if isinstance(resource, (IOBase, bytes)):
             _content = resource
         else:
-            _content = json.dumps(resource, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_azure_sphere_create_or_update_request(
             resource_group_name=resource_group_name,
@@ -4302,7 +4302,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         if isinstance(properties, (IOBase, bytes)):
             _content = properties
         else:
-            _content = json.dumps(properties, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(properties, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_azure_sphere_update_request(
             resource_group_name=resource_group_name,
@@ -4532,7 +4532,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         if isinstance(generate_device_capability_request, (IOBase, bytes)):
             _content = generate_device_capability_request
         else:
-            _content = json.dumps(generate_device_capability_request, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(generate_device_capability_request, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_azure_sphere_generate_capability_image_request(
             resource_group_name=resource_group_name,
@@ -4881,7 +4881,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         if isinstance(resource, (IOBase, bytes)):
             _content = resource
         else:
-            _content = json.dumps(resource, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_azure_sphere_create_or_update_request(
             resource_group_name=resource_group_name,
@@ -5145,7 +5145,7 @@ class AzureSphereClientOperationsMixin(AzureSphereClientMixinABC):  # pylint: di
         if isinstance(properties, (IOBase, bytes)):
             _content = properties
         else:
-            _content = json.dumps(properties, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(properties, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_azure_sphere_update_request(
             resource_group_name=resource_group_name,

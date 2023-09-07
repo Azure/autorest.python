@@ -227,8 +227,11 @@ function isSubscriptionId(param: Record<string, any>): boolean {
 function getDefaultApiVersionValue(context: SdkContext): string | undefined {
     const defaultApiVersion = getDefaultApiVersion(context, getServiceNamespace(context));
     if (!defaultApiVersion) {
-        const services = listServices(context.program);
-        return services.length > 0 ? services[0].version : undefined;
+        if (isArm) {
+            const services = listServices(context.program);
+            return services.length > 0 ? services[0].version : undefined;
+        }
+        return defaultApiVersion;
     }
     return defaultApiVersion.value;
 }
