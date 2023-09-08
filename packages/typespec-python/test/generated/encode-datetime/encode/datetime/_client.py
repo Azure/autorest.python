@@ -14,7 +14,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import DatetimeClientConfiguration
 from ._serialization import Deserializer, Serializer
-from .operations import HeaderOperations, PropertyOperations, QueryOperations
+from .operations import HeaderOperations, PropertyOperations, QueryOperations, ResponseHeaderOperations
 
 
 class DatetimeClient:  # pylint: disable=client-accepts-api-version-keyword
@@ -26,6 +26,8 @@ class DatetimeClient:  # pylint: disable=client-accepts-api-version-keyword
     :vartype property: encode.datetime.operations.PropertyOperations
     :ivar header: HeaderOperations operations
     :vartype header: encode.datetime.operations.HeaderOperations
+    :ivar response_header: ResponseHeaderOperations operations
+    :vartype response_header: encode.datetime.operations.ResponseHeaderOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -42,6 +44,7 @@ class DatetimeClient:  # pylint: disable=client-accepts-api-version-keyword
         self.query = QueryOperations(self._client, self._config, self._serialize, self._deserialize)
         self.property = PropertyOperations(self._client, self._config, self._serialize, self._deserialize)
         self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.response_header = ResponseHeaderOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

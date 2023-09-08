@@ -9,6 +9,7 @@
 from ._operations import QueryOperations
 from ._operations import PropertyOperations
 from ._operations import HeaderOperations
+from ._operations import ResponseHeaderOperations
 
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
@@ -18,6 +19,7 @@ __all__ = [
     "QueryOperations",
     "PropertyOperations",
     "HeaderOperations",
+    "ResponseHeaderOperations",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()

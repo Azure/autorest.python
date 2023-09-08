@@ -248,6 +248,34 @@ def build_header_unix_timestamp_array_request(  # pylint: disable=name-too-long
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
+def build_response_header_default_request(**kwargs: Any) -> HttpRequest:
+    # Construct URL
+    _url = "/encode/datetime/responseheader/default"
+
+    return HttpRequest(method="GET", url=_url, **kwargs)
+
+
+def build_response_header_rfc3339_request(**kwargs: Any) -> HttpRequest:
+    # Construct URL
+    _url = "/encode/datetime/responseheader/rfc3339"
+
+    return HttpRequest(method="GET", url=_url, **kwargs)
+
+
+def build_response_header_rfc7231_request(**kwargs: Any) -> HttpRequest:
+    # Construct URL
+    _url = "/encode/datetime/responseheader/rfc7231"
+
+    return HttpRequest(method="GET", url=_url, **kwargs)
+
+
+def build_response_header_unix_timestamp_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+    # Construct URL
+    _url = "/encode/datetime/responseheader/unix-timestamp"
+
+    return HttpRequest(method="GET", url=_url, **kwargs)
+
+
 class QueryOperations:
     """
     .. warning::
@@ -1424,3 +1452,213 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
+
+
+class ResponseHeaderOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~encode.datetime.DatetimeClient`'s
+        :attr:`response_header` attribute.
+    """
+
+    def __init__(self, *args, **kwargs):
+        input_args = list(args)
+        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+    @distributed_trace
+    def default(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """default.
+
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        request = build_response_header_default_request(
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        response_headers = {}
+        response_headers["value"] = self._deserialize("rfc-1123", response.headers.get("value"))
+
+        if cls:
+            return cls(pipeline_response, None, response_headers)
+
+    @distributed_trace
+    def rfc3339(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """rfc3339.
+
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        request = build_response_header_rfc3339_request(
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        response_headers = {}
+        response_headers["value"] = self._deserialize("iso-8601", response.headers.get("value"))
+
+        if cls:
+            return cls(pipeline_response, None, response_headers)
+
+    @distributed_trace
+    def rfc7231(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """rfc7231.
+
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        request = build_response_header_rfc7231_request(
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        response_headers = {}
+        response_headers["value"] = self._deserialize("rfc-1123", response.headers.get("value"))
+
+        if cls:
+            return cls(pipeline_response, None, response_headers)
+
+    @distributed_trace
+    def unix_timestamp(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """unix_timestamp.
+
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        request = build_response_header_unix_timestamp_request(
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        response_headers = {}
+        response_headers["value"] = self._deserialize("unix-time", response.headers.get("value"))
+
+        if cls:
+            return cls(pipeline_response, None, response_headers)
