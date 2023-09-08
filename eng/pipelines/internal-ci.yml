@@ -17,6 +17,8 @@ variables:
 steps:
     - template: ci-template.yml
       parameters:
+          installTypeSpec: true
+          installCadlRanch: true
           packageName: "typespec-python"
           regenerate: true
 

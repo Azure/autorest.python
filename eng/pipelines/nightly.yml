@@ -7,42 +7,28 @@ schedules:
     - main
 pr: none
 
-parameters:
-- name: UseTypeSpecNext
-  displayName: Use TypeSpec "next" version
-  type: boolean
-  default: true
-
 resources:
   repositories:
-    - repository: sdk-repository
-      type: github
-      endpoint: Azure
-      name: Azure/azure-sdk-for-python
-      ref: refs/heads/users/pahallis/cookiecutter
     - repository: azure-sdk-tools
       type: github
       endpoint: Azure
       name: Azure/azure-sdk-tools
-      ref: refs/heads/users/pahallis/cookiecutter
 
-pool:
-  name: azsdk-pool-mms-win-2022-general
-  vmImage: windows-2022
+variables:
+  PythonVersion: "3.10"
 
-extends:
-  template: eng/pipelines/templates/stages/archetype-autorest-preview.yml@azure-sdk-tools
-  parameters:
-    RegenerationJobCount: 20
-    BuildAlphaVersion: true
-    UseTypeSpecNext: ${{ parameters.UseTypeSpecNext }}
-    Packages:
-    - name: generator
-      file: autorest-python-*.tgz
-      type: npm
-    - name: emitter
-      file: azure-tools-typespec-python-*.tgz
-      type: npm
-    PublishTarget: 'internal'
-    PublishDependsOn:
-    - Build
+steps:
+    - script: npm install -g @typespec/compiler@next
+      displayName: Install @typespec/compiler@next
+
+    - template: ci-template.yml
+      parameters:
+        installCadlRanch: true
+        packageName: "autorest.python"
+        regenerate: true
+        updateToLatestTypespec: true
+        checkChange: false
+
+    - template: generated-code-checks-template.yml
+      parameters:
+        package: "typespec-python"

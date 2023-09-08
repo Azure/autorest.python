@@ -3,9 +3,9 @@ parameters:
     installTypeSpec: false
     installCadlRanch: false
     packageName: ""
+    pythonCodeChecks: false
     regenerate: false
     checkChange: true
-    pythonCodeChecks: false
     updateToLatestTypespec: false
     createAlphaVersion: false
 

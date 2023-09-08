@@ -13,8 +13,8 @@
     "clean": "pnpm -r run clean",
     "lint": "pnpm -r run lint",
     "format": "npx prettier **/*.ts --write",
-    "check-format": "npx prettier **/*.ts --check --end-of-line auto",
-    "check-version-mismatch": "syncpack list-mismatches --types prod,peer",
+    "check-format": "npx prettier **/*.ts --check",
+    "check-version-mismatch": "syncpack list-mismatches",
     "fix-version-mismatch": "syncpack fix-mismatches"
   },
   "engines": {
