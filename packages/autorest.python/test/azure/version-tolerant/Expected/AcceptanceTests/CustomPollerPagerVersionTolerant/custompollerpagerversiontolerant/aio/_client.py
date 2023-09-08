@@ -28,8 +28,8 @@ class AutoRestPagingTestService:  # pylint: disable=client-accepts-api-version-k
     :vartype paging: custompollerpagerversiontolerant.aio.operations.PagingOperations
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
-    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
-    :paramtype endpoint: str
+    :param endpoint: Service URL. Default value is "http://localhost:3000".
+    :type endpoint: str
     :keyword api_version: Api Version. Default value is "1.0.0". Note that overriding this default
      value may result in unsupported behavior.
     :paramtype api_version: str
@@ -38,7 +38,7 @@ class AutoRestPagingTestService:  # pylint: disable=client-accepts-api-version-k
     """
 
     def __init__(
-        self, credential: "AsyncTokenCredential", *, endpoint: str = "http://localhost:3000", **kwargs: Any
+        self, credential: "AsyncTokenCredential", endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = AutoRestPagingTestServiceConfiguration(credential=credential, **kwargs)
         self._client: AsyncARMPipelineClient = AsyncARMPipelineClient(

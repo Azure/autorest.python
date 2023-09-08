@@ -26,6 +26,8 @@ init()
 PLUGIN_DIR = Path(os.path.dirname(__file__))
 PLUGIN = (PLUGIN_DIR / "dist/src/index.js").as_posix()
 CADL_RANCH_DIR = PLUGIN_DIR / Path("node_modules/@azure-tools/cadl-ranch-specs/http")
+LOCAL_SPECIFICATION_DIR = PLUGIN_DIR / Path("test/specification")
+ALL_SPECIFICATION_DIRS = [CADL_RANCH_DIR, LOCAL_SPECIFICATION_DIR]
 EMITTER_OPTIONS = {
     "resiliency/srv-driven/old.tsp": {
         "package-name": "resiliency-srv-driven1",
@@ -105,15 +107,23 @@ EMITTER_OPTIONS = {
     "client/structure/two-operation-group": {
         "package-name": "client-structure-twooperationgroup",
     },
+    "mgmt/sphere": [
+        {"package-name": "azure-mgmt-spheredpg", "models-mode": "dpg"},
+        {"package-name": "azure-mgmt-spheremsrest"},
+    ]
 }
 
+def _package_name_folder(spec: Path) -> str:
+    for item in ALL_SPECIFICATION_DIRS:
+        if item.as_posix() in spec.as_posix():
+            return spec.relative_to(item).as_posix()
+    raise ValueError(f"Cannot find package name for {spec}")
 
 def _default_package_name(spec: Path) -> str:
-    return str(spec.relative_to(CADL_RANCH_DIR).as_posix()).replace("/", "-")
-
+    return _package_name_folder(spec).replace("/", "-")
 
 def _get_emitter_option(spec: Path) -> List[Dict[str, str]]:
-    name = str(spec.relative_to(CADL_RANCH_DIR).as_posix())
+    name = _package_name_folder(spec)
     result = EMITTER_OPTIONS.get(name, [])
     if isinstance(result, dict):
         return [result]
@@ -140,11 +150,14 @@ def _entry_file_name(path: Path) -> Path:
         return path
     return (path / "client.tsp") if (path / "client.tsp").exists() else (path / "main.tsp")
 
+def all_specification_folders() -> List[Path]:
+    return [s for item in ALL_SPECIFICATION_DIRS for s in item.glob("**/*") if s.is_dir()]
+
 @task
 def regenerate(c, name=None, debug=False):
     specs = [
-        s for s in CADL_RANCH_DIR.glob("**/*")
-        if s.is_dir() and any(f for f in s.iterdir() if f.name == "main.tsp") and "type/model/inheritance/enum-discriminator" not in s.as_posix()
+        s for s in all_specification_folders()
+        if any(f for f in s.iterdir() if f.name == "main.tsp") and "type/model/inheritance/enum-discriminator" not in s.as_posix()
     ]
     if name:
         specs = [s for s in specs if name.lower() in str(s)]

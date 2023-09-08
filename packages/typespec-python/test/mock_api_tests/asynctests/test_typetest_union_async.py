@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import pytest
 from typetest.union.aio import UnionClient
-from typetest.union.models import ModelWithNamedUnionProperty, ModelWithSimpleUnionProperty, Model1, Model2
+from typetest.union import models
 
 @pytest.fixture
 async def client():
@@ -14,16 +14,32 @@ async def client():
 
 @pytest.mark.asyncio
 async def test_send_int(client):
-    await client.send_int(ModelWithSimpleUnionProperty(simple_union=1))
+    await client.send_int(models.ModelWithSimpleUnionProperty(simple_union=1))
 
 @pytest.mark.asyncio
 async def test_send_int_array(client):
-    await client.send_int_array(ModelWithSimpleUnionProperty(simple_union=[1, 2]))
+    await client.send_int_array(models.ModelWithSimpleUnionProperty(simple_union=[1, 2]))
 
 @pytest.mark.asyncio
 async def test_send_first_named_union_value(client):
-    await client.send_first_named_union_value(ModelWithNamedUnionProperty(named_union=Model1(name="model1", prop1=1)))
+    await client.send_first_named_union_value(models.ModelWithNamedUnionProperty(named_union=models.Model1(name="model1", prop1=1)))
 
 @pytest.mark.asyncio
 async def test_send_second_named_union_value(client):
-    await client.send_second_named_union_value(ModelWithNamedUnionProperty(named_union=Model2(name="model2", prop2=2)))
+    await client.send_second_named_union_value(models.ModelWithNamedUnionProperty(named_union=models.Model2(name="model2", prop2=2)))
+
+@pytest.mark.asyncio
+async def test_receive_string(client):
+    assert await client.receive_string() == models.ModelWithSimpleUnionPropertyInResponse(simple_union="string")
+
+@pytest.mark.asyncio
+async def test_receive_int_array(client):
+    assert await client.receive_int_array() == models.ModelWithSimpleUnionPropertyInResponse(simple_union=[1, 2])
+
+@pytest.mark.asyncio
+async def test_receive_first_named_union_value(client):
+    assert await client.receive_first_named_union_value() == models.ModelWithNamedUnionPropertyInResponse(named_union=models.Model1(name="model1", prop1=1))
+
+@pytest.mark.asyncio
+async def test_receive_second_named_union_value(client):
+    assert await client.receive_second_named_union_value() == models.ModelWithNamedUnionPropertyInResponse(named_union=models.Model2(name="model2", prop2=2))
