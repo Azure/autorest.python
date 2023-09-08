@@ -20,6 +20,8 @@ from ._serialization import Deserializer, Serializer
 class StandardClient(StandardClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates bodies templated with Azure Core with long-running operation.
 
+    :keyword endpoint: Service host. Default value is "http://localhost:3000".
+    :paramtype endpoint: str
     :keyword api_version: The API version to use for this operation. Default value is
      "2022-12-01-preview". Note that overriding this default value may result in unsupported
      behavior.
@@ -28,10 +30,11 @@ class StandardClient(StandardClientOperationsMixin):  # pylint: disable=client-a
      Retry-After header is present.
     """
 
-    def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
-        _endpoint = "http://localhost:3000"
+    def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
+        self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
+    ) -> None:
         self._config = StandardClientConfiguration(**kwargs)
-        self._client: PipelineClient = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
+        self._client: PipelineClient = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

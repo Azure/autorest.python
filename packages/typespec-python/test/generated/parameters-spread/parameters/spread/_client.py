@@ -24,12 +24,15 @@ class SpreadClient:  # pylint: disable=client-accepts-api-version-keyword
     :vartype model: parameters.spread.operations.ModelOperations
     :ivar alias: AliasOperations operations
     :vartype alias: parameters.spread.operations.AliasOperations
+    :keyword endpoint: Service host. Default value is "http://localhost:3000".
+    :paramtype endpoint: str
     """
 
-    def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
-        _endpoint = "http://localhost:3000"
+    def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
+        self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
+    ) -> None:
         self._config = SpreadClientConfiguration(**kwargs)
-        self._client: PipelineClient = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
+        self._client: PipelineClient = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
