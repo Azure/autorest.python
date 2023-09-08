@@ -51,12 +51,15 @@ class ArrayClient:  # pylint: disable=client-accepts-api-version-keyword,too-man
     :vartype model_value: typetest.array.aio.operations.ModelValueOperations
     :ivar nullable_float_value: NullableFloatValueOperations operations
     :vartype nullable_float_value: typetest.array.aio.operations.NullableFloatValueOperations
+    :keyword endpoint: Service host. Default value is "http://localhost:3000".
+    :paramtype endpoint: str
     """
 
-    def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
-        _endpoint = "http://localhost:3000"
+    def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
+        self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
+    ) -> None:
         self._config = ArrayClientConfiguration(**kwargs)
-        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

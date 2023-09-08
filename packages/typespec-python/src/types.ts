@@ -18,6 +18,7 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { dump } from "js-yaml";
 import { camelToSnakeCase } from "./utils.js";
+import { modelsMode } from "./emitter.js";
 
 export const typesMap = new Map<SdkType, Record<string, any>>();
 export const simpleTypesMap = new Map<string, Record<string, any>>();
@@ -219,7 +220,7 @@ function emitModel(context: SdkContext, type: SdkModelType): Record<string, any>
         discriminatedSubtypes: {} as Record<string, Record<string, any>>,
         properties: new Array<Record<string, any>>(),
         snakeCaseName: type.name ? camelToSnakeCase(type.name) : type.name,
-        base: type.name === "" ? "json" : "dpg",
+        base: type.name === "" ? "json" : modelsMode === "msrest" ? "msrest" : "dpg",
         internal: type.access === "internal",
     };
 

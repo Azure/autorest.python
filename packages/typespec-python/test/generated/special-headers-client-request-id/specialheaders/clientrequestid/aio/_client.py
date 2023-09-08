@@ -18,13 +18,18 @@ from ._operations import ClientRequestIdClientOperationsMixin
 
 
 class ClientRequestIdClient(ClientRequestIdClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
-    """Azure client request id header configurations."""
+    """Azure client request id header configurations.
 
-    def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
-        _endpoint = "http://localhost:3000"
+    :keyword endpoint: Service host. Default value is "http://localhost:3000".
+    :paramtype endpoint: str
+    """
+
+    def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
+        self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
+    ) -> None:
         self._config = ClientRequestIdClientConfiguration(**kwargs)
         self._client: AsyncPipelineClient = AsyncPipelineClient(
-            base_url=_endpoint, config=self._config, request_id_header_name="client-request-id", **kwargs
+            base_url=endpoint, config=self._config, request_id_header_name="client-request-id", **kwargs
         )
 
         self._serialize = Serializer()

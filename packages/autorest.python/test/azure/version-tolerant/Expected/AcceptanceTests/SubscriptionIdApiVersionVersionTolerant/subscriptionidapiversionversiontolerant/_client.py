@@ -30,8 +30,8 @@ class MicrosoftAzureTestUrl:  # pylint: disable=client-accepts-api-version-keywo
     :type subscription_id: str
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials.TokenCredential
-    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
-    :paramtype endpoint: str
+    :param endpoint: Service URL. Default value is "http://localhost:3000".
+    :type endpoint: str
     :keyword api_version: Api Version. Default value is "2014-04-01-preview". Note that overriding
      this default value may result in unsupported behavior.
     :paramtype api_version: str
@@ -41,7 +41,6 @@ class MicrosoftAzureTestUrl:  # pylint: disable=client-accepts-api-version-keywo
         self,
         subscription_id: str,
         credential: "TokenCredential",
-        *,
         endpoint: str = "http://localhost:3000",
         **kwargs: Any
     ) -> None:

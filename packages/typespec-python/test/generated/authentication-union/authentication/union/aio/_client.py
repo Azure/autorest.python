@@ -29,12 +29,19 @@ class UnionClient(UnionClientOperationsMixin):  # pylint: disable=client-accepts
      AzureKeyCredential type or a TokenCredential type. Required.
     :type credential: ~azure.core.credentials.AzureKeyCredential or
      ~azure.core.credentials_async.AsyncTokenCredential
+    :keyword endpoint: Service host. Default value is "http://localhost:3000".
+    :paramtype endpoint: str
     """
 
-    def __init__(self, credential: Union[AzureKeyCredential, "AsyncTokenCredential"], **kwargs: Any) -> None:
-        _endpoint = "http://localhost:3000"
+    def __init__(
+        self,
+        credential: Union[AzureKeyCredential, "AsyncTokenCredential"],
+        *,
+        endpoint: str = "http://localhost:3000",
+        **kwargs: Any
+    ) -> None:
         self._config = UnionClientConfiguration(credential=credential, **kwargs)
-        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

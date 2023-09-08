@@ -28,13 +28,11 @@ class AutoRestHeadExceptionTestService:  # pylint: disable=client-accepts-api-ve
     :vartype head_exception: headexceptionsversiontolerant.operations.HeadExceptionOperations
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials.TokenCredential
-    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
-    :paramtype endpoint: str
+    :param endpoint: Service URL. Default value is "http://localhost:3000".
+    :type endpoint: str
     """
 
-    def __init__(
-        self, credential: "TokenCredential", *, endpoint: str = "http://localhost:3000", **kwargs: Any
-    ) -> None:
+    def __init__(self, credential: "TokenCredential", endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = AutoRestHeadExceptionTestServiceConfiguration(credential=credential, **kwargs)
         self._client: ARMPipelineClient = ARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
