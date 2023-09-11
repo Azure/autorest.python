@@ -157,7 +157,7 @@ def all_specification_folders() -> List[Path]:
 def regenerate(c, name=None, debug=False):
     specs = [
         s for s in all_specification_folders()
-        if any(f for f in s.iterdir() if f.name == "main.tsp") and "type/model/inheritance/enum-discriminator" not in s.as_posix()
+        if any(f for f in s.iterdir() if f.name == "main.tsp")
     ]
     if name:
         specs = [s for s in specs if name.lower() in str(s)]
