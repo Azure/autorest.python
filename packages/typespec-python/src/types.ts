@@ -319,7 +319,9 @@ const sdkScalarKindToPythonKind: Record<string, string> = {
     float64: "float",
 };
 
-function emitBuiltInType(type: SdkBuiltInType | SdkDurationType | SdkDatetimeType | SdkEnumValueType): Record<string, any> {
+function emitBuiltInType(
+    type: SdkBuiltInType | SdkDurationType | SdkDatetimeType | SdkEnumValueType,
+): Record<string, any> {
     if (type.kind === "duration" && type.encode === "seconds") {
         return getSimpleTypeResult({
             type: sdkScalarKindToPythonKind[type.wireType.kind],
@@ -330,7 +332,7 @@ function emitBuiltInType(type: SdkBuiltInType | SdkDurationType | SdkDatetimeTyp
         return getSimpleTypeResult({
             type: "string",
             format: "string",
-        });        
+        });
     }
     if (type.encode === "unixTimestamp") {
         return getSimpleTypeResult({
