@@ -340,8 +340,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                     o["parameters"] = [
                         item
                         for item in o["parameters"]
-                        if item["location"] == "header"
-                        and get_wire_name_lower(item)
+                        if get_wire_name_lower(item)
                         not in ("if-match", "if-none-match")
                     ] + [property_if_match, property_if_none_match]
 
