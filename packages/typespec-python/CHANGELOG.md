@@ -1,6 +1,6 @@
 # Release
 
-## 2023-09-XX - 0.14.0
+## 2023-09-12 - 0.13.4
 
 | Library                                                                 | Min Version   |
 | ----------------------------------------------------------------------- | ------------- |
@@ -16,9 +16,9 @@
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
 | `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
 
-**New Features**
+**Other Changes**
 
-- Support `models-mode` in tsp config #2085
+- Continue adding support for mgmt plane generation by introducing `models-mode` to tsp config #2085
 
 ## 2023-08-31 - 0.13.3
 
