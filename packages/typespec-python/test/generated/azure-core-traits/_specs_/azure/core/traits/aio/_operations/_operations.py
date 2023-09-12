@@ -48,10 +48,10 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         id: int,
         *,
         foo: str,
-        etag: Optional[str] = None,
-        match_condition: Optional[MatchConditions] = None,
         if_unmodified_since: Optional[datetime.datetime] = None,
         if_modified_since: Optional[datetime.datetime] = None,
+        etag: Optional[str] = None,
+        match_condition: Optional[MatchConditions] = None,
         **kwargs: Any
     ) -> _models.User:
         """Get a resource, sending and receiving headers.
@@ -60,17 +60,17 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :type id: int
         :keyword foo: header in request. Required.
         :paramtype foo: str
-        :keyword etag: check if resource is changed. Set None to skip checking etag. Default value is
-         None.
-        :paramtype etag: str
-        :keyword match_condition: The match condition to use upon the etag. Default value is None.
-        :paramtype match_condition: ~azure.core.MatchConditions
         :keyword if_unmodified_since: The request should only proceed if the entity was not modified
          after this time. Default value is None.
         :paramtype if_unmodified_since: ~datetime.datetime
         :keyword if_modified_since: The request should only proceed if the entity was modified after
          this time. Default value is None.
         :paramtype if_modified_since: ~datetime.datetime
+        :keyword etag: check if resource is changed. Set None to skip checking etag. Default value is
+         None.
+        :paramtype etag: str
+        :keyword match_condition: The match condition to use upon the etag. Default value is None.
+        :paramtype match_condition: ~azure.core.MatchConditions
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: User. The User is compatible with MutableMapping
@@ -99,10 +99,10 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         request = build_traits_smoke_test_request(
             id=id,
             foo=foo,
-            etag=etag,
-            match_condition=match_condition,
             if_unmodified_since=if_unmodified_since,
             if_modified_since=if_modified_since,
+            etag=etag,
+            match_condition=match_condition,
             api_version=self._config.api_version,
             headers=_headers,
             params=_params,

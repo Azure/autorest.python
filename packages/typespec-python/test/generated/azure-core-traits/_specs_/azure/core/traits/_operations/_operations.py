@@ -49,10 +49,10 @@ def build_traits_smoke_test_request(
     id: int,
     *,
     foo: str,
-    etag: Optional[str] = None,
-    match_condition: Optional[MatchConditions] = None,
     if_unmodified_since: Optional[datetime.datetime] = None,
     if_modified_since: Optional[datetime.datetime] = None,
+    etag: Optional[str] = None,
+    match_condition: Optional[MatchConditions] = None,
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -74,17 +74,17 @@ def build_traits_smoke_test_request(
 
     # Construct headers
     _headers["foo"] = _SERIALIZER.header("foo", foo, "str")
+    if if_unmodified_since is not None:
+        _headers["If-Unmodified-Since"] = _SERIALIZER.header("if_unmodified_since", if_unmodified_since, "rfc-1123")
+    if if_modified_since is not None:
+        _headers["If-Modified-Since"] = _SERIALIZER.header("if_modified_since", if_modified_since, "rfc-1123")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if_match = prep_if_match(etag, match_condition)
     if if_match is not None:
         _headers["If-Match"] = _SERIALIZER.header("if_match", if_match, "str")
     if_none_match = prep_if_none_match(etag, match_condition)
     if if_none_match is not None:
         _headers["If-None-Match"] = _SERIALIZER.header("if_none_match", if_none_match, "str")
-    if if_unmodified_since is not None:
-        _headers["If-Unmodified-Since"] = _SERIALIZER.header("if_unmodified_since", if_unmodified_since, "rfc-1123")
-    if if_modified_since is not None:
-        _headers["If-Modified-Since"] = _SERIALIZER.header("if_modified_since", if_modified_since, "rfc-1123")
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
@@ -127,10 +127,10 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         id: int,
         *,
         foo: str,
-        etag: Optional[str] = None,
-        match_condition: Optional[MatchConditions] = None,
         if_unmodified_since: Optional[datetime.datetime] = None,
         if_modified_since: Optional[datetime.datetime] = None,
+        etag: Optional[str] = None,
+        match_condition: Optional[MatchConditions] = None,
         **kwargs: Any
     ) -> _models.User:
         """Get a resource, sending and receiving headers.
@@ -139,17 +139,17 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :type id: int
         :keyword foo: header in request. Required.
         :paramtype foo: str
-        :keyword etag: check if resource is changed. Set None to skip checking etag. Default value is
-         None.
-        :paramtype etag: str
-        :keyword match_condition: The match condition to use upon the etag. Default value is None.
-        :paramtype match_condition: ~azure.core.MatchConditions
         :keyword if_unmodified_since: The request should only proceed if the entity was not modified
          after this time. Default value is None.
         :paramtype if_unmodified_since: ~datetime.datetime
         :keyword if_modified_since: The request should only proceed if the entity was modified after
          this time. Default value is None.
         :paramtype if_modified_since: ~datetime.datetime
+        :keyword etag: check if resource is changed. Set None to skip checking etag. Default value is
+         None.
+        :paramtype etag: str
+        :keyword match_condition: The match condition to use upon the etag. Default value is None.
+        :paramtype match_condition: ~azure.core.MatchConditions
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: User. The User is compatible with MutableMapping
@@ -178,10 +178,10 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         request = build_traits_smoke_test_request(
             id=id,
             foo=foo,
-            etag=etag,
-            match_condition=match_condition,
             if_unmodified_since=if_unmodified_since,
             if_modified_since=if_modified_since,
+            etag=etag,
+            match_condition=match_condition,
             api_version=self._config.api_version,
             headers=_headers,
             params=_params,

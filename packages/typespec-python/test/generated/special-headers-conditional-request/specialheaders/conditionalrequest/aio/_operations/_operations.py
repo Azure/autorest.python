@@ -35,13 +35,15 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class ConditionalRequestClientOperationsMixin(ConditionalRequestClientMixinABC):
     @distributed_trace_async
     async def post_if_match(  # pylint: disable=inconsistent-return-statements
-        self, *, etag: Optional[str] = None, **kwargs: Any
+        self, *, etag: Optional[str] = None, match_condition: Optional[MatchConditions] = None, **kwargs: Any
     ) -> None:
         """Check when only If-Match in header is defined.
 
         :keyword etag: check if resource is changed. Set None to skip checking etag. Default value is
          None.
         :paramtype etag: str
+        :keyword match_condition: The match condition to use upon the etag. Default value is None.
+        :paramtype match_condition: ~azure.core.MatchConditions
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: None
@@ -69,6 +71,7 @@ class ConditionalRequestClientOperationsMixin(ConditionalRequestClientMixinABC):
 
         request = build_conditional_request_post_if_match_request(
             etag=etag,
+            match_condition=match_condition,
             headers=_headers,
             params=_params,
         )
@@ -92,10 +95,13 @@ class ConditionalRequestClientOperationsMixin(ConditionalRequestClientMixinABC):
 
     @distributed_trace_async
     async def post_if_none_match(  # pylint: disable=inconsistent-return-statements
-        self, *, match_condition: Optional[MatchConditions] = None, **kwargs: Any
+        self, *, etag: Optional[str] = None, match_condition: Optional[MatchConditions] = None, **kwargs: Any
     ) -> None:
         """Check when only If-None-Match in header is defined.
 
+        :keyword etag: check if resource is changed. Set None to skip checking etag. Default value is
+         None.
+        :paramtype etag: str
         :keyword match_condition: The match condition to use upon the etag. Default value is None.
         :paramtype match_condition: ~azure.core.MatchConditions
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
@@ -124,6 +130,7 @@ class ConditionalRequestClientOperationsMixin(ConditionalRequestClientMixinABC):
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_conditional_request_post_if_none_match_request(
+            etag=etag,
             match_condition=match_condition,
             headers=_headers,
             params=_params,
