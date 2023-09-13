@@ -444,7 +444,7 @@ class CatalogsOperations:
         self,
         resource_group_name: str,
         catalog_name: str,
-        properties: _models.ResourceUpdateModel,
+        properties: _models.CatalogUpdate,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -457,7 +457,7 @@ class CatalogsOperations:
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
         :param properties: The resource properties to be updated. Required.
-        :type properties: ~azure.mgmt.spheredpg.models.ResourceUpdateModel
+        :type properties: ~azure.mgmt.spheredpg.models.CatalogUpdate
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -531,7 +531,7 @@ class CatalogsOperations:
         self,
         resource_group_name: str,
         catalog_name: str,
-        properties: Union[_models.ResourceUpdateModel, JSON, IO],
+        properties: Union[_models.CatalogUpdate, JSON, IO],
         **kwargs: Any
     ) -> _models.TrackedResource:
         """Update a Catalog.
@@ -542,8 +542,8 @@ class CatalogsOperations:
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
         :param properties: The resource properties to be updated. Is one of the following types:
-         ResourceUpdateModel, JSON, IO Required.
-        :type properties: ~azure.mgmt.spheredpg.models.ResourceUpdateModel or JSON or IO
+         CatalogUpdate, JSON, IO Required.
+        :type properties: ~azure.mgmt.spheredpg.models.CatalogUpdate or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -2350,7 +2350,7 @@ class DeviceGroupsOperations:
         catalog_name: str,
         product_name: str,
         device_group_name: str,
-        properties: _models.ResourceUpdateModel,
+        properties: _models.DeviceGroupUpdate,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -2368,7 +2368,7 @@ class DeviceGroupsOperations:
         :param device_group_name: Name of device group. Required.
         :type device_group_name: str
         :param properties: The resource properties to be updated. Required.
-        :type properties: ~azure.mgmt.spheredpg.models.ResourceUpdateModel
+        :type properties: ~azure.mgmt.spheredpg.models.DeviceGroupUpdate
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2458,7 +2458,7 @@ class DeviceGroupsOperations:
         catalog_name: str,
         product_name: str,
         device_group_name: str,
-        properties: Union[_models.ResourceUpdateModel, JSON, IO],
+        properties: Union[_models.DeviceGroupUpdate, JSON, IO],
         **kwargs: Any
     ) -> Optional[_models.ProxyResource]:
         """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
@@ -2474,8 +2474,8 @@ class DeviceGroupsOperations:
         :param device_group_name: Name of device group. Required.
         :type device_group_name: str
         :param properties: The resource properties to be updated. Is one of the following types:
-         ResourceUpdateModel, JSON, IO Required.
-        :type properties: ~azure.mgmt.spheredpg.models.ResourceUpdateModel or JSON or IO
+         DeviceGroupUpdate, JSON, IO Required.
+        :type properties: ~azure.mgmt.spheredpg.models.DeviceGroupUpdate or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -4284,7 +4284,7 @@ class DevicesOperations:
         product_name: str,
         device_group_name: str,
         device_name: str,
-        properties: _models.ResourceUpdateModel,
+        properties: _models.DeviceUpdate,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -4304,7 +4304,7 @@ class DevicesOperations:
         :param device_name: Device name. Required.
         :type device_name: str
         :param properties: The resource properties to be updated. Required.
-        :type properties: ~azure.mgmt.spheredpg.models.ResourceUpdateModel
+        :type properties: ~azure.mgmt.spheredpg.models.DeviceUpdate
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4401,7 +4401,7 @@ class DevicesOperations:
         product_name: str,
         device_group_name: str,
         device_name: str,
-        properties: Union[_models.ResourceUpdateModel, JSON, IO],
+        properties: Union[_models.DeviceUpdate, JSON, IO],
         **kwargs: Any
     ) -> Optional[_models.ProxyResource]:
         """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
@@ -4419,8 +4419,8 @@ class DevicesOperations:
         :param device_name: Device name. Required.
         :type device_name: str
         :param properties: The resource properties to be updated. Is one of the following types:
-         ResourceUpdateModel, JSON, IO Required.
-        :type properties: ~azure.mgmt.spheredpg.models.ResourceUpdateModel or JSON or IO
+         DeviceUpdate, JSON, IO Required.
+        :type properties: ~azure.mgmt.spheredpg.models.DeviceUpdate or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -5167,7 +5167,7 @@ class ProductsOperations:
         resource_group_name: str,
         catalog_name: str,
         product_name: str,
-        properties: _models.ResourceUpdateModel,
+        properties: _models.ProductUpdate,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -5183,7 +5183,7 @@ class ProductsOperations:
         :param product_name: Name of product. Required.
         :type product_name: str
         :param properties: The resource properties to be updated. Required.
-        :type properties: ~azure.mgmt.spheredpg.models.ResourceUpdateModel
+        :type properties: ~azure.mgmt.spheredpg.models.ProductUpdate
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -5266,7 +5266,7 @@ class ProductsOperations:
         resource_group_name: str,
         catalog_name: str,
         product_name: str,
-        properties: Union[_models.ResourceUpdateModel, JSON, IO],
+        properties: Union[_models.ProductUpdate, JSON, IO],
         **kwargs: Any
     ) -> Optional[_models.ProxyResource]:
         """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
@@ -5280,8 +5280,8 @@ class ProductsOperations:
         :param product_name: Name of product. Required.
         :type product_name: str
         :param properties: The resource properties to be updated. Is one of the following types:
-         ResourceUpdateModel, JSON, IO Required.
-        :type properties: ~azure.mgmt.spheredpg.models.ResourceUpdateModel or JSON or IO
+         ProductUpdate, JSON, IO Required.
+        :type properties: ~azure.mgmt.spheredpg.models.ProductUpdate or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str

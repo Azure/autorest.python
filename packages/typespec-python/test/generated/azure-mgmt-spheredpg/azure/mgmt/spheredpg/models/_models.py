@@ -65,6 +65,35 @@ class CatalogProperties(_model_base.Model):
      \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
 
 
+class CatalogUpdate(_model_base.Model):
+    """The type used for update operations of the Catalog.
+
+    :ivar tags: Resource tags.
+    :vartype tags: dict[str, str]
+    """
+
+    tags: Optional[Dict[str, str]] = rest_field()
+    """Resource tags."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        tags: Optional[Dict[str, str]] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
 class CertificateChainResponse(_model_base.Model):
     """The certificate chain response.
 
@@ -211,6 +240,95 @@ class CountDeviceResponse(CountElementsResponse):
         super().__init__(*args, **kwargs)
 
 
+class DeviceGroupUpdate(_model_base.Model):
+    """The type used for update operations of the DeviceGroup.
+
+    :ivar properties:
+    :vartype properties: ~azure.mgmt.spheredpg.models.DeviceGroupUpdateProperties
+    """
+
+    properties: Optional["_models.DeviceGroupUpdateProperties"] = rest_field()
+
+    @overload
+    def __init__(
+        self,
+        *,
+        properties: Optional["_models.DeviceGroupUpdateProperties"] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class DeviceGroupUpdateProperties(_model_base.Model):
+    """The updatable properties of the DeviceGroup.
+
+    :ivar description: Description of the device group.
+    :vartype description: str
+    :ivar os_feed_type: Operating system feed type of the device group. Known values are: "Retail"
+     and "RetailEval".
+    :vartype os_feed_type: str or ~azure.mgmt.spheredpg.models.OSFeedType
+    :ivar update_policy: Update policy of the device group. Known values are: "UpdateAll" and
+     "No3rdPartyAppUpdates".
+    :vartype update_policy: str or ~azure.mgmt.spheredpg.models.UpdatePolicy
+    :ivar allow_crash_dumps_collection: Flag to define if the user allows for crash dump
+     collection. Known values are: "Enabled" and "Disabled".
+    :vartype allow_crash_dumps_collection: str or
+     ~azure.mgmt.spheredpg.models.AllowCrashDumpCollection
+    :ivar regional_data_boundary: Regional data boundary for the device group. Known values are:
+     "None" and "EU".
+    :vartype regional_data_boundary: str or ~azure.mgmt.spheredpg.models.RegionalDataBoundary
+    """
+
+    description: Optional[str] = rest_field()
+    """Description of the device group."""
+    os_feed_type: Optional[Union[str, "_models.OSFeedType"]] = rest_field(name="osFeedType")
+    """Operating system feed type of the device group. Known values are: \"Retail\" and
+     \"RetailEval\"."""
+    update_policy: Optional[Union[str, "_models.UpdatePolicy"]] = rest_field(name="updatePolicy")
+    """Update policy of the device group. Known values are: \"UpdateAll\" and
+     \"No3rdPartyAppUpdates\"."""
+    allow_crash_dumps_collection: Optional[Union[str, "_models.AllowCrashDumpCollection"]] = rest_field(
+        name="allowCrashDumpsCollection"
+    )
+    """Flag to define if the user allows for crash dump collection. Known values are: \"Enabled\" and
+     \"Disabled\"."""
+    regional_data_boundary: Optional[Union[str, "_models.RegionalDataBoundary"]] = rest_field(
+        name="regionalDataBoundary"
+    )
+    """Regional data boundary for the device group. Known values are: \"None\" and \"EU\"."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        description: Optional[str] = None,
+        os_feed_type: Optional[Union[str, "_models.OSFeedType"]] = None,
+        update_policy: Optional[Union[str, "_models.UpdatePolicy"]] = None,
+        allow_crash_dumps_collection: Optional[Union[str, "_models.AllowCrashDumpCollection"]] = None,
+        regional_data_boundary: Optional[Union[str, "_models.RegionalDataBoundary"]] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
 class DeviceInsight(_model_base.Model):
     """Device insight report.
 
@@ -263,6 +381,126 @@ class DeviceInsight(_model_base.Model):
         event_class: str,
         event_type: str,
         event_count: int,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class DeviceProperties(_model_base.Model):
+    """The properties of device.
+
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
+
+    :ivar device_id: Device ID.
+    :vartype device_id: str
+    :ivar chip_sku: SKU of the chip.
+    :vartype chip_sku: str
+    :ivar last_available_os_version: OS version available for installation when update requested.
+    :vartype last_available_os_version: str
+    :ivar last_installed_os_version: OS version running on device when update requested.
+    :vartype last_installed_os_version: str
+    :ivar last_os_update_utc: Time when update requested and new OS version available.
+    :vartype last_os_update_utc: ~datetime.datetime
+    :ivar last_update_request_utc: Time when update was last requested.
+    :vartype last_update_request_utc: ~datetime.datetime
+    :ivar provisioning_state: The status of the last operation. Known values are: "Succeeded",
+     "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
+    :vartype provisioning_state: str or ~azure.mgmt.spheredpg.models.ProvisioningState
+    """
+
+    device_id: Optional[str] = rest_field(name="deviceId", visibility=["read", "create"])
+    """Device ID."""
+    chip_sku: Optional[str] = rest_field(name="chipSku", visibility=["read"])
+    """SKU of the chip."""
+    last_available_os_version: Optional[str] = rest_field(name="lastAvailableOsVersion", visibility=["read"])
+    """OS version available for installation when update requested."""
+    last_installed_os_version: Optional[str] = rest_field(name="lastInstalledOsVersion", visibility=["read"])
+    """OS version running on device when update requested."""
+    last_os_update_utc: Optional[datetime.datetime] = rest_field(
+        name="lastOsUpdateUtc", visibility=["read"], format="rfc3339"
+    )
+    """Time when update requested and new OS version available."""
+    last_update_request_utc: Optional[datetime.datetime] = rest_field(
+        name="lastUpdateRequestUtc", visibility=["read"], format="rfc3339"
+    )
+    """Time when update was last requested."""
+    provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = rest_field(
+        name="provisioningState", visibility=["read"]
+    )
+    """The status of the last operation. Known values are: \"Succeeded\", \"Failed\", \"Canceled\",
+     \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        device_id: Optional[str] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class DeviceUpdate(_model_base.Model):
+    """The type used for update operations of the Device.
+
+    :ivar properties:
+    :vartype properties: ~azure.mgmt.spheredpg.models.DeviceUpdateProperties
+    """
+
+    properties: Optional["_models.DeviceUpdateProperties"] = rest_field()
+
+    @overload
+    def __init__(
+        self,
+        *,
+        properties: Optional["_models.DeviceUpdateProperties"] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class DeviceUpdateProperties(_model_base.Model):
+    """The updatable properties of the Device.
+
+    :ivar device_group_id: Device group id.
+    :vartype device_group_id: str
+    """
+
+    device_group_id: Optional[str] = rest_field(name="deviceGroupId")
+    """Device group id."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        device_group_id: Optional[str] = None,
     ):
         ...
 
@@ -372,90 +610,6 @@ class GenerateCapabilityImageRequest(_model_base.Model):
         self,
         *,
         capabilities: List[Union[str, "_models.CapabilityType"]],
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class ImageProperties(_model_base.Model):
-    """The properties of image.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
-    :ivar image: Image as a UTF-8 encoded base 64 string on image create. This field contains the
-     image URI on image reads.
-    :vartype image: str
-    :ivar image_id: Image ID.
-    :vartype image_id: str
-    :ivar image_name: Image name.
-    :vartype image_name: str
-    :ivar regional_data_boundary: Regional data boundary for an image. Known values are: "None" and
-     "EU".
-    :vartype regional_data_boundary: str or ~azure.mgmt.spheredpg.models.RegionalDataBoundary
-    :ivar uri: Location the image.
-    :vartype uri: str
-    :ivar description: The image description.
-    :vartype description: str
-    :ivar component_id: The image component id.
-    :vartype component_id: str
-    :ivar image_type: The image type. Known values are: "InvalidImageType", "OneBl",
-     "PlutonRuntime", "WifiFirmware", "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb",
-     "NormalWorldKernel", "RootFs", "Services", "Applications", "FwConfig", "BootManifest", "Nwfs",
-     "TrustedKeystore", "Policy", "CustomerBoardConfig", "UpdateCertStore",
-     "BaseSystemUpdateManifest", "FirmwareUpdateManifest", "CustomerUpdateManifest",
-     "RecoveryManifest", "ManifestSet", and "Other".
-    :vartype image_type: str or ~azure.mgmt.spheredpg.models.ImageType
-    :ivar provisioning_state: The status of the last operation. Known values are: "Succeeded",
-     "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
-    :vartype provisioning_state: str or ~azure.mgmt.spheredpg.models.ProvisioningState
-    """
-
-    image: Optional[str] = rest_field(visibility=["read", "create"])
-    """Image as a UTF-8 encoded base 64 string on image create. This field contains the image URI on
-     image reads."""
-    image_id: Optional[str] = rest_field(name="imageId", visibility=["read", "create"])
-    """Image ID."""
-    image_name: Optional[str] = rest_field(name="imageName", visibility=["read"])
-    """Image name."""
-    regional_data_boundary: Optional[Union[str, "_models.RegionalDataBoundary"]] = rest_field(
-        name="regionalDataBoundary", visibility=["read", "create"]
-    )
-    """Regional data boundary for an image. Known values are: \"None\" and \"EU\"."""
-    uri: Optional[str] = rest_field(visibility=["read"])
-    """Location the image."""
-    description: Optional[str] = rest_field(visibility=["read"])
-    """The image description."""
-    component_id: Optional[str] = rest_field(name="componentId", visibility=["read"])
-    """The image component id."""
-    image_type: Optional[Union[str, "_models.ImageType"]] = rest_field(name="imageType", visibility=["read"])
-    """The image type. Known values are: \"InvalidImageType\", \"OneBl\", \"PlutonRuntime\",
-     \"WifiFirmware\", \"SecurityMonitor\", \"NormalWorldLoader\", \"NormalWorldDtb\",
-     \"NormalWorldKernel\", \"RootFs\", \"Services\", \"Applications\", \"FwConfig\",
-     \"BootManifest\", \"Nwfs\", \"TrustedKeystore\", \"Policy\", \"CustomerBoardConfig\",
-     \"UpdateCertStore\", \"BaseSystemUpdateManifest\", \"FirmwareUpdateManifest\",
-     \"CustomerUpdateManifest\", \"RecoveryManifest\", \"ManifestSet\", and \"Other\"."""
-    provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = rest_field(
-        name="provisioningState", visibility=["read"]
-    )
-    """The status of the last operation. Known values are: \"Succeeded\", \"Failed\", \"Canceled\",
-     \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        image: Optional[str] = None,
-        image_id: Optional[str] = None,
-        regional_data_boundary: Optional[Union[str, "_models.RegionalDataBoundary"]] = None,
     ):
         ...
 
@@ -610,6 +764,63 @@ class OperationDisplay(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
+class ProductUpdate(_model_base.Model):
+    """The type used for update operations of the Product.
+
+    :ivar properties:
+    :vartype properties: ~azure.mgmt.spheredpg.models.ProductUpdateProperties
+    """
+
+    properties: Optional["_models.ProductUpdateProperties"] = rest_field()
+
+    @overload
+    def __init__(
+        self,
+        *,
+        properties: Optional["_models.ProductUpdateProperties"] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class ProductUpdateProperties(_model_base.Model):
+    """The updatable properties of the Product.
+
+    :ivar description: Description of the product.
+    :vartype description: str
+    """
+
+    description: Optional[str] = rest_field()
+    """Description of the product."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        description: Optional[str] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
 class ProofOfPossessionNonceRequest(_model_base.Model):
     """Request for the proof of possession nonce.
 
@@ -704,46 +915,17 @@ class ProxyResource(ProxyResourceBase):
      information.
     :vartype system_data: ~azure.mgmt.spheredpg.models.SystemData
     :ivar properties: The resource-specific properties for this resource.
-    :vartype properties: ~azure.mgmt.spheredpg.models.ImageProperties
+    :vartype properties: ~azure.mgmt.spheredpg.models.DeviceProperties
     """
 
-    properties: Optional["_models.ImageProperties"] = rest_field(visibility=["read", "create"])
+    properties: Optional["_models.DeviceProperties"] = rest_field(visibility=["read", "create"])
     """The resource-specific properties for this resource."""
 
     @overload
     def __init__(
         self,
         *,
-        properties: Optional["_models.ImageProperties"] = None,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class ResourceUpdateModel(_model_base.Model):
-    """The type used for update operations of the Catalog.
-
-    :ivar tags: Resource tags.
-    :vartype tags: dict[str, str]
-    """
-
-    tags: Optional[Dict[str, str]] = rest_field()
-    """Resource tags."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        tags: Optional[Dict[str, str]] = None,
+        properties: Optional["_models.DeviceProperties"] = None,
     ):
         ...
 

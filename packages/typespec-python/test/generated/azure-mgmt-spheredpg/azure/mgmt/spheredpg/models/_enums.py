@@ -17,6 +17,15 @@ class ActionType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Actions are for internal-only APIs."""
 
 
+class AllowCrashDumpCollection(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """Allow crash dumps values."""
+
+    ENABLED = "Enabled"
+    """Crash dump collection enabled"""
+    DISABLED = "Disabled"
+    """Crash dump collection disabled"""
+
+
 class CapabilityType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Capability image type."""
 
@@ -52,59 +61,6 @@ class createdByType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """The entity was created by a key."""
 
 
-class ImageType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Image type values."""
-
-    INVALID_IMAGE_TYPE = "InvalidImageType"
-    """Invalid image."""
-    ONE_BL = "OneBl"
-    """One Bl image type"""
-    PLUTON_RUNTIME = "PlutonRuntime"
-    """Pluton image type"""
-    WIFI_FIRMWARE = "WifiFirmware"
-    """Wifi firmware image type"""
-    SECURITY_MONITOR = "SecurityMonitor"
-    """Security monitor image type"""
-    NORMAL_WORLD_LOADER = "NormalWorldLoader"
-    """Normal world loader image type"""
-    NORMAL_WORLD_DTB = "NormalWorldDtb"
-    """Normal world dtb image type"""
-    NORMAL_WORLD_KERNEL = "NormalWorldKernel"
-    """Normal world kernel image type"""
-    ROOT_FS = "RootFs"
-    """Root FS image type"""
-    SERVICES = "Services"
-    """Services image type"""
-    APPLICATIONS = "Applications"
-    """Applications image type"""
-    FW_CONFIG = "FwConfig"
-    """FW config image type"""
-    BOOT_MANIFEST = "BootManifest"
-    """Boot manifest image type"""
-    NWFS = "Nwfs"
-    """Nwfs image type"""
-    TRUSTED_KEYSTORE = "TrustedKeystore"
-    """Trusted key store image type"""
-    POLICY = "Policy"
-    """Policy image type"""
-    CUSTOMER_BOARD_CONFIG = "CustomerBoardConfig"
-    """Customer board config image type"""
-    UPDATE_CERT_STORE = "UpdateCertStore"
-    """Update certificate store image type"""
-    BASE_SYSTEM_UPDATE_MANIFEST = "BaseSystemUpdateManifest"
-    """Base system update manifest image type"""
-    FIRMWARE_UPDATE_MANIFEST = "FirmwareUpdateManifest"
-    """Firmware update manifest image type"""
-    CUSTOMER_UPDATE_MANIFEST = "CustomerUpdateManifest"
-    """Customer update manifest image type"""
-    RECOVERY_MANIFEST = "RecoveryManifest"
-    """Recovery manifest image type"""
-    MANIFEST_SET = "ManifestSet"
-    """manifest set image type"""
-    OTHER = "Other"
-    """Other image type"""
-
-
 class Origin(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit
     logs UX. Default value is "user,system".
@@ -116,6 +72,15 @@ class Origin(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Indicates the operation is initiated by a system."""
     USER_SYSTEM = "user,system"
     """Indicates the operation is initiated by a user or system."""
+
+
+class OSFeedType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """OS feed type values."""
+
+    RETAIL = "Retail"
+    """Retail OS feed type."""
+    RETAIL_EVAL = "RetailEval"
+    """Retail evaluation OS feed type."""
 
 
 class ProvisioningState(str, Enum, metaclass=CaseInsensitiveEnumMeta):
@@ -144,3 +109,12 @@ class RegionalDataBoundary(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """No data boundary"""
     EU = "EU"
     """EU data boundary"""
+
+
+class UpdatePolicy(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """Update policy values."""
+
+    UPDATE_ALL = "UpdateAll"
+    """Update all policy."""
+    NO3RD_PARTY_APP_UPDATES = "No3rdPartyAppUpdates"
+    """No update for 3rd party app policy."""

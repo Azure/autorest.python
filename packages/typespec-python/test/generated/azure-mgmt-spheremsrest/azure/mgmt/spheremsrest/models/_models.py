@@ -73,6 +73,40 @@ class ArmResource(_serialization.Model):
         self.system_data = system_data
 
 
+class CatalogListResult(_serialization.Model):
+    """The response of a Catalog list operation.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar value: The Catalog items on this page. Required.
+    :vartype value: list[~azure.mgmt.spheremsrest.models.TrackedResource]
+    :ivar next_link: The link to the next page of items.
+    :vartype next_link: str
+    """
+
+    _validation = {
+        "value": {"required": True},
+    }
+
+    _attribute_map = {
+        "value": {"key": "value", "type": "[TrackedResource]"},
+        "next_link": {"key": "nextLink", "type": "str"},
+    }
+
+    def __init__(
+        self, *, value: List["_models.TrackedResource"], next_link: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """
+        :keyword value: The Catalog items on this page. Required.
+        :paramtype value: list[~azure.mgmt.spheremsrest.models.TrackedResource]
+        :keyword next_link: The link to the next page of items.
+        :paramtype next_link: str
+        """
+        super().__init__(**kwargs)
+        self.value = value
+        self.next_link = next_link
+
+
 class CatalogProperties(_serialization.Model):
     """Catalog properties.
 
@@ -99,6 +133,26 @@ class CatalogProperties(_serialization.Model):
         self.provisioning_state = provisioning_state
 
 
+class CatalogUpdate(_serialization.Model):
+    """The type used for update operations of the Catalog.
+
+    :ivar tags: Resource tags.
+    :vartype tags: dict[str, str]
+    """
+
+    _attribute_map = {
+        "tags": {"key": "tags", "type": "{str}"},
+    }
+
+    def __init__(self, *, tags: Optional[Dict[str, str]] = None, **kwargs: Any) -> None:
+        """
+        :keyword tags: Resource tags.
+        :paramtype tags: dict[str, str]
+        """
+        super().__init__(**kwargs)
+        self.tags = tags
+
+
 class CertificateChainResponse(_serialization.Model):
     """The certificate chain response.
 
@@ -119,6 +173,38 @@ class CertificateChainResponse(_serialization.Model):
         """
         super().__init__(**kwargs)
         self.certificate_chain = certificate_chain
+
+
+class CertificateListResult(_serialization.Model):
+    """The response of a Certificate list operation.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar value: The Certificate items on this page. Required.
+    :vartype value: list[~azure.mgmt.spheremsrest.models.ProxyResource]
+    :ivar next_link: The link to the next page of items.
+    :vartype next_link: str
+    """
+
+    _validation = {
+        "value": {"required": True},
+    }
+
+    _attribute_map = {
+        "value": {"key": "value", "type": "[ProxyResource]"},
+        "next_link": {"key": "nextLink", "type": "str"},
+    }
+
+    def __init__(self, *, value: List["_models.ProxyResource"], next_link: Optional[str] = None, **kwargs: Any) -> None:
+        """
+        :keyword value: The Certificate items on this page. Required.
+        :paramtype value: list[~azure.mgmt.spheremsrest.models.ProxyResource]
+        :keyword next_link: The link to the next page of items.
+        :paramtype next_link: str
+        """
+        super().__init__(**kwargs)
+        self.value = value
+        self.next_link = next_link
 
 
 class CertificateProperties(_serialization.Model):
@@ -271,6 +357,153 @@ class CountDeviceResponse(CountElementsResponse):
         super().__init__(value=value, **kwargs)
 
 
+class DeploymentListResult(_serialization.Model):
+    """The response of a Deployment list operation.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar value: The Deployment items on this page. Required.
+    :vartype value: list[~azure.mgmt.spheremsrest.models.ProxyResource]
+    :ivar next_link: The link to the next page of items.
+    :vartype next_link: str
+    """
+
+    _validation = {
+        "value": {"required": True},
+    }
+
+    _attribute_map = {
+        "value": {"key": "value", "type": "[ProxyResource]"},
+        "next_link": {"key": "nextLink", "type": "str"},
+    }
+
+    def __init__(self, *, value: List["_models.ProxyResource"], next_link: Optional[str] = None, **kwargs: Any) -> None:
+        """
+        :keyword value: The Deployment items on this page. Required.
+        :paramtype value: list[~azure.mgmt.spheremsrest.models.ProxyResource]
+        :keyword next_link: The link to the next page of items.
+        :paramtype next_link: str
+        """
+        super().__init__(**kwargs)
+        self.value = value
+        self.next_link = next_link
+
+
+class DeviceGroupListResult(_serialization.Model):
+    """The response of a DeviceGroup list operation.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar value: The DeviceGroup items on this page. Required.
+    :vartype value: list[~azure.mgmt.spheremsrest.models.ProxyResource]
+    :ivar next_link: The link to the next page of items.
+    :vartype next_link: str
+    """
+
+    _validation = {
+        "value": {"required": True},
+    }
+
+    _attribute_map = {
+        "value": {"key": "value", "type": "[ProxyResource]"},
+        "next_link": {"key": "nextLink", "type": "str"},
+    }
+
+    def __init__(self, *, value: List["_models.ProxyResource"], next_link: Optional[str] = None, **kwargs: Any) -> None:
+        """
+        :keyword value: The DeviceGroup items on this page. Required.
+        :paramtype value: list[~azure.mgmt.spheremsrest.models.ProxyResource]
+        :keyword next_link: The link to the next page of items.
+        :paramtype next_link: str
+        """
+        super().__init__(**kwargs)
+        self.value = value
+        self.next_link = next_link
+
+
+class DeviceGroupUpdate(_serialization.Model):
+    """The type used for update operations of the DeviceGroup.
+
+    :ivar properties:
+    :vartype properties: ~azure.mgmt.spheremsrest.models.DeviceGroupUpdateProperties
+    """
+
+    _attribute_map = {
+        "properties": {"key": "properties", "type": "DeviceGroupUpdateProperties"},
+    }
+
+    def __init__(self, *, properties: Optional["_models.DeviceGroupUpdateProperties"] = None, **kwargs: Any) -> None:
+        """
+        :keyword properties:
+        :paramtype properties: ~azure.mgmt.spheremsrest.models.DeviceGroupUpdateProperties
+        """
+        super().__init__(**kwargs)
+        self.properties = properties
+
+
+class DeviceGroupUpdateProperties(_serialization.Model):
+    """The updatable properties of the DeviceGroup.
+
+    :ivar description: Description of the device group.
+    :vartype description: str
+    :ivar os_feed_type: Operating system feed type of the device group. Known values are: "Retail"
+     and "RetailEval".
+    :vartype os_feed_type: str or ~azure.mgmt.spheremsrest.models.OSFeedType
+    :ivar update_policy: Update policy of the device group. Known values are: "UpdateAll" and
+     "No3rdPartyAppUpdates".
+    :vartype update_policy: str or ~azure.mgmt.spheremsrest.models.UpdatePolicy
+    :ivar allow_crash_dumps_collection: Flag to define if the user allows for crash dump
+     collection. Known values are: "Enabled" and "Disabled".
+    :vartype allow_crash_dumps_collection: str or
+     ~azure.mgmt.spheremsrest.models.AllowCrashDumpCollection
+    :ivar regional_data_boundary: Regional data boundary for the device group. Known values are:
+     "None" and "EU".
+    :vartype regional_data_boundary: str or ~azure.mgmt.spheremsrest.models.RegionalDataBoundary
+    """
+
+    _attribute_map = {
+        "description": {"key": "description", "type": "str"},
+        "os_feed_type": {"key": "osFeedType", "type": "str"},
+        "update_policy": {"key": "updatePolicy", "type": "str"},
+        "allow_crash_dumps_collection": {"key": "allowCrashDumpsCollection", "type": "str"},
+        "regional_data_boundary": {"key": "regionalDataBoundary", "type": "str"},
+    }
+
+    def __init__(
+        self,
+        *,
+        description: Optional[str] = None,
+        os_feed_type: Optional[Union[str, "_models.OSFeedType"]] = None,
+        update_policy: Optional[Union[str, "_models.UpdatePolicy"]] = None,
+        allow_crash_dumps_collection: Optional[Union[str, "_models.AllowCrashDumpCollection"]] = None,
+        regional_data_boundary: Optional[Union[str, "_models.RegionalDataBoundary"]] = None,
+        **kwargs: Any
+    ) -> None:
+        """
+        :keyword description: Description of the device group.
+        :paramtype description: str
+        :keyword os_feed_type: Operating system feed type of the device group. Known values are:
+         "Retail" and "RetailEval".
+        :paramtype os_feed_type: str or ~azure.mgmt.spheremsrest.models.OSFeedType
+        :keyword update_policy: Update policy of the device group. Known values are: "UpdateAll" and
+         "No3rdPartyAppUpdates".
+        :paramtype update_policy: str or ~azure.mgmt.spheremsrest.models.UpdatePolicy
+        :keyword allow_crash_dumps_collection: Flag to define if the user allows for crash dump
+         collection. Known values are: "Enabled" and "Disabled".
+        :paramtype allow_crash_dumps_collection: str or
+         ~azure.mgmt.spheremsrest.models.AllowCrashDumpCollection
+        :keyword regional_data_boundary: Regional data boundary for the device group. Known values are:
+         "None" and "EU".
+        :paramtype regional_data_boundary: str or ~azure.mgmt.spheremsrest.models.RegionalDataBoundary
+        """
+        super().__init__(**kwargs)
+        self.description = description
+        self.os_feed_type = os_feed_type
+        self.update_policy = update_policy
+        self.allow_crash_dumps_collection = allow_crash_dumps_collection
+        self.regional_data_boundary = regional_data_boundary
+
+
 class DeviceInsight(_serialization.Model):
     """Device insight report.
 
@@ -356,6 +589,150 @@ class DeviceInsight(_serialization.Model):
         self.event_class = event_class
         self.event_type = event_type
         self.event_count = event_count
+
+
+class DeviceListResult(_serialization.Model):
+    """The response of a Device list operation.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar value: The Device items on this page. Required.
+    :vartype value: list[~azure.mgmt.spheremsrest.models.ProxyResource]
+    :ivar next_link: The link to the next page of items.
+    :vartype next_link: str
+    """
+
+    _validation = {
+        "value": {"required": True},
+    }
+
+    _attribute_map = {
+        "value": {"key": "value", "type": "[ProxyResource]"},
+        "next_link": {"key": "nextLink", "type": "str"},
+    }
+
+    def __init__(self, *, value: List["_models.ProxyResource"], next_link: Optional[str] = None, **kwargs: Any) -> None:
+        """
+        :keyword value: The Device items on this page. Required.
+        :paramtype value: list[~azure.mgmt.spheremsrest.models.ProxyResource]
+        :keyword next_link: The link to the next page of items.
+        :paramtype next_link: str
+        """
+        super().__init__(**kwargs)
+        self.value = value
+        self.next_link = next_link
+
+
+class DeviceProperties(_serialization.Model):
+    """The properties of device.
+
+    Variables are only populated by the server, and will be ignored when sending a request.
+
+    :ivar device_id: Device ID.
+    :vartype device_id: str
+    :ivar chip_sku: SKU of the chip.
+    :vartype chip_sku: str
+    :ivar last_available_os_version: OS version available for installation when update requested.
+    :vartype last_available_os_version: str
+    :ivar last_installed_os_version: OS version running on device when update requested.
+    :vartype last_installed_os_version: str
+    :ivar last_os_update_utc: Time when update requested and new OS version available.
+    :vartype last_os_update_utc: ~datetime.datetime
+    :ivar last_update_request_utc: Time when update was last requested.
+    :vartype last_update_request_utc: ~datetime.datetime
+    :ivar provisioning_state: The status of the last operation. Known values are: "Succeeded",
+     "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
+    :vartype provisioning_state: str or ~azure.mgmt.spheremsrest.models.ProvisioningState
+    """
+
+    _attribute_map = {
+        "device_id": {"key": "deviceId", "type": "str"},
+        "chip_sku": {"key": "chipSku", "type": "str"},
+        "last_available_os_version": {"key": "lastAvailableOsVersion", "type": "str"},
+        "last_installed_os_version": {"key": "lastInstalledOsVersion", "type": "str"},
+        "last_os_update_utc": {"key": "lastOsUpdateUtc", "type": "iso-8601"},
+        "last_update_request_utc": {"key": "lastUpdateRequestUtc", "type": "iso-8601"},
+        "provisioning_state": {"key": "provisioningState", "type": "str"},
+    }
+
+    def __init__(
+        self,
+        *,
+        device_id: Optional[str] = None,
+        chip_sku: Optional[str] = None,
+        last_available_os_version: Optional[str] = None,
+        last_installed_os_version: Optional[str] = None,
+        last_os_update_utc: Optional[datetime.datetime] = None,
+        last_update_request_utc: Optional[datetime.datetime] = None,
+        provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = None,
+        **kwargs: Any
+    ) -> None:
+        """
+        :keyword device_id: Device ID.
+        :paramtype device_id: str
+        :keyword chip_sku: SKU of the chip.
+        :paramtype chip_sku: str
+        :keyword last_available_os_version: OS version available for installation when update
+         requested.
+        :paramtype last_available_os_version: str
+        :keyword last_installed_os_version: OS version running on device when update requested.
+        :paramtype last_installed_os_version: str
+        :keyword last_os_update_utc: Time when update requested and new OS version available.
+        :paramtype last_os_update_utc: ~datetime.datetime
+        :keyword last_update_request_utc: Time when update was last requested.
+        :paramtype last_update_request_utc: ~datetime.datetime
+        :keyword provisioning_state: The status of the last operation. Known values are: "Succeeded",
+         "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
+        :paramtype provisioning_state: str or ~azure.mgmt.spheremsrest.models.ProvisioningState
+        """
+        super().__init__(**kwargs)
+        self.device_id = device_id
+        self.chip_sku = chip_sku
+        self.last_available_os_version = last_available_os_version
+        self.last_installed_os_version = last_installed_os_version
+        self.last_os_update_utc = last_os_update_utc
+        self.last_update_request_utc = last_update_request_utc
+        self.provisioning_state = provisioning_state
+
+
+class DeviceUpdate(_serialization.Model):
+    """The type used for update operations of the Device.
+
+    :ivar properties:
+    :vartype properties: ~azure.mgmt.spheremsrest.models.DeviceUpdateProperties
+    """
+
+    _attribute_map = {
+        "properties": {"key": "properties", "type": "DeviceUpdateProperties"},
+    }
+
+    def __init__(self, *, properties: Optional["_models.DeviceUpdateProperties"] = None, **kwargs: Any) -> None:
+        """
+        :keyword properties:
+        :paramtype properties: ~azure.mgmt.spheremsrest.models.DeviceUpdateProperties
+        """
+        super().__init__(**kwargs)
+        self.properties = properties
+
+
+class DeviceUpdateProperties(_serialization.Model):
+    """The updatable properties of the Device.
+
+    :ivar device_group_id: Device group id.
+    :vartype device_group_id: str
+    """
+
+    _attribute_map = {
+        "device_group_id": {"key": "deviceGroupId", "type": "str"},
+    }
+
+    def __init__(self, *, device_group_id: Optional[str] = None, **kwargs: Any) -> None:
+        """
+        :keyword device_group_id: Device group id.
+        :paramtype device_group_id: str
+        """
+        super().__init__(**kwargs)
+        self.device_group_id = device_group_id
 
 
 class ErrorAdditionalInfo(_serialization.Model):
@@ -488,103 +865,36 @@ class GenerateCapabilityImageRequest(_serialization.Model):
         self.capabilities = capabilities
 
 
-class ImageProperties(_serialization.Model):
-    """The properties of image.
+class ImageListResult(_serialization.Model):
+    """The response of a Image list operation.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
+    All required parameters must be populated in order to send to Azure.
 
-    :ivar image: Image as a UTF-8 encoded base 64 string on image create. This field contains the
-     image URI on image reads.
-    :vartype image: str
-    :ivar image_id: Image ID.
-    :vartype image_id: str
-    :ivar image_name: Image name.
-    :vartype image_name: str
-    :ivar regional_data_boundary: Regional data boundary for an image. Known values are: "None" and
-     "EU".
-    :vartype regional_data_boundary: str or ~azure.mgmt.spheremsrest.models.RegionalDataBoundary
-    :ivar uri: Location the image.
-    :vartype uri: str
-    :ivar description: The image description.
-    :vartype description: str
-    :ivar component_id: The image component id.
-    :vartype component_id: str
-    :ivar image_type: The image type. Known values are: "InvalidImageType", "OneBl",
-     "PlutonRuntime", "WifiFirmware", "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb",
-     "NormalWorldKernel", "RootFs", "Services", "Applications", "FwConfig", "BootManifest", "Nwfs",
-     "TrustedKeystore", "Policy", "CustomerBoardConfig", "UpdateCertStore",
-     "BaseSystemUpdateManifest", "FirmwareUpdateManifest", "CustomerUpdateManifest",
-     "RecoveryManifest", "ManifestSet", and "Other".
-    :vartype image_type: str or ~azure.mgmt.spheremsrest.models.ImageType
-    :ivar provisioning_state: The status of the last operation. Known values are: "Succeeded",
-     "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
-    :vartype provisioning_state: str or ~azure.mgmt.spheremsrest.models.ProvisioningState
+    :ivar value: The Image items on this page. Required.
+    :vartype value: list[~azure.mgmt.spheremsrest.models.ProxyResource]
+    :ivar next_link: The link to the next page of items.
+    :vartype next_link: str
     """
 
-    _attribute_map = {
-        "image": {"key": "image", "type": "str"},
-        "image_id": {"key": "imageId", "type": "str"},
-        "image_name": {"key": "imageName", "type": "str"},
-        "regional_data_boundary": {"key": "regionalDataBoundary", "type": "str"},
-        "uri": {"key": "uri", "type": "str"},
-        "description": {"key": "description", "type": "str"},
-        "component_id": {"key": "componentId", "type": "str"},
-        "image_type": {"key": "imageType", "type": "str"},
-        "provisioning_state": {"key": "provisioningState", "type": "str"},
+    _validation = {
+        "value": {"required": True},
     }
 
-    def __init__(
-        self,
-        *,
-        image: Optional[str] = None,
-        image_id: Optional[str] = None,
-        image_name: Optional[str] = None,
-        regional_data_boundary: Optional[Union[str, "_models.RegionalDataBoundary"]] = None,
-        uri: Optional[str] = None,
-        description: Optional[str] = None,
-        component_id: Optional[str] = None,
-        image_type: Optional[Union[str, "_models.ImageType"]] = None,
-        provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = None,
-        **kwargs: Any
-    ) -> None:
+    _attribute_map = {
+        "value": {"key": "value", "type": "[ProxyResource]"},
+        "next_link": {"key": "nextLink", "type": "str"},
+    }
+
+    def __init__(self, *, value: List["_models.ProxyResource"], next_link: Optional[str] = None, **kwargs: Any) -> None:
         """
-        :keyword image: Image as a UTF-8 encoded base 64 string on image create. This field contains
-         the image URI on image reads.
-        :paramtype image: str
-        :keyword image_id: Image ID.
-        :paramtype image_id: str
-        :keyword image_name: Image name.
-        :paramtype image_name: str
-        :keyword regional_data_boundary: Regional data boundary for an image. Known values are: "None"
-         and "EU".
-        :paramtype regional_data_boundary: str or ~azure.mgmt.spheremsrest.models.RegionalDataBoundary
-        :keyword uri: Location the image.
-        :paramtype uri: str
-        :keyword description: The image description.
-        :paramtype description: str
-        :keyword component_id: The image component id.
-        :paramtype component_id: str
-        :keyword image_type: The image type. Known values are: "InvalidImageType", "OneBl",
-         "PlutonRuntime", "WifiFirmware", "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb",
-         "NormalWorldKernel", "RootFs", "Services", "Applications", "FwConfig", "BootManifest", "Nwfs",
-         "TrustedKeystore", "Policy", "CustomerBoardConfig", "UpdateCertStore",
-         "BaseSystemUpdateManifest", "FirmwareUpdateManifest", "CustomerUpdateManifest",
-         "RecoveryManifest", "ManifestSet", and "Other".
-        :paramtype image_type: str or ~azure.mgmt.spheremsrest.models.ImageType
-        :keyword provisioning_state: The status of the last operation. Known values are: "Succeeded",
-         "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
-        :paramtype provisioning_state: str or ~azure.mgmt.spheremsrest.models.ProvisioningState
+        :keyword value: The Image items on this page. Required.
+        :paramtype value: list[~azure.mgmt.spheremsrest.models.ProxyResource]
+        :keyword next_link: The link to the next page of items.
+        :paramtype next_link: str
         """
         super().__init__(**kwargs)
-        self.image = image
-        self.image_id = image_id
-        self.image_name = image_name
-        self.regional_data_boundary = regional_data_boundary
-        self.uri = uri
-        self.description = description
-        self.component_id = component_id
-        self.image_type = image_type
-        self.provisioning_state = provisioning_state
+        self.value = value
+        self.next_link = next_link
 
 
 class ListDeviceGroupsRequest(_serialization.Model):
@@ -727,7 +1037,39 @@ class OperationDisplay(_serialization.Model):
         self.description = description
 
 
-class OperationListResult(_serialization.Model):
+class PagedDeviceInsight(_serialization.Model):
+    """Paged collection of DeviceInsight items.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar value: The DeviceInsight items on this page. Required.
+    :vartype value: list[~azure.mgmt.spheremsrest.models.DeviceInsight]
+    :ivar next_link: The link to the next page of items.
+    :vartype next_link: str
+    """
+
+    _validation = {
+        "value": {"required": True},
+    }
+
+    _attribute_map = {
+        "value": {"key": "value", "type": "[DeviceInsight]"},
+        "next_link": {"key": "nextLink", "type": "str"},
+    }
+
+    def __init__(self, *, value: List["_models.DeviceInsight"], next_link: Optional[str] = None, **kwargs: Any) -> None:
+        """
+        :keyword value: The DeviceInsight items on this page. Required.
+        :paramtype value: list[~azure.mgmt.spheremsrest.models.DeviceInsight]
+        :keyword next_link: The link to the next page of items.
+        :paramtype next_link: str
+        """
+        super().__init__(**kwargs)
+        self.value = value
+        self.next_link = next_link
+
+
+class PagedOperation(_serialization.Model):
     """A list of REST API operations supported by an Azure Resource Provider. It contains an URL link
     to get the next set of results.
 
@@ -760,13 +1102,13 @@ class OperationListResult(_serialization.Model):
         self.next_link = next_link
 
 
-class Page(_serialization.Model):
-    """Paged collection of DeviceInsight items.
+class ProductListResult(_serialization.Model):
+    """The response of a Product list operation.
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar value: The DeviceInsight items on this page. Required.
-    :vartype value: list[~azure.mgmt.spheremsrest.models.DeviceInsight]
+    :ivar value: The Product items on this page. Required.
+    :vartype value: list[~azure.mgmt.spheremsrest.models.ProxyResource]
     :ivar next_link: The link to the next page of items.
     :vartype next_link: str
     """
@@ -776,20 +1118,60 @@ class Page(_serialization.Model):
     }
 
     _attribute_map = {
-        "value": {"key": "value", "type": "[DeviceInsight]"},
+        "value": {"key": "value", "type": "[ProxyResource]"},
         "next_link": {"key": "nextLink", "type": "str"},
     }
 
-    def __init__(self, *, value: List["_models.DeviceInsight"], next_link: Optional[str] = None, **kwargs: Any) -> None:
+    def __init__(self, *, value: List["_models.ProxyResource"], next_link: Optional[str] = None, **kwargs: Any) -> None:
         """
-        :keyword value: The DeviceInsight items on this page. Required.
-        :paramtype value: list[~azure.mgmt.spheremsrest.models.DeviceInsight]
+        :keyword value: The Product items on this page. Required.
+        :paramtype value: list[~azure.mgmt.spheremsrest.models.ProxyResource]
         :keyword next_link: The link to the next page of items.
         :paramtype next_link: str
         """
         super().__init__(**kwargs)
         self.value = value
         self.next_link = next_link
+
+
+class ProductUpdate(_serialization.Model):
+    """The type used for update operations of the Product.
+
+    :ivar properties:
+    :vartype properties: ~azure.mgmt.spheremsrest.models.ProductUpdateProperties
+    """
+
+    _attribute_map = {
+        "properties": {"key": "properties", "type": "ProductUpdateProperties"},
+    }
+
+    def __init__(self, *, properties: Optional["_models.ProductUpdateProperties"] = None, **kwargs: Any) -> None:
+        """
+        :keyword properties:
+        :paramtype properties: ~azure.mgmt.spheremsrest.models.ProductUpdateProperties
+        """
+        super().__init__(**kwargs)
+        self.properties = properties
+
+
+class ProductUpdateProperties(_serialization.Model):
+    """The updatable properties of the Product.
+
+    :ivar description: Description of the product.
+    :vartype description: str
+    """
+
+    _attribute_map = {
+        "description": {"key": "description", "type": "str"},
+    }
+
+    def __init__(self, *, description: Optional[str] = None, **kwargs: Any) -> None:
+        """
+        :keyword description: Description of the product.
+        :paramtype description: str
+        """
+        super().__init__(**kwargs)
+        self.description = description
 
 
 class ProofOfPossessionNonceRequest(_serialization.Model):
@@ -965,7 +1347,7 @@ class ProxyResource(ProxyResourceBase):
      information.
     :vartype system_data: ~azure.mgmt.spheremsrest.models.SystemData
     :ivar properties: The resource-specific properties for this resource.
-    :vartype properties: ~azure.mgmt.spheremsrest.models.ImageProperties
+    :vartype properties: ~azure.mgmt.spheremsrest.models.DeviceProperties
     """
 
     _validation = {
@@ -977,7 +1359,7 @@ class ProxyResource(ProxyResourceBase):
         "id": {"key": "id", "type": "str"},
         "type": {"key": "type", "type": "str"},
         "system_data": {"key": "systemData", "type": "SystemData"},
-        "properties": {"key": "properties", "type": "ImageProperties"},
+        "properties": {"key": "properties", "type": "DeviceProperties"},
     }
 
     def __init__(
@@ -986,7 +1368,7 @@ class ProxyResource(ProxyResourceBase):
         id: str,  # pylint: disable=redefined-builtin
         type: str,
         system_data: Optional["_models.SystemData"] = None,
-        properties: Optional["_models.ImageProperties"] = None,
+        properties: Optional["_models.DeviceProperties"] = None,
         **kwargs: Any
     ) -> None:
         """
@@ -1001,64 +1383,10 @@ class ProxyResource(ProxyResourceBase):
          information.
         :paramtype system_data: ~azure.mgmt.spheremsrest.models.SystemData
         :keyword properties: The resource-specific properties for this resource.
-        :paramtype properties: ~azure.mgmt.spheremsrest.models.ImageProperties
+        :paramtype properties: ~azure.mgmt.spheremsrest.models.DeviceProperties
         """
         super().__init__(id=id, type=type, system_data=system_data, **kwargs)
         self.properties = properties
-
-
-class ResourceListResult(_serialization.Model):
-    """The response of a Catalog list operation.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar value: The Catalog items on this page. Required.
-    :vartype value: list[~azure.mgmt.spheremsrest.models.TrackedResource]
-    :ivar next_link: The link to the next page of items.
-    :vartype next_link: str
-    """
-
-    _validation = {
-        "value": {"required": True},
-    }
-
-    _attribute_map = {
-        "value": {"key": "value", "type": "[TrackedResource]"},
-        "next_link": {"key": "nextLink", "type": "str"},
-    }
-
-    def __init__(
-        self, *, value: List["_models.TrackedResource"], next_link: Optional[str] = None, **kwargs: Any
-    ) -> None:
-        """
-        :keyword value: The Catalog items on this page. Required.
-        :paramtype value: list[~azure.mgmt.spheremsrest.models.TrackedResource]
-        :keyword next_link: The link to the next page of items.
-        :paramtype next_link: str
-        """
-        super().__init__(**kwargs)
-        self.value = value
-        self.next_link = next_link
-
-
-class ResourceUpdateModel(_serialization.Model):
-    """The type used for update operations of the Catalog.
-
-    :ivar tags: Resource tags.
-    :vartype tags: dict[str, str]
-    """
-
-    _attribute_map = {
-        "tags": {"key": "tags", "type": "{str}"},
-    }
-
-    def __init__(self, *, tags: Optional[Dict[str, str]] = None, **kwargs: Any) -> None:
-        """
-        :keyword tags: Resource tags.
-        :paramtype tags: dict[str, str]
-        """
-        super().__init__(**kwargs)
-        self.tags = tags
 
 
 class SignedCapabilityImageResponse(_serialization.Model):

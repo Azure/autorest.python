@@ -108,7 +108,7 @@ class Operations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.OperationListResult] = kwargs.pop("cls", None)
+        cls: ClsType[_models.PagedOperation] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -146,7 +146,7 @@ class Operations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("OperationListResult", pipeline_response)
+            deserialized = self._deserialize("PagedOperation", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
@@ -409,7 +409,7 @@ class CatalogsOperations:
         self,
         resource_group_name: str,
         catalog_name: str,
-        properties: _models.ResourceUpdateModel,
+        properties: _models.CatalogUpdate,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -422,7 +422,7 @@ class CatalogsOperations:
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
         :param properties: The resource properties to be updated. Required.
-        :type properties: ~azure.mgmt.spheremsrest.models.ResourceUpdateModel
+        :type properties: ~azure.mgmt.spheremsrest.models.CatalogUpdate
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -464,11 +464,7 @@ class CatalogsOperations:
 
     @distributed_trace_async
     async def update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        properties: Union[_models.ResourceUpdateModel, IO],
-        **kwargs: Any
+        self, resource_group_name: str, catalog_name: str, properties: Union[_models.CatalogUpdate, IO], **kwargs: Any
     ) -> _models.TrackedResource:
         """Update a Catalog.
 
@@ -477,9 +473,9 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param properties: The resource properties to be updated. Is either a ResourceUpdateModel type
-         or a IO type. Required.
-        :type properties: ~azure.mgmt.spheremsrest.models.ResourceUpdateModel or IO
+        :param properties: The resource properties to be updated. Is either a CatalogUpdate type or a
+         IO type. Required.
+        :type properties: ~azure.mgmt.spheremsrest.models.CatalogUpdate or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -509,7 +505,7 @@ class CatalogsOperations:
         if isinstance(properties, (IOBase, bytes)):
             _content = properties
         else:
-            _json = self._serialize.body(properties, "ResourceUpdateModel")
+            _json = self._serialize.body(properties, "CatalogUpdate")
 
         request = build_catalogs_update_request(
             resource_group_name=resource_group_name,
@@ -627,7 +623,7 @@ class CatalogsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ResourceListResult] = kwargs.pop("cls", None)
+        cls: ClsType[_models.CatalogListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -667,7 +663,7 @@ class CatalogsOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ResourceListResult", pipeline_response)
+            deserialized = self._deserialize("CatalogListResult", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
@@ -705,7 +701,7 @@ class CatalogsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ResourceListResult] = kwargs.pop("cls", None)
+        cls: ClsType[_models.CatalogListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -744,7 +740,7 @@ class CatalogsOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ResourceListResult", pipeline_response)
+            deserialized = self._deserialize("CatalogListResult", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
@@ -865,7 +861,7 @@ class CatalogsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.Page] = kwargs.pop("cls", None)
+        cls: ClsType[_models.PagedDeviceInsight] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -909,7 +905,7 @@ class CatalogsOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("Page", pipeline_response)
+            deserialized = self._deserialize("PagedDeviceInsight", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
@@ -966,7 +962,7 @@ class CatalogsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ResourceListResult] = kwargs.pop("cls", None)
+        cls: ClsType[_models.DeviceListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -1010,7 +1006,7 @@ class CatalogsOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ResourceListResult", pipeline_response)
+            deserialized = self._deserialize("DeviceListResult", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
@@ -1067,7 +1063,7 @@ class CatalogsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ResourceListResult] = kwargs.pop("cls", None)
+        cls: ClsType[_models.DeploymentListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -1111,7 +1107,7 @@ class CatalogsOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ResourceListResult", pipeline_response)
+            deserialized = self._deserialize("DeploymentListResult", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
@@ -1248,7 +1244,7 @@ class CatalogsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.ResourceListResult] = kwargs.pop("cls", None)
+        cls: ClsType[_models.DeviceGroupListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -1302,7 +1298,7 @@ class CatalogsOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ResourceListResult", pipeline_response)
+            deserialized = self._deserialize("DeviceGroupListResult", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
@@ -1446,7 +1442,7 @@ class ImagesOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ResourceListResult] = kwargs.pop("cls", None)
+        cls: ClsType[_models.ImageListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -1490,7 +1486,7 @@ class ImagesOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ResourceListResult", pipeline_response)
+            deserialized = self._deserialize("ImageListResult", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
@@ -1800,7 +1796,7 @@ class DeviceGroupsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ResourceListResult] = kwargs.pop("cls", None)
+        cls: ClsType[_models.DeviceGroupListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -1845,7 +1841,7 @@ class DeviceGroupsOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ResourceListResult", pipeline_response)
+            deserialized = self._deserialize("DeviceGroupListResult", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
@@ -2195,7 +2191,7 @@ class DeviceGroupsOperations:
         catalog_name: str,
         product_name: str,
         device_group_name: str,
-        properties: _models.ResourceUpdateModel,
+        properties: _models.DeviceGroupUpdate,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -2213,7 +2209,7 @@ class DeviceGroupsOperations:
         :param device_group_name: Name of device group. Required.
         :type device_group_name: str
         :param properties: The resource properties to be updated. Required.
-        :type properties: ~azure.mgmt.spheremsrest.models.ResourceUpdateModel
+        :type properties: ~azure.mgmt.spheremsrest.models.DeviceGroupUpdate
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2267,7 +2263,7 @@ class DeviceGroupsOperations:
         catalog_name: str,
         product_name: str,
         device_group_name: str,
-        properties: Union[_models.ResourceUpdateModel, IO],
+        properties: Union[_models.DeviceGroupUpdate, IO],
         **kwargs: Any
     ) -> Optional[_models.ProxyResource]:
         """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
@@ -2282,9 +2278,9 @@ class DeviceGroupsOperations:
         :type product_name: str
         :param device_group_name: Name of device group. Required.
         :type device_group_name: str
-        :param properties: The resource properties to be updated. Is either a ResourceUpdateModel type
-         or a IO type. Required.
-        :type properties: ~azure.mgmt.spheremsrest.models.ResourceUpdateModel or IO
+        :param properties: The resource properties to be updated. Is either a DeviceGroupUpdate type or
+         a IO type. Required.
+        :type properties: ~azure.mgmt.spheremsrest.models.DeviceGroupUpdate or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -2314,7 +2310,7 @@ class DeviceGroupsOperations:
         if isinstance(properties, (IOBase, bytes)):
             _content = properties
         else:
-            _json = self._serialize.body(properties, "ResourceUpdateModel")
+            _json = self._serialize.body(properties, "DeviceGroupUpdate")
 
         request = build_device_groups_update_request(
             resource_group_name=resource_group_name,
@@ -2715,7 +2711,7 @@ class CertificatesOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ResourceListResult] = kwargs.pop("cls", None)
+        cls: ClsType[_models.CertificateListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -2759,7 +2755,7 @@ class CertificatesOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ResourceListResult", pipeline_response)
+            deserialized = self._deserialize("CertificateListResult", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
@@ -3151,7 +3147,7 @@ class DeploymentsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ResourceListResult] = kwargs.pop("cls", None)
+        cls: ClsType[_models.DeploymentListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -3197,7 +3193,7 @@ class DeploymentsOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ResourceListResult", pipeline_response)
+            deserialized = self._deserialize("DeploymentListResult", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
@@ -3802,7 +3798,7 @@ class DevicesOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ResourceListResult] = kwargs.pop("cls", None)
+        cls: ClsType[_models.DeviceListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -3845,7 +3841,7 @@ class DevicesOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ResourceListResult", pipeline_response)
+            deserialized = self._deserialize("DeviceListResult", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
@@ -3956,7 +3952,7 @@ class DevicesOperations:
         product_name: str,
         device_group_name: str,
         device_name: str,
-        properties: _models.ResourceUpdateModel,
+        properties: _models.DeviceUpdate,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -3976,7 +3972,7 @@ class DevicesOperations:
         :param device_name: Device name. Required.
         :type device_name: str
         :param properties: The resource properties to be updated. Required.
-        :type properties: ~azure.mgmt.spheremsrest.models.ResourceUpdateModel
+        :type properties: ~azure.mgmt.spheremsrest.models.DeviceUpdate
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4034,7 +4030,7 @@ class DevicesOperations:
         product_name: str,
         device_group_name: str,
         device_name: str,
-        properties: Union[_models.ResourceUpdateModel, IO],
+        properties: Union[_models.DeviceUpdate, IO],
         **kwargs: Any
     ) -> Optional[_models.ProxyResource]:
         """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
@@ -4051,9 +4047,9 @@ class DevicesOperations:
         :type device_group_name: str
         :param device_name: Device name. Required.
         :type device_name: str
-        :param properties: The resource properties to be updated. Is either a ResourceUpdateModel type
-         or a IO type. Required.
-        :type properties: ~azure.mgmt.spheremsrest.models.ResourceUpdateModel or IO
+        :param properties: The resource properties to be updated. Is either a DeviceUpdate type or a IO
+         type. Required.
+        :type properties: ~azure.mgmt.spheremsrest.models.DeviceUpdate or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -4083,7 +4079,7 @@ class DevicesOperations:
         if isinstance(properties, (IOBase, bytes)):
             _content = properties
         else:
-            _json = self._serialize.body(properties, "ResourceUpdateModel")
+            _json = self._serialize.body(properties, "DeviceUpdate")
 
         request = build_devices_update_request(
             resource_group_name=resource_group_name,
@@ -4357,7 +4353,7 @@ class ProductsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ResourceListResult] = kwargs.pop("cls", None)
+        cls: ClsType[_models.ProductListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -4398,7 +4394,7 @@ class ProductsOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ResourceListResult", pipeline_response)
+            deserialized = self._deserialize("ProductListResult", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
@@ -4731,7 +4727,7 @@ class ProductsOperations:
         resource_group_name: str,
         catalog_name: str,
         product_name: str,
-        properties: _models.ResourceUpdateModel,
+        properties: _models.ProductUpdate,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -4747,7 +4743,7 @@ class ProductsOperations:
         :param product_name: Name of product. Required.
         :type product_name: str
         :param properties: The resource properties to be updated. Required.
-        :type properties: ~azure.mgmt.spheremsrest.models.ResourceUpdateModel
+        :type properties: ~azure.mgmt.spheremsrest.models.ProductUpdate
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4797,7 +4793,7 @@ class ProductsOperations:
         resource_group_name: str,
         catalog_name: str,
         product_name: str,
-        properties: Union[_models.ResourceUpdateModel, IO],
+        properties: Union[_models.ProductUpdate, IO],
         **kwargs: Any
     ) -> Optional[_models.ProxyResource]:
         """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
@@ -4810,9 +4806,9 @@ class ProductsOperations:
         :type catalog_name: str
         :param product_name: Name of product. Required.
         :type product_name: str
-        :param properties: The resource properties to be updated. Is either a ResourceUpdateModel type
-         or a IO type. Required.
-        :type properties: ~azure.mgmt.spheremsrest.models.ResourceUpdateModel or IO
+        :param properties: The resource properties to be updated. Is either a ProductUpdate type or a
+         IO type. Required.
+        :type properties: ~azure.mgmt.spheremsrest.models.ProductUpdate or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -4842,7 +4838,7 @@ class ProductsOperations:
         if isinstance(properties, (IOBase, bytes)):
             _content = properties
         else:
-            _json = self._serialize.body(properties, "ResourceUpdateModel")
+            _json = self._serialize.body(properties, "ProductUpdate")
 
         request = build_products_update_request(
             resource_group_name=resource_group_name,
@@ -4910,7 +4906,7 @@ class ProductsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ResourceListResult] = kwargs.pop("cls", None)
+        cls: ClsType[_models.DeviceGroupListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -4952,7 +4948,7 @@ class ProductsOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ResourceListResult", pipeline_response)
+            deserialized = self._deserialize("DeviceGroupListResult", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
