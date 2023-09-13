@@ -48,6 +48,103 @@ class ArmResource(_model_base.Model):
     """Azure Resource Manager metadata containing createdBy and modifiedBy information."""
 
 
+class TrackedResourceBase(ArmResource):
+    """The resource model definition for an Azure Resource Manager tracked top level resource.
+
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar id: Fully qualified resource ID for the resource. Ex -
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     Required.
+    :vartype id: str
+    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     "Microsoft.Storage/storageAccounts". Required.
+    :vartype type: str
+    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+     information.
+    :vartype system_data: ~azure.mgmt.spheredpg.models.SystemData
+    :ivar location: The geo-location where the resource lives. Required.
+    :vartype location: str
+    :ivar tags: Resource tags.
+    :vartype tags: dict[str, str]
+    """
+
+    location: str = rest_field(visibility=["read", "create"])
+    """The geo-location where the resource lives. Required."""
+    tags: Optional[Dict[str, str]] = rest_field()
+    """Resource tags."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        location: str,
+        tags: Optional[Dict[str, str]] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class Catalog(TrackedResourceBase):
+    """An Azure Sphere catalog.
+
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar id: Fully qualified resource ID for the resource. Ex -
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     Required.
+    :vartype id: str
+    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     "Microsoft.Storage/storageAccounts". Required.
+    :vartype type: str
+    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+     information.
+    :vartype system_data: ~azure.mgmt.spheredpg.models.SystemData
+    :ivar location: The geo-location where the resource lives. Required.
+    :vartype location: str
+    :ivar tags: Resource tags.
+    :vartype tags: dict[str, str]
+    :ivar properties: The resource-specific properties for this resource.
+    :vartype properties: ~azure.mgmt.spheredpg.models.CatalogProperties
+    """
+
+    properties: Optional["_models.CatalogProperties"] = rest_field(visibility=["read", "create"])
+    """The resource-specific properties for this resource."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        location: str,
+        tags: Optional[Dict[str, str]] = None,
+        properties: Optional["_models.CatalogProperties"] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
 class CatalogProperties(_model_base.Model):
     """Catalog properties.
 
@@ -63,6 +160,98 @@ class CatalogProperties(_model_base.Model):
     )
     """The status of the last operation. Known values are: \"Succeeded\", \"Failed\", \"Canceled\",
      \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
+
+
+class CatalogUpdate(_model_base.Model):
+    """The type used for update operations of the Catalog.
+
+    :ivar tags: Resource tags.
+    :vartype tags: dict[str, str]
+    """
+
+    tags: Optional[Dict[str, str]] = rest_field()
+    """Resource tags."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        tags: Optional[Dict[str, str]] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class ProxyResourceBase(ArmResource):
+    """The base proxy resource.
+
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar id: Fully qualified resource ID for the resource. Ex -
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     Required.
+    :vartype id: str
+    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     "Microsoft.Storage/storageAccounts". Required.
+    :vartype type: str
+    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+     information.
+    :vartype system_data: ~azure.mgmt.spheredpg.models.SystemData
+    """
+
+
+class Certificate(ProxyResourceBase):
+    """An certificate resource belonging to a catalog resource.
+
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar id: Fully qualified resource ID for the resource. Ex -
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     Required.
+    :vartype id: str
+    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     "Microsoft.Storage/storageAccounts". Required.
+    :vartype type: str
+    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+     information.
+    :vartype system_data: ~azure.mgmt.spheredpg.models.SystemData
+    :ivar properties: The resource-specific properties for this resource.
+    :vartype properties: ~azure.mgmt.spheredpg.models.CertificateProperties
+    """
+
+    properties: Optional["_models.CertificateProperties"] = rest_field(visibility=["read", "create"])
+    """The resource-specific properties for this resource."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        properties: Optional["_models.CertificateProperties"] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
 class CertificateChainResponse(_model_base.Model):
@@ -211,6 +400,349 @@ class CountDeviceResponse(CountElementsResponse):
         super().__init__(*args, **kwargs)
 
 
+class Deployment(ProxyResourceBase):
+    """An deployment resource belonging to a device group resource.
+
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar id: Fully qualified resource ID for the resource. Ex -
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     Required.
+    :vartype id: str
+    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     "Microsoft.Storage/storageAccounts". Required.
+    :vartype type: str
+    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+     information.
+    :vartype system_data: ~azure.mgmt.spheredpg.models.SystemData
+    :ivar properties: The resource-specific properties for this resource.
+    :vartype properties: ~azure.mgmt.spheredpg.models.DeploymentProperties
+    """
+
+    properties: Optional["_models.DeploymentProperties"] = rest_field(visibility=["read", "create"])
+    """The resource-specific properties for this resource."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        properties: Optional["_models.DeploymentProperties"] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class DeploymentProperties(_model_base.Model):
+    """The properties of deployment.
+
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
+
+    :ivar deployment_id: Deployment ID.
+    :vartype deployment_id: str
+    :ivar deployed_images: Images deployed.
+    :vartype deployed_images: list[~azure.mgmt.spheredpg.models.Image]
+    :ivar deployment_date_utc: Deployment date UTC.
+    :vartype deployment_date_utc: ~datetime.datetime
+    :ivar provisioning_state: The status of the last operation. Known values are: "Succeeded",
+     "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
+    :vartype provisioning_state: str or ~azure.mgmt.spheredpg.models.ProvisioningState
+    """
+
+    deployment_id: Optional[str] = rest_field(name="deploymentId", visibility=["read", "create"])
+    """Deployment ID."""
+    deployed_images: Optional[List["_models.Image"]] = rest_field(name="deployedImages", visibility=["read", "create"])
+    """Images deployed."""
+    deployment_date_utc: Optional[datetime.datetime] = rest_field(
+        name="deploymentDateUtc", visibility=["read"], format="rfc3339"
+    )
+    """Deployment date UTC."""
+    provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = rest_field(
+        name="provisioningState", visibility=["read"]
+    )
+    """The status of the last operation. Known values are: \"Succeeded\", \"Failed\", \"Canceled\",
+     \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        deployment_id: Optional[str] = None,
+        deployed_images: Optional[List["_models.Image"]] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class Device(ProxyResourceBase):
+    """An device resource belonging to a device group resource.
+
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar id: Fully qualified resource ID for the resource. Ex -
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     Required.
+    :vartype id: str
+    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     "Microsoft.Storage/storageAccounts". Required.
+    :vartype type: str
+    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+     information.
+    :vartype system_data: ~azure.mgmt.spheredpg.models.SystemData
+    :ivar properties: The resource-specific properties for this resource.
+    :vartype properties: ~azure.mgmt.spheredpg.models.DeviceProperties
+    """
+
+    properties: Optional["_models.DeviceProperties"] = rest_field(visibility=["read", "create"])
+    """The resource-specific properties for this resource."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        properties: Optional["_models.DeviceProperties"] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class DeviceGroup(ProxyResourceBase):
+    """An device group resource belonging to a product resource.
+
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar id: Fully qualified resource ID for the resource. Ex -
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     Required.
+    :vartype id: str
+    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     "Microsoft.Storage/storageAccounts". Required.
+    :vartype type: str
+    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+     information.
+    :vartype system_data: ~azure.mgmt.spheredpg.models.SystemData
+    :ivar properties: The resource-specific properties for this resource.
+    :vartype properties: ~azure.mgmt.spheredpg.models.DeviceGroupProperties
+    """
+
+    properties: Optional["_models.DeviceGroupProperties"] = rest_field(visibility=["read", "create"])
+    """The resource-specific properties for this resource."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        properties: Optional["_models.DeviceGroupProperties"] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class DeviceGroupProperties(_model_base.Model):
+    """The properties of deviceGroup.
+
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
+
+    :ivar description: Description of the device group.
+    :vartype description: str
+    :ivar os_feed_type: Operating system feed type of the device group. Known values are: "Retail"
+     and "RetailEval".
+    :vartype os_feed_type: str or ~azure.mgmt.spheredpg.models.OSFeedType
+    :ivar update_policy: Update policy of the device group. Known values are: "UpdateAll" and
+     "No3rdPartyAppUpdates".
+    :vartype update_policy: str or ~azure.mgmt.spheredpg.models.UpdatePolicy
+    :ivar allow_crash_dumps_collection: Flag to define if the user allows for crash dump
+     collection. Known values are: "Enabled" and "Disabled".
+    :vartype allow_crash_dumps_collection: str or
+     ~azure.mgmt.spheredpg.models.AllowCrashDumpCollection
+    :ivar regional_data_boundary: Regional data boundary for the device group. Known values are:
+     "None" and "EU".
+    :vartype regional_data_boundary: str or ~azure.mgmt.spheredpg.models.RegionalDataBoundary
+    :ivar has_deployment: Deployment status for the device group.
+    :vartype has_deployment: bool
+    :ivar provisioning_state: The status of the last operation. Known values are: "Succeeded",
+     "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
+    :vartype provisioning_state: str or ~azure.mgmt.spheredpg.models.ProvisioningState
+    """
+
+    description: Optional[str] = rest_field()
+    """Description of the device group."""
+    os_feed_type: Optional[Union[str, "_models.OSFeedType"]] = rest_field(name="osFeedType")
+    """Operating system feed type of the device group. Known values are: \"Retail\" and
+     \"RetailEval\"."""
+    update_policy: Optional[Union[str, "_models.UpdatePolicy"]] = rest_field(name="updatePolicy")
+    """Update policy of the device group. Known values are: \"UpdateAll\" and
+     \"No3rdPartyAppUpdates\"."""
+    allow_crash_dumps_collection: Optional[Union[str, "_models.AllowCrashDumpCollection"]] = rest_field(
+        name="allowCrashDumpsCollection"
+    )
+    """Flag to define if the user allows for crash dump collection. Known values are: \"Enabled\" and
+     \"Disabled\"."""
+    regional_data_boundary: Optional[Union[str, "_models.RegionalDataBoundary"]] = rest_field(
+        name="regionalDataBoundary"
+    )
+    """Regional data boundary for the device group. Known values are: \"None\" and \"EU\"."""
+    has_deployment: Optional[bool] = rest_field(name="hasDeployment", visibility=["read"])
+    """Deployment status for the device group."""
+    provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = rest_field(
+        name="provisioningState", visibility=["read"]
+    )
+    """The status of the last operation. Known values are: \"Succeeded\", \"Failed\", \"Canceled\",
+     \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        description: Optional[str] = None,
+        os_feed_type: Optional[Union[str, "_models.OSFeedType"]] = None,
+        update_policy: Optional[Union[str, "_models.UpdatePolicy"]] = None,
+        allow_crash_dumps_collection: Optional[Union[str, "_models.AllowCrashDumpCollection"]] = None,
+        regional_data_boundary: Optional[Union[str, "_models.RegionalDataBoundary"]] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class DeviceGroupUpdate(_model_base.Model):
+    """The type used for update operations of the DeviceGroup.
+
+    :ivar properties:
+    :vartype properties: ~azure.mgmt.spheredpg.models.DeviceGroupUpdateProperties
+    """
+
+    properties: Optional["_models.DeviceGroupUpdateProperties"] = rest_field()
+
+    @overload
+    def __init__(
+        self,
+        *,
+        properties: Optional["_models.DeviceGroupUpdateProperties"] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class DeviceGroupUpdateProperties(_model_base.Model):
+    """The updatable properties of the DeviceGroup.
+
+    :ivar description: Description of the device group.
+    :vartype description: str
+    :ivar os_feed_type: Operating system feed type of the device group. Known values are: "Retail"
+     and "RetailEval".
+    :vartype os_feed_type: str or ~azure.mgmt.spheredpg.models.OSFeedType
+    :ivar update_policy: Update policy of the device group. Known values are: "UpdateAll" and
+     "No3rdPartyAppUpdates".
+    :vartype update_policy: str or ~azure.mgmt.spheredpg.models.UpdatePolicy
+    :ivar allow_crash_dumps_collection: Flag to define if the user allows for crash dump
+     collection. Known values are: "Enabled" and "Disabled".
+    :vartype allow_crash_dumps_collection: str or
+     ~azure.mgmt.spheredpg.models.AllowCrashDumpCollection
+    :ivar regional_data_boundary: Regional data boundary for the device group. Known values are:
+     "None" and "EU".
+    :vartype regional_data_boundary: str or ~azure.mgmt.spheredpg.models.RegionalDataBoundary
+    """
+
+    description: Optional[str] = rest_field()
+    """Description of the device group."""
+    os_feed_type: Optional[Union[str, "_models.OSFeedType"]] = rest_field(name="osFeedType")
+    """Operating system feed type of the device group. Known values are: \"Retail\" and
+     \"RetailEval\"."""
+    update_policy: Optional[Union[str, "_models.UpdatePolicy"]] = rest_field(name="updatePolicy")
+    """Update policy of the device group. Known values are: \"UpdateAll\" and
+     \"No3rdPartyAppUpdates\"."""
+    allow_crash_dumps_collection: Optional[Union[str, "_models.AllowCrashDumpCollection"]] = rest_field(
+        name="allowCrashDumpsCollection"
+    )
+    """Flag to define if the user allows for crash dump collection. Known values are: \"Enabled\" and
+     \"Disabled\"."""
+    regional_data_boundary: Optional[Union[str, "_models.RegionalDataBoundary"]] = rest_field(
+        name="regionalDataBoundary"
+    )
+    """Regional data boundary for the device group. Known values are: \"None\" and \"EU\"."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        description: Optional[str] = None,
+        os_feed_type: Optional[Union[str, "_models.OSFeedType"]] = None,
+        update_policy: Optional[Union[str, "_models.UpdatePolicy"]] = None,
+        allow_crash_dumps_collection: Optional[Union[str, "_models.AllowCrashDumpCollection"]] = None,
+        regional_data_boundary: Optional[Union[str, "_models.RegionalDataBoundary"]] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
 class DeviceInsight(_model_base.Model):
     """Device insight report.
 
@@ -263,6 +795,126 @@ class DeviceInsight(_model_base.Model):
         event_class: str,
         event_type: str,
         event_count: int,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class DeviceProperties(_model_base.Model):
+    """The properties of device.
+
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
+
+    :ivar device_id: Device ID.
+    :vartype device_id: str
+    :ivar chip_sku: SKU of the chip.
+    :vartype chip_sku: str
+    :ivar last_available_os_version: OS version available for installation when update requested.
+    :vartype last_available_os_version: str
+    :ivar last_installed_os_version: OS version running on device when update requested.
+    :vartype last_installed_os_version: str
+    :ivar last_os_update_utc: Time when update requested and new OS version available.
+    :vartype last_os_update_utc: ~datetime.datetime
+    :ivar last_update_request_utc: Time when update was last requested.
+    :vartype last_update_request_utc: ~datetime.datetime
+    :ivar provisioning_state: The status of the last operation. Known values are: "Succeeded",
+     "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
+    :vartype provisioning_state: str or ~azure.mgmt.spheredpg.models.ProvisioningState
+    """
+
+    device_id: Optional[str] = rest_field(name="deviceId", visibility=["read", "create"])
+    """Device ID."""
+    chip_sku: Optional[str] = rest_field(name="chipSku", visibility=["read"])
+    """SKU of the chip."""
+    last_available_os_version: Optional[str] = rest_field(name="lastAvailableOsVersion", visibility=["read"])
+    """OS version available for installation when update requested."""
+    last_installed_os_version: Optional[str] = rest_field(name="lastInstalledOsVersion", visibility=["read"])
+    """OS version running on device when update requested."""
+    last_os_update_utc: Optional[datetime.datetime] = rest_field(
+        name="lastOsUpdateUtc", visibility=["read"], format="rfc3339"
+    )
+    """Time when update requested and new OS version available."""
+    last_update_request_utc: Optional[datetime.datetime] = rest_field(
+        name="lastUpdateRequestUtc", visibility=["read"], format="rfc3339"
+    )
+    """Time when update was last requested."""
+    provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = rest_field(
+        name="provisioningState", visibility=["read"]
+    )
+    """The status of the last operation. Known values are: \"Succeeded\", \"Failed\", \"Canceled\",
+     \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        device_id: Optional[str] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class DeviceUpdate(_model_base.Model):
+    """The type used for update operations of the Device.
+
+    :ivar properties:
+    :vartype properties: ~azure.mgmt.spheredpg.models.DeviceUpdateProperties
+    """
+
+    properties: Optional["_models.DeviceUpdateProperties"] = rest_field()
+
+    @overload
+    def __init__(
+        self,
+        *,
+        properties: Optional["_models.DeviceUpdateProperties"] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class DeviceUpdateProperties(_model_base.Model):
+    """The updatable properties of the Device.
+
+    :ivar device_group_id: Device group id.
+    :vartype device_group_id: str
+    """
+
+    device_group_id: Optional[str] = rest_field(name="deviceGroupId")
+    """Device group id."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        device_group_id: Optional[str] = None,
     ):
         ...
 
@@ -372,6 +1024,49 @@ class GenerateCapabilityImageRequest(_model_base.Model):
         self,
         *,
         capabilities: List[Union[str, "_models.CapabilityType"]],
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class Image(ProxyResourceBase):
+    """An image resource belonging to a catalog resource.
+
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar id: Fully qualified resource ID for the resource. Ex -
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     Required.
+    :vartype id: str
+    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     "Microsoft.Storage/storageAccounts". Required.
+    :vartype type: str
+    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+     information.
+    :vartype system_data: ~azure.mgmt.spheredpg.models.SystemData
+    :ivar properties: The resource-specific properties for this resource.
+    :vartype properties: ~azure.mgmt.spheredpg.models.ImageProperties
+    """
+
+    properties: Optional["_models.ImageProperties"] = rest_field(visibility=["read", "create"])
+    """The resource-specific properties for this resource."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        properties: Optional["_models.ImageProperties"] = None,
     ):
         ...
 
@@ -610,6 +1305,147 @@ class OperationDisplay(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
+class Product(ProxyResourceBase):
+    """An product resource belonging to a catalog resource.
+
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar id: Fully qualified resource ID for the resource. Ex -
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     Required.
+    :vartype id: str
+    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     "Microsoft.Storage/storageAccounts". Required.
+    :vartype type: str
+    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+     information.
+    :vartype system_data: ~azure.mgmt.spheredpg.models.SystemData
+    :ivar properties: The resource-specific properties for this resource.
+    :vartype properties: ~azure.mgmt.spheredpg.models.ProductProperties
+    """
+
+    properties: Optional["_models.ProductProperties"] = rest_field(visibility=["read", "create"])
+    """The resource-specific properties for this resource."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        properties: Optional["_models.ProductProperties"] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class ProductProperties(_model_base.Model):
+    """The properties of product.
+
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar description: Description of the product. Required.
+    :vartype description: str
+    :ivar provisioning_state: The status of the last operation. Known values are: "Succeeded",
+     "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
+    :vartype provisioning_state: str or ~azure.mgmt.spheredpg.models.ProvisioningState
+    """
+
+    description: str = rest_field()
+    """Description of the product. Required."""
+    provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = rest_field(
+        name="provisioningState", visibility=["read"]
+    )
+    """The status of the last operation. Known values are: \"Succeeded\", \"Failed\", \"Canceled\",
+     \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        description: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class ProductUpdate(_model_base.Model):
+    """The type used for update operations of the Product.
+
+    :ivar properties:
+    :vartype properties: ~azure.mgmt.spheredpg.models.ProductUpdateProperties
+    """
+
+    properties: Optional["_models.ProductUpdateProperties"] = rest_field()
+
+    @overload
+    def __init__(
+        self,
+        *,
+        properties: Optional["_models.ProductUpdateProperties"] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class ProductUpdateProperties(_model_base.Model):
+    """The updatable properties of the Product.
+
+    :ivar description: Description of the product.
+    :vartype description: str
+    """
+
+    description: Optional[str] = rest_field()
+    """Description of the product."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        description: Optional[str] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
 class ProofOfPossessionNonceRequest(_model_base.Model):
     """Request for the proof of possession nonce.
 
@@ -665,99 +1501,6 @@ class ProofOfPossessionNonceResponse(CertificateProperties):
     """
 
 
-class ProxyResourceBase(ArmResource):
-    """The base proxy resource.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-     Required.
-    :vartype id: str
-    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts". Required.
-    :vartype type: str
-    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-     information.
-    :vartype system_data: ~azure.mgmt.spheredpg.models.SystemData
-    """
-
-
-class ProxyResource(ProxyResourceBase):
-    """Concrete proxy resource types can be created by aliasing this type using a specific property
-    type.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-     Required.
-    :vartype id: str
-    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts". Required.
-    :vartype type: str
-    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-     information.
-    :vartype system_data: ~azure.mgmt.spheredpg.models.SystemData
-    :ivar properties: The resource-specific properties for this resource.
-    :vartype properties: ~azure.mgmt.spheredpg.models.ImageProperties
-    """
-
-    properties: Optional["_models.ImageProperties"] = rest_field(visibility=["read", "create"])
-    """The resource-specific properties for this resource."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        properties: Optional["_models.ImageProperties"] = None,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class ResourceUpdateModel(_model_base.Model):
-    """The type used for update operations of the Catalog.
-
-    :ivar tags: Resource tags.
-    :vartype tags: dict[str, str]
-    """
-
-    tags: Optional[Dict[str, str]] = rest_field()
-    """Resource tags."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        tags: Optional[Dict[str, str]] = None,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
 class SignedCapabilityImageResponse(_model_base.Model):
     """Signed device capability image response.
 
@@ -810,101 +1553,3 @@ class SystemData(_model_base.Model):
      \"Application\", \"ManagedIdentity\", and \"Key\"."""
     last_modified_at: Optional[datetime.date] = rest_field(name="lastModifiedAt", visibility=["read"])
     """The timestamp of resource last modification (UTC)."""
-
-
-class TrackedResourceBase(ArmResource):
-    """The resource model definition for an Azure Resource Manager tracked top level resource.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-     Required.
-    :vartype id: str
-    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts". Required.
-    :vartype type: str
-    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-     information.
-    :vartype system_data: ~azure.mgmt.spheredpg.models.SystemData
-    :ivar location: The geo-location where the resource lives. Required.
-    :vartype location: str
-    :ivar tags: Resource tags.
-    :vartype tags: dict[str, str]
-    """
-
-    location: str = rest_field(visibility=["read", "create"])
-    """The geo-location where the resource lives. Required."""
-    tags: Optional[Dict[str, str]] = rest_field()
-    """Resource tags."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        location: str,
-        tags: Optional[Dict[str, str]] = None,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class TrackedResource(TrackedResourceBase):
-    """Concrete tracked resource types can be created by aliasing this type using a specific property
-    type.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-     Required.
-    :vartype id: str
-    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts". Required.
-    :vartype type: str
-    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-     information.
-    :vartype system_data: ~azure.mgmt.spheredpg.models.SystemData
-    :ivar location: The geo-location where the resource lives. Required.
-    :vartype location: str
-    :ivar tags: Resource tags.
-    :vartype tags: dict[str, str]
-    :ivar properties: The resource-specific properties for this resource.
-    :vartype properties: ~azure.mgmt.spheredpg.models.CatalogProperties
-    """
-
-    properties: Optional["_models.CatalogProperties"] = rest_field(visibility=["read", "create"])
-    """The resource-specific properties for this resource."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        location: str,
-        tags: Optional[Dict[str, str]] = None,
-        properties: Optional["_models.CatalogProperties"] = None,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
