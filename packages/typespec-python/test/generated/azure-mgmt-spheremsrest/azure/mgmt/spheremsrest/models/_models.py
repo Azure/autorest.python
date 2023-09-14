@@ -73,13 +73,154 @@ class ArmResource(_serialization.Model):
         self.system_data = system_data
 
 
+class TrackedResourceBase(ArmResource):
+    """The resource model definition for an Azure Resource Manager tracked top level resource.
+
+    Variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar id: Fully qualified resource ID for the resource. Ex -
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     Required.
+    :vartype id: str
+    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     "Microsoft.Storage/storageAccounts". Required.
+    :vartype type: str
+    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+     information.
+    :vartype system_data: ~azure.mgmt.spheremsrest.models.SystemData
+    :ivar location: The geo-location where the resource lives. Required.
+    :vartype location: str
+    :ivar tags: Resource tags.
+    :vartype tags: dict[str, str]
+    """
+
+    _validation = {
+        "id": {"required": True},
+        "type": {"required": True},
+        "location": {"required": True},
+    }
+
+    _attribute_map = {
+        "id": {"key": "id", "type": "str"},
+        "type": {"key": "type", "type": "str"},
+        "system_data": {"key": "systemData", "type": "SystemData"},
+        "location": {"key": "location", "type": "str"},
+        "tags": {"key": "tags", "type": "{str}"},
+    }
+
+    def __init__(
+        self,
+        *,
+        id: str,  # pylint: disable=redefined-builtin
+        type: str,
+        location: str,
+        system_data: Optional["_models.SystemData"] = None,
+        tags: Optional[Dict[str, str]] = None,
+        **kwargs: Any
+    ) -> None:
+        """
+        :keyword id: Fully qualified resource ID for the resource. Ex -
+         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+         Required.
+        :paramtype id: str
+        :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+         "Microsoft.Storage/storageAccounts". Required.
+        :paramtype type: str
+        :keyword system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+         information.
+        :paramtype system_data: ~azure.mgmt.spheremsrest.models.SystemData
+        :keyword location: The geo-location where the resource lives. Required.
+        :paramtype location: str
+        :keyword tags: Resource tags.
+        :paramtype tags: dict[str, str]
+        """
+        super().__init__(id=id, type=type, system_data=system_data, **kwargs)
+        self.location = location
+        self.tags = tags
+
+
+class Catalog(TrackedResourceBase):
+    """An Azure Sphere catalog.
+
+    Variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar id: Fully qualified resource ID for the resource. Ex -
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     Required.
+    :vartype id: str
+    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     "Microsoft.Storage/storageAccounts". Required.
+    :vartype type: str
+    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+     information.
+    :vartype system_data: ~azure.mgmt.spheremsrest.models.SystemData
+    :ivar location: The geo-location where the resource lives. Required.
+    :vartype location: str
+    :ivar tags: Resource tags.
+    :vartype tags: dict[str, str]
+    :ivar properties: The resource-specific properties for this resource.
+    :vartype properties: ~azure.mgmt.spheremsrest.models.CatalogProperties
+    """
+
+    _validation = {
+        "id": {"required": True},
+        "type": {"required": True},
+        "location": {"required": True},
+    }
+
+    _attribute_map = {
+        "id": {"key": "id", "type": "str"},
+        "type": {"key": "type", "type": "str"},
+        "system_data": {"key": "systemData", "type": "SystemData"},
+        "location": {"key": "location", "type": "str"},
+        "tags": {"key": "tags", "type": "{str}"},
+        "properties": {"key": "properties", "type": "CatalogProperties"},
+    }
+
+    def __init__(
+        self,
+        *,
+        id: str,  # pylint: disable=redefined-builtin
+        type: str,
+        location: str,
+        system_data: Optional["_models.SystemData"] = None,
+        tags: Optional[Dict[str, str]] = None,
+        properties: Optional["_models.CatalogProperties"] = None,
+        **kwargs: Any
+    ) -> None:
+        """
+        :keyword id: Fully qualified resource ID for the resource. Ex -
+         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+         Required.
+        :paramtype id: str
+        :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+         "Microsoft.Storage/storageAccounts". Required.
+        :paramtype type: str
+        :keyword system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+         information.
+        :paramtype system_data: ~azure.mgmt.spheremsrest.models.SystemData
+        :keyword location: The geo-location where the resource lives. Required.
+        :paramtype location: str
+        :keyword tags: Resource tags.
+        :paramtype tags: dict[str, str]
+        :keyword properties: The resource-specific properties for this resource.
+        :paramtype properties: ~azure.mgmt.spheremsrest.models.CatalogProperties
+        """
+        super().__init__(id=id, type=type, system_data=system_data, location=location, tags=tags, **kwargs)
+        self.properties = properties
+
+
 class CatalogListResult(_serialization.Model):
     """The response of a Catalog list operation.
 
     All required parameters must be populated in order to send to Azure.
 
     :ivar value: The Catalog items on this page. Required.
-    :vartype value: list[~azure.mgmt.spheremsrest.models.TrackedResource]
+    :vartype value: list[~azure.mgmt.spheremsrest.models.Catalog]
     :ivar next_link: The link to the next page of items.
     :vartype next_link: str
     """
@@ -89,16 +230,14 @@ class CatalogListResult(_serialization.Model):
     }
 
     _attribute_map = {
-        "value": {"key": "value", "type": "[TrackedResource]"},
+        "value": {"key": "value", "type": "[Catalog]"},
         "next_link": {"key": "nextLink", "type": "str"},
     }
 
-    def __init__(
-        self, *, value: List["_models.TrackedResource"], next_link: Optional[str] = None, **kwargs: Any
-    ) -> None:
+    def __init__(self, *, value: List["_models.Catalog"], next_link: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword value: The Catalog items on this page. Required.
-        :paramtype value: list[~azure.mgmt.spheremsrest.models.TrackedResource]
+        :paramtype value: list[~azure.mgmt.spheremsrest.models.Catalog]
         :keyword next_link: The link to the next page of items.
         :paramtype next_link: str
         """
@@ -153,6 +292,119 @@ class CatalogUpdate(_serialization.Model):
         self.tags = tags
 
 
+class ProxyResourceBase(ArmResource):
+    """The base proxy resource.
+
+    Variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar id: Fully qualified resource ID for the resource. Ex -
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     Required.
+    :vartype id: str
+    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     "Microsoft.Storage/storageAccounts". Required.
+    :vartype type: str
+    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+     information.
+    :vartype system_data: ~azure.mgmt.spheremsrest.models.SystemData
+    """
+
+    _validation = {
+        "id": {"required": True},
+        "type": {"required": True},
+    }
+
+    _attribute_map = {
+        "id": {"key": "id", "type": "str"},
+        "type": {"key": "type", "type": "str"},
+        "system_data": {"key": "systemData", "type": "SystemData"},
+    }
+
+    def __init__(
+        self,
+        *,
+        id: str,  # pylint: disable=redefined-builtin
+        type: str,
+        system_data: Optional["_models.SystemData"] = None,
+        **kwargs: Any
+    ) -> None:
+        """
+        :keyword id: Fully qualified resource ID for the resource. Ex -
+         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+         Required.
+        :paramtype id: str
+        :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+         "Microsoft.Storage/storageAccounts". Required.
+        :paramtype type: str
+        :keyword system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+         information.
+        :paramtype system_data: ~azure.mgmt.spheremsrest.models.SystemData
+        """
+        super().__init__(id=id, type=type, system_data=system_data, **kwargs)
+
+
+class Certificate(ProxyResourceBase):
+    """An certificate resource belonging to a catalog resource.
+
+    Variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar id: Fully qualified resource ID for the resource. Ex -
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     Required.
+    :vartype id: str
+    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     "Microsoft.Storage/storageAccounts". Required.
+    :vartype type: str
+    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+     information.
+    :vartype system_data: ~azure.mgmt.spheremsrest.models.SystemData
+    :ivar properties: The resource-specific properties for this resource.
+    :vartype properties: ~azure.mgmt.spheremsrest.models.CertificateProperties
+    """
+
+    _validation = {
+        "id": {"required": True},
+        "type": {"required": True},
+    }
+
+    _attribute_map = {
+        "id": {"key": "id", "type": "str"},
+        "type": {"key": "type", "type": "str"},
+        "system_data": {"key": "systemData", "type": "SystemData"},
+        "properties": {"key": "properties", "type": "CertificateProperties"},
+    }
+
+    def __init__(
+        self,
+        *,
+        id: str,  # pylint: disable=redefined-builtin
+        type: str,
+        system_data: Optional["_models.SystemData"] = None,
+        properties: Optional["_models.CertificateProperties"] = None,
+        **kwargs: Any
+    ) -> None:
+        """
+        :keyword id: Fully qualified resource ID for the resource. Ex -
+         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+         Required.
+        :paramtype id: str
+        :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+         "Microsoft.Storage/storageAccounts". Required.
+        :paramtype type: str
+        :keyword system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+         information.
+        :paramtype system_data: ~azure.mgmt.spheremsrest.models.SystemData
+        :keyword properties: The resource-specific properties for this resource.
+        :paramtype properties: ~azure.mgmt.spheremsrest.models.CertificateProperties
+        """
+        super().__init__(id=id, type=type, system_data=system_data, **kwargs)
+        self.properties = properties
+
+
 class CertificateChainResponse(_serialization.Model):
     """The certificate chain response.
 
@@ -181,7 +433,7 @@ class CertificateListResult(_serialization.Model):
     All required parameters must be populated in order to send to Azure.
 
     :ivar value: The Certificate items on this page. Required.
-    :vartype value: list[~azure.mgmt.spheremsrest.models.ProxyResource]
+    :vartype value: list[~azure.mgmt.spheremsrest.models.Certificate]
     :ivar next_link: The link to the next page of items.
     :vartype next_link: str
     """
@@ -191,14 +443,14 @@ class CertificateListResult(_serialization.Model):
     }
 
     _attribute_map = {
-        "value": {"key": "value", "type": "[ProxyResource]"},
+        "value": {"key": "value", "type": "[Certificate]"},
         "next_link": {"key": "nextLink", "type": "str"},
     }
 
-    def __init__(self, *, value: List["_models.ProxyResource"], next_link: Optional[str] = None, **kwargs: Any) -> None:
+    def __init__(self, *, value: List["_models.Certificate"], next_link: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword value: The Certificate items on this page. Required.
-        :paramtype value: list[~azure.mgmt.spheremsrest.models.ProxyResource]
+        :paramtype value: list[~azure.mgmt.spheremsrest.models.Certificate]
         :keyword next_link: The link to the next page of items.
         :paramtype next_link: str
         """
@@ -357,13 +609,73 @@ class CountDeviceResponse(CountElementsResponse):
         super().__init__(value=value, **kwargs)
 
 
+class Deployment(ProxyResourceBase):
+    """An deployment resource belonging to a device group resource.
+
+    Variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar id: Fully qualified resource ID for the resource. Ex -
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     Required.
+    :vartype id: str
+    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     "Microsoft.Storage/storageAccounts". Required.
+    :vartype type: str
+    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+     information.
+    :vartype system_data: ~azure.mgmt.spheremsrest.models.SystemData
+    :ivar properties: The resource-specific properties for this resource.
+    :vartype properties: ~azure.mgmt.spheremsrest.models.DeploymentProperties
+    """
+
+    _validation = {
+        "id": {"required": True},
+        "type": {"required": True},
+    }
+
+    _attribute_map = {
+        "id": {"key": "id", "type": "str"},
+        "type": {"key": "type", "type": "str"},
+        "system_data": {"key": "systemData", "type": "SystemData"},
+        "properties": {"key": "properties", "type": "DeploymentProperties"},
+    }
+
+    def __init__(
+        self,
+        *,
+        id: str,  # pylint: disable=redefined-builtin
+        type: str,
+        system_data: Optional["_models.SystemData"] = None,
+        properties: Optional["_models.DeploymentProperties"] = None,
+        **kwargs: Any
+    ) -> None:
+        """
+        :keyword id: Fully qualified resource ID for the resource. Ex -
+         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+         Required.
+        :paramtype id: str
+        :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+         "Microsoft.Storage/storageAccounts". Required.
+        :paramtype type: str
+        :keyword system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+         information.
+        :paramtype system_data: ~azure.mgmt.spheremsrest.models.SystemData
+        :keyword properties: The resource-specific properties for this resource.
+        :paramtype properties: ~azure.mgmt.spheremsrest.models.DeploymentProperties
+        """
+        super().__init__(id=id, type=type, system_data=system_data, **kwargs)
+        self.properties = properties
+
+
 class DeploymentListResult(_serialization.Model):
     """The response of a Deployment list operation.
 
     All required parameters must be populated in order to send to Azure.
 
     :ivar value: The Deployment items on this page. Required.
-    :vartype value: list[~azure.mgmt.spheremsrest.models.ProxyResource]
+    :vartype value: list[~azure.mgmt.spheremsrest.models.Deployment]
     :ivar next_link: The link to the next page of items.
     :vartype next_link: str
     """
@@ -373,20 +685,190 @@ class DeploymentListResult(_serialization.Model):
     }
 
     _attribute_map = {
-        "value": {"key": "value", "type": "[ProxyResource]"},
+        "value": {"key": "value", "type": "[Deployment]"},
         "next_link": {"key": "nextLink", "type": "str"},
     }
 
-    def __init__(self, *, value: List["_models.ProxyResource"], next_link: Optional[str] = None, **kwargs: Any) -> None:
+    def __init__(self, *, value: List["_models.Deployment"], next_link: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword value: The Deployment items on this page. Required.
-        :paramtype value: list[~azure.mgmt.spheremsrest.models.ProxyResource]
+        :paramtype value: list[~azure.mgmt.spheremsrest.models.Deployment]
         :keyword next_link: The link to the next page of items.
         :paramtype next_link: str
         """
         super().__init__(**kwargs)
         self.value = value
         self.next_link = next_link
+
+
+class DeploymentProperties(_serialization.Model):
+    """The properties of deployment.
+
+    Variables are only populated by the server, and will be ignored when sending a request.
+
+    :ivar deployment_id: Deployment ID.
+    :vartype deployment_id: str
+    :ivar deployed_images: Images deployed.
+    :vartype deployed_images: list[~azure.mgmt.spheremsrest.models.Image]
+    :ivar deployment_date_utc: Deployment date UTC.
+    :vartype deployment_date_utc: ~datetime.datetime
+    :ivar provisioning_state: The status of the last operation. Known values are: "Succeeded",
+     "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
+    :vartype provisioning_state: str or ~azure.mgmt.spheremsrest.models.ProvisioningState
+    """
+
+    _attribute_map = {
+        "deployment_id": {"key": "deploymentId", "type": "str"},
+        "deployed_images": {"key": "deployedImages", "type": "[Image]"},
+        "deployment_date_utc": {"key": "deploymentDateUtc", "type": "iso-8601"},
+        "provisioning_state": {"key": "provisioningState", "type": "str"},
+    }
+
+    def __init__(
+        self,
+        *,
+        deployment_id: Optional[str] = None,
+        deployed_images: Optional[List["_models.Image"]] = None,
+        deployment_date_utc: Optional[datetime.datetime] = None,
+        provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = None,
+        **kwargs: Any
+    ) -> None:
+        """
+        :keyword deployment_id: Deployment ID.
+        :paramtype deployment_id: str
+        :keyword deployed_images: Images deployed.
+        :paramtype deployed_images: list[~azure.mgmt.spheremsrest.models.Image]
+        :keyword deployment_date_utc: Deployment date UTC.
+        :paramtype deployment_date_utc: ~datetime.datetime
+        :keyword provisioning_state: The status of the last operation. Known values are: "Succeeded",
+         "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
+        :paramtype provisioning_state: str or ~azure.mgmt.spheremsrest.models.ProvisioningState
+        """
+        super().__init__(**kwargs)
+        self.deployment_id = deployment_id
+        self.deployed_images = deployed_images
+        self.deployment_date_utc = deployment_date_utc
+        self.provisioning_state = provisioning_state
+
+
+class Device(ProxyResourceBase):
+    """An device resource belonging to a device group resource.
+
+    Variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar id: Fully qualified resource ID for the resource. Ex -
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     Required.
+    :vartype id: str
+    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     "Microsoft.Storage/storageAccounts". Required.
+    :vartype type: str
+    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+     information.
+    :vartype system_data: ~azure.mgmt.spheremsrest.models.SystemData
+    :ivar properties: The resource-specific properties for this resource.
+    :vartype properties: ~azure.mgmt.spheremsrest.models.DeviceProperties
+    """
+
+    _validation = {
+        "id": {"required": True},
+        "type": {"required": True},
+    }
+
+    _attribute_map = {
+        "id": {"key": "id", "type": "str"},
+        "type": {"key": "type", "type": "str"},
+        "system_data": {"key": "systemData", "type": "SystemData"},
+        "properties": {"key": "properties", "type": "DeviceProperties"},
+    }
+
+    def __init__(
+        self,
+        *,
+        id: str,  # pylint: disable=redefined-builtin
+        type: str,
+        system_data: Optional["_models.SystemData"] = None,
+        properties: Optional["_models.DeviceProperties"] = None,
+        **kwargs: Any
+    ) -> None:
+        """
+        :keyword id: Fully qualified resource ID for the resource. Ex -
+         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+         Required.
+        :paramtype id: str
+        :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+         "Microsoft.Storage/storageAccounts". Required.
+        :paramtype type: str
+        :keyword system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+         information.
+        :paramtype system_data: ~azure.mgmt.spheremsrest.models.SystemData
+        :keyword properties: The resource-specific properties for this resource.
+        :paramtype properties: ~azure.mgmt.spheremsrest.models.DeviceProperties
+        """
+        super().__init__(id=id, type=type, system_data=system_data, **kwargs)
+        self.properties = properties
+
+
+class DeviceGroup(ProxyResourceBase):
+    """An device group resource belonging to a product resource.
+
+    Variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar id: Fully qualified resource ID for the resource. Ex -
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     Required.
+    :vartype id: str
+    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     "Microsoft.Storage/storageAccounts". Required.
+    :vartype type: str
+    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+     information.
+    :vartype system_data: ~azure.mgmt.spheremsrest.models.SystemData
+    :ivar properties: The resource-specific properties for this resource.
+    :vartype properties: ~azure.mgmt.spheremsrest.models.DeviceGroupProperties
+    """
+
+    _validation = {
+        "id": {"required": True},
+        "type": {"required": True},
+    }
+
+    _attribute_map = {
+        "id": {"key": "id", "type": "str"},
+        "type": {"key": "type", "type": "str"},
+        "system_data": {"key": "systemData", "type": "SystemData"},
+        "properties": {"key": "properties", "type": "DeviceGroupProperties"},
+    }
+
+    def __init__(
+        self,
+        *,
+        id: str,  # pylint: disable=redefined-builtin
+        type: str,
+        system_data: Optional["_models.SystemData"] = None,
+        properties: Optional["_models.DeviceGroupProperties"] = None,
+        **kwargs: Any
+    ) -> None:
+        """
+        :keyword id: Fully qualified resource ID for the resource. Ex -
+         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+         Required.
+        :paramtype id: str
+        :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+         "Microsoft.Storage/storageAccounts". Required.
+        :paramtype type: str
+        :keyword system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+         information.
+        :paramtype system_data: ~azure.mgmt.spheremsrest.models.SystemData
+        :keyword properties: The resource-specific properties for this resource.
+        :paramtype properties: ~azure.mgmt.spheremsrest.models.DeviceGroupProperties
+        """
+        super().__init__(id=id, type=type, system_data=system_data, **kwargs)
+        self.properties = properties
 
 
 class DeviceGroupListResult(_serialization.Model):
@@ -395,7 +877,7 @@ class DeviceGroupListResult(_serialization.Model):
     All required parameters must be populated in order to send to Azure.
 
     :ivar value: The DeviceGroup items on this page. Required.
-    :vartype value: list[~azure.mgmt.spheremsrest.models.ProxyResource]
+    :vartype value: list[~azure.mgmt.spheremsrest.models.DeviceGroup]
     :ivar next_link: The link to the next page of items.
     :vartype next_link: str
     """
@@ -405,20 +887,101 @@ class DeviceGroupListResult(_serialization.Model):
     }
 
     _attribute_map = {
-        "value": {"key": "value", "type": "[ProxyResource]"},
+        "value": {"key": "value", "type": "[DeviceGroup]"},
         "next_link": {"key": "nextLink", "type": "str"},
     }
 
-    def __init__(self, *, value: List["_models.ProxyResource"], next_link: Optional[str] = None, **kwargs: Any) -> None:
+    def __init__(self, *, value: List["_models.DeviceGroup"], next_link: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword value: The DeviceGroup items on this page. Required.
-        :paramtype value: list[~azure.mgmt.spheremsrest.models.ProxyResource]
+        :paramtype value: list[~azure.mgmt.spheremsrest.models.DeviceGroup]
         :keyword next_link: The link to the next page of items.
         :paramtype next_link: str
         """
         super().__init__(**kwargs)
         self.value = value
         self.next_link = next_link
+
+
+class DeviceGroupProperties(_serialization.Model):
+    """The properties of deviceGroup.
+
+    Variables are only populated by the server, and will be ignored when sending a request.
+
+    :ivar description: Description of the device group.
+    :vartype description: str
+    :ivar os_feed_type: Operating system feed type of the device group. Known values are: "Retail"
+     and "RetailEval".
+    :vartype os_feed_type: str or ~azure.mgmt.spheremsrest.models.OSFeedType
+    :ivar update_policy: Update policy of the device group. Known values are: "UpdateAll" and
+     "No3rdPartyAppUpdates".
+    :vartype update_policy: str or ~azure.mgmt.spheremsrest.models.UpdatePolicy
+    :ivar allow_crash_dumps_collection: Flag to define if the user allows for crash dump
+     collection. Known values are: "Enabled" and "Disabled".
+    :vartype allow_crash_dumps_collection: str or
+     ~azure.mgmt.spheremsrest.models.AllowCrashDumpCollection
+    :ivar regional_data_boundary: Regional data boundary for the device group. Known values are:
+     "None" and "EU".
+    :vartype regional_data_boundary: str or ~azure.mgmt.spheremsrest.models.RegionalDataBoundary
+    :ivar has_deployment: Deployment status for the device group.
+    :vartype has_deployment: bool
+    :ivar provisioning_state: The status of the last operation. Known values are: "Succeeded",
+     "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
+    :vartype provisioning_state: str or ~azure.mgmt.spheremsrest.models.ProvisioningState
+    """
+
+    _attribute_map = {
+        "description": {"key": "description", "type": "str"},
+        "os_feed_type": {"key": "osFeedType", "type": "str"},
+        "update_policy": {"key": "updatePolicy", "type": "str"},
+        "allow_crash_dumps_collection": {"key": "allowCrashDumpsCollection", "type": "str"},
+        "regional_data_boundary": {"key": "regionalDataBoundary", "type": "str"},
+        "has_deployment": {"key": "hasDeployment", "type": "bool"},
+        "provisioning_state": {"key": "provisioningState", "type": "str"},
+    }
+
+    def __init__(
+        self,
+        *,
+        description: Optional[str] = None,
+        os_feed_type: Optional[Union[str, "_models.OSFeedType"]] = None,
+        update_policy: Optional[Union[str, "_models.UpdatePolicy"]] = None,
+        allow_crash_dumps_collection: Optional[Union[str, "_models.AllowCrashDumpCollection"]] = None,
+        regional_data_boundary: Optional[Union[str, "_models.RegionalDataBoundary"]] = None,
+        has_deployment: Optional[bool] = None,
+        provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = None,
+        **kwargs: Any
+    ) -> None:
+        """
+        :keyword description: Description of the device group.
+        :paramtype description: str
+        :keyword os_feed_type: Operating system feed type of the device group. Known values are:
+         "Retail" and "RetailEval".
+        :paramtype os_feed_type: str or ~azure.mgmt.spheremsrest.models.OSFeedType
+        :keyword update_policy: Update policy of the device group. Known values are: "UpdateAll" and
+         "No3rdPartyAppUpdates".
+        :paramtype update_policy: str or ~azure.mgmt.spheremsrest.models.UpdatePolicy
+        :keyword allow_crash_dumps_collection: Flag to define if the user allows for crash dump
+         collection. Known values are: "Enabled" and "Disabled".
+        :paramtype allow_crash_dumps_collection: str or
+         ~azure.mgmt.spheremsrest.models.AllowCrashDumpCollection
+        :keyword regional_data_boundary: Regional data boundary for the device group. Known values are:
+         "None" and "EU".
+        :paramtype regional_data_boundary: str or ~azure.mgmt.spheremsrest.models.RegionalDataBoundary
+        :keyword has_deployment: Deployment status for the device group.
+        :paramtype has_deployment: bool
+        :keyword provisioning_state: The status of the last operation. Known values are: "Succeeded",
+         "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
+        :paramtype provisioning_state: str or ~azure.mgmt.spheremsrest.models.ProvisioningState
+        """
+        super().__init__(**kwargs)
+        self.description = description
+        self.os_feed_type = os_feed_type
+        self.update_policy = update_policy
+        self.allow_crash_dumps_collection = allow_crash_dumps_collection
+        self.regional_data_boundary = regional_data_boundary
+        self.has_deployment = has_deployment
+        self.provisioning_state = provisioning_state
 
 
 class DeviceGroupUpdate(_serialization.Model):
@@ -597,7 +1160,7 @@ class DeviceListResult(_serialization.Model):
     All required parameters must be populated in order to send to Azure.
 
     :ivar value: The Device items on this page. Required.
-    :vartype value: list[~azure.mgmt.spheremsrest.models.ProxyResource]
+    :vartype value: list[~azure.mgmt.spheremsrest.models.Device]
     :ivar next_link: The link to the next page of items.
     :vartype next_link: str
     """
@@ -607,14 +1170,14 @@ class DeviceListResult(_serialization.Model):
     }
 
     _attribute_map = {
-        "value": {"key": "value", "type": "[ProxyResource]"},
+        "value": {"key": "value", "type": "[Device]"},
         "next_link": {"key": "nextLink", "type": "str"},
     }
 
-    def __init__(self, *, value: List["_models.ProxyResource"], next_link: Optional[str] = None, **kwargs: Any) -> None:
+    def __init__(self, *, value: List["_models.Device"], next_link: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword value: The Device items on this page. Required.
-        :paramtype value: list[~azure.mgmt.spheremsrest.models.ProxyResource]
+        :paramtype value: list[~azure.mgmt.spheremsrest.models.Device]
         :keyword next_link: The link to the next page of items.
         :paramtype next_link: str
         """
@@ -865,13 +1428,73 @@ class GenerateCapabilityImageRequest(_serialization.Model):
         self.capabilities = capabilities
 
 
+class Image(ProxyResourceBase):
+    """An image resource belonging to a catalog resource.
+
+    Variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar id: Fully qualified resource ID for the resource. Ex -
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     Required.
+    :vartype id: str
+    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     "Microsoft.Storage/storageAccounts". Required.
+    :vartype type: str
+    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+     information.
+    :vartype system_data: ~azure.mgmt.spheremsrest.models.SystemData
+    :ivar properties: The resource-specific properties for this resource.
+    :vartype properties: ~azure.mgmt.spheremsrest.models.ImageProperties
+    """
+
+    _validation = {
+        "id": {"required": True},
+        "type": {"required": True},
+    }
+
+    _attribute_map = {
+        "id": {"key": "id", "type": "str"},
+        "type": {"key": "type", "type": "str"},
+        "system_data": {"key": "systemData", "type": "SystemData"},
+        "properties": {"key": "properties", "type": "ImageProperties"},
+    }
+
+    def __init__(
+        self,
+        *,
+        id: str,  # pylint: disable=redefined-builtin
+        type: str,
+        system_data: Optional["_models.SystemData"] = None,
+        properties: Optional["_models.ImageProperties"] = None,
+        **kwargs: Any
+    ) -> None:
+        """
+        :keyword id: Fully qualified resource ID for the resource. Ex -
+         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+         Required.
+        :paramtype id: str
+        :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+         "Microsoft.Storage/storageAccounts". Required.
+        :paramtype type: str
+        :keyword system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+         information.
+        :paramtype system_data: ~azure.mgmt.spheremsrest.models.SystemData
+        :keyword properties: The resource-specific properties for this resource.
+        :paramtype properties: ~azure.mgmt.spheremsrest.models.ImageProperties
+        """
+        super().__init__(id=id, type=type, system_data=system_data, **kwargs)
+        self.properties = properties
+
+
 class ImageListResult(_serialization.Model):
     """The response of a Image list operation.
 
     All required parameters must be populated in order to send to Azure.
 
     :ivar value: The Image items on this page. Required.
-    :vartype value: list[~azure.mgmt.spheremsrest.models.ProxyResource]
+    :vartype value: list[~azure.mgmt.spheremsrest.models.Image]
     :ivar next_link: The link to the next page of items.
     :vartype next_link: str
     """
@@ -881,20 +1504,119 @@ class ImageListResult(_serialization.Model):
     }
 
     _attribute_map = {
-        "value": {"key": "value", "type": "[ProxyResource]"},
+        "value": {"key": "value", "type": "[Image]"},
         "next_link": {"key": "nextLink", "type": "str"},
     }
 
-    def __init__(self, *, value: List["_models.ProxyResource"], next_link: Optional[str] = None, **kwargs: Any) -> None:
+    def __init__(self, *, value: List["_models.Image"], next_link: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword value: The Image items on this page. Required.
-        :paramtype value: list[~azure.mgmt.spheremsrest.models.ProxyResource]
+        :paramtype value: list[~azure.mgmt.spheremsrest.models.Image]
         :keyword next_link: The link to the next page of items.
         :paramtype next_link: str
         """
         super().__init__(**kwargs)
         self.value = value
         self.next_link = next_link
+
+
+class ImageProperties(_serialization.Model):
+    """The properties of image.
+
+    Variables are only populated by the server, and will be ignored when sending a request.
+
+    :ivar image: Image as a UTF-8 encoded base 64 string on image create. This field contains the
+     image URI on image reads.
+    :vartype image: str
+    :ivar image_id: Image ID.
+    :vartype image_id: str
+    :ivar image_name: Image name.
+    :vartype image_name: str
+    :ivar regional_data_boundary: Regional data boundary for an image. Known values are: "None" and
+     "EU".
+    :vartype regional_data_boundary: str or ~azure.mgmt.spheremsrest.models.RegionalDataBoundary
+    :ivar uri: Location the image.
+    :vartype uri: str
+    :ivar description: The image description.
+    :vartype description: str
+    :ivar component_id: The image component id.
+    :vartype component_id: str
+    :ivar image_type: The image type. Known values are: "InvalidImageType", "OneBl",
+     "PlutonRuntime", "WifiFirmware", "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb",
+     "NormalWorldKernel", "RootFs", "Services", "Applications", "FwConfig", "BootManifest", "Nwfs",
+     "TrustedKeystore", "Policy", "CustomerBoardConfig", "UpdateCertStore",
+     "BaseSystemUpdateManifest", "FirmwareUpdateManifest", "CustomerUpdateManifest",
+     "RecoveryManifest", "ManifestSet", and "Other".
+    :vartype image_type: str or ~azure.mgmt.spheremsrest.models.ImageType
+    :ivar provisioning_state: The status of the last operation. Known values are: "Succeeded",
+     "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
+    :vartype provisioning_state: str or ~azure.mgmt.spheremsrest.models.ProvisioningState
+    """
+
+    _attribute_map = {
+        "image": {"key": "image", "type": "str"},
+        "image_id": {"key": "imageId", "type": "str"},
+        "image_name": {"key": "imageName", "type": "str"},
+        "regional_data_boundary": {"key": "regionalDataBoundary", "type": "str"},
+        "uri": {"key": "uri", "type": "str"},
+        "description": {"key": "description", "type": "str"},
+        "component_id": {"key": "componentId", "type": "str"},
+        "image_type": {"key": "imageType", "type": "str"},
+        "provisioning_state": {"key": "provisioningState", "type": "str"},
+    }
+
+    def __init__(
+        self,
+        *,
+        image: Optional[str] = None,
+        image_id: Optional[str] = None,
+        image_name: Optional[str] = None,
+        regional_data_boundary: Optional[Union[str, "_models.RegionalDataBoundary"]] = None,
+        uri: Optional[str] = None,
+        description: Optional[str] = None,
+        component_id: Optional[str] = None,
+        image_type: Optional[Union[str, "_models.ImageType"]] = None,
+        provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = None,
+        **kwargs: Any
+    ) -> None:
+        """
+        :keyword image: Image as a UTF-8 encoded base 64 string on image create. This field contains
+         the image URI on image reads.
+        :paramtype image: str
+        :keyword image_id: Image ID.
+        :paramtype image_id: str
+        :keyword image_name: Image name.
+        :paramtype image_name: str
+        :keyword regional_data_boundary: Regional data boundary for an image. Known values are: "None"
+         and "EU".
+        :paramtype regional_data_boundary: str or ~azure.mgmt.spheremsrest.models.RegionalDataBoundary
+        :keyword uri: Location the image.
+        :paramtype uri: str
+        :keyword description: The image description.
+        :paramtype description: str
+        :keyword component_id: The image component id.
+        :paramtype component_id: str
+        :keyword image_type: The image type. Known values are: "InvalidImageType", "OneBl",
+         "PlutonRuntime", "WifiFirmware", "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb",
+         "NormalWorldKernel", "RootFs", "Services", "Applications", "FwConfig", "BootManifest", "Nwfs",
+         "TrustedKeystore", "Policy", "CustomerBoardConfig", "UpdateCertStore",
+         "BaseSystemUpdateManifest", "FirmwareUpdateManifest", "CustomerUpdateManifest",
+         "RecoveryManifest", "ManifestSet", and "Other".
+        :paramtype image_type: str or ~azure.mgmt.spheremsrest.models.ImageType
+        :keyword provisioning_state: The status of the last operation. Known values are: "Succeeded",
+         "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
+        :paramtype provisioning_state: str or ~azure.mgmt.spheremsrest.models.ProvisioningState
+        """
+        super().__init__(**kwargs)
+        self.image = image
+        self.image_id = image_id
+        self.image_name = image_name
+        self.regional_data_boundary = regional_data_boundary
+        self.uri = uri
+        self.description = description
+        self.component_id = component_id
+        self.image_type = image_type
+        self.provisioning_state = provisioning_state
 
 
 class ListDeviceGroupsRequest(_serialization.Model):
@@ -1102,13 +1824,73 @@ class PagedOperation(_serialization.Model):
         self.next_link = next_link
 
 
+class Product(ProxyResourceBase):
+    """An product resource belonging to a catalog resource.
+
+    Variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar id: Fully qualified resource ID for the resource. Ex -
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     Required.
+    :vartype id: str
+    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     "Microsoft.Storage/storageAccounts". Required.
+    :vartype type: str
+    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+     information.
+    :vartype system_data: ~azure.mgmt.spheremsrest.models.SystemData
+    :ivar properties: The resource-specific properties for this resource.
+    :vartype properties: ~azure.mgmt.spheremsrest.models.ProductProperties
+    """
+
+    _validation = {
+        "id": {"required": True},
+        "type": {"required": True},
+    }
+
+    _attribute_map = {
+        "id": {"key": "id", "type": "str"},
+        "type": {"key": "type", "type": "str"},
+        "system_data": {"key": "systemData", "type": "SystemData"},
+        "properties": {"key": "properties", "type": "ProductProperties"},
+    }
+
+    def __init__(
+        self,
+        *,
+        id: str,  # pylint: disable=redefined-builtin
+        type: str,
+        system_data: Optional["_models.SystemData"] = None,
+        properties: Optional["_models.ProductProperties"] = None,
+        **kwargs: Any
+    ) -> None:
+        """
+        :keyword id: Fully qualified resource ID for the resource. Ex -
+         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+         Required.
+        :paramtype id: str
+        :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+         "Microsoft.Storage/storageAccounts". Required.
+        :paramtype type: str
+        :keyword system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+         information.
+        :paramtype system_data: ~azure.mgmt.spheremsrest.models.SystemData
+        :keyword properties: The resource-specific properties for this resource.
+        :paramtype properties: ~azure.mgmt.spheremsrest.models.ProductProperties
+        """
+        super().__init__(id=id, type=type, system_data=system_data, **kwargs)
+        self.properties = properties
+
+
 class ProductListResult(_serialization.Model):
     """The response of a Product list operation.
 
     All required parameters must be populated in order to send to Azure.
 
     :ivar value: The Product items on this page. Required.
-    :vartype value: list[~azure.mgmt.spheremsrest.models.ProxyResource]
+    :vartype value: list[~azure.mgmt.spheremsrest.models.Product]
     :ivar next_link: The link to the next page of items.
     :vartype next_link: str
     """
@@ -1118,20 +1900,62 @@ class ProductListResult(_serialization.Model):
     }
 
     _attribute_map = {
-        "value": {"key": "value", "type": "[ProxyResource]"},
+        "value": {"key": "value", "type": "[Product]"},
         "next_link": {"key": "nextLink", "type": "str"},
     }
 
-    def __init__(self, *, value: List["_models.ProxyResource"], next_link: Optional[str] = None, **kwargs: Any) -> None:
+    def __init__(self, *, value: List["_models.Product"], next_link: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword value: The Product items on this page. Required.
-        :paramtype value: list[~azure.mgmt.spheremsrest.models.ProxyResource]
+        :paramtype value: list[~azure.mgmt.spheremsrest.models.Product]
         :keyword next_link: The link to the next page of items.
         :paramtype next_link: str
         """
         super().__init__(**kwargs)
         self.value = value
         self.next_link = next_link
+
+
+class ProductProperties(_serialization.Model):
+    """The properties of product.
+
+    Variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar description: Description of the product. Required.
+    :vartype description: str
+    :ivar provisioning_state: The status of the last operation. Known values are: "Succeeded",
+     "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
+    :vartype provisioning_state: str or ~azure.mgmt.spheremsrest.models.ProvisioningState
+    """
+
+    _validation = {
+        "description": {"required": True},
+    }
+
+    _attribute_map = {
+        "description": {"key": "description", "type": "str"},
+        "provisioning_state": {"key": "provisioningState", "type": "str"},
+    }
+
+    def __init__(
+        self,
+        *,
+        description: str,
+        provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = None,
+        **kwargs: Any
+    ) -> None:
+        """
+        :keyword description: Description of the product. Required.
+        :paramtype description: str
+        :keyword provisioning_state: The status of the last operation. Known values are: "Succeeded",
+         "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
+        :paramtype provisioning_state: str or ~azure.mgmt.spheremsrest.models.ProvisioningState
+        """
+        super().__init__(**kwargs)
+        self.description = description
+        self.provisioning_state = provisioning_state
 
 
 class ProductUpdate(_serialization.Model):
@@ -1275,120 +2099,6 @@ class ProofOfPossessionNonceResponse(CertificateProperties):
         )
 
 
-class ProxyResourceBase(ArmResource):
-    """The base proxy resource.
-
-    Variables are only populated by the server, and will be ignored when sending a request.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-     Required.
-    :vartype id: str
-    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts". Required.
-    :vartype type: str
-    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-     information.
-    :vartype system_data: ~azure.mgmt.spheremsrest.models.SystemData
-    """
-
-    _validation = {
-        "id": {"required": True},
-        "type": {"required": True},
-    }
-
-    _attribute_map = {
-        "id": {"key": "id", "type": "str"},
-        "type": {"key": "type", "type": "str"},
-        "system_data": {"key": "systemData", "type": "SystemData"},
-    }
-
-    def __init__(
-        self,
-        *,
-        id: str,  # pylint: disable=redefined-builtin
-        type: str,
-        system_data: Optional["_models.SystemData"] = None,
-        **kwargs: Any
-    ) -> None:
-        """
-        :keyword id: Fully qualified resource ID for the resource. Ex -
-         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-         Required.
-        :paramtype id: str
-        :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-         "Microsoft.Storage/storageAccounts". Required.
-        :paramtype type: str
-        :keyword system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-         information.
-        :paramtype system_data: ~azure.mgmt.spheremsrest.models.SystemData
-        """
-        super().__init__(id=id, type=type, system_data=system_data, **kwargs)
-
-
-class ProxyResource(ProxyResourceBase):
-    """Concrete proxy resource types can be created by aliasing this type using a specific property
-    type.
-
-    Variables are only populated by the server, and will be ignored when sending a request.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-     Required.
-    :vartype id: str
-    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts". Required.
-    :vartype type: str
-    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-     information.
-    :vartype system_data: ~azure.mgmt.spheremsrest.models.SystemData
-    :ivar properties: The resource-specific properties for this resource.
-    :vartype properties: ~azure.mgmt.spheremsrest.models.DeviceProperties
-    """
-
-    _validation = {
-        "id": {"required": True},
-        "type": {"required": True},
-    }
-
-    _attribute_map = {
-        "id": {"key": "id", "type": "str"},
-        "type": {"key": "type", "type": "str"},
-        "system_data": {"key": "systemData", "type": "SystemData"},
-        "properties": {"key": "properties", "type": "DeviceProperties"},
-    }
-
-    def __init__(
-        self,
-        *,
-        id: str,  # pylint: disable=redefined-builtin
-        type: str,
-        system_data: Optional["_models.SystemData"] = None,
-        properties: Optional["_models.DeviceProperties"] = None,
-        **kwargs: Any
-    ) -> None:
-        """
-        :keyword id: Fully qualified resource ID for the resource. Ex -
-         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-         Required.
-        :paramtype id: str
-        :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-         "Microsoft.Storage/storageAccounts". Required.
-        :paramtype type: str
-        :keyword system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-         information.
-        :paramtype system_data: ~azure.mgmt.spheremsrest.models.SystemData
-        :keyword properties: The resource-specific properties for this resource.
-        :paramtype properties: ~azure.mgmt.spheremsrest.models.DeviceProperties
-        """
-        super().__init__(id=id, type=type, system_data=system_data, **kwargs)
-        self.properties = properties
-
-
 class SignedCapabilityImageResponse(_serialization.Model):
     """Signed device capability image response.
 
@@ -1475,145 +2185,3 @@ class SystemData(_serialization.Model):
         self.last_modified_by = last_modified_by
         self.last_modified_by_type = last_modified_by_type
         self.last_modified_at = last_modified_at
-
-
-class TrackedResourceBase(ArmResource):
-    """The resource model definition for an Azure Resource Manager tracked top level resource.
-
-    Variables are only populated by the server, and will be ignored when sending a request.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-     Required.
-    :vartype id: str
-    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts". Required.
-    :vartype type: str
-    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-     information.
-    :vartype system_data: ~azure.mgmt.spheremsrest.models.SystemData
-    :ivar location: The geo-location where the resource lives. Required.
-    :vartype location: str
-    :ivar tags: Resource tags.
-    :vartype tags: dict[str, str]
-    """
-
-    _validation = {
-        "id": {"required": True},
-        "type": {"required": True},
-        "location": {"required": True},
-    }
-
-    _attribute_map = {
-        "id": {"key": "id", "type": "str"},
-        "type": {"key": "type", "type": "str"},
-        "system_data": {"key": "systemData", "type": "SystemData"},
-        "location": {"key": "location", "type": "str"},
-        "tags": {"key": "tags", "type": "{str}"},
-    }
-
-    def __init__(
-        self,
-        *,
-        id: str,  # pylint: disable=redefined-builtin
-        type: str,
-        location: str,
-        system_data: Optional["_models.SystemData"] = None,
-        tags: Optional[Dict[str, str]] = None,
-        **kwargs: Any
-    ) -> None:
-        """
-        :keyword id: Fully qualified resource ID for the resource. Ex -
-         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-         Required.
-        :paramtype id: str
-        :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-         "Microsoft.Storage/storageAccounts". Required.
-        :paramtype type: str
-        :keyword system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-         information.
-        :paramtype system_data: ~azure.mgmt.spheremsrest.models.SystemData
-        :keyword location: The geo-location where the resource lives. Required.
-        :paramtype location: str
-        :keyword tags: Resource tags.
-        :paramtype tags: dict[str, str]
-        """
-        super().__init__(id=id, type=type, system_data=system_data, **kwargs)
-        self.location = location
-        self.tags = tags
-
-
-class TrackedResource(TrackedResourceBase):
-    """Concrete tracked resource types can be created by aliasing this type using a specific property
-    type.
-
-    Variables are only populated by the server, and will be ignored when sending a request.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-     Required.
-    :vartype id: str
-    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts". Required.
-    :vartype type: str
-    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-     information.
-    :vartype system_data: ~azure.mgmt.spheremsrest.models.SystemData
-    :ivar location: The geo-location where the resource lives. Required.
-    :vartype location: str
-    :ivar tags: Resource tags.
-    :vartype tags: dict[str, str]
-    :ivar properties: The resource-specific properties for this resource.
-    :vartype properties: ~azure.mgmt.spheremsrest.models.CatalogProperties
-    """
-
-    _validation = {
-        "id": {"required": True},
-        "type": {"required": True},
-        "location": {"required": True},
-    }
-
-    _attribute_map = {
-        "id": {"key": "id", "type": "str"},
-        "type": {"key": "type", "type": "str"},
-        "system_data": {"key": "systemData", "type": "SystemData"},
-        "location": {"key": "location", "type": "str"},
-        "tags": {"key": "tags", "type": "{str}"},
-        "properties": {"key": "properties", "type": "CatalogProperties"},
-    }
-
-    def __init__(
-        self,
-        *,
-        id: str,  # pylint: disable=redefined-builtin
-        type: str,
-        location: str,
-        system_data: Optional["_models.SystemData"] = None,
-        tags: Optional[Dict[str, str]] = None,
-        properties: Optional["_models.CatalogProperties"] = None,
-        **kwargs: Any
-    ) -> None:
-        """
-        :keyword id: Fully qualified resource ID for the resource. Ex -
-         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-         Required.
-        :paramtype id: str
-        :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-         "Microsoft.Storage/storageAccounts". Required.
-        :paramtype type: str
-        :keyword system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-         information.
-        :paramtype system_data: ~azure.mgmt.spheremsrest.models.SystemData
-        :keyword location: The geo-location where the resource lives. Required.
-        :paramtype location: str
-        :keyword tags: Resource tags.
-        :paramtype tags: dict[str, str]
-        :keyword properties: The resource-specific properties for this resource.
-        :paramtype properties: ~azure.mgmt.spheremsrest.models.CatalogProperties
-        """
-        super().__init__(id=id, type=type, system_data=system_data, location=location, tags=tags, **kwargs)
-        self.properties = properties
