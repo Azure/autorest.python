@@ -7,41 +7,65 @@
 # --------------------------------------------------------------------------
 
 from ._models import ArmResource
+from ._models import Catalog
+from ._models import CatalogListResult
 from ._models import CatalogProperties
+from ._models import CatalogUpdate
+from ._models import Certificate
 from ._models import CertificateChainResponse
+from ._models import CertificateListResult
 from ._models import CertificateProperties
 from ._models import ClaimDevicesRequest
 from ._models import CountDeviceResponse
 from ._models import CountElementsResponse
+from ._models import Deployment
+from ._models import DeploymentListResult
+from ._models import DeploymentProperties
+from ._models import Device
+from ._models import DeviceGroup
+from ._models import DeviceGroupListResult
+from ._models import DeviceGroupProperties
+from ._models import DeviceGroupUpdate
+from ._models import DeviceGroupUpdateProperties
 from ._models import DeviceInsight
+from ._models import DeviceListResult
+from ._models import DeviceProperties
+from ._models import DeviceUpdate
+from ._models import DeviceUpdateProperties
 from ._models import ErrorAdditionalInfo
 from ._models import ErrorDetail
 from ._models import ErrorResponse
 from ._models import GenerateCapabilityImageRequest
+from ._models import Image
+from ._models import ImageListResult
 from ._models import ImageProperties
 from ._models import ListDeviceGroupsRequest
 from ._models import Operation
 from ._models import OperationDisplay
-from ._models import OperationListResult
-from ._models import Page
+from ._models import PagedDeviceInsight
+from ._models import PagedOperation
+from ._models import Product
+from ._models import ProductListResult
+from ._models import ProductProperties
+from ._models import ProductUpdate
+from ._models import ProductUpdateProperties
 from ._models import ProofOfPossessionNonceRequest
 from ._models import ProofOfPossessionNonceResponse
-from ._models import ProxyResource
 from ._models import ProxyResourceBase
-from ._models import ResourceListResult
-from ._models import ResourceUpdateModel
 from ._models import SignedCapabilityImageResponse
 from ._models import SystemData
-from ._models import TrackedResource
 from ._models import TrackedResourceBase
 
 from ._enums import ActionType
+from ._enums import AllowCrashDumpCollection
 from ._enums import CapabilityType
 from ._enums import CertificateStatus
 from ._enums import ImageType
+from ._enums import OSFeedType
 from ._enums import Origin
 from ._enums import ProvisioningState
 from ._enums import RegionalDataBoundary
+from ._enums import UpdatePolicy
 from ._enums import createdByType
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
@@ -49,40 +73,64 @@ from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
     "ArmResource",
+    "Catalog",
+    "CatalogListResult",
     "CatalogProperties",
+    "CatalogUpdate",
+    "Certificate",
     "CertificateChainResponse",
+    "CertificateListResult",
     "CertificateProperties",
     "ClaimDevicesRequest",
     "CountDeviceResponse",
     "CountElementsResponse",
+    "Deployment",
+    "DeploymentListResult",
+    "DeploymentProperties",
+    "Device",
+    "DeviceGroup",
+    "DeviceGroupListResult",
+    "DeviceGroupProperties",
+    "DeviceGroupUpdate",
+    "DeviceGroupUpdateProperties",
     "DeviceInsight",
+    "DeviceListResult",
+    "DeviceProperties",
+    "DeviceUpdate",
+    "DeviceUpdateProperties",
     "ErrorAdditionalInfo",
     "ErrorDetail",
     "ErrorResponse",
     "GenerateCapabilityImageRequest",
+    "Image",
+    "ImageListResult",
     "ImageProperties",
     "ListDeviceGroupsRequest",
     "Operation",
     "OperationDisplay",
-    "OperationListResult",
-    "Page",
+    "PagedDeviceInsight",
+    "PagedOperation",
+    "Product",
+    "ProductListResult",
+    "ProductProperties",
+    "ProductUpdate",
+    "ProductUpdateProperties",
     "ProofOfPossessionNonceRequest",
     "ProofOfPossessionNonceResponse",
-    "ProxyResource",
     "ProxyResourceBase",
-    "ResourceListResult",
-    "ResourceUpdateModel",
     "SignedCapabilityImageResponse",
     "SystemData",
-    "TrackedResource",
     "TrackedResourceBase",
     "ActionType",
+    "AllowCrashDumpCollection",
     "CapabilityType",
     "CertificateStatus",
     "ImageType",
+    "OSFeedType",
     "Origin",
     "ProvisioningState",
     "RegionalDataBoundary",
+    "UpdatePolicy",
     "createdByType",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])

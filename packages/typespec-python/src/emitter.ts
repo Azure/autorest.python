@@ -474,9 +474,9 @@ function addPagingInformation(context: SdkContext, operation: Operation, emitted
     if (!isAzureCoreModel(pagedResult.modelType)) {
         getType(context, pagedResult.modelType)["pageResultModel"] = true;
     }
-    emittedOperation["itemName"] = pagedResult.itemsPath;
+    emittedOperation["itemName"] = pagedResult.itemsSegments ? pagedResult.itemsSegments[0] : null;
     emittedOperation["itemType"] = getType(context, pagedResult.itemsProperty!.type);
-    emittedOperation["continuationTokenName"] = pagedResult.nextLinkPath;
+    emittedOperation["continuationTokenName"] = pagedResult.nextLinkSegments ? pagedResult.nextLinkSegments[0] : null;
     emittedOperation["exposeStreamKeyword"] = false;
 }
 
