@@ -85,8 +85,6 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         request_builders: List[Union[RequestBuilder, OverloadedRequestBuilder]] = []
         for og_group in self.yaml_data["operationGroups"]:
             for operation_yaml in og_group["operations"]:
-                if operation_yaml["discriminator"] in ("lro", "lropaging"):
-                    continue
                 request_builder = get_request_builder(
                     operation_yaml,
                     code_model=self.code_model,
