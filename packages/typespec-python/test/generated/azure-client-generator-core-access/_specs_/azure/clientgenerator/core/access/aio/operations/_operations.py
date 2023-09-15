@@ -186,7 +186,7 @@ class InternalOperationOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def no_decorator_in_internal(  # pylint: disable=protected-access
+    async def _no_decorator_in_internal(  # pylint: disable=protected-access
         self, *, name: str, **kwargs: Any
     ) -> _models._models.NoDecoratorModelInInternal:
         """no_decorator_in_internal.
@@ -248,7 +248,7 @@ class InternalOperationOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def internal_decorator_in_internal(  # pylint: disable=protected-access
+    async def _internal_decorator_in_internal(  # pylint: disable=protected-access
         self, *, name: str, **kwargs: Any
     ) -> _models._models.InternalDecoratorModelInInternal:
         """internal_decorator_in_internal.
@@ -310,7 +310,9 @@ class InternalOperationOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def public_decorator_in_internal(self, *, name: str, **kwargs: Any) -> _models.PublicDecoratorModelInInternal:
+    async def _public_decorator_in_internal(
+        self, *, name: str, **kwargs: Any
+    ) -> _models.PublicDecoratorModelInInternal:
         """public_decorator_in_internal.
 
         :keyword name: Required.
@@ -439,7 +441,7 @@ class SharedModelInOperationOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def internal(self, *, name: str, **kwargs: Any) -> _models.SharedModel:
+    async def _internal(self, *, name: str, **kwargs: Any) -> _models.SharedModel:
         """internal.
 
         :keyword name: Required.
@@ -512,7 +514,7 @@ class RelativeModelInOperationOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def operation(  # pylint: disable=protected-access
+    async def _operation(  # pylint: disable=protected-access
         self, *, name: str, **kwargs: Any
     ) -> _models._models.OuterModel:
         """Expected query parameter: name=:code:`<any string>`
@@ -580,7 +582,7 @@ class RelativeModelInOperationOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def discriminator(  # pylint: disable=protected-access
+    async def _discriminator(  # pylint: disable=protected-access
         self, *, kind: str, **kwargs: Any
     ) -> _models._models.AbstractModel:
         """Expected query parameter: kind=:code:`<any string>`

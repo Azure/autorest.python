@@ -37,6 +37,7 @@ import {
     isInternal,
     getPropertyNames,
     getEffectivePayloadType,
+    getAccess,
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
@@ -458,8 +459,8 @@ function addLroInformation(
     const lroMeta = getLroMetadata(context.program, tspOperation);
     if (!isAzureCoreModel(lroMeta!.logicalResult)) {
         emittedOperation["responses"][0]["type"] = getType(context, lroMeta!.logicalResult);
-        if (lroMeta!.finalStep?.target.kind === "ModelProperty") {
-            emittedOperation["responses"][0]["resultProperty"] = lroMeta!.finalStep.target.name;
+        if (lroMeta!.logicalPath) {
+            emittedOperation["responses"][0]["resultProperty"] = lroMeta!.logicalPath;
         }
         addAcceptParameter(context, tspOperation, emittedOperation["parameters"]);
         addAcceptParameter(context, lroMeta!.operation, emittedOperation["initialOperation"]["parameters"]);
@@ -648,7 +649,7 @@ function emitBasicOperation(
             wantTracing: true,
             exposeStreamKeyword: true,
             abstract: isAbstract(httpOperation),
-            internal: isInternal(context, operation),
+            internal: isInternal(context, operation) || getAccess(context, operation) === "internal",
         },
     ];
 }
