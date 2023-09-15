@@ -15,6 +15,7 @@ azure-mgmt-core==1.3.2
 -e ./Expected/AcceptanceTests/HeadVersionTolerant
 -e ./Expected/AcceptanceTests/HeadExceptionsVersionTolerant
 -e ./Expected/AcceptanceTests/LroVersionTolerant
+-e ./Expected/AcceptanceTests/LroPagingVersionTolerant
 -e ./Expected/AcceptanceTests/LroWithParameterizedEndpointsVersionTolerant
 -e ./Expected/AcceptanceTests/PagingVersionTolerant
 -e ./Expected/AcceptanceTests/StorageManagementClientVersionTolerant
