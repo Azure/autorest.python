@@ -476,7 +476,9 @@ function addPagingInformation(context: SdkContext, operation: Operation, emitted
     }
     emittedOperation["itemName"] = pagedResult.itemsSegments ? pagedResult.itemsSegments.join(".") : null;
     emittedOperation["itemType"] = getType(context, pagedResult.itemsProperty!.type);
-    emittedOperation["continuationTokenName"] = pagedResult.nextLinkSegments ? pagedResult.nextLinkSegments.join(".") : null;
+    emittedOperation["continuationTokenName"] = pagedResult.nextLinkSegments
+        ? pagedResult.nextLinkSegments.join(".")
+        : null;
     emittedOperation["exposeStreamKeyword"] = false;
 }
 
