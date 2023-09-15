@@ -24,10 +24,14 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMethod
 from azure.core.polling.async_base_polling import AsyncLROBasePolling
 from azure.core.rest import AsyncHttpResponse, HttpRequest
+from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ...operations._operations import build_question_answering_projects_update_qnas_request
+from ...operations._operations import (
+    build_question_answering_projects_get_qnas_request,
+    build_question_answering_projects_update_qnas_request,
+)
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -54,6 +58,198 @@ class QuestionAnsweringProjectsOperations:
         self._config = input_args.pop(0) if input_args else kwargs.pop("config")
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+    @distributed_trace
+    def get_qnas(
+        self,
+        project_name: str,
+        *,
+        source: Optional[str] = None,
+        top: Optional[int] = None,
+        skip: Optional[int] = None,
+        **kwargs: Any
+    ) -> AsyncIterable[JSON]:
+        """Gets all the QnAs of a project.
+
+        Gets all the QnAs of a project.
+
+        :param project_name: The name of the project to use. Required.
+        :type project_name: str
+        :keyword source: Source of the QnA. Default value is None.
+        :paramtype source: str
+        :keyword top: The maximum number of resources to return from the collection. Default value is
+         None.
+        :paramtype top: int
+        :keyword skip: An offset into the collection of the first resource to be returned. Default
+         value is None.
+        :paramtype skip: int
+        :return: An iterator like instance of JSON object
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "activeLearningSuggestions": [
+                        {
+                            "clusterHead": "str",  # Optional. Question chosen as the
+                              head of suggested questions cluster by Active Learning clustering
+                              algorithm.
+                            "suggestedQuestions": [
+                                {
+                                    "autoSuggestedCount": 0,  # Optional. The
+                                      number of times the question was suggested automatically by the
+                                      Active Learning algorithm.
+                                    "question": "str",  # Optional. Question
+                                      suggested by the Active Learning feature.
+                                    "userSuggestedCount": 0  # Optional. The
+                                      number of times the question was suggested explicitly by the
+                                      user.
+                                }
+                            ]
+                        }
+                    ],
+                    "answer": "str",  # Optional. Answer text.
+                    "dialog": {
+                        "isContextOnly": bool,  # Optional. To mark if a prompt is relevant
+                          only with a previous question or not. If true, do not include this QnA as
+                          answer for queries without context; otherwise, ignores context and includes
+                          this QnA in answers.
+                        "prompts": [
+                            {
+                                "displayOrder": 0,  # Optional. Index of the prompt.
+                                  It is used for ordering of the prompts.
+                                "displayText": "str",  # Optional. Text displayed to
+                                  represent a follow up question prompt.
+                                "qna": {
+                                    "activeLearningSuggestions": [
+                                        {
+                                            "clusterHead": "str",  #
+                                              Optional. Question chosen as the head of suggested
+                                              questions cluster by Active Learning clustering
+                                              algorithm.
+                                            "suggestedQuestions": [
+                                                {
+                "autoSuggestedCount": 0,  # Optional. The number
+                                                      of times the question was suggested automatically
+                                                      by the Active Learning algorithm.
+                                                    "question":
+                                                      "str",  # Optional. Question suggested by the
+                                                      Active Learning feature.
+                "userSuggestedCount": 0  # Optional. The number
+                                                      of times the question was suggested explicitly by
+                                                      the user.
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "answer": "str",  # Optional. Answer text.
+                                    "dialog": ...,
+                                    "id": 0,  # Optional. Unique ID for the QnA.
+                                    "metadata": {
+                                        "str": "str"  # Optional. Metadata
+                                          associated with the answer, useful to categorize or filter
+                                          question answers.
+                                    },
+                                    "questions": [
+                                        "str"  # Optional. List of questions
+                                          associated with the answer.
+                                    ],
+                                    "source": "str"  # Optional. Source from
+                                      which QnA was indexed e.g.
+                                      https://docs.microsoft.com/en-us/azure/cognitive-services/QnAMaker/FAQs
+                                      .
+                                },
+                                "qnaId": 0  # Optional. ID of the QnA corresponding
+                                  to the prompt.
+                            }
+                        ]
+                    },
+                    "id": 0,  # Optional. Unique ID for the QnA.
+                    "lastUpdatedDateTime": "2020-02-20 00:00:00",  # Optional. Date-time when the
+                      QnA was last updated.
+                    "metadata": {
+                        "str": "str"  # Optional. Metadata associated with the answer, useful
+                          to categorize or filter question answers.
+                    },
+                    "questions": [
+                        "str"  # Optional. List of questions associated with the answer.
+                    ],
+                    "source": "str"  # Optional. Source from which QnA was indexed e.g.
+                      https://docs.microsoft.com/en-us/azure/cognitive-services/QnAMaker/FAQs .
+                }
+        """
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[JSON] = kwargs.pop("cls", None)
+
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        def prepare_request(next_link=None):
+            if not next_link:
+
+                request = build_question_answering_projects_get_qnas_request(
+                    project_name=project_name,
+                    source=source,
+                    top=top,
+                    skip=skip,
+                    api_version=self._config.api_version,
+                    headers=_headers,
+                    params=_params,
+                )
+                request.url = self._client.format_url(request.url)
+
+            else:
+                # make call to next link with the client's api-version
+                _parsed_next_link = urllib.parse.urlparse(next_link)
+                _next_request_params = case_insensitive_dict(
+                    {
+                        key: [urllib.parse.quote(v) for v in value]
+                        for key, value in urllib.parse.parse_qs(_parsed_next_link.query).items()
+                    }
+                )
+                _next_request_params["api-version"] = self._config.api_version
+                request = HttpRequest(
+                    "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
+                )
+                request.url = self._client.format_url(request.url)
+
+            return request
+
+        async def extract_data(pipeline_response):
+            deserialized = pipeline_response.http_response.json()
+            list_of_elem = deserialized["value"]
+            if cls:
+                list_of_elem = cls(list_of_elem)  # type: ignore
+            return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
+
+        async def get_next(next_link=None):
+            request = prepare_request(next_link)
+
+            _stream = False
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+                request, stream=_stream, **kwargs
+            )
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                if _stream:
+                    await response.read()  # Load the body in memory and close the socket
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response)
+
+            return pipeline_response
+
+        return AsyncItemPaged(get_next, extract_data)
 
     async def _update_qnas_initial(
         self, project_name: str, body: Union[List[JSON], IO], **kwargs: Any

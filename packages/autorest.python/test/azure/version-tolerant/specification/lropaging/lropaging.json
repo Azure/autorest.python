@@ -6,11 +6,65 @@
         "version": "2021-10-01"
     },
     "host": "localhost:3000",
-    "schemes": ["http"],
-    "produces": ["application/json"],
-    "consumes": ["application/json"],
+    "schemes": [
+        "http"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "consumes": [
+        "application/json"
+    ],
     "paths": {
         "/query-knowledgebases/projects/{projectName}/qnas": {
+            "get": {
+                "summary": "Gets all the QnAs of a project.",
+                "operationId": "QuestionAnsweringProjects_GetQnas",
+                "parameters": [
+                    {
+                        "$ref": "common.json#/parameters/ProjectNamePathParameter"
+                    },
+                    {
+                        "$ref": "common.json#/parameters/ApiVersionParameter"
+                    },
+                    {
+                        "$ref": "#/parameters/SourceFilterParameter"
+                    },
+                    {
+                        "$ref": "common.json#/parameters/TopParameter"
+                    },
+                    {
+                        "$ref": "common.json#/parameters/SkipParameter"
+                    },
+                    {
+                        "$ref": "common.json#/parameters/MaxPageSizeParameter"
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "x-ms-pageable": {
+                    "nextLinkName": "nextLink",
+                    "itemName": "value"
+                },
+                "responses": {
+                    "200": {
+                        "description": "All the QnAs of a project.",
+                        "schema": {
+                            "$ref": "#/definitions/QnaAssets"
+                        }
+                    },
+                    "default": {
+                        "description": "Error response.",
+                        "schema": {
+                            "$ref": "common.json#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            },
             "patch": {
                 "summary": "Updates the QnAs of a project.",
                 "operationId": "QuestionAnsweringProjects_UpdateQnas",

@@ -140,7 +140,7 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
             return FileImport()
         file_import = self._imports_shared(async_mode, **kwargs)
         file_import.merge(super().imports(async_mode, **kwargs))
-        if self.code_model.options["tracing"] and self.want_tracing and not async_mode:
+        if self.code_model.options["tracing"] and self.want_tracing:
             file_import.add_submodule_import(
                 "azure.core.tracing.decorator",
                 "distributed_trace",
