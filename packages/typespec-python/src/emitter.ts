@@ -37,6 +37,7 @@ import {
     isInternal,
     getPropertyNames,
     getEffectivePayloadType,
+    getAccess,
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
@@ -646,7 +647,7 @@ function emitBasicOperation(
             wantTracing: true,
             exposeStreamKeyword: true,
             abstract: isAbstract(httpOperation),
-            internal: isInternal(context, operation),
+            internal: isInternal(context, operation) || getAccess(context, operation) === "internal",
         },
     ];
 }
