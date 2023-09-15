@@ -459,8 +459,8 @@ function addLroInformation(
     const lroMeta = getLroMetadata(context.program, tspOperation);
     if (!isAzureCoreModel(lroMeta!.logicalResult)) {
         emittedOperation["responses"][0]["type"] = getType(context, lroMeta!.logicalResult);
-        if (lroMeta!.finalStep?.target.kind === "ModelProperty") {
-            emittedOperation["responses"][0]["resultProperty"] = lroMeta!.finalStep.target.name;
+        if (lroMeta!.logicalPath) {
+            emittedOperation["responses"][0]["resultProperty"] = lroMeta!.logicalPath;
         }
         addAcceptParameter(context, tspOperation, emittedOperation["parameters"]);
         addAcceptParameter(context, lroMeta!.operation, emittedOperation["initialOperation"]["parameters"]);
