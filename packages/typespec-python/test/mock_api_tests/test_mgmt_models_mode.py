@@ -11,7 +11,7 @@ from azure.mgmt.spheremsrest import AzureSphereClient as DpgModelClient
 def test_client_signature():
     for item in (MsrestModelClient, DpgModelClient):
         signatures = inspect.signature(item).parameters
-        expected_signatures = ["subscription_id", "credential", "base_url", "kwargs"]
+        expected_signatures = ["credential", "subscription_id", "base_url", "kwargs"]
 
         assert list(signatures.keys()) == expected_signatures
         assert signatures["subscription_id"].kind == inspect.Parameter.POSITIONAL_OR_KEYWORD
