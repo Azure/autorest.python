@@ -81,7 +81,7 @@ class TrackedResourceBase(ArmResource):
     All required parameters must be populated in order to send to Azure.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
      Required.
     :vartype id: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -122,7 +122,7 @@ class TrackedResourceBase(ArmResource):
     ) -> None:
         """
         :keyword id: Fully qualified resource ID for the resource. Ex -
-         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
          Required.
         :paramtype id: str
         :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -149,7 +149,7 @@ class Catalog(TrackedResourceBase):
     All required parameters must be populated in order to send to Azure.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
      Required.
     :vartype id: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -194,7 +194,7 @@ class Catalog(TrackedResourceBase):
     ) -> None:
         """
         :keyword id: Fully qualified resource ID for the resource. Ex -
-         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
          Required.
         :paramtype id: str
         :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -300,7 +300,7 @@ class ProxyResourceBase(ArmResource):
     All required parameters must be populated in order to send to Azure.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
      Required.
     :vartype id: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -332,7 +332,7 @@ class ProxyResourceBase(ArmResource):
     ) -> None:
         """
         :keyword id: Fully qualified resource ID for the resource. Ex -
-         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
          Required.
         :paramtype id: str
         :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -353,7 +353,7 @@ class Certificate(ProxyResourceBase):
     All required parameters must be populated in order to send to Azure.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
      Required.
     :vartype id: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -389,7 +389,7 @@ class Certificate(ProxyResourceBase):
     ) -> None:
         """
         :keyword id: Fully qualified resource ID for the resource. Ex -
-         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
          Required.
         :paramtype id: str
         :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -617,7 +617,7 @@ class Deployment(ProxyResourceBase):
     All required parameters must be populated in order to send to Azure.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
      Required.
     :vartype id: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -653,7 +653,7 @@ class Deployment(ProxyResourceBase):
     ) -> None:
         """
         :keyword id: Fully qualified resource ID for the resource. Ex -
-         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
          Required.
         :paramtype id: str
         :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -759,7 +759,7 @@ class Device(ProxyResourceBase):
     All required parameters must be populated in order to send to Azure.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
      Required.
     :vartype id: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -795,7 +795,7 @@ class Device(ProxyResourceBase):
     ) -> None:
         """
         :keyword id: Fully qualified resource ID for the resource. Ex -
-         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
          Required.
         :paramtype id: str
         :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -819,7 +819,7 @@ class DeviceGroup(ProxyResourceBase):
     All required parameters must be populated in order to send to Azure.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
      Required.
     :vartype id: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -855,7 +855,7 @@ class DeviceGroup(ProxyResourceBase):
     ) -> None:
         """
         :keyword id: Fully qualified resource ID for the resource. Ex -
-         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
          Required.
         :paramtype id: str
         :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -1436,7 +1436,7 @@ class Image(ProxyResourceBase):
     All required parameters must be populated in order to send to Azure.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
      Required.
     :vartype id: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -1472,7 +1472,7 @@ class Image(ProxyResourceBase):
     ) -> None:
         """
         :keyword id: Fully qualified resource ID for the resource. Ex -
-         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
          Required.
         :paramtype id: str
         :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -1923,26 +1923,11 @@ class ProductProperties(_serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-<<<<<<< HEAD
-    :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-     Required.
-    :vartype id: str
-    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts". Required.
-    :vartype type: str
-    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-     information.
-    :vartype system_data: ~azure.mgmt.spheremsrest.models.SystemData
-    :ivar properties: The resource-specific properties for this resource.
-    :vartype properties: ~azure.mgmt.spheremsrest.models.ImageProperties
-=======
     :ivar description: Description of the product. Required.
     :vartype description: str
     :ivar provisioning_state: The status of the last operation. Known values are: "Succeeded",
      "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
     :vartype provisioning_state: str or ~azure.mgmt.spheremsrest.models.ProvisioningState
->>>>>>> 9df7332769b27709f237bb9d0a78920cfb4109c6
     """
 
     _validation = {
@@ -1962,20 +1947,6 @@ class ProductProperties(_serialization.Model):
         **kwargs: Any
     ) -> None:
         """
-<<<<<<< HEAD
-        :keyword id: Fully qualified resource ID for the resource. Ex -
-         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-         Required.
-        :paramtype id: str
-        :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-         "Microsoft.Storage/storageAccounts". Required.
-        :paramtype type: str
-        :keyword system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-         information.
-        :paramtype system_data: ~azure.mgmt.spheremsrest.models.SystemData
-        :keyword properties: The resource-specific properties for this resource.
-        :paramtype properties: ~azure.mgmt.spheremsrest.models.ImageProperties
-=======
         :keyword description: Description of the product. Required.
         :paramtype description: str
         :keyword provisioning_state: The status of the last operation. Known values are: "Succeeded",
@@ -1999,7 +1970,6 @@ class ProductUpdate(_serialization.Model):
     }
 
     def __init__(self, *, properties: Optional["_models.ProductUpdateProperties"] = None, **kwargs: Any) -> None:
->>>>>>> 9df7332769b27709f237bb9d0a78920cfb4109c6
         """
         :keyword properties:
         :paramtype properties: ~azure.mgmt.spheremsrest.models.ProductUpdateProperties
@@ -2215,148 +2185,3 @@ class SystemData(_serialization.Model):
         self.last_modified_by = last_modified_by
         self.last_modified_by_type = last_modified_by_type
         self.last_modified_at = last_modified_at
-<<<<<<< HEAD
-
-
-class TrackedResourceBase(ArmResource):
-    """The resource model definition for an Azure Resource Manager tracked top level resource.
-
-    Variables are only populated by the server, and will be ignored when sending a request.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-     Required.
-    :vartype id: str
-    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts". Required.
-    :vartype type: str
-    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-     information.
-    :vartype system_data: ~azure.mgmt.spheremsrest.models.SystemData
-    :ivar location: The geo-location where the resource lives. Required.
-    :vartype location: str
-    :ivar tags: Resource tags.
-    :vartype tags: dict[str, str]
-    """
-
-    _validation = {
-        "id": {"required": True},
-        "type": {"required": True},
-        "location": {"required": True},
-    }
-
-    _attribute_map = {
-        "id": {"key": "id", "type": "str"},
-        "type": {"key": "type", "type": "str"},
-        "system_data": {"key": "systemData", "type": "SystemData"},
-        "location": {"key": "location", "type": "str"},
-        "tags": {"key": "tags", "type": "{str}"},
-    }
-
-    def __init__(
-        self,
-        *,
-        id: str,  # pylint: disable=redefined-builtin
-        type: str,
-        location: str,
-        system_data: Optional["_models.SystemData"] = None,
-        tags: Optional[Dict[str, str]] = None,
-        **kwargs: Any
-    ) -> None:
-        """
-        :keyword id: Fully qualified resource ID for the resource. Ex -
-         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-         Required.
-        :paramtype id: str
-        :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-         "Microsoft.Storage/storageAccounts". Required.
-        :paramtype type: str
-        :keyword system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-         information.
-        :paramtype system_data: ~azure.mgmt.spheremsrest.models.SystemData
-        :keyword location: The geo-location where the resource lives. Required.
-        :paramtype location: str
-        :keyword tags: Resource tags.
-        :paramtype tags: dict[str, str]
-        """
-        super().__init__(id=id, type=type, system_data=system_data, **kwargs)
-        self.location = location
-        self.tags = tags
-
-
-class TrackedResource(TrackedResourceBase):
-    """Concrete tracked resource types can be created by aliasing this type using a specific property
-    type.
-
-    Variables are only populated by the server, and will be ignored when sending a request.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-     Required.
-    :vartype id: str
-    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts". Required.
-    :vartype type: str
-    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-     information.
-    :vartype system_data: ~azure.mgmt.spheremsrest.models.SystemData
-    :ivar location: The geo-location where the resource lives. Required.
-    :vartype location: str
-    :ivar tags: Resource tags.
-    :vartype tags: dict[str, str]
-    :ivar properties: The resource-specific properties for this resource.
-    :vartype properties: ~azure.mgmt.spheremsrest.models.CatalogProperties
-    """
-
-    _validation = {
-        "id": {"required": True},
-        "type": {"required": True},
-        "location": {"required": True},
-    }
-
-    _attribute_map = {
-        "id": {"key": "id", "type": "str"},
-        "type": {"key": "type", "type": "str"},
-        "system_data": {"key": "systemData", "type": "SystemData"},
-        "location": {"key": "location", "type": "str"},
-        "tags": {"key": "tags", "type": "{str}"},
-        "properties": {"key": "properties", "type": "CatalogProperties"},
-    }
-
-    def __init__(
-        self,
-        *,
-        id: str,  # pylint: disable=redefined-builtin
-        type: str,
-        location: str,
-        system_data: Optional["_models.SystemData"] = None,
-        tags: Optional[Dict[str, str]] = None,
-        properties: Optional["_models.CatalogProperties"] = None,
-        **kwargs: Any
-    ) -> None:
-        """
-        :keyword id: Fully qualified resource ID for the resource. Ex -
-         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-         Required.
-        :paramtype id: str
-        :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-         "Microsoft.Storage/storageAccounts". Required.
-        :paramtype type: str
-        :keyword system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-         information.
-        :paramtype system_data: ~azure.mgmt.spheremsrest.models.SystemData
-        :keyword location: The geo-location where the resource lives. Required.
-        :paramtype location: str
-        :keyword tags: Resource tags.
-        :paramtype tags: dict[str, str]
-        :keyword properties: The resource-specific properties for this resource.
-        :paramtype properties: ~azure.mgmt.spheremsrest.models.CatalogProperties
-        """
-        super().__init__(id=id, type=type, system_data=system_data, location=location, tags=tags, **kwargs)
-        self.properties = properties
-=======
->>>>>>> 9df7332769b27709f237bb9d0a78920cfb4109c6

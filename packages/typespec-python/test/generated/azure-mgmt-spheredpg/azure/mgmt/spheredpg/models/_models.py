@@ -56,7 +56,7 @@ class TrackedResourceBase(ArmResource):
     All required parameters must be populated in order to send to Azure.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
      Required.
     :vartype id: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -104,7 +104,7 @@ class Catalog(TrackedResourceBase):
     All required parameters must be populated in order to send to Azure.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
      Required.
     :vartype id: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -199,7 +199,7 @@ class ProxyResourceBase(ArmResource):
     All required parameters must be populated in order to send to Azure.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
      Required.
     :vartype id: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -219,7 +219,7 @@ class Certificate(ProxyResourceBase):
     All required parameters must be populated in order to send to Azure.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
      Required.
     :vartype id: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -408,7 +408,7 @@ class Deployment(ProxyResourceBase):
     All required parameters must be populated in order to send to Azure.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
      Required.
     :vartype id: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -501,7 +501,7 @@ class Device(ProxyResourceBase):
     All required parameters must be populated in order to send to Azure.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
      Required.
     :vartype id: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -544,7 +544,7 @@ class DeviceGroup(ProxyResourceBase):
     All required parameters must be populated in order to send to Azure.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
      Required.
     :vartype id: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -1046,7 +1046,7 @@ class Image(ProxyResourceBase):
     All required parameters must be populated in order to send to Azure.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
      Required.
     :vartype id: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -1313,7 +1313,7 @@ class Product(ProxyResourceBase):
     All required parameters must be populated in order to send to Azure.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
      Required.
     :vartype id: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -1388,25 +1388,12 @@ class ProductProperties(_model_base.Model):
     def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
-<<<<<<< HEAD
-    :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-     Required.
-    :vartype id: str
-    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts". Required.
-    :vartype type: str
-    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-     information.
-    :vartype system_data: ~azure.mgmt.spheredpg.models.SystemData
-=======
 
 class ProductUpdate(_model_base.Model):
     """The type used for update operations of the Product.
 
     :ivar properties:
     :vartype properties: ~azure.mgmt.spheredpg.models.ProductUpdateProperties
->>>>>>> 9df7332769b27709f237bb9d0a78920cfb4109c6
     """
 
     properties: Optional["_models.ProductUpdateProperties"] = rest_field()
@@ -1429,27 +1416,12 @@ class ProductUpdate(_model_base.Model):
     def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
 
-<<<<<<< HEAD
-    :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-     Required.
-    :vartype id: str
-    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts". Required.
-    :vartype type: str
-    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-     information.
-    :vartype system_data: ~azure.mgmt.spheredpg.models.SystemData
-    :ivar properties: The resource-specific properties for this resource.
-    :vartype properties: ~azure.mgmt.spheredpg.models.ImageProperties
-=======
 
 class ProductUpdateProperties(_model_base.Model):
     """The updatable properties of the Product.
 
     :ivar description: Description of the product.
     :vartype description: str
->>>>>>> 9df7332769b27709f237bb9d0a78920cfb4109c6
     """
 
     description: Optional[str] = rest_field()
@@ -1581,104 +1553,3 @@ class SystemData(_model_base.Model):
      \"Application\", \"ManagedIdentity\", and \"Key\"."""
     last_modified_at: Optional[datetime.date] = rest_field(name="lastModifiedAt", visibility=["read"])
     """The timestamp of resource last modification (UTC)."""
-<<<<<<< HEAD
-
-
-class TrackedResourceBase(ArmResource):
-    """The resource model definition for an Azure Resource Manager tracked top level resource.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-     Required.
-    :vartype id: str
-    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts". Required.
-    :vartype type: str
-    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-     information.
-    :vartype system_data: ~azure.mgmt.spheredpg.models.SystemData
-    :ivar location: The geo-location where the resource lives. Required.
-    :vartype location: str
-    :ivar tags: Resource tags.
-    :vartype tags: dict[str, str]
-    """
-
-    location: str = rest_field(visibility=["read", "create"])
-    """The geo-location where the resource lives. Required."""
-    tags: Optional[Dict[str, str]] = rest_field()
-    """Resource tags."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        location: str,
-        tags: Optional[Dict[str, str]] = None,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class TrackedResource(TrackedResourceBase):
-    """Concrete tracked resource types can be created by aliasing this type using a specific property
-    type.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-     Required.
-    :vartype id: str
-    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts". Required.
-    :vartype type: str
-    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-     information.
-    :vartype system_data: ~azure.mgmt.spheredpg.models.SystemData
-    :ivar location: The geo-location where the resource lives. Required.
-    :vartype location: str
-    :ivar tags: Resource tags.
-    :vartype tags: dict[str, str]
-    :ivar properties: The resource-specific properties for this resource.
-    :vartype properties: ~azure.mgmt.spheredpg.models.CatalogProperties
-    """
-
-    properties: Optional["_models.CatalogProperties"] = rest_field(visibility=["read", "create"])
-    """The resource-specific properties for this resource."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        location: str,
-        tags: Optional[Dict[str, str]] = None,
-        properties: Optional["_models.CatalogProperties"] = None,
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-=======
->>>>>>> 9df7332769b27709f237bb9d0a78920cfb4109c6
