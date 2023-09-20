@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, AnyStr, Callable, Dict, IO, List, Optional, TypeVar, cast
+from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, cast
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -58,7 +58,7 @@ def build_import_operations_operation_one_request(  # pylint: disable=name-too-l
 
 
 def build_reserved_words_operation_with_content_param_request(  # pylint: disable=name-too-long
-    *, content: IO, **kwargs: Any
+    *, content: IO[bytes], **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -223,11 +223,11 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
         )
 
     @distributed_trace
-    def operation_with_content_param(self, content: IO[AnyStr], **kwargs: Any) -> JSON:
+    def operation_with_content_param(self, content: IO[bytes], **kwargs: Any) -> JSON:
         """Operation with body param called content. Pass in b'hello, world'.
 
         :param content: Pass in b'hello, world'. Required.
-        :type content: IO
+        :type content: IO[bytes]
         :return: JSON
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:

@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, AnyStr, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -109,7 +109,7 @@ class AvailabilitySetsOperations:
         self,
         resource_group_name: str,
         avset: str,
-        tags: IO[AnyStr],
+        tags: IO[bytes],
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -121,7 +121,7 @@ class AvailabilitySetsOperations:
         :param avset: The name of the storage availability set. Required.
         :type avset: str
         :param tags: The tags. Required.
-        :type tags: IO
+        :type tags: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -132,7 +132,7 @@ class AvailabilitySetsOperations:
 
     @distributed_trace
     def update(  # pylint: disable=inconsistent-return-statements
-        self, resource_group_name: str, avset: str, tags: Union[JSON, IO[AnyStr]], **kwargs: Any
+        self, resource_group_name: str, avset: str, tags: Union[JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Updates the tags for an availability set.
 
@@ -140,8 +140,8 @@ class AvailabilitySetsOperations:
         :type resource_group_name: str
         :param avset: The name of the storage availability set. Required.
         :type avset: str
-        :param tags: The tags. Is either a JSON type or a IO[AnyStr] type. Required.
-        :type tags: JSON or IO
+        :param tags: The tags. Is either a JSON type or a IO[bytes] type. Required.
+        :type tags: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

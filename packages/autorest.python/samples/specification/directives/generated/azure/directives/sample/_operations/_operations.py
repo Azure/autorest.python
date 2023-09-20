@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, AnyStr, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -72,9 +72,7 @@ def build_polling_paging_example_basic_paging_request(**kwargs: Any) -> HttpRequ
 
 
 class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
-    def _basic_polling_initial(
-        self, product: Optional[Union[JSON, IO[AnyStr]]] = None, **kwargs: Any
-    ) -> Optional[JSON]:
+    def _basic_polling_initial(self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any) -> Optional[JSON]:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -178,12 +176,12 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
 
     @overload
     def begin_basic_polling(
-        self, product: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> CustomPoller[JSON]:
         """A simple polling operation.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -212,13 +210,13 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
 
     @distributed_trace
     def begin_basic_polling(
-        self, product: Optional[Union[JSON, IO[AnyStr]]] = None, **kwargs: Any
+        self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> CustomPoller[JSON]:
         """A simple polling operation.
 
-        :param product: Product to put. Is either a JSON type or a IO[AnyStr] type. Default value is
+        :param product: Product to put. Is either a JSON type or a IO[bytes] type. Default value is
          None.
-        :type product: JSON or IO
+        :type product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

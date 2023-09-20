@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, AnyStr, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -1060,12 +1060,12 @@ class EnumOperations:
 
     @overload
     async def put_referenced_constant(  # pylint: disable=inconsistent-return-statements
-        self, enum_string_body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
+        self, enum_string_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Sends value 'green-color' from a constant.
 
         :param enum_string_body: enum string body. Required.
-        :type enum_string_body: IO
+        :type enum_string_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1076,13 +1076,12 @@ class EnumOperations:
 
     @distributed_trace_async
     async def put_referenced_constant(  # pylint: disable=inconsistent-return-statements
-        self, enum_string_body: Union[JSON, IO[AnyStr]], **kwargs: Any
+        self, enum_string_body: Union[JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Sends value 'green-color' from a constant.
 
-        :param enum_string_body: enum string body. Is either a JSON type or a IO[AnyStr] type.
-         Required.
-        :type enum_string_body: JSON or IO
+        :param enum_string_body: enum string body. Is either a JSON type or a IO[bytes] type. Required.
+        :type enum_string_body: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

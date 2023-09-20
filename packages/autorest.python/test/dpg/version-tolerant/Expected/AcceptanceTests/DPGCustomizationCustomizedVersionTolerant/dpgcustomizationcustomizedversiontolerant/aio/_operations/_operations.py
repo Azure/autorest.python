@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, AnyStr, AsyncIterable, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
+from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import (
@@ -145,7 +145,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
     @overload
     async def post_model(
-        self, mode: str, input: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
+        self, mode: str, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
@@ -155,7 +155,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
          before returning to users. Required.
         :type mode: str
         :param input: Please put {'hello': 'world!'}. Required.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -173,7 +173,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         """
 
     @distributed_trace_async
-    async def post_model(self, mode: str, input: Union[JSON, IO[AnyStr]], **kwargs: Any) -> JSON:
+    async def post_model(self, mode: str, input: Union[JSON, IO[bytes]], **kwargs: Any) -> JSON:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
         take a model instead, and put in 'model' as mode.
 
@@ -181,9 +181,9 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
          before returning to users. Required.
         :type mode: str
-        :param input: Please put {'hello': 'world!'}. Is either a JSON type or a IO[AnyStr] type.
+        :param input: Please put {'hello': 'world!'}. Is either a JSON type or a IO[bytes] type.
          Required.
-        :type input: JSON or IO
+        :type input: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

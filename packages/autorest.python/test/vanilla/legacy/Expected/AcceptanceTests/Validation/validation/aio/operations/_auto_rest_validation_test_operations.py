@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, AnyStr, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -139,7 +139,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         self,
         resource_group_name: str,
         id: int,
-        body: Optional[IO[AnyStr]] = None,
+        body: Optional[IO[bytes]] = None,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -152,7 +152,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         :param id: Required int multiple of 10 from 100 to 1000. Required.
         :type id: int
         :param body: Default value is None.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -164,11 +164,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
     @distributed_trace_async
     async def validation_of_body(
-        self,
-        resource_group_name: str,
-        id: int,
-        body: Optional[Union[_models.Product, IO[AnyStr]]] = None,
-        **kwargs: Any
+        self, resource_group_name: str, id: int, body: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> _models.Product:
         """Validates body parameters on the method. See swagger for details.
 
@@ -177,8 +173,8 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000. Required.
         :type id: int
-        :param body: Is either a Product type or a IO[AnyStr] type. Default value is None.
-        :type body: ~validation.models.Product or IO
+        :param body: Is either a Product type or a IO[bytes] type. Default value is None.
+        :type body: ~validation.models.Product or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -322,12 +318,12 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
     @overload
     async def post_with_constant_in_body(
-        self, body: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, body: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Product:
         """post_with_constant_in_body.
 
         :param body: Default value is None.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -342,12 +338,12 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
     @distributed_trace_async
     async def post_with_constant_in_body(
-        self, body: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
+        self, body: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> _models.Product:
         """post_with_constant_in_body.
 
-        :param body: Is either a Product type or a IO[AnyStr] type. Default value is None.
-        :type body: ~validation.models.Product or IO
+        :param body: Is either a Product type or a IO[bytes] type. Default value is None.
+        :type body: ~validation.models.Product or IO[bytes]
         :keyword constant_param: Default value is "constant". Note that overriding this default value
          may result in unsupported behavior.
         :paramtype constant_param: str

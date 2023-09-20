@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from io import IOBase
-from typing import Any, AnyStr, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -174,12 +174,12 @@ class PetsOperations:
 
     @overload
     def create_ap_true(
-        self, create_parameters: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
+        self, create_parameters: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.PetAPTrue:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters: Required.
-        :type create_parameters: IO
+        :type create_parameters: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -191,12 +191,12 @@ class PetsOperations:
 
     @distributed_trace
     def create_ap_true(
-        self, create_parameters: Union[_models.PetAPTrue, IO[AnyStr]], **kwargs: Any
+        self, create_parameters: Union[_models.PetAPTrue, IO[bytes]], **kwargs: Any
     ) -> _models.PetAPTrue:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is either a PetAPTrue type or a IO[AnyStr] type. Required.
-        :type create_parameters: ~additionalproperties.models.PetAPTrue or IO
+        :param create_parameters: Is either a PetAPTrue type or a IO[bytes] type. Required.
+        :type create_parameters: ~additionalproperties.models.PetAPTrue or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -278,12 +278,12 @@ class PetsOperations:
 
     @overload
     def create_cat_ap_true(
-        self, create_parameters: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
+        self, create_parameters: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.CatAPTrue:
         """Create a CatAPTrue which contains more properties than what is defined.
 
         :param create_parameters: Required.
-        :type create_parameters: IO
+        :type create_parameters: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -295,12 +295,12 @@ class PetsOperations:
 
     @distributed_trace
     def create_cat_ap_true(
-        self, create_parameters: Union[_models.CatAPTrue, IO[AnyStr]], **kwargs: Any
+        self, create_parameters: Union[_models.CatAPTrue, IO[bytes]], **kwargs: Any
     ) -> _models.CatAPTrue:
         """Create a CatAPTrue which contains more properties than what is defined.
 
-        :param create_parameters: Is either a CatAPTrue type or a IO[AnyStr] type. Required.
-        :type create_parameters: ~additionalproperties.models.CatAPTrue or IO
+        :param create_parameters: Is either a CatAPTrue type or a IO[bytes] type. Required.
+        :type create_parameters: ~additionalproperties.models.CatAPTrue or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -382,12 +382,12 @@ class PetsOperations:
 
     @overload
     def create_ap_object(
-        self, create_parameters: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
+        self, create_parameters: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.PetAPObject:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters: Required.
-        :type create_parameters: IO
+        :type create_parameters: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -399,12 +399,12 @@ class PetsOperations:
 
     @distributed_trace
     def create_ap_object(
-        self, create_parameters: Union[_models.PetAPObject, IO[AnyStr]], **kwargs: Any
+        self, create_parameters: Union[_models.PetAPObject, IO[bytes]], **kwargs: Any
     ) -> _models.PetAPObject:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is either a PetAPObject type or a IO[AnyStr] type. Required.
-        :type create_parameters: ~additionalproperties.models.PetAPObject or IO
+        :param create_parameters: Is either a PetAPObject type or a IO[bytes] type. Required.
+        :type create_parameters: ~additionalproperties.models.PetAPObject or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -486,12 +486,12 @@ class PetsOperations:
 
     @overload
     def create_ap_string(
-        self, create_parameters: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
+        self, create_parameters: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.PetAPString:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters: Required.
-        :type create_parameters: IO
+        :type create_parameters: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -503,12 +503,12 @@ class PetsOperations:
 
     @distributed_trace
     def create_ap_string(
-        self, create_parameters: Union[_models.PetAPString, IO[AnyStr]], **kwargs: Any
+        self, create_parameters: Union[_models.PetAPString, IO[bytes]], **kwargs: Any
     ) -> _models.PetAPString:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is either a PetAPString type or a IO[AnyStr] type. Required.
-        :type create_parameters: ~additionalproperties.models.PetAPString or IO
+        :param create_parameters: Is either a PetAPString type or a IO[bytes] type. Required.
+        :type create_parameters: ~additionalproperties.models.PetAPString or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -590,12 +590,12 @@ class PetsOperations:
 
     @overload
     def create_ap_in_properties(
-        self, create_parameters: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
+        self, create_parameters: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.PetAPInProperties:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters: Required.
-        :type create_parameters: IO
+        :type create_parameters: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -607,12 +607,12 @@ class PetsOperations:
 
     @distributed_trace
     def create_ap_in_properties(
-        self, create_parameters: Union[_models.PetAPInProperties, IO[AnyStr]], **kwargs: Any
+        self, create_parameters: Union[_models.PetAPInProperties, IO[bytes]], **kwargs: Any
     ) -> _models.PetAPInProperties:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is either a PetAPInProperties type or a IO[AnyStr] type. Required.
-        :type create_parameters: ~additionalproperties.models.PetAPInProperties or IO
+        :param create_parameters: Is either a PetAPInProperties type or a IO[bytes] type. Required.
+        :type create_parameters: ~additionalproperties.models.PetAPInProperties or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -698,12 +698,12 @@ class PetsOperations:
 
     @overload
     def create_ap_in_properties_with_ap_string(
-        self, create_parameters: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
+        self, create_parameters: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.PetAPInPropertiesWithAPString:
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters: Required.
-        :type create_parameters: IO
+        :type create_parameters: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -715,13 +715,14 @@ class PetsOperations:
 
     @distributed_trace
     def create_ap_in_properties_with_ap_string(
-        self, create_parameters: Union[_models.PetAPInPropertiesWithAPString, IO[AnyStr]], **kwargs: Any
+        self, create_parameters: Union[_models.PetAPInPropertiesWithAPString, IO[bytes]], **kwargs: Any
     ) -> _models.PetAPInPropertiesWithAPString:
         """Create a Pet which contains more properties than what is defined.
 
-        :param create_parameters: Is either a PetAPInPropertiesWithAPString type or a IO[AnyStr] type.
+        :param create_parameters: Is either a PetAPInPropertiesWithAPString type or a IO[bytes] type.
          Required.
-        :type create_parameters: ~additionalproperties.models.PetAPInPropertiesWithAPString or IO
+        :type create_parameters: ~additionalproperties.models.PetAPInPropertiesWithAPString or
+         IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

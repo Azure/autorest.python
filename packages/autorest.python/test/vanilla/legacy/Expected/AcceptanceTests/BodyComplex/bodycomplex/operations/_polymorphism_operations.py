@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from io import IOBase
-from typing import Any, AnyStr, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from msrest import Serializer
 
@@ -293,7 +293,7 @@ class PolymorphismOperations:
 
     @overload
     def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic.
 
@@ -330,7 +330,7 @@ class PolymorphismOperations:
                    }
                  ]
                };. Required.
-        :type complex_body: IO
+        :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -342,7 +342,7 @@ class PolymorphismOperations:
 
     @distributed_trace
     def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.Fish, IO[AnyStr]], **kwargs: Any
+        self, complex_body: Union[_models.Fish, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic.
 
@@ -378,8 +378,8 @@ class PolymorphismOperations:
                      'jawsize': 5
                    }
                  ]
-               };. Is either a Fish type or a IO[AnyStr] type. Required.
-        :type complex_body: ~bodycomplex.models.Fish or IO
+               };. Is either a Fish type or a IO[bytes] type. Required.
+        :type complex_body: ~bodycomplex.models.Fish or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -667,13 +667,13 @@ class PolymorphismOperations:
 
     @overload
     def put_complicated(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
         additional properties.
 
         :param complex_body: Required.
-        :type complex_body: IO
+        :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -685,13 +685,13 @@ class PolymorphismOperations:
 
     @distributed_trace
     def put_complicated(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.Salmon, IO[AnyStr]], **kwargs: Any
+        self, complex_body: Union[_models.Salmon, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
         additional properties.
 
-        :param complex_body: Is either a Salmon type or a IO[AnyStr] type. Required.
-        :type complex_body: ~bodycomplex.models.Salmon or IO
+        :param complex_body: Is either a Salmon type or a IO[bytes] type. Required.
+        :type complex_body: ~bodycomplex.models.Salmon or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -769,12 +769,12 @@ class PolymorphismOperations:
 
     @overload
     def put_missing_discriminator(
-        self, complex_body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Salmon:
         """Put complex types that are polymorphic, omitting the discriminator.
 
         :param complex_body: Required.
-        :type complex_body: IO
+        :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -786,12 +786,12 @@ class PolymorphismOperations:
 
     @distributed_trace
     def put_missing_discriminator(
-        self, complex_body: Union[_models.Salmon, IO[AnyStr]], **kwargs: Any
+        self, complex_body: Union[_models.Salmon, IO[bytes]], **kwargs: Any
     ) -> _models.Salmon:
         """Put complex types that are polymorphic, omitting the discriminator.
 
-        :param complex_body: Is either a Salmon type or a IO[AnyStr] type. Required.
-        :type complex_body: ~bodycomplex.models.Salmon or IO
+        :param complex_body: Is either a Salmon type or a IO[bytes] type. Required.
+        :type complex_body: ~bodycomplex.models.Salmon or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -900,7 +900,7 @@ class PolymorphismOperations:
 
     @overload
     def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO[AnyStr], *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
         request should not be allowed from the client.
@@ -932,7 +932,7 @@ class PolymorphismOperations:
                  }
              ]
          }. Required.
-        :type complex_body: IO
+        :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -944,7 +944,7 @@ class PolymorphismOperations:
 
     @distributed_trace
     def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.Fish, IO[AnyStr]], **kwargs: Any
+        self, complex_body: Union[_models.Fish, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
         request should not be allowed from the client.
@@ -975,8 +975,8 @@ class PolymorphismOperations:
                      "age": 105
                  }
              ]
-         }. Is either a Fish type or a IO[AnyStr] type. Required.
-        :type complex_body: ~bodycomplex.models.Fish or IO
+         }. Is either a Fish type or a IO[bytes] type. Required.
+        :type complex_body: ~bodycomplex.models.Fish or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

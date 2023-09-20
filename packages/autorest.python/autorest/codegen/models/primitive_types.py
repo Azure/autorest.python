@@ -91,13 +91,13 @@ class BinaryType(PrimitiveType):
         return self.type
 
     def docstring_type(self, **kwargs: Any) -> str:
-        return self.type
+        return f"{self.type}[bytes]"
 
     def type_annotation(self, **kwargs: Any) -> str:
-        return f"{self.type}[AnyStr]"
+        return f"{self.type}[bytes]"
 
     def docstring_text(self, **kwargs: Any) -> str:
-        return "IO"
+        return f"{self.type}[bytes]"
 
     @property
     def default_template_representation_declaration(self) -> str:
@@ -109,7 +109,6 @@ class BinaryType(PrimitiveType):
 
         file_import = FileImport()
         file_import.add_submodule_import("typing", "IO", ImportType.STDLIB)
-        file_import.add_submodule_import("typing", "AnyStr", ImportType.STDLIB)
         operation = kwargs.get("operation")
         if (
             isinstance(operation, OperationBase)

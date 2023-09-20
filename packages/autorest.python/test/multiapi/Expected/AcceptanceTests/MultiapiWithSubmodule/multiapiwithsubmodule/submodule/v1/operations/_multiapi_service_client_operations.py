@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from io import IOBase
-from typing import Any, AnyStr, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, cast, overload
 import urllib.parse
 
 from azure.core.exceptions import (
@@ -187,7 +187,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
     test_one.metadata = {"url": "/multiapi/testOneEndpoint"}
 
     def _test_lro_initial(
-        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> Optional[_models.Product]:
         error_map = {
             401: ClientAuthenticationError,
@@ -274,12 +274,12 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
     @overload
     def begin_test_lro(
-        self, product: Optional[IO[AnyStr]] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> LROPoller[_models.Product]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
         :param product: Product to put. Default value is None.
-        :type product: IO
+        :type product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -298,13 +298,13 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
     @distributed_trace
     def begin_test_lro(
-        self, product: Optional[Union[_models.Product, IO[AnyStr]]] = None, **kwargs: Any
+        self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> LROPoller[_models.Product]:
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
-        :param product: Product to put. Is either a Product type or a IO[AnyStr] type. Default value is
+        :param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is
          None.
-        :type product: ~multiapiwithsubmodule.submodule.v1.models.Product or IO
+        :type product: ~multiapiwithsubmodule.submodule.v1.models.Product or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
