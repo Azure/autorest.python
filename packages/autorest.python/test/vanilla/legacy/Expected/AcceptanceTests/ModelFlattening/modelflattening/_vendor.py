@@ -27,7 +27,7 @@ def _convert_request(request, files=None):
     return request
 
 
-class AutoRestResourceFlatteningTestServiceMixinABC(ABC):
+class AutoRestResourceFlatteningTestServiceMixinABC(ABC):  # pylint: disable=name-too-long
     """DO NOT use this class. It is for internal typing use only."""
 
     _client: "PipelineClient"

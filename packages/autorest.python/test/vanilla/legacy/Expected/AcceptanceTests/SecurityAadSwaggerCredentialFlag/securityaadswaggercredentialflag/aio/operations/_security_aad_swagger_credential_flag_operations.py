@@ -29,7 +29,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class SecurityAadSwaggerCredentialFlagOperationsMixin(SecurityAadSwaggerCredentialFlagMixinABC):
+class SecurityAadSwaggerCredentialFlagOperationsMixin(  # pylint: disable=name-too-long
+    SecurityAadSwaggerCredentialFlagMixinABC
+):
     @distributed_trace_async
     async def head(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Operation.

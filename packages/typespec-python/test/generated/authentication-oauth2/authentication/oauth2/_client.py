@@ -26,12 +26,15 @@ class OAuth2Client(OAuth2ClientOperationsMixin):  # pylint: disable=client-accep
 
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials.TokenCredential
+    :keyword endpoint: Service host. Default value is "http://localhost:3000".
+    :paramtype endpoint: str
     """
 
-    def __init__(self, credential: "TokenCredential", **kwargs: Any) -> None:
-        _endpoint = "http://localhost:3000"
+    def __init__(
+        self, credential: "TokenCredential", *, endpoint: str = "http://localhost:3000", **kwargs: Any
+    ) -> None:
         self._config = OAuth2ClientConfiguration(credential=credential, **kwargs)
-        self._client: PipelineClient = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
+        self._client: PipelineClient = PipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

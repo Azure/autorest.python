@@ -8,7 +8,7 @@ from typing import Any, Dict, TYPE_CHECKING, TypeVar, Generic, Union, List, Opti
 from .base import BaseModel
 from .parameter_list import ClientGlobalParameterList, ConfigGlobalParameterList
 from .imports import FileImport, ImportType, TypingSection, MsrestImportType
-from .utils import add_to_pylint_disable
+from .utils import add_to_pylint_disable, NAME_LENGTH_LIMIT
 from .operation_group import OperationGroup
 from .request_builder import (
     RequestBuilder,
@@ -85,8 +85,6 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         request_builders: List[Union[RequestBuilder, OverloadedRequestBuilder]] = []
         for og_group in self.yaml_data["operationGroups"]:
             for operation_yaml in og_group["operations"]:
-                if operation_yaml["discriminator"] in ("lro", "lropaging"):
-                    continue
                 request_builder = get_request_builder(
                     operation_yaml,
                     code_model=self.code_model,
@@ -148,6 +146,8 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         retval = add_to_pylint_disable("", "client-accepts-api-version-keyword")
         if len(self.operation_groups) > 6:
             retval = add_to_pylint_disable(retval, "too-many-instance-attributes")
+        if len(self.name) > NAME_LENGTH_LIMIT:
+            retval = add_to_pylint_disable(retval, "name-too-long")
         return retval
 
     @property
@@ -370,6 +370,13 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
 
 class Config(_ClientConfigBase[ConfigGlobalParameterList]):
     """Model representing our Config type."""
+
+    @property
+    def pylint_disable(self) -> str:
+        retval = add_to_pylint_disable("", "too-many-instance-attributes")
+        if len(self.name) + len("Configuration") > NAME_LENGTH_LIMIT:
+            retval = add_to_pylint_disable(retval, "name-too-long")
+        return retval
 
     @property
     def description(self) -> str:

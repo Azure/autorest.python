@@ -69,7 +69,7 @@ def build_optional_explicit_omit_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_body_optionality_required_explicit_request(**kwargs: Any) -> HttpRequest:
+def build_body_optionality_required_explicit_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -83,7 +83,7 @@ def build_body_optionality_required_explicit_request(**kwargs: Any) -> HttpReque
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_body_optionality_required_implicit_request(**kwargs: Any) -> HttpRequest:
+def build_body_optionality_required_implicit_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -205,7 +205,7 @@ class OptionalExplicitOperations:
             _content = body
         else:
             if body is not None:
-                _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+                _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
             else:
                 _content = None
 
@@ -324,7 +324,7 @@ class OptionalExplicitOperations:
             _content = body
         else:
             if body is not None:
-                _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+                _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
             else:
                 _content = None
 
@@ -444,7 +444,7 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
         if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_body_optionality_required_explicit_request(
             content_type=content_type,
@@ -560,7 +560,7 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
         if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_body_optionality_required_implicit_request(
             content_type=content_type,

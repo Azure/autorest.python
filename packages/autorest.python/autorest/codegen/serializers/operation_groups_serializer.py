@@ -48,6 +48,7 @@ class OperationGroupsSerializer:
             and r.group_name == operation_group.property_name
             and not r.is_overload
             and not r.abstract
+            and not r.is_lro  # lro has already initial builder
         ]
 
     def serialize(self) -> str:

@@ -201,6 +201,10 @@ HEADERS_CONVERT_IN_METHOD = {
 }
 
 
+def get_wire_name_lower(parameter: Dict[str, Any]) -> str:
+    return (parameter.get("wireName") or "").lower()
+
+
 def headers_convert(yaml_data: Dict[str, Any], replace_data: Any) -> None:
     if isinstance(replace_data, dict):
         for k, v in replace_data.items():
@@ -209,6 +213,10 @@ def headers_convert(yaml_data: Dict[str, Any], replace_data: Any) -> None:
 
 class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
     """Add Python naming information."""
+
+    @property
+    def azure_arm(self) -> bool:
+        return self.options.get("azure-arm", False)
 
     @property
     def version_tolerant(self) -> bool:
@@ -285,25 +293,59 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         yaml_data["legacyFilename"] = to_snake_case(yaml_data["name"].replace(" ", "_"))
         for parameter in yaml_data["parameters"]:
             self.update_parameter(parameter)
+            if parameter["clientName"] == "credential":
+                policy = parameter["type"].get("policy")
+                if (
+                    policy
+                    and policy["type"] == "BearerTokenCredentialPolicy"
+                    and self.azure_arm
+                ):
+                    policy["type"] = "ARMChallengeAuthenticationPolicy"
+                    policy["credentialScopes"] = [
+                        "https://management.azure.com/.default"
+                    ]
+
         prop_name = yaml_data["name"]
         if prop_name.endswith("Client"):
             prop_name = prop_name[: len(prop_name) - len("Client")]
         yaml_data["builderPadName"] = to_snake_case(prop_name)
         for og in yaml_data["operationGroups"]:
             for o in og["operations"]:
+                property_if_match = None
+                property_if_none_match = None
                 for p in o["parameters"]:
+                    wire_name_lower = get_wire_name_lower(p)
                     if (
                         p["location"] == "header"
-                        and p["wireName"] == "client-request-id"
+                        and wire_name_lower == "client-request-id"
                     ):
-                        yaml_data["requestIdHeaderName"] = p["wireName"]
-                    if (
-                        self.version_tolerant
-                        and p["location"] == "header"
-                        and p["clientName"] in ("if_match", "if_none_match")
-                    ):
-                        o["hasEtag"] = True
-                        yaml_data["hasEtag"] = True
+                        yaml_data["requestIdHeaderName"] = wire_name_lower
+                    if self.version_tolerant and p["location"] == "header":
+                        if wire_name_lower == "if-match":
+                            property_if_match = p
+                        elif wire_name_lower == "if-none-match":
+                            property_if_none_match = p
+                # pylint: disable=line-too-long
+                # some service(e.g. https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cosmos-db/data-plane/Microsoft.Tables/preview/2019-02-02/table.json)
+                # only has one, so we need to add "if-none-match" or "if-match" if it's missing
+                if not property_if_match and property_if_none_match:
+                    property_if_match = property_if_none_match.copy()
+                    property_if_match["wireName"] = "if-match"
+                if not property_if_none_match and property_if_match:
+                    property_if_none_match = property_if_match.copy()
+                    property_if_none_match["wireName"] = "if-none-match"
+
+                if property_if_match and property_if_none_match:
+                    # arrange if-match and if-none-match to the end of parameters
+                    o["parameters"] = [
+                        item
+                        for item in o["parameters"]
+                        if get_wire_name_lower(item)
+                        not in ("if-match", "if-none-match")
+                    ] + [property_if_match, property_if_none_match]
+
+                    o["hasEtag"] = True
+                    yaml_data["hasEtag"] = True
 
     def get_operation_updater(
         self, yaml_data: Dict[str, Any]
@@ -380,7 +422,6 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             add_overloads_for_body_param(yaml_data)
 
     def _update_lro_operation_helper(self, yaml_data: Dict[str, Any]) -> None:
-        azure_arm = self.options.get("azure-arm", False)
         for response in yaml_data.get("responses", []):
             response["discriminator"] = "lro"
             response["pollerSync"] = (
@@ -392,13 +433,13 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             if not response.get("pollingMethodSync"):
                 response["pollingMethodSync"] = (
                     "azure.mgmt.core.polling.arm_polling.ARMPolling"
-                    if azure_arm
+                    if self.azure_arm
                     else "azure.core.polling.base_polling.LROBasePolling"
                 )
             if not response.get("pollingMethodAsync"):
                 response["pollingMethodAsync"] = (
                     "azure.mgmt.core.polling.async_arm_polling.AsyncARMPolling"
-                    if azure_arm
+                    if self.azure_arm
                     else "azure.core.polling.async_base_polling.AsyncLROBasePolling"
                 )
 

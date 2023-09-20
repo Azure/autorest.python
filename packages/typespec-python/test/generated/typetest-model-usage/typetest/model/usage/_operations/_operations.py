@@ -177,7 +177,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         if isinstance(input, (IOBase, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_usage_input_request(
             content_type=content_type,
@@ -345,7 +345,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_usage_input_and_output_request(
             content_type=content_type,

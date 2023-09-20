@@ -111,7 +111,7 @@ class ImportOperations:
         return cast(JSON, deserialized)
 
 
-class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
+class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint: disable=abstract-class-instantiated
     def __init__(self) -> None:
         raise_if_not_implemented(
             self.__class__,

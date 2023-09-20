@@ -10,12 +10,12 @@
             "cwd": "${workspaceFolder}/packages/typespec-python",
             "args": [
                 "compile",
-                "${workspaceFolder}/packages/typespec-python/node_modules/@azure-tools/cadl-ranch-specs/http/special-words",
+                "${workspaceFolder}/packages/typespec-python/node_modules/@azure-tools/cadl-ranch-specs/http/parameters/spread",
                  "--emit",
                  "${workspaceFolder}/packages/typespec-python/dist/src/index.js",
                  "--option=@azure-tools/typespec-python.debug=true"
             ],
-            "program": "${workspaceFolder}/packages/typespec-python/node_modules/@typespec/compiler/dist/core/cli/cli.js",
+            "program": "${workspaceFolder}/packages/typespec-python/node_modules/@typespec/compiler/entrypoints/cli.js",
             "skipFiles": ["<node_internals>/**"],
             "type": "node",
             "smartStep": true,

@@ -133,7 +133,7 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
             return True
         if async_mode:
             return self.need_mixin_abc
-        return self.need_request_converter or self.need_mixin_abc
+        return self.need_request_converter or self.need_mixin_abc or self.has_etag
 
     @property
     def need_request_converter(self) -> bool:

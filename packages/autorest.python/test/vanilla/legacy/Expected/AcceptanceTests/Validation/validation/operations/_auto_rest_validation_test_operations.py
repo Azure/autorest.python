@@ -39,7 +39,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dic
 _SERIALIZER = Serializer()
 
 
-def build_validation_of_method_parameters_request(
+def build_validation_of_method_parameters_request(  # pylint: disable=name-too-long
     resource_group_name: str, id: int, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})

@@ -28,7 +28,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class FormdataOperations:
+class FormdataOperations:  # pylint: disable=abstract-class-instantiated
     """
     .. warning::
         **DO NOT** instantiate this class directly.

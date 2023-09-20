@@ -38,7 +38,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_get_complex_type_ref_no_meta_request(**kwargs: Any) -> HttpRequest:
+def build_get_complex_type_ref_no_meta_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/xml")
@@ -52,7 +52,9 @@ def build_get_complex_type_ref_no_meta_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_complex_type_ref_no_meta_request(*, content: Any, **kwargs: Any) -> HttpRequest:
+def build_put_complex_type_ref_no_meta_request(  # pylint: disable=name-too-long
+    *, content: Any, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -66,7 +68,7 @@ def build_put_complex_type_ref_no_meta_request(*, content: Any, **kwargs: Any) -
     return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_get_complex_type_ref_with_meta_request(**kwargs: Any) -> HttpRequest:
+def build_get_complex_type_ref_with_meta_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/xml")
@@ -80,7 +82,9 @@ def build_get_complex_type_ref_with_meta_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_complex_type_ref_with_meta_request(*, content: Any, **kwargs: Any) -> HttpRequest:
+def build_put_complex_type_ref_with_meta_request(  # pylint: disable=name-too-long
+    *, content: Any, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))

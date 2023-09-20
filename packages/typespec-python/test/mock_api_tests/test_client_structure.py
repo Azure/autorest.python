@@ -41,7 +41,7 @@ def test_structure_renamed_operation():
     client.group.renamed_six()
 
 def test_structure_two_operation_group():
-    client = TwoOperationGroupClient(client=ClientType.RENAMED_OPERATION)
+    client = TwoOperationGroupClient(client=ClientType.TWO_OPERATION_GROUP)
     client.group1.one()
     client.group1.three()
     client.group1.four()

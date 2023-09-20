@@ -14,7 +14,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
 from ._configuration import DatetimeClientConfiguration
-from .operations import HeaderOperations, PropertyOperations, QueryOperations
+from .operations import HeaderOperations, PropertyOperations, QueryOperations, ResponseHeaderOperations
 
 
 class DatetimeClient:  # pylint: disable=client-accepts-api-version-keyword
@@ -26,12 +26,17 @@ class DatetimeClient:  # pylint: disable=client-accepts-api-version-keyword
     :vartype property: encode.datetime.aio.operations.PropertyOperations
     :ivar header: HeaderOperations operations
     :vartype header: encode.datetime.aio.operations.HeaderOperations
+    :ivar response_header: ResponseHeaderOperations operations
+    :vartype response_header: encode.datetime.aio.operations.ResponseHeaderOperations
+    :keyword endpoint: Service host. Default value is "http://localhost:3000".
+    :paramtype endpoint: str
     """
 
-    def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
-        _endpoint = "http://localhost:3000"
+    def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
+        self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
+    ) -> None:
         self._config = DatetimeClientConfiguration(**kwargs)
-        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
@@ -39,6 +44,7 @@ class DatetimeClient:  # pylint: disable=client-accepts-api-version-keyword
         self.query = QueryOperations(self._client, self._config, self._serialize, self._deserialize)
         self.property = PropertyOperations(self._client, self._config, self._serialize, self._deserialize)
         self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.response_header = ResponseHeaderOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.

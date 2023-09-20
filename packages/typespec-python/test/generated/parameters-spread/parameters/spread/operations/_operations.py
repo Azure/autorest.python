@@ -41,7 +41,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_model_spread_as_request_body_request(**kwargs: Any) -> HttpRequest:
+def build_model_spread_as_request_body_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -55,7 +55,7 @@ def build_model_spread_as_request_body_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_alias_spread_as_request_body_request(**kwargs: Any) -> HttpRequest:
+def build_alias_spread_as_request_body_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -69,7 +69,9 @@ def build_alias_spread_as_request_body_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_alias_spread_as_request_parameter_request(id: str, *, x_ms_test_header: str, **kwargs: Any) -> HttpRequest:
+def build_alias_spread_as_request_parameter_request(  # pylint: disable=name-too-long
+    id: str, *, x_ms_test_header: str, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -89,7 +91,7 @@ def build_alias_spread_as_request_parameter_request(id: str, *, x_ms_test_header
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_alias_spread_with_multiple_parameters_request(
+def build_alias_spread_with_multiple_parameters_request(  # pylint: disable=name-too-long
     id: str, *, x_ms_test_header: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -218,7 +220,7 @@ class ModelOperations:
         if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_model_spread_as_request_body_request(
             content_type=content_type,
@@ -375,7 +377,7 @@ class AliasOperations:
         if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_alias_spread_as_request_body_request(
             content_type=content_type,
@@ -536,7 +538,7 @@ class AliasOperations:
         if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_alias_spread_as_request_parameter_request(
             id=id,
@@ -755,7 +757,7 @@ class AliasOperations:
         if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_alias_spread_with_multiple_parameters_request(
             id=id,

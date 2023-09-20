@@ -1,43 +1,25 @@
 import { getPagedResult, getLroMetadata } from "@azure-tools/typespec-azure-core";
 import {
-    Enum,
     getDoc,
-    getEncode,
-    getFriendlyName,
     getSummary,
-    getVisibility,
     ignoreDiagnostics,
     isErrorModel,
-    isNeverType,
-    Model,
     ModelProperty,
     Namespace,
-    getEffectiveModelType,
-    getDiscriminator,
     Operation,
-    Scalar,
     EmitContext,
     listServices,
-    Union,
     Type,
     getNamespaceFullName,
-    IntrinsicType,
 } from "@typespec/compiler";
 import {
     getAuthentication,
-    getHeaderFieldName,
     getHttpOperation,
-    getPathParamName,
-    getQueryParamName,
     getServers,
-    HttpAuth,
     HttpOperationParameter,
     HttpOperationResponse,
     HttpServer,
-    isStatusCode,
     HttpOperation,
-    isHeader,
-    isQueryParam,
 } from "@typespec/http";
 import { getAddedOnVersions } from "@typespec/versioning";
 import {
@@ -53,22 +35,26 @@ import {
     getLibraryName,
     getAllModels,
     isInternal,
-    getSdkSimpleType,
-    getSdkListOrDict,
-    getSdkUnion,
-    SdkSimpleType,
-    SdkEnumValueType,
-    getSdkEnum,
-    getSdkConstant,
-    getSdkModelPropertyType,
+    getPropertyNames,
+    getEffectivePayloadType,
+    getAccess,
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
-import { dump } from "js-yaml";
 import { execFileSync } from "child_process";
 import { PythonEmitterOptions } from "./lib.js";
+import { camelToSnakeCase } from "./utils.js";
+import {
+    CredentialType,
+    CredentialTypeUnion,
+    getConstantType,
+    getType,
+    KnownTypes,
+    simpleTypesMap,
+    typesMap,
+} from "./types.js";
 
 interface HttpServerParameter {
     type: "endpointPath";
@@ -76,37 +62,30 @@ interface HttpServerParameter {
     param: ModelProperty;
 }
 
-interface CredentialType {
-    kind: "Credential";
-    scheme: HttpAuth;
-}
-
-interface CredentialTypeUnion {
-    kind: "CredentialTypeUnion";
-    types: CredentialType[];
-}
-
-type EmitterType = Type | CredentialType | CredentialTypeUnion;
-
 const defaultOptions = {
     "basic-setup-py": true,
     "package-version": "1.0.0b1",
 };
 
-const sdkScalarKindToPythonKind: Record<string, string> = {
-    int32: "integer",
-    int64: "integer",
-    float32: "float",
-    float64: "float",
-};
+let isArm: boolean = false;
+export let modelsMode: string | undefined = undefined;
+
+function setGlobalFlag(options: Record<string, any>, clients: SdkClient[]) {
+    isArm = clients[0].arm;
+    modelsMode = options["models-mode"] ?? (isArm ? "msrest" : "dpg");
+    options["models-mode"] = modelsMode;
+}
 
 export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     const program = context.program;
     const resolvedOptions = { ...defaultOptions, ...context.options };
+    const sdkContext = createSdkContext(context);
+    const clients = listClients(sdkContext);
+    setGlobalFlag(resolvedOptions, clients);
 
     const root = await resolveModuleRoot(program, "@autorest/python", dirname(fileURLToPath(import.meta.url)));
     const outputDir = context.emitterOutputDir;
-    const yamlMap = emitCodeModel(context);
+    const yamlMap = emitCodeModel(sdkContext, clients);
     const yamlPath = await saveCodeModelAsYaml("typespec-python-yaml-map", yamlMap);
     const commandArgs = [
         `${root}/run-python3.js`,
@@ -114,163 +93,27 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
         `--output-folder=${outputDir}`,
         `--cadl-file=${yamlPath}`,
     ];
+
     for (const [key, value] of Object.entries(resolvedOptions)) {
         commandArgs.push(`--${key}=${value}`);
     }
     if (resolvedOptions.debug) {
         commandArgs.push("--debug");
     }
+    if (isArm === true) {
+        commandArgs.push("--azure-arm=true");
+    }
     if (!program.compilerOptions.noEmit && !program.hasError()) {
         execFileSync(process.execPath, commandArgs);
     }
 }
 
-function camelToSnakeCase(name: string): string {
-    if (!name) return name;
-    const camelToSnakeCaseRe = (str: string) =>
-        str
-            .replace("/", "_")
-            .replace(/\s+/g, "_")
-            .replace(/\$/g, "")
-            .replace(/-/g, "_")
-            .replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
-
-    return camelToSnakeCaseRe(name[0].toLowerCase() + name.slice(1));
-}
-
-const typesMap = new Map<EmitterType, Record<string, any>>();
-const simpleTypesMap = new Map<string, Record<string, any>>();
 const endpointPathParameters: Record<string, any>[] = [];
 let apiVersionParam: Record<string, any> | undefined = undefined;
+let subscriptionIdParam: Record<string, any> | undefined = undefined;
 
 function getDocStr(context: SdkContext, target: Type): string {
     return getDoc(context.program, target) ?? "";
-}
-
-function handleDiscriminator(context: SdkContext, type: Model, model: Record<string, any>) {
-    const discriminator = getDiscriminator(context.program, type);
-    if (discriminator) {
-        let discriminatorProperty;
-        for (const childModel of type.derivedModels) {
-            const modelType = getType(context, childModel);
-            for (const property of modelType.properties) {
-                if (property.wireName === discriminator.propertyName) {
-                    modelType.discriminatorValue = property.type.value;
-                    property.isDiscriminator = true;
-                    model.discriminatedSubtypes[property.type.value] = modelType;
-                    discriminatorProperty = property;
-                }
-            }
-        }
-        // it may not be included in properties of base model but needed by python codegen
-        if (discriminatorProperty) {
-            const discriminatorType = { ...discriminatorProperty.type };
-            discriminatorType.value = null;
-            const propertyCopy = {
-                ...discriminatorProperty,
-                isPolymorphic: true,
-                type: discriminatorType,
-            };
-            propertyCopy.description = "";
-            for (let i = 0; i < model.properties.length; i++) {
-                if (model.properties[i].wireName === discriminator.propertyName) {
-                    model.properties[i] = propertyCopy;
-                    return;
-                }
-            }
-
-            model.properties.push(propertyCopy);
-        }
-    }
-}
-
-function getEffectiveSchemaType(context: SdkContext, type: Model): Model {
-    const program = context.program;
-    function isSchemaProperty(property: ModelProperty) {
-        const headerInfo = getHeaderFieldName(program, property);
-        const queryInfo = getQueryParamName(program, property);
-        const pathInfo = getPathParamName(program, property);
-        const statusCodeinfo = isStatusCode(program, property);
-        return !(headerInfo || queryInfo || pathInfo || statusCodeinfo);
-    }
-
-    const effective = getEffectiveModelType(program, type, isSchemaProperty);
-    if (effective.name) {
-        return effective;
-    }
-    return type;
-}
-
-function isEmptyModel(context: SdkContext, type: EmitterType): boolean {
-    // object, {} will be treated as empty model, user defined empty model will not
-    const [objectType] = context.program.resolveTypeReference("TypeSpec.object");
-    return (
-        type.kind === "Model" &&
-        type.properties.size === 0 &&
-        !type.baseModel &&
-        type.derivedModels.length === 0 &&
-        !type.indexer &&
-        (type === objectType || type.name === "")
-    );
-}
-
-export function getType(context: SdkContext, type: EmitterType): any {
-    // don't cache simple type(string, int, etc) since decorators may change the result
-    const program = context.program;
-    let oriType;
-    if (type.kind === "ModelProperty") {
-        oriType = type;
-        type = type.type;
-    }
-    const enableCache = type.kind !== "Scalar" && !isEmptyModel(context, type);
-    const effectiveModel = type.kind === "Model" ? getEffectiveSchemaType(context, type) : type;
-    if (enableCache) {
-        const cached = typesMap.get(effectiveModel);
-        if (cached) {
-            return cached;
-        }
-    }
-    let newValue;
-    if (isEmptyModel(context, type)) {
-        // do not generate model for empty model, treat it as any
-        newValue = { type: "any" };
-    } else {
-        newValue = emitType(context, type);
-    }
-
-    if (oriType?.kind === "ModelProperty") {
-        updateWithEncode(context, oriType, newValue);
-    }
-
-    if (enableCache) {
-        typesMap.set(effectiveModel, newValue);
-        if (type.kind === "Model") {
-            // need to do properties after insertion to avoid infinite recursion
-            for (const property of type.properties.values()) {
-                if (
-                    isStatusCode(program, property) ||
-                    isNeverType(property.type) ||
-                    isHeader(program, property) ||
-                    isQueryParam(program, property)
-                ) {
-                    continue;
-                }
-                newValue.properties.push(emitProperty(context, property));
-            }
-            // need to do discriminator outside `emitModel` to avoid infinite recursion
-            handleDiscriminator(context, type, newValue);
-        }
-    } else {
-        const key = dump(newValue, { sortKeys: true });
-        const value = simpleTypesMap.get(key);
-        if (value) {
-            newValue = value;
-        } else {
-            simpleTypesMap.set(key, newValue);
-        }
-    }
-
-    return newValue;
 }
 
 // To pass the yaml dump
@@ -289,6 +132,7 @@ type ParamBase = {
     clientName: string;
     inOverload: boolean;
 };
+
 function emitParamBase(context: SdkContext, parameter: ModelProperty | Type): ParamBase {
     let optional: boolean;
     let name: string;
@@ -297,7 +141,7 @@ function emitParamBase(context: SdkContext, parameter: ModelProperty | Type): Pa
 
     if (parameter.kind === "ModelProperty") {
         optional = parameter.optional;
-        name = getSdkModelPropertyType(context, parameter).name;
+        name = parameter.name;
         description = getDocStr(context, parameter);
         addedOn = getAddedOnVersion(context, parameter);
     } else {
@@ -316,7 +160,7 @@ function emitParamBase(context: SdkContext, parameter: ModelProperty | Type): Pa
 
 type BodyParameter = ParamBase & {
     contentTypes: string[];
-    type: Type;
+    type: any;
     wireName: string;
     location: "body";
     defaultContentType: string;
@@ -331,7 +175,7 @@ function getBodyType(context: SdkContext, route: HttpOperation): Type {
             if (resp && resp.responses && resp.responses.length > 0) {
                 const responseBody = resp.responses[0]?.body;
                 if (responseBody?.type?.kind === "Model") {
-                    const bodyTypeInResponse = getEffectiveSchemaType(context, responseBody.type);
+                    const bodyTypeInResponse = getEffectivePayloadType(context, responseBody.type);
                     // response body type is reosurce type, and request body type (if templated) contains resource type
                     if (
                         bodyTypeInResponse === resourceType &&
@@ -377,12 +221,29 @@ function emitBodyParameter(context: SdkContext, httpOperation: HttpOperation): B
     };
 }
 
+function isSubscriptionId(param: Record<string, any>): boolean {
+    return isArm && param.wireName === "subscriptionId";
+}
+
+function getDefaultApiVersionValue(context: SdkContext): string | undefined {
+    const defaultApiVersion = getDefaultApiVersion(context, getServiceNamespace(context));
+    if (!defaultApiVersion) {
+        if (isArm) {
+            const services = listServices(context.program);
+            return services.length > 0 ? services[0].version : undefined;
+        }
+        return defaultApiVersion;
+    }
+    return defaultApiVersion.value;
+}
+
 function emitParameter(
     context: SdkContext,
     parameter: HttpOperationParameter | HttpServerParameter,
     implementation: string,
 ): Record<string, any> {
     const base = emitParamBase(context, parameter.param);
+    base.clientName = camelToSnakeCase(getPropertyNames(context, parameter.param)[0]);
     let type = getType(context, parameter.param);
     let clientDefaultValue = undefined;
     if (parameter.name.toLowerCase() === "content-type" && type["type"] === "constant") {
@@ -417,14 +278,17 @@ function emitParameter(
     }
 
     if (isApiVersion(context, parameter as HttpOperationParameter)) {
-        const defaultApiVersion = getDefaultApiVersion(context, getServiceNamespace(context));
-        paramMap.type = defaultApiVersion ? getConstantType(defaultApiVersion.value) : KnownTypes.string;
+        const defaultApiVersion = getDefaultApiVersionValue(context);
+        paramMap.type = defaultApiVersion ? getConstantType(defaultApiVersion) : KnownTypes.string;
         paramMap.implementation = "Client";
         paramMap.in_docstring = false;
         paramMap.isApiVersion = true;
         if (defaultApiVersion) {
-            clientDefaultValue = defaultApiVersion.value;
+            clientDefaultValue = defaultApiVersion;
         }
+    }
+    if (isSubscriptionId(paramMap)) {
+        paramMap.implementation = "Client";
     }
     return { clientDefaultValue, ...base, ...paramMap };
 }
@@ -474,23 +338,6 @@ function emitFlattenedParameter(
         type: property["type"],
         defaultToUnsetSentinel: true,
     };
-}
-
-function getConstantType(key: string): Record<string, any> {
-    const cache = simpleTypesMap.get(key);
-    if (cache) {
-        return cache;
-    }
-    const type = {
-        apiVersions: [],
-        clientDefaultValue: null,
-        type: "constant",
-        value: key,
-        valueType: KnownTypes.string,
-        xmlMetadata: {},
-    };
-    simpleTypesMap.set(key, type);
-    return type;
 }
 
 function emitAcceptParameter(inOverload: boolean, inOverriden: boolean): Record<string, any> {
@@ -549,7 +396,7 @@ function getBodyFromResponse(context: SdkContext, response: HttpOperationRespons
         }
     }
     if (body && body.kind === "Model") {
-        body = getEffectiveSchemaType(context, body);
+        body = getEffectivePayloadType(context, body);
     }
     return body;
 }
@@ -560,7 +407,11 @@ function emitResponse(context: SdkContext, response: HttpOperationResponse): Rec
     if (body) {
         if (body.kind === "Model") {
             if (body && body.decorators.find((d) => d.decorator.name === "$pagedResult")) {
-                type = getType(context, Array.from(body.properties.values())[0].type);
+                if (modelsMode !== "msrest") {
+                    type = getType(context, Array.from(body.properties.values())[0]);
+                } else {
+                    type = getType(context, body);
+                }
             } else if (body && !isAzureCoreModel(body)) {
                 type = getType(context, body);
             }
@@ -608,8 +459,8 @@ function addLroInformation(
     const lroMeta = getLroMetadata(context.program, tspOperation);
     if (!isAzureCoreModel(lroMeta!.logicalResult)) {
         emittedOperation["responses"][0]["type"] = getType(context, lroMeta!.logicalResult);
-        if (lroMeta!.finalStep?.target.kind === "ModelProperty" && emittedOperation.method !== "PUT") {
-            emittedOperation["responses"][0]["resultProperty"] = lroMeta!.finalStep.target.name;
+        if (lroMeta!.logicalPath) {
+            emittedOperation["responses"][0]["resultProperty"] = lroMeta!.logicalPath;
         }
         addAcceptParameter(context, tspOperation, emittedOperation["parameters"]);
         addAcceptParameter(context, lroMeta!.operation, emittedOperation["initialOperation"]["parameters"]);
@@ -621,10 +472,14 @@ function addPagingInformation(context: SdkContext, operation: Operation, emitted
     if (pagedResult === undefined) {
         throw Error("Trying to add paging information, but not paging metadata for this operation");
     }
-    getType(context, pagedResult.modelType)["pageResultModel"] = true;
-    emittedOperation["itemName"] = pagedResult.itemsPath;
+    if (!isAzureCoreModel(pagedResult.modelType)) {
+        getType(context, pagedResult.modelType)["pageResultModel"] = true;
+    }
+    emittedOperation["itemName"] = pagedResult.itemsSegments ? pagedResult.itemsSegments.join(".") : null;
     emittedOperation["itemType"] = getType(context, pagedResult.itemsProperty!.type);
-    emittedOperation["continuationTokenName"] = pagedResult.nextLinkPath;
+    emittedOperation["continuationTokenName"] = pagedResult.nextLinkSegments
+        ? pagedResult.nextLinkSegments.join(".")
+        : null;
     emittedOperation["exposeStreamKeyword"] = false;
 }
 
@@ -730,6 +585,9 @@ function emitBasicOperation(
         if (isApiVersion(context, param) && apiVersionParam === undefined) {
             apiVersionParam = emittedParam;
         }
+        if (isSubscriptionId(emittedParam) && subscriptionIdParam === undefined) {
+            subscriptionIdParam = emittedParam;
+        }
         parameters.push(emittedParam);
     }
 
@@ -791,286 +649,13 @@ function emitBasicOperation(
             wantTracing: true,
             exposeStreamKeyword: true,
             abstract: isAbstract(httpOperation),
-            internal: isInternal(context, operation),
+            internal: isInternal(context, operation) || getAccess(context, operation) === "internal",
         },
     ];
 }
 
-function emitProperty(context: SdkContext, type: ModelProperty): Record<string, any> {
-    const sdkProperty = getSdkModelPropertyType(context, type);
-    return {
-        clientName: camelToSnakeCase(sdkProperty.name),
-        wireName: sdkProperty.wireName,
-        type: getType(context, type),
-        optional: sdkProperty.optional,
-        description: sdkProperty.doc,
-        addedOn: getAddedOnVersion(context, type),
-        visibility: getVisibility(context.program, type),
-    };
-}
-
-function getName(context: SdkContext, type: Model): string {
-    const friendlyName = getFriendlyName(context.program, type);
-    if (friendlyName) {
-        return friendlyName;
-    } else {
-        const modelName = getLibraryName(context, type);
-        if (type.templateMapper && type.templateMapper.args.length > 0) {
-            return modelName + type.templateMapper.args.map((it) => (it.kind === "Model" ? it.name : "")).join("");
-        } else {
-            return modelName;
-        }
-    }
-}
-
-function emitModel(context: SdkContext, type: Model): Record<string, any> {
-    // Now we know it's a defined model
-    const properties: Record<string, any>[] = [];
-    let baseModel = undefined;
-    if (type.baseModel) {
-        baseModel = getType(context, type.baseModel);
-    }
-    const modelName = getName(context, type) || getEffectiveSchemaType(context, type).name;
-    return {
-        type: "model",
-        name: modelName,
-        description: getDocStr(context, type),
-        parents: baseModel ? [baseModel] : [],
-        discriminatedSubtypes: {},
-        properties: properties,
-        addedOn: getAddedOnVersion(context, type),
-        snakeCaseName: modelName ? camelToSnakeCase(modelName) : modelName,
-        base: modelName === "" ? "json" : "dpg",
-        internal: isInternal(context, type),
-    };
-}
-
-function enumName(name: string): string {
-    if (name.toUpperCase() === name) {
-        return name;
-    }
-    return camelToSnakeCase(name).toUpperCase();
-}
-
-function emitEnumMember(type: SdkEnumValueType): Record<string, any> {
-    return {
-        name: enumName(type.name),
-        value: type.value,
-        description: type.doc,
-    };
-}
-
-function emitEnum(context: SdkContext, type: Enum): Record<string, any> {
-    const sdkType = getSdkEnum(context, type);
-    return {
-        type: sdkType.kind,
-        name: sdkType.name,
-        description: sdkType.doc,
-        valueType: emitSimpleType(context, sdkType.valueType),
-        values: sdkType.values.map((x) => emitEnumMember(x)),
-    };
-}
-
-function emitCredential(auth: HttpAuth): Record<string, any> {
-    let credential_type: Record<string, any> = {};
-    if (auth.type === "oauth2") {
-        credential_type = {
-            type: "OAuth2",
-            policy: {
-                type: "BearerTokenCredentialPolicy",
-                credentialScopes: [],
-            },
-        };
-        for (const flow of auth.flows) {
-            for (const scope of flow.scopes) {
-                credential_type.policy.credentialScopes.push(scope.value);
-            }
-            credential_type.policy.credentialScopes.push();
-        }
-    } else if (auth.type === "apiKey") {
-        credential_type = {
-            type: "Key",
-            policy: {
-                type: "AzureKeyCredentialPolicy",
-                key: auth.name,
-            },
-        };
-    } else if (auth.type === "http") {
-        credential_type = {
-            type: "Key",
-            policy: {
-                type: "AzureKeyCredentialPolicy",
-                key: "Authorization",
-                scheme: auth.scheme,
-            },
-        };
-    }
-    return credential_type;
-}
-
-function emitCredentialUnion(cred_types: CredentialTypeUnion): Record<string, any> {
-    const result: Record<string, any> = {};
-    // Export as CombinedType, which is already a Union Type in autorest codegen
-    result.type = "combined";
-    result.types = [];
-    for (const cred_type of cred_types.types) {
-        result.types.push(emitCredential(cred_type.scheme));
-    }
-
-    return result;
-}
-
-function emitSimpleType(context: SdkContext, type: Scalar | IntrinsicType | SdkSimpleType): Record<string, any> {
-    let sdkType: SdkSimpleType;
-    if (type.kind === "Scalar" || type.kind === "Intrinsic") {
-        sdkType = getSdkSimpleType(context, type);
-    } else {
-        sdkType = type;
-    }
-    const extraInformation: Record<string, any> = {};
-    if (sdkType.kind === "string") {
-        extraInformation["pattern"] = sdkType.pattern;
-        extraInformation["minLength"] = sdkType.minLength;
-        extraInformation["maxLength"] = sdkType.maxLength;
-    } else if (
-        sdkType.kind === "int32" ||
-        sdkType.kind === "int64" ||
-        sdkType.kind === "float32" ||
-        sdkType.kind === "float64"
-    ) {
-        extraInformation["minValue"] = sdkType.minValue;
-        extraInformation["maxValue"] = sdkType.maxValue;
-    }
-    return {
-        type: sdkScalarKindToPythonKind[sdkType.kind] || sdkType.kind, // TODO: switch to kind
-        doc: sdkType.doc,
-        apiVersions: sdkType.apiVersions,
-        sdkDefaultValue: sdkType.sdkDefaultValue,
-        format: sdkType.format,
-        ...extraInformation,
-    };
-}
-
-function emitListOrDict(context: SdkContext, type: Model): Record<string, any> | undefined {
-    const sdkType = getSdkListOrDict(context, type);
-    if (sdkType) {
-        return {
-            type: sdkType.kind,
-            elementType: getType(context, sdkType.elementType.__raw),
-        };
-    }
-    return undefined;
-}
-
-function mapCadlType(context: SdkContext, type: Type): any {
-    switch (type.kind) {
-        case "Number":
-        case "String":
-        case "Boolean":
-            const sdkType = getSdkConstant(context, type)!;
-            return {
-                type: sdkType.kind,
-                value: sdkType.value,
-                valueType: emitSimpleType(context, sdkType.valueType),
-            };
-        case "Model":
-            return emitListOrDict(context, type);
-    }
-}
-
 function capitalize(name: string): string {
     return name[0].toUpperCase() + name.slice(1);
-}
-
-function emitUnion(context: SdkContext, type: Union): Record<string, any> {
-    const sdkType = getSdkUnion(context, type);
-    if (sdkType === undefined) {
-        throw Error("Should not have an empty union");
-    }
-    if (sdkType.kind === "union") {
-        const unionName = type.name;
-        return {
-            name: unionName,
-            snakeCaseName: camelToSnakeCase(unionName || ""),
-            description: `Type of ${unionName}`,
-            internal: true,
-            type: "combined",
-            types: sdkType.values.map((x) => getType(context, x.__raw)),
-            xmlMetadata: {},
-        };
-    } else if (sdkType.kind === "enum") {
-        return {
-            name: sdkType.name,
-            snakeCaseName: camelToSnakeCase(sdkType.name),
-            description: sdkType.doc || `Type of ${sdkType.name}`,
-            internal: true,
-            type: sdkType.kind,
-            valueType: emitSimpleType(context, sdkType.valueType),
-            values: sdkType.values.map((x) => emitEnumMember(x)),
-            xmlMetadata: {},
-        };
-    } else {
-        return emitType(context, sdkType.__raw);
-    }
-}
-
-function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
-    if (type.kind === "Credential") {
-        return emitCredential(type.scheme);
-    }
-    if (type.kind === "CredentialTypeUnion") {
-        return emitCredentialUnion(type);
-    }
-    const builtinType = mapCadlType(context, type);
-    if (builtinType !== undefined) {
-        // add in description elements for types derived from primitive types (SecureString, etc.)
-        const doc = getDoc(context.program, type);
-        if (doc) {
-            builtinType.description = doc;
-        }
-        return builtinType;
-    }
-
-    switch (type.kind) {
-        case "Intrinsic":
-            return { type: "any" };
-        case "Model":
-            return emitModel(context, type);
-        case "Scalar":
-            const result = emitSimpleType(context, type);
-            updateWithEncode(context, type, result);
-            return result;
-        case "Union":
-            return emitUnion(context, type);
-        case "UnionVariant":
-            return {};
-        case "Enum":
-            return emitEnum(context, type);
-        default:
-            throw Error(`Not supported ${type.kind}`);
-    }
-}
-
-function updateWithEncode(context: SdkContext, entity: ModelProperty | Scalar, result: Record<string, any>) {
-    const encode = getEncode(context.program, entity);
-    if (encode) {
-        if (encode.encoding === "seconds") {
-            result["type"] = encode.type.name.includes("float") ? "float" : "integer";
-        } else if (encode.encoding === "rfc7231") {
-            result["format"] = "date-time-rfc1123";
-        } else if (encode.encoding === "unixTimestamp") {
-            result["type"] = "unixtime";
-        } else if (encode.encoding === "base64url") {
-            result["format"] = "base64url";
-        }
-    } else if (
-        entity.kind === "ModelProperty" &&
-        entity.type.kind === "Scalar" &&
-        isHeader(context.program, entity) &&
-        (entity.type.name === "utcDateTime" || entity.type.name === "offsetDateTime")
-    ) {
-        result["format"] = "date-time-rfc1123";
-    }
 }
 
 function emitOperationGroups(context: SdkContext, client: SdkClient): Record<string, any>[] {
@@ -1087,16 +672,22 @@ function emitOperationGroups(context: SdkContext, client: SdkClient): Record<str
             operations: operations,
         });
     }
-    let clientOperations: Record<string, any>[] = [];
+    const clientOperations: Map<string, Record<string, any>> = new Map<string, Record<string, any>>();
     for (const operation of listOperationsInOperationGroup(context, client)) {
-        clientOperations = clientOperations.concat(emitOperation(context, operation, ""));
+        const groupName = isArm ? operation.interface?.name ?? "" : "";
+        const emittedOperation = emitOperation(context, operation, groupName);
+        if (!clientOperations.has(groupName)) {
+            clientOperations.set(groupName, {
+                className: groupName,
+                propertyName: groupName,
+                operations: [],
+            });
+        }
+        const og = clientOperations.get(groupName) as Record<string, any>;
+        og.operations = og.operations.concat(emittedOperation);
     }
-    if (clientOperations.length > 0) {
-        operationGroups.push({
-            className: "",
-            propertyName: "",
-            operations: clientOperations,
-        });
+    for (const value of clientOperations.values()) {
+        operationGroups.push(value);
     }
     return operationGroups;
 }
@@ -1109,24 +700,26 @@ function getServerHelper(context: SdkContext, namespace: Namespace): HttpServer 
     return servers[0];
 }
 
+function hostParam(clientName: string = "endpoint", clientDefaultValue: string | null = null): Record<string, any> {
+    return {
+        optional: false,
+        description: "Service host",
+        clientName: clientName,
+        clientDefaultValue: clientDefaultValue,
+        wireName: "$host",
+        location: "path",
+        type: KnownTypes.string,
+        implementation: "Client",
+        inOverload: false,
+    };
+}
+
 function emitServerParams(context: SdkContext, namespace: Namespace): Record<string, any>[] {
     const server = getServerHelper(context, namespace);
     if (server === undefined) {
-        return [
-            {
-                optional: false,
-                description: "Service host",
-                clientName: "endpoint",
-                clientDefaultValue: null,
-                wireName: "$host",
-                location: "path",
-                type: KnownTypes.string,
-                implementation: "Client",
-                inOverload: false,
-            },
-        ];
+        return [hostParam()];
     }
-    if (server.parameters) {
+    if (server.parameters.size > 0) {
         const params: Record<string, any>[] = [];
         for (const param of server.parameters.values()) {
             const serverParameter: HttpServerParameter = {
@@ -1146,19 +739,7 @@ function emitServerParams(context: SdkContext, namespace: Namespace): Record<str
         }
         return params;
     } else {
-        return [
-            {
-                optional: false,
-                description: "Service host",
-                clientName: "endpoint",
-                clientDefaultValue: server.url,
-                wireName: "$host",
-                location: "path",
-                type: KnownTypes.string,
-                implementation: "Client",
-                inOverload: false,
-            },
-        ];
+        return [hostParam(isArm ? "base_url" : "endpoint", server.url)];
     }
 }
 
@@ -1176,7 +757,7 @@ function emitCredentialParam(context: SdkContext, namespace: Namespace): Record<
             }
         }
         if (credential_types.length > 0) {
-            let type: EmitterType;
+            let type: CredentialType | CredentialTypeUnion;
             if (credential_types.length === 1) {
                 type = credential_types[0];
             } else {
@@ -1207,17 +788,18 @@ function emitGlobalParameters(context: SdkContext, namespace: Namespace): Record
     if (credentialParam) {
         clientParameters.push(credentialParam);
     }
+
     return clientParameters;
 }
 
 function getApiVersionParameter(context: SdkContext): Record<string, any> | void {
-    const version = getDefaultApiVersion(context, getServiceNamespace(context));
+    const version = getDefaultApiVersionValue(context);
     if (apiVersionParam) {
         return apiVersionParam;
     } else if (version !== undefined) {
         return {
             clientName: "api_version",
-            clientDefaultValue: version.value,
+            clientDefaultValue: version,
             description: "Api Version",
             implementation: "Client",
             location: "query",
@@ -1227,14 +809,13 @@ function getApiVersionParameter(context: SdkContext): Record<string, any> | void
             inDocString: true,
             inOverload: false,
             inOverridden: false,
-            type: getConstantType(version.value),
+            type: getConstantType(version),
             isApiVersion: true,
         };
     }
 }
 
-function emitClients(context: SdkContext, namespace: string): Record<string, any>[] {
-    const clients = listClients(context);
+function emitClients(context: SdkContext, namespace: string, clients: SdkClient[]): Record<string, any>[] {
     const retval: Record<string, any>[] = [];
     for (const client of clients) {
         if (getNamespace(context, client.name) !== namespace) {
@@ -1248,10 +829,19 @@ function emitClients(context: SdkContext, namespace: string): Record<string, any
             operationGroups: emitOperationGroups(context, client),
             url: server ? server.url : "",
             apiVersions: [],
+            arm: client.arm,
         };
         const emittedApiVersionParam = getApiVersionParameter(context);
         if (emittedApiVersionParam) {
             emittedClient.parameters.push(emittedApiVersionParam);
+        }
+        if (subscriptionIdParam) {
+            const idx = emittedClient.parameters.findIndex((p) => p.clientName === "credential");
+            emittedClient.parameters = [
+                ...emittedClient.parameters.slice(0, idx + 1),
+                subscriptionIdParam,
+                ...emittedClient.parameters.slice(idx + 1),
+            ];
         }
         retval.push(emittedClient);
     }
@@ -1279,8 +869,7 @@ function getNamespaces(context: SdkContext): Set<string> {
     return namespaces;
 }
 
-function emitCodeModel(context: EmitContext<PythonEmitterOptions>) {
-    const sdkContext = createSdkContext(context);
+function emitCodeModel(sdkContext: SdkContext, clients: SdkClient[]) {
     const clientNamespaceString = getClientNamespaceString(sdkContext)?.toLowerCase();
     // Get types
     const codeModel: Record<string, any> = {
@@ -1288,20 +877,17 @@ function emitCodeModel(context: EmitContext<PythonEmitterOptions>) {
         subnamespaceToClients: {},
     };
     for (const model of getAllModels(sdkContext)) {
-        getType(sdkContext, model);
+        if (model.name !== "") {
+            getType(sdkContext, model);
+        }
     }
     for (const namespace of getNamespaces(sdkContext)) {
         if (namespace === clientNamespaceString) {
-            codeModel["clients"] = emitClients(sdkContext, namespace);
+            codeModel["clients"] = emitClients(sdkContext, namespace, clients);
         } else {
-            codeModel["subnamespaceToClients"][namespace] = emitClients(sdkContext, namespace);
+            codeModel["subnamespaceToClients"][namespace] = emitClients(sdkContext, namespace, clients);
         }
     }
     codeModel["types"] = [...typesMap.values(), ...Object.values(KnownTypes), ...simpleTypesMap.values()];
     return codeModel;
 }
-
-const KnownTypes = {
-    string: { type: "string" },
-    anyObject: { type: "any-object" },
-};

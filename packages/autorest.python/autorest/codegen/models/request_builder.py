@@ -16,6 +16,7 @@ from typing import (
 from abc import abstractmethod
 
 from .base_builder import BaseBuilder
+from .utils import add_to_pylint_disable, NAME_LENGTH_LIMIT
 from .parameter_list import (
     RequestBuilderParameterList,
     OverloadedRequestBuilderParameterList,
@@ -55,6 +56,16 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
         self.url: str = yaml_data["url"]
         self.method: str = yaml_data["method"]
         self.want_tracing = False
+
+    @property
+    def is_lro(self) -> bool:
+        return self.yaml_data.get("discriminator") in ("lro", "lropaging")
+
+    @property
+    def pylint_disable(self) -> str:
+        if len(self.name) > NAME_LENGTH_LIMIT:
+            return add_to_pylint_disable("", "name-too-long")
+        return ""
 
     def response_type_annotation(self, **kwargs) -> str:
         return "HttpRequest"

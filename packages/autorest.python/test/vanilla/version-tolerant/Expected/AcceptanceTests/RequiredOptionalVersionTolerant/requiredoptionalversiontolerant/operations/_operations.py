@@ -56,7 +56,9 @@ def build_implicit_get_required_path_request(path_parameter: str, **kwargs: Any)
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_implicit_put_optional_query_request(*, query_parameter: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_implicit_put_optional_query_request(  # pylint: disable=name-too-long
+    *, query_parameter: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -75,7 +77,9 @@ def build_implicit_put_optional_query_request(*, query_parameter: Optional[str] 
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_implicit_put_optional_header_request(*, query_parameter: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_implicit_put_optional_header_request(  # pylint: disable=name-too-long
+    *, query_parameter: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -108,8 +112,8 @@ def build_implicit_put_optional_body_request(*, content: Optional[str] = None, *
     return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_implicit_put_optional_binary_body_request(
-    *, content: Optional[IO[AnyStr]] = None, **kwargs: Any
+def build_implicit_put_optional_binary_body_request(  # pylint: disable=name-too-long
+    *, content: Optional[IO] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -127,7 +131,9 @@ def build_implicit_put_optional_binary_body_request(
     return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_implicit_get_required_global_path_request(required_global_path: str, **kwargs: Any) -> HttpRequest:
+def build_implicit_get_required_global_path_request(  # pylint: disable=name-too-long
+    required_global_path: str, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -146,7 +152,9 @@ def build_implicit_get_required_global_path_request(required_global_path: str, *
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_implicit_get_required_global_query_request(*, required_global_query: str, **kwargs: Any) -> HttpRequest:
+def build_implicit_get_required_global_query_request(  # pylint: disable=name-too-long
+    *, required_global_query: str, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -164,7 +172,7 @@ def build_implicit_get_required_global_query_request(*, required_global_query: s
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_implicit_get_optional_global_query_request(
+def build_implicit_get_optional_global_query_request(  # pylint: disable=name-too-long
     *, optional_global_query: Optional[int] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -185,8 +193,8 @@ def build_implicit_get_optional_global_query_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_explicit_put_optional_binary_body_request(
-    *, content: Optional[IO[AnyStr]] = None, **kwargs: Any
+def build_explicit_put_optional_binary_body_request(  # pylint: disable=name-too-long
+    *, content: Optional[IO] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -204,7 +212,9 @@ def build_explicit_put_optional_binary_body_request(
     return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_explicit_put_required_binary_body_request(*, content: IO[AnyStr], **kwargs: Any) -> HttpRequest:
+def build_explicit_put_required_binary_body_request(  # pylint: disable=name-too-long
+    *, content: IO, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -221,7 +231,9 @@ def build_explicit_put_required_binary_body_request(*, content: IO[AnyStr], **kw
     return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_explicit_post_required_integer_parameter_request(*, json: int, **kwargs: Any) -> HttpRequest:
+def build_explicit_post_required_integer_parameter_request(  # pylint: disable=name-too-long
+    *, json: int, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -238,7 +250,9 @@ def build_explicit_post_required_integer_parameter_request(*, json: int, **kwarg
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_explicit_post_optional_integer_parameter_request(*, json: Optional[int] = None, **kwargs: Any) -> HttpRequest:
+def build_explicit_post_optional_integer_parameter_request(  # pylint: disable=name-too-long
+    *, json: Optional[int] = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -255,7 +269,9 @@ def build_explicit_post_optional_integer_parameter_request(*, json: Optional[int
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_explicit_post_required_integer_property_request(**kwargs: Any) -> HttpRequest:
+def build_explicit_post_required_integer_property_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -272,7 +288,9 @@ def build_explicit_post_required_integer_property_request(**kwargs: Any) -> Http
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_explicit_post_optional_integer_property_request(**kwargs: Any) -> HttpRequest:
+def build_explicit_post_optional_integer_property_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -289,7 +307,9 @@ def build_explicit_post_optional_integer_property_request(**kwargs: Any) -> Http
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_explicit_post_required_integer_header_request(*, header_parameter: int, **kwargs: Any) -> HttpRequest:
+def build_explicit_post_required_integer_header_request(  # pylint: disable=name-too-long
+    *, header_parameter: int, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -304,7 +324,7 @@ def build_explicit_post_required_integer_header_request(*, header_parameter: int
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_explicit_post_optional_integer_header_request(
+def build_explicit_post_optional_integer_header_request(  # pylint: disable=name-too-long
     *, header_parameter: Optional[int] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -322,7 +342,9 @@ def build_explicit_post_optional_integer_header_request(
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_explicit_post_required_string_parameter_request(*, content: str, **kwargs: Any) -> HttpRequest:
+def build_explicit_post_required_string_parameter_request(  # pylint: disable=name-too-long
+    *, content: str, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -339,7 +361,7 @@ def build_explicit_post_required_string_parameter_request(*, content: str, **kwa
     return HttpRequest(method="POST", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_explicit_post_optional_string_parameter_request(
+def build_explicit_post_optional_string_parameter_request(  # pylint: disable=name-too-long
     *, content: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -358,7 +380,7 @@ def build_explicit_post_optional_string_parameter_request(
     return HttpRequest(method="POST", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_explicit_post_required_string_property_request(**kwargs: Any) -> HttpRequest:
+def build_explicit_post_required_string_property_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -375,7 +397,7 @@ def build_explicit_post_required_string_property_request(**kwargs: Any) -> HttpR
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_explicit_post_optional_string_property_request(**kwargs: Any) -> HttpRequest:
+def build_explicit_post_optional_string_property_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -392,7 +414,9 @@ def build_explicit_post_optional_string_property_request(**kwargs: Any) -> HttpR
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_explicit_post_required_string_header_request(*, header_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_explicit_post_required_string_header_request(  # pylint: disable=name-too-long
+    *, header_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -407,7 +431,7 @@ def build_explicit_post_required_string_header_request(*, header_parameter: str,
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_explicit_post_optional_string_header_request(
+def build_explicit_post_optional_string_header_request(  # pylint: disable=name-too-long
     *, body_parameter: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -425,7 +449,7 @@ def build_explicit_post_optional_string_header_request(
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_explicit_post_required_class_parameter_request(**kwargs: Any) -> HttpRequest:
+def build_explicit_post_required_class_parameter_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -442,7 +466,7 @@ def build_explicit_post_required_class_parameter_request(**kwargs: Any) -> HttpR
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_explicit_post_optional_class_parameter_request(**kwargs: Any) -> HttpRequest:
+def build_explicit_post_optional_class_parameter_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -459,7 +483,7 @@ def build_explicit_post_optional_class_parameter_request(**kwargs: Any) -> HttpR
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_explicit_post_required_class_property_request(**kwargs: Any) -> HttpRequest:
+def build_explicit_post_required_class_property_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -476,7 +500,7 @@ def build_explicit_post_required_class_property_request(**kwargs: Any) -> HttpRe
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_explicit_post_optional_class_property_request(**kwargs: Any) -> HttpRequest:
+def build_explicit_post_optional_class_property_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -493,7 +517,7 @@ def build_explicit_post_optional_class_property_request(**kwargs: Any) -> HttpRe
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_explicit_post_required_array_parameter_request(**kwargs: Any) -> HttpRequest:
+def build_explicit_post_required_array_parameter_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -510,7 +534,7 @@ def build_explicit_post_required_array_parameter_request(**kwargs: Any) -> HttpR
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_explicit_post_optional_array_parameter_request(**kwargs: Any) -> HttpRequest:
+def build_explicit_post_optional_array_parameter_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -527,7 +551,7 @@ def build_explicit_post_optional_array_parameter_request(**kwargs: Any) -> HttpR
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_explicit_post_required_array_property_request(**kwargs: Any) -> HttpRequest:
+def build_explicit_post_required_array_property_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -544,7 +568,7 @@ def build_explicit_post_required_array_property_request(**kwargs: Any) -> HttpRe
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_explicit_post_optional_array_property_request(**kwargs: Any) -> HttpRequest:
+def build_explicit_post_optional_array_property_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -561,7 +585,9 @@ def build_explicit_post_optional_array_property_request(**kwargs: Any) -> HttpRe
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_explicit_post_required_array_header_request(*, header_parameter: List[str], **kwargs: Any) -> HttpRequest:
+def build_explicit_post_required_array_header_request(  # pylint: disable=name-too-long
+    *, header_parameter: List[str], **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -576,7 +602,7 @@ def build_explicit_post_required_array_header_request(*, header_parameter: List[
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_explicit_post_optional_array_header_request(
+def build_explicit_post_optional_array_header_request(  # pylint: disable=name-too-long
     *, header_parameter: Optional[List[str]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
