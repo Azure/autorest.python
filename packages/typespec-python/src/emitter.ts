@@ -11,6 +11,7 @@ import {
     listServices,
     Type,
     getNamespaceFullName,
+    getEncode,
 } from "@typespec/compiler";
 import {
     getAuthentication,
@@ -626,6 +627,9 @@ function emitBasicOperation(
                 bodyParameter["propertyToParameterName"][property["wireName"]] = property["clientName"];
                 parameters.push(emitFlattenedParameter(bodyParameter, property));
             }
+        }
+        if (bodyParameter.type.type === "bytes" && !getEncode(context.program, bodyParameter.type.__raw)) {
+            bodyParameter.type = KnownTypes["bytes"]
         }
     }
     const name = camelToSnakeCase(getLibraryName(context, operation));

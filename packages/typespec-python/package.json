@@ -63,7 +63,7 @@
         "@azure-tools/typespec-azure-resource-manager": ">=0.34.0 <1.0.0",
         "@azure-tools/typespec-autorest": ">=0.34.0 <1.0.0",
         "@azure-tools/cadl-ranch-expect": "~0.7.0",
-        "@azure-tools/cadl-ranch-specs": "~0.22.0",
+        "@azure-tools/cadl-ranch-specs": "~0.22.1",
         "@types/js-yaml": "~4.0.5",
         "@types/mocha": "~10.0.1",
         "@types/node": "^18.16.3",

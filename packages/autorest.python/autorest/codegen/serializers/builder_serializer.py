@@ -32,6 +32,7 @@ from ..models import (
     RequestBuilderType,
     CombinedType,
     ParameterListType,
+    ByteArraySchema,
 )
 from .parameter_serializer import ParameterSerializer, PopKwargType
 from ..models.parameter_list import ParameterType
@@ -774,7 +775,11 @@ class _OperationSerializer(
         if hasattr(body_param, "entries"):
             return _serialize_multipart_body(builder)
         body_kwarg_name = builder.request_builder.parameters.body_parameter.client_name
-        if isinstance(body_param.type, BinaryType):
+        body_param_type = body_param.type
+        if isinstance(body_param_type, BinaryType) or (
+            isinstance(body_param.type, ByteArraySchema)
+            and body_param.type.encode == "binary"
+        ):
             retval.append(f"_{body_kwarg_name} = {body_param.client_name}")
             if (
                 not body_param.default_content_type

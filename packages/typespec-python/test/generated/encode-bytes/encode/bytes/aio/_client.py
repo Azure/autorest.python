@@ -14,7 +14,13 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
 from ._configuration import BytesClientConfiguration
-from .operations import HeaderOperations, PropertyOperations, QueryOperations
+from .operations import (
+    HeaderOperations,
+    PropertyOperations,
+    QueryOperations,
+    RequestBodyOperations,
+    ResponseBodyOperations,
+)
 
 
 class BytesClient:  # pylint: disable=client-accepts-api-version-keyword
@@ -26,6 +32,10 @@ class BytesClient:  # pylint: disable=client-accepts-api-version-keyword
     :vartype property: encode.bytes.aio.operations.PropertyOperations
     :ivar header: HeaderOperations operations
     :vartype header: encode.bytes.aio.operations.HeaderOperations
+    :ivar request_body: RequestBodyOperations operations
+    :vartype request_body: encode.bytes.aio.operations.RequestBodyOperations
+    :ivar response_body: ResponseBodyOperations operations
+    :vartype response_body: encode.bytes.aio.operations.ResponseBodyOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -42,6 +52,8 @@ class BytesClient:  # pylint: disable=client-accepts-api-version-keyword
         self.query = QueryOperations(self._client, self._config, self._serialize, self._deserialize)
         self.property = PropertyOperations(self._client, self._config, self._serialize, self._deserialize)
         self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.request_body = RequestBodyOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.response_body = ResponseBodyOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
