@@ -1196,7 +1196,7 @@ class CatalogsOperations:
         self,
         resource_group_name: str,
         catalog_name: str,
-        list_device_groups_request: _models.ListDeviceGroupsRequest,
+        parameters: _models.ListDeviceGroupsRequest,
         *,
         filter: Optional[str] = None,
         top: Optional[int] = None,
@@ -1211,8 +1211,8 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param list_device_groups_request: List device groups for catalog. Required.
-        :type list_device_groups_request: ~azure.mgmt.spheredpg.models.ListDeviceGroupsRequest
+        :param parameters: List device groups for catalog. Required.
+        :type parameters: ~azure.mgmt.spheredpg.models.ListDeviceGroupsRequest
         :keyword filter: Filter the result list using the given expression. Default value is None.
         :paramtype filter: str
         :keyword top: The number of result items to return. Default value is None.
@@ -1232,7 +1232,7 @@ class CatalogsOperations:
         self,
         resource_group_name: str,
         catalog_name: str,
-        list_device_groups_request: JSON,
+        parameters: JSON,
         *,
         filter: Optional[str] = None,
         top: Optional[int] = None,
@@ -1247,8 +1247,8 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param list_device_groups_request: List device groups for catalog. Required.
-        :type list_device_groups_request: JSON
+        :param parameters: List device groups for catalog. Required.
+        :type parameters: JSON
         :keyword filter: Filter the result list using the given expression. Default value is None.
         :paramtype filter: str
         :keyword top: The number of result items to return. Default value is None.
@@ -1268,7 +1268,7 @@ class CatalogsOperations:
         self,
         resource_group_name: str,
         catalog_name: str,
-        list_device_groups_request: IO,
+        parameters: IO,
         *,
         filter: Optional[str] = None,
         top: Optional[int] = None,
@@ -1283,8 +1283,8 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param list_device_groups_request: List device groups for catalog. Required.
-        :type list_device_groups_request: IO
+        :param parameters: List device groups for catalog. Required.
+        :type parameters: IO
         :keyword filter: Filter the result list using the given expression. Default value is None.
         :paramtype filter: str
         :keyword top: The number of result items to return. Default value is None.
@@ -1304,7 +1304,7 @@ class CatalogsOperations:
         self,
         resource_group_name: str,
         catalog_name: str,
-        list_device_groups_request: Union[_models.ListDeviceGroupsRequest, JSON, IO],
+        parameters: Union[_models.ListDeviceGroupsRequest, JSON, IO],
         *,
         filter: Optional[str] = None,
         top: Optional[int] = None,
@@ -1318,10 +1318,9 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param list_device_groups_request: List device groups for catalog. Is one of the following
-         types: ListDeviceGroupsRequest, JSON, IO Required.
-        :type list_device_groups_request: ~azure.mgmt.spheredpg.models.ListDeviceGroupsRequest or JSON
-         or IO
+        :param parameters: List device groups for catalog. Is one of the following types:
+         ListDeviceGroupsRequest, JSON, IO Required.
+        :type parameters: ~azure.mgmt.spheredpg.models.ListDeviceGroupsRequest or JSON or IO
         :keyword filter: Filter the result list using the given expression. Default value is None.
         :paramtype filter: str
         :keyword top: The number of result items to return. Default value is None.
@@ -1350,10 +1349,10 @@ class CatalogsOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
         content_type = content_type or "application/json"
         _content = None
-        if isinstance(list_device_groups_request, (IOBase, bytes)):
-            _content = list_device_groups_request
+        if isinstance(parameters, (IOBase, bytes)):
+            _content = parameters
         else:
-            _content = json.dumps(list_device_groups_request, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(parameters, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         def prepare_request(next_link=None):
             if not next_link:

@@ -1133,7 +1133,7 @@ class CatalogsOperations:
         self,
         resource_group_name: str,
         catalog_name: str,
-        list_device_groups_request: _models.ListDeviceGroupsRequest,
+        parameters: _models.ListDeviceGroupsRequest,
         *,
         filter: Optional[str] = None,
         top: Optional[int] = None,
@@ -1148,8 +1148,8 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param list_device_groups_request: List device groups for catalog. Required.
-        :type list_device_groups_request: ~azure.mgmt.spheremsrest.models.ListDeviceGroupsRequest
+        :param parameters: List device groups for catalog. Required.
+        :type parameters: ~azure.mgmt.spheremsrest.models.ListDeviceGroupsRequest
         :keyword filter: Filter the result list using the given expression. Default value is None.
         :paramtype filter: str
         :keyword top: The number of result items to return. Default value is None.
@@ -1169,7 +1169,7 @@ class CatalogsOperations:
         self,
         resource_group_name: str,
         catalog_name: str,
-        list_device_groups_request: IO,
+        parameters: IO,
         *,
         filter: Optional[str] = None,
         top: Optional[int] = None,
@@ -1184,8 +1184,8 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param list_device_groups_request: List device groups for catalog. Required.
-        :type list_device_groups_request: IO
+        :param parameters: List device groups for catalog. Required.
+        :type parameters: IO
         :keyword filter: Filter the result list using the given expression. Default value is None.
         :paramtype filter: str
         :keyword top: The number of result items to return. Default value is None.
@@ -1205,7 +1205,7 @@ class CatalogsOperations:
         self,
         resource_group_name: str,
         catalog_name: str,
-        list_device_groups_request: Union[_models.ListDeviceGroupsRequest, IO],
+        parameters: Union[_models.ListDeviceGroupsRequest, IO],
         *,
         filter: Optional[str] = None,
         top: Optional[int] = None,
@@ -1219,9 +1219,9 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param list_device_groups_request: List device groups for catalog. Is either a
-         ListDeviceGroupsRequest type or a IO type. Required.
-        :type list_device_groups_request: ~azure.mgmt.spheremsrest.models.ListDeviceGroupsRequest or IO
+        :param parameters: List device groups for catalog. Is either a ListDeviceGroupsRequest type or
+         a IO type. Required.
+        :type parameters: ~azure.mgmt.spheremsrest.models.ListDeviceGroupsRequest or IO
         :keyword filter: Filter the result list using the given expression. Default value is None.
         :paramtype filter: str
         :keyword top: The number of result items to return. Default value is None.
@@ -1251,10 +1251,10 @@ class CatalogsOperations:
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(list_device_groups_request, (IOBase, bytes)):
-            _content = list_device_groups_request
+        if isinstance(parameters, (IOBase, bytes)):
+            _content = parameters
         else:
-            _json = self._serialize.body(list_device_groups_request, "ListDeviceGroupsRequest")
+            _json = self._serialize.body(parameters, "ListDeviceGroupsRequest")
 
         def prepare_request(next_link=None):
             if not next_link:
