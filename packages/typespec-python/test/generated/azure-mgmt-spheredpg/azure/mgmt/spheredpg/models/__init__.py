@@ -51,13 +51,13 @@ from ._enums import ActionType
 from ._enums import AllowCrashDumpCollection
 from ._enums import CapabilityType
 from ._enums import CertificateStatus
+from ._enums import CreatedByType
 from ._enums import ImageType
 from ._enums import OSFeedType
 from ._enums import Origin
 from ._enums import ProvisioningState
 from ._enums import RegionalDataBoundary
 from ._enums import UpdatePolicy
-from ._enums import createdByType
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
@@ -107,13 +107,13 @@ __all__ = [
     "AllowCrashDumpCollection",
     "CapabilityType",
     "CertificateStatus",
+    "CreatedByType",
     "ImageType",
     "OSFeedType",
     "Origin",
     "ProvisioningState",
     "RegionalDataBoundary",
     "UpdatePolicy",
-    "createdByType",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()

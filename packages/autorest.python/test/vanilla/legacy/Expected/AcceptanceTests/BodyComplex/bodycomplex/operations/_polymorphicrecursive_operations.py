@@ -107,7 +107,6 @@ class PolymorphicrecursiveOperations:
         cls: ClsType[_models.Fish] = kwargs.pop("cls", None)
 
         request = build_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -132,8 +131,6 @@ class PolymorphicrecursiveOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_valid.metadata = {"url": "/complex/polymorphicrecursive/valid"}
 
     @overload
     def put_valid(  # pylint: disable=inconsistent-return-statements
@@ -367,7 +364,6 @@ class PolymorphicrecursiveOperations:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -388,5 +384,3 @@ class PolymorphicrecursiveOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_valid.metadata = {"url": "/complex/polymorphicrecursive/valid"}

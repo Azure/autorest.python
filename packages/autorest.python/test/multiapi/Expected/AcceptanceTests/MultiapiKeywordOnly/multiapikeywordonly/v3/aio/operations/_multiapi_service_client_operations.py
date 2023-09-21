@@ -70,7 +70,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             if not next_link:
 
                 request = build_test_paging_request(
-                    template_url=self.test_paging.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -119,8 +118,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         return AsyncItemPaged(get_next, extract_data)
 
-    test_paging.metadata = {"url": "/multiapi/paging/1"}
-
     @distributed_trace_async
     async def test_different_calls(  # pylint: disable=inconsistent-return-statements
         self,
@@ -164,7 +161,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             greeting_in_chinese=greeting_in_chinese,
             greeting_in_french=greeting_in_french,
             api_version=api_version,
-            template_url=self.test_different_calls.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -185,5 +181,3 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    test_different_calls.metadata = {"url": "/multiapi/testDifferentCalls"}

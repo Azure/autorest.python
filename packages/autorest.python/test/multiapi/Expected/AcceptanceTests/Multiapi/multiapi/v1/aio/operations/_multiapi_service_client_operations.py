@@ -85,7 +85,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             id=id,
             message=message,
             api_version=api_version,
-            template_url=self.test_one.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -106,8 +105,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    test_one.metadata = {"url": "/multiapi/testOneEndpoint"}
 
     async def _test_lro_initial(
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
@@ -141,7 +138,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._test_lro_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -168,8 +164,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _test_lro_initial.metadata = {"url": "/multiapi/lro"}
 
     @overload
     async def begin_test_lro(
@@ -285,8 +279,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_test_lro.metadata = {"url": "/multiapi/lro"}
-
     async def _test_lro_and_paging_initial(
         self,
         client_request_id: Optional[str] = None,
@@ -316,7 +308,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             client_request_id=client_request_id,
             maxresults=_maxresults,
             timeout=_timeout,  # type: ignore
-            template_url=self._test_lro_and_paging_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -340,8 +331,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _test_lro_and_paging_initial.metadata = {"url": "/multiapi/lroAndPaging"}
 
     @distributed_trace_async
     async def begin_test_lro_and_paging(
@@ -396,7 +385,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,  # type: ignore
-                    template_url=self.begin_test_lro_and_paging.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -480,8 +468,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_test_lro_and_paging.metadata = {"url": "/multiapi/lroAndPaging"}
-
     @distributed_trace_async
     async def test_different_calls(  # pylint: disable=inconsistent-return-statements
         self, greeting_in_english: str, **kwargs: Any
@@ -514,7 +500,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         request = build_test_different_calls_request(
             greeting_in_english=greeting_in_english,
             api_version=api_version,
-            template_url=self.test_different_calls.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -535,5 +520,3 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    test_different_calls.metadata = {"url": "/multiapi/testDifferentCalls"}

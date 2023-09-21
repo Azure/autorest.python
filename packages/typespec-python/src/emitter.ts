@@ -142,7 +142,7 @@ function emitParamBase(context: SdkContext, parameter: ModelProperty | Type): Pa
 
     if (parameter.kind === "ModelProperty") {
         optional = parameter.optional;
-        name = parameter.name;
+        name = getLibraryName(context, parameter);
         description = getDocStr(context, parameter);
         addedOn = getAddedOnVersion(context, parameter);
     } else {

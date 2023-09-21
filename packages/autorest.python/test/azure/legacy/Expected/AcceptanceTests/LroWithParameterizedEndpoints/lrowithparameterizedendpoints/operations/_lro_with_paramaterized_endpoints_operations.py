@@ -96,7 +96,6 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         cls: ClsType[Optional[str]] = kwargs.pop("cls", None)
 
         request = build_poll_with_parameterized_endpoints_request(
-            template_url=self._poll_with_parameterized_endpoints_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -131,8 +130,6 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _poll_with_parameterized_endpoints_initial.metadata = {"url": "/lroParameterizedEndpoints"}
 
     @distributed_trace
     def begin_poll_with_parameterized_endpoints(self, account_name: str, **kwargs: Any) -> LROPoller[str]:
@@ -199,8 +196,6 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_poll_with_parameterized_endpoints.metadata = {"url": "/lroParameterizedEndpoints"}
-
     def _poll_with_constant_parameterized_endpoints_initial(  # pylint: disable=name-too-long
         self, account_name: str, **kwargs: Any
     ) -> Optional[str]:
@@ -220,7 +215,6 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
 
         request = build_poll_with_constant_parameterized_endpoints_request(
             constant_parameter=constant_parameter,
-            template_url=self._poll_with_constant_parameterized_endpoints_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -255,10 +249,6 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _poll_with_constant_parameterized_endpoints_initial.metadata = {
-        "url": "/lroConstantParameterizedEndpoints/{constantParameter}"
-    }
 
     @distributed_trace
     def begin_poll_with_constant_parameterized_endpoints(  # pylint: disable=name-too-long
@@ -329,7 +319,3 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
                 deserialization_callback=get_long_running_output,
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
-
-    begin_poll_with_constant_parameterized_endpoints.metadata = {
-        "url": "/lroConstantParameterizedEndpoints/{constantParameter}"
-    }

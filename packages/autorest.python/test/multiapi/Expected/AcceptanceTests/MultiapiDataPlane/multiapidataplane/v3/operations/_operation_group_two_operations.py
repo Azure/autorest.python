@@ -177,7 +177,6 @@ class OperationGroupTwoOperations:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.test_four.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -198,8 +197,6 @@ class OperationGroupTwoOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    test_four.metadata = {"url": "/multiapi/two/testFourEndpoint"}
 
     @distributed_trace
     def test_five(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -226,7 +223,6 @@ class OperationGroupTwoOperations:
 
         request = build_test_five_request(
             api_version=api_version,
-            template_url=self.test_five.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -247,5 +243,3 @@ class OperationGroupTwoOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    test_five.metadata = {"url": "/multiapi/two/testFiveEndpoint"}

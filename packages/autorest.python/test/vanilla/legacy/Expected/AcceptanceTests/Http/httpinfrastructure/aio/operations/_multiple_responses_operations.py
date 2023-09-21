@@ -108,7 +108,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[Optional[_models.MyException]] = kwargs.pop("cls", None)
 
         request = build_get200_model204_no_model_default_error200_valid_request(
-            template_url=self.get200_model204_no_model_default_error200_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -135,10 +134,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model204_no_model_default_error200_valid.metadata = {
-        "url": "/http/payloads/200/A/204/none/default/Error/response/200/valid"
-    }
 
     @distributed_trace_async
     async def get200_model204_no_model_default_error204_valid(  # pylint: disable=name-too-long
@@ -165,7 +160,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[Optional[_models.MyException]] = kwargs.pop("cls", None)
 
         request = build_get200_model204_no_model_default_error204_valid_request(
-            template_url=self.get200_model204_no_model_default_error204_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -192,10 +186,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model204_no_model_default_error204_valid.metadata = {
-        "url": "/http/payloads/200/A/204/none/default/Error/response/204/none"
-    }
 
     @distributed_trace_async
     async def get200_model204_no_model_default_error201_invalid(  # pylint: disable=name-too-long
@@ -222,7 +212,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[Optional[_models.MyException]] = kwargs.pop("cls", None)
 
         request = build_get200_model204_no_model_default_error201_invalid_request(
-            template_url=self.get200_model204_no_model_default_error201_invalid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -249,10 +238,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model204_no_model_default_error201_invalid.metadata = {
-        "url": "/http/payloads/200/A/204/none/default/Error/response/201/valid"
-    }
 
     @distributed_trace_async
     async def get200_model204_no_model_default_error202_none(  # pylint: disable=name-too-long
@@ -279,7 +264,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[Optional[_models.MyException]] = kwargs.pop("cls", None)
 
         request = build_get200_model204_no_model_default_error202_none_request(
-            template_url=self.get200_model204_no_model_default_error202_none.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -306,10 +290,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model204_no_model_default_error202_none.metadata = {
-        "url": "/http/payloads/200/A/204/none/default/Error/response/202/none"
-    }
 
     @distributed_trace_async
     async def get200_model204_no_model_default_error400_valid(  # pylint: disable=name-too-long
@@ -336,7 +316,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[Optional[_models.MyException]] = kwargs.pop("cls", None)
 
         request = build_get200_model204_no_model_default_error400_valid_request(
-            template_url=self.get200_model204_no_model_default_error400_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -364,10 +343,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    get200_model204_no_model_default_error400_valid.metadata = {
-        "url": "/http/payloads/200/A/204/none/default/Error/response/400/valid"
-    }
-
     @distributed_trace_async
     async def get200_model201_model_default_error200_valid(  # pylint: disable=name-too-long
         self, **kwargs: Any
@@ -393,7 +368,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[Union[_models.MyException, _models.B]] = kwargs.pop("cls", None)
 
         request = build_get200_model201_model_default_error200_valid_request(
-            template_url=self.get200_model201_model_default_error200_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -422,10 +396,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
-
-    get200_model201_model_default_error200_valid.metadata = {
-        "url": "/http/payloads/200/A/201/B/default/Error/response/200/valid"
-    }
 
     @distributed_trace_async
     async def get200_model201_model_default_error201_valid(  # pylint: disable=name-too-long
@@ -452,7 +422,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[Union[_models.MyException, _models.B]] = kwargs.pop("cls", None)
 
         request = build_get200_model201_model_default_error201_valid_request(
-            template_url=self.get200_model201_model_default_error201_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -481,10 +450,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
-
-    get200_model201_model_default_error201_valid.metadata = {
-        "url": "/http/payloads/200/A/201/B/default/Error/response/201/valid"
-    }
 
     @distributed_trace_async
     async def get200_model201_model_default_error400_valid(  # pylint: disable=name-too-long
@@ -511,7 +476,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[Union[_models.MyException, _models.B]] = kwargs.pop("cls", None)
 
         request = build_get200_model201_model_default_error400_valid_request(
-            template_url=self.get200_model201_model_default_error400_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -540,10 +504,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
-
-    get200_model201_model_default_error400_valid.metadata = {
-        "url": "/http/payloads/200/A/201/B/default/Error/response/400/valid"
-    }
 
     @distributed_trace_async
     async def get200_model_a201_model_c404_model_d_default_error200_valid(  # pylint: disable=name-too-long
@@ -571,7 +531,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[Union[_models.MyException, _models.C, _models.D]] = kwargs.pop("cls", None)
 
         request = build_get200_model_a201_model_c404_model_d_default_error200_valid_request(
-            template_url=self.get200_model_a201_model_c404_model_d_default_error200_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -603,10 +562,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
-
-    get200_model_a201_model_c404_model_d_default_error200_valid.metadata = {
-        "url": "/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid"
-    }
 
     @distributed_trace_async
     async def get200_model_a201_model_c404_model_d_default_error201_valid(  # pylint: disable=name-too-long
@@ -634,7 +589,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[Union[_models.MyException, _models.C, _models.D]] = kwargs.pop("cls", None)
 
         request = build_get200_model_a201_model_c404_model_d_default_error201_valid_request(
-            template_url=self.get200_model_a201_model_c404_model_d_default_error201_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -666,10 +620,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
-
-    get200_model_a201_model_c404_model_d_default_error201_valid.metadata = {
-        "url": "/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid"
-    }
 
     @distributed_trace_async
     async def get200_model_a201_model_c404_model_d_default_error404_valid(  # pylint: disable=name-too-long
@@ -697,7 +647,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[Union[_models.MyException, _models.C, _models.D]] = kwargs.pop("cls", None)
 
         request = build_get200_model_a201_model_c404_model_d_default_error404_valid_request(
-            template_url=self.get200_model_a201_model_c404_model_d_default_error404_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -729,10 +678,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
-
-    get200_model_a201_model_c404_model_d_default_error404_valid.metadata = {
-        "url": "/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid"
-    }
 
     @distributed_trace_async
     async def get200_model_a201_model_c404_model_d_default_error400_valid(  # pylint: disable=name-too-long
@@ -760,7 +705,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[Union[_models.MyException, _models.C, _models.D]] = kwargs.pop("cls", None)
 
         request = build_get200_model_a201_model_c404_model_d_default_error400_valid_request(
-            template_url=self.get200_model_a201_model_c404_model_d_default_error400_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -793,10 +737,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized  # type: ignore
 
-    get200_model_a201_model_c404_model_d_default_error400_valid.metadata = {
-        "url": "/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid"
-    }
-
     @distributed_trace_async
     async def get202_none204_none_default_error202_none(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, **kwargs: Any
@@ -822,7 +762,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get202_none204_none_default_error202_none_request(
-            template_url=self.get202_none204_none_default_error202_none.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -843,10 +782,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get202_none204_none_default_error202_none.metadata = {
-        "url": "/http/payloads/202/none/204/none/default/Error/response/202/none"
-    }
 
     @distributed_trace_async
     async def get202_none204_none_default_error204_none(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -873,7 +808,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get202_none204_none_default_error204_none_request(
-            template_url=self.get202_none204_none_default_error204_none.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -894,10 +828,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get202_none204_none_default_error204_none.metadata = {
-        "url": "/http/payloads/202/none/204/none/default/Error/response/204/none"
-    }
 
     @distributed_trace_async
     async def get202_none204_none_default_error400_valid(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -924,7 +854,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get202_none204_none_default_error400_valid_request(
-            template_url=self.get202_none204_none_default_error400_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -945,10 +874,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get202_none204_none_default_error400_valid.metadata = {
-        "url": "/http/payloads/202/none/204/none/default/Error/response/400/valid"
-    }
 
     @distributed_trace_async
     async def get202_none204_none_default_none202_invalid(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -975,7 +900,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get202_none204_none_default_none202_invalid_request(
-            template_url=self.get202_none204_none_default_none202_invalid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -995,10 +919,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get202_none204_none_default_none202_invalid.metadata = {
-        "url": "/http/payloads/202/none/204/none/default/none/response/202/invalid"
-    }
 
     @distributed_trace_async
     async def get202_none204_none_default_none204_none(  # pylint: disable=inconsistent-return-statements
@@ -1025,7 +945,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get202_none204_none_default_none204_none_request(
-            template_url=self.get202_none204_none_default_none204_none.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1045,10 +964,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get202_none204_none_default_none204_none.metadata = {
-        "url": "/http/payloads/202/none/204/none/default/none/response/204/none"
-    }
 
     @distributed_trace_async
     async def get202_none204_none_default_none400_none(  # pylint: disable=inconsistent-return-statements
@@ -1075,7 +990,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get202_none204_none_default_none400_none_request(
-            template_url=self.get202_none204_none_default_none400_none.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1095,10 +1009,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get202_none204_none_default_none400_none.metadata = {
-        "url": "/http/payloads/202/none/204/none/default/none/response/400/none"
-    }
 
     @distributed_trace_async
     async def get202_none204_none_default_none400_invalid(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -1125,7 +1035,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get202_none204_none_default_none400_invalid_request(
-            template_url=self.get202_none204_none_default_none400_invalid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1145,10 +1054,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get202_none204_none_default_none400_invalid.metadata = {
-        "url": "/http/payloads/202/none/204/none/default/none/response/400/invalid"
-    }
 
     @distributed_trace_async
     async def get_default_model_a200_valid(self, **kwargs: Any) -> _models.MyException:
@@ -1173,7 +1078,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.MyException] = kwargs.pop("cls", None)
 
         request = build_get_default_model_a200_valid_request(
-            template_url=self.get_default_model_a200_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1197,8 +1101,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_default_model_a200_valid.metadata = {"url": "/http/payloads/default/A/response/200/valid"}
 
     @distributed_trace_async
     async def get_default_model_a200_none(self, **kwargs: Any) -> _models.MyException:
@@ -1223,7 +1125,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.MyException] = kwargs.pop("cls", None)
 
         request = build_get_default_model_a200_none_request(
-            template_url=self.get_default_model_a200_none.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1247,8 +1148,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_default_model_a200_none.metadata = {"url": "/http/payloads/default/A/response/200/none"}
 
     @distributed_trace_async
     async def get_default_model_a400_valid(  # pylint: disable=inconsistent-return-statements
@@ -1275,7 +1174,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_default_model_a400_valid_request(
-            template_url=self.get_default_model_a400_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1296,8 +1194,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_default_model_a400_valid.metadata = {"url": "/http/payloads/default/A/response/400/valid"}
 
     @distributed_trace_async
     async def get_default_model_a400_none(  # pylint: disable=inconsistent-return-statements
@@ -1324,7 +1220,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_default_model_a400_none_request(
-            template_url=self.get_default_model_a400_none.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1345,8 +1240,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_default_model_a400_none.metadata = {"url": "/http/payloads/default/A/response/400/none"}
 
     @distributed_trace_async
     async def get_default_none200_invalid(  # pylint: disable=inconsistent-return-statements
@@ -1373,7 +1266,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_default_none200_invalid_request(
-            template_url=self.get_default_none200_invalid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1393,8 +1285,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_default_none200_invalid.metadata = {"url": "/http/payloads/default/none/response/200/invalid"}
 
     @distributed_trace_async
     async def get_default_none200_none(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1419,7 +1309,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_default_none200_none_request(
-            template_url=self.get_default_none200_none.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1439,8 +1328,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_default_none200_none.metadata = {"url": "/http/payloads/default/none/response/200/none"}
 
     @distributed_trace_async
     async def get_default_none400_invalid(  # pylint: disable=inconsistent-return-statements
@@ -1467,7 +1354,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_default_none400_invalid_request(
-            template_url=self.get_default_none400_invalid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1487,8 +1373,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_default_none400_invalid.metadata = {"url": "/http/payloads/default/none/response/400/invalid"}
 
     @distributed_trace_async
     async def get_default_none400_none(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1513,7 +1397,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_default_none400_none_request(
-            template_url=self.get_default_none400_none.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1533,8 +1416,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_default_none400_none.metadata = {"url": "/http/payloads/default/none/response/400/none"}
 
     @distributed_trace_async
     async def get200_model_a200_none(self, **kwargs: Any) -> _models.MyException:
@@ -1560,7 +1441,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.MyException] = kwargs.pop("cls", None)
 
         request = build_get200_model_a200_none_request(
-            template_url=self.get200_model_a200_none.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1584,8 +1464,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model_a200_none.metadata = {"url": "/http/payloads/200/A/response/200/none"}
 
     @distributed_trace_async
     async def get200_model_a200_valid(self, **kwargs: Any) -> _models.MyException:
@@ -1610,7 +1488,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.MyException] = kwargs.pop("cls", None)
 
         request = build_get200_model_a200_valid_request(
-            template_url=self.get200_model_a200_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1634,8 +1511,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model_a200_valid.metadata = {"url": "/http/payloads/200/A/response/200/valid"}
 
     @distributed_trace_async
     async def get200_model_a200_invalid(self, **kwargs: Any) -> _models.MyException:
@@ -1660,7 +1535,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.MyException] = kwargs.pop("cls", None)
 
         request = build_get200_model_a200_invalid_request(
-            template_url=self.get200_model_a200_invalid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1684,8 +1558,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model_a200_invalid.metadata = {"url": "/http/payloads/200/A/response/200/invalid"}
 
     @distributed_trace_async
     async def get200_model_a400_none(self, **kwargs: Any) -> _models.MyException:
@@ -1710,7 +1582,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.MyException] = kwargs.pop("cls", None)
 
         request = build_get200_model_a400_none_request(
-            template_url=self.get200_model_a400_none.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1734,8 +1605,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model_a400_none.metadata = {"url": "/http/payloads/200/A/response/400/none"}
 
     @distributed_trace_async
     async def get200_model_a400_valid(self, **kwargs: Any) -> _models.MyException:
@@ -1760,7 +1629,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.MyException] = kwargs.pop("cls", None)
 
         request = build_get200_model_a400_valid_request(
-            template_url=self.get200_model_a400_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1784,8 +1652,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model_a400_valid.metadata = {"url": "/http/payloads/200/A/response/400/valid"}
 
     @distributed_trace_async
     async def get200_model_a400_invalid(self, **kwargs: Any) -> _models.MyException:
@@ -1810,7 +1676,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.MyException] = kwargs.pop("cls", None)
 
         request = build_get200_model_a400_invalid_request(
-            template_url=self.get200_model_a400_invalid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1834,8 +1699,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model_a400_invalid.metadata = {"url": "/http/payloads/200/A/response/400/invalid"}
 
     @distributed_trace_async
     async def get200_model_a202_valid(self, **kwargs: Any) -> _models.MyException:
@@ -1860,7 +1723,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.MyException] = kwargs.pop("cls", None)
 
         request = build_get200_model_a202_valid_request(
-            template_url=self.get200_model_a202_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1884,5 +1746,3 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200_model_a202_valid.metadata = {"url": "/http/payloads/200/A/response/202/valid"}

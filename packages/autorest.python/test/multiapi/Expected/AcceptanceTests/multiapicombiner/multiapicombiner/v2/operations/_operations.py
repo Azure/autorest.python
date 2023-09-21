@@ -184,7 +184,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             id=id,
             message=message,
             api_version=api_version,
-            template_url=self.test_one.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -209,8 +208,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    test_one.metadata = {"url": "/multiapi/testOneEndpoint"}
 
     @distributed_trace
     def test_different_calls(  # pylint: disable=inconsistent-return-statements
@@ -247,7 +244,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             greeting_in_english=greeting_in_english,
             greeting_in_chinese=greeting_in_chinese,
             api_version=api_version,
-            template_url=self.test_different_calls.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -268,8 +264,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    test_different_calls.metadata = {"url": "/multiapi/testDifferentCalls"}
 
 
 class OperationGroupOneOperations:
@@ -372,7 +366,6 @@ class OperationGroupOneOperations:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.test_two.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -397,8 +390,6 @@ class OperationGroupOneOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    test_two.metadata = {"url": "/multiapi/one/testTwoEndpoint"}
 
     @distributed_trace
     def test_three(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -425,7 +416,6 @@ class OperationGroupOneOperations:
 
         request = build_operation_group_one_test_three_request(
             api_version=api_version,
-            template_url=self.test_three.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -446,8 +436,6 @@ class OperationGroupOneOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    test_three.metadata = {"url": "/multiapi/one/testThreeEndpoint"}
 
 
 class OperationGroupTwoOperations:
@@ -500,7 +488,6 @@ class OperationGroupTwoOperations:
         request = build_operation_group_two_test_four_request(
             parameter_one=parameter_one,
             api_version=api_version,
-            template_url=self.test_four.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -521,5 +508,3 @@ class OperationGroupTwoOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    test_four.metadata = {"url": "/multiapi/two/testFourEndpoint"}

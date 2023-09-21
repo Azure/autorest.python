@@ -76,7 +76,6 @@ class UsageOperations:
         request = build_list_request(
             subscription_id=self._config.subscription_id,
             api_version=api_version,
-            template_url=self.list.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -100,5 +99,3 @@ class UsageOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    list.metadata = {"url": "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages"}

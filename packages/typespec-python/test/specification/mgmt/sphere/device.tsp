@@ -3,6 +3,7 @@ import "@typespec/openapi";
 import "@typespec/versioning";
 import "@azure-tools/typespec-azure-core";
 import "@azure-tools/typespec-azure-resource-manager";
+import "@azure-tools/typespec-client-generator-core";
 
 using TypeSpec.Http;
 using TypeSpec.Rest;
@@ -11,6 +12,7 @@ using Azure.ResourceManager.Foundations;
 using Azure.Core;
 using Azure.ResourceManager;
 using OpenAPI;
+using Azure.ClientGenerator.Core;
 
 namespace Microsoft.AzureSphere;
 
@@ -62,6 +64,7 @@ interface Devices extends ProxyResourceOperationsDevice<Device> {
 
     @doc("Generate capability image request body.")
     @body
+    @projectedName("python", "parameters")
     generateDeviceCapabilityRequest: GenerateCapabilityImageRequest,
   ): ArmResponse<SignedCapabilityImageResponse> | ArmAcceptedResponse | ErrorResponse;
 }
