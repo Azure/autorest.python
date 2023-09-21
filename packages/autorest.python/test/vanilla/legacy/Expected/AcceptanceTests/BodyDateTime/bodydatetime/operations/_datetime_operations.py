@@ -429,7 +429,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[Optional[datetime.datetime]] = kwargs.pop("cls", None)
 
         request = build_get_null_request(
-            template_url=self.get_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -454,8 +453,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null.metadata = {"url": "/datetime/null"}
 
     @distributed_trace
     def get_invalid(self, **kwargs: Any) -> datetime.datetime:
@@ -480,7 +477,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
         request = build_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -505,8 +501,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid.metadata = {"url": "/datetime/invalid"}
 
     @distributed_trace
     def get_overflow(self, **kwargs: Any) -> datetime.datetime:
@@ -531,7 +525,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
         request = build_get_overflow_request(
-            template_url=self.get_overflow.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -556,8 +549,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_overflow.metadata = {"url": "/datetime/overflow"}
 
     @distributed_trace
     def get_underflow(self, **kwargs: Any) -> datetime.datetime:
@@ -582,7 +573,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
         request = build_get_underflow_request(
-            template_url=self.get_underflow.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -607,8 +597,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_underflow.metadata = {"url": "/datetime/underflow"}
 
     @distributed_trace
     def put_utc_max_date_time(  # pylint: disable=inconsistent-return-statements
@@ -642,7 +630,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         request = build_put_utc_max_date_time_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_utc_max_date_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -663,8 +650,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_utc_max_date_time.metadata = {"url": "/datetime/max/utc"}
 
     @distributed_trace
     def put_utc_max_date_time7_digits(  # pylint: disable=inconsistent-return-statements
@@ -701,7 +686,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         request = build_put_utc_max_date_time7_digits_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_utc_max_date_time7_digits.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -722,8 +706,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_utc_max_date_time7_digits.metadata = {"url": "/datetime/max/utc7ms"}
 
     @distributed_trace
     def get_utc_lowercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
@@ -748,7 +730,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
         request = build_get_utc_lowercase_max_date_time_request(
-            template_url=self.get_utc_lowercase_max_date_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -773,8 +754,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_utc_lowercase_max_date_time.metadata = {"url": "/datetime/max/utc/lowercase"}
 
     @distributed_trace
     def get_utc_uppercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
@@ -799,7 +778,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
         request = build_get_utc_uppercase_max_date_time_request(
-            template_url=self.get_utc_uppercase_max_date_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -824,8 +802,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_utc_uppercase_max_date_time.metadata = {"url": "/datetime/max/utc/uppercase"}
 
     @distributed_trace
     def get_utc_uppercase_max_date_time7_digits(self, **kwargs: Any) -> datetime.datetime:
@@ -853,7 +829,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
         request = build_get_utc_uppercase_max_date_time7_digits_request(
-            template_url=self.get_utc_uppercase_max_date_time7_digits.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -878,8 +853,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_utc_uppercase_max_date_time7_digits.metadata = {"url": "/datetime/max/utc7ms/uppercase"}
 
     @distributed_trace
     def put_local_positive_offset_max_date_time(  # pylint: disable=inconsistent-return-statements
@@ -913,7 +886,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         request = build_put_local_positive_offset_max_date_time_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_local_positive_offset_max_date_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -934,8 +906,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_local_positive_offset_max_date_time.metadata = {"url": "/datetime/max/localpositiveoffset"}
 
     @distributed_trace
     def get_local_positive_offset_lowercase_max_date_time(  # pylint: disable=name-too-long
@@ -962,7 +932,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
         request = build_get_local_positive_offset_lowercase_max_date_time_request(
-            template_url=self.get_local_positive_offset_lowercase_max_date_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -987,8 +956,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_local_positive_offset_lowercase_max_date_time.metadata = {"url": "/datetime/max/localpositiveoffset/lowercase"}
 
     @distributed_trace
     def get_local_positive_offset_uppercase_max_date_time(  # pylint: disable=name-too-long
@@ -1015,7 +982,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
         request = build_get_local_positive_offset_uppercase_max_date_time_request(
-            template_url=self.get_local_positive_offset_uppercase_max_date_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1040,8 +1006,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_local_positive_offset_uppercase_max_date_time.metadata = {"url": "/datetime/max/localpositiveoffset/uppercase"}
 
     @distributed_trace
     def put_local_negative_offset_max_date_time(  # pylint: disable=inconsistent-return-statements
@@ -1075,7 +1039,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         request = build_put_local_negative_offset_max_date_time_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_local_negative_offset_max_date_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1096,8 +1059,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_local_negative_offset_max_date_time.metadata = {"url": "/datetime/max/localnegativeoffset"}
 
     @distributed_trace
     def get_local_negative_offset_uppercase_max_date_time(  # pylint: disable=name-too-long
@@ -1124,7 +1085,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
         request = build_get_local_negative_offset_uppercase_max_date_time_request(
-            template_url=self.get_local_negative_offset_uppercase_max_date_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1149,8 +1109,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_local_negative_offset_uppercase_max_date_time.metadata = {"url": "/datetime/max/localnegativeoffset/uppercase"}
 
     @distributed_trace
     def get_local_negative_offset_lowercase_max_date_time(  # pylint: disable=name-too-long
@@ -1177,7 +1135,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
         request = build_get_local_negative_offset_lowercase_max_date_time_request(
-            template_url=self.get_local_negative_offset_lowercase_max_date_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1202,8 +1159,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_local_negative_offset_lowercase_max_date_time.metadata = {"url": "/datetime/max/localnegativeoffset/lowercase"}
 
     @distributed_trace
     def put_utc_min_date_time(  # pylint: disable=inconsistent-return-statements
@@ -1237,7 +1192,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         request = build_put_utc_min_date_time_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_utc_min_date_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1258,8 +1212,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_utc_min_date_time.metadata = {"url": "/datetime/min/utc"}
 
     @distributed_trace
     def get_utc_min_date_time(self, **kwargs: Any) -> datetime.datetime:
@@ -1284,7 +1236,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
         request = build_get_utc_min_date_time_request(
-            template_url=self.get_utc_min_date_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1309,8 +1260,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_utc_min_date_time.metadata = {"url": "/datetime/min/utc"}
 
     @distributed_trace
     def put_local_positive_offset_min_date_time(  # pylint: disable=inconsistent-return-statements
@@ -1344,7 +1293,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         request = build_put_local_positive_offset_min_date_time_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_local_positive_offset_min_date_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1365,8 +1313,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_local_positive_offset_min_date_time.metadata = {"url": "/datetime/min/localpositiveoffset"}
 
     @distributed_trace
     def get_local_positive_offset_min_date_time(self, **kwargs: Any) -> datetime.datetime:
@@ -1391,7 +1337,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
         request = build_get_local_positive_offset_min_date_time_request(
-            template_url=self.get_local_positive_offset_min_date_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1416,8 +1361,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_local_positive_offset_min_date_time.metadata = {"url": "/datetime/min/localpositiveoffset"}
 
     @distributed_trace
     def put_local_negative_offset_min_date_time(  # pylint: disable=inconsistent-return-statements
@@ -1451,7 +1394,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         request = build_put_local_negative_offset_min_date_time_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_local_negative_offset_min_date_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1472,8 +1414,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_local_negative_offset_min_date_time.metadata = {"url": "/datetime/min/localnegativeoffset"}
 
     @distributed_trace
     def get_local_negative_offset_min_date_time(self, **kwargs: Any) -> datetime.datetime:
@@ -1498,7 +1438,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
         request = build_get_local_negative_offset_min_date_time_request(
-            template_url=self.get_local_negative_offset_min_date_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1523,8 +1462,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_local_negative_offset_min_date_time.metadata = {"url": "/datetime/min/localnegativeoffset"}
 
     @distributed_trace
     def get_local_no_offset_min_date_time(self, **kwargs: Any) -> datetime.datetime:
@@ -1549,7 +1486,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
         request = build_get_local_no_offset_min_date_time_request(
-            template_url=self.get_local_no_offset_min_date_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1574,5 +1510,3 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_local_no_offset_min_date_time.metadata = {"url": "/datetime/min/localnooffset"}

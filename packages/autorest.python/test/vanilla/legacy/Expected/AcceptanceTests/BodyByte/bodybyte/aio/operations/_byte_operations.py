@@ -78,7 +78,6 @@ class ByteOperations:
         cls: ClsType[bytes] = kwargs.pop("cls", None)
 
         request = build_get_null_request(
-            template_url=self.get_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -103,8 +102,6 @@ class ByteOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null.metadata = {"url": "/byte/null"}
 
     @distributed_trace_async
     async def get_empty(self, **kwargs: Any) -> bytes:
@@ -129,7 +126,6 @@ class ByteOperations:
         cls: ClsType[bytes] = kwargs.pop("cls", None)
 
         request = build_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -154,8 +150,6 @@ class ByteOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty.metadata = {"url": "/byte/empty"}
 
     @distributed_trace_async
     async def get_non_ascii(self, **kwargs: Any) -> bytes:
@@ -180,7 +174,6 @@ class ByteOperations:
         cls: ClsType[bytes] = kwargs.pop("cls", None)
 
         request = build_get_non_ascii_request(
-            template_url=self.get_non_ascii.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -205,8 +198,6 @@ class ByteOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_non_ascii.metadata = {"url": "/byte/nonAscii"}
 
     @distributed_trace_async
     async def put_non_ascii(  # pylint: disable=inconsistent-return-statements
@@ -241,7 +232,6 @@ class ByteOperations:
         request = build_put_non_ascii_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_non_ascii.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -262,8 +252,6 @@ class ByteOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_non_ascii.metadata = {"url": "/byte/nonAscii"}
 
     @distributed_trace_async
     async def get_invalid(self, **kwargs: Any) -> bytes:
@@ -288,7 +276,6 @@ class ByteOperations:
         cls: ClsType[bytes] = kwargs.pop("cls", None)
 
         request = build_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -313,5 +300,3 @@ class ByteOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid.metadata = {"url": "/byte/invalid"}

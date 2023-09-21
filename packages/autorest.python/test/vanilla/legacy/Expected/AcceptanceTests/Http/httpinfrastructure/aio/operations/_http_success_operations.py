@@ -97,7 +97,6 @@ class HttpSuccessOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head200_request(
-            template_url=self.head200.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -118,8 +117,6 @@ class HttpSuccessOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    head200.metadata = {"url": "/http/success/200"}
 
     @distributed_trace_async
     async def get200(self, **kwargs: Any) -> bool:
@@ -144,7 +141,6 @@ class HttpSuccessOperations:
         cls: ClsType[bool] = kwargs.pop("cls", None)
 
         request = build_get200_request(
-            template_url=self.get200.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -169,8 +165,6 @@ class HttpSuccessOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get200.metadata = {"url": "/http/success/200"}
 
     @distributed_trace_async
     async def options200(self, **kwargs: Any) -> bool:
@@ -195,7 +189,6 @@ class HttpSuccessOperations:
         cls: ClsType[bool] = kwargs.pop("cls", None)
 
         request = build_options200_request(
-            template_url=self.options200.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -220,8 +213,6 @@ class HttpSuccessOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    options200.metadata = {"url": "/http/success/200"}
 
     @distributed_trace_async
     async def put200(  # pylint: disable=inconsistent-return-statements
@@ -259,7 +250,6 @@ class HttpSuccessOperations:
         request = build_put200_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put200.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -280,8 +270,6 @@ class HttpSuccessOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put200.metadata = {"url": "/http/success/200"}
 
     @distributed_trace_async
     async def patch200(  # pylint: disable=inconsistent-return-statements
@@ -319,7 +307,6 @@ class HttpSuccessOperations:
         request = build_patch200_request(
             content_type=content_type,
             json=_json,
-            template_url=self.patch200.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -340,8 +327,6 @@ class HttpSuccessOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    patch200.metadata = {"url": "/http/success/200"}
 
     @distributed_trace_async
     async def post200(  # pylint: disable=inconsistent-return-statements
@@ -379,7 +364,6 @@ class HttpSuccessOperations:
         request = build_post200_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post200.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -400,8 +384,6 @@ class HttpSuccessOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post200.metadata = {"url": "/http/success/200"}
 
     @distributed_trace_async
     async def delete200(  # pylint: disable=inconsistent-return-statements
@@ -439,7 +421,6 @@ class HttpSuccessOperations:
         request = build_delete200_request(
             content_type=content_type,
             json=_json,
-            template_url=self.delete200.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -460,8 +441,6 @@ class HttpSuccessOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    delete200.metadata = {"url": "/http/success/200"}
 
     @distributed_trace_async
     async def put201(  # pylint: disable=inconsistent-return-statements
@@ -499,7 +478,6 @@ class HttpSuccessOperations:
         request = build_put201_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put201.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -520,8 +498,6 @@ class HttpSuccessOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put201.metadata = {"url": "/http/success/201"}
 
     @distributed_trace_async
     async def post201(  # pylint: disable=inconsistent-return-statements
@@ -559,7 +535,6 @@ class HttpSuccessOperations:
         request = build_post201_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post201.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -580,8 +555,6 @@ class HttpSuccessOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post201.metadata = {"url": "/http/success/201"}
 
     @distributed_trace_async
     async def put202(  # pylint: disable=inconsistent-return-statements
@@ -619,7 +592,6 @@ class HttpSuccessOperations:
         request = build_put202_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put202.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -640,8 +612,6 @@ class HttpSuccessOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put202.metadata = {"url": "/http/success/202"}
 
     @distributed_trace_async
     async def patch202(  # pylint: disable=inconsistent-return-statements
@@ -679,7 +649,6 @@ class HttpSuccessOperations:
         request = build_patch202_request(
             content_type=content_type,
             json=_json,
-            template_url=self.patch202.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -700,8 +669,6 @@ class HttpSuccessOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    patch202.metadata = {"url": "/http/success/202"}
 
     @distributed_trace_async
     async def post202(  # pylint: disable=inconsistent-return-statements
@@ -739,7 +706,6 @@ class HttpSuccessOperations:
         request = build_post202_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post202.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -760,8 +726,6 @@ class HttpSuccessOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post202.metadata = {"url": "/http/success/202"}
 
     @distributed_trace_async
     async def delete202(  # pylint: disable=inconsistent-return-statements
@@ -799,7 +763,6 @@ class HttpSuccessOperations:
         request = build_delete202_request(
             content_type=content_type,
             json=_json,
-            template_url=self.delete202.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -820,8 +783,6 @@ class HttpSuccessOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    delete202.metadata = {"url": "/http/success/202"}
 
     @distributed_trace_async
     async def head204(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -846,7 +807,6 @@ class HttpSuccessOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head204_request(
-            template_url=self.head204.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -867,8 +827,6 @@ class HttpSuccessOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    head204.metadata = {"url": "/http/success/204"}
 
     @distributed_trace_async
     async def put204(  # pylint: disable=inconsistent-return-statements
@@ -906,7 +864,6 @@ class HttpSuccessOperations:
         request = build_put204_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put204.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -927,8 +884,6 @@ class HttpSuccessOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put204.metadata = {"url": "/http/success/204"}
 
     @distributed_trace_async
     async def patch204(  # pylint: disable=inconsistent-return-statements
@@ -966,7 +921,6 @@ class HttpSuccessOperations:
         request = build_patch204_request(
             content_type=content_type,
             json=_json,
-            template_url=self.patch204.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -987,8 +941,6 @@ class HttpSuccessOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    patch204.metadata = {"url": "/http/success/204"}
 
     @distributed_trace_async
     async def post204(  # pylint: disable=inconsistent-return-statements
@@ -1026,7 +978,6 @@ class HttpSuccessOperations:
         request = build_post204_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post204.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1047,8 +998,6 @@ class HttpSuccessOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post204.metadata = {"url": "/http/success/204"}
 
     @distributed_trace_async
     async def delete204(  # pylint: disable=inconsistent-return-statements
@@ -1086,7 +1035,6 @@ class HttpSuccessOperations:
         request = build_delete204_request(
             content_type=content_type,
             json=_json,
-            template_url=self.delete204.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1107,8 +1055,6 @@ class HttpSuccessOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    delete204.metadata = {"url": "/http/success/204"}
 
     @distributed_trace_async
     async def head404(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1133,7 +1079,6 @@ class HttpSuccessOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head404_request(
-            template_url=self.head404.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1154,5 +1099,3 @@ class HttpSuccessOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    head404.metadata = {"url": "/http/success/404"}

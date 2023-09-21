@@ -110,7 +110,6 @@ class UploadOperations:
         request = build_file_request(
             content_type=content_type,
             content=_content,
-            template_url=self.file.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -130,8 +129,6 @@ class UploadOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    file.metadata = {"url": "/binary/file"}
 
     @distributed_trace
     def binary(self, file_param: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -163,7 +160,6 @@ class UploadOperations:
         request = build_binary_request(
             content_type=content_type,
             content=_content,
-            template_url=self.binary.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -183,5 +179,3 @@ class UploadOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    binary.metadata = {"url": "/binary/octet"}

@@ -131,7 +131,6 @@ class PagingOperations:
             if not next_link:
 
                 request = build_get_pages_partial_url_request(
-                    template_url=self.get_pages_partial_url.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -177,8 +176,6 @@ class PagingOperations:
 
         return ItemPaged(get_next, extract_data)
 
-    get_pages_partial_url.metadata = {"url": "/paging/customurl/partialnextlink"}
-
     @distributed_trace
     def get_pages_partial_url_operation(self, account_name: str, **kwargs: Any) -> Iterable["_models.Product"]:
         """A paging operation that combines custom url, paging and partial URL with next operation.
@@ -207,7 +204,6 @@ class PagingOperations:
             if not next_link:
 
                 request = build_get_pages_partial_url_operation_request(
-                    template_url=self.get_pages_partial_url_operation.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -222,7 +218,6 @@ class PagingOperations:
 
                 request = build_get_pages_partial_url_operation_next_request(
                     next_link=next_link,
-                    template_url="/paging/customurl/{nextLink}",
                     headers=_headers,
                     params=_params,
                 )
@@ -258,5 +253,3 @@ class PagingOperations:
             return pipeline_response
 
         return ItemPaged(get_next, extract_data)
-
-    get_pages_partial_url_operation.metadata = {"url": "/paging/customurl/partialnextlinkop"}

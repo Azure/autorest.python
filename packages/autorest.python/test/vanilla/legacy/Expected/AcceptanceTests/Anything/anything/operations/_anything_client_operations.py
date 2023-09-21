@@ -141,7 +141,6 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
         cls: ClsType[Any] = kwargs.pop("cls", None)
 
         request = build_get_object_request(
-            template_url=self.get_object.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -165,8 +164,6 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_object.metadata = {"url": "/anything/object"}
 
     @distributed_trace
     def put_object(self, input: Any, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -199,7 +196,6 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
         request = build_put_object_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_object.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -219,8 +215,6 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_object.metadata = {"url": "/anything/object"}
 
     @distributed_trace
     def get_string(self, **kwargs: Any) -> Any:
@@ -245,7 +239,6 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
         cls: ClsType[Any] = kwargs.pop("cls", None)
 
         request = build_get_string_request(
-            template_url=self.get_string.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -269,8 +262,6 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_string.metadata = {"url": "/anything/string"}
 
     @distributed_trace
     def put_string(self, input: Any, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -303,7 +294,6 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
         request = build_put_string_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_string.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -323,8 +313,6 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_string.metadata = {"url": "/anything/string"}
 
     @distributed_trace
     def get_array(self, **kwargs: Any) -> Any:
@@ -349,7 +337,6 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
         cls: ClsType[Any] = kwargs.pop("cls", None)
 
         request = build_get_array_request(
-            template_url=self.get_array.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -373,8 +360,6 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_array.metadata = {"url": "/anything/array"}
 
     @distributed_trace
     def put_array(self, input: Any, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -407,7 +392,6 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
         request = build_put_array_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_array.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -427,5 +411,3 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_array.metadata = {"url": "/anything/array"}

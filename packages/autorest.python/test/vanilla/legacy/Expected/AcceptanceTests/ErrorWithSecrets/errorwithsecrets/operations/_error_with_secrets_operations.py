@@ -85,7 +85,6 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
         cls: ClsType[_models.SecretResponse] = kwargs.pop("cls", None)
 
         request = build_create_secret_request(
-            template_url=self.create_secret.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -111,8 +110,6 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
 
         return deserialized
 
-    create_secret.metadata = {"url": "/secrets/:create"}
-
     @distributed_trace
     def get_error_with_secrets(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Gets an error response containing secrets and PII.
@@ -136,7 +133,6 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_error_with_secrets_request(
-            template_url=self.get_error_with_secrets.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -157,5 +153,3 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_error_with_secrets.metadata = {"url": "/secrets/error"}

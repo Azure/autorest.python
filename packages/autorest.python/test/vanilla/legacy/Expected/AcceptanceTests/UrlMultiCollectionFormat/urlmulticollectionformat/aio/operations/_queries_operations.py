@@ -80,7 +80,6 @@ class QueriesOperations:
 
         request = build_array_string_multi_null_request(
             array_query=array_query,
-            template_url=self.array_string_multi_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -101,8 +100,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    array_string_multi_null.metadata = {"url": "/queries/array/multi/string/null"}
 
     @distributed_trace_async
     async def array_string_multi_empty(  # pylint: disable=inconsistent-return-statements
@@ -133,7 +130,6 @@ class QueriesOperations:
 
         request = build_array_string_multi_empty_request(
             array_query=array_query,
-            template_url=self.array_string_multi_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -154,8 +150,6 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    array_string_multi_empty.metadata = {"url": "/queries/array/multi/string/empty"}
 
     @distributed_trace_async
     async def array_string_multi_valid(  # pylint: disable=inconsistent-return-statements
@@ -187,7 +181,6 @@ class QueriesOperations:
 
         request = build_array_string_multi_valid_request(
             array_query=array_query,
-            template_url=self.array_string_multi_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -208,5 +201,3 @@ class QueriesOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    array_string_multi_valid.metadata = {"url": "/queries/array/multi/string/valid"}

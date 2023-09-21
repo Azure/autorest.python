@@ -156,7 +156,6 @@ class LROsCustomHeaderOperations:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._put_async_retry_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -187,8 +186,6 @@ class LROsCustomHeaderOperations:
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _put_async_retry_succeeded_initial.metadata = {"url": "/lro/customheader/putasync/retry/succeeded"}
 
     @overload
     def begin_put_async_retry_succeeded(
@@ -318,8 +315,6 @@ class LROsCustomHeaderOperations:
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_put_async_retry_succeeded.metadata = {"url": "/lro/customheader/putasync/retry/succeeded"}
-
     def _put201_creating_succeeded200_initial(
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> _models.Product:
@@ -352,7 +347,6 @@ class LROsCustomHeaderOperations:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._put201_creating_succeeded200_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -380,8 +374,6 @@ class LROsCustomHeaderOperations:
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
-
-    _put201_creating_succeeded200_initial.metadata = {"url": "/lro/customheader/put/201/creating/succeeded/200"}
 
     @overload
     def begin_put201_creating_succeeded200(
@@ -503,8 +495,6 @@ class LROsCustomHeaderOperations:
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_put201_creating_succeeded200.metadata = {"url": "/lro/customheader/put/201/creating/succeeded/200"}
-
     def _post202_retry200_initial(  # pylint: disable=inconsistent-return-statements
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> None:
@@ -537,7 +527,6 @@ class LROsCustomHeaderOperations:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._post202_retry200_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -561,8 +550,6 @@ class LROsCustomHeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post202_retry200_initial.metadata = {"url": "/lro/customheader/post/202/retry/200"}
 
     @overload
     def begin_post202_retry200(
@@ -679,8 +666,6 @@ class LROsCustomHeaderOperations:
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_post202_retry200.metadata = {"url": "/lro/customheader/post/202/retry/200"}
-
     def _post_async_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> None:
@@ -713,7 +698,6 @@ class LROsCustomHeaderOperations:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._post_async_retry_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -740,8 +724,6 @@ class LROsCustomHeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post_async_retry_succeeded_initial.metadata = {"url": "/lro/customheader/postasync/retry/succeeded"}
 
     @overload
     def begin_post_async_retry_succeeded(
@@ -860,5 +842,3 @@ class LROsCustomHeaderOperations:
                 deserialization_callback=get_long_running_output,
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
-
-    begin_post_async_retry_succeeded.metadata = {"url": "/lro/customheader/postasync/retry/succeeded"}

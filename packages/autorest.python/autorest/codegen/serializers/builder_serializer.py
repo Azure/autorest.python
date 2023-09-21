@@ -1007,9 +1007,7 @@ class _OperationSerializer(
             retval.extend(self._create_body_parameter(builder))
         retval.append("")
         retval.extend(
-            self._create_request_builder_call(
-                builder, request_builder, is_next_request
-            )
+            self._create_request_builder_call(builder, request_builder, is_next_request)
         )
         retval.extend(self._postprocess_http_request(builder, template_url))
         return retval
