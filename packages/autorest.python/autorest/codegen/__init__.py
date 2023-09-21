@@ -59,7 +59,7 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
             and not Path(options["package_mode"]).exists()
         ):
             raise ValueError(
-                f"--package-mode can only be {' or '.join(VALID_PACKAGE_MODE)} or directory which contains template files"
+                f"--package-mode can only be {' or '.join(VALID_PACKAGE_MODE)} or directory which contains template files"  # pylint: disable=line-too-long
             )
 
     if options["multiapi"] and options["version_tolerant"]:
