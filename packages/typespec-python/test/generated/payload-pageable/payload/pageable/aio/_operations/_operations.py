@@ -32,9 +32,11 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class PageableClientOperationsMixin(PageableClientMixinABC):
     @distributed_trace
-    def list(self, **kwargs: Any) -> AsyncIterable["_models.User"]:
+    def list(self, *, maxpagesize: Optional[int] = None, **kwargs: Any) -> AsyncIterable["_models.User"]:
         """List users.
 
+        :keyword maxpagesize: The maximum number of result items per page. Default value is None.
+        :paramtype maxpagesize: int
         :return: An iterator like instance of User
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~payload.pageable.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -56,6 +58,7 @@ class PageableClientOperationsMixin(PageableClientMixinABC):
             if not next_link:
 
                 request = build_pageable_list_request(
+                    maxpagesize=maxpagesize,
                     headers=_headers,
                     params=_params,
                 )

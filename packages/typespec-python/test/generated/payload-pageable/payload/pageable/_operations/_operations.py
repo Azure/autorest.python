@@ -34,25 +34,32 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_pageable_list_request(**kwargs: Any) -> HttpRequest:
+def build_pageable_list_request(*, maxpagesize: Optional[int] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/payload/pageable"
 
+    # Construct parameters
+    if maxpagesize is not None:
+        _params["maxpagesize"] = _SERIALIZER.query("maxpagesize", maxpagesize, "int")
+
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 class PageableClientOperationsMixin(PageableClientMixinABC):
     @distributed_trace
-    def list(self, **kwargs: Any) -> Iterable["_models.User"]:
+    def list(self, *, maxpagesize: Optional[int] = None, **kwargs: Any) -> Iterable["_models.User"]:
         """List users.
 
+        :keyword maxpagesize: The maximum number of result items per page. Default value is None.
+        :paramtype maxpagesize: int
         :return: An iterator like instance of User
         :rtype: ~azure.core.paging.ItemPaged[~payload.pageable.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -74,6 +81,7 @@ class PageableClientOperationsMixin(PageableClientMixinABC):
             if not next_link:
 
                 request = build_pageable_list_request(
+                    maxpagesize=maxpagesize,
                     headers=_headers,
                     params=_params,
                 )
