@@ -1,6 +1,7 @@
 {# actual template starts here #}
 {% import "macros.jinja2" as macros %}
 {% set initialize_properties = serializer.initialize_properties(model) %}
+{% set exist_constant = (model.properties | selectattr('constant') | first) is defined %}
 
 {{ serializer.declare_model(model) }}
     """{{ model.description(is_operation_file=False) | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n    ') }}
@@ -27,7 +28,7 @@
         {% endfor %}
     {% endif %}
     """
-{% if initialize_properties %}
+{% if initialize_properties or exist_constant %}
     {% if (model.properties | selectattr('validation') ) | first %}
 
     _validation = {
@@ -55,7 +56,7 @@
         {{ model.xml_map_content }}
     }
     {% endif %}
-    {% if (model.properties | selectattr('constant') | first) is defined %}
+    {% if exist_constant %}
 
         {% for p in model.properties | selectattr('constant')%}
     {{ p.client_name }} = {{ p.type.get_declaration() }}
