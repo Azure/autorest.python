@@ -311,39 +311,6 @@ class ProxyResourceBase(ArmResource):
     :vartype system_data: ~azure.mgmt.spheremsrest.models.SystemData
     """
 
-    _validation = {
-        "id": {"required": True},
-        "type": {"required": True},
-    }
-
-    _attribute_map = {
-        "id": {"key": "id", "type": "str"},
-        "type": {"key": "type", "type": "str"},
-        "system_data": {"key": "systemData", "type": "SystemData"},
-    }
-
-    def __init__(
-        self,
-        *,
-        id: str,  # pylint: disable=redefined-builtin
-        type: str,
-        system_data: Optional["_models.SystemData"] = None,
-        **kwargs: Any
-    ) -> None:
-        """
-        :keyword id: Fully qualified resource ID for the resource. Ex -
-         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-         Required.
-        :paramtype id: str
-        :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-         "Microsoft.Storage/storageAccounts". Required.
-        :paramtype type: str
-        :keyword system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-         information.
-        :paramtype system_data: ~azure.mgmt.spheremsrest.models.SystemData
-        """
-        super().__init__(id=id, type=type, system_data=system_data, **kwargs)
-
 
 class Certificate(ProxyResourceBase):
     """An certificate resource belonging to a catalog resource.
@@ -592,21 +559,6 @@ class CountDeviceResponse(CountElementsResponse):
     :ivar value: Number of children resources in parent resource. Required.
     :vartype value: int
     """
-
-    _validation = {
-        "value": {"required": True},
-    }
-
-    _attribute_map = {
-        "value": {"key": "value", "type": "int"},
-    }
-
-    def __init__(self, *, value: int, **kwargs: Any) -> None:
-        """
-        :keyword value: Number of children resources in parent resource. Required.
-        :paramtype value: int
-        """
-        super().__init__(value=value, **kwargs)
 
 
 class Deployment(ProxyResourceBase):
@@ -2046,57 +1998,6 @@ class ProofOfPossessionNonceResponse(CertificateProperties):
      "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
     :vartype provisioning_state: str or ~azure.mgmt.spheremsrest.models.ProvisioningState
     """
-
-    _attribute_map = {
-        "certificate": {"key": "certificate", "type": "str"},
-        "status": {"key": "status", "type": "str"},
-        "subject": {"key": "subject", "type": "str"},
-        "thumbprint": {"key": "thumbprint", "type": "str"},
-        "expiry_utc": {"key": "expiryUtc", "type": "iso-8601"},
-        "not_before_utc": {"key": "notBeforeUtc", "type": "iso-8601"},
-        "provisioning_state": {"key": "provisioningState", "type": "str"},
-    }
-
-    def __init__(
-        self,
-        *,
-        certificate: Optional[str] = None,
-        status: Optional[Union[str, "_models.CertificateStatus"]] = None,
-        subject: Optional[str] = None,
-        thumbprint: Optional[str] = None,
-        expiry_utc: Optional[datetime.datetime] = None,
-        not_before_utc: Optional[datetime.datetime] = None,
-        provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = None,
-        **kwargs: Any
-    ) -> None:
-        """
-        :keyword certificate: The certificate as a UTF-8 encoded base 64 string.
-        :paramtype certificate: str
-        :keyword status: The certificate status. Known values are: "Active", "Inactive", "Expired", and
-         "Revoked".
-        :paramtype status: str or ~azure.mgmt.spheremsrest.models.CertificateStatus
-        :keyword subject: The certificate subject.
-        :paramtype subject: str
-        :keyword thumbprint: The certificate thumbprint.
-        :paramtype thumbprint: str
-        :keyword expiry_utc: The certificate expiry date.
-        :paramtype expiry_utc: ~datetime.datetime
-        :keyword not_before_utc: The certificate not before date.
-        :paramtype not_before_utc: ~datetime.datetime
-        :keyword provisioning_state: The status of the last operation. Known values are: "Succeeded",
-         "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
-        :paramtype provisioning_state: str or ~azure.mgmt.spheremsrest.models.ProvisioningState
-        """
-        super().__init__(
-            certificate=certificate,
-            status=status,
-            subject=subject,
-            thumbprint=thumbprint,
-            expiry_utc=expiry_utc,
-            not_before_utc=not_before_utc,
-            provisioning_state=provisioning_state,
-            **kwargs
-        )
 
 
 class SignedCapabilityImageResponse(_serialization.Model):

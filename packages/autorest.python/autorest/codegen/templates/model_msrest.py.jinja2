@@ -1,6 +1,6 @@
 {# actual template starts here #}
 {% import "macros.jinja2" as macros %}
-
+{% set initialize_properties = serializer.initialize_properties(model) %}
 
 {{ serializer.declare_model(model) }}
     """{{ model.description(is_operation_file=False) | wordwrap(width=95, break_long_words=False, break_on_hyphens=False, wrapstring='\n    ') }}
@@ -27,6 +27,7 @@
         {% endfor %}
     {% endif %}
     """
+{% if initialize_properties %}
     {% if (model.properties | selectattr('validation') ) | first %}
 
     _validation = {
@@ -82,6 +83,7 @@
     {% endif %}
         """
         {{ serializer.super_call(model) }}
-    {% for initialize_property in serializer.initialize_properties(model) %}
+    {% for initialize_property in initialize_properties %}
         {{ initialize_property }}
     {% endfor %}
+{% endif %}
