@@ -8,7 +8,7 @@ package-version: 1.0.0
 license-header: MICROSOFT_MIT_NO_VERSION
 output-artifact: code-model-v4-no-tags
 payload-flattening-threshold: 1
-package-mode: azure-mgmtplane
+package-mode: azure-mgmt
 package-name: azure-packagemode-batch
 package-pprint-name: Azure Package Mode Batch Mgmt Plane
 output-folder: $(python-sdks-folder)/azure/legacy/Expected/AcceptanceTests/PackageModeBatch

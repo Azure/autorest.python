@@ -11,4 +11,4 @@ DEFAULT_HEADER_TEXT = (
     "Changes may cause incorrect behavior and will be lost if the code is regenerated."
 )
 
-VALID_PACKAGE_MODE = ("azure-mgmtplane", "azure-dataplane", "generic")
+VALID_PACKAGE_MODE = ("azure-mgmt", "azure-dataplane", "generic")
