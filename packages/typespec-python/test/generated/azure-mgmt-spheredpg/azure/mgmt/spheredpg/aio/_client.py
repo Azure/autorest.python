@@ -49,10 +49,10 @@ class AzureSphereClient:  # pylint: disable=client-accepts-api-version-keyword,t
     :vartype devices: azure.mgmt.spheredpg.aio.operations.DevicesOperations
     :ivar products: ProductsOperations operations
     :vartype products: azure.mgmt.spheredpg.aio.operations.ProductsOperations
-    :param subscription_id: The ID of the target subscription. Required.
-    :type subscription_id: str
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
+    :param subscription_id: The ID of the target subscription. Required.
+    :type subscription_id: str
     :param base_url: Service host. Default value is "https://management.azure.com".
     :type base_url: str
     :keyword api_version: The API version to use for this operation. Default value is
@@ -63,12 +63,12 @@ class AzureSphereClient:  # pylint: disable=client-accepts-api-version-keyword,t
 
     def __init__(
         self,
-        subscription_id: str,
         credential: "AsyncTokenCredential",
+        subscription_id: str,
         base_url: str = "https://management.azure.com",
         **kwargs: Any
     ) -> None:
-        self._config = AzureSphereClientConfiguration(subscription_id=subscription_id, credential=credential, **kwargs)
+        self._config = AzureSphereClientConfiguration(credential=credential, subscription_id=subscription_id, **kwargs)
         self._client: AsyncARMPipelineClient = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         self._serialize = Serializer()
