@@ -95,7 +95,6 @@ class HttpSuccessOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head200_request(
-            template_url=self.head200.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -115,8 +114,6 @@ class HttpSuccessOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    head200.metadata = {"url": "/http/success/200"}
 
     @distributed_trace
     def head204(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -141,7 +138,6 @@ class HttpSuccessOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head204_request(
-            template_url=self.head204.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -161,8 +157,6 @@ class HttpSuccessOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    head204.metadata = {"url": "/http/success/204"}
 
     @distributed_trace
     def head404(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -187,7 +181,6 @@ class HttpSuccessOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head404_request(
-            template_url=self.head404.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -207,5 +200,3 @@ class HttpSuccessOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    head404.metadata = {"url": "/http/success/404"}

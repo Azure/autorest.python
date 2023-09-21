@@ -284,7 +284,6 @@ class StringOperations:
         cls: ClsType[Optional[str]] = kwargs.pop("cls", None)
 
         request = build_get_null_request(
-            template_url=self.get_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -309,8 +308,6 @@ class StringOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null.metadata = {"url": "/string/null"}
 
     @distributed_trace
     def put_null(  # pylint: disable=inconsistent-return-statements
@@ -347,7 +344,6 @@ class StringOperations:
         request = build_put_null_request(
             content_type=content_type,
             content=_content,
-            template_url=self.put_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -368,8 +364,6 @@ class StringOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_null.metadata = {"url": "/string/null"}
 
     @distributed_trace
     def get_empty(self, **kwargs: Any) -> str:
@@ -394,7 +388,6 @@ class StringOperations:
         cls: ClsType[str] = kwargs.pop("cls", None)
 
         request = build_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -419,8 +412,6 @@ class StringOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty.metadata = {"url": "/string/empty"}
 
     @distributed_trace
     def put_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -454,7 +445,6 @@ class StringOperations:
         request = build_put_empty_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -475,8 +465,6 @@ class StringOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_empty.metadata = {"url": "/string/empty"}
 
     @distributed_trace
     def get_mbcs(self, **kwargs: Any) -> str:
@@ -501,7 +489,6 @@ class StringOperations:
         cls: ClsType[str] = kwargs.pop("cls", None)
 
         request = build_get_mbcs_request(
-            template_url=self.get_mbcs.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -526,8 +513,6 @@ class StringOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_mbcs.metadata = {"url": "/string/mbcs"}
 
     @distributed_trace
     def put_mbcs(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -564,7 +549,6 @@ class StringOperations:
         request = build_put_mbcs_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_mbcs.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -585,8 +569,6 @@ class StringOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_mbcs.metadata = {"url": "/string/mbcs"}
 
     @distributed_trace
     def get_whitespace(self, **kwargs: Any) -> str:
@@ -613,7 +595,6 @@ class StringOperations:
         cls: ClsType[str] = kwargs.pop("cls", None)
 
         request = build_get_whitespace_request(
-            template_url=self.get_whitespace.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -638,8 +619,6 @@ class StringOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_whitespace.metadata = {"url": "/string/whitespace"}
 
     @distributed_trace
     def put_whitespace(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -678,7 +657,6 @@ class StringOperations:
         request = build_put_whitespace_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_whitespace.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -699,8 +677,6 @@ class StringOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_whitespace.metadata = {"url": "/string/whitespace"}
 
     @distributed_trace
     def get_not_provided(self, **kwargs: Any) -> str:
@@ -725,7 +701,6 @@ class StringOperations:
         cls: ClsType[str] = kwargs.pop("cls", None)
 
         request = build_get_not_provided_request(
-            template_url=self.get_not_provided.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -751,8 +726,6 @@ class StringOperations:
 
         return deserialized
 
-    get_not_provided.metadata = {"url": "/string/notProvided"}
-
     @distributed_trace
     def get_base64_encoded(self, **kwargs: Any) -> bytes:
         """Get value that is base64 encoded.
@@ -776,7 +749,6 @@ class StringOperations:
         cls: ClsType[bytes] = kwargs.pop("cls", None)
 
         request = build_get_base64_encoded_request(
-            template_url=self.get_base64_encoded.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -802,8 +774,6 @@ class StringOperations:
 
         return deserialized
 
-    get_base64_encoded.metadata = {"url": "/string/base64Encoding"}
-
     @distributed_trace
     def get_base64_url_encoded(self, **kwargs: Any) -> bytes:
         """Get value that is base64url encoded.
@@ -827,7 +797,6 @@ class StringOperations:
         cls: ClsType[bytes] = kwargs.pop("cls", None)
 
         request = build_get_base64_url_encoded_request(
-            template_url=self.get_base64_url_encoded.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -852,8 +821,6 @@ class StringOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_base64_url_encoded.metadata = {"url": "/string/base64UrlEncoding"}
 
     @distributed_trace
     def put_base64_url_encoded(  # pylint: disable=inconsistent-return-statements
@@ -887,7 +854,6 @@ class StringOperations:
         request = build_put_base64_url_encoded_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_base64_url_encoded.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -908,8 +874,6 @@ class StringOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_base64_url_encoded.metadata = {"url": "/string/base64UrlEncoding"}
 
     @distributed_trace
     def get_null_base64_url_encoded(self, **kwargs: Any) -> Optional[bytes]:
@@ -934,7 +898,6 @@ class StringOperations:
         cls: ClsType[Optional[bytes]] = kwargs.pop("cls", None)
 
         request = build_get_null_base64_url_encoded_request(
-            template_url=self.get_null_base64_url_encoded.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -959,5 +922,3 @@ class StringOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null_base64_url_encoded.metadata = {"url": "/string/nullBase64UrlEncoding"}

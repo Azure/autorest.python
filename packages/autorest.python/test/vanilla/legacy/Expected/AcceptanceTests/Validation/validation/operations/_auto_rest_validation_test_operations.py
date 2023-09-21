@@ -172,7 +172,6 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
             id=id,
             subscription_id=self._config.subscription_id,
             api_version=api_version,
-            template_url=self.validation_of_method_parameters.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -197,8 +196,6 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    validation_of_method_parameters.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}
 
     @overload
     def validation_of_body(
@@ -311,7 +308,6 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.validation_of_body.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -336,8 +332,6 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    validation_of_body.metadata = {"url": "/fakepath/{subscriptionId}/{resourceGroupName}/{id}"}
 
     @distributed_trace
     def get_with_constant_in_path(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -367,7 +361,6 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
         request = build_get_with_constant_in_path_request(
             constant_param=constant_param,
-            template_url=self.get_with_constant_in_path.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -387,8 +380,6 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_with_constant_in_path.metadata = {"url": "/validation/constantsInPath/{constantParam}/value"}
 
     @overload
     def post_with_constant_in_body(
@@ -480,7 +471,6 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.post_with_constant_in_body.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -504,5 +494,3 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    post_with_constant_in_body.metadata = {"url": "/validation/constantsInPath/{constantParam}/value"}

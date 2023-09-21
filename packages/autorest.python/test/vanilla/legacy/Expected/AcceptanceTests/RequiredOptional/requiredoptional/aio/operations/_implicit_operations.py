@@ -86,7 +86,6 @@ class ImplicitOperations:
 
         request = build_get_required_path_request(
             path_parameter=path_parameter,
-            template_url=self.get_required_path.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -107,8 +106,6 @@ class ImplicitOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_required_path.metadata = {"url": "/reqopt/implicit/required/path/{pathParameter}"}
 
     @distributed_trace_async
     async def put_optional_query(  # pylint: disable=inconsistent-return-statements
@@ -138,7 +135,6 @@ class ImplicitOperations:
 
         request = build_put_optional_query_request(
             query_parameter=query_parameter,
-            template_url=self.put_optional_query.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -159,8 +155,6 @@ class ImplicitOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_optional_query.metadata = {"url": "/reqopt/implicit/optional/query"}
 
     @distributed_trace_async
     async def put_optional_header(  # pylint: disable=inconsistent-return-statements
@@ -190,7 +184,6 @@ class ImplicitOperations:
 
         request = build_put_optional_header_request(
             query_parameter=query_parameter,
-            template_url=self.put_optional_header.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -211,8 +204,6 @@ class ImplicitOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_optional_header.metadata = {"url": "/reqopt/implicit/optional/header"}
 
     @distributed_trace_async
     async def put_optional_body(  # pylint: disable=inconsistent-return-statements
@@ -249,7 +240,6 @@ class ImplicitOperations:
         request = build_put_optional_body_request(
             content_type=content_type,
             content=_content,
-            template_url=self.put_optional_body.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -270,8 +260,6 @@ class ImplicitOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_optional_body.metadata = {"url": "/reqopt/implicit/optional/body"}
 
     @distributed_trace_async
     async def put_optional_binary_body(  # pylint: disable=inconsistent-return-statements
@@ -305,7 +293,6 @@ class ImplicitOperations:
         request = build_put_optional_binary_body_request(
             content_type=content_type,
             content=_content,
-            template_url=self.put_optional_binary_body.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -326,8 +313,6 @@ class ImplicitOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_optional_binary_body.metadata = {"url": "/reqopt/implicit/optional/binary-body"}
 
     @distributed_trace_async
     async def get_required_global_path(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -353,7 +338,6 @@ class ImplicitOperations:
 
         request = build_get_required_global_path_request(
             required_global_path=self._config.required_global_path,
-            template_url=self.get_required_global_path.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -374,8 +358,6 @@ class ImplicitOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_required_global_path.metadata = {"url": "/reqopt/global/required/path/{required-global-path}"}
 
     @distributed_trace_async
     async def get_required_global_query(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -401,7 +383,6 @@ class ImplicitOperations:
 
         request = build_get_required_global_query_request(
             required_global_query=self._config.required_global_query,
-            template_url=self.get_required_global_query.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -422,8 +403,6 @@ class ImplicitOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_required_global_query.metadata = {"url": "/reqopt/global/required/query"}
 
     @distributed_trace_async
     async def get_optional_global_query(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -449,7 +428,6 @@ class ImplicitOperations:
 
         request = build_get_optional_global_query_request(
             optional_global_query=self._config.optional_global_query,
-            template_url=self.get_optional_global_query.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -470,5 +448,3 @@ class ImplicitOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_optional_global_query.metadata = {"url": "/reqopt/global/optional/query"}

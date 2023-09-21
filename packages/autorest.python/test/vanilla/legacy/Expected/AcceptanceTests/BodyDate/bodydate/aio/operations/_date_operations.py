@@ -82,7 +82,6 @@ class DateOperations:
         cls: ClsType[Optional[datetime.date]] = kwargs.pop("cls", None)
 
         request = build_get_null_request(
-            template_url=self.get_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -107,8 +106,6 @@ class DateOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null.metadata = {"url": "/date/null"}
 
     @distributed_trace_async
     async def get_invalid_date(self, **kwargs: Any) -> datetime.date:
@@ -133,7 +130,6 @@ class DateOperations:
         cls: ClsType[datetime.date] = kwargs.pop("cls", None)
 
         request = build_get_invalid_date_request(
-            template_url=self.get_invalid_date.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -158,8 +154,6 @@ class DateOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid_date.metadata = {"url": "/date/invaliddate"}
 
     @distributed_trace_async
     async def get_overflow_date(self, **kwargs: Any) -> datetime.date:
@@ -184,7 +178,6 @@ class DateOperations:
         cls: ClsType[datetime.date] = kwargs.pop("cls", None)
 
         request = build_get_overflow_date_request(
-            template_url=self.get_overflow_date.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -209,8 +202,6 @@ class DateOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_overflow_date.metadata = {"url": "/date/overflowdate"}
 
     @distributed_trace_async
     async def get_underflow_date(self, **kwargs: Any) -> datetime.date:
@@ -235,7 +226,6 @@ class DateOperations:
         cls: ClsType[datetime.date] = kwargs.pop("cls", None)
 
         request = build_get_underflow_date_request(
-            template_url=self.get_underflow_date.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -260,8 +250,6 @@ class DateOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_underflow_date.metadata = {"url": "/date/underflowdate"}
 
     @distributed_trace_async
     async def put_max_date(  # pylint: disable=inconsistent-return-statements
@@ -295,7 +283,6 @@ class DateOperations:
         request = build_put_max_date_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_max_date.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -316,8 +303,6 @@ class DateOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_max_date.metadata = {"url": "/date/max"}
 
     @distributed_trace_async
     async def get_max_date(self, **kwargs: Any) -> datetime.date:
@@ -342,7 +327,6 @@ class DateOperations:
         cls: ClsType[datetime.date] = kwargs.pop("cls", None)
 
         request = build_get_max_date_request(
-            template_url=self.get_max_date.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -367,8 +351,6 @@ class DateOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_max_date.metadata = {"url": "/date/max"}
 
     @distributed_trace_async
     async def put_min_date(  # pylint: disable=inconsistent-return-statements
@@ -402,7 +384,6 @@ class DateOperations:
         request = build_put_min_date_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_min_date.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -423,8 +404,6 @@ class DateOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_min_date.metadata = {"url": "/date/min"}
 
     @distributed_trace_async
     async def get_min_date(self, **kwargs: Any) -> datetime.date:
@@ -449,7 +428,6 @@ class DateOperations:
         cls: ClsType[datetime.date] = kwargs.pop("cls", None)
 
         request = build_get_min_date_request(
-            template_url=self.get_min_date.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -474,5 +452,3 @@ class DateOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_min_date.metadata = {"url": "/date/min"}

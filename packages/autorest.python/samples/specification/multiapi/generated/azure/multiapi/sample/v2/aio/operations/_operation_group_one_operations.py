@@ -135,7 +135,6 @@ class OperationGroupOneOperations:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.test_two.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -160,8 +159,6 @@ class OperationGroupOneOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    test_two.metadata = {"url": "/multiapi/one/testTwoEndpoint"}
 
     @distributed_trace_async
     async def test_three(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -188,7 +185,6 @@ class OperationGroupOneOperations:
 
         request = build_test_three_request(
             api_version=api_version,
-            template_url=self.test_three.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -209,5 +205,3 @@ class OperationGroupOneOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    test_three.metadata = {"url": "/multiapi/one/testThreeEndpoint"}

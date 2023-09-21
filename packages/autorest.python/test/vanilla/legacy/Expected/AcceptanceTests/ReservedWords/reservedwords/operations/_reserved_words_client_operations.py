@@ -184,7 +184,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         request = build_operation_with_content_param_request(
             content_type=content_type,
             content=_content,
-            template_url=self.operation_with_content_param.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -208,8 +207,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    operation_with_content_param.metadata = {"url": "/reservedWords/operation/content"}
 
     @distributed_trace
     def operation_with_json_param(self, json: Any, **kwargs: Any) -> JSON:
@@ -241,7 +238,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         request = build_operation_with_json_param_request(
             content_type=content_type,
             json=_json,
-            template_url=self.operation_with_json_param.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -265,8 +261,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    operation_with_json_param.metadata = {"url": "/reservedWords/operation/json"}
 
     @distributed_trace
     def operation_with_data_param(self, data: str, world: str, **kwargs: Any) -> JSON:
@@ -306,7 +300,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         request = build_operation_with_data_param_request(
             content_type=content_type,
             data=_data,
-            template_url=self.operation_with_data_param.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -330,8 +323,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    operation_with_data_param.metadata = {"url": "/reservedWords/operation/data"}
 
     @distributed_trace
     def operation_with_files_param(self, files: IO, file_name: str, **kwargs: Any) -> JSON:
@@ -369,7 +360,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         request = build_operation_with_files_param_request(
             content_type=content_type,
             files=_files,
-            template_url=self.operation_with_files_param.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -393,8 +383,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    operation_with_files_param.metadata = {"url": "/reservedWords/operation/files"}
 
     @distributed_trace
     def operation_with_url(
@@ -433,7 +421,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
             url=url,
             header_parameters=header_parameters,
             query_parameters=query_parameters,
-            template_url=self.operation_with_url.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -457,8 +444,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    operation_with_url.metadata = {"url": "/reservedWords/{url}"}
 
     @distributed_trace
     def reserved_enum(self, enum_parameter: Union[str, _models.MyEnum], **kwargs: Any) -> JSON:
@@ -487,7 +472,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
 
         request = build_reserved_enum_request(
             enum_parameter=enum_parameter,
-            template_url=self.reserved_enum.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -511,5 +495,3 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    reserved_enum.metadata = {"url": "/reservedWords/enum"}

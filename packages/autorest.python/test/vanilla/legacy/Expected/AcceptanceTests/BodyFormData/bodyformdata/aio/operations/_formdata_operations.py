@@ -90,7 +90,6 @@ class FormdataOperations:
         request = build_upload_file_request(
             content_type=content_type,
             files=_files,
-            template_url=self.upload_file.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -115,8 +114,6 @@ class FormdataOperations:
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
-
-    upload_file.metadata = {"url": "/formdata/stream/uploadfile"}
 
     @distributed_trace_async
     async def upload_file_via_body(self, file_content: IO, **kwargs: Any) -> AsyncIterator[bytes]:
@@ -148,7 +145,6 @@ class FormdataOperations:
         request = build_upload_file_via_body_request(
             content_type=content_type,
             content=_content,
-            template_url=self.upload_file_via_body.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -173,8 +169,6 @@ class FormdataOperations:
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
-
-    upload_file_via_body.metadata = {"url": "/formdata/stream/uploadfile"}
 
     @distributed_trace_async
     async def upload_files(self, file_content: List[IO], **kwargs: Any) -> AsyncIterator[bytes]:
@@ -209,7 +203,6 @@ class FormdataOperations:
         request = build_upload_files_request(
             content_type=content_type,
             files=_files,
-            template_url=self.upload_files.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -234,5 +227,3 @@ class FormdataOperations:
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
-
-    upload_files.metadata = {"url": "/formdata/stream/uploadfiles"}

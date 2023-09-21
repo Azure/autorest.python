@@ -108,7 +108,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         request = build_param_existing_key_request(
             user_agent_parameter=user_agent_parameter,
-            template_url=self.param_existing_key.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -129,8 +128,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    param_existing_key.metadata = {"url": "/header/param/existingkey"}
 
     @distributed_trace_async
     async def response_existing_key(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -155,7 +152,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_response_existing_key_request(
-            template_url=self.response_existing_key.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -179,8 +175,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    response_existing_key.metadata = {"url": "/header/response/existingkey"}
 
     @distributed_trace_async
     async def param_protected_key(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -210,7 +204,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         request = build_param_protected_key_request(
             content_type=content_type,
-            template_url=self.param_protected_key.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -231,8 +224,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    param_protected_key.metadata = {"url": "/header/param/protectedkey"}
 
     @distributed_trace_async
     async def response_protected_key(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -257,7 +248,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_response_protected_key_request(
-            template_url=self.response_protected_key.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -281,8 +271,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    response_protected_key.metadata = {"url": "/header/response/protectedkey"}
 
     @distributed_trace_async
     async def param_integer(  # pylint: disable=inconsistent-return-statements
@@ -317,7 +305,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         request = build_param_integer_request(
             scenario=scenario,
             value=value,
-            template_url=self.param_integer.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -338,8 +325,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    param_integer.metadata = {"url": "/header/param/prim/integer"}
 
     @distributed_trace_async
     async def response_integer(  # pylint: disable=inconsistent-return-statements
@@ -370,7 +355,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         request = build_response_integer_request(
             scenario=scenario,
-            template_url=self.response_integer.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -394,8 +378,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    response_integer.metadata = {"url": "/header/response/prim/integer"}
 
     @distributed_trace_async
     async def param_long(  # pylint: disable=inconsistent-return-statements
@@ -430,7 +412,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         request = build_param_long_request(
             scenario=scenario,
             value=value,
-            template_url=self.param_long.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -451,8 +432,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    param_long.metadata = {"url": "/header/param/prim/long"}
 
     @distributed_trace_async
     async def response_long(  # pylint: disable=inconsistent-return-statements
@@ -483,7 +462,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         request = build_response_long_request(
             scenario=scenario,
-            template_url=self.response_long.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -507,8 +485,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    response_long.metadata = {"url": "/header/response/prim/long"}
 
     @distributed_trace_async
     async def param_float(  # pylint: disable=inconsistent-return-statements
@@ -543,7 +519,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         request = build_param_float_request(
             scenario=scenario,
             value=value,
-            template_url=self.param_float.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -564,8 +539,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    param_float.metadata = {"url": "/header/param/prim/float"}
 
     @distributed_trace_async
     async def response_float(  # pylint: disable=inconsistent-return-statements
@@ -596,7 +569,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         request = build_response_float_request(
             scenario=scenario,
-            template_url=self.response_float.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -620,8 +592,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    response_float.metadata = {"url": "/header/response/prim/float"}
 
     @distributed_trace_async
     async def param_double(  # pylint: disable=inconsistent-return-statements
@@ -656,7 +626,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         request = build_param_double_request(
             scenario=scenario,
             value=value,
-            template_url=self.param_double.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -677,8 +646,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    param_double.metadata = {"url": "/header/param/prim/double"}
 
     @distributed_trace_async
     async def response_double(  # pylint: disable=inconsistent-return-statements
@@ -709,7 +676,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         request = build_response_double_request(
             scenario=scenario,
-            template_url=self.response_double.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -733,8 +699,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    response_double.metadata = {"url": "/header/response/prim/double"}
 
     @distributed_trace_async
     async def param_bool(  # pylint: disable=inconsistent-return-statements
@@ -769,7 +733,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         request = build_param_bool_request(
             scenario=scenario,
             value=value,
-            template_url=self.param_bool.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -790,8 +753,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    param_bool.metadata = {"url": "/header/param/prim/bool"}
 
     @distributed_trace_async
     async def response_bool(  # pylint: disable=inconsistent-return-statements
@@ -822,7 +783,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         request = build_response_bool_request(
             scenario=scenario,
-            template_url=self.response_bool.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -846,8 +806,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    response_bool.metadata = {"url": "/header/response/prim/bool"}
 
     @distributed_trace_async
     async def param_string(  # pylint: disable=inconsistent-return-statements
@@ -883,7 +841,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         request = build_param_string_request(
             scenario=scenario,
             value=value,
-            template_url=self.param_string.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -904,8 +861,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    param_string.metadata = {"url": "/header/param/prim/string"}
 
     @distributed_trace_async
     async def response_string(  # pylint: disable=inconsistent-return-statements
@@ -936,7 +891,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         request = build_response_string_request(
             scenario=scenario,
-            template_url=self.response_string.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -960,8 +914,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    response_string.metadata = {"url": "/header/response/prim/string"}
 
     @distributed_trace_async
     async def param_date(  # pylint: disable=inconsistent-return-statements
@@ -995,7 +947,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         request = build_param_date_request(
             scenario=scenario,
             value=value,
-            template_url=self.param_date.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1016,8 +967,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    param_date.metadata = {"url": "/header/param/prim/date"}
 
     @distributed_trace_async
     async def response_date(  # pylint: disable=inconsistent-return-statements
@@ -1047,7 +996,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         request = build_response_date_request(
             scenario=scenario,
-            template_url=self.response_date.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1071,8 +1019,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    response_date.metadata = {"url": "/header/response/prim/date"}
 
     @distributed_trace_async
     async def param_datetime(  # pylint: disable=inconsistent-return-statements
@@ -1107,7 +1053,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         request = build_param_datetime_request(
             scenario=scenario,
             value=value,
-            template_url=self.param_datetime.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1128,8 +1073,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    param_datetime.metadata = {"url": "/header/param/prim/datetime"}
 
     @distributed_trace_async
     async def response_datetime(  # pylint: disable=inconsistent-return-statements
@@ -1159,7 +1102,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         request = build_response_datetime_request(
             scenario=scenario,
-            template_url=self.response_datetime.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1183,8 +1125,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    response_datetime.metadata = {"url": "/header/response/prim/datetime"}
 
     @distributed_trace_async
     async def param_datetime_rfc1123(  # pylint: disable=inconsistent-return-statements
@@ -1219,7 +1159,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         request = build_param_datetime_rfc1123_request(
             scenario=scenario,
             value=value,
-            template_url=self.param_datetime_rfc1123.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1240,8 +1179,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    param_datetime_rfc1123.metadata = {"url": "/header/param/prim/datetimerfc1123"}
 
     @distributed_trace_async
     async def response_datetime_rfc1123(  # pylint: disable=inconsistent-return-statements
@@ -1272,7 +1209,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         request = build_response_datetime_rfc1123_request(
             scenario=scenario,
-            template_url=self.response_datetime_rfc1123.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1296,8 +1232,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    response_datetime_rfc1123.metadata = {"url": "/header/response/prim/datetimerfc1123"}
 
     @distributed_trace_async
     async def param_duration(  # pylint: disable=inconsistent-return-statements
@@ -1330,7 +1264,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         request = build_param_duration_request(
             scenario=scenario,
             value=value,
-            template_url=self.param_duration.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1351,8 +1284,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    param_duration.metadata = {"url": "/header/param/prim/duration"}
 
     @distributed_trace_async
     async def response_duration(  # pylint: disable=inconsistent-return-statements
@@ -1382,7 +1313,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         request = build_response_duration_request(
             scenario=scenario,
-            template_url=self.response_duration.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1406,8 +1336,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    response_duration.metadata = {"url": "/header/response/prim/duration"}
 
     @distributed_trace_async
     async def param_byte(  # pylint: disable=inconsistent-return-statements
@@ -1440,7 +1368,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         request = build_param_byte_request(
             scenario=scenario,
             value=value,
-            template_url=self.param_byte.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1461,8 +1388,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    param_byte.metadata = {"url": "/header/param/prim/byte"}
 
     @distributed_trace_async
     async def response_byte(  # pylint: disable=inconsistent-return-statements
@@ -1492,7 +1417,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         request = build_response_byte_request(
             scenario=scenario,
-            template_url=self.response_byte.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1516,8 +1440,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    response_byte.metadata = {"url": "/header/response/prim/byte"}
 
     @distributed_trace_async
     async def param_enum(  # pylint: disable=inconsistent-return-statements
@@ -1553,7 +1475,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         request = build_param_enum_request(
             scenario=scenario,
             value=value,
-            template_url=self.param_enum.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1574,8 +1495,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    param_enum.metadata = {"url": "/header/param/prim/enum"}
 
     @distributed_trace_async
     async def response_enum(  # pylint: disable=inconsistent-return-statements
@@ -1606,7 +1525,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         request = build_response_enum_request(
             scenario=scenario,
-            template_url=self.response_enum.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1630,8 +1548,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    response_enum.metadata = {"url": "/header/response/prim/enum"}
 
     @distributed_trace_async
     async def custom_request_id(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1657,7 +1573,6 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_custom_request_id_request(
-            template_url=self.custom_request_id.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1678,5 +1593,3 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    custom_request_id.metadata = {"url": "/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"}
