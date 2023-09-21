@@ -15,6 +15,6 @@ output-artifact: code-model-v4-no-tags
 payload-flattening-threshold: 1
 black: true
 vanilla: true
-package-mode: dataplane
+package-mode: azure-dataplane
 version-tolerant: false
 ```
