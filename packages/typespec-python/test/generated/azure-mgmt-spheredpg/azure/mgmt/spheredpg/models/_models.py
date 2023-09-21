@@ -1523,21 +1523,21 @@ class SystemData(_model_base.Model):
     :vartype created_by: str
     :ivar created_by_type: The type of identity that created the resource. Known values are:
      "User", "Application", "ManagedIdentity", and "Key".
-    :vartype created_by_type: str or ~azure.mgmt.spheredpg.models.createdByType
+    :vartype created_by_type: str or ~azure.mgmt.spheredpg.models.CreatedByType
     :ivar created_at: The type of identity that created the resource.
     :vartype created_at: ~datetime.date
     :ivar last_modified_by: The identity that last modified the resource.
     :vartype last_modified_by: str
     :ivar last_modified_by_type: The type of identity that last modified the resource. Known values
      are: "User", "Application", "ManagedIdentity", and "Key".
-    :vartype last_modified_by_type: str or ~azure.mgmt.spheredpg.models.createdByType
+    :vartype last_modified_by_type: str or ~azure.mgmt.spheredpg.models.CreatedByType
     :ivar last_modified_at: The timestamp of resource last modification (UTC).
     :vartype last_modified_at: ~datetime.date
     """
 
     created_by: Optional[str] = rest_field(name="createdBy", visibility=["read"])
     """The identity that created the resource."""
-    created_by_type: Optional[Union[str, "_models.createdByType"]] = rest_field(
+    created_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(
         name="createdByType", visibility=["read"]
     )
     """The type of identity that created the resource. Known values are: \"User\", \"Application\",
@@ -1546,7 +1546,7 @@ class SystemData(_model_base.Model):
     """The type of identity that created the resource."""
     last_modified_by: Optional[str] = rest_field(name="lastModifiedBy", visibility=["read"])
     """The identity that last modified the resource."""
-    last_modified_by_type: Optional[Union[str, "_models.createdByType"]] = rest_field(
+    last_modified_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(
         name="lastModifiedByType", visibility=["read"]
     )
     """The type of identity that last modified the resource. Known values are: \"User\",

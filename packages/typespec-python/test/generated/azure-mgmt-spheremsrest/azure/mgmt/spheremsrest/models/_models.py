@@ -2130,14 +2130,14 @@ class SystemData(_serialization.Model):
     :vartype created_by: str
     :ivar created_by_type: The type of identity that created the resource. Known values are:
      "User", "Application", "ManagedIdentity", and "Key".
-    :vartype created_by_type: str or ~azure.mgmt.spheremsrest.models.createdByType
+    :vartype created_by_type: str or ~azure.mgmt.spheremsrest.models.CreatedByType
     :ivar created_at: The type of identity that created the resource.
     :vartype created_at: ~datetime.date
     :ivar last_modified_by: The identity that last modified the resource.
     :vartype last_modified_by: str
     :ivar last_modified_by_type: The type of identity that last modified the resource. Known values
      are: "User", "Application", "ManagedIdentity", and "Key".
-    :vartype last_modified_by_type: str or ~azure.mgmt.spheremsrest.models.createdByType
+    :vartype last_modified_by_type: str or ~azure.mgmt.spheremsrest.models.CreatedByType
     :ivar last_modified_at: The timestamp of resource last modification (UTC).
     :vartype last_modified_at: ~datetime.date
     """
@@ -2155,10 +2155,10 @@ class SystemData(_serialization.Model):
         self,
         *,
         created_by: Optional[str] = None,
-        created_by_type: Optional[Union[str, "_models.createdByType"]] = None,
+        created_by_type: Optional[Union[str, "_models.CreatedByType"]] = None,
         created_at: Optional[datetime.date] = None,
         last_modified_by: Optional[str] = None,
-        last_modified_by_type: Optional[Union[str, "_models.createdByType"]] = None,
+        last_modified_by_type: Optional[Union[str, "_models.CreatedByType"]] = None,
         last_modified_at: Optional[datetime.date] = None,
         **kwargs: Any
     ) -> None:
@@ -2167,14 +2167,14 @@ class SystemData(_serialization.Model):
         :paramtype created_by: str
         :keyword created_by_type: The type of identity that created the resource. Known values are:
          "User", "Application", "ManagedIdentity", and "Key".
-        :paramtype created_by_type: str or ~azure.mgmt.spheremsrest.models.createdByType
+        :paramtype created_by_type: str or ~azure.mgmt.spheremsrest.models.CreatedByType
         :keyword created_at: The type of identity that created the resource.
         :paramtype created_at: ~datetime.date
         :keyword last_modified_by: The identity that last modified the resource.
         :paramtype last_modified_by: str
         :keyword last_modified_by_type: The type of identity that last modified the resource. Known
          values are: "User", "Application", "ManagedIdentity", and "Key".
-        :paramtype last_modified_by_type: str or ~azure.mgmt.spheremsrest.models.createdByType
+        :paramtype last_modified_by_type: str or ~azure.mgmt.spheremsrest.models.CreatedByType
         :keyword last_modified_at: The timestamp of resource last modification (UTC).
         :paramtype last_modified_at: ~datetime.date
         """
