@@ -131,7 +131,6 @@ class PetsOperations:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.create_ap_true.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -156,8 +155,6 @@ class PetsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    create_ap_true.metadata = {"url": "/additionalProperties/true"}
 
     @overload
     async def create_cat_ap_true(
@@ -235,7 +232,6 @@ class PetsOperations:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.create_cat_ap_true.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -260,8 +256,6 @@ class PetsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    create_cat_ap_true.metadata = {"url": "/additionalProperties/true-subclass"}
 
     @overload
     async def create_ap_object(
@@ -339,7 +333,6 @@ class PetsOperations:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.create_ap_object.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -364,8 +357,6 @@ class PetsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    create_ap_object.metadata = {"url": "/additionalProperties/type/object"}
 
     @overload
     async def create_ap_string(
@@ -443,7 +434,6 @@ class PetsOperations:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.create_ap_string.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -468,8 +458,6 @@ class PetsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    create_ap_string.metadata = {"url": "/additionalProperties/type/string"}
 
     @overload
     async def create_ap_in_properties(
@@ -547,7 +535,6 @@ class PetsOperations:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.create_ap_in_properties.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -572,8 +559,6 @@ class PetsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    create_ap_in_properties.metadata = {"url": "/additionalProperties/in/properties"}
 
     @overload
     async def create_ap_in_properties_with_ap_string(
@@ -656,7 +641,6 @@ class PetsOperations:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.create_ap_in_properties_with_ap_string.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -681,7 +665,3 @@ class PetsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    create_ap_in_properties_with_ap_string.metadata = {
-        "url": "/additionalProperties/in/properties/with/additionalProperties/string"
-    }

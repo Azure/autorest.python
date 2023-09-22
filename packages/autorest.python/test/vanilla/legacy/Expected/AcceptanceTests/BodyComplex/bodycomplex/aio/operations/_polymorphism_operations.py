@@ -83,7 +83,6 @@ class PolymorphismOperations:
         cls: ClsType[_models.Fish] = kwargs.pop("cls", None)
 
         request = build_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -108,8 +107,6 @@ class PolymorphismOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_valid.metadata = {"url": "/complex/polymorphism/valid"}
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
@@ -283,7 +280,6 @@ class PolymorphismOperations:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -304,8 +300,6 @@ class PolymorphismOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_valid.metadata = {"url": "/complex/polymorphism/valid"}
 
     @distributed_trace_async
     async def get_dot_syntax(self, **kwargs: Any) -> _models.DotFish:
@@ -330,7 +324,6 @@ class PolymorphismOperations:
         cls: ClsType[_models.DotFish] = kwargs.pop("cls", None)
 
         request = build_get_dot_syntax_request(
-            template_url=self.get_dot_syntax.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -355,8 +348,6 @@ class PolymorphismOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_dot_syntax.metadata = {"url": "/complex/polymorphism/dotsyntax"}
 
     @distributed_trace_async
     async def get_composed_with_discriminator(self, **kwargs: Any) -> _models.DotFishMarket:
@@ -383,7 +374,6 @@ class PolymorphismOperations:
         cls: ClsType[_models.DotFishMarket] = kwargs.pop("cls", None)
 
         request = build_get_composed_with_discriminator_request(
-            template_url=self.get_composed_with_discriminator.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -408,8 +398,6 @@ class PolymorphismOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_composed_with_discriminator.metadata = {"url": "/complex/polymorphism/composedWithDiscriminator"}
 
     @distributed_trace_async
     async def get_composed_without_discriminator(self, **kwargs: Any) -> _models.DotFishMarket:
@@ -436,7 +424,6 @@ class PolymorphismOperations:
         cls: ClsType[_models.DotFishMarket] = kwargs.pop("cls", None)
 
         request = build_get_composed_without_discriminator_request(
-            template_url=self.get_composed_without_discriminator.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -462,8 +449,6 @@ class PolymorphismOperations:
 
         return deserialized
 
-    get_composed_without_discriminator.metadata = {"url": "/complex/polymorphism/composedWithoutDiscriminator"}
-
     @distributed_trace_async
     async def get_complicated(self, **kwargs: Any) -> _models.Salmon:
         """Get complex types that are polymorphic, but not at the root of the hierarchy; also have
@@ -488,7 +473,6 @@ class PolymorphismOperations:
         cls: ClsType[_models.Salmon] = kwargs.pop("cls", None)
 
         request = build_get_complicated_request(
-            template_url=self.get_complicated.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -513,8 +497,6 @@ class PolymorphismOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_complicated.metadata = {"url": "/complex/polymorphism/complicated"}
 
     @overload
     async def put_complicated(  # pylint: disable=inconsistent-return-statements
@@ -595,7 +577,6 @@ class PolymorphismOperations:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_complicated.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -616,8 +597,6 @@ class PolymorphismOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_complicated.metadata = {"url": "/complex/polymorphism/complicated"}
 
     @overload
     async def put_missing_discriminator(
@@ -693,7 +672,6 @@ class PolymorphismOperations:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_missing_discriminator.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -718,8 +696,6 @@ class PolymorphismOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    put_missing_discriminator.metadata = {"url": "/complex/polymorphism/missingdiscriminator"}
 
     @overload
     async def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
@@ -878,7 +854,6 @@ class PolymorphismOperations:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_valid_missing_required.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -899,5 +874,3 @@ class PolymorphismOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_valid_missing_required.metadata = {"url": "/complex/polymorphism/missingrequired/invalid"}

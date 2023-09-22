@@ -115,7 +115,6 @@ class PetOperations:
 
         request = build_get_by_pet_id_request(
             pet_id=pet_id,
-            template_url=self.get_by_pet_id.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -139,8 +138,6 @@ class PetOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_by_pet_id.metadata = {"url": "/extensibleenums/pet/{petId}"}
 
     @overload
     def add_pet(
@@ -219,7 +216,6 @@ class PetOperations:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.add_pet.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -243,5 +239,3 @@ class PetOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    add_pet.metadata = {"url": "/extensibleenums/pet/addPet"}

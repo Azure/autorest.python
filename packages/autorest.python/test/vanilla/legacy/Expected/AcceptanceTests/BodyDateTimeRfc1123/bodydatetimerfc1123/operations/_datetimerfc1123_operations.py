@@ -208,7 +208,6 @@ class Datetimerfc1123Operations:
         cls: ClsType[Optional[datetime.datetime]] = kwargs.pop("cls", None)
 
         request = build_get_null_request(
-            template_url=self.get_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -233,8 +232,6 @@ class Datetimerfc1123Operations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null.metadata = {"url": "/datetimerfc1123/null"}
 
     @distributed_trace
     def get_invalid(self, **kwargs: Any) -> datetime.datetime:
@@ -259,7 +256,6 @@ class Datetimerfc1123Operations:
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
         request = build_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -284,8 +280,6 @@ class Datetimerfc1123Operations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid.metadata = {"url": "/datetimerfc1123/invalid"}
 
     @distributed_trace
     def get_overflow(self, **kwargs: Any) -> datetime.datetime:
@@ -310,7 +304,6 @@ class Datetimerfc1123Operations:
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
         request = build_get_overflow_request(
-            template_url=self.get_overflow.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -335,8 +328,6 @@ class Datetimerfc1123Operations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_overflow.metadata = {"url": "/datetimerfc1123/overflow"}
 
     @distributed_trace
     def get_underflow(self, **kwargs: Any) -> datetime.datetime:
@@ -361,7 +352,6 @@ class Datetimerfc1123Operations:
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
         request = build_get_underflow_request(
-            template_url=self.get_underflow.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -386,8 +376,6 @@ class Datetimerfc1123Operations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_underflow.metadata = {"url": "/datetimerfc1123/underflow"}
 
     @distributed_trace
     def put_utc_max_date_time(  # pylint: disable=inconsistent-return-statements
@@ -421,7 +409,6 @@ class Datetimerfc1123Operations:
         request = build_put_utc_max_date_time_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_utc_max_date_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -442,8 +429,6 @@ class Datetimerfc1123Operations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_utc_max_date_time.metadata = {"url": "/datetimerfc1123/max"}
 
     @distributed_trace
     def get_utc_lowercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
@@ -468,7 +453,6 @@ class Datetimerfc1123Operations:
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
         request = build_get_utc_lowercase_max_date_time_request(
-            template_url=self.get_utc_lowercase_max_date_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -493,8 +477,6 @@ class Datetimerfc1123Operations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_utc_lowercase_max_date_time.metadata = {"url": "/datetimerfc1123/max/lowercase"}
 
     @distributed_trace
     def get_utc_uppercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
@@ -519,7 +501,6 @@ class Datetimerfc1123Operations:
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
         request = build_get_utc_uppercase_max_date_time_request(
-            template_url=self.get_utc_uppercase_max_date_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -544,8 +525,6 @@ class Datetimerfc1123Operations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_utc_uppercase_max_date_time.metadata = {"url": "/datetimerfc1123/max/uppercase"}
 
     @distributed_trace
     def put_utc_min_date_time(  # pylint: disable=inconsistent-return-statements
@@ -579,7 +558,6 @@ class Datetimerfc1123Operations:
         request = build_put_utc_min_date_time_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_utc_min_date_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -600,8 +578,6 @@ class Datetimerfc1123Operations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_utc_min_date_time.metadata = {"url": "/datetimerfc1123/min"}
 
     @distributed_trace
     def get_utc_min_date_time(self, **kwargs: Any) -> datetime.datetime:
@@ -626,7 +602,6 @@ class Datetimerfc1123Operations:
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
         request = build_get_utc_min_date_time_request(
-            template_url=self.get_utc_min_date_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -651,5 +626,3 @@ class Datetimerfc1123Operations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_utc_min_date_time.metadata = {"url": "/datetimerfc1123/min"}

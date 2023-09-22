@@ -135,7 +135,6 @@ class DurationOperations:
         cls: ClsType[Optional[datetime.timedelta]] = kwargs.pop("cls", None)
 
         request = build_get_null_request(
-            template_url=self.get_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -160,8 +159,6 @@ class DurationOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null.metadata = {"url": "/duration/null"}
 
     @distributed_trace
     def put_positive_duration(  # pylint: disable=inconsistent-return-statements
@@ -195,7 +192,6 @@ class DurationOperations:
         request = build_put_positive_duration_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_positive_duration.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -216,8 +212,6 @@ class DurationOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_positive_duration.metadata = {"url": "/duration/positiveduration"}
 
     @distributed_trace
     def get_positive_duration(self, **kwargs: Any) -> datetime.timedelta:
@@ -242,7 +236,6 @@ class DurationOperations:
         cls: ClsType[datetime.timedelta] = kwargs.pop("cls", None)
 
         request = build_get_positive_duration_request(
-            template_url=self.get_positive_duration.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -267,8 +260,6 @@ class DurationOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_positive_duration.metadata = {"url": "/duration/positiveduration"}
 
     @distributed_trace
     def get_invalid(self, **kwargs: Any) -> datetime.timedelta:
@@ -293,7 +284,6 @@ class DurationOperations:
         cls: ClsType[datetime.timedelta] = kwargs.pop("cls", None)
 
         request = build_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -318,5 +308,3 @@ class DurationOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid.metadata = {"url": "/duration/invalid"}

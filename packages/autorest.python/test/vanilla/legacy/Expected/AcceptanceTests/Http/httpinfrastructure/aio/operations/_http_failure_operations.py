@@ -75,7 +75,6 @@ class HttpFailureOperations:
         cls: ClsType[bool] = kwargs.pop("cls", None)
 
         request = build_get_empty_error_request(
-            template_url=self.get_empty_error.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -101,8 +100,6 @@ class HttpFailureOperations:
 
         return deserialized
 
-    get_empty_error.metadata = {"url": "/http/failure/emptybody/error"}
-
     @distributed_trace_async
     async def get_no_model_error(self, **kwargs: Any) -> bool:
         """Get empty error form server.
@@ -126,7 +123,6 @@ class HttpFailureOperations:
         cls: ClsType[bool] = kwargs.pop("cls", None)
 
         request = build_get_no_model_error_request(
-            template_url=self.get_no_model_error.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -150,8 +146,6 @@ class HttpFailureOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_no_model_error.metadata = {"url": "/http/failure/nomodel/error"}
 
     @distributed_trace_async
     async def get_no_model_empty(self, **kwargs: Any) -> bool:
@@ -176,7 +170,6 @@ class HttpFailureOperations:
         cls: ClsType[bool] = kwargs.pop("cls", None)
 
         request = build_get_no_model_empty_request(
-            template_url=self.get_no_model_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -200,5 +193,3 @@ class HttpFailureOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_no_model_empty.metadata = {"url": "/http/failure/nomodel/empty"}

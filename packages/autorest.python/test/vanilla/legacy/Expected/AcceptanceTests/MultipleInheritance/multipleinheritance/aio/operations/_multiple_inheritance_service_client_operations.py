@@ -69,7 +69,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         cls: ClsType[_models.Horse] = kwargs.pop("cls", None)
 
         request = build_get_horse_request(
-            template_url=self.get_horse.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -94,8 +93,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_horse.metadata = {"url": "/multipleInheritance/horse"}
 
     @overload
     async def put_horse(self, horse: _models.Horse, *, content_type: str = "application/json", **kwargs: Any) -> str:
@@ -168,7 +165,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_horse.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -193,8 +189,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
 
         return deserialized
 
-    put_horse.metadata = {"url": "/multipleInheritance/horse"}
-
     @distributed_trace_async
     async def get_pet(self, **kwargs: Any) -> _models.Pet:
         """Get a pet with name 'Peanut'.
@@ -218,7 +212,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         cls: ClsType[_models.Pet] = kwargs.pop("cls", None)
 
         request = build_get_pet_request(
-            template_url=self.get_pet.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -243,8 +236,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_pet.metadata = {"url": "/multipleInheritance/pet"}
 
     @distributed_trace_async
     async def put_pet(self, name: str, **kwargs: Any) -> str:
@@ -277,7 +268,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         request = build_put_pet_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_pet.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -302,8 +292,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
 
         return deserialized
 
-    put_pet.metadata = {"url": "/multipleInheritance/pet"}
-
     @distributed_trace_async
     async def get_feline(self, **kwargs: Any) -> _models.Feline:
         """Get a feline where meows and hisses are true.
@@ -327,7 +315,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         cls: ClsType[_models.Feline] = kwargs.pop("cls", None)
 
         request = build_get_feline_request(
-            template_url=self.get_feline.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -352,8 +339,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_feline.metadata = {"url": "/multipleInheritance/feline"}
 
     @overload
     async def put_feline(self, feline: _models.Feline, *, content_type: str = "application/json", **kwargs: Any) -> str:
@@ -426,7 +411,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_feline.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -451,8 +435,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
 
         return deserialized
 
-    put_feline.metadata = {"url": "/multipleInheritance/feline"}
-
     @distributed_trace_async
     async def get_cat(self, **kwargs: Any) -> _models.Cat:
         """Get a cat with name 'Whiskers' where likesMilk, meows, and hisses is true.
@@ -476,7 +458,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         cls: ClsType[_models.Cat] = kwargs.pop("cls", None)
 
         request = build_get_cat_request(
-            template_url=self.get_cat.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -501,8 +482,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_cat.metadata = {"url": "/multipleInheritance/cat"}
 
     @overload
     async def put_cat(self, cat: _models.Cat, *, content_type: str = "application/json", **kwargs: Any) -> str:
@@ -577,7 +556,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_cat.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -601,8 +579,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    put_cat.metadata = {"url": "/multipleInheritance/cat"}
 
     @distributed_trace_async
     async def get_kitten(self, **kwargs: Any) -> _models.Kitten:
@@ -628,7 +604,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         cls: ClsType[_models.Kitten] = kwargs.pop("cls", None)
 
         request = build_get_kitten_request(
-            template_url=self.get_kitten.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -653,8 +628,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_kitten.metadata = {"url": "/multipleInheritance/kitten"}
 
     @overload
     async def put_kitten(self, kitten: _models.Kitten, *, content_type: str = "application/json", **kwargs: Any) -> str:
@@ -732,7 +705,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_kitten.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -756,5 +728,3 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    put_kitten.metadata = {"url": "/multipleInheritance/kitten"}

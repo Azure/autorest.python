@@ -107,7 +107,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         request = build_put_optional_binary_body_request(
             content_type=content_type,
             content=_content,
-            template_url=self.put_optional_binary_body.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -128,8 +127,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_optional_binary_body.metadata = {"url": "/reqopt/explicit/optional/binary-body"}
 
     @distributed_trace_async
     async def put_required_binary_body(  # pylint: disable=inconsistent-return-statements
@@ -163,7 +160,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         request = build_put_required_binary_body_request(
             content_type=content_type,
             content=_content,
-            template_url=self.put_required_binary_body.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -184,8 +180,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_required_binary_body.metadata = {"url": "/reqopt/explicit/required/binary-body"}
 
     @distributed_trace_async
     async def post_required_integer_parameter(  # pylint: disable=inconsistent-return-statements
@@ -220,7 +214,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         request = build_post_required_integer_parameter_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post_required_integer_parameter.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -241,8 +234,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_required_integer_parameter.metadata = {"url": "/reqopt/requied/integer/parameter"}
 
     @distributed_trace_async
     async def post_optional_integer_parameter(  # pylint: disable=inconsistent-return-statements
@@ -279,7 +270,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         request = build_post_optional_integer_parameter_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post_optional_integer_parameter.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -300,8 +290,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_optional_integer_parameter.metadata = {"url": "/reqopt/optional/integer/parameter"}
 
     @distributed_trace_async
     async def post_required_integer_property(  # pylint: disable=inconsistent-return-statements
@@ -337,7 +325,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         request = build_post_required_integer_property_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post_required_integer_property.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -358,8 +345,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_required_integer_property.metadata = {"url": "/reqopt/requied/integer/property"}
 
     @distributed_trace_async
     async def post_optional_integer_property(  # pylint: disable=inconsistent-return-statements
@@ -397,7 +382,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         request = build_post_optional_integer_property_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post_optional_integer_property.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -418,8 +402,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_optional_integer_property.metadata = {"url": "/reqopt/optional/integer/property"}
 
     @distributed_trace_async
     async def post_required_integer_header(  # pylint: disable=inconsistent-return-statements
@@ -450,7 +432,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         request = build_post_required_integer_header_request(
             header_parameter=header_parameter,
-            template_url=self.post_required_integer_header.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -471,8 +452,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_required_integer_header.metadata = {"url": "/reqopt/requied/integer/header"}
 
     @distributed_trace_async
     async def post_optional_integer_header(  # pylint: disable=inconsistent-return-statements
@@ -502,7 +481,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         request = build_post_optional_integer_header_request(
             header_parameter=header_parameter,
-            template_url=self.post_optional_integer_header.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -523,8 +501,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_optional_integer_header.metadata = {"url": "/reqopt/optional/integer/header"}
 
     @distributed_trace_async
     async def post_required_string_parameter(  # pylint: disable=inconsistent-return-statements
@@ -559,7 +535,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         request = build_post_required_string_parameter_request(
             content_type=content_type,
             content=_content,
-            template_url=self.post_required_string_parameter.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -580,8 +555,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_required_string_parameter.metadata = {"url": "/reqopt/requied/string/parameter"}
 
     @distributed_trace_async
     async def post_optional_string_parameter(  # pylint: disable=inconsistent-return-statements
@@ -618,7 +591,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         request = build_post_optional_string_parameter_request(
             content_type=content_type,
             content=_content,
-            template_url=self.post_optional_string_parameter.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -639,8 +611,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_optional_string_parameter.metadata = {"url": "/reqopt/optional/string/parameter"}
 
     @distributed_trace_async
     async def post_required_string_property(  # pylint: disable=inconsistent-return-statements
@@ -676,7 +646,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         request = build_post_required_string_property_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post_required_string_property.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -697,8 +666,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_required_string_property.metadata = {"url": "/reqopt/requied/string/property"}
 
     @distributed_trace_async
     async def post_optional_string_property(  # pylint: disable=inconsistent-return-statements
@@ -736,7 +703,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         request = build_post_optional_string_property_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post_optional_string_property.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -757,8 +723,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_optional_string_property.metadata = {"url": "/reqopt/optional/string/property"}
 
     @distributed_trace_async
     async def post_required_string_header(  # pylint: disable=inconsistent-return-statements
@@ -789,7 +753,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         request = build_post_required_string_header_request(
             header_parameter=header_parameter,
-            template_url=self.post_required_string_header.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -810,8 +773,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_required_string_header.metadata = {"url": "/reqopt/requied/string/header"}
 
     @distributed_trace_async
     async def post_optional_string_header(  # pylint: disable=inconsistent-return-statements
@@ -841,7 +802,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         request = build_post_optional_string_header_request(
             body_parameter=body_parameter,
-            template_url=self.post_optional_string_header.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -862,8 +822,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_optional_string_header.metadata = {"url": "/reqopt/optional/string/header"}
 
     @overload
     async def post_required_class_parameter(  # pylint: disable=inconsistent-return-statements
@@ -944,7 +902,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.post_required_class_parameter.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -965,8 +922,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_required_class_parameter.metadata = {"url": "/reqopt/requied/class/parameter"}
 
     @overload
     async def post_optional_class_parameter(  # pylint: disable=inconsistent-return-statements
@@ -1047,7 +1002,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.post_optional_class_parameter.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1068,8 +1022,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_optional_class_parameter.metadata = {"url": "/reqopt/optional/class/parameter"}
 
     @distributed_trace_async
     async def post_required_class_property(  # pylint: disable=inconsistent-return-statements
@@ -1105,7 +1057,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         request = build_post_required_class_property_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post_required_class_property.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1126,8 +1077,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_required_class_property.metadata = {"url": "/reqopt/requied/class/property"}
 
     @distributed_trace_async
     async def post_optional_class_property(  # pylint: disable=inconsistent-return-statements
@@ -1165,7 +1114,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         request = build_post_optional_class_property_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post_optional_class_property.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1186,8 +1134,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_optional_class_property.metadata = {"url": "/reqopt/optional/class/property"}
 
     @overload
     async def post_required_array_parameter(  # pylint: disable=inconsistent-return-statements
@@ -1268,7 +1214,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.post_required_array_parameter.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1289,8 +1234,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_required_array_parameter.metadata = {"url": "/reqopt/requied/array/parameter"}
 
     @overload
     async def post_optional_array_parameter(  # pylint: disable=inconsistent-return-statements
@@ -1371,7 +1314,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.post_optional_array_parameter.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1392,8 +1334,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_optional_array_parameter.metadata = {"url": "/reqopt/optional/array/parameter"}
 
     @distributed_trace_async
     async def post_required_array_property(  # pylint: disable=inconsistent-return-statements
@@ -1429,7 +1369,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         request = build_post_required_array_property_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post_required_array_property.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1450,8 +1389,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_required_array_property.metadata = {"url": "/reqopt/requied/array/property"}
 
     @distributed_trace_async
     async def post_optional_array_property(  # pylint: disable=inconsistent-return-statements
@@ -1489,7 +1426,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         request = build_post_optional_array_property_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post_optional_array_property.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1510,8 +1446,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_optional_array_property.metadata = {"url": "/reqopt/optional/array/property"}
 
     @distributed_trace_async
     async def post_required_array_header(  # pylint: disable=inconsistent-return-statements
@@ -1542,7 +1476,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         request = build_post_required_array_header_request(
             header_parameter=header_parameter,
-            template_url=self.post_required_array_header.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1563,8 +1496,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_required_array_header.metadata = {"url": "/reqopt/requied/array/header"}
 
     @distributed_trace_async
     async def post_optional_array_header(  # pylint: disable=inconsistent-return-statements
@@ -1594,7 +1525,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         request = build_post_optional_array_header_request(
             header_parameter=header_parameter,
-            template_url=self.post_optional_array_header.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1615,5 +1545,3 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_optional_array_header.metadata = {"url": "/reqopt/optional/array/header"}

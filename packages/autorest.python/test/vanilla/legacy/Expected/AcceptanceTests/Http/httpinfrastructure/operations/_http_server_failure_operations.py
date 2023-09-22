@@ -142,7 +142,6 @@ class HttpServerFailureOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head501_request(
-            template_url=self.head501.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -163,8 +162,6 @@ class HttpServerFailureOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    head501.metadata = {"url": "/http/failure/server/501"}
 
     @distributed_trace
     def get501(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -189,7 +186,6 @@ class HttpServerFailureOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get501_request(
-            template_url=self.get501.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -210,8 +206,6 @@ class HttpServerFailureOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get501.metadata = {"url": "/http/failure/server/501"}
 
     @distributed_trace
     def post505(  # pylint: disable=inconsistent-return-statements
@@ -249,7 +243,6 @@ class HttpServerFailureOperations:
         request = build_post505_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post505.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -270,8 +263,6 @@ class HttpServerFailureOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post505.metadata = {"url": "/http/failure/server/505"}
 
     @distributed_trace
     def delete505(  # pylint: disable=inconsistent-return-statements
@@ -309,7 +300,6 @@ class HttpServerFailureOperations:
         request = build_delete505_request(
             content_type=content_type,
             json=_json,
-            template_url=self.delete505.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -330,5 +320,3 @@ class HttpServerFailureOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    delete505.metadata = {"url": "/http/failure/server/505"}

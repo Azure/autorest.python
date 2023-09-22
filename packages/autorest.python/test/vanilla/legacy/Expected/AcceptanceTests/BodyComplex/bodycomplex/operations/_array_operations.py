@@ -151,7 +151,6 @@ class ArrayOperations:
         cls: ClsType[_models.ArrayWrapper] = kwargs.pop("cls", None)
 
         request = build_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -176,8 +175,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_valid.metadata = {"url": "/complex/array/valid"}
 
     @distributed_trace
     def put_valid(  # pylint: disable=inconsistent-return-statements
@@ -212,7 +209,6 @@ class ArrayOperations:
         request = build_put_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -233,8 +229,6 @@ class ArrayOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_valid.metadata = {"url": "/complex/array/valid"}
 
     @distributed_trace
     def get_empty(self, **kwargs: Any) -> _models.ArrayWrapper:
@@ -259,7 +253,6 @@ class ArrayOperations:
         cls: ClsType[_models.ArrayWrapper] = kwargs.pop("cls", None)
 
         request = build_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -284,8 +277,6 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty.metadata = {"url": "/complex/array/empty"}
 
     @distributed_trace
     def put_empty(  # pylint: disable=inconsistent-return-statements
@@ -320,7 +311,6 @@ class ArrayOperations:
         request = build_put_empty_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -341,8 +331,6 @@ class ArrayOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_empty.metadata = {"url": "/complex/array/empty"}
 
     @distributed_trace
     def get_not_provided(self, **kwargs: Any) -> _models.ArrayWrapper:
@@ -367,7 +355,6 @@ class ArrayOperations:
         cls: ClsType[_models.ArrayWrapper] = kwargs.pop("cls", None)
 
         request = build_get_not_provided_request(
-            template_url=self.get_not_provided.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -392,5 +379,3 @@ class ArrayOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_not_provided.metadata = {"url": "/complex/array/notprovided"}

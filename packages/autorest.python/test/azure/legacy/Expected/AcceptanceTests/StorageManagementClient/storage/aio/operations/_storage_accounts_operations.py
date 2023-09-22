@@ -156,7 +156,6 @@ class StorageAccountsOperations:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.check_name_availability.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -180,10 +179,6 @@ class StorageAccountsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    check_name_availability.metadata = {
-        "url": "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability"
-    }
 
     async def _create_initial(
         self,
@@ -223,7 +218,6 @@ class StorageAccountsOperations:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._create_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -249,10 +243,6 @@ class StorageAccountsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _create_initial.metadata = {
-        "url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"
-    }
 
     @overload
     async def begin_create(
@@ -419,10 +409,6 @@ class StorageAccountsOperations:
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_create.metadata = {
-        "url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"
-    }
-
     @distributed_trace_async
     async def delete(  # pylint: disable=inconsistent-return-statements
         self, resource_group_name: str, account_name: str, **kwargs: Any
@@ -460,7 +446,6 @@ class StorageAccountsOperations:
             account_name=account_name,
             subscription_id=self._config.subscription_id,
             api_version=api_version,
-            template_url=self.delete.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -480,10 +465,6 @@ class StorageAccountsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    delete.metadata = {
-        "url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"
-    }
 
     @distributed_trace_async
     async def get_properties(
@@ -524,7 +505,6 @@ class StorageAccountsOperations:
             account_name=account_name,
             subscription_id=self._config.subscription_id,
             api_version=api_version,
-            template_url=self.get_properties.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -548,10 +528,6 @@ class StorageAccountsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_properties.metadata = {
-        "url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"
-    }
 
     @overload
     async def update(
@@ -693,7 +669,6 @@ class StorageAccountsOperations:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.update.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -717,10 +692,6 @@ class StorageAccountsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    update.metadata = {
-        "url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"
-    }
 
     @distributed_trace_async
     async def list_keys(self, resource_group_name: str, account_name: str, **kwargs: Any) -> _models.StorageAccountKeys:
@@ -755,7 +726,6 @@ class StorageAccountsOperations:
             account_name=account_name,
             subscription_id=self._config.subscription_id,
             api_version=api_version,
-            template_url=self.list_keys.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -779,10 +749,6 @@ class StorageAccountsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    list_keys.metadata = {
-        "url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys"
-    }
 
     @distributed_trace
     def list(self, **kwargs: Any) -> AsyncIterable["_models.StorageAccount"]:
@@ -814,7 +780,6 @@ class StorageAccountsOperations:
                 request = build_list_request(
                     subscription_id=self._config.subscription_id,
                     api_version=api_version,
-                    template_url=self.list.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -862,8 +827,6 @@ class StorageAccountsOperations:
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    list.metadata = {"url": "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts"}
 
     @distributed_trace
     def list_by_resource_group(
@@ -901,7 +864,6 @@ class StorageAccountsOperations:
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
                     api_version=api_version,
-                    template_url=self.list_by_resource_group.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -949,10 +911,6 @@ class StorageAccountsOperations:
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    list_by_resource_group.metadata = {
-        "url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts"
-    }
 
     @distributed_trace_async
     async def regenerate_key(
@@ -1003,7 +961,6 @@ class StorageAccountsOperations:
             api_version=api_version,
             content_type=content_type,
             json=_json,
-            template_url=self.regenerate_key.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1027,7 +984,3 @@ class StorageAccountsOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    regenerate_key.metadata = {
-        "url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey"
-    }

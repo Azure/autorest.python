@@ -113,7 +113,6 @@ class OdataOperations:
             filter=filter,
             top=top,
             orderby=orderby,
-            template_url=self.get_with_filter.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -134,5 +133,3 @@ class OdataOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_with_filter.metadata = {"url": "/azurespecials/odata/filter"}

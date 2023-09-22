@@ -90,7 +90,6 @@ class SkipUrlEncodingOperations:
 
         request = build_get_method_path_valid_request(
             unencoded_path_param=unencoded_path_param,
-            template_url=self.get_method_path_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -111,8 +110,6 @@ class SkipUrlEncodingOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_method_path_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}"}
 
     @distributed_trace_async
     async def get_path_valid(  # pylint: disable=inconsistent-return-statements
@@ -142,7 +139,6 @@ class SkipUrlEncodingOperations:
 
         request = build_get_path_valid_request(
             unencoded_path_param=unencoded_path_param,
-            template_url=self.get_path_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -163,8 +159,6 @@ class SkipUrlEncodingOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_path_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}"}
 
     @distributed_trace_async
     async def get_swagger_path_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -195,7 +189,6 @@ class SkipUrlEncodingOperations:
 
         request = build_get_swagger_path_valid_request(
             unencoded_path_param=unencoded_path_param,
-            template_url=self.get_swagger_path_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -216,8 +209,6 @@ class SkipUrlEncodingOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_swagger_path_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}"}
 
     @distributed_trace_async
     async def get_method_query_valid(  # pylint: disable=inconsistent-return-statements
@@ -247,7 +238,6 @@ class SkipUrlEncodingOperations:
 
         request = build_get_method_query_valid_request(
             q1=q1,
-            template_url=self.get_method_query_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -268,8 +258,6 @@ class SkipUrlEncodingOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_method_query_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/method/query/valid"}
 
     @distributed_trace_async
     async def get_method_query_null(  # pylint: disable=inconsistent-return-statements
@@ -299,7 +287,6 @@ class SkipUrlEncodingOperations:
 
         request = build_get_method_query_null_request(
             q1=q1,
-            template_url=self.get_method_query_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -320,8 +307,6 @@ class SkipUrlEncodingOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_method_query_null.metadata = {"url": "/azurespecials/skipUrlEncoding/method/query/null"}
 
     @distributed_trace_async
     async def get_path_query_valid(  # pylint: disable=inconsistent-return-statements
@@ -351,7 +336,6 @@ class SkipUrlEncodingOperations:
 
         request = build_get_path_query_valid_request(
             q1=q1,
-            template_url=self.get_path_query_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -372,8 +356,6 @@ class SkipUrlEncodingOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_path_query_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/path/query/valid"}
 
     @distributed_trace_async
     async def get_swagger_query_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -404,7 +386,6 @@ class SkipUrlEncodingOperations:
 
         request = build_get_swagger_query_valid_request(
             q1=q1,
-            template_url=self.get_swagger_query_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -425,5 +406,3 @@ class SkipUrlEncodingOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_swagger_query_valid.metadata = {"url": "/azurespecials/skipUrlEncoding/swagger/query/valid"}

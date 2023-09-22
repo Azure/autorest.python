@@ -85,7 +85,6 @@ class OperationGroupOneOperations:
             if not next_link:
 
                 request = build_test_operation_group_paging_request(
-                    template_url=self.test_operation_group_paging.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -133,8 +132,6 @@ class OperationGroupOneOperations:
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    test_operation_group_paging.metadata = {"url": "/multiapi/one/paging/1"}
 
     @overload
     async def test_two(
@@ -222,7 +219,6 @@ class OperationGroupOneOperations:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.test_two.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -247,5 +243,3 @@ class OperationGroupOneOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    test_two.metadata = {"url": "/multiapi/one/testTwoEndpoint"}

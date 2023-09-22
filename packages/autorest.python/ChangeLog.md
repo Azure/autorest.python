@@ -1,6 +1,6 @@
 # Release
 
-### 2023-09-XX - 6.7.7
+### 2023-09-22 - 6.7.7
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -16,6 +16,7 @@
 **Bug Fixes**
 
 - Skip quote for etag when it starts with `/W` # 2133
+- Remove operation metadata for Mgmt  # 2134
 
 ### 2023-09-15 - 6.7.6
 

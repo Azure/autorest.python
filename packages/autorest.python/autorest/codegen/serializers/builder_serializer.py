@@ -892,7 +892,6 @@ class _OperationSerializer(
         self,
         builder: OperationType,
         request_builder: RequestBuilderType,
-        template_url: Optional[str] = None,
         is_next_request: bool = False,
     ) -> List[str]:
         retval: List[str] = []
@@ -952,9 +951,6 @@ class _OperationSerializer(
             retval.append(
                 f"    {body_param.client_name}={body_param.name_in_high_level_operation},"
             )
-        if not self.code_model.options["version_tolerant"]:
-            template_url = template_url or f"self.{builder.name}.metadata['url']"
-            retval.append(f"    template_url={template_url},")
         retval.append("    headers=_headers,")
         retval.append("    params=_params,")
         retval.append(")")
@@ -1014,9 +1010,7 @@ class _OperationSerializer(
             retval.extend(self._create_body_parameter(builder))
         retval.append("")
         retval.extend(
-            self._create_request_builder_call(
-                builder, request_builder, template_url, is_next_request
-            )
+            self._create_request_builder_call(builder, request_builder, is_next_request)
         )
         retval.extend(self._postprocess_http_request(builder, template_url))
         return retval
@@ -1278,11 +1272,6 @@ class _OperationSerializer(
         retval.append("error_map.update(kwargs.pop('error_map', {}) or {})")
         return retval
 
-    @staticmethod
-    def get_metadata_url(builder: OperationType) -> str:
-        url = _escape_str(builder.request_builder.url)
-        return f"{builder.name}.metadata = {{'url': {url}}}"
-
     @property
     def _call_method(self) -> str:
         return "await " if self.async_mode else ""
@@ -1329,11 +1318,7 @@ class _PagingOperationSerializer(
     def call_next_link_request_builder(self, builder: PagingOperationType) -> List[str]:
         if builder.next_request_builder:
             request_builder = builder.next_request_builder
-            template_url = (
-                None
-                if self.code_model.options["version_tolerant"]
-                else f"'{request_builder.url}'"
-            )
+            template_url = None
         else:
             request_builder = builder.request_builder
             template_url = "next_link"

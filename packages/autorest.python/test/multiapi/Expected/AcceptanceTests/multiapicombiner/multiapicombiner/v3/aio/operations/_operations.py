@@ -76,7 +76,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             if not next_link:
 
                 request = build_multiapi_service_test_paging_request(
-                    template_url=self.test_paging.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -125,8 +124,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         return AsyncItemPaged(get_next, extract_data)
 
-    test_paging.metadata = {"url": "/multiapi/paging/1"}
-
     @distributed_trace_async
     async def test_different_calls(  # pylint: disable=inconsistent-return-statements
         self,
@@ -170,7 +167,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             greeting_in_chinese=greeting_in_chinese,
             greeting_in_french=greeting_in_french,
             api_version=api_version,
-            template_url=self.test_different_calls.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -191,8 +187,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    test_different_calls.metadata = {"url": "/multiapi/testDifferentCalls"}
 
 
 class OperationGroupOneOperations:
@@ -241,7 +235,6 @@ class OperationGroupOneOperations:
             if not next_link:
 
                 request = build_operation_group_one_test_operation_group_paging_request(
-                    template_url=self.test_operation_group_paging.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -289,8 +282,6 @@ class OperationGroupOneOperations:
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    test_operation_group_paging.metadata = {"url": "/multiapi/one/paging/1"}
 
     @overload
     async def test_two(
@@ -378,7 +369,6 @@ class OperationGroupOneOperations:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.test_two.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -403,8 +393,6 @@ class OperationGroupOneOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    test_two.metadata = {"url": "/multiapi/one/testTwoEndpoint"}
 
 
 class OperationGroupTwoOperations:
@@ -509,7 +497,6 @@ class OperationGroupTwoOperations:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.test_four.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -530,8 +517,6 @@ class OperationGroupTwoOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    test_four.metadata = {"url": "/multiapi/two/testFourEndpoint"}
 
     @distributed_trace_async
     async def test_five(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -558,7 +543,6 @@ class OperationGroupTwoOperations:
 
         request = build_operation_group_two_test_five_request(
             api_version=api_version,
-            template_url=self.test_five.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -579,5 +563,3 @@ class OperationGroupTwoOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    test_five.metadata = {"url": "/multiapi/two/testFiveEndpoint"}

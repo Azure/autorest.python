@@ -104,7 +104,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head400_request(
-            template_url=self.head400.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -125,8 +124,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    head400.metadata = {"url": "/http/failure/client/400"}
 
     @distributed_trace_async
     async def get400(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -151,7 +148,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get400_request(
-            template_url=self.get400.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -172,8 +168,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get400.metadata = {"url": "/http/failure/client/400"}
 
     @distributed_trace_async
     async def options400(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -198,7 +192,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_options400_request(
-            template_url=self.options400.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -219,8 +212,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    options400.metadata = {"url": "/http/failure/client/400"}
 
     @distributed_trace_async
     async def put400(  # pylint: disable=inconsistent-return-statements
@@ -258,7 +249,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request = build_put400_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put400.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -279,8 +269,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put400.metadata = {"url": "/http/failure/client/400"}
 
     @distributed_trace_async
     async def patch400(  # pylint: disable=inconsistent-return-statements
@@ -318,7 +306,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request = build_patch400_request(
             content_type=content_type,
             json=_json,
-            template_url=self.patch400.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -339,8 +326,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    patch400.metadata = {"url": "/http/failure/client/400"}
 
     @distributed_trace_async
     async def post400(  # pylint: disable=inconsistent-return-statements
@@ -378,7 +363,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request = build_post400_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post400.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -399,8 +383,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post400.metadata = {"url": "/http/failure/client/400"}
 
     @distributed_trace_async
     async def delete400(  # pylint: disable=inconsistent-return-statements
@@ -438,7 +420,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request = build_delete400_request(
             content_type=content_type,
             json=_json,
-            template_url=self.delete400.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -459,8 +440,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    delete400.metadata = {"url": "/http/failure/client/400"}
 
     @distributed_trace_async
     async def head401(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -485,7 +464,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head401_request(
-            template_url=self.head401.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -506,8 +484,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    head401.metadata = {"url": "/http/failure/client/401"}
 
     @distributed_trace_async
     async def get402(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -532,7 +508,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get402_request(
-            template_url=self.get402.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -553,8 +528,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get402.metadata = {"url": "/http/failure/client/402"}
 
     @distributed_trace_async
     async def options403(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -579,7 +552,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_options403_request(
-            template_url=self.options403.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -600,8 +572,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    options403.metadata = {"url": "/http/failure/client/403"}
 
     @distributed_trace_async
     async def get403(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -626,7 +596,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get403_request(
-            template_url=self.get403.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -647,8 +616,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get403.metadata = {"url": "/http/failure/client/403"}
 
     @distributed_trace_async
     async def put404(  # pylint: disable=inconsistent-return-statements
@@ -686,7 +653,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request = build_put404_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put404.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -707,8 +673,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put404.metadata = {"url": "/http/failure/client/404"}
 
     @distributed_trace_async
     async def patch405(  # pylint: disable=inconsistent-return-statements
@@ -746,7 +710,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request = build_patch405_request(
             content_type=content_type,
             json=_json,
-            template_url=self.patch405.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -767,8 +730,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    patch405.metadata = {"url": "/http/failure/client/405"}
 
     @distributed_trace_async
     async def post406(  # pylint: disable=inconsistent-return-statements
@@ -806,7 +767,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request = build_post406_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post406.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -827,8 +787,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post406.metadata = {"url": "/http/failure/client/406"}
 
     @distributed_trace_async
     async def delete407(  # pylint: disable=inconsistent-return-statements
@@ -866,7 +824,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request = build_delete407_request(
             content_type=content_type,
             json=_json,
-            template_url=self.delete407.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -887,8 +844,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    delete407.metadata = {"url": "/http/failure/client/407"}
 
     @distributed_trace_async
     async def put409(  # pylint: disable=inconsistent-return-statements
@@ -926,7 +881,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request = build_put409_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put409.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -947,8 +901,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put409.metadata = {"url": "/http/failure/client/409"}
 
     @distributed_trace_async
     async def head410(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -973,7 +925,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head410_request(
-            template_url=self.head410.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -994,8 +945,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    head410.metadata = {"url": "/http/failure/client/410"}
 
     @distributed_trace_async
     async def get411(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1020,7 +969,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get411_request(
-            template_url=self.get411.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1041,8 +989,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get411.metadata = {"url": "/http/failure/client/411"}
 
     @distributed_trace_async
     async def options412(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1067,7 +1013,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_options412_request(
-            template_url=self.options412.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1088,8 +1033,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    options412.metadata = {"url": "/http/failure/client/412"}
 
     @distributed_trace_async
     async def get412(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1114,7 +1057,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get412_request(
-            template_url=self.get412.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1135,8 +1077,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get412.metadata = {"url": "/http/failure/client/412"}
 
     @distributed_trace_async
     async def put413(  # pylint: disable=inconsistent-return-statements
@@ -1174,7 +1114,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request = build_put413_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put413.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1195,8 +1134,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put413.metadata = {"url": "/http/failure/client/413"}
 
     @distributed_trace_async
     async def patch414(  # pylint: disable=inconsistent-return-statements
@@ -1234,7 +1171,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request = build_patch414_request(
             content_type=content_type,
             json=_json,
-            template_url=self.patch414.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1255,8 +1191,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    patch414.metadata = {"url": "/http/failure/client/414"}
 
     @distributed_trace_async
     async def post415(  # pylint: disable=inconsistent-return-statements
@@ -1294,7 +1228,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request = build_post415_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post415.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1315,8 +1248,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post415.metadata = {"url": "/http/failure/client/415"}
 
     @distributed_trace_async
     async def get416(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1341,7 +1272,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get416_request(
-            template_url=self.get416.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1362,8 +1292,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get416.metadata = {"url": "/http/failure/client/416"}
 
     @distributed_trace_async
     async def delete417(  # pylint: disable=inconsistent-return-statements
@@ -1401,7 +1329,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         request = build_delete417_request(
             content_type=content_type,
             json=_json,
-            template_url=self.delete417.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1422,8 +1349,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    delete417.metadata = {"url": "/http/failure/client/417"}
 
     @distributed_trace_async
     async def head429(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1448,7 +1373,6 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head429_request(
-            template_url=self.head429.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1469,5 +1393,3 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    head429.metadata = {"url": "/http/failure/client/429"}

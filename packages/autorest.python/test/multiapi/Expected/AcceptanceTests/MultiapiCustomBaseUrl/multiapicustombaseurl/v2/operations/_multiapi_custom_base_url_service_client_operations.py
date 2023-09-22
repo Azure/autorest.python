@@ -91,7 +91,6 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(  # pylint: disable=name
         request = build_test_request(
             id=id,
             api_version=api_version,
-            template_url=self.test.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -115,5 +114,3 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(  # pylint: disable=name
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    test.metadata = {"url": "/test"}

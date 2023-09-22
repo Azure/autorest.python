@@ -117,7 +117,6 @@ class FilesOperations:
         cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
         request = build_get_file_request(
-            template_url=self.get_file.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -142,8 +141,6 @@ class FilesOperations:
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
-
-    get_file.metadata = {"url": "/files/stream/nonempty"}
 
     @distributed_trace
     def get_file_large(self, **kwargs: Any) -> Iterator[bytes]:
@@ -168,7 +165,6 @@ class FilesOperations:
         cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
         request = build_get_file_large_request(
-            template_url=self.get_file_large.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -193,8 +189,6 @@ class FilesOperations:
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
-
-    get_file_large.metadata = {"url": "/files/stream/verylarge"}
 
     @distributed_trace
     def get_empty_file(self, **kwargs: Any) -> Iterator[bytes]:
@@ -219,7 +213,6 @@ class FilesOperations:
         cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
         request = build_get_empty_file_request(
-            template_url=self.get_empty_file.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -244,5 +237,3 @@ class FilesOperations:
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
-
-    get_empty_file.metadata = {"url": "/files/stream/empty"}

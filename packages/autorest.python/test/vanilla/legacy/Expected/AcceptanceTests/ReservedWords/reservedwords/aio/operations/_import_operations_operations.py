@@ -81,7 +81,6 @@ class ImportOperations:
 
         request = build_operation_one_request(
             parameter1=parameter1,
-            template_url=self.operation_one.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -105,5 +104,3 @@ class ImportOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    operation_one.metadata = {"url": "/reservedWords/operationGroup/import"}

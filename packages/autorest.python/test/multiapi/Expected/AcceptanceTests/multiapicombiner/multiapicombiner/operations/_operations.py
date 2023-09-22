@@ -171,7 +171,6 @@ class OperationGroupOneOperations:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.test_two.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -197,7 +196,6 @@ class OperationGroupOneOperations:
 
         return deserialized
 
-    test_two.metadata = {'url': '/multiapi/one/testTwoEndpoint'}
 
     @api_version_validation(
        method_valid_on=['2.0.0'],
@@ -227,7 +225,6 @@ class OperationGroupOneOperations:
 
         request = build_operation_group_one_test_three_request(
             api_version=api_version,
-            template_url=self.test_three.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -249,7 +246,6 @@ class OperationGroupOneOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    test_three.metadata = {'url': '/multiapi/one/testThreeEndpoint'}
 
     @api_version_validation(
        method_valid_on=['3.0.0'],
@@ -280,7 +276,6 @@ class OperationGroupOneOperations:
             if not next_link:
 
                 request = build_operation_group_one_test_operation_group_paging_request(
-                    template_url=self.test_operation_group_paging.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -329,7 +324,6 @@ class OperationGroupOneOperations:
 
         return ItemPaged(get_next, extract_data)
 
-    test_operation_group_paging.metadata = {'url': '/multiapi/one/paging/1'}
 
 def build_operation_group_two_test_four_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -443,7 +437,6 @@ class OperationGroupTwoOperations:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.test_four.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -465,7 +458,6 @@ class OperationGroupTwoOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    test_four.metadata = {'url': '/multiapi/two/testFourEndpoint'}
 
     @api_version_validation(
        method_valid_on=['3.0.0'],
@@ -495,7 +487,6 @@ class OperationGroupTwoOperations:
 
         request = build_operation_group_two_test_five_request(
             api_version=api_version,
-            template_url=self.test_five.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -517,7 +508,6 @@ class OperationGroupTwoOperations:
         if cls:
             return cls(pipeline_response, None, {})
 
-    test_five.metadata = {'url': '/multiapi/two/testFiveEndpoint'}
 
 def build_multiapi_service_test_lro_and_paging_request(  # pylint: disable=name-too-long
     *, client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
@@ -653,7 +643,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             client_request_id=client_request_id,
             maxresults=_maxresults,
             timeout=_timeout,  # type: ignore
-            template_url=self._test_lro_and_paging_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -678,7 +667,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         return deserialized
 
-    _test_lro_and_paging_initial.metadata = {'url': '/multiapi/lroAndPaging'}
 
     def _test_lro_initial(
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
@@ -712,7 +700,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._test_lro_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -740,7 +727,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         return deserialized
 
-    _test_lro_initial.metadata = {'url': '/multiapi/lro'}
 
     @api_version_validation(
        method_valid_on=['1.0.0'],
@@ -808,7 +794,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_test_lro.metadata = {'url': '/multiapi/lro'}
 
     @api_version_validation(
        method_valid_on=['1.0.0'],
@@ -867,7 +852,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,  # type: ignore
-                    template_url=self.begin_test_lro_and_paging.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -951,7 +935,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_test_lro_and_paging.metadata = {'url': '/multiapi/lroAndPaging'}
 
     @api_version_validation(
         params_valid_on={
@@ -1002,7 +985,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             greeting_in_chinese=greeting_in_chinese,
             greeting_in_french=greeting_in_french,
             api_version=api_version,
-            template_url=self.test_different_calls.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1024,7 +1006,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         if cls:
             return cls(pipeline_response, None, {})
 
-    test_different_calls.metadata = {'url': '/multiapi/testDifferentCalls'}
 
     @api_version_validation(
        method_valid_on=['1.0.0', '2.0.0'],
@@ -1062,7 +1043,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             id=id,
             message=message,
             api_version=api_version,
-            template_url=self.test_one.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1088,7 +1068,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         return deserialized
 
-    test_one.metadata = {'url': '/multiapi/testOneEndpoint'}
 
     @api_version_validation(
        method_valid_on=['3.0.0'],
@@ -1119,7 +1098,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             if not next_link:
 
                 request = build_multiapi_service_test_paging_request(
-                    template_url=self.test_paging.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -1168,5 +1146,4 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         return ItemPaged(get_next, extract_data)
 
-    test_paging.metadata = {'url': '/multiapi/paging/1'}
 
