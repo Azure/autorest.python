@@ -629,7 +629,7 @@ function emitBasicOperation(
             }
         }
         if (bodyParameter.type.type === "bytes" && !getEncode(context.program, bodyParameter.type.__raw)) {
-            bodyParameter.type = KnownTypes["bytes"]
+            bodyParameter.type = KnownTypes["bytes"];
         }
     }
     const name = camelToSnakeCase(getLibraryName(context, operation));
