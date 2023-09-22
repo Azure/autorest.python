@@ -184,6 +184,7 @@ class QuestionAnsweringProjectsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         error_map = {
@@ -202,6 +203,7 @@ class QuestionAnsweringProjectsOperations:
                     source=source,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
