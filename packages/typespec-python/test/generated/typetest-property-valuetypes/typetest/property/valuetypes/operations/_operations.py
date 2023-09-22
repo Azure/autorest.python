@@ -679,12 +679,12 @@ class BooleanOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -697,12 +697,12 @@ class BooleanOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BooleanProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.BooleanProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: BooleanProperty, JSON, IO Required.
-        :type body: ~typetest.property.valuetypes.models.BooleanProperty or JSON or IO
+        :param body: body. Is one of the following types: BooleanProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.valuetypes.models.BooleanProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -865,12 +865,12 @@ class StringOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -883,12 +883,12 @@ class StringOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.StringProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: StringProperty, JSON, IO Required.
-        :type body: ~typetest.property.valuetypes.models.StringProperty or JSON or IO
+        :param body: body. Is one of the following types: StringProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.valuetypes.models.StringProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1051,12 +1051,12 @@ class BytesOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1069,12 +1069,12 @@ class BytesOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BytesProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.BytesProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: BytesProperty, JSON, IO Required.
-        :type body: ~typetest.property.valuetypes.models.BytesProperty or JSON or IO
+        :param body: body. Is one of the following types: BytesProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.valuetypes.models.BytesProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1237,12 +1237,12 @@ class IntOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1255,12 +1255,12 @@ class IntOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IntProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.IntProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: IntProperty, JSON, IO Required.
-        :type body: ~typetest.property.valuetypes.models.IntProperty or JSON or IO
+        :param body: body. Is one of the following types: IntProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.valuetypes.models.IntProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1423,12 +1423,12 @@ class FloatOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1441,12 +1441,12 @@ class FloatOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.FloatProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.FloatProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: FloatProperty, JSON, IO Required.
-        :type body: ~typetest.property.valuetypes.models.FloatProperty or JSON or IO
+        :param body: body. Is one of the following types: FloatProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.valuetypes.models.FloatProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1609,12 +1609,12 @@ class DatetimeOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1627,12 +1627,12 @@ class DatetimeOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DatetimeProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DatetimeProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: DatetimeProperty, JSON, IO Required.
-        :type body: ~typetest.property.valuetypes.models.DatetimeProperty or JSON or IO
+        :param body: body. Is one of the following types: DatetimeProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.valuetypes.models.DatetimeProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1795,12 +1795,12 @@ class DurationOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1813,12 +1813,12 @@ class DurationOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DurationProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DurationProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: DurationProperty, JSON, IO Required.
-        :type body: ~typetest.property.valuetypes.models.DurationProperty or JSON or IO
+        :param body: body. Is one of the following types: DurationProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.valuetypes.models.DurationProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1981,12 +1981,12 @@ class EnumOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1999,12 +1999,12 @@ class EnumOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.EnumProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.EnumProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: EnumProperty, JSON, IO Required.
-        :type body: ~typetest.property.valuetypes.models.EnumProperty or JSON or IO
+        :param body: body. Is one of the following types: EnumProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.valuetypes.models.EnumProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -2167,12 +2167,12 @@ class ExtensibleEnumOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2185,12 +2185,13 @@ class ExtensibleEnumOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ExtensibleEnumProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.ExtensibleEnumProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: ExtensibleEnumProperty, JSON, IO Required.
-        :type body: ~typetest.property.valuetypes.models.ExtensibleEnumProperty or JSON or IO
+        :param body: body. Is one of the following types: ExtensibleEnumProperty, JSON, IO[bytes]
+         Required.
+        :type body: ~typetest.property.valuetypes.models.ExtensibleEnumProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -2353,12 +2354,12 @@ class ModelOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2371,12 +2372,12 @@ class ModelOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ModelProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.ModelProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: ModelProperty, JSON, IO Required.
-        :type body: ~typetest.property.valuetypes.models.ModelProperty or JSON or IO
+        :param body: body. Is one of the following types: ModelProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.valuetypes.models.ModelProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -2540,12 +2541,12 @@ class CollectionsStringOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2558,12 +2559,13 @@ class CollectionsStringOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsStringProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.CollectionsStringProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: CollectionsStringProperty, JSON, IO Required.
-        :type body: ~typetest.property.valuetypes.models.CollectionsStringProperty or JSON or IO
+        :param body: body. Is one of the following types: CollectionsStringProperty, JSON, IO[bytes]
+         Required.
+        :type body: ~typetest.property.valuetypes.models.CollectionsStringProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -2726,12 +2728,12 @@ class CollectionsIntOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2744,12 +2746,13 @@ class CollectionsIntOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsIntProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.CollectionsIntProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: CollectionsIntProperty, JSON, IO Required.
-        :type body: ~typetest.property.valuetypes.models.CollectionsIntProperty or JSON or IO
+        :param body: body. Is one of the following types: CollectionsIntProperty, JSON, IO[bytes]
+         Required.
+        :type body: ~typetest.property.valuetypes.models.CollectionsIntProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -2913,12 +2916,12 @@ class CollectionsModelOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2931,12 +2934,13 @@ class CollectionsModelOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsModelProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.CollectionsModelProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: CollectionsModelProperty, JSON, IO Required.
-        :type body: ~typetest.property.valuetypes.models.CollectionsModelProperty or JSON or IO
+        :param body: body. Is one of the following types: CollectionsModelProperty, JSON, IO[bytes]
+         Required.
+        :type body: ~typetest.property.valuetypes.models.CollectionsModelProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -3100,12 +3104,12 @@ class DictionaryStringOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3118,12 +3122,13 @@ class DictionaryStringOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DictionaryStringProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.DictionaryStringProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: DictionaryStringProperty, JSON, IO Required.
-        :type body: ~typetest.property.valuetypes.models.DictionaryStringProperty or JSON or IO
+        :param body: body. Is one of the following types: DictionaryStringProperty, JSON, IO[bytes]
+         Required.
+        :type body: ~typetest.property.valuetypes.models.DictionaryStringProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -3286,12 +3291,12 @@ class NeverOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3304,12 +3309,12 @@ class NeverOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.NeverProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.NeverProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: NeverProperty, JSON, IO Required.
-        :type body: ~typetest.property.valuetypes.models.NeverProperty or JSON or IO
+        :param body: body. Is one of the following types: NeverProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.valuetypes.models.NeverProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -3472,12 +3477,12 @@ class UnknownStringOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3490,12 +3495,13 @@ class UnknownStringOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnknownStringProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.UnknownStringProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: UnknownStringProperty, JSON, IO Required.
-        :type body: ~typetest.property.valuetypes.models.UnknownStringProperty or JSON or IO
+        :param body: body. Is one of the following types: UnknownStringProperty, JSON, IO[bytes]
+         Required.
+        :type body: ~typetest.property.valuetypes.models.UnknownStringProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -3658,12 +3664,12 @@ class UnknownIntOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3676,12 +3682,12 @@ class UnknownIntOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnknownIntProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.UnknownIntProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: UnknownIntProperty, JSON, IO Required.
-        :type body: ~typetest.property.valuetypes.models.UnknownIntProperty or JSON or IO
+        :param body: body. Is one of the following types: UnknownIntProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.valuetypes.models.UnknownIntProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -3844,12 +3850,12 @@ class UnknownDictOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3862,12 +3868,13 @@ class UnknownDictOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnknownDictProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.UnknownDictProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: UnknownDictProperty, JSON, IO Required.
-        :type body: ~typetest.property.valuetypes.models.UnknownDictProperty or JSON or IO
+        :param body: body. Is one of the following types: UnknownDictProperty, JSON, IO[bytes]
+         Required.
+        :type body: ~typetest.property.valuetypes.models.UnknownDictProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -4030,12 +4037,12 @@ class UnknownArrayOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
 
         :param body: body. Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4048,12 +4055,13 @@ class UnknownArrayOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnknownArrayProperty, JSON, IO], **kwargs: Any
+        self, body: Union[_models.UnknownArrayProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
 
-        :param body: body. Is one of the following types: UnknownArrayProperty, JSON, IO Required.
-        :type body: ~typetest.property.valuetypes.models.UnknownArrayProperty or JSON or IO
+        :param body: body. Is one of the following types: UnknownArrayProperty, JSON, IO[bytes]
+         Required.
+        :type body: ~typetest.property.valuetypes.models.UnknownArrayProperty or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str

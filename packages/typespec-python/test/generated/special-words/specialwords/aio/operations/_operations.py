@@ -331,12 +331,12 @@ class ModelOperations:
 
     @overload
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -349,12 +349,12 @@ class ModelOperations:
 
     @distributed_trace_async
     async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BaseModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.BaseModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is one of the following types: BaseModel, JSON, IO Required.
-        :type body: ~specialwords.models.BaseModel or JSON or IO
+        :param body: Is one of the following types: BaseModel, JSON, IO[bytes] Required.
+        :type body: ~specialwords.models.BaseModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str

@@ -238,12 +238,12 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
 
     @overload
     def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put_model.
 
         :param input: Required.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -256,12 +256,12 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
 
     @distributed_trace
     def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.Bird, JSON, IO], **kwargs: Any
+        self, input: Union[_models.Bird, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """put_model.
 
-        :param input: Is one of the following types: Bird, JSON, IO Required.
-        :type input: ~typetest.model.singlediscriminator.models.Bird or JSON or IO
+        :param input: Is one of the following types: Bird, JSON, IO[bytes] Required.
+        :type input: ~typetest.model.singlediscriminator.models.Bird or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -406,12 +406,12 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
 
     @overload
     def put_recursive_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put_recursive_model.
 
         :param input: Required.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -424,12 +424,12 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
 
     @distributed_trace
     def put_recursive_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.Bird, JSON, IO], **kwargs: Any
+        self, input: Union[_models.Bird, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """put_recursive_model.
 
-        :param input: Is one of the following types: Bird, JSON, IO Required.
-        :type input: ~typetest.model.singlediscriminator.models.Bird or JSON or IO
+        :param input: Is one of the following types: Bird, JSON, IO[bytes] Required.
+        :type input: ~typetest.model.singlediscriminator.models.Bird or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str

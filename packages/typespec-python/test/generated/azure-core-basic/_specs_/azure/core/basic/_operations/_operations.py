@@ -289,7 +289,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
     @overload
     def create_or_update(
-        self, id: int, resource: IO, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+        self, id: int, resource: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> _models.User:
         """Adds a user or updates a user's fields.
 
@@ -298,7 +298,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :param id: The user's id. Required.
         :type id: int
         :param resource: The resource instance. Required.
-        :type resource: IO
+        :type resource: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/merge-patch+json".
         :paramtype content_type: str
@@ -310,15 +310,16 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         """
 
     @distributed_trace
-    def create_or_update(self, id: int, resource: Union[_models.User, JSON, IO], **kwargs: Any) -> _models.User:
+    def create_or_update(self, id: int, resource: Union[_models.User, JSON, IO[bytes]], **kwargs: Any) -> _models.User:
         """Adds a user or updates a user's fields.
 
         Creates or updates a User.
 
         :param id: The user's id. Required.
         :type id: int
-        :param resource: The resource instance. Is one of the following types: User, JSON, IO Required.
-        :type resource: ~_specs_.azure.core.basic.models.User or JSON or IO
+        :param resource: The resource instance. Is one of the following types: User, JSON, IO[bytes]
+         Required.
+        :type resource: ~_specs_.azure.core.basic.models.User or JSON or IO[bytes]
         :keyword content_type: This request has a JSON Merge Patch body. Default value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
@@ -434,7 +435,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
     @overload
     def create_or_replace(
-        self, id: int, resource: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, id: int, resource: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.User:
         """Adds a user or replaces a user's fields.
 
@@ -443,7 +444,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :param id: The user's id. Required.
         :type id: int
         :param resource: The resource instance. Required.
-        :type resource: IO
+        :type resource: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -455,15 +456,16 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         """
 
     @distributed_trace
-    def create_or_replace(self, id: int, resource: Union[_models.User, JSON, IO], **kwargs: Any) -> _models.User:
+    def create_or_replace(self, id: int, resource: Union[_models.User, JSON, IO[bytes]], **kwargs: Any) -> _models.User:
         """Adds a user or replaces a user's fields.
 
         Creates or replaces a User.
 
         :param id: The user's id. Required.
         :type id: int
-        :param resource: The resource instance. Is one of the following types: User, JSON, IO Required.
-        :type resource: ~_specs_.azure.core.basic.models.User or JSON or IO
+        :param resource: The resource instance. Is one of the following types: User, JSON, IO[bytes]
+         Required.
+        :type resource: ~_specs_.azure.core.basic.models.User or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str

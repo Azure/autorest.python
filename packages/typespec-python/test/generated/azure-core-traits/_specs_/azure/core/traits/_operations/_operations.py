@@ -260,14 +260,14 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
     @overload
     def repeatable_action(
-        self, id: int, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, id: int, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.UserActionResponse:
         """Test for repeatable requests.
 
         :param id: The user's id. Required.
         :type id: int
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -280,14 +280,14 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
     @distributed_trace
     def repeatable_action(
-        self, id: int, body: Union[_models.UserActionParam, JSON, IO], **kwargs: Any
+        self, id: int, body: Union[_models.UserActionParam, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.UserActionResponse:
         """Test for repeatable requests.
 
         :param id: The user's id. Required.
         :type id: int
-        :param body: Is one of the following types: UserActionParam, JSON, IO Required.
-        :type body: ~_specs_.azure.core.traits.models.UserActionParam or JSON or IO
+        :param body: Is one of the following types: UserActionParam, JSON, IO[bytes] Required.
+        :type body: ~_specs_.azure.core.traits.models.UserActionParam or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
