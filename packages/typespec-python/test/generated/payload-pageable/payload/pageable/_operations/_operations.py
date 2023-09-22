@@ -55,7 +55,7 @@ def build_pageable_list_request(*, maxpagesize: Optional[int] = None, **kwargs: 
 
 class PageableClientOperationsMixin(PageableClientMixinABC):
     @distributed_trace
-    def list(self, *, maxpagesize: Optional[int] = None, **kwargs: Any) -> Iterable["_models.User"]:
+    def list(self, **kwargs: Any) -> Iterable["_models.User"]:
         """List users.
 
         :keyword maxpagesize: The maximum number of result items per page. Default value is None.
@@ -67,6 +67,7 @@ class PageableClientOperationsMixin(PageableClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.User]] = kwargs.pop("cls", None)
 
         error_map = {

@@ -93,6 +93,10 @@ class _ParameterBase(
         self.hide_in_method: bool = self.yaml_data.get("hideInMethod", False)
 
     @property
+    def only_hide_in_signature(self) -> bool:
+        return False
+
+    @property
     def constant(self) -> bool:
         """Returns whether a parameter is a constant or not.
         Checking to see if it's required, because if not, we don't consider it
@@ -340,6 +344,15 @@ class Parameter(_ParameterBase):
         self.in_overriden: bool = self.yaml_data.get("inOverriden", False)
         self.delimiter: Optional[ParameterDelimeter] = self.yaml_data.get("delimiter")
         self._default_to_unset_sentinel: bool = False
+
+    @property
+    def only_hide_in_signature(self) -> bool:
+        if (
+            self.code_model.options["version_tolerant"]
+            and self.client_name == "maxpagesize"
+        ):
+            return True
+        return False
 
     @property
     def in_method_signature(self) -> bool:

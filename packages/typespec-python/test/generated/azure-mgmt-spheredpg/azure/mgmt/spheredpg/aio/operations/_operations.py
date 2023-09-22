@@ -897,7 +897,6 @@ class CatalogsOperations:
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
-        maxpagesize: Optional[int] = None,
         **kwargs: Any
     ) -> AsyncIterable["_models.DeviceInsight"]:
         """Lists device insights for catalog.
@@ -922,6 +921,7 @@ class CatalogsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.DeviceInsight]] = kwargs.pop("cls", None)
 
         error_map = {
@@ -1002,7 +1002,6 @@ class CatalogsOperations:
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
-        maxpagesize: Optional[int] = None,
         **kwargs: Any
     ) -> AsyncIterable["_models.Device"]:
         """Lists devices for catalog.
@@ -1027,6 +1026,7 @@ class CatalogsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.Device]] = kwargs.pop("cls", None)
 
         error_map = {
@@ -1107,7 +1107,6 @@ class CatalogsOperations:
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
-        maxpagesize: Optional[int] = None,
         **kwargs: Any
     ) -> AsyncIterable["_models.Deployment"]:
         """Lists deployments for catalog.
@@ -1132,6 +1131,7 @@ class CatalogsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.Deployment]] = kwargs.pop("cls", None)
 
         error_map = {
@@ -1213,7 +1213,6 @@ class CatalogsOperations:
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
-        maxpagesize: Optional[int] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncIterable["_models.DeviceGroup"]:
@@ -1252,7 +1251,6 @@ class CatalogsOperations:
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
-        maxpagesize: Optional[int] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncIterable["_models.DeviceGroup"]:
@@ -1291,7 +1289,6 @@ class CatalogsOperations:
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
-        maxpagesize: Optional[int] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncIterable["_models.DeviceGroup"]:
@@ -1330,7 +1327,6 @@ class CatalogsOperations:
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
-        maxpagesize: Optional[int] = None,
         **kwargs: Any
     ) -> AsyncIterable["_models.DeviceGroup"]:
         """List the device groups for the catalog.
@@ -1362,6 +1358,7 @@ class CatalogsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.DeviceGroup]] = kwargs.pop("cls", None)
 
         error_map = {
@@ -1533,7 +1530,6 @@ class ImagesOperations:
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
-        maxpagesize: Optional[int] = None,
         **kwargs: Any
     ) -> AsyncIterable["_models.Image"]:
         """List Image resources by Catalog.
@@ -1558,6 +1554,7 @@ class ImagesOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.Image]] = kwargs.pop("cls", None)
 
         error_map = {
@@ -1916,7 +1913,6 @@ class DeviceGroupsOperations:
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
-        maxpagesize: Optional[int] = None,
         **kwargs: Any
     ) -> AsyncIterable["_models.DeviceGroup"]:
         """List DeviceGroup resources by Product. '.default' and '.unassigned' are system defined values
@@ -1944,6 +1940,7 @@ class DeviceGroupsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.DeviceGroup]] = kwargs.pop("cls", None)
 
         error_map = {
@@ -2938,7 +2935,6 @@ class CertificatesOperations:
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
-        maxpagesize: Optional[int] = None,
         **kwargs: Any
     ) -> AsyncIterable["_models.Certificate"]:
         """List Certificate resources by Catalog.
@@ -2963,6 +2959,7 @@ class CertificatesOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.Certificate]] = kwargs.pop("cls", None)
 
         error_map = {
@@ -3405,7 +3402,6 @@ class DeploymentsOperations:
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
-        maxpagesize: Optional[int] = None,
         **kwargs: Any
     ) -> AsyncIterable["_models.Deployment"]:
         """List Deployment resources by DeviceGroup. '.default' and '.unassigned' are system defined
@@ -3435,6 +3431,7 @@ class DeploymentsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.Deployment]] = kwargs.pop("cls", None)
 
         error_map = {

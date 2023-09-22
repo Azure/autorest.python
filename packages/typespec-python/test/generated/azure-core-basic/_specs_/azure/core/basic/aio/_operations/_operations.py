@@ -406,7 +406,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         *,
         top: Optional[int] = None,
         skip: Optional[int] = None,
-        maxpagesize: Optional[int] = None,
         orderby: Optional[List[str]] = None,
         filter: Optional[str] = None,
         select: Optional[List[str]] = None,
@@ -440,6 +439,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.User]] = kwargs.pop("cls", None)
 
         error_map = {

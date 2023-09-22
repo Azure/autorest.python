@@ -111,6 +111,10 @@ class RequestBuilderParameter(Parameter):
             self.client_name = self.client_name[1:]
 
     @property
+    def only_hide_in_signature(self) -> bool:
+        return False
+
+    @property
     def in_method_signature(self) -> bool:
         if self.grouped_by and not self.in_flattened_body:
             return True

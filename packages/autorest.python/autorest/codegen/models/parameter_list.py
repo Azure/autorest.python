@@ -248,11 +248,12 @@ class _ParameterListBase(
 
     def method_signature_keyword_only(self, async_mode: bool) -> List[str]:
         """Signature for keyword only parameters"""
-        if not self.keyword_only:
-            return []
-        return ["*,"] + [
-            parameter.method_signature(async_mode) for parameter in self.keyword_only
+        result = [
+            parameter.method_signature(async_mode)
+            for parameter in self.keyword_only
+            if not parameter.only_hide_in_signature
         ]
+        return ["*,"] + result if result else []
 
     @property
     def method_signature_kwargs(self) -> List[str]:
@@ -408,16 +409,6 @@ class RequestBuilderParameterList(_RequestBuilderParameterList):
 
 class OverloadedRequestBuilderParameterList(_RequestBuilderParameterList):
     """Parameter list for OverloadedRequestBuilder"""
-
-    def method_signature_keyword_only(self, async_mode: bool) -> List[str]:
-        """Signature for keyword only parameters"""
-        if not self.keyword_only:
-            return []
-        return ["*,"] + [
-            parameter.method_signature(async_mode)
-            for parameter in self.keyword_only
-            if parameter.location != ParameterLocation.BODY
-        ]
 
 
 class _ClientGlobalParameterList(  # pylint: disable=abstract-method
