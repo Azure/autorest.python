@@ -359,5 +359,5 @@ export function getConstantType(key: string): Record<string, any> {
 export const KnownTypes = {
     string: { type: "string" },
     anyObject: { type: "any-object" },
-    bytes: {type: "bytes", encode: "binary"},
+    bytes: { type: "bytes", encode: "binary" },
 };
