@@ -30,7 +30,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_upload_file_request(*, content: IO, **kwargs: Any) -> HttpRequest:
+def build_upload_file_request(*, content: IO[bytes], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -44,7 +44,7 @@ def build_upload_file_request(*, content: IO, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_upload_binary_request(*, content: IO, **kwargs: Any) -> HttpRequest:
+def build_upload_binary_request(*, content: IO[bytes], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -90,11 +90,11 @@ class UploadOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def file(self, file_param: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def file(self, file_param: IO[bytes], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Uploading json file.
 
         :param file_param: JSON file with payload { "more": "cowbell" }. Required.
-        :type file_param: IO
+        :type file_param: IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -140,11 +140,11 @@ class UploadOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace
-    def binary(self, file_param: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def binary(self, file_param: IO[bytes], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Uploading binary file.
 
         :param file_param: Non-empty binary file. Required.
-        :type file_param: IO
+        :type file_param: IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

@@ -124,12 +124,12 @@ class BasicOperations:
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Required.
-        :type complex_body: IO
+        :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -141,13 +141,13 @@ class BasicOperations:
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.Basic, IO], **kwargs: Any
+        self, complex_body: Union[_models.Basic, IO[bytes]], **kwargs: Any
     ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Is either a Basic type
-         or a IO type. Required.
-        :type complex_body: ~bodycomplex.models.Basic or IO
+         or a IO[bytes] type. Required.
+        :type complex_body: ~bodycomplex.models.Basic or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

@@ -193,11 +193,13 @@ class PetOperations:
         """
 
     @overload
-    def add_pet(self, pet_param: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any) -> JSON:
+    def add_pet(
+        self, pet_param: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
+    ) -> JSON:
         """add pet.
 
         :param pet_param: pet param. Default value is None.
-        :type pet_param: IO
+        :type pet_param: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -219,11 +221,11 @@ class PetOperations:
         """
 
     @distributed_trace
-    def add_pet(self, pet_param: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:
+    def add_pet(self, pet_param: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any) -> JSON:
         """add pet.
 
-        :param pet_param: pet param. Is either a JSON type or a IO type. Default value is None.
-        :type pet_param: JSON or IO
+        :param pet_param: pet param. Is either a JSON type or a IO[bytes] type. Default value is None.
+        :type pet_param: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

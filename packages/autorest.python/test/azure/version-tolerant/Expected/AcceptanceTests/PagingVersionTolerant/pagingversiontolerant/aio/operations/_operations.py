@@ -457,12 +457,12 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def get_single_pages_with_body_params(
-        self, parameters: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, parameters: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncIterable[JSON]:
         """A paging operation that finishes on the first call with body params without a nextlink.
 
         :param parameters: put {'name': 'body'} to pass the test. Required.
-        :type parameters: IO
+        :type parameters: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -483,12 +483,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace
-    def get_single_pages_with_body_params(self, parameters: Union[JSON, IO], **kwargs: Any) -> AsyncIterable[JSON]:
+    def get_single_pages_with_body_params(
+        self, parameters: Union[JSON, IO[bytes]], **kwargs: Any
+    ) -> AsyncIterable[JSON]:
         """A paging operation that finishes on the first call with body params without a nextlink.
 
-        :param parameters: put {'name': 'body'} to pass the test. Is either a JSON type or a IO type.
-         Required.
-        :type parameters: JSON or IO
+        :param parameters: put {'name': 'body'} to pass the test. Is either a JSON type or a IO[bytes]
+         type. Required.
+        :type parameters: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

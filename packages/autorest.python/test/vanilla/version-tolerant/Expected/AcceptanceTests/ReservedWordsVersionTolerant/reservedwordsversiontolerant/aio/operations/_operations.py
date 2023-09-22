@@ -122,11 +122,11 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
         )
 
     @distributed_trace_async
-    async def operation_with_content_param(self, content: IO, **kwargs: Any) -> JSON:
+    async def operation_with_content_param(self, content: IO[bytes], **kwargs: Any) -> JSON:
         """Operation with body param called content. Pass in b'hello, world'.
 
         :param content: Pass in b'hello, world'. Required.
-        :type content: IO
+        :type content: IO[bytes]
         :return: JSON
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:

@@ -1499,13 +1499,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def json_input(  # pylint: disable=inconsistent-return-statements
-        self, properties: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, properties: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
         number 42.
 
         :param properties: Required.
-        :type properties: IO
+        :type properties: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1516,13 +1516,13 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def json_input(  # pylint: disable=inconsistent-return-statements
-        self, properties: Union[_models.JSONInput, IO], **kwargs: Any
+        self, properties: Union[_models.JSONInput, IO[bytes]], **kwargs: Any
     ) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
         number 42.
 
-        :param properties: Is either a JSONInput type or a IO type. Required.
-        :type properties: ~xmlserviceversiontolerant.models.JSONInput or IO
+        :param properties: Is either a JSONInput type or a IO[bytes] type. Required.
+        :type properties: ~xmlserviceversiontolerant.models.JSONInput or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

@@ -333,12 +333,12 @@ class ParamsOperations:
         """
 
     @overload
-    def post_parameters(self, parameter: IO, *, content_type: str = "application/json", **kwargs: Any) -> JSON:
+    def post_parameters(self, parameter: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> JSON:
         """POST a JSON.
 
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
          "http://example.org/myimage.jpeg" }. Required.
-        :type parameter: IO
+        :type parameter: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -348,12 +348,12 @@ class ParamsOperations:
         """
 
     @distributed_trace
-    def post_parameters(self, parameter: Union[JSON, IO], **kwargs: Any) -> JSON:
+    def post_parameters(self, parameter: Union[JSON, IO[bytes]], **kwargs: Any) -> JSON:
         """POST a JSON.
 
         :param parameter: I am a body parameter. My only valid JSON entry is { url:
-         "http://example.org/myimage.jpeg" }. Is either a JSON type or a IO type. Required.
-        :type parameter: JSON or IO
+         "http://example.org/myimage.jpeg" }. Is either a JSON type or a IO[bytes] type. Required.
+        :type parameter: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

@@ -40,7 +40,7 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_operation_with_content_param_request(  # pylint: disable=name-too-long
-    *, content: IO, **kwargs: Any
+    *, content: IO[bytes], **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -155,11 +155,11 @@ def build_reserved_enum_request(*, enum_parameter: Union[str, _models.MyEnum], *
 
 class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
     @distributed_trace
-    def operation_with_content_param(self, content: IO, **kwargs: Any) -> JSON:
+    def operation_with_content_param(self, content: IO[bytes], **kwargs: Any) -> JSON:
         """Operation with body param called content. Pass in b'hello, world'.
 
         :param content: Pass in b'hello, world'. Required.
-        :type content: IO
+        :type content: IO[bytes]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: JSON or the result of cls(response)
         :rtype: JSON
@@ -325,11 +325,11 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         return deserialized
 
     @distributed_trace
-    def operation_with_files_param(self, files: IO, file_name: str, **kwargs: Any) -> JSON:
+    def operation_with_files_param(self, files: IO[bytes], file_name: str, **kwargs: Any) -> JSON:
         """Operation with multipart body param called 'files'.
 
         :param files: Files to upload. Pass in list of input streams. Required.
-        :type files: IO
+        :type files: IO[bytes]
         :param file_name: File name to upload. Pass in 'my.txt'. Required.
         :type file_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
