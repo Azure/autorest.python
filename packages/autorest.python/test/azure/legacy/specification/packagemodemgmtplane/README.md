@@ -15,6 +15,6 @@ package-version: 1.0.0
 output-artifact: code-model-v4-no-tags
 payload-flattening-threshold: 1
 black: true
-package-mode: azure-mgmt
+package-mode: mgmtplane
 version-tolerant: false
 ```

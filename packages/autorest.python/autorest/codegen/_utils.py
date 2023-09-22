@@ -11,4 +11,6 @@ DEFAULT_HEADER_TEXT = (
     "Changes may cause incorrect behavior and will be lost if the code is regenerated."
 )
 
-VALID_PACKAGE_MODE = ("azure-mgmt", "azure-dataplane", "generic")
+SWAGGER_PACKAGE_MODE = ["mgmtplane", "dataplane"]  # for backward compatibility
+TYPESPEC_PACKAGE_MODE = ["azure-mgmt", "azure-dataplane", "generic"]
+VALID_PACKAGE_MODE = SWAGGER_PACKAGE_MODE + TYPESPEC_PACKAGE_MODE

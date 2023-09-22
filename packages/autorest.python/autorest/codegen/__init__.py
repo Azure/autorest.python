@@ -13,7 +13,7 @@ from .. import Plugin, PluginAutorest
 from .._utils import parse_args
 from .models.code_model import CodeModel
 from .serializers import JinjaSerializer, JinjaSerializerAutorest
-from ._utils import DEFAULT_HEADER_TEXT, VALID_PACKAGE_MODE
+from ._utils import DEFAULT_HEADER_TEXT, VALID_PACKAGE_MODE, TYPESPEC_PACKAGE_MODE
 
 
 def _default_pprint(package_name: str) -> str:
@@ -59,7 +59,7 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
             and not Path(options["package_mode"]).exists()
         ):
             raise ValueError(
-                f"--package-mode can only be {' or '.join(VALID_PACKAGE_MODE)} or directory which contains template files"  # pylint: disable=line-too-long
+                f"--package-mode can only be {' or '.join(TYPESPEC_PACKAGE_MODE)} or directory which contains template files"  # pylint: disable=line-too-long
             )
 
     if options["multiapi"] and options["version_tolerant"]:
