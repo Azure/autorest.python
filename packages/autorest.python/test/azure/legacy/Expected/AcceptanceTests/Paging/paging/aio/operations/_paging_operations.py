@@ -112,7 +112,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             if not next_link:
 
                 request = build_get_no_item_name_pages_request(
-                    template_url=self.get_no_item_name_pages.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -160,8 +159,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    get_no_item_name_pages.metadata = {"url": "/paging/noitemname"}
 
     @distributed_trace
     def get_empty_next_link_name_pages(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
@@ -189,7 +186,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             if not next_link:
 
                 request = build_get_empty_next_link_name_pages_request(
-                    template_url=self.get_empty_next_link_name_pages.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -238,8 +234,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         return AsyncItemPaged(get_next, extract_data)
 
-    get_empty_next_link_name_pages.metadata = {"url": "/paging/emptynextlink"}
-
     @distributed_trace
     def get_null_next_link_name_pages(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
         """A paging operation that must ignore any kind of nextLink, and stop after page 1.
@@ -266,7 +260,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             if not next_link:
 
                 request = build_get_null_next_link_name_pages_request(
-                    template_url=self.get_null_next_link_name_pages.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -315,8 +308,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         return AsyncItemPaged(get_next, extract_data)
 
-    get_null_next_link_name_pages.metadata = {"url": "/paging/nullnextlink"}
-
     @distributed_trace
     def get_single_pages(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
         """A paging operation that finishes on the first call without a nextlink.
@@ -343,7 +334,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             if not next_link:
 
                 request = build_get_single_pages_request(
-                    template_url=self.get_single_pages.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -391,8 +381,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    get_single_pages.metadata = {"url": "/paging/single"}
 
     @distributed_trace
     def get_single_pages_with_body_params(
@@ -429,7 +417,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 request = build_get_single_pages_with_body_params_request(
                     content_type=content_type,
                     json=_json,
-                    template_url=self.get_single_pages_with_body_params.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -478,8 +465,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         return AsyncItemPaged(get_next, extract_data)
 
-    get_single_pages_with_body_params.metadata = {"url": "/paging/single/getWithBodyParams"}
-
     @distributed_trace
     def first_response_empty(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
         """A paging operation whose first response's items list is empty, but still returns a next link.
@@ -507,7 +492,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             if not next_link:
 
                 request = build_first_response_empty_request(
-                    template_url=self.first_response_empty.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -556,8 +540,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         return AsyncItemPaged(get_next, extract_data)
 
-    first_response_empty.metadata = {"url": "/paging/firstResponseEmpty/1"}
-
     @distributed_trace
     def get_multiple_pages(
         self,
@@ -601,7 +583,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,  # type: ignore
-                    template_url=self.get_multiple_pages.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -649,8 +630,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    get_multiple_pages.metadata = {"url": "/paging/multiple"}
 
     @distributed_trace
     def get_with_query_params(self, required_query_parameter: int, **kwargs: Any) -> AsyncIterable["_models.Product"]:
@@ -689,7 +668,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 request = build_get_with_query_params_request(
                     required_query_parameter=required_query_parameter,
                     query_constant=query_constant,
-                    template_url=self.get_with_query_params.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -700,7 +678,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 request = build_next_operation_with_query_params_request(
                     query_constant=query_constant,
-                    template_url="/paging/multiple/nextOperationWithQueryParams",
                     headers=_headers,
                     params=_params,
                 )
@@ -733,8 +710,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         return AsyncItemPaged(get_next, extract_data)
 
-    get_with_query_params.metadata = {"url": "/paging/multiple/getWithQueryParams"}
-
     @distributed_trace
     def duplicate_params(self, filter: Optional[str] = None, **kwargs: Any) -> AsyncIterable["_models.Product"]:
         """Define ``filter`` as a query param for all calls. However, the returned next link will also
@@ -766,7 +741,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 request = build_duplicate_params_request(
                     filter=filter,
-                    template_url=self.duplicate_params.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -814,8 +788,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    duplicate_params.metadata = {"url": "/paging/multiple/duplicateParams/1"}
 
     @distributed_trace
     def page_with_max_page_size(
@@ -849,7 +821,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 request = build_page_with_max_page_size_request(
                     maxpagesize=maxpagesize,
-                    template_url=self.page_with_max_page_size.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -897,8 +868,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    page_with_max_page_size.metadata = {"url": "/paging/maxPageSize"}
 
     @distributed_trace
     def get_odata_multiple_pages(
@@ -944,7 +913,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,  # type: ignore
-                    template_url=self.get_odata_multiple_pages.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -992,8 +960,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    get_odata_multiple_pages.metadata = {"url": "/paging/multiple/odata"}
 
     @distributed_trace
     def get_multiple_pages_with_offset(
@@ -1042,7 +1008,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,
-                    template_url=self.get_multiple_pages_with_offset.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -1090,8 +1055,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    get_multiple_pages_with_offset.metadata = {"url": "/paging/multiple/withpath/{offset}"}
 
     @distributed_trace
     def get_multiple_pages_retry_first(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
@@ -1120,7 +1083,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             if not next_link:
 
                 request = build_get_multiple_pages_retry_first_request(
-                    template_url=self.get_multiple_pages_retry_first.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -1168,8 +1130,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    get_multiple_pages_retry_first.metadata = {"url": "/paging/multiple/retryfirst"}
 
     @distributed_trace
     def get_multiple_pages_retry_second(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
@@ -1198,7 +1158,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             if not next_link:
 
                 request = build_get_multiple_pages_retry_second_request(
-                    template_url=self.get_multiple_pages_retry_second.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -1246,8 +1205,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    get_multiple_pages_retry_second.metadata = {"url": "/paging/multiple/retrysecond"}
 
     @distributed_trace
     def get_single_pages_failure(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
@@ -1275,7 +1232,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             if not next_link:
 
                 request = build_get_single_pages_failure_request(
-                    template_url=self.get_single_pages_failure.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -1323,8 +1279,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    get_single_pages_failure.metadata = {"url": "/paging/single/failure"}
 
     @distributed_trace
     def get_multiple_pages_failure(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
@@ -1352,7 +1306,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             if not next_link:
 
                 request = build_get_multiple_pages_failure_request(
-                    template_url=self.get_multiple_pages_failure.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -1400,8 +1353,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    get_multiple_pages_failure.metadata = {"url": "/paging/multiple/failure"}
 
     @distributed_trace
     def get_multiple_pages_failure_uri(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
@@ -1429,7 +1380,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             if not next_link:
 
                 request = build_get_multiple_pages_failure_uri_request(
-                    template_url=self.get_multiple_pages_failure_uri.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -1477,8 +1427,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    get_multiple_pages_failure_uri.metadata = {"url": "/paging/multiple/failureuri"}
 
     @distributed_trace
     def get_multiple_pages_fragment_next_link(
@@ -1514,7 +1462,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 request = build_get_multiple_pages_fragment_next_link_request(
                     tenant=tenant,
                     api_version=api_version,
-                    template_url=self.get_multiple_pages_fragment_next_link.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -1527,7 +1474,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     tenant=tenant,
                     next_link=next_link,
                     api_version=api_version,
-                    template_url="/paging/multiple/fragment/{tenant}/{nextLink}",
                     headers=_headers,
                     params=_params,
                 )
@@ -1559,8 +1505,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    get_multiple_pages_fragment_next_link.metadata = {"url": "/paging/multiple/fragment/{tenant}"}
 
     @distributed_trace
     def get_multiple_pages_fragment_with_grouping_next_link(  # pylint: disable=name-too-long
@@ -1599,7 +1543,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 request = build_get_multiple_pages_fragment_with_grouping_next_link_request(
                     tenant=_tenant,
                     api_version=_api_version,
-                    template_url=self.get_multiple_pages_fragment_with_grouping_next_link.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -1617,7 +1560,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     tenant=_tenant,
                     next_link=next_link,
                     api_version=_api_version,
-                    template_url="/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}",
                     headers=_headers,
                     params=_params,
                 )
@@ -1650,10 +1592,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         return AsyncItemPaged(get_next, extract_data)
 
-    get_multiple_pages_fragment_with_grouping_next_link.metadata = {
-        "url": "/paging/multiple/fragmentwithgrouping/{tenant}"
-    }
-
     async def _get_multiple_pages_lro_initial(
         self,
         client_request_id: Optional[str] = None,
@@ -1683,7 +1621,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             client_request_id=client_request_id,
             maxresults=_maxresults,
             timeout=_timeout,  # type: ignore
-            template_url=self._get_multiple_pages_lro_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1707,8 +1644,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _get_multiple_pages_lro_initial.metadata = {"url": "/paging/multiple/lro"}
 
     @distributed_trace_async
     async def begin_get_multiple_pages_lro(
@@ -1763,7 +1698,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,  # type: ignore
-                    template_url=self.begin_get_multiple_pages_lro.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -1847,8 +1781,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             )
         return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_get_multiple_pages_lro.metadata = {"url": "/paging/multiple/lro"}
-
     @distributed_trace
     def append_api_version(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
         """A paging operation with api version. When calling the next link, you want to append your
@@ -1878,7 +1810,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 request = build_append_api_version_request(
                     api_version=api_version,
-                    template_url=self.append_api_version.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -1926,8 +1857,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    append_api_version.metadata = {"url": "/paging/apiVersion/append/1"}
 
     @distributed_trace
     def replace_api_version(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
@@ -1958,7 +1887,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 request = build_replace_api_version_request(
                     api_version=api_version,
-                    template_url=self.replace_api_version.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -2007,8 +1935,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         return AsyncItemPaged(get_next, extract_data)
 
-    replace_api_version.metadata = {"url": "/paging/apiVersion/replace/1"}
-
     @distributed_trace
     def get_paging_model_with_item_name_with_xms_client_name(  # pylint: disable=name-too-long
         self, **kwargs: Any
@@ -2038,7 +1964,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             if not next_link:
 
                 request = build_get_paging_model_with_item_name_with_xms_client_name_request(
-                    template_url=self.get_paging_model_with_item_name_with_xms_client_name.metadata["url"],
                     headers=_headers,
                     params=_params,
                 )
@@ -2086,5 +2011,3 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
-
-    get_paging_model_with_item_name_with_xms_client_name.metadata = {"url": "/paging/itemNameWithXMSClientName"}

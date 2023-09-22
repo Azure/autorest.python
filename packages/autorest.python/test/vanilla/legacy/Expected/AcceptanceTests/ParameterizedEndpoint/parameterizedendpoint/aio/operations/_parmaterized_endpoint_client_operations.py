@@ -53,7 +53,6 @@ class ParmaterizedEndpointClientOperationsMixin(ParmaterizedEndpointClientMixinA
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_request(
-            template_url=self.get.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -76,5 +75,3 @@ class ParmaterizedEndpointClientOperationsMixin(ParmaterizedEndpointClientMixinA
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get.metadata = {"url": "/parameterizedEndpoint/get"}

@@ -94,7 +94,6 @@ class ObjectTypeClientOperationsMixin(ObjectTypeClientMixinABC):
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         request = build_get_request(
-            template_url=self.get.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -119,8 +118,6 @@ class ObjectTypeClientOperationsMixin(ObjectTypeClientMixinABC):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get.metadata = {"url": "/objectType/get"}
 
     @distributed_trace
     def put(self, put_object: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -154,7 +151,6 @@ class ObjectTypeClientOperationsMixin(ObjectTypeClientMixinABC):
         request = build_put_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -175,5 +171,3 @@ class ObjectTypeClientOperationsMixin(ObjectTypeClientMixinABC):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put.metadata = {"url": "/objectType/put"}

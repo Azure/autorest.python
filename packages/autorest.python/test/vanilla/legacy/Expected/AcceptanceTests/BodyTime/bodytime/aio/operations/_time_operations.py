@@ -73,7 +73,6 @@ class TimeOperations:
         cls: ClsType[datetime.time] = kwargs.pop("cls", None)
 
         request = build_get_request(
-            template_url=self.get.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -98,8 +97,6 @@ class TimeOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get.metadata = {"url": "/time/get"}
 
     @distributed_trace_async
     async def put(self, time_body: datetime.time, **kwargs: Any) -> str:
@@ -131,7 +128,6 @@ class TimeOperations:
         request = build_put_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -156,5 +152,3 @@ class TimeOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    put.metadata = {"url": "/time/put"}

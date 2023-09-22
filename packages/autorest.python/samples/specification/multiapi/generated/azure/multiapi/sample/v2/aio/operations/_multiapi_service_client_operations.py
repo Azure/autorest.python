@@ -72,7 +72,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             id=id,
             message=message,
             api_version=api_version,
-            template_url=self.test_one.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -97,8 +96,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    test_one.metadata = {"url": "/multiapi/testOneEndpoint"}
 
     @distributed_trace_async
     async def test_different_calls(  # pylint: disable=inconsistent-return-statements
@@ -135,7 +132,6 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             greeting_in_english=greeting_in_english,
             greeting_in_chinese=greeting_in_chinese,
             api_version=api_version,
-            template_url=self.test_different_calls.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -156,5 +152,3 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    test_different_calls.metadata = {"url": "/multiapi/testDifferentCalls"}

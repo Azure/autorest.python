@@ -2617,7 +2617,7 @@ class CatalogsOperations:
         self,
         resource_group_name: str,
         catalog_name: str,
-        list_device_groups_request: _models.ListDeviceGroupsRequest,
+        parameters: _models.ListDeviceGroupsRequest,
         *,
         filter: Optional[str] = None,
         top: Optional[int] = None,
@@ -2632,8 +2632,8 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param list_device_groups_request: List device groups for catalog. Required.
-        :type list_device_groups_request: ~azure.mgmt.spheredpg.models.ListDeviceGroupsRequest
+        :param parameters: List device groups for catalog. Required.
+        :type parameters: ~azure.mgmt.spheredpg.models.ListDeviceGroupsRequest
         :keyword filter: Filter the result list using the given expression. Default value is None.
         :paramtype filter: str
         :keyword top: The number of result items to return. Default value is None.
@@ -2653,7 +2653,7 @@ class CatalogsOperations:
         self,
         resource_group_name: str,
         catalog_name: str,
-        list_device_groups_request: JSON,
+        parameters: JSON,
         *,
         filter: Optional[str] = None,
         top: Optional[int] = None,
@@ -2668,8 +2668,8 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param list_device_groups_request: List device groups for catalog. Required.
-        :type list_device_groups_request: JSON
+        :param parameters: List device groups for catalog. Required.
+        :type parameters: JSON
         :keyword filter: Filter the result list using the given expression. Default value is None.
         :paramtype filter: str
         :keyword top: The number of result items to return. Default value is None.
@@ -2689,7 +2689,7 @@ class CatalogsOperations:
         self,
         resource_group_name: str,
         catalog_name: str,
-        list_device_groups_request: IO,
+        parameters: IO,
         *,
         filter: Optional[str] = None,
         top: Optional[int] = None,
@@ -2704,8 +2704,8 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param list_device_groups_request: List device groups for catalog. Required.
-        :type list_device_groups_request: IO
+        :param parameters: List device groups for catalog. Required.
+        :type parameters: IO
         :keyword filter: Filter the result list using the given expression. Default value is None.
         :paramtype filter: str
         :keyword top: The number of result items to return. Default value is None.
@@ -2725,7 +2725,7 @@ class CatalogsOperations:
         self,
         resource_group_name: str,
         catalog_name: str,
-        list_device_groups_request: Union[_models.ListDeviceGroupsRequest, JSON, IO],
+        parameters: Union[_models.ListDeviceGroupsRequest, JSON, IO],
         *,
         filter: Optional[str] = None,
         top: Optional[int] = None,
@@ -2739,10 +2739,9 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param list_device_groups_request: List device groups for catalog. Is one of the following
-         types: ListDeviceGroupsRequest, JSON, IO Required.
-        :type list_device_groups_request: ~azure.mgmt.spheredpg.models.ListDeviceGroupsRequest or JSON
-         or IO
+        :param parameters: List device groups for catalog. Is one of the following types:
+         ListDeviceGroupsRequest, JSON, IO Required.
+        :type parameters: ~azure.mgmt.spheredpg.models.ListDeviceGroupsRequest or JSON or IO
         :keyword filter: Filter the result list using the given expression. Default value is None.
         :paramtype filter: str
         :keyword top: The number of result items to return. Default value is None.
@@ -2771,10 +2770,10 @@ class CatalogsOperations:
         error_map.update(kwargs.pop("error_map", {}) or {})
         content_type = content_type or "application/json"
         _content = None
-        if isinstance(list_device_groups_request, (IOBase, bytes)):
-            _content = list_device_groups_request
+        if isinstance(parameters, (IOBase, bytes)):
+            _content = parameters
         else:
-            _content = json.dumps(list_device_groups_request, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(parameters, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -4494,7 +4493,7 @@ class CertificatesOperations:
         resource_group_name: str,
         catalog_name: str,
         serial_number: str,
-        proof_of_possession_nonce_request: _models.ProofOfPossessionNonceRequest,
+        parameters: _models.ProofOfPossessionNonceRequest,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -4509,9 +4508,8 @@ class CertificatesOperations:
         :param serial_number: Serial number of the certificate. Use '.default' to get current active
          certificate. Required.
         :type serial_number: str
-        :param proof_of_possession_nonce_request: Proof of possession nonce request body. Required.
-        :type proof_of_possession_nonce_request:
-         ~azure.mgmt.spheredpg.models.ProofOfPossessionNonceRequest
+        :param parameters: Proof of possession nonce request body. Required.
+        :type parameters: ~azure.mgmt.spheredpg.models.ProofOfPossessionNonceRequest
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4529,7 +4527,7 @@ class CertificatesOperations:
         resource_group_name: str,
         catalog_name: str,
         serial_number: str,
-        proof_of_possession_nonce_request: JSON,
+        parameters: JSON,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -4544,8 +4542,8 @@ class CertificatesOperations:
         :param serial_number: Serial number of the certificate. Use '.default' to get current active
          certificate. Required.
         :type serial_number: str
-        :param proof_of_possession_nonce_request: Proof of possession nonce request body. Required.
-        :type proof_of_possession_nonce_request: JSON
+        :param parameters: Proof of possession nonce request body. Required.
+        :type parameters: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4563,7 +4561,7 @@ class CertificatesOperations:
         resource_group_name: str,
         catalog_name: str,
         serial_number: str,
-        proof_of_possession_nonce_request: IO,
+        parameters: IO,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -4578,8 +4576,8 @@ class CertificatesOperations:
         :param serial_number: Serial number of the certificate. Use '.default' to get current active
          certificate. Required.
         :type serial_number: str
-        :param proof_of_possession_nonce_request: Proof of possession nonce request body. Required.
-        :type proof_of_possession_nonce_request: IO
+        :param parameters: Proof of possession nonce request body. Required.
+        :type parameters: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4597,7 +4595,7 @@ class CertificatesOperations:
         resource_group_name: str,
         catalog_name: str,
         serial_number: str,
-        proof_of_possession_nonce_request: Union[_models.ProofOfPossessionNonceRequest, JSON, IO],
+        parameters: Union[_models.ProofOfPossessionNonceRequest, JSON, IO],
         **kwargs: Any
     ) -> _models.ProofOfPossessionNonceResponse:
         """Gets the proof of possession nonce.
@@ -4610,10 +4608,9 @@ class CertificatesOperations:
         :param serial_number: Serial number of the certificate. Use '.default' to get current active
          certificate. Required.
         :type serial_number: str
-        :param proof_of_possession_nonce_request: Proof of possession nonce request body. Is one of the
-         following types: ProofOfPossessionNonceRequest, JSON, IO Required.
-        :type proof_of_possession_nonce_request:
-         ~azure.mgmt.spheredpg.models.ProofOfPossessionNonceRequest or JSON or IO
+        :param parameters: Proof of possession nonce request body. Is one of the following types:
+         ProofOfPossessionNonceRequest, JSON, IO Required.
+        :type parameters: ~azure.mgmt.spheredpg.models.ProofOfPossessionNonceRequest or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -4640,10 +4637,10 @@ class CertificatesOperations:
 
         content_type = content_type or "application/json"
         _content = None
-        if isinstance(proof_of_possession_nonce_request, (IOBase, bytes)):
-            _content = proof_of_possession_nonce_request
+        if isinstance(parameters, (IOBase, bytes)):
+            _content = parameters
         else:
-            _content = json.dumps(proof_of_possession_nonce_request, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(parameters, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_certificates_retrieve_proof_of_possession_nonce_request(
             resource_group_name=resource_group_name,
@@ -5917,7 +5914,7 @@ class DevicesOperations:
         product_name: str,
         device_group_name: str,
         device_name: str,
-        generate_device_capability_request: _models.GenerateCapabilityImageRequest,
+        parameters: _models.GenerateCapabilityImageRequest,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -5937,9 +5934,8 @@ class DevicesOperations:
         :type device_group_name: str
         :param device_name: Device name. Required.
         :type device_name: str
-        :param generate_device_capability_request: Generate capability image request body. Required.
-        :type generate_device_capability_request:
-         ~azure.mgmt.spheredpg.models.GenerateCapabilityImageRequest
+        :param parameters: Generate capability image request body. Required.
+        :type parameters: ~azure.mgmt.spheredpg.models.GenerateCapabilityImageRequest
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -5959,7 +5955,7 @@ class DevicesOperations:
         product_name: str,
         device_group_name: str,
         device_name: str,
-        generate_device_capability_request: JSON,
+        parameters: JSON,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -5979,8 +5975,8 @@ class DevicesOperations:
         :type device_group_name: str
         :param device_name: Device name. Required.
         :type device_name: str
-        :param generate_device_capability_request: Generate capability image request body. Required.
-        :type generate_device_capability_request: JSON
+        :param parameters: Generate capability image request body. Required.
+        :type parameters: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -6000,7 +5996,7 @@ class DevicesOperations:
         product_name: str,
         device_group_name: str,
         device_name: str,
-        generate_device_capability_request: IO,
+        parameters: IO,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -6020,8 +6016,8 @@ class DevicesOperations:
         :type device_group_name: str
         :param device_name: Device name. Required.
         :type device_name: str
-        :param generate_device_capability_request: Generate capability image request body. Required.
-        :type generate_device_capability_request: IO
+        :param parameters: Generate capability image request body. Required.
+        :type parameters: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -6041,7 +6037,7 @@ class DevicesOperations:
         product_name: str,
         device_group_name: str,
         device_name: str,
-        generate_device_capability_request: Union[_models.GenerateCapabilityImageRequest, JSON, IO],
+        parameters: Union[_models.GenerateCapabilityImageRequest, JSON, IO],
         **kwargs: Any
     ) -> Optional[_models.SignedCapabilityImageResponse]:
         """Generates the capability image for the device. Use '.unassigned' or '.default' for the device
@@ -6059,10 +6055,9 @@ class DevicesOperations:
         :type device_group_name: str
         :param device_name: Device name. Required.
         :type device_name: str
-        :param generate_device_capability_request: Generate capability image request body. Is one of
-         the following types: GenerateCapabilityImageRequest, JSON, IO Required.
-        :type generate_device_capability_request:
-         ~azure.mgmt.spheredpg.models.GenerateCapabilityImageRequest or JSON or IO
+        :param parameters: Generate capability image request body. Is one of the following types:
+         GenerateCapabilityImageRequest, JSON, IO Required.
+        :type parameters: ~azure.mgmt.spheredpg.models.GenerateCapabilityImageRequest or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -6089,10 +6084,10 @@ class DevicesOperations:
 
         content_type = content_type or "application/json"
         _content = None
-        if isinstance(generate_device_capability_request, (IOBase, bytes)):
-            _content = generate_device_capability_request
+        if isinstance(parameters, (IOBase, bytes)):
+            _content = parameters
         else:
-            _content = json.dumps(generate_device_capability_request, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(parameters, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_devices_generate_capability_image_request(
             resource_group_name=resource_group_name,

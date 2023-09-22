@@ -231,7 +231,6 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.analyze_body.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -255,8 +254,6 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    analyze_body.metadata = {"url": "/mediatypes/analyze"}
 
     @overload
     def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
@@ -341,7 +338,6 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.analyze_body_no_accept_header.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -361,8 +357,6 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    analyze_body_no_accept_header.metadata = {"url": "/mediatypes/analyzeNoAccept"}
 
     @distributed_trace
     def content_type_with_encoding(self, input: Optional[str] = None, **kwargs: Any) -> str:
@@ -397,7 +391,6 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         request = build_content_type_with_encoding_request(
             content_type=content_type,
             content=_content,
-            template_url=self.content_type_with_encoding.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -421,8 +414,6 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    content_type_with_encoding.metadata = {"url": "/mediatypes/contentTypeWithEncoding"}
 
     @distributed_trace
     def binary_body_with_two_content_types(self, message: IO, **kwargs: Any) -> str:
@@ -455,7 +446,6 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         request = build_binary_body_with_two_content_types_request(
             content_type=content_type,
             content=_content,
-            template_url=self.binary_body_with_two_content_types.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -479,8 +469,6 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    binary_body_with_two_content_types.metadata = {"url": "/mediatypes/binaryBodyTwoContentTypes"}
 
     @distributed_trace
     def binary_body_with_three_content_types(self, message: IO, **kwargs: Any) -> str:
@@ -514,7 +502,6 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         request = build_binary_body_with_three_content_types_request(
             content_type=content_type,
             content=_content,
-            template_url=self.binary_body_with_three_content_types.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -538,8 +525,6 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    binary_body_with_three_content_types.metadata = {"url": "/mediatypes/binaryBodyThreeContentTypes"}
 
     @overload
     def _body_three_types(self, message: Any, *, content_type: str = "application/json", **kwargs: Any) -> str:
@@ -596,7 +581,6 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._body_three_types.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -620,8 +604,6 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _body_three_types.metadata = {"url": "/mediatypes/bodyThreeTypes"}
 
     @distributed_trace
     def put_text_and_json_body(self, message: str, **kwargs: Any) -> str:
@@ -653,7 +635,6 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         request = build_put_text_and_json_body_request(
             content_type=content_type,
             content=_content,
-            template_url=self.put_text_and_json_body.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -677,5 +658,3 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    put_text_and_json_body.metadata = {"url": "/mediatypes/textAndJson"}

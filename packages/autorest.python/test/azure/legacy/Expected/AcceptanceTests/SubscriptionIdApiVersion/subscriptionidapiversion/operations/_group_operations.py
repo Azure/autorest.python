@@ -109,7 +109,6 @@ class GroupOperations:
             resource_group_name=resource_group_name,
             subscription_id=self._config.subscription_id,
             api_version=api_version,
-            template_url=self.get_sample_resource_group.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -134,5 +133,3 @@ class GroupOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_sample_resource_group.metadata = {"url": "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}"}

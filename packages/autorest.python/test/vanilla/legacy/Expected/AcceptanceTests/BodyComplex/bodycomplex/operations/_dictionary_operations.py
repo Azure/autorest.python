@@ -165,7 +165,6 @@ class DictionaryOperations:
         cls: ClsType[_models.DictionaryWrapper] = kwargs.pop("cls", None)
 
         request = build_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -190,8 +189,6 @@ class DictionaryOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_valid.metadata = {"url": "/complex/dictionary/typed/valid"}
 
     @distributed_trace
     def put_valid(  # pylint: disable=inconsistent-return-statements
@@ -226,7 +223,6 @@ class DictionaryOperations:
         request = build_put_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -247,8 +243,6 @@ class DictionaryOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_valid.metadata = {"url": "/complex/dictionary/typed/valid"}
 
     @distributed_trace
     def get_empty(self, **kwargs: Any) -> _models.DictionaryWrapper:
@@ -273,7 +267,6 @@ class DictionaryOperations:
         cls: ClsType[_models.DictionaryWrapper] = kwargs.pop("cls", None)
 
         request = build_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -298,8 +291,6 @@ class DictionaryOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty.metadata = {"url": "/complex/dictionary/typed/empty"}
 
     @distributed_trace
     def put_empty(  # pylint: disable=inconsistent-return-statements
@@ -334,7 +325,6 @@ class DictionaryOperations:
         request = build_put_empty_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -355,8 +345,6 @@ class DictionaryOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_empty.metadata = {"url": "/complex/dictionary/typed/empty"}
 
     @distributed_trace
     def get_null(self, **kwargs: Any) -> _models.DictionaryWrapper:
@@ -381,7 +369,6 @@ class DictionaryOperations:
         cls: ClsType[_models.DictionaryWrapper] = kwargs.pop("cls", None)
 
         request = build_get_null_request(
-            template_url=self.get_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -406,8 +393,6 @@ class DictionaryOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null.metadata = {"url": "/complex/dictionary/typed/null"}
 
     @distributed_trace
     def get_not_provided(self, **kwargs: Any) -> _models.DictionaryWrapper:
@@ -432,7 +417,6 @@ class DictionaryOperations:
         cls: ClsType[_models.DictionaryWrapper] = kwargs.pop("cls", None)
 
         request = build_get_not_provided_request(
-            template_url=self.get_not_provided.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -457,5 +441,3 @@ class DictionaryOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_not_provided.metadata = {"url": "/complex/dictionary/typed/notprovided"}

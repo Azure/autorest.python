@@ -26,7 +26,7 @@ class ArmResource(_model_base.Model):
     All required parameters must be populated in order to send to Azure.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
      Required.
     :vartype id: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -39,7 +39,7 @@ class ArmResource(_model_base.Model):
 
     id: str = rest_field(visibility=["read"])
     """Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
      Required."""
     type: str = rest_field(visibility=["read"])
     """The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or
@@ -56,7 +56,7 @@ class TrackedResourceBase(ArmResource):
     All required parameters must be populated in order to send to Azure.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
      Required.
     :vartype id: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -104,7 +104,7 @@ class Catalog(TrackedResourceBase):
     All required parameters must be populated in order to send to Azure.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
      Required.
     :vartype id: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -199,7 +199,7 @@ class ProxyResourceBase(ArmResource):
     All required parameters must be populated in order to send to Azure.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
      Required.
     :vartype id: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -219,7 +219,7 @@ class Certificate(ProxyResourceBase):
     All required parameters must be populated in order to send to Azure.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
      Required.
     :vartype id: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -408,7 +408,7 @@ class Deployment(ProxyResourceBase):
     All required parameters must be populated in order to send to Azure.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
      Required.
     :vartype id: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -501,7 +501,7 @@ class Device(ProxyResourceBase):
     All required parameters must be populated in order to send to Azure.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
      Required.
     :vartype id: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -544,7 +544,7 @@ class DeviceGroup(ProxyResourceBase):
     All required parameters must be populated in order to send to Azure.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
      Required.
     :vartype id: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -1046,7 +1046,7 @@ class Image(ProxyResourceBase):
     All required parameters must be populated in order to send to Azure.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
      Required.
     :vartype id: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -1313,7 +1313,7 @@ class Product(ProxyResourceBase):
     All required parameters must be populated in order to send to Azure.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
      Required.
     :vartype id: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
@@ -1523,21 +1523,21 @@ class SystemData(_model_base.Model):
     :vartype created_by: str
     :ivar created_by_type: The type of identity that created the resource. Known values are:
      "User", "Application", "ManagedIdentity", and "Key".
-    :vartype created_by_type: str or ~azure.mgmt.spheredpg.models.createdByType
+    :vartype created_by_type: str or ~azure.mgmt.spheredpg.models.CreatedByType
     :ivar created_at: The type of identity that created the resource.
     :vartype created_at: ~datetime.date
     :ivar last_modified_by: The identity that last modified the resource.
     :vartype last_modified_by: str
     :ivar last_modified_by_type: The type of identity that last modified the resource. Known values
      are: "User", "Application", "ManagedIdentity", and "Key".
-    :vartype last_modified_by_type: str or ~azure.mgmt.spheredpg.models.createdByType
+    :vartype last_modified_by_type: str or ~azure.mgmt.spheredpg.models.CreatedByType
     :ivar last_modified_at: The timestamp of resource last modification (UTC).
     :vartype last_modified_at: ~datetime.date
     """
 
     created_by: Optional[str] = rest_field(name="createdBy", visibility=["read"])
     """The identity that created the resource."""
-    created_by_type: Optional[Union[str, "_models.createdByType"]] = rest_field(
+    created_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(
         name="createdByType", visibility=["read"]
     )
     """The type of identity that created the resource. Known values are: \"User\", \"Application\",
@@ -1546,7 +1546,7 @@ class SystemData(_model_base.Model):
     """The type of identity that created the resource."""
     last_modified_by: Optional[str] = rest_field(name="lastModifiedBy", visibility=["read"])
     """The identity that last modified the resource."""
-    last_modified_by_type: Optional[Union[str, "_models.createdByType"]] = rest_field(
+    last_modified_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(
         name="lastModifiedByType", visibility=["read"]
     )
     """The type of identity that last modified the resource. Known values are: \"User\",

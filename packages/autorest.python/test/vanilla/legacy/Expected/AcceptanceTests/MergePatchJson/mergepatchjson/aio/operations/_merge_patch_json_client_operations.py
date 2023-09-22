@@ -67,7 +67,6 @@ class MergePatchJsonClientOperationsMixin(MergePatchJsonClientMixinABC):
         request = build_patch_single_request(
             content_type=content_type,
             json=_json,
-            template_url=self.patch_single.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -88,5 +87,3 @@ class MergePatchJsonClientOperationsMixin(MergePatchJsonClientMixinABC):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    patch_single.metadata = {"url": "/mergePatchJson/single"}

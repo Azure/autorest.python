@@ -98,7 +98,6 @@ class XMsClientRequestIdOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_request(
-            template_url=self.get.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -118,8 +117,6 @@ class XMsClientRequestIdOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get.metadata = {"url": "/azurespecials/overwrite/x-ms-client-request-id/method/"}
 
     @distributed_trace
     def param_get(  # pylint: disable=inconsistent-return-statements
@@ -151,7 +148,6 @@ class XMsClientRequestIdOperations:
 
         request = build_param_get_request(
             x_ms_client_request_id=x_ms_client_request_id,
-            template_url=self.param_get.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -172,5 +168,3 @@ class XMsClientRequestIdOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    param_get.metadata = {"url": "/azurespecials/overwrite/x-ms-client-request-id/via-param/method/"}

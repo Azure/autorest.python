@@ -174,7 +174,6 @@ class EnumOperations:
         cls: ClsType[Union[str, _models.Colors]] = kwargs.pop("cls", None)
 
         request = build_get_not_expandable_request(
-            template_url=self.get_not_expandable.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -199,8 +198,6 @@ class EnumOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_not_expandable.metadata = {"url": "/string/enum/notExpandable"}
 
     @distributed_trace
     def put_not_expandable(  # pylint: disable=inconsistent-return-statements
@@ -235,7 +232,6 @@ class EnumOperations:
         request = build_put_not_expandable_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_not_expandable.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -256,8 +252,6 @@ class EnumOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_not_expandable.metadata = {"url": "/string/enum/notExpandable"}
 
     @distributed_trace
     def get_referenced(self, **kwargs: Any) -> Union[str, _models.Colors]:
@@ -282,7 +276,6 @@ class EnumOperations:
         cls: ClsType[Union[str, _models.Colors]] = kwargs.pop("cls", None)
 
         request = build_get_referenced_request(
-            template_url=self.get_referenced.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -307,8 +300,6 @@ class EnumOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_referenced.metadata = {"url": "/string/enum/Referenced"}
 
     @distributed_trace
     def put_referenced(  # pylint: disable=inconsistent-return-statements
@@ -343,7 +334,6 @@ class EnumOperations:
         request = build_put_referenced_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_referenced.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -364,8 +354,6 @@ class EnumOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_referenced.metadata = {"url": "/string/enum/Referenced"}
 
     @distributed_trace
     def get_referenced_constant(self, **kwargs: Any) -> _models.RefColorConstant:
@@ -390,7 +378,6 @@ class EnumOperations:
         cls: ClsType[_models.RefColorConstant] = kwargs.pop("cls", None)
 
         request = build_get_referenced_constant_request(
-            template_url=self.get_referenced_constant.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -415,8 +402,6 @@ class EnumOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_referenced_constant.metadata = {"url": "/string/enum/ReferencedConstant"}
 
     @distributed_trace
     def put_referenced_constant(  # pylint: disable=inconsistent-return-statements
@@ -455,7 +440,6 @@ class EnumOperations:
         request = build_put_referenced_constant_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_referenced_constant.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -476,5 +460,3 @@ class EnumOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_referenced_constant.metadata = {"url": "/string/enum/ReferencedConstant"}

@@ -56,7 +56,6 @@ class IncorrectReturnedErrorModelOperationsMixin(IncorrectReturnedErrorModelMixi
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_incorrect_error_from_server_request(
-            template_url=self.get_incorrect_error_from_server.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -76,5 +75,3 @@ class IncorrectReturnedErrorModelOperationsMixin(IncorrectReturnedErrorModelMixi
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_incorrect_error_from_server.metadata = {"url": "/incorrectError"}

@@ -104,7 +104,6 @@ class ContantsOperations:
 
         request = build_put_no_model_as_string_no_required_two_value_no_default_request(
             input=input,
-            template_url=self.put_no_model_as_string_no_required_two_value_no_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -124,10 +123,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_no_model_as_string_no_required_two_value_no_default.metadata = {
-        "url": "/constants/putNoModelAsStringNoRequiredTwoValueNoDefault"
-    }
 
     @distributed_trace_async
     async def put_no_model_as_string_no_required_two_value_default(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -159,7 +154,6 @@ class ContantsOperations:
 
         request = build_put_no_model_as_string_no_required_two_value_default_request(
             input=input,
-            template_url=self.put_no_model_as_string_no_required_two_value_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -179,10 +173,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_no_model_as_string_no_required_two_value_default.metadata = {
-        "url": "/constants/putNoModelAsStringNoRequiredTwoValueDefault"
-    }
 
     @distributed_trace_async
     async def put_no_model_as_string_no_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -214,7 +204,6 @@ class ContantsOperations:
 
         request = build_put_no_model_as_string_no_required_one_value_no_default_request(
             input=input,
-            template_url=self.put_no_model_as_string_no_required_one_value_no_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -234,10 +223,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_no_model_as_string_no_required_one_value_no_default.metadata = {
-        "url": "/constants/putNoModelAsStringNoRequiredOneValueNoDefault"
-    }
 
     @distributed_trace_async
     async def put_no_model_as_string_no_required_one_value_default(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -269,7 +254,6 @@ class ContantsOperations:
 
         request = build_put_no_model_as_string_no_required_one_value_default_request(
             input=input,
-            template_url=self.put_no_model_as_string_no_required_one_value_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -289,10 +273,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_no_model_as_string_no_required_one_value_default.metadata = {
-        "url": "/constants/putNoModelAsStringNoRequiredOneValueDefault"
-    }
 
     @distributed_trace_async
     async def put_no_model_as_string_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -324,7 +304,6 @@ class ContantsOperations:
 
         request = build_put_no_model_as_string_required_two_value_no_default_request(
             input=input,
-            template_url=self.put_no_model_as_string_required_two_value_no_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -344,10 +323,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_no_model_as_string_required_two_value_no_default.metadata = {
-        "url": "/constants/putNoModelAsStringRequiredTwoValueNoDefault"
-    }
 
     @distributed_trace_async
     async def put_no_model_as_string_required_two_value_default(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -379,7 +354,6 @@ class ContantsOperations:
 
         request = build_put_no_model_as_string_required_two_value_default_request(
             input=input,
-            template_url=self.put_no_model_as_string_required_two_value_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -399,10 +373,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_no_model_as_string_required_two_value_default.metadata = {
-        "url": "/constants/putNoModelAsStringRequiredTwoValueDefault"
-    }
 
     @distributed_trace_async
     async def put_no_model_as_string_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -436,7 +406,6 @@ class ContantsOperations:
 
         request = build_put_no_model_as_string_required_one_value_no_default_request(
             input=input,
-            template_url=self.put_no_model_as_string_required_one_value_no_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -456,10 +425,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_no_model_as_string_required_one_value_no_default.metadata = {
-        "url": "/constants/putNoModelAsStringRequiredOneValueNoDefault"
-    }
 
     @distributed_trace_async
     async def put_no_model_as_string_required_one_value_default(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -493,7 +458,6 @@ class ContantsOperations:
 
         request = build_put_no_model_as_string_required_one_value_default_request(
             input=input,
-            template_url=self.put_no_model_as_string_required_one_value_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -513,10 +477,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_no_model_as_string_required_one_value_default.metadata = {
-        "url": "/constants/putNoModelAsStringRequiredOneValueDefault"
-    }
 
     @distributed_trace_async
     async def put_model_as_string_no_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -548,7 +508,6 @@ class ContantsOperations:
 
         request = build_put_model_as_string_no_required_two_value_no_default_request(
             input=input,
-            template_url=self.put_model_as_string_no_required_two_value_no_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -568,10 +527,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_model_as_string_no_required_two_value_no_default.metadata = {
-        "url": "/constants/putModelAsStringNoRequiredTwoValueNoDefault"
-    }
 
     @distributed_trace_async
     async def put_model_as_string_no_required_two_value_default(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -603,7 +558,6 @@ class ContantsOperations:
 
         request = build_put_model_as_string_no_required_two_value_default_request(
             input=input,
-            template_url=self.put_model_as_string_no_required_two_value_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -623,10 +577,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_model_as_string_no_required_two_value_default.metadata = {
-        "url": "/constants/putModelAsStringNoRequiredTwoValueDefault"
-    }
 
     @distributed_trace_async
     async def put_model_as_string_no_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -658,7 +608,6 @@ class ContantsOperations:
 
         request = build_put_model_as_string_no_required_one_value_no_default_request(
             input=input,
-            template_url=self.put_model_as_string_no_required_one_value_no_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -678,10 +627,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_model_as_string_no_required_one_value_no_default.metadata = {
-        "url": "/constants/putModelAsStringNoRequiredOneValueNoDefault"
-    }
 
     @distributed_trace_async
     async def put_model_as_string_no_required_one_value_default(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -713,7 +658,6 @@ class ContantsOperations:
 
         request = build_put_model_as_string_no_required_one_value_default_request(
             input=input,
-            template_url=self.put_model_as_string_no_required_one_value_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -733,10 +677,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_model_as_string_no_required_one_value_default.metadata = {
-        "url": "/constants/putModelAsStringNoRequiredOneValueDefault"
-    }
 
     @distributed_trace_async
     async def put_model_as_string_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -768,7 +708,6 @@ class ContantsOperations:
 
         request = build_put_model_as_string_required_two_value_no_default_request(
             input=input,
-            template_url=self.put_model_as_string_required_two_value_no_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -788,10 +727,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_model_as_string_required_two_value_no_default.metadata = {
-        "url": "/constants/putModelAsStringRequiredTwoValueNoDefault"
-    }
 
     @distributed_trace_async
     async def put_model_as_string_required_two_value_default(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -823,7 +758,6 @@ class ContantsOperations:
 
         request = build_put_model_as_string_required_two_value_default_request(
             input=input,
-            template_url=self.put_model_as_string_required_two_value_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -843,10 +777,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_model_as_string_required_two_value_default.metadata = {
-        "url": "/constants/putModelAsStringRequiredTwoValueDefault"
-    }
 
     @distributed_trace_async
     async def put_model_as_string_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -878,7 +808,6 @@ class ContantsOperations:
 
         request = build_put_model_as_string_required_one_value_no_default_request(
             input=input,
-            template_url=self.put_model_as_string_required_one_value_no_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -898,10 +827,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_model_as_string_required_one_value_no_default.metadata = {
-        "url": "/constants/putModelAsStringRequiredOneValueNoDefault"
-    }
 
     @distributed_trace_async
     async def put_model_as_string_required_one_value_default(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -933,7 +858,6 @@ class ContantsOperations:
 
         request = build_put_model_as_string_required_one_value_default_request(
             input=input,
-            template_url=self.put_model_as_string_required_one_value_default.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -953,10 +877,6 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_model_as_string_required_one_value_default.metadata = {
-        "url": "/constants/putModelAsStringRequiredOneValueDefault"
-    }
 
     @distributed_trace_async
     async def put_client_constants(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -985,7 +905,6 @@ class ContantsOperations:
             header_constant=self._config.header_constant,
             query_constant=self._config.query_constant,
             path_constant=self._config.path_constant,
-            template_url=self.put_client_constants.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1005,5 +924,3 @@ class ContantsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_client_constants.metadata = {"url": "/constants/clientConstants/{path-constant}"}

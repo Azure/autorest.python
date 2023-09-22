@@ -82,7 +82,6 @@ class PetOperations:
 
         request = build_get_pet_by_id_request(
             pet_id=pet_id,
-            template_url=self.get_pet_by_id.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -108,8 +107,6 @@ class PetOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_pet_by_id.metadata = {"url": "/errorStatusCodes/Pets/{petId}/GetPet"}
 
     @distributed_trace_async
     async def do_something(self, what_action: str, **kwargs: Any) -> _models.PetAction:
@@ -140,7 +137,6 @@ class PetOperations:
 
         request = build_do_something_request(
             what_action=what_action,
-            template_url=self.do_something.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -165,8 +161,6 @@ class PetOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    do_something.metadata = {"url": "/errorStatusCodes/Pets/doSomething/{whatAction}"}
 
     @distributed_trace_async
     async def has_models_param(  # pylint: disable=inconsistent-return-statements
@@ -201,7 +195,6 @@ class PetOperations:
 
         request = build_has_models_param_request(
             models=models,
-            template_url=self.has_models_param.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -222,5 +215,3 @@ class PetOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    has_models_param.metadata = {"url": "/errorStatusCodes/Pets/hasModelsParam"}
