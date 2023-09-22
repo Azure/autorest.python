@@ -615,8 +615,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
-        :keyword maxpagesize: The maximum number of result items per page. Default value is None.
-        :paramtype maxpagesize: int
         :keyword orderby: Expressions that specify the order of returned results. Default value is
          None.
         :paramtype orderby: list[str]

@@ -251,7 +251,7 @@ class _ParameterListBase(
         result = [
             parameter.method_signature(async_mode)
             for parameter in self.keyword_only
-            if not parameter.only_hide_in_signature
+            if not parameter.hide_in_operation_signature
         ]
         return ["*,"] + result if result else []
 

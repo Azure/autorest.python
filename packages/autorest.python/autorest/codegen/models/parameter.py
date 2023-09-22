@@ -93,7 +93,7 @@ class _ParameterBase(
         self.hide_in_method: bool = self.yaml_data.get("hideInMethod", False)
 
     @property
-    def only_hide_in_signature(self) -> bool:
+    def hide_in_operation_signature(self) -> bool:
         return False
 
     @property
@@ -346,7 +346,7 @@ class Parameter(_ParameterBase):
         self._default_to_unset_sentinel: bool = False
 
     @property
-    def only_hide_in_signature(self) -> bool:
+    def hide_in_operation_signature(self) -> bool:
         if (
             self.code_model.options["version_tolerant"]
             and self.client_name == "maxpagesize"

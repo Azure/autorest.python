@@ -58,8 +58,6 @@ class PageableClientOperationsMixin(PageableClientMixinABC):
     def list(self, **kwargs: Any) -> Iterable["_models.User"]:
         """List users.
 
-        :keyword maxpagesize: The maximum number of result items per page. Default value is None.
-        :paramtype maxpagesize: int
         :return: An iterator like instance of User
         :rtype: ~azure.core.paging.ItemPaged[~payload.pageable.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:

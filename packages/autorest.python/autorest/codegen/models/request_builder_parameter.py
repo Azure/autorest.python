@@ -111,7 +111,7 @@ class RequestBuilderParameter(Parameter):
             self.client_name = self.client_name[1:]
 
     @property
-    def only_hide_in_signature(self) -> bool:
+    def hide_in_operation_signature(self) -> bool:
         return False
 
     @property
