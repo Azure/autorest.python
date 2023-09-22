@@ -263,6 +263,7 @@ def build_catalogs_list_device_insights_request(  # pylint: disable=name-too-lon
     filter: Optional[str] = None,
     top: Optional[int] = None,
     skip: Optional[int] = None,
+    maxpagesize: Optional[int] = None,
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -289,6 +290,8 @@ def build_catalogs_list_device_insights_request(  # pylint: disable=name-too-lon
         _params["$top"] = _SERIALIZER.query("top", top, "int")
     if skip is not None:
         _params["$skip"] = _SERIALIZER.query("skip", skip, "int")
+    if maxpagesize is not None:
+        _params["$maxpagesize"] = _SERIALIZER.query("maxpagesize", maxpagesize, "int")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -304,6 +307,7 @@ def build_catalogs_list_devices_request(
     filter: Optional[str] = None,
     top: Optional[int] = None,
     skip: Optional[int] = None,
+    maxpagesize: Optional[int] = None,
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -330,6 +334,8 @@ def build_catalogs_list_devices_request(
         _params["$top"] = _SERIALIZER.query("top", top, "int")
     if skip is not None:
         _params["$skip"] = _SERIALIZER.query("skip", skip, "int")
+    if maxpagesize is not None:
+        _params["$maxpagesize"] = _SERIALIZER.query("maxpagesize", maxpagesize, "int")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -345,6 +351,7 @@ def build_catalogs_list_deployments_request(
     filter: Optional[str] = None,
     top: Optional[int] = None,
     skip: Optional[int] = None,
+    maxpagesize: Optional[int] = None,
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -371,6 +378,8 @@ def build_catalogs_list_deployments_request(
         _params["$top"] = _SERIALIZER.query("top", top, "int")
     if skip is not None:
         _params["$skip"] = _SERIALIZER.query("skip", skip, "int")
+    if maxpagesize is not None:
+        _params["$maxpagesize"] = _SERIALIZER.query("maxpagesize", maxpagesize, "int")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -386,6 +395,7 @@ def build_catalogs_list_device_groups_request(  # pylint: disable=name-too-long
     filter: Optional[str] = None,
     top: Optional[int] = None,
     skip: Optional[int] = None,
+    maxpagesize: Optional[int] = None,
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -413,6 +423,8 @@ def build_catalogs_list_device_groups_request(  # pylint: disable=name-too-long
         _params["$top"] = _SERIALIZER.query("top", top, "int")
     if skip is not None:
         _params["$skip"] = _SERIALIZER.query("skip", skip, "int")
+    if maxpagesize is not None:
+        _params["$maxpagesize"] = _SERIALIZER.query("maxpagesize", maxpagesize, "int")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -459,6 +471,7 @@ def build_images_list_by_catalog_request(
     filter: Optional[str] = None,
     top: Optional[int] = None,
     skip: Optional[int] = None,
+    maxpagesize: Optional[int] = None,
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -484,6 +497,8 @@ def build_images_list_by_catalog_request(
         _params["$top"] = _SERIALIZER.query("top", top, "int")
     if skip is not None:
         _params["$skip"] = _SERIALIZER.query("skip", skip, "int")
+    if maxpagesize is not None:
+        _params["$maxpagesize"] = _SERIALIZER.query("maxpagesize", maxpagesize, "int")
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
@@ -556,6 +571,7 @@ def build_device_groups_list_by_product_request(  # pylint: disable=name-too-lon
     filter: Optional[str] = None,
     top: Optional[int] = None,
     skip: Optional[int] = None,
+    maxpagesize: Optional[int] = None,
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -582,6 +598,8 @@ def build_device_groups_list_by_product_request(  # pylint: disable=name-too-lon
         _params["$top"] = _SERIALIZER.query("top", top, "int")
     if skip is not None:
         _params["$skip"] = _SERIALIZER.query("skip", skip, "int")
+    if maxpagesize is not None:
+        _params["$maxpagesize"] = _SERIALIZER.query("maxpagesize", maxpagesize, "int")
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
@@ -837,6 +855,7 @@ def build_certificates_list_by_catalog_request(  # pylint: disable=name-too-long
     filter: Optional[str] = None,
     top: Optional[int] = None,
     skip: Optional[int] = None,
+    maxpagesize: Optional[int] = None,
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -862,6 +881,8 @@ def build_certificates_list_by_catalog_request(  # pylint: disable=name-too-long
         _params["$top"] = _SERIALIZER.query("top", top, "int")
     if skip is not None:
         _params["$skip"] = _SERIALIZER.query("skip", skip, "int")
+    if maxpagesize is not None:
+        _params["$maxpagesize"] = _SERIALIZER.query("maxpagesize", maxpagesize, "int")
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
@@ -978,6 +999,7 @@ def build_deployments_list_by_device_group_request(  # pylint: disable=name-too-
     filter: Optional[str] = None,
     top: Optional[int] = None,
     skip: Optional[int] = None,
+    maxpagesize: Optional[int] = None,
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1005,6 +1027,8 @@ def build_deployments_list_by_device_group_request(  # pylint: disable=name-too-
         _params["$top"] = _SERIALIZER.query("top", top, "int")
     if skip is not None:
         _params["$skip"] = _SERIALIZER.query("skip", skip, "int")
+    if maxpagesize is not None:
+        _params["$maxpagesize"] = _SERIALIZER.query("maxpagesize", maxpagesize, "int")
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
@@ -2318,6 +2342,7 @@ class CatalogsOperations:
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
+        maxpagesize: Optional[int] = None,
         **kwargs: Any
     ) -> Iterable["_models.DeviceInsight"]:
         """Lists device insights for catalog.
@@ -2333,6 +2358,8 @@ class CatalogsOperations:
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
+        :keyword maxpagesize: The maximum number of result items per page. Default value is None.
+        :paramtype maxpagesize: int
         :return: An iterator like instance of DeviceInsight
         :rtype: ~azure.core.paging.ItemPaged[~azure.mgmt.spheredpg.models.DeviceInsight]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2360,6 +2387,7 @@ class CatalogsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -2419,6 +2447,7 @@ class CatalogsOperations:
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
+        maxpagesize: Optional[int] = None,
         **kwargs: Any
     ) -> Iterable["_models.Device"]:
         """Lists devices for catalog.
@@ -2434,6 +2463,8 @@ class CatalogsOperations:
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
+        :keyword maxpagesize: The maximum number of result items per page. Default value is None.
+        :paramtype maxpagesize: int
         :return: An iterator like instance of Device
         :rtype: ~azure.core.paging.ItemPaged[~azure.mgmt.spheredpg.models.Device]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2461,6 +2492,7 @@ class CatalogsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -2520,6 +2552,7 @@ class CatalogsOperations:
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
+        maxpagesize: Optional[int] = None,
         **kwargs: Any
     ) -> Iterable["_models.Deployment"]:
         """Lists deployments for catalog.
@@ -2535,6 +2568,8 @@ class CatalogsOperations:
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
+        :keyword maxpagesize: The maximum number of result items per page. Default value is None.
+        :paramtype maxpagesize: int
         :return: An iterator like instance of Deployment
         :rtype: ~azure.core.paging.ItemPaged[~azure.mgmt.spheredpg.models.Deployment]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2562,6 +2597,7 @@ class CatalogsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -2622,6 +2658,7 @@ class CatalogsOperations:
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
+        maxpagesize: Optional[int] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> Iterable["_models.DeviceGroup"]:
@@ -2640,6 +2677,8 @@ class CatalogsOperations:
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
+        :keyword maxpagesize: The maximum number of result items per page. Default value is None.
+        :paramtype maxpagesize: int
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2658,6 +2697,7 @@ class CatalogsOperations:
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
+        maxpagesize: Optional[int] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> Iterable["_models.DeviceGroup"]:
@@ -2676,6 +2716,8 @@ class CatalogsOperations:
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
+        :keyword maxpagesize: The maximum number of result items per page. Default value is None.
+        :paramtype maxpagesize: int
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2694,6 +2736,7 @@ class CatalogsOperations:
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
+        maxpagesize: Optional[int] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> Iterable["_models.DeviceGroup"]:
@@ -2712,6 +2755,8 @@ class CatalogsOperations:
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
+        :keyword maxpagesize: The maximum number of result items per page. Default value is None.
+        :paramtype maxpagesize: int
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2730,6 +2775,7 @@ class CatalogsOperations:
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
+        maxpagesize: Optional[int] = None,
         **kwargs: Any
     ) -> Iterable["_models.DeviceGroup"]:
         """List the device groups for the catalog.
@@ -2748,6 +2794,8 @@ class CatalogsOperations:
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
+        :keyword maxpagesize: The maximum number of result items per page. Default value is None.
+        :paramtype maxpagesize: int
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -2785,6 +2833,7 @@ class CatalogsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     content_type=content_type,
                     api_version=self._config.api_version,
                     content=_content,
@@ -2929,6 +2978,7 @@ class ImagesOperations:
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
+        maxpagesize: Optional[int] = None,
         **kwargs: Any
     ) -> Iterable["_models.Image"]:
         """List Image resources by Catalog.
@@ -2944,6 +2994,8 @@ class ImagesOperations:
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
+        :keyword maxpagesize: The maximum number of result items per page. Default value is None.
+        :paramtype maxpagesize: int
         :return: An iterator like instance of Image
         :rtype: ~azure.core.paging.ItemPaged[~azure.mgmt.spheredpg.models.Image]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2971,6 +3023,7 @@ class ImagesOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -3308,6 +3361,7 @@ class DeviceGroupsOperations:
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
+        maxpagesize: Optional[int] = None,
         **kwargs: Any
     ) -> Iterable["_models.DeviceGroup"]:
         """List DeviceGroup resources by Product. '.default' and '.unassigned' are system defined values
@@ -3326,6 +3380,8 @@ class DeviceGroupsOperations:
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
+        :keyword maxpagesize: The maximum number of result items per page. Default value is None.
+        :paramtype maxpagesize: int
         :return: An iterator like instance of DeviceGroup
         :rtype: ~azure.core.paging.ItemPaged[~azure.mgmt.spheredpg.models.DeviceGroup]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3354,6 +3410,7 @@ class DeviceGroupsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -4326,6 +4383,7 @@ class CertificatesOperations:
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
+        maxpagesize: Optional[int] = None,
         **kwargs: Any
     ) -> Iterable["_models.Certificate"]:
         """List Certificate resources by Catalog.
@@ -4341,6 +4399,8 @@ class CertificatesOperations:
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
+        :keyword maxpagesize: The maximum number of result items per page. Default value is None.
+        :paramtype maxpagesize: int
         :return: An iterator like instance of Certificate
         :rtype: ~azure.core.paging.ItemPaged[~azure.mgmt.spheredpg.models.Certificate]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4368,6 +4428,7 @@ class CertificatesOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -4789,6 +4850,7 @@ class DeploymentsOperations:
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
+        maxpagesize: Optional[int] = None,
         **kwargs: Any
     ) -> Iterable["_models.Deployment"]:
         """List Deployment resources by DeviceGroup. '.default' and '.unassigned' are system defined
@@ -4809,6 +4871,8 @@ class DeploymentsOperations:
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
+        :keyword maxpagesize: The maximum number of result items per page. Default value is None.
+        :paramtype maxpagesize: int
         :return: An iterator like instance of Deployment
         :rtype: ~azure.core.paging.ItemPaged[~azure.mgmt.spheredpg.models.Deployment]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4838,6 +4902,7 @@ class DeploymentsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,

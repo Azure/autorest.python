@@ -834,6 +834,7 @@ class CatalogsOperations:
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
+        maxpagesize: Optional[int] = None,
         **kwargs: Any
     ) -> AsyncIterable["_models.DeviceInsight"]:
         """Lists device insights for catalog.
@@ -849,6 +850,8 @@ class CatalogsOperations:
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
+        :keyword maxpagesize: The maximum number of result items per page. Default value is None.
+        :paramtype maxpagesize: int
         :return: An iterator like instance of DeviceInsight
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.DeviceInsight]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -876,6 +879,7 @@ class CatalogsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -935,6 +939,7 @@ class CatalogsOperations:
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
+        maxpagesize: Optional[int] = None,
         **kwargs: Any
     ) -> AsyncIterable["_models.Device"]:
         """Lists devices for catalog.
@@ -950,6 +955,8 @@ class CatalogsOperations:
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
+        :keyword maxpagesize: The maximum number of result items per page. Default value is None.
+        :paramtype maxpagesize: int
         :return: An iterator like instance of Device
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.Device]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -977,6 +984,7 @@ class CatalogsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -1036,6 +1044,7 @@ class CatalogsOperations:
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
+        maxpagesize: Optional[int] = None,
         **kwargs: Any
     ) -> AsyncIterable["_models.Deployment"]:
         """Lists deployments for catalog.
@@ -1051,6 +1060,8 @@ class CatalogsOperations:
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
+        :keyword maxpagesize: The maximum number of result items per page. Default value is None.
+        :paramtype maxpagesize: int
         :return: An iterator like instance of Deployment
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.Deployment]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1078,6 +1089,7 @@ class CatalogsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -1138,6 +1150,7 @@ class CatalogsOperations:
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
+        maxpagesize: Optional[int] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncIterable["_models.DeviceGroup"]:
@@ -1156,6 +1169,8 @@ class CatalogsOperations:
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
+        :keyword maxpagesize: The maximum number of result items per page. Default value is None.
+        :paramtype maxpagesize: int
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1174,6 +1189,7 @@ class CatalogsOperations:
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
+        maxpagesize: Optional[int] = None,
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncIterable["_models.DeviceGroup"]:
@@ -1192,6 +1208,8 @@ class CatalogsOperations:
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
+        :keyword maxpagesize: The maximum number of result items per page. Default value is None.
+        :paramtype maxpagesize: int
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1210,6 +1228,7 @@ class CatalogsOperations:
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
+        maxpagesize: Optional[int] = None,
         **kwargs: Any
     ) -> AsyncIterable["_models.DeviceGroup"]:
         """List the device groups for the catalog.
@@ -1228,6 +1247,8 @@ class CatalogsOperations:
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
+        :keyword maxpagesize: The maximum number of result items per page. Default value is None.
+        :paramtype maxpagesize: int
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1266,6 +1287,7 @@ class CatalogsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     content_type=content_type,
                     api_version=self._config.api_version,
                     json=_json,
@@ -1413,6 +1435,7 @@ class ImagesOperations:
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
+        maxpagesize: Optional[int] = None,
         **kwargs: Any
     ) -> AsyncIterable["_models.Image"]:
         """List Image resources by Catalog.
@@ -1428,6 +1451,8 @@ class ImagesOperations:
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
+        :keyword maxpagesize: The maximum number of result items per page. Default value is None.
+        :paramtype maxpagesize: int
         :return: An iterator like instance of Image
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.Image]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1455,6 +1480,7 @@ class ImagesOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -1763,6 +1789,7 @@ class DeviceGroupsOperations:
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
+        maxpagesize: Optional[int] = None,
         **kwargs: Any
     ) -> AsyncIterable["_models.DeviceGroup"]:
         """List DeviceGroup resources by Product. '.default' and '.unassigned' are system defined values
@@ -1781,6 +1808,8 @@ class DeviceGroupsOperations:
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
+        :keyword maxpagesize: The maximum number of result items per page. Default value is None.
+        :paramtype maxpagesize: int
         :return: An iterator like instance of DeviceGroup
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.DeviceGroup]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1809,6 +1838,7 @@ class DeviceGroupsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -2681,6 +2711,7 @@ class CertificatesOperations:
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
+        maxpagesize: Optional[int] = None,
         **kwargs: Any
     ) -> AsyncIterable["_models.Certificate"]:
         """List Certificate resources by Catalog.
@@ -2696,6 +2727,8 @@ class CertificatesOperations:
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
+        :keyword maxpagesize: The maximum number of result items per page. Default value is None.
+        :paramtype maxpagesize: int
         :return: An iterator like instance of Certificate
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.Certificate]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2723,6 +2756,7 @@ class CertificatesOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -3110,6 +3144,7 @@ class DeploymentsOperations:
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
+        maxpagesize: Optional[int] = None,
         **kwargs: Any
     ) -> AsyncIterable["_models.Deployment"]:
         """List Deployment resources by DeviceGroup. '.default' and '.unassigned' are system defined
@@ -3130,6 +3165,8 @@ class DeploymentsOperations:
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
+        :keyword maxpagesize: The maximum number of result items per page. Default value is None.
+        :paramtype maxpagesize: int
         :return: An iterator like instance of Deployment
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.Deployment]
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3159,6 +3196,7 @@ class DeploymentsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,

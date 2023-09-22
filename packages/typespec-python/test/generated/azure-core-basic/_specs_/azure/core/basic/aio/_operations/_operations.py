@@ -406,6 +406,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         *,
         top: Optional[int] = None,
         skip: Optional[int] = None,
+        maxpagesize: Optional[int] = None,
         orderby: Optional[List[str]] = None,
         filter: Optional[str] = None,
         select: Optional[List[str]] = None,
@@ -420,6 +421,8 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
+        :keyword maxpagesize: The maximum number of result items per page. Default value is None.
+        :paramtype maxpagesize: int
         :keyword orderby: Expressions that specify the order of returned results. Default value is
          None.
         :paramtype orderby: list[str]
@@ -453,6 +456,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
                 request = build_basic_list_request(
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     orderby=orderby,
                     filter=filter,
                     select=select,
