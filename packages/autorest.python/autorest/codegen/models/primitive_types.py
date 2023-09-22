@@ -91,13 +91,13 @@ class BinaryType(PrimitiveType):
         return self.type
 
     def docstring_type(self, **kwargs: Any) -> str:
-        return self.type
+        return f"{self.type}[bytes]"
 
     def type_annotation(self, **kwargs: Any) -> str:
-        return self.docstring_type(**kwargs)
+        return f"{self.type}[bytes]"
 
     def docstring_text(self, **kwargs: Any) -> str:
-        return "IO"
+        return f"{self.type}[bytes]"
 
     @property
     def default_template_representation_declaration(self) -> str:
