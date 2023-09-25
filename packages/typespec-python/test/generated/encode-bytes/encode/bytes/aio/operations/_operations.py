@@ -1044,7 +1044,7 @@ class RequestBodyOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = value
+        _content = json.dumps(value, cls=AzureJSONEncoder, exclude_readonly=True, format="base64")  # type: ignore
 
         request = build_request_body_default_request(
             content_type=content_type,
@@ -1181,11 +1181,14 @@ class RequestBodyOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def base64(self, *, value: bytes, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def base64(self, value: bytes, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """base64.
 
-        :keyword value: Required.
-        :paramtype value: bytes
+        :param value: Required.
+        :type value: bytes
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: None
@@ -1200,13 +1203,17 @@ class RequestBodyOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        _content = json.dumps(value, cls=AzureJSONEncoder, exclude_readonly=True, format="base64")  # type: ignore
+
         request = build_request_body_base64_request(
-            value=value,
+            content_type=content_type,
+            content=_content,
             headers=_headers,
             params=_params,
         )
@@ -1229,11 +1236,14 @@ class RequestBodyOperations:
             return cls(pipeline_response, None, {})
 
     @distributed_trace_async
-    async def base64url(self, *, value: bytes, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def base64url(self, value: bytes, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """base64url.
 
-        :keyword value: Required.
-        :paramtype value: bytes
+        :param value: Required.
+        :type value: bytes
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is "application/json".
+        :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: None
@@ -1248,13 +1258,17 @@ class RequestBodyOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        _headers = kwargs.pop("headers", {}) or {}
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        _content = json.dumps(value, cls=AzureJSONEncoder, exclude_readonly=True, format="base64url")  # type: ignore
+
         request = build_request_body_base64url_request(
-            value=value,
+            content_type=content_type,
+            content=_content,
             headers=_headers,
             params=_params,
         )

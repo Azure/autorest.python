@@ -4,6 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import datetime
+from pathlib import Path
 
 import pytest
 from encode.bytes import BytesClient
@@ -13,6 +14,8 @@ from encode.bytes.models import (
     Base64BytesProperty,
     Base64urlArrayBytesProperty,
 )
+
+FILE_FOLDER = Path(__file__).parent
 
 
 @pytest.fixture
@@ -91,3 +94,17 @@ def test_header(client: BytesClient):
             bytes("test", "utf-8"),
         ],
     )
+
+
+@pytest.fixture
+def png_data() -> bytes:
+    with open(str(FILE_FOLDER / "data/image.png"), "rb") as file_in:
+        return file_in.read()
+
+
+def test_request_body(client: BytesClient, png_data: bytes):
+    client.request_body.default(value=bytes("test", "utf-8"), )
+    # client.request_body.octet_stream(value=png_data, )
+    # client.request_body.custom_content_type(value=png_data, )
+    client.request_body.base64(value=bytes("test", "utf-8"), )
+    client.request_body.base64url(value=bytes("test", "utf-8"), )

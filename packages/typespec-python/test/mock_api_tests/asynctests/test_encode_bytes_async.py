@@ -6,6 +6,7 @@
 import datetime
 
 import pytest
+from pathlib import Path
 from encode.bytes.aio import BytesClient
 from encode.bytes.models import (
     DefaultBytesProperty,
@@ -14,6 +15,8 @@ from encode.bytes.models import (
     Base64urlArrayBytesProperty,
 )
 
+
+FILE_FOLDER = Path(__file__).parent.parent
 
 @pytest.fixture
 async def client():
@@ -94,3 +97,18 @@ async def test_header(client: BytesClient):
             bytes("test", "utf-8"),
         ],
     )
+
+
+@pytest.fixture
+def png_data() -> bytes:
+    with open(str(FILE_FOLDER / "data/image.png"), "rb") as file_in:
+        return file_in.read()
+
+
+@pytest.mark.asyncio
+async def test_request_body(client: BytesClient, png_data: bytes):
+    await client.request_body.default(value=bytes("test", "utf-8"), )
+    # await client.request_body.octet_stream(value=png_data, )
+    # await client.request_body.custom_content_type(value=png_data, )
+    await client.request_body.base64(value=bytes("test", "utf-8"), )
+    await client.request_body.base64url(value=bytes("test", "utf-8"), )

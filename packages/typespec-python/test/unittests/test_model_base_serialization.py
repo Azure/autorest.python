@@ -3873,3 +3873,12 @@ def test_discriminator():
     assert model.partner.age == 2
     assert model.partner == SawShark(age=2)
     assert model.friends[0].hate["key2"] == GoblinShark(age=2)
+
+
+def test_body_bytes_format():
+    assert json.dumps(bytes("test", "utf-8"), cls=AzureJSONEncoder) == '"dGVzdA=="'
+    assert json.dumps(bytearray("test", "utf-8"), cls=AzureJSONEncoder) == '"dGVzdA=="'
+    assert json.dumps(bytes("test", "utf-8"), cls=AzureJSONEncoder, format="base64") == '"dGVzdA=="'
+    assert json.dumps(bytes("test", "utf-8"), cls=AzureJSONEncoder, format="base64url") == '"dGVzdA"'
+    assert json.dumps(bytearray("test", "utf-8"), cls=AzureJSONEncoder, format="base64") == '"dGVzdA=="'
+    assert json.dumps(bytearray("test", "utf-8"), cls=AzureJSONEncoder, format="base64url") == '"dGVzdA"'
