@@ -1,4 +1,3 @@
-azure-pylint-guidelines-checker==0.0.8
 invoke==2.2.0
 colorama==0.4.6
 debugpy==1.6.7
@@ -6,3 +5,4 @@ pytest==7.4.2
 tox==4.11.3
 coverage==7.3.0
 black==22.12.0
+-r pylint_guidelines_checker.txt
