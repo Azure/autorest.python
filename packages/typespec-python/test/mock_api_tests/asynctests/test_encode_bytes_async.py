@@ -108,6 +108,7 @@ def png_data() -> bytes:
 @pytest.mark.asyncio
 async def test_request_body(client: BytesClient, png_data: bytes):
     await client.request_body.default(value=bytes("test", "utf-8"), )
+    # cadl-ranch has some problems for these two test cases
     # await client.request_body.octet_stream(value=png_data, )
     # await client.request_body.custom_content_type(value=png_data, )
     await client.request_body.base64(value=bytes("test", "utf-8"), )
