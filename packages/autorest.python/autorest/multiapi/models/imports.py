@@ -122,10 +122,10 @@ class FileImport:
                 ],
             ]
         ] = None
-        name_input = convert_list_to_tuple(name_import)
+        converted_name_input = convert_list_to_tuple(name_import)
         self._imports.setdefault(typing_section, {}).setdefault(
             import_type, {}
-        ).setdefault(from_section, set()).add(name_input)
+        ).setdefault(from_section, set()).add(converted_name_input)
 
     def add_submodule_import(
         self,
