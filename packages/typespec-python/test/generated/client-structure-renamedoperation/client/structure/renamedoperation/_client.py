@@ -25,16 +25,19 @@ class RenamedOperationClient(
 
     :ivar group: GroupOperations operations
     :vartype group: client.structure.renamedoperation.operations.GroupOperations
-    :param client: Known values are: "default", "multi-client", "renamed-operation", and
-     "two-operation-group". Required.
+    :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
+    :type endpoint: str
+    :param client: Need to be set as 'default', 'multi-client', 'renamed-operation',
+     'two-operation-group' in client. Known values are: "default", "multi-client",
+     "renamed-operation", and "two-operation-group". Required.
     :type client: str or ~client.structure.renamedoperation.models.ClientType
     """
 
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
-        self, client: Union[str, _models.ClientType], **kwargs: Any
+        self, endpoint: str, client: Union[str, _models.ClientType], **kwargs: Any
     ) -> None:
-        _endpoint = "http://localhost:3000/client/structure/{client}"
-        self._config = RenamedOperationClientConfiguration(client=client, **kwargs)
+        _endpoint = "{endpoint}/client/structure/{client}"
+        self._config = RenamedOperationClientConfiguration(endpoint=endpoint, client=client, **kwargs)
         self._client: PipelineClient = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
         self._serialize = Serializer()
@@ -62,6 +65,7 @@ class RenamedOperationClient(
 
         request_copy = deepcopy(request)
         path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "client": self._serialize.url("self._config.client", self._config.client, "str", skip_quote=True),
         }
 
