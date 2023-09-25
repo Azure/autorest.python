@@ -258,13 +258,13 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
         else:
             polling_method = polling
         if cont_token:
-            return AsyncCustomPoller.from_continuation_token(
+            return AsyncCustomPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncCustomPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncCustomPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     @distributed_trace
     def basic_paging(self, **kwargs: Any) -> AsyncIterable[JSON]:

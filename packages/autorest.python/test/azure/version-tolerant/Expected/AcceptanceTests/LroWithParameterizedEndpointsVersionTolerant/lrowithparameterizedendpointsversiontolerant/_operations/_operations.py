@@ -194,13 +194,13 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         else:
             polling_method = polling
         if cont_token:
-            return LROPoller.from_continuation_token(
+            return LROPoller[str].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[str](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     def _poll_with_constant_parameterized_endpoints_initial(  # pylint: disable=name-too-long
         self, account_name: str, **kwargs: Any
@@ -324,10 +324,10 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         else:
             polling_method = polling
         if cont_token:
-            return LROPoller.from_continuation_token(
+            return LROPoller[str].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[str](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore

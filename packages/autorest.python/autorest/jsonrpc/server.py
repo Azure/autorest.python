@@ -9,7 +9,8 @@ import os
 import sys
 import logging
 
-from jsonrpc import dispatcher, JSONRPCResponseManager, JSONRPC20Response
+from jsonrpc import dispatcher, JSONRPCResponseManager
+from jsonrpc.jsonrpc2 import JSONRPC20Response
 
 from .stdstream import read_message, write_message
 

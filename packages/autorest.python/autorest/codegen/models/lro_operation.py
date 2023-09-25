@@ -104,7 +104,7 @@ class LROOperationBase(OperationBase[LROResponseType]):
         return f"ClsType[{Response.type_annotation(self.responses[0], async_mode=async_mode)}]"
 
     def get_poller(self, async_mode: bool) -> str:
-        return self.responses[0].get_poller(async_mode)
+        return f"{self.responses[0].get_poller(async_mode)}[{Response.type_annotation(self.responses[0])}]"
 
     def get_polling_method(self, async_mode: bool) -> str:
         return self.responses[0].get_polling_method(async_mode)
