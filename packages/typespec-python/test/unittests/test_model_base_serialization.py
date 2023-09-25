@@ -3882,3 +3882,29 @@ def test_body_bytes_format():
     assert json.dumps(bytes("test", "utf-8"), cls=AzureJSONEncoder, format="base64url") == '"dGVzdA"'
     assert json.dumps(bytearray("test", "utf-8"), cls=AzureJSONEncoder, format="base64") == '"dGVzdA=="'
     assert json.dumps(bytearray("test", "utf-8"), cls=AzureJSONEncoder, format="base64url") == '"dGVzdA"'
+
+    assert json.dumps([bytes("test", "utf-8"), bytes("test", "utf-8")],
+                      cls=AzureJSONEncoder) == '["dGVzdA==", "dGVzdA=="]'
+    assert json.dumps([bytearray("test", "utf-8"), bytearray("test", "utf-8")],
+                      cls=AzureJSONEncoder) == '["dGVzdA==", "dGVzdA=="]'
+    assert json.dumps([bytes("test", "utf-8"), bytes("test", "utf-8")], cls=AzureJSONEncoder,
+                      format="base64") == '["dGVzdA==", "dGVzdA=="]'
+    assert json.dumps([bytes("test", "utf-8"), bytes("test", "utf-8")], cls=AzureJSONEncoder,
+                      format="base64url") == '["dGVzdA", "dGVzdA"]'
+    assert json.dumps([bytearray("test", "utf-8"), bytearray("test", "utf-8")], cls=AzureJSONEncoder,
+                      format="base64") == '["dGVzdA==", "dGVzdA=="]'
+    assert json.dumps([bytearray("test", "utf-8"), bytearray("test", "utf-8")], cls=AzureJSONEncoder,
+                      format="base64url") == '["dGVzdA", "dGVzdA"]'
+
+    assert json.dumps({"a": bytes("test", "utf-8"), "b": bytes("test", "utf-8")},
+                      cls=AzureJSONEncoder) == '{"a": "dGVzdA==", "b": "dGVzdA=="}'
+    assert json.dumps({"a": bytearray("test", "utf-8"), "b": bytearray("test", "utf-8")},
+                      cls=AzureJSONEncoder) == '{"a": "dGVzdA==", "b": "dGVzdA=="}'
+    assert json.dumps({"a": bytes("test", "utf-8"), "b": bytes("test", "utf-8")}, cls=AzureJSONEncoder,
+                      format="base64") == '{"a": "dGVzdA==", "b": "dGVzdA=="}'
+    assert json.dumps({"a": bytes("test", "utf-8"), "b": bytes("test", "utf-8")}, cls=AzureJSONEncoder,
+                      format="base64url") == '{"a": "dGVzdA", "b": "dGVzdA"}'
+    assert json.dumps({"a": bytearray("test", "utf-8"), "b": bytearray("test", "utf-8")}, cls=AzureJSONEncoder,
+                      format="base64") == '{"a": "dGVzdA==", "b": "dGVzdA=="}'
+    assert json.dumps({"a": bytearray("test", "utf-8"), "b": bytearray("test", "utf-8")}, cls=AzureJSONEncoder,
+                      format="base64url") == '{"a": "dGVzdA", "b": "dGVzdA"}'
