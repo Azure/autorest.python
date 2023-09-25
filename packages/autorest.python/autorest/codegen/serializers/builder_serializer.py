@@ -750,7 +750,7 @@ class _OperationSerializer(
                 f"'{body_param.type.serialization_type}'{is_xml_cmd}{serialization_ctxt_cmd})"
             )
         elif self.code_model.options["models_mode"] == "dpg":
-            if hasattr(body_param.type, 'encode') and body_param.type.encode:  # type: ignore
+            if hasattr(body_param.type, "encode") and body_param.type.encode:  # type: ignore
                 create_body_call = (
                     f"_{body_kwarg_name} = json.dumps({body_param.client_name}, "
                     "cls=AzureJSONEncoder, exclude_readonly=True, "
