@@ -108,20 +108,6 @@ class FileImport:
         ] = None,
         typing_section: TypingSection = TypingSection.REGULAR,
     ) -> None:
-        name_input: Optional[
-            Union[
-                str,
-                Tuple[
-                    str,
-                    str,
-                ],
-                Tuple[
-                    str,
-                    Optional[str],
-                    Tuple[Tuple[Tuple[int, int], str, Optional[str]]],
-                ],
-            ]
-        ]
         name_input = convert_list_to_tuple(name_import)
         self._imports.setdefault(typing_section, {}).setdefault(
             import_type, {}
