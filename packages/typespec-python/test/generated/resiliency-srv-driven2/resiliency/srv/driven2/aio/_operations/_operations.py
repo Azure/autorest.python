@@ -67,6 +67,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
             params=_params,
         )
         path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "serviceDeploymentVersion": self._serialize.url(
                 "self._config.service_deployment_version",
                 self._config.service_deployment_version,
@@ -129,6 +130,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
             params=_params,
         )
         path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "serviceDeploymentVersion": self._serialize.url(
                 "self._config.service_deployment_version",
                 self._config.service_deployment_version,
@@ -198,6 +200,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
             params=_params,
         )
         path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "serviceDeploymentVersion": self._serialize.url(
                 "self._config.service_deployment_version",
                 self._config.service_deployment_version,
@@ -266,6 +269,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
             params=_params,
         )
         path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "serviceDeploymentVersion": self._serialize.url(
                 "self._config.service_deployment_version",
                 self._config.service_deployment_version,
