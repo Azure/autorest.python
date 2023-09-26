@@ -14,7 +14,12 @@ class AsyncCustomPoller(AsyncLROPoller[PollingReturnType_co]):
     def from_continuation_token(
         cls, polling_method: AsyncPollingMethod[PollingReturnType_co], continuation_token: str, **kwargs: typing.Any
     ) -> "AsyncCustomPoller[PollingReturnType_co]":
-        pass
+        (
+            client,
+            initial_response,
+            deserialization_callback,
+        ) = polling_method.from_continuation_token(continuation_token, **kwargs)
+        return cls(client, initial_response, deserialization_callback, polling_method)
 
 __all__ = [
     'AsyncCustomPager',
