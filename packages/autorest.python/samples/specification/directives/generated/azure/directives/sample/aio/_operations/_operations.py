@@ -264,7 +264,12 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncCustomPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncCustomPoller[JSON](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
 
     @distributed_trace
     def basic_paging(self, **kwargs: Any) -> AsyncIterable[JSON]:

@@ -101,7 +101,9 @@ def main() -> None:
         _LOGGER.debug("Trying to read")
         message = read_message()
 
-        response = typing.cast(JSONRPC20Response, JSONRPCResponseManager.handle(message, dispatcher)).json
+        response = typing.cast(
+            JSONRPC20Response, JSONRPCResponseManager.handle(message, dispatcher)
+        ).json
         _LOGGER.debug("Produced: %s", response)
         write_message(response)
         _LOGGER.debug("Message processed")

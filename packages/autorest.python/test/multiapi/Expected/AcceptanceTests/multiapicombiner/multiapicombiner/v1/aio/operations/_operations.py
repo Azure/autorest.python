@@ -278,7 +278,12 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller[_models.Product](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[_models.Product](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
 
     async def _test_lro_and_paging_initial(
         self,
@@ -469,7 +474,12 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller[AsyncIterable["_models.Product"]](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[AsyncIterable["_models.Product"]](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
 
     @distributed_trace_async
     async def test_different_calls(  # pylint: disable=inconsistent-return-statements

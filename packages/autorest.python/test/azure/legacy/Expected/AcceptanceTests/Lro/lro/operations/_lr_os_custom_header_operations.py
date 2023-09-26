@@ -313,7 +313,12 @@ class LROsCustomHeaderOperations:
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[_models.Product](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[_models.Product](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
 
     def _put201_creating_succeeded200_initial(
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
@@ -493,7 +498,12 @@ class LROsCustomHeaderOperations:
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[_models.Product](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[_models.Product](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
 
     def _post202_retry200_initial(  # pylint: disable=inconsistent-return-statements
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
@@ -664,7 +674,12 @@ class LROsCustomHeaderOperations:
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[None](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
 
     def _post_async_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
@@ -841,4 +856,9 @@ class LROsCustomHeaderOperations:
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[None](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )

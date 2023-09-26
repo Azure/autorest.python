@@ -2447,7 +2447,12 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[Iterable[JSON]](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[Iterable[JSON]](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
 
     @distributed_trace
     def append_api_version(self, **kwargs: Any) -> Iterable[JSON]:

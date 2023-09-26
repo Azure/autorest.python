@@ -661,7 +661,12 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[_models.Product](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[_models.Product](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
 
     def _put_non_retry201_creating400_initial(
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
@@ -835,7 +840,12 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[_models.Product](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[_models.Product](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
 
     def _put_non_retry201_creating400_invalid_json_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
@@ -1009,7 +1019,12 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[_models.Product](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[_models.Product](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
 
     def _put_async_relative_retry400_initial(
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
@@ -1194,7 +1209,12 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[_models.Product](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[_models.Product](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
 
     def _delete_non_retry400_initial(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         error_map = {
@@ -1281,7 +1301,12 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[None](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
 
     def _delete202_non_retry400_initial(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         error_map = {
@@ -1368,7 +1393,12 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[None](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
 
     def _delete_async_relative_retry400_initial(  # pylint: disable=inconsistent-return-statements
         self, **kwargs: Any
@@ -1461,7 +1491,12 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[None](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
 
     def _post_non_retry400_initial(  # pylint: disable=inconsistent-return-statements
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
@@ -1626,7 +1661,12 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[None](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
 
     def _post202_non_retry400_initial(  # pylint: disable=inconsistent-return-statements
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
@@ -1791,7 +1831,12 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[None](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
 
     def _post_async_relative_retry400_initial(  # pylint: disable=inconsistent-return-statements
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
@@ -1962,7 +2007,12 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[None](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
 
     def _put_error201_no_provisioning_state_payload_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
@@ -2133,7 +2183,12 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[_models.Product](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[_models.Product](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
 
     def _put_async_relative_retry_no_status_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
@@ -2321,7 +2376,12 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[_models.Product](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[_models.Product](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
 
     def _put_async_relative_retry_no_status_payload_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
@@ -2509,7 +2569,12 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[_models.Product](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[_models.Product](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
 
     def _delete204_succeeded_initial(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         error_map = {
@@ -2592,7 +2657,12 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[None](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
 
     def _delete_async_relative_retry_no_status_initial(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, **kwargs: Any
@@ -2687,7 +2757,12 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[None](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
 
     def _post202_no_location_initial(  # pylint: disable=inconsistent-return-statements
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
@@ -2855,7 +2930,12 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[None](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
 
     def _post_async_relative_retry_no_payload_initial(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
@@ -3029,7 +3109,12 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[None](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
 
     def _put200_invalid_json_initial(
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
@@ -3201,7 +3286,12 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[_models.Product](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[_models.Product](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
 
     def _put_async_relative_retry_invalid_header_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
@@ -3389,7 +3479,12 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[_models.Product](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[_models.Product](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
 
     def _put_async_relative_retry_invalid_json_polling_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
@@ -3577,7 +3672,12 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[_models.Product](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[_models.Product](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
 
     def _delete202_retry_invalid_header_initial(  # pylint: disable=inconsistent-return-statements
         self, **kwargs: Any
@@ -3667,7 +3767,12 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[None](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
 
     def _delete_async_relative_retry_invalid_header_initial(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, **kwargs: Any
@@ -3762,7 +3867,12 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[None](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
 
     def _delete_async_relative_retry_invalid_json_polling_initial(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, **kwargs: Any
@@ -3857,7 +3967,12 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[None](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
 
     def _post202_retry_invalid_header_initial(  # pylint: disable=inconsistent-return-statements
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
@@ -4025,7 +4140,12 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[None](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
 
     def _post_async_relative_retry_invalid_header_initial(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
@@ -4199,7 +4319,12 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[None](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
 
     def _post_async_relative_retry_invalid_json_polling_initial(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
@@ -4373,4 +4498,9 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[None](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
