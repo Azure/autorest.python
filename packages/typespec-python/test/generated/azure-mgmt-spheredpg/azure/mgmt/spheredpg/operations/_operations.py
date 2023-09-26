@@ -263,6 +263,7 @@ def build_catalogs_list_device_insights_request(  # pylint: disable=name-too-lon
     filter: Optional[str] = None,
     top: Optional[int] = None,
     skip: Optional[int] = None,
+    maxpagesize: Optional[int] = None,
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -289,6 +290,8 @@ def build_catalogs_list_device_insights_request(  # pylint: disable=name-too-lon
         _params["$top"] = _SERIALIZER.query("top", top, "int")
     if skip is not None:
         _params["$skip"] = _SERIALIZER.query("skip", skip, "int")
+    if maxpagesize is not None:
+        _params["$maxpagesize"] = _SERIALIZER.query("maxpagesize", maxpagesize, "int")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -304,6 +307,7 @@ def build_catalogs_list_devices_request(
     filter: Optional[str] = None,
     top: Optional[int] = None,
     skip: Optional[int] = None,
+    maxpagesize: Optional[int] = None,
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -330,6 +334,8 @@ def build_catalogs_list_devices_request(
         _params["$top"] = _SERIALIZER.query("top", top, "int")
     if skip is not None:
         _params["$skip"] = _SERIALIZER.query("skip", skip, "int")
+    if maxpagesize is not None:
+        _params["$maxpagesize"] = _SERIALIZER.query("maxpagesize", maxpagesize, "int")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -345,6 +351,7 @@ def build_catalogs_list_deployments_request(
     filter: Optional[str] = None,
     top: Optional[int] = None,
     skip: Optional[int] = None,
+    maxpagesize: Optional[int] = None,
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -371,6 +378,8 @@ def build_catalogs_list_deployments_request(
         _params["$top"] = _SERIALIZER.query("top", top, "int")
     if skip is not None:
         _params["$skip"] = _SERIALIZER.query("skip", skip, "int")
+    if maxpagesize is not None:
+        _params["$maxpagesize"] = _SERIALIZER.query("maxpagesize", maxpagesize, "int")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -386,6 +395,7 @@ def build_catalogs_list_device_groups_request(  # pylint: disable=name-too-long
     filter: Optional[str] = None,
     top: Optional[int] = None,
     skip: Optional[int] = None,
+    maxpagesize: Optional[int] = None,
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -413,6 +423,8 @@ def build_catalogs_list_device_groups_request(  # pylint: disable=name-too-long
         _params["$top"] = _SERIALIZER.query("top", top, "int")
     if skip is not None:
         _params["$skip"] = _SERIALIZER.query("skip", skip, "int")
+    if maxpagesize is not None:
+        _params["$maxpagesize"] = _SERIALIZER.query("maxpagesize", maxpagesize, "int")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -459,6 +471,7 @@ def build_images_list_by_catalog_request(
     filter: Optional[str] = None,
     top: Optional[int] = None,
     skip: Optional[int] = None,
+    maxpagesize: Optional[int] = None,
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -484,6 +497,8 @@ def build_images_list_by_catalog_request(
         _params["$top"] = _SERIALIZER.query("top", top, "int")
     if skip is not None:
         _params["$skip"] = _SERIALIZER.query("skip", skip, "int")
+    if maxpagesize is not None:
+        _params["$maxpagesize"] = _SERIALIZER.query("maxpagesize", maxpagesize, "int")
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
@@ -556,6 +571,7 @@ def build_device_groups_list_by_product_request(  # pylint: disable=name-too-lon
     filter: Optional[str] = None,
     top: Optional[int] = None,
     skip: Optional[int] = None,
+    maxpagesize: Optional[int] = None,
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -582,6 +598,8 @@ def build_device_groups_list_by_product_request(  # pylint: disable=name-too-lon
         _params["$top"] = _SERIALIZER.query("top", top, "int")
     if skip is not None:
         _params["$skip"] = _SERIALIZER.query("skip", skip, "int")
+    if maxpagesize is not None:
+        _params["$maxpagesize"] = _SERIALIZER.query("maxpagesize", maxpagesize, "int")
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
@@ -837,6 +855,7 @@ def build_certificates_list_by_catalog_request(  # pylint: disable=name-too-long
     filter: Optional[str] = None,
     top: Optional[int] = None,
     skip: Optional[int] = None,
+    maxpagesize: Optional[int] = None,
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -862,6 +881,8 @@ def build_certificates_list_by_catalog_request(  # pylint: disable=name-too-long
         _params["$top"] = _SERIALIZER.query("top", top, "int")
     if skip is not None:
         _params["$skip"] = _SERIALIZER.query("skip", skip, "int")
+    if maxpagesize is not None:
+        _params["$maxpagesize"] = _SERIALIZER.query("maxpagesize", maxpagesize, "int")
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
@@ -978,6 +999,7 @@ def build_deployments_list_by_device_group_request(  # pylint: disable=name-too-
     filter: Optional[str] = None,
     top: Optional[int] = None,
     skip: Optional[int] = None,
+    maxpagesize: Optional[int] = None,
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -1005,6 +1027,8 @@ def build_deployments_list_by_device_group_request(  # pylint: disable=name-too-
         _params["$top"] = _SERIALIZER.query("top", top, "int")
     if skip is not None:
         _params["$skip"] = _SERIALIZER.query("skip", skip, "int")
+    if maxpagesize is not None:
+        _params["$maxpagesize"] = _SERIALIZER.query("maxpagesize", maxpagesize, "int")
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
@@ -2340,6 +2364,7 @@ class CatalogsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.DeviceInsight]] = kwargs.pop("cls", None)
 
         error_map = {
@@ -2360,6 +2385,7 @@ class CatalogsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -2441,6 +2467,7 @@ class CatalogsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.Device]] = kwargs.pop("cls", None)
 
         error_map = {
@@ -2461,6 +2488,7 @@ class CatalogsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -2542,6 +2570,7 @@ class CatalogsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.Deployment]] = kwargs.pop("cls", None)
 
         error_map = {
@@ -2562,6 +2591,7 @@ class CatalogsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -2759,6 +2789,7 @@ class CatalogsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.DeviceGroup]] = kwargs.pop("cls", None)
 
         error_map = {
@@ -2785,6 +2816,7 @@ class CatalogsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     content_type=content_type,
                     api_version=self._config.api_version,
                     content=_content,
@@ -2951,6 +2983,7 @@ class ImagesOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.Image]] = kwargs.pop("cls", None)
 
         error_map = {
@@ -2971,6 +3004,7 @@ class ImagesOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -3333,6 +3367,7 @@ class DeviceGroupsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.DeviceGroup]] = kwargs.pop("cls", None)
 
         error_map = {
@@ -3354,6 +3389,7 @@ class DeviceGroupsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -4348,6 +4384,7 @@ class CertificatesOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.Certificate]] = kwargs.pop("cls", None)
 
         error_map = {
@@ -4368,6 +4405,7 @@ class CertificatesOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -4816,6 +4854,7 @@ class DeploymentsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.Deployment]] = kwargs.pop("cls", None)
 
         error_map = {
@@ -4838,6 +4877,7 @@ class DeploymentsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,

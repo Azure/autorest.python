@@ -34,18 +34,23 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_pageable_list_request(**kwargs: Any) -> HttpRequest:
+def build_pageable_list_request(*, maxpagesize: Optional[int] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/payload/pageable"
 
+    # Construct parameters
+    if maxpagesize is not None:
+        _params["maxpagesize"] = _SERIALIZER.query("maxpagesize", maxpagesize, "int")
+
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 class PageableClientOperationsMixin(PageableClientMixinABC):
@@ -60,6 +65,7 @@ class PageableClientOperationsMixin(PageableClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.User]] = kwargs.pop("cls", None)
 
         error_map = {
@@ -74,6 +80,7 @@ class PageableClientOperationsMixin(PageableClientMixinABC):
             if not next_link:
 
                 request = build_pageable_list_request(
+                    maxpagesize=maxpagesize,
                     headers=_headers,
                     params=_params,
                 )

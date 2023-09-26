@@ -333,7 +333,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
     def param_description(self, builder: BuilderType) -> List[str]:
         description_list: List[str] = []
         for param in builder.parameters.method:
-            if not param.in_docstring:
+            if not param.in_docstring or param.hide_in_operation_signature:
                 continue
             description_list.extend(
                 f":{param.description_keyword} {param.client_name}: {param.description}".replace(
@@ -701,6 +701,9 @@ class _OperationSerializer(
             check_client_input=not self.code_model.options["multiapi"],
             operation_name=f"('{builder.name}')" if builder.group_name == "" else "",
         )
+        for p in builder.parameters.parameters:
+            if p.hide_in_operation_signature:
+                kwargs.append(f'{p.client_name} = kwargs.pop("{p.client_name}", None)')
         cls_annotation = builder.cls_type_annotation(async_mode=self.async_mode)
         pylint_disable = ""
         if any(x.startswith("_") for x in cls_annotation.split(".")):

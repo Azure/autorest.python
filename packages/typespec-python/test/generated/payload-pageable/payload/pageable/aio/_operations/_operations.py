@@ -42,6 +42,7 @@ class PageableClientOperationsMixin(PageableClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.User]] = kwargs.pop("cls", None)
 
         error_map = {
@@ -56,6 +57,7 @@ class PageableClientOperationsMixin(PageableClientMixinABC):
             if not next_link:
 
                 request = build_pageable_list_request(
+                    maxpagesize=maxpagesize,
                     headers=_headers,
                     params=_params,
                 )
