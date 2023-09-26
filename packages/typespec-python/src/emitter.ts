@@ -103,6 +103,7 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     if (isArm === true) {
         commandArgs.push("--azure-arm=true");
     }
+    commandArgs.push("--from-typespec=true")
     if (!program.compilerOptions.noEmit && !program.hasError()) {
         execFileSync(process.execPath, commandArgs);
     }
