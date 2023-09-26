@@ -313,18 +313,18 @@ function emitBuiltInType(type: SdkBuiltInType | SdkDurationType | SdkDatetimeTyp
     if (type.kind === "duration" && type.encode === "seconds") {
         return getSimpleTypeResult({
             type: sdkScalarKindToPythonKind[type.wireType.kind],
-            format: type.encode,
+            encode: type.encode,
         });
     }
     if (type.encode === "unixTimestamp") {
         return getSimpleTypeResult({
             type: "unixtime",
-            format: type.encode,
+            encode: type.encode,
         });
     }
     return getSimpleTypeResult({
         type: sdkScalarKindToPythonKind[type.kind] || type.kind, // TODO: switch to kind
-        format: type.encode,
+        encode: type.encode,
     });
 }
 

@@ -42,6 +42,8 @@ class ResiliencyServiceDrivenClient(
     * A client generated from the second service spec can call the second deployment of a service
     with api version v2.
 
+    :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
+    :type endpoint: str
     :param service_deployment_version: Pass in either 'v1' or 'v2'. This represents a version of
      the service deployment in history. 'v1' is for the deployment when the service had only one api
      version. 'v2' is for the deployment when the service had api-versions 'v1' and 'v2'. Required.
@@ -53,11 +55,11 @@ class ResiliencyServiceDrivenClient(
     """
 
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
-        self, service_deployment_version: str, **kwargs: Any
+        self, endpoint: str, service_deployment_version: str, **kwargs: Any
     ) -> None:
-        _endpoint = "http://localhost:3000/resiliency/service-driven/client:v2/service:{serviceDeploymentVersion}/api-version:{apiVersion}"  # pylint: disable=line-too-long
+        _endpoint = "{endpoint}/resiliency/service-driven/client:v2/service:{serviceDeploymentVersion}/api-version:{apiVersion}"  # pylint: disable=line-too-long
         self._config = ResiliencyServiceDrivenClientConfiguration(
-            service_deployment_version=service_deployment_version, **kwargs
+            endpoint=endpoint, service_deployment_version=service_deployment_version, **kwargs
         )
         self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
 
@@ -85,6 +87,7 @@ class ResiliencyServiceDrivenClient(
 
         request_copy = deepcopy(request)
         path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "serviceDeploymentVersion": self._serialize.url(
                 "self._config.service_deployment_version",
                 self._config.service_deployment_version,
