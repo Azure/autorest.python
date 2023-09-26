@@ -1,7 +1,6 @@
 import { createTypeSpecLibrary, JSONSchemaType } from "@typespec/compiler";
 
 export interface PythonEmitterOptions {
-    "basic-setup-py"?: boolean;
     "package-version"?: string;
     "package-name"?: string;
     "output-dir"?: string;
@@ -16,7 +15,6 @@ const EmitterOptionsSchema: JSONSchemaType<PythonEmitterOptions> = {
     type: "object",
     additionalProperties: true,
     properties: {
-        "basic-setup-py": { type: "boolean", nullable: true },
         "package-version": { type: "string", nullable: true },
         "package-name": { type: "string", nullable: true },
         "output-dir": { type: "string", nullable: true },

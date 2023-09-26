@@ -13,7 +13,7 @@ from .. import Plugin, PluginAutorest
 from .._utils import parse_args
 from .models.code_model import CodeModel
 from .serializers import JinjaSerializer, JinjaSerializerAutorest
-from ._utils import DEFAULT_HEADER_TEXT
+from ._utils import DEFAULT_HEADER_TEXT, VALID_PACKAGE_MODE, TYPESPEC_PACKAGE_MODE
 
 
 def _default_pprint(package_name: str) -> str:
@@ -55,11 +55,17 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
 
     if options["package_mode"]:
         if (
-            options["package_mode"] not in ("mgmtplane", "dataplane")
-            and not Path(options["package_mode"]).exists()
-        ):
+            (
+                options["package_mode"] not in TYPESPEC_PACKAGE_MODE
+                and options["from_typespec"]
+            )
+            or (
+                options["package_mode"] not in VALID_PACKAGE_MODE
+                and not options["from_typespec"]
+            )
+        ) and not Path(options["package_mode"]).exists():
             raise ValueError(
-                "--package-mode can only be 'mgmtplane' or 'dataplane' or directory which contains template files"
+                f"--package-mode can only be {' or '.join(TYPESPEC_PACKAGE_MODE)} or directory which contains template files"  # pylint: disable=line-too-long
             )
 
     if options["multiapi"] and options["version_tolerant"]:
@@ -170,6 +176,7 @@ class CodeGenerator(Plugin):
             ),
             "generate_sample": self.options.get("generate-sample", False),
             "default_api_version": self.options.get("default-api-version"),
+            "from_typespec": self.options.get("from-typespec", False),
         }
 
         if options["builders_visibility"] is None:
