@@ -1,6 +1,6 @@
 {
     "name": "@azure-tools/typespec-python",
-    "version": "0.13.6",
+    "version": "0.13.7",
     "author": "Microsoft Corporation",
     "description": "Cadl emitter for Python SDKs",
     "homepage": "https://github.com/Azure/autorest.python",
@@ -63,7 +63,7 @@
         "@azure-tools/typespec-azure-resource-manager": ">=0.34.0 <1.0.0",
         "@azure-tools/typespec-autorest": ">=0.34.0 <1.0.0",
         "@azure-tools/cadl-ranch-expect": "~0.7.0",
-        "@azure-tools/cadl-ranch-specs": "~0.22.0",
+        "@azure-tools/cadl-ranch-specs": "~0.22.2",
         "@types/js-yaml": "~4.0.5",
         "@types/mocha": "~10.0.1",
         "@types/node": "^18.16.3",
