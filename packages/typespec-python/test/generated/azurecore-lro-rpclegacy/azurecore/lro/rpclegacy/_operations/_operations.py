@@ -253,4 +253,9 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[_models.JobResult](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[_models.JobResult](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )

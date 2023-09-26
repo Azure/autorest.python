@@ -237,4 +237,9 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller[_models.GenerationResult](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[_models.GenerationResult](
+            self._client,
+            raw_result,
+            get_long_running_output,
+            polling_method,
+        )
