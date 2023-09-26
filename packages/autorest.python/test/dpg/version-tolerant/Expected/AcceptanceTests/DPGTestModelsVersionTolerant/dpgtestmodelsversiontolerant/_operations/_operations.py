@@ -443,8 +443,5 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
                 deserialization_callback=get_long_running_output,
             )
         return LROPoller[_models.LROProduct](
-            self._client,
-            raw_result,
-            get_long_running_output,
-            polling_method,
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )

@@ -694,12 +694,7 @@ class StorageAccountsOperations:
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller[JSON](
-            self._client,
-            raw_result,
-            get_long_running_output,
-            polling_method,
-        )
+        return AsyncLROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     @distributed_trace_async
     async def delete(  # pylint: disable=inconsistent-return-statements

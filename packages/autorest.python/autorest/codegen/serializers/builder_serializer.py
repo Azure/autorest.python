@@ -1574,11 +1574,12 @@ class _LROOperationSerializer(_OperationSerializer[LROOperationType]):
         retval.append("        client=self._client,")
         retval.append("        deserialization_callback=get_long_running_output")
         retval.append("    )")
-        retval.append(f"return {builder.get_poller_with_response_type(self.async_mode)}(")
-        retval.append("    self._client,")
-        retval.append("    raw_result,")
-        retval.append("    get_long_running_output,")
-        retval.append("    polling_method,")
+        retval.append(
+            f"return {builder.get_poller_with_response_type(self.async_mode)}("
+        )
+        retval.append(
+            "    self._client, raw_result, get_long_running_output, polling_method  # type: ignore"
+        )
         retval.append("    )")
         return retval
 

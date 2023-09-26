@@ -2448,10 +2448,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 deserialization_callback=get_long_running_output,
             )
         return LROPoller[Iterable[JSON]](
-            self._client,
-            raw_result,
-            get_long_running_output,
-            polling_method,
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
     @distributed_trace

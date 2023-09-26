@@ -611,10 +611,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
                 deserialization_callback=get_long_running_output,
             )
         return AsyncLROPoller[_models.Product](
-            self._client,
-            raw_result,
-            get_long_running_output,
-            polling_method,
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
 
@@ -757,10 +754,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
                 deserialization_callback=get_long_running_output,
             )
         return AsyncLROPoller[AsyncIterable["_models.Product"]](
-            self._client,
-            raw_result,
-            get_long_running_output,
-            polling_method,
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
 
