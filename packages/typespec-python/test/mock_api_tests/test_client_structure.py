@@ -11,7 +11,7 @@ from client.structure.twooperationgroup import TwoOperationGroupClient
 
 
 def test_structure_default():
-    client = ServiceClient(client=ClientType.DEFAULT)
+    client = ServiceClient(endpoint="http://localhost:3000", client=ClientType.DEFAULT)
     client.one()
     client.two()
     client.three()
@@ -20,18 +20,18 @@ def test_structure_default():
     client.six()
 
 def test_structure_multiclient():
-    client_a = ClientAClient(client=ClientType.MULTI_CLIENT)
+    client_a = ClientAClient(endpoint="http://localhost:3000", client=ClientType.MULTI_CLIENT)
     client_a.renamed_one()
     client_a.renamed_three()
     client_a.renamed_five()
 
-    client_b = ClientBClient(client=ClientType.MULTI_CLIENT)
+    client_b = ClientBClient(endpoint="http://localhost:3000", client=ClientType.MULTI_CLIENT)
     client_b.renamed_two()
     client_b.renamed_four()
     client_b.renamed_six()
 
 def test_structure_renamed_operation():
-    client = RenamedOperationClient(client=ClientType.RENAMED_OPERATION)
+    client = RenamedOperationClient(endpoint="http://localhost:3000", client=ClientType.RENAMED_OPERATION)
     client.renamed_one()
     client.renamed_three()
     client.renamed_five()
@@ -41,7 +41,7 @@ def test_structure_renamed_operation():
     client.group.renamed_six()
 
 def test_structure_two_operation_group():
-    client = TwoOperationGroupClient(client=ClientType.TWO_OPERATION_GROUP)
+    client = TwoOperationGroupClient(endpoint="http://localhost:3000", client=ClientType.TWO_OPERATION_GROUP)
     client.group1.one()
     client.group1.three()
     client.group1.four()

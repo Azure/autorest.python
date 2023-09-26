@@ -1034,7 +1034,7 @@ class DatetimeValueOperations:
         if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True, format="rfc3339")  # type: ignore
 
         request = build_datetime_value_put_request(
             content_type=content_type,
