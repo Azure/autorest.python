@@ -269,10 +269,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
                 deserialization_callback=get_long_running_output,
             )
         return AsyncLROPoller[_models.User](
-            self._client,
-            raw_result,
-            get_long_running_output,
-            polling_method,
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
     async def _delete_initial(self, name: str, **kwargs: Any) -> JSON:
@@ -369,12 +366,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller[None](
-            self._client,
-            raw_result,
-            get_long_running_output,
-            polling_method,
-        )
+        return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _export_initial(self, name: str, *, format: str, **kwargs: Any) -> JSON:
         error_map = {
@@ -484,8 +476,5 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
                 deserialization_callback=get_long_running_output,
             )
         return AsyncLROPoller[_models.ExportedUser](
-            self._client,
-            raw_result,
-            get_long_running_output,
-            polling_method,
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
