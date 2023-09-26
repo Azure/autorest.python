@@ -1567,7 +1567,7 @@ class _LROOperationSerializer(_OperationSerializer[LROOperationType]):
         retval.append("else: polling_method = polling")
         retval.append("if cont_token:")
         retval.append(
-            f"    return {builder.get_poller(self.async_mode)}.from_continuation_token("
+            f"    return {builder.get_poller_with_response_type(self.async_mode)}.from_continuation_token("
         )
         retval.append("        polling_method=polling_method,")
         retval.append("        continuation_token=cont_token,")
@@ -1575,7 +1575,7 @@ class _LROOperationSerializer(_OperationSerializer[LROOperationType]):
         retval.append("        deserialization_callback=get_long_running_output")
         retval.append("    )")
         retval.append(
-            f"return {builder.get_poller(self.async_mode)}"
+            f"return {builder.get_poller_with_response_type(self.async_mode)}"
             "(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore"
         )
         return retval
