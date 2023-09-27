@@ -25,7 +25,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._model_base import AzureJSONEncoder, _deserialize
+from ..._model_base import AzureJSONEncoder, _RestField, _deserialize
 from ...operations._operations import (
     build_header_base64_request,
     build_header_base64url_array_request,
@@ -1353,7 +1353,7 @@ class ResponseBodyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(bytes, response.json())
+            deserialized = _deserialize(bytes, response.json(), rf=_RestField(format="base64"))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1509,7 +1509,7 @@ class ResponseBodyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(bytes, response.json())
+            deserialized = _deserialize(bytes, response.json(), rf=_RestField(format="base64"))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1561,7 +1561,7 @@ class ResponseBodyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(bytes, response.json())
+            deserialized = _deserialize(bytes, response.json(), rf=_RestField(format="base64url"))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

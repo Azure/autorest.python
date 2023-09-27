@@ -8,7 +8,7 @@ from typing import Dict, Optional, List, Any, TYPE_CHECKING, Union
 from .base import BaseModel
 from .base import BaseType
 from .imports import FileImport, ImportType, TypingSection
-from .primitive_types import BinaryType, BinaryIteratorType
+from .primitive_types import BinaryType, BinaryIteratorType, ByteArraySchema
 from .dictionary_type import DictionaryType
 from .list_type import ListType
 from .model_type import ModelType
@@ -58,6 +58,7 @@ class Response(BaseModel):
         self.headers = headers or []
         self.type = type
         self.nullable = yaml_data.get("nullable")
+        self.default_content_type = yaml_data.get("defaultContentType")
 
     @property
     def result_property(self) -> str:
@@ -120,7 +121,21 @@ class Response(BaseModel):
                 ImportType.LOCAL,
                 TypingSection.TYPING,
             )
+        if self.need_rest_field:
+            async_mode = kwargs.get("async_mode", False)
+            relative_path = "..." if async_mode else ".."
+            file_import.add_submodule_import(
+                f"{relative_path}_model_base", "_RestField", ImportType.LOCAL
+            )
         return file_import
+
+    @property
+    def need_rest_field(self) -> bool:
+        return (
+            isinstance(self.type, ByteArraySchema)
+            and self.default_content_type
+            and self.default_content_type == "application/json"
+        )
 
     def imports(self, **kwargs: Any) -> FileImport:
         return self._imports_shared(**kwargs)

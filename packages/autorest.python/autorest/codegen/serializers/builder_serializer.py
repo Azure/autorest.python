@@ -1066,12 +1066,18 @@ class _OperationSerializer(
                 deserialize_code.append("    pipeline_response")
                 deserialize_code.append(")")
             elif self.code_model.options["models_mode"] == "dpg":
+                rest_filed = (
+                    f', rf=_RestField(format="{response.type.encode}")'
+                    if response.need_rest_field
+                    and isinstance(response.type, ByteArraySchema)
+                    else ""
+                )
                 deserialize_code.append("deserialized = _deserialize(")
                 deserialize_code.append(
                     f"    {response.type.type_annotation(is_operation_file=True)},{pylint_disable}"
                 )
                 deserialize_code.append(
-                    f"    response.json(){response.result_property}"
+                    f"    response.json(){response.result_property}{rest_filed}"
                 )
                 deserialize_code.append(")")
             else:

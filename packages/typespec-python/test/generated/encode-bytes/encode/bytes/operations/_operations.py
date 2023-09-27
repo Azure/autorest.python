@@ -25,7 +25,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._model_base import AzureJSONEncoder, _deserialize
+from .._model_base import AzureJSONEncoder, _RestField, _deserialize
 from .._serialization import Serializer
 
 if sys.version_info >= (3, 9):
@@ -1631,7 +1631,7 @@ class ResponseBodyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(bytes, response.json())
+            deserialized = _deserialize(bytes, response.json(), rf=_RestField(format="base64"))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1787,7 +1787,7 @@ class ResponseBodyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(bytes, response.json())
+            deserialized = _deserialize(bytes, response.json(), rf=_RestField(format="base64"))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1839,7 +1839,7 @@ class ResponseBodyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(bytes, response.json())
+            deserialized = _deserialize(bytes, response.json(), rf=_RestField(format="base64url"))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
