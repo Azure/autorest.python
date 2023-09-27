@@ -9,7 +9,7 @@ import pytest
 from pathlib import Path
 from payload.contentnegotiation.aio import ContentNegotiationClient
 from payload.contentnegotiation.models import PngImageAsJson
-from ..utils.validation import iter_bytes_to_bytes_async_async
+from ..utils.validation import iter_bytes_to_bytes_async
 
 FILE_FOLDER = Path(__file__).parent.parent
 
