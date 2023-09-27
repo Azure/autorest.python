@@ -9,7 +9,7 @@ import pytest
 from pathlib import Path
 from payload.contentnegotiation.aio import ContentNegotiationClient
 from payload.contentnegotiation.models import PngImageAsJson
-
+from ..utils.validation import iter_bytes_to_bytes_async_async
 
 FILE_FOLDER = Path(__file__).parent.parent
 
@@ -28,23 +28,20 @@ def jpg_data() -> bytes:
     with open(str(FILE_FOLDER / "data/image.jpg"), "rb") as file_in:
         return file_in.read()
 
-async def iter_bytes_to_bytes(data: Iterator[bytes]) -> bytes:
-    return b"".join([chunk async for chunk in data])
-
 @pytest.mark.asyncio
 async def test_get_avatar_as_png(client: ContentNegotiationClient, png_data: bytes):
     result = await client.same_body.get_avatar_as_png(stream=True)
-    assert await iter_bytes_to_bytes(result) == png_data
+    assert await iter_bytes_to_bytes_async(result) == png_data
 
 @pytest.mark.asyncio
 async def test_get_avatar_as_jpeg(client: ContentNegotiationClient, jpg_data: bytes):
     result = await client.same_body.get_avatar_as_jpeg(stream=True)
-    assert await iter_bytes_to_bytes(result) == jpg_data
+    assert await iter_bytes_to_bytes_async(result) == jpg_data
 
 @pytest.mark.asyncio
 async def test_different_body_get_avatar_as_png(client: ContentNegotiationClient, png_data: bytes):
     result = await client.different_body.get_avatar_as_png(stream=True)
-    assert await iter_bytes_to_bytes(result) == png_data
+    assert await iter_bytes_to_bytes_async(result) == png_data
 
 @pytest.mark.asyncio
 async def test_different_body_get_avatar_as_json(client: ContentNegotiationClient, png_data: bytes):

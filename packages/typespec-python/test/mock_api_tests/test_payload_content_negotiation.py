@@ -9,7 +9,7 @@ import pytest
 from pathlib import Path
 from payload.contentnegotiation import ContentNegotiationClient
 from payload.contentnegotiation.models import PngImageAsJson
-
+from .utils.validation import iter_bytes_to_bytes
 
 FILE_FOLDER = Path(__file__).parent
 
@@ -27,9 +27,6 @@ def png_data() -> bytes:
 def jpg_data() -> bytes:
     with open(str(FILE_FOLDER / "data/image.jpg"), "rb") as file_in:
         return file_in.read()
-
-def iter_bytes_to_bytes(data: Iterator[bytes]) -> bytes:
-    return b"".join(list(data))
 
 def test_get_avatar_as_png(client: ContentNegotiationClient, png_data: bytes):
     result = client.same_body.get_avatar_as_png(stream=True)
