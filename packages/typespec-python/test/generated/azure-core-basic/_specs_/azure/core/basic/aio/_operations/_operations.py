@@ -437,6 +437,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.User]] = kwargs.pop("cls", None)
 
         error_map = {
@@ -453,6 +454,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
                 request = build_basic_list_request(
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     orderby=orderby,
                     filter=filter,
                     select=select,
