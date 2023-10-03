@@ -216,18 +216,25 @@ def build_paging_duplicate_params_request(*, filter: Optional[str] = None, **kwa
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_paging_page_with_max_page_size_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_paging_page_with_max_page_size_request(  # pylint: disable=name-too-long
+    *, maxpagesize: Optional[Literal["5"]] = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/paging/maxPageSize"
 
+    # Construct parameters
+    if maxpagesize is not None:
+        _params["$maxpagesize"] = _SERIALIZER.query("maxpagesize", maxpagesize, "str")
+
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_paging_get_odata_multiple_pages_request(  # pylint: disable=name-too-long
@@ -1416,6 +1423,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         error_map = {
@@ -1430,6 +1438,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             if not next_link:
 
                 request = build_paging_page_with_max_page_size_request(
+                    maxpagesize=maxpagesize,
                     headers=_headers,
                     params=_params,
                 )

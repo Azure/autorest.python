@@ -47,6 +47,7 @@ def build_question_answering_projects_get_qnas_request(  # pylint: disable=name-
     source: Optional[str] = None,
     top: Optional[int] = None,
     skip: Optional[int] = None,
+    maxpagesize: Optional[int] = None,
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -71,6 +72,8 @@ def build_question_answering_projects_get_qnas_request(  # pylint: disable=name-
         _params["top"] = _SERIALIZER.query("top", top, "int")
     if skip is not None:
         _params["skip"] = _SERIALIZER.query("skip", skip, "int")
+    if maxpagesize is not None:
+        _params["maxpagesize"] = _SERIALIZER.query("maxpagesize", maxpagesize, "int")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -249,6 +252,7 @@ class QuestionAnsweringProjectsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         error_map = {
@@ -267,6 +271,7 @@ class QuestionAnsweringProjectsOperations:
                     source=source,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,

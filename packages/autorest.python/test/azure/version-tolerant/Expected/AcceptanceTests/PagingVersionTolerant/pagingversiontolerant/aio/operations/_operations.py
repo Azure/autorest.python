@@ -967,6 +967,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         error_map = {
@@ -981,6 +982,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             if not next_link:
 
                 request = build_paging_page_with_max_page_size_request(
+                    maxpagesize=maxpagesize,
                     headers=_headers,
                     params=_params,
                 )

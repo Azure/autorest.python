@@ -103,6 +103,7 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     if (isArm === true) {
         commandArgs.push("--azure-arm=true");
     }
+    commandArgs.push("--from-typespec=true");
     if (!program.compilerOptions.noEmit && !program.hasError()) {
         execFileSync(process.execPath, commandArgs);
     }
@@ -166,7 +167,7 @@ type BodyParameter = ParamBase & {
     defaultContentType: string;
 };
 
-function getBodyType(context: SdkContext, route: HttpOperation): Type {
+function getBodyType(context: SdkContext, route: HttpOperation): Record<string, any> {
     let bodyModel = route.parameters.body?.type;
     if (bodyModel && bodyModel.kind === "Model" && route.operation) {
         const resourceType = getResourceOperation(context.program, route.operation)?.resourceType;
@@ -193,7 +194,10 @@ function getBodyType(context: SdkContext, route: HttpOperation): Type {
             bodyModel = resourceType;
         }
     }
-    return bodyModel!;
+    if (bodyModel && bodyModel.kind === "Scalar") {
+        return getType(context, route.parameters.body!.parameter!);
+    }
+    return getType(context, bodyModel!);
 }
 
 function emitBodyParameter(context: SdkContext, httpOperation: HttpOperation): BodyParameter {
@@ -204,7 +208,7 @@ function emitBodyParameter(context: SdkContext, httpOperation: HttpOperation): B
     if (contentTypes.length === 0) {
         contentTypes = ["application/json"];
     }
-    const type = getType(context, getBodyType(context, httpOperation));
+    const type = getBodyType(context, httpOperation);
 
     if (type.type === "model" && type.name === "") {
         type.name = capitalize(httpOperation.operation.name) + "Request";

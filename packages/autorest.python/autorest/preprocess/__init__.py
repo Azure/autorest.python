@@ -137,16 +137,6 @@ def add_overloads_for_body_param(yaml_data: Dict[str, Any]) -> None:
     content_type_param["optional"] = True
 
 
-def _remove_paging_maxpagesize(yaml_data: Dict[str, Any]) -> None:
-    # we don't expose maxpagesize for version tolerant generation
-    # users should be passing this into `by_page`
-    yaml_data["parameters"] = [
-        p
-        for p in yaml_data.get("parameters", [])
-        if p["wireName"].lower() not in ["maxpagesize", "$maxpagesize"]
-    ]
-
-
 def update_description(
     description: Optional[str], default_description: str = ""
 ) -> str:
@@ -494,13 +484,8 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             yaml_data["pagerSync"] = "azure.core.paging.ItemPaged"
         if not yaml_data.get("pagerAsync"):
             yaml_data["pagerAsync"] = "azure.core.async_paging.AsyncItemPaged"
-        if self.version_tolerant:
-            # if we're in version tolerant, hide the paging model
-            _remove_paging_maxpagesize(yaml_data)
         item_type = item_type or yaml_data["itemType"]["elementType"]
         if yaml_data.get("nextOperation"):
-            if self.version_tolerant:
-                _remove_paging_maxpagesize(yaml_data["nextOperation"])
             yaml_data["nextOperation"]["groupName"] = self.pad_reserved_words(
                 yaml_data["nextOperation"]["groupName"], PadType.OPERATION_GROUP
             )

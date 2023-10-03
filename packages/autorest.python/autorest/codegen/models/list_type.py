@@ -26,8 +26,8 @@ class ListType(BaseType):
         self.unique_items: bool = yaml_data.get("uniqueItems", False)
 
     @property
-    def format(self) -> Optional[str]:
-        return self.element_type.format if hasattr(self.element_type, "format") else None  # type: ignore
+    def encode(self) -> Optional[str]:
+        return self.element_type.encode if hasattr(self.element_type, "encode") else None  # type: ignore
 
     @property
     def serialization_type(self) -> str:
