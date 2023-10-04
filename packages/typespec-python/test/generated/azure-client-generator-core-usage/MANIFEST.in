@@ -1,9 +1,9 @@
 include *.md
 include LICENSE
-include _specs_/azure/clientgenerator/core/usage/py.typed
+include specs/azure/clientgenerator/core/usage/py.typed
 recursive-include tests *.py
 recursive-include samples *.py *.md
-include _specs_/__init__.py
-include _specs_/azure/__init__.py
-include _specs_/azure/clientgenerator/__init__.py
-include _specs_/azure/clientgenerator/core/__init__.py
+include specs/__init__.py
+include specs/azure/__init__.py
+include specs/azure/clientgenerator/__init__.py
+include specs/azure/clientgenerator/core/__init__.py

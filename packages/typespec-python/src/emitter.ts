@@ -45,7 +45,7 @@ import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { execFileSync } from "child_process";
 import { PythonEmitterOptions } from "./lib.js";
-import { camelToSnakeCase } from "./utils.js";
+import { camelToSnakeCase, removeUnderscoresFromNamespace } from "./utils.js";
 import {
     CredentialType,
     CredentialTypeUnion,
@@ -875,9 +875,9 @@ function getNamespace(context: SdkContext, clientName: string): string {
     // We get client namespaces from the client name. If there's a dot, we add that to the namespace
     const submodule = clientName.split(".").slice(0, -1).join(".").toLowerCase();
     if (!submodule) {
-        return getClientNamespaceString(context)!.toLowerCase();
+        return removeUnderscoresFromNamespace(getClientNamespaceString(context)!.toLowerCase());
     }
-    return submodule;
+    return removeUnderscoresFromNamespace(submodule);
 }
 
 function getNamespaces(context: SdkContext): Set<string> {
@@ -889,7 +889,7 @@ function getNamespaces(context: SdkContext): Set<string> {
 }
 
 function emitCodeModel(sdkContext: SdkContext, clients: SdkClient[]) {
-    const clientNamespaceString = getClientNamespaceString(sdkContext)?.toLowerCase();
+    const clientNamespaceString = removeUnderscoresFromNamespace(getClientNamespaceString(sdkContext)?.toLowerCase());
     // Get types
     const codeModel: Record<string, any> = {
         namespace: clientNamespaceString,

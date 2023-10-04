@@ -1,5 +1,5 @@
 
-# _specs_ Azure.clientgenerator.core.access client library for Python
+# Specs Azure Clientgenerator Core Access client library for Python
 <!-- write necessary description of service -->
 
 ## Getting started
@@ -7,14 +7,14 @@
 ### Installating the package
 
 ```bash
-python -m pip install _specs_-azure.clientgenerator.core.access
+python -m pip install specs-azure-clientgenerator-core-access
 ```
 
 #### Prequisites
 
 - Python 3.7 or later is required to use this package.
 - You need an [Azure subscription][azure_sub] to use this package.
-- An existing _specs_ Azure.clientgenerator.core.access instance.
+- An existing Specs Azure Clientgenerator Core Access instance.
 
 ## Contributing
 
