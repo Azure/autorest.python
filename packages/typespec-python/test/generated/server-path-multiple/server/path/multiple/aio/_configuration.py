@@ -36,7 +36,7 @@ class MultipleClientConfiguration(Configuration):  # pylint: disable=too-many-in
 
         self.endpoint = endpoint
         self.api_version = api_version
-        kwargs.setdefault("sdk_moniker", "multipleclient/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "server-path-multiple/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

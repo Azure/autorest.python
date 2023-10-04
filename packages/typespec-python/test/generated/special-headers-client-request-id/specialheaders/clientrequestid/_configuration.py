@@ -24,7 +24,7 @@ class ClientRequestIdClientConfiguration(Configuration):  # pylint: disable=too-
     def __init__(self, **kwargs: Any) -> None:
         super(ClientRequestIdClientConfiguration, self).__init__(**kwargs)
 
-        kwargs.setdefault("sdk_moniker", "clientrequestidclient/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "specialheaders-clientrequestid/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

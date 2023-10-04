@@ -38,7 +38,7 @@ class ServiceClientConfiguration(Configuration):  # pylint: disable=too-many-ins
 
         self.endpoint = endpoint
         self.client = client
-        kwargs.setdefault("sdk_moniker", "serviceclient/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "client-structure-service/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

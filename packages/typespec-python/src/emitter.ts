@@ -45,7 +45,7 @@ import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { execFileSync } from "child_process";
 import { PythonEmitterOptions } from "./lib.js";
-import { camelToSnakeCase } from "./utils.js";
+import { camelToSnakeCase, removeUnderscoresFromNamespace } from "./utils.js";
 import {
     CredentialType,
     CredentialTypeUnion,
@@ -63,30 +63,45 @@ interface HttpServerParameter {
 }
 
 const defaultOptions = {
-    "basic-setup-py": true,
     "package-version": "1.0.0b1",
+    "generate-packaging-files": true,
 };
 
-let isArm: boolean = false;
 export let modelsMode: string | undefined = undefined;
 
-function setGlobalFlag(options: Record<string, any>, clients: SdkClient[]) {
-    isArm = clients[0].arm;
-    modelsMode = options["models-mode"] ?? (isArm ? "msrest" : "dpg");
+function addDefaultCalculatedOptions(
+    sdkContext: SdkContext,
+    options: PythonEmitterOptions & InternalPythonEmitterOptions,
+    yamlMap: Record<string, any>,
+) {
+    modelsMode = options["models-mode"] ?? (sdkContext.arm ? "msrest" : "dpg");
     options["models-mode"] = modelsMode;
+    if (options["generate-packaging-files"]) {
+        options["package-mode"] = sdkContext.arm ? "azure-mgmt" : "azure-dataplane";
+    }
+    if (!options["package-name"]) {
+        options["package-name"] = yamlMap["namespace"].replace(/\./g, "-");
+    }
+}
+
+interface InternalPythonEmitterOptions {
+    "package-mode"?: string;
 }
 
 export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     const program = context.program;
-    const resolvedOptions = { ...defaultOptions, ...context.options };
+    const resolvedOptions: PythonEmitterOptions & InternalPythonEmitterOptions = {
+        ...defaultOptions,
+        ...context.options,
+    };
+
     const sdkContext = createSdkContext(context);
     const clients = listClients(sdkContext);
-    setGlobalFlag(resolvedOptions, clients);
-
     const root = await resolveModuleRoot(program, "@autorest/python", dirname(fileURLToPath(import.meta.url)));
     const outputDir = context.emitterOutputDir;
     const yamlMap = emitCodeModel(sdkContext, clients);
     const yamlPath = await saveCodeModelAsYaml("typespec-python-yaml-map", yamlMap);
+    addDefaultCalculatedOptions(sdkContext, resolvedOptions, yamlMap);
     const commandArgs = [
         `${root}/run-python3.js`,
         `${root}/run_cadl.py`,
@@ -100,7 +115,7 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     if (resolvedOptions.debug) {
         commandArgs.push("--debug");
     }
-    if (isArm === true) {
+    if (sdkContext.arm === true) {
         commandArgs.push("--azure-arm=true");
     }
     commandArgs.push("--from-typespec=true");
@@ -225,14 +240,14 @@ function emitBodyParameter(context: SdkContext, httpOperation: HttpOperation): B
     };
 }
 
-function isSubscriptionId(param: Record<string, any>): boolean {
-    return isArm && param.wireName === "subscriptionId";
+function isSubscriptionId(context: SdkContext, param: Record<string, any>): boolean {
+    return Boolean(context.arm) && param.wireName === "subscriptionId";
 }
 
 function getDefaultApiVersionValue(context: SdkContext): string | undefined {
     const defaultApiVersion = getDefaultApiVersion(context, getServiceNamespace(context));
     if (!defaultApiVersion) {
-        if (isArm) {
+        if (context.arm) {
             const services = listServices(context.program);
             return services.length > 0 ? services[0].version : undefined;
         }
@@ -291,7 +306,7 @@ function emitParameter(
             clientDefaultValue = defaultApiVersion;
         }
     }
-    if (isSubscriptionId(paramMap)) {
+    if (isSubscriptionId(context, paramMap)) {
         paramMap.implementation = "Client";
     }
     return { clientDefaultValue, ...base, ...paramMap };
@@ -589,7 +604,7 @@ function emitBasicOperation(
         if (isApiVersion(context, param) && apiVersionParam === undefined) {
             apiVersionParam = emittedParam;
         }
-        if (isSubscriptionId(emittedParam) && subscriptionIdParam === undefined) {
+        if (isSubscriptionId(context, emittedParam) && subscriptionIdParam === undefined) {
             subscriptionIdParam = emittedParam;
         }
         parameters.push(emittedParam);
@@ -678,7 +693,7 @@ function emitOperationGroups(context: SdkContext, client: SdkClient): Record<str
     }
     const clientOperations: Map<string, Record<string, any>> = new Map<string, Record<string, any>>();
     for (const operation of listOperationsInOperationGroup(context, client)) {
-        const groupName = isArm ? operation.interface?.name ?? "" : "";
+        const groupName = context.arm ? operation.interface?.name ?? "" : "";
         const emittedOperation = emitOperation(context, operation, groupName);
         if (!clientOperations.has(groupName)) {
             clientOperations.set(groupName, {
@@ -743,7 +758,7 @@ function emitServerParams(context: SdkContext, namespace: Namespace): Record<str
         }
         return params;
     } else {
-        return [hostParam(isArm ? "base_url" : "endpoint", server.url)];
+        return [hostParam(context.arm ? "base_url" : "endpoint", server.url)];
     }
 }
 
@@ -860,9 +875,9 @@ function getNamespace(context: SdkContext, clientName: string): string {
     // We get client namespaces from the client name. If there's a dot, we add that to the namespace
     const submodule = clientName.split(".").slice(0, -1).join(".").toLowerCase();
     if (!submodule) {
-        return getClientNamespaceString(context)!.toLowerCase();
+        return removeUnderscoresFromNamespace(getClientNamespaceString(context)!.toLowerCase());
     }
-    return submodule;
+    return removeUnderscoresFromNamespace(submodule);
 }
 
 function getNamespaces(context: SdkContext): Set<string> {
@@ -874,7 +889,7 @@ function getNamespaces(context: SdkContext): Set<string> {
 }
 
 function emitCodeModel(sdkContext: SdkContext, clients: SdkClient[]) {
-    const clientNamespaceString = getClientNamespaceString(sdkContext)?.toLowerCase();
+    const clientNamespaceString = removeUnderscoresFromNamespace(getClientNamespaceString(sdkContext)?.toLowerCase());
     // Get types
     const codeModel: Record<string, any> = {
         namespace: clientNamespaceString,

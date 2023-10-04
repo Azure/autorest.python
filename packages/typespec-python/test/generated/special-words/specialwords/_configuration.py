@@ -24,7 +24,7 @@ class SpecialWordsClientConfiguration(Configuration):  # pylint: disable=too-man
     def __init__(self, **kwargs: Any) -> None:
         super(SpecialWordsClientConfiguration, self).__init__(**kwargs)
 
-        kwargs.setdefault("sdk_moniker", "specialwordsclient/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "specialwords/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:
