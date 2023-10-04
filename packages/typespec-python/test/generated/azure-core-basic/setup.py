@@ -12,8 +12,8 @@ import re
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "specs-azure-core-basic"
-PACKAGE_PPRINT_NAME = "Specs Azure Core Basic"
+PACKAGE_NAME = "_specs_-azure-core-basic"
+PACKAGE_PPRINT_NAME = "_specs_ Azure Core Basic"
 
 # a-b-c => a/b/c
 package_folder_path = PACKAGE_NAME.replace("-", "/")
@@ -54,9 +54,9 @@ setup(
         exclude=[
             "tests",
             # Exclude packages that will be covered by PEP420 or nspkg
-            "specs",
-            "specs.azure",
-            "specs.azure.core",
+            "_specs_",
+            "_specs_.azure",
+            "_specs_.azure.core",
         ]
     ),
     include_package_data=True,

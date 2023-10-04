@@ -31,7 +31,7 @@ class TraitsClientConfiguration(Configuration):  # pylint: disable=too-many-inst
         api_version: str = kwargs.pop("api_version", "2022-12-01-preview")
 
         self.api_version = api_version
-        kwargs.setdefault("sdk_moniker", "specs-azure-core-traits/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "_specs_-azure-core-traits/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

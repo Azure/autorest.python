@@ -80,7 +80,7 @@ function addDefaultCalculatedOptions(
         options["package-mode"] = sdkContext.arm ? "azure-mgmt" : "azure-dataplane";
     }
     if (!options["package-name"]) {
-        options["package-name"] = yamlMap["namespace"].replace(/_/g, "").replace(/\./g, "-");
+        options["package-name"] = yamlMap["namespace"].replace(/\./g, "-");
     }
 }
 
