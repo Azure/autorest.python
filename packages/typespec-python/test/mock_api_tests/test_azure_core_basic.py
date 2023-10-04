@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import pytest
 from typing import Iterable
-from _specs_.azure.core.basic import BasicClient, models
+from specs.azure.core.basic import BasicClient, models
 
 
 @pytest.fixture
