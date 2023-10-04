@@ -30,7 +30,7 @@ class SingleClientConfiguration(Configuration):  # pylint: disable=too-many-inst
             raise ValueError("Parameter 'endpoint' must not be None.")
 
         self.endpoint = endpoint
-        kwargs.setdefault("sdk_moniker", "singleclient/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "server-path-single/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

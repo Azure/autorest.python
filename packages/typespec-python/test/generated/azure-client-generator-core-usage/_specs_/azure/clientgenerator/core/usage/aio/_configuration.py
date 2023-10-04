@@ -24,7 +24,7 @@ class UsageClientConfiguration(Configuration):  # pylint: disable=too-many-insta
     def __init__(self, **kwargs: Any) -> None:
         super(UsageClientConfiguration, self).__init__(**kwargs)
 
-        kwargs.setdefault("sdk_moniker", "usageclient/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "specs-azure-clientgenerator-core-usage/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

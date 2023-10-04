@@ -35,7 +35,7 @@ class OAuth2ClientConfiguration(Configuration):  # pylint: disable=too-many-inst
 
         self.credential = credential
         self.credential_scopes = kwargs.pop("credential_scopes", ["https://security.microsoft.com/.default"])
-        kwargs.setdefault("sdk_moniker", "oauth2client/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "authentication-oauth2/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

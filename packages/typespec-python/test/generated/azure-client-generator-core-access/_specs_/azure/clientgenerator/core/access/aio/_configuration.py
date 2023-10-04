@@ -24,7 +24,7 @@ class AccessClientConfiguration(Configuration):  # pylint: disable=too-many-inst
     def __init__(self, **kwargs: Any) -> None:
         super(AccessClientConfiguration, self).__init__(**kwargs)
 
-        kwargs.setdefault("sdk_moniker", "accessclient/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "specs-azure-clientgenerator-core-access/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

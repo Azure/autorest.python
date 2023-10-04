@@ -24,7 +24,7 @@ class RepeatabilityClientConfiguration(Configuration):  # pylint: disable=too-ma
     def __init__(self, **kwargs: Any) -> None:
         super(RepeatabilityClientConfiguration, self).__init__(**kwargs)
 
-        kwargs.setdefault("sdk_moniker", "repeatabilityclient/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "specialheaders-repeatability/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

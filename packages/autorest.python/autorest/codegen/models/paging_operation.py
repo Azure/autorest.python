@@ -15,6 +15,7 @@ from .request_builder import (
 from .imports import ImportType, FileImport, TypingSection
 from .parameter_list import ParameterList
 from .model_type import ModelType
+from .list_type import ListType
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -63,11 +64,15 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
         self.pager_async: str = yaml_data["pagerAsync"]
 
     def _get_attr_name(self, wire_name: str) -> str:
-        response = self.responses[0]
+        response_type = self.responses[0].type
+        if not response_type:
+            raise ValueError(f"Can't find a matching property in response for {wire_name}")
+        if response_type.type == "list":
+            response_type = cast(ListType, response_type).element_type
         try:
             return next(
                 p.client_name
-                for p in cast(ModelType, response.type).properties
+                for p in cast(ModelType, response_type).properties
                 if p.wire_name == wire_name
             )
         except StopIteration as exc:

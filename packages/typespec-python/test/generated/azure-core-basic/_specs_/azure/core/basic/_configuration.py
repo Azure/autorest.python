@@ -31,7 +31,7 @@ class BasicClientConfiguration(Configuration):  # pylint: disable=too-many-insta
         api_version: str = kwargs.pop("api_version", "2022-12-01-preview")
 
         self.api_version = api_version
-        kwargs.setdefault("sdk_moniker", "basicclient/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "specs-azure-core-basic/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

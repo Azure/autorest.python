@@ -24,7 +24,7 @@ class DurationClientConfiguration(Configuration):  # pylint: disable=too-many-in
     def __init__(self, **kwargs: Any) -> None:
         super(DurationClientConfiguration, self).__init__(**kwargs)
 
-        kwargs.setdefault("sdk_moniker", "durationclient/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "encode-duration/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

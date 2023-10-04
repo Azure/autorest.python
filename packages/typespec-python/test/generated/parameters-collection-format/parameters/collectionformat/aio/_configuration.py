@@ -24,7 +24,7 @@ class CollectionFormatClientConfiguration(Configuration):  # pylint: disable=too
     def __init__(self, **kwargs: Any) -> None:
         super(CollectionFormatClientConfiguration, self).__init__(**kwargs)
 
-        kwargs.setdefault("sdk_moniker", "collectionformatclient/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "parameters-collectionformat/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

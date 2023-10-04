@@ -31,7 +31,7 @@ class ApiKeyClientConfiguration(Configuration):  # pylint: disable=too-many-inst
             raise ValueError("Parameter 'credential' must not be None.")
 
         self.credential = credential
-        kwargs.setdefault("sdk_moniker", "apikeyclient/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "authentication-apikey/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

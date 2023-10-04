@@ -24,7 +24,7 @@ class InternalClientConfiguration(Configuration):  # pylint: disable=too-many-in
     def __init__(self, **kwargs: Any) -> None:
         super(InternalClientConfiguration, self).__init__(**kwargs)
 
-        kwargs.setdefault("sdk_moniker", "internalclient/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "specs-azure-clientgenerator-core-internal/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:
