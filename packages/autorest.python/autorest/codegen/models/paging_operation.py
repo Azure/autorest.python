@@ -66,7 +66,9 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
     def _get_attr_name(self, wire_name: str) -> str:
         response_type = self.responses[0].type
         if not response_type:
-            raise ValueError(f"Can't find a matching property in response for {wire_name}")
+            raise ValueError(
+                f"Can't find a matching property in response for {wire_name}"
+            )
         if response_type.type == "list":
             response_type = cast(ListType, response_type).element_type
         try:
