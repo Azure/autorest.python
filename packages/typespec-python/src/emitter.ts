@@ -437,7 +437,6 @@ function emitResponse(context: SdkContext, response: HttpOperationResponse): Rec
                     type = getType(context, Array.from(body.properties.values())[0]);
                 }
                 if (modelsMode !== "msrest") {
-
                 } else {
                     type = getType(context, body);
                 }
