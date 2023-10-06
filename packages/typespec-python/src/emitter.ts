@@ -855,12 +855,7 @@ function emitClients(context: SdkContext, namespace: string, clients: SdkClient[
             emittedClient.parameters.push(emittedApiVersionParam);
         }
         if (subscriptionIdParam) {
-            const idx = emittedClient.parameters.findIndex((p) => p.clientName === "credential");
-            emittedClient.parameters = [
-                ...emittedClient.parameters.slice(0, idx + 1),
-                subscriptionIdParam,
-                ...emittedClient.parameters.slice(idx + 1),
-            ];
+            emittedClient.parameters.push(subscriptionIdParam);
         }
         retval.push(emittedClient);
     }

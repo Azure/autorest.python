@@ -28,11 +28,11 @@ class StorageManagementClient:  # pylint: disable=client-accepts-api-version-key
     :vartype storage_accounts: storageversiontolerant.operations.StorageAccountsOperations
     :ivar usage: UsageOperations operations
     :vartype usage: storageversiontolerant.operations.UsageOperations
+    :param credential: Credential needed for the client to connect to Azure. Required.
+    :type credential: ~azure.core.credentials.TokenCredential
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call. Required.
     :type subscription_id: str
-    :param credential: Credential needed for the client to connect to Azure. Required.
-    :type credential: ~azure.core.credentials.TokenCredential
     :param endpoint: Service URL. Default value is "https://management.azure.com".
     :type endpoint: str
     :keyword api_version: Api Version. Default value is "2015-05-01-preview". Note that overriding
@@ -44,13 +44,13 @@ class StorageManagementClient:  # pylint: disable=client-accepts-api-version-key
 
     def __init__(
         self,
-        subscription_id: str,
         credential: "TokenCredential",
+        subscription_id: str,
         endpoint: str = "https://management.azure.com",
         **kwargs: Any
     ) -> None:
         self._config = StorageManagementClientConfiguration(
-            subscription_id=subscription_id, credential=credential, **kwargs
+            credential=credential, subscription_id=subscription_id, **kwargs
         )
         self._client: ARMPipelineClient = ARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 

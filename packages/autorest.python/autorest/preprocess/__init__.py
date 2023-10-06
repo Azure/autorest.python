@@ -281,7 +281,8 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             yaml_data["description"], default_description=yaml_data["name"]
         )
         yaml_data["legacyFilename"] = to_snake_case(yaml_data["name"].replace(" ", "_"))
-        for parameter in yaml_data["parameters"]:
+        parameters = yaml_data["parameters"]
+        for parameter in parameters:
             self.update_parameter(parameter)
             if parameter["clientName"] == "credential":
                 policy = parameter["type"].get("policy")
@@ -295,6 +296,9 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                         "https://management.azure.com/.default"
                     ]
 
+        if self.azure_arm and parameters[-1]["clientName"] == "credential":
+            # we need to move credential to the front in mgmt mode for backcompat reasons
+            yaml_data["parameters"] = [parameters[-1]] + parameters[:-1]
         prop_name = yaml_data["name"]
         if prop_name.endswith("Client"):
             prop_name = prop_name[: len(prop_name) - len("Client")]
