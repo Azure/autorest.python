@@ -295,9 +295,11 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                     policy["credentialScopes"] = [
                         "https://management.azure.com/.default"
                     ]
-        if (not self.version_tolerant or self.azure_arm) and parameters[-1][
-            "clientName"
-        ] == "credential":
+        if (
+            (not self.version_tolerant or self.azure_arm)
+            and parameters
+            and parameters[-1]["clientName"] == "credential"
+        ):
             # we need to move credential to the front in mgmt mode for backcompat reasons
             yaml_data["parameters"] = [parameters[-1]] + parameters[:-1]
         prop_name = yaml_data["name"]
