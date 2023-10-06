@@ -25,21 +25,10 @@
 # --------------------------------------------------------------------------
 
 from async_generator import yield_, async_generator
-import unittest
-import subprocess
-import sys
-import isodate
-import tempfile
-import json
-from uuid import uuid4
-from datetime import date, datetime, timedelta
-import os
-from os.path import dirname, pardir, join, realpath
 
-from msrest.exceptions import DeserializationError, ValidationError
+from msrest.exceptions import ValidationError
 
 from azureparametergrouping.aio import AutoRestParameterGroupingTestService
-from subscriptionidapiversion.aio import MicrosoftAzureTestUrl
 from azurespecialproperties.aio import AutoRestAzureSpecialParametersTestClient
 
 import pytest
@@ -58,7 +47,7 @@ def valid_subscription():
 @async_generator
 async def azure_client(valid_subscription, credential, authentication_policy):
     async with AutoRestAzureSpecialParametersTestClient(
-        valid_subscription, credential, base_url="http://localhost:3000", authentication_policy=authentication_policy
+        credential, valid_subscription, base_url="http://localhost:3000", authentication_policy=authentication_policy
     ) as client:
         await yield_(client)
 
