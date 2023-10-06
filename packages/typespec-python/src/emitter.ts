@@ -67,15 +67,19 @@ const defaultOptions = {
     "generate-packaging-files": true,
 };
 
-export let modelsMode: string | undefined = undefined;
+export function getModelsMode(context: SdkContext) {
+    const specifiedModelsMode = context.program.getOption("models-mode");
+    if (specifiedModelsMode) return specifiedModelsMode;
+    if (context.arm) return "msrest";
+    return "dpg";
+}
 
 function addDefaultCalculatedOptions(
     sdkContext: SdkContext,
     options: PythonEmitterOptions & InternalPythonEmitterOptions,
     yamlMap: Record<string, any>,
 ) {
-    modelsMode = options["models-mode"] ?? (sdkContext.arm ? "msrest" : "dpg");
-    options["models-mode"] = modelsMode;
+    options["models-mode"] = getModelsMode(sdkContext);
     if (options["generate-packaging-files"]) {
         options["package-mode"] = sdkContext.arm ? "azure-mgmt" : "azure-dataplane";
     }
@@ -426,8 +430,14 @@ function emitResponse(context: SdkContext, response: HttpOperationResponse): Rec
     if (body) {
         if (body.kind === "Model") {
             if (body && body.decorators.find((d) => d.decorator.name === "$pagedResult")) {
-                if (modelsMode !== "msrest") {
+                const modelsMode = getModelsMode(context);
+                if (modelsMode === "msrest") {
+                    type = getType(context, body);
+                } else {
                     type = getType(context, Array.from(body.properties.values())[0]);
+                }
+                if (modelsMode !== "msrest") {
+
                 } else {
                     type = getType(context, body);
                 }

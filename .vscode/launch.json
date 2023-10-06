@@ -10,7 +10,7 @@
             "cwd": "${workspaceFolder}/packages/typespec-python",
             "args": [
                 "compile",
-                "${workspaceFolder}/packages/typespec-python/node_modules/@azure-tools/cadl-ranch-specs/http/parameters/spread",
+                "${workspaceFolder}/packages/typespec-python/test/specification/mgmt/sphere",
                  "--emit",
                  "${workspaceFolder}/packages/typespec-python/dist/src/index.js",
                  "--option=@azure-tools/typespec-python.debug=true"
