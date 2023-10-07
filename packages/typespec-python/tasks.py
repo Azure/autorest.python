@@ -27,7 +27,7 @@ PLUGIN_DIR = Path(os.path.dirname(__file__))
 PLUGIN = (PLUGIN_DIR / "dist/src/index.js").as_posix()
 CADL_RANCH_DIR = PLUGIN_DIR / Path("node_modules/@azure-tools/cadl-ranch-specs/http")
 LOCAL_SPECIFICATION_DIR = PLUGIN_DIR / Path("test/specification")
-ALL_SPECIFICATION_DIRS = [CADL_RANCH_DIR] #, LOCAL_SPECIFICATION_DIR]
+ALL_SPECIFICATION_DIRS = [CADL_RANCH_DIR, LOCAL_SPECIFICATION_DIR]
 SKIP_FOLDERS = ["type/model/inheritance/enum-discriminator"]
 EMITTER_OPTIONS = {
     "resiliency/srv-driven/old.tsp": {
@@ -109,7 +109,7 @@ EMITTER_OPTIONS = {
         "package-name": "client-structure-twooperationgroup",
     },
     "mgmt/sphere": [
-        {"package-name": "azure-mgmt-spheredpg", "models-mode": "dpg"},
+        # {"package-name": "azure-mgmt-spheredpg", "models-mode": "dpg"},
         {"package-name": "azure-mgmt-spheremsrest"},
     ]
 }
