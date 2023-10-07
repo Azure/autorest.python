@@ -1,5 +1,10 @@
 # Release
 
+### 2023-10-07 - 6.9.0
+
+**Other Changes**
+- Maintain old credential and subscription id ordering for azure arm generations for dpg #2161
+
 ### 2023-10-05 - 6.8.1
 
 | Library                                                                 | Min Version |
