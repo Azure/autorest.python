@@ -1,5 +1,11 @@
 # Release
 
+## 2023-10-07 - 0.15.1
+
+**Other Changes**
+
+- United DPG ordering for mgmt plane client parameters #2161
+
 ## 2023-10-05 - 0.15.0
 
 | Library                                                                 | Min Version   |
