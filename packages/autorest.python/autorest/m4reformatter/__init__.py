@@ -1126,10 +1126,7 @@ class M4Reformatter(
             "skipUrlEncoding": True,
             "inOverload": False,
         }
-        if self.version_tolerant:
-            parameters.append(credential)
-        else:
-            parameters.insert(0, credential)
+        parameters.append(credential)
 
     def update_client(self, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
         parameters = self.update_global_parameters(

@@ -1,5 +1,31 @@
 # Release
 
+## 2023-10-07 - 0.15.1
+
+**Other Changes**
+
+- United DPG ordering for mgmt plane client parameters #2161
+
+## 2023-10-05 - 0.15.0
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.48.0`      |
+| `@typespec/http`                                                        | `0.48.0`      |
+| `@typespec/rest`                                                        | `0.48.0`      |
+| `@typespec/versioning`                                                  | `0.48.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.34.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.35.0-dev.2`|
+| `azure-core` dep of generated code                                      | `1.28.0`      |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**New Features**
+
+- Add flag `generate-packaging-files` flag to tspconfig.yaml. On by default. Also no longer able to specify `package-mode`  #2157
+
 ## 2023-09-27 - 0.14.0
 
 | Library                                                                 | Min Version   |
