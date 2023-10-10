@@ -24,7 +24,7 @@ class BodyOptionalityClientConfiguration(Configuration):  # pylint: disable=too-
     def __init__(self, **kwargs: Any) -> None:
         super(BodyOptionalityClientConfiguration, self).__init__(**kwargs)
 
-        kwargs.setdefault("sdk_moniker", "bodyoptionalityclient/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "parameters-bodyoptionality/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

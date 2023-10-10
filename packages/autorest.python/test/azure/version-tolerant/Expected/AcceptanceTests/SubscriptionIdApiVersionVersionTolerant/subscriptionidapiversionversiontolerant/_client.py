@@ -26,10 +26,10 @@ class MicrosoftAzureTestUrl:  # pylint: disable=client-accepts-api-version-keywo
 
     :ivar group: GroupOperations operations
     :vartype group: subscriptionidapiversionversiontolerant.operations.GroupOperations
-    :param subscription_id: Subscription Id. Required.
-    :type subscription_id: str
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials.TokenCredential
+    :param subscription_id: Subscription Id. Required.
+    :type subscription_id: str
     :param endpoint: Service URL. Default value is "http://localhost:3000".
     :type endpoint: str
     :keyword api_version: Api Version. Default value is "2014-04-01-preview". Note that overriding
@@ -39,13 +39,13 @@ class MicrosoftAzureTestUrl:  # pylint: disable=client-accepts-api-version-keywo
 
     def __init__(
         self,
-        subscription_id: str,
         credential: "TokenCredential",
+        subscription_id: str,
         endpoint: str = "http://localhost:3000",
         **kwargs: Any
     ) -> None:
         self._config = MicrosoftAzureTestUrlConfiguration(
-            subscription_id=subscription_id, credential=credential, **kwargs
+            credential=credential, subscription_id=subscription_id, **kwargs
         )
         self._client: ARMPipelineClient = ARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
 

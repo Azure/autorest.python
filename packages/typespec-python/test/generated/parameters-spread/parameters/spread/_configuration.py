@@ -24,7 +24,7 @@ class SpreadClientConfiguration(Configuration):  # pylint: disable=too-many-inst
     def __init__(self, **kwargs: Any) -> None:
         super(SpreadClientConfiguration, self).__init__(**kwargs)
 
-        kwargs.setdefault("sdk_moniker", "spreadclient/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "parameters-spread/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

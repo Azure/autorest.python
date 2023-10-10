@@ -24,7 +24,7 @@ class BytesClientConfiguration(Configuration):  # pylint: disable=too-many-insta
     def __init__(self, **kwargs: Any) -> None:
         super(BytesClientConfiguration, self).__init__(**kwargs)
 
-        kwargs.setdefault("sdk_moniker", "bytesclient/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "encode-bytes/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:
