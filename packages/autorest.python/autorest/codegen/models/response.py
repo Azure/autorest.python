@@ -133,7 +133,6 @@ class Response(BaseModel):
     def need_rest_field(self) -> bool:
         return (
             isinstance(self.type, ByteArraySchema)
-            and self.default_content_type is not None
             and self.default_content_type == "application/json"
         )
 
