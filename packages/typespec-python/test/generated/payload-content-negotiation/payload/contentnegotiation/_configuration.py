@@ -26,7 +26,7 @@ class ContentNegotiationClientConfiguration(  # pylint: disable=too-many-instanc
     def __init__(self, **kwargs: Any) -> None:
         super(ContentNegotiationClientConfiguration, self).__init__(**kwargs)
 
-        kwargs.setdefault("sdk_moniker", "contentnegotiationclient/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "payload-contentnegotiation/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

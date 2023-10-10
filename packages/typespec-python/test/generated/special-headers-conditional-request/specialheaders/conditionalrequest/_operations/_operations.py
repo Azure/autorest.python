@@ -34,7 +34,7 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_conditional_request_post_if_match_request(  # pylint: disable=name-too-long
-    *, etag: Optional[str] = None, **kwargs: Any
+    *, etag: Optional[str] = None, match_condition: Optional[MatchConditions] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -45,12 +45,15 @@ def build_conditional_request_post_if_match_request(  # pylint: disable=name-too
     if_match = prep_if_match(etag, match_condition)
     if if_match is not None:
         _headers["If-Match"] = _SERIALIZER.header("if_match", if_match, "str")
+    if_none_match = prep_if_none_match(etag, match_condition)
+    if if_none_match is not None:
+        _headers["If-None-Match"] = _SERIALIZER.header("if_none_match", if_none_match, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 def build_conditional_request_post_if_none_match_request(  # pylint: disable=name-too-long
-    *, match_condition: Optional[MatchConditions] = None, **kwargs: Any
+    *, etag: Optional[str] = None, match_condition: Optional[MatchConditions] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -58,6 +61,9 @@ def build_conditional_request_post_if_none_match_request(  # pylint: disable=nam
     _url = "/special-headers/conditional-request/if-none-match"
 
     # Construct headers
+    if_match = prep_if_match(etag, match_condition)
+    if if_match is not None:
+        _headers["If-Match"] = _SERIALIZER.header("if_match", if_match, "str")
     if_none_match = prep_if_none_match(etag, match_condition)
     if if_none_match is not None:
         _headers["If-None-Match"] = _SERIALIZER.header("if_none_match", if_none_match, "str")
@@ -68,13 +74,15 @@ def build_conditional_request_post_if_none_match_request(  # pylint: disable=nam
 class ConditionalRequestClientOperationsMixin(ConditionalRequestClientMixinABC):
     @distributed_trace
     def post_if_match(  # pylint: disable=inconsistent-return-statements
-        self, *, etag: Optional[str] = None, **kwargs: Any
+        self, *, etag: Optional[str] = None, match_condition: Optional[MatchConditions] = None, **kwargs: Any
     ) -> None:
         """Check when only If-Match in header is defined.
 
         :keyword etag: check if resource is changed. Set None to skip checking etag. Default value is
          None.
         :paramtype etag: str
+        :keyword match_condition: The match condition to use upon the etag. Default value is None.
+        :paramtype match_condition: ~azure.core.MatchConditions
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: None
@@ -102,6 +110,7 @@ class ConditionalRequestClientOperationsMixin(ConditionalRequestClientMixinABC):
 
         request = build_conditional_request_post_if_match_request(
             etag=etag,
+            match_condition=match_condition,
             headers=_headers,
             params=_params,
         )
@@ -125,10 +134,13 @@ class ConditionalRequestClientOperationsMixin(ConditionalRequestClientMixinABC):
 
     @distributed_trace
     def post_if_none_match(  # pylint: disable=inconsistent-return-statements
-        self, *, match_condition: Optional[MatchConditions] = None, **kwargs: Any
+        self, *, etag: Optional[str] = None, match_condition: Optional[MatchConditions] = None, **kwargs: Any
     ) -> None:
         """Check when only If-None-Match in header is defined.
 
+        :keyword etag: check if resource is changed. Set None to skip checking etag. Default value is
+         None.
+        :paramtype etag: str
         :keyword match_condition: The match condition to use upon the etag. Default value is None.
         :paramtype match_condition: ~azure.core.MatchConditions
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
@@ -157,6 +169,7 @@ class ConditionalRequestClientOperationsMixin(ConditionalRequestClientMixinABC):
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_conditional_request_post_if_none_match_request(
+            etag=etag,
             match_condition=match_condition,
             headers=_headers,
             params=_params,

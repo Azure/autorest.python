@@ -71,7 +71,6 @@ class FlattencomplexOperations:
         cls: ClsType[_models.MyBaseType] = kwargs.pop("cls", None)
 
         request = build_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -95,5 +94,3 @@ class FlattencomplexOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_valid.metadata = {"url": "/complex/flatten/valid"}

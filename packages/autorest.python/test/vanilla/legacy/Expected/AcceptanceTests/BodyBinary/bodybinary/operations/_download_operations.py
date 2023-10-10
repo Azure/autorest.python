@@ -89,7 +89,6 @@ class DownloadOperations:
         cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
         request = build_error_stream_request(
-            template_url=self.error_stream.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -114,5 +113,3 @@ class DownloadOperations:
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
-
-    error_stream.metadata = {"url": "/binary/error"}

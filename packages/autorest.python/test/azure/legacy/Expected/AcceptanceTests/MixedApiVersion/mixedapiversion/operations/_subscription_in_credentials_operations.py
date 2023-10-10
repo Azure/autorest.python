@@ -193,7 +193,6 @@ class SubscriptionInCredentialsOperations:
 
         request = build_post_method_global_valid_request(
             subscription_id=self._config.subscription_id,
-            template_url=self.post_method_global_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -214,10 +213,6 @@ class SubscriptionInCredentialsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_method_global_valid.metadata = {
-        "url": "/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"
-    }
 
     @distributed_trace
     def post_method_global_null(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -244,7 +239,6 @@ class SubscriptionInCredentialsOperations:
 
         request = build_post_method_global_null_request(
             subscription_id=self._config.subscription_id,
-            template_url=self.post_method_global_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -265,10 +259,6 @@ class SubscriptionInCredentialsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_method_global_null.metadata = {
-        "url": "/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}"
-    }
 
     @distributed_trace
     def post_method_global_not_provided_valid(  # pylint: disable=inconsistent-return-statements
@@ -299,7 +289,6 @@ class SubscriptionInCredentialsOperations:
         request = build_post_method_global_not_provided_valid_request(
             subscription_id=self._config.subscription_id,
             api_version=api_version,
-            template_url=self.post_method_global_not_provided_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -320,10 +309,6 @@ class SubscriptionInCredentialsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_method_global_not_provided_valid.metadata = {
-        "url": "/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}"
-    }
 
     @distributed_trace
     def post_path_global_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -350,7 +335,6 @@ class SubscriptionInCredentialsOperations:
 
         request = build_post_path_global_valid_request(
             subscription_id=self._config.subscription_id,
-            template_url=self.post_path_global_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -371,10 +355,6 @@ class SubscriptionInCredentialsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_path_global_valid.metadata = {
-        "url": "/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"
-    }
 
     @distributed_trace
     def post_swagger_global_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -401,7 +381,6 @@ class SubscriptionInCredentialsOperations:
 
         request = build_post_swagger_global_valid_request(
             subscription_id=self._config.subscription_id,
-            template_url=self.post_swagger_global_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -422,7 +401,3 @@ class SubscriptionInCredentialsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_swagger_global_valid.metadata = {
-        "url": "/azurespecials/subscriptionId/swagger/string/none/path/global/1234-5678-9012-3456/{subscriptionId}"
-    }

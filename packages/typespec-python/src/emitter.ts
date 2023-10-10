@@ -37,6 +37,7 @@ import {
     isInternal,
     getPropertyNames,
     getEffectivePayloadType,
+    getAccess,
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
@@ -44,7 +45,7 @@ import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { execFileSync } from "child_process";
 import { PythonEmitterOptions } from "./lib.js";
-import { camelToSnakeCase } from "./utils.js";
+import { camelToSnakeCase, removeUnderscoresFromNamespace } from "./utils.js";
 import {
     CredentialType,
     CredentialTypeUnion,
@@ -62,30 +63,49 @@ interface HttpServerParameter {
 }
 
 const defaultOptions = {
-    "basic-setup-py": true,
     "package-version": "1.0.0b1",
+    "generate-packaging-files": true,
 };
 
-let isArm: boolean = false;
-export let modelsMode: string | undefined = undefined;
+export function getModelsMode(context: SdkContext) {
+    const specifiedModelsMode = context.program.getOption("models-mode");
+    if (specifiedModelsMode) return specifiedModelsMode;
+    if (context.arm) return "msrest";
+    return "dpg";
+}
 
-function setGlobalFlag(options: Record<string, any>, clients: SdkClient[]) {
-    isArm = clients[0].arm;
-    modelsMode = options["models-mode"] ?? (isArm ? "msrest" : "dpg");
-    options["models-mode"] = modelsMode;
+function addDefaultCalculatedOptions(
+    sdkContext: SdkContext,
+    options: PythonEmitterOptions & InternalPythonEmitterOptions,
+    yamlMap: Record<string, any>,
+) {
+    options["models-mode"] = getModelsMode(sdkContext);
+    if (options["generate-packaging-files"]) {
+        options["package-mode"] = sdkContext.arm ? "azure-mgmt" : "azure-dataplane";
+    }
+    if (!options["package-name"]) {
+        options["package-name"] = yamlMap["namespace"].replace(/\./g, "-");
+    }
+}
+
+interface InternalPythonEmitterOptions {
+    "package-mode"?: string;
 }
 
 export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     const program = context.program;
-    const resolvedOptions = { ...defaultOptions, ...context.options };
+    const resolvedOptions: PythonEmitterOptions & InternalPythonEmitterOptions = {
+        ...defaultOptions,
+        ...context.options,
+    };
+
     const sdkContext = createSdkContext(context);
     const clients = listClients(sdkContext);
-    setGlobalFlag(resolvedOptions, clients);
-
     const root = await resolveModuleRoot(program, "@autorest/python", dirname(fileURLToPath(import.meta.url)));
     const outputDir = context.emitterOutputDir;
     const yamlMap = emitCodeModel(sdkContext, clients);
     const yamlPath = await saveCodeModelAsYaml("typespec-python-yaml-map", yamlMap);
+    addDefaultCalculatedOptions(sdkContext, resolvedOptions, yamlMap);
     const commandArgs = [
         `${root}/run-python3.js`,
         `${root}/run_cadl.py`,
@@ -99,9 +119,10 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     if (resolvedOptions.debug) {
         commandArgs.push("--debug");
     }
-    if (isArm === true) {
+    if (sdkContext.arm === true) {
         commandArgs.push("--azure-arm=true");
     }
+    commandArgs.push("--from-typespec=true");
     if (!program.compilerOptions.noEmit && !program.hasError()) {
         execFileSync(process.execPath, commandArgs);
     }
@@ -140,7 +161,7 @@ function emitParamBase(context: SdkContext, parameter: ModelProperty | Type): Pa
 
     if (parameter.kind === "ModelProperty") {
         optional = parameter.optional;
-        name = parameter.name;
+        name = getLibraryName(context, parameter);
         description = getDocStr(context, parameter);
         addedOn = getAddedOnVersion(context, parameter);
     } else {
@@ -165,7 +186,7 @@ type BodyParameter = ParamBase & {
     defaultContentType: string;
 };
 
-function getBodyType(context: SdkContext, route: HttpOperation): Type {
+function getBodyType(context: SdkContext, route: HttpOperation): Record<string, any> {
     let bodyModel = route.parameters.body?.type;
     if (bodyModel && bodyModel.kind === "Model" && route.operation) {
         const resourceType = getResourceOperation(context.program, route.operation)?.resourceType;
@@ -192,7 +213,10 @@ function getBodyType(context: SdkContext, route: HttpOperation): Type {
             bodyModel = resourceType;
         }
     }
-    return bodyModel!;
+    if (bodyModel && bodyModel.kind === "Scalar") {
+        return getType(context, route.parameters.body!.parameter!);
+    }
+    return getType(context, bodyModel!);
 }
 
 function emitBodyParameter(context: SdkContext, httpOperation: HttpOperation): BodyParameter {
@@ -203,7 +227,7 @@ function emitBodyParameter(context: SdkContext, httpOperation: HttpOperation): B
     if (contentTypes.length === 0) {
         contentTypes = ["application/json"];
     }
-    const type = getType(context, getBodyType(context, httpOperation));
+    const type = getBodyType(context, httpOperation);
 
     if (type.type === "model" && type.name === "") {
         type.name = capitalize(httpOperation.operation.name) + "Request";
@@ -220,14 +244,14 @@ function emitBodyParameter(context: SdkContext, httpOperation: HttpOperation): B
     };
 }
 
-function isSubscriptionId(param: Record<string, any>): boolean {
-    return isArm && param.wireName === "subscriptionId";
+function isSubscriptionId(context: SdkContext, param: Record<string, any>): boolean {
+    return Boolean(context.arm) && param.wireName === "subscriptionId";
 }
 
 function getDefaultApiVersionValue(context: SdkContext): string | undefined {
     const defaultApiVersion = getDefaultApiVersion(context, getServiceNamespace(context));
     if (!defaultApiVersion) {
-        if (isArm) {
+        if (context.arm) {
             const services = listServices(context.program);
             return services.length > 0 ? services[0].version : undefined;
         }
@@ -286,7 +310,7 @@ function emitParameter(
             clientDefaultValue = defaultApiVersion;
         }
     }
-    if (isSubscriptionId(paramMap)) {
+    if (isSubscriptionId(context, paramMap)) {
         paramMap.implementation = "Client";
     }
     return { clientDefaultValue, ...base, ...paramMap };
@@ -406,8 +430,13 @@ function emitResponse(context: SdkContext, response: HttpOperationResponse): Rec
     if (body) {
         if (body.kind === "Model") {
             if (body && body.decorators.find((d) => d.decorator.name === "$pagedResult")) {
-                if (modelsMode !== "msrest") {
+                const modelsMode = getModelsMode(context);
+                if (modelsMode === "msrest") {
+                    type = getType(context, body);
+                } else {
                     type = getType(context, Array.from(body.properties.values())[0]);
+                }
+                if (modelsMode !== "msrest") {
                 } else {
                     type = getType(context, body);
                 }
@@ -458,8 +487,8 @@ function addLroInformation(
     const lroMeta = getLroMetadata(context.program, tspOperation);
     if (!isAzureCoreModel(lroMeta!.logicalResult)) {
         emittedOperation["responses"][0]["type"] = getType(context, lroMeta!.logicalResult);
-        if (lroMeta!.finalStep?.target.kind === "ModelProperty") {
-            emittedOperation["responses"][0]["resultProperty"] = lroMeta!.finalStep.target.name;
+        if (lroMeta!.logicalPath) {
+            emittedOperation["responses"][0]["resultProperty"] = lroMeta!.logicalPath;
         }
         addAcceptParameter(context, tspOperation, emittedOperation["parameters"]);
         addAcceptParameter(context, lroMeta!.operation, emittedOperation["initialOperation"]["parameters"]);
@@ -474,9 +503,11 @@ function addPagingInformation(context: SdkContext, operation: Operation, emitted
     if (!isAzureCoreModel(pagedResult.modelType)) {
         getType(context, pagedResult.modelType)["pageResultModel"] = true;
     }
-    emittedOperation["itemName"] = pagedResult.itemsPath;
+    emittedOperation["itemName"] = pagedResult.itemsSegments ? pagedResult.itemsSegments.join(".") : null;
     emittedOperation["itemType"] = getType(context, pagedResult.itemsProperty!.type);
-    emittedOperation["continuationTokenName"] = pagedResult.nextLinkPath;
+    emittedOperation["continuationTokenName"] = pagedResult.nextLinkSegments
+        ? pagedResult.nextLinkSegments.join(".")
+        : null;
     emittedOperation["exposeStreamKeyword"] = false;
 }
 
@@ -582,7 +613,7 @@ function emitBasicOperation(
         if (isApiVersion(context, param) && apiVersionParam === undefined) {
             apiVersionParam = emittedParam;
         }
-        if (isSubscriptionId(emittedParam) && subscriptionIdParam === undefined) {
+        if (isSubscriptionId(context, emittedParam) && subscriptionIdParam === undefined) {
             subscriptionIdParam = emittedParam;
         }
         parameters.push(emittedParam);
@@ -646,7 +677,7 @@ function emitBasicOperation(
             wantTracing: true,
             exposeStreamKeyword: true,
             abstract: isAbstract(httpOperation),
-            internal: isInternal(context, operation),
+            internal: isInternal(context, operation) || getAccess(context, operation) === "internal",
         },
     ];
 }
@@ -671,7 +702,7 @@ function emitOperationGroups(context: SdkContext, client: SdkClient): Record<str
     }
     const clientOperations: Map<string, Record<string, any>> = new Map<string, Record<string, any>>();
     for (const operation of listOperationsInOperationGroup(context, client)) {
-        const groupName = isArm ? operation.interface?.name ?? "" : "";
+        const groupName = context.arm ? operation.interface?.name ?? "" : "";
         const emittedOperation = emitOperation(context, operation, groupName);
         if (!clientOperations.has(groupName)) {
             clientOperations.set(groupName, {
@@ -736,7 +767,7 @@ function emitServerParams(context: SdkContext, namespace: Namespace): Record<str
         }
         return params;
     } else {
-        return [hostParam(isArm ? "base_url" : "endpoint", server.url)];
+        return [hostParam(context.arm ? "base_url" : "endpoint", server.url)];
     }
 }
 
@@ -833,7 +864,7 @@ function emitClients(context: SdkContext, namespace: string, clients: SdkClient[
             emittedClient.parameters.push(emittedApiVersionParam);
         }
         if (subscriptionIdParam) {
-            emittedClient.parameters.unshift(subscriptionIdParam);
+            emittedClient.parameters.push(subscriptionIdParam);
         }
         retval.push(emittedClient);
     }
@@ -848,9 +879,9 @@ function getNamespace(context: SdkContext, clientName: string): string {
     // We get client namespaces from the client name. If there's a dot, we add that to the namespace
     const submodule = clientName.split(".").slice(0, -1).join(".").toLowerCase();
     if (!submodule) {
-        return getClientNamespaceString(context)!.toLowerCase();
+        return removeUnderscoresFromNamespace(getClientNamespaceString(context)!.toLowerCase());
     }
-    return submodule;
+    return removeUnderscoresFromNamespace(submodule);
 }
 
 function getNamespaces(context: SdkContext): Set<string> {
@@ -862,7 +893,7 @@ function getNamespaces(context: SdkContext): Set<string> {
 }
 
 function emitCodeModel(sdkContext: SdkContext, clients: SdkClient[]) {
-    const clientNamespaceString = getClientNamespaceString(sdkContext)?.toLowerCase();
+    const clientNamespaceString = removeUnderscoresFromNamespace(getClientNamespaceString(sdkContext)?.toLowerCase());
     // Get types
     const codeModel: Record<string, any> = {
         namespace: clientNamespaceString,

@@ -21,18 +21,24 @@ class ServiceClientConfiguration(Configuration):  # pylint: disable=too-many-ins
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param client: Known values are: "default", "multi-client", "renamed-operation", and
-     "two-operation-group". Required.
+    :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
+    :type endpoint: str
+    :param client: Need to be set as 'default', 'multi-client', 'renamed-operation',
+     'two-operation-group' in client. Known values are: "default", "multi-client",
+     "renamed-operation", and "two-operation-group". Required.
     :type client: str or ~client.structure.service.models.ClientType
     """
 
-    def __init__(self, client: Union[str, _models.ClientType], **kwargs: Any) -> None:
+    def __init__(self, endpoint: str, client: Union[str, _models.ClientType], **kwargs: Any) -> None:
         super(ServiceClientConfiguration, self).__init__(**kwargs)
+        if endpoint is None:
+            raise ValueError("Parameter 'endpoint' must not be None.")
         if client is None:
             raise ValueError("Parameter 'client' must not be None.")
 
+        self.endpoint = endpoint
         self.client = client
-        kwargs.setdefault("sdk_moniker", "serviceclient/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "client-structure-service/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

@@ -161,7 +161,6 @@ class ApiVersionLocalOperations:
 
         request = build_get_method_local_valid_request(
             api_version=api_version,
-            template_url=self.get_method_local_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -182,8 +181,6 @@ class ApiVersionLocalOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_method_local_valid.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/local/2.0"}
 
     @distributed_trace
     def get_method_local_null(  # pylint: disable=inconsistent-return-statements
@@ -214,7 +211,6 @@ class ApiVersionLocalOperations:
 
         request = build_get_method_local_null_request(
             api_version=api_version,
-            template_url=self.get_method_local_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -235,8 +231,6 @@ class ApiVersionLocalOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_method_local_null.metadata = {"url": "/azurespecials/apiVersion/method/string/none/query/local/null"}
 
     @distributed_trace
     def get_path_local_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -266,7 +260,6 @@ class ApiVersionLocalOperations:
 
         request = build_get_path_local_valid_request(
             api_version=api_version,
-            template_url=self.get_path_local_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -287,8 +280,6 @@ class ApiVersionLocalOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_path_local_valid.metadata = {"url": "/azurespecials/apiVersion/path/string/none/query/local/2.0"}
 
     @distributed_trace
     def get_swagger_local_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -319,7 +310,6 @@ class ApiVersionLocalOperations:
 
         request = build_get_swagger_local_valid_request(
             api_version=api_version,
-            template_url=self.get_swagger_local_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -340,5 +330,3 @@ class ApiVersionLocalOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_swagger_local_valid.metadata = {"url": "/azurespecials/apiVersion/swagger/string/none/query/local/2.0"}

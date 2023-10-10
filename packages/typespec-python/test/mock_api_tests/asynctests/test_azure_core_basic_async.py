@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import pytest
 from typing import AsyncIterable
-from _specs_.azure.core.basic import models, aio
+from specs.azure.core.basic import models, aio
 
 
 @pytest.fixture

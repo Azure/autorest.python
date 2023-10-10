@@ -108,7 +108,7 @@ class Operations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.OperationListResult] = kwargs.pop("cls", None)
+        cls: ClsType[_models.PagedOperation] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -146,7 +146,7 @@ class Operations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("OperationListResult", pipeline_response)
+            deserialized = self._deserialize("PagedOperation", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
@@ -193,7 +193,7 @@ class CatalogsOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get(self, resource_group_name: str, catalog_name: str, **kwargs: Any) -> _models.TrackedResource:
+    async def get(self, resource_group_name: str, catalog_name: str, **kwargs: Any) -> _models.Catalog:
         """Get a Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -203,8 +203,8 @@ class CatalogsOperations:
         :type catalog_name: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: TrackedResource
-        :rtype: ~azure.mgmt.spheremsrest.models.TrackedResource
+        :return: Catalog
+        :rtype: ~azure.mgmt.spheremsrest.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -218,7 +218,7 @@ class CatalogsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.TrackedResource] = kwargs.pop("cls", None)
+        cls: ClsType[_models.Catalog] = kwargs.pop("cls", None)
 
         request = build_catalogs_get_request(
             resource_group_name=resource_group_name,
@@ -247,7 +247,7 @@ class CatalogsOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = self._deserialize("TrackedResource", pipeline_response)
+            deserialized = self._deserialize("Catalog", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -259,11 +259,11 @@ class CatalogsOperations:
         self,
         resource_group_name: str,
         catalog_name: str,
-        resource: _models.TrackedResource,
+        resource: _models.Catalog,
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> _models.TrackedResource:
+    ) -> _models.Catalog:
         """Create a Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -272,14 +272,14 @@ class CatalogsOperations:
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
         :param resource: Resource create parameters. Required.
-        :type resource: ~azure.mgmt.spheremsrest.models.TrackedResource
+        :type resource: ~azure.mgmt.spheremsrest.models.Catalog
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: TrackedResource
-        :rtype: ~azure.mgmt.spheremsrest.models.TrackedResource
+        :return: Catalog
+        :rtype: ~azure.mgmt.spheremsrest.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -292,7 +292,7 @@ class CatalogsOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> _models.TrackedResource:
+    ) -> _models.Catalog:
         """Create a Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -307,15 +307,15 @@ class CatalogsOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: TrackedResource
-        :rtype: ~azure.mgmt.spheremsrest.models.TrackedResource
+        :return: Catalog
+        :rtype: ~azure.mgmt.spheremsrest.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace_async
     async def create_or_update(
-        self, resource_group_name: str, catalog_name: str, resource: Union[_models.TrackedResource, IO], **kwargs: Any
-    ) -> _models.TrackedResource:
+        self, resource_group_name: str, catalog_name: str, resource: Union[_models.Catalog, IO], **kwargs: Any
+    ) -> _models.Catalog:
         """Create a Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -323,16 +323,15 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param resource: Resource create parameters. Is either a TrackedResource type or a IO type.
-         Required.
-        :type resource: ~azure.mgmt.spheremsrest.models.TrackedResource or IO
+        :param resource: Resource create parameters. Is either a Catalog type or a IO type. Required.
+        :type resource: ~azure.mgmt.spheremsrest.models.Catalog or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: TrackedResource
-        :rtype: ~azure.mgmt.spheremsrest.models.TrackedResource
+        :return: Catalog
+        :rtype: ~azure.mgmt.spheremsrest.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -347,7 +346,7 @@ class CatalogsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.TrackedResource] = kwargs.pop("cls", None)
+        cls: ClsType[_models.Catalog] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -355,7 +354,7 @@ class CatalogsOperations:
         if isinstance(resource, (IOBase, bytes)):
             _content = resource
         else:
-            _json = self._serialize.body(resource, "TrackedResource")
+            _json = self._serialize.body(resource, "Catalog")
 
         request = build_catalogs_create_or_update_request(
             resource_group_name=resource_group_name,
@@ -389,7 +388,7 @@ class CatalogsOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = self._deserialize("TrackedResource", pipeline_response)
+                deserialized = self._deserialize("Catalog", pipeline_response)
 
         if response.status_code == 201:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -397,7 +396,7 @@ class CatalogsOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = self._deserialize("TrackedResource", pipeline_response)
+                deserialized = self._deserialize("Catalog", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -409,11 +408,11 @@ class CatalogsOperations:
         self,
         resource_group_name: str,
         catalog_name: str,
-        properties: _models.ResourceUpdateModel,
+        properties: _models.CatalogUpdate,
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> _models.TrackedResource:
+    ) -> _models.Catalog:
         """Update a Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -422,14 +421,14 @@ class CatalogsOperations:
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
         :param properties: The resource properties to be updated. Required.
-        :type properties: ~azure.mgmt.spheremsrest.models.ResourceUpdateModel
+        :type properties: ~azure.mgmt.spheremsrest.models.CatalogUpdate
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: TrackedResource
-        :rtype: ~azure.mgmt.spheremsrest.models.TrackedResource
+        :return: Catalog
+        :rtype: ~azure.mgmt.spheremsrest.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -442,7 +441,7 @@ class CatalogsOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> _models.TrackedResource:
+    ) -> _models.Catalog:
         """Update a Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -457,19 +456,15 @@ class CatalogsOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: TrackedResource
-        :rtype: ~azure.mgmt.spheremsrest.models.TrackedResource
+        :return: Catalog
+        :rtype: ~azure.mgmt.spheremsrest.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace_async
     async def update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        properties: Union[_models.ResourceUpdateModel, IO],
-        **kwargs: Any
-    ) -> _models.TrackedResource:
+        self, resource_group_name: str, catalog_name: str, properties: Union[_models.CatalogUpdate, IO], **kwargs: Any
+    ) -> _models.Catalog:
         """Update a Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -477,16 +472,16 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param properties: The resource properties to be updated. Is either a ResourceUpdateModel type
-         or a IO type. Required.
-        :type properties: ~azure.mgmt.spheremsrest.models.ResourceUpdateModel or IO
+        :param properties: The resource properties to be updated. Is either a CatalogUpdate type or a
+         IO type. Required.
+        :type properties: ~azure.mgmt.spheremsrest.models.CatalogUpdate or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: TrackedResource
-        :rtype: ~azure.mgmt.spheremsrest.models.TrackedResource
+        :return: Catalog
+        :rtype: ~azure.mgmt.spheremsrest.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -501,7 +496,7 @@ class CatalogsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.TrackedResource] = kwargs.pop("cls", None)
+        cls: ClsType[_models.Catalog] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -509,7 +504,7 @@ class CatalogsOperations:
         if isinstance(properties, (IOBase, bytes)):
             _content = properties
         else:
-            _json = self._serialize.body(properties, "ResourceUpdateModel")
+            _json = self._serialize.body(properties, "CatalogUpdate")
 
         request = build_catalogs_update_request(
             resource_group_name=resource_group_name,
@@ -541,7 +536,7 @@ class CatalogsOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = self._deserialize("TrackedResource", pipeline_response)
+            deserialized = self._deserialize("Catalog", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -611,23 +606,20 @@ class CatalogsOperations:
             return cls(pipeline_response, None, response_headers)
 
     @distributed_trace
-    def list_by_resource_group(
-        self, resource_group_name: str, **kwargs: Any
-    ) -> AsyncIterable["_models.TrackedResource"]:
+    def list_by_resource_group(self, resource_group_name: str, **kwargs: Any) -> AsyncIterable["_models.Catalog"]:
         """List Catalog resources by resource group.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
          Required.
         :type resource_group_name: str
-        :return: An iterator like instance of TrackedResource
-        :rtype:
-         ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.TrackedResource]
+        :return: An iterator like instance of Catalog
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.Catalog]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ResourceListResult] = kwargs.pop("cls", None)
+        cls: ClsType[_models.CatalogListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -667,7 +659,7 @@ class CatalogsOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ResourceListResult", pipeline_response)
+            deserialized = self._deserialize("CatalogListResult", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
@@ -694,18 +686,17 @@ class CatalogsOperations:
         return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def list_by_subscription(self, **kwargs: Any) -> AsyncIterable["_models.TrackedResource"]:
+    def list_by_subscription(self, **kwargs: Any) -> AsyncIterable["_models.Catalog"]:
         """List Catalog resources by subscription ID.
 
-        :return: An iterator like instance of TrackedResource
-        :rtype:
-         ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.TrackedResource]
+        :return: An iterator like instance of Catalog
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.Catalog]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ResourceListResult] = kwargs.pop("cls", None)
+        cls: ClsType[_models.CatalogListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -744,7 +735,7 @@ class CatalogsOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ResourceListResult", pipeline_response)
+            deserialized = self._deserialize("CatalogListResult", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
@@ -865,7 +856,8 @@ class CatalogsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.Page] = kwargs.pop("cls", None)
+        maxpagesize = kwargs.pop("maxpagesize", None)
+        cls: ClsType[_models.PagedDeviceInsight] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -885,6 +877,7 @@ class CatalogsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -909,7 +902,7 @@ class CatalogsOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("Page", pipeline_response)
+            deserialized = self._deserialize("PagedDeviceInsight", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
@@ -945,7 +938,7 @@ class CatalogsOperations:
         top: Optional[int] = None,
         skip: Optional[int] = None,
         **kwargs: Any
-    ) -> AsyncIterable["_models.ProxyResource"]:
+    ) -> AsyncIterable["_models.Device"]:
         """Lists devices for catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -959,14 +952,15 @@ class CatalogsOperations:
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
-        :return: An iterator like instance of ProxyResource
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.ProxyResource]
+        :return: An iterator like instance of Device
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.Device]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ResourceListResult] = kwargs.pop("cls", None)
+        maxpagesize = kwargs.pop("maxpagesize", None)
+        cls: ClsType[_models.DeviceListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -986,6 +980,7 @@ class CatalogsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -1010,7 +1005,7 @@ class CatalogsOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ResourceListResult", pipeline_response)
+            deserialized = self._deserialize("DeviceListResult", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
@@ -1046,7 +1041,7 @@ class CatalogsOperations:
         top: Optional[int] = None,
         skip: Optional[int] = None,
         **kwargs: Any
-    ) -> AsyncIterable["_models.ProxyResource"]:
+    ) -> AsyncIterable["_models.Deployment"]:
         """Lists deployments for catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1060,14 +1055,15 @@ class CatalogsOperations:
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
-        :return: An iterator like instance of ProxyResource
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.ProxyResource]
+        :return: An iterator like instance of Deployment
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.Deployment]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ResourceListResult] = kwargs.pop("cls", None)
+        maxpagesize = kwargs.pop("maxpagesize", None)
+        cls: ClsType[_models.DeploymentListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -1087,6 +1083,7 @@ class CatalogsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -1111,7 +1108,7 @@ class CatalogsOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ResourceListResult", pipeline_response)
+            deserialized = self._deserialize("DeploymentListResult", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
@@ -1142,14 +1139,14 @@ class CatalogsOperations:
         self,
         resource_group_name: str,
         catalog_name: str,
-        list_device_groups_request: _models.ListDeviceGroupsRequest,
+        parameters: _models.ListDeviceGroupsRequest,
         *,
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> AsyncIterable["_models.ProxyResource"]:
+    ) -> AsyncIterable["_models.DeviceGroup"]:
         """List the device groups for the catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1157,8 +1154,8 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param list_device_groups_request: List device groups for catalog. Required.
-        :type list_device_groups_request: ~azure.mgmt.spheremsrest.models.ListDeviceGroupsRequest
+        :param parameters: List device groups for catalog. Required.
+        :type parameters: ~azure.mgmt.spheremsrest.models.ListDeviceGroupsRequest
         :keyword filter: Filter the result list using the given expression. Default value is None.
         :paramtype filter: str
         :keyword top: The number of result items to return. Default value is None.
@@ -1168,8 +1165,8 @@ class CatalogsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: An iterator like instance of ProxyResource
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.ProxyResource]
+        :return: An iterator like instance of DeviceGroup
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.DeviceGroup]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -1178,14 +1175,14 @@ class CatalogsOperations:
         self,
         resource_group_name: str,
         catalog_name: str,
-        list_device_groups_request: IO,
+        parameters: IO,
         *,
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> AsyncIterable["_models.ProxyResource"]:
+    ) -> AsyncIterable["_models.DeviceGroup"]:
         """List the device groups for the catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1193,8 +1190,8 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param list_device_groups_request: List device groups for catalog. Required.
-        :type list_device_groups_request: IO
+        :param parameters: List device groups for catalog. Required.
+        :type parameters: IO
         :keyword filter: Filter the result list using the given expression. Default value is None.
         :paramtype filter: str
         :keyword top: The number of result items to return. Default value is None.
@@ -1204,8 +1201,8 @@ class CatalogsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: An iterator like instance of ProxyResource
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.ProxyResource]
+        :return: An iterator like instance of DeviceGroup
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.DeviceGroup]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -1214,13 +1211,13 @@ class CatalogsOperations:
         self,
         resource_group_name: str,
         catalog_name: str,
-        list_device_groups_request: Union[_models.ListDeviceGroupsRequest, IO],
+        parameters: Union[_models.ListDeviceGroupsRequest, IO],
         *,
         filter: Optional[str] = None,
         top: Optional[int] = None,
         skip: Optional[int] = None,
         **kwargs: Any
-    ) -> AsyncIterable["_models.ProxyResource"]:
+    ) -> AsyncIterable["_models.DeviceGroup"]:
         """List the device groups for the catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1228,9 +1225,9 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param list_device_groups_request: List device groups for catalog. Is either a
-         ListDeviceGroupsRequest type or a IO type. Required.
-        :type list_device_groups_request: ~azure.mgmt.spheremsrest.models.ListDeviceGroupsRequest or IO
+        :param parameters: List device groups for catalog. Is either a ListDeviceGroupsRequest type or
+         a IO type. Required.
+        :type parameters: ~azure.mgmt.spheremsrest.models.ListDeviceGroupsRequest or IO
         :keyword filter: Filter the result list using the given expression. Default value is None.
         :paramtype filter: str
         :keyword top: The number of result items to return. Default value is None.
@@ -1240,15 +1237,16 @@ class CatalogsOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :return: An iterator like instance of ProxyResource
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.ProxyResource]
+        :return: An iterator like instance of DeviceGroup
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.DeviceGroup]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.ResourceListResult] = kwargs.pop("cls", None)
+        maxpagesize = kwargs.pop("maxpagesize", None)
+        cls: ClsType[_models.DeviceGroupListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -1260,10 +1258,10 @@ class CatalogsOperations:
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(list_device_groups_request, (IOBase, bytes)):
-            _content = list_device_groups_request
+        if isinstance(parameters, (IOBase, bytes)):
+            _content = parameters
         else:
-            _json = self._serialize.body(list_device_groups_request, "ListDeviceGroupsRequest")
+            _json = self._serialize.body(parameters, "ListDeviceGroupsRequest")
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -1275,6 +1273,7 @@ class CatalogsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     content_type=content_type,
                     api_version=self._config.api_version,
                     json=_json,
@@ -1302,7 +1301,7 @@ class CatalogsOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ResourceListResult", pipeline_response)
+            deserialized = self._deserialize("DeviceGroupListResult", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
@@ -1349,9 +1348,7 @@ class ImagesOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get(
-        self, resource_group_name: str, catalog_name: str, image_name: str, **kwargs: Any
-    ) -> _models.ProxyResource:
+    async def get(self, resource_group_name: str, catalog_name: str, image_name: str, **kwargs: Any) -> _models.Image:
         """Get a Image.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1363,8 +1360,8 @@ class ImagesOperations:
         :type image_name: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProxyResource
-        :rtype: ~azure.mgmt.spheremsrest.models.ProxyResource
+        :return: Image
+        :rtype: ~azure.mgmt.spheremsrest.models.Image
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -1378,7 +1375,7 @@ class ImagesOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ProxyResource] = kwargs.pop("cls", None)
+        cls: ClsType[_models.Image] = kwargs.pop("cls", None)
 
         request = build_images_get_request(
             resource_group_name=resource_group_name,
@@ -1408,7 +1405,7 @@ class ImagesOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = self._deserialize("ProxyResource", pipeline_response)
+            deserialized = self._deserialize("Image", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1425,7 +1422,7 @@ class ImagesOperations:
         top: Optional[int] = None,
         skip: Optional[int] = None,
         **kwargs: Any
-    ) -> AsyncIterable["_models.ProxyResource"]:
+    ) -> AsyncIterable["_models.Image"]:
         """List Image resources by Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1439,14 +1436,15 @@ class ImagesOperations:
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
-        :return: An iterator like instance of ProxyResource
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.ProxyResource]
+        :return: An iterator like instance of Image
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.Image]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ResourceListResult] = kwargs.pop("cls", None)
+        maxpagesize = kwargs.pop("maxpagesize", None)
+        cls: ClsType[_models.ImageListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -1466,6 +1464,7 @@ class ImagesOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -1490,7 +1489,7 @@ class ImagesOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ResourceListResult", pipeline_response)
+            deserialized = self._deserialize("ImageListResult", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
@@ -1522,11 +1521,11 @@ class ImagesOperations:
         resource_group_name: str,
         catalog_name: str,
         image_name: str,
-        resource: _models.ProxyResource,
+        resource: _models.Image,
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> _models.ProxyResource:
+    ) -> _models.Image:
         """Create a Image.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1537,14 +1536,14 @@ class ImagesOperations:
         :param image_name: Image name. Use .default for image creation. Required.
         :type image_name: str
         :param resource: Resource create parameters. Required.
-        :type resource: ~azure.mgmt.spheremsrest.models.ProxyResource
+        :type resource: ~azure.mgmt.spheremsrest.models.Image
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProxyResource
-        :rtype: ~azure.mgmt.spheremsrest.models.ProxyResource
+        :return: Image
+        :rtype: ~azure.mgmt.spheremsrest.models.Image
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -1558,7 +1557,7 @@ class ImagesOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> _models.ProxyResource:
+    ) -> _models.Image:
         """Create a Image.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1575,8 +1574,8 @@ class ImagesOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProxyResource
-        :rtype: ~azure.mgmt.spheremsrest.models.ProxyResource
+        :return: Image
+        :rtype: ~azure.mgmt.spheremsrest.models.Image
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -1586,9 +1585,9 @@ class ImagesOperations:
         resource_group_name: str,
         catalog_name: str,
         image_name: str,
-        resource: Union[_models.ProxyResource, IO],
+        resource: Union[_models.Image, IO],
         **kwargs: Any
-    ) -> _models.ProxyResource:
+    ) -> _models.Image:
         """Create a Image.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1598,16 +1597,15 @@ class ImagesOperations:
         :type catalog_name: str
         :param image_name: Image name. Use .default for image creation. Required.
         :type image_name: str
-        :param resource: Resource create parameters. Is either a ProxyResource type or a IO type.
-         Required.
-        :type resource: ~azure.mgmt.spheremsrest.models.ProxyResource or IO
+        :param resource: Resource create parameters. Is either a Image type or a IO type. Required.
+        :type resource: ~azure.mgmt.spheremsrest.models.Image or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProxyResource
-        :rtype: ~azure.mgmt.spheremsrest.models.ProxyResource
+        :return: Image
+        :rtype: ~azure.mgmt.spheremsrest.models.Image
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -1622,7 +1620,7 @@ class ImagesOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.ProxyResource] = kwargs.pop("cls", None)
+        cls: ClsType[_models.Image] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -1630,7 +1628,7 @@ class ImagesOperations:
         if isinstance(resource, (IOBase, bytes)):
             _content = resource
         else:
-            _json = self._serialize.body(resource, "ProxyResource")
+            _json = self._serialize.body(resource, "Image")
 
         request = build_images_create_or_update_request(
             resource_group_name=resource_group_name,
@@ -1665,7 +1663,7 @@ class ImagesOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = self._deserialize("ProxyResource", pipeline_response)
+                deserialized = self._deserialize("Image", pipeline_response)
 
         if response.status_code == 201:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -1673,7 +1671,7 @@ class ImagesOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = self._deserialize("ProxyResource", pipeline_response)
+                deserialized = self._deserialize("Image", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -1776,7 +1774,7 @@ class DeviceGroupsOperations:
         top: Optional[int] = None,
         skip: Optional[int] = None,
         **kwargs: Any
-    ) -> AsyncIterable["_models.ProxyResource"]:
+    ) -> AsyncIterable["_models.DeviceGroup"]:
         """List DeviceGroup resources by Product. '.default' and '.unassigned' are system defined values
         and cannot be used for product name.
 
@@ -1793,14 +1791,15 @@ class DeviceGroupsOperations:
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
-        :return: An iterator like instance of ProxyResource
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.ProxyResource]
+        :return: An iterator like instance of DeviceGroup
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.DeviceGroup]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ResourceListResult] = kwargs.pop("cls", None)
+        maxpagesize = kwargs.pop("maxpagesize", None)
+        cls: ClsType[_models.DeviceGroupListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -1821,6 +1820,7 @@ class DeviceGroupsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -1845,7 +1845,7 @@ class DeviceGroupsOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ResourceListResult", pipeline_response)
+            deserialized = self._deserialize("DeviceGroupListResult", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
@@ -1874,7 +1874,7 @@ class DeviceGroupsOperations:
     @distributed_trace_async
     async def get(
         self, resource_group_name: str, catalog_name: str, product_name: str, device_group_name: str, **kwargs: Any
-    ) -> _models.ProxyResource:
+    ) -> _models.DeviceGroup:
         """Get a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -1889,8 +1889,8 @@ class DeviceGroupsOperations:
         :type device_group_name: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProxyResource
-        :rtype: ~azure.mgmt.spheremsrest.models.ProxyResource
+        :return: DeviceGroup
+        :rtype: ~azure.mgmt.spheremsrest.models.DeviceGroup
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -1904,7 +1904,7 @@ class DeviceGroupsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ProxyResource] = kwargs.pop("cls", None)
+        cls: ClsType[_models.DeviceGroup] = kwargs.pop("cls", None)
 
         request = build_device_groups_get_request(
             resource_group_name=resource_group_name,
@@ -1935,7 +1935,7 @@ class DeviceGroupsOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = self._deserialize("ProxyResource", pipeline_response)
+            deserialized = self._deserialize("DeviceGroup", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -1949,11 +1949,11 @@ class DeviceGroupsOperations:
         catalog_name: str,
         product_name: str,
         device_group_name: str,
-        resource: _models.ProxyResource,
+        resource: _models.DeviceGroup,
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> _models.ProxyResource:
+    ) -> _models.DeviceGroup:
         """Create a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -1967,14 +1967,14 @@ class DeviceGroupsOperations:
         :param device_group_name: Name of device group. Required.
         :type device_group_name: str
         :param resource: Resource create parameters. Required.
-        :type resource: ~azure.mgmt.spheremsrest.models.ProxyResource
+        :type resource: ~azure.mgmt.spheremsrest.models.DeviceGroup
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProxyResource
-        :rtype: ~azure.mgmt.spheremsrest.models.ProxyResource
+        :return: DeviceGroup
+        :rtype: ~azure.mgmt.spheremsrest.models.DeviceGroup
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -1989,7 +1989,7 @@ class DeviceGroupsOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> _models.ProxyResource:
+    ) -> _models.DeviceGroup:
         """Create a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -2009,8 +2009,8 @@ class DeviceGroupsOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProxyResource
-        :rtype: ~azure.mgmt.spheremsrest.models.ProxyResource
+        :return: DeviceGroup
+        :rtype: ~azure.mgmt.spheremsrest.models.DeviceGroup
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -2021,9 +2021,9 @@ class DeviceGroupsOperations:
         catalog_name: str,
         product_name: str,
         device_group_name: str,
-        resource: Union[_models.ProxyResource, IO],
+        resource: Union[_models.DeviceGroup, IO],
         **kwargs: Any
-    ) -> _models.ProxyResource:
+    ) -> _models.DeviceGroup:
         """Create a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -2036,16 +2036,16 @@ class DeviceGroupsOperations:
         :type product_name: str
         :param device_group_name: Name of device group. Required.
         :type device_group_name: str
-        :param resource: Resource create parameters. Is either a ProxyResource type or a IO type.
+        :param resource: Resource create parameters. Is either a DeviceGroup type or a IO type.
          Required.
-        :type resource: ~azure.mgmt.spheremsrest.models.ProxyResource or IO
+        :type resource: ~azure.mgmt.spheremsrest.models.DeviceGroup or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProxyResource
-        :rtype: ~azure.mgmt.spheremsrest.models.ProxyResource
+        :return: DeviceGroup
+        :rtype: ~azure.mgmt.spheremsrest.models.DeviceGroup
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -2060,7 +2060,7 @@ class DeviceGroupsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.ProxyResource] = kwargs.pop("cls", None)
+        cls: ClsType[_models.DeviceGroup] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -2068,7 +2068,7 @@ class DeviceGroupsOperations:
         if isinstance(resource, (IOBase, bytes)):
             _content = resource
         else:
-            _json = self._serialize.body(resource, "ProxyResource")
+            _json = self._serialize.body(resource, "DeviceGroup")
 
         request = build_device_groups_create_or_update_request(
             resource_group_name=resource_group_name,
@@ -2104,7 +2104,7 @@ class DeviceGroupsOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = self._deserialize("ProxyResource", pipeline_response)
+                deserialized = self._deserialize("DeviceGroup", pipeline_response)
 
         if response.status_code == 201:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -2112,7 +2112,7 @@ class DeviceGroupsOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = self._deserialize("ProxyResource", pipeline_response)
+                deserialized = self._deserialize("DeviceGroup", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -2195,11 +2195,11 @@ class DeviceGroupsOperations:
         catalog_name: str,
         product_name: str,
         device_group_name: str,
-        properties: _models.ResourceUpdateModel,
+        properties: _models.DeviceGroupUpdate,
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> Optional[_models.ProxyResource]:
+    ) -> Optional[_models.DeviceGroup]:
         """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -2213,14 +2213,14 @@ class DeviceGroupsOperations:
         :param device_group_name: Name of device group. Required.
         :type device_group_name: str
         :param properties: The resource properties to be updated. Required.
-        :type properties: ~azure.mgmt.spheremsrest.models.ResourceUpdateModel
+        :type properties: ~azure.mgmt.spheremsrest.models.DeviceGroupUpdate
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProxyResource or None
-        :rtype: ~azure.mgmt.spheremsrest.models.ProxyResource or None
+        :return: DeviceGroup or None
+        :rtype: ~azure.mgmt.spheremsrest.models.DeviceGroup or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -2235,7 +2235,7 @@ class DeviceGroupsOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> Optional[_models.ProxyResource]:
+    ) -> Optional[_models.DeviceGroup]:
         """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -2255,8 +2255,8 @@ class DeviceGroupsOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProxyResource or None
-        :rtype: ~azure.mgmt.spheremsrest.models.ProxyResource or None
+        :return: DeviceGroup or None
+        :rtype: ~azure.mgmt.spheremsrest.models.DeviceGroup or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -2267,9 +2267,9 @@ class DeviceGroupsOperations:
         catalog_name: str,
         product_name: str,
         device_group_name: str,
-        properties: Union[_models.ResourceUpdateModel, IO],
+        properties: Union[_models.DeviceGroupUpdate, IO],
         **kwargs: Any
-    ) -> Optional[_models.ProxyResource]:
+    ) -> Optional[_models.DeviceGroup]:
         """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -2282,16 +2282,16 @@ class DeviceGroupsOperations:
         :type product_name: str
         :param device_group_name: Name of device group. Required.
         :type device_group_name: str
-        :param properties: The resource properties to be updated. Is either a ResourceUpdateModel type
-         or a IO type. Required.
-        :type properties: ~azure.mgmt.spheremsrest.models.ResourceUpdateModel or IO
+        :param properties: The resource properties to be updated. Is either a DeviceGroupUpdate type or
+         a IO type. Required.
+        :type properties: ~azure.mgmt.spheremsrest.models.DeviceGroupUpdate or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProxyResource or None
-        :rtype: ~azure.mgmt.spheremsrest.models.ProxyResource or None
+        :return: DeviceGroup or None
+        :rtype: ~azure.mgmt.spheremsrest.models.DeviceGroup or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -2306,7 +2306,7 @@ class DeviceGroupsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[Optional[_models.ProxyResource]] = kwargs.pop("cls", None)
+        cls: ClsType[Optional[_models.DeviceGroup]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -2314,7 +2314,7 @@ class DeviceGroupsOperations:
         if isinstance(properties, (IOBase, bytes)):
             _content = properties
         else:
-            _json = self._serialize.body(properties, "ResourceUpdateModel")
+            _json = self._serialize.body(properties, "DeviceGroupUpdate")
 
         request = build_device_groups_update_request(
             resource_group_name=resource_group_name,
@@ -2351,7 +2351,7 @@ class DeviceGroupsOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = self._deserialize("ProxyResource", pipeline_response)
+                deserialized = self._deserialize("DeviceGroup", pipeline_response)
 
         if response.status_code == 202:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -2619,7 +2619,7 @@ class CertificatesOperations:
     @distributed_trace_async
     async def get(
         self, resource_group_name: str, catalog_name: str, serial_number: str, **kwargs: Any
-    ) -> _models.ProxyResource:
+    ) -> _models.Certificate:
         """Get a Certificate.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2632,8 +2632,8 @@ class CertificatesOperations:
         :type serial_number: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProxyResource
-        :rtype: ~azure.mgmt.spheremsrest.models.ProxyResource
+        :return: Certificate
+        :rtype: ~azure.mgmt.spheremsrest.models.Certificate
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -2647,7 +2647,7 @@ class CertificatesOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ProxyResource] = kwargs.pop("cls", None)
+        cls: ClsType[_models.Certificate] = kwargs.pop("cls", None)
 
         request = build_certificates_get_request(
             resource_group_name=resource_group_name,
@@ -2677,7 +2677,7 @@ class CertificatesOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = self._deserialize("ProxyResource", pipeline_response)
+            deserialized = self._deserialize("Certificate", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -2694,7 +2694,7 @@ class CertificatesOperations:
         top: Optional[int] = None,
         skip: Optional[int] = None,
         **kwargs: Any
-    ) -> AsyncIterable["_models.ProxyResource"]:
+    ) -> AsyncIterable["_models.Certificate"]:
         """List Certificate resources by Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2708,14 +2708,15 @@ class CertificatesOperations:
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
-        :return: An iterator like instance of ProxyResource
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.ProxyResource]
+        :return: An iterator like instance of Certificate
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.Certificate]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ResourceListResult] = kwargs.pop("cls", None)
+        maxpagesize = kwargs.pop("maxpagesize", None)
+        cls: ClsType[_models.CertificateListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -2735,6 +2736,7 @@ class CertificatesOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -2759,7 +2761,7 @@ class CertificatesOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ResourceListResult", pipeline_response)
+            deserialized = self._deserialize("CertificateListResult", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
@@ -2859,7 +2861,7 @@ class CertificatesOperations:
         resource_group_name: str,
         catalog_name: str,
         serial_number: str,
-        proof_of_possession_nonce_request: _models.ProofOfPossessionNonceRequest,
+        parameters: _models.ProofOfPossessionNonceRequest,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -2874,9 +2876,8 @@ class CertificatesOperations:
         :param serial_number: Serial number of the certificate. Use '.default' to get current active
          certificate. Required.
         :type serial_number: str
-        :param proof_of_possession_nonce_request: Proof of possession nonce request body. Required.
-        :type proof_of_possession_nonce_request:
-         ~azure.mgmt.spheremsrest.models.ProofOfPossessionNonceRequest
+        :param parameters: Proof of possession nonce request body. Required.
+        :type parameters: ~azure.mgmt.spheremsrest.models.ProofOfPossessionNonceRequest
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2893,7 +2894,7 @@ class CertificatesOperations:
         resource_group_name: str,
         catalog_name: str,
         serial_number: str,
-        proof_of_possession_nonce_request: IO,
+        parameters: IO,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -2908,8 +2909,8 @@ class CertificatesOperations:
         :param serial_number: Serial number of the certificate. Use '.default' to get current active
          certificate. Required.
         :type serial_number: str
-        :param proof_of_possession_nonce_request: Proof of possession nonce request body. Required.
-        :type proof_of_possession_nonce_request: IO
+        :param parameters: Proof of possession nonce request body. Required.
+        :type parameters: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2926,7 +2927,7 @@ class CertificatesOperations:
         resource_group_name: str,
         catalog_name: str,
         serial_number: str,
-        proof_of_possession_nonce_request: Union[_models.ProofOfPossessionNonceRequest, IO],
+        parameters: Union[_models.ProofOfPossessionNonceRequest, IO],
         **kwargs: Any
     ) -> _models.ProofOfPossessionNonceResponse:
         """Gets the proof of possession nonce.
@@ -2939,10 +2940,9 @@ class CertificatesOperations:
         :param serial_number: Serial number of the certificate. Use '.default' to get current active
          certificate. Required.
         :type serial_number: str
-        :param proof_of_possession_nonce_request: Proof of possession nonce request body. Is either a
+        :param parameters: Proof of possession nonce request body. Is either a
          ProofOfPossessionNonceRequest type or a IO type. Required.
-        :type proof_of_possession_nonce_request:
-         ~azure.mgmt.spheremsrest.models.ProofOfPossessionNonceRequest or IO
+        :type parameters: ~azure.mgmt.spheremsrest.models.ProofOfPossessionNonceRequest or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -2969,10 +2969,10 @@ class CertificatesOperations:
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(proof_of_possession_nonce_request, (IOBase, bytes)):
-            _content = proof_of_possession_nonce_request
+        if isinstance(parameters, (IOBase, bytes)):
+            _content = parameters
         else:
-            _json = self._serialize.body(proof_of_possession_nonce_request, "ProofOfPossessionNonceRequest")
+            _json = self._serialize.body(parameters, "ProofOfPossessionNonceRequest")
 
         request = build_certificates_retrieve_proof_of_possession_nonce_request(
             resource_group_name=resource_group_name,
@@ -3041,7 +3041,7 @@ class DeploymentsOperations:
         device_group_name: str,
         deployment_name: str,
         **kwargs: Any
-    ) -> _models.ProxyResource:
+    ) -> _models.Deployment:
         """Get a Deployment. '.default' and '.unassigned' are system defined values and cannot be used for
         product or device group name.
 
@@ -3059,8 +3059,8 @@ class DeploymentsOperations:
         :type deployment_name: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProxyResource
-        :rtype: ~azure.mgmt.spheremsrest.models.ProxyResource
+        :return: Deployment
+        :rtype: ~azure.mgmt.spheremsrest.models.Deployment
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -3074,7 +3074,7 @@ class DeploymentsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ProxyResource] = kwargs.pop("cls", None)
+        cls: ClsType[_models.Deployment] = kwargs.pop("cls", None)
 
         request = build_deployments_get_request(
             resource_group_name=resource_group_name,
@@ -3106,7 +3106,7 @@ class DeploymentsOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = self._deserialize("ProxyResource", pipeline_response)
+            deserialized = self._deserialize("Deployment", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -3125,7 +3125,7 @@ class DeploymentsOperations:
         top: Optional[int] = None,
         skip: Optional[int] = None,
         **kwargs: Any
-    ) -> AsyncIterable["_models.ProxyResource"]:
+    ) -> AsyncIterable["_models.Deployment"]:
         """List Deployment resources by DeviceGroup. '.default' and '.unassigned' are system defined
         values and cannot be used for product or device group name.
 
@@ -3144,14 +3144,15 @@ class DeploymentsOperations:
         :paramtype top: int
         :keyword skip: The number of result items to skip. Default value is None.
         :paramtype skip: int
-        :return: An iterator like instance of ProxyResource
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.ProxyResource]
+        :return: An iterator like instance of Deployment
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.Deployment]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ResourceListResult] = kwargs.pop("cls", None)
+        maxpagesize = kwargs.pop("maxpagesize", None)
+        cls: ClsType[_models.DeploymentListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -3173,6 +3174,7 @@ class DeploymentsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -3197,7 +3199,7 @@ class DeploymentsOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ResourceListResult", pipeline_response)
+            deserialized = self._deserialize("DeploymentListResult", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
@@ -3231,11 +3233,11 @@ class DeploymentsOperations:
         product_name: str,
         device_group_name: str,
         deployment_name: str,
-        resource: _models.ProxyResource,
+        resource: _models.Deployment,
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> _models.ProxyResource:
+    ) -> _models.Deployment:
         """Create a Deployment. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -3252,14 +3254,14 @@ class DeploymentsOperations:
          current deployment for the associated device group. Required.
         :type deployment_name: str
         :param resource: Resource create parameters. Required.
-        :type resource: ~azure.mgmt.spheremsrest.models.ProxyResource
+        :type resource: ~azure.mgmt.spheremsrest.models.Deployment
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProxyResource
-        :rtype: ~azure.mgmt.spheremsrest.models.ProxyResource
+        :return: Deployment
+        :rtype: ~azure.mgmt.spheremsrest.models.Deployment
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -3275,7 +3277,7 @@ class DeploymentsOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> _models.ProxyResource:
+    ) -> _models.Deployment:
         """Create a Deployment. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -3298,8 +3300,8 @@ class DeploymentsOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProxyResource
-        :rtype: ~azure.mgmt.spheremsrest.models.ProxyResource
+        :return: Deployment
+        :rtype: ~azure.mgmt.spheremsrest.models.Deployment
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -3311,9 +3313,9 @@ class DeploymentsOperations:
         product_name: str,
         device_group_name: str,
         deployment_name: str,
-        resource: Union[_models.ProxyResource, IO],
+        resource: Union[_models.Deployment, IO],
         **kwargs: Any
-    ) -> _models.ProxyResource:
+    ) -> _models.Deployment:
         """Create a Deployment. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -3329,16 +3331,16 @@ class DeploymentsOperations:
         :param deployment_name: Deployment name. Use .default for deployment creation and to get the
          current deployment for the associated device group. Required.
         :type deployment_name: str
-        :param resource: Resource create parameters. Is either a ProxyResource type or a IO type.
+        :param resource: Resource create parameters. Is either a Deployment type or a IO type.
          Required.
-        :type resource: ~azure.mgmt.spheremsrest.models.ProxyResource or IO
+        :type resource: ~azure.mgmt.spheremsrest.models.Deployment or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProxyResource
-        :rtype: ~azure.mgmt.spheremsrest.models.ProxyResource
+        :return: Deployment
+        :rtype: ~azure.mgmt.spheremsrest.models.Deployment
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -3353,7 +3355,7 @@ class DeploymentsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.ProxyResource] = kwargs.pop("cls", None)
+        cls: ClsType[_models.Deployment] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -3361,7 +3363,7 @@ class DeploymentsOperations:
         if isinstance(resource, (IOBase, bytes)):
             _content = resource
         else:
-            _json = self._serialize.body(resource, "ProxyResource")
+            _json = self._serialize.body(resource, "Deployment")
 
         request = build_deployments_create_or_update_request(
             resource_group_name=resource_group_name,
@@ -3398,7 +3400,7 @@ class DeploymentsOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = self._deserialize("ProxyResource", pipeline_response)
+                deserialized = self._deserialize("Deployment", pipeline_response)
 
         if response.status_code == 201:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -3406,7 +3408,7 @@ class DeploymentsOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = self._deserialize("ProxyResource", pipeline_response)
+                deserialized = self._deserialize("Deployment", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -3521,7 +3523,7 @@ class DevicesOperations:
         device_group_name: str,
         device_name: str,
         **kwargs: Any
-    ) -> _models.ProxyResource:
+    ) -> _models.Device:
         """Get a Device. Use '.unassigned' or '.default' for the device group and product names when a
         device does not belong to a device group and product.
 
@@ -3538,8 +3540,8 @@ class DevicesOperations:
         :type device_name: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProxyResource
-        :rtype: ~azure.mgmt.spheremsrest.models.ProxyResource
+        :return: Device
+        :rtype: ~azure.mgmt.spheremsrest.models.Device
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -3553,7 +3555,7 @@ class DevicesOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ProxyResource] = kwargs.pop("cls", None)
+        cls: ClsType[_models.Device] = kwargs.pop("cls", None)
 
         request = build_devices_get_request(
             resource_group_name=resource_group_name,
@@ -3585,7 +3587,7 @@ class DevicesOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = self._deserialize("ProxyResource", pipeline_response)
+            deserialized = self._deserialize("Device", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -3600,11 +3602,11 @@ class DevicesOperations:
         product_name: str,
         device_group_name: str,
         device_name: str,
-        resource: _models.ProxyResource,
+        resource: _models.Device,
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> _models.ProxyResource:
+    ) -> _models.Device:
         """Create a Device. Use '.unassigned' or '.default' for the device group and product names to
         claim a device to the catalog only.
 
@@ -3620,14 +3622,14 @@ class DevicesOperations:
         :param device_name: Device name. Required.
         :type device_name: str
         :param resource: Resource create parameters. Required.
-        :type resource: ~azure.mgmt.spheremsrest.models.ProxyResource
+        :type resource: ~azure.mgmt.spheremsrest.models.Device
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProxyResource
-        :rtype: ~azure.mgmt.spheremsrest.models.ProxyResource
+        :return: Device
+        :rtype: ~azure.mgmt.spheremsrest.models.Device
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -3643,7 +3645,7 @@ class DevicesOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> _models.ProxyResource:
+    ) -> _models.Device:
         """Create a Device. Use '.unassigned' or '.default' for the device group and product names to
         claim a device to the catalog only.
 
@@ -3665,8 +3667,8 @@ class DevicesOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProxyResource
-        :rtype: ~azure.mgmt.spheremsrest.models.ProxyResource
+        :return: Device
+        :rtype: ~azure.mgmt.spheremsrest.models.Device
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -3678,9 +3680,9 @@ class DevicesOperations:
         product_name: str,
         device_group_name: str,
         device_name: str,
-        resource: Union[_models.ProxyResource, IO],
+        resource: Union[_models.Device, IO],
         **kwargs: Any
-    ) -> _models.ProxyResource:
+    ) -> _models.Device:
         """Create a Device. Use '.unassigned' or '.default' for the device group and product names to
         claim a device to the catalog only.
 
@@ -3695,16 +3697,15 @@ class DevicesOperations:
         :type device_group_name: str
         :param device_name: Device name. Required.
         :type device_name: str
-        :param resource: Resource create parameters. Is either a ProxyResource type or a IO type.
-         Required.
-        :type resource: ~azure.mgmt.spheremsrest.models.ProxyResource or IO
+        :param resource: Resource create parameters. Is either a Device type or a IO type. Required.
+        :type resource: ~azure.mgmt.spheremsrest.models.Device or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProxyResource
-        :rtype: ~azure.mgmt.spheremsrest.models.ProxyResource
+        :return: Device
+        :rtype: ~azure.mgmt.spheremsrest.models.Device
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -3719,7 +3720,7 @@ class DevicesOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.ProxyResource] = kwargs.pop("cls", None)
+        cls: ClsType[_models.Device] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -3727,7 +3728,7 @@ class DevicesOperations:
         if isinstance(resource, (IOBase, bytes)):
             _content = resource
         else:
-            _json = self._serialize.body(resource, "ProxyResource")
+            _json = self._serialize.body(resource, "Device")
 
         request = build_devices_create_or_update_request(
             resource_group_name=resource_group_name,
@@ -3764,7 +3765,7 @@ class DevicesOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = self._deserialize("ProxyResource", pipeline_response)
+                deserialized = self._deserialize("Device", pipeline_response)
 
         if response.status_code == 201:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -3772,7 +3773,7 @@ class DevicesOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = self._deserialize("ProxyResource", pipeline_response)
+                deserialized = self._deserialize("Device", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -3782,7 +3783,7 @@ class DevicesOperations:
     @distributed_trace
     def list_by_device_group(
         self, resource_group_name: str, catalog_name: str, product_name: str, device_group_name: str, **kwargs: Any
-    ) -> AsyncIterable["_models.ProxyResource"]:
+    ) -> AsyncIterable["_models.Device"]:
         """List Device resources by DeviceGroup. '.default' and '.unassigned' are system defined values
         and cannot be used for product or device group name.
 
@@ -3795,14 +3796,14 @@ class DevicesOperations:
         :type product_name: str
         :param device_group_name: Name of device group. Required.
         :type device_group_name: str
-        :return: An iterator like instance of ProxyResource
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.ProxyResource]
+        :return: An iterator like instance of Device
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.Device]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ResourceListResult] = kwargs.pop("cls", None)
+        cls: ClsType[_models.DeviceListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -3845,7 +3846,7 @@ class DevicesOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ResourceListResult", pipeline_response)
+            deserialized = self._deserialize("DeviceListResult", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
@@ -3956,11 +3957,11 @@ class DevicesOperations:
         product_name: str,
         device_group_name: str,
         device_name: str,
-        properties: _models.ResourceUpdateModel,
+        properties: _models.DeviceUpdate,
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> Optional[_models.ProxyResource]:
+    ) -> Optional[_models.Device]:
         """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
         a device to the catalog level.
 
@@ -3976,14 +3977,14 @@ class DevicesOperations:
         :param device_name: Device name. Required.
         :type device_name: str
         :param properties: The resource properties to be updated. Required.
-        :type properties: ~azure.mgmt.spheremsrest.models.ResourceUpdateModel
+        :type properties: ~azure.mgmt.spheremsrest.models.DeviceUpdate
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProxyResource or None
-        :rtype: ~azure.mgmt.spheremsrest.models.ProxyResource or None
+        :return: Device or None
+        :rtype: ~azure.mgmt.spheremsrest.models.Device or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -3999,7 +4000,7 @@ class DevicesOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> Optional[_models.ProxyResource]:
+    ) -> Optional[_models.Device]:
         """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
         a device to the catalog level.
 
@@ -4021,8 +4022,8 @@ class DevicesOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProxyResource or None
-        :rtype: ~azure.mgmt.spheremsrest.models.ProxyResource or None
+        :return: Device or None
+        :rtype: ~azure.mgmt.spheremsrest.models.Device or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -4034,9 +4035,9 @@ class DevicesOperations:
         product_name: str,
         device_group_name: str,
         device_name: str,
-        properties: Union[_models.ResourceUpdateModel, IO],
+        properties: Union[_models.DeviceUpdate, IO],
         **kwargs: Any
-    ) -> Optional[_models.ProxyResource]:
+    ) -> Optional[_models.Device]:
         """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
         a device to the catalog level.
 
@@ -4051,16 +4052,16 @@ class DevicesOperations:
         :type device_group_name: str
         :param device_name: Device name. Required.
         :type device_name: str
-        :param properties: The resource properties to be updated. Is either a ResourceUpdateModel type
-         or a IO type. Required.
-        :type properties: ~azure.mgmt.spheremsrest.models.ResourceUpdateModel or IO
+        :param properties: The resource properties to be updated. Is either a DeviceUpdate type or a IO
+         type. Required.
+        :type properties: ~azure.mgmt.spheremsrest.models.DeviceUpdate or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProxyResource or None
-        :rtype: ~azure.mgmt.spheremsrest.models.ProxyResource or None
+        :return: Device or None
+        :rtype: ~azure.mgmt.spheremsrest.models.Device or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -4075,7 +4076,7 @@ class DevicesOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[Optional[_models.ProxyResource]] = kwargs.pop("cls", None)
+        cls: ClsType[Optional[_models.Device]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -4083,7 +4084,7 @@ class DevicesOperations:
         if isinstance(properties, (IOBase, bytes)):
             _content = properties
         else:
-            _json = self._serialize.body(properties, "ResourceUpdateModel")
+            _json = self._serialize.body(properties, "DeviceUpdate")
 
         request = build_devices_update_request(
             resource_group_name=resource_group_name,
@@ -4121,7 +4122,7 @@ class DevicesOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = self._deserialize("ProxyResource", pipeline_response)
+                deserialized = self._deserialize("Device", pipeline_response)
 
         if response.status_code == 202:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -4139,7 +4140,7 @@ class DevicesOperations:
         product_name: str,
         device_group_name: str,
         device_name: str,
-        generate_device_capability_request: _models.GenerateCapabilityImageRequest,
+        parameters: _models.GenerateCapabilityImageRequest,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -4159,9 +4160,8 @@ class DevicesOperations:
         :type device_group_name: str
         :param device_name: Device name. Required.
         :type device_name: str
-        :param generate_device_capability_request: Generate capability image request body. Required.
-        :type generate_device_capability_request:
-         ~azure.mgmt.spheremsrest.models.GenerateCapabilityImageRequest
+        :param parameters: Generate capability image request body. Required.
+        :type parameters: ~azure.mgmt.spheremsrest.models.GenerateCapabilityImageRequest
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4180,7 +4180,7 @@ class DevicesOperations:
         product_name: str,
         device_group_name: str,
         device_name: str,
-        generate_device_capability_request: IO,
+        parameters: IO,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -4200,8 +4200,8 @@ class DevicesOperations:
         :type device_group_name: str
         :param device_name: Device name. Required.
         :type device_name: str
-        :param generate_device_capability_request: Generate capability image request body. Required.
-        :type generate_device_capability_request: IO
+        :param parameters: Generate capability image request body. Required.
+        :type parameters: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4220,7 +4220,7 @@ class DevicesOperations:
         product_name: str,
         device_group_name: str,
         device_name: str,
-        generate_device_capability_request: Union[_models.GenerateCapabilityImageRequest, IO],
+        parameters: Union[_models.GenerateCapabilityImageRequest, IO],
         **kwargs: Any
     ) -> Optional[_models.SignedCapabilityImageResponse]:
         """Generates the capability image for the device. Use '.unassigned' or '.default' for the device
@@ -4238,10 +4238,9 @@ class DevicesOperations:
         :type device_group_name: str
         :param device_name: Device name. Required.
         :type device_name: str
-        :param generate_device_capability_request: Generate capability image request body. Is either a
+        :param parameters: Generate capability image request body. Is either a
          GenerateCapabilityImageRequest type or a IO type. Required.
-        :type generate_device_capability_request:
-         ~azure.mgmt.spheremsrest.models.GenerateCapabilityImageRequest or IO
+        :type parameters: ~azure.mgmt.spheremsrest.models.GenerateCapabilityImageRequest or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -4268,10 +4267,10 @@ class DevicesOperations:
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(generate_device_capability_request, (IOBase, bytes)):
-            _content = generate_device_capability_request
+        if isinstance(parameters, (IOBase, bytes)):
+            _content = parameters
         else:
-            _json = self._serialize.body(generate_device_capability_request, "GenerateCapabilityImageRequest")
+            _json = self._serialize.body(parameters, "GenerateCapabilityImageRequest")
 
         request = build_devices_generate_capability_image_request(
             resource_group_name=resource_group_name,
@@ -4342,7 +4341,7 @@ class ProductsOperations:
     @distributed_trace
     def list_by_catalog(
         self, resource_group_name: str, catalog_name: str, **kwargs: Any
-    ) -> AsyncIterable["_models.ProxyResource"]:
+    ) -> AsyncIterable["_models.Product"]:
         """List Product resources by Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -4350,14 +4349,14 @@ class ProductsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :return: An iterator like instance of ProxyResource
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.ProxyResource]
+        :return: An iterator like instance of Product
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ResourceListResult] = kwargs.pop("cls", None)
+        cls: ClsType[_models.ProductListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -4398,7 +4397,7 @@ class ProductsOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ResourceListResult", pipeline_response)
+            deserialized = self._deserialize("ProductListResult", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
@@ -4427,7 +4426,7 @@ class ProductsOperations:
     @distributed_trace_async
     async def get(
         self, resource_group_name: str, catalog_name: str, product_name: str, **kwargs: Any
-    ) -> _models.ProxyResource:
+    ) -> _models.Product:
         """Get a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name.
 
@@ -4440,8 +4439,8 @@ class ProductsOperations:
         :type product_name: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProxyResource
-        :rtype: ~azure.mgmt.spheremsrest.models.ProxyResource
+        :return: Product
+        :rtype: ~azure.mgmt.spheremsrest.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -4455,7 +4454,7 @@ class ProductsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ProxyResource] = kwargs.pop("cls", None)
+        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         request = build_products_get_request(
             resource_group_name=resource_group_name,
@@ -4485,7 +4484,7 @@ class ProductsOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = self._deserialize("ProxyResource", pipeline_response)
+            deserialized = self._deserialize("Product", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})
@@ -4498,11 +4497,11 @@ class ProductsOperations:
         resource_group_name: str,
         catalog_name: str,
         product_name: str,
-        resource: _models.ProxyResource,
+        resource: _models.Product,
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> _models.ProxyResource:
+    ) -> _models.Product:
         """Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name.
 
@@ -4514,14 +4513,14 @@ class ProductsOperations:
         :param product_name: Name of product. Required.
         :type product_name: str
         :param resource: Resource create parameters. Required.
-        :type resource: ~azure.mgmt.spheremsrest.models.ProxyResource
+        :type resource: ~azure.mgmt.spheremsrest.models.Product
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProxyResource
-        :rtype: ~azure.mgmt.spheremsrest.models.ProxyResource
+        :return: Product
+        :rtype: ~azure.mgmt.spheremsrest.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -4535,7 +4534,7 @@ class ProductsOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> _models.ProxyResource:
+    ) -> _models.Product:
         """Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name.
 
@@ -4553,8 +4552,8 @@ class ProductsOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProxyResource
-        :rtype: ~azure.mgmt.spheremsrest.models.ProxyResource
+        :return: Product
+        :rtype: ~azure.mgmt.spheremsrest.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -4564,9 +4563,9 @@ class ProductsOperations:
         resource_group_name: str,
         catalog_name: str,
         product_name: str,
-        resource: Union[_models.ProxyResource, IO],
+        resource: Union[_models.Product, IO],
         **kwargs: Any
-    ) -> _models.ProxyResource:
+    ) -> _models.Product:
         """Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name.
 
@@ -4577,16 +4576,15 @@ class ProductsOperations:
         :type catalog_name: str
         :param product_name: Name of product. Required.
         :type product_name: str
-        :param resource: Resource create parameters. Is either a ProxyResource type or a IO type.
-         Required.
-        :type resource: ~azure.mgmt.spheremsrest.models.ProxyResource or IO
+        :param resource: Resource create parameters. Is either a Product type or a IO type. Required.
+        :type resource: ~azure.mgmt.spheremsrest.models.Product or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProxyResource
-        :rtype: ~azure.mgmt.spheremsrest.models.ProxyResource
+        :return: Product
+        :rtype: ~azure.mgmt.spheremsrest.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -4601,7 +4599,7 @@ class ProductsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.ProxyResource] = kwargs.pop("cls", None)
+        cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -4609,7 +4607,7 @@ class ProductsOperations:
         if isinstance(resource, (IOBase, bytes)):
             _content = resource
         else:
-            _json = self._serialize.body(resource, "ProxyResource")
+            _json = self._serialize.body(resource, "Product")
 
         request = build_products_create_or_update_request(
             resource_group_name=resource_group_name,
@@ -4644,7 +4642,7 @@ class ProductsOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = self._deserialize("ProxyResource", pipeline_response)
+                deserialized = self._deserialize("Product", pipeline_response)
 
         if response.status_code == 201:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -4652,7 +4650,7 @@ class ProductsOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = self._deserialize("ProxyResource", pipeline_response)
+                deserialized = self._deserialize("Product", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -4731,11 +4729,11 @@ class ProductsOperations:
         resource_group_name: str,
         catalog_name: str,
         product_name: str,
-        properties: _models.ResourceUpdateModel,
+        properties: _models.ProductUpdate,
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> Optional[_models.ProxyResource]:
+    ) -> Optional[_models.Product]:
         """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name.
 
@@ -4747,14 +4745,14 @@ class ProductsOperations:
         :param product_name: Name of product. Required.
         :type product_name: str
         :param properties: The resource properties to be updated. Required.
-        :type properties: ~azure.mgmt.spheremsrest.models.ResourceUpdateModel
+        :type properties: ~azure.mgmt.spheremsrest.models.ProductUpdate
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProxyResource or None
-        :rtype: ~azure.mgmt.spheremsrest.models.ProxyResource or None
+        :return: Product or None
+        :rtype: ~azure.mgmt.spheremsrest.models.Product or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -4768,7 +4766,7 @@ class ProductsOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> Optional[_models.ProxyResource]:
+    ) -> Optional[_models.Product]:
         """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name.
 
@@ -4786,8 +4784,8 @@ class ProductsOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProxyResource or None
-        :rtype: ~azure.mgmt.spheremsrest.models.ProxyResource or None
+        :return: Product or None
+        :rtype: ~azure.mgmt.spheremsrest.models.Product or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -4797,9 +4795,9 @@ class ProductsOperations:
         resource_group_name: str,
         catalog_name: str,
         product_name: str,
-        properties: Union[_models.ResourceUpdateModel, IO],
+        properties: Union[_models.ProductUpdate, IO],
         **kwargs: Any
-    ) -> Optional[_models.ProxyResource]:
+    ) -> Optional[_models.Product]:
         """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name.
 
@@ -4810,16 +4808,16 @@ class ProductsOperations:
         :type catalog_name: str
         :param product_name: Name of product. Required.
         :type product_name: str
-        :param properties: The resource properties to be updated. Is either a ResourceUpdateModel type
-         or a IO type. Required.
-        :type properties: ~azure.mgmt.spheremsrest.models.ResourceUpdateModel or IO
+        :param properties: The resource properties to be updated. Is either a ProductUpdate type or a
+         IO type. Required.
+        :type properties: ~azure.mgmt.spheremsrest.models.ProductUpdate or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProxyResource or None
-        :rtype: ~azure.mgmt.spheremsrest.models.ProxyResource or None
+        :return: Product or None
+        :rtype: ~azure.mgmt.spheremsrest.models.Product or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map = {
@@ -4834,7 +4832,7 @@ class ProductsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[Optional[_models.ProxyResource]] = kwargs.pop("cls", None)
+        cls: ClsType[Optional[_models.Product]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -4842,7 +4840,7 @@ class ProductsOperations:
         if isinstance(properties, (IOBase, bytes)):
             _content = properties
         else:
-            _json = self._serialize.body(properties, "ResourceUpdateModel")
+            _json = self._serialize.body(properties, "ProductUpdate")
 
         request = build_products_update_request(
             resource_group_name=resource_group_name,
@@ -4878,7 +4876,7 @@ class ProductsOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = self._deserialize("ProxyResource", pipeline_response)
+                deserialized = self._deserialize("Product", pipeline_response)
 
         if response.status_code == 202:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -4892,7 +4890,7 @@ class ProductsOperations:
     @distributed_trace
     def generate_default_device_groups(
         self, resource_group_name: str, catalog_name: str, product_name: str, **kwargs: Any
-    ) -> AsyncIterable["_models.ProxyResource"]:
+    ) -> AsyncIterable["_models.DeviceGroup"]:
         """Generates default device groups for the product. '.default' and '.unassigned' are system
         defined values and cannot be used for product name.
 
@@ -4903,14 +4901,14 @@ class ProductsOperations:
         :type catalog_name: str
         :param product_name: Name of product. Required.
         :type product_name: str
-        :return: An iterator like instance of ProxyResource
-        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.ProxyResource]
+        :return: An iterator like instance of DeviceGroup
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~azure.mgmt.spheremsrest.models.DeviceGroup]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ResourceListResult] = kwargs.pop("cls", None)
+        cls: ClsType[_models.DeviceGroupListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -4952,7 +4950,7 @@ class ProductsOperations:
             return request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize("ResourceListResult", pipeline_response)
+            deserialized = self._deserialize("DeviceGroupListResult", pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore

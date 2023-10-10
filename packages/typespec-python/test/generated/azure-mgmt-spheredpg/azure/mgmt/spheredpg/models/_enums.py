@@ -17,6 +17,15 @@ class ActionType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Actions are for internal-only APIs."""
 
 
+class AllowCrashDumpCollection(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """Allow crash dumps values."""
+
+    ENABLED = "Enabled"
+    """Crash dump collection enabled"""
+    DISABLED = "Disabled"
+    """Crash dump collection disabled"""
+
+
 class CapabilityType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Capability image type."""
 
@@ -39,7 +48,7 @@ class CertificateStatus(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Certificate has been revoked"""
 
 
-class createdByType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class CreatedByType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """The kind of entity that created the resource."""
 
     USER = "User"
@@ -118,6 +127,15 @@ class Origin(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Indicates the operation is initiated by a user or system."""
 
 
+class OSFeedType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """OS feed type values."""
+
+    RETAIL = "Retail"
+    """Retail OS feed type."""
+    RETAIL_EVAL = "RetailEval"
+    """Retail evaluation OS feed type."""
+
+
 class ProvisioningState(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Provisioning state of the resource."""
 
@@ -144,3 +162,12 @@ class RegionalDataBoundary(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """No data boundary"""
     EU = "EU"
     """EU data boundary"""
+
+
+class UpdatePolicy(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """Update policy values."""
+
+    UPDATE_ALL = "UpdateAll"
+    """Update all policy."""
+    NO3RD_PARTY_APP_UPDATES = "No3rdPartyAppUpdates"
+    """No update for 3rd party app policy."""

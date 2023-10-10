@@ -4,8 +4,8 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from _specs_.azure.core.lro.standard.aio import StandardClient
-from _specs_.azure.core.lro.standard.models import User, ExportedUser
+from specs.azure.core.lro.standard.aio import StandardClient
+from specs.azure.core.lro.standard.models import User, ExportedUser
 
 @pytest.fixture
 async def client():

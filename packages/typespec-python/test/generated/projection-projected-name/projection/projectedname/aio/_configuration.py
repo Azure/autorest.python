@@ -24,7 +24,7 @@ class ProjectedNameClientConfiguration(Configuration):  # pylint: disable=too-ma
     def __init__(self, **kwargs: Any) -> None:
         super(ProjectedNameClientConfiguration, self).__init__(**kwargs)
 
-        kwargs.setdefault("sdk_moniker", "projectednameclient/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "projection-projectedname/{}".format(VERSION))
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

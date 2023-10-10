@@ -28,15 +28,16 @@ PLUGIN = (PLUGIN_DIR / "dist/src/index.js").as_posix()
 CADL_RANCH_DIR = PLUGIN_DIR / Path("node_modules/@azure-tools/cadl-ranch-specs/http")
 LOCAL_SPECIFICATION_DIR = PLUGIN_DIR / Path("test/specification")
 ALL_SPECIFICATION_DIRS = [CADL_RANCH_DIR, LOCAL_SPECIFICATION_DIR]
+SKIP_FOLDERS = ["type/model/inheritance/enum-discriminator"]
 EMITTER_OPTIONS = {
     "resiliency/srv-driven/old.tsp": {
         "package-name": "resiliency-srv-driven1",
-        "package-mode": "dataplane",
+        "package-mode": "azure-dataplane",
         "package-pprint-name": "ResiliencySrvDriven1",
     },
     "resiliency/srv-driven": {
         "package-name": "resiliency-srv-driven2",
-        "package-mode": "dataplane",
+        "package-mode": "azure-dataplane",
         "package-pprint-name": "ResiliencySrvDriven2",
     },
     "authentication/http/custom": {
@@ -108,7 +109,7 @@ EMITTER_OPTIONS = {
         "package-name": "client-structure-twooperationgroup",
     },
     "mgmt/sphere": [
-        {"package-name": "azure-mgmt-spheredpg", "models-mode": "dpg"},
+        # {"package-name": "azure-mgmt-spheredpg", "models-mode": "dpg"},
         {"package-name": "azure-mgmt-spheremsrest"},
     ]
 }
@@ -157,7 +158,7 @@ def all_specification_folders() -> List[Path]:
 def regenerate(c, name=None, debug=False):
     specs = [
         s for s in all_specification_folders()
-        if any(f for f in s.iterdir() if f.name == "main.tsp")
+        if any(f for f in s.iterdir() if f.name == "main.tsp") and not any(item in s.as_posix() for item in SKIP_FOLDERS)
     ]
     if name:
         specs = [s for s in specs if name.lower() in str(s)]

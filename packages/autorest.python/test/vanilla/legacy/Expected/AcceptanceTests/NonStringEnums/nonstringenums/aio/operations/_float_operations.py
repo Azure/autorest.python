@@ -81,7 +81,6 @@ class FloatOperations:
         request = build_put_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -106,8 +105,6 @@ class FloatOperations:
 
         return deserialized
 
-    put.metadata = {"url": "/nonStringEnums/float/put"}
-
     @distributed_trace_async
     async def get(self, **kwargs: Any) -> Union[float, _models.FloatEnum]:
         """Get a float enum.
@@ -131,7 +128,6 @@ class FloatOperations:
         cls: ClsType[Union[float, _models.FloatEnum]] = kwargs.pop("cls", None)
 
         request = build_get_request(
-            template_url=self.get.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -155,5 +151,3 @@ class FloatOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get.metadata = {"url": "/nonStringEnums/float/get"}

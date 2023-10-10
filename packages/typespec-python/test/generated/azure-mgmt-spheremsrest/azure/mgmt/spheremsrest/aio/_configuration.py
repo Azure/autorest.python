@@ -25,27 +25,27 @@ class AzureSphereClientConfiguration(Configuration):  # pylint: disable=too-many
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param subscription_id: The ID of the target subscription. Required.
-    :type subscription_id: str
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
+    :param subscription_id: The ID of the target subscription. Required.
+    :type subscription_id: str
     :keyword api_version: The API version to use for this operation. Default value is
      "2022-09-01-preview". Note that overriding this default value may result in unsupported
      behavior.
     :paramtype api_version: str
     """
 
-    def __init__(self, subscription_id: str, credential: "AsyncTokenCredential", **kwargs: Any) -> None:
+    def __init__(self, credential: "AsyncTokenCredential", subscription_id: str, **kwargs: Any) -> None:
         super(AzureSphereClientConfiguration, self).__init__(**kwargs)
         api_version: str = kwargs.pop("api_version", "2022-09-01-preview")
 
-        if subscription_id is None:
-            raise ValueError("Parameter 'subscription_id' must not be None.")
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
+        if subscription_id is None:
+            raise ValueError("Parameter 'subscription_id' must not be None.")
 
-        self.subscription_id = subscription_id
         self.credential = credential
+        self.subscription_id = subscription_id
         self.api_version = api_version
         self.credential_scopes = kwargs.pop("credential_scopes", ["https://management.azure.com/.default"])
         kwargs.setdefault("sdk_moniker", "mgmt-spheremsrest/{}".format(VERSION))

@@ -91,7 +91,6 @@ class PathsOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -116,5 +115,3 @@ class PathsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_empty.metadata = {"url": "/customuri"}

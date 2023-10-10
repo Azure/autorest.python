@@ -97,7 +97,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[Optional[float]] = kwargs.pop("cls", None)
 
         request = build_get_null_request(
-            template_url=self.get_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -122,8 +121,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null.metadata = {"url": "/number/null"}
 
     @distributed_trace_async
     async def get_invalid_float(self, **kwargs: Any) -> float:
@@ -148,7 +145,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[float] = kwargs.pop("cls", None)
 
         request = build_get_invalid_float_request(
-            template_url=self.get_invalid_float.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -173,8 +169,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid_float.metadata = {"url": "/number/invalidfloat"}
 
     @distributed_trace_async
     async def get_invalid_double(self, **kwargs: Any) -> float:
@@ -199,7 +193,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[float] = kwargs.pop("cls", None)
 
         request = build_get_invalid_double_request(
-            template_url=self.get_invalid_double.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -224,8 +217,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid_double.metadata = {"url": "/number/invaliddouble"}
 
     @distributed_trace_async
     async def get_invalid_decimal(self, **kwargs: Any) -> float:
@@ -250,7 +241,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[float] = kwargs.pop("cls", None)
 
         request = build_get_invalid_decimal_request(
-            template_url=self.get_invalid_decimal.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -275,8 +265,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid_decimal.metadata = {"url": "/number/invaliddecimal"}
 
     @distributed_trace_async
     async def put_big_float(  # pylint: disable=inconsistent-return-statements
@@ -310,7 +298,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request = build_put_big_float_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_big_float.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -331,8 +318,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_big_float.metadata = {"url": "/number/big/float/3.402823e+20"}
 
     @distributed_trace_async
     async def get_big_float(self, **kwargs: Any) -> float:
@@ -357,7 +342,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[float] = kwargs.pop("cls", None)
 
         request = build_get_big_float_request(
-            template_url=self.get_big_float.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -382,8 +366,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_big_float.metadata = {"url": "/number/big/float/3.402823e+20"}
 
     @distributed_trace_async
     async def put_big_double(  # pylint: disable=inconsistent-return-statements
@@ -417,7 +399,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request = build_put_big_double_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_big_double.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -438,8 +419,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_big_double.metadata = {"url": "/number/big/double/2.5976931e+101"}
 
     @distributed_trace_async
     async def get_big_double(self, **kwargs: Any) -> float:
@@ -464,7 +443,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[float] = kwargs.pop("cls", None)
 
         request = build_get_big_double_request(
-            template_url=self.get_big_double.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -489,8 +467,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_big_double.metadata = {"url": "/number/big/double/2.5976931e+101"}
 
     @distributed_trace_async
     async def put_big_double_positive_decimal(  # pylint: disable=inconsistent-return-statements
@@ -526,7 +502,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request = build_put_big_double_positive_decimal_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_big_double_positive_decimal.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -547,8 +522,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_big_double_positive_decimal.metadata = {"url": "/number/big/double/99999999.99"}
 
     @distributed_trace_async
     async def get_big_double_positive_decimal(self, **kwargs: Any) -> float:
@@ -573,7 +546,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[float] = kwargs.pop("cls", None)
 
         request = build_get_big_double_positive_decimal_request(
-            template_url=self.get_big_double_positive_decimal.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -598,8 +570,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_big_double_positive_decimal.metadata = {"url": "/number/big/double/99999999.99"}
 
     @distributed_trace_async
     async def put_big_double_negative_decimal(  # pylint: disable=inconsistent-return-statements
@@ -635,7 +605,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request = build_put_big_double_negative_decimal_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_big_double_negative_decimal.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -656,8 +625,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_big_double_negative_decimal.metadata = {"url": "/number/big/double/-99999999.99"}
 
     @distributed_trace_async
     async def get_big_double_negative_decimal(self, **kwargs: Any) -> float:
@@ -682,7 +649,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[float] = kwargs.pop("cls", None)
 
         request = build_get_big_double_negative_decimal_request(
-            template_url=self.get_big_double_negative_decimal.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -707,8 +673,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_big_double_negative_decimal.metadata = {"url": "/number/big/double/-99999999.99"}
 
     @distributed_trace_async
     async def put_big_decimal(  # pylint: disable=inconsistent-return-statements
@@ -742,7 +706,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request = build_put_big_decimal_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_big_decimal.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -763,8 +726,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_big_decimal.metadata = {"url": "/number/big/decimal/2.5976931e+101"}
 
     @distributed_trace_async
     async def get_big_decimal(self, **kwargs: Any) -> float:
@@ -789,7 +750,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[float] = kwargs.pop("cls", None)
 
         request = build_get_big_decimal_request(
-            template_url=self.get_big_decimal.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -814,8 +774,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_big_decimal.metadata = {"url": "/number/big/decimal/2.5976931e+101"}
 
     @distributed_trace_async
     async def put_big_decimal_positive_decimal(  # pylint: disable=inconsistent-return-statements
@@ -851,7 +809,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request = build_put_big_decimal_positive_decimal_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_big_decimal_positive_decimal.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -872,8 +829,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_big_decimal_positive_decimal.metadata = {"url": "/number/big/decimal/99999999.99"}
 
     @distributed_trace_async
     async def get_big_decimal_positive_decimal(self, **kwargs: Any) -> float:
@@ -898,7 +853,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[float] = kwargs.pop("cls", None)
 
         request = build_get_big_decimal_positive_decimal_request(
-            template_url=self.get_big_decimal_positive_decimal.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -923,8 +877,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_big_decimal_positive_decimal.metadata = {"url": "/number/big/decimal/99999999.99"}
 
     @distributed_trace_async
     async def put_big_decimal_negative_decimal(  # pylint: disable=inconsistent-return-statements
@@ -960,7 +912,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request = build_put_big_decimal_negative_decimal_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_big_decimal_negative_decimal.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -981,8 +932,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_big_decimal_negative_decimal.metadata = {"url": "/number/big/decimal/-99999999.99"}
 
     @distributed_trace_async
     async def get_big_decimal_negative_decimal(self, **kwargs: Any) -> float:
@@ -1007,7 +956,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[float] = kwargs.pop("cls", None)
 
         request = build_get_big_decimal_negative_decimal_request(
-            template_url=self.get_big_decimal_negative_decimal.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1032,8 +980,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_big_decimal_negative_decimal.metadata = {"url": "/number/big/decimal/-99999999.99"}
 
     @distributed_trace_async
     async def put_small_float(  # pylint: disable=inconsistent-return-statements
@@ -1067,7 +1013,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request = build_put_small_float_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_small_float.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1088,8 +1033,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_small_float.metadata = {"url": "/number/small/float/3.402823e-20"}
 
     @distributed_trace_async
     async def get_small_float(self, **kwargs: Any) -> float:
@@ -1114,7 +1057,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[float] = kwargs.pop("cls", None)
 
         request = build_get_small_float_request(
-            template_url=self.get_small_float.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1139,8 +1081,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_small_float.metadata = {"url": "/number/small/float/3.402823e-20"}
 
     @distributed_trace_async
     async def put_small_double(  # pylint: disable=inconsistent-return-statements
@@ -1174,7 +1114,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request = build_put_small_double_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_small_double.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1195,8 +1134,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_small_double.metadata = {"url": "/number/small/double/2.5976931e-101"}
 
     @distributed_trace_async
     async def get_small_double(self, **kwargs: Any) -> float:
@@ -1221,7 +1158,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[float] = kwargs.pop("cls", None)
 
         request = build_get_small_double_request(
-            template_url=self.get_small_double.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1246,8 +1182,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_small_double.metadata = {"url": "/number/small/double/2.5976931e-101"}
 
     @distributed_trace_async
     async def put_small_decimal(  # pylint: disable=inconsistent-return-statements
@@ -1281,7 +1215,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         request = build_put_small_decimal_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_small_decimal.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1302,8 +1235,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_small_decimal.metadata = {"url": "/number/small/decimal/2.5976931e-101"}
 
     @distributed_trace_async
     async def get_small_decimal(self, **kwargs: Any) -> float:
@@ -1328,7 +1259,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[float] = kwargs.pop("cls", None)
 
         request = build_get_small_decimal_request(
-            template_url=self.get_small_decimal.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1353,5 +1283,3 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_small_decimal.metadata = {"url": "/number/small/decimal/2.5976931e-101"}

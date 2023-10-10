@@ -120,7 +120,6 @@ class FormdataurlencodedOperations:
             pet_id=pet_id,
             content_type=content_type,
             data=_data,
-            template_url=self.update_pet_with_form.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -140,8 +139,6 @@ class FormdataurlencodedOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    update_pet_with_form.metadata = {"url": "/formsdataurlencoded/pet/add/{petId}"}
 
     @distributed_trace_async
     async def partial_constant_body(  # pylint: disable=inconsistent-return-statements
@@ -190,7 +187,6 @@ class FormdataurlencodedOperations:
         request = build_partial_constant_body_request(
             content_type=content_type,
             data=_data,
-            template_url=self.partial_constant_body.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -210,5 +206,3 @@ class FormdataurlencodedOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    partial_constant_body.metadata = {"url": "/formsdataurlencoded/partialConstantBody"}

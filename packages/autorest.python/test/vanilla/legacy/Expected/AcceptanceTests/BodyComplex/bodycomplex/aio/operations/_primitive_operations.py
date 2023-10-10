@@ -97,7 +97,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.IntWrapper] = kwargs.pop("cls", None)
 
         request = build_get_int_request(
-            template_url=self.get_int.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -122,8 +121,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_int.metadata = {"url": "/complex/primitive/integer"}
 
     @overload
     async def put_int(  # pylint: disable=inconsistent-return-statements
@@ -201,7 +198,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_int.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -222,8 +218,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_int.metadata = {"url": "/complex/primitive/integer"}
 
     @distributed_trace_async
     async def get_long(self, **kwargs: Any) -> _models.LongWrapper:
@@ -248,7 +242,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.LongWrapper] = kwargs.pop("cls", None)
 
         request = build_get_long_request(
-            template_url=self.get_long.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -273,8 +266,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_long.metadata = {"url": "/complex/primitive/long"}
 
     @overload
     async def put_long(  # pylint: disable=inconsistent-return-statements
@@ -353,7 +344,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_long.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -374,8 +364,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_long.metadata = {"url": "/complex/primitive/long"}
 
     @distributed_trace_async
     async def get_float(self, **kwargs: Any) -> _models.FloatWrapper:
@@ -400,7 +388,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.FloatWrapper] = kwargs.pop("cls", None)
 
         request = build_get_float_request(
-            template_url=self.get_float.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -425,8 +412,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_float.metadata = {"url": "/complex/primitive/float"}
 
     @overload
     async def put_float(  # pylint: disable=inconsistent-return-statements
@@ -505,7 +490,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_float.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -526,8 +510,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_float.metadata = {"url": "/complex/primitive/float"}
 
     @distributed_trace_async
     async def get_double(self, **kwargs: Any) -> _models.DoubleWrapper:
@@ -552,7 +534,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.DoubleWrapper] = kwargs.pop("cls", None)
 
         request = build_get_double_request(
-            template_url=self.get_double.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -577,8 +558,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_double.metadata = {"url": "/complex/primitive/double"}
 
     @overload
     async def put_double(  # pylint: disable=inconsistent-return-statements
@@ -660,7 +639,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_double.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -681,8 +659,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_double.metadata = {"url": "/complex/primitive/double"}
 
     @distributed_trace_async
     async def get_bool(self, **kwargs: Any) -> _models.BooleanWrapper:
@@ -707,7 +683,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.BooleanWrapper] = kwargs.pop("cls", None)
 
         request = build_get_bool_request(
-            template_url=self.get_bool.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -732,8 +707,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_bool.metadata = {"url": "/complex/primitive/bool"}
 
     @overload
     async def put_bool(  # pylint: disable=inconsistent-return-statements
@@ -812,7 +785,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_bool.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -833,8 +805,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_bool.metadata = {"url": "/complex/primitive/bool"}
 
     @distributed_trace_async
     async def get_string(self, **kwargs: Any) -> _models.StringWrapper:
@@ -859,7 +829,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.StringWrapper] = kwargs.pop("cls", None)
 
         request = build_get_string_request(
-            template_url=self.get_string.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -884,8 +853,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_string.metadata = {"url": "/complex/primitive/string"}
 
     @overload
     async def put_string(  # pylint: disable=inconsistent-return-statements
@@ -964,7 +931,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_string.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -985,8 +951,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_string.metadata = {"url": "/complex/primitive/string"}
 
     @distributed_trace_async
     async def get_date(self, **kwargs: Any) -> _models.DateWrapper:
@@ -1011,7 +975,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.DateWrapper] = kwargs.pop("cls", None)
 
         request = build_get_date_request(
-            template_url=self.get_date.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1036,8 +999,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_date.metadata = {"url": "/complex/primitive/date"}
 
     @overload
     async def put_date(  # pylint: disable=inconsistent-return-statements
@@ -1116,7 +1077,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_date.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1137,8 +1097,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_date.metadata = {"url": "/complex/primitive/date"}
 
     @distributed_trace_async
     async def get_date_time(self, **kwargs: Any) -> _models.DatetimeWrapper:
@@ -1163,7 +1121,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.DatetimeWrapper] = kwargs.pop("cls", None)
 
         request = build_get_date_time_request(
-            template_url=self.get_date_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1188,8 +1145,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_date_time.metadata = {"url": "/complex/primitive/datetime"}
 
     @overload
     async def put_date_time(  # pylint: disable=inconsistent-return-statements
@@ -1270,7 +1225,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_date_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1291,8 +1245,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_date_time.metadata = {"url": "/complex/primitive/datetime"}
 
     @distributed_trace_async
     async def get_date_time_rfc1123(self, **kwargs: Any) -> _models.Datetimerfc1123Wrapper:
@@ -1317,7 +1269,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.Datetimerfc1123Wrapper] = kwargs.pop("cls", None)
 
         request = build_get_date_time_rfc1123_request(
-            template_url=self.get_date_time_rfc1123.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1342,8 +1293,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_date_time_rfc1123.metadata = {"url": "/complex/primitive/datetimerfc1123"}
 
     @overload
     async def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
@@ -1424,7 +1373,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_date_time_rfc1123.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1445,8 +1393,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_date_time_rfc1123.metadata = {"url": "/complex/primitive/datetimerfc1123"}
 
     @distributed_trace_async
     async def get_duration(self, **kwargs: Any) -> _models.DurationWrapper:
@@ -1471,7 +1417,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.DurationWrapper] = kwargs.pop("cls", None)
 
         request = build_get_duration_request(
-            template_url=self.get_duration.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1496,8 +1441,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_duration.metadata = {"url": "/complex/primitive/duration"}
 
     @distributed_trace_async
     async def put_duration(  # pylint: disable=inconsistent-return-statements
@@ -1532,7 +1475,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         request = build_put_duration_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_duration.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1553,8 +1495,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_duration.metadata = {"url": "/complex/primitive/duration"}
 
     @distributed_trace_async
     async def get_byte(self, **kwargs: Any) -> _models.ByteWrapper:
@@ -1579,7 +1519,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.ByteWrapper] = kwargs.pop("cls", None)
 
         request = build_get_byte_request(
-            template_url=self.get_byte.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1604,8 +1543,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_byte.metadata = {"url": "/complex/primitive/byte"}
 
     @distributed_trace_async
     async def put_byte(  # pylint: disable=inconsistent-return-statements
@@ -1640,7 +1577,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         request = build_put_byte_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_byte.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1661,5 +1597,3 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_byte.metadata = {"url": "/complex/primitive/byte"}

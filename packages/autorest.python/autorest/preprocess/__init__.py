@@ -137,16 +137,6 @@ def add_overloads_for_body_param(yaml_data: Dict[str, Any]) -> None:
     content_type_param["optional"] = True
 
 
-def _remove_paging_maxpagesize(yaml_data: Dict[str, Any]) -> None:
-    # we don't expose maxpagesize for version tolerant generation
-    # users should be passing this into `by_page`
-    yaml_data["parameters"] = [
-        p
-        for p in yaml_data.get("parameters", [])
-        if p["wireName"].lower() not in ["maxpagesize", "$maxpagesize"]
-    ]
-
-
 def update_description(
     description: Optional[str], default_description: str = ""
 ) -> str:
@@ -199,6 +189,10 @@ HEADERS_CONVERT_IN_METHOD = {
         },
     },
 }
+
+
+def get_wire_name_lower(parameter: Dict[str, Any]) -> str:
+    return (parameter.get("wireName") or "").lower()
 
 
 def headers_convert(yaml_data: Dict[str, Any], replace_data: Any) -> None:
@@ -287,7 +281,8 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             yaml_data["description"], default_description=yaml_data["name"]
         )
         yaml_data["legacyFilename"] = to_snake_case(yaml_data["name"].replace(" ", "_"))
-        for parameter in yaml_data["parameters"]:
+        parameters = yaml_data["parameters"]
+        for parameter in parameters:
             self.update_parameter(parameter)
             if parameter["clientName"] == "credential":
                 policy = parameter["type"].get("policy")
@@ -300,26 +295,54 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                     policy["credentialScopes"] = [
                         "https://management.azure.com/.default"
                     ]
-
+        if (
+            (not self.version_tolerant or self.azure_arm)
+            and parameters
+            and parameters[-1]["clientName"] == "credential"
+        ):
+            # we need to move credential to the front in mgmt mode for backcompat reasons
+            yaml_data["parameters"] = [parameters[-1]] + parameters[:-1]
         prop_name = yaml_data["name"]
         if prop_name.endswith("Client"):
             prop_name = prop_name[: len(prop_name) - len("Client")]
         yaml_data["builderPadName"] = to_snake_case(prop_name)
         for og in yaml_data["operationGroups"]:
             for o in og["operations"]:
+                property_if_match = None
+                property_if_none_match = None
                 for p in o["parameters"]:
+                    wire_name_lower = get_wire_name_lower(p)
                     if (
                         p["location"] == "header"
-                        and p["wireName"] == "client-request-id"
+                        and wire_name_lower == "client-request-id"
                     ):
-                        yaml_data["requestIdHeaderName"] = p["wireName"]
-                    if (
-                        self.version_tolerant
-                        and p["location"] == "header"
-                        and p["clientName"] in ("if_match", "if_none_match")
-                    ):
-                        o["hasEtag"] = True
-                        yaml_data["hasEtag"] = True
+                        yaml_data["requestIdHeaderName"] = wire_name_lower
+                    if self.version_tolerant and p["location"] == "header":
+                        if wire_name_lower == "if-match":
+                            property_if_match = p
+                        elif wire_name_lower == "if-none-match":
+                            property_if_none_match = p
+                # pylint: disable=line-too-long
+                # some service(e.g. https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cosmos-db/data-plane/Microsoft.Tables/preview/2019-02-02/table.json)
+                # only has one, so we need to add "if-none-match" or "if-match" if it's missing
+                if not property_if_match and property_if_none_match:
+                    property_if_match = property_if_none_match.copy()
+                    property_if_match["wireName"] = "if-match"
+                if not property_if_none_match and property_if_match:
+                    property_if_none_match = property_if_match.copy()
+                    property_if_none_match["wireName"] = "if-none-match"
+
+                if property_if_match and property_if_none_match:
+                    # arrange if-match and if-none-match to the end of parameters
+                    o["parameters"] = [
+                        item
+                        for item in o["parameters"]
+                        if get_wire_name_lower(item)
+                        not in ("if-match", "if-none-match")
+                    ] + [property_if_match, property_if_none_match]
+
+                    o["hasEtag"] = True
+                    yaml_data["hasEtag"] = True
 
     def get_operation_updater(
         self, yaml_data: Dict[str, Any]
@@ -468,13 +491,8 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             yaml_data["pagerSync"] = "azure.core.paging.ItemPaged"
         if not yaml_data.get("pagerAsync"):
             yaml_data["pagerAsync"] = "azure.core.async_paging.AsyncItemPaged"
-        if self.version_tolerant:
-            # if we're in version tolerant, hide the paging model
-            _remove_paging_maxpagesize(yaml_data)
         item_type = item_type or yaml_data["itemType"]["elementType"]
         if yaml_data.get("nextOperation"):
-            if self.version_tolerant:
-                _remove_paging_maxpagesize(yaml_data["nextOperation"])
             yaml_data["nextOperation"]["groupName"] = self.pad_reserved_words(
                 yaml_data["nextOperation"]["groupName"], PadType.OPERATION_GROUP
             )
