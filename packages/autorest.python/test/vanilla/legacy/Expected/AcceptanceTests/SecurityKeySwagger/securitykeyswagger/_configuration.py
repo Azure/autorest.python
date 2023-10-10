@@ -8,14 +8,13 @@
 
 from typing import Any
 
-from azure.core.configuration import Configuration
 from azure.core.credentials import AzureKeyCredential
 from azure.core.pipeline import policies
 
 from ._version import VERSION
 
 
-class AutorestSecurityKeyConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes,name-too-long
+class AutorestSecurityKeyConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for AutorestSecurityKey.
 
     Note that all parameters used to create this instance are saved as instance
@@ -26,7 +25,6 @@ class AutorestSecurityKeyConfiguration(Configuration):  # pylint: disable=too-ma
     """
 
     def __init__(self, credential: AzureKeyCredential, **kwargs: Any) -> None:
-        super(AutorestSecurityKeyConfiguration, self).__init__(**kwargs)
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
 

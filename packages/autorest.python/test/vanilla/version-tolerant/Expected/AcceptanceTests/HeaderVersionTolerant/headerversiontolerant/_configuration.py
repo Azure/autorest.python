@@ -8,15 +8,12 @@
 
 from typing import Any
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from ._version import VERSION
 
 
-class AutoRestSwaggerBATHeaderServiceConfiguration(  # pylint: disable=too-many-instance-attributes,name-too-long
-    Configuration
-):
+class AutoRestSwaggerBATHeaderServiceConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for AutoRestSwaggerBATHeaderService.
 
     Note that all parameters used to create this instance are saved as instance
@@ -24,7 +21,6 @@ class AutoRestSwaggerBATHeaderServiceConfiguration(  # pylint: disable=too-many-
     """
 
     def __init__(self, **kwargs: Any) -> None:
-        super(AutoRestSwaggerBATHeaderServiceConfiguration, self).__init__(**kwargs)
 
         kwargs.setdefault("sdk_moniker", "autorestswaggerbatheaderservice/{}".format(VERSION))
         self._configure(**kwargs)

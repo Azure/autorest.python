@@ -9,7 +9,6 @@
 import sys
 from typing import Any
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from ._version import VERSION
@@ -20,9 +19,7 @@ else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
 
 
-class AutoRestSwaggerConstantServiceConfiguration(  # pylint: disable=too-many-instance-attributes,name-too-long
-    Configuration
-):
+class AutoRestSwaggerConstantServiceConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for AutoRestSwaggerConstantService.
 
     Note that all parameters used to create this instance are saved as instance
@@ -43,7 +40,6 @@ class AutoRestSwaggerConstantServiceConfiguration(  # pylint: disable=too-many-i
     """
 
     def __init__(self, **kwargs: Any) -> None:
-        super(AutoRestSwaggerConstantServiceConfiguration, self).__init__(**kwargs)
         header_constant: Literal[True] = kwargs.pop("header_constant", True)
         query_constant: Literal[100] = kwargs.pop("query_constant", 100)
         path_constant: Literal["path"] = kwargs.pop("path_constant", "path")

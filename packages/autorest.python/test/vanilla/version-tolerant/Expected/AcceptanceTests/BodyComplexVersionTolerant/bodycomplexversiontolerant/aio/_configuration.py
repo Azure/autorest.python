@@ -8,15 +8,12 @@
 
 from typing import Any
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from .._version import VERSION
 
 
-class AutoRestComplexTestServiceConfiguration(  # pylint: disable=too-many-instance-attributes,name-too-long
-    Configuration
-):
+class AutoRestComplexTestServiceConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for AutoRestComplexTestService.
 
     Note that all parameters used to create this instance are saved as instance
@@ -28,7 +25,6 @@ class AutoRestComplexTestServiceConfiguration(  # pylint: disable=too-many-insta
     """
 
     def __init__(self, **kwargs: Any) -> None:
-        super(AutoRestComplexTestServiceConfiguration, self).__init__(**kwargs)
         api_version: str = kwargs.pop("api_version", "2016-02-29")
 
         self.api_version = api_version

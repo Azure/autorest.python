@@ -10,6 +10,7 @@ from copy import deepcopy
 from typing import Any, Awaitable
 
 from azure.core import AsyncPipelineClient
+from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .. import models as _models
@@ -31,7 +32,22 @@ class ClassName:  # pylint: disable=client-accepts-api-version-keyword
         self, base_url: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = ClassNameConfiguration(**kwargs)
-        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
+        config_policies = [
+            policies.RequestIdPolicy(**kwargs),
+            self._config.headers_policy,
+            self._config.user_agent_policy,
+            self._config.proxy_policy,
+            policies.ContentDecodePolicy(**kwargs),
+            self._config.redirect_policy,
+            self._config.retry_policy,
+            self._config.authentication_policy,
+            self._config.custom_hook_policy,
+            self._config.logging_policy,
+            policies.DistributedTracingPolicy(**kwargs),
+            policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
+            self._config.http_logging_policy,
+        ]
+        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=base_url, policies=config_policies, **kwargs)
 
         client_models = {k: v for k, v in _models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)

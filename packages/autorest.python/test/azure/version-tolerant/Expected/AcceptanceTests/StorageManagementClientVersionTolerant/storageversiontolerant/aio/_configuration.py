@@ -8,7 +8,6 @@
 
 from typing import Any, TYPE_CHECKING
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 from azure.mgmt.core.policies import ARMHttpLoggingPolicy, AsyncARMChallengeAuthenticationPolicy
 
@@ -19,7 +18,7 @@ if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential
 
 
-class StorageManagementClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes,name-too-long
+class StorageManagementClientConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for StorageManagementClient.
 
     Note that all parameters used to create this instance are saved as instance
@@ -36,7 +35,6 @@ class StorageManagementClientConfiguration(Configuration):  # pylint: disable=to
     """
 
     def __init__(self, credential: "AsyncTokenCredential", subscription_id: str, **kwargs: Any) -> None:
-        super(StorageManagementClientConfiguration, self).__init__(**kwargs)
         api_version: str = kwargs.pop("api_version", "2015-05-01-preview")
 
         if credential is None:

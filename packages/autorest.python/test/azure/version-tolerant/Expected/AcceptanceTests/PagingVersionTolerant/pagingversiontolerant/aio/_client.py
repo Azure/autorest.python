@@ -10,6 +10,7 @@ from copy import deepcopy
 from typing import Any, Awaitable
 
 from azure.core import AsyncPipelineClient
+from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
@@ -35,8 +36,23 @@ class AutoRestPagingTestService:  # pylint: disable=client-accepts-api-version-k
         self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = AutoRestPagingTestServiceConfiguration(**kwargs)
+        config_policies = [
+            policies.RequestIdPolicy(**kwargs),
+            self._config.headers_policy,
+            self._config.user_agent_policy,
+            self._config.proxy_policy,
+            policies.ContentDecodePolicy(**kwargs),
+            self._config.redirect_policy,
+            self._config.retry_policy,
+            self._config.authentication_policy,
+            self._config.custom_hook_policy,
+            self._config.logging_policy,
+            policies.DistributedTracingPolicy(**kwargs),
+            policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
+            self._config.http_logging_policy,
+        ]
         self._client: AsyncPipelineClient = AsyncPipelineClient(
-            base_url=endpoint, config=self._config, request_id_header_name="client-request-id", **kwargs
+            base_url=endpoint, policies=config_policies, request_id_header_name="client-request-id", **kwargs
         )
 
         self._serialize = Serializer()

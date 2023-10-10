@@ -9,8 +9,10 @@
 from copy import deepcopy
 from typing import Any, TYPE_CHECKING
 
+from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 from azure.mgmt.core import ARMPipelineClient
+from azure.mgmt.core.policies import ARMAutoResourceProviderRegistrationPolicy
 
 from ._configuration import AutoRestHeadExceptionTestServiceConfiguration
 from ._serialization import Deserializer, Serializer
@@ -36,7 +38,23 @@ class AutoRestHeadExceptionTestService:  # pylint: disable=client-accepts-api-ve
 
     def __init__(self, credential: "TokenCredential", base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = AutoRestHeadExceptionTestServiceConfiguration(credential=credential, **kwargs)
-        self._client: ARMPipelineClient = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
+        config_policies = [
+            policies.RequestIdPolicy(**kwargs),
+            self._config.headers_policy,
+            self._config.user_agent_policy,
+            self._config.proxy_policy,
+            policies.ContentDecodePolicy(**kwargs),
+            ARMAutoResourceProviderRegistrationPolicy(),
+            self._config.redirect_policy,
+            self._config.retry_policy,
+            self._config.authentication_policy,
+            self._config.custom_hook_policy,
+            self._config.logging_policy,
+            policies.DistributedTracingPolicy(**kwargs),
+            policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
+            self._config.http_logging_policy,
+        ]
+        self._client: ARMPipelineClient = ARMPipelineClient(base_url=base_url, policies=config_policies, **kwargs)
 
         client_models: Dict[str, Any] = {}
         self._serialize = Serializer(client_models)

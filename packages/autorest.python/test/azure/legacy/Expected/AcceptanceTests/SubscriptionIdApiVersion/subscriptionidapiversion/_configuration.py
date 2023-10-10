@@ -8,7 +8,6 @@
 
 from typing import Any, TYPE_CHECKING
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 from azure.mgmt.core.policies import ARMChallengeAuthenticationPolicy, ARMHttpLoggingPolicy
 
@@ -19,7 +18,7 @@ if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
 
 
-class MicrosoftAzureTestUrlConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes,name-too-long
+class MicrosoftAzureTestUrlConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for MicrosoftAzureTestUrl.
 
     Note that all parameters used to create this instance are saved as instance
@@ -35,7 +34,6 @@ class MicrosoftAzureTestUrlConfiguration(Configuration):  # pylint: disable=too-
     """
 
     def __init__(self, credential: "TokenCredential", subscription_id: str, **kwargs: Any) -> None:
-        super(MicrosoftAzureTestUrlConfiguration, self).__init__(**kwargs)
         api_version: str = kwargs.pop("api_version", "2014-04-01-preview")
 
         if credential is None:

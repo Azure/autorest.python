@@ -8,15 +8,12 @@
 
 from typing import Any
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from ._version import VERSION
 
 
-class AutoRestParameterizedHostTestClientConfiguration(  # pylint: disable=too-many-instance-attributes,name-too-long
-    Configuration
-):
+class AutoRestParameterizedHostTestClientConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for AutoRestParameterizedHostTestClient.
 
     Note that all parameters used to create this instance are saved as instance
@@ -28,7 +25,6 @@ class AutoRestParameterizedHostTestClientConfiguration(  # pylint: disable=too-m
     """
 
     def __init__(self, host: str = "host", **kwargs: Any) -> None:
-        super(AutoRestParameterizedHostTestClientConfiguration, self).__init__(**kwargs)
         if host is None:
             raise ValueError("Parameter 'host' must not be None.")
 

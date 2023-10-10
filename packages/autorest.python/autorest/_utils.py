@@ -107,7 +107,7 @@ KNOWN_TYPES: Dict[str, Dict[str, Any]] = {
 JSON_REGEXP = re.compile(r"^(application|text)/(.+\+)?json$")
 
 
-def build_policies(is_arm: bool, async_mode: bool) -> str:
+def build_policies(is_arm: bool, async_mode: bool) -> List[str]:
     async_prefix = "Async" if async_mode else ""
     policies = [
         "policies.RequestIdPolicy(**kwargs)",

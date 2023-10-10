@@ -8,7 +8,6 @@
 
 from typing import Any, TYPE_CHECKING
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 if TYPE_CHECKING:
@@ -18,9 +17,7 @@ if TYPE_CHECKING:
 VERSION = "unknown"
 
 
-class MultiapiCustomBaseUrlServiceClientConfiguration(  # pylint: disable=too-many-instance-attributes,name-too-long
-    Configuration
-):
+class MultiapiCustomBaseUrlServiceClientConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for MultiapiCustomBaseUrlServiceClient.
 
     Note that all parameters used to create this instance are saved as instance
@@ -36,7 +33,6 @@ class MultiapiCustomBaseUrlServiceClientConfiguration(  # pylint: disable=too-ma
     """
 
     def __init__(self, credential: "AsyncTokenCredential", endpoint: str, **kwargs: Any) -> None:
-        super(MultiapiCustomBaseUrlServiceClientConfiguration, self).__init__(**kwargs)
         api_version: str = kwargs.pop("api_version", "1.0.0")
 
         if credential is None:

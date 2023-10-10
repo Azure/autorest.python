@@ -8,16 +8,13 @@
 
 from typing import Any
 
-from azure.core.configuration import Configuration
 from azure.core.credentials import AzureKeyCredential
 from azure.core.pipeline import policies
 
 from ._version import VERSION
 
 
-class SecurityAadSwaggerCredentialFlagConfiguration(  # pylint: disable=too-many-instance-attributes,name-too-long
-    Configuration
-):
+class SecurityAadSwaggerCredentialFlagConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for SecurityAadSwaggerCredentialFlag.
 
     Note that all parameters used to create this instance are saved as instance
@@ -28,7 +25,6 @@ class SecurityAadSwaggerCredentialFlagConfiguration(  # pylint: disable=too-many
     """
 
     def __init__(self, credential: AzureKeyCredential, **kwargs: Any) -> None:
-        super(SecurityAadSwaggerCredentialFlagConfiguration, self).__init__(**kwargs)
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
 

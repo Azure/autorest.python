@@ -8,13 +8,12 @@
 
 from typing import Any
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from .._version import VERSION
 
 
-class AnythingClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class AnythingClientConfiguration:  # pylint: disable=too-many-instance-attributes
     """Configuration for AnythingClient.
 
     Note that all parameters used to create this instance are saved as instance
@@ -22,7 +21,6 @@ class AnythingClientConfiguration(Configuration):  # pylint: disable=too-many-in
     """
 
     def __init__(self, **kwargs: Any) -> None:
-        super(AnythingClientConfiguration, self).__init__(**kwargs)
 
         kwargs.setdefault("sdk_moniker", "anythingclient/{}".format(VERSION))
         self._configure(**kwargs)

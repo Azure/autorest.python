@@ -8,15 +8,12 @@
 
 from typing import Any
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from ._version import VERSION
 
 
-class XMSErrorResponseExtensionsConfiguration(  # pylint: disable=too-many-instance-attributes,name-too-long
-    Configuration
-):
+class XMSErrorResponseExtensionsConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for XMSErrorResponseExtensions.
 
     Note that all parameters used to create this instance are saved as instance
@@ -24,7 +21,6 @@ class XMSErrorResponseExtensionsConfiguration(  # pylint: disable=too-many-insta
     """
 
     def __init__(self, **kwargs: Any) -> None:
-        super(XMSErrorResponseExtensionsConfiguration, self).__init__(**kwargs)
 
         kwargs.setdefault("sdk_moniker", "xmserrorresponseextensions/{}".format(VERSION))
         self._configure(**kwargs)

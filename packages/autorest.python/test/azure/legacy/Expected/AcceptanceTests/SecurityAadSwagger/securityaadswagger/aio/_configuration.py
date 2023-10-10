@@ -8,7 +8,6 @@
 
 from typing import Any, TYPE_CHECKING
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 from azure.mgmt.core.policies import ARMHttpLoggingPolicy, AsyncARMChallengeAuthenticationPolicy
 
@@ -19,7 +18,7 @@ if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential
 
 
-class AutorestSecurityAadConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes,name-too-long
+class AutorestSecurityAadConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for AutorestSecurityAad.
 
     Note that all parameters used to create this instance are saved as instance
@@ -30,7 +29,6 @@ class AutorestSecurityAadConfiguration(Configuration):  # pylint: disable=too-ma
     """
 
     def __init__(self, credential: "AsyncTokenCredential", **kwargs: Any) -> None:
-        super(AutorestSecurityAadConfiguration, self).__init__(**kwargs)
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
 

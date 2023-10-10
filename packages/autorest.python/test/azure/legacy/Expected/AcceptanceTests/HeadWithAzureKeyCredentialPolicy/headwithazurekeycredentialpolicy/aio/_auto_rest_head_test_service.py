@@ -10,8 +10,10 @@ from copy import deepcopy
 from typing import Any, Awaitable, TYPE_CHECKING
 
 from azure.core.credentials import AzureKeyCredential
+from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.mgmt.core import AsyncARMPipelineClient
+from azure.mgmt.core.policies import AsyncARMAutoResourceProviderRegistrationPolicy
 
 from .._serialization import Deserializer, Serializer
 from ._configuration import AutoRestHeadTestServiceConfiguration
@@ -35,7 +37,25 @@ class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-key
 
     def __init__(self, credential: AzureKeyCredential, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = AutoRestHeadTestServiceConfiguration(credential=credential, **kwargs)
-        self._client: AsyncARMPipelineClient = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
+        config_policies = [
+            policies.RequestIdPolicy(**kwargs),
+            self._config.headers_policy,
+            self._config.user_agent_policy,
+            self._config.proxy_policy,
+            policies.ContentDecodePolicy(**kwargs),
+            AsyncARMAutoResourceProviderRegistrationPolicy(),
+            self._config.redirect_policy,
+            self._config.retry_policy,
+            self._config.authentication_policy,
+            self._config.custom_hook_policy,
+            self._config.logging_policy,
+            policies.DistributedTracingPolicy(**kwargs),
+            policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
+            self._config.http_logging_policy,
+        ]
+        self._client: AsyncARMPipelineClient = AsyncARMPipelineClient(
+            base_url=base_url, policies=config_policies, **kwargs
+        )
 
         client_models: Dict[str, Any] = {}
         self._serialize = Serializer(client_models)

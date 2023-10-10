@@ -8,7 +8,6 @@
 
 from typing import Any, TYPE_CHECKING
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from .._version import VERSION
@@ -18,9 +17,7 @@ if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential
 
 
-class SecurityKeySwaggerCredentialFlagConfiguration(  # pylint: disable=too-many-instance-attributes,name-too-long
-    Configuration
-):
+class SecurityKeySwaggerCredentialFlagConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for SecurityKeySwaggerCredentialFlag.
 
     Note that all parameters used to create this instance are saved as instance
@@ -31,7 +28,6 @@ class SecurityKeySwaggerCredentialFlagConfiguration(  # pylint: disable=too-many
     """
 
     def __init__(self, credential: "AsyncTokenCredential", **kwargs: Any) -> None:
-        super(SecurityKeySwaggerCredentialFlagConfiguration, self).__init__(**kwargs)
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
 

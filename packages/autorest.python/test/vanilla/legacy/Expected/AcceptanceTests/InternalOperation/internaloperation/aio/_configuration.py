@@ -8,13 +8,12 @@
 
 from typing import Any
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from .._version import VERSION
 
 
-class MediaTypesClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes,name-too-long
+class MediaTypesClientConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for MediaTypesClient.
 
     Note that all parameters used to create this instance are saved as instance
@@ -22,7 +21,6 @@ class MediaTypesClientConfiguration(Configuration):  # pylint: disable=too-many-
     """
 
     def __init__(self, **kwargs: Any) -> None:
-        super(MediaTypesClientConfiguration, self).__init__(**kwargs)
 
         kwargs.setdefault("sdk_moniker", "internaloperation/{}".format(VERSION))
         self._configure(**kwargs)

@@ -8,7 +8,6 @@
 
 from typing import Any, TYPE_CHECKING
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 from azure.mgmt.core.policies import ARMChallengeAuthenticationPolicy, ARMHttpLoggingPolicy
 
@@ -19,9 +18,7 @@ if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
 
 
-class AutoRestLongRunningOperationTestServiceConfiguration(  # pylint: disable=too-many-instance-attributes,name-too-long
-    Configuration
-):
+class AutoRestLongRunningOperationTestServiceConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for AutoRestLongRunningOperationTestService.
 
     Note that all parameters used to create this instance are saved as instance
@@ -32,7 +29,6 @@ class AutoRestLongRunningOperationTestServiceConfiguration(  # pylint: disable=t
     """
 
     def __init__(self, credential: "TokenCredential", **kwargs: Any) -> None:
-        super(AutoRestLongRunningOperationTestServiceConfiguration, self).__init__(**kwargs)
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
 
