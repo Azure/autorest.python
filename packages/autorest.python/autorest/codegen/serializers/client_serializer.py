@@ -116,14 +116,18 @@ class ClientSerializer:
             "policies": "config_policies",
         }
         if not self.client.code_model.is_legacy and self.client.request_id_header_name:
-            result.append(f'kwargs["request_id_header_name"] = "{self.client.request_id_header_name}"')
-        result.extend([
-            "config_policies = kwargs.pop('policies', None)",
-            "if config_policies is None:",
-            f'    config_policies = [{",".join(build_policies(self.client.code_model.options["azure_arm"], async_mode))}]',
-            f"self._client: {pipeline_client_name} = {pipeline_client_name}("
-            f"{', '.join(f'{k}={v}' for k, v in params.items())}, **kwargs)",
-        ])
+            result.append(
+                f'kwargs["request_id_header_name"] = "{self.client.request_id_header_name}"'
+            )
+        result.extend(
+            [
+                "config_policies = kwargs.pop('policies', None)",
+                "if config_policies is None:",
+                f'    config_policies = [{",".join(build_policies(self.client.code_model.options["azure_arm"], async_mode))}]',  # pylint: disable=line-too-long
+                f"self._client: {pipeline_client_name} = {pipeline_client_name}("
+                f"{', '.join(f'{k}={v}' for k, v in params.items())}, **kwargs)",
+            ]
+        )
         return result
 
     def serializers_and_operation_groups_properties(self) -> List[str]:
