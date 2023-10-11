@@ -45,6 +45,7 @@ class MultiapiCustomBaseUrlServiceClientConfiguration:  # pylint: disable=too-ma
         self.api_version = api_version
         self.credential_scopes = kwargs.pop("credential_scopes", [])
         kwargs.setdefault("sdk_moniker", "multiapicustombaseurl/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

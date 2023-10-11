@@ -30,6 +30,7 @@ class AutoRestParameterizedHostTestClientConfiguration:  # pylint: disable=too-m
 
         self.host = host
         kwargs.setdefault("sdk_moniker", "autorestparameterizedhosttestclient/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

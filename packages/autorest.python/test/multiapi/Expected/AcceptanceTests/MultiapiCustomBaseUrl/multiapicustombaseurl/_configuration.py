@@ -46,6 +46,7 @@ class MultiapiCustomBaseUrlServiceClientConfiguration:
         self.endpoint = endpoint
         self.credential_scopes = kwargs.pop('credential_scopes', [])
         kwargs.setdefault('sdk_moniker', 'multiapicustombaseurl/{}'.format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(

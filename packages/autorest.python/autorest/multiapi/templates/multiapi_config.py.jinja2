@@ -63,6 +63,7 @@ class {{ code_model.client.name }}Configuration:
         self.credential_scopes = kwargs.pop('credential_scopes', {{ code_model.config.credential_scopes }})
 {% endif %}
         kwargs.setdefault('sdk_moniker', '{{ code_model.package_name|lower }}/{}'.format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(

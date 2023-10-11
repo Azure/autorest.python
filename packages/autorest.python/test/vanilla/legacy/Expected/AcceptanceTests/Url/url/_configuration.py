@@ -33,6 +33,7 @@ class AutoRestUrlTestServiceConfiguration:  # pylint: disable=too-many-instance-
         self.global_string_path = global_string_path
         self.global_string_query = global_string_query
         kwargs.setdefault("sdk_moniker", "autoresturltestservice/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

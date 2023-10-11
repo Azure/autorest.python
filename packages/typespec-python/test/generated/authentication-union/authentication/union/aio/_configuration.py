@@ -37,6 +37,7 @@ class UnionClientConfiguration:  # pylint: disable=too-many-instance-attributes
         self.credential = credential
         self.credential_scopes = kwargs.pop("credential_scopes", ["https://security.microsoft.com/.default"])
         kwargs.setdefault("sdk_moniker", "authentication-union/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _infer_policy(self, **kwargs):

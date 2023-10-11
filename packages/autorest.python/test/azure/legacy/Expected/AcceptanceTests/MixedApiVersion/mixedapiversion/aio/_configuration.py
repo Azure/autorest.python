@@ -40,6 +40,7 @@ class MixedApiVersionClientConfiguration:  # pylint: disable=too-many-instance-a
         self.subscription_id = subscription_id
         self.credential_scopes = kwargs.pop("credential_scopes", [])
         kwargs.setdefault("sdk_moniker", "mixedapiversion/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

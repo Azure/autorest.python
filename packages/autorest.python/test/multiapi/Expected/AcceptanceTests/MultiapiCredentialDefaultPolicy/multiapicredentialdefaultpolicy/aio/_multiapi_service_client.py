@@ -74,22 +74,24 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
         if api_version:
             kwargs.setdefault('api_version', api_version)
         self._config = MultiapiServiceClientConfiguration(credential, **kwargs)
-        config_policies = [
-            policies.RequestIdPolicy(**kwargs),
-            self._config.headers_policy,
-            self._config.user_agent_policy,
-            self._config.proxy_policy,
-            policies.ContentDecodePolicy(**kwargs),
-            AsyncARMAutoResourceProviderRegistrationPolicy(),
-            self._config.redirect_policy,
-            self._config.retry_policy,
-            self._config.authentication_policy,
-            self._config.custom_hook_policy,
-            self._config.logging_policy,
-            policies.DistributedTracingPolicy(**kwargs),
-            policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
-            self._config.http_logging_policy,
-        ]
+        config_policies = kwargs.pop("policies", None)
+        if config_policies is None:
+            config_policies = [
+                policies.RequestIdPolicy(**kwargs),
+                self._config.headers_policy,
+                self._config.user_agent_policy,
+                self._config.proxy_policy,
+                policies.ContentDecodePolicy(**kwargs),
+                AsyncARMAutoResourceProviderRegistrationPolicy(),
+                self._config.redirect_policy,
+                self._config.retry_policy,
+                self._config.authentication_policy,
+                self._config.custom_hook_policy,
+                self._config.logging_policy,
+                policies.DistributedTracingPolicy(**kwargs),
+                policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
+                self._config.http_logging_policy,
+            ]
         self._client = AsyncARMPipelineClient(base_url=base_url, policies=config_policies, **kwargs)
         super(MultiapiServiceClient, self).__init__(
             api_version=api_version,

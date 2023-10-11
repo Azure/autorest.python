@@ -48,6 +48,7 @@ class AutoRestSwaggerConstantServiceConfiguration:  # pylint: disable=too-many-i
         self.query_constant = query_constant
         self.path_constant = path_constant
         kwargs.setdefault("sdk_moniker", "autorestswaggerconstantservice/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

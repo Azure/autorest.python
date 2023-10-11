@@ -37,6 +37,7 @@ class ServiceClientConfiguration:  # pylint: disable=too-many-instance-attribute
         self.endpoint = endpoint
         self.client = client
         kwargs.setdefault("sdk_moniker", "client-structure-service/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

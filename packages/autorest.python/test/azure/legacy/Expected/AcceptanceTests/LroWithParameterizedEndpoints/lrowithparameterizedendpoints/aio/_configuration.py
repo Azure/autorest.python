@@ -30,6 +30,7 @@ class LROWithParamaterizedEndpointsConfiguration:  # pylint: disable=too-many-in
 
         self.host = host
         kwargs.setdefault("sdk_moniker", "lrowithparamaterizedendpoints/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

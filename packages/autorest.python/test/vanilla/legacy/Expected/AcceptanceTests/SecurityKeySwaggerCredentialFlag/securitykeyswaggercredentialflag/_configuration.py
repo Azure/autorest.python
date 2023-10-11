@@ -34,6 +34,7 @@ class SecurityKeySwaggerCredentialFlagConfiguration:  # pylint: disable=too-many
         self.credential = credential
         self.credential_scopes = kwargs.pop("credential_scopes", [])
         kwargs.setdefault("sdk_moniker", "securitykeyswaggercredentialflag/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

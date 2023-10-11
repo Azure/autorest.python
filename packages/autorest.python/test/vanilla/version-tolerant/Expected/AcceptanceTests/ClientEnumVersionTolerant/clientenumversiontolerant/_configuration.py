@@ -30,6 +30,7 @@ class ClientWithEnumConfiguration:  # pylint: disable=too-many-instance-attribut
 
         self.x_ms_enum = x_ms_enum
         kwargs.setdefault("sdk_moniker", "clientwithenum/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

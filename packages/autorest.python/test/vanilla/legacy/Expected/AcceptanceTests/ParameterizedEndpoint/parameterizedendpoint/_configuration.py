@@ -29,6 +29,7 @@ class ParmaterizedEndpointClientConfiguration:  # pylint: disable=too-many-insta
 
         self.endpoint = endpoint
         kwargs.setdefault("sdk_moniker", "parmaterizedendpointclient/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

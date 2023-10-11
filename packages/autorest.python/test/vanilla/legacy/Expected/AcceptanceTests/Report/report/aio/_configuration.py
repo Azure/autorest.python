@@ -23,6 +23,7 @@ class AutoRestReportServiceConfiguration:  # pylint: disable=too-many-instance-a
     def __init__(self, **kwargs: Any) -> None:
 
         kwargs.setdefault("sdk_moniker", "autorestreportservice/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

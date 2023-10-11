@@ -109,18 +109,22 @@ class ClientSerializer:
         )
 
     def initialize_pipeline_client(self, async_mode: bool) -> List[str]:
+        result = []
         pipeline_client_name = self.client.pipeline_class(async_mode)
         params = {
             "base_url": self.host_variable_name,
             "policies": "config_policies",
         }
         if not self.client.code_model.is_legacy and self.client.request_id_header_name:
-            params["request_id_header_name"] = f'"{self.client.request_id_header_name}"'
-        return [
-            f'config_policies = [{",".join(build_policies(self.client.code_model.options["azure_arm"], async_mode))}]',
+            result.append(f'kwargs["request_id_header_name"] = "{self.client.request_id_header_name}"')
+        result.extend([
+            "config_policies = kwargs.pop('policies', None)",
+            "if config_policies is None:",
+            f'    config_policies = [{",".join(build_policies(self.client.code_model.options["azure_arm"], async_mode))}]',
             f"self._client: {pipeline_client_name} = {pipeline_client_name}("
             f"{', '.join(f'{k}={v}' for k, v in params.items())}, **kwargs)",
-        ]
+        ])
+        return result
 
     def serializers_and_operation_groups_properties(self) -> List[str]:
         retval = []

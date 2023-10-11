@@ -46,22 +46,24 @@ class AutoRestLongRunningOperationTestService:  # pylint: disable=client-accepts
         self, credential: "AsyncTokenCredential", endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = AutoRestLongRunningOperationTestServiceConfiguration(credential=credential, **kwargs)
-        config_policies = [
-            policies.RequestIdPolicy(**kwargs),
-            self._config.headers_policy,
-            self._config.user_agent_policy,
-            self._config.proxy_policy,
-            policies.ContentDecodePolicy(**kwargs),
-            AsyncARMAutoResourceProviderRegistrationPolicy(),
-            self._config.redirect_policy,
-            self._config.retry_policy,
-            self._config.authentication_policy,
-            self._config.custom_hook_policy,
-            self._config.logging_policy,
-            policies.DistributedTracingPolicy(**kwargs),
-            policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
-            self._config.http_logging_policy,
-        ]
+        config_policies = kwargs.pop("policies", None)
+        if config_policies is None:
+            config_policies = [
+                policies.RequestIdPolicy(**kwargs),
+                self._config.headers_policy,
+                self._config.user_agent_policy,
+                self._config.proxy_policy,
+                policies.ContentDecodePolicy(**kwargs),
+                AsyncARMAutoResourceProviderRegistrationPolicy(),
+                self._config.redirect_policy,
+                self._config.retry_policy,
+                self._config.authentication_policy,
+                self._config.custom_hook_policy,
+                self._config.logging_policy,
+                policies.DistributedTracingPolicy(**kwargs),
+                policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
+                self._config.http_logging_policy,
+            ]
         self._client: AsyncARMPipelineClient = AsyncARMPipelineClient(
             base_url=endpoint, policies=config_policies, **kwargs
         )

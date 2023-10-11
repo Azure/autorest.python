@@ -37,6 +37,7 @@ class MultiapiServiceClientConfiguration:
 
         self.credential = credential
         kwargs.setdefault('sdk_moniker', 'multiapicredentialdefaultpolicy/{}'.format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(

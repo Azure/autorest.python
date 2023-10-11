@@ -30,6 +30,7 @@ class SecurityAadSwaggerCredentialFlagConfiguration:  # pylint: disable=too-many
 
         self.credential = credential
         kwargs.setdefault("sdk_moniker", "securityaadswaggercredentialflag/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

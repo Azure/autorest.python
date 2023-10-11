@@ -35,6 +35,7 @@ class MultipleClientConfiguration:  # pylint: disable=too-many-instance-attribut
         self.endpoint = endpoint
         self.api_version = api_version
         kwargs.setdefault("sdk_moniker", "server-path-multiple/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

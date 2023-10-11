@@ -43,6 +43,7 @@ class ResiliencyServiceDrivenClientConfiguration:  # pylint: disable=too-many-in
         self.service_deployment_version = service_deployment_version
         self.api_version = api_version
         kwargs.setdefault("sdk_moniker", "resiliency-srv-driven1/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

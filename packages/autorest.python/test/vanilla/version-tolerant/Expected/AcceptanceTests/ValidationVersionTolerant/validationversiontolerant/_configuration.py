@@ -35,6 +35,7 @@ class AutoRestValidationTestConfiguration:  # pylint: disable=too-many-instance-
         self.subscription_id = subscription_id
         self.api_version = api_version
         kwargs.setdefault("sdk_moniker", "autorestvalidationtest/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

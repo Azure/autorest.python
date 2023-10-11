@@ -23,6 +23,7 @@ class AutoRestDurationTestServiceConfiguration:  # pylint: disable=too-many-inst
     def __init__(self, **kwargs: Any) -> None:
 
         kwargs.setdefault("sdk_moniker", "autorestdurationtestservice/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

@@ -30,6 +30,7 @@ class CustomClientConfiguration:  # pylint: disable=too-many-instance-attributes
 
         self.credential = credential
         kwargs.setdefault("sdk_moniker", "authentication-http-custom/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

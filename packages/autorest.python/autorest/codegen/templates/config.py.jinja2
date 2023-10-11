@@ -31,6 +31,7 @@ class {{ client.name }}Configuration:  {{ client.config.pylint_disable }}
     {% endif %}
 {% endif %}
         kwargs.setdefault('sdk_moniker', '{{ client.config.sdk_moniker }}/{}'.format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
 {% if client.credential and client.credential.type.types is defined %}

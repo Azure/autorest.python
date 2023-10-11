@@ -43,6 +43,7 @@ class AutoRestRequiredOptionalTestServiceConfiguration:  # pylint: disable=too-m
         self.required_global_query = required_global_query
         self.optional_global_query = optional_global_query
         kwargs.setdefault("sdk_moniker", "autorestrequiredoptionaltestservice/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

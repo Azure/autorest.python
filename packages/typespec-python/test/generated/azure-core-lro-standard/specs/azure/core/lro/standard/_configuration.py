@@ -30,6 +30,7 @@ class StandardClientConfiguration:  # pylint: disable=too-many-instance-attribut
 
         self.api_version = api_version
         kwargs.setdefault("sdk_moniker", "specs-azure-core-lro-standard/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

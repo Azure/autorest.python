@@ -35,6 +35,7 @@ class AutorestSecurityAadConfiguration:  # pylint: disable=too-many-instance-att
         self.credential = credential
         self.credential_scopes = kwargs.pop("credential_scopes", ["https://management.azure.com/.default"])
         kwargs.setdefault("sdk_moniker", "autorestsecurityaad/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:
