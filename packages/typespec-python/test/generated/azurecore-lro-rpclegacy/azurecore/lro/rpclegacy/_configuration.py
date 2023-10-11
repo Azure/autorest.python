@@ -8,13 +8,12 @@
 
 from typing import Any
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from ._version import VERSION
 
 
-class LegacyClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class LegacyClientConfiguration:  # pylint: disable=too-many-instance-attributes
     """Configuration for LegacyClient.
 
     Note that all parameters used to create this instance are saved as instance
@@ -27,7 +26,6 @@ class LegacyClientConfiguration(Configuration):  # pylint: disable=too-many-inst
     """
 
     def __init__(self, **kwargs: Any) -> None:
-        super(LegacyClientConfiguration, self).__init__(**kwargs)
         api_version: str = kwargs.pop("api_version", "2022-12-01-preview")
 
         self.api_version = api_version

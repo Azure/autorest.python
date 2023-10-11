@@ -8,14 +8,13 @@
 
 from typing import Any, Union
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from . import models as _models
 from ._version import VERSION
 
 
-class TwoOperationGroupClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes,name-too-long
+class TwoOperationGroupClientConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for TwoOperationGroupClient.
 
     Note that all parameters used to create this instance are saved as instance
@@ -30,7 +29,6 @@ class TwoOperationGroupClientConfiguration(Configuration):  # pylint: disable=to
     """
 
     def __init__(self, endpoint: str, client: Union[str, _models.ClientType], **kwargs: Any) -> None:
-        super(TwoOperationGroupClientConfiguration, self).__init__(**kwargs)
         if endpoint is None:
             raise ValueError("Parameter 'endpoint' must not be None.")
         if client is None:

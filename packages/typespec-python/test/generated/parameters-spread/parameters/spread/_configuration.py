@@ -8,13 +8,12 @@
 
 from typing import Any
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from ._version import VERSION
 
 
-class SpreadClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class SpreadClientConfiguration:  # pylint: disable=too-many-instance-attributes
     """Configuration for SpreadClient.
 
     Note that all parameters used to create this instance are saved as instance
@@ -22,7 +21,6 @@ class SpreadClientConfiguration(Configuration):  # pylint: disable=too-many-inst
     """
 
     def __init__(self, **kwargs: Any) -> None:
-        super(SpreadClientConfiguration, self).__init__(**kwargs)
 
         kwargs.setdefault("sdk_moniker", "parameters-spread/{}".format(VERSION))
         self._configure(**kwargs)

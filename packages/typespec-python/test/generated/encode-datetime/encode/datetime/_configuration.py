@@ -8,13 +8,12 @@
 
 from typing import Any
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from ._version import VERSION
 
 
-class DatetimeClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class DatetimeClientConfiguration:  # pylint: disable=too-many-instance-attributes
     """Configuration for DatetimeClient.
 
     Note that all parameters used to create this instance are saved as instance
@@ -22,7 +21,6 @@ class DatetimeClientConfiguration(Configuration):  # pylint: disable=too-many-in
     """
 
     def __init__(self, **kwargs: Any) -> None:
-        super(DatetimeClientConfiguration, self).__init__(**kwargs)
 
         kwargs.setdefault("sdk_moniker", "encode-datetime/{}".format(VERSION))
         self._configure(**kwargs)

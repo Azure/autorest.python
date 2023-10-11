@@ -8,15 +8,12 @@
 
 from typing import Any
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from ._version import VERSION
 
 
-class NestedDiscriminatorClientConfiguration(  # pylint: disable=too-many-instance-attributes,name-too-long
-    Configuration
-):
+class NestedDiscriminatorClientConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for NestedDiscriminatorClient.
 
     Note that all parameters used to create this instance are saved as instance
@@ -24,7 +21,6 @@ class NestedDiscriminatorClientConfiguration(  # pylint: disable=too-many-instan
     """
 
     def __init__(self, **kwargs: Any) -> None:
-        super(NestedDiscriminatorClientConfiguration, self).__init__(**kwargs)
 
         kwargs.setdefault("sdk_moniker", "typetest-model-nesteddiscriminator/{}".format(VERSION))
         self._configure(**kwargs)

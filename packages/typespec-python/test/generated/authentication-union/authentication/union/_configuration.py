@@ -8,7 +8,6 @@
 
 from typing import Any, TYPE_CHECKING, Union
 
-from azure.core.configuration import Configuration
 from azure.core.credentials import AzureKeyCredential
 from azure.core.pipeline import policies
 
@@ -19,7 +18,7 @@ if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
 
 
-class UnionClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class UnionClientConfiguration:  # pylint: disable=too-many-instance-attributes
     """Configuration for UnionClient.
 
     Note that all parameters used to create this instance are saved as instance
@@ -32,7 +31,6 @@ class UnionClientConfiguration(Configuration):  # pylint: disable=too-many-insta
     """
 
     def __init__(self, credential: Union[AzureKeyCredential, "TokenCredential"], **kwargs: Any) -> None:
-        super(UnionClientConfiguration, self).__init__(**kwargs)
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
 

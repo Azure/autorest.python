@@ -8,13 +8,12 @@
 
 from typing import Any
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from ._version import VERSION
 
 
-class FixedClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class FixedClientConfiguration:  # pylint: disable=too-many-instance-attributes
     """Configuration for FixedClient.
 
     Note that all parameters used to create this instance are saved as instance
@@ -22,7 +21,6 @@ class FixedClientConfiguration(Configuration):  # pylint: disable=too-many-insta
     """
 
     def __init__(self, **kwargs: Any) -> None:
-        super(FixedClientConfiguration, self).__init__(**kwargs)
 
         kwargs.setdefault("sdk_moniker", "typetest-enum-fixed/{}".format(VERSION))
         self._configure(**kwargs)

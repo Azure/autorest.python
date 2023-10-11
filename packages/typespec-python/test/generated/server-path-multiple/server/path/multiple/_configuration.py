@@ -8,13 +8,12 @@
 
 from typing import Any
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from ._version import VERSION
 
 
-class MultipleClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class MultipleClientConfiguration:  # pylint: disable=too-many-instance-attributes
     """Configuration for MultipleClient.
 
     Note that all parameters used to create this instance are saved as instance
@@ -28,7 +27,6 @@ class MultipleClientConfiguration(Configuration):  # pylint: disable=too-many-in
     """
 
     def __init__(self, endpoint: str, **kwargs: Any) -> None:
-        super(MultipleClientConfiguration, self).__init__(**kwargs)
         api_version: str = kwargs.pop("api_version", "v1.0")
 
         if endpoint is None:
