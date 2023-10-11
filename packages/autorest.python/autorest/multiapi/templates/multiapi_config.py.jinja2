@@ -49,7 +49,6 @@ class {{ code_model.client.name }}Configuration:
             raise ValueError("Parameter '{{ parameter.name }}' must not be None.")
     {% endif %}
 {% endfor %}
-        super({{ code_model.client.name }}Configuration, self).__init__(**kwargs)
 
 {% for parameter in code_model.global_parameters.parameters %}
         self.{{ parameter.name }} = {{ parameter.name }}

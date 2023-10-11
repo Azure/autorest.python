@@ -33,7 +33,6 @@ class MultiapiServiceClientConfiguration:
     ):
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
-        super(MultiapiServiceClientConfiguration, self).__init__(**kwargs)
 
         self.credential = credential
         kwargs.setdefault('sdk_moniker', 'multiapicredentialdefaultpolicy/{}'.format(VERSION))

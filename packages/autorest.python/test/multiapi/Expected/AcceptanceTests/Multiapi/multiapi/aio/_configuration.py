@@ -36,7 +36,6 @@ class MultiapiServiceClientConfiguration:
     ) -> None:
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
-        super(MultiapiServiceClientConfiguration, self).__init__(**kwargs)
 
         self.credential = credential
         self.credential_scopes = kwargs.pop('credential_scopes', ['https://management.azure.com/.default'])
