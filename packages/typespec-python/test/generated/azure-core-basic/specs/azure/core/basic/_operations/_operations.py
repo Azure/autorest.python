@@ -368,19 +368,19 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [200, 201]:
+        if response.status_code not in [201, 200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.status_code == 200:
+        if response.status_code == 201:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
                 deserialized = _deserialize(_models.User, response.json())
 
-        if response.status_code == 201:
+        if response.status_code == 200:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
@@ -514,19 +514,19 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [200, 201]:
+        if response.status_code not in [201, 200]:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.status_code == 200:
+        if response.status_code == 201:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
                 deserialized = _deserialize(_models.User, response.json())
 
-        if response.status_code == 201:
+        if response.status_code == 200:
             if _stream:
                 deserialized = response.iter_bytes()
             else:

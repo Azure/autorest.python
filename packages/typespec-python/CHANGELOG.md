@@ -4,12 +4,12 @@
 
 | Library                                                                 | Min Version   |
 | ----------------------------------------------------------------------- | ------------- |
-| `@typespec/compiler`                                                    | `0.48.0`      |
-| `@typespec/http`                                                        | `0.48.0`      |
-| `@typespec/rest`                                                        | `0.48.0`      |
-| `@typespec/versioning`                                                  | `0.48.0`      |
-| `@azure-tools/typespec-azure-core`                                      | `0.34.0`      |
-| `@azure-tools/typespec-client-generator-core`                           | `0.35.0-dev.2`|
+| `@typespec/compiler`                                                    | `0.49.0`      |
+| `@typespec/http`                                                        | `0.49.0`      |
+| `@typespec/rest`                                                        | `0.49.0`      |
+| `@typespec/versioning`                                                  | `0.49.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.35.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.35.0`      |
 | `azure-core` dep of generated code                                      | `1.28.0`      |
 | `isodate` dep of generated code                                         | `0.6.1`       |
 | `msrest` dep of generated code (If generating legacy code)              | `0.7.1`       |

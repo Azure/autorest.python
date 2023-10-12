@@ -20,6 +20,7 @@ import {
     HttpOperationResponse,
     HttpServer,
     HttpOperation,
+    HttpStatusCodeRange,
 } from "@typespec/http";
 import { getAddedOnVersions } from "@typespec/versioning";
 import {
@@ -407,10 +408,6 @@ function isAzureCoreModel(t: Type): boolean {
     );
 }
 
-function hasDefaultStatusCode(response: HttpOperationResponse): boolean {
-    return response.statusCode === "*";
-}
-
 function getBodyFromResponse(context: SdkContext, response: HttpOperationResponse): Type | undefined {
     let body: Type | undefined = undefined;
     for (const innerResponse of response.responses) {
@@ -422,6 +419,13 @@ function getBodyFromResponse(context: SdkContext, response: HttpOperationRespons
         body = getEffectivePayloadType(context, body);
     }
     return body;
+}
+
+function isHttpStatusCode(statusCodes: any): statusCodes is HttpStatusCodeRange {
+    if (typeof statusCodes !== "object") {
+        return false;
+    }
+    return "start" in statusCodes;
 }
 
 function emitResponse(context: SdkContext, response: HttpOperationResponse): Record<string, any> {
@@ -447,11 +451,13 @@ function emitResponse(context: SdkContext, response: HttpOperationResponse): Rec
             type = getType(context, body);
         }
     }
-    const statusCodes = [];
-    if (hasDefaultStatusCode(response)) {
+    const statusCodes: (string | number)[] = [];
+    if (response.statusCodes === "*") {
         statusCodes.push("default");
+    } else if (isHttpStatusCode(response.statusCodes)) {
+        statusCodes.push(response.statusCodes.start);
     } else {
-        statusCodes.push(parseInt(response.statusCode));
+        statusCodes.push(response.statusCodes);
     }
     return {
         headers: emitResponseHeaders(context, response),
@@ -629,7 +635,7 @@ function emitBasicOperation(
         addAcceptParameter(context, operation, parameters);
         if (isErrorModel(context.program, response.type)) {
             // * is valid status code in cadl but invalid for autorest.python
-            if (response.statusCode === "*") {
+            if (response.statusCodes === "*") {
                 exceptions.push(emittedResponse);
             }
         } else {
