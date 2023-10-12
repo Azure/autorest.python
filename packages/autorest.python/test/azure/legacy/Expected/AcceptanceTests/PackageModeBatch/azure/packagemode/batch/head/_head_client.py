@@ -38,9 +38,9 @@ class HeadClient:  # pylint: disable=client-accepts-api-version-keyword
 
     def __init__(self, credential: "TokenCredential", base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = HeadClientConfiguration(credential=credential, **kwargs)
-        config_policies = kwargs.pop("policies", None)
-        if config_policies is None:
-            config_policies = [
+        _policies = kwargs.pop("policies", None)
+        if _policies is None:
+            _policies = [
                 policies.RequestIdPolicy(**kwargs),
                 self._config.headers_policy,
                 self._config.user_agent_policy,
@@ -56,7 +56,7 @@ class HeadClient:  # pylint: disable=client-accepts-api-version-keyword
                 policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client: ARMPipelineClient = ARMPipelineClient(base_url=base_url, policies=config_policies, **kwargs)
+        self._client: ARMPipelineClient = ARMPipelineClient(base_url=base_url, policies=_policies, **kwargs)
 
         client_models: Dict[str, Any] = {}
         self._serialize = Serializer(client_models)

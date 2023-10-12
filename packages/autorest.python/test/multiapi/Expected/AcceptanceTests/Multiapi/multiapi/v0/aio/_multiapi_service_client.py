@@ -42,9 +42,9 @@ class MultiapiServiceClient:  # pylint: disable=client-accepts-api-version-keywo
         self, credential: "AsyncTokenCredential", base_url: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = MultiapiServiceClientConfiguration(credential=credential, **kwargs)
-        config_policies = kwargs.pop("policies", None)
-        if config_policies is None:
-            config_policies = [
+        _policies = kwargs.pop("policies", None)
+        if _policies is None:
+            _policies = [
                 policies.RequestIdPolicy(**kwargs),
                 self._config.headers_policy,
                 self._config.user_agent_policy,
@@ -61,7 +61,7 @@ class MultiapiServiceClient:  # pylint: disable=client-accepts-api-version-keywo
                 self._config.http_logging_policy,
             ]
         self._client: AsyncARMPipelineClient = AsyncARMPipelineClient(
-            base_url=base_url, policies=config_policies, **kwargs
+            base_url=base_url, policies=_policies, **kwargs
         )
 
         client_models = {k: v for k, v in _models.__dict__.items() if isinstance(v, type)}

@@ -34,9 +34,9 @@ class AutorestSecurityKey(AutorestSecurityKeyOperationsMixin):  # pylint: disabl
 
     def __init__(self, credential: AzureKeyCredential, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = AutorestSecurityKeyConfiguration(credential=credential, **kwargs)
-        config_policies = kwargs.pop("policies", None)
-        if config_policies is None:
-            config_policies = [
+        _policies = kwargs.pop("policies", None)
+        if _policies is None:
+            _policies = [
                 policies.RequestIdPolicy(**kwargs),
                 self._config.headers_policy,
                 self._config.user_agent_policy,
@@ -51,7 +51,7 @@ class AutorestSecurityKey(AutorestSecurityKeyOperationsMixin):  # pylint: disabl
                 policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=base_url, policies=config_policies, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=base_url, policies=_policies, **kwargs)
 
         client_models: Dict[str, Any] = {}
         self._serialize = Serializer(client_models)

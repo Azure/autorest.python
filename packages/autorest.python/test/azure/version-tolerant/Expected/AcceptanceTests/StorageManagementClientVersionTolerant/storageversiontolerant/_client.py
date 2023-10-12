@@ -54,9 +54,9 @@ class StorageManagementClient:  # pylint: disable=client-accepts-api-version-key
         self._config = StorageManagementClientConfiguration(
             credential=credential, subscription_id=subscription_id, **kwargs
         )
-        config_policies = kwargs.pop("policies", None)
-        if config_policies is None:
-            config_policies = [
+        _policies = kwargs.pop("policies", None)
+        if _policies is None:
+            _policies = [
                 policies.RequestIdPolicy(**kwargs),
                 self._config.headers_policy,
                 self._config.user_agent_policy,
@@ -72,7 +72,7 @@ class StorageManagementClient:  # pylint: disable=client-accepts-api-version-key
                 policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client: ARMPipelineClient = ARMPipelineClient(base_url=endpoint, policies=config_policies, **kwargs)
+        self._client: ARMPipelineClient = ARMPipelineClient(base_url=endpoint, policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

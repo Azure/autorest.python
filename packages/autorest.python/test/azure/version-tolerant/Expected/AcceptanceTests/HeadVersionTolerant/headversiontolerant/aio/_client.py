@@ -38,9 +38,9 @@ class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-key
         self, credential: "AsyncTokenCredential", endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = AutoRestHeadTestServiceConfiguration(credential=credential, **kwargs)
-        config_policies = kwargs.pop("policies", None)
-        if config_policies is None:
-            config_policies = [
+        _policies = kwargs.pop("policies", None)
+        if _policies is None:
+            _policies = [
                 policies.RequestIdPolicy(**kwargs),
                 self._config.headers_policy,
                 self._config.user_agent_policy,
@@ -57,7 +57,7 @@ class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-key
                 self._config.http_logging_policy,
             ]
         self._client: AsyncARMPipelineClient = AsyncARMPipelineClient(
-            base_url=endpoint, policies=config_policies, **kwargs
+            base_url=endpoint, policies=_policies, **kwargs
         )
 
         self._serialize = Serializer()

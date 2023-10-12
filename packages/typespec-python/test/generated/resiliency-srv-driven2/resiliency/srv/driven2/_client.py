@@ -62,9 +62,9 @@ class ResiliencyServiceDrivenClient(
         self._config = ResiliencyServiceDrivenClientConfiguration(
             endpoint=endpoint, service_deployment_version=service_deployment_version, **kwargs
         )
-        config_policies = kwargs.pop("policies", None)
-        if config_policies is None:
-            config_policies = [
+        _policies = kwargs.pop("policies", None)
+        if _policies is None:
+            _policies = [
                 policies.RequestIdPolicy(**kwargs),
                 self._config.headers_policy,
                 self._config.user_agent_policy,
@@ -79,7 +79,7 @@ class ResiliencyServiceDrivenClient(
                 policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client: PipelineClient = PipelineClient(base_url=_endpoint, policies=config_policies, **kwargs)
+        self._client: PipelineClient = PipelineClient(base_url=_endpoint, policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

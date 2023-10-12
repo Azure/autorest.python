@@ -113,7 +113,7 @@ class ClientSerializer:
         pipeline_client_name = self.client.pipeline_class(async_mode)
         params = {
             "base_url": self.host_variable_name,
-            "policies": "config_policies",
+            "policies": "_policies",
         }
         if not self.client.code_model.is_legacy and self.client.request_id_header_name:
             result.append(
@@ -121,9 +121,9 @@ class ClientSerializer:
             )
         result.extend(
             [
-                "config_policies = kwargs.pop('policies', None)",
-                "if config_policies is None:",
-                f'    config_policies = [{",".join(build_policies(self.client.code_model.options["azure_arm"], async_mode))}]',  # pylint: disable=line-too-long
+                "_policies = kwargs.pop('policies', None)",
+                "if _policies is None:",
+                f'    _policies = [{",".join(build_policies(self.client.code_model.options["azure_arm"], async_mode))}]',  # pylint: disable=line-too-long
                 f"self._client: {pipeline_client_name} = {pipeline_client_name}("
                 f"{', '.join(f'{k}={v}' for k, v in params.items())}, **kwargs)",
             ]

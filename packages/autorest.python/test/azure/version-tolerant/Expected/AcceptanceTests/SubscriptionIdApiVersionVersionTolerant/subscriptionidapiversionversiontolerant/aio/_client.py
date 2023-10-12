@@ -49,9 +49,9 @@ class MicrosoftAzureTestUrl:  # pylint: disable=client-accepts-api-version-keywo
         self._config = MicrosoftAzureTestUrlConfiguration(
             credential=credential, subscription_id=subscription_id, **kwargs
         )
-        config_policies = kwargs.pop("policies", None)
-        if config_policies is None:
-            config_policies = [
+        _policies = kwargs.pop("policies", None)
+        if _policies is None:
+            _policies = [
                 policies.RequestIdPolicy(**kwargs),
                 self._config.headers_policy,
                 self._config.user_agent_policy,
@@ -68,7 +68,7 @@ class MicrosoftAzureTestUrl:  # pylint: disable=client-accepts-api-version-keywo
                 self._config.http_logging_policy,
             ]
         self._client: AsyncARMPipelineClient = AsyncARMPipelineClient(
-            base_url=endpoint, policies=config_policies, **kwargs
+            base_url=endpoint, policies=_policies, **kwargs
         )
 
         self._serialize = Serializer()

@@ -36,9 +36,9 @@ class LROWithParamaterizedEndpoints(
     ) -> None:
         _endpoint = "http://{accountName}{host}"
         self._config = LROWithParamaterizedEndpointsConfiguration(host=host, **kwargs)
-        config_policies = kwargs.pop("policies", None)
-        if config_policies is None:
-            config_policies = [
+        _policies = kwargs.pop("policies", None)
+        if _policies is None:
+            _policies = [
                 policies.RequestIdPolicy(**kwargs),
                 self._config.headers_policy,
                 self._config.user_agent_policy,
@@ -53,7 +53,7 @@ class LROWithParamaterizedEndpoints(
                 policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client: PipelineClient = PipelineClient(base_url=_endpoint, policies=config_policies, **kwargs)
+        self._client: PipelineClient = PipelineClient(base_url=_endpoint, policies=_policies, **kwargs)
 
         client_models = {k: v for k, v in _models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)

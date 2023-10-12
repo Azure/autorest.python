@@ -35,9 +35,9 @@ class ClientAClient(ClientAClientOperationsMixin):  # pylint: disable=client-acc
     ) -> None:
         _endpoint = "{endpoint}/client/structure/{client}"
         self._config = ClientAClientConfiguration(endpoint=endpoint, client=client, **kwargs)
-        config_policies = kwargs.pop("policies", None)
-        if config_policies is None:
-            config_policies = [
+        _policies = kwargs.pop("policies", None)
+        if _policies is None:
+            _policies = [
                 policies.RequestIdPolicy(**kwargs),
                 self._config.headers_policy,
                 self._config.user_agent_policy,
@@ -52,7 +52,7 @@ class ClientAClient(ClientAClientOperationsMixin):  # pylint: disable=client-acc
                 policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=_endpoint, policies=config_policies, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=_endpoint, policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
@@ -112,9 +112,9 @@ class ClientBClient(ClientBClientOperationsMixin):  # pylint: disable=client-acc
     ) -> None:
         _endpoint = "{endpoint}/client/structure/{client}"
         self._config = ClientBClientConfiguration(endpoint=endpoint, client=client, **kwargs)
-        config_policies = kwargs.pop("policies", None)
-        if config_policies is None:
-            config_policies = [
+        _policies = kwargs.pop("policies", None)
+        if _policies is None:
+            _policies = [
                 policies.RequestIdPolicy(**kwargs),
                 self._config.headers_policy,
                 self._config.user_agent_policy,
@@ -129,7 +129,7 @@ class ClientBClient(ClientBClientOperationsMixin):  # pylint: disable=client-acc
                 policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=_endpoint, policies=config_policies, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=_endpoint, policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

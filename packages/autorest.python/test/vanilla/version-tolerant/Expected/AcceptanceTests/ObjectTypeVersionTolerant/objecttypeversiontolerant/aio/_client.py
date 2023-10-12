@@ -29,9 +29,9 @@ class ObjectTypeClient(ObjectTypeClientOperationsMixin):  # pylint: disable=clie
         self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = ObjectTypeClientConfiguration(**kwargs)
-        config_policies = kwargs.pop("policies", None)
-        if config_policies is None:
-            config_policies = [
+        _policies = kwargs.pop("policies", None)
+        if _policies is None:
+            _policies = [
                 policies.RequestIdPolicy(**kwargs),
                 self._config.headers_policy,
                 self._config.user_agent_policy,
@@ -46,7 +46,7 @@ class ObjectTypeClient(ObjectTypeClientOperationsMixin):  # pylint: disable=clie
                 policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=endpoint, policies=config_policies, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=endpoint, policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
