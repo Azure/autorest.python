@@ -8,13 +8,12 @@
 
 from typing import Any
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from ._version import VERSION
 
 
-class SingleClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class SingleClientConfiguration:  # pylint: disable=too-many-instance-attributes
     """Configuration for SingleClient.
 
     Note that all parameters used to create this instance are saved as instance
@@ -25,12 +24,12 @@ class SingleClientConfiguration(Configuration):  # pylint: disable=too-many-inst
     """
 
     def __init__(self, endpoint: str, **kwargs: Any) -> None:
-        super(SingleClientConfiguration, self).__init__(**kwargs)
         if endpoint is None:
             raise ValueError("Parameter 'endpoint' must not be None.")
 
         self.endpoint = endpoint
         kwargs.setdefault("sdk_moniker", "server-path-single/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

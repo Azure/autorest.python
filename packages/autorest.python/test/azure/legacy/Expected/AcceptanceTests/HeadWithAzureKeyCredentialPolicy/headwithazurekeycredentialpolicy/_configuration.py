@@ -8,7 +8,6 @@
 
 from typing import Any
 
-from azure.core.configuration import Configuration
 from azure.core.credentials import AzureKeyCredential
 from azure.core.pipeline import policies
 from azure.mgmt.core.policies import ARMChallengeAuthenticationPolicy, ARMHttpLoggingPolicy
@@ -16,7 +15,7 @@ from azure.mgmt.core.policies import ARMChallengeAuthenticationPolicy, ARMHttpLo
 from ._version import VERSION
 
 
-class AutoRestHeadTestServiceConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes,name-too-long
+class AutoRestHeadTestServiceConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for AutoRestHeadTestService.
 
     Note that all parameters used to create this instance are saved as instance
@@ -27,12 +26,12 @@ class AutoRestHeadTestServiceConfiguration(Configuration):  # pylint: disable=to
     """
 
     def __init__(self, credential: AzureKeyCredential, **kwargs: Any) -> None:
-        super(AutoRestHeadTestServiceConfiguration, self).__init__(**kwargs)
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
 
         self.credential = credential
         kwargs.setdefault("sdk_moniker", "autorestheadtestservice/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

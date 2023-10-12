@@ -8,6 +8,7 @@ from typing import List
 from . import utils
 from ..models import Client, ParameterMethodLocation
 from .parameter_serializer import ParameterSerializer, PopKwargType
+from ..._utils import build_policies
 
 
 class ClientSerializer:
@@ -107,18 +108,27 @@ class ClientSerializer:
             if og.is_mixin and og.has_abstract_operations
         )
 
-    def initialize_pipeline_client(self, async_mode: bool) -> str:
+    def initialize_pipeline_client(self, async_mode: bool) -> List[str]:
+        result = []
         pipeline_client_name = self.client.pipeline_class(async_mode)
         params = {
             "base_url": self.host_variable_name,
-            "config": "self._config",
+            "policies": "_policies",
         }
         if not self.client.code_model.is_legacy and self.client.request_id_header_name:
-            params["request_id_header_name"] = f'"{self.client.request_id_header_name}"'
-        return (
-            f"self._client: {pipeline_client_name} = {pipeline_client_name}("
-            f"{', '.join(f'{k}={v}' for k, v in params.items())}, **kwargs)"
+            result.append(
+                f'kwargs["request_id_header_name"] = "{self.client.request_id_header_name}"'
+            )
+        result.extend(
+            [
+                "_policies = kwargs.pop('policies', None)",
+                "if _policies is None:",
+                f'    _policies = [{",".join(build_policies(self.client.code_model.options["azure_arm"], async_mode))}]',  # pylint: disable=line-too-long
+                f"self._client: {pipeline_client_name} = {pipeline_client_name}("
+                f"{', '.join(f'{k}={v}' for k, v in params.items())}, **kwargs)",
+            ]
         )
+        return result
 
     def serializers_and_operation_groups_properties(self) -> List[str]:
         retval = []
