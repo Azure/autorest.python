@@ -1,6 +1,6 @@
 # Release
 
-## 2023-10-07 - 0.15.1
+## 2023-10-12 - 0.15.2
 
 | Library                                                                 | Min Version   |
 | ----------------------------------------------------------------------- | ------------- |
@@ -9,7 +9,28 @@
 | `@typespec/rest`                                                        | `0.49.0`      |
 | `@typespec/versioning`                                                  | `0.49.0`      |
 | `@azure-tools/typespec-azure-core`                                      | `0.35.0`      |
-| `@azure-tools/typespec-client-generator-core`                           | `0.35.0`|
+| `@azure-tools/typespec-client-generator-core`                           | `0.35.0`      |
+| `azure-core` dep of generated code                                      | `1.28.0`      |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**Bug Fixes**
+
+- Do not duplicate `begin_` in an LRO operation's name if the service definition already starts with `begin` #2169
+- Correctly internalize LRO operation's if their access is listed as internal #2169
+
+## 2023-10-07 - 0.15.1
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.48.0`      |
+| `@typespec/http`                                                        | `0.48.0`      |
+| `@typespec/rest`                                                        | `0.48.0`      |
+| `@typespec/versioning`                                                  | `0.48.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.34.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.35.0-dev.2`|
 | `azure-core` dep of generated code                                      | `1.28.0`      |
 | `isodate` dep of generated code                                         | `0.6.1`       |
 | `msrest` dep of generated code (If generating legacy code)              | `0.7.1`       |
