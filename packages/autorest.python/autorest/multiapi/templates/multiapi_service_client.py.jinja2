@@ -60,7 +60,7 @@ class {{ code_model.client.name }}({% if code_model.operation_mixin_group.mixin_
     :param {{ parameter.name }}: {{ parameter.description(async_mode) }}
     :type {{ parameter.name }}: {{ parameter.docstring_type(async_mode) }}
 {% endfor %}
-    {% if code_model.client.has_lro_operations %}
+    {% if code_model.client.has_public_lro_operations %}
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     {% endif %}
     """
