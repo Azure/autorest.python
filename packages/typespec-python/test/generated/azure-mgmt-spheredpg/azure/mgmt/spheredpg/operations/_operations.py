@@ -7,9 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from io import IOBase
-import json
-import sys
-from typing import Any, Callable, Dict, IO, Iterable, List, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, overload
 import urllib.parse
 
 from azure.core.exceptions import (
@@ -28,16 +26,10 @@ from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models as _models
-from .._model_base import AzureJSONEncoder, _deserialize
 from .._serialization import Serializer
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -1543,6 +1535,8 @@ class Operations:
         :attr:`operations` attribute.
     """
 
+    models = _models
+
     def __init__(self, *args, **kwargs):
         input_args = list(args)
         self._client = input_args.pop(0) if input_args else kwargs.pop("client")
@@ -1561,7 +1555,7 @@ class Operations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models.Operation]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.PagedOperation] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -1599,11 +1593,11 @@ class Operations:
             return request
 
         def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.Operation], deserialized["value"])
+            deserialized = self._deserialize("PagedOperation", pipeline_response)
+            list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, iter(list_of_elem)
+            return deserialized.next_link or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -1618,7 +1612,7 @@ class Operations:
                 if _stream:
                     response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                error = _deserialize(_models.ErrorResponse, response.json())
+                error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
             return pipeline_response
@@ -1635,6 +1629,8 @@ class CatalogsOperations:
         :class:`~azure.mgmt.spheredpg.AzureSphereClient`'s
         :attr:`catalogs` attribute.
     """
+
+    models = _models
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
@@ -1654,7 +1650,7 @@ class CatalogsOperations:
         :type catalog_name: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: Catalog. The Catalog is compatible with MutableMapping
+        :return: Catalog
         :rtype: ~azure.mgmt.spheredpg.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1692,18 +1688,18 @@ class CatalogsOperations:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.Catalog, response.json())
+            deserialized = self._deserialize("Catalog", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
+            return cls(pipeline_response, deserialized, {})
 
-        return deserialized  # type: ignore
+        return deserialized
 
     @overload
     def create_or_update(
@@ -1729,36 +1725,7 @@ class CatalogsOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: Catalog. The Catalog is compatible with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.Catalog
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def create_or_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        resource: JSON,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.Catalog:
-        """Create a Catalog.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param resource: Resource create parameters. Required.
-        :type resource: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: Catalog. The Catalog is compatible with MutableMapping
+        :return: Catalog
         :rtype: ~azure.mgmt.spheredpg.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1787,14 +1754,14 @@ class CatalogsOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: Catalog. The Catalog is compatible with MutableMapping
+        :return: Catalog
         :rtype: ~azure.mgmt.spheredpg.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace
     def create_or_update(
-        self, resource_group_name: str, catalog_name: str, resource: Union[_models.Catalog, JSON, IO], **kwargs: Any
+        self, resource_group_name: str, catalog_name: str, resource: Union[_models.Catalog, IO], **kwargs: Any
     ) -> _models.Catalog:
         """Create a Catalog.
 
@@ -1803,15 +1770,14 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param resource: Resource create parameters. Is one of the following types: Catalog, JSON, IO
-         Required.
-        :type resource: ~azure.mgmt.spheredpg.models.Catalog or JSON or IO
+        :param resource: Resource create parameters. Is either a Catalog type or a IO type. Required.
+        :type resource: ~azure.mgmt.spheredpg.models.Catalog or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: Catalog. The Catalog is compatible with MutableMapping
+        :return: Catalog
         :rtype: ~azure.mgmt.spheredpg.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1830,11 +1796,12 @@ class CatalogsOperations:
         cls: ClsType[_models.Catalog] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
+        _json = None
         _content = None
         if isinstance(resource, (IOBase, bytes)):
             _content = resource
         else:
-            _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _json = self._serialize.body(resource, "Catalog")
 
         request = build_catalogs_create_or_update_request(
             resource_group_name=resource_group_name,
@@ -1842,6 +1809,7 @@ class CatalogsOperations:
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             api_version=self._config.api_version,
+            json=_json,
             content=_content,
             headers=_headers,
             params=_params,
@@ -1859,7 +1827,7 @@ class CatalogsOperations:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         response_headers = {}
@@ -1867,7 +1835,7 @@ class CatalogsOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.Catalog, response.json())
+                deserialized = self._deserialize("Catalog", pipeline_response)
 
         if response.status_code == 201:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -1875,7 +1843,7 @@ class CatalogsOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.Catalog, response.json())
+                deserialized = self._deserialize("Catalog", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -1906,36 +1874,7 @@ class CatalogsOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: Catalog. The Catalog is compatible with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.Catalog
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        properties: JSON,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.Catalog:
-        """Update a Catalog.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param properties: The resource properties to be updated. Required.
-        :type properties: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: Catalog. The Catalog is compatible with MutableMapping
+        :return: Catalog
         :rtype: ~azure.mgmt.spheredpg.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1964,18 +1903,14 @@ class CatalogsOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: Catalog. The Catalog is compatible with MutableMapping
+        :return: Catalog
         :rtype: ~azure.mgmt.spheredpg.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace
     def update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        properties: Union[_models.CatalogUpdate, JSON, IO],
-        **kwargs: Any
+        self, resource_group_name: str, catalog_name: str, properties: Union[_models.CatalogUpdate, IO], **kwargs: Any
     ) -> _models.Catalog:
         """Update a Catalog.
 
@@ -1984,15 +1919,15 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param properties: The resource properties to be updated. Is one of the following types:
-         CatalogUpdate, JSON, IO Required.
-        :type properties: ~azure.mgmt.spheredpg.models.CatalogUpdate or JSON or IO
+        :param properties: The resource properties to be updated. Is either a CatalogUpdate type or a
+         IO type. Required.
+        :type properties: ~azure.mgmt.spheredpg.models.CatalogUpdate or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: Catalog. The Catalog is compatible with MutableMapping
+        :return: Catalog
         :rtype: ~azure.mgmt.spheredpg.models.Catalog
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2011,11 +1946,12 @@ class CatalogsOperations:
         cls: ClsType[_models.Catalog] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
+        _json = None
         _content = None
         if isinstance(properties, (IOBase, bytes)):
             _content = properties
         else:
-            _content = json.dumps(properties, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _json = self._serialize.body(properties, "CatalogUpdate")
 
         request = build_catalogs_update_request(
             resource_group_name=resource_group_name,
@@ -2023,6 +1959,7 @@ class CatalogsOperations:
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             api_version=self._config.api_version,
+            json=_json,
             content=_content,
             headers=_headers,
             params=_params,
@@ -2040,18 +1977,18 @@ class CatalogsOperations:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.Catalog, response.json())
+            deserialized = self._deserialize("Catalog", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
+            return cls(pipeline_response, deserialized, {})
 
-        return deserialized  # type: ignore
+        return deserialized
 
     @distributed_trace
     def delete(  # pylint: disable=inconsistent-return-statements
@@ -2104,7 +2041,7 @@ class CatalogsOperations:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         response_headers = {}
@@ -2129,7 +2066,7 @@ class CatalogsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models.Catalog]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.CatalogListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -2169,11 +2106,11 @@ class CatalogsOperations:
             return request
 
         def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.Catalog], deserialized["value"])
+            deserialized = self._deserialize("CatalogListResult", pipeline_response)
+            list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, iter(list_of_elem)
+            return deserialized.next_link or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -2188,7 +2125,7 @@ class CatalogsOperations:
                 if _stream:
                     response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                error = _deserialize(_models.ErrorResponse, response.json())
+                error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
             return pipeline_response
@@ -2206,7 +2143,7 @@ class CatalogsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models.Catalog]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.CatalogListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -2245,11 +2182,11 @@ class CatalogsOperations:
             return request
 
         def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.Catalog], deserialized["value"])
+            deserialized = self._deserialize("CatalogListResult", pipeline_response)
+            list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, iter(list_of_elem)
+            return deserialized.next_link or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -2264,7 +2201,7 @@ class CatalogsOperations:
                 if _stream:
                     response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                error = _deserialize(_models.ErrorResponse, response.json())
+                error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
             return pipeline_response
@@ -2282,7 +2219,7 @@ class CatalogsOperations:
         :type catalog_name: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: CountDeviceResponse. The CountDeviceResponse is compatible with MutableMapping
+        :return: CountDeviceResponse
         :rtype: ~azure.mgmt.spheredpg.models.CountDeviceResponse
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2320,18 +2257,18 @@ class CatalogsOperations:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.CountDeviceResponse, response.json())
+            deserialized = self._deserialize("CountDeviceResponse", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
+            return cls(pipeline_response, deserialized, {})
 
-        return deserialized  # type: ignore
+        return deserialized
 
     @distributed_trace
     def list_device_insights(
@@ -2365,7 +2302,7 @@ class CatalogsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         maxpagesize = kwargs.pop("maxpagesize", None)
-        cls: ClsType[List[_models.DeviceInsight]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.PagedDeviceInsight] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -2410,11 +2347,11 @@ class CatalogsOperations:
             return request
 
         def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.DeviceInsight], deserialized["value"])
+            deserialized = self._deserialize("PagedDeviceInsight", pipeline_response)
+            list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, iter(list_of_elem)
+            return deserialized.next_link or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -2429,7 +2366,7 @@ class CatalogsOperations:
                 if _stream:
                     response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                error = _deserialize(_models.ErrorResponse, response.json())
+                error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
             return pipeline_response
@@ -2468,7 +2405,7 @@ class CatalogsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         maxpagesize = kwargs.pop("maxpagesize", None)
-        cls: ClsType[List[_models.Device]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.DeviceListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -2513,11 +2450,11 @@ class CatalogsOperations:
             return request
 
         def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.Device], deserialized["value"])
+            deserialized = self._deserialize("DeviceListResult", pipeline_response)
+            list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, iter(list_of_elem)
+            return deserialized.next_link or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -2532,7 +2469,7 @@ class CatalogsOperations:
                 if _stream:
                     response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                error = _deserialize(_models.ErrorResponse, response.json())
+                error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
             return pipeline_response
@@ -2571,7 +2508,7 @@ class CatalogsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         maxpagesize = kwargs.pop("maxpagesize", None)
-        cls: ClsType[List[_models.Deployment]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.DeploymentListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -2616,11 +2553,11 @@ class CatalogsOperations:
             return request
 
         def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.Deployment], deserialized["value"])
+            deserialized = self._deserialize("DeploymentListResult", pipeline_response)
+            list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, iter(list_of_elem)
+            return deserialized.next_link or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -2635,7 +2572,7 @@ class CatalogsOperations:
                 if _stream:
                     response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                error = _deserialize(_models.ErrorResponse, response.json())
+                error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
             return pipeline_response
@@ -2664,42 +2601,6 @@ class CatalogsOperations:
         :type catalog_name: str
         :param parameters: List device groups for catalog. Required.
         :type parameters: ~azure.mgmt.spheredpg.models.ListDeviceGroupsRequest
-        :keyword filter: Filter the result list using the given expression. Default value is None.
-        :paramtype filter: str
-        :keyword top: The number of result items to return. Default value is None.
-        :paramtype top: int
-        :keyword skip: The number of result items to skip. Default value is None.
-        :paramtype skip: int
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: An iterator like instance of DeviceGroup
-        :rtype: ~azure.core.paging.ItemPaged[~azure.mgmt.spheredpg.models.DeviceGroup]
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def list_device_groups(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        parameters: JSON,
-        *,
-        filter: Optional[str] = None,
-        top: Optional[int] = None,
-        skip: Optional[int] = None,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> Iterable["_models.DeviceGroup"]:
-        """List the device groups for the catalog.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param parameters: List device groups for catalog. Required.
-        :type parameters: JSON
         :keyword filter: Filter the result list using the given expression. Default value is None.
         :paramtype filter: str
         :keyword top: The number of result items to return. Default value is None.
@@ -2755,7 +2656,7 @@ class CatalogsOperations:
         self,
         resource_group_name: str,
         catalog_name: str,
-        parameters: Union[_models.ListDeviceGroupsRequest, JSON, IO],
+        parameters: Union[_models.ListDeviceGroupsRequest, IO],
         *,
         filter: Optional[str] = None,
         top: Optional[int] = None,
@@ -2769,9 +2670,9 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param parameters: List device groups for catalog. Is one of the following types:
-         ListDeviceGroupsRequest, JSON, IO Required.
-        :type parameters: ~azure.mgmt.spheredpg.models.ListDeviceGroupsRequest or JSON or IO
+        :param parameters: List device groups for catalog. Is either a ListDeviceGroupsRequest type or
+         a IO type. Required.
+        :type parameters: ~azure.mgmt.spheredpg.models.ListDeviceGroupsRequest or IO
         :keyword filter: Filter the result list using the given expression. Default value is None.
         :paramtype filter: str
         :keyword top: The number of result items to return. Default value is None.
@@ -2790,7 +2691,7 @@ class CatalogsOperations:
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         maxpagesize = kwargs.pop("maxpagesize", None)
-        cls: ClsType[List[_models.DeviceGroup]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.DeviceGroupListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -2800,11 +2701,12 @@ class CatalogsOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
         content_type = content_type or "application/json"
+        _json = None
         _content = None
         if isinstance(parameters, (IOBase, bytes)):
             _content = parameters
         else:
-            _content = json.dumps(parameters, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _json = self._serialize.body(parameters, "ListDeviceGroupsRequest")
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -2819,6 +2721,7 @@ class CatalogsOperations:
                     maxpagesize=maxpagesize,
                     content_type=content_type,
                     api_version=self._config.api_version,
+                    json=_json,
                     content=_content,
                     headers=_headers,
                     params=_params,
@@ -2843,11 +2746,11 @@ class CatalogsOperations:
             return request
 
         def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.DeviceGroup], deserialized["value"])
+            deserialized = self._deserialize("DeviceGroupListResult", pipeline_response)
+            list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, iter(list_of_elem)
+            return deserialized.next_link or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -2862,7 +2765,7 @@ class CatalogsOperations:
                 if _stream:
                     response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                error = _deserialize(_models.ErrorResponse, response.json())
+                error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
             return pipeline_response
@@ -2879,6 +2782,8 @@ class ImagesOperations:
         :class:`~azure.mgmt.spheredpg.AzureSphereClient`'s
         :attr:`images` attribute.
     """
+
+    models = _models
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
@@ -2900,7 +2805,7 @@ class ImagesOperations:
         :type image_name: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: Image. The Image is compatible with MutableMapping
+        :return: Image
         :rtype: ~azure.mgmt.spheredpg.models.Image
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2939,18 +2844,18 @@ class ImagesOperations:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.Image, response.json())
+            deserialized = self._deserialize("Image", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
+            return cls(pipeline_response, deserialized, {})
 
-        return deserialized  # type: ignore
+        return deserialized
 
     @distributed_trace
     def list_by_catalog(
@@ -2984,7 +2889,7 @@ class ImagesOperations:
         _params = kwargs.pop("params", {}) or {}
 
         maxpagesize = kwargs.pop("maxpagesize", None)
-        cls: ClsType[List[_models.Image]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.ImageListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -3029,11 +2934,11 @@ class ImagesOperations:
             return request
 
         def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.Image], deserialized["value"])
+            deserialized = self._deserialize("ImageListResult", pipeline_response)
+            list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, iter(list_of_elem)
+            return deserialized.next_link or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -3048,7 +2953,7 @@ class ImagesOperations:
                 if _stream:
                     response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                error = _deserialize(_models.ErrorResponse, response.json())
+                error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
             return pipeline_response
@@ -3082,39 +2987,7 @@ class ImagesOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: Image. The Image is compatible with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.Image
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def create_or_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        image_name: str,
-        resource: JSON,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.Image:
-        """Create a Image.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param image_name: Image name. Use .default for image creation. Required.
-        :type image_name: str
-        :param resource: Resource create parameters. Required.
-        :type resource: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: Image. The Image is compatible with MutableMapping
+        :return: Image
         :rtype: ~azure.mgmt.spheredpg.models.Image
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3146,7 +3019,7 @@ class ImagesOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: Image. The Image is compatible with MutableMapping
+        :return: Image
         :rtype: ~azure.mgmt.spheredpg.models.Image
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3157,7 +3030,7 @@ class ImagesOperations:
         resource_group_name: str,
         catalog_name: str,
         image_name: str,
-        resource: Union[_models.Image, JSON, IO],
+        resource: Union[_models.Image, IO],
         **kwargs: Any
     ) -> _models.Image:
         """Create a Image.
@@ -3169,15 +3042,14 @@ class ImagesOperations:
         :type catalog_name: str
         :param image_name: Image name. Use .default for image creation. Required.
         :type image_name: str
-        :param resource: Resource create parameters. Is one of the following types: Image, JSON, IO
-         Required.
-        :type resource: ~azure.mgmt.spheredpg.models.Image or JSON or IO
+        :param resource: Resource create parameters. Is either a Image type or a IO type. Required.
+        :type resource: ~azure.mgmt.spheredpg.models.Image or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: Image. The Image is compatible with MutableMapping
+        :return: Image
         :rtype: ~azure.mgmt.spheredpg.models.Image
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3196,11 +3068,12 @@ class ImagesOperations:
         cls: ClsType[_models.Image] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
+        _json = None
         _content = None
         if isinstance(resource, (IOBase, bytes)):
             _content = resource
         else:
-            _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _json = self._serialize.body(resource, "Image")
 
         request = build_images_create_or_update_request(
             resource_group_name=resource_group_name,
@@ -3209,6 +3082,7 @@ class ImagesOperations:
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             api_version=self._config.api_version,
+            json=_json,
             content=_content,
             headers=_headers,
             params=_params,
@@ -3226,7 +3100,7 @@ class ImagesOperations:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         response_headers = {}
@@ -3234,7 +3108,7 @@ class ImagesOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.Image, response.json())
+                deserialized = self._deserialize("Image", pipeline_response)
 
         if response.status_code == 201:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -3242,7 +3116,7 @@ class ImagesOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.Image, response.json())
+                deserialized = self._deserialize("Image", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -3303,7 +3177,7 @@ class ImagesOperations:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         response_headers = {}
@@ -3324,6 +3198,8 @@ class DeviceGroupsOperations:
         :class:`~azure.mgmt.spheredpg.AzureSphereClient`'s
         :attr:`device_groups` attribute.
     """
+
+    models = _models
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
@@ -3368,7 +3244,7 @@ class DeviceGroupsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         maxpagesize = kwargs.pop("maxpagesize", None)
-        cls: ClsType[List[_models.DeviceGroup]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.DeviceGroupListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -3414,11 +3290,11 @@ class DeviceGroupsOperations:
             return request
 
         def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.DeviceGroup], deserialized["value"])
+            deserialized = self._deserialize("DeviceGroupListResult", pipeline_response)
+            list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, iter(list_of_elem)
+            return deserialized.next_link or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -3433,7 +3309,7 @@ class DeviceGroupsOperations:
                 if _stream:
                     response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                error = _deserialize(_models.ErrorResponse, response.json())
+                error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
             return pipeline_response
@@ -3458,7 +3334,7 @@ class DeviceGroupsOperations:
         :type device_group_name: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: DeviceGroup. The DeviceGroup is compatible with MutableMapping
+        :return: DeviceGroup
         :rtype: ~azure.mgmt.spheredpg.models.DeviceGroup
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3498,18 +3374,18 @@ class DeviceGroupsOperations:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.DeviceGroup, response.json())
+            deserialized = self._deserialize("DeviceGroup", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
+            return cls(pipeline_response, deserialized, {})
 
-        return deserialized  # type: ignore
+        return deserialized
 
     @overload
     def create_or_update(
@@ -3542,43 +3418,7 @@ class DeviceGroupsOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: DeviceGroup. The DeviceGroup is compatible with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.DeviceGroup
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def create_or_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        resource: JSON,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.DeviceGroup:
-        """Create a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
-        for product or device group name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param resource: Resource create parameters. Required.
-        :type resource: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: DeviceGroup. The DeviceGroup is compatible with MutableMapping
+        :return: DeviceGroup
         :rtype: ~azure.mgmt.spheredpg.models.DeviceGroup
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3614,7 +3454,7 @@ class DeviceGroupsOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: DeviceGroup. The DeviceGroup is compatible with MutableMapping
+        :return: DeviceGroup
         :rtype: ~azure.mgmt.spheredpg.models.DeviceGroup
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3626,7 +3466,7 @@ class DeviceGroupsOperations:
         catalog_name: str,
         product_name: str,
         device_group_name: str,
-        resource: Union[_models.DeviceGroup, JSON, IO],
+        resource: Union[_models.DeviceGroup, IO],
         **kwargs: Any
     ) -> _models.DeviceGroup:
         """Create a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
@@ -3641,15 +3481,15 @@ class DeviceGroupsOperations:
         :type product_name: str
         :param device_group_name: Name of device group. Required.
         :type device_group_name: str
-        :param resource: Resource create parameters. Is one of the following types: DeviceGroup, JSON,
-         IO Required.
-        :type resource: ~azure.mgmt.spheredpg.models.DeviceGroup or JSON or IO
+        :param resource: Resource create parameters. Is either a DeviceGroup type or a IO type.
+         Required.
+        :type resource: ~azure.mgmt.spheredpg.models.DeviceGroup or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: DeviceGroup. The DeviceGroup is compatible with MutableMapping
+        :return: DeviceGroup
         :rtype: ~azure.mgmt.spheredpg.models.DeviceGroup
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3668,11 +3508,12 @@ class DeviceGroupsOperations:
         cls: ClsType[_models.DeviceGroup] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
+        _json = None
         _content = None
         if isinstance(resource, (IOBase, bytes)):
             _content = resource
         else:
-            _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _json = self._serialize.body(resource, "DeviceGroup")
 
         request = build_device_groups_create_or_update_request(
             resource_group_name=resource_group_name,
@@ -3682,6 +3523,7 @@ class DeviceGroupsOperations:
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             api_version=self._config.api_version,
+            json=_json,
             content=_content,
             headers=_headers,
             params=_params,
@@ -3699,7 +3541,7 @@ class DeviceGroupsOperations:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         response_headers = {}
@@ -3707,7 +3549,7 @@ class DeviceGroupsOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.DeviceGroup, response.json())
+                deserialized = self._deserialize("DeviceGroup", pipeline_response)
 
         if response.status_code == 201:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -3715,7 +3557,7 @@ class DeviceGroupsOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.DeviceGroup, response.json())
+                deserialized = self._deserialize("DeviceGroup", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -3780,7 +3622,7 @@ class DeviceGroupsOperations:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         response_headers = {}
@@ -3822,43 +3664,7 @@ class DeviceGroupsOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: DeviceGroup or None. The DeviceGroup is compatible with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.DeviceGroup or None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        properties: JSON,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> Optional[_models.DeviceGroup]:
-        """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
-        for product or device group name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param properties: The resource properties to be updated. Required.
-        :type properties: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: DeviceGroup or None. The DeviceGroup is compatible with MutableMapping
+        :return: DeviceGroup or None
         :rtype: ~azure.mgmt.spheredpg.models.DeviceGroup or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3894,7 +3700,7 @@ class DeviceGroupsOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: DeviceGroup or None. The DeviceGroup is compatible with MutableMapping
+        :return: DeviceGroup or None
         :rtype: ~azure.mgmt.spheredpg.models.DeviceGroup or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3906,7 +3712,7 @@ class DeviceGroupsOperations:
         catalog_name: str,
         product_name: str,
         device_group_name: str,
-        properties: Union[_models.DeviceGroupUpdate, JSON, IO],
+        properties: Union[_models.DeviceGroupUpdate, IO],
         **kwargs: Any
     ) -> Optional[_models.DeviceGroup]:
         """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
@@ -3921,15 +3727,15 @@ class DeviceGroupsOperations:
         :type product_name: str
         :param device_group_name: Name of device group. Required.
         :type device_group_name: str
-        :param properties: The resource properties to be updated. Is one of the following types:
-         DeviceGroupUpdate, JSON, IO Required.
-        :type properties: ~azure.mgmt.spheredpg.models.DeviceGroupUpdate or JSON or IO
+        :param properties: The resource properties to be updated. Is either a DeviceGroupUpdate type or
+         a IO type. Required.
+        :type properties: ~azure.mgmt.spheredpg.models.DeviceGroupUpdate or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: DeviceGroup or None. The DeviceGroup is compatible with MutableMapping
+        :return: DeviceGroup or None
         :rtype: ~azure.mgmt.spheredpg.models.DeviceGroup or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3948,11 +3754,12 @@ class DeviceGroupsOperations:
         cls: ClsType[Optional[_models.DeviceGroup]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
+        _json = None
         _content = None
         if isinstance(properties, (IOBase, bytes)):
             _content = properties
         else:
-            _content = json.dumps(properties, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _json = self._serialize.body(properties, "DeviceGroupUpdate")
 
         request = build_device_groups_update_request(
             resource_group_name=resource_group_name,
@@ -3962,6 +3769,7 @@ class DeviceGroupsOperations:
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             api_version=self._config.api_version,
+            json=_json,
             content=_content,
             headers=_headers,
             params=_params,
@@ -3979,7 +3787,7 @@ class DeviceGroupsOperations:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = None
@@ -3988,7 +3796,7 @@ class DeviceGroupsOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.DeviceGroup, response.json())
+                deserialized = self._deserialize("DeviceGroup", pipeline_response)
 
         if response.status_code == 202:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -4017,7 +3825,7 @@ class DeviceGroupsOperations:
         :type device_group_name: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: CountDeviceResponse. The CountDeviceResponse is compatible with MutableMapping
+        :return: CountDeviceResponse
         :rtype: ~azure.mgmt.spheredpg.models.CountDeviceResponse
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -4057,18 +3865,18 @@ class DeviceGroupsOperations:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.CountDeviceResponse, response.json())
+            deserialized = self._deserialize("CountDeviceResponse", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
+            return cls(pipeline_response, deserialized, {})
 
-        return deserialized  # type: ignore
+        return deserialized
 
     @overload
     def claim_devices(  # pylint: disable=inconsistent-return-statements
@@ -4096,42 +3904,6 @@ class DeviceGroupsOperations:
         :type device_group_name: str
         :param claim_devices_request: Bulk claim devices request body. Required.
         :type claim_devices_request: ~azure.mgmt.spheredpg.models.ClaimDevicesRequest
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def claim_devices(  # pylint: disable=inconsistent-return-statements
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        claim_devices_request: JSON,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> None:
-        """Bulk claims the devices. Use '.unassigned' or '.default' for the device group and product names
-        when bulk claiming devices to a catalog only.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param claim_devices_request: Bulk claim devices request body. Required.
-        :type claim_devices_request: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4185,7 +3957,7 @@ class DeviceGroupsOperations:
         catalog_name: str,
         product_name: str,
         device_group_name: str,
-        claim_devices_request: Union[_models.ClaimDevicesRequest, JSON, IO],
+        claim_devices_request: Union[_models.ClaimDevicesRequest, IO],
         **kwargs: Any
     ) -> None:
         """Bulk claims the devices. Use '.unassigned' or '.default' for the device group and product names
@@ -4200,9 +3972,9 @@ class DeviceGroupsOperations:
         :type product_name: str
         :param device_group_name: Name of device group. Required.
         :type device_group_name: str
-        :param claim_devices_request: Bulk claim devices request body. Is one of the following types:
-         ClaimDevicesRequest, JSON, IO Required.
-        :type claim_devices_request: ~azure.mgmt.spheredpg.models.ClaimDevicesRequest or JSON or IO
+        :param claim_devices_request: Bulk claim devices request body. Is either a ClaimDevicesRequest
+         type or a IO type. Required.
+        :type claim_devices_request: ~azure.mgmt.spheredpg.models.ClaimDevicesRequest or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -4227,11 +3999,12 @@ class DeviceGroupsOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
+        _json = None
         _content = None
         if isinstance(claim_devices_request, (IOBase, bytes)):
             _content = claim_devices_request
         else:
-            _content = json.dumps(claim_devices_request, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _json = self._serialize.body(claim_devices_request, "ClaimDevicesRequest")
 
         request = build_device_groups_claim_devices_request(
             resource_group_name=resource_group_name,
@@ -4241,6 +4014,7 @@ class DeviceGroupsOperations:
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             api_version=self._config.api_version,
+            json=_json,
             content=_content,
             headers=_headers,
             params=_params,
@@ -4258,7 +4032,7 @@ class DeviceGroupsOperations:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         response_headers = {}
@@ -4277,6 +4051,8 @@ class CertificatesOperations:
         :class:`~azure.mgmt.spheredpg.AzureSphereClient`'s
         :attr:`certificates` attribute.
     """
+
+    models = _models
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
@@ -4301,7 +4077,7 @@ class CertificatesOperations:
         :type serial_number: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: Certificate. The Certificate is compatible with MutableMapping
+        :return: Certificate
         :rtype: ~azure.mgmt.spheredpg.models.Certificate
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -4340,18 +4116,18 @@ class CertificatesOperations:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.Certificate, response.json())
+            deserialized = self._deserialize("Certificate", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
+            return cls(pipeline_response, deserialized, {})
 
-        return deserialized  # type: ignore
+        return deserialized
 
     @distributed_trace
     def list_by_catalog(
@@ -4385,7 +4161,7 @@ class CertificatesOperations:
         _params = kwargs.pop("params", {}) or {}
 
         maxpagesize = kwargs.pop("maxpagesize", None)
-        cls: ClsType[List[_models.Certificate]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.CertificateListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -4430,11 +4206,11 @@ class CertificatesOperations:
             return request
 
         def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.Certificate], deserialized["value"])
+            deserialized = self._deserialize("CertificateListResult", pipeline_response)
+            list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, iter(list_of_elem)
+            return deserialized.next_link or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -4449,7 +4225,7 @@ class CertificatesOperations:
                 if _stream:
                     response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                error = _deserialize(_models.ErrorResponse, response.json())
+                error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
             return pipeline_response
@@ -4472,8 +4248,7 @@ class CertificatesOperations:
         :type serial_number: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: CertificateChainResponse. The CertificateChainResponse is compatible with
-         MutableMapping
+        :return: CertificateChainResponse
         :rtype: ~azure.mgmt.spheredpg.models.CertificateChainResponse
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -4512,18 +4287,18 @@ class CertificatesOperations:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.CertificateChainResponse, response.json())
+            deserialized = self._deserialize("CertificateChainResponse", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
+            return cls(pipeline_response, deserialized, {})
 
-        return deserialized  # type: ignore
+        return deserialized
 
     @overload
     def retrieve_proof_of_possession_nonce(
@@ -4553,42 +4328,7 @@ class CertificatesOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProofOfPossessionNonceResponse. The ProofOfPossessionNonceResponse is compatible with
-         MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.ProofOfPossessionNonceResponse
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def retrieve_proof_of_possession_nonce(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        serial_number: str,
-        parameters: JSON,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.ProofOfPossessionNonceResponse:
-        """Gets the proof of possession nonce.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param serial_number: Serial number of the certificate. Use '.default' to get current active
-         certificate. Required.
-        :type serial_number: str
-        :param parameters: Proof of possession nonce request body. Required.
-        :type parameters: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: ProofOfPossessionNonceResponse. The ProofOfPossessionNonceResponse is compatible with
-         MutableMapping
+        :return: ProofOfPossessionNonceResponse
         :rtype: ~azure.mgmt.spheredpg.models.ProofOfPossessionNonceResponse
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -4621,8 +4361,7 @@ class CertificatesOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProofOfPossessionNonceResponse. The ProofOfPossessionNonceResponse is compatible with
-         MutableMapping
+        :return: ProofOfPossessionNonceResponse
         :rtype: ~azure.mgmt.spheredpg.models.ProofOfPossessionNonceResponse
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -4633,7 +4372,7 @@ class CertificatesOperations:
         resource_group_name: str,
         catalog_name: str,
         serial_number: str,
-        parameters: Union[_models.ProofOfPossessionNonceRequest, JSON, IO],
+        parameters: Union[_models.ProofOfPossessionNonceRequest, IO],
         **kwargs: Any
     ) -> _models.ProofOfPossessionNonceResponse:
         """Gets the proof of possession nonce.
@@ -4646,16 +4385,15 @@ class CertificatesOperations:
         :param serial_number: Serial number of the certificate. Use '.default' to get current active
          certificate. Required.
         :type serial_number: str
-        :param parameters: Proof of possession nonce request body. Is one of the following types:
-         ProofOfPossessionNonceRequest, JSON, IO Required.
-        :type parameters: ~azure.mgmt.spheredpg.models.ProofOfPossessionNonceRequest or JSON or IO
+        :param parameters: Proof of possession nonce request body. Is either a
+         ProofOfPossessionNonceRequest type or a IO type. Required.
+        :type parameters: ~azure.mgmt.spheredpg.models.ProofOfPossessionNonceRequest or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ProofOfPossessionNonceResponse. The ProofOfPossessionNonceResponse is compatible with
-         MutableMapping
+        :return: ProofOfPossessionNonceResponse
         :rtype: ~azure.mgmt.spheredpg.models.ProofOfPossessionNonceResponse
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -4674,11 +4412,12 @@ class CertificatesOperations:
         cls: ClsType[_models.ProofOfPossessionNonceResponse] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
+        _json = None
         _content = None
         if isinstance(parameters, (IOBase, bytes)):
             _content = parameters
         else:
-            _content = json.dumps(parameters, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _json = self._serialize.body(parameters, "ProofOfPossessionNonceRequest")
 
         request = build_certificates_retrieve_proof_of_possession_nonce_request(
             resource_group_name=resource_group_name,
@@ -4687,6 +4426,7 @@ class CertificatesOperations:
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             api_version=self._config.api_version,
+            json=_json,
             content=_content,
             headers=_headers,
             params=_params,
@@ -4704,18 +4444,18 @@ class CertificatesOperations:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ProofOfPossessionNonceResponse, response.json())
+            deserialized = self._deserialize("ProofOfPossessionNonceResponse", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
+            return cls(pipeline_response, deserialized, {})
 
-        return deserialized  # type: ignore
+        return deserialized
 
 
 class DeploymentsOperations:
@@ -4727,6 +4467,8 @@ class DeploymentsOperations:
         :class:`~azure.mgmt.spheredpg.AzureSphereClient`'s
         :attr:`deployments` attribute.
     """
+
+    models = _models
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
@@ -4762,7 +4504,7 @@ class DeploymentsOperations:
         :type deployment_name: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: Deployment. The Deployment is compatible with MutableMapping
+        :return: Deployment
         :rtype: ~azure.mgmt.spheredpg.models.Deployment
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -4803,18 +4545,18 @@ class DeploymentsOperations:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.Deployment, response.json())
+            deserialized = self._deserialize("Deployment", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
+            return cls(pipeline_response, deserialized, {})
 
-        return deserialized  # type: ignore
+        return deserialized
 
     @distributed_trace
     def list_by_device_group(
@@ -4855,7 +4597,7 @@ class DeploymentsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         maxpagesize = kwargs.pop("maxpagesize", None)
-        cls: ClsType[List[_models.Deployment]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.DeploymentListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -4902,11 +4644,11 @@ class DeploymentsOperations:
             return request
 
         def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.Deployment], deserialized["value"])
+            deserialized = self._deserialize("DeploymentListResult", pipeline_response)
+            list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, iter(list_of_elem)
+            return deserialized.next_link or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -4921,7 +4663,7 @@ class DeploymentsOperations:
                 if _stream:
                     response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                error = _deserialize(_models.ErrorResponse, response.json())
+                error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
             return pipeline_response
@@ -4963,47 +4705,7 @@ class DeploymentsOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: Deployment. The Deployment is compatible with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.Deployment
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def create_or_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        deployment_name: str,
-        resource: JSON,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.Deployment:
-        """Create a Deployment. '.default' and '.unassigned' are system defined values and cannot be used
-        for product or device group name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param deployment_name: Deployment name. Use .default for deployment creation and to get the
-         current deployment for the associated device group. Required.
-        :type deployment_name: str
-        :param resource: Resource create parameters. Required.
-        :type resource: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: Deployment. The Deployment is compatible with MutableMapping
+        :return: Deployment
         :rtype: ~azure.mgmt.spheredpg.models.Deployment
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -5043,7 +4745,7 @@ class DeploymentsOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: Deployment. The Deployment is compatible with MutableMapping
+        :return: Deployment
         :rtype: ~azure.mgmt.spheredpg.models.Deployment
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -5056,7 +4758,7 @@ class DeploymentsOperations:
         product_name: str,
         device_group_name: str,
         deployment_name: str,
-        resource: Union[_models.Deployment, JSON, IO],
+        resource: Union[_models.Deployment, IO],
         **kwargs: Any
     ) -> _models.Deployment:
         """Create a Deployment. '.default' and '.unassigned' are system defined values and cannot be used
@@ -5074,15 +4776,15 @@ class DeploymentsOperations:
         :param deployment_name: Deployment name. Use .default for deployment creation and to get the
          current deployment for the associated device group. Required.
         :type deployment_name: str
-        :param resource: Resource create parameters. Is one of the following types: Deployment, JSON,
-         IO Required.
-        :type resource: ~azure.mgmt.spheredpg.models.Deployment or JSON or IO
+        :param resource: Resource create parameters. Is either a Deployment type or a IO type.
+         Required.
+        :type resource: ~azure.mgmt.spheredpg.models.Deployment or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: Deployment. The Deployment is compatible with MutableMapping
+        :return: Deployment
         :rtype: ~azure.mgmt.spheredpg.models.Deployment
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -5101,11 +4803,12 @@ class DeploymentsOperations:
         cls: ClsType[_models.Deployment] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
+        _json = None
         _content = None
         if isinstance(resource, (IOBase, bytes)):
             _content = resource
         else:
-            _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _json = self._serialize.body(resource, "Deployment")
 
         request = build_deployments_create_or_update_request(
             resource_group_name=resource_group_name,
@@ -5116,6 +4819,7 @@ class DeploymentsOperations:
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             api_version=self._config.api_version,
+            json=_json,
             content=_content,
             headers=_headers,
             params=_params,
@@ -5133,7 +4837,7 @@ class DeploymentsOperations:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         response_headers = {}
@@ -5141,7 +4845,7 @@ class DeploymentsOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.Deployment, response.json())
+                deserialized = self._deserialize("Deployment", pipeline_response)
 
         if response.status_code == 201:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -5149,7 +4853,7 @@ class DeploymentsOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.Deployment, response.json())
+                deserialized = self._deserialize("Deployment", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -5224,7 +4928,7 @@ class DeploymentsOperations:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         response_headers = {}
@@ -5245,6 +4949,8 @@ class DevicesOperations:
         :class:`~azure.mgmt.spheredpg.AzureSphereClient`'s
         :attr:`devices` attribute.
     """
+
+    models = _models
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
@@ -5279,7 +4985,7 @@ class DevicesOperations:
         :type device_name: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: Device. The Device is compatible with MutableMapping
+        :return: Device
         :rtype: ~azure.mgmt.spheredpg.models.Device
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -5320,18 +5026,18 @@ class DevicesOperations:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.Device, response.json())
+            deserialized = self._deserialize("Device", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
+            return cls(pipeline_response, deserialized, {})
 
-        return deserialized  # type: ignore
+        return deserialized
 
     @overload
     def create_or_update(
@@ -5367,46 +5073,7 @@ class DevicesOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: Device. The Device is compatible with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.Device
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def create_or_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        device_name: str,
-        resource: JSON,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.Device:
-        """Create a Device. Use '.unassigned' or '.default' for the device group and product names to
-        claim a device to the catalog only.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param device_name: Device name. Required.
-        :type device_name: str
-        :param resource: Resource create parameters. Required.
-        :type resource: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: Device. The Device is compatible with MutableMapping
+        :return: Device
         :rtype: ~azure.mgmt.spheredpg.models.Device
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -5445,7 +5112,7 @@ class DevicesOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: Device. The Device is compatible with MutableMapping
+        :return: Device
         :rtype: ~azure.mgmt.spheredpg.models.Device
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -5458,7 +5125,7 @@ class DevicesOperations:
         product_name: str,
         device_group_name: str,
         device_name: str,
-        resource: Union[_models.Device, JSON, IO],
+        resource: Union[_models.Device, IO],
         **kwargs: Any
     ) -> _models.Device:
         """Create a Device. Use '.unassigned' or '.default' for the device group and product names to
@@ -5475,15 +5142,14 @@ class DevicesOperations:
         :type device_group_name: str
         :param device_name: Device name. Required.
         :type device_name: str
-        :param resource: Resource create parameters. Is one of the following types: Device, JSON, IO
-         Required.
-        :type resource: ~azure.mgmt.spheredpg.models.Device or JSON or IO
+        :param resource: Resource create parameters. Is either a Device type or a IO type. Required.
+        :type resource: ~azure.mgmt.spheredpg.models.Device or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: Device. The Device is compatible with MutableMapping
+        :return: Device
         :rtype: ~azure.mgmt.spheredpg.models.Device
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -5502,11 +5168,12 @@ class DevicesOperations:
         cls: ClsType[_models.Device] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
+        _json = None
         _content = None
         if isinstance(resource, (IOBase, bytes)):
             _content = resource
         else:
-            _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _json = self._serialize.body(resource, "Device")
 
         request = build_devices_create_or_update_request(
             resource_group_name=resource_group_name,
@@ -5517,6 +5184,7 @@ class DevicesOperations:
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             api_version=self._config.api_version,
+            json=_json,
             content=_content,
             headers=_headers,
             params=_params,
@@ -5534,7 +5202,7 @@ class DevicesOperations:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         response_headers = {}
@@ -5542,7 +5210,7 @@ class DevicesOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.Device, response.json())
+                deserialized = self._deserialize("Device", pipeline_response)
 
         if response.status_code == 201:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -5550,7 +5218,7 @@ class DevicesOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.Device, response.json())
+                deserialized = self._deserialize("Device", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -5580,7 +5248,7 @@ class DevicesOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models.Device]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.DeviceListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -5623,11 +5291,11 @@ class DevicesOperations:
             return request
 
         def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.Device], deserialized["value"])
+            deserialized = self._deserialize("DeviceListResult", pipeline_response)
+            list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, iter(list_of_elem)
+            return deserialized.next_link or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -5642,7 +5310,7 @@ class DevicesOperations:
                 if _stream:
                     response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                error = _deserialize(_models.ErrorResponse, response.json())
+                error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
             return pipeline_response
@@ -5715,7 +5383,7 @@ class DevicesOperations:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         response_headers = {}
@@ -5760,46 +5428,7 @@ class DevicesOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: Device or None. The Device is compatible with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.Device or None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        device_name: str,
-        properties: JSON,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> Optional[_models.Device]:
-        """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
-        a device to the catalog level.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param device_name: Device name. Required.
-        :type device_name: str
-        :param properties: The resource properties to be updated. Required.
-        :type properties: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: Device or None. The Device is compatible with MutableMapping
+        :return: Device or None
         :rtype: ~azure.mgmt.spheredpg.models.Device or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -5838,7 +5467,7 @@ class DevicesOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: Device or None. The Device is compatible with MutableMapping
+        :return: Device or None
         :rtype: ~azure.mgmt.spheredpg.models.Device or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -5851,7 +5480,7 @@ class DevicesOperations:
         product_name: str,
         device_group_name: str,
         device_name: str,
-        properties: Union[_models.DeviceUpdate, JSON, IO],
+        properties: Union[_models.DeviceUpdate, IO],
         **kwargs: Any
     ) -> Optional[_models.Device]:
         """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
@@ -5868,15 +5497,15 @@ class DevicesOperations:
         :type device_group_name: str
         :param device_name: Device name. Required.
         :type device_name: str
-        :param properties: The resource properties to be updated. Is one of the following types:
-         DeviceUpdate, JSON, IO Required.
-        :type properties: ~azure.mgmt.spheredpg.models.DeviceUpdate or JSON or IO
+        :param properties: The resource properties to be updated. Is either a DeviceUpdate type or a IO
+         type. Required.
+        :type properties: ~azure.mgmt.spheredpg.models.DeviceUpdate or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: Device or None. The Device is compatible with MutableMapping
+        :return: Device or None
         :rtype: ~azure.mgmt.spheredpg.models.Device or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -5895,11 +5524,12 @@ class DevicesOperations:
         cls: ClsType[Optional[_models.Device]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
+        _json = None
         _content = None
         if isinstance(properties, (IOBase, bytes)):
             _content = properties
         else:
-            _content = json.dumps(properties, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _json = self._serialize.body(properties, "DeviceUpdate")
 
         request = build_devices_update_request(
             resource_group_name=resource_group_name,
@@ -5910,6 +5540,7 @@ class DevicesOperations:
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             api_version=self._config.api_version,
+            json=_json,
             content=_content,
             headers=_headers,
             params=_params,
@@ -5927,7 +5558,7 @@ class DevicesOperations:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = None
@@ -5936,7 +5567,7 @@ class DevicesOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.Device, response.json())
+                deserialized = self._deserialize("Device", pipeline_response)
 
         if response.status_code == 202:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -5981,49 +5612,7 @@ class DevicesOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: SignedCapabilityImageResponse or None. The SignedCapabilityImageResponse is compatible
-         with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.SignedCapabilityImageResponse or None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def generate_capability_image(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        device_name: str,
-        parameters: JSON,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> Optional[_models.SignedCapabilityImageResponse]:
-        """Generates the capability image for the device. Use '.unassigned' or '.default' for the device
-        group and product names to generate the image for a device that does not belong to a specific
-        device group and product.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param device_name: Device name. Required.
-        :type device_name: str
-        :param parameters: Generate capability image request body. Required.
-        :type parameters: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: SignedCapabilityImageResponse or None. The SignedCapabilityImageResponse is compatible
-         with MutableMapping
+        :return: SignedCapabilityImageResponse or None
         :rtype: ~azure.mgmt.spheredpg.models.SignedCapabilityImageResponse or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -6063,8 +5652,7 @@ class DevicesOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: SignedCapabilityImageResponse or None. The SignedCapabilityImageResponse is compatible
-         with MutableMapping
+        :return: SignedCapabilityImageResponse or None
         :rtype: ~azure.mgmt.spheredpg.models.SignedCapabilityImageResponse or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -6077,7 +5665,7 @@ class DevicesOperations:
         product_name: str,
         device_group_name: str,
         device_name: str,
-        parameters: Union[_models.GenerateCapabilityImageRequest, JSON, IO],
+        parameters: Union[_models.GenerateCapabilityImageRequest, IO],
         **kwargs: Any
     ) -> Optional[_models.SignedCapabilityImageResponse]:
         """Generates the capability image for the device. Use '.unassigned' or '.default' for the device
@@ -6095,16 +5683,15 @@ class DevicesOperations:
         :type device_group_name: str
         :param device_name: Device name. Required.
         :type device_name: str
-        :param parameters: Generate capability image request body. Is one of the following types:
-         GenerateCapabilityImageRequest, JSON, IO Required.
-        :type parameters: ~azure.mgmt.spheredpg.models.GenerateCapabilityImageRequest or JSON or IO
+        :param parameters: Generate capability image request body. Is either a
+         GenerateCapabilityImageRequest type or a IO type. Required.
+        :type parameters: ~azure.mgmt.spheredpg.models.GenerateCapabilityImageRequest or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: SignedCapabilityImageResponse or None. The SignedCapabilityImageResponse is compatible
-         with MutableMapping
+        :return: SignedCapabilityImageResponse or None
         :rtype: ~azure.mgmt.spheredpg.models.SignedCapabilityImageResponse or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -6123,11 +5710,12 @@ class DevicesOperations:
         cls: ClsType[Optional[_models.SignedCapabilityImageResponse]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
+        _json = None
         _content = None
         if isinstance(parameters, (IOBase, bytes)):
             _content = parameters
         else:
-            _content = json.dumps(parameters, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _json = self._serialize.body(parameters, "GenerateCapabilityImageRequest")
 
         request = build_devices_generate_capability_image_request(
             resource_group_name=resource_group_name,
@@ -6138,6 +5726,7 @@ class DevicesOperations:
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             api_version=self._config.api_version,
+            json=_json,
             content=_content,
             headers=_headers,
             params=_params,
@@ -6155,7 +5744,7 @@ class DevicesOperations:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = None
@@ -6164,7 +5753,7 @@ class DevicesOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.SignedCapabilityImageResponse, response.json())
+                deserialized = self._deserialize("SignedCapabilityImageResponse", pipeline_response)
 
         if response.status_code == 202:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -6184,6 +5773,8 @@ class ProductsOperations:
         :class:`~azure.mgmt.spheredpg.AzureSphereClient`'s
         :attr:`products` attribute.
     """
+
+    models = _models
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
@@ -6210,7 +5801,7 @@ class ProductsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models.Product]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.ProductListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -6251,11 +5842,11 @@ class ProductsOperations:
             return request
 
         def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.Product], deserialized["value"])
+            deserialized = self._deserialize("ProductListResult", pipeline_response)
+            list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, iter(list_of_elem)
+            return deserialized.next_link or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -6270,7 +5861,7 @@ class ProductsOperations:
                 if _stream:
                     response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                error = _deserialize(_models.ErrorResponse, response.json())
+                error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
             return pipeline_response
@@ -6291,7 +5882,7 @@ class ProductsOperations:
         :type product_name: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: Product. The Product is compatible with MutableMapping
+        :return: Product
         :rtype: ~azure.mgmt.spheredpg.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -6330,18 +5921,18 @@ class ProductsOperations:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.Product, response.json())
+            deserialized = self._deserialize("Product", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
+            return cls(pipeline_response, deserialized, {})
 
-        return deserialized  # type: ignore
+        return deserialized
 
     @overload
     def create_or_update(
@@ -6371,40 +5962,7 @@ class ProductsOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: Product. The Product is compatible with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.Product
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def create_or_update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        resource: JSON,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models.Product:
-        """Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for
-        product name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param resource: Resource create parameters. Required.
-        :type resource: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: Product. The Product is compatible with MutableMapping
+        :return: Product
         :rtype: ~azure.mgmt.spheredpg.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -6437,7 +5995,7 @@ class ProductsOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: Product. The Product is compatible with MutableMapping
+        :return: Product
         :rtype: ~azure.mgmt.spheredpg.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -6448,7 +6006,7 @@ class ProductsOperations:
         resource_group_name: str,
         catalog_name: str,
         product_name: str,
-        resource: Union[_models.Product, JSON, IO],
+        resource: Union[_models.Product, IO],
         **kwargs: Any
     ) -> _models.Product:
         """Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for
@@ -6461,15 +6019,14 @@ class ProductsOperations:
         :type catalog_name: str
         :param product_name: Name of product. Required.
         :type product_name: str
-        :param resource: Resource create parameters. Is one of the following types: Product, JSON, IO
-         Required.
-        :type resource: ~azure.mgmt.spheredpg.models.Product or JSON or IO
+        :param resource: Resource create parameters. Is either a Product type or a IO type. Required.
+        :type resource: ~azure.mgmt.spheredpg.models.Product or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: Product. The Product is compatible with MutableMapping
+        :return: Product
         :rtype: ~azure.mgmt.spheredpg.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -6488,11 +6045,12 @@ class ProductsOperations:
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
+        _json = None
         _content = None
         if isinstance(resource, (IOBase, bytes)):
             _content = resource
         else:
-            _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _json = self._serialize.body(resource, "Product")
 
         request = build_products_create_or_update_request(
             resource_group_name=resource_group_name,
@@ -6501,6 +6059,7 @@ class ProductsOperations:
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             api_version=self._config.api_version,
+            json=_json,
             content=_content,
             headers=_headers,
             params=_params,
@@ -6518,7 +6077,7 @@ class ProductsOperations:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         response_headers = {}
@@ -6526,7 +6085,7 @@ class ProductsOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.Product, response.json())
+                deserialized = self._deserialize("Product", pipeline_response)
 
         if response.status_code == 201:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -6534,7 +6093,7 @@ class ProductsOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.Product, response.json())
+                deserialized = self._deserialize("Product", pipeline_response)
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -6596,7 +6155,7 @@ class ProductsOperations:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         response_headers = {}
@@ -6635,40 +6194,7 @@ class ProductsOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: Product or None. The Product is compatible with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.Product or None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        properties: JSON,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> Optional[_models.Product]:
-        """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
-        product name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param properties: The resource properties to be updated. Required.
-        :type properties: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: Product or None. The Product is compatible with MutableMapping
+        :return: Product or None
         :rtype: ~azure.mgmt.spheredpg.models.Product or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -6701,7 +6227,7 @@ class ProductsOperations:
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: Product or None. The Product is compatible with MutableMapping
+        :return: Product or None
         :rtype: ~azure.mgmt.spheredpg.models.Product or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -6712,7 +6238,7 @@ class ProductsOperations:
         resource_group_name: str,
         catalog_name: str,
         product_name: str,
-        properties: Union[_models.ProductUpdate, JSON, IO],
+        properties: Union[_models.ProductUpdate, IO],
         **kwargs: Any
     ) -> Optional[_models.Product]:
         """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
@@ -6725,15 +6251,15 @@ class ProductsOperations:
         :type catalog_name: str
         :param product_name: Name of product. Required.
         :type product_name: str
-        :param properties: The resource properties to be updated. Is one of the following types:
-         ProductUpdate, JSON, IO Required.
-        :type properties: ~azure.mgmt.spheredpg.models.ProductUpdate or JSON or IO
+        :param properties: The resource properties to be updated. Is either a ProductUpdate type or a
+         IO type. Required.
+        :type properties: ~azure.mgmt.spheredpg.models.ProductUpdate or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: Product or None. The Product is compatible with MutableMapping
+        :return: Product or None
         :rtype: ~azure.mgmt.spheredpg.models.Product or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -6752,11 +6278,12 @@ class ProductsOperations:
         cls: ClsType[Optional[_models.Product]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
+        _json = None
         _content = None
         if isinstance(properties, (IOBase, bytes)):
             _content = properties
         else:
-            _content = json.dumps(properties, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _json = self._serialize.body(properties, "ProductUpdate")
 
         request = build_products_update_request(
             resource_group_name=resource_group_name,
@@ -6765,6 +6292,7 @@ class ProductsOperations:
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             api_version=self._config.api_version,
+            json=_json,
             content=_content,
             headers=_headers,
             params=_params,
@@ -6782,7 +6310,7 @@ class ProductsOperations:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = None
@@ -6791,7 +6319,7 @@ class ProductsOperations:
             if _stream:
                 deserialized = response.iter_bytes()
             else:
-                deserialized = _deserialize(_models.Product, response.json())
+                deserialized = self._deserialize("Product", pipeline_response)
 
         if response.status_code == 202:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
@@ -6823,7 +6351,7 @@ class ProductsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models.DeviceGroup]] = kwargs.pop("cls", None)
+        cls: ClsType[_models.DeviceGroupListResult] = kwargs.pop("cls", None)
 
         error_map = {
             401: ClientAuthenticationError,
@@ -6865,11 +6393,11 @@ class ProductsOperations:
             return request
 
         def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.DeviceGroup], deserialized["value"])
+            deserialized = self._deserialize("DeviceGroupListResult", pipeline_response)
+            list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, iter(list_of_elem)
+            return deserialized.next_link or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -6884,7 +6412,7 @@ class ProductsOperations:
                 if _stream:
                     response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                error = _deserialize(_models.ErrorResponse, response.json())
+                error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
             return pipeline_response
@@ -6907,7 +6435,7 @@ class ProductsOperations:
         :type product_name: str
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: CountDeviceResponse. The CountDeviceResponse is compatible with MutableMapping
+        :return: CountDeviceResponse
         :rtype: ~azure.mgmt.spheredpg.models.CountDeviceResponse
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -6946,15 +6474,15 @@ class ProductsOperations:
             if _stream:
                 response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = _deserialize(_models.ErrorResponse, response.json())
+            error = self._deserialize.failsafe_deserialize(_models.ErrorResponse, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.CountDeviceResponse, response.json())
+            deserialized = self._deserialize("CountDeviceResponse", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
+            return cls(pipeline_response, deserialized, {})
 
-        return deserialized  # type: ignore
+        return deserialized
