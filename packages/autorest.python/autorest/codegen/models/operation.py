@@ -486,7 +486,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
     @property
     def success_status_codes(self) -> List[Union[str, int]]:
         """The list of all successfull status code."""
-        return [code for response in self.responses for code in response.status_codes]
+        return sorted([code for response in self.responses for code in response.status_codes], key=lambda x: str(x))
 
     @property
     def filename(self) -> str:

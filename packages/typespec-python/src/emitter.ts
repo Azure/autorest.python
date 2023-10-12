@@ -451,7 +451,7 @@ function emitResponse(context: SdkContext, response: HttpOperationResponse): Rec
             type = getType(context, body);
         }
     }
-    const statusCodes: (string | number)[] = [];
+    let statusCodes: ("default" | number)[] = [];
     if (response.statusCodes === "*") {
         statusCodes.push("default");
     } else if (isHttpStatusCode(response.statusCodes)) {
@@ -459,6 +459,7 @@ function emitResponse(context: SdkContext, response: HttpOperationResponse): Rec
     } else {
         statusCodes.push(response.statusCodes);
     }
+
     return {
         headers: emitResponseHeaders(context, response),
         statusCodes: statusCodes,
