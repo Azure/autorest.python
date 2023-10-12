@@ -1,6 +1,8 @@
 {
     "chosen_version": "2.0.0",
-    "total_api_version_list": ["2.0.0"],
+    "total_api_version_list": [
+        "2.0.0"
+    ],
     "client": {
         "name": "MultiapiServiceClient",
         "filename": "_multiapi_service_client",
@@ -8,7 +10,7 @@
         "host_value": "\"http://localhost:3000\"",
         "parameterized_host_template": null,
         "azure_arm": true,
-        "has_lro_operations": false,
+        "has_public_lro_operations": false,
         "client_side_validation": false,
         "sync_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Optional\"]}}, \"regular\": {\"azurecore\": {\"azure.mgmt.core\": [\"ARMPipelineClient\"], \"azure.core.pipeline\": [\"policies\"], \"azure.mgmt.core.policies\": [\"ARMAutoResourceProviderRegistrationPolicy\"], \"azure.profiles\": [\"KnownProfiles\", \"ProfileDefinition\"], \"azure.profiles.multiapiclient\": [\"MultiApiClientMixin\"]}, \"local\": {\"._configuration\": [\"MultiapiServiceClientConfiguration\"], \".._serialization\": [\"Deserializer\", \"Serializer\"], \"._operations_mixin\": [\"MultiapiServiceClientOperationsMixin\"]}}, \"typing\": {\"azurecore\": {\"azure.core.credentials\": [\"TokenCredential\"]}}}",
         "async_imports": "{\"conditional\": {\"stdlib\": {\"typing\": [\"Any\", \"Optional\"]}}, \"regular\": {\"azurecore\": {\"azure.mgmt.core\": [\"AsyncARMPipelineClient\"], \"azure.core.pipeline\": [\"policies\"], \"azure.mgmt.core.policies\": [\"AsyncARMAutoResourceProviderRegistrationPolicy\"], \"azure.profiles\": [\"KnownProfiles\", \"ProfileDefinition\"], \"azure.profiles.multiapiclient\": [\"MultiApiClientMixin\"]}, \"local\": {\"._configuration\": [\"MultiapiServiceClientConfiguration\"], \"..._serialization\": [\"Deserializer\", \"Serializer\"], \"._operations_mixin\": [\"MultiapiServiceClientOperationsMixin\"]}}, \"typing\": {\"azurecore\": {\"azure.core.credentials_async\": [\"AsyncTokenCredential\"]}}}"
@@ -31,8 +33,7 @@
                 "required": true
             }
         },
-        "constant": {
-        },
+        "constant": {},
         "call": "credential",
         "service_client_specific": {
             "sync": {
@@ -85,7 +86,9 @@
     },
     "config": {
         "credential": true,
-        "credential_scopes": ["https://management.azure.com/.default"],
+        "credential_scopes": [
+            "https://management.azure.com/.default"
+        ],
         "credential_call_sync": "ARMChallengeAuthenticationPolicy(self.credential, *self.credential_scopes, **kwargs)",
         "credential_call_async": "AsyncARMChallengeAuthenticationPolicy(self.credential, *self.credential_scopes, **kwargs)",
         "sync_imports": "{\"regular\": {\"azurecore\": {\"azure.core.pipeline\": [\"policies\"], \"azure.mgmt.core.policies\": [\"ARMChallengeAuthenticationPolicy\", \"ARMHttpLoggingPolicy\"]}, \"local\": {\"._version\": [\"VERSION\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"typing\": {\"azurecore\": {\"azure.core.credentials\": [\"TokenCredential\"]}}}",
@@ -101,7 +104,7 @@
         "sync_mixin_typing_definitions": "",
         "async_mixin_typing_definitions": "",
         "operations": {
-            "test_one" : {
+            "test_one": {
                 "sync": {
                     "signature": "def test_one(\n    self,\n    id: int,\n    message: Optional[str] = None,\n    **kwargs: Any\n) -\u003e _models.ModelTwo:\n",
                     "doc": "\"\"\"TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.\n\n:param id: An int parameter. Required.\n:type id: int\n:param message: An optional string parameter. Default value is None.\n:type message: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: ModelTwo or the result of cls(response)\n:rtype: ~multiapinoasync.v2.models.ModelTwo\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",
@@ -114,7 +117,7 @@
                     "call": "id, message, **kwargs"
                 }
             },
-            "test_different_calls" : {
+            "test_different_calls": {
                 "sync": {
                     "signature": "def test_different_calls(  # pylint: disable=inconsistent-return-statements\n    self,\n    greeting_in_english: str,\n    greeting_in_chinese: Optional[str] = None,\n    **kwargs: Any\n) -\u003e None:\n",
                     "doc": "\"\"\"Has added parameters across the API versions.\n\n:param greeting_in_english: pass in \u0027hello\u0027 to pass test. Required.\n:type greeting_in_english: str\n:param greeting_in_chinese: pass in \u0027nihao\u0027 to pass test. Default value is None.\n:type greeting_in_chinese: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: None or the result of cls(response)\n:rtype: None\n:raises ~azure.core.exceptions.HttpResponseError:\n\"\"\"",

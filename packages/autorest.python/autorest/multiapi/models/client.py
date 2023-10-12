@@ -71,12 +71,12 @@ class Client:
         return parameterized_host_template_to_api_version
 
     @property
-    def has_lro_operations(self) -> bool:
-        has_lro_operations = False
+    def has_public_lro_operations(self) -> bool:
+        has_public_lro_operations = False
         for _, metadata_json in self.version_path_to_metadata.items():
-            current_client_has_lro_operations = metadata_json["client"][
-                "has_lro_operations"
+            current_client_has_public_lro_operations = metadata_json["client"][
+                "has_public_lro_operations"
             ]
-            if current_client_has_lro_operations:
-                has_lro_operations = True
-        return has_lro_operations
+            if current_client_has_public_lro_operations:
+                has_public_lro_operations = True
+        return has_public_lro_operations
