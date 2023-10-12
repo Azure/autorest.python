@@ -1,8 +1,6 @@
 {
     "chosen_version": "0.0.0",
-    "total_api_version_list": [
-        "0.0.0"
-    ],
+    "total_api_version_list": ["0.0.0"],
     "client": {
         "name": "MultiapiServiceClient",
         "filename": "_multiapi_service_client",
@@ -33,7 +31,8 @@
                 "required": true
             }
         },
-        "constant": {},
+        "constant": {
+        },
         "call": "credential",
         "service_client_specific": {
             "sync": {
@@ -86,9 +85,7 @@
     },
     "config": {
         "credential": true,
-        "credential_scopes": [
-            "https://management.azure.com/.default"
-        ],
+        "credential_scopes": ["https://management.azure.com/.default"],
         "credential_call_sync": "ARMChallengeAuthenticationPolicy(self.credential, *self.credential_scopes, **kwargs)",
         "credential_call_async": "AsyncARMChallengeAuthenticationPolicy(self.credential, *self.credential_scopes, **kwargs)",
         "sync_imports": "{\"regular\": {\"azurecore\": {\"azure.core.pipeline\": [\"policies\"], \"azure.mgmt.core.policies\": [\"ARMChallengeAuthenticationPolicy\", \"ARMHttpLoggingPolicy\"]}, \"local\": {\"._version\": [\"VERSION\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}}, \"typing\": {\"azurecore\": {\"azure.core.credentials\": [\"TokenCredential\"]}}}",
