@@ -93,7 +93,7 @@ class {{ code_model.client.name }}({% if code_model.operation_mixin_group.mixin_
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
-                {% for p in _policies %}
+                {% for p in config_policies %}
                 {{ p }},
                 {% endfor %}
             ]

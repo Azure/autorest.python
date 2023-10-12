@@ -87,11 +87,11 @@ class MultiAPISerializer(ReaderAndWriter):  # pylint: disable=abstract-method
 
         # serialize service client file
         imports = FileImportSerializer(code_model.client.imports(async_mode))
-        _policies = build_policies(code_model.azure_arm, async_mode)
+        config_policies = build_policies(code_model.azure_arm, async_mode)
         self.write_file(
             _get_file_path(code_model.client.filename, async_mode),
             _render_template(
-                "client", imports=imports, _policies=_policies
+                "client", imports=imports, config_policies=config_policies
             ),
         )
 

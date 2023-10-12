@@ -67,9 +67,7 @@ class MicrosoftAzureTestUrl:  # pylint: disable=client-accepts-api-version-keywo
                 policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client: AsyncARMPipelineClient = AsyncARMPipelineClient(
-            base_url=endpoint, policies=_policies, **kwargs
-        )
+        self._client: AsyncARMPipelineClient = AsyncARMPipelineClient(base_url=endpoint, policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
