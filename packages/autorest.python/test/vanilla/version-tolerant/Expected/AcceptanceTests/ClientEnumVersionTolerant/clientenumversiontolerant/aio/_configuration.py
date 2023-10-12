@@ -8,14 +8,13 @@
 
 from typing import Any, Union
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from .. import models as _models
 from .._version import VERSION
 
 
-class ClientWithEnumConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class ClientWithEnumConfiguration:  # pylint: disable=too-many-instance-attributes
     """Configuration for ClientWithEnum.
 
     Note that all parameters used to create this instance are saved as instance
@@ -26,12 +25,12 @@ class ClientWithEnumConfiguration(Configuration):  # pylint: disable=too-many-in
     """
 
     def __init__(self, x_ms_enum: Union[str, _models.Enum0], **kwargs: Any) -> None:
-        super(ClientWithEnumConfiguration, self).__init__(**kwargs)
         if x_ms_enum is None:
             raise ValueError("Parameter 'x_ms_enum' must not be None.")
 
         self.x_ms_enum = x_ms_enum
         kwargs.setdefault("sdk_moniker", "clientwithenum/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

@@ -8,7 +8,6 @@
 
 from typing import Any, TYPE_CHECKING
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 from azure.mgmt.core.policies import ARMChallengeAuthenticationPolicy, ARMHttpLoggingPolicy
 
@@ -19,7 +18,7 @@ if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
 
 
-class HeadClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class HeadClientConfiguration:  # pylint: disable=too-many-instance-attributes
     """Configuration for HeadClient.
 
     Note that all parameters used to create this instance are saved as instance
@@ -30,13 +29,13 @@ class HeadClientConfiguration(Configuration):  # pylint: disable=too-many-instan
     """
 
     def __init__(self, credential: "TokenCredential", **kwargs: Any) -> None:
-        super(HeadClientConfiguration, self).__init__(**kwargs)
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
 
         self.credential = credential
         self.credential_scopes = kwargs.pop("credential_scopes", ["https://management.azure.com/.default"])
         kwargs.setdefault("sdk_moniker", "packagemode-batch/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

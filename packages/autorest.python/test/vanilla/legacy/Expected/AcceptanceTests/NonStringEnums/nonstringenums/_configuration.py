@@ -8,13 +8,12 @@
 
 from typing import Any
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from ._version import VERSION
 
 
-class NonStringEnumsClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes,name-too-long
+class NonStringEnumsClientConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for NonStringEnumsClient.
 
     Note that all parameters used to create this instance are saved as instance
@@ -22,9 +21,9 @@ class NonStringEnumsClientConfiguration(Configuration):  # pylint: disable=too-m
     """
 
     def __init__(self, **kwargs: Any) -> None:
-        super(NonStringEnumsClientConfiguration, self).__init__(**kwargs)
 
         kwargs.setdefault("sdk_moniker", "nonstringenumsclient/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

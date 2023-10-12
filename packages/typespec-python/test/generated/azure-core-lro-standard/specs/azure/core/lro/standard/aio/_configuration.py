@@ -8,13 +8,12 @@
 
 from typing import Any
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from .._version import VERSION
 
 
-class StandardClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class StandardClientConfiguration:  # pylint: disable=too-many-instance-attributes
     """Configuration for StandardClient.
 
     Note that all parameters used to create this instance are saved as instance
@@ -27,11 +26,11 @@ class StandardClientConfiguration(Configuration):  # pylint: disable=too-many-in
     """
 
     def __init__(self, **kwargs: Any) -> None:
-        super(StandardClientConfiguration, self).__init__(**kwargs)
         api_version: str = kwargs.pop("api_version", "2022-12-01-preview")
 
         self.api_version = api_version
         kwargs.setdefault("sdk_moniker", "specs-azure-core-lro-standard/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:
