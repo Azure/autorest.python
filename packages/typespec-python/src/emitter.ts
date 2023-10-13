@@ -97,7 +97,6 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
 
     const sdkContext = createSdkContext(context);
     const clients = listClients(sdkContext);
-    sdkContext.arm = sdkContext.arm === undefined ? clients.length > 0 && clients[0].arm : sdkContext.arm;
     modelsMode = resolvedOptions["models-mode"] ?? (sdkContext.arm ? "msrest" : "dpg");
     const root = await resolveModuleRoot(program, "@autorest/python", dirname(fileURLToPath(import.meta.url)));
     const outputDir = context.emitterOutputDir;
