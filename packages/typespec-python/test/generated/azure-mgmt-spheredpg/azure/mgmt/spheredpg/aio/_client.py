@@ -14,7 +14,6 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.mgmt.core import AsyncARMPipelineClient
 from azure.mgmt.core.policies import AsyncARMAutoResourceProviderRegistrationPolicy
 
-from .. import models as _models
 from .._serialization import Deserializer, Serializer
 from ._configuration import AzureSphereClientConfiguration
 from .operations import (
@@ -92,9 +91,8 @@ class AzureSphereClient:  # pylint: disable=client-accepts-api-version-keyword,t
             ]
         self._client: AsyncARMPipelineClient = AsyncARMPipelineClient(base_url=base_url, policies=_policies, **kwargs)
 
-        client_models = {k: v for k, v in _models.__dict__.items() if isinstance(v, type)}
-        self._serialize = Serializer(client_models)
-        self._deserialize = Deserializer(client_models)
+        self._serialize = Serializer()
+        self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
         self.operations = Operations(self._client, self._config, self._serialize, self._deserialize)
         self.catalogs = CatalogsOperations(self._client, self._config, self._serialize, self._deserialize)

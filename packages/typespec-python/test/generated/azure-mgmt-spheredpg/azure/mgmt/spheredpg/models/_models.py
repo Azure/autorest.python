@@ -8,19 +8,20 @@
 # --------------------------------------------------------------------------
 
 import datetime
-from typing import Any, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Dict, List, Mapping, Optional, TYPE_CHECKING, Union, overload
 
-from .. import _serialization
+from .. import _model_base
+from .._model_base import rest_field
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
 
 
-class ArmResource(_serialization.Model):
+class ArmResource(_model_base.Model):
     """Common properties for all ARM resources.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -36,47 +37,21 @@ class ArmResource(_serialization.Model):
     :vartype system_data: ~azure.mgmt.spheredpg.models.SystemData
     """
 
-    _validation = {
-        "id": {"required": True},
-        "type": {"required": True},
-    }
-
-    _attribute_map = {
-        "id": {"key": "id", "type": "str"},
-        "type": {"key": "type", "type": "str"},
-        "system_data": {"key": "systemData", "type": "SystemData"},
-    }
-
-    def __init__(
-        self,
-        *,
-        id: str,  # pylint: disable=redefined-builtin
-        type: str,
-        system_data: Optional["_models.SystemData"] = None,
-        **kwargs: Any
-    ) -> None:
-        """
-        :keyword id: Fully qualified resource ID for the resource. Ex -
-         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-         Required.
-        :paramtype id: str
-        :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-         "Microsoft.Storage/storageAccounts". Required.
-        :paramtype type: str
-        :keyword system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-         information.
-        :paramtype system_data: ~azure.mgmt.spheredpg.models.SystemData
-        """
-        super().__init__(**kwargs)
-        self.id = id
-        self.type = type
-        self.system_data = system_data
+    id: str = rest_field(visibility=["read"])
+    """Fully qualified resource ID for the resource. Ex -
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
+     Required."""
+    type: str = rest_field(visibility=["read"])
+    """The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or
+     \"Microsoft.Storage/storageAccounts\". Required."""
+    system_data: Optional["_models.SystemData"] = rest_field(name="systemData", visibility=["read"])
+    """Azure Resource Manager metadata containing createdBy and modifiedBy information."""
 
 
 class TrackedResourceBase(ArmResource):
     """The resource model definition for an Azure Resource Manager tracked top level resource.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -96,55 +71,35 @@ class TrackedResourceBase(ArmResource):
     :vartype tags: dict[str, str]
     """
 
-    _validation = {
-        "id": {"required": True},
-        "type": {"required": True},
-        "location": {"required": True},
-    }
+    location: str = rest_field(visibility=["read", "create"])
+    """The geo-location where the resource lives. Required."""
+    tags: Optional[Dict[str, str]] = rest_field()
+    """Resource tags."""
 
-    _attribute_map = {
-        "id": {"key": "id", "type": "str"},
-        "type": {"key": "type", "type": "str"},
-        "system_data": {"key": "systemData", "type": "SystemData"},
-        "location": {"key": "location", "type": "str"},
-        "tags": {"key": "tags", "type": "{str}"},
-    }
-
+    @overload
     def __init__(
         self,
         *,
-        id: str,  # pylint: disable=redefined-builtin
-        type: str,
         location: str,
-        system_data: Optional["_models.SystemData"] = None,
         tags: Optional[Dict[str, str]] = None,
-        **kwargs: Any
-    ) -> None:
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
         """
-        :keyword id: Fully qualified resource ID for the resource. Ex -
-         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-         Required.
-        :paramtype id: str
-        :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-         "Microsoft.Storage/storageAccounts". Required.
-        :paramtype type: str
-        :keyword system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-         information.
-        :paramtype system_data: ~azure.mgmt.spheredpg.models.SystemData
-        :keyword location: The geo-location where the resource lives. Required.
-        :paramtype location: str
-        :keyword tags: Resource tags.
-        :paramtype tags: dict[str, str]
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
         """
-        super().__init__(id=id, type=type, system_data=system_data, **kwargs)
-        self.location = location
-        self.tags = tags
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
 class Catalog(TrackedResourceBase):
     """An Azure Sphere catalog.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -166,136 +121,80 @@ class Catalog(TrackedResourceBase):
     :vartype properties: ~azure.mgmt.spheredpg.models.CatalogProperties
     """
 
-    _validation = {
-        "id": {"required": True},
-        "type": {"required": True},
-        "location": {"required": True},
-    }
+    properties: Optional["_models.CatalogProperties"] = rest_field(visibility=["read", "create"])
+    """The resource-specific properties for this resource."""
 
-    _attribute_map = {
-        "id": {"key": "id", "type": "str"},
-        "type": {"key": "type", "type": "str"},
-        "system_data": {"key": "systemData", "type": "SystemData"},
-        "location": {"key": "location", "type": "str"},
-        "tags": {"key": "tags", "type": "{str}"},
-        "properties": {"key": "properties", "type": "CatalogProperties"},
-    }
-
+    @overload
     def __init__(
         self,
         *,
-        id: str,  # pylint: disable=redefined-builtin
-        type: str,
         location: str,
-        system_data: Optional["_models.SystemData"] = None,
         tags: Optional[Dict[str, str]] = None,
         properties: Optional["_models.CatalogProperties"] = None,
-        **kwargs: Any
-    ) -> None:
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
         """
-        :keyword id: Fully qualified resource ID for the resource. Ex -
-         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-         Required.
-        :paramtype id: str
-        :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-         "Microsoft.Storage/storageAccounts". Required.
-        :paramtype type: str
-        :keyword system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-         information.
-        :paramtype system_data: ~azure.mgmt.spheredpg.models.SystemData
-        :keyword location: The geo-location where the resource lives. Required.
-        :paramtype location: str
-        :keyword tags: Resource tags.
-        :paramtype tags: dict[str, str]
-        :keyword properties: The resource-specific properties for this resource.
-        :paramtype properties: ~azure.mgmt.spheredpg.models.CatalogProperties
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
         """
-        super().__init__(id=id, type=type, system_data=system_data, location=location, tags=tags, **kwargs)
-        self.properties = properties
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
-class CatalogListResult(_serialization.Model):
-    """The response of a Catalog list operation.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar value: The Catalog items on this page. Required.
-    :vartype value: list[~azure.mgmt.spheredpg.models.Catalog]
-    :ivar next_link: The link to the next page of items.
-    :vartype next_link: str
-    """
-
-    _validation = {
-        "value": {"required": True},
-    }
-
-    _attribute_map = {
-        "value": {"key": "value", "type": "[Catalog]"},
-        "next_link": {"key": "nextLink", "type": "str"},
-    }
-
-    def __init__(self, *, value: List["_models.Catalog"], next_link: Optional[str] = None, **kwargs: Any) -> None:
-        """
-        :keyword value: The Catalog items on this page. Required.
-        :paramtype value: list[~azure.mgmt.spheredpg.models.Catalog]
-        :keyword next_link: The link to the next page of items.
-        :paramtype next_link: str
-        """
-        super().__init__(**kwargs)
-        self.value = value
-        self.next_link = next_link
-
-
-class CatalogProperties(_serialization.Model):
+class CatalogProperties(_model_base.Model):
     """Catalog properties.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar provisioning_state: The status of the last operation. Known values are: "Succeeded",
      "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
     :vartype provisioning_state: str or ~azure.mgmt.spheredpg.models.ProvisioningState
     """
 
-    _attribute_map = {
-        "provisioning_state": {"key": "provisioningState", "type": "str"},
-    }
-
-    def __init__(
-        self, *, provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = None, **kwargs: Any
-    ) -> None:
-        """
-        :keyword provisioning_state: The status of the last operation. Known values are: "Succeeded",
-         "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
-        :paramtype provisioning_state: str or ~azure.mgmt.spheredpg.models.ProvisioningState
-        """
-        super().__init__(**kwargs)
-        self.provisioning_state = provisioning_state
+    provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = rest_field(
+        name="provisioningState", visibility=["read"]
+    )
+    """The status of the last operation. Known values are: \"Succeeded\", \"Failed\", \"Canceled\",
+     \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
 
 
-class CatalogUpdate(_serialization.Model):
+class CatalogUpdate(_model_base.Model):
     """The type used for update operations of the Catalog.
 
     :ivar tags: Resource tags.
     :vartype tags: dict[str, str]
     """
 
-    _attribute_map = {
-        "tags": {"key": "tags", "type": "{str}"},
-    }
+    tags: Optional[Dict[str, str]] = rest_field()
+    """Resource tags."""
 
-    def __init__(self, *, tags: Optional[Dict[str, str]] = None, **kwargs: Any) -> None:
+    @overload
+    def __init__(
+        self,
+        *,
+        tags: Optional[Dict[str, str]] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
         """
-        :keyword tags: Resource tags.
-        :paramtype tags: dict[str, str]
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
         """
-        super().__init__(**kwargs)
-        self.tags = tags
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
 class ProxyResourceBase(ArmResource):
     """The base proxy resource.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -315,7 +214,7 @@ class ProxyResourceBase(ArmResource):
 class Certificate(ProxyResourceBase):
     """An certificate resource belonging to a catalog resource.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -333,103 +232,45 @@ class Certificate(ProxyResourceBase):
     :vartype properties: ~azure.mgmt.spheredpg.models.CertificateProperties
     """
 
-    _validation = {
-        "id": {"required": True},
-        "type": {"required": True},
-    }
+    properties: Optional["_models.CertificateProperties"] = rest_field(visibility=["read", "create"])
+    """The resource-specific properties for this resource."""
 
-    _attribute_map = {
-        "id": {"key": "id", "type": "str"},
-        "type": {"key": "type", "type": "str"},
-        "system_data": {"key": "systemData", "type": "SystemData"},
-        "properties": {"key": "properties", "type": "CertificateProperties"},
-    }
-
+    @overload
     def __init__(
         self,
         *,
-        id: str,  # pylint: disable=redefined-builtin
-        type: str,
-        system_data: Optional["_models.SystemData"] = None,
         properties: Optional["_models.CertificateProperties"] = None,
-        **kwargs: Any
-    ) -> None:
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
         """
-        :keyword id: Fully qualified resource ID for the resource. Ex -
-         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-         Required.
-        :paramtype id: str
-        :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-         "Microsoft.Storage/storageAccounts". Required.
-        :paramtype type: str
-        :keyword system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-         information.
-        :paramtype system_data: ~azure.mgmt.spheredpg.models.SystemData
-        :keyword properties: The resource-specific properties for this resource.
-        :paramtype properties: ~azure.mgmt.spheredpg.models.CertificateProperties
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
         """
-        super().__init__(id=id, type=type, system_data=system_data, **kwargs)
-        self.properties = properties
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
-class CertificateChainResponse(_serialization.Model):
+class CertificateChainResponse(_model_base.Model):
     """The certificate chain response.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar certificate_chain: The certificate chain.
     :vartype certificate_chain: str
     """
 
-    _attribute_map = {
-        "certificate_chain": {"key": "certificateChain", "type": "str"},
-    }
-
-    def __init__(self, *, certificate_chain: Optional[str] = None, **kwargs: Any) -> None:
-        """
-        :keyword certificate_chain: The certificate chain.
-        :paramtype certificate_chain: str
-        """
-        super().__init__(**kwargs)
-        self.certificate_chain = certificate_chain
+    certificate_chain: Optional[str] = rest_field(name="certificateChain", visibility=["read"])
+    """The certificate chain."""
 
 
-class CertificateListResult(_serialization.Model):
-    """The response of a Certificate list operation.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar value: The Certificate items on this page. Required.
-    :vartype value: list[~azure.mgmt.spheredpg.models.Certificate]
-    :ivar next_link: The link to the next page of items.
-    :vartype next_link: str
-    """
-
-    _validation = {
-        "value": {"required": True},
-    }
-
-    _attribute_map = {
-        "value": {"key": "value", "type": "[Certificate]"},
-        "next_link": {"key": "nextLink", "type": "str"},
-    }
-
-    def __init__(self, *, value: List["_models.Certificate"], next_link: Optional[str] = None, **kwargs: Any) -> None:
-        """
-        :keyword value: The Certificate items on this page. Required.
-        :paramtype value: list[~azure.mgmt.spheredpg.models.Certificate]
-        :keyword next_link: The link to the next page of items.
-        :paramtype next_link: str
-        """
-        super().__init__(**kwargs)
-        self.value = value
-        self.next_link = next_link
-
-
-class CertificateProperties(_serialization.Model):
+class CertificateProperties(_model_base.Model):
     """The properties of certificate.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar certificate: The certificate as a UTF-8 encoded base 64 string.
     :vartype certificate: str
@@ -449,57 +290,27 @@ class CertificateProperties(_serialization.Model):
     :vartype provisioning_state: str or ~azure.mgmt.spheredpg.models.ProvisioningState
     """
 
-    _attribute_map = {
-        "certificate": {"key": "certificate", "type": "str"},
-        "status": {"key": "status", "type": "str"},
-        "subject": {"key": "subject", "type": "str"},
-        "thumbprint": {"key": "thumbprint", "type": "str"},
-        "expiry_utc": {"key": "expiryUtc", "type": "iso-8601"},
-        "not_before_utc": {"key": "notBeforeUtc", "type": "iso-8601"},
-        "provisioning_state": {"key": "provisioningState", "type": "str"},
-    }
-
-    def __init__(
-        self,
-        *,
-        certificate: Optional[str] = None,
-        status: Optional[Union[str, "_models.CertificateStatus"]] = None,
-        subject: Optional[str] = None,
-        thumbprint: Optional[str] = None,
-        expiry_utc: Optional[datetime.datetime] = None,
-        not_before_utc: Optional[datetime.datetime] = None,
-        provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = None,
-        **kwargs: Any
-    ) -> None:
-        """
-        :keyword certificate: The certificate as a UTF-8 encoded base 64 string.
-        :paramtype certificate: str
-        :keyword status: The certificate status. Known values are: "Active", "Inactive", "Expired", and
-         "Revoked".
-        :paramtype status: str or ~azure.mgmt.spheredpg.models.CertificateStatus
-        :keyword subject: The certificate subject.
-        :paramtype subject: str
-        :keyword thumbprint: The certificate thumbprint.
-        :paramtype thumbprint: str
-        :keyword expiry_utc: The certificate expiry date.
-        :paramtype expiry_utc: ~datetime.datetime
-        :keyword not_before_utc: The certificate not before date.
-        :paramtype not_before_utc: ~datetime.datetime
-        :keyword provisioning_state: The status of the last operation. Known values are: "Succeeded",
-         "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
-        :paramtype provisioning_state: str or ~azure.mgmt.spheredpg.models.ProvisioningState
-        """
-        super().__init__(**kwargs)
-        self.certificate = certificate
-        self.status = status
-        self.subject = subject
-        self.thumbprint = thumbprint
-        self.expiry_utc = expiry_utc
-        self.not_before_utc = not_before_utc
-        self.provisioning_state = provisioning_state
+    certificate: Optional[str] = rest_field(visibility=["read"])
+    """The certificate as a UTF-8 encoded base 64 string."""
+    status: Optional[Union[str, "_models.CertificateStatus"]] = rest_field(visibility=["read"])
+    """The certificate status. Known values are: \"Active\", \"Inactive\", \"Expired\", and
+     \"Revoked\"."""
+    subject: Optional[str] = rest_field(visibility=["read"])
+    """The certificate subject."""
+    thumbprint: Optional[str] = rest_field(visibility=["read"])
+    """The certificate thumbprint."""
+    expiry_utc: Optional[datetime.datetime] = rest_field(name="expiryUtc", visibility=["read"], format="rfc3339")
+    """The certificate expiry date."""
+    not_before_utc: Optional[datetime.datetime] = rest_field(name="notBeforeUtc", visibility=["read"], format="rfc3339")
+    """The certificate not before date."""
+    provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = rest_field(
+        name="provisioningState", visibility=["read"]
+    )
+    """The status of the last operation. Known values are: \"Succeeded\", \"Failed\", \"Canceled\",
+     \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
 
 
-class ClaimDevicesRequest(_serialization.Model):
+class ClaimDevicesRequest(_model_base.Model):
     """Request to the action call to bulk claim devices.
 
     All required parameters must be populated in order to send to Azure.
@@ -508,24 +319,29 @@ class ClaimDevicesRequest(_serialization.Model):
     :vartype device_identifiers: list[str]
     """
 
-    _validation = {
-        "device_identifiers": {"required": True},
-    }
+    device_identifiers: List[str] = rest_field(name="deviceIdentifiers")
+    """Device identifiers of the devices to be claimed. Required."""
 
-    _attribute_map = {
-        "device_identifiers": {"key": "deviceIdentifiers", "type": "[str]"},
-    }
+    @overload
+    def __init__(
+        self,
+        *,
+        device_identifiers: List[str],
+    ):
+        ...
 
-    def __init__(self, *, device_identifiers: List[str], **kwargs: Any) -> None:
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
         """
-        :keyword device_identifiers: Device identifiers of the devices to be claimed. Required.
-        :paramtype device_identifiers: list[str]
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
         """
-        super().__init__(**kwargs)
-        self.device_identifiers = device_identifiers
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
-class CountElementsResponse(_serialization.Model):
+class CountElementsResponse(_model_base.Model):
     """Response of the count for elements.
 
     All required parameters must be populated in order to send to Azure.
@@ -534,21 +350,26 @@ class CountElementsResponse(_serialization.Model):
     :vartype value: int
     """
 
-    _validation = {
-        "value": {"required": True},
-    }
+    value: int = rest_field()
+    """Number of children resources in parent resource. Required."""
 
-    _attribute_map = {
-        "value": {"key": "value", "type": "int"},
-    }
+    @overload
+    def __init__(
+        self,
+        *,
+        value: int,
+    ):
+        ...
 
-    def __init__(self, *, value: int, **kwargs: Any) -> None:
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
         """
-        :keyword value: Number of children resources in parent resource. Required.
-        :paramtype value: int
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
         """
-        super().__init__(**kwargs)
-        self.value = value
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
 class CountDeviceResponse(CountElementsResponse):
@@ -560,11 +381,29 @@ class CountDeviceResponse(CountElementsResponse):
     :vartype value: int
     """
 
+    @overload
+    def __init__(
+        self,
+        *,
+        value: int,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
 
 class Deployment(ProxyResourceBase):
     """An deployment resource belonging to a device group resource.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -582,81 +421,32 @@ class Deployment(ProxyResourceBase):
     :vartype properties: ~azure.mgmt.spheredpg.models.DeploymentProperties
     """
 
-    _validation = {
-        "id": {"required": True},
-        "type": {"required": True},
-    }
+    properties: Optional["_models.DeploymentProperties"] = rest_field(visibility=["read", "create"])
+    """The resource-specific properties for this resource."""
 
-    _attribute_map = {
-        "id": {"key": "id", "type": "str"},
-        "type": {"key": "type", "type": "str"},
-        "system_data": {"key": "systemData", "type": "SystemData"},
-        "properties": {"key": "properties", "type": "DeploymentProperties"},
-    }
-
+    @overload
     def __init__(
         self,
         *,
-        id: str,  # pylint: disable=redefined-builtin
-        type: str,
-        system_data: Optional["_models.SystemData"] = None,
         properties: Optional["_models.DeploymentProperties"] = None,
-        **kwargs: Any
-    ) -> None:
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
         """
-        :keyword id: Fully qualified resource ID for the resource. Ex -
-         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-         Required.
-        :paramtype id: str
-        :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-         "Microsoft.Storage/storageAccounts". Required.
-        :paramtype type: str
-        :keyword system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-         information.
-        :paramtype system_data: ~azure.mgmt.spheredpg.models.SystemData
-        :keyword properties: The resource-specific properties for this resource.
-        :paramtype properties: ~azure.mgmt.spheredpg.models.DeploymentProperties
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
         """
-        super().__init__(id=id, type=type, system_data=system_data, **kwargs)
-        self.properties = properties
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
-class DeploymentListResult(_serialization.Model):
-    """The response of a Deployment list operation.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar value: The Deployment items on this page. Required.
-    :vartype value: list[~azure.mgmt.spheredpg.models.Deployment]
-    :ivar next_link: The link to the next page of items.
-    :vartype next_link: str
-    """
-
-    _validation = {
-        "value": {"required": True},
-    }
-
-    _attribute_map = {
-        "value": {"key": "value", "type": "[Deployment]"},
-        "next_link": {"key": "nextLink", "type": "str"},
-    }
-
-    def __init__(self, *, value: List["_models.Deployment"], next_link: Optional[str] = None, **kwargs: Any) -> None:
-        """
-        :keyword value: The Deployment items on this page. Required.
-        :paramtype value: list[~azure.mgmt.spheredpg.models.Deployment]
-        :keyword next_link: The link to the next page of items.
-        :paramtype next_link: str
-        """
-        super().__init__(**kwargs)
-        self.value = value
-        self.next_link = next_link
-
-
-class DeploymentProperties(_serialization.Model):
+class DeploymentProperties(_model_base.Model):
     """The properties of deployment.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar deployment_id: Deployment ID.
     :vartype deployment_id: str
@@ -669,44 +459,44 @@ class DeploymentProperties(_serialization.Model):
     :vartype provisioning_state: str or ~azure.mgmt.spheredpg.models.ProvisioningState
     """
 
-    _attribute_map = {
-        "deployment_id": {"key": "deploymentId", "type": "str"},
-        "deployed_images": {"key": "deployedImages", "type": "[Image]"},
-        "deployment_date_utc": {"key": "deploymentDateUtc", "type": "iso-8601"},
-        "provisioning_state": {"key": "provisioningState", "type": "str"},
-    }
+    deployment_id: Optional[str] = rest_field(name="deploymentId", visibility=["read", "create"])
+    """Deployment ID."""
+    deployed_images: Optional[List["_models.Image"]] = rest_field(name="deployedImages", visibility=["read", "create"])
+    """Images deployed."""
+    deployment_date_utc: Optional[datetime.datetime] = rest_field(
+        name="deploymentDateUtc", visibility=["read"], format="rfc3339"
+    )
+    """Deployment date UTC."""
+    provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = rest_field(
+        name="provisioningState", visibility=["read"]
+    )
+    """The status of the last operation. Known values are: \"Succeeded\", \"Failed\", \"Canceled\",
+     \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
 
+    @overload
     def __init__(
         self,
         *,
         deployment_id: Optional[str] = None,
         deployed_images: Optional[List["_models.Image"]] = None,
-        deployment_date_utc: Optional[datetime.datetime] = None,
-        provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = None,
-        **kwargs: Any
-    ) -> None:
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
         """
-        :keyword deployment_id: Deployment ID.
-        :paramtype deployment_id: str
-        :keyword deployed_images: Images deployed.
-        :paramtype deployed_images: list[~azure.mgmt.spheredpg.models.Image]
-        :keyword deployment_date_utc: Deployment date UTC.
-        :paramtype deployment_date_utc: ~datetime.datetime
-        :keyword provisioning_state: The status of the last operation. Known values are: "Succeeded",
-         "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
-        :paramtype provisioning_state: str or ~azure.mgmt.spheredpg.models.ProvisioningState
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
         """
-        super().__init__(**kwargs)
-        self.deployment_id = deployment_id
-        self.deployed_images = deployed_images
-        self.deployment_date_utc = deployment_date_utc
-        self.provisioning_state = provisioning_state
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
 class Device(ProxyResourceBase):
     """An device resource belonging to a device group resource.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -724,49 +514,32 @@ class Device(ProxyResourceBase):
     :vartype properties: ~azure.mgmt.spheredpg.models.DeviceProperties
     """
 
-    _validation = {
-        "id": {"required": True},
-        "type": {"required": True},
-    }
+    properties: Optional["_models.DeviceProperties"] = rest_field(visibility=["read", "create"])
+    """The resource-specific properties for this resource."""
 
-    _attribute_map = {
-        "id": {"key": "id", "type": "str"},
-        "type": {"key": "type", "type": "str"},
-        "system_data": {"key": "systemData", "type": "SystemData"},
-        "properties": {"key": "properties", "type": "DeviceProperties"},
-    }
-
+    @overload
     def __init__(
         self,
         *,
-        id: str,  # pylint: disable=redefined-builtin
-        type: str,
-        system_data: Optional["_models.SystemData"] = None,
         properties: Optional["_models.DeviceProperties"] = None,
-        **kwargs: Any
-    ) -> None:
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
         """
-        :keyword id: Fully qualified resource ID for the resource. Ex -
-         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-         Required.
-        :paramtype id: str
-        :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-         "Microsoft.Storage/storageAccounts". Required.
-        :paramtype type: str
-        :keyword system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-         information.
-        :paramtype system_data: ~azure.mgmt.spheredpg.models.SystemData
-        :keyword properties: The resource-specific properties for this resource.
-        :paramtype properties: ~azure.mgmt.spheredpg.models.DeviceProperties
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
         """
-        super().__init__(id=id, type=type, system_data=system_data, **kwargs)
-        self.properties = properties
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
 class DeviceGroup(ProxyResourceBase):
     """An device group resource belonging to a product resource.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -784,81 +557,32 @@ class DeviceGroup(ProxyResourceBase):
     :vartype properties: ~azure.mgmt.spheredpg.models.DeviceGroupProperties
     """
 
-    _validation = {
-        "id": {"required": True},
-        "type": {"required": True},
-    }
+    properties: Optional["_models.DeviceGroupProperties"] = rest_field(visibility=["read", "create"])
+    """The resource-specific properties for this resource."""
 
-    _attribute_map = {
-        "id": {"key": "id", "type": "str"},
-        "type": {"key": "type", "type": "str"},
-        "system_data": {"key": "systemData", "type": "SystemData"},
-        "properties": {"key": "properties", "type": "DeviceGroupProperties"},
-    }
-
+    @overload
     def __init__(
         self,
         *,
-        id: str,  # pylint: disable=redefined-builtin
-        type: str,
-        system_data: Optional["_models.SystemData"] = None,
         properties: Optional["_models.DeviceGroupProperties"] = None,
-        **kwargs: Any
-    ) -> None:
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
         """
-        :keyword id: Fully qualified resource ID for the resource. Ex -
-         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-         Required.
-        :paramtype id: str
-        :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-         "Microsoft.Storage/storageAccounts". Required.
-        :paramtype type: str
-        :keyword system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-         information.
-        :paramtype system_data: ~azure.mgmt.spheredpg.models.SystemData
-        :keyword properties: The resource-specific properties for this resource.
-        :paramtype properties: ~azure.mgmt.spheredpg.models.DeviceGroupProperties
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
         """
-        super().__init__(id=id, type=type, system_data=system_data, **kwargs)
-        self.properties = properties
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
-class DeviceGroupListResult(_serialization.Model):
-    """The response of a DeviceGroup list operation.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar value: The DeviceGroup items on this page. Required.
-    :vartype value: list[~azure.mgmt.spheredpg.models.DeviceGroup]
-    :ivar next_link: The link to the next page of items.
-    :vartype next_link: str
-    """
-
-    _validation = {
-        "value": {"required": True},
-    }
-
-    _attribute_map = {
-        "value": {"key": "value", "type": "[DeviceGroup]"},
-        "next_link": {"key": "nextLink", "type": "str"},
-    }
-
-    def __init__(self, *, value: List["_models.DeviceGroup"], next_link: Optional[str] = None, **kwargs: Any) -> None:
-        """
-        :keyword value: The DeviceGroup items on this page. Required.
-        :paramtype value: list[~azure.mgmt.spheredpg.models.DeviceGroup]
-        :keyword next_link: The link to the next page of items.
-        :paramtype next_link: str
-        """
-        super().__init__(**kwargs)
-        self.value = value
-        self.next_link = next_link
-
-
-class DeviceGroupProperties(_serialization.Model):
+class DeviceGroupProperties(_model_base.Model):
     """The properties of deviceGroup.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar description: Description of the device group.
     :vartype description: str
@@ -882,16 +606,32 @@ class DeviceGroupProperties(_serialization.Model):
     :vartype provisioning_state: str or ~azure.mgmt.spheredpg.models.ProvisioningState
     """
 
-    _attribute_map = {
-        "description": {"key": "description", "type": "str"},
-        "os_feed_type": {"key": "osFeedType", "type": "str"},
-        "update_policy": {"key": "updatePolicy", "type": "str"},
-        "allow_crash_dumps_collection": {"key": "allowCrashDumpsCollection", "type": "str"},
-        "regional_data_boundary": {"key": "regionalDataBoundary", "type": "str"},
-        "has_deployment": {"key": "hasDeployment", "type": "bool"},
-        "provisioning_state": {"key": "provisioningState", "type": "str"},
-    }
+    description: Optional[str] = rest_field()
+    """Description of the device group."""
+    os_feed_type: Optional[Union[str, "_models.OSFeedType"]] = rest_field(name="osFeedType")
+    """Operating system feed type of the device group. Known values are: \"Retail\" and
+     \"RetailEval\"."""
+    update_policy: Optional[Union[str, "_models.UpdatePolicy"]] = rest_field(name="updatePolicy")
+    """Update policy of the device group. Known values are: \"UpdateAll\" and
+     \"No3rdPartyAppUpdates\"."""
+    allow_crash_dumps_collection: Optional[Union[str, "_models.AllowCrashDumpCollection"]] = rest_field(
+        name="allowCrashDumpsCollection"
+    )
+    """Flag to define if the user allows for crash dump collection. Known values are: \"Enabled\" and
+     \"Disabled\"."""
+    regional_data_boundary: Optional[Union[str, "_models.RegionalDataBoundary"]] = rest_field(
+        name="regionalDataBoundary"
+    )
+    """Regional data boundary for the device group. Known values are: \"None\" and \"EU\"."""
+    has_deployment: Optional[bool] = rest_field(name="hasDeployment", visibility=["read"])
+    """Deployment status for the device group."""
+    provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = rest_field(
+        name="provisioningState", visibility=["read"]
+    )
+    """The status of the last operation. Known values are: \"Succeeded\", \"Failed\", \"Canceled\",
+     \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
 
+    @overload
     def __init__(
         self,
         *,
@@ -900,63 +640,49 @@ class DeviceGroupProperties(_serialization.Model):
         update_policy: Optional[Union[str, "_models.UpdatePolicy"]] = None,
         allow_crash_dumps_collection: Optional[Union[str, "_models.AllowCrashDumpCollection"]] = None,
         regional_data_boundary: Optional[Union[str, "_models.RegionalDataBoundary"]] = None,
-        has_deployment: Optional[bool] = None,
-        provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = None,
-        **kwargs: Any
-    ) -> None:
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
         """
-        :keyword description: Description of the device group.
-        :paramtype description: str
-        :keyword os_feed_type: Operating system feed type of the device group. Known values are:
-         "Retail" and "RetailEval".
-        :paramtype os_feed_type: str or ~azure.mgmt.spheredpg.models.OSFeedType
-        :keyword update_policy: Update policy of the device group. Known values are: "UpdateAll" and
-         "No3rdPartyAppUpdates".
-        :paramtype update_policy: str or ~azure.mgmt.spheredpg.models.UpdatePolicy
-        :keyword allow_crash_dumps_collection: Flag to define if the user allows for crash dump
-         collection. Known values are: "Enabled" and "Disabled".
-        :paramtype allow_crash_dumps_collection: str or
-         ~azure.mgmt.spheredpg.models.AllowCrashDumpCollection
-        :keyword regional_data_boundary: Regional data boundary for the device group. Known values are:
-         "None" and "EU".
-        :paramtype regional_data_boundary: str or ~azure.mgmt.spheredpg.models.RegionalDataBoundary
-        :keyword has_deployment: Deployment status for the device group.
-        :paramtype has_deployment: bool
-        :keyword provisioning_state: The status of the last operation. Known values are: "Succeeded",
-         "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
-        :paramtype provisioning_state: str or ~azure.mgmt.spheredpg.models.ProvisioningState
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
         """
-        super().__init__(**kwargs)
-        self.description = description
-        self.os_feed_type = os_feed_type
-        self.update_policy = update_policy
-        self.allow_crash_dumps_collection = allow_crash_dumps_collection
-        self.regional_data_boundary = regional_data_boundary
-        self.has_deployment = has_deployment
-        self.provisioning_state = provisioning_state
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
-class DeviceGroupUpdate(_serialization.Model):
+class DeviceGroupUpdate(_model_base.Model):
     """The type used for update operations of the DeviceGroup.
 
     :ivar properties:
     :vartype properties: ~azure.mgmt.spheredpg.models.DeviceGroupUpdateProperties
     """
 
-    _attribute_map = {
-        "properties": {"key": "properties", "type": "DeviceGroupUpdateProperties"},
-    }
+    properties: Optional["_models.DeviceGroupUpdateProperties"] = rest_field()
 
-    def __init__(self, *, properties: Optional["_models.DeviceGroupUpdateProperties"] = None, **kwargs: Any) -> None:
+    @overload
+    def __init__(
+        self,
+        *,
+        properties: Optional["_models.DeviceGroupUpdateProperties"] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
         """
-        :keyword properties:
-        :paramtype properties: ~azure.mgmt.spheredpg.models.DeviceGroupUpdateProperties
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
         """
-        super().__init__(**kwargs)
-        self.properties = properties
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
-class DeviceGroupUpdateProperties(_serialization.Model):
+class DeviceGroupUpdateProperties(_model_base.Model):
     """The updatable properties of the DeviceGroup.
 
     :ivar description: Description of the device group.
@@ -976,14 +702,25 @@ class DeviceGroupUpdateProperties(_serialization.Model):
     :vartype regional_data_boundary: str or ~azure.mgmt.spheredpg.models.RegionalDataBoundary
     """
 
-    _attribute_map = {
-        "description": {"key": "description", "type": "str"},
-        "os_feed_type": {"key": "osFeedType", "type": "str"},
-        "update_policy": {"key": "updatePolicy", "type": "str"},
-        "allow_crash_dumps_collection": {"key": "allowCrashDumpsCollection", "type": "str"},
-        "regional_data_boundary": {"key": "regionalDataBoundary", "type": "str"},
-    }
+    description: Optional[str] = rest_field()
+    """Description of the device group."""
+    os_feed_type: Optional[Union[str, "_models.OSFeedType"]] = rest_field(name="osFeedType")
+    """Operating system feed type of the device group. Known values are: \"Retail\" and
+     \"RetailEval\"."""
+    update_policy: Optional[Union[str, "_models.UpdatePolicy"]] = rest_field(name="updatePolicy")
+    """Update policy of the device group. Known values are: \"UpdateAll\" and
+     \"No3rdPartyAppUpdates\"."""
+    allow_crash_dumps_collection: Optional[Union[str, "_models.AllowCrashDumpCollection"]] = rest_field(
+        name="allowCrashDumpsCollection"
+    )
+    """Flag to define if the user allows for crash dump collection. Known values are: \"Enabled\" and
+     \"Disabled\"."""
+    regional_data_boundary: Optional[Union[str, "_models.RegionalDataBoundary"]] = rest_field(
+        name="regionalDataBoundary"
+    )
+    """Regional data boundary for the device group. Known values are: \"None\" and \"EU\"."""
 
+    @overload
     def __init__(
         self,
         *,
@@ -992,34 +729,21 @@ class DeviceGroupUpdateProperties(_serialization.Model):
         update_policy: Optional[Union[str, "_models.UpdatePolicy"]] = None,
         allow_crash_dumps_collection: Optional[Union[str, "_models.AllowCrashDumpCollection"]] = None,
         regional_data_boundary: Optional[Union[str, "_models.RegionalDataBoundary"]] = None,
-        **kwargs: Any
-    ) -> None:
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
         """
-        :keyword description: Description of the device group.
-        :paramtype description: str
-        :keyword os_feed_type: Operating system feed type of the device group. Known values are:
-         "Retail" and "RetailEval".
-        :paramtype os_feed_type: str or ~azure.mgmt.spheredpg.models.OSFeedType
-        :keyword update_policy: Update policy of the device group. Known values are: "UpdateAll" and
-         "No3rdPartyAppUpdates".
-        :paramtype update_policy: str or ~azure.mgmt.spheredpg.models.UpdatePolicy
-        :keyword allow_crash_dumps_collection: Flag to define if the user allows for crash dump
-         collection. Known values are: "Enabled" and "Disabled".
-        :paramtype allow_crash_dumps_collection: str or
-         ~azure.mgmt.spheredpg.models.AllowCrashDumpCollection
-        :keyword regional_data_boundary: Regional data boundary for the device group. Known values are:
-         "None" and "EU".
-        :paramtype regional_data_boundary: str or ~azure.mgmt.spheredpg.models.RegionalDataBoundary
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
         """
-        super().__init__(**kwargs)
-        self.description = description
-        self.os_feed_type = os_feed_type
-        self.update_policy = update_policy
-        self.allow_crash_dumps_collection = allow_crash_dumps_collection
-        self.regional_data_boundary = regional_data_boundary
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
-class DeviceInsight(_serialization.Model):
+class DeviceInsight(_model_base.Model):
     """Device insight report.
 
     All required parameters must be populated in order to send to Azure.
@@ -1042,28 +766,24 @@ class DeviceInsight(_serialization.Model):
     :vartype event_count: int
     """
 
-    _validation = {
-        "device_id": {"required": True},
-        "description": {"required": True},
-        "start_timestamp_utc": {"required": True},
-        "end_timestamp_utc": {"required": True},
-        "event_category": {"required": True},
-        "event_class": {"required": True},
-        "event_type": {"required": True},
-        "event_count": {"required": True},
-    }
+    device_id: str = rest_field(name="deviceId")
+    """Device ID. Required."""
+    description: str = rest_field()
+    """Event description. Required."""
+    start_timestamp_utc: datetime.datetime = rest_field(name="startTimestampUtc", format="rfc3339")
+    """Event start timestamp. Required."""
+    end_timestamp_utc: datetime.datetime = rest_field(name="endTimestampUtc", format="rfc3339")
+    """Event end timestamp. Required."""
+    event_category: str = rest_field(name="eventCategory")
+    """Event category. Required."""
+    event_class: str = rest_field(name="eventClass")
+    """Event class. Required."""
+    event_type: str = rest_field(name="eventType")
+    """Event type. Required."""
+    event_count: int = rest_field(name="eventCount")
+    """Event count. Required."""
 
-    _attribute_map = {
-        "device_id": {"key": "deviceId", "type": "str"},
-        "description": {"key": "description", "type": "str"},
-        "start_timestamp_utc": {"key": "startTimestampUtc", "type": "iso-8601"},
-        "end_timestamp_utc": {"key": "endTimestampUtc", "type": "iso-8601"},
-        "event_category": {"key": "eventCategory", "type": "str"},
-        "event_class": {"key": "eventClass", "type": "str"},
-        "event_type": {"key": "eventType", "type": "str"},
-        "event_count": {"key": "eventCount", "type": "int"},
-    }
-
+    @overload
     def __init__(
         self,
         *,
@@ -1075,73 +795,24 @@ class DeviceInsight(_serialization.Model):
         event_class: str,
         event_type: str,
         event_count: int,
-        **kwargs: Any
-    ) -> None:
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
         """
-        :keyword device_id: Device ID. Required.
-        :paramtype device_id: str
-        :keyword description: Event description. Required.
-        :paramtype description: str
-        :keyword start_timestamp_utc: Event start timestamp. Required.
-        :paramtype start_timestamp_utc: ~datetime.datetime
-        :keyword end_timestamp_utc: Event end timestamp. Required.
-        :paramtype end_timestamp_utc: ~datetime.datetime
-        :keyword event_category: Event category. Required.
-        :paramtype event_category: str
-        :keyword event_class: Event class. Required.
-        :paramtype event_class: str
-        :keyword event_type: Event type. Required.
-        :paramtype event_type: str
-        :keyword event_count: Event count. Required.
-        :paramtype event_count: int
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
         """
-        super().__init__(**kwargs)
-        self.device_id = device_id
-        self.description = description
-        self.start_timestamp_utc = start_timestamp_utc
-        self.end_timestamp_utc = end_timestamp_utc
-        self.event_category = event_category
-        self.event_class = event_class
-        self.event_type = event_type
-        self.event_count = event_count
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
-class DeviceListResult(_serialization.Model):
-    """The response of a Device list operation.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar value: The Device items on this page. Required.
-    :vartype value: list[~azure.mgmt.spheredpg.models.Device]
-    :ivar next_link: The link to the next page of items.
-    :vartype next_link: str
-    """
-
-    _validation = {
-        "value": {"required": True},
-    }
-
-    _attribute_map = {
-        "value": {"key": "value", "type": "[Device]"},
-        "next_link": {"key": "nextLink", "type": "str"},
-    }
-
-    def __init__(self, *, value: List["_models.Device"], next_link: Optional[str] = None, **kwargs: Any) -> None:
-        """
-        :keyword value: The Device items on this page. Required.
-        :paramtype value: list[~azure.mgmt.spheredpg.models.Device]
-        :keyword next_link: The link to the next page of items.
-        :paramtype next_link: str
-        """
-        super().__init__(**kwargs)
-        self.value = value
-        self.next_link = next_link
-
-
-class DeviceProperties(_serialization.Model):
+class DeviceProperties(_model_base.Model):
     """The properties of device.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar device_id: Device ID.
     :vartype device_id: str
@@ -1160,100 +831,108 @@ class DeviceProperties(_serialization.Model):
     :vartype provisioning_state: str or ~azure.mgmt.spheredpg.models.ProvisioningState
     """
 
-    _attribute_map = {
-        "device_id": {"key": "deviceId", "type": "str"},
-        "chip_sku": {"key": "chipSku", "type": "str"},
-        "last_available_os_version": {"key": "lastAvailableOsVersion", "type": "str"},
-        "last_installed_os_version": {"key": "lastInstalledOsVersion", "type": "str"},
-        "last_os_update_utc": {"key": "lastOsUpdateUtc", "type": "iso-8601"},
-        "last_update_request_utc": {"key": "lastUpdateRequestUtc", "type": "iso-8601"},
-        "provisioning_state": {"key": "provisioningState", "type": "str"},
-    }
+    device_id: Optional[str] = rest_field(name="deviceId", visibility=["read", "create"])
+    """Device ID."""
+    chip_sku: Optional[str] = rest_field(name="chipSku", visibility=["read"])
+    """SKU of the chip."""
+    last_available_os_version: Optional[str] = rest_field(name="lastAvailableOsVersion", visibility=["read"])
+    """OS version available for installation when update requested."""
+    last_installed_os_version: Optional[str] = rest_field(name="lastInstalledOsVersion", visibility=["read"])
+    """OS version running on device when update requested."""
+    last_os_update_utc: Optional[datetime.datetime] = rest_field(
+        name="lastOsUpdateUtc", visibility=["read"], format="rfc3339"
+    )
+    """Time when update requested and new OS version available."""
+    last_update_request_utc: Optional[datetime.datetime] = rest_field(
+        name="lastUpdateRequestUtc", visibility=["read"], format="rfc3339"
+    )
+    """Time when update was last requested."""
+    provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = rest_field(
+        name="provisioningState", visibility=["read"]
+    )
+    """The status of the last operation. Known values are: \"Succeeded\", \"Failed\", \"Canceled\",
+     \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
 
+    @overload
     def __init__(
         self,
         *,
         device_id: Optional[str] = None,
-        chip_sku: Optional[str] = None,
-        last_available_os_version: Optional[str] = None,
-        last_installed_os_version: Optional[str] = None,
-        last_os_update_utc: Optional[datetime.datetime] = None,
-        last_update_request_utc: Optional[datetime.datetime] = None,
-        provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = None,
-        **kwargs: Any
-    ) -> None:
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
         """
-        :keyword device_id: Device ID.
-        :paramtype device_id: str
-        :keyword chip_sku: SKU of the chip.
-        :paramtype chip_sku: str
-        :keyword last_available_os_version: OS version available for installation when update
-         requested.
-        :paramtype last_available_os_version: str
-        :keyword last_installed_os_version: OS version running on device when update requested.
-        :paramtype last_installed_os_version: str
-        :keyword last_os_update_utc: Time when update requested and new OS version available.
-        :paramtype last_os_update_utc: ~datetime.datetime
-        :keyword last_update_request_utc: Time when update was last requested.
-        :paramtype last_update_request_utc: ~datetime.datetime
-        :keyword provisioning_state: The status of the last operation. Known values are: "Succeeded",
-         "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
-        :paramtype provisioning_state: str or ~azure.mgmt.spheredpg.models.ProvisioningState
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
         """
-        super().__init__(**kwargs)
-        self.device_id = device_id
-        self.chip_sku = chip_sku
-        self.last_available_os_version = last_available_os_version
-        self.last_installed_os_version = last_installed_os_version
-        self.last_os_update_utc = last_os_update_utc
-        self.last_update_request_utc = last_update_request_utc
-        self.provisioning_state = provisioning_state
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
-class DeviceUpdate(_serialization.Model):
+class DeviceUpdate(_model_base.Model):
     """The type used for update operations of the Device.
 
     :ivar properties:
     :vartype properties: ~azure.mgmt.spheredpg.models.DeviceUpdateProperties
     """
 
-    _attribute_map = {
-        "properties": {"key": "properties", "type": "DeviceUpdateProperties"},
-    }
+    properties: Optional["_models.DeviceUpdateProperties"] = rest_field()
 
-    def __init__(self, *, properties: Optional["_models.DeviceUpdateProperties"] = None, **kwargs: Any) -> None:
+    @overload
+    def __init__(
+        self,
+        *,
+        properties: Optional["_models.DeviceUpdateProperties"] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
         """
-        :keyword properties:
-        :paramtype properties: ~azure.mgmt.spheredpg.models.DeviceUpdateProperties
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
         """
-        super().__init__(**kwargs)
-        self.properties = properties
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
-class DeviceUpdateProperties(_serialization.Model):
+class DeviceUpdateProperties(_model_base.Model):
     """The updatable properties of the Device.
 
     :ivar device_group_id: Device group id.
     :vartype device_group_id: str
     """
 
-    _attribute_map = {
-        "device_group_id": {"key": "deviceGroupId", "type": "str"},
-    }
+    device_group_id: Optional[str] = rest_field(name="deviceGroupId")
+    """Device group id."""
 
-    def __init__(self, *, device_group_id: Optional[str] = None, **kwargs: Any) -> None:
+    @overload
+    def __init__(
+        self,
+        *,
+        device_group_id: Optional[str] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
         """
-        :keyword device_group_id: Device group id.
-        :paramtype device_group_id: str
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
         """
-        super().__init__(**kwargs)
-        self.device_group_id = device_group_id
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
-class ErrorAdditionalInfo(_serialization.Model):
+class ErrorAdditionalInfo(_model_base.Model):
     """The resource management error additional info.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar type: The additional info type.
     :vartype type: str
@@ -1261,27 +940,16 @@ class ErrorAdditionalInfo(_serialization.Model):
     :vartype info: any
     """
 
-    _attribute_map = {
-        "type": {"key": "type", "type": "str"},
-        "info": {"key": "info", "type": "object"},
-    }
-
-    def __init__(self, *, type: Optional[str] = None, info: Optional[Any] = None, **kwargs: Any) -> None:
-        """
-        :keyword type: The additional info type.
-        :paramtype type: str
-        :keyword info: The additional info.
-        :paramtype info: any
-        """
-        super().__init__(**kwargs)
-        self.type = type
-        self.info = info
+    type: Optional[str] = rest_field(visibility=["read"])
+    """The additional info type."""
+    info: Optional[Any] = rest_field(visibility=["read"])
+    """The additional info."""
 
 
-class ErrorDetail(_serialization.Model):
+class ErrorDetail(_model_base.Model):
     """The error detail.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar code: The error code.
     :vartype code: str
@@ -1295,45 +963,21 @@ class ErrorDetail(_serialization.Model):
     :vartype additional_info: list[~azure.mgmt.spheredpg.models.ErrorAdditionalInfo]
     """
 
-    _attribute_map = {
-        "code": {"key": "code", "type": "str"},
-        "message": {"key": "message", "type": "str"},
-        "target": {"key": "target", "type": "str"},
-        "details": {"key": "details", "type": "[ErrorDetail]"},
-        "additional_info": {"key": "additionalInfo", "type": "[ErrorAdditionalInfo]"},
-    }
-
-    def __init__(
-        self,
-        *,
-        code: Optional[str] = None,
-        message: Optional[str] = None,
-        target: Optional[str] = None,
-        details: Optional[List["_models.ErrorDetail"]] = None,
-        additional_info: Optional[List["_models.ErrorAdditionalInfo"]] = None,
-        **kwargs: Any
-    ) -> None:
-        """
-        :keyword code: The error code.
-        :paramtype code: str
-        :keyword message: The error message.
-        :paramtype message: str
-        :keyword target: The error target.
-        :paramtype target: str
-        :keyword details: The error details.
-        :paramtype details: list[~azure.mgmt.spheredpg.models.ErrorDetail]
-        :keyword additional_info: The error additional info.
-        :paramtype additional_info: list[~azure.mgmt.spheredpg.models.ErrorAdditionalInfo]
-        """
-        super().__init__(**kwargs)
-        self.code = code
-        self.message = message
-        self.target = target
-        self.details = details
-        self.additional_info = additional_info
+    code: Optional[str] = rest_field(visibility=["read"])
+    """The error code."""
+    message: Optional[str] = rest_field(visibility=["read"])
+    """The error message."""
+    target: Optional[str] = rest_field(visibility=["read"])
+    """The error target."""
+    details: Optional[List["_models.ErrorDetail"]] = rest_field(visibility=["read"])
+    """The error details."""
+    additional_info: Optional[List["_models.ErrorAdditionalInfo"]] = rest_field(
+        name="additionalInfo", visibility=["read"]
+    )
+    """The error additional info."""
 
 
-class ErrorResponse(_serialization.Model):
+class ErrorResponse(_model_base.Model):
     """Common error response for all Azure Resource Manager APIs to return error details for failed
     operations.
 
@@ -1341,20 +985,29 @@ class ErrorResponse(_serialization.Model):
     :vartype error: ~azure.mgmt.spheredpg.models.ErrorDetail
     """
 
-    _attribute_map = {
-        "error": {"key": "error", "type": "ErrorDetail"},
-    }
+    error: Optional["_models.ErrorDetail"] = rest_field()
+    """The error object."""
 
-    def __init__(self, *, error: Optional["_models.ErrorDetail"] = None, **kwargs: Any) -> None:
+    @overload
+    def __init__(
+        self,
+        *,
+        error: Optional["_models.ErrorDetail"] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
         """
-        :keyword error: The error object.
-        :paramtype error: ~azure.mgmt.spheredpg.models.ErrorDetail
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
         """
-        super().__init__(**kwargs)
-        self.error = error
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
-class GenerateCapabilityImageRequest(_serialization.Model):
+class GenerateCapabilityImageRequest(_model_base.Model):
     """Request of the action to create a signed device capability image.
 
     All required parameters must be populated in order to send to Azure.
@@ -1363,27 +1016,32 @@ class GenerateCapabilityImageRequest(_serialization.Model):
     :vartype capabilities: list[str or ~azure.mgmt.spheredpg.models.CapabilityType]
     """
 
-    _validation = {
-        "capabilities": {"required": True},
-    }
+    capabilities: List[Union[str, "_models.CapabilityType"]] = rest_field()
+    """List of capabilities to create. Required."""
 
-    _attribute_map = {
-        "capabilities": {"key": "capabilities", "type": "[str]"},
-    }
+    @overload
+    def __init__(
+        self,
+        *,
+        capabilities: List[Union[str, "_models.CapabilityType"]],
+    ):
+        ...
 
-    def __init__(self, *, capabilities: List[Union[str, "_models.CapabilityType"]], **kwargs: Any) -> None:
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
         """
-        :keyword capabilities: List of capabilities to create. Required.
-        :paramtype capabilities: list[str or ~azure.mgmt.spheredpg.models.CapabilityType]
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
         """
-        super().__init__(**kwargs)
-        self.capabilities = capabilities
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
 class Image(ProxyResourceBase):
     """An image resource belonging to a catalog resource.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -1401,81 +1059,32 @@ class Image(ProxyResourceBase):
     :vartype properties: ~azure.mgmt.spheredpg.models.ImageProperties
     """
 
-    _validation = {
-        "id": {"required": True},
-        "type": {"required": True},
-    }
+    properties: Optional["_models.ImageProperties"] = rest_field(visibility=["read", "create"])
+    """The resource-specific properties for this resource."""
 
-    _attribute_map = {
-        "id": {"key": "id", "type": "str"},
-        "type": {"key": "type", "type": "str"},
-        "system_data": {"key": "systemData", "type": "SystemData"},
-        "properties": {"key": "properties", "type": "ImageProperties"},
-    }
-
+    @overload
     def __init__(
         self,
         *,
-        id: str,  # pylint: disable=redefined-builtin
-        type: str,
-        system_data: Optional["_models.SystemData"] = None,
         properties: Optional["_models.ImageProperties"] = None,
-        **kwargs: Any
-    ) -> None:
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
         """
-        :keyword id: Fully qualified resource ID for the resource. Ex -
-         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-         Required.
-        :paramtype id: str
-        :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-         "Microsoft.Storage/storageAccounts". Required.
-        :paramtype type: str
-        :keyword system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-         information.
-        :paramtype system_data: ~azure.mgmt.spheredpg.models.SystemData
-        :keyword properties: The resource-specific properties for this resource.
-        :paramtype properties: ~azure.mgmt.spheredpg.models.ImageProperties
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
         """
-        super().__init__(id=id, type=type, system_data=system_data, **kwargs)
-        self.properties = properties
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
-class ImageListResult(_serialization.Model):
-    """The response of a Image list operation.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar value: The Image items on this page. Required.
-    :vartype value: list[~azure.mgmt.spheredpg.models.Image]
-    :ivar next_link: The link to the next page of items.
-    :vartype next_link: str
-    """
-
-    _validation = {
-        "value": {"required": True},
-    }
-
-    _attribute_map = {
-        "value": {"key": "value", "type": "[Image]"},
-        "next_link": {"key": "nextLink", "type": "str"},
-    }
-
-    def __init__(self, *, value: List["_models.Image"], next_link: Optional[str] = None, **kwargs: Any) -> None:
-        """
-        :keyword value: The Image items on this page. Required.
-        :paramtype value: list[~azure.mgmt.spheredpg.models.Image]
-        :keyword next_link: The link to the next page of items.
-        :paramtype next_link: str
-        """
-        super().__init__(**kwargs)
-        self.value = value
-        self.next_link = next_link
-
-
-class ImageProperties(_serialization.Model):
+class ImageProperties(_model_base.Model):
     """The properties of image.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar image: Image as a UTF-8 encoded base 64 string on image create. This field contains the
      image URI on image reads.
@@ -1505,96 +1114,90 @@ class ImageProperties(_serialization.Model):
     :vartype provisioning_state: str or ~azure.mgmt.spheredpg.models.ProvisioningState
     """
 
-    _attribute_map = {
-        "image": {"key": "image", "type": "str"},
-        "image_id": {"key": "imageId", "type": "str"},
-        "image_name": {"key": "imageName", "type": "str"},
-        "regional_data_boundary": {"key": "regionalDataBoundary", "type": "str"},
-        "uri": {"key": "uri", "type": "str"},
-        "description": {"key": "description", "type": "str"},
-        "component_id": {"key": "componentId", "type": "str"},
-        "image_type": {"key": "imageType", "type": "str"},
-        "provisioning_state": {"key": "provisioningState", "type": "str"},
-    }
+    image: Optional[str] = rest_field(visibility=["read", "create"])
+    """Image as a UTF-8 encoded base 64 string on image create. This field contains the image URI on
+     image reads."""
+    image_id: Optional[str] = rest_field(name="imageId", visibility=["read", "create"])
+    """Image ID."""
+    image_name: Optional[str] = rest_field(name="imageName", visibility=["read"])
+    """Image name."""
+    regional_data_boundary: Optional[Union[str, "_models.RegionalDataBoundary"]] = rest_field(
+        name="regionalDataBoundary", visibility=["read", "create"]
+    )
+    """Regional data boundary for an image. Known values are: \"None\" and \"EU\"."""
+    uri: Optional[str] = rest_field(visibility=["read"])
+    """Location the image."""
+    description: Optional[str] = rest_field(visibility=["read"])
+    """The image description."""
+    component_id: Optional[str] = rest_field(name="componentId", visibility=["read"])
+    """The image component id."""
+    image_type: Optional[Union[str, "_models.ImageType"]] = rest_field(name="imageType", visibility=["read"])
+    """The image type. Known values are: \"InvalidImageType\", \"OneBl\", \"PlutonRuntime\",
+     \"WifiFirmware\", \"SecurityMonitor\", \"NormalWorldLoader\", \"NormalWorldDtb\",
+     \"NormalWorldKernel\", \"RootFs\", \"Services\", \"Applications\", \"FwConfig\",
+     \"BootManifest\", \"Nwfs\", \"TrustedKeystore\", \"Policy\", \"CustomerBoardConfig\",
+     \"UpdateCertStore\", \"BaseSystemUpdateManifest\", \"FirmwareUpdateManifest\",
+     \"CustomerUpdateManifest\", \"RecoveryManifest\", \"ManifestSet\", and \"Other\"."""
+    provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = rest_field(
+        name="provisioningState", visibility=["read"]
+    )
+    """The status of the last operation. Known values are: \"Succeeded\", \"Failed\", \"Canceled\",
+     \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
 
+    @overload
     def __init__(
         self,
         *,
         image: Optional[str] = None,
         image_id: Optional[str] = None,
-        image_name: Optional[str] = None,
         regional_data_boundary: Optional[Union[str, "_models.RegionalDataBoundary"]] = None,
-        uri: Optional[str] = None,
-        description: Optional[str] = None,
-        component_id: Optional[str] = None,
-        image_type: Optional[Union[str, "_models.ImageType"]] = None,
-        provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = None,
-        **kwargs: Any
-    ) -> None:
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
         """
-        :keyword image: Image as a UTF-8 encoded base 64 string on image create. This field contains
-         the image URI on image reads.
-        :paramtype image: str
-        :keyword image_id: Image ID.
-        :paramtype image_id: str
-        :keyword image_name: Image name.
-        :paramtype image_name: str
-        :keyword regional_data_boundary: Regional data boundary for an image. Known values are: "None"
-         and "EU".
-        :paramtype regional_data_boundary: str or ~azure.mgmt.spheredpg.models.RegionalDataBoundary
-        :keyword uri: Location the image.
-        :paramtype uri: str
-        :keyword description: The image description.
-        :paramtype description: str
-        :keyword component_id: The image component id.
-        :paramtype component_id: str
-        :keyword image_type: The image type. Known values are: "InvalidImageType", "OneBl",
-         "PlutonRuntime", "WifiFirmware", "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb",
-         "NormalWorldKernel", "RootFs", "Services", "Applications", "FwConfig", "BootManifest", "Nwfs",
-         "TrustedKeystore", "Policy", "CustomerBoardConfig", "UpdateCertStore",
-         "BaseSystemUpdateManifest", "FirmwareUpdateManifest", "CustomerUpdateManifest",
-         "RecoveryManifest", "ManifestSet", and "Other".
-        :paramtype image_type: str or ~azure.mgmt.spheredpg.models.ImageType
-        :keyword provisioning_state: The status of the last operation. Known values are: "Succeeded",
-         "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
-        :paramtype provisioning_state: str or ~azure.mgmt.spheredpg.models.ProvisioningState
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
         """
-        super().__init__(**kwargs)
-        self.image = image
-        self.image_id = image_id
-        self.image_name = image_name
-        self.regional_data_boundary = regional_data_boundary
-        self.uri = uri
-        self.description = description
-        self.component_id = component_id
-        self.image_type = image_type
-        self.provisioning_state = provisioning_state
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
-class ListDeviceGroupsRequest(_serialization.Model):
+class ListDeviceGroupsRequest(_model_base.Model):
     """Request of the action to list device groups for a catalog.
 
     :ivar device_group_name: Device Group name.
     :vartype device_group_name: str
     """
 
-    _attribute_map = {
-        "device_group_name": {"key": "deviceGroupName", "type": "str"},
-    }
+    device_group_name: Optional[str] = rest_field(name="deviceGroupName")
+    """Device Group name."""
 
-    def __init__(self, *, device_group_name: Optional[str] = None, **kwargs: Any) -> None:
+    @overload
+    def __init__(
+        self,
+        *,
+        device_group_name: Optional[str] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
         """
-        :keyword device_group_name: Device Group name.
-        :paramtype device_group_name: str
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
         """
-        super().__init__(**kwargs)
-        self.device_group_name = device_group_name
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
-class Operation(_serialization.Model):
+class Operation(_model_base.Model):
     """Details of a REST API operation, returned from the Resource Provider Operations API.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar name: The name of the operation, as per Resource-Based Access Control (RBAC). Examples:
      "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action".
@@ -1613,51 +1216,44 @@ class Operation(_serialization.Model):
     :vartype action_type: str or ~azure.mgmt.spheredpg.models.ActionType
     """
 
-    _attribute_map = {
-        "name": {"key": "name", "type": "str"},
-        "is_data_action": {"key": "isDataAction", "type": "bool"},
-        "display": {"key": "display", "type": "OperationDisplay"},
-        "origin": {"key": "origin", "type": "str"},
-        "action_type": {"key": "actionType", "type": "str"},
-    }
+    name: Optional[str] = rest_field(visibility=["read"])
+    """The name of the operation, as per Resource-Based Access Control (RBAC). Examples:
+     \"Microsoft.Compute/virtualMachines/write\",
+     \"Microsoft.Compute/virtualMachines/capture/action\"."""
+    is_data_action: Optional[bool] = rest_field(name="isDataAction", visibility=["read"])
+    """Whether the operation applies to data-plane. This is \"true\" for data-plane operations and
+     \"false\" for ARM/control-plane operations."""
+    display: Optional["_models.OperationDisplay"] = rest_field()
+    """Localized display information for this particular operation."""
+    origin: Optional[Union[str, "_models.Origin"]] = rest_field(visibility=["read"])
+    """The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit
+     logs UX. Default value is \"user,system\". Known values are: \"user\", \"system\", and
+     \"user,system\"."""
+    action_type: Optional[Union[str, "_models.ActionType"]] = rest_field(name="actionType")
+    """Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only
+     APIs. \"Internal\""""
 
+    @overload
     def __init__(
         self,
         *,
-        name: Optional[str] = None,
-        is_data_action: Optional[bool] = None,
         display: Optional["_models.OperationDisplay"] = None,
-        origin: Optional[Union[str, "_models.Origin"]] = None,
         action_type: Optional[Union[str, "_models.ActionType"]] = None,
-        **kwargs: Any
-    ) -> None:
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
         """
-        :keyword name: The name of the operation, as per Resource-Based Access Control (RBAC).
-         Examples: "Microsoft.Compute/virtualMachines/write",
-         "Microsoft.Compute/virtualMachines/capture/action".
-        :paramtype name: str
-        :keyword is_data_action: Whether the operation applies to data-plane. This is "true" for
-         data-plane operations and "false" for ARM/control-plane operations.
-        :paramtype is_data_action: bool
-        :keyword display: Localized display information for this particular operation.
-        :paramtype display: ~azure.mgmt.spheredpg.models.OperationDisplay
-        :keyword origin: The intended executor of the operation; as in Resource Based Access Control
-         (RBAC) and audit logs UX. Default value is "user,system". Known values are: "user", "system",
-         and "user,system".
-        :paramtype origin: str or ~azure.mgmt.spheredpg.models.Origin
-        :keyword action_type: Enum. Indicates the action type. "Internal" refers to actions that are
-         for internal only APIs. "Internal"
-        :paramtype action_type: str or ~azure.mgmt.spheredpg.models.ActionType
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
         """
-        super().__init__(**kwargs)
-        self.name = name
-        self.is_data_action = is_data_action
-        self.display = display
-        self.origin = origin
-        self.action_type = action_type
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
-class OperationDisplay(_serialization.Model):
+class OperationDisplay(_model_base.Model):
     """Localized display information for and operation.
 
     :ivar provider: The localized friendly form of the resource provider name, e.g. "Microsoft
@@ -1674,13 +1270,20 @@ class OperationDisplay(_serialization.Model):
     :vartype description: str
     """
 
-    _attribute_map = {
-        "provider": {"key": "provider", "type": "str"},
-        "resource": {"key": "resource", "type": "str"},
-        "operation": {"key": "operation", "type": "str"},
-        "description": {"key": "description", "type": "str"},
-    }
+    provider: Optional[str] = rest_field()
+    """The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring
+     Insights\" or \"Microsoft Compute\"."""
+    resource: Optional[str] = rest_field()
+    """The localized friendly name of the resource type related to this operation. E.g. \"Virtual
+     Machines\" or \"Job Schedule Collections\"."""
+    operation: Optional[str] = rest_field()
+    """The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create
+     or Update Virtual Machine\", \"Restart Virtual Machine\"."""
+    description: Optional[str] = rest_field()
+    """The short, localized friendly description of the operation; suitable for tool tips and detailed
+     views."""
 
+    @overload
     def __init__(
         self,
         *,
@@ -1688,98 +1291,24 @@ class OperationDisplay(_serialization.Model):
         resource: Optional[str] = None,
         operation: Optional[str] = None,
         description: Optional[str] = None,
-        **kwargs: Any
-    ) -> None:
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
         """
-        :keyword provider: The localized friendly form of the resource provider name, e.g. "Microsoft
-         Monitoring Insights" or "Microsoft Compute".
-        :paramtype provider: str
-        :keyword resource: The localized friendly name of the resource type related to this operation.
-         E.g. "Virtual Machines" or "Job Schedule Collections".
-        :paramtype resource: str
-        :keyword operation: The concise, localized friendly name for the operation; suitable for
-         dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine".
-        :paramtype operation: str
-        :keyword description: The short, localized friendly description of the operation; suitable for
-         tool tips and detailed views.
-        :paramtype description: str
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
         """
-        super().__init__(**kwargs)
-        self.provider = provider
-        self.resource = resource
-        self.operation = operation
-        self.description = description
 
-
-class PagedDeviceInsight(_serialization.Model):
-    """Paged collection of DeviceInsight items.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar value: The DeviceInsight items on this page. Required.
-    :vartype value: list[~azure.mgmt.spheredpg.models.DeviceInsight]
-    :ivar next_link: The link to the next page of items.
-    :vartype next_link: str
-    """
-
-    _validation = {
-        "value": {"required": True},
-    }
-
-    _attribute_map = {
-        "value": {"key": "value", "type": "[DeviceInsight]"},
-        "next_link": {"key": "nextLink", "type": "str"},
-    }
-
-    def __init__(self, *, value: List["_models.DeviceInsight"], next_link: Optional[str] = None, **kwargs: Any) -> None:
-        """
-        :keyword value: The DeviceInsight items on this page. Required.
-        :paramtype value: list[~azure.mgmt.spheredpg.models.DeviceInsight]
-        :keyword next_link: The link to the next page of items.
-        :paramtype next_link: str
-        """
-        super().__init__(**kwargs)
-        self.value = value
-        self.next_link = next_link
-
-
-class PagedOperation(_serialization.Model):
-    """A list of REST API operations supported by an Azure Resource Provider. It contains an URL link
-    to get the next set of results.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar value: The Operation items on this page. Required.
-    :vartype value: list[~azure.mgmt.spheredpg.models.Operation]
-    :ivar next_link: The link to the next page of items.
-    :vartype next_link: str
-    """
-
-    _validation = {
-        "value": {"required": True},
-    }
-
-    _attribute_map = {
-        "value": {"key": "value", "type": "[Operation]"},
-        "next_link": {"key": "nextLink", "type": "str"},
-    }
-
-    def __init__(self, *, value: List["_models.Operation"], next_link: Optional[str] = None, **kwargs: Any) -> None:
-        """
-        :keyword value: The Operation items on this page. Required.
-        :paramtype value: list[~azure.mgmt.spheredpg.models.Operation]
-        :keyword next_link: The link to the next page of items.
-        :paramtype next_link: str
-        """
-        super().__init__(**kwargs)
-        self.value = value
-        self.next_link = next_link
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
 class Product(ProxyResourceBase):
     """An product resource belonging to a catalog resource.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -1797,81 +1326,32 @@ class Product(ProxyResourceBase):
     :vartype properties: ~azure.mgmt.spheredpg.models.ProductProperties
     """
 
-    _validation = {
-        "id": {"required": True},
-        "type": {"required": True},
-    }
+    properties: Optional["_models.ProductProperties"] = rest_field(visibility=["read", "create"])
+    """The resource-specific properties for this resource."""
 
-    _attribute_map = {
-        "id": {"key": "id", "type": "str"},
-        "type": {"key": "type", "type": "str"},
-        "system_data": {"key": "systemData", "type": "SystemData"},
-        "properties": {"key": "properties", "type": "ProductProperties"},
-    }
-
+    @overload
     def __init__(
         self,
         *,
-        id: str,  # pylint: disable=redefined-builtin
-        type: str,
-        system_data: Optional["_models.SystemData"] = None,
         properties: Optional["_models.ProductProperties"] = None,
-        **kwargs: Any
-    ) -> None:
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
         """
-        :keyword id: Fully qualified resource ID for the resource. Ex -
-         /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-         Required.
-        :paramtype id: str
-        :keyword type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-         "Microsoft.Storage/storageAccounts". Required.
-        :paramtype type: str
-        :keyword system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-         information.
-        :paramtype system_data: ~azure.mgmt.spheredpg.models.SystemData
-        :keyword properties: The resource-specific properties for this resource.
-        :paramtype properties: ~azure.mgmt.spheredpg.models.ProductProperties
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
         """
-        super().__init__(id=id, type=type, system_data=system_data, **kwargs)
-        self.properties = properties
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
-class ProductListResult(_serialization.Model):
-    """The response of a Product list operation.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar value: The Product items on this page. Required.
-    :vartype value: list[~azure.mgmt.spheredpg.models.Product]
-    :ivar next_link: The link to the next page of items.
-    :vartype next_link: str
-    """
-
-    _validation = {
-        "value": {"required": True},
-    }
-
-    _attribute_map = {
-        "value": {"key": "value", "type": "[Product]"},
-        "next_link": {"key": "nextLink", "type": "str"},
-    }
-
-    def __init__(self, *, value: List["_models.Product"], next_link: Optional[str] = None, **kwargs: Any) -> None:
-        """
-        :keyword value: The Product items on this page. Required.
-        :paramtype value: list[~azure.mgmt.spheredpg.models.Product]
-        :keyword next_link: The link to the next page of items.
-        :paramtype next_link: str
-        """
-        super().__init__(**kwargs)
-        self.value = value
-        self.next_link = next_link
-
-
-class ProductProperties(_serialization.Model):
+class ProductProperties(_model_base.Model):
     """The properties of product.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -1882,75 +1362,91 @@ class ProductProperties(_serialization.Model):
     :vartype provisioning_state: str or ~azure.mgmt.spheredpg.models.ProvisioningState
     """
 
-    _validation = {
-        "description": {"required": True},
-    }
+    description: str = rest_field()
+    """Description of the product. Required."""
+    provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = rest_field(
+        name="provisioningState", visibility=["read"]
+    )
+    """The status of the last operation. Known values are: \"Succeeded\", \"Failed\", \"Canceled\",
+     \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
 
-    _attribute_map = {
-        "description": {"key": "description", "type": "str"},
-        "provisioning_state": {"key": "provisioningState", "type": "str"},
-    }
-
+    @overload
     def __init__(
         self,
         *,
         description: str,
-        provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = None,
-        **kwargs: Any
-    ) -> None:
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
         """
-        :keyword description: Description of the product. Required.
-        :paramtype description: str
-        :keyword provisioning_state: The status of the last operation. Known values are: "Succeeded",
-         "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
-        :paramtype provisioning_state: str or ~azure.mgmt.spheredpg.models.ProvisioningState
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
         """
-        super().__init__(**kwargs)
-        self.description = description
-        self.provisioning_state = provisioning_state
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
-class ProductUpdate(_serialization.Model):
+class ProductUpdate(_model_base.Model):
     """The type used for update operations of the Product.
 
     :ivar properties:
     :vartype properties: ~azure.mgmt.spheredpg.models.ProductUpdateProperties
     """
 
-    _attribute_map = {
-        "properties": {"key": "properties", "type": "ProductUpdateProperties"},
-    }
+    properties: Optional["_models.ProductUpdateProperties"] = rest_field()
 
-    def __init__(self, *, properties: Optional["_models.ProductUpdateProperties"] = None, **kwargs: Any) -> None:
+    @overload
+    def __init__(
+        self,
+        *,
+        properties: Optional["_models.ProductUpdateProperties"] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
         """
-        :keyword properties:
-        :paramtype properties: ~azure.mgmt.spheredpg.models.ProductUpdateProperties
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
         """
-        super().__init__(**kwargs)
-        self.properties = properties
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
-class ProductUpdateProperties(_serialization.Model):
+class ProductUpdateProperties(_model_base.Model):
     """The updatable properties of the Product.
 
     :ivar description: Description of the product.
     :vartype description: str
     """
 
-    _attribute_map = {
-        "description": {"key": "description", "type": "str"},
-    }
+    description: Optional[str] = rest_field()
+    """Description of the product."""
 
-    def __init__(self, *, description: Optional[str] = None, **kwargs: Any) -> None:
+    @overload
+    def __init__(
+        self,
+        *,
+        description: Optional[str] = None,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
         """
-        :keyword description: Description of the product.
-        :paramtype description: str
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
         """
-        super().__init__(**kwargs)
-        self.description = description
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
-class ProofOfPossessionNonceRequest(_serialization.Model):
+class ProofOfPossessionNonceRequest(_model_base.Model):
     """Request for the proof of possession nonce.
 
     All required parameters must be populated in order to send to Azure.
@@ -1959,27 +1455,32 @@ class ProofOfPossessionNonceRequest(_serialization.Model):
     :vartype proof_of_possession_nonce: str
     """
 
-    _validation = {
-        "proof_of_possession_nonce": {"required": True},
-    }
+    proof_of_possession_nonce: str = rest_field(name="proofOfPossessionNonce")
+    """The proof of possession nonce. Required."""
 
-    _attribute_map = {
-        "proof_of_possession_nonce": {"key": "proofOfPossessionNonce", "type": "str"},
-    }
+    @overload
+    def __init__(
+        self,
+        *,
+        proof_of_possession_nonce: str,
+    ):
+        ...
 
-    def __init__(self, *, proof_of_possession_nonce: str, **kwargs: Any) -> None:
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
         """
-        :keyword proof_of_possession_nonce: The proof of possession nonce. Required.
-        :paramtype proof_of_possession_nonce: str
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
         """
-        super().__init__(**kwargs)
-        self.proof_of_possession_nonce = proof_of_possession_nonce
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
 class ProofOfPossessionNonceResponse(CertificateProperties):
     """Result of the action to generate a proof of possession nonce.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar certificate: The certificate as a UTF-8 encoded base 64 string.
     :vartype certificate: str
@@ -2000,32 +1501,23 @@ class ProofOfPossessionNonceResponse(CertificateProperties):
     """
 
 
-class SignedCapabilityImageResponse(_serialization.Model):
+class SignedCapabilityImageResponse(_model_base.Model):
     """Signed device capability image response.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar image: The signed device capability image as a UTF-8 encoded base 64 string.
     :vartype image: str
     """
 
-    _attribute_map = {
-        "image": {"key": "image", "type": "str"},
-    }
-
-    def __init__(self, *, image: Optional[str] = None, **kwargs: Any) -> None:
-        """
-        :keyword image: The signed device capability image as a UTF-8 encoded base 64 string.
-        :paramtype image: str
-        """
-        super().__init__(**kwargs)
-        self.image = image
+    image: Optional[str] = rest_field(visibility=["read"])
+    """The signed device capability image as a UTF-8 encoded base 64 string."""
 
 
-class SystemData(_serialization.Model):
+class SystemData(_model_base.Model):
     """Metadata pertaining to creation and last modification of the resource.
 
-    Variables are only populated by the server, and will be ignored when sending a request.
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar created_by: The identity that created the resource.
     :vartype created_by: str
@@ -2043,46 +1535,21 @@ class SystemData(_serialization.Model):
     :vartype last_modified_at: ~datetime.date
     """
 
-    _attribute_map = {
-        "created_by": {"key": "createdBy", "type": "str"},
-        "created_by_type": {"key": "createdByType", "type": "str"},
-        "created_at": {"key": "createdAt", "type": "date"},
-        "last_modified_by": {"key": "lastModifiedBy", "type": "str"},
-        "last_modified_by_type": {"key": "lastModifiedByType", "type": "str"},
-        "last_modified_at": {"key": "lastModifiedAt", "type": "date"},
-    }
-
-    def __init__(
-        self,
-        *,
-        created_by: Optional[str] = None,
-        created_by_type: Optional[Union[str, "_models.CreatedByType"]] = None,
-        created_at: Optional[datetime.date] = None,
-        last_modified_by: Optional[str] = None,
-        last_modified_by_type: Optional[Union[str, "_models.CreatedByType"]] = None,
-        last_modified_at: Optional[datetime.date] = None,
-        **kwargs: Any
-    ) -> None:
-        """
-        :keyword created_by: The identity that created the resource.
-        :paramtype created_by: str
-        :keyword created_by_type: The type of identity that created the resource. Known values are:
-         "User", "Application", "ManagedIdentity", and "Key".
-        :paramtype created_by_type: str or ~azure.mgmt.spheredpg.models.CreatedByType
-        :keyword created_at: The type of identity that created the resource.
-        :paramtype created_at: ~datetime.date
-        :keyword last_modified_by: The identity that last modified the resource.
-        :paramtype last_modified_by: str
-        :keyword last_modified_by_type: The type of identity that last modified the resource. Known
-         values are: "User", "Application", "ManagedIdentity", and "Key".
-        :paramtype last_modified_by_type: str or ~azure.mgmt.spheredpg.models.CreatedByType
-        :keyword last_modified_at: The timestamp of resource last modification (UTC).
-        :paramtype last_modified_at: ~datetime.date
-        """
-        super().__init__(**kwargs)
-        self.created_by = created_by
-        self.created_by_type = created_by_type
-        self.created_at = created_at
-        self.last_modified_by = last_modified_by
-        self.last_modified_by_type = last_modified_by_type
-        self.last_modified_at = last_modified_at
+    created_by: Optional[str] = rest_field(name="createdBy", visibility=["read"])
+    """The identity that created the resource."""
+    created_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(
+        name="createdByType", visibility=["read"]
+    )
+    """The type of identity that created the resource. Known values are: \"User\", \"Application\",
+     \"ManagedIdentity\", and \"Key\"."""
+    created_at: Optional[datetime.date] = rest_field(name="createdAt", visibility=["read"])
+    """The type of identity that created the resource."""
+    last_modified_by: Optional[str] = rest_field(name="lastModifiedBy", visibility=["read"])
+    """The identity that last modified the resource."""
+    last_modified_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(
+        name="lastModifiedByType", visibility=["read"]
+    )
+    """The type of identity that last modified the resource. Known values are: \"User\",
+     \"Application\", \"ManagedIdentity\", and \"Key\"."""
+    last_modified_at: Optional[datetime.date] = rest_field(name="lastModifiedAt", visibility=["read"])
+    """The timestamp of resource last modification (UTC)."""
