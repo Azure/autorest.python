@@ -30,7 +30,7 @@ from .primitive_types import (
     UnixTimeType,
     AzureCoreType,
 )
-from .enum_type import EnumType
+from .enum_type import EnumType, EnumValueType
 from .base import BaseType
 from .constant_type import ConstantType
 from .imports import FileImport, ImportType, TypingSection
@@ -128,6 +128,7 @@ TYPE_TO_OBJECT = {
     "dict": DictionaryType,
     "constant": ConstantType,
     "enum": EnumType,
+    "enumvalue": EnumValueType,
     "binary": BinaryType,
     "any": AnyType,
     "datetime": DatetimeType,

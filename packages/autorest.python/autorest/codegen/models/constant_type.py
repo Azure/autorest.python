@@ -6,9 +6,9 @@
 import logging
 from typing import Dict, Any, Optional, TYPE_CHECKING
 from .base import BaseType
-from .imports import FileImport, ImportType, TypingSection
+from .imports import FileImport
 from .primitive_types import IntegerType, BinaryType, StringType, BooleanType
-from .utils import add_to_description
+from .utils import add_to_description, add_literal_import
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -134,21 +134,7 @@ class ConstantType(BaseType):
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = self._imports_shared(**kwargs)
         if self._is_literal:
-            file_import.add_import("sys", ImportType.STDLIB)
-            file_import.add_submodule_import(
-                "typing_extensions",
-                "Literal",
-                ImportType.BYVERSION,
-                TypingSection.REGULAR,
-                None,
-                (
-                    (
-                        (3, 8),
-                        "typing",
-                        "pylint: disable=no-name-in-module, ungrouped-imports",
-                    ),
-                ),
-            )
+            add_literal_import(file_import)
         return file_import
 
     @property

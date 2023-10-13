@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 
 import datetime
-from typing import Any, Dict, List, Mapping, TYPE_CHECKING, Union, overload
+from typing import Any, Dict, List, Mapping, TYPE_CHECKING, Union, overload, Literal
 
 from .. import _model_base
 from .._model_base import rest_field
@@ -313,7 +313,7 @@ class ExtensibleEnumProperty(_model_base.Model):
     def __init__(
         self,
         *,
-        property: Union[str, "_models.InnerEnum"],  # pylint: disable=redefined-builtin
+        property: "Literal[_models.InnerEnum.VALUE_ONE]",  # pylint: disable=redefined-builtin
     ):
         ...
 

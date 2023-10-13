@@ -75,7 +75,7 @@ export function getType(
         case "enum":
             return emitEnum(type);
         case "enumvalue":
-            return emitEnumValueType(type);
+            return emitEnumValueType(context, type);
         case "constant":
             return emitConstant(type)!;
         case "array":
@@ -302,11 +302,20 @@ function emitConstant(type: SdkConstantType) {
     });
 }
 
-function emitEnumValueType(type: SdkEnumValueType): Record<string, any> {
+function emitEnumValueType(context: SdkContext, type: SdkEnumValueType): Record<string, any> {
+    let valueType = undefined;
+    let emittedEnumName = undefined;
+    if (type.__raw && 'enum' in type.__raw) {
+        const emittedEnum = getType(context, getClientType(context, type.__raw.enum));
+        valueType = emittedEnum.valueType;
+        emittedEnumName = emittedEnum.name;
+    }
     return getSimpleTypeResult({
-        type: "constant",
+        name: enumName(type.name),
+        type: type.kind,
         value: type.value,
-        valueType: emitBuiltInType(type),
+        valueType: valueType,
+        enumName: emittedEnumName,
     });
 }
 
@@ -317,19 +326,11 @@ const sdkScalarKindToPythonKind: Record<string, string> = {
     float64: "float",
 };
 
-function emitBuiltInType(
-    type: SdkBuiltInType | SdkDurationType | SdkDatetimeType | SdkEnumValueType,
-): Record<string, any> {
+function emitBuiltInType(type: SdkBuiltInType | SdkDurationType | SdkDatetimeType): Record<string, any> {
     if (type.kind === "duration" && type.encode === "seconds") {
         return getSimpleTypeResult({
             type: sdkScalarKindToPythonKind[type.wireType.kind],
             encode: type.encode,
-        });
-    }
-    if (type.kind === "enumvalue") {
-        return getSimpleTypeResult({
-            type: "string",
-            format: "string",
         });
     }
     if (type.encode === "unixTimestamp") {

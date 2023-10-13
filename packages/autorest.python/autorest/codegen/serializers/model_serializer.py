@@ -11,6 +11,7 @@ from ..models import ModelType, CodeModel, Property
 from ..models.imports import FileImport, TypingSection, MsrestImportType, ImportType
 from .import_serializer import FileImportSerializer
 from ..models.constant_type import ConstantType
+from ..models.enum_type import EnumValueType, EnumType
 
 
 def _documentation_string(
@@ -27,6 +28,9 @@ def _documentation_string(
         f":{docstring_type_keyword} {prop.client_name}: {prop.type.docstring_type()}"
     )
     return retval
+
+def _type_annotation(prop: Property) -> str:
+    return "Literal[None]" if prop.is_discriminator and isinstance(prop.type, EnumType) else prop.type_annotation()
 
 
 class _ModelSerializer(ABC):
@@ -71,7 +75,7 @@ class _ModelSerializer(ABC):
     @staticmethod
     def initialize_discriminator_property(model: ModelType, prop: Property) -> str:
         discriminator_value = (
-            f"'{model.discriminator_value}'" if model.discriminator_value else None
+            f"'{model.discriminator_value}'" if model.discriminator_value else "NoneType"
         )
         if not discriminator_value:
             typing = "Optional[str]"
@@ -250,6 +254,7 @@ class DpgModelSerializer(_ModelSerializer):
             raise ValueError("We do not generate anonymous properties")
         return properties_to_declare
 
+
     @staticmethod
     def declare_property(prop: Property) -> str:
         args = []
@@ -266,11 +271,12 @@ class DpgModelSerializer(_ModelSerializer):
         field = "rest_discriminator" if prop.is_discriminator else "rest_field"
         type_ignore = (
             prop.is_discriminator
-            and prop.is_discriminator
-            and cast(ConstantType, prop.type).value
+            and isinstance(prop.type, (ConstantType, EnumValueType))
+            and prop.type.value
         )
+
         return (
-            f"{prop.client_name}: {prop.type_annotation()} ="
+            f"{prop.client_name}: {_type_annotation(prop)} ="
             f' {field}({", ".join(args)}){"  # type: ignore" if type_ignore else ""}'
         )
 
@@ -278,10 +284,8 @@ class DpgModelSerializer(_ModelSerializer):
         init_args = []
         for prop in self.get_properties_to_declare(model):
             if prop.constant or prop.is_discriminator:
-                init_args.append(
-                    f"self.{prop.client_name}: {prop.type_annotation()} = "
-                    f"{cast(ConstantType, prop.type).get_declaration()}"
-                )
+                declaration = prop.type.get_declaration() if isinstance(prop.type, (ConstantType, EnumValueType)) else None
+                init_args.append(f"self.{prop.client_name}: {_type_annotation(prop)} = {declaration}")
         return init_args
 
     @staticmethod

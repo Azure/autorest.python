@@ -8,6 +8,7 @@ from typing import Any, Dict, List, TYPE_CHECKING, Optional
 from .base import BaseType
 from .imports import FileImport, ImportType, TypingSection
 from .base import BaseModel
+from .utils import add_to_description, add_literal_import
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -44,6 +45,104 @@ class EnumValue(BaseModel):
             code_model=code_model,
         )
 
+class EnumValueType(BaseType):
+
+    def __init__(
+        self,
+        yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
+        value_type: BaseType,
+    ) -> None:
+        super().__init__(yaml_data=yaml_data, code_model=code_model)
+        self.name: str = yaml_data["name"]
+        self.value: str = self.yaml_data["value"]
+        self.enum_name: str = yaml_data["enumName"]
+        self.value_type = value_type
+
+    @property
+    def serialization_type(self) -> str:
+        """Returns the serialization value for msrest.
+
+        :return: The serialization value for msrest
+        :rtype: str
+        """
+        return self.value_type.serialization_type
+
+    def imports(self, **kwargs: Any) -> FileImport:
+        file_import = FileImport()
+        file_import.merge(self.value_type.imports(**kwargs))
+        add_literal_import(file_import)
+        file_import.add_submodule_import("._enums", self.enum_name, ImportType.LOCAL, TypingSection.REGULAR)
+
+        return file_import
+    
+    def description(
+        self, *, is_operation_file: bool  # pylint: disable=unused-argument
+    ) -> str:
+        return add_to_description(
+            self.yaml_data.get("description", ""),
+            f"Default value is {self.get_declaration()}.",
+        )
+    
+
+    def type_annotation(self, **kwargs: Any) -> str:
+        """The python type used for type annotation
+
+        :return: The type annotation for this schema
+        :rtype: str
+        """
+        return f"Literal[{self.enum_name}.{self.name}]"
+
+    def get_declaration(self, value=None):
+        return self.enum_name + "." + self.name
+    
+    def docstring_text(self, **kwargs: Any) -> str:
+        return self.enum_name + "." + self.name
+    
+    def docstring_type(self, **kwargs: Any) -> str:
+        """The python type used for RST syntax input and type annotation."""
+
+        type_annotation = self.value_type.type_annotation(**kwargs)
+        enum_type_annotation = f"{self.code_model.namespace}.models.{self.name}"
+        return f"{type_annotation} or ~{enum_type_annotation}"
+
+    def get_json_template_representation(
+        self,
+        *,
+        optional: bool = True,
+        client_default_value_declaration: Optional[str] = None,
+        description: Optional[str] = None,
+    ) -> Any:
+        # for better display effect, use the only value instead of var type
+        return self.value_type.get_json_template_representation(
+            optional=optional,
+            client_default_value_declaration=client_default_value_declaration,
+            description=description,
+        )
+    
+    @property
+    def instance_check_template(self) -> str:
+        return self.value_type.instance_check_template
+    
+    @classmethod
+    def from_yaml(
+        cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
+    ) -> "EnumValueType":
+        """Constructs an EnumType from yaml data.
+
+        :param yaml_data: the yaml data from which we will construct this schema
+        :type yaml_data: dict[str, Any]
+
+        :return: A created EnumType
+        :rtype: ~autorest.models.EnumType
+        """
+        from . import build_type
+
+        return cls(
+            yaml_data=yaml_data,
+            code_model=code_model,
+            value_type=build_type(yaml_data["valueType"], code_model),
+        )
 
 class EnumType(BaseType):
     """Schema for enums that will be serialized.
