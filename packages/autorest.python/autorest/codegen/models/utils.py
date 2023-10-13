@@ -23,6 +23,7 @@ def add_to_pylint_disable(curr_str: str, entry: str) -> str:
         return f"{curr_str},{entry}"
     return f"  # pylint: disable={entry}"
 
+
 def add_literal_import(file_import: FileImport):
     file_import.add_import("sys", ImportType.STDLIB)
     file_import.add_submodule_import(

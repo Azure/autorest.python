@@ -45,8 +45,8 @@ class EnumValue(BaseModel):
             code_model=code_model,
         )
 
-class EnumValueType(BaseType):
 
+class EnumValueType(BaseType):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -72,10 +72,12 @@ class EnumValueType(BaseType):
         file_import = FileImport()
         file_import.merge(self.value_type.imports(**kwargs))
         add_literal_import(file_import)
-        file_import.add_submodule_import("._enums", self.enum_name, ImportType.LOCAL, TypingSection.REGULAR)
+        file_import.add_submodule_import(
+            "._enums", self.enum_name, ImportType.LOCAL, TypingSection.REGULAR
+        )
 
         return file_import
-    
+
     def description(
         self, *, is_operation_file: bool  # pylint: disable=unused-argument
     ) -> str:
@@ -83,7 +85,6 @@ class EnumValueType(BaseType):
             self.yaml_data.get("description", ""),
             f"Default value is {self.get_declaration()}.",
         )
-    
 
     def type_annotation(self, **kwargs: Any) -> str:
         """The python type used for type annotation
@@ -95,10 +96,10 @@ class EnumValueType(BaseType):
 
     def get_declaration(self, value=None):
         return self.enum_name + "." + self.name
-    
+
     def docstring_text(self, **kwargs: Any) -> str:
         return self.enum_name + "." + self.name
-    
+
     def docstring_type(self, **kwargs: Any) -> str:
         """The python type used for RST syntax input and type annotation."""
 
@@ -119,11 +120,11 @@ class EnumValueType(BaseType):
             client_default_value_declaration=client_default_value_declaration,
             description=description,
         )
-    
+
     @property
     def instance_check_template(self) -> str:
         return self.value_type.instance_check_template
-    
+
     @classmethod
     def from_yaml(
         cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
@@ -143,6 +144,7 @@ class EnumValueType(BaseType):
             code_model=code_model,
             value_type=build_type(yaml_data["valueType"], code_model),
         )
+
 
 class EnumType(BaseType):
     """Schema for enums that will be serialized.

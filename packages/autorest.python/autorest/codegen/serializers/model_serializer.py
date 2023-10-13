@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import List, cast
+from typing import List
 from abc import ABC, abstractmethod
 
 from jinja2 import Environment
@@ -29,8 +29,13 @@ def _documentation_string(
     )
     return retval
 
+
 def _type_annotation(prop: Property) -> str:
-    return "Literal[None]" if prop.is_discriminator and isinstance(prop.type, EnumType) else prop.type_annotation()
+    return (
+        "Literal[None]"
+        if prop.is_discriminator and isinstance(prop.type, EnumType)
+        else prop.type_annotation()
+    )
 
 
 class _ModelSerializer(ABC):
@@ -75,7 +80,9 @@ class _ModelSerializer(ABC):
     @staticmethod
     def initialize_discriminator_property(model: ModelType, prop: Property) -> str:
         discriminator_value = (
-            f"'{model.discriminator_value}'" if model.discriminator_value else "NoneType"
+            f"'{model.discriminator_value}'"
+            if model.discriminator_value
+            else "NoneType"
         )
         if not discriminator_value:
             typing = "Optional[str]"
@@ -254,7 +261,6 @@ class DpgModelSerializer(_ModelSerializer):
             raise ValueError("We do not generate anonymous properties")
         return properties_to_declare
 
-
     @staticmethod
     def declare_property(prop: Property) -> str:
         args = []
@@ -284,8 +290,14 @@ class DpgModelSerializer(_ModelSerializer):
         init_args = []
         for prop in self.get_properties_to_declare(model):
             if prop.constant or prop.is_discriminator:
-                declaration = prop.type.get_declaration() if isinstance(prop.type, (ConstantType, EnumValueType)) else None
-                init_args.append(f"self.{prop.client_name}: {_type_annotation(prop)} = {declaration}")
+                declaration = (
+                    prop.type.get_declaration()
+                    if isinstance(prop.type, (ConstantType, EnumValueType))
+                    else None
+                )
+                init_args.append(
+                    f"self.{prop.client_name}: {_type_annotation(prop)} = {declaration}"
+                )
         return init_args
 
     @staticmethod
