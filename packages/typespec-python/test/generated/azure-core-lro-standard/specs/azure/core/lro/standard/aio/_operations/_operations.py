@@ -86,21 +86,21 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [201, 200]:
+        if response.status_code not in [200, 201]:
             if _stream:
                 await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        if response.status_code == 201:
+        if response.status_code == 200:
             response_headers["Operation-Location"] = self._deserialize(
                 "str", response.headers.get("Operation-Location")
             )
 
             deserialized = _deserialize(JSON, response.json())
 
-        if response.status_code == 200:
+        if response.status_code == 201:
             response_headers["Operation-Location"] = self._deserialize(
                 "str", response.headers.get("Operation-Location")
             )

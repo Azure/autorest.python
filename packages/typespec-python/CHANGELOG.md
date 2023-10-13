@@ -20,6 +20,7 @@
 
 - Do not duplicate `begin_` in an LRO operation's name if the service definition already starts with `begin` #2169
 - Correctly internalize LRO operation's if their access is listed as internal #2169
+- Correctly internalize enums if their access is listed as internal #2171
 
 ## 2023-10-07 - 0.15.1
 
