@@ -61,11 +61,6 @@ class EnumValueType(BaseType):
 
     @property
     def serialization_type(self) -> str:
-        """Returns the serialization value for msrest.
-
-        :return: The serialization value for msrest
-        :rtype: str
-        """
         return self.value_type.serialization_type
 
     def imports(self, **kwargs: Any) -> FileImport:
@@ -87,11 +82,7 @@ class EnumValueType(BaseType):
         )
 
     def type_annotation(self, **kwargs: Any) -> str:
-        """The python type used for type annotation
-
-        :return: The type annotation for this schema
-        :rtype: str
-        """
+        """The python type used for type annotation"""
         return f"Literal[{self.enum_name}.{self.name}]"
 
     def get_declaration(self, value=None):
@@ -129,14 +120,7 @@ class EnumValueType(BaseType):
     def from_yaml(
         cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
     ) -> "EnumValueType":
-        """Constructs an EnumType from yaml data.
-
-        :param yaml_data: the yaml data from which we will construct this schema
-        :type yaml_data: dict[str, Any]
-
-        :return: A created EnumType
-        :rtype: ~autorest.models.EnumType
-        """
+        """Constructs an EnumType from yaml data."""
         from . import build_type
 
         return cls(

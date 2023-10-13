@@ -305,7 +305,7 @@ function emitConstant(type: SdkConstantType) {
 function emitEnumValueType(context: SdkContext, type: SdkEnumValueType): Record<string, any> {
     let valueType = undefined;
     let emittedEnumName = undefined;
-    if (type.__raw && 'enum' in type.__raw) {
+    if (type.__raw && "enum" in type.__raw) {
         const emittedEnum = getType(context, getClientType(context, type.__raw.enum));
         valueType = emittedEnum.valueType;
         emittedEnumName = emittedEnum.name;

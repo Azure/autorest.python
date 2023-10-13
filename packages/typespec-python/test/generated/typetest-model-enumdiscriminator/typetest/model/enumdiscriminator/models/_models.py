@@ -8,15 +8,20 @@
 # --------------------------------------------------------------------------
 
 import sys
-from typing import Any, Mapping, overload
+from typing import Any, Mapping, TYPE_CHECKING, Union, overload
 
 from .. import _model_base
 from .._model_base import rest_discriminator, rest_field
+from ._enums import DogKind, SnakeKind
 
 if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from .. import models as _models
 
 
 class Snake(_model_base.Model):
@@ -27,14 +32,14 @@ class Snake(_model_base.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar kind: discriminator property. Required. Default value is None.
-    :vartype kind: str
+    :ivar kind: discriminator property. Required. "cobra"
+    :vartype kind: str or ~typetest.model.enumdiscriminator.models.SnakeKind
     :ivar length: Length of the snake. Required.
     :vartype length: int
     """
 
     kind: Literal[None] = rest_discriminator(name="kind")
-    """discriminator property. Required. Default value is None."""
+    """discriminator property. Required. \"cobra\""""
     length: int = rest_field()
     """Length of the snake. Required."""
 
@@ -65,12 +70,12 @@ class Cobra(Snake, discriminator="cobra"):
 
     :ivar length: Length of the snake. Required.
     :vartype length: int
-    :ivar kind: discriminator property. Required. Default value is "cobra".
-    :vartype kind: str
+    :ivar kind: discriminator property. Required. COBRA. Default value is SnakeKind.COBRA.
+    :vartype kind: str or ~typetest.model.enumdiscriminator.models.COBRA
     """
 
-    kind: Literal["cobra"] = rest_discriminator(name="kind")  # type: ignore
-    """discriminator property. Required. Default value is \"cobra\"."""
+    kind: Literal[SnakeKind.COBRA] = rest_discriminator(name="kind")  # type: ignore
+    """discriminator property. Required. COBRA. Default value is SnakeKind.COBRA."""
 
     @overload
     def __init__(
@@ -89,7 +94,7 @@ class Cobra(Snake, discriminator="cobra"):
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
-        self.kind: Literal["cobra"] = "cobra"
+        self.kind: Literal[SnakeKind.COBRA] = SnakeKind.COBRA
 
 
 class Dog(_model_base.Model):
@@ -100,14 +105,14 @@ class Dog(_model_base.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar kind: discriminator property. Required. Default value is None.
-    :vartype kind: str
+    :ivar kind: discriminator property. Required. "golden"
+    :vartype kind: str or ~typetest.model.enumdiscriminator.models.DogKind
     :ivar weight: Weight of the dog. Required.
     :vartype weight: int
     """
 
     kind: Literal[None] = rest_discriminator(name="kind")
-    """discriminator property. Required. Default value is None."""
+    """discriminator property. Required. \"golden\""""
     weight: int = rest_field()
     """Weight of the dog. Required."""
 
@@ -138,12 +143,12 @@ class Golden(Dog, discriminator="golden"):
 
     :ivar weight: Weight of the dog. Required.
     :vartype weight: int
-    :ivar kind: discriminator property. Required. Default value is "golden".
-    :vartype kind: str
+    :ivar kind: discriminator property. Required. GOLDEN. Default value is DogKind.GOLDEN.
+    :vartype kind: str or ~typetest.model.enumdiscriminator.models.GOLDEN
     """
 
-    kind: Literal["golden"] = rest_discriminator(name="kind")  # type: ignore
-    """discriminator property. Required. Default value is \"golden\"."""
+    kind: Literal[DogKind.GOLDEN] = rest_discriminator(name="kind")  # type: ignore
+    """discriminator property. Required. GOLDEN. Default value is DogKind.GOLDEN."""
 
     @overload
     def __init__(
@@ -162,4 +167,4 @@ class Golden(Dog, discriminator="golden"):
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
-        self.kind: Literal["golden"] = "golden"
+        self.kind: Literal[DogKind.GOLDEN] = DogKind.GOLDEN
