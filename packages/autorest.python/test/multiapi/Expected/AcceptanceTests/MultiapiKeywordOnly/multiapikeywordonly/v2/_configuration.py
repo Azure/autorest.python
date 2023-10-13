@@ -8,7 +8,6 @@
 
 from typing import Any, TYPE_CHECKING
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 if TYPE_CHECKING:
@@ -18,7 +17,7 @@ if TYPE_CHECKING:
 VERSION = "unknown"
 
 
-class MultiapiServiceClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes,name-too-long
+class MultiapiServiceClientConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for MultiapiServiceClient.
 
     Note that all parameters used to create this instance are saved as instance
@@ -32,7 +31,6 @@ class MultiapiServiceClientConfiguration(Configuration):  # pylint: disable=too-
     """
 
     def __init__(self, credential: "TokenCredential", **kwargs: Any) -> None:
-        super(MultiapiServiceClientConfiguration, self).__init__(**kwargs)
         api_version: str = kwargs.pop("api_version", "2.0.0")
 
         if credential is None:
@@ -42,6 +40,7 @@ class MultiapiServiceClientConfiguration(Configuration):  # pylint: disable=too-
         self.api_version = api_version
         self.credential_scopes = kwargs.pop("credential_scopes", [])
         kwargs.setdefault("sdk_moniker", "multiapikeywordonly/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

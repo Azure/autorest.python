@@ -230,7 +230,16 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             MsrestImportType.SerializerDeserializer,
             TypingSection.REGULAR,
         )
-
+        file_import.add_submodule_import(
+            "azure.core.pipeline", "policies", ImportType.AZURECORE
+        )
+        if self.code_model.options["azure_arm"]:
+            async_prefix = "Async" if async_mode else ""
+            file_import.add_submodule_import(
+                "azure.mgmt.core.policies",
+                f"{async_prefix}ARMAutoResourceProviderRegistrationPolicy",
+                ImportType.AZURECORE,
+            )
         return file_import
 
     @property
@@ -239,10 +248,10 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         return any(o for o in self.operation_groups if o.is_mixin)
 
     @property
-    def has_lro_operations(self) -> bool:
+    def has_public_lro_operations(self) -> bool:
         """Are there any LRO operations in this SDK?"""
         return any(
-            operation.operation_type in ("lro", "lropaging")
+            operation.operation_type in ("lro", "lropaging") and not operation.internal
             for operation_group in self.operation_groups
             for operation in operation_group.operations
         )
@@ -398,9 +407,6 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
 
     def _imports_shared(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
-        file_import.add_submodule_import(
-            "azure.core.configuration", "Configuration", ImportType.AZURECORE
-        )
         file_import.add_submodule_import(
             "azure.core.pipeline", "policies", ImportType.AZURECORE
         )

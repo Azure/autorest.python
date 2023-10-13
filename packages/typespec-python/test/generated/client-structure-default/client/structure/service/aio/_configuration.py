@@ -8,14 +8,13 @@
 
 from typing import Any, Union
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from .. import models as _models
 from .._version import VERSION
 
 
-class ServiceClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class ServiceClientConfiguration:  # pylint: disable=too-many-instance-attributes
     """Configuration for ServiceClient.
 
     Note that all parameters used to create this instance are saved as instance
@@ -30,7 +29,6 @@ class ServiceClientConfiguration(Configuration):  # pylint: disable=too-many-ins
     """
 
     def __init__(self, endpoint: str, client: Union[str, _models.ClientType], **kwargs: Any) -> None:
-        super(ServiceClientConfiguration, self).__init__(**kwargs)
         if endpoint is None:
             raise ValueError("Parameter 'endpoint' must not be None.")
         if client is None:
@@ -39,6 +37,7 @@ class ServiceClientConfiguration(Configuration):  # pylint: disable=too-many-ins
         self.endpoint = endpoint
         self.client = client
         kwargs.setdefault("sdk_moniker", "client-structure-service/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:
