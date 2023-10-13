@@ -137,16 +137,6 @@ def add_overloads_for_body_param(yaml_data: Dict[str, Any]) -> None:
     content_type_param["optional"] = True
 
 
-def _remove_paging_maxpagesize(yaml_data: Dict[str, Any]) -> None:
-    # we don't expose maxpagesize for version tolerant generation
-    # users should be passing this into `by_page`
-    yaml_data["parameters"] = [
-        p
-        for p in yaml_data.get("parameters", [])
-        if p["wireName"].lower() not in ["maxpagesize", "$maxpagesize"]
-    ]
-
-
 def update_description(
     description: Optional[str], default_description: str = ""
 ) -> str:
@@ -291,7 +281,8 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             yaml_data["description"], default_description=yaml_data["name"]
         )
         yaml_data["legacyFilename"] = to_snake_case(yaml_data["name"].replace(" ", "_"))
-        for parameter in yaml_data["parameters"]:
+        parameters = yaml_data["parameters"]
+        for parameter in parameters:
             self.update_parameter(parameter)
             if parameter["clientName"] == "credential":
                 policy = parameter["type"].get("policy")
@@ -304,7 +295,13 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                     policy["credentialScopes"] = [
                         "https://management.azure.com/.default"
                     ]
-
+        if (
+            (not self.version_tolerant or self.azure_arm)
+            and parameters
+            and parameters[-1]["clientName"] == "credential"
+        ):
+            # we need to move credential to the front in mgmt mode for backcompat reasons
+            yaml_data["parameters"] = [parameters[-1]] + parameters[:-1]
         prop_name = yaml_data["name"]
         if prop_name.endswith("Client"):
             prop_name = prop_name[: len(prop_name) - len("Client")]
@@ -494,13 +491,8 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             yaml_data["pagerSync"] = "azure.core.paging.ItemPaged"
         if not yaml_data.get("pagerAsync"):
             yaml_data["pagerAsync"] = "azure.core.async_paging.AsyncItemPaged"
-        if self.version_tolerant:
-            # if we're in version tolerant, hide the paging model
-            _remove_paging_maxpagesize(yaml_data)
         item_type = item_type or yaml_data["itemType"]["elementType"]
         if yaml_data.get("nextOperation"):
-            if self.version_tolerant:
-                _remove_paging_maxpagesize(yaml_data["nextOperation"])
             yaml_data["nextOperation"]["groupName"] = self.pad_reserved_words(
                 yaml_data["nextOperation"]["groupName"], PadType.OPERATION_GROUP
             )

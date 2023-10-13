@@ -18,10 +18,10 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { dump } from "js-yaml";
 import { camelToSnakeCase } from "./utils.js";
-import { modelsMode } from "./emitter.js";
+import { getModelsMode } from "./emitter.js";
 
 export const typesMap = new Map<SdkType, Record<string, any>>();
-export const simpleTypesMap = new Map<string, Record<string, any>>();
+export const simpleTypesMap = new Map<string | null, Record<string, any>>();
 
 export interface CredentialType {
     kind: "Credential";
@@ -220,7 +220,7 @@ function emitModel(context: SdkContext, type: SdkModelType): Record<string, any>
         discriminatedSubtypes: {} as Record<string, Record<string, any>>,
         properties: new Array<Record<string, any>>(),
         snakeCaseName: type.name ? camelToSnakeCase(type.name) : type.name,
-        base: type.name === "" ? "json" : modelsMode === "msrest" ? "msrest" : "dpg",
+        base: type.name === "" ? "json" : getModelsMode(context) === "msrest" ? "msrest" : "dpg",
         internal: type.access === "internal",
     };
 
@@ -228,13 +228,11 @@ function emitModel(context: SdkContext, type: SdkModelType): Record<string, any>
     for (const property of type.properties.values()) {
         if (property.kind === "property") {
             newValue.properties.push(emitProperty(context, property));
-            if (
-                type.discriminatedSubtypes &&
-                property.discriminator &&
-                property.type.kind === "constant" &&
-                !property.type.value
-            ) {
+            // type for base discriminator returned by TCGC changes from constant to string while
+            // autorest treat all discriminator as constant type, so we need to change to constant type here
+            if (type.discriminatedSubtypes && property.discriminator && property.type.kind === "string") {
                 newValue.properties[newValue.properties.length - 1].isPolymorphic = true;
+                newValue.properties[newValue.properties.length - 1].type = getConstantType(null);
             }
         }
     }
@@ -313,18 +311,18 @@ function emitBuiltInType(type: SdkBuiltInType | SdkDurationType | SdkDatetimeTyp
     if (type.kind === "duration" && type.encode === "seconds") {
         return getSimpleTypeResult({
             type: sdkScalarKindToPythonKind[type.wireType.kind],
-            format: type.encode,
+            encode: type.encode,
         });
     }
     if (type.encode === "unixTimestamp") {
         return getSimpleTypeResult({
             type: "unixtime",
-            format: type.encode,
+            encode: type.encode,
         });
     }
     return getSimpleTypeResult({
         type: sdkScalarKindToPythonKind[type.kind] || type.kind, // TODO: switch to kind
-        format: type.encode,
+        encode: type.encode,
     });
 }
 
@@ -340,7 +338,7 @@ function emitUnion(context: SdkContext, type: SdkUnionType): Record<string, any>
     });
 }
 
-export function getConstantType(key: string): Record<string, any> {
+export function getConstantType(key: string | null): Record<string, any> {
     const cache = simpleTypesMap.get(key);
     if (cache) {
         return cache;

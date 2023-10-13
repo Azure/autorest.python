@@ -41,7 +41,7 @@ def valid_subscription():
 
 @pytest.fixture
 def azure_client(valid_subscription, credential, authentication_policy):
-    with AutoRestAzureSpecialParametersTestClient(valid_subscription, credential, authentication_policy=authentication_policy) as client:
+    with AutoRestAzureSpecialParametersTestClient(credential, valid_subscription, authentication_policy=authentication_policy) as client:
         yield client
 
 @pytest.fixture

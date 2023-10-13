@@ -32,6 +32,7 @@ from ..models import (
     RequestBuilderType,
     CombinedType,
     ParameterListType,
+    ByteArraySchema,
 )
 from .parameter_serializer import ParameterSerializer, PopKwargType
 from ..models.parameter_list import ParameterType
@@ -332,7 +333,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
     def param_description(self, builder: BuilderType) -> List[str]:
         description_list: List[str] = []
         for param in builder.parameters.method:
-            if not param.in_docstring:
+            if not param.in_docstring or param.hide_in_operation_signature:
                 continue
             description_list.extend(
                 f":{param.description_keyword} {param.client_name}: {param.description}".replace(
@@ -700,6 +701,9 @@ class _OperationSerializer(
             check_client_input=not self.code_model.options["multiapi"],
             operation_name=f"('{builder.name}')" if builder.group_name == "" else "",
         )
+        for p in builder.parameters.parameters:
+            if p.hide_in_operation_signature:
+                kwargs.append(f'{p.client_name} = kwargs.pop("{p.client_name}", None)')
         cls_annotation = builder.cls_type_annotation(async_mode=self.async_mode)
         pylint_disable = ""
         if any(x.startswith("_") for x in cls_annotation.split(".")):
@@ -749,10 +753,17 @@ class _OperationSerializer(
                 f"'{body_param.type.serialization_type}'{is_xml_cmd}{serialization_ctxt_cmd})"
             )
         elif self.code_model.options["models_mode"] == "dpg":
-            create_body_call = (
-                f"_{body_kwarg_name} = json.dumps({body_param.client_name}, "
-                "cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore"
-            )
+            if hasattr(body_param.type, "encode") and body_param.type.encode:  # type: ignore
+                create_body_call = (
+                    f"_{body_kwarg_name} = json.dumps({body_param.client_name}, "
+                    "cls=AzureJSONEncoder, exclude_readonly=True, "
+                    f"format='{body_param.type.encode}')  # type: ignore"  # type: ignore
+                )
+            else:
+                create_body_call = (
+                    f"_{body_kwarg_name} = json.dumps({body_param.client_name}, "
+                    "cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore"
+                )
         else:
             create_body_call = f"_{body_kwarg_name} = {body_param.client_name}"
         if body_param.optional:
@@ -774,7 +785,11 @@ class _OperationSerializer(
         if hasattr(body_param, "entries"):
             return _serialize_multipart_body(builder)
         body_kwarg_name = builder.request_builder.parameters.body_parameter.client_name
-        if isinstance(body_param.type, BinaryType):
+        body_param_type = body_param.type
+        if isinstance(body_param_type, BinaryType) or (
+            isinstance(body_param.type, ByteArraySchema)
+            and body_param.default_content_type != "application/json"
+        ):
             retval.append(f"_{body_kwarg_name} = {body_param.client_name}")
             if (
                 not body_param.default_content_type

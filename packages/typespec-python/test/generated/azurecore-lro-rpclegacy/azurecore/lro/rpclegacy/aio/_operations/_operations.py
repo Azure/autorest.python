@@ -79,7 +79,7 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [200, 202]:
+        if response.status_code not in [202, 200]:
             if _stream:
                 await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
@@ -87,14 +87,14 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
 
         deserialized = None
         response_headers = {}
-        if response.status_code == 200:
-            deserialized = _deserialize(JSON, response.json())
-
         if response.status_code == 202:
             response_headers["Operation-Location"] = self._deserialize(
                 "str", response.headers.get("Operation-Location")
             )
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
+
+        if response.status_code == 200:
+            deserialized = _deserialize(JSON, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)
@@ -211,10 +211,16 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
+            response_headers = {}
             response = pipeline_response.http_response
+            response_headers["Operation-Location"] = self._deserialize(
+                "str", response.headers.get("Operation-Location")
+            )
+            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
+
             deserialized = _deserialize(_models.JobResult, response.json())
             if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
+                return cls(pipeline_response, deserialized, response_headers)  # type: ignore
             return deserialized
 
         if polling is True:

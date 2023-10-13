@@ -8,7 +8,6 @@
 
 from typing import Any, TYPE_CHECKING
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from ._version import VERSION
@@ -18,7 +17,7 @@ if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
 
 
-class OAuth2ClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes
+class OAuth2ClientConfiguration:  # pylint: disable=too-many-instance-attributes
     """Configuration for OAuth2Client.
 
     Note that all parameters used to create this instance are saved as instance
@@ -29,13 +28,13 @@ class OAuth2ClientConfiguration(Configuration):  # pylint: disable=too-many-inst
     """
 
     def __init__(self, credential: "TokenCredential", **kwargs: Any) -> None:
-        super(OAuth2ClientConfiguration, self).__init__(**kwargs)
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
 
         self.credential = credential
         self.credential_scopes = kwargs.pop("credential_scopes", ["https://security.microsoft.com/.default"])
-        kwargs.setdefault("sdk_moniker", "oauth2client/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "authentication-oauth2/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

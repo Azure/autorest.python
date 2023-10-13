@@ -919,6 +919,7 @@ class CatalogsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.DeviceInsight]] = kwargs.pop("cls", None)
 
         error_map = {
@@ -939,6 +940,7 @@ class CatalogsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -1020,6 +1022,7 @@ class CatalogsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.Device]] = kwargs.pop("cls", None)
 
         error_map = {
@@ -1040,6 +1043,7 @@ class CatalogsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -1121,6 +1125,7 @@ class CatalogsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.Deployment]] = kwargs.pop("cls", None)
 
         error_map = {
@@ -1141,6 +1146,7 @@ class CatalogsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -1338,6 +1344,7 @@ class CatalogsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.DeviceGroup]] = kwargs.pop("cls", None)
 
         error_map = {
@@ -1364,6 +1371,7 @@ class CatalogsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     content_type=content_type,
                     api_version=self._config.api_version,
                     content=_content,
@@ -1530,6 +1538,7 @@ class ImagesOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.Image]] = kwargs.pop("cls", None)
 
         error_map = {
@@ -1550,6 +1559,7 @@ class ImagesOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -1912,6 +1922,7 @@ class DeviceGroupsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.DeviceGroup]] = kwargs.pop("cls", None)
 
         error_map = {
@@ -1933,6 +1944,7 @@ class DeviceGroupsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -2927,6 +2939,7 @@ class CertificatesOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.Certificate]] = kwargs.pop("cls", None)
 
         error_map = {
@@ -2947,6 +2960,7 @@ class CertificatesOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -3395,6 +3409,7 @@ class DeploymentsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.Deployment]] = kwargs.pop("cls", None)
 
         error_map = {
@@ -3417,6 +3432,7 @@ class DeploymentsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,

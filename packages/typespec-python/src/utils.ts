@@ -8,3 +8,8 @@ export function camelToSnakeCase(name: string): string {
 
     return camelToSnakeCaseRe(name[0].toLowerCase() + name.slice(1));
 }
+
+export function removeUnderscoresFromNamespace(name?: string): string {
+    // needed because of the _specs_ tests
+    return (name || "").replace(/_/g, "");
+}
