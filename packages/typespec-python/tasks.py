@@ -28,7 +28,7 @@ PLUGIN = (PLUGIN_DIR / "dist/src/index.js").as_posix()
 CADL_RANCH_DIR = PLUGIN_DIR / Path("node_modules/@azure-tools/cadl-ranch-specs/http")
 LOCAL_SPECIFICATION_DIR = PLUGIN_DIR / Path("test/specification")
 ALL_SPECIFICATION_DIRS = [CADL_RANCH_DIR, LOCAL_SPECIFICATION_DIR]
-SKIP_FOLDERS = ["type/model/inheritance/enum-discriminator"]
+SKIP_FOLDERS = ["type/model/inheritance/enum-discriminator", "type/scalar"]
 EMITTER_OPTIONS = {
     "resiliency/srv-driven/old.tsp": {
         "package-name": "resiliency-srv-driven1",

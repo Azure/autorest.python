@@ -6,15 +6,79 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._models import BaseModel
-from ._models import DerivedModel
+from ._models import SameAsModel
+from ._models import andModel
+from ._models import asModel
+from ._models import assertModel
+from ._models import asyncModel
+from ._models import awaitModel
+from ._models import breakModel
+from ._models import classModel
+from ._models import constructor
+from ._models import continueModel
+from ._models import defModel
+from ._models import delModel
+from ._models import elifModel
+from ._models import elseModel
+from ._models import exceptModel
+from ._models import execModel
+from ._models import finallyModel
+from ._models import forModel
+from ._models import fromModel
+from ._models import globalModel
+from ._models import ifModel
+from ._models import importModel
+from ._models import inModel
+from ._models import isModel
+from ._models import lambdaModel
+from ._models import notModel
+from ._models import orModel
+from ._models import passModel
+from ._models import raiseModel
+from ._models import returnModel
+from ._models import tryModel
+from ._models import whileModel
+from ._models import withModel
+from ._models import yieldModel
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "BaseModel",
-    "DerivedModel",
+    "SameAsModel",
+    "andModel",
+    "asModel",
+    "assertModel",
+    "asyncModel",
+    "awaitModel",
+    "breakModel",
+    "classModel",
+    "constructor",
+    "continueModel",
+    "defModel",
+    "delModel",
+    "elifModel",
+    "elseModel",
+    "exceptModel",
+    "execModel",
+    "finallyModel",
+    "forModel",
+    "fromModel",
+    "globalModel",
+    "ifModel",
+    "importModel",
+    "inModel",
+    "isModel",
+    "lambdaModel",
+    "notModel",
+    "orModel",
+    "passModel",
+    "raiseModel",
+    "returnModel",
+    "tryModel",
+    "whileModel",
+    "withModel",
+    "yieldModel",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()

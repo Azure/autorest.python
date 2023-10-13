@@ -7,65 +7,29 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import sys
-from typing import Any, Dict, Mapping, overload
+from typing import Any, Mapping, overload
 
 from .. import _model_base
-from .._model_base import rest_discriminator, rest_field
-
-if sys.version_info >= (3, 8):
-    from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
-else:
-    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
+from .._model_base import rest_field
 
 
-class BaseModel(_model_base.Model):
-    """This is a base model has discriminator name containing dot.
-
-    You probably want to use the sub-classes and not this class directly. Known sub-classes are:
-    DerivedModel
+class andModel(_model_base.Model):
+    """andModel.
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar model_kind: Required. Default value is None.
-    :vartype model_kind: str
+    :ivar name: Required.
+    :vartype name: str
     """
 
-    __mapping__: Dict[str, _model_base.Model] = {}
-    model_kind: Literal[None] = rest_discriminator(name="model.kind")
-    """Required. Default value is None."""
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-        self.model_kind: Literal[None] = None
-
-
-class DerivedModel(BaseModel, discriminator="derived"):
-    """This is a model has property names of special words or characters.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :ivar model_kind: Required. Default value is "derived".
-    :vartype model_kind: str
-    :ivar derived_name: Required.
-    :vartype derived_name: str
-    :ivar for_property: Required.
-    :vartype for_property: str
-    """
-
-    model_kind: Literal["derived"] = rest_discriminator(name="model.kind")  # type: ignore
-    """Required. Default value is \"derived\"."""
-    derived_name: str = rest_field(name="derived.name")
-    """Required."""
-    for_property: str = rest_field(name="for")
+    name: str = rest_field()
     """Required."""
 
     @overload
     def __init__(
         self,
         *,
-        derived_name: str,
-        for_property: str,
+        name: str,
     ):
         ...
 
@@ -76,6 +40,1028 @@ class DerivedModel(BaseModel, discriminator="derived"):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
-        self.model_kind: Literal["derived"] = "derived"
+
+
+class asModel(_model_base.Model):
+    """asModel.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class assertModel(_model_base.Model):
+    """assertModel.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class asyncModel(_model_base.Model):
+    """asyncModel.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class awaitModel(_model_base.Model):
+    """awaitModel.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class breakModel(_model_base.Model):
+    """breakModel.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class classModel(_model_base.Model):
+    """classModel.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class constructor(_model_base.Model):
+    """constructor.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class continueModel(_model_base.Model):
+    """continueModel.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class defModel(_model_base.Model):
+    """defModel.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class delModel(_model_base.Model):
+    """delModel.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class elifModel(_model_base.Model):
+    """elifModel.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class elseModel(_model_base.Model):
+    """elseModel.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class exceptModel(_model_base.Model):
+    """exceptModel.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class execModel(_model_base.Model):
+    """execModel.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class finallyModel(_model_base.Model):
+    """finallyModel.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class forModel(_model_base.Model):
+    """forModel.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class fromModel(_model_base.Model):
+    """fromModel.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class globalModel(_model_base.Model):
+    """globalModel.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class ifModel(_model_base.Model):
+    """ifModel.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class importModel(_model_base.Model):
+    """importModel.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class inModel(_model_base.Model):
+    """inModel.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class isModel(_model_base.Model):
+    """isModel.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class lambdaModel(_model_base.Model):
+    """lambdaModel.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class notModel(_model_base.Model):
+    """notModel.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class orModel(_model_base.Model):
+    """orModel.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class passModel(_model_base.Model):
+    """passModel.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class raiseModel(_model_base.Model):
+    """raiseModel.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class returnModel(_model_base.Model):
+    """returnModel.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class SameAsModel(_model_base.Model):
+    """SameAsModel.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar same_as_model: Required.
+    :vartype same_as_model: str
+    """
+
+    same_as_model: str = rest_field(name="SameAsModel")
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        same_as_model: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class tryModel(_model_base.Model):
+    """tryModel.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class whileModel(_model_base.Model):
+    """whileModel.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class withModel(_model_base.Model):
+    """withModel.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class yieldModel(_model_base.Model):
+    """yieldModel.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
