@@ -248,10 +248,10 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         return any(o for o in self.operation_groups if o.is_mixin)
 
     @property
-    def has_lro_operations(self) -> bool:
+    def has_public_lro_operations(self) -> bool:
         """Are there any LRO operations in this SDK?"""
         return any(
-            operation.operation_type in ("lro", "lropaging")
+            operation.operation_type in ("lro", "lropaging") and not operation.internal
             for operation_group in self.operation_groups
             for operation in operation_group.operations
         )
