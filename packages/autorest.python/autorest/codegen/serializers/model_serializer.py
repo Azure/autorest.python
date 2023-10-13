@@ -223,7 +223,7 @@ class DpgModelSerializer(_ModelSerializer):
         for model in self.code_model.model_types:
             file_import.merge(model.imports(is_operation_file=False))
             for prop in model.properties:
-                file_import.merge(prop.imports())
+                file_import.merge(prop.imports(is_discriminator=prop.is_discriminator))
             if model.is_polymorphic:
                 file_import.add_submodule_import("typing", "Dict", ImportType.STDLIB)
             if not model.internal and self.init_line(model):

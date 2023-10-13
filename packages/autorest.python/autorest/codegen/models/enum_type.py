@@ -8,7 +8,7 @@ from typing import Any, Dict, List, TYPE_CHECKING, Optional
 from .base import BaseType
 from .imports import FileImport, ImportType, TypingSection
 from .base import BaseModel
-from .utils import add_to_description, add_literal_import
+from .utils import add_literal_import
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -76,10 +76,7 @@ class EnumValueType(BaseType):
     def description(
         self, *, is_operation_file: bool  # pylint: disable=unused-argument
     ) -> str:
-        return add_to_description(
-            self.yaml_data.get("description", ""),
-            f"Default value is {self.get_declaration()}.",
-        )
+        return f"Default value is {self.get_declaration()}."
 
     def type_annotation(self, **kwargs: Any) -> str:
         """The python type used for type annotation"""
@@ -260,11 +257,13 @@ class EnumType(BaseType):
 
     def imports(self, **kwargs: Any) -> FileImport:
         operation = kwargs.pop("operation", False)
+        is_discriminator = kwargs.pop("is_discriminator", False)
         file_import = FileImport()
         if self.code_model.options["models_mode"]:
-            file_import.add_submodule_import(
-                "typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL
-            )
+            if not is_discriminator:
+                file_import.add_submodule_import(
+                    "typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL
+                )
             if not operation:
                 file_import.add_submodule_import(
                     "..",

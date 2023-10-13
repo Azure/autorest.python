@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 
 import sys
-from typing import Any, Mapping, TYPE_CHECKING, Union, overload
+from typing import Any, Mapping, TYPE_CHECKING, overload
 
 from .. import _model_base
 from .._model_base import rest_discriminator, rest_field
@@ -70,12 +70,12 @@ class Cobra(Snake, discriminator="cobra"):
 
     :ivar length: Length of the snake. Required.
     :vartype length: int
-    :ivar kind: discriminator property. Required. COBRA. Default value is SnakeKind.COBRA.
+    :ivar kind: discriminator property. Required. Default value is SnakeKind.COBRA.
     :vartype kind: str or ~typetest.model.enumdiscriminator.models.COBRA
     """
 
     kind: Literal[SnakeKind.COBRA] = rest_discriminator(name="kind")  # type: ignore
-    """discriminator property. Required. COBRA. Default value is SnakeKind.COBRA."""
+    """discriminator property. Required. Default value is SnakeKind.COBRA."""
 
     @overload
     def __init__(
@@ -143,12 +143,12 @@ class Golden(Dog, discriminator="golden"):
 
     :ivar weight: Weight of the dog. Required.
     :vartype weight: int
-    :ivar kind: discriminator property. Required. GOLDEN. Default value is DogKind.GOLDEN.
+    :ivar kind: discriminator property. Required. Default value is DogKind.GOLDEN.
     :vartype kind: str or ~typetest.model.enumdiscriminator.models.GOLDEN
     """
 
     kind: Literal[DogKind.GOLDEN] = rest_discriminator(name="kind")  # type: ignore
-    """discriminator property. Required. GOLDEN. Default value is DogKind.GOLDEN."""
+    """discriminator property. Required. Default value is DogKind.GOLDEN."""
 
     @overload
     def __init__(
