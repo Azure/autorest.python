@@ -80,9 +80,7 @@ class _ModelSerializer(ABC):
     @staticmethod
     def initialize_discriminator_property(model: ModelType, prop: Property) -> str:
         discriminator_value = (
-            f"'{model.discriminator_value}'"
-            if model.discriminator_value
-            else "NoneType"
+            f"'{model.discriminator_value}'" if model.discriminator_value else None
         )
         if not discriminator_value:
             typing = "Optional[str]"
