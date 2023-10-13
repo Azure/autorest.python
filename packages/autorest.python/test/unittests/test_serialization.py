@@ -310,8 +310,10 @@ class TestRuntimeSerialized(unittest.TestCase):
         assert s.query("filter", "boo,bar", "str", skip_quote=True) == "boo,bar"
         assert s.query("filter", 12, "int") == "12"
 
+        assert s.query("filter", [1, 2, 3], "[int]") == ['1', '2', '3']
         assert s.query("filter", [1, 2, 3], "[int]", div=",") == "1,2,3"
 
+        assert s.query("filter", ['a', 'b', 'c'], "[str]") == ['a', 'b', 'c']
         assert s.query("filter", ['a', 'b', 'c'], "[str]", div=",") == "a,b,c"
         assert s.query("filter", ['a', None, 'c'], "[str]", div=",") == "a,,c"
         assert s.query("filter", [',', ',', ','], "[str]", div=",") == "%2C,%2C,%2C"
@@ -324,8 +326,20 @@ class TestRuntimeSerialized(unittest.TestCase):
             datetime(2022, 8, 26, 17, 38, 0),
             datetime(2022, 8, 26, 18, 38, 0),
             datetime(2022, 8, 26, 19, 38, 0),
+        ], "[iso-8601]",
+                       ) == ['2022-08-26T17%3A38%3A00.000Z', '2022-08-26T18%3A38%3A00.000Z', '2022-08-26T19%3A38%3A00.000Z']
+        assert s.query("filter", [
+            datetime(2022, 8, 26, 17, 38, 0),
+            datetime(2022, 8, 26, 18, 38, 0),
+            datetime(2022, 8, 26, 19, 38, 0),
         ], "[iso-8601]", div=","
                        ) == "2022-08-26T17%3A38%3A00.000Z,2022-08-26T18%3A38%3A00.000Z,2022-08-26T19%3A38%3A00.000Z"
+        assert s.query("filter", [
+            datetime(2022, 8, 26, 17, 38, 0),
+            datetime(2022, 8, 26, 18, 38, 0),
+            datetime(2022, 8, 26, 19, 38, 0),
+        ], "[iso-8601]", skip_quote=True
+                       ) == ['2022-08-26T17:38:00.000Z', '2022-08-26T18:38:00.000Z', '2022-08-26T19:38:00.000Z']
         assert s.query("filter", [
             datetime(2022, 8, 26, 17, 38, 0),
             datetime(2022, 8, 26, 18, 38, 0),
