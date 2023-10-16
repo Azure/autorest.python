@@ -18,7 +18,7 @@
 
 **Bug Fixes**
 
-- Fix list query param serialization #2156
+- Fix list query param serialization. Thank you @tothandras for your contribution! #2156
 
 ## 2023-10-12 - 0.15.2
 
