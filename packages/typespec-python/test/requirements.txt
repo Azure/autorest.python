@@ -8,7 +8,6 @@ azure-core==1.28.0
 -e ./generated/authentication-oauth2
 -e ./generated/authentication-union
 -e ./generated/azure-client-generator-core-access
--e ./generated/azure-client-generator-core-internal
 -e ./generated/azure-client-generator-core-usage
 -e ./generated/azure-core-basic
 -e ./generated/azurecore-lro-rpclegacy
@@ -37,7 +36,6 @@ azure-core==1.28.0
 -e ./generated/typetest-property-optional
 -e ./generated/typetest-property-valuetypes
 -e ./generated/typetest-union
--e ./generated/azure-client-generator-core-internal
 -e ./generated/typetest-model-empty
 -e ./generated/headasbooleantrue
 -e ./generated/headasbooleanfalse
