@@ -12,8 +12,8 @@ import re
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "specs-azure-clientgenerator-core-internal"
-PACKAGE_PPRINT_NAME = "Specs Azure Clientgenerator Core Internal"
+PACKAGE_NAME = "typetest-scalar"
+PACKAGE_PPRINT_NAME = "Typetest Scalar"
 
 # a-b-c => a/b/c
 package_folder_path = PACKAGE_NAME.replace("-", "/")
@@ -54,10 +54,7 @@ setup(
         exclude=[
             "tests",
             # Exclude packages that will be covered by PEP420 or nspkg
-            "specs",
-            "specs.azure",
-            "specs.azure.clientgenerator",
-            "specs.azure.clientgenerator.core",
+            "typetest",
         ]
     ),
     include_package_data=True,
