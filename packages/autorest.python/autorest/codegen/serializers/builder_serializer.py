@@ -1192,7 +1192,7 @@ class _OperationSerializer(
             "    return cls(pipeline_response, {}, {}){}".format(
                 deserialized if builder.has_response_body else "None",
                 "response_headers" if builder.any_response_has_headers else "{}",
-                " # type: ignore" if type_ignore else "",
+                " # type: ignore",
             )
         )
         if builder.has_response_body and any(
@@ -1201,7 +1201,7 @@ class _OperationSerializer(
         ):
             retval.append("")
             retval.append(
-                f"return {deserialized}{' # type: ignore' if type_ignore else ''}"
+                f"return {deserialized}  # type: ignore"
             )
         if (
             builder.request_builder.method == "HEAD"
@@ -1626,11 +1626,7 @@ class _LROOperationSerializer(_OperationSerializer[LROOperationType]):
                 "response_headers"
                 if builder.lro_response and builder.lro_response.headers
                 else "{}",
-                " # type: ignore"
-                if builder.lro_response
-                and builder.lro_response.type
-                and self.code_model.options["models_mode"] != "msrest"
-                else "",
+                " # type: ignore",
             )
         )
         if builder.lro_response and builder.lro_response.type:
