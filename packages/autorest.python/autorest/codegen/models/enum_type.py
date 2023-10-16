@@ -68,6 +68,7 @@ class EnumType(BaseType):
         self.name: str = yaml_data["name"][0].upper() + yaml_data["name"][1:]
         self.values = values
         self.value_type = value_type
+        self.internal: bool = self.yaml_data.get("internal", False)
 
     def __lt__(self, other):
         return self.name.lower() < other.name.lower()

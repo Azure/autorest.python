@@ -68,19 +68,14 @@ const defaultOptions = {
     "generate-packaging-files": true,
 };
 
-export function getModelsMode(context: SdkContext) {
-    const specifiedModelsMode = context.program.getOption("models-mode");
-    if (specifiedModelsMode) return specifiedModelsMode;
-    if (context.arm) return "msrest";
-    return "dpg";
-}
+export let modelsMode: string | undefined = undefined;
 
 function addDefaultCalculatedOptions(
     sdkContext: SdkContext,
     options: PythonEmitterOptions & InternalPythonEmitterOptions,
     yamlMap: Record<string, any>,
 ) {
-    options["models-mode"] = getModelsMode(sdkContext);
+    options["models-mode"] = modelsMode;
     if (options["generate-packaging-files"]) {
         options["package-mode"] = sdkContext.arm ? "azure-mgmt" : "azure-dataplane";
     }
@@ -102,6 +97,7 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
 
     const sdkContext = createSdkContext(context);
     const clients = listClients(sdkContext);
+    modelsMode = resolvedOptions["models-mode"] ?? (sdkContext.arm ? "msrest" : "dpg");
     const root = await resolveModuleRoot(program, "@autorest/python", dirname(fileURLToPath(import.meta.url)));
     const outputDir = context.emitterOutputDir;
     const yamlMap = emitCodeModel(sdkContext, clients);
@@ -434,15 +430,10 @@ function emitResponse(context: SdkContext, response: HttpOperationResponse): Rec
     if (body) {
         if (body.kind === "Model") {
             if (body && body.decorators.find((d) => d.decorator.name === "$pagedResult")) {
-                const modelsMode = getModelsMode(context);
                 if (modelsMode === "msrest") {
                     type = getType(context, body);
                 } else {
                     type = getType(context, Array.from(body.properties.values())[0]);
-                }
-                if (modelsMode !== "msrest") {
-                } else {
-                    type = getType(context, body);
                 }
             } else if (body && !isAzureCoreModel(body)) {
                 type = getType(context, body);
@@ -451,7 +442,7 @@ function emitResponse(context: SdkContext, response: HttpOperationResponse): Rec
             type = getType(context, body);
         }
     }
-    const statusCodes: (string | number)[] = [];
+    const statusCodes: ("default" | number)[] = [];
     if (response.statusCodes === "*") {
         statusCodes.push("default");
     } else if (isHttpStatusCode(response.statusCodes)) {
@@ -459,6 +450,7 @@ function emitResponse(context: SdkContext, response: HttpOperationResponse): Rec
     } else {
         statusCodes.push(response.statusCodes);
     }
+
     return {
         headers: emitResponseHeaders(context, response),
         statusCodes: statusCodes,

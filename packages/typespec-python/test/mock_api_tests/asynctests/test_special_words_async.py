@@ -4,30 +4,39 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from specialwords import models
 from specialwords.aio import SpecialWordsClient
+from specialwords import models
+from ..utils.variables import SPECIAL_WORDS
+
 
 @pytest.fixture
 async def client():
     async with SpecialWordsClient() as client:
         yield client
 
-@pytest.mark.asyncio
-async def test_operation_for(client: SpecialWordsClient):
-    await client.operation.for_method()
 
 @pytest.mark.asyncio
-async def test_parameter_if(client: SpecialWordsClient):
-    await client.parameter.get_with_if(if_parameter="weekend")
+async def test_operations(client: SpecialWordsClient):
+    for sw in SPECIAL_WORDS:
+        suffix = "" if sw == "constructor" else "_method"
+        await getattr(client.operations, sw + suffix)()
+
 
 @pytest.mark.asyncio
-async def test_parameter_filter(client: SpecialWordsClient):
-    await client.parameter.get_with_filter(filter="abc*.")
+async def test_parameter(client: SpecialWordsClient):
+    for sw in SPECIAL_WORDS:
+        suffix = "" if sw == "constructor" else "_parameter"
+        await getattr(client.parameters, "with_" + sw)(**{sw + suffix: "ok"})
+
 
 @pytest.mark.asyncio
-async def test_model_get(client: SpecialWordsClient):
-    assert await client.model.get() == models.DerivedModel(derived_name="my.name", for_property="value")
+async def test_model(client: SpecialWordsClient):
+    for sw in SPECIAL_WORDS:
+        suffix = "" if sw == "constructor" else "Model"
+        model = getattr(models, sw.capitalize() + suffix)
+        await getattr(client.models, "with_" + sw)(model(name="ok"))
+
 
 @pytest.mark.asyncio
-async def test_model_put(client: SpecialWordsClient):
-    await client.model.put(models.DerivedModel(derived_name="my.name", for_property="value"))
+async def test_model_properties(client: SpecialWordsClient):
+    await client.model_properties.same_as_model(models.SameAsModel(same_as_model="ok"))

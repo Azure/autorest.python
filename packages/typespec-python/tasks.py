@@ -87,6 +87,9 @@ EMITTER_OPTIONS = {
     "type/property/optionality": {
         "package-name": "typetest-property-optional",
     },
+    "type/scalar": {
+        "package-name": "typetest-scalar",
+    },
     "type/property/value-types": {
         "package-name": "typetest-property-valuetypes",
     },
@@ -109,7 +112,7 @@ EMITTER_OPTIONS = {
         "package-name": "client-structure-twooperationgroup",
     },
     "mgmt/sphere": [
-        # {"package-name": "azure-mgmt-spheredpg", "models-mode": "dpg"},
+        {"package-name": "azure-mgmt-spheredpg", "models-mode": "dpg"},
         {"package-name": "azure-mgmt-spheremsrest"},
     ]
 }

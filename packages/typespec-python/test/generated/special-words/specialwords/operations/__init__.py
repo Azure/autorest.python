@@ -6,18 +6,20 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._operations import OperationOperations
-from ._operations import ParameterOperations
-from ._operations import ModelOperations
+from ._operations import ModelsOperations
+from ._operations import ModelPropertiesOperations
+from ._operations import Operations
+from ._operations import ParametersOperations
 
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "OperationOperations",
-    "ParameterOperations",
-    "ModelOperations",
+    "ModelsOperations",
+    "ModelPropertiesOperations",
+    "Operations",
+    "ParametersOperations",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()
