@@ -1,15 +1,177 @@
 # Release
 
-## 2023-08-xx - 0.13.3
+## 2023-10-12 - 0.15.2
 
 | Library                                                                 | Min Version   |
 | ----------------------------------------------------------------------- | ------------- |
-| `@typespec/compiler`                                                    | `0.46.0`      |
-| `@typespec/http`                                                        | `0.46.0`      |
-| `@typespec/rest`                                                        | `0.46.0`      |
-| `@typespec/versioning`                                                  | `0.46.0`      |
-| `@azure-tools/typespec-azure-core`                                      | `0.32.0`      |
-| `@azure-tools/typespec-client-generator-core`                           | `0.32.0`      |
+| `@typespec/compiler`                                                    | `0.49.0`      |
+| `@typespec/http`                                                        | `0.49.0`      |
+| `@typespec/rest`                                                        | `0.49.0`      |
+| `@typespec/versioning`                                                  | `0.49.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.35.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.35.0`      |
+| `azure-core` dep of generated code                                      | `1.28.0`      |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**Bug Fixes**
+
+- Do not duplicate `begin_` in an LRO operation's name if the service definition already starts with `begin` #2169
+- Correctly internalize LRO operation's if their access is listed as internal #2169
+- Correctly internalize enums if their access is listed as internal #2171
+
+## 2023-10-07 - 0.15.1
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.48.0`      |
+| `@typespec/http`                                                        | `0.48.0`      |
+| `@typespec/rest`                                                        | `0.48.0`      |
+| `@typespec/versioning`                                                  | `0.48.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.34.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.35.0-dev.2`|
+| `azure-core` dep of generated code                                      | `1.28.0`      |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**Other Changes**
+
+- United DPG ordering for mgmt plane client parameters #2161
+
+## 2023-10-05 - 0.15.0
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.48.0`      |
+| `@typespec/http`                                                        | `0.48.0`      |
+| `@typespec/rest`                                                        | `0.48.0`      |
+| `@typespec/versioning`                                                  | `0.48.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.34.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.35.0-dev.2`|
+| `azure-core` dep of generated code                                      | `1.28.0`      |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**New Features**
+
+- Add flag `generate-packaging-files` flag to tspconfig.yaml. On by default. Also no longer able to specify `package-mode`  #2157
+
+## 2023-09-27 - 0.14.0
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.48.0`      |
+| `@typespec/http`                                                        | `0.48.0`      |
+| `@typespec/rest`                                                        | `0.48.0`      |
+| `@typespec/versioning`                                                  | `0.48.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.34.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.35.0-dev.2`|
+| `azure-core` dep of generated code                                      | `1.28.0`      |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**New Features**
+
+- Support `maxpagesize` for DPG # 2140
+
+## 2023-09-26 - 0.13.7
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.48.0`      |
+| `@typespec/http`                                                        | `0.48.0`      |
+| `@typespec/rest`                                                        | `0.48.0`      |
+| `@typespec/versioning`                                                  | `0.48.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.34.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.35.0-dev.2`|
+| `azure-core` dep of generated code                                      | `1.28.0`      |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**Bug Fixes**
+
+- Fix problem of getting body parameter encode info # 2137
+
+## 2023-09-22 - 0.13.6
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.48.0`      |
+| `@typespec/http`                                                        | `0.48.0`      |
+| `@typespec/rest`                                                        | `0.48.0`      |
+| `@typespec/versioning`                                                  | `0.48.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.34.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.35.0-dev.2`|
+| `azure-core` dep of generated code                                      | `1.28.0`      |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**Other Changes**
+
+- Adjust signature order of client to make sure no breaking for legacy mgmt code # 2123
+
+## 2023-09-15 - 0.13.5
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.48.0`      |
+| `@typespec/http`                                                        | `0.48.0`      |
+| `@typespec/rest`                                                        | `0.48.0`      |
+| `@typespec/versioning`                                                  | `0.48.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.34.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.35.0-dev.2`|
+| `azure-core` dep of generated code                                      | `1.28.0`      |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**Other Changes**
+
+- Bump tsp dependencies to 0.48.0
+
+## 2023-09-12 - 0.13.4
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.47.0`      |
+| `@typespec/http`                                                        | `0.47.0`      |
+| `@typespec/rest`                                                        | `0.47.0`      |
+| `@typespec/versioning`                                                  | `0.47.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.33.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.33.0`      |
+| `azure-core` dep of generated code                                      | `1.28.0`      |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**Other Changes**
+
+- Continue adding support for mgmt plane generation by introducing `models-mode` to tsp config #2085
+
+## 2023-08-31 - 0.13.3
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.47.0`      |
+| `@typespec/http`                                                        | `0.47.0`      |
+| `@typespec/rest`                                                        | `0.47.0`      |
+| `@typespec/versioning`                                                  | `0.47.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.33.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.33.0`      |
 | `azure-core` dep of generated code                                      | `1.28.0`      |
 | `isodate` dep of generated code                                         | `0.6.1`       |
 | `msrest` dep of generated code (If generating legacy code)              | `0.7.1`       |
@@ -17,7 +179,12 @@
 | `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
 
 **Other changes**
+
 - Refactoring in preparation of mgmt and TSP #2078
+
+**Bug Fixes**
+
+- Fix datetime in response headers  #2083
 
 ## 2023-08-21 - 0.13.2
 

@@ -94,7 +94,6 @@ class HttpRedirectsOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head300_request(
-            template_url=self.head300.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -120,8 +119,6 @@ class HttpRedirectsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    head300.metadata = {"url": "/http/redirect/300"}
-
     @distributed_trace_async
     async def get300(self, **kwargs: Any) -> Optional[List[str]]:
         """Return 300 status code and redirect to /http/success/200.
@@ -145,7 +142,6 @@ class HttpRedirectsOperations:
         cls: ClsType[Optional[List[str]]] = kwargs.pop("cls", None)
 
         request = build_get300_request(
-            template_url=self.get300.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -176,8 +172,6 @@ class HttpRedirectsOperations:
 
         return deserialized
 
-    get300.metadata = {"url": "/http/redirect/300"}
-
     @distributed_trace_async
     async def head301(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 301 status code and redirect to /http/success/200.
@@ -201,7 +195,6 @@ class HttpRedirectsOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head301_request(
-            template_url=self.head301.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -226,8 +219,6 @@ class HttpRedirectsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    head301.metadata = {"url": "/http/redirect/301"}
 
     @distributed_trace_async
     async def get301(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -252,7 +243,6 @@ class HttpRedirectsOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get301_request(
-            template_url=self.get301.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -277,8 +267,6 @@ class HttpRedirectsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    get301.metadata = {"url": "/http/redirect/301"}
 
     @distributed_trace_async
     async def put301(  # pylint: disable=inconsistent-return-statements
@@ -317,7 +305,6 @@ class HttpRedirectsOperations:
         request = build_put301_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put301.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -342,8 +329,6 @@ class HttpRedirectsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    put301.metadata = {"url": "/http/redirect/301"}
-
     @distributed_trace_async
     async def head302(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Return 302 status code and redirect to /http/success/200.
@@ -367,7 +352,6 @@ class HttpRedirectsOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head302_request(
-            template_url=self.head302.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -392,8 +376,6 @@ class HttpRedirectsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    head302.metadata = {"url": "/http/redirect/302"}
 
     @distributed_trace_async
     async def get302(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -418,7 +400,6 @@ class HttpRedirectsOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get302_request(
-            template_url=self.get302.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -443,8 +424,6 @@ class HttpRedirectsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    get302.metadata = {"url": "/http/redirect/302"}
 
     @distributed_trace_async
     async def patch302(  # pylint: disable=inconsistent-return-statements
@@ -483,7 +462,6 @@ class HttpRedirectsOperations:
         request = build_patch302_request(
             content_type=content_type,
             json=_json,
-            template_url=self.patch302.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -507,8 +485,6 @@ class HttpRedirectsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    patch302.metadata = {"url": "/http/redirect/302"}
 
     @distributed_trace_async
     async def post303(  # pylint: disable=inconsistent-return-statements
@@ -547,7 +523,6 @@ class HttpRedirectsOperations:
         request = build_post303_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post303.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -573,8 +548,6 @@ class HttpRedirectsOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
 
-    post303.metadata = {"url": "/http/redirect/303"}
-
     @distributed_trace_async
     async def head307(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Redirect with 307, resulting in a 200 success.
@@ -598,7 +571,6 @@ class HttpRedirectsOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head307_request(
-            template_url=self.head307.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -623,8 +595,6 @@ class HttpRedirectsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    head307.metadata = {"url": "/http/redirect/307"}
 
     @distributed_trace_async
     async def get307(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -649,7 +619,6 @@ class HttpRedirectsOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get307_request(
-            template_url=self.get307.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -674,8 +643,6 @@ class HttpRedirectsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    get307.metadata = {"url": "/http/redirect/307"}
 
     @distributed_trace_async
     async def options307(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -700,7 +667,6 @@ class HttpRedirectsOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_options307_request(
-            template_url=self.options307.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -725,8 +691,6 @@ class HttpRedirectsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    options307.metadata = {"url": "/http/redirect/307"}
 
     @distributed_trace_async
     async def put307(  # pylint: disable=inconsistent-return-statements
@@ -764,7 +728,6 @@ class HttpRedirectsOperations:
         request = build_put307_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put307.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -789,8 +752,6 @@ class HttpRedirectsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    put307.metadata = {"url": "/http/redirect/307"}
 
     @distributed_trace_async
     async def patch307(  # pylint: disable=inconsistent-return-statements
@@ -828,7 +789,6 @@ class HttpRedirectsOperations:
         request = build_patch307_request(
             content_type=content_type,
             json=_json,
-            template_url=self.patch307.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -853,8 +813,6 @@ class HttpRedirectsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    patch307.metadata = {"url": "/http/redirect/307"}
 
     @distributed_trace_async
     async def post307(  # pylint: disable=inconsistent-return-statements
@@ -892,7 +850,6 @@ class HttpRedirectsOperations:
         request = build_post307_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post307.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -917,8 +874,6 @@ class HttpRedirectsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    post307.metadata = {"url": "/http/redirect/307"}
 
     @distributed_trace_async
     async def delete307(  # pylint: disable=inconsistent-return-statements
@@ -956,7 +911,6 @@ class HttpRedirectsOperations:
         request = build_delete307_request(
             content_type=content_type,
             json=_json,
-            template_url=self.delete307.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -981,5 +935,3 @@ class HttpRedirectsOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    delete307.metadata = {"url": "/http/redirect/307"}

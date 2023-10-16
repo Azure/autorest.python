@@ -605,7 +605,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.RootWithRefAndNoMeta] = kwargs.pop("cls", None)
 
         request = build_get_complex_type_ref_no_meta_request(
-            template_url=self.get_complex_type_ref_no_meta.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -629,8 +628,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_complex_type_ref_no_meta.metadata = {"url": "/xml/complex-type-ref-no-meta"}
 
     @distributed_trace
     def put_complex_type_ref_no_meta(  # pylint: disable=inconsistent-return-statements
@@ -664,7 +661,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         request = build_put_complex_type_ref_no_meta_request(
             content_type=content_type,
             content=_content,
-            template_url=self.put_complex_type_ref_no_meta.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -684,8 +680,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_complex_type_ref_no_meta.metadata = {"url": "/xml/complex-type-ref-no-meta"}
 
     @distributed_trace
     def get_complex_type_ref_with_meta(self, **kwargs: Any) -> _models.RootWithRefAndMeta:
@@ -710,7 +704,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.RootWithRefAndMeta] = kwargs.pop("cls", None)
 
         request = build_get_complex_type_ref_with_meta_request(
-            template_url=self.get_complex_type_ref_with_meta.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -734,8 +727,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_complex_type_ref_with_meta.metadata = {"url": "/xml/complex-type-ref-with-meta"}
 
     @distributed_trace
     def put_complex_type_ref_with_meta(  # pylint: disable=inconsistent-return-statements
@@ -769,7 +760,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         request = build_put_complex_type_ref_with_meta_request(
             content_type=content_type,
             content=_content,
-            template_url=self.put_complex_type_ref_with_meta.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -789,8 +779,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_complex_type_ref_with_meta.metadata = {"url": "/xml/complex-type-ref-with-meta"}
 
     @distributed_trace
     def get_simple(self, **kwargs: Any) -> _models.Slideshow:
@@ -815,7 +803,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.Slideshow] = kwargs.pop("cls", None)
 
         request = build_get_simple_request(
-            template_url=self.get_simple.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -840,8 +827,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_simple.metadata = {"url": "/xml/simple"}
 
     @distributed_trace
     def put_simple(  # pylint: disable=inconsistent-return-statements
@@ -875,7 +860,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         request = build_put_simple_request(
             content_type=content_type,
             content=_content,
-            template_url=self.put_simple.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -896,8 +880,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_simple.metadata = {"url": "/xml/simple"}
 
     @distributed_trace
     def get_wrapped_lists(self, **kwargs: Any) -> _models.AppleBarrel:
@@ -922,7 +904,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.AppleBarrel] = kwargs.pop("cls", None)
 
         request = build_get_wrapped_lists_request(
-            template_url=self.get_wrapped_lists.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -946,8 +927,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_wrapped_lists.metadata = {"url": "/xml/wrapped-lists"}
 
     @distributed_trace
     def put_wrapped_lists(  # pylint: disable=inconsistent-return-statements
@@ -981,7 +960,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         request = build_put_wrapped_lists_request(
             content_type=content_type,
             content=_content,
-            template_url=self.put_wrapped_lists.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1002,8 +980,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_wrapped_lists.metadata = {"url": "/xml/wrapped-lists"}
 
     @distributed_trace
     def get_headers(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1028,7 +1004,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_get_headers_request(
-            template_url=self.get_headers.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1051,8 +1026,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    get_headers.metadata = {"url": "/xml/headers"}
 
     @distributed_trace
     def get_empty_list(self, **kwargs: Any) -> _models.Slideshow:
@@ -1077,7 +1050,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.Slideshow] = kwargs.pop("cls", None)
 
         request = build_get_empty_list_request(
-            template_url=self.get_empty_list.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1101,8 +1073,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty_list.metadata = {"url": "/xml/empty-list"}
 
     @distributed_trace
     def put_empty_list(  # pylint: disable=inconsistent-return-statements
@@ -1136,7 +1106,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         request = build_put_empty_list_request(
             content_type=content_type,
             content=_content,
-            template_url=self.put_empty_list.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1156,8 +1125,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_empty_list.metadata = {"url": "/xml/empty-list"}
 
     @distributed_trace
     def get_empty_wrapped_lists(self, **kwargs: Any) -> _models.AppleBarrel:
@@ -1182,7 +1149,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.AppleBarrel] = kwargs.pop("cls", None)
 
         request = build_get_empty_wrapped_lists_request(
-            template_url=self.get_empty_wrapped_lists.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1206,8 +1172,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty_wrapped_lists.metadata = {"url": "/xml/empty-wrapped-lists"}
 
     @distributed_trace
     def put_empty_wrapped_lists(  # pylint: disable=inconsistent-return-statements
@@ -1241,7 +1205,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         request = build_put_empty_wrapped_lists_request(
             content_type=content_type,
             content=_content,
-            template_url=self.put_empty_wrapped_lists.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1261,8 +1224,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_empty_wrapped_lists.metadata = {"url": "/xml/empty-wrapped-lists"}
 
     @distributed_trace
     def get_root_list(self, **kwargs: Any) -> List[_models.Banana]:
@@ -1287,7 +1248,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[List[_models.Banana]] = kwargs.pop("cls", None)
 
         request = build_get_root_list_request(
-            template_url=self.get_root_list.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1311,8 +1271,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_root_list.metadata = {"url": "/xml/root-list"}
 
     @distributed_trace
     def put_root_list(  # pylint: disable=inconsistent-return-statements
@@ -1347,7 +1305,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         request = build_put_root_list_request(
             content_type=content_type,
             content=_content,
-            template_url=self.put_root_list.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1367,8 +1324,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_root_list.metadata = {"url": "/xml/root-list"}
 
     @distributed_trace
     def get_root_list_single_item(self, **kwargs: Any) -> List[_models.Banana]:
@@ -1393,7 +1348,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[List[_models.Banana]] = kwargs.pop("cls", None)
 
         request = build_get_root_list_single_item_request(
-            template_url=self.get_root_list_single_item.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1417,8 +1371,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_root_list_single_item.metadata = {"url": "/xml/root-list-single-item"}
 
     @distributed_trace
     def put_root_list_single_item(  # pylint: disable=inconsistent-return-statements
@@ -1453,7 +1405,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         request = build_put_root_list_single_item_request(
             content_type=content_type,
             content=_content,
-            template_url=self.put_root_list_single_item.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1473,8 +1424,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_root_list_single_item.metadata = {"url": "/xml/root-list-single-item"}
 
     @distributed_trace
     def get_empty_root_list(self, **kwargs: Any) -> List[_models.Banana]:
@@ -1499,7 +1448,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[List[_models.Banana]] = kwargs.pop("cls", None)
 
         request = build_get_empty_root_list_request(
-            template_url=self.get_empty_root_list.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1523,8 +1471,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty_root_list.metadata = {"url": "/xml/empty-root-list"}
 
     @distributed_trace
     def put_empty_root_list(  # pylint: disable=inconsistent-return-statements
@@ -1559,7 +1505,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         request = build_put_empty_root_list_request(
             content_type=content_type,
             content=_content,
-            template_url=self.put_empty_root_list.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1579,8 +1524,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_empty_root_list.metadata = {"url": "/xml/empty-root-list"}
 
     @distributed_trace
     def get_empty_child_element(self, **kwargs: Any) -> _models.Banana:
@@ -1605,7 +1548,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.Banana] = kwargs.pop("cls", None)
 
         request = build_get_empty_child_element_request(
-            template_url=self.get_empty_child_element.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1629,8 +1571,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty_child_element.metadata = {"url": "/xml/empty-child-element"}
 
     @distributed_trace
     def put_empty_child_element(  # pylint: disable=inconsistent-return-statements
@@ -1664,7 +1604,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         request = build_put_empty_child_element_request(
             content_type=content_type,
             content=_content,
-            template_url=self.put_empty_child_element.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1684,8 +1623,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_empty_child_element.metadata = {"url": "/xml/empty-child-element"}
 
     @distributed_trace
     def list_containers(self, **kwargs: Any) -> _models.ListContainersResponse:
@@ -1715,7 +1652,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         request = build_list_containers_request(
             comp=comp,
-            template_url=self.list_containers.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1739,8 +1675,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    list_containers.metadata = {"url": "/xml/"}
 
     @distributed_trace
     def get_service_properties(self, **kwargs: Any) -> _models.StorageServiceProperties:
@@ -1775,7 +1709,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         request = build_get_service_properties_request(
             comp=comp,
             restype=restype,
-            template_url=self.get_service_properties.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1799,8 +1732,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_service_properties.metadata = {"url": "/xml/"}
 
     @distributed_trace
     def put_service_properties(  # pylint: disable=inconsistent-return-statements
@@ -1844,7 +1775,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             restype=restype,
             content_type=content_type,
             content=_content,
-            template_url=self.put_service_properties.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1864,8 +1794,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_service_properties.metadata = {"url": "/xml/"}
 
     @distributed_trace
     def get_acls(self, **kwargs: Any) -> List[_models.SignedIdentifier]:
@@ -1900,7 +1828,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         request = build_get_acls_request(
             comp=comp,
             restype=restype,
-            template_url=self.get_acls.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1924,8 +1851,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_acls.metadata = {"url": "/xml/mycontainer"}
 
     @distributed_trace
     def put_acls(  # pylint: disable=inconsistent-return-statements
@@ -1972,7 +1897,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             restype=restype,
             content_type=content_type,
             content=_content,
-            template_url=self.put_acls.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1992,8 +1916,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_acls.metadata = {"url": "/xml/mycontainer"}
 
     @distributed_trace
     def list_blobs(self, **kwargs: Any) -> _models.ListBlobsResponse:
@@ -2028,7 +1950,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         request = build_list_blobs_request(
             comp=comp,
             restype=restype,
-            template_url=self.list_blobs.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2052,8 +1973,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    list_blobs.metadata = {"url": "/xml/mycontainer"}
 
     @distributed_trace
     def json_input(  # pylint: disable=inconsistent-return-statements
@@ -2089,7 +2008,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         request = build_json_input_request(
             content_type=content_type,
             json=_json,
-            template_url=self.json_input.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2109,8 +2027,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    json_input.metadata = {"url": "/xml/jsoninput"}
 
     @distributed_trace
     def json_output(self, **kwargs: Any) -> _models.JSONOutput:
@@ -2135,7 +2051,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.JSONOutput] = kwargs.pop("cls", None)
 
         request = build_json_output_request(
-            template_url=self.json_output.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2159,8 +2074,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    json_output.metadata = {"url": "/xml/jsonoutput"}
 
     @distributed_trace
     def get_xms_text(self, **kwargs: Any) -> _models.ObjectWithXMsTextProperty:
@@ -2186,7 +2099,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.ObjectWithXMsTextProperty] = kwargs.pop("cls", None)
 
         request = build_get_xms_text_request(
-            template_url=self.get_xms_text.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2211,8 +2123,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         return deserialized
 
-    get_xms_text.metadata = {"url": "/xml/x-ms-text"}
-
     @distributed_trace
     def get_bytes(self, **kwargs: Any) -> _models.ModelWithByteProperty:
         """Get an XML document with binary property.
@@ -2236,7 +2146,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.ModelWithByteProperty] = kwargs.pop("cls", None)
 
         request = build_get_bytes_request(
-            template_url=self.get_bytes.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2261,8 +2170,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_bytes.metadata = {"url": "/xml/bytes"}
 
     @distributed_trace
     def put_binary(  # pylint: disable=inconsistent-return-statements
@@ -2297,7 +2204,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         request = build_put_binary_request(
             content_type=content_type,
             content=_content,
-            template_url=self.put_binary.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2318,8 +2224,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_binary.metadata = {"url": "/xml/bytes"}
 
     @distributed_trace
     def get_uri(self, **kwargs: Any) -> _models.ModelWithUrlProperty:
@@ -2344,7 +2248,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.ModelWithUrlProperty] = kwargs.pop("cls", None)
 
         request = build_get_uri_request(
-            template_url=self.get_uri.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2369,8 +2272,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_uri.metadata = {"url": "/xml/url"}
 
     @distributed_trace
     def put_uri(  # pylint: disable=inconsistent-return-statements
@@ -2405,7 +2306,6 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         request = build_put_uri_request(
             content_type=content_type,
             content=_content,
-            template_url=self.put_uri.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2426,5 +2326,3 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_uri.metadata = {"url": "/xml/url"}

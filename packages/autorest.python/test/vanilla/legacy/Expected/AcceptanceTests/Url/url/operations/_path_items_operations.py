@@ -268,7 +268,6 @@ class PathItemsOperations:
             path_item_string_query=path_item_string_query,
             local_string_query=local_string_query,
             global_string_query=self._config.global_string_query,
-            template_url=self.get_all_with_values.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -289,10 +288,6 @@ class PathItemsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_all_with_values.metadata = {
-        "url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery"
-    }
 
     @distributed_trace
     def get_global_query_null(  # pylint: disable=inconsistent-return-statements
@@ -342,7 +337,6 @@ class PathItemsOperations:
             path_item_string_query=path_item_string_query,
             local_string_query=local_string_query,
             global_string_query=self._config.global_string_query,
-            template_url=self.get_global_query_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -363,10 +357,6 @@ class PathItemsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_global_query_null.metadata = {
-        "url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery"
-    }
 
     @distributed_trace
     def get_global_and_local_query_null(  # pylint: disable=inconsistent-return-statements
@@ -416,7 +406,6 @@ class PathItemsOperations:
             path_item_string_query=path_item_string_query,
             local_string_query=local_string_query,
             global_string_query=self._config.global_string_query,
-            template_url=self.get_global_and_local_query_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -437,10 +426,6 @@ class PathItemsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_global_and_local_query_null.metadata = {
-        "url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null"
-    }
 
     @distributed_trace
     def get_local_path_item_query_null(  # pylint: disable=inconsistent-return-statements
@@ -489,7 +474,6 @@ class PathItemsOperations:
             path_item_string_query=path_item_string_query,
             local_string_query=local_string_query,
             global_string_query=self._config.global_string_query,
-            template_url=self.get_local_path_item_query_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -510,7 +494,3 @@ class PathItemsOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_local_path_item_query_null.metadata = {
-        "url": "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null"
-    }

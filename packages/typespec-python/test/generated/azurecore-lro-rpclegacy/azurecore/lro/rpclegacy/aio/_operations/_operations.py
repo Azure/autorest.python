@@ -61,7 +61,7 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
         if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_legacy_create_job_request(
             content_type=content_type,
@@ -132,7 +132,7 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
                     "comment": "str"  # Comment. Required.
                 }
 
-                # response body for status code(s): 200
+                # response body for status code(s): 202, 200
                 response == {
                     "comment": "str",  # Comment. Required.
                     "jobId": "str",  # A processing job identifier. Required.
@@ -190,7 +190,7 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200
+                # response body for status code(s): 202, 200
                 response == {
                     "comment": "str",  # Comment. Required.
                     "jobId": "str",  # A processing job identifier. Required.
@@ -248,7 +248,7 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200
+                # response body for status code(s): 202, 200
                 response == {
                     "comment": "str",  # Comment. Required.
                     "jobId": "str",  # A processing job identifier. Required.
@@ -311,7 +311,7 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
                     "comment": "str"  # Comment. Required.
                 }
 
-                # response body for status code(s): 200
+                # response body for status code(s): 202, 200
                 response == {
                     "comment": "str",  # Comment. Required.
                     "jobId": "str",  # A processing job identifier. Required.
@@ -357,10 +357,16 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
+            response_headers = {}
             response = pipeline_response.http_response
+            response_headers["Operation-Location"] = self._deserialize(
+                "str", response.headers.get("Operation-Location")
+            )
+            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
+
             deserialized = _deserialize(_models.JobResult, response.json())
             if cls:
-                return cls(pipeline_response, deserialized, {})  # type: ignore
+                return cls(pipeline_response, deserialized, response_headers)  # type: ignore
             return deserialized
 
         if polling is True:

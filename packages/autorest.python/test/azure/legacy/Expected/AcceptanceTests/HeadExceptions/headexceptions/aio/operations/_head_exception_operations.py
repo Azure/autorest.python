@@ -69,7 +69,6 @@ class HeadExceptionOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head200_request(
-            template_url=self.head200.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -90,8 +89,6 @@ class HeadExceptionOperations:
         if cls:
             return cls(pipeline_response, None, {})
         return 200 <= response.status_code <= 299
-
-    head200.metadata = {"url": "/http/success/200"}
 
     @distributed_trace_async
     async def head204(self, **kwargs: Any) -> bool:
@@ -116,7 +113,6 @@ class HeadExceptionOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head204_request(
-            template_url=self.head204.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -137,8 +133,6 @@ class HeadExceptionOperations:
         if cls:
             return cls(pipeline_response, None, {})
         return 200 <= response.status_code <= 299
-
-    head204.metadata = {"url": "/http/success/204"}
 
     @distributed_trace_async
     async def head404(self, **kwargs: Any) -> bool:
@@ -163,7 +157,6 @@ class HeadExceptionOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head404_request(
-            template_url=self.head404.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -184,5 +177,3 @@ class HeadExceptionOperations:
         if cls:
             return cls(pipeline_response, None, {})
         return 200 <= response.status_code <= 299
-
-    head404.metadata = {"url": "/http/success/404"}

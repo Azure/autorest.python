@@ -172,7 +172,6 @@ class BoolOperations:
         cls: ClsType[bool] = kwargs.pop("cls", None)
 
         request = build_get_true_request(
-            template_url=self.get_true.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -197,8 +196,6 @@ class BoolOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_true.metadata = {"url": "/bool/true"}
 
     @distributed_trace
     def put_true(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -232,7 +229,6 @@ class BoolOperations:
         request = build_put_true_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_true.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -253,8 +249,6 @@ class BoolOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_true.metadata = {"url": "/bool/true"}
 
     @distributed_trace
     def get_false(self, **kwargs: Any) -> bool:
@@ -279,7 +273,6 @@ class BoolOperations:
         cls: ClsType[bool] = kwargs.pop("cls", None)
 
         request = build_get_false_request(
-            template_url=self.get_false.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -304,8 +297,6 @@ class BoolOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_false.metadata = {"url": "/bool/false"}
 
     @distributed_trace
     def put_false(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -339,7 +330,6 @@ class BoolOperations:
         request = build_put_false_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_false.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -360,8 +350,6 @@ class BoolOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_false.metadata = {"url": "/bool/false"}
 
     @distributed_trace
     def get_null(self, **kwargs: Any) -> Optional[bool]:
@@ -386,7 +374,6 @@ class BoolOperations:
         cls: ClsType[Optional[bool]] = kwargs.pop("cls", None)
 
         request = build_get_null_request(
-            template_url=self.get_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -411,8 +398,6 @@ class BoolOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null.metadata = {"url": "/bool/null"}
 
     @distributed_trace
     def get_invalid(self, **kwargs: Any) -> bool:
@@ -437,7 +422,6 @@ class BoolOperations:
         cls: ClsType[bool] = kwargs.pop("cls", None)
 
         request = build_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -462,5 +446,3 @@ class BoolOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid.metadata = {"url": "/bool/invalid"}

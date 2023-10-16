@@ -130,7 +130,6 @@ class HeaderOperations:
 
         request = build_custom_named_request_id_request(
             foo_client_request_id=foo_client_request_id,
-            template_url=self.custom_named_request_id.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -154,8 +153,6 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    custom_named_request_id.metadata = {"url": "/azurespecials/customNamedRequestId"}
 
     @distributed_trace
     def custom_named_request_id_param_grouping(  # pylint: disable=inconsistent-return-statements
@@ -193,7 +190,6 @@ class HeaderOperations:
 
         request = build_custom_named_request_id_param_grouping_request(
             foo_client_request_id=_foo_client_request_id,
-            template_url=self.custom_named_request_id_param_grouping.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -217,8 +213,6 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    custom_named_request_id_param_grouping.metadata = {"url": "/azurespecials/customNamedRequestIdParamGrouping"}
 
     @distributed_trace
     def custom_named_request_id_head(self, foo_client_request_id: str, **kwargs: Any) -> bool:
@@ -246,7 +240,6 @@ class HeaderOperations:
 
         request = build_custom_named_request_id_head_request(
             foo_client_request_id=foo_client_request_id,
-            template_url=self.custom_named_request_id_head.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -272,5 +265,3 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)
         return 200 <= response.status_code <= 299
-
-    custom_named_request_id_head.metadata = {"url": "/azurespecials/customNamedRequestIdHead"}

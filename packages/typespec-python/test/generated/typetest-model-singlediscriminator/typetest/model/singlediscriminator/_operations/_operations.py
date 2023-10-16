@@ -409,7 +409,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         if isinstance(input, (IOBase, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_single_discriminator_put_model_request(
             content_type=content_type,
@@ -696,7 +696,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         if isinstance(input, (IOBase, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_single_discriminator_put_recursive_model_request(
             content_type=content_type,

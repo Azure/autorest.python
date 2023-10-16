@@ -9,8 +9,10 @@
 from copy import deepcopy
 from typing import Any, TYPE_CHECKING
 
+from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 from azure.mgmt.core import ARMPipelineClient
+from azure.mgmt.core.policies import ARMAutoResourceProviderRegistrationPolicy
 
 from ._configuration import AutoRestLongRunningOperationTestServiceConfiguration
 from ._serialization import Deserializer, Serializer
@@ -34,17 +36,33 @@ class AutoRestLongRunningOperationTestService:  # pylint: disable=client-accepts
     :vartype lr_os_custom_header: lroversiontolerant.operations.LROsCustomHeaderOperations
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials.TokenCredential
-    :keyword endpoint: Service URL. Default value is "http://localhost:3000".
-    :paramtype endpoint: str
+    :param endpoint: Service URL. Default value is "http://localhost:3000".
+    :type endpoint: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
      Retry-After header is present.
     """
 
-    def __init__(
-        self, credential: "TokenCredential", *, endpoint: str = "http://localhost:3000", **kwargs: Any
-    ) -> None:
+    def __init__(self, credential: "TokenCredential", endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = AutoRestLongRunningOperationTestServiceConfiguration(credential=credential, **kwargs)
-        self._client: ARMPipelineClient = ARMPipelineClient(base_url=endpoint, config=self._config, **kwargs)
+        _policies = kwargs.pop("policies", None)
+        if _policies is None:
+            _policies = [
+                policies.RequestIdPolicy(**kwargs),
+                self._config.headers_policy,
+                self._config.user_agent_policy,
+                self._config.proxy_policy,
+                policies.ContentDecodePolicy(**kwargs),
+                ARMAutoResourceProviderRegistrationPolicy(),
+                self._config.redirect_policy,
+                self._config.retry_policy,
+                self._config.authentication_policy,
+                self._config.custom_hook_policy,
+                self._config.logging_policy,
+                policies.DistributedTracingPolicy(**kwargs),
+                policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
+                self._config.http_logging_policy,
+            ]
+        self._client: ARMPipelineClient = ARMPipelineClient(base_url=endpoint, policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

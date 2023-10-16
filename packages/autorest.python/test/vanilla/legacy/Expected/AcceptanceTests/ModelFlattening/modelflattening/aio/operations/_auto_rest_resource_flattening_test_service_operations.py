@@ -145,7 +145,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_array.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -166,8 +165,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_array.metadata = {"url": "/model-flatten/array"}
 
     @distributed_trace_async
     async def get_array(self, **kwargs: Any) -> List[_models.FlattenedProduct]:
@@ -195,7 +192,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         cls: ClsType[List[_models.FlattenedProduct]] = kwargs.pop("cls", None)
 
         request = build_get_array_request(
-            template_url=self.get_array.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -220,8 +216,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_array.metadata = {"url": "/model-flatten/array"}
 
     @overload
     async def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
@@ -319,7 +313,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_wrapped_array.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -340,8 +333,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_wrapped_array.metadata = {"url": "/model-flatten/wrappedarray"}
 
     @distributed_trace_async
     async def get_wrapped_array(self, **kwargs: Any) -> List[_models.ProductWrapper]:
@@ -370,7 +361,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         cls: ClsType[List[_models.ProductWrapper]] = kwargs.pop("cls", None)
 
         request = build_get_wrapped_array_request(
-            template_url=self.get_wrapped_array.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -395,8 +385,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_wrapped_array.metadata = {"url": "/model-flatten/wrappedarray"}
 
     @overload
     async def put_dictionary(  # pylint: disable=inconsistent-return-statements
@@ -491,7 +479,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_dictionary.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -512,8 +499,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_dictionary.metadata = {"url": "/model-flatten/dictionary"}
 
     @distributed_trace_async
     async def get_dictionary(self, **kwargs: Any) -> Dict[str, _models.FlattenedProduct]:
@@ -541,7 +526,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         cls: ClsType[Dict[str, _models.FlattenedProduct]] = kwargs.pop("cls", None)
 
         request = build_get_dictionary_request(
-            template_url=self.get_dictionary.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -566,8 +550,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_dictionary.metadata = {"url": "/model-flatten/dictionary"}
 
     @overload
     async def put_resource_collection(  # pylint: disable=inconsistent-return-statements
@@ -664,7 +646,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_resource_collection.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -685,8 +666,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_resource_collection.metadata = {"url": "/model-flatten/resourcecollection"}
 
     @distributed_trace_async
     async def get_resource_collection(self, **kwargs: Any) -> _models.ResourceCollection:
@@ -714,7 +693,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         cls: ClsType[_models.ResourceCollection] = kwargs.pop("cls", None)
 
         request = build_get_resource_collection_request(
-            template_url=self.get_resource_collection.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -739,8 +717,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_resource_collection.metadata = {"url": "/model-flatten/resourcecollection"}
 
     @overload
     async def put_simple_product(
@@ -835,7 +811,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_simple_product.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -860,8 +835,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    put_simple_product.metadata = {"url": "/model-flatten/customFlattening"}
 
     @distributed_trace_async
     async def post_flattened_simple_product(
@@ -929,7 +902,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         request = build_post_flattened_simple_product_request(
             content_type=content_type,
             json=_json,
-            template_url=self.post_flattened_simple_product.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -954,8 +926,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    post_flattened_simple_product.metadata = {"url": "/model-flatten/customFlattening"}
 
     @distributed_trace_async
     async def put_simple_product_with_grouping(
@@ -1021,7 +991,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             name=_name,
             content_type=content_type,
             json=_json,
-            template_url=self.put_simple_product_with_grouping.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1046,5 +1015,3 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    put_simple_product_with_grouping.metadata = {"url": "/model-flatten/customFlattening/parametergrouping/{name}/"}

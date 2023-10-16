@@ -8,7 +8,6 @@
 
 from typing import Any, TYPE_CHECKING
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 from azure.mgmt.core.policies import ARMChallengeAuthenticationPolicy, ARMHttpLoggingPolicy
 
@@ -19,36 +18,36 @@ if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
 
 
-class StorageManagementClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes,name-too-long
+class StorageManagementClientConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for StorageManagementClient.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
+    :param credential: Credential needed for the client to connect to Azure. Required.
+    :type credential: ~azure.core.credentials.TokenCredential
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call. Required.
     :type subscription_id: str
-    :param credential: Credential needed for the client to connect to Azure. Required.
-    :type credential: ~azure.core.credentials.TokenCredential
     :keyword api_version: Api Version. Default value is "2015-05-01-preview". Note that overriding
      this default value may result in unsupported behavior.
     :paramtype api_version: str
     """
 
-    def __init__(self, subscription_id: str, credential: "TokenCredential", **kwargs: Any) -> None:
-        super(StorageManagementClientConfiguration, self).__init__(**kwargs)
+    def __init__(self, credential: "TokenCredential", subscription_id: str, **kwargs: Any) -> None:
         api_version: str = kwargs.pop("api_version", "2015-05-01-preview")
 
-        if subscription_id is None:
-            raise ValueError("Parameter 'subscription_id' must not be None.")
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
+        if subscription_id is None:
+            raise ValueError("Parameter 'subscription_id' must not be None.")
 
-        self.subscription_id = subscription_id
         self.credential = credential
+        self.subscription_id = subscription_id
         self.api_version = api_version
         self.credential_scopes = kwargs.pop("credential_scopes", ["https://management.azure.com/.default"])
         kwargs.setdefault("sdk_moniker", "storagemanagementclient/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

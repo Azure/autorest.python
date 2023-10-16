@@ -797,7 +797,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._put200_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -823,8 +822,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put200_succeeded_initial.metadata = {"url": "/lro/put/200/succeeded"}
 
     @overload
     def begin_put200_succeeded(
@@ -940,8 +937,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_put200_succeeded.metadata = {"url": "/lro/put/200/succeeded"}
-
     def _patch200_succeeded_ignore_headers_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> _models.Product:
@@ -974,7 +969,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._patch200_succeeded_ignore_headers_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1003,8 +997,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _patch200_succeeded_ignore_headers_initial.metadata = {"url": "/lro/patch/200/succeeded/ignoreheaders"}
 
     @overload
     def begin_patch200_succeeded_ignore_headers(
@@ -1126,8 +1118,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_patch200_succeeded_ignore_headers.metadata = {"url": "/lro/patch/200/succeeded/ignoreheaders"}
-
     def _patch201_retry_with_async_header_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> _models.Product:
@@ -1160,7 +1150,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._patch201_retry_with_async_header_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1193,8 +1182,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
         return deserialized  # type: ignore
-
-    _patch201_retry_with_async_header_initial.metadata = {"url": "/lro/patch/201/retry/onlyAsyncHeader"}
 
     @overload
     def begin_patch201_retry_with_async_header(
@@ -1309,8 +1296,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_patch201_retry_with_async_header.metadata = {"url": "/lro/patch/201/retry/onlyAsyncHeader"}
-
     def _patch202_retry_with_async_and_location_header_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> _models.Product:
@@ -1343,7 +1328,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._patch202_retry_with_async_and_location_header_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1377,10 +1361,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
         return deserialized  # type: ignore
-
-    _patch202_retry_with_async_and_location_header_initial.metadata = {
-        "url": "/lro/patch/202/retry/asyncAndLocationHeader"
-    }
 
     @overload
     def begin_patch202_retry_with_async_and_location_header(  # pylint: disable=name-too-long
@@ -1496,10 +1476,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_patch202_retry_with_async_and_location_header.metadata = {
-        "url": "/lro/patch/202/retry/asyncAndLocationHeader"
-    }
-
     def _put201_succeeded_initial(
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> _models.Product:
@@ -1532,7 +1508,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._put201_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1556,8 +1531,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put201_succeeded_initial.metadata = {"url": "/lro/put/201/succeeded"}
 
     @overload
     def begin_put201_succeeded(
@@ -1673,8 +1646,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_put201_succeeded.metadata = {"url": "/lro/put/201/succeeded"}
-
     def _post202_list_initial(self, **kwargs: Any) -> Optional[List[_models.Product]]:
         error_map = {
             401: ClientAuthenticationError,
@@ -1690,7 +1661,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[Optional[List[_models.Product]]] = kwargs.pop("cls", None)
 
         request = build_post202_list_request(
-            template_url=self._post202_list_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1723,8 +1693,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _post202_list_initial.metadata = {"url": "/lro/list"}
 
     @distributed_trace
     def begin_post202_list(self, **kwargs: Any) -> LROPoller[List[_models.Product]]:
@@ -1776,8 +1744,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_post202_list.metadata = {"url": "/lro/list"}
-
     def _put200_succeeded_no_state_initial(
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> _models.Product:
@@ -1810,7 +1776,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._put200_succeeded_no_state_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1834,8 +1799,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put200_succeeded_no_state_initial.metadata = {"url": "/lro/put/200/succeeded/nostate"}
 
     @overload
     def begin_put200_succeeded_no_state(
@@ -1951,8 +1914,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_put200_succeeded_no_state.metadata = {"url": "/lro/put/200/succeeded/nostate"}
-
     def _put202_retry200_initial(
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> _models.Product:
@@ -1985,7 +1946,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._put202_retry200_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2009,8 +1969,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put202_retry200_initial.metadata = {"url": "/lro/put/202/retry/200"}
 
     @overload
     def begin_put202_retry200(
@@ -2129,8 +2087,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_put202_retry200.metadata = {"url": "/lro/put/202/retry/200"}
-
     def _put201_creating_succeeded200_initial(
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> _models.Product:
@@ -2163,7 +2119,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._put201_creating_succeeded200_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2191,8 +2146,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
-
-    _put201_creating_succeeded200_initial.metadata = {"url": "/lro/put/201/creating/succeeded/200"}
 
     @overload
     def begin_put201_creating_succeeded200(
@@ -2311,8 +2264,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_put201_creating_succeeded200.metadata = {"url": "/lro/put/201/creating/succeeded/200"}
-
     def _put200_updating_succeeded204_initial(
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> _models.Product:
@@ -2345,7 +2296,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._put200_updating_succeeded204_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2369,8 +2319,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put200_updating_succeeded204_initial.metadata = {"url": "/lro/put/200/updating/succeeded/200"}
 
     @overload
     def begin_put200_updating_succeeded204(
@@ -2489,8 +2437,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_put200_updating_succeeded204.metadata = {"url": "/lro/put/200/updating/succeeded/200"}
-
     def _put201_creating_failed200_initial(
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> _models.Product:
@@ -2523,7 +2469,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._put201_creating_failed200_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2551,8 +2496,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
-
-    _put201_creating_failed200_initial.metadata = {"url": "/lro/put/201/created/failed/200"}
 
     @overload
     def begin_put201_creating_failed200(
@@ -2671,8 +2614,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_put201_creating_failed200.metadata = {"url": "/lro/put/201/created/failed/200"}
-
     def _put200_acceptedcanceled200_initial(
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> _models.Product:
@@ -2705,7 +2646,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._put200_acceptedcanceled200_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2729,8 +2669,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put200_acceptedcanceled200_initial.metadata = {"url": "/lro/put/200/accepted/canceled/200"}
 
     @overload
     def begin_put200_acceptedcanceled200(
@@ -2849,8 +2787,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_put200_acceptedcanceled200.metadata = {"url": "/lro/put/200/accepted/canceled/200"}
-
     def _put_no_header_in_retry_initial(
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> _models.Product:
@@ -2883,7 +2819,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._put_no_header_in_retry_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2910,8 +2845,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _put_no_header_in_retry_initial.metadata = {"url": "/lro/put/noheader/202/200"}
 
     @overload
     def begin_put_no_header_in_retry(
@@ -3031,8 +2964,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_put_no_header_in_retry.metadata = {"url": "/lro/put/noheader/202/200"}
-
     def _put_async_retry_succeeded_initial(
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> _models.Product:
@@ -3065,7 +2996,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._put_async_retry_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3096,8 +3026,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _put_async_retry_succeeded_initial.metadata = {"url": "/lro/putasync/retry/succeeded"}
 
     @overload
     def begin_put_async_retry_succeeded(
@@ -3224,8 +3152,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_put_async_retry_succeeded.metadata = {"url": "/lro/putasync/retry/succeeded"}
-
     def _put_async_no_retry_succeeded_initial(
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> _models.Product:
@@ -3258,7 +3184,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._put_async_no_retry_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3288,8 +3213,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _put_async_no_retry_succeeded_initial.metadata = {"url": "/lro/putasync/noretry/succeeded"}
 
     @overload
     def begin_put_async_no_retry_succeeded(
@@ -3415,8 +3338,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_put_async_no_retry_succeeded.metadata = {"url": "/lro/putasync/noretry/succeeded"}
-
     def _put_async_retry_failed_initial(
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> _models.Product:
@@ -3449,7 +3370,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._put_async_retry_failed_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3480,8 +3400,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _put_async_retry_failed_initial.metadata = {"url": "/lro/putasync/retry/failed"}
 
     @overload
     def begin_put_async_retry_failed(
@@ -3608,8 +3526,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_put_async_retry_failed.metadata = {"url": "/lro/putasync/retry/failed"}
-
     def _put_async_no_retrycanceled_initial(
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> _models.Product:
@@ -3642,7 +3558,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._put_async_no_retrycanceled_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3672,8 +3587,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _put_async_no_retrycanceled_initial.metadata = {"url": "/lro/putasync/noretry/canceled"}
 
     @overload
     def begin_put_async_no_retrycanceled(
@@ -3799,8 +3712,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_put_async_no_retrycanceled.metadata = {"url": "/lro/putasync/noretry/canceled"}
-
     def _put_async_no_header_in_retry_initial(
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> _models.Product:
@@ -3833,7 +3744,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._put_async_no_header_in_retry_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -3862,8 +3772,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _put_async_no_header_in_retry_initial.metadata = {"url": "/lro/putasync/noheader/201/200"}
 
     @overload
     def begin_put_async_no_header_in_retry(
@@ -3988,8 +3896,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_put_async_no_header_in_retry.metadata = {"url": "/lro/putasync/noheader/201/200"}
-
     def _put_non_resource_initial(self, sku: Optional[Union[_models.Sku, IO]] = None, **kwargs: Any) -> _models.Sku:
         error_map = {
             401: ClientAuthenticationError,
@@ -4020,7 +3926,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._put_non_resource_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4044,8 +3949,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put_non_resource_initial.metadata = {"url": "/lro/putnonresource/202/200"}
 
     @overload
     def begin_put_non_resource(
@@ -4153,8 +4056,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_put_non_resource.metadata = {"url": "/lro/putnonresource/202/200"}
-
     def _put_async_non_resource_initial(
         self, sku: Optional[Union[_models.Sku, IO]] = None, **kwargs: Any
     ) -> _models.Sku:
@@ -4187,7 +4088,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._put_async_non_resource_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4211,8 +4111,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put_async_non_resource_initial.metadata = {"url": "/lro/putnonresourceasync/202/200"}
 
     @overload
     def begin_put_async_non_resource(
@@ -4320,8 +4218,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_put_async_non_resource.metadata = {"url": "/lro/putnonresourceasync/202/200"}
-
     def _put_sub_resource_initial(self, provisioning_state: Optional[str] = None, **kwargs: Any) -> _models.SubProduct:
         error_map = {
             401: ClientAuthenticationError,
@@ -4346,7 +4242,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         request = build_put_sub_resource_request(
             content_type=content_type,
             json=_json,
-            template_url=self._put_sub_resource_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4370,8 +4265,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put_sub_resource_initial.metadata = {"url": "/lro/putsubresource/202/200"}
 
     @distributed_trace
     def begin_put_sub_resource(
@@ -4433,8 +4326,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_put_sub_resource.metadata = {"url": "/lro/putsubresource/202/200"}
-
     def _put_async_sub_resource_initial(
         self, provisioning_state: Optional[str] = None, **kwargs: Any
     ) -> _models.SubProduct:
@@ -4461,7 +4352,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         request = build_put_async_sub_resource_request(
             content_type=content_type,
             json=_json,
-            template_url=self._put_async_sub_resource_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4485,8 +4375,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _put_async_sub_resource_initial.metadata = {"url": "/lro/putsubresourceasync/202/200"}
 
     @distributed_trace
     def begin_put_async_sub_resource(
@@ -4548,8 +4436,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_put_async_sub_resource.metadata = {"url": "/lro/putsubresourceasync/202/200"}
-
     def _delete_provisioning202_accepted200_succeeded_initial(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> _models.Product:
@@ -4567,7 +4453,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         request = build_delete_provisioning202_accepted200_succeeded_request(
-            template_url=self._delete_provisioning202_accepted200_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4599,10 +4484,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
         return deserialized  # type: ignore
-
-    _delete_provisioning202_accepted200_succeeded_initial.metadata = {
-        "url": "/lro/delete/provisioning/202/accepted/200/succeeded"
-    }
 
     @distributed_trace
     def begin_delete_provisioning202_accepted200_succeeded(  # pylint: disable=name-too-long
@@ -4658,10 +4539,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_delete_provisioning202_accepted200_succeeded.metadata = {
-        "url": "/lro/delete/provisioning/202/accepted/200/succeeded"
-    }
-
     def _delete_provisioning202_deleting_failed200_initial(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> _models.Product:
@@ -4679,7 +4556,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         request = build_delete_provisioning202_deleting_failed200_request(
-            template_url=self._delete_provisioning202_deleting_failed200_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4711,10 +4587,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
         return deserialized  # type: ignore
-
-    _delete_provisioning202_deleting_failed200_initial.metadata = {
-        "url": "/lro/delete/provisioning/202/deleting/200/failed"
-    }
 
     @distributed_trace
     def begin_delete_provisioning202_deleting_failed200(  # pylint: disable=name-too-long
@@ -4770,10 +4642,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_delete_provisioning202_deleting_failed200.metadata = {
-        "url": "/lro/delete/provisioning/202/deleting/200/failed"
-    }
-
     def _delete_provisioning202_deletingcanceled200_initial(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> _models.Product:
@@ -4791,7 +4659,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         request = build_delete_provisioning202_deletingcanceled200_request(
-            template_url=self._delete_provisioning202_deletingcanceled200_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4823,10 +4690,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
         return deserialized  # type: ignore
-
-    _delete_provisioning202_deletingcanceled200_initial.metadata = {
-        "url": "/lro/delete/provisioning/202/deleting/200/canceled"
-    }
 
     @distributed_trace
     def begin_delete_provisioning202_deletingcanceled200(  # pylint: disable=name-too-long
@@ -4882,10 +4745,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_delete_provisioning202_deletingcanceled200.metadata = {
-        "url": "/lro/delete/provisioning/202/deleting/200/canceled"
-    }
-
     def _delete204_succeeded_initial(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         error_map = {
             401: ClientAuthenticationError,
@@ -4901,7 +4760,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_delete204_succeeded_request(
-            template_url=self._delete204_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -4921,8 +4779,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    _delete204_succeeded_initial.metadata = {"url": "/lro/delete/204/succeeded"}
 
     @distributed_trace
     def begin_delete204_succeeded(self, **kwargs: Any) -> LROPoller[None]:
@@ -4972,8 +4828,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_delete204_succeeded.metadata = {"url": "/lro/delete/204/succeeded"}
-
     def _delete202_retry200_initial(self, **kwargs: Any) -> Optional[_models.Product]:
         error_map = {
             401: ClientAuthenticationError,
@@ -4989,7 +4843,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[Optional[_models.Product]] = kwargs.pop("cls", None)
 
         request = build_delete202_retry200_request(
-            template_url=self._delete202_retry200_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -5020,8 +4873,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _delete202_retry200_initial.metadata = {"url": "/lro/delete/202/retry/200"}
 
     @distributed_trace
     def begin_delete202_retry200(self, **kwargs: Any) -> LROPoller[_models.Product]:
@@ -5074,8 +4925,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_delete202_retry200.metadata = {"url": "/lro/delete/202/retry/200"}
-
     def _delete202_no_retry204_initial(self, **kwargs: Any) -> Optional[_models.Product]:
         error_map = {
             401: ClientAuthenticationError,
@@ -5091,7 +4940,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[Optional[_models.Product]] = kwargs.pop("cls", None)
 
         request = build_delete202_no_retry204_request(
-            template_url=self._delete202_no_retry204_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -5122,8 +4970,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _delete202_no_retry204_initial.metadata = {"url": "/lro/delete/202/noretry/204"}
 
     @distributed_trace
     def begin_delete202_no_retry204(self, **kwargs: Any) -> LROPoller[_models.Product]:
@@ -5176,8 +5022,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_delete202_no_retry204.metadata = {"url": "/lro/delete/202/noretry/204"}
-
     def _delete_no_header_in_retry_initial(  # pylint: disable=inconsistent-return-statements
         self, **kwargs: Any
     ) -> None:
@@ -5195,7 +5039,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_delete_no_header_in_retry_request(
-            template_url=self._delete_no_header_in_retry_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -5219,8 +5062,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _delete_no_header_in_retry_initial.metadata = {"url": "/lro/delete/noheader"}
 
     @distributed_trace
     def begin_delete_no_header_in_retry(self, **kwargs: Any) -> LROPoller[None]:
@@ -5271,8 +5112,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_delete_no_header_in_retry.metadata = {"url": "/lro/delete/noheader"}
-
     def _delete_async_no_header_in_retry_initial(  # pylint: disable=inconsistent-return-statements
         self, **kwargs: Any
     ) -> None:
@@ -5290,7 +5129,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_delete_async_no_header_in_retry_request(
-            template_url=self._delete_async_no_header_in_retry_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -5314,8 +5152,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _delete_async_no_header_in_retry_initial.metadata = {"url": "/lro/deleteasync/noheader/202/204"}
 
     @distributed_trace
     def begin_delete_async_no_header_in_retry(self, **kwargs: Any) -> LROPoller[None]:
@@ -5366,8 +5202,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_delete_async_no_header_in_retry.metadata = {"url": "/lro/deleteasync/noheader/202/204"}
-
     def _delete_async_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
         self, **kwargs: Any
     ) -> None:
@@ -5385,7 +5219,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_delete_async_retry_succeeded_request(
-            template_url=self._delete_async_retry_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -5412,8 +5245,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _delete_async_retry_succeeded_initial.metadata = {"url": "/lro/deleteasync/retry/succeeded"}
 
     @distributed_trace
     def begin_delete_async_retry_succeeded(self, **kwargs: Any) -> LROPoller[None]:
@@ -5464,8 +5295,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_delete_async_retry_succeeded.metadata = {"url": "/lro/deleteasync/retry/succeeded"}
-
     def _delete_async_no_retry_succeeded_initial(  # pylint: disable=inconsistent-return-statements
         self, **kwargs: Any
     ) -> None:
@@ -5483,7 +5312,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_delete_async_no_retry_succeeded_request(
-            template_url=self._delete_async_no_retry_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -5510,8 +5338,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _delete_async_no_retry_succeeded_initial.metadata = {"url": "/lro/deleteasync/noretry/succeeded"}
 
     @distributed_trace
     def begin_delete_async_no_retry_succeeded(self, **kwargs: Any) -> LROPoller[None]:
@@ -5562,8 +5388,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_delete_async_no_retry_succeeded.metadata = {"url": "/lro/deleteasync/noretry/succeeded"}
-
     def _delete_async_retry_failed_initial(  # pylint: disable=inconsistent-return-statements
         self, **kwargs: Any
     ) -> None:
@@ -5581,7 +5405,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_delete_async_retry_failed_request(
-            template_url=self._delete_async_retry_failed_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -5608,8 +5431,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _delete_async_retry_failed_initial.metadata = {"url": "/lro/deleteasync/retry/failed"}
 
     @distributed_trace
     def begin_delete_async_retry_failed(self, **kwargs: Any) -> LROPoller[None]:
@@ -5660,8 +5481,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_delete_async_retry_failed.metadata = {"url": "/lro/deleteasync/retry/failed"}
-
     def _delete_async_retrycanceled_initial(  # pylint: disable=inconsistent-return-statements
         self, **kwargs: Any
     ) -> None:
@@ -5679,7 +5498,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_delete_async_retrycanceled_request(
-            template_url=self._delete_async_retrycanceled_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -5706,8 +5524,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _delete_async_retrycanceled_initial.metadata = {"url": "/lro/deleteasync/retry/canceled"}
 
     @distributed_trace
     def begin_delete_async_retrycanceled(self, **kwargs: Any) -> LROPoller[None]:
@@ -5758,8 +5574,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_delete_async_retrycanceled.metadata = {"url": "/lro/deleteasync/retry/canceled"}
-
     def _post200_with_payload_initial(self, **kwargs: Any) -> _models.Sku:
         error_map = {
             401: ClientAuthenticationError,
@@ -5775,7 +5589,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.Sku] = kwargs.pop("cls", None)
 
         request = build_post200_with_payload_request(
-            template_url=self._post200_with_payload_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -5803,8 +5616,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
-
-    _post200_with_payload_initial.metadata = {"url": "/lro/post/payload/200"}
 
     @distributed_trace
     def begin_post200_with_payload(self, **kwargs: Any) -> LROPoller[_models.Sku]:
@@ -5857,8 +5668,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_post200_with_payload.metadata = {"url": "/lro/post/payload/200"}
-
     def _post202_retry200_initial(  # pylint: disable=inconsistent-return-statements
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> None:
@@ -5891,7 +5700,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._post202_retry200_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -5915,8 +5723,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post202_retry200_initial.metadata = {"url": "/lro/post/202/retry/200"}
 
     @overload
     def begin_post202_retry200(
@@ -6030,8 +5836,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_post202_retry200.metadata = {"url": "/lro/post/202/retry/200"}
-
     def _post202_no_retry204_initial(
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> _models.Product:
@@ -6064,7 +5868,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._post202_no_retry204_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -6092,8 +5895,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _post202_no_retry204_initial.metadata = {"url": "/lro/post/202/noretry/204"}
 
     @overload
     def begin_post202_no_retry204(
@@ -6214,8 +6015,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_post202_no_retry204.metadata = {"url": "/lro/post/202/noretry/204"}
-
     def _post_double_headers_final_location_get_initial(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> _models.Product:
@@ -6233,7 +6032,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         request = build_post_double_headers_final_location_get_request(
-            template_url=self._post_double_headers_final_location_get_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -6257,8 +6055,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _post_double_headers_final_location_get_initial.metadata = {"url": "/lro/LROPostDoubleHeadersFinalLocationGet"}
 
     @distributed_trace
     def begin_post_double_headers_final_location_get(  # pylint: disable=name-too-long
@@ -6316,8 +6112,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_post_double_headers_final_location_get.metadata = {"url": "/lro/LROPostDoubleHeadersFinalLocationGet"}
-
     def _post_double_headers_final_azure_header_get_initial(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> _models.Product:
@@ -6335,7 +6129,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         request = build_post_double_headers_final_azure_header_get_request(
-            template_url=self._post_double_headers_final_azure_header_get_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -6359,10 +6152,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _post_double_headers_final_azure_header_get_initial.metadata = {
-        "url": "/lro/LROPostDoubleHeadersFinalAzureHeaderGet"
-    }
 
     @distributed_trace
     def begin_post_double_headers_final_azure_header_get(  # pylint: disable=name-too-long
@@ -6420,8 +6209,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_post_double_headers_final_azure_header_get.metadata = {"url": "/lro/LROPostDoubleHeadersFinalAzureHeaderGet"}
-
     def _post_double_headers_final_azure_header_get_default_initial(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> _models.Product:
@@ -6439,7 +6226,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
         request = build_post_double_headers_final_azure_header_get_default_request(
-            template_url=self._post_double_headers_final_azure_header_get_default_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -6463,10 +6249,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    _post_double_headers_final_azure_header_get_default_initial.metadata = {
-        "url": "/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault"
-    }
 
     @distributed_trace
     def begin_post_double_headers_final_azure_header_get_default(  # pylint: disable=name-too-long
@@ -6522,10 +6304,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_post_double_headers_final_azure_header_get_default.metadata = {
-        "url": "/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault"
-    }
-
     def _post_async_retry_succeeded_initial(
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> Optional[_models.Product]:
@@ -6558,7 +6336,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._post_async_retry_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -6592,8 +6369,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _post_async_retry_succeeded_initial.metadata = {"url": "/lro/postasync/retry/succeeded"}
 
     @overload
     def begin_post_async_retry_succeeded(
@@ -6712,8 +6487,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_post_async_retry_succeeded.metadata = {"url": "/lro/postasync/retry/succeeded"}
-
     def _post_async_no_retry_succeeded_initial(
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> Optional[_models.Product]:
@@ -6746,7 +6519,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._post_async_no_retry_succeeded_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -6780,8 +6552,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-
-    _post_async_no_retry_succeeded_initial.metadata = {"url": "/lro/postasync/noretry/succeeded"}
 
     @overload
     def begin_post_async_no_retry_succeeded(
@@ -6900,8 +6670,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_post_async_no_retry_succeeded.metadata = {"url": "/lro/postasync/noretry/succeeded"}
-
     def _post_async_retry_failed_initial(  # pylint: disable=inconsistent-return-statements
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> None:
@@ -6934,7 +6702,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._post_async_retry_failed_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -6961,8 +6728,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post_async_retry_failed_initial.metadata = {"url": "/lro/postasync/retry/failed"}
 
     @overload
     def begin_post_async_retry_failed(
@@ -7079,8 +6844,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    begin_post_async_retry_failed.metadata = {"url": "/lro/postasync/retry/failed"}
-
     def _post_async_retrycanceled_initial(  # pylint: disable=inconsistent-return-statements
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
     ) -> None:
@@ -7113,7 +6876,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self._post_async_retrycanceled_initial.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -7140,8 +6902,6 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, response_headers)
-
-    _post_async_retrycanceled_initial.metadata = {"url": "/lro/postasync/retry/canceled"}
 
     @overload
     def begin_post_async_retrycanceled(
@@ -7257,5 +7017,3 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 deserialization_callback=get_long_running_output,
             )
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
-
-    begin_post_async_retrycanceled.metadata = {"url": "/lro/postasync/retry/canceled"}

@@ -236,7 +236,7 @@ class ModelOperations:
         if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_model_spread_as_request_body_request(
             content_type=content_type,
@@ -393,7 +393,7 @@ class AliasOperations:
         if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_alias_spread_as_request_body_request(
             content_type=content_type,
@@ -548,7 +548,7 @@ class AliasOperations:
         if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_alias_spread_as_request_parameter_request(
             id=id,
@@ -767,7 +767,7 @@ class AliasOperations:
         if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_alias_spread_with_multiple_parameters_request(
             id=id,

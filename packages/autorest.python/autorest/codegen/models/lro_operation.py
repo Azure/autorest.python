@@ -46,7 +46,8 @@ class LROOperationBase(OperationBase[LROResponseType]):
             exceptions=exceptions,
             overloads=overloads,
         )
-        self.name = "begin_" + self.name
+        if not self.name.lstrip("_").startswith("begin"):
+            self.name = ("_begin" if self.internal else "begin_") + self.name
         self.lro_options: Dict[str, Any] = self.yaml_data.get("lroOptions", {})
         self._initial_operation: Optional["OperationType"] = None
 
@@ -145,10 +146,6 @@ class LROOperationBase(OperationBase[LROResponseType]):
         )
         file_import.add_submodule_import("typing", "cast", ImportType.STDLIB)
         return file_import
-
-    @classmethod
-    def get_request_builder(cls, yaml_data: Dict[str, Any], client: "Client"):
-        return client.lookup_request_builder(id(yaml_data["initialOperation"]))
 
 
 class LROOperation(LROOperationBase[LROResponse]):

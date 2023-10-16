@@ -24,22 +24,9 @@
 #
 # --------------------------------------------------------------------------
 
-import unittest
-import subprocess
-import sys
-import isodate
-import tempfile
-import json
-from uuid import uuid4
-from datetime import date, datetime, timedelta
-import os
-from os.path import dirname, pardir, join, realpath
-
-from msrest.exceptions import DeserializationError, ValidationError
+from msrest.exceptions import ValidationError
 
 from azureparametergrouping import AutoRestParameterGroupingTestService
-from subscriptionidapiversion import MicrosoftAzureTestUrl
-from bodyduration import AutoRestDurationTestService
 from azurespecialproperties import AutoRestAzureSpecialParametersTestClient
 
 

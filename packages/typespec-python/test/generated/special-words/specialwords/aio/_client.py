@@ -10,35 +10,100 @@ from copy import deepcopy
 from typing import Any, Awaitable
 
 from azure.core import AsyncPipelineClient
+from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
 from ._configuration import SpecialWordsClientConfiguration
-from .operations import ModelOperations, OperationOperations, ParameterOperations
+from .operations import ModelPropertiesOperations, ModelsOperations, Operations, ParametersOperations
 
 
 class SpecialWordsClient:  # pylint: disable=client-accepts-api-version-keyword
-    """Illustrates operation, parameter and property have name of special words or characters.
+    """Scenarios to verify that reserved words can be used in service and generators will handle it
+    appropriately.
 
-    :ivar operation: OperationOperations operations
-    :vartype operation: specialwords.aio.operations.OperationOperations
-    :ivar parameter: ParameterOperations operations
-    :vartype parameter: specialwords.aio.operations.ParameterOperations
-    :ivar model: ModelOperations operations
-    :vartype model: specialwords.aio.operations.ModelOperations
+    Current list of special words
+
+    .. code-block:: txt
+
+       and
+       as
+       assert
+       async
+       await
+       break
+       class
+       constructor
+       continue
+       def
+       del
+       elif
+       else
+       except
+       exec
+       finally
+       for
+       from
+       global
+       if
+       import
+       in
+       is
+       lambda
+       not
+       or
+       pass
+       raise
+       return
+       try
+       while
+       with
+       yield.
+
+    :ivar models: ModelsOperations operations
+    :vartype models: specialwords.aio.operations.ModelsOperations
+    :ivar model_properties: ModelPropertiesOperations operations
+    :vartype model_properties: specialwords.aio.operations.ModelPropertiesOperations
+    :ivar operations: Operations operations
+    :vartype operations: specialwords.aio.operations.Operations
+    :ivar parameters: ParametersOperations operations
+    :vartype parameters: specialwords.aio.operations.ParametersOperations
+    :keyword endpoint: Service host. Default value is "http://localhost:3000".
+    :paramtype endpoint: str
     """
 
-    def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
-        _endpoint = "http://localhost:3000"
+    def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
+        self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
+    ) -> None:
         self._config = SpecialWordsClientConfiguration(**kwargs)
-        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
+        _policies = kwargs.pop("policies", None)
+        if _policies is None:
+            _policies = [
+                policies.RequestIdPolicy(**kwargs),
+                self._config.headers_policy,
+                self._config.user_agent_policy,
+                self._config.proxy_policy,
+                policies.ContentDecodePolicy(**kwargs),
+                self._config.redirect_policy,
+                self._config.retry_policy,
+                self._config.authentication_policy,
+                self._config.custom_hook_policy,
+                self._config.logging_policy,
+                policies.DistributedTracingPolicy(**kwargs),
+                policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
+                self._config.http_logging_policy,
+            ]
+        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=endpoint, policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.operation = OperationOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.parameter = ParameterOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.model = ModelOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.models = ModelsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.model_properties = ModelPropertiesOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.operations = Operations(self._client, self._config, self._serialize, self._deserialize)
+        self.parameters = ParametersOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.

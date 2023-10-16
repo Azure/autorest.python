@@ -10,6 +10,7 @@ from copy import deepcopy
 from typing import Any, TYPE_CHECKING
 
 from azure.core import PipelineClient
+from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import OAuth2ClientConfiguration
@@ -26,12 +27,32 @@ class OAuth2Client(OAuth2ClientOperationsMixin):  # pylint: disable=client-accep
 
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials.TokenCredential
+    :keyword endpoint: Service host. Default value is "http://localhost:3000".
+    :paramtype endpoint: str
     """
 
-    def __init__(self, credential: "TokenCredential", **kwargs: Any) -> None:
-        _endpoint = "http://localhost:3000"
+    def __init__(
+        self, credential: "TokenCredential", *, endpoint: str = "http://localhost:3000", **kwargs: Any
+    ) -> None:
         self._config = OAuth2ClientConfiguration(credential=credential, **kwargs)
-        self._client: PipelineClient = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
+        _policies = kwargs.pop("policies", None)
+        if _policies is None:
+            _policies = [
+                policies.RequestIdPolicy(**kwargs),
+                self._config.headers_policy,
+                self._config.user_agent_policy,
+                self._config.proxy_policy,
+                policies.ContentDecodePolicy(**kwargs),
+                self._config.redirect_policy,
+                self._config.retry_policy,
+                self._config.authentication_policy,
+                self._config.custom_hook_policy,
+                self._config.logging_policy,
+                policies.DistributedTracingPolicy(**kwargs),
+                policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
+                self._config.http_logging_policy,
+            ]
+        self._client: PipelineClient = PipelineClient(base_url=endpoint, policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

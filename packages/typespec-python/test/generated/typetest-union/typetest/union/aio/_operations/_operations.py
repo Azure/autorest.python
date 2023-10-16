@@ -25,8 +25,12 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._model_base import AzureJSONEncoder
+from ..._model_base import AzureJSONEncoder, _deserialize
 from ..._operations._operations import (
+    build_union_receive_first_named_union_value_request,
+    build_union_receive_int_array_request,
+    build_union_receive_second_named_union_value_request,
+    build_union_receive_string_request,
     build_union_send_first_named_union_value_request,
     build_union_send_int_array_request,
     build_union_send_int_request,
@@ -150,7 +154,7 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         if isinstance(input, (IOBase, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_union_send_int_request(
             content_type=content_type,
@@ -282,7 +286,7 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         if isinstance(input, (IOBase, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_union_send_int_array_request(
             content_type=content_type,
@@ -420,7 +424,7 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         if isinstance(input, (IOBase, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_union_send_first_named_union_value_request(
             content_type=content_type,
@@ -558,7 +562,7 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         if isinstance(input, (IOBase, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder)  # type: ignore
+            _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
         request = build_union_send_second_named_union_value_request(
             content_type=content_type,
@@ -583,3 +587,253 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
 
         if cls:
             return cls(pipeline_response, None, {})
+
+    @distributed_trace_async
+    async def receive_string(self, **kwargs: Any) -> _models.ModelWithSimpleUnionPropertyInResponse:
+        """receive_string.
+
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: ModelWithSimpleUnionPropertyInResponse. The ModelWithSimpleUnionPropertyInResponse is
+         compatible with MutableMapping
+        :rtype: ~typetest.union.models.ModelWithSimpleUnionPropertyInResponse
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "simpleUnion": "str"  # Required. Is either a str type or a [int] type.
+                }
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.ModelWithSimpleUnionPropertyInResponse] = kwargs.pop("cls", None)
+
+        request = build_union_receive_string_request(
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.ModelWithSimpleUnionPropertyInResponse, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @distributed_trace_async
+    async def receive_int_array(self, **kwargs: Any) -> _models.ModelWithSimpleUnionPropertyInResponse:
+        """receive_int_array.
+
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: ModelWithSimpleUnionPropertyInResponse. The ModelWithSimpleUnionPropertyInResponse is
+         compatible with MutableMapping
+        :rtype: ~typetest.union.models.ModelWithSimpleUnionPropertyInResponse
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "simpleUnion": "str"  # Required. Is either a str type or a [int] type.
+                }
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.ModelWithSimpleUnionPropertyInResponse] = kwargs.pop("cls", None)
+
+        request = build_union_receive_int_array_request(
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.ModelWithSimpleUnionPropertyInResponse, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @distributed_trace_async
+    async def receive_first_named_union_value(self, **kwargs: Any) -> _models.ModelWithNamedUnionPropertyInResponse:
+        """receive_first_named_union_value.
+
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: ModelWithNamedUnionPropertyInResponse. The ModelWithNamedUnionPropertyInResponse is
+         compatible with MutableMapping
+        :rtype: ~typetest.union.models.ModelWithNamedUnionPropertyInResponse
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "namedUnion": {
+                        "name": "str",  # Required.
+                        "prop1": 0  # Required.
+                    }
+                }
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.ModelWithNamedUnionPropertyInResponse] = kwargs.pop("cls", None)
+
+        request = build_union_receive_first_named_union_value_request(
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.ModelWithNamedUnionPropertyInResponse, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @distributed_trace_async
+    async def receive_second_named_union_value(self, **kwargs: Any) -> _models.ModelWithNamedUnionPropertyInResponse:
+        """receive_second_named_union_value.
+
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: ModelWithNamedUnionPropertyInResponse. The ModelWithNamedUnionPropertyInResponse is
+         compatible with MutableMapping
+        :rtype: ~typetest.union.models.ModelWithNamedUnionPropertyInResponse
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "namedUnion": {
+                        "name": "str",  # Required.
+                        "prop1": 0  # Required.
+                    }
+                }
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.ModelWithNamedUnionPropertyInResponse] = kwargs.pop("cls", None)
+
+        request = build_union_receive_second_named_union_value_request(
+            headers=_headers,
+            params=_params,
+        )
+        request.url = self._client.format_url(request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+            request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.ModelWithNamedUnionPropertyInResponse, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore

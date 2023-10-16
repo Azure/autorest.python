@@ -10,6 +10,7 @@ from copy import deepcopy
 from typing import Any
 
 from azure.core import PipelineClient
+from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import FixedClientConfiguration
@@ -18,12 +19,34 @@ from ._serialization import Deserializer, Serializer
 
 
 class FixedClient(FixedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
-    """FixedClient."""
+    """FixedClient.
 
-    def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
-        _endpoint = "http://localhost:3000"
+    :keyword endpoint: Service host. Default value is "http://localhost:3000".
+    :paramtype endpoint: str
+    """
+
+    def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
+        self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
+    ) -> None:
         self._config = FixedClientConfiguration(**kwargs)
-        self._client: PipelineClient = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
+        _policies = kwargs.pop("policies", None)
+        if _policies is None:
+            _policies = [
+                policies.RequestIdPolicy(**kwargs),
+                self._config.headers_policy,
+                self._config.user_agent_policy,
+                self._config.proxy_policy,
+                policies.ContentDecodePolicy(**kwargs),
+                self._config.redirect_policy,
+                self._config.retry_policy,
+                self._config.authentication_policy,
+                self._config.custom_hook_policy,
+                self._config.logging_policy,
+                policies.DistributedTracingPolicy(**kwargs),
+                policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
+                self._config.http_logging_policy,
+            ]
+        self._client: PipelineClient = PipelineClient(base_url=endpoint, policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

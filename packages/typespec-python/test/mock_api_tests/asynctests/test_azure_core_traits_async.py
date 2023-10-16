@@ -9,8 +9,8 @@ from datetime import datetime
 import pytest
 from azure.core.exceptions import HttpResponseError
 from azure.core import MatchConditions
-from _specs_.azure.core.traits.aio import TraitsClient
-from _specs_.azure.core.traits.models import UserActionParam
+from specs.azure.core.traits.aio import TraitsClient
+from specs.azure.core.traits.models import UserActionParam
 from ..test_header_utils import check_repeatability_header, check_client_request_id_header
 
 

@@ -10,11 +10,12 @@ from copy import deepcopy
 from typing import Any
 
 from azure.core import PipelineClient
+from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import DatetimeClientConfiguration
 from ._serialization import Deserializer, Serializer
-from .operations import HeaderOperations, PropertyOperations, QueryOperations
+from .operations import HeaderOperations, PropertyOperations, QueryOperations, ResponseHeaderOperations
 
 
 class DatetimeClient:  # pylint: disable=client-accepts-api-version-keyword
@@ -26,12 +27,34 @@ class DatetimeClient:  # pylint: disable=client-accepts-api-version-keyword
     :vartype property: encode.datetime.operations.PropertyOperations
     :ivar header: HeaderOperations operations
     :vartype header: encode.datetime.operations.HeaderOperations
+    :ivar response_header: ResponseHeaderOperations operations
+    :vartype response_header: encode.datetime.operations.ResponseHeaderOperations
+    :keyword endpoint: Service host. Default value is "http://localhost:3000".
+    :paramtype endpoint: str
     """
 
-    def __init__(self, **kwargs: Any) -> None:  # pylint: disable=missing-client-constructor-parameter-credential
-        _endpoint = "http://localhost:3000"
+    def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
+        self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
+    ) -> None:
         self._config = DatetimeClientConfiguration(**kwargs)
-        self._client: PipelineClient = PipelineClient(base_url=_endpoint, config=self._config, **kwargs)
+        _policies = kwargs.pop("policies", None)
+        if _policies is None:
+            _policies = [
+                policies.RequestIdPolicy(**kwargs),
+                self._config.headers_policy,
+                self._config.user_agent_policy,
+                self._config.proxy_policy,
+                policies.ContentDecodePolicy(**kwargs),
+                self._config.redirect_policy,
+                self._config.retry_policy,
+                self._config.authentication_policy,
+                self._config.custom_hook_policy,
+                self._config.logging_policy,
+                policies.DistributedTracingPolicy(**kwargs),
+                policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
+                self._config.http_logging_policy,
+            ]
+        self._client: PipelineClient = PipelineClient(base_url=endpoint, policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
@@ -39,6 +62,7 @@ class DatetimeClient:  # pylint: disable=client-accepts-api-version-keyword
         self.query = QueryOperations(self._client, self._config, self._serialize, self._deserialize)
         self.property = PropertyOperations(self._client, self._config, self._serialize, self._deserialize)
         self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.response_header = ResponseHeaderOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

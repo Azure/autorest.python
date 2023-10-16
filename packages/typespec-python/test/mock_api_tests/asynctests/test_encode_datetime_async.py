@@ -126,3 +126,11 @@ async def test_header(client: DatetimeClient):
             datetime.datetime(2023, 6, 14, 9, 17, 36, tzinfo=datetime.timezone.utc),
         ]
     )
+
+
+@pytest.mark.asyncio
+async def test_response_header(client: DatetimeClient):
+    cls = lambda x, y, z: z
+    assert (await client.response_header.default(cls=cls))["value"] == datetime.datetime(2022, 8, 26, 14, 38, 0, tzinfo=datetime.timezone.utc)
+    assert (await client.response_header.rfc3339(cls=cls))["value"] == datetime.datetime(2022, 8, 26, 18, 38, 0, tzinfo=datetime.timezone.utc)
+    assert (await client.response_header.rfc7231(cls=cls))["value"] == datetime.datetime(2022, 8, 26, 14, 38, 0, tzinfo=datetime.timezone.utc)

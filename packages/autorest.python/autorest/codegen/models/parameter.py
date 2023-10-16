@@ -93,6 +93,10 @@ class _ParameterBase(
         self.hide_in_method: bool = self.yaml_data.get("hideInMethod", False)
 
     @property
+    def hide_in_operation_signature(self) -> bool:
+        return False
+
+    @property
     def constant(self) -> bool:
         """Returns whether a parameter is a constant or not.
         Checking to see if it's required, because if not, we don't consider it
@@ -342,6 +346,15 @@ class Parameter(_ParameterBase):
         self._default_to_unset_sentinel: bool = False
 
     @property
+    def hide_in_operation_signature(self) -> bool:
+        if (
+            self.code_model.options["version_tolerant"]
+            and self.client_name == "maxpagesize"
+        ):
+            return True
+        return False
+
+    @property
     def in_method_signature(self) -> bool:
         return not (self.wire_name == "Accept" or self.grouped_by or self.flattened)
 
@@ -406,9 +419,13 @@ class ClientParameter(Parameter):
     def method_location(self) -> ParameterMethodLocation:
         if self.constant:
             return ParameterMethodLocation.KWARG
-        if self.is_host and (
-            self.code_model.options["version_tolerant"]
-            or self.code_model.options["low_level_client"]
+        if (
+            self.is_host
+            and (
+                self.code_model.options["version_tolerant"]
+                or self.code_model.options["low_level_client"]
+            )
+            and not self.code_model.options["azure_arm"]
         ):
             # this means i am the base url
             return ParameterMethodLocation.KEYWORD_ONLY

@@ -58,6 +58,10 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
         self.want_tracing = False
 
     @property
+    def is_lro(self) -> bool:
+        return self.yaml_data.get("discriminator") in ("lro", "lropaging")
+
+    @property
     def pylint_disable(self) -> str:
         if len(self.name) > NAME_LENGTH_LIMIT:
             return add_to_pylint_disable("", "name-too-long")
