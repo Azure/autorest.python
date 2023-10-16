@@ -856,6 +856,7 @@ class CatalogsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[_models.PagedDeviceInsight] = kwargs.pop("cls", None)
 
         error_map = {
@@ -876,6 +877,7 @@ class CatalogsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -957,6 +959,7 @@ class CatalogsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[_models.DeviceListResult] = kwargs.pop("cls", None)
 
         error_map = {
@@ -977,6 +980,7 @@ class CatalogsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -1058,6 +1062,7 @@ class CatalogsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[_models.DeploymentListResult] = kwargs.pop("cls", None)
 
         error_map = {
@@ -1078,6 +1083,7 @@ class CatalogsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -1133,7 +1139,7 @@ class CatalogsOperations:
         self,
         resource_group_name: str,
         catalog_name: str,
-        list_device_groups_request: _models.ListDeviceGroupsRequest,
+        parameters: _models.ListDeviceGroupsRequest,
         *,
         filter: Optional[str] = None,
         top: Optional[int] = None,
@@ -1148,8 +1154,8 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param list_device_groups_request: List device groups for catalog. Required.
-        :type list_device_groups_request: ~azure.mgmt.spheremsrest.models.ListDeviceGroupsRequest
+        :param parameters: List device groups for catalog. Required.
+        :type parameters: ~azure.mgmt.spheremsrest.models.ListDeviceGroupsRequest
         :keyword filter: Filter the result list using the given expression. Default value is None.
         :paramtype filter: str
         :keyword top: The number of result items to return. Default value is None.
@@ -1169,7 +1175,7 @@ class CatalogsOperations:
         self,
         resource_group_name: str,
         catalog_name: str,
-        list_device_groups_request: IO,
+        parameters: IO,
         *,
         filter: Optional[str] = None,
         top: Optional[int] = None,
@@ -1184,8 +1190,8 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param list_device_groups_request: List device groups for catalog. Required.
-        :type list_device_groups_request: IO
+        :param parameters: List device groups for catalog. Required.
+        :type parameters: IO
         :keyword filter: Filter the result list using the given expression. Default value is None.
         :paramtype filter: str
         :keyword top: The number of result items to return. Default value is None.
@@ -1205,7 +1211,7 @@ class CatalogsOperations:
         self,
         resource_group_name: str,
         catalog_name: str,
-        list_device_groups_request: Union[_models.ListDeviceGroupsRequest, IO],
+        parameters: Union[_models.ListDeviceGroupsRequest, IO],
         *,
         filter: Optional[str] = None,
         top: Optional[int] = None,
@@ -1219,9 +1225,9 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :param list_device_groups_request: List device groups for catalog. Is either a
-         ListDeviceGroupsRequest type or a IO type. Required.
-        :type list_device_groups_request: ~azure.mgmt.spheremsrest.models.ListDeviceGroupsRequest or IO
+        :param parameters: List device groups for catalog. Is either a ListDeviceGroupsRequest type or
+         a IO type. Required.
+        :type parameters: ~azure.mgmt.spheremsrest.models.ListDeviceGroupsRequest or IO
         :keyword filter: Filter the result list using the given expression. Default value is None.
         :paramtype filter: str
         :keyword top: The number of result items to return. Default value is None.
@@ -1239,6 +1245,7 @@ class CatalogsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[_models.DeviceGroupListResult] = kwargs.pop("cls", None)
 
         error_map = {
@@ -1251,10 +1258,10 @@ class CatalogsOperations:
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(list_device_groups_request, (IOBase, bytes)):
-            _content = list_device_groups_request
+        if isinstance(parameters, (IOBase, bytes)):
+            _content = parameters
         else:
-            _json = self._serialize.body(list_device_groups_request, "ListDeviceGroupsRequest")
+            _json = self._serialize.body(parameters, "ListDeviceGroupsRequest")
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -1266,6 +1273,7 @@ class CatalogsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     content_type=content_type,
                     api_version=self._config.api_version,
                     json=_json,
@@ -1435,6 +1443,7 @@ class ImagesOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[_models.ImageListResult] = kwargs.pop("cls", None)
 
         error_map = {
@@ -1455,6 +1464,7 @@ class ImagesOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -1788,6 +1798,7 @@ class DeviceGroupsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[_models.DeviceGroupListResult] = kwargs.pop("cls", None)
 
         error_map = {
@@ -1809,6 +1820,7 @@ class DeviceGroupsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -2703,6 +2715,7 @@ class CertificatesOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[_models.CertificateListResult] = kwargs.pop("cls", None)
 
         error_map = {
@@ -2723,6 +2736,7 @@ class CertificatesOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -2847,7 +2861,7 @@ class CertificatesOperations:
         resource_group_name: str,
         catalog_name: str,
         serial_number: str,
-        proof_of_possession_nonce_request: _models.ProofOfPossessionNonceRequest,
+        parameters: _models.ProofOfPossessionNonceRequest,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -2862,9 +2876,8 @@ class CertificatesOperations:
         :param serial_number: Serial number of the certificate. Use '.default' to get current active
          certificate. Required.
         :type serial_number: str
-        :param proof_of_possession_nonce_request: Proof of possession nonce request body. Required.
-        :type proof_of_possession_nonce_request:
-         ~azure.mgmt.spheremsrest.models.ProofOfPossessionNonceRequest
+        :param parameters: Proof of possession nonce request body. Required.
+        :type parameters: ~azure.mgmt.spheremsrest.models.ProofOfPossessionNonceRequest
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2881,7 +2894,7 @@ class CertificatesOperations:
         resource_group_name: str,
         catalog_name: str,
         serial_number: str,
-        proof_of_possession_nonce_request: IO,
+        parameters: IO,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -2896,8 +2909,8 @@ class CertificatesOperations:
         :param serial_number: Serial number of the certificate. Use '.default' to get current active
          certificate. Required.
         :type serial_number: str
-        :param proof_of_possession_nonce_request: Proof of possession nonce request body. Required.
-        :type proof_of_possession_nonce_request: IO
+        :param parameters: Proof of possession nonce request body. Required.
+        :type parameters: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2914,7 +2927,7 @@ class CertificatesOperations:
         resource_group_name: str,
         catalog_name: str,
         serial_number: str,
-        proof_of_possession_nonce_request: Union[_models.ProofOfPossessionNonceRequest, IO],
+        parameters: Union[_models.ProofOfPossessionNonceRequest, IO],
         **kwargs: Any
     ) -> _models.ProofOfPossessionNonceResponse:
         """Gets the proof of possession nonce.
@@ -2927,10 +2940,9 @@ class CertificatesOperations:
         :param serial_number: Serial number of the certificate. Use '.default' to get current active
          certificate. Required.
         :type serial_number: str
-        :param proof_of_possession_nonce_request: Proof of possession nonce request body. Is either a
+        :param parameters: Proof of possession nonce request body. Is either a
          ProofOfPossessionNonceRequest type or a IO type. Required.
-        :type proof_of_possession_nonce_request:
-         ~azure.mgmt.spheremsrest.models.ProofOfPossessionNonceRequest or IO
+        :type parameters: ~azure.mgmt.spheremsrest.models.ProofOfPossessionNonceRequest or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -2957,10 +2969,10 @@ class CertificatesOperations:
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(proof_of_possession_nonce_request, (IOBase, bytes)):
-            _content = proof_of_possession_nonce_request
+        if isinstance(parameters, (IOBase, bytes)):
+            _content = parameters
         else:
-            _json = self._serialize.body(proof_of_possession_nonce_request, "ProofOfPossessionNonceRequest")
+            _json = self._serialize.body(parameters, "ProofOfPossessionNonceRequest")
 
         request = build_certificates_retrieve_proof_of_possession_nonce_request(
             resource_group_name=resource_group_name,
@@ -3139,6 +3151,7 @@ class DeploymentsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[_models.DeploymentListResult] = kwargs.pop("cls", None)
 
         error_map = {
@@ -3161,6 +3174,7 @@ class DeploymentsOperations:
                     filter=filter,
                     top=top,
                     skip=skip,
+                    maxpagesize=maxpagesize,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -4126,7 +4140,7 @@ class DevicesOperations:
         product_name: str,
         device_group_name: str,
         device_name: str,
-        generate_device_capability_request: _models.GenerateCapabilityImageRequest,
+        parameters: _models.GenerateCapabilityImageRequest,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -4146,9 +4160,8 @@ class DevicesOperations:
         :type device_group_name: str
         :param device_name: Device name. Required.
         :type device_name: str
-        :param generate_device_capability_request: Generate capability image request body. Required.
-        :type generate_device_capability_request:
-         ~azure.mgmt.spheremsrest.models.GenerateCapabilityImageRequest
+        :param parameters: Generate capability image request body. Required.
+        :type parameters: ~azure.mgmt.spheremsrest.models.GenerateCapabilityImageRequest
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4167,7 +4180,7 @@ class DevicesOperations:
         product_name: str,
         device_group_name: str,
         device_name: str,
-        generate_device_capability_request: IO,
+        parameters: IO,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -4187,8 +4200,8 @@ class DevicesOperations:
         :type device_group_name: str
         :param device_name: Device name. Required.
         :type device_name: str
-        :param generate_device_capability_request: Generate capability image request body. Required.
-        :type generate_device_capability_request: IO
+        :param parameters: Generate capability image request body. Required.
+        :type parameters: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -4207,7 +4220,7 @@ class DevicesOperations:
         product_name: str,
         device_group_name: str,
         device_name: str,
-        generate_device_capability_request: Union[_models.GenerateCapabilityImageRequest, IO],
+        parameters: Union[_models.GenerateCapabilityImageRequest, IO],
         **kwargs: Any
     ) -> Optional[_models.SignedCapabilityImageResponse]:
         """Generates the capability image for the device. Use '.unassigned' or '.default' for the device
@@ -4225,10 +4238,9 @@ class DevicesOperations:
         :type device_group_name: str
         :param device_name: Device name. Required.
         :type device_name: str
-        :param generate_device_capability_request: Generate capability image request body. Is either a
+        :param parameters: Generate capability image request body. Is either a
          GenerateCapabilityImageRequest type or a IO type. Required.
-        :type generate_device_capability_request:
-         ~azure.mgmt.spheremsrest.models.GenerateCapabilityImageRequest or IO
+        :type parameters: ~azure.mgmt.spheremsrest.models.GenerateCapabilityImageRequest or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -4255,10 +4267,10 @@ class DevicesOperations:
         content_type = content_type or "application/json"
         _json = None
         _content = None
-        if isinstance(generate_device_capability_request, (IOBase, bytes)):
-            _content = generate_device_capability_request
+        if isinstance(parameters, (IOBase, bytes)):
+            _content = parameters
         else:
-            _json = self._serialize.body(generate_device_capability_request, "GenerateCapabilityImageRequest")
+            _json = self._serialize.body(parameters, "GenerateCapabilityImageRequest")
 
         request = build_devices_generate_capability_image_request(
             resource_group_name=resource_group_name,

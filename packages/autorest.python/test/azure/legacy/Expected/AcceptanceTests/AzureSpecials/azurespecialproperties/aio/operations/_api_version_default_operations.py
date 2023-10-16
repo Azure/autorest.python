@@ -80,7 +80,6 @@ class ApiVersionDefaultOperations:
 
         request = build_get_method_global_valid_request(
             api_version=api_version,
-            template_url=self.get_method_global_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -101,10 +100,6 @@ class ApiVersionDefaultOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_method_global_valid.metadata = {
-        "url": "/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview"
-    }
 
     @distributed_trace_async
     async def get_method_global_not_provided_valid(  # pylint: disable=inconsistent-return-statements
@@ -133,7 +128,6 @@ class ApiVersionDefaultOperations:
 
         request = build_get_method_global_not_provided_valid_request(
             api_version=api_version,
-            template_url=self.get_method_global_not_provided_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -154,10 +148,6 @@ class ApiVersionDefaultOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_method_global_not_provided_valid.metadata = {
-        "url": "/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview"
-    }
 
     @distributed_trace_async
     async def get_path_global_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -184,7 +174,6 @@ class ApiVersionDefaultOperations:
 
         request = build_get_path_global_valid_request(
             api_version=api_version,
-            template_url=self.get_path_global_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -205,10 +194,6 @@ class ApiVersionDefaultOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_path_global_valid.metadata = {
-        "url": "/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview"
-    }
 
     @distributed_trace_async
     async def get_swagger_global_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -235,7 +220,6 @@ class ApiVersionDefaultOperations:
 
         request = build_get_swagger_global_valid_request(
             api_version=api_version,
-            template_url=self.get_swagger_global_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -256,7 +240,3 @@ class ApiVersionDefaultOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_swagger_global_valid.metadata = {
-        "url": "/azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview"
-    }

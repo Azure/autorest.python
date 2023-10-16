@@ -621,7 +621,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         request = build_get_boolean_true_request(
             bool_path=bool_path,
-            template_url=self.get_boolean_true.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -642,8 +641,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_boolean_true.metadata = {"url": "/paths/bool/true/{boolPath}"}
 
     @distributed_trace
     def get_boolean_false(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -673,7 +670,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         request = build_get_boolean_false_request(
             bool_path=bool_path,
-            template_url=self.get_boolean_false.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -694,8 +690,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_boolean_false.metadata = {"url": "/paths/bool/false/{boolPath}"}
 
     @distributed_trace
     def get_int_one_million(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -725,7 +719,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         request = build_get_int_one_million_request(
             int_path=int_path,
-            template_url=self.get_int_one_million.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -746,8 +739,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_int_one_million.metadata = {"url": "/paths/int/1000000/{intPath}"}
 
     @distributed_trace
     def get_int_negative_one_million(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -777,7 +768,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         request = build_get_int_negative_one_million_request(
             int_path=int_path,
-            template_url=self.get_int_negative_one_million.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -798,8 +788,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_int_negative_one_million.metadata = {"url": "/paths/int/-1000000/{intPath}"}
 
     @distributed_trace
     def get_ten_billion(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -829,7 +817,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         request = build_get_ten_billion_request(
             long_path=long_path,
-            template_url=self.get_ten_billion.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -850,8 +837,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_ten_billion.metadata = {"url": "/paths/long/10000000000/{longPath}"}
 
     @distributed_trace
     def get_negative_ten_billion(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -881,7 +866,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         request = build_get_negative_ten_billion_request(
             long_path=long_path,
-            template_url=self.get_negative_ten_billion.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -902,8 +886,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    get_negative_ten_billion.metadata = {"url": "/paths/long/-10000000000/{longPath}"}
 
     @distributed_trace
     def float_scientific_positive(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -933,7 +915,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         request = build_float_scientific_positive_request(
             float_path=float_path,
-            template_url=self.float_scientific_positive.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -954,8 +935,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    float_scientific_positive.metadata = {"url": "/paths/float/1.034E+20/{floatPath}"}
 
     @distributed_trace
     def float_scientific_negative(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -985,7 +964,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         request = build_float_scientific_negative_request(
             float_path=float_path,
-            template_url=self.float_scientific_negative.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1006,8 +984,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    float_scientific_negative.metadata = {"url": "/paths/float/-1.034E-20/{floatPath}"}
 
     @distributed_trace
     def double_decimal_positive(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1037,7 +1013,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         request = build_double_decimal_positive_request(
             double_path=double_path,
-            template_url=self.double_decimal_positive.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1058,8 +1033,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    double_decimal_positive.metadata = {"url": "/paths/double/9999999.999/{doublePath}"}
 
     @distributed_trace
     def double_decimal_negative(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1089,7 +1062,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         request = build_double_decimal_negative_request(
             double_path=double_path,
-            template_url=self.double_decimal_negative.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1110,8 +1082,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    double_decimal_negative.metadata = {"url": "/paths/double/-9999999.999/{doublePath}"}
 
     @distributed_trace
     def string_unicode(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1141,7 +1111,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         request = build_string_unicode_request(
             string_path=string_path,
-            template_url=self.string_unicode.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1162,8 +1131,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    string_unicode.metadata = {"url": "/paths/string/unicode/{stringPath}"}
 
     @distributed_trace
     def string_url_encoded(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1194,7 +1161,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         request = build_string_url_encoded_request(
             string_path=string_path,
-            template_url=self.string_url_encoded.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1215,10 +1181,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    string_url_encoded.metadata = {
-        "url": "/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}"
-    }
 
     @distributed_trace
     def string_url_non_encoded(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1251,7 +1213,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         request = build_string_url_non_encoded_request(
             string_path=string_path,
-            template_url=self.string_url_non_encoded.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1272,8 +1233,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    string_url_non_encoded.metadata = {"url": "/paths/string/begin!*'();:@&=+$,end/{stringPath}"}
 
     @distributed_trace
     def string_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1303,7 +1262,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         request = build_string_empty_request(
             string_path=string_path,
-            template_url=self.string_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1324,8 +1282,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    string_empty.metadata = {"url": "/paths/string/empty/{stringPath}"}
 
     @distributed_trace
     def string_null(self, string_path: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1353,7 +1309,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         request = build_string_null_request(
             string_path=string_path,
-            template_url=self.string_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1374,8 +1329,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    string_null.metadata = {"url": "/paths/string/null/{stringPath}"}
 
     @distributed_trace
     def enum_valid(  # pylint: disable=inconsistent-return-statements
@@ -1406,7 +1359,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         request = build_enum_valid_request(
             enum_path=enum_path,
-            template_url=self.enum_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1427,8 +1379,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    enum_valid.metadata = {"url": "/paths/enum/green%20color/{enumPath}"}
 
     @distributed_trace
     def enum_null(  # pylint: disable=inconsistent-return-statements
@@ -1459,7 +1409,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         request = build_enum_null_request(
             enum_path=enum_path,
-            template_url=self.enum_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1480,8 +1429,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    enum_null.metadata = {"url": "/paths/string/null/{enumPath}"}
 
     @distributed_trace
     def byte_multi_byte(  # pylint: disable=inconsistent-return-statements
@@ -1511,7 +1458,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         request = build_byte_multi_byte_request(
             byte_path=byte_path,
-            template_url=self.byte_multi_byte.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1532,8 +1478,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    byte_multi_byte.metadata = {"url": "/paths/byte/multibyte/{bytePath}"}
 
     @distributed_trace
     def byte_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1563,7 +1507,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         request = build_byte_empty_request(
             byte_path=byte_path,
-            template_url=self.byte_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1584,8 +1527,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    byte_empty.metadata = {"url": "/paths/byte/empty/{bytePath}"}
 
     @distributed_trace
     def byte_null(self, byte_path: bytes, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1613,7 +1554,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         request = build_byte_null_request(
             byte_path=byte_path,
-            template_url=self.byte_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1634,8 +1574,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    byte_null.metadata = {"url": "/paths/byte/null/{bytePath}"}
 
     @distributed_trace
     def date_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1665,7 +1603,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         request = build_date_valid_request(
             date_path=date_path,
-            template_url=self.date_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1686,8 +1623,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    date_valid.metadata = {"url": "/paths/date/2012-01-01/{datePath}"}
 
     @distributed_trace
     def date_null(  # pylint: disable=inconsistent-return-statements
@@ -1718,7 +1653,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         request = build_date_null_request(
             date_path=date_path,
-            template_url=self.date_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1739,8 +1673,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    date_null.metadata = {"url": "/paths/date/null/{datePath}"}
 
     @distributed_trace
     def date_time_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1771,7 +1703,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         request = build_date_time_valid_request(
             date_time_path=date_time_path,
-            template_url=self.date_time_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1792,8 +1723,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    date_time_valid.metadata = {"url": "/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}"}
 
     @distributed_trace
     def date_time_null(  # pylint: disable=inconsistent-return-statements
@@ -1823,7 +1752,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         request = build_date_time_null_request(
             date_time_path=date_time_path,
-            template_url=self.date_time_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1844,8 +1772,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    date_time_null.metadata = {"url": "/paths/datetime/null/{dateTimePath}"}
 
     @distributed_trace
     def base64_url(  # pylint: disable=inconsistent-return-statements
@@ -1875,7 +1801,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         request = build_base64_url_request(
             base64_url_path=base64_url_path,
-            template_url=self.base64_url.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1896,8 +1821,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    base64_url.metadata = {"url": "/paths/string/bG9yZW0/{base64UrlPath}"}
 
     @distributed_trace
     def array_csv_in_path(  # pylint: disable=inconsistent-return-statements
@@ -1929,7 +1852,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         request = build_array_csv_in_path_request(
             array_path=array_path,
-            template_url=self.array_csv_in_path.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -1950,10 +1872,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    array_csv_in_path.metadata = {
-        "url": "/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}"
-    }
 
     @distributed_trace
     def unix_time_url(  # pylint: disable=inconsistent-return-statements
@@ -1983,7 +1901,6 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         request = build_unix_time_url_request(
             unix_time_url_path=unix_time_url_path,
-            template_url=self.unix_time_url.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -2004,5 +1921,3 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    unix_time_url.metadata = {"url": "/paths/int/1460505600/{unixTimeUrlPath}"}

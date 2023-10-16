@@ -54,7 +54,6 @@ class ClientWithEnumOperationsMixin(ClientWithEnumMixinABC):
 
         request = build_head_request(
             x_ms_enum=self._config.x_ms_enum,
-            template_url=self.head.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -74,5 +73,3 @@ class ClientWithEnumOperationsMixin(ClientWithEnumMixinABC):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    head.metadata = {"url": "/clientEnum/head"}

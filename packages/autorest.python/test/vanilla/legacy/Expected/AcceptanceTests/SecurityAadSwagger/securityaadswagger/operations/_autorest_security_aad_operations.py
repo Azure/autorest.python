@@ -62,7 +62,6 @@ class AutorestSecurityAadOperationsMixin(AutorestSecurityAadMixinABC):
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         request = build_head_request(
-            template_url=self.head.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -82,5 +81,3 @@ class AutorestSecurityAadOperationsMixin(AutorestSecurityAadMixinABC):
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    head.metadata = {"url": "/securityaad"}

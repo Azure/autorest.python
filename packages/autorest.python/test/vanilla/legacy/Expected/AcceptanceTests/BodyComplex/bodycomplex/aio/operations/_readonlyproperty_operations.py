@@ -72,7 +72,6 @@ class ReadonlypropertyOperations:
         cls: ClsType[_models.ReadonlyObj] = kwargs.pop("cls", None)
 
         request = build_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -97,8 +96,6 @@ class ReadonlypropertyOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_valid.metadata = {"url": "/complex/readonlyproperty/valid"}
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
@@ -133,7 +130,6 @@ class ReadonlypropertyOperations:
         request = build_put_valid_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -154,5 +150,3 @@ class ReadonlypropertyOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_valid.metadata = {"url": "/complex/readonlyproperty/valid"}

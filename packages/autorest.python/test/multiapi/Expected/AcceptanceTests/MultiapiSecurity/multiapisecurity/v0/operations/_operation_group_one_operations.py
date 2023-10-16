@@ -97,7 +97,6 @@ class OperationGroupOneOperations:
 
         request = build_test_two_request(
             api_version=api_version,
-            template_url=self.test_two.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -118,5 +117,3 @@ class OperationGroupOneOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    test_two.metadata = {"url": "/multiapi/one/testTwoEndpoint"}

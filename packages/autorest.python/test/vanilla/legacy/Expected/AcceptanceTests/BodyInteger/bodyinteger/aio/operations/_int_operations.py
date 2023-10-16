@@ -88,7 +88,6 @@ class IntOperations:
         cls: ClsType[Optional[int]] = kwargs.pop("cls", None)
 
         request = build_get_null_request(
-            template_url=self.get_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -113,8 +112,6 @@ class IntOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null.metadata = {"url": "/int/null"}
 
     @distributed_trace_async
     async def get_invalid(self, **kwargs: Any) -> int:
@@ -139,7 +136,6 @@ class IntOperations:
         cls: ClsType[int] = kwargs.pop("cls", None)
 
         request = build_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -164,8 +160,6 @@ class IntOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid.metadata = {"url": "/int/invalid"}
 
     @distributed_trace_async
     async def get_overflow_int32(self, **kwargs: Any) -> int:
@@ -190,7 +184,6 @@ class IntOperations:
         cls: ClsType[int] = kwargs.pop("cls", None)
 
         request = build_get_overflow_int32_request(
-            template_url=self.get_overflow_int32.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -215,8 +208,6 @@ class IntOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_overflow_int32.metadata = {"url": "/int/overflowint32"}
 
     @distributed_trace_async
     async def get_underflow_int32(self, **kwargs: Any) -> int:
@@ -241,7 +232,6 @@ class IntOperations:
         cls: ClsType[int] = kwargs.pop("cls", None)
 
         request = build_get_underflow_int32_request(
-            template_url=self.get_underflow_int32.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -266,8 +256,6 @@ class IntOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_underflow_int32.metadata = {"url": "/int/underflowint32"}
 
     @distributed_trace_async
     async def get_overflow_int64(self, **kwargs: Any) -> int:
@@ -292,7 +280,6 @@ class IntOperations:
         cls: ClsType[int] = kwargs.pop("cls", None)
 
         request = build_get_overflow_int64_request(
-            template_url=self.get_overflow_int64.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -317,8 +304,6 @@ class IntOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_overflow_int64.metadata = {"url": "/int/overflowint64"}
 
     @distributed_trace_async
     async def get_underflow_int64(self, **kwargs: Any) -> int:
@@ -343,7 +328,6 @@ class IntOperations:
         cls: ClsType[int] = kwargs.pop("cls", None)
 
         request = build_get_underflow_int64_request(
-            template_url=self.get_underflow_int64.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -368,8 +352,6 @@ class IntOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_underflow_int64.metadata = {"url": "/int/underflowint64"}
 
     @distributed_trace_async
     async def put_max32(self, int_body: int, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -401,7 +383,6 @@ class IntOperations:
         request = build_put_max32_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_max32.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -422,8 +403,6 @@ class IntOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_max32.metadata = {"url": "/int/max/32"}
 
     @distributed_trace_async
     async def put_max64(self, int_body: int, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -455,7 +434,6 @@ class IntOperations:
         request = build_put_max64_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_max64.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -476,8 +454,6 @@ class IntOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_max64.metadata = {"url": "/int/max/64"}
 
     @distributed_trace_async
     async def put_min32(self, int_body: int, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -509,7 +485,6 @@ class IntOperations:
         request = build_put_min32_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_min32.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -530,8 +505,6 @@ class IntOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_min32.metadata = {"url": "/int/min/32"}
 
     @distributed_trace_async
     async def put_min64(self, int_body: int, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -563,7 +536,6 @@ class IntOperations:
         request = build_put_min64_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_min64.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -584,8 +556,6 @@ class IntOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_min64.metadata = {"url": "/int/min/64"}
 
     @distributed_trace_async
     async def get_unix_time(self, **kwargs: Any) -> datetime.datetime:
@@ -610,7 +580,6 @@ class IntOperations:
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
         request = build_get_unix_time_request(
-            template_url=self.get_unix_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -635,8 +604,6 @@ class IntOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_unix_time.metadata = {"url": "/int/unixtime"}
 
     @distributed_trace_async
     async def put_unix_time_date(  # pylint: disable=inconsistent-return-statements
@@ -670,7 +637,6 @@ class IntOperations:
         request = build_put_unix_time_date_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put_unix_time_date.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -691,8 +657,6 @@ class IntOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_unix_time_date.metadata = {"url": "/int/unixtime"}
 
     @distributed_trace_async
     async def get_invalid_unix_time(self, **kwargs: Any) -> datetime.datetime:
@@ -717,7 +681,6 @@ class IntOperations:
         cls: ClsType[datetime.datetime] = kwargs.pop("cls", None)
 
         request = build_get_invalid_unix_time_request(
-            template_url=self.get_invalid_unix_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -742,8 +705,6 @@ class IntOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid_unix_time.metadata = {"url": "/int/invalidunixtime"}
 
     @distributed_trace_async
     async def get_null_unix_time(self, **kwargs: Any) -> Optional[datetime.datetime]:
@@ -768,7 +729,6 @@ class IntOperations:
         cls: ClsType[Optional[datetime.datetime]] = kwargs.pop("cls", None)
 
         request = build_get_null_unix_time_request(
-            template_url=self.get_null_unix_time.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -793,5 +753,3 @@ class IntOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null_unix_time.metadata = {"url": "/int/nullunixtime"}

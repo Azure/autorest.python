@@ -25,21 +25,10 @@
 # --------------------------------------------------------------------------
 
 from async_generator import yield_, async_generator
-import unittest
-import subprocess
-import sys
-import isodate
-import tempfile
-import json
-from uuid import uuid4
-from datetime import date, datetime, timedelta
-import os
-from os.path import dirname, pardir, join, realpath
 
-from msrest.exceptions import DeserializationError, ValidationError
+from msrest.exceptions import ValidationError
 
 from azureparametergrouping.aio import AutoRestParameterGroupingTestService
-from subscriptionidapiversion.aio import MicrosoftAzureTestUrl
 from azurespecialproperties.aio import AutoRestAzureSpecialParametersTestClient
 
 import pytest

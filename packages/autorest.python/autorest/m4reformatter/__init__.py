@@ -232,11 +232,11 @@ def update_primitive(  # pylint: disable=too-many-return-statements
         return KNOWN_TYPES["binary"]
     if type_group == "date-time":
         base = _update_type_base("datetime", yaml_data)
-        base["format"] = yaml_data["format"]
+        base["encode"] = yaml_data["format"]
         return base
     if type_group == "byte-array":
         base = _update_type_base("bytes", yaml_data)
-        base["format"] = yaml_data["format"]
+        base["encode"] = yaml_data["format"]
         return base
     return _update_type_base(type_group, yaml_data)
 
@@ -1126,10 +1126,7 @@ class M4Reformatter(
             "skipUrlEncoding": True,
             "inOverload": False,
         }
-        if self.version_tolerant:
-            parameters.append(credential)
-        else:
-            parameters.insert(0, credential)
+        parameters.append(credential)
 
     def update_client(self, yaml_data: Dict[str, Any]) -> Dict[str, Any]:
         parameters = self.update_global_parameters(

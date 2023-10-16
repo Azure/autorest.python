@@ -48,7 +48,7 @@ class CertificateStatus(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Certificate has been revoked"""
 
 
-class createdByType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class CreatedByType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """The kind of entity that created the resource."""
 
     USER = "User"

@@ -84,7 +84,6 @@ class SubscriptionInMethodOperations:
 
         request = build_post_method_local_valid_request(
             subscription_id=subscription_id,
-            template_url=self.post_method_local_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -105,10 +104,6 @@ class SubscriptionInMethodOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_method_local_valid.metadata = {
-        "url": "/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"
-    }
 
     @distributed_trace_async
     async def post_method_local_null(  # pylint: disable=inconsistent-return-statements
@@ -140,7 +135,6 @@ class SubscriptionInMethodOperations:
 
         request = build_post_method_local_null_request(
             subscription_id=subscription_id,
-            template_url=self.post_method_local_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -161,10 +155,6 @@ class SubscriptionInMethodOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_method_local_null.metadata = {
-        "url": "/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}"
-    }
 
     @distributed_trace_async
     async def post_path_local_valid(  # pylint: disable=inconsistent-return-statements
@@ -196,7 +186,6 @@ class SubscriptionInMethodOperations:
 
         request = build_post_path_local_valid_request(
             subscription_id=subscription_id,
-            template_url=self.post_path_local_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -217,10 +206,6 @@ class SubscriptionInMethodOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_path_local_valid.metadata = {
-        "url": "/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"
-    }
 
     @distributed_trace_async
     async def post_swagger_local_valid(  # pylint: disable=inconsistent-return-statements
@@ -252,7 +237,6 @@ class SubscriptionInMethodOperations:
 
         request = build_post_swagger_local_valid_request(
             subscription_id=subscription_id,
-            template_url=self.post_swagger_local_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -273,7 +257,3 @@ class SubscriptionInMethodOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    post_swagger_local_valid.metadata = {
-        "url": "/azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}"
-    }

@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from _specs_.azure.clientgenerator.core.internal import InternalClient
+from specs.azure.clientgenerator.core.internal import InternalClient
 
 
 @pytest.fixture
@@ -34,13 +34,13 @@ def test_shared_internal(client: InternalClient):
 
 
 def test_visibility(client: InternalClient):
-    from _specs_.azure.clientgenerator.core.internal.models import (
+    from specs.azure.clientgenerator.core.internal.models import (
         PublicModel,
         SharedModel,
     )
 
     with pytest.raises(ImportError):
-        from _specs_.azure.clientgenerator.core.internal.models import InternalModel
+        from specs.azure.clientgenerator.core.internal.models import InternalModel
 
     with pytest.raises(AttributeError):
         client.internal_only(name="test")

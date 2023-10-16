@@ -8,31 +8,36 @@
 
 from typing import Any, Union
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from .. import models as _models
 from .._version import VERSION
 
 
-class TwoOperationGroupClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes,name-too-long
+class TwoOperationGroupClientConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for TwoOperationGroupClient.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param client: Known values are: "default", "multi-client", "renamed-operation", and
-     "two-operation-group". Required.
+    :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
+    :type endpoint: str
+    :param client: Need to be set as 'default', 'multi-client', 'renamed-operation',
+     'two-operation-group' in client. Known values are: "default", "multi-client",
+     "renamed-operation", and "two-operation-group". Required.
     :type client: str or ~client.structure.twooperationgroup.models.ClientType
     """
 
-    def __init__(self, client: Union[str, _models.ClientType], **kwargs: Any) -> None:
-        super(TwoOperationGroupClientConfiguration, self).__init__(**kwargs)
+    def __init__(self, endpoint: str, client: Union[str, _models.ClientType], **kwargs: Any) -> None:
+        if endpoint is None:
+            raise ValueError("Parameter 'endpoint' must not be None.")
         if client is None:
             raise ValueError("Parameter 'client' must not be None.")
 
+        self.endpoint = endpoint
         self.client = client
         kwargs.setdefault("sdk_moniker", "client-structure-twooperationgroup/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

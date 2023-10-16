@@ -115,7 +115,6 @@ class IntOperations:
         request = build_put_request(
             content_type=content_type,
             json=_json,
-            template_url=self.put.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -140,8 +139,6 @@ class IntOperations:
 
         return deserialized
 
-    put.metadata = {"url": "/nonStringEnums/int/put"}
-
     @distributed_trace
     def get(self, **kwargs: Any) -> Union[int, _models.IntEnum]:
         """Get an int enum.
@@ -165,7 +162,6 @@ class IntOperations:
         cls: ClsType[Union[int, _models.IntEnum]] = kwargs.pop("cls", None)
 
         request = build_get_request(
-            template_url=self.get.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -189,5 +185,3 @@ class IntOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get.metadata = {"url": "/nonStringEnums/int/get"}

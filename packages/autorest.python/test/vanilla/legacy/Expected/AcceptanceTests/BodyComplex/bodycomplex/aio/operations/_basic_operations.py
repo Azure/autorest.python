@@ -80,7 +80,6 @@ class BasicOperations:
         cls: ClsType[_models.Basic] = kwargs.pop("cls", None)
 
         request = build_get_valid_request(
-            template_url=self.get_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -105,8 +104,6 @@ class BasicOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_valid.metadata = {"url": "/complex/basic/valid"}
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
@@ -187,7 +184,6 @@ class BasicOperations:
             content_type=content_type,
             json=_json,
             content=_content,
-            template_url=self.put_valid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -208,8 +204,6 @@ class BasicOperations:
 
         if cls:
             return cls(pipeline_response, None, {})
-
-    put_valid.metadata = {"url": "/complex/basic/valid"}
 
     @distributed_trace_async
     async def get_invalid(self, **kwargs: Any) -> _models.Basic:
@@ -234,7 +228,6 @@ class BasicOperations:
         cls: ClsType[_models.Basic] = kwargs.pop("cls", None)
 
         request = build_get_invalid_request(
-            template_url=self.get_invalid.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -259,8 +252,6 @@ class BasicOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_invalid.metadata = {"url": "/complex/basic/invalid"}
 
     @distributed_trace_async
     async def get_empty(self, **kwargs: Any) -> _models.Basic:
@@ -285,7 +276,6 @@ class BasicOperations:
         cls: ClsType[_models.Basic] = kwargs.pop("cls", None)
 
         request = build_get_empty_request(
-            template_url=self.get_empty.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -310,8 +300,6 @@ class BasicOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_empty.metadata = {"url": "/complex/basic/empty"}
 
     @distributed_trace_async
     async def get_null(self, **kwargs: Any) -> _models.Basic:
@@ -336,7 +324,6 @@ class BasicOperations:
         cls: ClsType[_models.Basic] = kwargs.pop("cls", None)
 
         request = build_get_null_request(
-            template_url=self.get_null.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -361,8 +348,6 @@ class BasicOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_null.metadata = {"url": "/complex/basic/null"}
 
     @distributed_trace_async
     async def get_not_provided(self, **kwargs: Any) -> _models.Basic:
@@ -387,7 +372,6 @@ class BasicOperations:
         cls: ClsType[_models.Basic] = kwargs.pop("cls", None)
 
         request = build_get_not_provided_request(
-            template_url=self.get_not_provided.metadata["url"],
             headers=_headers,
             params=_params,
         )
@@ -412,5 +396,3 @@ class BasicOperations:
             return cls(pipeline_response, deserialized, {})
 
         return deserialized
-
-    get_not_provided.metadata = {"url": "/complex/basic/notprovided"}

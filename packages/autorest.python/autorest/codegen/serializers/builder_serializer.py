@@ -32,6 +32,7 @@ from ..models import (
     RequestBuilderType,
     CombinedType,
     ParameterListType,
+    ByteArraySchema,
 )
 from .parameter_serializer import ParameterSerializer, PopKwargType
 from ..models.parameter_list import ParameterType
@@ -332,7 +333,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
     def param_description(self, builder: BuilderType) -> List[str]:
         description_list: List[str] = []
         for param in builder.parameters.method:
-            if not param.in_docstring:
+            if not param.in_docstring or param.hide_in_operation_signature:
                 continue
             description_list.extend(
                 f":{param.description_keyword} {param.client_name}: {param.description}".replace(
@@ -700,6 +701,9 @@ class _OperationSerializer(
             check_client_input=not self.code_model.options["multiapi"],
             operation_name=f"('{builder.name}')" if builder.group_name == "" else "",
         )
+        for p in builder.parameters.parameters:
+            if p.hide_in_operation_signature:
+                kwargs.append(f'{p.client_name} = kwargs.pop("{p.client_name}", None)')
         cls_annotation = builder.cls_type_annotation(async_mode=self.async_mode)
         pylint_disable = ""
         if any(x.startswith("_") for x in cls_annotation.split(".")):
@@ -749,10 +753,17 @@ class _OperationSerializer(
                 f"'{body_param.type.serialization_type}'{is_xml_cmd}{serialization_ctxt_cmd})"
             )
         elif self.code_model.options["models_mode"] == "dpg":
-            create_body_call = (
-                f"_{body_kwarg_name} = json.dumps({body_param.client_name}, "
-                "cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore"
-            )
+            if hasattr(body_param.type, "encode") and body_param.type.encode:  # type: ignore
+                create_body_call = (
+                    f"_{body_kwarg_name} = json.dumps({body_param.client_name}, "
+                    "cls=AzureJSONEncoder, exclude_readonly=True, "
+                    f"format='{body_param.type.encode}')  # type: ignore"  # type: ignore
+                )
+            else:
+                create_body_call = (
+                    f"_{body_kwarg_name} = json.dumps({body_param.client_name}, "
+                    "cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore"
+                )
         else:
             create_body_call = f"_{body_kwarg_name} = {body_param.client_name}"
         if body_param.optional:
@@ -774,7 +785,11 @@ class _OperationSerializer(
         if hasattr(body_param, "entries"):
             return _serialize_multipart_body(builder)
         body_kwarg_name = builder.request_builder.parameters.body_parameter.client_name
-        if isinstance(body_param.type, BinaryType):
+        body_param_type = body_param.type
+        if isinstance(body_param_type, BinaryType) or (
+            isinstance(body_param.type, ByteArraySchema)
+            and body_param.default_content_type != "application/json"
+        ):
             retval.append(f"_{body_kwarg_name} = {body_param.client_name}")
             if (
                 not body_param.default_content_type
@@ -889,7 +904,6 @@ class _OperationSerializer(
         self,
         builder: OperationType,
         request_builder: RequestBuilderType,
-        template_url: Optional[str] = None,
         is_next_request: bool = False,
     ) -> List[str]:
         retval: List[str] = []
@@ -949,9 +963,6 @@ class _OperationSerializer(
             retval.append(
                 f"    {body_param.client_name}={body_param.name_in_high_level_operation},"
             )
-        if not self.code_model.options["version_tolerant"]:
-            template_url = template_url or f"self.{builder.name}.metadata['url']"
-            retval.append(f"    template_url={template_url},")
         retval.append("    headers=_headers,")
         retval.append("    params=_params,")
         retval.append(")")
@@ -1011,9 +1022,7 @@ class _OperationSerializer(
             retval.extend(self._create_body_parameter(builder))
         retval.append("")
         retval.extend(
-            self._create_request_builder_call(
-                builder, request_builder, template_url, is_next_request
-            )
+            self._create_request_builder_call(builder, request_builder, is_next_request)
         )
         retval.extend(self._postprocess_http_request(builder, template_url))
         return retval
@@ -1275,11 +1284,6 @@ class _OperationSerializer(
         retval.append("error_map.update(kwargs.pop('error_map', {}) or {})")
         return retval
 
-    @staticmethod
-    def get_metadata_url(builder: OperationType) -> str:
-        url = _escape_str(builder.request_builder.url)
-        return f"{builder.name}.metadata = {{'url': {url}}}"
-
     @property
     def _call_method(self) -> str:
         return "await " if self.async_mode else ""
@@ -1326,11 +1330,7 @@ class _PagingOperationSerializer(
     def call_next_link_request_builder(self, builder: PagingOperationType) -> List[str]:
         if builder.next_request_builder:
             request_builder = builder.next_request_builder
-            template_url = (
-                None
-                if self.code_model.options["version_tolerant"]
-                else f"'{request_builder.url}'"
-            )
+            template_url = None
         else:
             request_builder = builder.request_builder
             template_url = "next_link"
