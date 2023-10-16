@@ -35,7 +35,7 @@ import {
     SdkContext,
     getLibraryName,
     getAllModels,
-    isInternal, // tslint:disable-line: deprecation
+    isInternal,
     getPropertyNames,
     getEffectivePayloadType,
     getAccess,
@@ -679,7 +679,7 @@ function emitBasicOperation(
             wantTracing: true,
             exposeStreamKeyword: true,
             abstract: isAbstract(httpOperation),
-            internal: isInternal(context, operation) || getAccess(context, operation) === "internal", // tslint:disable-line: deprecation
+            internal: isInternal(context, operation) || getAccess(context, operation) === "internal", // eslint-disable-line deprecation/deprecation
         },
     ];
 }
