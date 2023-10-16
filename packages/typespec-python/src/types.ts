@@ -101,7 +101,7 @@ export function getType(
         case "etag":
             return emitBuiltInType(type);
         case "any":
-            return { type: "any" };
+            return KnownTypes.any;
         case "String":
         case "Number":
         case "Boolean":
@@ -357,4 +357,5 @@ export function getConstantType(key: string | null): Record<string, any> {
 export const KnownTypes = {
     string: { type: "string" },
     anyObject: { type: "any-object" },
+    any: { type: "any" },
 };

@@ -249,7 +249,8 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                 )
                 add_redefined_builtin_info(property["clientName"], property)
             if type.get("name"):
-                type["name"] = self.pad_reserved_words(type["name"], PadType.MODEL)
+                name = self.pad_reserved_words(type["name"], PadType.MODEL)
+                type["name"] = name[0].upper() + name[1:]
                 type["description"] = update_description(
                     type.get("description", ""), type["name"]
                 )
