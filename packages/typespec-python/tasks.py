@@ -87,6 +87,9 @@ EMITTER_OPTIONS = {
     "type/property/optionality": {
         "package-name": "typetest-property-optional",
     },
+    "type/scalar": {
+        "package-name": "typetest-scalar",
+    },
     "type/property/value-types": {
         "package-name": "typetest-property-valuetypes",
     },

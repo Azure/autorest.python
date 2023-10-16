@@ -14,15 +14,19 @@ from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
-from ._configuration import InternalClientConfiguration
-from .operations import InternalClientOperationsMixin, SharedOperations
+from ._configuration import ScalarClientConfiguration
+from .operations import BooleanOperations, StringOperations, UnknownOperations
 
 
-class InternalClient(InternalClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
-    """Test for internal decorator.
+class ScalarClient:  # pylint: disable=client-accepts-api-version-keyword
+    """ScalarClient.
 
-    :ivar shared: SharedOperations operations
-    :vartype shared: specs.azure.clientgenerator.core.internal.aio.operations.SharedOperations
+    :ivar string: StringOperations operations
+    :vartype string: typetest.scalar.aio.operations.StringOperations
+    :ivar boolean: BooleanOperations operations
+    :vartype boolean: typetest.scalar.aio.operations.BooleanOperations
+    :ivar unknown: UnknownOperations operations
+    :vartype unknown: typetest.scalar.aio.operations.UnknownOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -30,7 +34,7 @@ class InternalClient(InternalClientOperationsMixin):  # pylint: disable=client-a
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
         self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
-        self._config = InternalClientConfiguration(**kwargs)
+        self._config = ScalarClientConfiguration(**kwargs)
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
@@ -53,7 +57,9 @@ class InternalClient(InternalClientOperationsMixin):  # pylint: disable=client-a
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.shared = SharedOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.string = StringOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.boolean = BooleanOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.unknown = UnknownOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
@@ -80,7 +86,7 @@ class InternalClient(InternalClientOperationsMixin):  # pylint: disable=client-a
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "InternalClient":
+    async def __aenter__(self) -> "ScalarClient":
         await self._client.__aenter__()
         return self
 
