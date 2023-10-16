@@ -13,8 +13,8 @@ from .. import _model_base
 from .._model_base import rest_field
 
 
-class andModel(_model_base.Model):
-    """andModel.
+class AndModel(_model_base.Model):
+    """AndModel.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -44,8 +44,8 @@ class andModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class asModel(_model_base.Model):
-    """asModel.
+class AsModel(_model_base.Model):
+    """AsModel.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -75,8 +75,8 @@ class asModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class assertModel(_model_base.Model):
-    """assertModel.
+class AssertModel(_model_base.Model):
+    """AssertModel.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -106,8 +106,8 @@ class assertModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class asyncModel(_model_base.Model):
-    """asyncModel.
+class AsyncModel(_model_base.Model):
+    """AsyncModel.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -137,8 +137,8 @@ class asyncModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class awaitModel(_model_base.Model):
-    """awaitModel.
+class AwaitModel(_model_base.Model):
+    """AwaitModel.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -168,8 +168,8 @@ class awaitModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class breakModel(_model_base.Model):
-    """breakModel.
+class BreakModel(_model_base.Model):
+    """BreakModel.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -199,8 +199,8 @@ class breakModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class classModel(_model_base.Model):
-    """classModel.
+class ClassModel(_model_base.Model):
+    """ClassModel.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -230,8 +230,8 @@ class classModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class constructor(_model_base.Model):
-    """constructor.
+class Constructor(_model_base.Model):
+    """Constructor.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -261,8 +261,8 @@ class constructor(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class continueModel(_model_base.Model):
-    """continueModel.
+class ContinueModel(_model_base.Model):
+    """ContinueModel.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -292,8 +292,8 @@ class continueModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class defModel(_model_base.Model):
-    """defModel.
+class DefModel(_model_base.Model):
+    """DefModel.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -323,8 +323,8 @@ class defModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class delModel(_model_base.Model):
-    """delModel.
+class DelModel(_model_base.Model):
+    """DelModel.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -354,8 +354,8 @@ class delModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class elifModel(_model_base.Model):
-    """elifModel.
+class ElifModel(_model_base.Model):
+    """ElifModel.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -385,8 +385,8 @@ class elifModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class elseModel(_model_base.Model):
-    """elseModel.
+class ElseModel(_model_base.Model):
+    """ElseModel.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -416,8 +416,8 @@ class elseModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class exceptModel(_model_base.Model):
-    """exceptModel.
+class ExceptModel(_model_base.Model):
+    """ExceptModel.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -447,8 +447,8 @@ class exceptModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class execModel(_model_base.Model):
-    """execModel.
+class ExecModel(_model_base.Model):
+    """ExecModel.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -478,8 +478,8 @@ class execModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class finallyModel(_model_base.Model):
-    """finallyModel.
+class FinallyModel(_model_base.Model):
+    """FinallyModel.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -509,8 +509,8 @@ class finallyModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class forModel(_model_base.Model):
-    """forModel.
+class ForModel(_model_base.Model):
+    """ForModel.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -540,8 +540,8 @@ class forModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class fromModel(_model_base.Model):
-    """fromModel.
+class FromModel(_model_base.Model):
+    """FromModel.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -571,8 +571,8 @@ class fromModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class globalModel(_model_base.Model):
-    """globalModel.
+class GlobalModel(_model_base.Model):
+    """GlobalModel.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -602,8 +602,8 @@ class globalModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ifModel(_model_base.Model):
-    """ifModel.
+class IfModel(_model_base.Model):
+    """IfModel.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -633,8 +633,8 @@ class ifModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class importModel(_model_base.Model):
-    """importModel.
+class ImportModel(_model_base.Model):
+    """ImportModel.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -664,8 +664,8 @@ class importModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class inModel(_model_base.Model):
-    """inModel.
+class InModel(_model_base.Model):
+    """InModel.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -695,8 +695,8 @@ class inModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class isModel(_model_base.Model):
-    """isModel.
+class IsModel(_model_base.Model):
+    """IsModel.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -726,8 +726,8 @@ class isModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class lambdaModel(_model_base.Model):
-    """lambdaModel.
+class LambdaModel(_model_base.Model):
+    """LambdaModel.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -757,8 +757,8 @@ class lambdaModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class notModel(_model_base.Model):
-    """notModel.
+class NotModel(_model_base.Model):
+    """NotModel.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -788,8 +788,8 @@ class notModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class orModel(_model_base.Model):
-    """orModel.
+class OrModel(_model_base.Model):
+    """OrModel.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -819,8 +819,8 @@ class orModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class passModel(_model_base.Model):
-    """passModel.
+class PassModel(_model_base.Model):
+    """PassModel.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -850,8 +850,8 @@ class passModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class raiseModel(_model_base.Model):
-    """raiseModel.
+class RaiseModel(_model_base.Model):
+    """RaiseModel.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -881,8 +881,8 @@ class raiseModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class returnModel(_model_base.Model):
-    """returnModel.
+class ReturnModel(_model_base.Model):
+    """ReturnModel.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -943,8 +943,8 @@ class SameAsModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class tryModel(_model_base.Model):
-    """tryModel.
+class TryModel(_model_base.Model):
+    """TryModel.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -974,8 +974,8 @@ class tryModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class whileModel(_model_base.Model):
-    """whileModel.
+class WhileModel(_model_base.Model):
+    """WhileModel.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -1005,8 +1005,8 @@ class whileModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class withModel(_model_base.Model):
-    """withModel.
+class WithModel(_model_base.Model):
+    """WithModel.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -1036,8 +1036,8 @@ class withModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class yieldModel(_model_base.Model):
-    """yieldModel.
+class YieldModel(_model_base.Model):
+    """YieldModel.
 
     All required parameters must be populated in order to send to Azure.
 

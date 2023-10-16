@@ -29,7 +29,7 @@ def test_parameter(client: SpecialWordsClient):
 def test_model(client: SpecialWordsClient):
     for sw in SPECIAL_WORDS:
         suffix = "" if sw == "constructor" else "Model"
-        model = getattr(models, sw + suffix)
+        model = getattr(models, sw.capitalize() + suffix)
         getattr(client.models, "with_" + sw)(model(name="ok"))
 
 
