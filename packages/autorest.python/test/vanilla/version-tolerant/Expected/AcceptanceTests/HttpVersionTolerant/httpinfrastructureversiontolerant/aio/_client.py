@@ -111,7 +111,7 @@ class AutoRestHttpInfrastructureTestService:  # pylint: disable=client-accepts-a
 
         request_copy = deepcopy(request)
         request_copy.url = self._client.format_url(request_copy.url)
-        return self._client.send_request(request_copy, **kwargs)
+        return self._client.send_request(request_copy, **kwargs)  # type: ignore
 
     async def close(self) -> None:
         await self._client.close()

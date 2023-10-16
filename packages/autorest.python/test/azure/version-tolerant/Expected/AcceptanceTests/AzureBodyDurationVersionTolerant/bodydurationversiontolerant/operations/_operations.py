@@ -155,9 +155,9 @@ class DurationOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Optional[datetime.timedelta], deserialized), {})
+            return cls(pipeline_response, cast(Optional[datetime.timedelta], deserialized), {})  # type: ignore
 
-        return cast(Optional[datetime.timedelta], deserialized)
+        return cast(Optional[datetime.timedelta], deserialized)  # type: ignore
 
     @distributed_trace
     def put_positive_duration(  # pylint: disable=inconsistent-return-statements
@@ -209,7 +209,7 @@ class DurationOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_positive_duration(self, **kwargs: Any) -> datetime.timedelta:
@@ -257,9 +257,9 @@ class DurationOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(datetime.timedelta, deserialized), {})
+            return cls(pipeline_response, cast(datetime.timedelta, deserialized), {})  # type: ignore
 
-        return cast(datetime.timedelta, deserialized)
+        return cast(datetime.timedelta, deserialized)  # type: ignore
 
     @distributed_trace
     def get_invalid(self, **kwargs: Any) -> datetime.timedelta:
@@ -307,6 +307,6 @@ class DurationOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(datetime.timedelta, deserialized), {})
+            return cls(pipeline_response, cast(datetime.timedelta, deserialized), {})  # type: ignore
 
-        return cast(datetime.timedelta, deserialized)
+        return cast(datetime.timedelta, deserialized)  # type: ignore

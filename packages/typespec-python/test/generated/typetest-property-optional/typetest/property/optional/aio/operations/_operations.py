@@ -301,7 +301,7 @@ class StringOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def put_default(  # pylint: disable=inconsistent-return-statements
@@ -417,7 +417,7 @@ class StringOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class BytesOperations:
@@ -655,7 +655,7 @@ class BytesOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def put_default(  # pylint: disable=inconsistent-return-statements
@@ -771,7 +771,7 @@ class BytesOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class DatetimeOperations:
@@ -1009,7 +1009,7 @@ class DatetimeOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def put_default(  # pylint: disable=inconsistent-return-statements
@@ -1125,7 +1125,7 @@ class DatetimeOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class DurationOperations:
@@ -1363,7 +1363,7 @@ class DurationOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def put_default(  # pylint: disable=inconsistent-return-statements
@@ -1479,7 +1479,7 @@ class DurationOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class CollectionsByteOperations:
@@ -1717,7 +1717,7 @@ class CollectionsByteOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def put_default(  # pylint: disable=inconsistent-return-statements
@@ -1833,7 +1833,7 @@ class CollectionsByteOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class CollectionsModelOperations:
@@ -2073,7 +2073,7 @@ class CollectionsModelOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def put_default(  # pylint: disable=inconsistent-return-statements
@@ -2189,7 +2189,7 @@ class CollectionsModelOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class RequiredAndOptionalOperations:
@@ -2429,7 +2429,7 @@ class RequiredAndOptionalOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def put_required_only(  # pylint: disable=inconsistent-return-statements
@@ -2545,4 +2545,4 @@ class RequiredAndOptionalOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

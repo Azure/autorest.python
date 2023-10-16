@@ -104,9 +104,9 @@ class PetOperations:
             deserialized = self._deserialize("Pet", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def do_something(self, what_action: str, **kwargs: Any) -> _models.PetAction:
@@ -158,9 +158,9 @@ class PetOperations:
         deserialized = self._deserialize("PetAction", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def has_models_param(  # pylint: disable=inconsistent-return-statements
@@ -214,4 +214,4 @@ class PetOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

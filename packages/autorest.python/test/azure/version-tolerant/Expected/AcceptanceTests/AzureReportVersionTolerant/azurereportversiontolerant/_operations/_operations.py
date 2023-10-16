@@ -114,6 +114,6 @@ class AutoRestReportServiceForAzureOperationsMixin(  # pylint: disable=name-too-
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, int], deserialized)
+        return cast(Dict[str, int], deserialized)  # type: ignore

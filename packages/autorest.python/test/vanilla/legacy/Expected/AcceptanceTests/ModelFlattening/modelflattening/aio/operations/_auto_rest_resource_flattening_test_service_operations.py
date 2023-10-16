@@ -164,7 +164,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_array(self, **kwargs: Any) -> List[_models.FlattenedProduct]:
@@ -213,9 +213,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         deserialized = self._deserialize("[FlattenedProduct]", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
@@ -332,7 +332,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_wrapped_array(self, **kwargs: Any) -> List[_models.ProductWrapper]:
@@ -382,9 +382,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         deserialized = self._deserialize("[ProductWrapper]", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def put_dictionary(  # pylint: disable=inconsistent-return-statements
@@ -498,7 +498,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_dictionary(self, **kwargs: Any) -> Dict[str, _models.FlattenedProduct]:
@@ -547,9 +547,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         deserialized = self._deserialize("{FlattenedProduct}", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def put_resource_collection(  # pylint: disable=inconsistent-return-statements
@@ -665,7 +665,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_resource_collection(self, **kwargs: Any) -> _models.ResourceCollection:
@@ -714,9 +714,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         deserialized = self._deserialize("ResourceCollection", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def put_simple_product(
@@ -832,9 +832,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         deserialized = self._deserialize("SimpleProduct", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def post_flattened_simple_product(
@@ -923,9 +923,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         deserialized = self._deserialize("SimpleProduct", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_simple_product_with_grouping(
@@ -1012,6 +1012,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         deserialized = self._deserialize("SimpleProduct", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore

@@ -101,9 +101,9 @@ class Datetimerfc1123Operations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Optional[datetime.datetime], deserialized), {})
+            return cls(pipeline_response, cast(Optional[datetime.datetime], deserialized), {})  # type: ignore
 
-        return cast(Optional[datetime.datetime], deserialized)
+        return cast(Optional[datetime.datetime], deserialized)  # type: ignore
 
     @distributed_trace_async
     async def get_invalid(self, **kwargs: Any) -> datetime.datetime:
@@ -151,9 +151,9 @@ class Datetimerfc1123Operations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(datetime.datetime, deserialized), {})
+            return cls(pipeline_response, cast(datetime.datetime, deserialized), {})  # type: ignore
 
-        return cast(datetime.datetime, deserialized)
+        return cast(datetime.datetime, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def get_overflow(self, **kwargs: Any) -> datetime.datetime:
@@ -201,9 +201,9 @@ class Datetimerfc1123Operations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(datetime.datetime, deserialized), {})
+            return cls(pipeline_response, cast(datetime.datetime, deserialized), {})  # type: ignore
 
-        return cast(datetime.datetime, deserialized)
+        return cast(datetime.datetime, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def get_underflow(self, **kwargs: Any) -> datetime.datetime:
@@ -251,9 +251,9 @@ class Datetimerfc1123Operations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(datetime.datetime, deserialized), {})
+            return cls(pipeline_response, cast(datetime.datetime, deserialized), {})  # type: ignore
 
-        return cast(datetime.datetime, deserialized)
+        return cast(datetime.datetime, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def put_utc_max_date_time(  # pylint: disable=inconsistent-return-statements
@@ -305,7 +305,7 @@ class Datetimerfc1123Operations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_utc_lowercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
@@ -353,9 +353,9 @@ class Datetimerfc1123Operations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(datetime.datetime, deserialized), {})
+            return cls(pipeline_response, cast(datetime.datetime, deserialized), {})  # type: ignore
 
-        return cast(datetime.datetime, deserialized)
+        return cast(datetime.datetime, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def get_utc_uppercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
@@ -403,9 +403,9 @@ class Datetimerfc1123Operations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(datetime.datetime, deserialized), {})
+            return cls(pipeline_response, cast(datetime.datetime, deserialized), {})  # type: ignore
 
-        return cast(datetime.datetime, deserialized)
+        return cast(datetime.datetime, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def put_utc_min_date_time(  # pylint: disable=inconsistent-return-statements
@@ -457,7 +457,7 @@ class Datetimerfc1123Operations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_utc_min_date_time(self, **kwargs: Any) -> datetime.datetime:
@@ -505,6 +505,6 @@ class Datetimerfc1123Operations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(datetime.datetime, deserialized), {})
+            return cls(pipeline_response, cast(datetime.datetime, deserialized), {})  # type: ignore
 
-        return cast(datetime.datetime, deserialized)
+        return cast(datetime.datetime, deserialized)  # type: ignore

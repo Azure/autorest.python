@@ -76,4 +76,4 @@ class RepeatabilityClientOperationsMixin(RepeatabilityClientMixinABC):
         )
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore

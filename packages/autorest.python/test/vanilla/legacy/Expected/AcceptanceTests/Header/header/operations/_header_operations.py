@@ -553,7 +553,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def response_existing_key(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -600,7 +600,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         response_headers["User-Agent"] = self._deserialize("str", response.headers.get("User-Agent"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def param_protected_key(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -649,7 +649,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def response_protected_key(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -696,7 +696,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         response_headers["Content-Type"] = self._deserialize("str", response.headers.get("Content-Type"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def param_integer(  # pylint: disable=inconsistent-return-statements
@@ -750,7 +750,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def response_integer(self, scenario: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -801,7 +801,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         response_headers["value"] = self._deserialize("int", response.headers.get("value"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def param_long(  # pylint: disable=inconsistent-return-statements
@@ -855,7 +855,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def response_long(self, scenario: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -906,7 +906,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         response_headers["value"] = self._deserialize("int", response.headers.get("value"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def param_float(  # pylint: disable=inconsistent-return-statements
@@ -960,7 +960,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def response_float(self, scenario: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1011,7 +1011,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         response_headers["value"] = self._deserialize("float", response.headers.get("value"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def param_double(  # pylint: disable=inconsistent-return-statements
@@ -1065,7 +1065,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def response_double(self, scenario: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1116,7 +1116,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         response_headers["value"] = self._deserialize("float", response.headers.get("value"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def param_bool(  # pylint: disable=inconsistent-return-statements
@@ -1170,7 +1170,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def response_bool(self, scenario: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1221,7 +1221,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         response_headers["value"] = self._deserialize("bool", response.headers.get("value"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def param_string(  # pylint: disable=inconsistent-return-statements
@@ -1276,7 +1276,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def response_string(self, scenario: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1327,7 +1327,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         response_headers["value"] = self._deserialize("str", response.headers.get("value"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def param_date(  # pylint: disable=inconsistent-return-statements
@@ -1380,7 +1380,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def response_date(self, scenario: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1430,7 +1430,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         response_headers["value"] = self._deserialize("date", response.headers.get("value"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def param_datetime(  # pylint: disable=inconsistent-return-statements
@@ -1484,7 +1484,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def response_datetime(self, scenario: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1534,7 +1534,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         response_headers["value"] = self._deserialize("iso-8601", response.headers.get("value"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def param_datetime_rfc1123(  # pylint: disable=inconsistent-return-statements
@@ -1588,7 +1588,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def response_datetime_rfc1123(  # pylint: disable=inconsistent-return-statements
@@ -1641,7 +1641,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         response_headers["value"] = self._deserialize("rfc-1123", response.headers.get("value"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def param_duration(  # pylint: disable=inconsistent-return-statements
@@ -1693,7 +1693,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def response_duration(self, scenario: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1743,7 +1743,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         response_headers["value"] = self._deserialize("duration", response.headers.get("value"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def param_byte(  # pylint: disable=inconsistent-return-statements
@@ -1795,7 +1795,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def response_byte(self, scenario: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1845,7 +1845,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         response_headers["value"] = self._deserialize("bytearray", response.headers.get("value"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def param_enum(  # pylint: disable=inconsistent-return-statements
@@ -1900,7 +1900,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def response_enum(self, scenario: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1951,7 +1951,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         response_headers["value"] = self._deserialize("str", response.headers.get("value"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def custom_request_id(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1996,4 +1996,4 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

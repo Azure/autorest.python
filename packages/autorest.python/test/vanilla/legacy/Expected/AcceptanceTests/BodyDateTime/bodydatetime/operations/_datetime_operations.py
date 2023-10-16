@@ -450,9 +450,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("iso-8601", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_invalid(self, **kwargs: Any) -> datetime.datetime:
@@ -498,9 +498,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("iso-8601", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_overflow(self, **kwargs: Any) -> datetime.datetime:
@@ -546,9 +546,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("iso-8601", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_underflow(self, **kwargs: Any) -> datetime.datetime:
@@ -594,9 +594,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("iso-8601", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_utc_max_date_time(  # pylint: disable=inconsistent-return-statements
@@ -649,7 +649,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put_utc_max_date_time7_digits(  # pylint: disable=inconsistent-return-statements
@@ -705,7 +705,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_utc_lowercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
@@ -751,9 +751,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("iso-8601", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_utc_uppercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
@@ -799,9 +799,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("iso-8601", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_utc_uppercase_max_date_time7_digits(self, **kwargs: Any) -> datetime.datetime:
@@ -850,9 +850,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("iso-8601", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_local_positive_offset_max_date_time(  # pylint: disable=inconsistent-return-statements
@@ -905,7 +905,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_local_positive_offset_lowercase_max_date_time(  # pylint: disable=name-too-long
@@ -953,9 +953,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("iso-8601", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_local_positive_offset_uppercase_max_date_time(  # pylint: disable=name-too-long
@@ -1003,9 +1003,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("iso-8601", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_local_negative_offset_max_date_time(  # pylint: disable=inconsistent-return-statements
@@ -1058,7 +1058,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_local_negative_offset_uppercase_max_date_time(  # pylint: disable=name-too-long
@@ -1106,9 +1106,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("iso-8601", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_local_negative_offset_lowercase_max_date_time(  # pylint: disable=name-too-long
@@ -1156,9 +1156,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("iso-8601", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_utc_min_date_time(  # pylint: disable=inconsistent-return-statements
@@ -1211,7 +1211,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_utc_min_date_time(self, **kwargs: Any) -> datetime.datetime:
@@ -1257,9 +1257,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("iso-8601", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_local_positive_offset_min_date_time(  # pylint: disable=inconsistent-return-statements
@@ -1312,7 +1312,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_local_positive_offset_min_date_time(self, **kwargs: Any) -> datetime.datetime:
@@ -1358,9 +1358,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("iso-8601", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_local_negative_offset_min_date_time(  # pylint: disable=inconsistent-return-statements
@@ -1413,7 +1413,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_local_negative_offset_min_date_time(self, **kwargs: Any) -> datetime.datetime:
@@ -1459,9 +1459,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("iso-8601", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_local_no_offset_min_date_time(self, **kwargs: Any) -> datetime.datetime:
@@ -1507,6 +1507,6 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("iso-8601", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore

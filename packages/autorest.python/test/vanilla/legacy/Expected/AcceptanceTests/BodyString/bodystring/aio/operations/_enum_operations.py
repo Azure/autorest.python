@@ -105,9 +105,9 @@ class EnumOperations:
         deserialized = self._deserialize("str", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_not_expandable(  # pylint: disable=inconsistent-return-statements
@@ -161,7 +161,7 @@ class EnumOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_referenced(self, **kwargs: Any) -> Union[str, _models.Colors]:
@@ -207,9 +207,9 @@ class EnumOperations:
         deserialized = self._deserialize("str", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_referenced(  # pylint: disable=inconsistent-return-statements
@@ -263,7 +263,7 @@ class EnumOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_referenced_constant(self, **kwargs: Any) -> _models.RefColorConstant:
@@ -309,9 +309,9 @@ class EnumOperations:
         deserialized = self._deserialize("RefColorConstant", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_referenced_constant(  # pylint: disable=inconsistent-return-statements
@@ -369,4 +369,4 @@ class EnumOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

@@ -91,9 +91,9 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def begin_poll_with_parameterized_endpoints(self, account_name: str, **kwargs: Any) -> AsyncLROPoller[str]:
@@ -216,9 +216,9 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def begin_poll_with_constant_parameterized_endpoints(  # pylint: disable=name-too-long

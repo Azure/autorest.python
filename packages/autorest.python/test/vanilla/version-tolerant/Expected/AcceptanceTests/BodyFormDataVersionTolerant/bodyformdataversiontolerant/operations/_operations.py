@@ -124,6 +124,6 @@ class FormdataOperations:  # pylint: disable=abstract-class-instantiated
         deserialized = response.iter_bytes()
 
         if cls:
-            return cls(pipeline_response, cast(Iterator[bytes], deserialized), {})
+            return cls(pipeline_response, cast(Iterator[bytes], deserialized), {})  # type: ignore
 
-        return cast(Iterator[bytes], deserialized)
+        return cast(Iterator[bytes], deserialized)  # type: ignore

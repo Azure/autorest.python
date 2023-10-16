@@ -121,9 +121,9 @@ class StringOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Optional[str], deserialized), {})
+            return cls(pipeline_response, cast(Optional[str], deserialized), {})  # type: ignore
 
-        return cast(Optional[str], deserialized)
+        return cast(Optional[str], deserialized)  # type: ignore
 
     @distributed_trace_async
     async def put_null(  # pylint: disable=inconsistent-return-statements
@@ -178,7 +178,7 @@ class StringOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_empty(self, **kwargs: Any) -> str:
@@ -226,9 +226,9 @@ class StringOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, cast(str, deserialized), {})  # type: ignore
 
-        return cast(str, deserialized)
+        return cast(str, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def put_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -280,7 +280,7 @@ class StringOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_mbcs(self, **kwargs: Any) -> str:
@@ -328,9 +328,9 @@ class StringOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, cast(str, deserialized), {})  # type: ignore
 
-        return cast(str, deserialized)
+        return cast(str, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def put_mbcs(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -385,7 +385,7 @@ class StringOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_whitespace(self, **kwargs: Any) -> str:
@@ -435,9 +435,9 @@ class StringOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, cast(str, deserialized), {})  # type: ignore
 
-        return cast(str, deserialized)
+        return cast(str, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def put_whitespace(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -494,7 +494,7 @@ class StringOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_not_provided(self, **kwargs: Any) -> str:
@@ -542,9 +542,9 @@ class StringOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, cast(str, deserialized), {})  # type: ignore
 
-        return cast(str, deserialized)
+        return cast(str, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def get_base64_encoded(self, **kwargs: Any) -> bytes:
@@ -592,9 +592,9 @@ class StringOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(bytes, deserialized), {})
+            return cls(pipeline_response, cast(bytes, deserialized), {})  # type: ignore
 
-        return cast(bytes, deserialized)
+        return cast(bytes, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def get_base64_url_encoded(self, **kwargs: Any) -> bytes:
@@ -642,9 +642,9 @@ class StringOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(bytes, deserialized), {})
+            return cls(pipeline_response, cast(bytes, deserialized), {})  # type: ignore
 
-        return cast(bytes, deserialized)
+        return cast(bytes, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def put_base64_url_encoded(  # pylint: disable=inconsistent-return-statements
@@ -696,7 +696,7 @@ class StringOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_null_base64_url_encoded(self, **kwargs: Any) -> Optional[bytes]:
@@ -744,9 +744,9 @@ class StringOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Optional[bytes], deserialized), {})
+            return cls(pipeline_response, cast(Optional[bytes], deserialized), {})  # type: ignore
 
-        return cast(Optional[bytes], deserialized)
+        return cast(Optional[bytes], deserialized)  # type: ignore
 
 
 class EnumOperations:
@@ -812,9 +812,9 @@ class EnumOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, cast(str, deserialized), {})  # type: ignore
 
-        return cast(str, deserialized)
+        return cast(str, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def put_not_expandable(  # pylint: disable=inconsistent-return-statements
@@ -867,7 +867,7 @@ class EnumOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_referenced(self, **kwargs: Any) -> str:
@@ -915,9 +915,9 @@ class EnumOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, cast(str, deserialized), {})  # type: ignore
 
-        return cast(str, deserialized)
+        return cast(str, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def put_referenced(  # pylint: disable=inconsistent-return-statements
@@ -970,7 +970,7 @@ class EnumOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_referenced_constant(self, **kwargs: Any) -> JSON:
@@ -1028,9 +1028,9 @@ class EnumOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def put_referenced_constant(  # pylint: disable=inconsistent-return-statements
@@ -1144,4 +1144,4 @@ class EnumOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

@@ -127,9 +127,9 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def begin_poll_with_parameterized_endpoints(self, account_name: str, **kwargs: Any) -> LROPoller[str]:
@@ -165,7 +165,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         def get_long_running_output(pipeline_response):
             deserialized = self._deserialize("str", pipeline_response)
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
 
         path_format_arguments = {
@@ -246,9 +246,9 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def begin_poll_with_constant_parameterized_endpoints(  # pylint: disable=name-too-long
@@ -295,7 +295,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         def get_long_running_output(pipeline_response):
             deserialized = self._deserialize("str", pipeline_response)
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
 
         path_format_arguments = {

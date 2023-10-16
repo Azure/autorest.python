@@ -348,7 +348,7 @@ class HttpRedirectsOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def get300(self, **kwargs: Any) -> Optional[List[str]]:
@@ -399,9 +399,9 @@ class HttpRedirectsOperations:
             deserialized = self._deserialize("[str]", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def head301(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -449,7 +449,7 @@ class HttpRedirectsOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def get301(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -497,7 +497,7 @@ class HttpRedirectsOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def put301(  # pylint: disable=inconsistent-return-statements
@@ -558,7 +558,7 @@ class HttpRedirectsOperations:
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def head302(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -606,7 +606,7 @@ class HttpRedirectsOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def get302(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -654,7 +654,7 @@ class HttpRedirectsOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def patch302(  # pylint: disable=inconsistent-return-statements
@@ -715,7 +715,7 @@ class HttpRedirectsOperations:
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def post303(  # pylint: disable=inconsistent-return-statements
@@ -777,7 +777,7 @@ class HttpRedirectsOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def head307(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -825,7 +825,7 @@ class HttpRedirectsOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def get307(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -873,7 +873,7 @@ class HttpRedirectsOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def options307(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -921,7 +921,7 @@ class HttpRedirectsOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def put307(  # pylint: disable=inconsistent-return-statements
@@ -982,7 +982,7 @@ class HttpRedirectsOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def patch307(  # pylint: disable=inconsistent-return-statements
@@ -1043,7 +1043,7 @@ class HttpRedirectsOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def post307(  # pylint: disable=inconsistent-return-statements
@@ -1104,7 +1104,7 @@ class HttpRedirectsOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def delete307(  # pylint: disable=inconsistent-return-statements
@@ -1165,4 +1165,4 @@ class HttpRedirectsOperations:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore

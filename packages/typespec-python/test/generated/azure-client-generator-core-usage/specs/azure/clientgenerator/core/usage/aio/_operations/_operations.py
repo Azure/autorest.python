@@ -180,7 +180,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def output_to_input_output(self, **kwargs: Any) -> _models.OutputModel:

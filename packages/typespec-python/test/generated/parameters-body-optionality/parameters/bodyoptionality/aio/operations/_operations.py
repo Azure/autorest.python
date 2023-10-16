@@ -177,7 +177,7 @@ class OptionalExplicitOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def omit(  # pylint: disable=inconsistent-return-statements
@@ -296,7 +296,7 @@ class OptionalExplicitOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
@@ -414,7 +414,7 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def required_implicit(  # pylint: disable=inconsistent-return-statements
@@ -530,4 +530,4 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

@@ -128,9 +128,9 @@ class InheritanceOperations:
         deserialized = self._deserialize("Siamese", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     def put_valid(  # pylint: disable=inconsistent-return-statements
@@ -234,4 +234,4 @@ class InheritanceOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

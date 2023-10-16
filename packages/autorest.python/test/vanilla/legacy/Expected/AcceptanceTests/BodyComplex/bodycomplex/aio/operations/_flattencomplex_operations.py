@@ -91,6 +91,6 @@ class FlattencomplexOperations:
         deserialized = self._deserialize("MyBaseType", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore

@@ -94,7 +94,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     @api_version_validation(
@@ -157,7 +157,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
         return 200 <= response.status_code <= 299
 
     @distributed_trace_async
@@ -227,7 +227,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     @api_version_validation(
@@ -296,4 +296,4 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

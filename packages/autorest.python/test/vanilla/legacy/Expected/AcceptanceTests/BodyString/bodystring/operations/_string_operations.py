@@ -305,9 +305,9 @@ class StringOperations:
         deserialized = self._deserialize("str", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_null(  # pylint: disable=inconsistent-return-statements
@@ -363,7 +363,7 @@ class StringOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_empty(self, **kwargs: Any) -> str:
@@ -409,9 +409,9 @@ class StringOperations:
         deserialized = self._deserialize("str", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -464,7 +464,7 @@ class StringOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_mbcs(self, **kwargs: Any) -> str:
@@ -510,9 +510,9 @@ class StringOperations:
         deserialized = self._deserialize("str", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_mbcs(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -568,7 +568,7 @@ class StringOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_whitespace(self, **kwargs: Any) -> str:
@@ -616,9 +616,9 @@ class StringOperations:
         deserialized = self._deserialize("str", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_whitespace(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -676,7 +676,7 @@ class StringOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_not_provided(self, **kwargs: Any) -> str:
@@ -722,9 +722,9 @@ class StringOperations:
         deserialized = self._deserialize("str", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_base64_encoded(self, **kwargs: Any) -> bytes:
@@ -770,9 +770,9 @@ class StringOperations:
         deserialized = self._deserialize("bytearray", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_base64_url_encoded(self, **kwargs: Any) -> bytes:
@@ -818,9 +818,9 @@ class StringOperations:
         deserialized = self._deserialize("base64", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_base64_url_encoded(  # pylint: disable=inconsistent-return-statements
@@ -873,7 +873,7 @@ class StringOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_null_base64_url_encoded(self, **kwargs: Any) -> Optional[bytes]:
@@ -919,6 +919,6 @@ class StringOperations:
         deserialized = self._deserialize("base64", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore

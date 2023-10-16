@@ -103,7 +103,7 @@ class HeaderOperations:
         response_headers["foo-request-id"] = self._deserialize("str", response.headers.get("foo-request-id"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
     async def custom_named_request_id_param_grouping(  # pylint: disable=inconsistent-return-statements
@@ -163,7 +163,7 @@ class HeaderOperations:
         response_headers["foo-request-id"] = self._deserialize("str", response.headers.get("foo-request-id"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
     async def custom_named_request_id_head(self, foo_client_request_id: str, **kwargs: Any) -> bool:
@@ -214,5 +214,5 @@ class HeaderOperations:
             response_headers["foo-request-id"] = self._deserialize("str", response.headers.get("foo-request-id"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
         return 200 <= response.status_code <= 299

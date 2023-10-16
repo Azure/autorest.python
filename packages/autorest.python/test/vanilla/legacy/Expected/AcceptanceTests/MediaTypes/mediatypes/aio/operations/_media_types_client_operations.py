@@ -139,9 +139,9 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         deserialized = self._deserialize("str", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
@@ -244,7 +244,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def content_type_with_encoding(self, input: Optional[str] = None, **kwargs: Any) -> str:
@@ -299,9 +299,9 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         deserialized = self._deserialize("str", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def binary_body_with_two_content_types(self, message: IO, **kwargs: Any) -> str:
@@ -354,9 +354,9 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         deserialized = self._deserialize("str", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def binary_body_with_three_content_types(self, message: IO, **kwargs: Any) -> str:
@@ -410,9 +410,9 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         deserialized = self._deserialize("str", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def body_three_types(self, message: Any, *, content_type: str = "application/json", **kwargs: Any) -> str:
@@ -531,9 +531,9 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         deserialized = self._deserialize("str", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_text_and_json_body(self, message: str, **kwargs: Any) -> str:
@@ -585,6 +585,6 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         deserialized = self._deserialize("str", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore

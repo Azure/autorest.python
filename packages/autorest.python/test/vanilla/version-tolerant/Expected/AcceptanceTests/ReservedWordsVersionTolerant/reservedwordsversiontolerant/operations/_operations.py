@@ -207,9 +207,9 @@ class ImportOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
 
 class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint: disable=abstract-class-instantiated
@@ -275,9 +275,9 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace
     def operation_with_json_param(self, json: Any, **kwargs: Any) -> JSON:
@@ -332,9 +332,9 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace
     def operation_with_url(
@@ -396,9 +396,9 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace
     def reserved_enum(self, *, enum_parameter: str, **kwargs: Any) -> JSON:
@@ -450,6 +450,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore

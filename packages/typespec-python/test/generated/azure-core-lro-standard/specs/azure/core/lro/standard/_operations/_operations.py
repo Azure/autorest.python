@@ -418,7 +418,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
             polling_method: PollingMethod = cast(PollingMethod, LROBasePolling(lro_delay, **kwargs))

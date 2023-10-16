@@ -215,9 +215,9 @@ class DateOperations:
         deserialized = self._deserialize("date", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_invalid_date(self, **kwargs: Any) -> datetime.date:
@@ -263,9 +263,9 @@ class DateOperations:
         deserialized = self._deserialize("date", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_overflow_date(self, **kwargs: Any) -> datetime.date:
@@ -311,9 +311,9 @@ class DateOperations:
         deserialized = self._deserialize("date", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_underflow_date(self, **kwargs: Any) -> datetime.date:
@@ -359,9 +359,9 @@ class DateOperations:
         deserialized = self._deserialize("date", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_max_date(  # pylint: disable=inconsistent-return-statements
@@ -414,7 +414,7 @@ class DateOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_max_date(self, **kwargs: Any) -> datetime.date:
@@ -460,9 +460,9 @@ class DateOperations:
         deserialized = self._deserialize("date", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_min_date(  # pylint: disable=inconsistent-return-statements
@@ -515,7 +515,7 @@ class DateOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_min_date(self, **kwargs: Any) -> datetime.date:
@@ -561,6 +561,6 @@ class DateOperations:
         deserialized = self._deserialize("date", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore

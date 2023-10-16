@@ -131,9 +131,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("RootWithRefAndNoMeta", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_complex_type_ref_no_meta(  # pylint: disable=inconsistent-return-statements
@@ -185,7 +185,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_complex_type_ref_with_meta(self, **kwargs: Any) -> _models.RootWithRefAndMeta:
@@ -230,9 +230,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("RootWithRefAndMeta", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_complex_type_ref_with_meta(  # pylint: disable=inconsistent-return-statements
@@ -284,7 +284,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_simple(self, **kwargs: Any) -> _models.Slideshow:
@@ -330,9 +330,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("Slideshow", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_simple(  # pylint: disable=inconsistent-return-statements
@@ -385,7 +385,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_wrapped_lists(self, **kwargs: Any) -> _models.AppleBarrel:
@@ -430,9 +430,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("AppleBarrel", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_wrapped_lists(  # pylint: disable=inconsistent-return-statements
@@ -485,7 +485,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_headers(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -531,7 +531,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         response_headers["Custom-Header"] = self._deserialize("str", response.headers.get("Custom-Header"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
     async def get_empty_list(self, **kwargs: Any) -> _models.Slideshow:
@@ -576,9 +576,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("Slideshow", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_empty_list(  # pylint: disable=inconsistent-return-statements
@@ -630,7 +630,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_empty_wrapped_lists(self, **kwargs: Any) -> _models.AppleBarrel:
@@ -675,9 +675,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("AppleBarrel", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_empty_wrapped_lists(  # pylint: disable=inconsistent-return-statements
@@ -729,7 +729,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_root_list(self, **kwargs: Any) -> List[_models.Banana]:
@@ -774,9 +774,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("[Banana]", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_root_list(  # pylint: disable=inconsistent-return-statements
@@ -829,7 +829,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_root_list_single_item(self, **kwargs: Any) -> List[_models.Banana]:
@@ -874,9 +874,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("[Banana]", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_root_list_single_item(  # pylint: disable=inconsistent-return-statements
@@ -929,7 +929,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_empty_root_list(self, **kwargs: Any) -> List[_models.Banana]:
@@ -974,9 +974,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("[Banana]", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_empty_root_list(  # pylint: disable=inconsistent-return-statements
@@ -1029,7 +1029,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_empty_child_element(self, **kwargs: Any) -> _models.Banana:
@@ -1074,9 +1074,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("Banana", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_empty_child_element(  # pylint: disable=inconsistent-return-statements
@@ -1128,7 +1128,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def list_containers(self, **kwargs: Any) -> _models.ListContainersResponse:
@@ -1178,9 +1178,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("ListContainersResponse", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def get_service_properties(self, **kwargs: Any) -> _models.StorageServiceProperties:
@@ -1235,9 +1235,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("StorageServiceProperties", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_service_properties(  # pylint: disable=inconsistent-return-statements
@@ -1299,7 +1299,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_acls(self, **kwargs: Any) -> List[_models.SignedIdentifier]:
@@ -1354,9 +1354,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("[SignedIdentifier]", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_acls(  # pylint: disable=inconsistent-return-statements
@@ -1421,7 +1421,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def list_blobs(self, **kwargs: Any) -> _models.ListBlobsResponse:
@@ -1476,9 +1476,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("ListBlobsResponse", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def json_input(  # pylint: disable=inconsistent-return-statements
@@ -1575,7 +1575,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def json_output(self, **kwargs: Any) -> _models.JSONOutput:
@@ -1620,9 +1620,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("JSONOutput", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def get_xms_text(self, **kwargs: Any) -> _models.ObjectWithXMsTextProperty:
@@ -1668,9 +1668,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("ObjectWithXMsTextProperty", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def get_bytes(self, **kwargs: Any) -> _models.ModelWithByteProperty:
@@ -1716,9 +1716,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("ModelWithByteProperty", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_binary(  # pylint: disable=inconsistent-return-statements
@@ -1771,7 +1771,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_uri(self, **kwargs: Any) -> _models.ModelWithUrlProperty:
@@ -1817,9 +1817,9 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("ModelWithUrlProperty", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_uri(  # pylint: disable=inconsistent-return-statements
@@ -1872,4 +1872,4 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

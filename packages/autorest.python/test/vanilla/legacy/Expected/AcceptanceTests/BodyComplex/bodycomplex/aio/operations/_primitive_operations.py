@@ -118,9 +118,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("IntWrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def put_int(  # pylint: disable=inconsistent-return-statements
@@ -217,7 +217,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_long(self, **kwargs: Any) -> _models.LongWrapper:
@@ -263,9 +263,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("LongWrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def put_long(  # pylint: disable=inconsistent-return-statements
@@ -363,7 +363,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_float(self, **kwargs: Any) -> _models.FloatWrapper:
@@ -409,9 +409,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("FloatWrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def put_float(  # pylint: disable=inconsistent-return-statements
@@ -509,7 +509,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_double(self, **kwargs: Any) -> _models.DoubleWrapper:
@@ -555,9 +555,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("DoubleWrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def put_double(  # pylint: disable=inconsistent-return-statements
@@ -658,7 +658,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_bool(self, **kwargs: Any) -> _models.BooleanWrapper:
@@ -704,9 +704,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("BooleanWrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def put_bool(  # pylint: disable=inconsistent-return-statements
@@ -804,7 +804,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_string(self, **kwargs: Any) -> _models.StringWrapper:
@@ -850,9 +850,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("StringWrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def put_string(  # pylint: disable=inconsistent-return-statements
@@ -950,7 +950,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_date(self, **kwargs: Any) -> _models.DateWrapper:
@@ -996,9 +996,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("DateWrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def put_date(  # pylint: disable=inconsistent-return-statements
@@ -1096,7 +1096,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_date_time(self, **kwargs: Any) -> _models.DatetimeWrapper:
@@ -1142,9 +1142,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("DatetimeWrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def put_date_time(  # pylint: disable=inconsistent-return-statements
@@ -1244,7 +1244,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_date_time_rfc1123(self, **kwargs: Any) -> _models.Datetimerfc1123Wrapper:
@@ -1290,9 +1290,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("Datetimerfc1123Wrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
@@ -1392,7 +1392,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_duration(self, **kwargs: Any) -> _models.DurationWrapper:
@@ -1438,9 +1438,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("DurationWrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_duration(  # pylint: disable=inconsistent-return-statements
@@ -1494,7 +1494,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_byte(self, **kwargs: Any) -> _models.ByteWrapper:
@@ -1540,9 +1540,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("ByteWrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_byte(  # pylint: disable=inconsistent-return-statements
@@ -1596,4 +1596,4 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

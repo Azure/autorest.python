@@ -166,9 +166,9 @@ class IntOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, cast(str, deserialized), {})  # type: ignore
 
-        return cast(str, deserialized)
+        return cast(str, deserialized)  # type: ignore
 
     @distributed_trace
     def get(self, **kwargs: Any) -> int:
@@ -216,9 +216,9 @@ class IntOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(int, deserialized), {})
+            return cls(pipeline_response, cast(int, deserialized), {})  # type: ignore
 
-        return cast(int, deserialized)
+        return cast(int, deserialized)  # type: ignore
 
 
 class FloatOperations:
@@ -295,9 +295,9 @@ class FloatOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, cast(str, deserialized), {})  # type: ignore
 
-        return cast(str, deserialized)
+        return cast(str, deserialized)  # type: ignore
 
     @distributed_trace
     def get(self, **kwargs: Any) -> float:
@@ -345,6 +345,6 @@ class FloatOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(float, deserialized), {})
+            return cls(pipeline_response, cast(float, deserialized), {})  # type: ignore
 
-        return cast(float, deserialized)
+        return cast(float, deserialized)  # type: ignore

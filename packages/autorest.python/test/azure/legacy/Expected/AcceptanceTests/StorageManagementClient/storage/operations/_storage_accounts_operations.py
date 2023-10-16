@@ -438,9 +438,9 @@ class StorageAccountsOperations:
         deserialized = self._deserialize("CheckNameAvailabilityResult", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     def _create_initial(
         self,
@@ -502,9 +502,9 @@ class StorageAccountsOperations:
             deserialized = self._deserialize("StorageAccount", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     def begin_create(
@@ -653,7 +653,7 @@ class StorageAccountsOperations:
         def get_long_running_output(pipeline_response):
             deserialized = self._deserialize("StorageAccount", pipeline_response)
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
 
         if polling is True:
@@ -726,7 +726,7 @@ class StorageAccountsOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_properties(self, resource_group_name: str, account_name: str, **kwargs: Any) -> _models.StorageAccount:
@@ -785,9 +785,9 @@ class StorageAccountsOperations:
         deserialized = self._deserialize("StorageAccount", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     def update(
@@ -949,9 +949,9 @@ class StorageAccountsOperations:
         deserialized = self._deserialize("StorageAccount", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def list_keys(self, resource_group_name: str, account_name: str, **kwargs: Any) -> _models.StorageAccountKeys:
@@ -1006,9 +1006,9 @@ class StorageAccountsOperations:
         deserialized = self._deserialize("StorageAccountKeys", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def list(self, **kwargs: Any) -> Iterable["_models.StorageAccount"]:
@@ -1239,6 +1239,6 @@ class StorageAccountsOperations:
         deserialized = self._deserialize("StorageAccountKeys", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore

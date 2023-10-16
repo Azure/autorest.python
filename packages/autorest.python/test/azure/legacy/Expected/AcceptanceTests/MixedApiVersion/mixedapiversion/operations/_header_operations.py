@@ -151,7 +151,7 @@ class HeaderOperations:
         response_headers["foo-request-id"] = self._deserialize("str", response.headers.get("foo-request-id"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def custom_named_request_id_param_grouping(  # pylint: disable=inconsistent-return-statements
@@ -211,7 +211,7 @@ class HeaderOperations:
         response_headers["foo-request-id"] = self._deserialize("str", response.headers.get("foo-request-id"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def custom_named_request_id_head(  # pylint: disable=inconsistent-return-statements
@@ -264,4 +264,4 @@ class HeaderOperations:
             response_headers["foo-request-id"] = self._deserialize("str", response.headers.get("foo-request-id"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore

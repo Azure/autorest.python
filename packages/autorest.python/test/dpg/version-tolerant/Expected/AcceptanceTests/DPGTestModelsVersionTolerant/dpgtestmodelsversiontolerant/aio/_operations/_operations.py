@@ -89,9 +89,9 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         deserialized = self._deserialize("Product", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def post_model(
@@ -201,9 +201,9 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         deserialized = self._deserialize("Product", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_pages(self, mode: str, **kwargs: Any) -> AsyncIterable["_models.Product"]:
@@ -312,9 +312,9 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         deserialized = self._deserialize("LROProduct", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def begin_lro(self, mode: str, **kwargs: Any) -> AsyncLROPoller[_models.LROProduct]:
@@ -352,7 +352,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         def get_long_running_output(pipeline_response):
             deserialized = self._deserialize("LROProduct", pipeline_response)
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
 
         if polling is True:

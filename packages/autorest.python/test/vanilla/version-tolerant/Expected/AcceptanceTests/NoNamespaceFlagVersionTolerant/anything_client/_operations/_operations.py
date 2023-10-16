@@ -163,9 +163,9 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Any, deserialized), {})
+            return cls(pipeline_response, cast(Any, deserialized), {})  # type: ignore
 
-        return cast(Any, deserialized)
+        return cast(Any, deserialized)  # type: ignore
 
     @distributed_trace
     def put_object(self, input: Any, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -216,7 +216,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_string(self, **kwargs: Any) -> Any:
@@ -264,9 +264,9 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Any, deserialized), {})
+            return cls(pipeline_response, cast(Any, deserialized), {})  # type: ignore
 
-        return cast(Any, deserialized)
+        return cast(Any, deserialized)  # type: ignore
 
     @distributed_trace
     def put_string(self, input: Any, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -317,7 +317,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_array(self, **kwargs: Any) -> Any:
@@ -365,9 +365,9 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Any, deserialized), {})
+            return cls(pipeline_response, cast(Any, deserialized), {})  # type: ignore
 
-        return cast(Any, deserialized)
+        return cast(Any, deserialized)  # type: ignore
 
     @distributed_trace
     def put_array(self, input: Any, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -418,4 +418,4 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

@@ -99,9 +99,9 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         deserialized = self._deserialize("Product", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def validation_of_body(
@@ -235,9 +235,9 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         deserialized = self._deserialize("Product", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def get_with_constant_in_path(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -285,7 +285,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def post_with_constant_in_body(
@@ -397,6 +397,6 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         deserialized = self._deserialize("Product", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore

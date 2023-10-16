@@ -96,7 +96,7 @@ class UploadOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def binary(self, file_param: IO, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -146,7 +146,7 @@ class UploadOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class DownloadOperations:
@@ -209,6 +209,6 @@ class DownloadOperations:
         deserialized = response.iter_bytes()
 
         if cls:
-            return cls(pipeline_response, cast(AsyncIterator[bytes], deserialized), {})
+            return cls(pipeline_response, cast(AsyncIterator[bytes], deserialized), {})  # type: ignore
 
-        return cast(AsyncIterator[bytes], deserialized)
+        return cast(AsyncIterator[bytes], deserialized)  # type: ignore

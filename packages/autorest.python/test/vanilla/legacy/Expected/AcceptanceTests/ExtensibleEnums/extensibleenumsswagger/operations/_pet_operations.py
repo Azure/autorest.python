@@ -135,9 +135,9 @@ class PetOperations:
         deserialized = self._deserialize("Pet", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     def add_pet(
@@ -236,6 +236,6 @@ class PetOperations:
         deserialized = self._deserialize("Pet", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore

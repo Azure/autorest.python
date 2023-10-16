@@ -113,7 +113,7 @@ class HttpSuccessOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def head204(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -156,7 +156,7 @@ class HttpSuccessOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def head404(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -199,4 +199,4 @@ class HttpSuccessOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

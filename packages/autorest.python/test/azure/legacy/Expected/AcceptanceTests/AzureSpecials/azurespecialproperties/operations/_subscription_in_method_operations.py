@@ -188,7 +188,7 @@ class SubscriptionInMethodOperations:
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post_method_local_null(  # pylint: disable=inconsistent-return-statements
@@ -239,7 +239,7 @@ class SubscriptionInMethodOperations:
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post_path_local_valid(  # pylint: disable=inconsistent-return-statements
@@ -290,7 +290,7 @@ class SubscriptionInMethodOperations:
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post_swagger_local_valid(  # pylint: disable=inconsistent-return-statements
@@ -341,4 +341,4 @@ class SubscriptionInMethodOperations:
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

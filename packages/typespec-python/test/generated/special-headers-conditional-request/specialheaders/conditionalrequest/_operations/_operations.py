@@ -130,7 +130,7 @@ class ConditionalRequestClientOperationsMixin(ConditionalRequestClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post_if_none_match(  # pylint: disable=inconsistent-return-statements
@@ -190,4 +190,4 @@ class ConditionalRequestClientOperationsMixin(ConditionalRequestClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

@@ -96,9 +96,9 @@ class ByteOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(bytes, deserialized), {})
+            return cls(pipeline_response, cast(bytes, deserialized), {})  # type: ignore
 
-        return cast(bytes, deserialized)
+        return cast(bytes, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def get_empty(self, **kwargs: Any) -> bytes:
@@ -146,9 +146,9 @@ class ByteOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(bytes, deserialized), {})
+            return cls(pipeline_response, cast(bytes, deserialized), {})  # type: ignore
 
-        return cast(bytes, deserialized)
+        return cast(bytes, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def get_non_ascii(self, **kwargs: Any) -> bytes:
@@ -196,9 +196,9 @@ class ByteOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(bytes, deserialized), {})
+            return cls(pipeline_response, cast(bytes, deserialized), {})  # type: ignore
 
-        return cast(bytes, deserialized)
+        return cast(bytes, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def put_non_ascii(  # pylint: disable=inconsistent-return-statements
@@ -251,7 +251,7 @@ class ByteOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_invalid(self, **kwargs: Any) -> bytes:
@@ -299,6 +299,6 @@ class ByteOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(bytes, deserialized), {})
+            return cls(pipeline_response, cast(bytes, deserialized), {})  # type: ignore
 
-        return cast(bytes, deserialized)
+        return cast(bytes, deserialized)  # type: ignore

@@ -71,7 +71,7 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def valid_token(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -116,4 +116,4 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

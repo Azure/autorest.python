@@ -116,7 +116,7 @@ class HttpSuccessOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get200(self, **kwargs: Any) -> bool:
@@ -162,9 +162,9 @@ class HttpSuccessOperations:
         deserialized = self._deserialize("bool", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def options200(self, **kwargs: Any) -> bool:
@@ -210,9 +210,9 @@ class HttpSuccessOperations:
         deserialized = self._deserialize("bool", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put200(  # pylint: disable=inconsistent-return-statements
@@ -269,7 +269,7 @@ class HttpSuccessOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def patch200(  # pylint: disable=inconsistent-return-statements
@@ -326,7 +326,7 @@ class HttpSuccessOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post200(  # pylint: disable=inconsistent-return-statements
@@ -383,7 +383,7 @@ class HttpSuccessOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def delete200(  # pylint: disable=inconsistent-return-statements
@@ -440,7 +440,7 @@ class HttpSuccessOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def put201(  # pylint: disable=inconsistent-return-statements
@@ -497,7 +497,7 @@ class HttpSuccessOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post201(  # pylint: disable=inconsistent-return-statements
@@ -554,7 +554,7 @@ class HttpSuccessOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def put202(  # pylint: disable=inconsistent-return-statements
@@ -611,7 +611,7 @@ class HttpSuccessOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def patch202(  # pylint: disable=inconsistent-return-statements
@@ -668,7 +668,7 @@ class HttpSuccessOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post202(  # pylint: disable=inconsistent-return-statements
@@ -725,7 +725,7 @@ class HttpSuccessOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def delete202(  # pylint: disable=inconsistent-return-statements
@@ -782,7 +782,7 @@ class HttpSuccessOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def head204(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -826,7 +826,7 @@ class HttpSuccessOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def put204(  # pylint: disable=inconsistent-return-statements
@@ -883,7 +883,7 @@ class HttpSuccessOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def patch204(  # pylint: disable=inconsistent-return-statements
@@ -940,7 +940,7 @@ class HttpSuccessOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post204(  # pylint: disable=inconsistent-return-statements
@@ -997,7 +997,7 @@ class HttpSuccessOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def delete204(  # pylint: disable=inconsistent-return-statements
@@ -1054,7 +1054,7 @@ class HttpSuccessOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def head404(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1098,4 +1098,4 @@ class HttpSuccessOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

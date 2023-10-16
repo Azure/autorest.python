@@ -88,7 +88,7 @@ class ApiKeyClientOperationsMixin(ApiKeyClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def invalid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -133,4 +133,4 @@ class ApiKeyClientOperationsMixin(ApiKeyClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

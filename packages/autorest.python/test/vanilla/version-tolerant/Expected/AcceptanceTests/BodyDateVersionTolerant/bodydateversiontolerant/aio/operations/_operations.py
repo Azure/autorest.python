@@ -100,9 +100,9 @@ class DateOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Optional[datetime.date], deserialized), {})
+            return cls(pipeline_response, cast(Optional[datetime.date], deserialized), {})  # type: ignore
 
-        return cast(Optional[datetime.date], deserialized)
+        return cast(Optional[datetime.date], deserialized)  # type: ignore
 
     @distributed_trace_async
     async def get_invalid_date(self, **kwargs: Any) -> datetime.date:
@@ -150,9 +150,9 @@ class DateOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(datetime.date, deserialized), {})
+            return cls(pipeline_response, cast(datetime.date, deserialized), {})  # type: ignore
 
-        return cast(datetime.date, deserialized)
+        return cast(datetime.date, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def get_overflow_date(self, **kwargs: Any) -> datetime.date:
@@ -200,9 +200,9 @@ class DateOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(datetime.date, deserialized), {})
+            return cls(pipeline_response, cast(datetime.date, deserialized), {})  # type: ignore
 
-        return cast(datetime.date, deserialized)
+        return cast(datetime.date, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def get_underflow_date(self, **kwargs: Any) -> datetime.date:
@@ -250,9 +250,9 @@ class DateOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(datetime.date, deserialized), {})
+            return cls(pipeline_response, cast(datetime.date, deserialized), {})  # type: ignore
 
-        return cast(datetime.date, deserialized)
+        return cast(datetime.date, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def put_max_date(  # pylint: disable=inconsistent-return-statements
@@ -304,7 +304,7 @@ class DateOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_max_date(self, **kwargs: Any) -> datetime.date:
@@ -352,9 +352,9 @@ class DateOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(datetime.date, deserialized), {})
+            return cls(pipeline_response, cast(datetime.date, deserialized), {})  # type: ignore
 
-        return cast(datetime.date, deserialized)
+        return cast(datetime.date, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def put_min_date(  # pylint: disable=inconsistent-return-statements
@@ -406,7 +406,7 @@ class DateOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_min_date(self, **kwargs: Any) -> datetime.date:
@@ -454,6 +454,6 @@ class DateOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(datetime.date, deserialized), {})
+            return cls(pipeline_response, cast(datetime.date, deserialized), {})  # type: ignore
 
-        return cast(datetime.date, deserialized)
+        return cast(datetime.date, deserialized)  # type: ignore

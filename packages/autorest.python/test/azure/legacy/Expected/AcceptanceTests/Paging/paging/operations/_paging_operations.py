@@ -2100,9 +2100,9 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("ProductResult", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def begin_get_multiple_pages_lro(

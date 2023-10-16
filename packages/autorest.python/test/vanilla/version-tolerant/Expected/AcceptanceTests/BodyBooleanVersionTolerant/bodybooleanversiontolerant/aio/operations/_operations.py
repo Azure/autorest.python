@@ -102,9 +102,9 @@ class BoolOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(bool, deserialized), {})
+            return cls(pipeline_response, cast(bool, deserialized), {})  # type: ignore
 
-        return cast(bool, deserialized)
+        return cast(bool, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def put_true(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -156,7 +156,7 @@ class BoolOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_false(self, **kwargs: Any) -> bool:
@@ -204,9 +204,9 @@ class BoolOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(bool, deserialized), {})
+            return cls(pipeline_response, cast(bool, deserialized), {})  # type: ignore
 
-        return cast(bool, deserialized)
+        return cast(bool, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def put_false(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -258,7 +258,7 @@ class BoolOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_null(self, **kwargs: Any) -> Optional[bool]:
@@ -306,9 +306,9 @@ class BoolOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Optional[bool], deserialized), {})
+            return cls(pipeline_response, cast(Optional[bool], deserialized), {})  # type: ignore
 
-        return cast(Optional[bool], deserialized)
+        return cast(Optional[bool], deserialized)  # type: ignore
 
     @distributed_trace_async
     async def get_invalid(self, **kwargs: Any) -> bool:
@@ -356,6 +356,6 @@ class BoolOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(bool, deserialized), {})
+            return cls(pipeline_response, cast(bool, deserialized), {})  # type: ignore
 
-        return cast(bool, deserialized)
+        return cast(bool, deserialized)  # type: ignore

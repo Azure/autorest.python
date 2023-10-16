@@ -273,7 +273,7 @@ class ParameterGroupingOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post_optional(  # pylint: disable=inconsistent-return-statements
@@ -332,7 +332,7 @@ class ParameterGroupingOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post_reserved_words(  # pylint: disable=inconsistent-return-statements
@@ -394,7 +394,7 @@ class ParameterGroupingOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post_multi_param_groups(  # pylint: disable=inconsistent-return-statements
@@ -466,7 +466,7 @@ class ParameterGroupingOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post_shared_parameter_group_object(  # pylint: disable=inconsistent-return-statements
@@ -522,7 +522,7 @@ class ParameterGroupingOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def group_with_constant(  # pylint: disable=inconsistent-return-statements
@@ -579,4 +579,4 @@ class ParameterGroupingOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

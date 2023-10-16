@@ -364,7 +364,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_array(self, **kwargs: Any) -> List[JSON]:
@@ -439,9 +439,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[JSON], deserialized), {})
+            return cls(pipeline_response, cast(List[JSON], deserialized), {})  # type: ignore
 
-        return cast(List[JSON], deserialized)
+        return cast(List[JSON], deserialized)  # type: ignore
 
     @overload
     def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
@@ -561,7 +561,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_wrapped_array(self, **kwargs: Any) -> List[JSON]:
@@ -625,9 +625,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[JSON], deserialized), {})
+            return cls(pipeline_response, cast(List[JSON], deserialized), {})  # type: ignore
 
-        return cast(List[JSON], deserialized)
+        return cast(List[JSON], deserialized)  # type: ignore
 
     @overload
     def put_dictionary(  # pylint: disable=inconsistent-return-statements
@@ -762,7 +762,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_dictionary(self, **kwargs: Any) -> Dict[str, JSON]:
@@ -837,9 +837,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, JSON], deserialized), {})
+            return cls(pipeline_response, cast(Dict[str, JSON], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, JSON], deserialized)
+        return cast(Dict[str, JSON], deserialized)  # type: ignore
 
     @overload
     def put_resource_collection(  # pylint: disable=inconsistent-return-statements
@@ -1086,7 +1086,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_resource_collection(self, **kwargs: Any) -> JSON:
@@ -1206,9 +1206,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     def put_simple_product(
@@ -1417,9 +1417,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     def post_flattened_simple_product(
@@ -1630,9 +1630,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     def put_simple_product_with_grouping(
@@ -1860,6 +1860,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore

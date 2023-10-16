@@ -91,9 +91,9 @@ class TimeOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(datetime.time, deserialized), {})
+            return cls(pipeline_response, cast(datetime.time, deserialized), {})  # type: ignore
 
-        return cast(datetime.time, deserialized)
+        return cast(datetime.time, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def put(self, time_body: datetime.time, **kwargs: Any) -> str:
@@ -148,6 +148,6 @@ class TimeOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, cast(str, deserialized), {})  # type: ignore
 
-        return cast(str, deserialized)
+        return cast(str, deserialized)  # type: ignore

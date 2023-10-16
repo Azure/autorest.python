@@ -287,7 +287,7 @@ class PathItemsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_global_query_null(  # pylint: disable=inconsistent-return-statements
@@ -356,7 +356,7 @@ class PathItemsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_global_and_local_query_null(  # pylint: disable=inconsistent-return-statements
@@ -425,7 +425,7 @@ class PathItemsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_local_path_item_query_null(  # pylint: disable=inconsistent-return-statements
@@ -493,4 +493,4 @@ class PathItemsOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

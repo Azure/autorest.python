@@ -502,7 +502,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get400(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -546,7 +546,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def options400(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -590,7 +590,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put400(  # pylint: disable=inconsistent-return-statements
@@ -647,7 +647,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def patch400(  # pylint: disable=inconsistent-return-statements
@@ -704,7 +704,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post400(  # pylint: disable=inconsistent-return-statements
@@ -761,7 +761,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def delete400(  # pylint: disable=inconsistent-return-statements
@@ -818,7 +818,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def head401(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -862,7 +862,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get402(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -906,7 +906,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def options403(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -950,7 +950,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get403(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -994,7 +994,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put404(  # pylint: disable=inconsistent-return-statements
@@ -1051,7 +1051,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def patch405(  # pylint: disable=inconsistent-return-statements
@@ -1108,7 +1108,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post406(  # pylint: disable=inconsistent-return-statements
@@ -1165,7 +1165,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def delete407(  # pylint: disable=inconsistent-return-statements
@@ -1222,7 +1222,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put409(  # pylint: disable=inconsistent-return-statements
@@ -1279,7 +1279,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def head410(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1323,7 +1323,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get411(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1367,7 +1367,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def options412(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1411,7 +1411,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get412(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1455,7 +1455,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put413(  # pylint: disable=inconsistent-return-statements
@@ -1512,7 +1512,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def patch414(  # pylint: disable=inconsistent-return-statements
@@ -1569,7 +1569,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post415(  # pylint: disable=inconsistent-return-statements
@@ -1626,7 +1626,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get416(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1670,7 +1670,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def delete417(  # pylint: disable=inconsistent-return-statements
@@ -1727,7 +1727,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def head429(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1771,4 +1771,4 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

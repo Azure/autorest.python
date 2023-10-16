@@ -126,7 +126,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def put_required_binary_body(  # pylint: disable=inconsistent-return-statements
@@ -179,7 +179,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_required_integer_parameter(  # pylint: disable=inconsistent-return-statements
@@ -233,7 +233,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_optional_integer_parameter(  # pylint: disable=inconsistent-return-statements
@@ -289,7 +289,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_required_integer_property(  # pylint: disable=inconsistent-return-statements
@@ -344,7 +344,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_optional_integer_property(  # pylint: disable=inconsistent-return-statements
@@ -401,7 +401,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_required_integer_header(  # pylint: disable=inconsistent-return-statements
@@ -451,7 +451,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_optional_integer_header(  # pylint: disable=inconsistent-return-statements
@@ -500,7 +500,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_required_string_parameter(  # pylint: disable=inconsistent-return-statements
@@ -554,7 +554,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_optional_string_parameter(  # pylint: disable=inconsistent-return-statements
@@ -610,7 +610,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_required_string_property(  # pylint: disable=inconsistent-return-statements
@@ -665,7 +665,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_optional_string_property(  # pylint: disable=inconsistent-return-statements
@@ -722,7 +722,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_required_string_header(  # pylint: disable=inconsistent-return-statements
@@ -772,7 +772,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_optional_string_header(  # pylint: disable=inconsistent-return-statements
@@ -821,7 +821,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def post_required_class_parameter(  # pylint: disable=inconsistent-return-statements
@@ -921,7 +921,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def post_optional_class_parameter(  # pylint: disable=inconsistent-return-statements
@@ -1021,7 +1021,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_required_class_property(  # pylint: disable=inconsistent-return-statements
@@ -1076,7 +1076,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_optional_class_property(  # pylint: disable=inconsistent-return-statements
@@ -1133,7 +1133,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def post_required_array_parameter(  # pylint: disable=inconsistent-return-statements
@@ -1233,7 +1233,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def post_optional_array_parameter(  # pylint: disable=inconsistent-return-statements
@@ -1333,7 +1333,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_required_array_property(  # pylint: disable=inconsistent-return-statements
@@ -1388,7 +1388,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_optional_array_property(  # pylint: disable=inconsistent-return-statements
@@ -1445,7 +1445,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_required_array_header(  # pylint: disable=inconsistent-return-statements
@@ -1495,7 +1495,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_optional_array_header(  # pylint: disable=inconsistent-return-statements
@@ -1544,4 +1544,4 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

@@ -181,9 +181,9 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     def post_model(self, mode: str, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> JSON:
@@ -326,9 +326,9 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace
     def get_pages(self, mode: str, **kwargs: Any) -> Iterable[JSON]:
@@ -446,9 +446,9 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace
     def begin_lro(self, mode: str, **kwargs: Any) -> LROPoller[JSON]:

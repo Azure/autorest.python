@@ -243,7 +243,7 @@ class HttpRetryOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put500(  # pylint: disable=inconsistent-return-statements
@@ -300,7 +300,7 @@ class HttpRetryOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def patch500(  # pylint: disable=inconsistent-return-statements
@@ -357,7 +357,7 @@ class HttpRetryOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get502(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -401,7 +401,7 @@ class HttpRetryOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def options502(self, **kwargs: Any) -> bool:
@@ -447,9 +447,9 @@ class HttpRetryOperations:
         deserialized = self._deserialize("bool", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def post503(  # pylint: disable=inconsistent-return-statements
@@ -506,7 +506,7 @@ class HttpRetryOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def delete503(  # pylint: disable=inconsistent-return-statements
@@ -563,7 +563,7 @@ class HttpRetryOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put504(  # pylint: disable=inconsistent-return-statements
@@ -620,7 +620,7 @@ class HttpRetryOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def patch504(  # pylint: disable=inconsistent-return-statements
@@ -677,4 +677,4 @@ class HttpRetryOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

@@ -558,9 +558,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("MyException", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get200_model204_no_model_default_error204_valid(  # pylint: disable=name-too-long
@@ -610,9 +610,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("MyException", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get200_model204_no_model_default_error201_invalid(  # pylint: disable=name-too-long
@@ -662,9 +662,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("MyException", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get200_model204_no_model_default_error202_none(  # pylint: disable=name-too-long
@@ -714,9 +714,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("MyException", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get200_model204_no_model_default_error400_valid(  # pylint: disable=name-too-long
@@ -766,9 +766,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             deserialized = self._deserialize("MyException", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get200_model201_model_default_error200_valid(  # pylint: disable=name-too-long
@@ -1208,7 +1208,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get202_none204_none_default_error204_none(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -1254,7 +1254,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get202_none204_none_default_error400_valid(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -1300,7 +1300,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get202_none204_none_default_none202_invalid(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -1345,7 +1345,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get202_none204_none_default_none204_none(  # pylint: disable=inconsistent-return-statements
@@ -1390,7 +1390,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get202_none204_none_default_none400_none(  # pylint: disable=inconsistent-return-statements
@@ -1435,7 +1435,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get202_none204_none_default_none400_invalid(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -1480,7 +1480,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_default_model_a200_valid(self, **kwargs: Any) -> _models.MyException:
@@ -1525,9 +1525,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("MyException", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_default_model_a200_none(self, **kwargs: Any) -> _models.MyException:
@@ -1572,9 +1572,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("MyException", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_default_model_a400_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1618,7 +1618,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_default_model_a400_none(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1662,7 +1662,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_default_none200_invalid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1705,7 +1705,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_default_none200_none(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1748,7 +1748,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_default_none400_invalid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1791,7 +1791,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_default_none400_none(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1834,7 +1834,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get200_model_a200_none(self, **kwargs: Any) -> _models.MyException:
@@ -1880,9 +1880,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("MyException", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get200_model_a200_valid(self, **kwargs: Any) -> _models.MyException:
@@ -1927,9 +1927,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("MyException", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get200_model_a200_invalid(self, **kwargs: Any) -> _models.MyException:
@@ -1974,9 +1974,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("MyException", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get200_model_a400_none(self, **kwargs: Any) -> _models.MyException:
@@ -2021,9 +2021,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("MyException", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get200_model_a400_valid(self, **kwargs: Any) -> _models.MyException:
@@ -2068,9 +2068,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("MyException", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get200_model_a400_invalid(self, **kwargs: Any) -> _models.MyException:
@@ -2115,9 +2115,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("MyException", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get200_model_a202_valid(self, **kwargs: Any) -> _models.MyException:
@@ -2162,6 +2162,6 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("MyException", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore

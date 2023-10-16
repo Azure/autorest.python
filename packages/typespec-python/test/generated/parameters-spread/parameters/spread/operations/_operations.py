@@ -244,7 +244,7 @@ class ModelOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class AliasOperations:
@@ -401,7 +401,7 @@ class AliasOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def spread_as_request_parameter(  # pylint: disable=inconsistent-return-statements
@@ -558,7 +558,7 @@ class AliasOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def spread_with_multiple_parameters(  # pylint: disable=inconsistent-return-statements
@@ -777,4 +777,4 @@ class AliasOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

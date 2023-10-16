@@ -78,9 +78,9 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
         deserialized = self._deserialize("SecretResponse", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def get_error_with_secrets(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -124,4 +124,4 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

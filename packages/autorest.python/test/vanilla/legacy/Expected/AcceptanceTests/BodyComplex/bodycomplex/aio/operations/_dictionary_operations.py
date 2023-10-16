@@ -100,9 +100,9 @@ class DictionaryOperations:
         deserialized = self._deserialize("DictionaryWrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_valid(  # pylint: disable=inconsistent-return-statements
@@ -156,7 +156,7 @@ class DictionaryOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_empty(self, **kwargs: Any) -> _models.DictionaryWrapper:
@@ -202,9 +202,9 @@ class DictionaryOperations:
         deserialized = self._deserialize("DictionaryWrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_empty(  # pylint: disable=inconsistent-return-statements
@@ -258,7 +258,7 @@ class DictionaryOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_null(self, **kwargs: Any) -> _models.DictionaryWrapper:
@@ -304,9 +304,9 @@ class DictionaryOperations:
         deserialized = self._deserialize("DictionaryWrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def get_not_provided(self, **kwargs: Any) -> _models.DictionaryWrapper:
@@ -352,6 +352,6 @@ class DictionaryOperations:
         deserialized = self._deserialize("DictionaryWrapper", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore

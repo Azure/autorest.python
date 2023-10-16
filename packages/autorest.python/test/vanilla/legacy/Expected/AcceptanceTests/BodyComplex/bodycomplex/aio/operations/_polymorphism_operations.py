@@ -104,9 +104,9 @@ class PolymorphismOperations:
         deserialized = self._deserialize("Fish", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def put_valid(  # pylint: disable=inconsistent-return-statements
@@ -299,7 +299,7 @@ class PolymorphismOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_dot_syntax(self, **kwargs: Any) -> _models.DotFish:
@@ -345,9 +345,9 @@ class PolymorphismOperations:
         deserialized = self._deserialize("DotFish", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def get_composed_with_discriminator(self, **kwargs: Any) -> _models.DotFishMarket:
@@ -395,9 +395,9 @@ class PolymorphismOperations:
         deserialized = self._deserialize("DotFishMarket", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def get_composed_without_discriminator(self, **kwargs: Any) -> _models.DotFishMarket:
@@ -445,9 +445,9 @@ class PolymorphismOperations:
         deserialized = self._deserialize("DotFishMarket", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def get_complicated(self, **kwargs: Any) -> _models.Salmon:
@@ -494,9 +494,9 @@ class PolymorphismOperations:
         deserialized = self._deserialize("Salmon", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def put_complicated(  # pylint: disable=inconsistent-return-statements
@@ -596,7 +596,7 @@ class PolymorphismOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def put_missing_discriminator(
@@ -693,9 +693,9 @@ class PolymorphismOperations:
         deserialized = self._deserialize("Salmon", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
@@ -873,4 +873,4 @@ class PolymorphismOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

@@ -95,9 +95,9 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def operation_with_json_param(self, json: Any, **kwargs: Any) -> JSON:
@@ -149,9 +149,9 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def operation_with_data_param(self, data: str, world: str, **kwargs: Any) -> JSON:
@@ -211,9 +211,9 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def operation_with_files_param(self, files: IO, file_name: str, **kwargs: Any) -> JSON:
@@ -271,9 +271,9 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def operation_with_url(
@@ -332,9 +332,9 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def reserved_enum(self, enum_parameter: Union[str, _models.MyEnum], **kwargs: Any) -> JSON:
@@ -383,6 +383,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore

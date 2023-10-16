@@ -101,7 +101,7 @@ class HttpServerFailureOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get501(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -145,7 +145,7 @@ class HttpServerFailureOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post505(  # pylint: disable=inconsistent-return-statements
@@ -202,7 +202,7 @@ class HttpServerFailureOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def delete505(  # pylint: disable=inconsistent-return-statements
@@ -259,4 +259,4 @@ class HttpServerFailureOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

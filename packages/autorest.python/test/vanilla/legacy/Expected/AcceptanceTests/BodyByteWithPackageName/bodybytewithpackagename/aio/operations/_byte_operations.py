@@ -99,9 +99,9 @@ class ByteOperations:
         deserialized = self._deserialize("bytearray", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def get_empty(self, **kwargs: Any) -> bytes:
@@ -147,9 +147,9 @@ class ByteOperations:
         deserialized = self._deserialize("bytearray", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def get_non_ascii(self, **kwargs: Any) -> bytes:
@@ -195,9 +195,9 @@ class ByteOperations:
         deserialized = self._deserialize("bytearray", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def put_non_ascii(  # pylint: disable=inconsistent-return-statements
@@ -251,7 +251,7 @@ class ByteOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_invalid(self, **kwargs: Any) -> bytes:
@@ -297,6 +297,6 @@ class ByteOperations:
         deserialized = self._deserialize("bytearray", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore

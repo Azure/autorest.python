@@ -105,7 +105,7 @@ class ImplicitOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def put_optional_query(  # pylint: disable=inconsistent-return-statements
@@ -154,7 +154,7 @@ class ImplicitOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def put_optional_header(  # pylint: disable=inconsistent-return-statements
@@ -203,7 +203,7 @@ class ImplicitOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def put_optional_body(  # pylint: disable=inconsistent-return-statements
@@ -259,7 +259,7 @@ class ImplicitOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def put_optional_binary_body(  # pylint: disable=inconsistent-return-statements
@@ -312,7 +312,7 @@ class ImplicitOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_required_global_path(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -357,7 +357,7 @@ class ImplicitOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_required_global_query(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -402,7 +402,7 @@ class ImplicitOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_optional_global_query(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -447,4 +447,4 @@ class ImplicitOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

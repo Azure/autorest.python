@@ -116,7 +116,7 @@ class XMsClientRequestIdOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def param_get(  # pylint: disable=inconsistent-return-statements
@@ -167,4 +167,4 @@ class XMsClientRequestIdOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

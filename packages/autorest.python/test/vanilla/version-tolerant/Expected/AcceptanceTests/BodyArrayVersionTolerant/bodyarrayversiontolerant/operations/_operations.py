@@ -1129,9 +1129,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[int], deserialized), {})
+            return cls(pipeline_response, cast(List[int], deserialized), {})  # type: ignore
 
-        return cast(List[int], deserialized)
+        return cast(List[int], deserialized)  # type: ignore
 
     @distributed_trace
     def get_invalid(self, **kwargs: Any) -> List[int]:
@@ -1187,9 +1187,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[int], deserialized), {})
+            return cls(pipeline_response, cast(List[int], deserialized), {})  # type: ignore
 
-        return cast(List[int], deserialized)
+        return cast(List[int], deserialized)  # type: ignore
 
     @distributed_trace
     def get_empty(self, **kwargs: Any) -> List[int]:
@@ -1245,9 +1245,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[int], deserialized), {})
+            return cls(pipeline_response, cast(List[int], deserialized), {})  # type: ignore
 
-        return cast(List[int], deserialized)
+        return cast(List[int], deserialized)  # type: ignore
 
     @overload
     def put_empty(  # pylint: disable=inconsistent-return-statements
@@ -1349,7 +1349,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_boolean_tfft(self, **kwargs: Any) -> List[bool]:
@@ -1405,9 +1405,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[bool], deserialized), {})
+            return cls(pipeline_response, cast(List[bool], deserialized), {})  # type: ignore
 
-        return cast(List[bool], deserialized)
+        return cast(List[bool], deserialized)  # type: ignore
 
     @overload
     def put_boolean_tfft(  # pylint: disable=inconsistent-return-statements
@@ -1509,7 +1509,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_boolean_invalid_null(self, **kwargs: Any) -> List[bool]:
@@ -1565,9 +1565,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[bool], deserialized), {})
+            return cls(pipeline_response, cast(List[bool], deserialized), {})  # type: ignore
 
-        return cast(List[bool], deserialized)
+        return cast(List[bool], deserialized)  # type: ignore
 
     @distributed_trace
     def get_boolean_invalid_string(self, **kwargs: Any) -> List[bool]:
@@ -1623,9 +1623,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[bool], deserialized), {})
+            return cls(pipeline_response, cast(List[bool], deserialized), {})  # type: ignore
 
-        return cast(List[bool], deserialized)
+        return cast(List[bool], deserialized)  # type: ignore
 
     @distributed_trace
     def get_integer_valid(self, **kwargs: Any) -> List[int]:
@@ -1681,9 +1681,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[int], deserialized), {})
+            return cls(pipeline_response, cast(List[int], deserialized), {})  # type: ignore
 
-        return cast(List[int], deserialized)
+        return cast(List[int], deserialized)  # type: ignore
 
     @overload
     def put_integer_valid(  # pylint: disable=inconsistent-return-statements
@@ -1785,7 +1785,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_int_invalid_null(self, **kwargs: Any) -> List[int]:
@@ -1841,9 +1841,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[int], deserialized), {})
+            return cls(pipeline_response, cast(List[int], deserialized), {})  # type: ignore
 
-        return cast(List[int], deserialized)
+        return cast(List[int], deserialized)  # type: ignore
 
     @distributed_trace
     def get_int_invalid_string(self, **kwargs: Any) -> List[int]:
@@ -1899,9 +1899,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[int], deserialized), {})
+            return cls(pipeline_response, cast(List[int], deserialized), {})  # type: ignore
 
-        return cast(List[int], deserialized)
+        return cast(List[int], deserialized)  # type: ignore
 
     @distributed_trace
     def get_long_valid(self, **kwargs: Any) -> List[int]:
@@ -1957,9 +1957,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[int], deserialized), {})
+            return cls(pipeline_response, cast(List[int], deserialized), {})  # type: ignore
 
-        return cast(List[int], deserialized)
+        return cast(List[int], deserialized)  # type: ignore
 
     @overload
     def put_long_valid(  # pylint: disable=inconsistent-return-statements
@@ -2061,7 +2061,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_long_invalid_null(self, **kwargs: Any) -> List[int]:
@@ -2117,9 +2117,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[int], deserialized), {})
+            return cls(pipeline_response, cast(List[int], deserialized), {})  # type: ignore
 
-        return cast(List[int], deserialized)
+        return cast(List[int], deserialized)  # type: ignore
 
     @distributed_trace
     def get_long_invalid_string(self, **kwargs: Any) -> List[int]:
@@ -2175,9 +2175,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[int], deserialized), {})
+            return cls(pipeline_response, cast(List[int], deserialized), {})  # type: ignore
 
-        return cast(List[int], deserialized)
+        return cast(List[int], deserialized)  # type: ignore
 
     @distributed_trace
     def get_float_valid(self, **kwargs: Any) -> List[float]:
@@ -2233,9 +2233,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[float], deserialized), {})
+            return cls(pipeline_response, cast(List[float], deserialized), {})  # type: ignore
 
-        return cast(List[float], deserialized)
+        return cast(List[float], deserialized)  # type: ignore
 
     @overload
     def put_float_valid(  # pylint: disable=inconsistent-return-statements
@@ -2337,7 +2337,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_float_invalid_null(self, **kwargs: Any) -> List[float]:
@@ -2393,9 +2393,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[float], deserialized), {})
+            return cls(pipeline_response, cast(List[float], deserialized), {})  # type: ignore
 
-        return cast(List[float], deserialized)
+        return cast(List[float], deserialized)  # type: ignore
 
     @distributed_trace
     def get_float_invalid_string(self, **kwargs: Any) -> List[float]:
@@ -2451,9 +2451,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[float], deserialized), {})
+            return cls(pipeline_response, cast(List[float], deserialized), {})  # type: ignore
 
-        return cast(List[float], deserialized)
+        return cast(List[float], deserialized)  # type: ignore
 
     @distributed_trace
     def get_double_valid(self, **kwargs: Any) -> List[float]:
@@ -2509,9 +2509,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[float], deserialized), {})
+            return cls(pipeline_response, cast(List[float], deserialized), {})  # type: ignore
 
-        return cast(List[float], deserialized)
+        return cast(List[float], deserialized)  # type: ignore
 
     @overload
     def put_double_valid(  # pylint: disable=inconsistent-return-statements
@@ -2613,7 +2613,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_double_invalid_null(self, **kwargs: Any) -> List[float]:
@@ -2669,9 +2669,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[float], deserialized), {})
+            return cls(pipeline_response, cast(List[float], deserialized), {})  # type: ignore
 
-        return cast(List[float], deserialized)
+        return cast(List[float], deserialized)  # type: ignore
 
     @distributed_trace
     def get_double_invalid_string(self, **kwargs: Any) -> List[float]:
@@ -2727,9 +2727,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[float], deserialized), {})
+            return cls(pipeline_response, cast(List[float], deserialized), {})  # type: ignore
 
-        return cast(List[float], deserialized)
+        return cast(List[float], deserialized)  # type: ignore
 
     @distributed_trace
     def get_string_valid(self, **kwargs: Any) -> List[str]:
@@ -2785,9 +2785,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[str], deserialized), {})
+            return cls(pipeline_response, cast(List[str], deserialized), {})  # type: ignore
 
-        return cast(List[str], deserialized)
+        return cast(List[str], deserialized)  # type: ignore
 
     @overload
     def put_string_valid(  # pylint: disable=inconsistent-return-statements
@@ -2889,7 +2889,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_enum_valid(self, **kwargs: Any) -> List[str]:
@@ -2945,9 +2945,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[str], deserialized), {})
+            return cls(pipeline_response, cast(List[str], deserialized), {})  # type: ignore
 
-        return cast(List[str], deserialized)
+        return cast(List[str], deserialized)  # type: ignore
 
     @overload
     def put_enum_valid(  # pylint: disable=inconsistent-return-statements
@@ -3049,7 +3049,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_string_enum_valid(self, **kwargs: Any) -> List[str]:
@@ -3105,9 +3105,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[str], deserialized), {})
+            return cls(pipeline_response, cast(List[str], deserialized), {})  # type: ignore
 
-        return cast(List[str], deserialized)
+        return cast(List[str], deserialized)  # type: ignore
 
     @overload
     def put_string_enum_valid(  # pylint: disable=inconsistent-return-statements
@@ -3209,7 +3209,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_string_with_null(self, **kwargs: Any) -> List[str]:
@@ -3265,9 +3265,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[str], deserialized), {})
+            return cls(pipeline_response, cast(List[str], deserialized), {})  # type: ignore
 
-        return cast(List[str], deserialized)
+        return cast(List[str], deserialized)  # type: ignore
 
     @distributed_trace
     def get_string_with_invalid(self, **kwargs: Any) -> List[str]:
@@ -3323,9 +3323,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[str], deserialized), {})
+            return cls(pipeline_response, cast(List[str], deserialized), {})  # type: ignore
 
-        return cast(List[str], deserialized)
+        return cast(List[str], deserialized)  # type: ignore
 
     @distributed_trace
     def get_uuid_valid(self, **kwargs: Any) -> List[str]:
@@ -3382,9 +3382,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[str], deserialized), {})
+            return cls(pipeline_response, cast(List[str], deserialized), {})  # type: ignore
 
-        return cast(List[str], deserialized)
+        return cast(List[str], deserialized)  # type: ignore
 
     @overload
     def put_uuid_valid(  # pylint: disable=inconsistent-return-statements
@@ -3489,7 +3489,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_uuid_invalid_chars(self, **kwargs: Any) -> List[str]:
@@ -3545,9 +3545,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[str], deserialized), {})
+            return cls(pipeline_response, cast(List[str], deserialized), {})  # type: ignore
 
-        return cast(List[str], deserialized)
+        return cast(List[str], deserialized)  # type: ignore
 
     @distributed_trace
     def get_date_valid(self, **kwargs: Any) -> List[datetime.date]:
@@ -3603,9 +3603,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[datetime.date], deserialized), {})
+            return cls(pipeline_response, cast(List[datetime.date], deserialized), {})  # type: ignore
 
-        return cast(List[datetime.date], deserialized)
+        return cast(List[datetime.date], deserialized)  # type: ignore
 
     @overload
     def put_date_valid(  # pylint: disable=inconsistent-return-statements
@@ -3707,7 +3707,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_date_invalid_null(self, **kwargs: Any) -> List[datetime.date]:
@@ -3763,9 +3763,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[datetime.date], deserialized), {})
+            return cls(pipeline_response, cast(List[datetime.date], deserialized), {})  # type: ignore
 
-        return cast(List[datetime.date], deserialized)
+        return cast(List[datetime.date], deserialized)  # type: ignore
 
     @distributed_trace
     def get_date_invalid_chars(self, **kwargs: Any) -> List[datetime.date]:
@@ -3821,9 +3821,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[datetime.date], deserialized), {})
+            return cls(pipeline_response, cast(List[datetime.date], deserialized), {})  # type: ignore
 
-        return cast(List[datetime.date], deserialized)
+        return cast(List[datetime.date], deserialized)  # type: ignore
 
     @distributed_trace
     def get_date_time_valid(self, **kwargs: Any) -> List[datetime.datetime]:
@@ -3880,9 +3880,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[datetime.datetime], deserialized), {})
+            return cls(pipeline_response, cast(List[datetime.datetime], deserialized), {})  # type: ignore
 
-        return cast(List[datetime.datetime], deserialized)
+        return cast(List[datetime.datetime], deserialized)  # type: ignore
 
     @overload
     def put_date_time_valid(  # pylint: disable=inconsistent-return-statements
@@ -3987,7 +3987,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_date_time_invalid_null(self, **kwargs: Any) -> List[datetime.datetime]:
@@ -4043,9 +4043,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[datetime.datetime], deserialized), {})
+            return cls(pipeline_response, cast(List[datetime.datetime], deserialized), {})  # type: ignore
 
-        return cast(List[datetime.datetime], deserialized)
+        return cast(List[datetime.datetime], deserialized)  # type: ignore
 
     @distributed_trace
     def get_date_time_invalid_chars(self, **kwargs: Any) -> List[datetime.datetime]:
@@ -4101,9 +4101,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[datetime.datetime], deserialized), {})
+            return cls(pipeline_response, cast(List[datetime.datetime], deserialized), {})  # type: ignore
 
-        return cast(List[datetime.datetime], deserialized)
+        return cast(List[datetime.datetime], deserialized)  # type: ignore
 
     @distributed_trace
     def get_date_time_rfc1123_valid(self, **kwargs: Any) -> List[datetime.datetime]:
@@ -4160,9 +4160,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[datetime.datetime], deserialized), {})
+            return cls(pipeline_response, cast(List[datetime.datetime], deserialized), {})  # type: ignore
 
-        return cast(List[datetime.datetime], deserialized)
+        return cast(List[datetime.datetime], deserialized)  # type: ignore
 
     @overload
     def put_date_time_rfc1123_valid(  # pylint: disable=inconsistent-return-statements
@@ -4267,7 +4267,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_duration_valid(self, **kwargs: Any) -> List[datetime.timedelta]:
@@ -4323,9 +4323,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[datetime.timedelta], deserialized), {})
+            return cls(pipeline_response, cast(List[datetime.timedelta], deserialized), {})  # type: ignore
 
-        return cast(List[datetime.timedelta], deserialized)
+        return cast(List[datetime.timedelta], deserialized)  # type: ignore
 
     @overload
     def put_duration_valid(  # pylint: disable=inconsistent-return-statements
@@ -4427,7 +4427,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_byte_valid(self, **kwargs: Any) -> List[bytes]:
@@ -4484,9 +4484,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[bytes], deserialized), {})
+            return cls(pipeline_response, cast(List[bytes], deserialized), {})  # type: ignore
 
-        return cast(List[bytes], deserialized)
+        return cast(List[bytes], deserialized)  # type: ignore
 
     @overload
     def put_byte_valid(  # pylint: disable=inconsistent-return-statements
@@ -4591,7 +4591,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_byte_invalid_null(self, **kwargs: Any) -> List[bytes]:
@@ -4647,9 +4647,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[bytes], deserialized), {})
+            return cls(pipeline_response, cast(List[bytes], deserialized), {})  # type: ignore
 
-        return cast(List[bytes], deserialized)
+        return cast(List[bytes], deserialized)  # type: ignore
 
     @distributed_trace
     def get_base64_url(self, **kwargs: Any) -> List[bytes]:
@@ -4706,9 +4706,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[bytes], deserialized), {})
+            return cls(pipeline_response, cast(List[bytes], deserialized), {})  # type: ignore
 
-        return cast(List[bytes], deserialized)
+        return cast(List[bytes], deserialized)  # type: ignore
 
     @distributed_trace
     def get_complex_null(self, **kwargs: Any) -> List[JSON]:
@@ -4767,9 +4767,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[JSON], deserialized), {})
+            return cls(pipeline_response, cast(List[JSON], deserialized), {})  # type: ignore
 
-        return cast(List[JSON], deserialized)
+        return cast(List[JSON], deserialized)  # type: ignore
 
     @distributed_trace
     def get_complex_empty(self, **kwargs: Any) -> List[JSON]:
@@ -4828,9 +4828,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[JSON], deserialized), {})
+            return cls(pipeline_response, cast(List[JSON], deserialized), {})  # type: ignore
 
-        return cast(List[JSON], deserialized)
+        return cast(List[JSON], deserialized)  # type: ignore
 
     @distributed_trace
     def get_complex_item_null(self, **kwargs: Any) -> List[JSON]:
@@ -4890,9 +4890,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[JSON], deserialized), {})
+            return cls(pipeline_response, cast(List[JSON], deserialized), {})  # type: ignore
 
-        return cast(List[JSON], deserialized)
+        return cast(List[JSON], deserialized)  # type: ignore
 
     @distributed_trace
     def get_complex_item_empty(self, **kwargs: Any) -> List[JSON]:
@@ -4952,9 +4952,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[JSON], deserialized), {})
+            return cls(pipeline_response, cast(List[JSON], deserialized), {})  # type: ignore
 
-        return cast(List[JSON], deserialized)
+        return cast(List[JSON], deserialized)  # type: ignore
 
     @distributed_trace
     def get_complex_valid(self, **kwargs: Any) -> List[JSON]:
@@ -5014,9 +5014,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[JSON], deserialized), {})
+            return cls(pipeline_response, cast(List[JSON], deserialized), {})  # type: ignore
 
-        return cast(List[JSON], deserialized)
+        return cast(List[JSON], deserialized)  # type: ignore
 
     @overload
     def put_complex_valid(  # pylint: disable=inconsistent-return-statements
@@ -5124,7 +5124,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_array_null(self, **kwargs: Any) -> List[List[str]]:
@@ -5182,9 +5182,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[List[str]], deserialized), {})
+            return cls(pipeline_response, cast(List[List[str]], deserialized), {})  # type: ignore
 
-        return cast(List[List[str]], deserialized)
+        return cast(List[List[str]], deserialized)  # type: ignore
 
     @distributed_trace
     def get_array_empty(self, **kwargs: Any) -> List[List[str]]:
@@ -5242,9 +5242,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[List[str]], deserialized), {})
+            return cls(pipeline_response, cast(List[List[str]], deserialized), {})  # type: ignore
 
-        return cast(List[List[str]], deserialized)
+        return cast(List[List[str]], deserialized)  # type: ignore
 
     @distributed_trace
     def get_array_item_null(self, **kwargs: Any) -> List[List[str]]:
@@ -5302,9 +5302,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[List[str]], deserialized), {})
+            return cls(pipeline_response, cast(List[List[str]], deserialized), {})  # type: ignore
 
-        return cast(List[List[str]], deserialized)
+        return cast(List[List[str]], deserialized)  # type: ignore
 
     @distributed_trace
     def get_array_item_empty(self, **kwargs: Any) -> List[List[str]]:
@@ -5362,9 +5362,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[List[str]], deserialized), {})
+            return cls(pipeline_response, cast(List[List[str]], deserialized), {})  # type: ignore
 
-        return cast(List[List[str]], deserialized)
+        return cast(List[List[str]], deserialized)  # type: ignore
 
     @distributed_trace
     def get_array_valid(self, **kwargs: Any) -> List[List[str]]:
@@ -5422,9 +5422,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[List[str]], deserialized), {})
+            return cls(pipeline_response, cast(List[List[str]], deserialized), {})  # type: ignore
 
-        return cast(List[List[str]], deserialized)
+        return cast(List[List[str]], deserialized)  # type: ignore
 
     @overload
     def put_array_valid(  # pylint: disable=inconsistent-return-statements
@@ -5528,7 +5528,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_dictionary_null(self, **kwargs: Any) -> List[Dict[str, str]]:
@@ -5586,9 +5586,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[Dict[str, str]], deserialized), {})
+            return cls(pipeline_response, cast(List[Dict[str, str]], deserialized), {})  # type: ignore
 
-        return cast(List[Dict[str, str]], deserialized)
+        return cast(List[Dict[str, str]], deserialized)  # type: ignore
 
     @distributed_trace
     def get_dictionary_empty(self, **kwargs: Any) -> List[Dict[str, str]]:
@@ -5646,9 +5646,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[Dict[str, str]], deserialized), {})
+            return cls(pipeline_response, cast(List[Dict[str, str]], deserialized), {})  # type: ignore
 
-        return cast(List[Dict[str, str]], deserialized)
+        return cast(List[Dict[str, str]], deserialized)  # type: ignore
 
     @distributed_trace
     def get_dictionary_item_null(self, **kwargs: Any) -> List[Dict[str, str]]:
@@ -5707,9 +5707,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[Dict[str, str]], deserialized), {})
+            return cls(pipeline_response, cast(List[Dict[str, str]], deserialized), {})  # type: ignore
 
-        return cast(List[Dict[str, str]], deserialized)
+        return cast(List[Dict[str, str]], deserialized)  # type: ignore
 
     @distributed_trace
     def get_dictionary_item_empty(self, **kwargs: Any) -> List[Dict[str, str]]:
@@ -5768,9 +5768,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[Dict[str, str]], deserialized), {})
+            return cls(pipeline_response, cast(List[Dict[str, str]], deserialized), {})  # type: ignore
 
-        return cast(List[Dict[str, str]], deserialized)
+        return cast(List[Dict[str, str]], deserialized)  # type: ignore
 
     @distributed_trace
     def get_dictionary_valid(self, **kwargs: Any) -> List[Dict[str, str]]:
@@ -5829,9 +5829,9 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[Dict[str, str]], deserialized), {})
+            return cls(pipeline_response, cast(List[Dict[str, str]], deserialized), {})  # type: ignore
 
-        return cast(List[Dict[str, str]], deserialized)
+        return cast(List[Dict[str, str]], deserialized)  # type: ignore
 
     @overload
     def put_dictionary_valid(  # pylint: disable=inconsistent-return-statements
@@ -5938,4 +5938,4 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

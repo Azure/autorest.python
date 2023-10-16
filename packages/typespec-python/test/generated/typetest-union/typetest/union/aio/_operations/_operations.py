@@ -162,7 +162,7 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def send_int_array(  # pylint: disable=inconsistent-return-statements
@@ -278,7 +278,7 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def send_first_named_union_value(  # pylint: disable=inconsistent-return-statements
@@ -394,7 +394,7 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def send_second_named_union_value(  # pylint: disable=inconsistent-return-statements
@@ -510,7 +510,7 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def receive_string(self, **kwargs: Any) -> _models.ModelWithSimpleUnionPropertyInResponse:

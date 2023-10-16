@@ -341,7 +341,7 @@ class QueryOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def rfc3339(  # pylint: disable=inconsistent-return-statements
@@ -391,7 +391,7 @@ class QueryOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def rfc7231(  # pylint: disable=inconsistent-return-statements
@@ -441,7 +441,7 @@ class QueryOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def unix_timestamp(  # pylint: disable=inconsistent-return-statements
@@ -491,7 +491,7 @@ class QueryOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def unix_timestamp_array(  # pylint: disable=inconsistent-return-statements
@@ -541,7 +541,7 @@ class QueryOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class PropertyOperations:
@@ -1251,7 +1251,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def rfc3339(  # pylint: disable=inconsistent-return-statements
@@ -1301,7 +1301,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def rfc7231(  # pylint: disable=inconsistent-return-statements
@@ -1351,7 +1351,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def unix_timestamp(  # pylint: disable=inconsistent-return-statements
@@ -1401,7 +1401,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def unix_timestamp_array(  # pylint: disable=inconsistent-return-statements
@@ -1451,7 +1451,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class ResponseHeaderOperations:
@@ -1517,7 +1517,7 @@ class ResponseHeaderOperations:
         response_headers["value"] = self._deserialize("rfc-1123", response.headers.get("value"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def rfc3339(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1565,7 +1565,7 @@ class ResponseHeaderOperations:
         response_headers["value"] = self._deserialize("iso-8601", response.headers.get("value"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def rfc7231(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1613,7 +1613,7 @@ class ResponseHeaderOperations:
         response_headers["value"] = self._deserialize("rfc-1123", response.headers.get("value"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def unix_timestamp(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1661,4 +1661,4 @@ class ResponseHeaderOperations:
         response_headers["value"] = self._deserialize("unix-time", response.headers.get("value"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore

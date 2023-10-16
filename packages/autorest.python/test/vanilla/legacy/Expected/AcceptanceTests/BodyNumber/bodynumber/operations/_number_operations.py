@@ -466,9 +466,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_invalid_float(self, **kwargs: Any) -> float:
@@ -514,9 +514,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_invalid_double(self, **kwargs: Any) -> float:
@@ -562,9 +562,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_invalid_decimal(self, **kwargs: Any) -> float:
@@ -610,9 +610,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_big_float(  # pylint: disable=inconsistent-return-statements
@@ -665,7 +665,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_big_float(self, **kwargs: Any) -> float:
@@ -711,9 +711,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_big_double(  # pylint: disable=inconsistent-return-statements
@@ -766,7 +766,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_big_double(self, **kwargs: Any) -> float:
@@ -812,9 +812,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_big_double_positive_decimal(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -867,7 +867,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_big_double_positive_decimal(self, **kwargs: Any) -> float:
@@ -913,9 +913,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_big_double_negative_decimal(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -968,7 +968,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_big_double_negative_decimal(self, **kwargs: Any) -> float:
@@ -1014,9 +1014,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_big_decimal(  # pylint: disable=inconsistent-return-statements
@@ -1069,7 +1069,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_big_decimal(self, **kwargs: Any) -> float:
@@ -1115,9 +1115,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_big_decimal_positive_decimal(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1170,7 +1170,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_big_decimal_positive_decimal(self, **kwargs: Any) -> float:
@@ -1216,9 +1216,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_big_decimal_negative_decimal(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1271,7 +1271,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_big_decimal_negative_decimal(self, **kwargs: Any) -> float:
@@ -1317,9 +1317,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_small_float(  # pylint: disable=inconsistent-return-statements
@@ -1372,7 +1372,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_small_float(self, **kwargs: Any) -> float:
@@ -1418,9 +1418,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_small_double(  # pylint: disable=inconsistent-return-statements
@@ -1473,7 +1473,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_small_double(self, **kwargs: Any) -> float:
@@ -1519,9 +1519,9 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_small_decimal(  # pylint: disable=inconsistent-return-statements
@@ -1574,7 +1574,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_small_decimal(self, **kwargs: Any) -> float:
@@ -1620,6 +1620,6 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         deserialized = self._deserialize("float", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore

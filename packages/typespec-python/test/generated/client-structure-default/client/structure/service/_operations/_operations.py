@@ -120,7 +120,7 @@ class ServiceClientOperationsMixin(ServiceClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def two(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -169,7 +169,7 @@ class ServiceClientOperationsMixin(ServiceClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def three(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -218,7 +218,7 @@ class ServiceClientOperationsMixin(ServiceClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def four(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -267,7 +267,7 @@ class ServiceClientOperationsMixin(ServiceClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def five(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -316,7 +316,7 @@ class ServiceClientOperationsMixin(ServiceClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def six(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -365,4 +365,4 @@ class ServiceClientOperationsMixin(ServiceClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

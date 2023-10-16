@@ -101,7 +101,7 @@ class MultipleClientOperationsMixin(MultipleClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_operation_path_param(  # pylint: disable=inconsistent-return-statements
@@ -157,4 +157,4 @@ class MultipleClientOperationsMixin(MultipleClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

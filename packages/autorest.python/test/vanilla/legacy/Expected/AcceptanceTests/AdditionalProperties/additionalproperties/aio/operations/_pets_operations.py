@@ -152,9 +152,9 @@ class PetsOperations:
         deserialized = self._deserialize("PetAPTrue", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def create_cat_ap_true(
@@ -253,9 +253,9 @@ class PetsOperations:
         deserialized = self._deserialize("CatAPTrue", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def create_ap_object(
@@ -354,9 +354,9 @@ class PetsOperations:
         deserialized = self._deserialize("PetAPObject", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def create_ap_string(
@@ -455,9 +455,9 @@ class PetsOperations:
         deserialized = self._deserialize("PetAPString", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def create_ap_in_properties(
@@ -556,9 +556,9 @@ class PetsOperations:
         deserialized = self._deserialize("PetAPInProperties", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def create_ap_in_properties_with_ap_string(
@@ -662,6 +662,6 @@ class PetsOperations:
         deserialized = self._deserialize("PetAPInPropertiesWithAPString", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore

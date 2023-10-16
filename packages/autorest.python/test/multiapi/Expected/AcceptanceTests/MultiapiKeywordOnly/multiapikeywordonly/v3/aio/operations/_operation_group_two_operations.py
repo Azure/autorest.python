@@ -153,7 +153,7 @@ class OperationGroupTwoOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def test_five(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -199,4 +199,4 @@ class OperationGroupTwoOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

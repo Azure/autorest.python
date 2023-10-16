@@ -176,7 +176,7 @@ class PropertyOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def client(  # pylint: disable=inconsistent-return-statements
@@ -292,7 +292,7 @@ class PropertyOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def language(  # pylint: disable=inconsistent-return-statements
@@ -408,7 +408,7 @@ class PropertyOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def json_and_client(  # pylint: disable=inconsistent-return-statements
@@ -524,7 +524,7 @@ class PropertyOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
@@ -571,7 +571,7 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def parameter(  # pylint: disable=inconsistent-return-statements
@@ -621,4 +621,4 @@ class ProjectedNameClientOperationsMixin(ProjectedNameClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

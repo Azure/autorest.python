@@ -259,9 +259,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     def put_horse(self, horse: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
@@ -373,9 +373,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, cast(str, deserialized), {})  # type: ignore
 
-        return cast(str, deserialized)
+        return cast(str, deserialized)  # type: ignore
 
     @distributed_trace
     def get_pet(self, **kwargs: Any) -> JSON:
@@ -431,9 +431,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     def put_pet(self, pet: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
@@ -542,9 +542,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, cast(str, deserialized), {})  # type: ignore
 
-        return cast(str, deserialized)
+        return cast(str, deserialized)  # type: ignore
 
     @distributed_trace
     def get_feline(self, **kwargs: Any) -> JSON:
@@ -601,9 +601,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     def put_feline(self, feline: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
@@ -715,9 +715,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, cast(str, deserialized), {})  # type: ignore
 
-        return cast(str, deserialized)
+        return cast(str, deserialized)  # type: ignore
 
     @distributed_trace
     def get_cat(self, **kwargs: Any) -> JSON:
@@ -776,9 +776,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     def put_cat(self, cat: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
@@ -896,9 +896,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, cast(str, deserialized), {})  # type: ignore
 
-        return cast(str, deserialized)
+        return cast(str, deserialized)  # type: ignore
 
     @distributed_trace
     def get_kitten(self, **kwargs: Any) -> JSON:
@@ -959,9 +959,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     def put_kitten(self, kitten: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
@@ -1084,6 +1084,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, cast(str, deserialized), {})  # type: ignore
 
-        return cast(str, deserialized)
+        return cast(str, deserialized)  # type: ignore

@@ -705,7 +705,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def export(self, id: int, *, format: str, **kwargs: Any) -> _models.User:

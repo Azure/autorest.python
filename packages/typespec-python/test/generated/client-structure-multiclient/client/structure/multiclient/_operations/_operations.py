@@ -120,7 +120,7 @@ class ClientAClientOperationsMixin(ClientAClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def renamed_three(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -169,7 +169,7 @@ class ClientAClientOperationsMixin(ClientAClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def renamed_five(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -218,7 +218,7 @@ class ClientAClientOperationsMixin(ClientAClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class ClientBClientOperationsMixin(ClientBClientMixinABC):
@@ -269,7 +269,7 @@ class ClientBClientOperationsMixin(ClientBClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def renamed_four(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -318,7 +318,7 @@ class ClientBClientOperationsMixin(ClientBClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def renamed_six(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -367,4 +367,4 @@ class ClientBClientOperationsMixin(ClientBClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

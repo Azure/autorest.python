@@ -1168,25 +1168,10 @@ class _OperationSerializer(
                     )
                 )
                 retval.append("")
-        type_ignore = (
-            builder.has_response_body
-            and not builder.has_optional_return_type
-            and not (
-                self.code_model.options["models_mode"] == "msrest"
-                and any(not resp.is_stream_response for resp in builder.responses)
-            )
-        )
         if builder.has_optional_return_type or self.code_model.options["models_mode"]:
             deserialized = "deserialized"
         else:
             deserialized = f"cast({builder.response_type_annotation(async_mode=self.async_mode)}, deserialized)"
-            type_ignore = False
-        if (
-            not builder.has_optional_return_type
-            and len(builder.responses) > 1
-            and any(resp.is_stream_response or resp.type for resp in builder.responses)
-        ):
-            type_ignore = True
         retval.append("if cls:")
         retval.append(
             "    return cls(pipeline_response, {}, {}){}".format(
@@ -1200,9 +1185,7 @@ class _OperationSerializer(
             for response in builder.responses
         ):
             retval.append("")
-            retval.append(
-                f"return {deserialized}  # type: ignore"
-            )
+            retval.append(f"return {deserialized}  # type: ignore")
         if (
             builder.request_builder.method == "HEAD"
             and self.code_model.options["head_as_boolean"]

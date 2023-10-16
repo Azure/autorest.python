@@ -277,7 +277,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
         return 200 <= response.status_code <= 299
 
     @overload
@@ -394,7 +394,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def patch_model(  # pylint: disable=inconsistent-return-statements
@@ -510,7 +510,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def post_model(  # pylint: disable=inconsistent-return-statements
@@ -626,7 +626,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def delete_model(  # pylint: disable=inconsistent-return-statements
@@ -742,4 +742,4 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

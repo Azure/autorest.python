@@ -126,7 +126,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
         return 200 <= response.status_code <= 299
 
     @distributed_trace
@@ -190,7 +190,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def from_one_optional(  # pylint: disable=inconsistent-return-statements
@@ -253,4 +253,4 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

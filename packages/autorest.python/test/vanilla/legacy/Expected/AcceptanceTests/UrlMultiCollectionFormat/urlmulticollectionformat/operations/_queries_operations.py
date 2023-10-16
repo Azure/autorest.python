@@ -162,7 +162,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def array_string_multi_empty(  # pylint: disable=inconsistent-return-statements
@@ -212,7 +212,7 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def array_string_multi_valid(  # pylint: disable=inconsistent-return-statements
@@ -263,4 +263,4 @@ class QueriesOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

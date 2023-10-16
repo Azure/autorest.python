@@ -97,7 +97,7 @@ class Group1Operations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def three(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -146,7 +146,7 @@ class Group1Operations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def four(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -195,7 +195,7 @@ class Group1Operations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class Group2Operations:
@@ -262,7 +262,7 @@ class Group2Operations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def five(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -311,7 +311,7 @@ class Group2Operations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def six(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -360,4 +360,4 @@ class Group2Operations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

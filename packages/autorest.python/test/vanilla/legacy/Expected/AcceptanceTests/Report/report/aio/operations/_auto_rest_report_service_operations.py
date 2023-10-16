@@ -83,9 +83,9 @@ class AutoRestReportServiceOperationsMixin(AutoRestReportServiceMixinABC):
         deserialized = self._deserialize("{int}", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def get_optional_report(self, qualifier: Optional[str] = None, **kwargs: Any) -> Dict[str, int]:
@@ -136,6 +136,6 @@ class AutoRestReportServiceOperationsMixin(AutoRestReportServiceMixinABC):
         deserialized = self._deserialize("{int}", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore

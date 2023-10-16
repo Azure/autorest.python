@@ -220,7 +220,7 @@ class Int32ValueOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class Int64ValueOperations:
@@ -388,7 +388,7 @@ class Int64ValueOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class BooleanValueOperations:
@@ -556,7 +556,7 @@ class BooleanValueOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class StringValueOperations:
@@ -724,7 +724,7 @@ class StringValueOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class Float32ValueOperations:
@@ -892,7 +892,7 @@ class Float32ValueOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class DatetimeValueOperations:
@@ -1060,7 +1060,7 @@ class DatetimeValueOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class DurationValueOperations:
@@ -1228,7 +1228,7 @@ class DurationValueOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class UnknownValueOperations:
@@ -1396,7 +1396,7 @@ class UnknownValueOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class ModelValueOperations:
@@ -1564,7 +1564,7 @@ class ModelValueOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class RecursiveModelValueOperations:
@@ -1732,7 +1732,7 @@ class RecursiveModelValueOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class NullableFloatValueOperations:
@@ -1900,4 +1900,4 @@ class NullableFloatValueOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

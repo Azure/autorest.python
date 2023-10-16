@@ -81,5 +81,5 @@ class AutorestSecurityAadOperationsMixin(AutorestSecurityAadMixinABC):
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
         return 200 <= response.status_code <= 299

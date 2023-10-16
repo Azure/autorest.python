@@ -90,9 +90,9 @@ class FilesOperations:
         deserialized = response.iter_bytes()
 
         if cls:
-            return cls(pipeline_response, cast(AsyncIterator[bytes], deserialized), {})
+            return cls(pipeline_response, cast(AsyncIterator[bytes], deserialized), {})  # type: ignore
 
-        return cast(AsyncIterator[bytes], deserialized)
+        return cast(AsyncIterator[bytes], deserialized)  # type: ignore
 
     @distributed_trace_async
     async def get_file_large(self, **kwargs: Any) -> AsyncIterator[bytes]:
@@ -137,9 +137,9 @@ class FilesOperations:
         deserialized = response.iter_bytes()
 
         if cls:
-            return cls(pipeline_response, cast(AsyncIterator[bytes], deserialized), {})
+            return cls(pipeline_response, cast(AsyncIterator[bytes], deserialized), {})  # type: ignore
 
-        return cast(AsyncIterator[bytes], deserialized)
+        return cast(AsyncIterator[bytes], deserialized)  # type: ignore
 
     @distributed_trace_async
     async def get_empty_file(self, **kwargs: Any) -> AsyncIterator[bytes]:
@@ -184,6 +184,6 @@ class FilesOperations:
         deserialized = response.iter_bytes()
 
         if cls:
-            return cls(pipeline_response, cast(AsyncIterator[bytes], deserialized), {})
+            return cls(pipeline_response, cast(AsyncIterator[bytes], deserialized), {})  # type: ignore
 
-        return cast(AsyncIterator[bytes], deserialized)
+        return cast(AsyncIterator[bytes], deserialized)  # type: ignore
