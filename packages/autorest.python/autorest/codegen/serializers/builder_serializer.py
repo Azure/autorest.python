@@ -321,6 +321,10 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
         description_list.append("")
         return description_list
 
+    @staticmethod
+    def line_too_long(docs: List[str]) -> bool:
+        return any(len(line) > 120 for line in docs)
+
     def example_template(self, builder: BuilderType) -> List[str]:
         template = []
         if builder.abstract:

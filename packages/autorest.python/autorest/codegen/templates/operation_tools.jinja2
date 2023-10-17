@@ -1,9 +1,13 @@
 {% macro wrap_string(string, wrapstring, width=95) %}{{ string | wordwrap(width=width, break_long_words=False, break_on_hyphens=False, wrapstring=wrapstring)}}{% endmacro %}
 
 {% macro description(builder, serializer) %}
+{% set example_template = serializer.example_template(builder) %}
     {% for description in serializer.description_and_summary(builder) %}
         {% if description %}
 {% set description = wrap_string(description, wrapstring='\n') %}
+{% if serializer.line_too_long(example_template) %}
+# pylint: disable=line-too-long
+{% endif %}
 {{ '"""' + description if loop.first else description }}
         {% else %}
 
@@ -16,11 +20,11 @@
 
         {% endif %}
 {% endfor %}
-{% if serializer.example_template(builder) %}
+{% if example_template %}
 
 Example:
     .. code-block:: python
-    {% for template_line in serializer.example_template(builder) %}
+    {% for template_line in example_template %}
         {% if template_line %}
             {% set wrap_amount = (template_line | length) - (template_line.lstrip() | length) + 10 %}
         {{  wrap_string(template_line, wrapstring='\n' + " " * wrap_amount, width=(95 - wrap_amount)) }}
