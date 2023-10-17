@@ -82,6 +82,9 @@ export function getType(
         case "datetime":
         case "duration":
             return emitDurationOrDateType(type);
+        case "enumvalue":
+            const parentEnum = emitEnum(type.parentEnum);
+            return emitEnumMember(type, parentEnum);
         case "bytes":
         case "boolean":
         case "date":
@@ -248,6 +251,7 @@ function emitEnum(type: SdkEnumType): Record<string, any> {
     if (typesMap.has(type)) {
         return typesMap.get(type)!;
     }
+    const values: Record<string, any>[] = [];
     const newValue = {
         name: type.name,
         snakeCaseName: camelToSnakeCase(type.name),
@@ -255,9 +259,12 @@ function emitEnum(type: SdkEnumType): Record<string, any> {
         internal: type.access === "internal",
         type: type.kind,
         valueType: emitBuiltInType(type.valueType),
-        values: type.values.map((x) => emitEnumMember(x)),
+        values,
         xmlMetadata: {},
     };
+    for (const value of type.values) {
+        newValue.values.push(emitEnumMember(value, newValue));
+    }
     typesMap.set(type, newValue);
     return newValue;
 }
@@ -269,11 +276,14 @@ function enumName(name: string): string {
     return camelToSnakeCase(name).toUpperCase();
 }
 
-function emitEnumMember(type: SdkEnumValueType): Record<string, any> {
+function emitEnumMember(type: SdkEnumValueType, parentEnum: Record<string, any>): Record<string, any> {
     return {
         name: enumName(type.name),
         value: type.value,
         description: type.description,
+        parentEnum: parentEnum,
+        type: type.kind,
+        valueType: parentEnum["valueType"],
     };
 }
 

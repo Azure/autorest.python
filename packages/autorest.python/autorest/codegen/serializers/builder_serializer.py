@@ -458,15 +458,16 @@ class RequestBuilderSerializer(
     @staticmethod
     def declare_non_inputtable_constants(builder: RequestBuilderType) -> List[str]:
         def _get_value(param):
-            param_type = cast(ConstantType, param.type)
             if param.location in [ParameterLocation.HEADER, ParameterLocation.QUERY]:
                 kwarg_dict = (
                     "headers"
                     if param.location == ParameterLocation.HEADER
                     else "params"
                 )
-                return f"_{kwarg_dict}.pop('{param.wire_name}', {param_type.get_declaration()})"
-            return f"{param_type.get_declaration()}"
+                return (
+                    f"_{kwarg_dict}.pop('{param.wire_name}', {param.get_declaration()})"
+                )
+            return f"{param.get_declaration()}"
 
         return [
             f"{p.client_name} = {_get_value(p)}"

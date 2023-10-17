@@ -264,11 +264,10 @@ class DpgModelSerializer(_ModelSerializer):
             args.append(f'format="{prop.type.encode}"')  # type: ignore
 
         field = "rest_discriminator" if prop.is_discriminator else "rest_field"
-        type_ignore = (
-            prop.is_discriminator
-            and prop.is_discriminator
-            and cast(ConstantType, prop.type).value
-        )
+        type_ignore = prop.is_discriminator and prop.type.type in [
+            "constant",
+            "enumvalue",
+        ]
         return (
             f"{prop.client_name}: {prop.type_annotation()} ="
             f' {field}({", ".join(args)}){"  # type: ignore" if type_ignore else ""}'
@@ -280,7 +279,7 @@ class DpgModelSerializer(_ModelSerializer):
             if prop.constant or prop.is_discriminator:
                 init_args.append(
                     f"self.{prop.client_name}: {prop.type_annotation()} = "
-                    f"{cast(ConstantType, prop.type).get_declaration()}"
+                    f"{prop.get_declaration()}"
                 )
         return init_args
 

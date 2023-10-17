@@ -61,9 +61,9 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
     @property
     def client_default_value_declaration(self) -> str:
         if self.client_default_value is not None:
-            return self.type.get_declaration(self.client_default_value)
+            return self.get_declaration(self.client_default_value)
         if self.type.client_default_value is not None:
-            return self.type.get_declaration(self.type.client_default_value)
+            return self.get_declaration(self.type.client_default_value)
         return "None"
 
     @property
@@ -89,9 +89,18 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         return self.type.msrest_deserialization_key
 
     def type_annotation(self, *, is_operation_file: bool = False) -> str:
+        if self.is_discriminator and self.type.type == "enum":
+            # here we are the enum discriminator property on the base model
+            return "Literal[None]"
         if self.optional and self.client_default_value is None:
             return f"Optional[{self.type.type_annotation(is_operation_file=is_operation_file)}]"
         return self.type.type_annotation(is_operation_file=is_operation_file)
+
+    def get_declaration(self, value: Any = None) -> Any:
+        if self.is_discriminator and self.type.type == "enum":
+            # here we are the enum discriminator property on the base model
+            return None
+        return self.type.get_declaration(value)
 
     def get_json_template_representation(
         self,
@@ -101,7 +110,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         description: Optional[str] = None,
     ) -> Any:
         if self.client_default_value:
-            client_default_value_declaration = self.type.get_declaration(
+            client_default_value_declaration = self.get_declaration(
                 self.client_default_value
             )
         if self.description(is_operation_file=True):

@@ -88,11 +88,16 @@ def update_constant(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     return base
 
 
-def update_enum_value(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
+def update_enum_value(
+    yaml_data: Dict[str, Any], parentEnum: Dict[str, Any]
+) -> Dict[str, Any]:
     return {
         "name": yaml_data["language"]["default"]["name"],
+        "type": "enumvalue",
         "value": yaml_data["value"],
         "description": yaml_data["language"]["default"]["description"],
+        "parentEnum": parentEnum,
+        "valueType": parentEnum["valueType"],
     }
 
 
@@ -102,10 +107,12 @@ def update_enum(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
         {
             "name": yaml_data["language"]["default"]["name"],
             "valueType": update_type(yaml_data["choiceType"]),
-            "values": [update_enum_value(v) for v in yaml_data["choices"]],
+            "values": [],
             "description": yaml_data["language"]["default"]["description"],
         }
     )
+    for v in yaml_data["choices"]:
+        base["values"].append(update_enum_value(v, base))
     return base
 
 

@@ -30,7 +30,7 @@ from .primitive_types import (
     UnixTimeType,
     AzureCoreType,
 )
-from .enum_type import EnumType
+from .enum_type import EnumType, EnumValue
 from .base import BaseType
 from .constant_type import ConstantType
 from .imports import FileImport, ImportType, TypingSection
@@ -86,6 +86,7 @@ __all__ = [
     "DictionaryType",
     "ListType",
     "EnumType",
+    "EnumValue",
     "FileImport",
     "ImportType",
     "TypingSection",
@@ -128,6 +129,7 @@ TYPE_TO_OBJECT = {
     "dict": DictionaryType,
     "constant": ConstantType,
     "enum": EnumType,
+    "enumvalue": EnumValue,
     "binary": BinaryType,
     "any": AnyType,
     "datetime": DatetimeType,
@@ -166,6 +168,16 @@ def build_type(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseType:
         else:
             model_type = MsrestModelType  # type: ignore
         response = model_type(yaml_data, code_model)
+        code_model.types_map[yaml_id] = response
+        response.fill_instance_from_yaml(yaml_data, code_model)
+    elif yaml_data["type"] == "enum":
+        # avoid recursion because we add the parent enum type to the enum value
+        response = EnumType(
+            yaml_data,
+            code_model,
+            values=[],
+            value_type=build_type(yaml_data["valueType"], code_model),
+        )
         code_model.types_map[yaml_id] = response
         response.fill_instance_from_yaml(yaml_data, code_model)
     else:
