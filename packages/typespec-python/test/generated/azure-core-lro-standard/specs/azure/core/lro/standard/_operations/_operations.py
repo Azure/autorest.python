@@ -142,7 +142,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         else:
             _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_standard_create_or_replace_request(
+        _request = build_standard_create_or_replace_request(
             name=name,
             content_type=content_type,
             api_version=self._config.api_version,
@@ -150,11 +150,11 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -353,17 +353,17 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_standard_delete_request(
+        _request = build_standard_delete_request(
             name=name,
             api_version=self._config.api_version,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -449,18 +449,18 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_standard_export_request(
+        _request = build_standard_export_request(
             name=name,
             format=format,
             api_version=self._config.api_version,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

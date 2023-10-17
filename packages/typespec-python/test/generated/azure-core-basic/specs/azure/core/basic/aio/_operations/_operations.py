@@ -156,7 +156,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         else:
             _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_basic_create_or_update_request(
+        _request = build_basic_create_or_update_request(
             id=id,
             content_type=content_type,
             api_version=self._config.api_version,
@@ -164,11 +164,11 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -302,7 +302,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         else:
             _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_basic_create_or_replace_request(
+        _request = build_basic_create_or_replace_request(
             id=id,
             content_type=content_type,
             api_version=self._config.api_version,
@@ -310,11 +310,11 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -369,17 +369,17 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
         cls: ClsType[_models.User] = kwargs.pop("cls", None)
 
-        request = build_basic_get_request(
+        _request = build_basic_get_request(
             id=id,
             api_version=self._config.api_version,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -451,7 +451,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_basic_list_request(
+                _request = build_basic_list_request(
                     top=top,
                     skip=skip,
                     maxpagesize=maxpagesize,
@@ -463,7 +463,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -478,9 +478,9 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -490,11 +490,11 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -532,12 +532,12 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_basic_list_with_page_request(
+                _request = build_basic_list_with_page_request(
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -552,9 +552,9 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -564,11 +564,11 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -606,12 +606,12 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_basic_list_with_custom_page_model_request(
+                _request = build_basic_list_with_custom_page_model_request(
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -626,9 +626,9 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -638,11 +638,11 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -683,17 +683,17 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_basic_delete_request(
+        _request = build_basic_delete_request(
             id=id,
             api_version=self._config.api_version,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -736,18 +736,18 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
         cls: ClsType[_models.User] = kwargs.pop("cls", None)
 
-        request = build_basic_export_request(
+        _request = build_basic_export_request(
             id=id,
             format=format,
             api_version=self._config.api_version,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

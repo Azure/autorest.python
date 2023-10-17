@@ -127,12 +127,12 @@ class Operations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_operations_list_request(
+                _request = build_operations_list_request(
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -147,9 +147,9 @@ class Operations:
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -159,11 +159,11 @@ class Operations:
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -224,7 +224,7 @@ class CatalogsOperations:
 
         cls: ClsType[_models.Catalog] = kwargs.pop("cls", None)
 
-        request = build_catalogs_get_request(
+        _request = build_catalogs_get_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             subscription_id=self._config.subscription_id,
@@ -232,11 +232,11 @@ class CatalogsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -389,7 +389,7 @@ class CatalogsOperations:
         else:
             _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_catalogs_create_or_update_request(
+        _request = build_catalogs_create_or_update_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             subscription_id=self._config.subscription_id,
@@ -399,11 +399,11 @@ class CatalogsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -570,7 +570,7 @@ class CatalogsOperations:
         else:
             _content = json.dumps(properties, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_catalogs_update_request(
+        _request = build_catalogs_update_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             subscription_id=self._config.subscription_id,
@@ -580,11 +580,11 @@ class CatalogsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -636,7 +636,7 @@ class CatalogsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_catalogs_delete_request(
+        _request = build_catalogs_delete_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             subscription_id=self._config.subscription_id,
@@ -644,11 +644,11 @@ class CatalogsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -695,14 +695,14 @@ class CatalogsOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_catalogs_list_by_resource_group_request(
+                _request = build_catalogs_list_by_resource_group_request(
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -717,9 +717,9 @@ class CatalogsOperations:
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -729,11 +729,11 @@ class CatalogsOperations:
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -772,13 +772,13 @@ class CatalogsOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_catalogs_list_by_subscription_request(
+                _request = build_catalogs_list_by_subscription_request(
                     subscription_id=self._config.subscription_id,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -793,9 +793,9 @@ class CatalogsOperations:
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -805,11 +805,11 @@ class CatalogsOperations:
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -854,7 +854,7 @@ class CatalogsOperations:
 
         cls: ClsType[_models.CountDeviceResponse] = kwargs.pop("cls", None)
 
-        request = build_catalogs_count_devices_request(
+        _request = build_catalogs_count_devices_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             subscription_id=self._config.subscription_id,
@@ -862,11 +862,11 @@ class CatalogsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -933,7 +933,7 @@ class CatalogsOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_catalogs_list_device_insights_request(
+                _request = build_catalogs_list_device_insights_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     subscription_id=self._config.subscription_id,
@@ -945,7 +945,7 @@ class CatalogsOperations:
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -960,9 +960,9 @@ class CatalogsOperations:
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -972,11 +972,11 @@ class CatalogsOperations:
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1036,7 +1036,7 @@ class CatalogsOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_catalogs_list_devices_request(
+                _request = build_catalogs_list_devices_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     subscription_id=self._config.subscription_id,
@@ -1048,7 +1048,7 @@ class CatalogsOperations:
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -1063,9 +1063,9 @@ class CatalogsOperations:
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -1075,11 +1075,11 @@ class CatalogsOperations:
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1139,7 +1139,7 @@ class CatalogsOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_catalogs_list_deployments_request(
+                _request = build_catalogs_list_deployments_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     subscription_id=self._config.subscription_id,
@@ -1151,7 +1151,7 @@ class CatalogsOperations:
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -1166,9 +1166,9 @@ class CatalogsOperations:
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -1178,11 +1178,11 @@ class CatalogsOperations:
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1364,7 +1364,7 @@ class CatalogsOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_catalogs_list_device_groups_request(
+                _request = build_catalogs_list_device_groups_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     subscription_id=self._config.subscription_id,
@@ -1378,7 +1378,7 @@ class CatalogsOperations:
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -1393,9 +1393,9 @@ class CatalogsOperations:
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -1405,11 +1405,11 @@ class CatalogsOperations:
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1472,7 +1472,7 @@ class ImagesOperations:
 
         cls: ClsType[_models.Image] = kwargs.pop("cls", None)
 
-        request = build_images_get_request(
+        _request = build_images_get_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             image_name=image_name,
@@ -1481,11 +1481,11 @@ class ImagesOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1552,7 +1552,7 @@ class ImagesOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_images_list_by_catalog_request(
+                _request = build_images_list_by_catalog_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     subscription_id=self._config.subscription_id,
@@ -1564,7 +1564,7 @@ class ImagesOperations:
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -1579,9 +1579,9 @@ class ImagesOperations:
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -1591,11 +1591,11 @@ class ImagesOperations:
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1757,7 +1757,7 @@ class ImagesOperations:
         else:
             _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_images_create_or_update_request(
+        _request = build_images_create_or_update_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             image_name=image_name,
@@ -1768,11 +1768,11 @@ class ImagesOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1836,7 +1836,7 @@ class ImagesOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_images_delete_request(
+        _request = build_images_delete_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             image_name=image_name,
@@ -1845,11 +1845,11 @@ class ImagesOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1936,7 +1936,7 @@ class DeviceGroupsOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_device_groups_list_by_product_request(
+                _request = build_device_groups_list_by_product_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     product_name=product_name,
@@ -1949,7 +1949,7 @@ class DeviceGroupsOperations:
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -1964,9 +1964,9 @@ class DeviceGroupsOperations:
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -1976,11 +1976,11 @@ class DeviceGroupsOperations:
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -2030,7 +2030,7 @@ class DeviceGroupsOperations:
 
         cls: ClsType[_models.DeviceGroup] = kwargs.pop("cls", None)
 
-        request = build_device_groups_get_request(
+        _request = build_device_groups_get_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -2040,11 +2040,11 @@ class DeviceGroupsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2229,7 +2229,7 @@ class DeviceGroupsOperations:
         else:
             _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_device_groups_create_or_update_request(
+        _request = build_device_groups_create_or_update_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -2241,11 +2241,11 @@ class DeviceGroupsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2312,7 +2312,7 @@ class DeviceGroupsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_device_groups_delete_request(
+        _request = build_device_groups_delete_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -2322,11 +2322,11 @@ class DeviceGroupsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2509,7 +2509,7 @@ class DeviceGroupsOperations:
         else:
             _content = json.dumps(properties, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_device_groups_update_request(
+        _request = build_device_groups_update_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -2521,11 +2521,11 @@ class DeviceGroupsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2589,7 +2589,7 @@ class DeviceGroupsOperations:
 
         cls: ClsType[_models.CountDeviceResponse] = kwargs.pop("cls", None)
 
-        request = build_device_groups_count_devices_request(
+        _request = build_device_groups_count_devices_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -2599,11 +2599,11 @@ class DeviceGroupsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2788,7 +2788,7 @@ class DeviceGroupsOperations:
         else:
             _content = json.dumps(claim_devices_request, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_device_groups_claim_devices_request(
+        _request = build_device_groups_claim_devices_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -2800,11 +2800,11 @@ class DeviceGroupsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2873,7 +2873,7 @@ class CertificatesOperations:
 
         cls: ClsType[_models.Certificate] = kwargs.pop("cls", None)
 
-        request = build_certificates_get_request(
+        _request = build_certificates_get_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             serial_number=serial_number,
@@ -2882,11 +2882,11 @@ class CertificatesOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2953,7 +2953,7 @@ class CertificatesOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_certificates_list_by_catalog_request(
+                _request = build_certificates_list_by_catalog_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     subscription_id=self._config.subscription_id,
@@ -2965,7 +2965,7 @@ class CertificatesOperations:
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -2980,9 +2980,9 @@ class CertificatesOperations:
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -2992,11 +2992,11 @@ class CertificatesOperations:
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -3045,7 +3045,7 @@ class CertificatesOperations:
 
         cls: ClsType[_models.CertificateChainResponse] = kwargs.pop("cls", None)
 
-        request = build_certificates_retrieve_cert_chain_request(
+        _request = build_certificates_retrieve_cert_chain_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             serial_number=serial_number,
@@ -3054,11 +3054,11 @@ class CertificatesOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3235,7 +3235,7 @@ class CertificatesOperations:
         else:
             _content = json.dumps(parameters, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_certificates_retrieve_proof_of_possession_nonce_request(
+        _request = build_certificates_retrieve_proof_of_possession_nonce_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             serial_number=serial_number,
@@ -3246,11 +3246,11 @@ class CertificatesOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3334,7 +3334,7 @@ class DeploymentsOperations:
 
         cls: ClsType[_models.Deployment] = kwargs.pop("cls", None)
 
-        request = build_deployments_get_request(
+        _request = build_deployments_get_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -3345,11 +3345,11 @@ class DeploymentsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3423,7 +3423,7 @@ class DeploymentsOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_deployments_list_by_device_group_request(
+                _request = build_deployments_list_by_device_group_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     product_name=product_name,
@@ -3437,7 +3437,7 @@ class DeploymentsOperations:
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -3452,9 +3452,9 @@ class DeploymentsOperations:
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -3464,11 +3464,11 @@ class DeploymentsOperations:
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -3662,7 +3662,7 @@ class DeploymentsOperations:
         else:
             _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_deployments_create_or_update_request(
+        _request = build_deployments_create_or_update_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -3675,11 +3675,11 @@ class DeploymentsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3755,7 +3755,7 @@ class DeploymentsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_deployments_delete_request(
+        _request = build_deployments_delete_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -3766,11 +3766,11 @@ class DeploymentsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3851,7 +3851,7 @@ class DevicesOperations:
 
         cls: ClsType[_models.Device] = kwargs.pop("cls", None)
 
-        request = build_devices_get_request(
+        _request = build_devices_get_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -3862,11 +3862,11 @@ class DevicesOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4063,7 +4063,7 @@ class DevicesOperations:
         else:
             _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_devices_create_or_update_request(
+        _request = build_devices_create_or_update_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -4076,11 +4076,11 @@ class DevicesOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4148,7 +4148,7 @@ class DevicesOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_devices_list_by_device_group_request(
+                _request = build_devices_list_by_device_group_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     product_name=product_name,
@@ -4158,7 +4158,7 @@ class DevicesOperations:
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -4173,9 +4173,9 @@ class DevicesOperations:
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -4185,11 +4185,11 @@ class DevicesOperations:
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -4246,7 +4246,7 @@ class DevicesOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_devices_delete_request(
+        _request = build_devices_delete_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -4257,11 +4257,11 @@ class DevicesOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4456,7 +4456,7 @@ class DevicesOperations:
         else:
             _content = json.dumps(properties, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_devices_update_request(
+        _request = build_devices_update_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -4469,11 +4469,11 @@ class DevicesOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4684,7 +4684,7 @@ class DevicesOperations:
         else:
             _content = json.dumps(parameters, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_devices_generate_capability_image_request(
+        _request = build_devices_generate_capability_image_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -4697,11 +4697,11 @@ class DevicesOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4778,7 +4778,7 @@ class ProductsOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_products_list_by_catalog_request(
+                _request = build_products_list_by_catalog_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     subscription_id=self._config.subscription_id,
@@ -4786,7 +4786,7 @@ class ProductsOperations:
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -4801,9 +4801,9 @@ class ProductsOperations:
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -4813,11 +4813,11 @@ class ProductsOperations:
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -4865,7 +4865,7 @@ class ProductsOperations:
 
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
-        request = build_products_get_request(
+        _request = build_products_get_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -4874,11 +4874,11 @@ class ProductsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5051,7 +5051,7 @@ class ProductsOperations:
         else:
             _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_products_create_or_update_request(
+        _request = build_products_create_or_update_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -5062,11 +5062,11 @@ class ProductsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5131,7 +5131,7 @@ class ProductsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_products_delete_request(
+        _request = build_products_delete_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -5140,11 +5140,11 @@ class ProductsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5315,7 +5315,7 @@ class ProductsOperations:
         else:
             _content = json.dumps(properties, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_products_update_request(
+        _request = build_products_update_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -5326,11 +5326,11 @@ class ProductsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5393,7 +5393,7 @@ class ProductsOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_products_generate_default_device_groups_request(
+                _request = build_products_generate_default_device_groups_request(
                     resource_group_name=resource_group_name,
                     catalog_name=catalog_name,
                     product_name=product_name,
@@ -5402,7 +5402,7 @@ class ProductsOperations:
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -5417,9 +5417,9 @@ class ProductsOperations:
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -5429,11 +5429,11 @@ class ProductsOperations:
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -5481,7 +5481,7 @@ class ProductsOperations:
 
         cls: ClsType[_models.CountDeviceResponse] = kwargs.pop("cls", None)
 
-        request = build_products_count_devices_request(
+        _request = build_products_count_devices_request(
             resource_group_name=resource_group_name,
             catalog_name=catalog_name,
             product_name=product_name,
@@ -5490,11 +5490,11 @@ class ProductsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

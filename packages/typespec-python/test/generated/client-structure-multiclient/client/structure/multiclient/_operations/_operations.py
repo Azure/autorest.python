@@ -96,7 +96,7 @@ class ClientAClientOperationsMixin(ClientAClientMixinABC):
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_client_a_renamed_one_request(
+        _request = build_client_a_renamed_one_request(
             headers=_headers,
             params=_params,
         )
@@ -104,11 +104,11 @@ class ClientAClientOperationsMixin(ClientAClientMixinABC):
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "client": self._serialize.url("self._config.client", self._config.client, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -145,7 +145,7 @@ class ClientAClientOperationsMixin(ClientAClientMixinABC):
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_client_a_renamed_three_request(
+        _request = build_client_a_renamed_three_request(
             headers=_headers,
             params=_params,
         )
@@ -153,11 +153,11 @@ class ClientAClientOperationsMixin(ClientAClientMixinABC):
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "client": self._serialize.url("self._config.client", self._config.client, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -194,7 +194,7 @@ class ClientAClientOperationsMixin(ClientAClientMixinABC):
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_client_a_renamed_five_request(
+        _request = build_client_a_renamed_five_request(
             headers=_headers,
             params=_params,
         )
@@ -202,11 +202,11 @@ class ClientAClientOperationsMixin(ClientAClientMixinABC):
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "client": self._serialize.url("self._config.client", self._config.client, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -245,7 +245,7 @@ class ClientBClientOperationsMixin(ClientBClientMixinABC):
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_client_b_renamed_two_request(
+        _request = build_client_b_renamed_two_request(
             headers=_headers,
             params=_params,
         )
@@ -253,11 +253,11 @@ class ClientBClientOperationsMixin(ClientBClientMixinABC):
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "client": self._serialize.url("self._config.client", self._config.client, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -294,7 +294,7 @@ class ClientBClientOperationsMixin(ClientBClientMixinABC):
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_client_b_renamed_four_request(
+        _request = build_client_b_renamed_four_request(
             headers=_headers,
             params=_params,
         )
@@ -302,11 +302,11 @@ class ClientBClientOperationsMixin(ClientBClientMixinABC):
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "client": self._serialize.url("self._config.client", self._config.client, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -343,7 +343,7 @@ class ClientBClientOperationsMixin(ClientBClientMixinABC):
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_client_b_renamed_six_request(
+        _request = build_client_b_renamed_six_request(
             headers=_headers,
             params=_params,
         )
@@ -351,11 +351,11 @@ class ClientBClientOperationsMixin(ClientBClientMixinABC):
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "client": self._serialize.url("self._config.client", self._config.client, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

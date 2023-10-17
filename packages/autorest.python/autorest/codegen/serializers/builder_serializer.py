@@ -645,7 +645,7 @@ class _OperationSerializer(
             f"_stream = {stream_value}",
             f"pipeline_response: PipelineResponse = {self._call_method}self._client._pipeline.run(  "
             + f"{'# type: ignore' if type_ignore else ''} # pylint: disable=protected-access",
-            "    request,",
+            "    _request,",
             "    stream=_stream,",
             "    **kwargs",
             ")",
@@ -915,7 +915,7 @@ class _OperationSerializer(
                 ("_" + group_name) if group_name else "",
                 request_builder.name,
             )
-        retval.append(f"request = {request_path_name}(")
+        retval.append(f"_request = {request_path_name}(")
         for parameter in request_builder.parameters.method:
             if parameter.location == ParameterLocation.BODY:
                 # going to pass in body later based off of overloads
@@ -979,14 +979,14 @@ class _OperationSerializer(
                 and builder.parameters.body_parameter.client_name == "files"
             ):
                 pass_files = ", _files"
-            retval.append(f"request = _convert_request(request{pass_files})")
+            retval.append(f"_request = _convert_request(_request{pass_files})")
         if builder.parameters.path:
             retval.extend(self.serialize_path(builder))
-        url_to_format = "request.url"
+        url_to_format = "_request.url"
         if self.code_model.options["version_tolerant"] and template_url:
             url_to_format = template_url
         retval.append(
-            "request.url = self._client.format_url({}{})".format(
+            "_request.url = self._client.format_url({}{})".format(
                 url_to_format,
                 ", **path_format_arguments" if builder.parameters.path else "",
             )
@@ -1374,10 +1374,10 @@ class _PagingOperationSerializer(
             [f"        {line}" for line in self.call_next_link_request_builder(builder)]
         )
         if not builder.next_request_builder and self.code_model.is_legacy:
-            retval.append('        request.method = "GET"')
+            retval.append('        _request.method = "GET"')
         else:
             retval.append("")
-        retval.append("    return request")
+        retval.append("    return _request")
         return retval
 
     @property
@@ -1436,7 +1436,7 @@ class _PagingOperationSerializer(
 
     def _get_next_callback(self, builder: PagingOperationType) -> List[str]:
         retval = [f"{'async ' if self.async_mode else ''}def get_next(next_link=None):"]
-        retval.append("    request = prepare_request(next_link)")
+        retval.append("    _request = prepare_request(next_link)")
         retval.append("")
         retval.extend([f"    {l}" for l in self.make_pipeline_call(builder)])
         retval.append("    response = pipeline_response.http_response")

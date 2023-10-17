@@ -217,17 +217,17 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_visibility_get_model_request(
+        _request = build_visibility_get_model_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -334,17 +334,17 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_visibility_head_model_request(
+        _request = build_visibility_head_model_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -451,17 +451,17 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_visibility_put_model_request(
+        _request = build_visibility_put_model_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -567,17 +567,17 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_visibility_patch_model_request(
+        _request = build_visibility_patch_model_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -683,17 +683,17 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_visibility_post_model_request(
+        _request = build_visibility_post_model_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -799,17 +799,17 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_visibility_delete_model_request(
+        _request = build_visibility_delete_model_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

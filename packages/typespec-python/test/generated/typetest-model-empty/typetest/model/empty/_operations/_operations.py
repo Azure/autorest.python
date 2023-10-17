@@ -179,17 +179,17 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_empty_put_empty_request(
+        _request = build_empty_put_empty_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -226,15 +226,15 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
 
         cls: ClsType[_models.EmptyOutput] = kwargs.pop("cls", None)
 
-        request = build_empty_get_empty_request(
+        _request = build_empty_get_empty_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -347,17 +347,17 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_empty_post_round_trip_empty_request(
+        _request = build_empty_post_round_trip_empty_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

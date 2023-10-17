@@ -179,17 +179,17 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_not_discriminated_post_valid_request(
+        _request = build_not_discriminated_post_valid_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -226,15 +226,15 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
 
         cls: ClsType[_models.Siamese] = kwargs.pop("cls", None)
 
-        request = build_not_discriminated_get_valid_request(
+        _request = build_not_discriminated_get_valid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -341,17 +341,17 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_not_discriminated_put_valid_request(
+        _request = build_not_discriminated_put_valid_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
