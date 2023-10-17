@@ -71,15 +71,15 @@ class ByteOperations:
 
         cls: ClsType[bytes] = kwargs.pop("cls", None)
 
-        request = build_byte_get_null_request(
+        _request = build_byte_get_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -96,9 +96,9 @@ class ByteOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(bytes, deserialized), {})
+            return cls(pipeline_response, cast(bytes, deserialized), {})  # type: ignore
 
-        return cast(bytes, deserialized)
+        return cast(bytes, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def get_empty(self, **kwargs: Any) -> bytes:
@@ -121,15 +121,15 @@ class ByteOperations:
 
         cls: ClsType[bytes] = kwargs.pop("cls", None)
 
-        request = build_byte_get_empty_request(
+        _request = build_byte_get_empty_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -146,9 +146,9 @@ class ByteOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(bytes, deserialized), {})
+            return cls(pipeline_response, cast(bytes, deserialized), {})  # type: ignore
 
-        return cast(bytes, deserialized)
+        return cast(bytes, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def get_non_ascii(self, **kwargs: Any) -> bytes:
@@ -171,15 +171,15 @@ class ByteOperations:
 
         cls: ClsType[bytes] = kwargs.pop("cls", None)
 
-        request = build_byte_get_non_ascii_request(
+        _request = build_byte_get_non_ascii_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -196,9 +196,9 @@ class ByteOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(bytes, deserialized), {})
+            return cls(pipeline_response, cast(bytes, deserialized), {})  # type: ignore
 
-        return cast(bytes, deserialized)
+        return cast(bytes, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def put_non_ascii(  # pylint: disable=inconsistent-return-statements
@@ -229,17 +229,17 @@ class ByteOperations:
 
         _json = byte_body
 
-        request = build_byte_put_non_ascii_request(
+        _request = build_byte_put_non_ascii_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -251,7 +251,7 @@ class ByteOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_invalid(self, **kwargs: Any) -> bytes:
@@ -274,15 +274,15 @@ class ByteOperations:
 
         cls: ClsType[bytes] = kwargs.pop("cls", None)
 
-        request = build_byte_get_invalid_request(
+        _request = build_byte_get_invalid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -299,6 +299,6 @@ class ByteOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(bytes, deserialized), {})
+            return cls(pipeline_response, cast(bytes, deserialized), {})  # type: ignore
 
-        return cast(bytes, deserialized)
+        return cast(bytes, deserialized)  # type: ignore

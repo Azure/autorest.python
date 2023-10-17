@@ -49,16 +49,16 @@ class ClientWithEnumOperationsMixin(ClientWithEnumMixinABC):
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_client_with_enum_head_request(
+        _request = build_client_with_enum_head_request(
             x_ms_enum=self._config.x_ms_enum,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -70,4 +70,4 @@ class ClientWithEnumOperationsMixin(ClientWithEnumMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

@@ -645,7 +645,7 @@ class _OperationSerializer(
             f"_stream = {stream_value}",
             f"pipeline_response: PipelineResponse = {self._call_method}self._client._pipeline.run(  "
             + f"{'# type: ignore' if type_ignore else ''} # pylint: disable=protected-access",
-            "    request,",
+            "    _request,",
             "    stream=_stream,",
             "    **kwargs",
             ")",
@@ -915,7 +915,7 @@ class _OperationSerializer(
                 ("_" + group_name) if group_name else "",
                 request_builder.name,
             )
-        retval.append(f"request = {request_path_name}(")
+        retval.append(f"_request = {request_path_name}(")
         for parameter in request_builder.parameters.method:
             if parameter.location == ParameterLocation.BODY:
                 # going to pass in body later based off of overloads
@@ -979,14 +979,14 @@ class _OperationSerializer(
                 and builder.parameters.body_parameter.client_name == "files"
             ):
                 pass_files = ", _files"
-            retval.append(f"request = _convert_request(request{pass_files})")
+            retval.append(f"_request = _convert_request(_request{pass_files})")
         if builder.parameters.path:
             retval.extend(self.serialize_path(builder))
-        url_to_format = "request.url"
+        url_to_format = "_request.url"
         if self.code_model.options["version_tolerant"] and template_url:
             url_to_format = template_url
         retval.append(
-            "request.url = self._client.format_url({}{})".format(
+            "_request.url = self._client.format_url({}{})".format(
                 url_to_format,
                 ", **path_format_arguments" if builder.parameters.path else "",
             )
@@ -1168,31 +1168,16 @@ class _OperationSerializer(
                     )
                 )
                 retval.append("")
-        type_ignore = (
-            builder.has_response_body
-            and not builder.has_optional_return_type
-            and not (
-                self.code_model.options["models_mode"] == "msrest"
-                and any(not resp.is_stream_response for resp in builder.responses)
-            )
-        )
         if builder.has_optional_return_type or self.code_model.options["models_mode"]:
             deserialized = "deserialized"
         else:
             deserialized = f"cast({builder.response_type_annotation(async_mode=self.async_mode)}, deserialized)"
-            type_ignore = False
-        if (
-            not builder.has_optional_return_type
-            and len(builder.responses) > 1
-            and any(resp.is_stream_response or resp.type for resp in builder.responses)
-        ):
-            type_ignore = True
         retval.append("if cls:")
         retval.append(
             "    return cls(pipeline_response, {}, {}){}".format(
                 deserialized if builder.has_response_body else "None",
                 "response_headers" if builder.any_response_has_headers else "{}",
-                " # type: ignore" if type_ignore else "",
+                " # type: ignore",
             )
         )
         if builder.has_response_body and any(
@@ -1200,9 +1185,7 @@ class _OperationSerializer(
             for response in builder.responses
         ):
             retval.append("")
-            retval.append(
-                f"return {deserialized}{' # type: ignore' if type_ignore else ''}"
-            )
+            retval.append(f"return {deserialized}  # type: ignore")
         if (
             builder.request_builder.method == "HEAD"
             and self.code_model.options["head_as_boolean"]
@@ -1370,8 +1353,8 @@ class _PagingOperationSerializer(
         except StopIteration:
             pass
 
-        retval.append(f'request = HttpRequest("GET", {next_link_str}{query_str})')
-        retval.extend(self._postprocess_http_request(builder, "request.url"))
+        retval.append(f'_request = HttpRequest("GET", {next_link_str}{query_str})')
+        retval.extend(self._postprocess_http_request(builder, "_request.url"))
 
         return retval
 
@@ -1391,10 +1374,10 @@ class _PagingOperationSerializer(
             [f"        {line}" for line in self.call_next_link_request_builder(builder)]
         )
         if not builder.next_request_builder and self.code_model.is_legacy:
-            retval.append('        request.method = "GET"')
+            retval.append('        _request.method = "GET"')
         else:
             retval.append("")
-        retval.append("    return request")
+        retval.append("    return _request")
         return retval
 
     @property
@@ -1453,7 +1436,7 @@ class _PagingOperationSerializer(
 
     def _get_next_callback(self, builder: PagingOperationType) -> List[str]:
         retval = [f"{'async ' if self.async_mode else ''}def get_next(next_link=None):"]
-        retval.append("    request = prepare_request(next_link)")
+        retval.append("    _request = prepare_request(next_link)")
         retval.append("")
         retval.extend([f"    {l}" for l in self.make_pipeline_call(builder)])
         retval.append("    response = pipeline_response.http_response")
@@ -1626,11 +1609,7 @@ class _LROOperationSerializer(_OperationSerializer[LROOperationType]):
                 "response_headers"
                 if builder.lro_response and builder.lro_response.headers
                 else "{}",
-                " # type: ignore"
-                if builder.lro_response
-                and builder.lro_response.type
-                and self.code_model.options["models_mode"] != "msrest"
-                else "",
+                " # type: ignore",
             )
         )
         if builder.lro_response and builder.lro_response.type:

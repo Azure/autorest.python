@@ -79,15 +79,15 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_multiple_inheritance_service_get_horse_request(
+        _request = build_multiple_inheritance_service_get_horse_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -104,9 +104,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def put_horse(self, horse: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
@@ -190,18 +190,18 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         else:
             _json = horse
 
-        request = build_multiple_inheritance_service_put_horse_request(
+        _request = build_multiple_inheritance_service_put_horse_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -218,9 +218,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, cast(str, deserialized), {})  # type: ignore
 
-        return cast(str, deserialized)
+        return cast(str, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def get_pet(self, **kwargs: Any) -> JSON:
@@ -251,15 +251,15 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_multiple_inheritance_service_get_pet_request(
+        _request = build_multiple_inheritance_service_get_pet_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -276,9 +276,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def put_pet(self, pet: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
@@ -359,18 +359,18 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         else:
             _json = pet
 
-        request = build_multiple_inheritance_service_put_pet_request(
+        _request = build_multiple_inheritance_service_put_pet_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -387,9 +387,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, cast(str, deserialized), {})  # type: ignore
 
-        return cast(str, deserialized)
+        return cast(str, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def get_feline(self, **kwargs: Any) -> JSON:
@@ -421,15 +421,15 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_multiple_inheritance_service_get_feline_request(
+        _request = build_multiple_inheritance_service_get_feline_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -446,9 +446,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def put_feline(self, feline: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
@@ -532,18 +532,18 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         else:
             _json = feline
 
-        request = build_multiple_inheritance_service_put_feline_request(
+        _request = build_multiple_inheritance_service_put_feline_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -560,9 +560,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, cast(str, deserialized), {})  # type: ignore
 
-        return cast(str, deserialized)
+        return cast(str, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def get_cat(self, **kwargs: Any) -> JSON:
@@ -596,15 +596,15 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_multiple_inheritance_service_get_cat_request(
+        _request = build_multiple_inheritance_service_get_cat_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -621,9 +621,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def put_cat(self, cat: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
@@ -713,18 +713,18 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         else:
             _json = cat
 
-        request = build_multiple_inheritance_service_put_cat_request(
+        _request = build_multiple_inheritance_service_put_cat_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -741,9 +741,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, cast(str, deserialized), {})  # type: ignore
 
-        return cast(str, deserialized)
+        return cast(str, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def get_kitten(self, **kwargs: Any) -> JSON:
@@ -779,15 +779,15 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_multiple_inheritance_service_get_kitten_request(
+        _request = build_multiple_inheritance_service_get_kitten_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -804,9 +804,9 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     async def put_kitten(self, kitten: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
@@ -901,18 +901,18 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         else:
             _json = kitten
 
-        request = build_multiple_inheritance_service_put_kitten_request(
+        _request = build_multiple_inheritance_service_put_kitten_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -929,6 +929,6 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, cast(str, deserialized), {})  # type: ignore
 
-        return cast(str, deserialized)
+        return cast(str, deserialized)  # type: ignore
