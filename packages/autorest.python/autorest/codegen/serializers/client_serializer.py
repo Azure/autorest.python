@@ -123,7 +123,7 @@ class ClientSerializer:
             [
                 "_policies = kwargs.pop('policies', None)",
                 "if _policies is None:",
-                f'    _policies = [{",".join(build_policies(self.client.code_model.options["azure_arm"], async_mode))}]',  # pylint: disable=line-too-long
+                f'    _policies = [{",".join(build_policies(self.client.code_model.options["azure_arm"], async_mode, self.client.code_model.options["unbranded"]))}]',  # pylint: disable=line-too-long
                 f"self._client: {pipeline_client_name} = {pipeline_client_name}("
                 f"{', '.join(f'{k}={v}' for k, v in params.items())}, **kwargs)",
             ]
