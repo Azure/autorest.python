@@ -144,10 +144,10 @@ class Operations:
                     }
                 )
                 _next_request_params["api-version"] = self._config.api_version
-                request = HttpRequest(
+                _request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                _request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             return _request
 
@@ -714,10 +714,10 @@ class CatalogsOperations:
                     }
                 )
                 _next_request_params["api-version"] = self._config.api_version
-                request = HttpRequest(
+                _request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                _request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             return _request
 
@@ -790,10 +790,10 @@ class CatalogsOperations:
                     }
                 )
                 _next_request_params["api-version"] = self._config.api_version
-                request = HttpRequest(
+                _request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                _request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             return _request
 
@@ -957,10 +957,10 @@ class CatalogsOperations:
                     }
                 )
                 _next_request_params["api-version"] = self._config.api_version
-                request = HttpRequest(
+                _request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                _request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             return _request
 
@@ -1060,10 +1060,10 @@ class CatalogsOperations:
                     }
                 )
                 _next_request_params["api-version"] = self._config.api_version
-                request = HttpRequest(
+                _request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                _request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             return _request
 
@@ -1163,10 +1163,10 @@ class CatalogsOperations:
                     }
                 )
                 _next_request_params["api-version"] = self._config.api_version
-                request = HttpRequest(
+                _request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                _request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             return _request
 
@@ -1390,10 +1390,10 @@ class CatalogsOperations:
                     }
                 )
                 _next_request_params["api-version"] = self._config.api_version
-                request = HttpRequest(
+                _request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                _request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             return _request
 
@@ -1576,10 +1576,10 @@ class ImagesOperations:
                     }
                 )
                 _next_request_params["api-version"] = self._config.api_version
-                request = HttpRequest(
+                _request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                _request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             return _request
 
@@ -1961,10 +1961,10 @@ class DeviceGroupsOperations:
                     }
                 )
                 _next_request_params["api-version"] = self._config.api_version
-                request = HttpRequest(
+                _request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                _request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             return _request
 
@@ -2977,10 +2977,10 @@ class CertificatesOperations:
                     }
                 )
                 _next_request_params["api-version"] = self._config.api_version
-                request = HttpRequest(
+                _request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                _request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             return _request
 
@@ -3449,10 +3449,10 @@ class DeploymentsOperations:
                     }
                 )
                 _next_request_params["api-version"] = self._config.api_version
-                request = HttpRequest(
+                _request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                _request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             return _request
 
@@ -4170,10 +4170,10 @@ class DevicesOperations:
                     }
                 )
                 _next_request_params["api-version"] = self._config.api_version
-                request = HttpRequest(
+                _request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                _request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             return _request
 
@@ -4798,10 +4798,10 @@ class ProductsOperations:
                     }
                 )
                 _next_request_params["api-version"] = self._config.api_version
-                request = HttpRequest(
+                _request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                _request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             return _request
 
@@ -5414,10 +5414,10 @@ class ProductsOperations:
                     }
                 )
                 _next_request_params["api-version"] = self._config.api_version
-                request = HttpRequest(
+                _request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                _request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             return _request
 

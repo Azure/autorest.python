@@ -318,8 +318,8 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
                 _request.url = self._client.format_url(_request.url)
 
             else:
-                request = HttpRequest("GET", next_link)
-                _request.url = self._client.format_url(request.url)
+                _request = HttpRequest("GET", next_link)
+                _request.url = self._client.format_url(_request.url)
 
             return _request
 
