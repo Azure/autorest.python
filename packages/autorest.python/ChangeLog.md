@@ -29,10 +29,6 @@
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
 | `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
 
-**New Features**
-
-- Support enum or enum memeber as type of discriminator #2104
-
 **Bug Fixes**
 
 - Fix list query param serialization. Thank you @tothandras for your contribution! #2156
