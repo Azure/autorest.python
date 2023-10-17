@@ -100,7 +100,7 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
         ...context.options,
     };
 
-    const sdkContext = createSdkContext(context);
+    const sdkContext = createSdkContext(context, "@azure-tools/typespec-python");
     const clients = listClients(sdkContext);
     const root = await resolveModuleRoot(program, "@autorest/python", dirname(fileURLToPath(import.meta.url)));
     const outputDir = context.emitterOutputDir;
