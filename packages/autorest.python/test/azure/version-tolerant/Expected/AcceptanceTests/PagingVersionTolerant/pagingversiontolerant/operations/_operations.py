@@ -578,11 +578,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_no_item_name_pages_request(
+                _request = build_paging_get_no_item_name_pages_request(
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -597,9 +597,9 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -609,11 +609,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return deserialized.get("nextLink") or None, iter(list_of_elem)
 
         def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -662,11 +662,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_empty_next_link_name_pages_request(
+                _request = build_paging_get_empty_next_link_name_pages_request(
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -681,9 +681,9 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -693,11 +693,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return deserialized.get("nextLink") or None, iter(list_of_elem)
 
         def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -746,11 +746,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_null_next_link_name_pages_request(
+                _request = build_paging_get_null_next_link_name_pages_request(
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -765,9 +765,9 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -777,11 +777,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return None, iter(list_of_elem)
 
         def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -830,11 +830,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_single_pages_request(
+                _request = build_paging_get_single_pages_request(
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -849,9 +849,9 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -861,11 +861,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return deserialized.get("nextLink") or None, iter(list_of_elem)
 
         def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -992,14 +992,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_single_pages_with_body_params_request(
+                _request = build_paging_get_single_pages_with_body_params_request(
                     content_type=content_type,
                     json=_json,
                     content=_content,
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -1014,9 +1014,9 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -1026,11 +1026,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return deserialized.get("nextLink") or None, iter(list_of_elem)
 
         def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1080,11 +1080,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_first_response_empty_request(
+                _request = build_paging_first_response_empty_request(
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -1099,9 +1099,9 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -1111,11 +1111,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return deserialized.get("nextLink") or None, iter(list_of_elem)
 
         def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1172,13 +1172,13 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_multiple_pages_request(
+                _request = build_paging_get_multiple_pages_request(
                     maxresults=maxresults,
                     timeout=timeout,
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -1193,9 +1193,9 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -1205,11 +1205,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return deserialized.get("nextLink") or None, iter(list_of_elem)
 
         def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1267,24 +1267,24 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_with_query_params_request(
+                _request = build_paging_get_with_query_params_request(
                     required_query_parameter=required_query_parameter,
                     query_constant=query_constant,
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
 
-                request = build_paging_next_operation_with_query_params_request(
+                _request = build_paging_next_operation_with_query_params_request(
                     query_constant=query_constant,
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
-            return request
+            return _request
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -1294,11 +1294,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return deserialized.get("nextLink") or None, iter(list_of_elem)
 
         def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1351,12 +1351,12 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_duplicate_params_request(
+                _request = build_paging_duplicate_params_request(
                     filter=filter,
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -1371,9 +1371,9 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -1383,11 +1383,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return deserialized.get("nextLink") or None, iter(list_of_elem)
 
         def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1437,12 +1437,12 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_page_with_max_page_size_request(
+                _request = build_paging_page_with_max_page_size_request(
                     maxpagesize=maxpagesize,
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -1457,9 +1457,9 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -1469,11 +1469,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return deserialized.get("nextLink") or None, iter(list_of_elem)
 
         def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1530,13 +1530,13 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_odata_multiple_pages_request(
+                _request = build_paging_get_odata_multiple_pages_request(
                     maxresults=maxresults,
                     timeout=timeout,
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -1551,9 +1551,9 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -1563,11 +1563,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return deserialized.get("odata.nextLink") or None, iter(list_of_elem)
 
         def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1626,14 +1626,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_multiple_pages_with_offset_request(
+                _request = build_paging_get_multiple_pages_with_offset_request(
                     offset=offset,
                     maxresults=maxresults,
                     timeout=timeout,
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -1648,9 +1648,9 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -1660,11 +1660,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return deserialized.get("nextLink") or None, iter(list_of_elem)
 
         def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1714,11 +1714,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_multiple_pages_retry_first_request(
+                _request = build_paging_get_multiple_pages_retry_first_request(
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -1733,9 +1733,9 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -1745,11 +1745,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return deserialized.get("nextLink") or None, iter(list_of_elem)
 
         def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1799,11 +1799,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_multiple_pages_retry_second_request(
+                _request = build_paging_get_multiple_pages_retry_second_request(
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -1818,9 +1818,9 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -1830,11 +1830,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return deserialized.get("nextLink") or None, iter(list_of_elem)
 
         def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1883,11 +1883,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_single_pages_failure_request(
+                _request = build_paging_get_single_pages_failure_request(
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -1902,9 +1902,9 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -1914,11 +1914,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return deserialized.get("nextLink") or None, iter(list_of_elem)
 
         def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1967,11 +1967,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_multiple_pages_failure_request(
+                _request = build_paging_get_multiple_pages_failure_request(
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -1986,9 +1986,9 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -1998,11 +1998,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return deserialized.get("nextLink") or None, iter(list_of_elem)
 
         def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -2051,11 +2051,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_multiple_pages_failure_uri_request(
+                _request = build_paging_get_multiple_pages_failure_uri_request(
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -2070,9 +2070,9 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -2082,11 +2082,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return deserialized.get("nextLink") or None, iter(list_of_elem)
 
         def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -2139,26 +2139,26 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_multiple_pages_fragment_next_link_request(
+                _request = build_paging_get_multiple_pages_fragment_next_link_request(
                     tenant=tenant,
                     api_version=api_version,
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
 
-                request = build_paging_next_fragment_request(
+                _request = build_paging_next_fragment_request(
                     tenant=tenant,
                     next_link=next_link,
                     api_version=api_version,
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
-            return request
+            return _request
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -2168,11 +2168,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return deserialized.get("odata.nextLink") or None, iter(list_of_elem)
 
         def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -2227,26 +2227,26 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_multiple_pages_fragment_with_grouping_next_link_request(
+                _request = build_paging_get_multiple_pages_fragment_with_grouping_next_link_request(
                     tenant=tenant,
                     api_version=api_version,
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
 
-                request = build_paging_next_fragment_with_grouping_request(
+                _request = build_paging_next_fragment_with_grouping_request(
                     tenant=tenant,
                     next_link=next_link,
                     api_version=api_version,
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
-            return request
+            return _request
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -2256,11 +2256,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return deserialized.get("odata.nextLink") or None, iter(list_of_elem)
 
         def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -2290,17 +2290,17 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_paging_get_multiple_pages_lro_request(
+        _request = build_paging_get_multiple_pages_lro_request(
             maxresults=maxresults,
             timeout=timeout,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2372,13 +2372,13 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_multiple_pages_lro_request(
+                _request = build_paging_get_multiple_pages_lro_request(
                     maxresults=maxresults,
                     timeout=timeout,
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -2393,9 +2393,9 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -2405,11 +2405,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return deserialized.get("nextLink") or None, iter(list_of_elem)
 
         def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -2494,12 +2494,12 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_append_api_version_request(
+                _request = build_paging_append_api_version_request(
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -2514,9 +2514,9 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -2526,11 +2526,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return deserialized.get("nextLink") or None, iter(list_of_elem)
 
         def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -2580,12 +2580,12 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_replace_api_version_request(
+                _request = build_paging_replace_api_version_request(
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -2600,9 +2600,9 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -2612,11 +2612,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return deserialized.get("nextLink") or None, iter(list_of_elem)
 
         def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -2668,11 +2668,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_paging_get_paging_model_with_item_name_with_xms_client_name_request(
+                _request = build_paging_get_paging_model_with_item_name_with_xms_client_name_request(
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -2687,9 +2687,9 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -2699,11 +2699,11 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             return deserialized.get("nextLink") or None, iter(list_of_elem)
 
         def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 

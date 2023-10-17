@@ -167,16 +167,16 @@ class BasicOperations:
 
         cls: ClsType[_models.Basic] = kwargs.pop("cls", None)
 
-        request = build_get_valid_request(
+        _request = build_get_valid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -267,7 +267,7 @@ class BasicOperations:
         else:
             _json = self._serialize.body(complex_body, "Basic")
 
-        request = build_put_valid_request(
+        _request = build_put_valid_request(
             api_version=api_version,
             content_type=content_type,
             json=_json,
@@ -275,12 +275,12 @@ class BasicOperations:
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -315,16 +315,16 @@ class BasicOperations:
 
         cls: ClsType[_models.Basic] = kwargs.pop("cls", None)
 
-        request = build_get_invalid_request(
+        _request = build_get_invalid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -363,16 +363,16 @@ class BasicOperations:
 
         cls: ClsType[_models.Basic] = kwargs.pop("cls", None)
 
-        request = build_get_empty_request(
+        _request = build_get_empty_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -411,16 +411,16 @@ class BasicOperations:
 
         cls: ClsType[_models.Basic] = kwargs.pop("cls", None)
 
-        request = build_get_null_request(
+        _request = build_get_null_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -459,16 +459,16 @@ class BasicOperations:
 
         cls: ClsType[_models.Basic] = kwargs.pop("cls", None)
 
-        request = build_get_not_provided_request(
+        _request = build_get_not_provided_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

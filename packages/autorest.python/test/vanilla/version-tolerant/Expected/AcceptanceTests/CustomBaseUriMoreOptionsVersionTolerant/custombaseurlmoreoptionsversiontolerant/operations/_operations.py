@@ -105,7 +105,7 @@ class PathsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_paths_get_empty_request(
+        _request = build_paths_get_empty_request(
             key_name=key_name,
             subscription_id=self._config.subscription_id,
             key_version=key_version,
@@ -119,11 +119,11 @@ class PathsOperations:
                 "self._config.dns_suffix", self._config.dns_suffix, "str", skip_quote=True
             ),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

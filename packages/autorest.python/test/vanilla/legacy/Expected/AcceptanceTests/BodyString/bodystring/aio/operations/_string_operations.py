@@ -90,16 +90,16 @@ class StringOperations:
 
         cls: ClsType[Optional[str]] = kwargs.pop("cls", None)
 
-        request = build_get_null_request(
+        _request = build_get_null_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -148,18 +148,18 @@ class StringOperations:
         else:
             _content = None
 
-        request = build_put_null_request(
+        _request = build_put_null_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -194,16 +194,16 @@ class StringOperations:
 
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        request = build_get_empty_request(
+        _request = build_get_empty_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -249,18 +249,18 @@ class StringOperations:
 
         _json = self._serialize.body(string_body, "str")
 
-        request = build_put_empty_request(
+        _request = build_put_empty_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -295,16 +295,16 @@ class StringOperations:
 
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        request = build_get_mbcs_request(
+        _request = build_get_mbcs_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -353,18 +353,18 @@ class StringOperations:
 
         _json = self._serialize.body(string_body, "str")
 
-        request = build_put_mbcs_request(
+        _request = build_put_mbcs_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -401,16 +401,16 @@ class StringOperations:
 
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        request = build_get_whitespace_request(
+        _request = build_get_whitespace_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -461,18 +461,18 @@ class StringOperations:
 
         _json = self._serialize.body(string_body, "str")
 
-        request = build_put_whitespace_request(
+        _request = build_put_whitespace_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -507,16 +507,16 @@ class StringOperations:
 
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        request = build_get_not_provided_request(
+        _request = build_get_not_provided_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -555,16 +555,16 @@ class StringOperations:
 
         cls: ClsType[bytes] = kwargs.pop("cls", None)
 
-        request = build_get_base64_encoded_request(
+        _request = build_get_base64_encoded_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -603,16 +603,16 @@ class StringOperations:
 
         cls: ClsType[bytes] = kwargs.pop("cls", None)
 
-        request = build_get_base64_url_encoded_request(
+        _request = build_get_base64_url_encoded_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -658,18 +658,18 @@ class StringOperations:
 
         _json = self._serialize.body(string_body, "base64")
 
-        request = build_put_base64_url_encoded_request(
+        _request = build_put_base64_url_encoded_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -704,16 +704,16 @@ class StringOperations:
 
         cls: ClsType[Optional[bytes]] = kwargs.pop("cls", None)
 
-        request = build_get_null_base64_url_encoded_request(
+        _request = build_get_null_base64_url_encoded_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

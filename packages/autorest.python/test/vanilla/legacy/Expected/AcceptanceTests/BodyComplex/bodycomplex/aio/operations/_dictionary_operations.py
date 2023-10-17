@@ -78,16 +78,16 @@ class DictionaryOperations:
 
         cls: ClsType[_models.DictionaryWrapper] = kwargs.pop("cls", None)
 
-        request = build_get_valid_request(
+        _request = build_get_valid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -134,18 +134,18 @@ class DictionaryOperations:
         _complex_body = _models.DictionaryWrapper(default_program=default_program)
         _json = self._serialize.body(_complex_body, "DictionaryWrapper")
 
-        request = build_put_valid_request(
+        _request = build_put_valid_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -180,16 +180,16 @@ class DictionaryOperations:
 
         cls: ClsType[_models.DictionaryWrapper] = kwargs.pop("cls", None)
 
-        request = build_get_empty_request(
+        _request = build_get_empty_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -236,18 +236,18 @@ class DictionaryOperations:
         _complex_body = _models.DictionaryWrapper(default_program=default_program)
         _json = self._serialize.body(_complex_body, "DictionaryWrapper")
 
-        request = build_put_empty_request(
+        _request = build_put_empty_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -282,16 +282,16 @@ class DictionaryOperations:
 
         cls: ClsType[_models.DictionaryWrapper] = kwargs.pop("cls", None)
 
-        request = build_get_null_request(
+        _request = build_get_null_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -330,16 +330,16 @@ class DictionaryOperations:
 
         cls: ClsType[_models.DictionaryWrapper] = kwargs.pop("cls", None)
 
-        request = build_get_not_provided_request(
+        _request = build_get_not_provided_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

@@ -84,17 +84,17 @@ class ImplicitOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_required_path_request(
+        _request = build_get_required_path_request(
             path_parameter=path_parameter,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -133,17 +133,17 @@ class ImplicitOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_put_optional_query_request(
+        _request = build_put_optional_query_request(
             query_parameter=query_parameter,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -182,17 +182,17 @@ class ImplicitOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_put_optional_header_request(
+        _request = build_put_optional_header_request(
             query_parameter=query_parameter,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -237,18 +237,18 @@ class ImplicitOperations:
         else:
             _content = None
 
-        request = build_put_optional_body_request(
+        _request = build_put_optional_body_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -290,18 +290,18 @@ class ImplicitOperations:
 
         _content = body_parameter
 
-        request = build_put_optional_binary_body_request(
+        _request = build_put_optional_binary_body_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -336,17 +336,17 @@ class ImplicitOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_required_global_path_request(
+        _request = build_get_required_global_path_request(
             required_global_path=self._config.required_global_path,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -381,17 +381,17 @@ class ImplicitOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_required_global_query_request(
+        _request = build_get_required_global_query_request(
             required_global_query=self._config.required_global_query,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -426,17 +426,17 @@ class ImplicitOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_optional_global_query_request(
+        _request = build_get_optional_global_query_request(
             optional_global_query=self._config.optional_global_query,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

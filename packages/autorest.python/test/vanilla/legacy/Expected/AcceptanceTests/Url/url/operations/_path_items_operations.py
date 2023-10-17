@@ -261,7 +261,7 @@ class PathItemsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_all_with_values_request(
+        _request = build_get_all_with_values_request(
             path_item_string_path=path_item_string_path,
             local_string_path=local_string_path,
             global_string_path=self._config.global_string_path,
@@ -271,12 +271,12 @@ class PathItemsOperations:
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -330,7 +330,7 @@ class PathItemsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_global_query_null_request(
+        _request = build_get_global_query_null_request(
             path_item_string_path=path_item_string_path,
             local_string_path=local_string_path,
             global_string_path=self._config.global_string_path,
@@ -340,12 +340,12 @@ class PathItemsOperations:
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -399,7 +399,7 @@ class PathItemsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_global_and_local_query_null_request(
+        _request = build_get_global_and_local_query_null_request(
             path_item_string_path=path_item_string_path,
             local_string_path=local_string_path,
             global_string_path=self._config.global_string_path,
@@ -409,12 +409,12 @@ class PathItemsOperations:
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -467,7 +467,7 @@ class PathItemsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_local_path_item_query_null_request(
+        _request = build_get_local_path_item_query_null_request(
             path_item_string_path=path_item_string_path,
             local_string_path=local_string_path,
             global_string_path=self._config.global_string_path,
@@ -477,12 +477,12 @@ class PathItemsOperations:
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

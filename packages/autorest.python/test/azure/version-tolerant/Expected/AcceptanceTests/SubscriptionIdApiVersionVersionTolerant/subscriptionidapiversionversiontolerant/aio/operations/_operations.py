@@ -82,18 +82,18 @@ class GroupOperations:
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_group_get_sample_resource_group_request(
+        _request = build_group_get_sample_resource_group_request(
             resource_group_name=resource_group_name,
             subscription_id=self._config.subscription_id,
             api_version=self._config.api_version,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

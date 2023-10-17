@@ -72,16 +72,16 @@ class PolymorphicrecursiveOperations:
 
         cls: ClsType[_models.Fish] = kwargs.pop("cls", None)
 
-        request = build_get_valid_request(
+        _request = build_get_valid_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -326,19 +326,19 @@ class PolymorphicrecursiveOperations:
         else:
             _json = self._serialize.body(complex_body, "Fish")
 
-        request = build_put_valid_request(
+        _request = build_put_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

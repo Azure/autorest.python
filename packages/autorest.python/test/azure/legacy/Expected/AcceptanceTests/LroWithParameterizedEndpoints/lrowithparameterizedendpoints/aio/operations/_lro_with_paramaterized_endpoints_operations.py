@@ -59,20 +59,20 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
 
         cls: ClsType[Optional[str]] = kwargs.pop("cls", None)
 
-        request = build_poll_with_parameterized_endpoints_request(
+        _request = build_poll_with_parameterized_endpoints_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
+        _request = _convert_request(_request)
         path_format_arguments = {
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -177,21 +177,21 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         constant_parameter: Literal["iAmConstant"] = kwargs.pop("constant_parameter", "iAmConstant")
         cls: ClsType[Optional[str]] = kwargs.pop("cls", None)
 
-        request = build_poll_with_constant_parameterized_endpoints_request(
+        _request = build_poll_with_constant_parameterized_endpoints_request(
             constant_parameter=constant_parameter,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
+        _request = _convert_request(_request)
         path_format_arguments = {
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

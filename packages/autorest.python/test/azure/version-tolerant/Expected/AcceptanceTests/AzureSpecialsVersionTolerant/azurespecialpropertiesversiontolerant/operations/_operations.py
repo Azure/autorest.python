@@ -680,15 +680,15 @@ class XMsClientRequestIdOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_xms_client_request_id_get_request(
+        _request = build_xms_client_request_id_get_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -724,15 +724,15 @@ class XMsClientRequestIdOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_xms_client_request_id_param_get_request(
+        _request = build_xms_client_request_id_param_get_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -786,16 +786,16 @@ class SubscriptionInCredentialsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_subscription_in_credentials_post_method_global_valid_request(
+        _request = build_subscription_in_credentials_post_method_global_valid_request(
             subscription_id=self._config.subscription_id,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -831,16 +831,16 @@ class SubscriptionInCredentialsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_subscription_in_credentials_post_method_global_null_request(
+        _request = build_subscription_in_credentials_post_method_global_null_request(
             subscription_id=self._config.subscription_id,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -878,17 +878,17 @@ class SubscriptionInCredentialsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_subscription_in_credentials_post_method_global_not_provided_valid_request(
+        _request = build_subscription_in_credentials_post_method_global_not_provided_valid_request(
             subscription_id=self._config.subscription_id,
             api_version=self._config.api_version,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -924,16 +924,16 @@ class SubscriptionInCredentialsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_subscription_in_credentials_post_path_global_valid_request(
+        _request = build_subscription_in_credentials_post_path_global_valid_request(
             subscription_id=self._config.subscription_id,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -969,16 +969,16 @@ class SubscriptionInCredentialsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_subscription_in_credentials_post_swagger_global_valid_request(
+        _request = build_subscription_in_credentials_post_swagger_global_valid_request(
             subscription_id=self._config.subscription_id,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1037,16 +1037,16 @@ class SubscriptionInMethodOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_subscription_in_method_post_method_local_valid_request(
+        _request = build_subscription_in_method_post_method_local_valid_request(
             subscription_id=subscription_id,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1087,16 +1087,16 @@ class SubscriptionInMethodOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_subscription_in_method_post_method_local_null_request(
+        _request = build_subscription_in_method_post_method_local_null_request(
             subscription_id=subscription_id,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1137,16 +1137,16 @@ class SubscriptionInMethodOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_subscription_in_method_post_path_local_valid_request(
+        _request = build_subscription_in_method_post_path_local_valid_request(
             subscription_id=subscription_id,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1187,16 +1187,16 @@ class SubscriptionInMethodOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_subscription_in_method_post_swagger_local_valid_request(
+        _request = build_subscription_in_method_post_swagger_local_valid_request(
             subscription_id=subscription_id,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1249,16 +1249,16 @@ class ApiVersionDefaultOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_api_version_default_get_method_global_valid_request(
+        _request = build_api_version_default_get_method_global_valid_request(
             api_version=self._config.api_version,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1295,16 +1295,16 @@ class ApiVersionDefaultOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_api_version_default_get_method_global_not_provided_valid_request(
+        _request = build_api_version_default_get_method_global_not_provided_valid_request(
             api_version=self._config.api_version,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1339,16 +1339,16 @@ class ApiVersionDefaultOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_api_version_default_get_path_global_valid_request(
+        _request = build_api_version_default_get_path_global_valid_request(
             api_version=self._config.api_version,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1383,16 +1383,16 @@ class ApiVersionDefaultOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_api_version_default_get_swagger_global_valid_request(
+        _request = build_api_version_default_get_swagger_global_valid_request(
             api_version=self._config.api_version,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1449,16 +1449,16 @@ class ApiVersionLocalOperations:
         api_version: Literal["2.0"] = kwargs.pop("api_version", _params.pop("api-version", "2.0"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_api_version_local_get_method_local_valid_request(
+        _request = build_api_version_local_get_method_local_valid_request(
             api_version=api_version,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1498,16 +1498,16 @@ class ApiVersionLocalOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_api_version_local_get_method_local_null_request(
+        _request = build_api_version_local_get_method_local_null_request(
             api_version=api_version,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1546,16 +1546,16 @@ class ApiVersionLocalOperations:
         api_version: Literal["2.0"] = kwargs.pop("api_version", _params.pop("api-version", "2.0"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_api_version_local_get_path_local_valid_request(
+        _request = build_api_version_local_get_path_local_valid_request(
             api_version=api_version,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1595,16 +1595,16 @@ class ApiVersionLocalOperations:
         api_version: Literal["2.0"] = kwargs.pop("api_version", _params.pop("api-version", "2.0"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_api_version_local_get_swagger_local_valid_request(
+        _request = build_api_version_local_get_swagger_local_valid_request(
             api_version=api_version,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1661,16 +1661,16 @@ class SkipUrlEncodingOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_skip_url_encoding_get_method_path_valid_request(
+        _request = build_skip_url_encoding_get_method_path_valid_request(
             unencoded_path_param=unencoded_path_param,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1709,16 +1709,16 @@ class SkipUrlEncodingOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_skip_url_encoding_get_path_valid_request(
+        _request = build_skip_url_encoding_get_path_valid_request(
             unencoded_path_param=unencoded_path_param,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1758,16 +1758,16 @@ class SkipUrlEncodingOperations:
         unencoded_path_param: Literal["path1/path2/path3"] = kwargs.pop("unencoded_path_param", "path1/path2/path3")
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_skip_url_encoding_get_swagger_path_valid_request(
+        _request = build_skip_url_encoding_get_swagger_path_valid_request(
             unencoded_path_param=unencoded_path_param,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1806,16 +1806,16 @@ class SkipUrlEncodingOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_skip_url_encoding_get_method_query_valid_request(
+        _request = build_skip_url_encoding_get_method_query_valid_request(
             q1=q1,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1854,16 +1854,16 @@ class SkipUrlEncodingOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_skip_url_encoding_get_method_query_null_request(
+        _request = build_skip_url_encoding_get_method_query_null_request(
             q1=q1,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1900,16 +1900,16 @@ class SkipUrlEncodingOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_skip_url_encoding_get_path_query_valid_request(
+        _request = build_skip_url_encoding_get_path_query_valid_request(
             q1=q1,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1949,16 +1949,16 @@ class SkipUrlEncodingOperations:
         q1: Literal["value1&q2=value2&q3=value3"] = kwargs.pop("q1", _params.pop("q1", "value1&q2=value2&q3=value3"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_skip_url_encoding_get_swagger_query_valid_request(
+        _request = build_skip_url_encoding_get_swagger_query_valid_request(
             q1=q1,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2020,18 +2020,18 @@ class OdataOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_odata_get_with_filter_request(
+        _request = build_odata_get_with_filter_request(
             filter=filter,
             top=top,
             orderby=orderby,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2088,16 +2088,16 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_header_custom_named_request_id_request(
+        _request = build_header_custom_named_request_id_request(
             foo_client_request_id=foo_client_request_id,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2140,16 +2140,16 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_header_custom_named_request_id_param_grouping_request(
+        _request = build_header_custom_named_request_id_param_grouping_request(
             foo_client_request_id=foo_client_request_id,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2189,16 +2189,16 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_header_custom_named_request_id_head_request(
+        _request = build_header_custom_named_request_id_head_request(
             foo_client_request_id=foo_client_request_id,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

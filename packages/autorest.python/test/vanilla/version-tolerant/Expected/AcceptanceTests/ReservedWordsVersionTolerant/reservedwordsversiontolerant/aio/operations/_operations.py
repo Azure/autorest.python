@@ -80,16 +80,16 @@ class ImportOperations:
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_import_operations_operation_one_request(
+        _request = build_import_operations_operation_one_request(
             parameter1=parameter1,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -147,17 +147,17 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
 
         _content = content
 
-        request = build_reserved_words_operation_with_content_param_request(
+        _request = build_reserved_words_operation_with_content_param_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -204,17 +204,17 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
 
         _json = json
 
-        request = build_reserved_words_operation_with_json_param_request(
+        _request = build_reserved_words_operation_with_json_param_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -267,18 +267,18 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_reserved_words_operation_with_url_request(
+        _request = build_reserved_words_operation_with_url_request(
             url=url,
             header_parameters=header_parameters,
             query_parameters=query_parameters,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -323,16 +323,16 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_reserved_words_reserved_enum_request(
+        _request = build_reserved_words_reserved_enum_request(
             enum_parameter=enum_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

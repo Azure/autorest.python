@@ -151,15 +151,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[int]] = kwargs.pop("cls", None)
 
-        request = build_array_get_null_request(
+        _request = build_array_get_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -209,15 +209,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[int]] = kwargs.pop("cls", None)
 
-        request = build_array_get_invalid_request(
+        _request = build_array_get_invalid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -267,15 +267,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[int]] = kwargs.pop("cls", None)
 
-        request = build_array_get_empty_request(
+        _request = build_array_get_empty_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -373,18 +373,18 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_array_put_empty_request(
+        _request = build_array_put_empty_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -427,15 +427,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[bool]] = kwargs.pop("cls", None)
 
-        request = build_array_get_boolean_tfft_request(
+        _request = build_array_get_boolean_tfft_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -533,18 +533,18 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_array_put_boolean_tfft_request(
+        _request = build_array_put_boolean_tfft_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -587,15 +587,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[bool]] = kwargs.pop("cls", None)
 
-        request = build_array_get_boolean_invalid_null_request(
+        _request = build_array_get_boolean_invalid_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -645,15 +645,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[bool]] = kwargs.pop("cls", None)
 
-        request = build_array_get_boolean_invalid_string_request(
+        _request = build_array_get_boolean_invalid_string_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -703,15 +703,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[int]] = kwargs.pop("cls", None)
 
-        request = build_array_get_integer_valid_request(
+        _request = build_array_get_integer_valid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -809,18 +809,18 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_array_put_integer_valid_request(
+        _request = build_array_put_integer_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -863,15 +863,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[int]] = kwargs.pop("cls", None)
 
-        request = build_array_get_int_invalid_null_request(
+        _request = build_array_get_int_invalid_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -921,15 +921,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[int]] = kwargs.pop("cls", None)
 
-        request = build_array_get_int_invalid_string_request(
+        _request = build_array_get_int_invalid_string_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -979,15 +979,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[int]] = kwargs.pop("cls", None)
 
-        request = build_array_get_long_valid_request(
+        _request = build_array_get_long_valid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1085,18 +1085,18 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_array_put_long_valid_request(
+        _request = build_array_put_long_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1139,15 +1139,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[int]] = kwargs.pop("cls", None)
 
-        request = build_array_get_long_invalid_null_request(
+        _request = build_array_get_long_invalid_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1197,15 +1197,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[int]] = kwargs.pop("cls", None)
 
-        request = build_array_get_long_invalid_string_request(
+        _request = build_array_get_long_invalid_string_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1255,15 +1255,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[float]] = kwargs.pop("cls", None)
 
-        request = build_array_get_float_valid_request(
+        _request = build_array_get_float_valid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1361,18 +1361,18 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_array_put_float_valid_request(
+        _request = build_array_put_float_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1415,15 +1415,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[float]] = kwargs.pop("cls", None)
 
-        request = build_array_get_float_invalid_null_request(
+        _request = build_array_get_float_invalid_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1473,15 +1473,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[float]] = kwargs.pop("cls", None)
 
-        request = build_array_get_float_invalid_string_request(
+        _request = build_array_get_float_invalid_string_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1531,15 +1531,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[float]] = kwargs.pop("cls", None)
 
-        request = build_array_get_double_valid_request(
+        _request = build_array_get_double_valid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1637,18 +1637,18 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_array_put_double_valid_request(
+        _request = build_array_put_double_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1691,15 +1691,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[float]] = kwargs.pop("cls", None)
 
-        request = build_array_get_double_invalid_null_request(
+        _request = build_array_get_double_invalid_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1749,15 +1749,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[float]] = kwargs.pop("cls", None)
 
-        request = build_array_get_double_invalid_string_request(
+        _request = build_array_get_double_invalid_string_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1807,15 +1807,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[str]] = kwargs.pop("cls", None)
 
-        request = build_array_get_string_valid_request(
+        _request = build_array_get_string_valid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1913,18 +1913,18 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_array_put_string_valid_request(
+        _request = build_array_put_string_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1967,15 +1967,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[str]] = kwargs.pop("cls", None)
 
-        request = build_array_get_enum_valid_request(
+        _request = build_array_get_enum_valid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2073,18 +2073,18 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_array_put_enum_valid_request(
+        _request = build_array_put_enum_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2127,15 +2127,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[str]] = kwargs.pop("cls", None)
 
-        request = build_array_get_string_enum_valid_request(
+        _request = build_array_get_string_enum_valid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2233,18 +2233,18 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_array_put_string_enum_valid_request(
+        _request = build_array_put_string_enum_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2287,15 +2287,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[str]] = kwargs.pop("cls", None)
 
-        request = build_array_get_string_with_null_request(
+        _request = build_array_get_string_with_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2345,15 +2345,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[str]] = kwargs.pop("cls", None)
 
-        request = build_array_get_string_with_invalid_request(
+        _request = build_array_get_string_with_invalid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2404,15 +2404,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[str]] = kwargs.pop("cls", None)
 
-        request = build_array_get_uuid_valid_request(
+        _request = build_array_get_uuid_valid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2513,18 +2513,18 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_array_put_uuid_valid_request(
+        _request = build_array_put_uuid_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2567,15 +2567,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[str]] = kwargs.pop("cls", None)
 
-        request = build_array_get_uuid_invalid_chars_request(
+        _request = build_array_get_uuid_invalid_chars_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2625,15 +2625,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[datetime.date]] = kwargs.pop("cls", None)
 
-        request = build_array_get_date_valid_request(
+        _request = build_array_get_date_valid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2731,18 +2731,18 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_array_put_date_valid_request(
+        _request = build_array_put_date_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2785,15 +2785,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[datetime.date]] = kwargs.pop("cls", None)
 
-        request = build_array_get_date_invalid_null_request(
+        _request = build_array_get_date_invalid_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2843,15 +2843,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[datetime.date]] = kwargs.pop("cls", None)
 
-        request = build_array_get_date_invalid_chars_request(
+        _request = build_array_get_date_invalid_chars_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2902,15 +2902,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[datetime.datetime]] = kwargs.pop("cls", None)
 
-        request = build_array_get_date_time_valid_request(
+        _request = build_array_get_date_time_valid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3011,18 +3011,18 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_array_put_date_time_valid_request(
+        _request = build_array_put_date_time_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3065,15 +3065,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[datetime.datetime]] = kwargs.pop("cls", None)
 
-        request = build_array_get_date_time_invalid_null_request(
+        _request = build_array_get_date_time_invalid_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3123,15 +3123,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[datetime.datetime]] = kwargs.pop("cls", None)
 
-        request = build_array_get_date_time_invalid_chars_request(
+        _request = build_array_get_date_time_invalid_chars_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3182,15 +3182,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[datetime.datetime]] = kwargs.pop("cls", None)
 
-        request = build_array_get_date_time_rfc1123_valid_request(
+        _request = build_array_get_date_time_rfc1123_valid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3291,18 +3291,18 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_array_put_date_time_rfc1123_valid_request(
+        _request = build_array_put_date_time_rfc1123_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3345,15 +3345,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[datetime.timedelta]] = kwargs.pop("cls", None)
 
-        request = build_array_get_duration_valid_request(
+        _request = build_array_get_duration_valid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3451,18 +3451,18 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_array_put_duration_valid_request(
+        _request = build_array_put_duration_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3506,15 +3506,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[bytes]] = kwargs.pop("cls", None)
 
-        request = build_array_get_byte_valid_request(
+        _request = build_array_get_byte_valid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3615,18 +3615,18 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_array_put_byte_valid_request(
+        _request = build_array_put_byte_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3669,15 +3669,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[bytes]] = kwargs.pop("cls", None)
 
-        request = build_array_get_byte_invalid_null_request(
+        _request = build_array_get_byte_invalid_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3728,15 +3728,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[bytes]] = kwargs.pop("cls", None)
 
-        request = build_array_get_base64_url_request(
+        _request = build_array_get_base64_url_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3789,15 +3789,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[JSON]] = kwargs.pop("cls", None)
 
-        request = build_array_get_complex_null_request(
+        _request = build_array_get_complex_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3850,15 +3850,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[JSON]] = kwargs.pop("cls", None)
 
-        request = build_array_get_complex_empty_request(
+        _request = build_array_get_complex_empty_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3912,15 +3912,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[JSON]] = kwargs.pop("cls", None)
 
-        request = build_array_get_complex_item_null_request(
+        _request = build_array_get_complex_item_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3974,15 +3974,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[JSON]] = kwargs.pop("cls", None)
 
-        request = build_array_get_complex_item_empty_request(
+        _request = build_array_get_complex_item_empty_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4036,15 +4036,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[JSON]] = kwargs.pop("cls", None)
 
-        request = build_array_get_complex_valid_request(
+        _request = build_array_get_complex_valid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4148,18 +4148,18 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_array_put_complex_valid_request(
+        _request = build_array_put_complex_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4204,15 +4204,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[List[str]]] = kwargs.pop("cls", None)
 
-        request = build_array_get_array_null_request(
+        _request = build_array_get_array_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4264,15 +4264,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[List[str]]] = kwargs.pop("cls", None)
 
-        request = build_array_get_array_empty_request(
+        _request = build_array_get_array_empty_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4324,15 +4324,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[List[str]]] = kwargs.pop("cls", None)
 
-        request = build_array_get_array_item_null_request(
+        _request = build_array_get_array_item_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4384,15 +4384,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[List[str]]] = kwargs.pop("cls", None)
 
-        request = build_array_get_array_item_empty_request(
+        _request = build_array_get_array_item_empty_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4444,15 +4444,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[List[str]]] = kwargs.pop("cls", None)
 
-        request = build_array_get_array_valid_request(
+        _request = build_array_get_array_valid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4552,18 +4552,18 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_array_put_array_valid_request(
+        _request = build_array_put_array_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4608,15 +4608,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[Dict[str, str]]] = kwargs.pop("cls", None)
 
-        request = build_array_get_dictionary_null_request(
+        _request = build_array_get_dictionary_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4668,15 +4668,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[Dict[str, str]]] = kwargs.pop("cls", None)
 
-        request = build_array_get_dictionary_empty_request(
+        _request = build_array_get_dictionary_empty_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4729,15 +4729,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[Dict[str, str]]] = kwargs.pop("cls", None)
 
-        request = build_array_get_dictionary_item_null_request(
+        _request = build_array_get_dictionary_item_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4790,15 +4790,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[Dict[str, str]]] = kwargs.pop("cls", None)
 
-        request = build_array_get_dictionary_item_empty_request(
+        _request = build_array_get_dictionary_item_empty_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4851,15 +4851,15 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[Dict[str, str]]] = kwargs.pop("cls", None)
 
-        request = build_array_get_dictionary_valid_request(
+        _request = build_array_get_dictionary_valid_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4962,18 +4962,18 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = array_body
 
-        request = build_array_put_dictionary_valid_request(
+        _request = build_array_put_dictionary_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

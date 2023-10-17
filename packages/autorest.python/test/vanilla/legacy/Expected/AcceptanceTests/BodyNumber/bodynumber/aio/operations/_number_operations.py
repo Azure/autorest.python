@@ -96,16 +96,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[Optional[float]] = kwargs.pop("cls", None)
 
-        request = build_get_null_request(
+        _request = build_get_null_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -144,16 +144,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_get_invalid_float_request(
+        _request = build_get_invalid_float_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -192,16 +192,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_get_invalid_double_request(
+        _request = build_get_invalid_double_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -240,16 +240,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_get_invalid_decimal_request(
+        _request = build_get_invalid_decimal_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -295,18 +295,18 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         _json = self._serialize.body(number_body, "float")
 
-        request = build_put_big_float_request(
+        _request = build_put_big_float_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -341,16 +341,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_get_big_float_request(
+        _request = build_get_big_float_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -396,18 +396,18 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         _json = self._serialize.body(number_body, "float")
 
-        request = build_put_big_double_request(
+        _request = build_put_big_double_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -442,16 +442,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_get_big_double_request(
+        _request = build_get_big_double_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -499,18 +499,18 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         _json = self._serialize.body(number_body, "float")
 
-        request = build_put_big_double_positive_decimal_request(
+        _request = build_put_big_double_positive_decimal_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -545,16 +545,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_get_big_double_positive_decimal_request(
+        _request = build_get_big_double_positive_decimal_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -602,18 +602,18 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         _json = self._serialize.body(number_body, "float")
 
-        request = build_put_big_double_negative_decimal_request(
+        _request = build_put_big_double_negative_decimal_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -648,16 +648,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_get_big_double_negative_decimal_request(
+        _request = build_get_big_double_negative_decimal_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -703,18 +703,18 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         _json = self._serialize.body(number_body, "float")
 
-        request = build_put_big_decimal_request(
+        _request = build_put_big_decimal_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -749,16 +749,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_get_big_decimal_request(
+        _request = build_get_big_decimal_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -806,18 +806,18 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         _json = self._serialize.body(number_body, "float")
 
-        request = build_put_big_decimal_positive_decimal_request(
+        _request = build_put_big_decimal_positive_decimal_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -852,16 +852,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_get_big_decimal_positive_decimal_request(
+        _request = build_get_big_decimal_positive_decimal_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -909,18 +909,18 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         _json = self._serialize.body(number_body, "float")
 
-        request = build_put_big_decimal_negative_decimal_request(
+        _request = build_put_big_decimal_negative_decimal_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -955,16 +955,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_get_big_decimal_negative_decimal_request(
+        _request = build_get_big_decimal_negative_decimal_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1010,18 +1010,18 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         _json = self._serialize.body(number_body, "float")
 
-        request = build_put_small_float_request(
+        _request = build_put_small_float_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1056,16 +1056,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_get_small_float_request(
+        _request = build_get_small_float_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1111,18 +1111,18 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         _json = self._serialize.body(number_body, "float")
 
-        request = build_put_small_double_request(
+        _request = build_put_small_double_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1157,16 +1157,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_get_small_double_request(
+        _request = build_get_small_double_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1212,18 +1212,18 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         _json = self._serialize.body(number_body, "float")
 
-        request = build_put_small_decimal_request(
+        _request = build_put_small_decimal_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1258,16 +1258,16 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_get_small_decimal_request(
+        _request = build_get_small_decimal_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

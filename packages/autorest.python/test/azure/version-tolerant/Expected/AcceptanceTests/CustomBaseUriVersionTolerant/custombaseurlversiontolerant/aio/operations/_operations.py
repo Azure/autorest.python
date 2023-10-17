@@ -68,7 +68,7 @@ class PathsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_paths_get_empty_request(
+        _request = build_paths_get_empty_request(
             headers=_headers,
             params=_params,
         )
@@ -76,11 +76,11 @@ class PathsOperations:
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

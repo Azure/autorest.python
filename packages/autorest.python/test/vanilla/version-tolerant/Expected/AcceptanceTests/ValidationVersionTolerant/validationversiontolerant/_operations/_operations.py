@@ -201,7 +201,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_auto_rest_validation_test_validation_of_method_parameters_request(
+        _request = build_auto_rest_validation_test_validation_of_method_parameters_request(
             resource_group_name=resource_group_name,
             id=id,
             subscription_id=self._config.subscription_id,
@@ -209,11 +209,11 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -472,7 +472,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
             else:
                 _json = None
 
-        request = build_auto_rest_validation_test_validation_of_body_request(
+        _request = build_auto_rest_validation_test_validation_of_body_request(
             resource_group_name=resource_group_name,
             id=id,
             subscription_id=self._config.subscription_id,
@@ -483,11 +483,11 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -533,16 +533,16 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
         constant_param: Literal["constant"] = kwargs.pop("constant_param", "constant")
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_auto_rest_validation_test_get_with_constant_in_path_request(
+        _request = build_auto_rest_validation_test_get_with_constant_in_path_request(
             constant_param=constant_param,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -775,7 +775,7 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
             else:
                 _json = None
 
-        request = build_auto_rest_validation_test_post_with_constant_in_body_request(
+        _request = build_auto_rest_validation_test_post_with_constant_in_body_request(
             constant_param=constant_param,
             content_type=content_type,
             json=_json,
@@ -783,11 +783,11 @@ class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

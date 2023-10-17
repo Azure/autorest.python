@@ -79,15 +79,15 @@ class ParamsOperations:
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_params_head_no_params_request(
+        _request = build_params_head_no_params_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -133,16 +133,16 @@ class ParamsOperations:
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_params_get_required_request(
+        _request = build_params_get_required_request(
             parameter=parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -191,17 +191,17 @@ class ParamsOperations:
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_params_put_required_optional_request(
+        _request = build_params_put_required_optional_request(
             required_param=required_param,
             optional_param=optional_param,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -304,18 +304,18 @@ class ParamsOperations:
         else:
             _json = parameter
 
-        request = build_params_post_parameters_request(
+        _request = build_params_post_parameters_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -361,16 +361,16 @@ class ParamsOperations:
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_params_get_optional_request(
+        _request = build_params_get_optional_request(
             optional_param=optional_param,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

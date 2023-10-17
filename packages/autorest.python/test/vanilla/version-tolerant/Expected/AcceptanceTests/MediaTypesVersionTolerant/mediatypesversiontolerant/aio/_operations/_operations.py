@@ -141,18 +141,18 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
                 _json = None
             content_type = content_type or "application/json"
 
-        request = build_media_types_analyze_body_request(
+        _request = build_media_types_analyze_body_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -270,18 +270,18 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
                 _json = None
             content_type = content_type or "application/json"
 
-        request = build_media_types_analyze_body_no_accept_header_request(
+        _request = build_media_types_analyze_body_no_accept_header_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -324,17 +324,17 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
         else:
             _content = None
 
-        request = build_media_types_content_type_with_encoding_request(
+        _request = build_media_types_content_type_with_encoding_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -382,17 +382,17 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
 
         _content = message
 
-        request = build_media_types_binary_body_with_two_content_types_request(
+        _request = build_media_types_binary_body_with_two_content_types_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -441,17 +441,17 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
 
         _content = message
 
-        request = build_media_types_binary_body_with_three_content_types_request(
+        _request = build_media_types_binary_body_with_three_content_types_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -498,17 +498,17 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
 
         _content = message
 
-        request = build_media_types_put_text_and_json_body_request(
+        _request = build_media_types_put_text_and_json_body_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

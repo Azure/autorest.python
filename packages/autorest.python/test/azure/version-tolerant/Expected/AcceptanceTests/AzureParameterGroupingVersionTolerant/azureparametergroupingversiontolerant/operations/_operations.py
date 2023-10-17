@@ -232,7 +232,7 @@ class ParameterGroupingOperations:
 
         _json = body
 
-        request = build_parameter_grouping_post_required_request(
+        _request = build_parameter_grouping_post_required_request(
             path=path,
             custom_header=custom_header,
             query=query,
@@ -241,11 +241,11 @@ class ParameterGroupingOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -286,17 +286,17 @@ class ParameterGroupingOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameter_grouping_post_optional_request(
+        _request = build_parameter_grouping_post_optional_request(
             custom_header=custom_header,
             query=query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -339,17 +339,17 @@ class ParameterGroupingOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameter_grouping_post_reserved_words_request(
+        _request = build_parameter_grouping_post_reserved_words_request(
             from_parameter=from_parameter,
             accept_parameter=accept_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -400,7 +400,7 @@ class ParameterGroupingOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameter_grouping_post_multi_param_groups_request(
+        _request = build_parameter_grouping_post_multi_param_groups_request(
             header_one=header_one,
             query_one=query_one,
             header_two=header_two,
@@ -408,11 +408,11 @@ class ParameterGroupingOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -453,17 +453,17 @@ class ParameterGroupingOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameter_grouping_post_shared_parameter_group_object_request(
+        _request = build_parameter_grouping_post_shared_parameter_group_object_request(
             header_one=header_one,
             query_one=query_one,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -511,17 +511,17 @@ class ParameterGroupingOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameter_grouping_group_with_constant_request(
+        _request = build_parameter_grouping_group_with_constant_request(
             grouped_constant=grouped_constant,
             grouped_parameter=grouped_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

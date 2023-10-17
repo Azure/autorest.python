@@ -216,17 +216,17 @@ class SkipUrlEncodingOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_method_path_valid_request(
+        _request = build_get_method_path_valid_request(
             unencoded_path_param=unencoded_path_param,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -265,17 +265,17 @@ class SkipUrlEncodingOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_path_valid_request(
+        _request = build_get_path_valid_request(
             unencoded_path_param=unencoded_path_param,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -315,17 +315,17 @@ class SkipUrlEncodingOperations:
         unencoded_path_param: Literal["path1/path2/path3"] = kwargs.pop("unencoded_path_param", "path1/path2/path3")
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_swagger_path_valid_request(
+        _request = build_get_swagger_path_valid_request(
             unencoded_path_param=unencoded_path_param,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -362,17 +362,17 @@ class SkipUrlEncodingOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_method_query_valid_request(
+        _request = build_get_method_query_valid_request(
             q1=q1,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -411,17 +411,17 @@ class SkipUrlEncodingOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_method_query_null_request(
+        _request = build_get_method_query_null_request(
             q1=q1,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -458,17 +458,17 @@ class SkipUrlEncodingOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_path_query_valid_request(
+        _request = build_get_path_query_valid_request(
             q1=q1,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -508,17 +508,17 @@ class SkipUrlEncodingOperations:
         q1: Literal["value1&q2=value2&q3=value3"] = kwargs.pop("q1", _params.pop("q1", "value1&q2=value2&q3=value3"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_swagger_query_valid_request(
+        _request = build_get_swagger_query_valid_request(
             q1=q1,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

@@ -129,7 +129,7 @@ class OperationGroupTwoOperations:
                 _json = None
             content_type = content_type or "application/json"
 
-        request = build_test_four_request(
+        _request = build_test_four_request(
             api_version=api_version,
             content_type=content_type,
             json=_json,
@@ -137,12 +137,12 @@ class OperationGroupTwoOperations:
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -178,17 +178,17 @@ class OperationGroupTwoOperations:
         api_version: str = kwargs.pop("api_version", _params.pop("api-version", self._api_version or "3.0.0"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_test_five_request(
+        _request = build_test_five_request(
             api_version=api_version,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

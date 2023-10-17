@@ -49,18 +49,18 @@ class ParmaterizedEndpointClientOperationsMixin(ParmaterizedEndpointClientMixinA
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parmaterized_endpoint_get_request(
+        _request = build_parmaterized_endpoint_get_request(
             headers=_headers,
             params=_params,
         )
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

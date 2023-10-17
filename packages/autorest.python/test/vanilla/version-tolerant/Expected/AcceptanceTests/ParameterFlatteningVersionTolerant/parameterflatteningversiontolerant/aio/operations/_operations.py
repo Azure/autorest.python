@@ -152,7 +152,7 @@ class AvailabilitySetsOperations:
         else:
             _json = tags
 
-        request = build_availability_sets_update_request(
+        _request = build_availability_sets_update_request(
             resource_group_name=resource_group_name,
             avset=avset,
             content_type=content_type,
@@ -161,11 +161,11 @@ class AvailabilitySetsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

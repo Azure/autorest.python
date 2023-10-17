@@ -87,16 +87,16 @@ class PetOperations:
 
         cls: ClsType[Optional[JSON]] = kwargs.pop("cls", None)
 
-        request = build_pet_get_pet_by_id_request(
+        _request = build_pet_get_pet_by_id_request(
             pet_id=pet_id,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -151,16 +151,16 @@ class PetOperations:
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_pet_do_something_request(
+        _request = build_pet_do_something_request(
             what_action=what_action,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -209,16 +209,16 @@ class PetOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_pet_has_models_param_request(
+        _request = build_pet_has_models_param_request(
             models=models,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

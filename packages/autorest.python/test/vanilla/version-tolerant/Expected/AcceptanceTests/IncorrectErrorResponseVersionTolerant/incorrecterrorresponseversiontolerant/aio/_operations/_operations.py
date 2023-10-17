@@ -52,15 +52,15 @@ class IncorrectReturnedErrorModelOperationsMixin(IncorrectReturnedErrorModelMixi
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_incorrect_returned_error_model_get_incorrect_error_from_server_request(
+        _request = build_incorrect_returned_error_model_get_incorrect_error_from_server_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

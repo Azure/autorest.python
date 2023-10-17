@@ -417,16 +417,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.IntWrapper] = kwargs.pop("cls", None)
 
-        request = build_get_int_request(
+        _request = build_get_int_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -515,19 +515,19 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(complex_body, "IntWrapper")
 
-        request = build_put_int_request(
+        _request = build_put_int_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -562,16 +562,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.LongWrapper] = kwargs.pop("cls", None)
 
-        request = build_get_long_request(
+        _request = build_get_long_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -661,19 +661,19 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(complex_body, "LongWrapper")
 
-        request = build_put_long_request(
+        _request = build_put_long_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -708,16 +708,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.FloatWrapper] = kwargs.pop("cls", None)
 
-        request = build_get_float_request(
+        _request = build_get_float_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -807,19 +807,19 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(complex_body, "FloatWrapper")
 
-        request = build_put_float_request(
+        _request = build_put_float_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -854,16 +854,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.DoubleWrapper] = kwargs.pop("cls", None)
 
-        request = build_get_double_request(
+        _request = build_get_double_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -956,19 +956,19 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(complex_body, "DoubleWrapper")
 
-        request = build_put_double_request(
+        _request = build_put_double_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1003,16 +1003,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.BooleanWrapper] = kwargs.pop("cls", None)
 
-        request = build_get_bool_request(
+        _request = build_get_bool_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1102,19 +1102,19 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(complex_body, "BooleanWrapper")
 
-        request = build_put_bool_request(
+        _request = build_put_bool_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1149,16 +1149,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.StringWrapper] = kwargs.pop("cls", None)
 
-        request = build_get_string_request(
+        _request = build_get_string_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1248,19 +1248,19 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(complex_body, "StringWrapper")
 
-        request = build_put_string_request(
+        _request = build_put_string_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1295,16 +1295,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.DateWrapper] = kwargs.pop("cls", None)
 
-        request = build_get_date_request(
+        _request = build_get_date_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1394,19 +1394,19 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(complex_body, "DateWrapper")
 
-        request = build_put_date_request(
+        _request = build_put_date_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1441,16 +1441,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.DatetimeWrapper] = kwargs.pop("cls", None)
 
-        request = build_get_date_time_request(
+        _request = build_get_date_time_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1542,19 +1542,19 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(complex_body, "DatetimeWrapper")
 
-        request = build_put_date_time_request(
+        _request = build_put_date_time_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1589,16 +1589,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.Datetimerfc1123Wrapper] = kwargs.pop("cls", None)
 
-        request = build_get_date_time_rfc1123_request(
+        _request = build_get_date_time_rfc1123_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1690,19 +1690,19 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(complex_body, "Datetimerfc1123Wrapper")
 
-        request = build_put_date_time_rfc1123_request(
+        _request = build_put_date_time_rfc1123_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1737,16 +1737,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.DurationWrapper] = kwargs.pop("cls", None)
 
-        request = build_get_duration_request(
+        _request = build_get_duration_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1793,18 +1793,18 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _complex_body = _models.DurationWrapper(field=field)
         _json = self._serialize.body(_complex_body, "DurationWrapper")
 
-        request = build_put_duration_request(
+        _request = build_put_duration_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1839,16 +1839,16 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[_models.ByteWrapper] = kwargs.pop("cls", None)
 
-        request = build_get_byte_request(
+        _request = build_get_byte_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1895,18 +1895,18 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         _complex_body = _models.ByteWrapper(field=field)
         _json = self._serialize.body(_complex_body, "ByteWrapper")
 
-        request = build_put_byte_request(
+        _request = build_put_byte_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

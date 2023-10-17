@@ -81,27 +81,27 @@ class PagingOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_get_pages_partial_url_request(
+                _request = build_get_pages_partial_url_request(
                     headers=_headers,
                     params=_params,
                 )
-                request = _convert_request(request)
+                _request = _convert_request(_request)
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
                 }
-                request.url = self._client.format_url(request.url, **path_format_arguments)
+                _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
             else:
                 request = HttpRequest("GET", next_link)
-                request = _convert_request(request)
+                _request = _convert_request(_request)
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
                 }
-                request.url = self._client.format_url(request.url, **path_format_arguments)
-                request.method = "GET"
-            return request
+                _request.url = self._client.format_url(_request.url, **path_format_arguments)
+                _request.method = "GET"
+            return _request
 
         async def extract_data(pipeline_response):
             deserialized = self._deserialize("ProductResult", pipeline_response)
@@ -111,11 +111,11 @@ class PagingOperations:
             return deserialized.next_link or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -154,32 +154,32 @@ class PagingOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_get_pages_partial_url_operation_request(
+                _request = build_get_pages_partial_url_operation_request(
                     headers=_headers,
                     params=_params,
                 )
-                request = _convert_request(request)
+                _request = _convert_request(_request)
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
                 }
-                request.url = self._client.format_url(request.url, **path_format_arguments)
+                _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
             else:
 
-                request = build_get_pages_partial_url_operation_next_request(
+                _request = build_get_pages_partial_url_operation_next_request(
                     next_link=next_link,
                     headers=_headers,
                     params=_params,
                 )
-                request = _convert_request(request)
+                _request = _convert_request(_request)
                 path_format_arguments = {
                     "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
                     "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
                 }
-                request.url = self._client.format_url(request.url, **path_format_arguments)
+                _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
-            return request
+            return _request
 
         async def extract_data(pipeline_response):
             deserialized = self._deserialize("ProductResult", pipeline_response)
@@ -189,11 +189,11 @@ class PagingOperations:
             return deserialized.next_link or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 

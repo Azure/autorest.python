@@ -79,16 +79,16 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_dpg_get_model_request(
+        _request = build_dpg_get_model_request(
             mode=mode,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -223,7 +223,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         else:
             _json = input
 
-        request = build_dpg_post_model_request(
+        _request = build_dpg_post_model_request(
             mode=mode,
             content_type=content_type,
             json=_json,
@@ -231,11 +231,11 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -293,18 +293,18 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_dpg_get_pages_request(
+                _request = build_dpg_get_pages_request(
                     mode=mode,
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 request = HttpRequest("GET", next_link)
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(request.url)
 
-            return request
+            return _request
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -314,11 +314,11 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -346,16 +346,16 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_dpg_lro_request(
+        _request = build_dpg_lro_request(
             mode=mode,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

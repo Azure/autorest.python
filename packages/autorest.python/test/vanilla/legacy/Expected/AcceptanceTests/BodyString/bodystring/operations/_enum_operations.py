@@ -173,16 +173,16 @@ class EnumOperations:
 
         cls: ClsType[Union[str, _models.Colors]] = kwargs.pop("cls", None)
 
-        request = build_get_not_expandable_request(
+        _request = build_get_not_expandable_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -229,18 +229,18 @@ class EnumOperations:
 
         _json = self._serialize.body(string_body, "str")
 
-        request = build_put_not_expandable_request(
+        _request = build_put_not_expandable_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -275,16 +275,16 @@ class EnumOperations:
 
         cls: ClsType[Union[str, _models.Colors]] = kwargs.pop("cls", None)
 
-        request = build_get_referenced_request(
+        _request = build_get_referenced_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -331,18 +331,18 @@ class EnumOperations:
 
         _json = self._serialize.body(enum_string_body, "str")
 
-        request = build_put_referenced_request(
+        _request = build_put_referenced_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -377,16 +377,16 @@ class EnumOperations:
 
         cls: ClsType[_models.RefColorConstant] = kwargs.pop("cls", None)
 
-        request = build_get_referenced_constant_request(
+        _request = build_get_referenced_constant_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -437,18 +437,18 @@ class EnumOperations:
         _enum_string_body = _models.RefColorConstant(color_constant=color_constant, field1=field1)
         _json = self._serialize.body(_enum_string_body, "RefColorConstant")
 
-        request = build_put_referenced_constant_request(
+        _request = build_put_referenced_constant_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

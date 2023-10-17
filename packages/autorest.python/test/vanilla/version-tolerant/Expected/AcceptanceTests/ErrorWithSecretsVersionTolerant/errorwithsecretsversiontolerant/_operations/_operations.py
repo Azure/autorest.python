@@ -98,15 +98,15 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_error_with_secrets_create_secret_request(
+        _request = build_error_with_secrets_create_secret_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -148,15 +148,15 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_error_with_secrets_get_error_with_secrets_request(
+        _request = build_error_with_secrets_get_error_with_secrets_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

@@ -619,17 +619,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         bool_path: Literal[True] = kwargs.pop("bool_path", True)
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_boolean_true_request(
+        _request = build_get_boolean_true_request(
             bool_path=bool_path,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -668,17 +668,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         bool_path: Literal[False] = kwargs.pop("bool_path", False)
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_boolean_false_request(
+        _request = build_get_boolean_false_request(
             bool_path=bool_path,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -717,17 +717,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         int_path: Literal[1000000] = kwargs.pop("int_path", 1000000)
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_int_one_million_request(
+        _request = build_get_int_one_million_request(
             int_path=int_path,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -766,17 +766,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         int_path: Literal[-1000000] = kwargs.pop("int_path", -1000000)
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_int_negative_one_million_request(
+        _request = build_get_int_negative_one_million_request(
             int_path=int_path,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -815,17 +815,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         long_path: Literal[10000000000] = kwargs.pop("long_path", 10000000000)
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_ten_billion_request(
+        _request = build_get_ten_billion_request(
             long_path=long_path,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -864,17 +864,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         long_path: Literal[-10000000000] = kwargs.pop("long_path", -10000000000)
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_negative_ten_billion_request(
+        _request = build_get_negative_ten_billion_request(
             long_path=long_path,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -913,17 +913,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         float_path: float = kwargs.pop("float_path", 103400000000000000000)
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_float_scientific_positive_request(
+        _request = build_float_scientific_positive_request(
             float_path=float_path,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -962,17 +962,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         float_path: float = kwargs.pop("float_path", -1.034e-20)
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_float_scientific_negative_request(
+        _request = build_float_scientific_negative_request(
             float_path=float_path,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1011,17 +1011,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         double_path: float = kwargs.pop("double_path", 9999999.999)
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_double_decimal_positive_request(
+        _request = build_double_decimal_positive_request(
             double_path=double_path,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1060,17 +1060,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         double_path: float = kwargs.pop("double_path", -9999999.999)
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_double_decimal_negative_request(
+        _request = build_double_decimal_negative_request(
             double_path=double_path,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1109,17 +1109,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         string_path: Literal["啊齄丂狛狜隣郎隣兀﨩"] = kwargs.pop("string_path", "啊齄丂狛狜隣郎隣兀﨩")
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_string_unicode_request(
+        _request = build_string_unicode_request(
             string_path=string_path,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1159,17 +1159,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         string_path: Literal["begin!*'();:@ &=+$,/?#[]end"] = kwargs.pop("string_path", "begin!*'();:@ &=+$,/?#[]end")
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_string_url_encoded_request(
+        _request = build_string_url_encoded_request(
             string_path=string_path,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1211,17 +1211,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         string_path: Literal["begin!*'();:@&=+$,end"] = kwargs.pop("string_path", "begin!*'();:@&=+$,end")
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_string_url_non_encoded_request(
+        _request = build_string_url_non_encoded_request(
             string_path=string_path,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1260,17 +1260,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         string_path: Literal[""] = kwargs.pop("string_path", "")
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_string_empty_request(
+        _request = build_string_empty_request(
             string_path=string_path,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1307,17 +1307,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_string_null_request(
+        _request = build_string_null_request(
             string_path=string_path,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1357,17 +1357,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_enum_valid_request(
+        _request = build_enum_valid_request(
             enum_path=enum_path,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1407,17 +1407,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_enum_null_request(
+        _request = build_enum_null_request(
             enum_path=enum_path,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1456,17 +1456,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_byte_multi_byte_request(
+        _request = build_byte_multi_byte_request(
             byte_path=byte_path,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1505,17 +1505,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         byte_path: bytes = kwargs.pop("byte_path", bytes("", encoding="utf-8"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_byte_empty_request(
+        _request = build_byte_empty_request(
             byte_path=byte_path,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1552,17 +1552,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_byte_null_request(
+        _request = build_byte_null_request(
             byte_path=byte_path,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1601,17 +1601,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         date_path: datetime.date = kwargs.pop("date_path", "2012-01-01")
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_date_valid_request(
+        _request = build_date_valid_request(
             date_path=date_path,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1651,17 +1651,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_date_null_request(
+        _request = build_date_null_request(
             date_path=date_path,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1701,17 +1701,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         date_time_path: datetime.datetime = kwargs.pop("date_time_path", "2012-01-01T01:01:01Z")
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_date_time_valid_request(
+        _request = build_date_time_valid_request(
             date_time_path=date_time_path,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1750,17 +1750,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_date_time_null_request(
+        _request = build_date_time_null_request(
             date_time_path=date_time_path,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1799,17 +1799,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_base64_url_request(
+        _request = build_base64_url_request(
             base64_url_path=base64_url_path,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1850,17 +1850,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_array_csv_in_path_request(
+        _request = build_array_csv_in_path_request(
             array_path=array_path,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1899,17 +1899,17 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_unix_time_url_request(
+        _request = build_unix_time_url_request(
             unix_time_url_path=unix_time_url_path,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
