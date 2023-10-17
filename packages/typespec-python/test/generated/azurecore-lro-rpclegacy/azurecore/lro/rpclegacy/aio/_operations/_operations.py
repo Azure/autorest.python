@@ -105,6 +105,7 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
     async def begin_create_job(
         self, body: _models.JobData, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.JobResult]:
+        # pylint: disable=line-too-long
         """Creates a Job.
 
         :param body: Required.
@@ -168,6 +169,7 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
     async def begin_create_job(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.JobResult]:
+        # pylint: disable=line-too-long
         """Creates a Job.
 
         :param body: Required.
@@ -226,6 +228,7 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
     async def begin_create_job(
         self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.JobResult]:
+        # pylint: disable=line-too-long
         """Creates a Job.
 
         :param body: Required.
@@ -284,6 +287,7 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
     async def begin_create_job(
         self, body: Union[_models.JobData, JSON, IO], **kwargs: Any
     ) -> AsyncLROPoller[_models.JobResult]:
+        # pylint: disable=line-too-long
         """Creates a Job.
 
         :param body: Is one of the following types: JobData, JSON, IO Required.

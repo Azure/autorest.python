@@ -1552,6 +1552,7 @@ class Operations:
 
     @distributed_trace
     def list(self, **kwargs: Any) -> Iterable["_models.Operation"]:
+        # pylint: disable=line-too-long
         """List the operations for the provider.
 
         :return: An iterator like instance of Operation
@@ -1676,6 +1677,7 @@ class CatalogsOperations:
 
     @distributed_trace
     def get(self, resource_group_name: str, catalog_name: str, **kwargs: Any) -> _models.Catalog:
+        # pylint: disable=line-too-long
         """Get a Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1784,6 +1786,7 @@ class CatalogsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.Catalog:
+        # pylint: disable=line-too-long
         """Create a Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1886,6 +1889,7 @@ class CatalogsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.Catalog:
+        # pylint: disable=line-too-long
         """Create a Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1953,6 +1957,7 @@ class CatalogsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.Catalog:
+        # pylint: disable=line-too-long
         """Create a Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2014,6 +2019,7 @@ class CatalogsOperations:
     def create_or_update(
         self, resource_group_name: str, catalog_name: str, resource: Union[_models.Catalog, JSON, IO], **kwargs: Any
     ) -> _models.Catalog:
+        # pylint: disable=line-too-long
         """Create a Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2183,6 +2189,7 @@ class CatalogsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.Catalog:
+        # pylint: disable=line-too-long
         """Update a Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2257,6 +2264,7 @@ class CatalogsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.Catalog:
+        # pylint: disable=line-too-long
         """Update a Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2324,6 +2332,7 @@ class CatalogsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.Catalog:
+        # pylint: disable=line-too-long
         """Update a Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2389,6 +2398,7 @@ class CatalogsOperations:
         properties: Union[_models.CatalogUpdate, JSON, IO],
         **kwargs: Any
     ) -> _models.Catalog:
+        # pylint: disable=line-too-long
         """Update a Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2574,6 +2584,7 @@ class CatalogsOperations:
 
     @distributed_trace
     def list_by_resource_group(self, resource_group_name: str, **kwargs: Any) -> Iterable["_models.Catalog"]:
+        # pylint: disable=line-too-long
         """List Catalog resources by resource group.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2692,6 +2703,7 @@ class CatalogsOperations:
 
     @distributed_trace
     def list_by_subscription(self, **kwargs: Any) -> Iterable["_models.Catalog"]:
+        # pylint: disable=line-too-long
         """List Catalog resources by subscription ID.
 
         :return: An iterator like instance of Catalog
@@ -3004,6 +3016,7 @@ class CatalogsOperations:
         skip: Optional[int] = None,
         **kwargs: Any
     ) -> Iterable["_models.Device"]:
+        # pylint: disable=line-too-long
         """Lists devices for catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -3151,6 +3164,7 @@ class CatalogsOperations:
         skip: Optional[int] = None,
         **kwargs: Any
     ) -> Iterable["_models.Deployment"]:
+        # pylint: disable=line-too-long
         """Lists deployments for catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -3348,6 +3362,7 @@ class CatalogsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> Iterable["_models.DeviceGroup"]:
+        # pylint: disable=line-too-long
         """List the device groups for the catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -3435,6 +3450,7 @@ class CatalogsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> Iterable["_models.DeviceGroup"]:
+        # pylint: disable=line-too-long
         """List the device groups for the catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -3517,6 +3533,7 @@ class CatalogsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> Iterable["_models.DeviceGroup"]:
+        # pylint: disable=line-too-long
         """List the device groups for the catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -3598,6 +3615,7 @@ class CatalogsOperations:
         skip: Optional[int] = None,
         **kwargs: Any
     ) -> Iterable["_models.DeviceGroup"]:
+        # pylint: disable=line-too-long
         """List the device groups for the catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -3776,6 +3794,7 @@ class ImagesOperations:
 
     @distributed_trace
     def get(self, resource_group_name: str, catalog_name: str, image_name: str, **kwargs: Any) -> _models.Image:
+        # pylint: disable=line-too-long
         """Get a Image.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -3900,6 +3919,7 @@ class ImagesOperations:
         skip: Optional[int] = None,
         **kwargs: Any
     ) -> Iterable["_models.Image"]:
+        # pylint: disable=line-too-long
         """List Image resources by Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -4053,6 +4073,7 @@ class ImagesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.Image:
+        # pylint: disable=line-too-long
         """Create a Image.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -4182,6 +4203,7 @@ class ImagesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.Image:
+        # pylint: disable=line-too-long
         """Create a Image.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -4264,6 +4286,7 @@ class ImagesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.Image:
+        # pylint: disable=line-too-long
         """Create a Image.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -4344,6 +4367,7 @@ class ImagesOperations:
         resource: Union[_models.Image, JSON, IO],
         **kwargs: Any
     ) -> _models.Image:
+        # pylint: disable=line-too-long
         """Create a Image.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -4625,6 +4649,7 @@ class DeviceGroupsOperations:
         skip: Optional[int] = None,
         **kwargs: Any
     ) -> Iterable["_models.DeviceGroup"]:
+        # pylint: disable=line-too-long
         """List DeviceGroup resources by Product. '.default' and '.unassigned' are system defined values
         and cannot be used for product name.
 
@@ -4771,6 +4796,7 @@ class DeviceGroupsOperations:
     def get(
         self, resource_group_name: str, catalog_name: str, product_name: str, device_group_name: str, **kwargs: Any
     ) -> _models.DeviceGroup:
+        # pylint: disable=line-too-long
         """Get a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -4896,6 +4922,7 @@ class DeviceGroupsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.DeviceGroup:
+        # pylint: disable=line-too-long
         """Create a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -5021,6 +5048,7 @@ class DeviceGroupsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.DeviceGroup:
+        # pylint: disable=line-too-long
         """Create a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -5103,6 +5131,7 @@ class DeviceGroupsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.DeviceGroup:
+        # pylint: disable=line-too-long
         """Create a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -5183,6 +5212,7 @@ class DeviceGroupsOperations:
         resource: Union[_models.DeviceGroup, JSON, IO],
         **kwargs: Any
     ) -> _models.DeviceGroup:
+        # pylint: disable=line-too-long
         """Create a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -5446,6 +5476,7 @@ class DeviceGroupsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> Optional[_models.DeviceGroup]:
+        # pylint: disable=line-too-long
         """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -5544,6 +5575,7 @@ class DeviceGroupsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> Optional[_models.DeviceGroup]:
+        # pylint: disable=line-too-long
         """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -5626,6 +5658,7 @@ class DeviceGroupsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> Optional[_models.DeviceGroup]:
+        # pylint: disable=line-too-long
         """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -5706,6 +5739,7 @@ class DeviceGroupsOperations:
         properties: Union[_models.DeviceGroupUpdate, JSON, IO],
         **kwargs: Any
     ) -> Optional[_models.DeviceGroup]:
+        # pylint: disable=line-too-long
         """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -6176,6 +6210,7 @@ class CertificatesOperations:
     def get(
         self, resource_group_name: str, catalog_name: str, serial_number: str, **kwargs: Any
     ) -> _models.Certificate:
+        # pylint: disable=line-too-long
         """Get a Certificate.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -6295,6 +6330,7 @@ class CertificatesOperations:
         skip: Optional[int] = None,
         **kwargs: Any
     ) -> Iterable["_models.Certificate"]:
+        # pylint: disable=line-too-long
         """List Certificate resources by Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -6519,6 +6555,7 @@ class CertificatesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.ProofOfPossessionNonceResponse:
+        # pylint: disable=line-too-long
         """Gets the proof of possession nonce.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -6577,6 +6614,7 @@ class CertificatesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.ProofOfPossessionNonceResponse:
+        # pylint: disable=line-too-long
         """Gets the proof of possession nonce.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -6630,6 +6668,7 @@ class CertificatesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.ProofOfPossessionNonceResponse:
+        # pylint: disable=line-too-long
         """Gets the proof of possession nonce.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -6681,6 +6720,7 @@ class CertificatesOperations:
         parameters: Union[_models.ProofOfPossessionNonceRequest, JSON, IO],
         **kwargs: Any
     ) -> _models.ProofOfPossessionNonceResponse:
+        # pylint: disable=line-too-long
         """Gets the proof of possession nonce.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -6814,6 +6854,7 @@ class DeploymentsOperations:
         deployment_name: str,
         **kwargs: Any
     ) -> _models.Deployment:
+        # pylint: disable=line-too-long
         """Get a Deployment. '.default' and '.unassigned' are system defined values and cannot be used for
         product or device group name.
 
@@ -6990,6 +7031,7 @@ class DeploymentsOperations:
         skip: Optional[int] = None,
         **kwargs: Any
     ) -> Iterable["_models.Deployment"]:
+        # pylint: disable=line-too-long
         """List Deployment resources by DeviceGroup. '.default' and '.unassigned' are system defined
         values and cannot be used for product or device group name.
 
@@ -7194,6 +7236,7 @@ class DeploymentsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.Deployment:
+        # pylint: disable=line-too-long
         """Create a Deployment. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -7415,6 +7458,7 @@ class DeploymentsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.Deployment:
+        # pylint: disable=line-too-long
         """Create a Deployment. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -7547,6 +7591,7 @@ class DeploymentsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.Deployment:
+        # pylint: disable=line-too-long
         """Create a Deployment. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -7677,6 +7722,7 @@ class DeploymentsOperations:
         resource: Union[_models.Deployment, JSON, IO],
         **kwargs: Any
     ) -> _models.Deployment:
+        # pylint: disable=line-too-long
         """Create a Deployment. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -8062,6 +8108,7 @@ class DevicesOperations:
         device_name: str,
         **kwargs: Any
     ) -> _models.Device:
+        # pylint: disable=line-too-long
         """Get a Device. Use '.unassigned' or '.default' for the device group and product names when a
         device does not belong to a device group and product.
 
@@ -8189,6 +8236,7 @@ class DevicesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.Device:
+        # pylint: disable=line-too-long
         """Create a Device. Use '.unassigned' or '.default' for the device group and product names to
         claim a device to the catalog only.
 
@@ -8313,6 +8361,7 @@ class DevicesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.Device:
+        # pylint: disable=line-too-long
         """Create a Device. Use '.unassigned' or '.default' for the device group and product names to
         claim a device to the catalog only.
 
@@ -8396,6 +8445,7 @@ class DevicesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.Device:
+        # pylint: disable=line-too-long
         """Create a Device. Use '.unassigned' or '.default' for the device group and product names to
         claim a device to the catalog only.
 
@@ -8477,6 +8527,7 @@ class DevicesOperations:
         resource: Union[_models.Device, JSON, IO],
         **kwargs: Any
     ) -> _models.Device:
+        # pylint: disable=line-too-long
         """Create a Device. Use '.unassigned' or '.default' for the device group and product names to
         claim a device to the catalog only.
 
@@ -8662,6 +8713,7 @@ class DevicesOperations:
     def list_by_device_group(
         self, resource_group_name: str, catalog_name: str, product_name: str, device_group_name: str, **kwargs: Any
     ) -> Iterable["_models.Device"]:
+        # pylint: disable=line-too-long
         """List Device resources by DeviceGroup. '.default' and '.unassigned' are system defined values
         and cannot be used for product or device group name.
 
@@ -8884,6 +8936,7 @@ class DevicesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> Optional[_models.Device]:
+        # pylint: disable=line-too-long
         """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
         a device to the catalog level.
 
@@ -8974,6 +9027,7 @@ class DevicesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> Optional[_models.Device]:
+        # pylint: disable=line-too-long
         """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
         a device to the catalog level.
 
@@ -9057,6 +9111,7 @@ class DevicesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> Optional[_models.Device]:
+        # pylint: disable=line-too-long
         """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
         a device to the catalog level.
 
@@ -9138,6 +9193,7 @@ class DevicesOperations:
         properties: Union[_models.DeviceUpdate, JSON, IO],
         **kwargs: Any
     ) -> Optional[_models.Device]:
+        # pylint: disable=line-too-long
         """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
         a device to the catalog level.
 
@@ -9581,6 +9637,7 @@ class ProductsOperations:
     def list_by_catalog(
         self, resource_group_name: str, catalog_name: str, **kwargs: Any
     ) -> Iterable["_models.Product"]:
+        # pylint: disable=line-too-long
         """List Product resources by Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -9699,6 +9756,7 @@ class ProductsOperations:
 
     @distributed_trace
     def get(self, resource_group_name: str, catalog_name: str, product_name: str, **kwargs: Any) -> _models.Product:
+        # pylint: disable=line-too-long
         """Get a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name.
 
@@ -9809,6 +9867,7 @@ class ProductsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.Product:
+        # pylint: disable=line-too-long
         """Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name.
 
@@ -9909,6 +9968,7 @@ class ProductsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.Product:
+        # pylint: disable=line-too-long
         """Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name.
 
@@ -9977,6 +10037,7 @@ class ProductsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.Product:
+        # pylint: disable=line-too-long
         """Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name.
 
@@ -10043,6 +10104,7 @@ class ProductsOperations:
         resource: Union[_models.Product, JSON, IO],
         **kwargs: Any
     ) -> _models.Product:
+        # pylint: disable=line-too-long
         """Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name.
 
@@ -10277,6 +10339,7 @@ class ProductsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> Optional[_models.Product]:
+        # pylint: disable=line-too-long
         """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name.
 
@@ -10352,6 +10415,7 @@ class ProductsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> Optional[_models.Product]:
+        # pylint: disable=line-too-long
         """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name.
 
@@ -10420,6 +10484,7 @@ class ProductsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> Optional[_models.Product]:
+        # pylint: disable=line-too-long
         """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name.
 
@@ -10486,6 +10551,7 @@ class ProductsOperations:
         properties: Union[_models.ProductUpdate, JSON, IO],
         **kwargs: Any
     ) -> Optional[_models.Product]:
+        # pylint: disable=line-too-long
         """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name.
 
@@ -10619,6 +10685,7 @@ class ProductsOperations:
     def generate_default_device_groups(
         self, resource_group_name: str, catalog_name: str, product_name: str, **kwargs: Any
     ) -> Iterable["_models.DeviceGroup"]:
+        # pylint: disable=line-too-long
         """Generates default device groups for the product. '.default' and '.unassigned' are system
         defined values and cannot be used for product name.
 

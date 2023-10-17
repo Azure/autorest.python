@@ -137,8 +137,10 @@ class QuestionAnsweringProjectsOperations:
         skip: Optional[int] = None,
         **kwargs: Any
     ) -> Iterable[JSON]:
+        # pylint: disable=line-too-long
         """Gets all the QnAs of a project.
 
+        # pylint: disable=line-too-long
         Gets all the QnAs of a project.
 
         :param project_name: The name of the project to use. Required.
@@ -390,8 +392,10 @@ class QuestionAnsweringProjectsOperations:
     def begin_update_qnas(
         self, project_name: str, body: List[JSON], *, content_type: str = "application/json", **kwargs: Any
     ) -> LROPoller[Iterable[JSON]]:
+        # pylint: disable=line-too-long
         """Updates the QnAs of a project.
 
+        # pylint: disable=line-too-long
         Updates the QnAs of a project.
 
         :param project_name: The name of the project to use. Required.
@@ -571,8 +575,10 @@ class QuestionAnsweringProjectsOperations:
     def begin_update_qnas(
         self, project_name: str, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> LROPoller[Iterable[JSON]]:
+        # pylint: disable=line-too-long
         """Updates the QnAs of a project.
 
+        # pylint: disable=line-too-long
         Updates the QnAs of a project.
 
         :param project_name: The name of the project to use. Required.
@@ -692,8 +698,10 @@ class QuestionAnsweringProjectsOperations:
     def begin_update_qnas(
         self, project_name: str, body: Union[List[JSON], IO], **kwargs: Any
     ) -> LROPoller[Iterable[JSON]]:
+        # pylint: disable=line-too-long
         """Updates the QnAs of a project.
 
+        # pylint: disable=line-too-long
         Updates the QnAs of a project.
 
         :param project_name: The name of the project to use. Required.
