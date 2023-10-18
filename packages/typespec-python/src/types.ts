@@ -1,4 +1,4 @@
-import { Type } from "@typespec/compiler";
+import { Type, getMinLength, getMaxLength, getPattern, Program } from "@typespec/compiler";
 import { HttpAuth, Visibility } from "@typespec/http";
 import {
     SdkContext,
@@ -56,9 +56,18 @@ function getSimpleTypeResult(result: Record<string, any>): Record<string, any> {
     return result;
 }
 
+function getDecoratorInfo(program: Program, type: Type): Record<string, any> {
+    return {
+        minLength: getMinLength(program, type),
+        maxLength: getMaxLength(program, type),
+        pattern: getPattern(program, type),
+    };
+}
+
 export function getType(
     context: SdkContext,
     type: CredentialType | CredentialTypeUnion | Type | SdkType,
+    decoratorInfo?: Record<string, any>,
 ): Record<string, any> {
     if (type.kind === "Credential") {
         return emitCredential(type.scheme);
@@ -99,7 +108,7 @@ export function getType(
         case "ipAddress":
         case "azureLocation":
         case "etag":
-            return emitBuiltInType(type);
+            return emitBuiltInType(type, decoratorInfo);
         case "any":
             return KnownTypes.any;
         case "String":
@@ -112,7 +121,7 @@ export function getType(
         case "Union":
         case "ModelProperty":
         case "UnionVariant":
-            return getType(context, getClientType(context, type));
+            return getType(context, getClientType(context, type), getDecoratorInfo(context.program, type));
         default:
             throw Error(`Not supported ${type.kind}`);
     }
@@ -315,7 +324,10 @@ const sdkScalarKindToPythonKind: Record<string, string> = {
     etag: "string",
 };
 
-function emitBuiltInType(type: SdkBuiltInType | SdkDurationType | SdkDatetimeType): Record<string, any> {
+function emitBuiltInType(
+    type: SdkBuiltInType | SdkDurationType | SdkDatetimeType,
+    decoratorInfo?: Record<string, any>,
+): Record<string, any> {
     if (type.kind === "duration" && type.encode === "seconds") {
         return getSimpleTypeResult({
             type: sdkScalarKindToPythonKind[type.wireType.kind],
@@ -326,6 +338,15 @@ function emitBuiltInType(type: SdkBuiltInType | SdkDurationType | SdkDatetimeTyp
         return getSimpleTypeResult({
             type: "unixtime",
             encode: type.encode,
+        });
+    }
+    if (decoratorInfo && type.kind === "string") {
+        return getSimpleTypeResult({
+            type: "string",
+            encode: type.encode,
+            maxLength: decoratorInfo.maxLength,
+            minLength: decoratorInfo.minLength,
+            pattern: decoratorInfo.pattern,
         });
     }
     return getSimpleTypeResult({

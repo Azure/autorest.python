@@ -114,7 +114,8 @@ EMITTER_OPTIONS = {
     "mgmt/sphere": [
         {"package-name": "azure-mgmt-spheredpg", "models-mode": "dpg"},
         {"package-name": "azure-mgmt-spheremsrest"},
-    ]
+    ],
+    
 }
 
 def _package_name_folder(spec: Path) -> str:
