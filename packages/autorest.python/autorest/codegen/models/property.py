@@ -89,8 +89,12 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
     def msrest_deserialization_key(self) -> str:
         return self.type.msrest_deserialization_key
 
+    @property
+    def is_enum_discriminator(self) -> bool:
+        return self.is_discriminator and self.type.type == "enum"
+
     def type_annotation(self, *, is_operation_file: bool = False) -> str:
-        if self.is_discriminator and self.type.type == "enum":
+        if self.is_enum_discriminator:
             # here we are the enum discriminator property on the base model
             return "Literal[None]"
         if self.optional and self.client_default_value is None:
@@ -98,7 +102,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         return self.type.type_annotation(is_operation_file=is_operation_file)
 
     def get_declaration(self, value: Any = None) -> Any:
-        if self.is_discriminator and self.type.type == "enum":
+        if self.is_enum_discriminator:
             # here we are the enum discriminator property on the base model
             return None
         return self.type.get_declaration(value)

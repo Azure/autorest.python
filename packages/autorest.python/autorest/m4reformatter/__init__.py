@@ -16,6 +16,7 @@ from .._utils import (
     KNOWN_TYPES,
     get_body_type_for_description,
     JSON_REGEXP,
+    update_enum_value,
 )
 from .. import YamlUpdatePluginAutorest
 
@@ -88,19 +89,6 @@ def update_constant(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     return base
 
 
-def update_enum_value(
-    yaml_data: Dict[str, Any], enumType: Dict[str, Any]
-) -> Dict[str, Any]:
-    return {
-        "name": yaml_data["language"]["default"]["name"],
-        "type": "enumvalue",
-        "value": yaml_data["value"],
-        "description": yaml_data["language"]["default"]["description"],
-        "enumType": enumType,
-        "valueType": enumType["valueType"],
-    }
-
-
 def update_enum(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
     base = _update_type_base("enum", yaml_data)
     base.update(
@@ -112,7 +100,14 @@ def update_enum(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
         }
     )
     for v in yaml_data["choices"]:
-        base["values"].append(update_enum_value(v, base))
+        base["values"].append(
+            update_enum_value(
+                name=v["language"]["default"]["name"],
+                value=v["value"],
+                description=v["language"]["default"]["description"],
+                enum_type=base,
+            )
+        )
     return base
 
 
