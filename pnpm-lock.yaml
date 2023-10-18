@@ -48,8 +48,8 @@ importers:
         specifier: '>=0.35.0 <1.0.0'
         version: 0.35.0(@typespec/compiler@0.49.0)(@typespec/http@0.49.0)(@typespec/rest@0.49.0)
       '@azure-tools/typespec-client-generator-core':
-        specifier: '>=0.36.0-dev.2 <1.0.0'
-        version: 0.36.0-dev.2(@typespec/compiler@0.49.0)(@typespec/http@0.49.0)(@typespec/rest@0.49.0)(@typespec/versioning@0.49.0)
+        specifier: '>=0.36.0-dev.3 <1.0.0'
+        version: 0.36.0-dev.3(@typespec/compiler@0.49.0)(@typespec/http@0.49.0)(@typespec/rest@0.49.0)(@typespec/versioning@0.49.0)
       '@typespec/compiler':
         specifier: '>=0.49.0 <1.0.0'
         version: 0.49.0
@@ -285,8 +285,8 @@ packages:
       '@typespec/versioning': 0.49.0(@typespec/compiler@0.49.0)
     dev: true
 
-  /@azure-tools/typespec-client-generator-core@0.36.0-dev.2(@typespec/compiler@0.49.0)(@typespec/http@0.49.0)(@typespec/rest@0.49.0)(@typespec/versioning@0.49.0):
-    resolution: {integrity: sha512-zjYyTuguWV9KTcALv73AxOLKnC3+75GQPDiGtycmzNochYjurhc9H678hscITbCpn0C+c9MrLazG2I/lrLKZZA==}
+  /@azure-tools/typespec-client-generator-core@0.36.0-dev.3(@typespec/compiler@0.49.0)(@typespec/http@0.49.0)(@typespec/rest@0.49.0)(@typespec/versioning@0.49.0):
+    resolution: {integrity: sha512-8nmE56P77Oh5e82PSumTdF8JKLf67wMJec21Re+kazCgMpuhUbWhqbC9tgniY0fwxqfujJ/rU129+j2w7AUwwA==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       '@typespec/compiler': ~0.49.0 || >=0.50.0-dev <0.50.0
