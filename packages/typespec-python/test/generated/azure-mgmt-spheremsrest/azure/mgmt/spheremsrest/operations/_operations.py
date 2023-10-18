@@ -66,9 +66,11 @@ def build_catalogs_get_request(
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -95,9 +97,11 @@ def build_catalogs_create_or_update_request(
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -126,9 +130,11 @@ def build_catalogs_update_request(
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -153,9 +159,11 @@ def build_catalogs_delete_request(
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -178,8 +186,10 @@ def build_catalogs_list_by_resource_group_request(  # pylint: disable=name-too-l
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs"
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -205,7 +215,7 @@ def build_catalogs_list_by_subscription_request(  # pylint: disable=name-too-lon
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/providers/Microsoft.AzureSphere/catalogs"
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -231,9 +241,11 @@ def build_catalogs_count_devices_request(
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/countDevices"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -267,9 +279,11 @@ def build_catalogs_list_device_insights_request(  # pylint: disable=name-too-lon
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/listDeviceInsights"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -311,9 +325,11 @@ def build_catalogs_list_devices_request(
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/listDevices"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -355,9 +371,11 @@ def build_catalogs_list_deployments_request(
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/listDeployments"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -400,9 +418,11 @@ def build_catalogs_list_device_groups_request(  # pylint: disable=name-too-long
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/listDeviceGroups"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -438,9 +458,11 @@ def build_images_get_request(
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/images/{imageName}"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
         "imageName": _SERIALIZER.url("image_name", image_name, "str"),
     }
 
@@ -475,9 +497,11 @@ def build_images_list_by_catalog_request(
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/images"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -512,9 +536,11 @@ def build_images_create_or_update_request(
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/images/{imageName}"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
         "imageName": _SERIALIZER.url("image_name", image_name, "str"),
     }
 
@@ -540,9 +566,11 @@ def build_images_delete_request(
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/images/{imageName}"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
         "imageName": _SERIALIZER.url("image_name", image_name, "str"),
     }
 
@@ -575,10 +603,14 @@ def build_device_groups_list_by_product_request(  # pylint: disable=name-too-lon
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
-        "productName": _SERIALIZER.url("product_name", product_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
+        "productName": _SERIALIZER.url(
+            "product_name", product_name, "str", pattern=r"^[\w][\w\s]{1,48}[\w]$|^\.default$|^\.unassigned$"
+        ),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -617,11 +649,20 @@ def build_device_groups_get_request(
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
-        "productName": _SERIALIZER.url("product_name", product_name, "str"),
-        "deviceGroupName": _SERIALIZER.url("device_group_name", device_group_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
+        "productName": _SERIALIZER.url(
+            "product_name", product_name, "str", pattern=r"^[\w][\w\s]{1,48}[\w]$|^\.default$|^\.unassigned$"
+        ),
+        "deviceGroupName": _SERIALIZER.url(
+            "device_group_name",
+            device_group_name,
+            "str",
+            pattern=r"^[A-Za-z0-9]{1,2}$|^[A-Za-z0-9][A-Za-z0-9\s]{1,48}[A-Za-z0-9]$|^\.default$|^\.unassigned$",
+        ),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -653,11 +694,20 @@ def build_device_groups_create_or_update_request(  # pylint: disable=name-too-lo
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
-        "productName": _SERIALIZER.url("product_name", product_name, "str"),
-        "deviceGroupName": _SERIALIZER.url("device_group_name", device_group_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
+        "productName": _SERIALIZER.url(
+            "product_name", product_name, "str", pattern=r"^[\w][\w\s]{1,48}[\w]$|^\.default$|^\.unassigned$"
+        ),
+        "deviceGroupName": _SERIALIZER.url(
+            "device_group_name",
+            device_group_name,
+            "str",
+            pattern=r"^[A-Za-z0-9]{1,2}$|^[A-Za-z0-9][A-Za-z0-9\s]{1,48}[A-Za-z0-9]$|^\.default$|^\.unassigned$",
+        ),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -687,11 +737,20 @@ def build_device_groups_delete_request(
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
-        "productName": _SERIALIZER.url("product_name", product_name, "str"),
-        "deviceGroupName": _SERIALIZER.url("device_group_name", device_group_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
+        "productName": _SERIALIZER.url(
+            "product_name", product_name, "str", pattern=r"^[\w][\w\s]{1,48}[\w]$|^\.default$|^\.unassigned$"
+        ),
+        "deviceGroupName": _SERIALIZER.url(
+            "device_group_name",
+            device_group_name,
+            "str",
+            pattern=r"^[A-Za-z0-9]{1,2}$|^[A-Za-z0-9][A-Za-z0-9\s]{1,48}[A-Za-z0-9]$|^\.default$|^\.unassigned$",
+        ),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -720,11 +779,20 @@ def build_device_groups_update_request(
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
-        "productName": _SERIALIZER.url("product_name", product_name, "str"),
-        "deviceGroupName": _SERIALIZER.url("device_group_name", device_group_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
+        "productName": _SERIALIZER.url(
+            "product_name", product_name, "str", pattern=r"^[\w][\w\s]{1,48}[\w]$|^\.default$|^\.unassigned$"
+        ),
+        "deviceGroupName": _SERIALIZER.url(
+            "device_group_name",
+            device_group_name,
+            "str",
+            pattern=r"^[A-Za-z0-9]{1,2}$|^[A-Za-z0-9][A-Za-z0-9\s]{1,48}[A-Za-z0-9]$|^\.default$|^\.unassigned$",
+        ),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -757,11 +825,20 @@ def build_device_groups_count_devices_request(  # pylint: disable=name-too-long
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/countDevices"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
-        "productName": _SERIALIZER.url("product_name", product_name, "str"),
-        "deviceGroupName": _SERIALIZER.url("device_group_name", device_group_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
+        "productName": _SERIALIZER.url(
+            "product_name", product_name, "str", pattern=r"^[\w][\w\s]{1,48}[\w]$|^\.default$|^\.unassigned$"
+        ),
+        "deviceGroupName": _SERIALIZER.url(
+            "device_group_name",
+            device_group_name,
+            "str",
+            pattern=r"^[A-Za-z0-9]{1,2}$|^[A-Za-z0-9][A-Za-z0-9\s]{1,48}[A-Za-z0-9]$|^\.default$|^\.unassigned$",
+        ),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -791,11 +868,20 @@ def build_device_groups_claim_devices_request(  # pylint: disable=name-too-long
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/claimDevices"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
-        "productName": _SERIALIZER.url("product_name", product_name, "str"),
-        "deviceGroupName": _SERIALIZER.url("device_group_name", device_group_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
+        "productName": _SERIALIZER.url(
+            "product_name", product_name, "str", pattern=r"^[\w][\w\s]{1,48}[\w]$|^\.default$|^\.unassigned$"
+        ),
+        "deviceGroupName": _SERIALIZER.url(
+            "device_group_name",
+            device_group_name,
+            "str",
+            pattern=r"^[A-Za-z0-9]{1,2}$|^[A-Za-z0-9][A-Za-z0-9\s]{1,48}[A-Za-z0-9]$|^\.default$|^\.unassigned$",
+        ),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -822,9 +908,11 @@ def build_certificates_get_request(
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/certificates/{serialNumber}"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
         "serialNumber": _SERIALIZER.url("serial_number", serial_number, "str"),
     }
 
@@ -859,9 +947,11 @@ def build_certificates_list_by_catalog_request(  # pylint: disable=name-too-long
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/certificates"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -895,9 +985,11 @@ def build_certificates_retrieve_cert_chain_request(  # pylint: disable=name-too-
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/certificates/{serialNumber}/retrieveCertChain"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
         "serialNumber": _SERIALIZER.url("serial_number", serial_number, "str"),
     }
 
@@ -925,9 +1017,11 @@ def build_certificates_retrieve_proof_of_possession_nonce_request(  # pylint: di
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/certificates/{serialNumber}/retrieveProofOfPossessionNonce"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
         "serialNumber": _SERIALIZER.url("serial_number", serial_number, "str"),
     }
 
@@ -962,11 +1056,20 @@ def build_deployments_get_request(
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/deployments/{deploymentName}"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
-        "productName": _SERIALIZER.url("product_name", product_name, "str"),
-        "deviceGroupName": _SERIALIZER.url("device_group_name", device_group_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
+        "productName": _SERIALIZER.url(
+            "product_name", product_name, "str", pattern=r"^[\w][\w\s]{1,48}[\w]$|^\.default$|^\.unassigned$"
+        ),
+        "deviceGroupName": _SERIALIZER.url(
+            "device_group_name",
+            device_group_name,
+            "str",
+            pattern=r"^[A-Za-z0-9]{1,2}$|^[A-Za-z0-9][A-Za-z0-9\s]{1,48}[A-Za-z0-9]$|^\.default$|^\.unassigned$",
+        ),
         "deploymentName": _SERIALIZER.url("deployment_name", deployment_name, "str"),
     }
 
@@ -1003,11 +1106,20 @@ def build_deployments_list_by_device_group_request(  # pylint: disable=name-too-
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/deployments"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
-        "productName": _SERIALIZER.url("product_name", product_name, "str"),
-        "deviceGroupName": _SERIALIZER.url("device_group_name", device_group_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
+        "productName": _SERIALIZER.url(
+            "product_name", product_name, "str", pattern=r"^[\w][\w\s]{1,48}[\w]$|^\.default$|^\.unassigned$"
+        ),
+        "deviceGroupName": _SERIALIZER.url(
+            "device_group_name",
+            device_group_name,
+            "str",
+            pattern=r"^[A-Za-z0-9]{1,2}$|^[A-Za-z0-9][A-Za-z0-9\s]{1,48}[A-Za-z0-9]$|^\.default$|^\.unassigned$",
+        ),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -1048,11 +1160,20 @@ def build_deployments_create_or_update_request(  # pylint: disable=name-too-long
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/deployments/{deploymentName}"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
-        "productName": _SERIALIZER.url("product_name", product_name, "str"),
-        "deviceGroupName": _SERIALIZER.url("device_group_name", device_group_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
+        "productName": _SERIALIZER.url(
+            "product_name", product_name, "str", pattern=r"^[\w][\w\s]{1,48}[\w]$|^\.default$|^\.unassigned$"
+        ),
+        "deviceGroupName": _SERIALIZER.url(
+            "device_group_name",
+            device_group_name,
+            "str",
+            pattern=r"^[A-Za-z0-9]{1,2}$|^[A-Za-z0-9][A-Za-z0-9\s]{1,48}[A-Za-z0-9]$|^\.default$|^\.unassigned$",
+        ),
         "deploymentName": _SERIALIZER.url("deployment_name", deployment_name, "str"),
     }
 
@@ -1084,11 +1205,20 @@ def build_deployments_delete_request(
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/deployments/{deploymentName}"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
-        "productName": _SERIALIZER.url("product_name", product_name, "str"),
-        "deviceGroupName": _SERIALIZER.url("device_group_name", device_group_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
+        "productName": _SERIALIZER.url(
+            "product_name", product_name, "str", pattern=r"^[\w][\w\s]{1,48}[\w]$|^\.default$|^\.unassigned$"
+        ),
+        "deviceGroupName": _SERIALIZER.url(
+            "device_group_name",
+            device_group_name,
+            "str",
+            pattern=r"^[A-Za-z0-9]{1,2}$|^[A-Za-z0-9][A-Za-z0-9\s]{1,48}[A-Za-z0-9]$|^\.default$|^\.unassigned$",
+        ),
         "deploymentName": _SERIALIZER.url("deployment_name", deployment_name, "str"),
     }
 
@@ -1118,12 +1248,21 @@ def build_devices_get_request(
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/devices/{deviceName}"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
-        "productName": _SERIALIZER.url("product_name", product_name, "str"),
-        "deviceGroupName": _SERIALIZER.url("device_group_name", device_group_name, "str"),
-        "deviceName": _SERIALIZER.url("device_name", device_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
+        "productName": _SERIALIZER.url(
+            "product_name", product_name, "str", pattern=r"^[\w][\w\s]{1,48}[\w]$|^\.default$|^\.unassigned$"
+        ),
+        "deviceGroupName": _SERIALIZER.url(
+            "device_group_name",
+            device_group_name,
+            "str",
+            pattern=r"^[A-Za-z0-9]{1,2}$|^[A-Za-z0-9][A-Za-z0-9\s]{1,48}[A-Za-z0-9]$|^\.default$|^\.unassigned$",
+        ),
+        "deviceName": _SERIALIZER.url("device_name", device_name, "str", pattern=r"^[a-zA-Z0-9-]{128}$"),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -1156,12 +1295,21 @@ def build_devices_create_or_update_request(
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/devices/{deviceName}"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
-        "productName": _SERIALIZER.url("product_name", product_name, "str"),
-        "deviceGroupName": _SERIALIZER.url("device_group_name", device_group_name, "str"),
-        "deviceName": _SERIALIZER.url("device_name", device_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
+        "productName": _SERIALIZER.url(
+            "product_name", product_name, "str", pattern=r"^[\w][\w\s]{1,48}[\w]$|^\.default$|^\.unassigned$"
+        ),
+        "deviceGroupName": _SERIALIZER.url(
+            "device_group_name",
+            device_group_name,
+            "str",
+            pattern=r"^[A-Za-z0-9]{1,2}$|^[A-Za-z0-9][A-Za-z0-9\s]{1,48}[A-Za-z0-9]$|^\.default$|^\.unassigned$",
+        ),
+        "deviceName": _SERIALIZER.url("device_name", device_name, "str", pattern=r"^[a-zA-Z0-9-]{128}$"),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -1194,11 +1342,20 @@ def build_devices_list_by_device_group_request(  # pylint: disable=name-too-long
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/devices"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
-        "productName": _SERIALIZER.url("product_name", product_name, "str"),
-        "deviceGroupName": _SERIALIZER.url("device_group_name", device_group_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
+        "productName": _SERIALIZER.url(
+            "product_name", product_name, "str", pattern=r"^[\w][\w\s]{1,48}[\w]$|^\.default$|^\.unassigned$"
+        ),
+        "deviceGroupName": _SERIALIZER.url(
+            "device_group_name",
+            device_group_name,
+            "str",
+            pattern=r"^[A-Za-z0-9]{1,2}$|^[A-Za-z0-9][A-Za-z0-9\s]{1,48}[A-Za-z0-9]$|^\.default$|^\.unassigned$",
+        ),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -1227,12 +1384,21 @@ def build_devices_delete_request(
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/devices/{deviceName}"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
-        "productName": _SERIALIZER.url("product_name", product_name, "str"),
-        "deviceGroupName": _SERIALIZER.url("device_group_name", device_group_name, "str"),
-        "deviceName": _SERIALIZER.url("device_name", device_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
+        "productName": _SERIALIZER.url(
+            "product_name", product_name, "str", pattern=r"^[\w][\w\s]{1,48}[\w]$|^\.default$|^\.unassigned$"
+        ),
+        "deviceGroupName": _SERIALIZER.url(
+            "device_group_name",
+            device_group_name,
+            "str",
+            pattern=r"^[A-Za-z0-9]{1,2}$|^[A-Za-z0-9][A-Za-z0-9\s]{1,48}[A-Za-z0-9]$|^\.default$|^\.unassigned$",
+        ),
+        "deviceName": _SERIALIZER.url("device_name", device_name, "str", pattern=r"^[a-zA-Z0-9-]{128}$"),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -1262,12 +1428,21 @@ def build_devices_update_request(
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/devices/{deviceName}"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
-        "productName": _SERIALIZER.url("product_name", product_name, "str"),
-        "deviceGroupName": _SERIALIZER.url("device_group_name", device_group_name, "str"),
-        "deviceName": _SERIALIZER.url("device_name", device_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
+        "productName": _SERIALIZER.url(
+            "product_name", product_name, "str", pattern=r"^[\w][\w\s]{1,48}[\w]$|^\.default$|^\.unassigned$"
+        ),
+        "deviceGroupName": _SERIALIZER.url(
+            "device_group_name",
+            device_group_name,
+            "str",
+            pattern=r"^[A-Za-z0-9]{1,2}$|^[A-Za-z0-9][A-Za-z0-9\s]{1,48}[A-Za-z0-9]$|^\.default$|^\.unassigned$",
+        ),
+        "deviceName": _SERIALIZER.url("device_name", device_name, "str", pattern=r"^[a-zA-Z0-9-]{128}$"),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -1302,12 +1477,21 @@ def build_devices_generate_capability_image_request(  # pylint: disable=name-too
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/devices/{deviceName}/generateCapabilityImage"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
-        "productName": _SERIALIZER.url("product_name", product_name, "str"),
-        "deviceGroupName": _SERIALIZER.url("device_group_name", device_group_name, "str"),
-        "deviceName": _SERIALIZER.url("device_name", device_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
+        "productName": _SERIALIZER.url(
+            "product_name", product_name, "str", pattern=r"^[\w][\w\s]{1,48}[\w]$|^\.default$|^\.unassigned$"
+        ),
+        "deviceGroupName": _SERIALIZER.url(
+            "device_group_name",
+            device_group_name,
+            "str",
+            pattern=r"^[A-Za-z0-9]{1,2}$|^[A-Za-z0-9][A-Za-z0-9\s]{1,48}[A-Za-z0-9]$|^\.default$|^\.unassigned$",
+        ),
+        "deviceName": _SERIALIZER.url("device_name", device_name, "str", pattern=r"^[a-zA-Z0-9-]{128}$"),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -1335,9 +1519,11 @@ def build_products_list_by_catalog_request(
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -1363,10 +1549,14 @@ def build_products_get_request(
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
-        "productName": _SERIALIZER.url("product_name", product_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
+        "productName": _SERIALIZER.url(
+            "product_name", product_name, "str", pattern=r"^[\w][\w\s]{1,48}[\w]$|^\.default$|^\.unassigned$"
+        ),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -1393,10 +1583,14 @@ def build_products_create_or_update_request(
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
-        "productName": _SERIALIZER.url("product_name", product_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
+        "productName": _SERIALIZER.url(
+            "product_name", product_name, "str", pattern=r"^[\w][\w\s]{1,48}[\w]$|^\.default$|^\.unassigned$"
+        ),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -1421,10 +1615,14 @@ def build_products_delete_request(
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
-        "productName": _SERIALIZER.url("product_name", product_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
+        "productName": _SERIALIZER.url(
+            "product_name", product_name, "str", pattern=r"^[\w][\w\s]{1,48}[\w]$|^\.default$|^\.unassigned$"
+        ),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -1448,10 +1646,14 @@ def build_products_update_request(
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
-        "productName": _SERIALIZER.url("product_name", product_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
+        "productName": _SERIALIZER.url(
+            "product_name", product_name, "str", pattern=r"^[\w][\w\s]{1,48}[\w]$|^\.default$|^\.unassigned$"
+        ),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -1479,10 +1681,14 @@ def build_products_generate_default_device_groups_request(  # pylint: disable=na
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/generateDefaultDeviceGroups"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
-        "productName": _SERIALIZER.url("product_name", product_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
+        "productName": _SERIALIZER.url(
+            "product_name", product_name, "str", pattern=r"^[\w][\w\s]{1,48}[\w]$|^\.default$|^\.unassigned$"
+        ),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -1508,10 +1714,14 @@ def build_products_count_devices_request(
     # Construct URL
     _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/countDevices"  # pylint: disable=line-too-long
     path_format_arguments = {
-        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
-        "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
-        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str"),
-        "productName": _SERIALIZER.url("product_name", product_name, "str"),
+        "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str", min_length=1),
+        "resourceGroupName": _SERIALIZER.url(
+            "resource_group_name", resource_group_name, "str", max_length=90, min_length=1, pattern=r"^[-\w\._\(\)]+$"
+        ),
+        "catalogName": _SERIALIZER.url("catalog_name", catalog_name, "str", pattern=r"^[A-Za-z0-9_-]{1,50}$"),
+        "productName": _SERIALIZER.url(
+            "product_name", product_name, "str", pattern=r"^[\w][\w\s]{1,48}[\w]$|^\.default$|^\.unassigned$"
+        ),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
