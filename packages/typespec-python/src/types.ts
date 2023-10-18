@@ -305,6 +305,14 @@ const sdkScalarKindToPythonKind: Record<string, string> = {
     int64: "integer",
     float32: "float",
     float64: "float",
+    guid: "string",
+    url: "string",
+    uuid: "string",
+    password: "string",
+    armId: "string",
+    ipAddress: "string",
+    azureLocation: "string",
+    etag: "string",
 };
 
 function emitBuiltInType(type: SdkBuiltInType | SdkDurationType | SdkDatetimeType): Record<string, any> {
