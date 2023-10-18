@@ -6,7 +6,7 @@
 import logging
 from typing import Dict, Any, Optional, TYPE_CHECKING
 from .base import BaseType
-from .imports import FileImport, ImportType, TypingSection
+from .imports import FileImport
 from .primitive_types import IntegerType, BinaryType, StringType, BooleanType
 from .utils import add_to_description
 

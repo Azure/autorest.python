@@ -3,14 +3,13 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import List, cast
+from typing import List
 from abc import ABC, abstractmethod
 
 from jinja2 import Environment
-from ..models import ModelType, CodeModel, Property
+from ..models import ModelType, CodeModel, Property, ConstantType, EnumValue
 from ..models.imports import FileImport, TypingSection, MsrestImportType, ImportType
 from .import_serializer import FileImportSerializer
-from ..models.constant_type import ConstantType
 
 
 def _documentation_string(
@@ -264,10 +263,11 @@ class DpgModelSerializer(_ModelSerializer):
             args.append(f'format="{prop.type.encode}"')  # type: ignore
 
         field = "rest_discriminator" if prop.is_discriminator else "rest_field"
-        type_ignore = prop.is_discriminator and prop.type.type in [
-            "constant",
-            "enumvalue",
-        ]
+        type_ignore = (
+            prop.is_discriminator
+            and isinstance(prop.type, (ConstantType, EnumValue))
+            and prop.type.value
+        )
         return (
             f"{prop.client_name}: {prop.type_annotation()} ="
             f' {field}({", ".join(args)}){"  # type: ignore" if type_ignore else ""}'

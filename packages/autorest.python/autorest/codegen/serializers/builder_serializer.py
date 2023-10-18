@@ -26,7 +26,6 @@ from ..models import (
     ParameterMethodLocation,
     RequestBuilderBodyParameter,
     OverloadedRequestBuilder,
-    ConstantType,
     MultipartBodyParameter,
     Property,
     RequestBuilderType,

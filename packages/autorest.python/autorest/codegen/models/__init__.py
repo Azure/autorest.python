@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Any, Dict, Union
+from typing import Any, Dict, Union, Optional
 from .base import BaseModel
 from .base_builder import BaseBuilder, ParameterListType
 from .code_model import CodeModel
@@ -159,6 +159,7 @@ def build_type(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseType:
     except KeyError:
         # Not created yet, let's create it and add it to the index
         pass
+    response: Optional[BaseType] = None
     if yaml_data["type"] == "model":
         # need to special case model to avoid recursion
         if yaml_data["base"] == "json" or not code_model.options["models_mode"]:
@@ -189,6 +190,8 @@ def build_type(yaml_data: Dict[str, Any], code_model: CodeModel) -> BaseType:
             )
             object_type = "string"
         response = TYPE_TO_OBJECT[object_type].from_yaml(yaml_data, code_model)  # type: ignore
+    if response is None:
+        raise ValueError("response can not be None")
     code_model.types_map[yaml_id] = response
     return response
 

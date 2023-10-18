@@ -7,7 +7,6 @@ from typing import Any, Dict, List, TYPE_CHECKING, Optional, cast
 
 from .base import BaseType
 from .imports import FileImport, ImportType, TypingSection
-from .base import BaseModel
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -35,9 +34,7 @@ class EnumValue(BaseType):
         self.value_type = value_type
 
     def description(self, *, is_operation_file: bool) -> str:
-        return self.yaml_data.get(
-            "description", f"Default value is {self.get_declaration()}"
-        )
+        return self.yaml_data.get("description", "")
 
     def type_annotation(self, **kwargs: Any) -> str:
         """The python type used for type annotation"""
