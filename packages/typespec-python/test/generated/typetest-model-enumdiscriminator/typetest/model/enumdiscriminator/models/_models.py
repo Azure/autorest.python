@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 
 import sys
-from typing import Any, Mapping, TYPE_CHECKING, Union, overload
+from typing import Any, Mapping, overload
 
 from .. import _model_base
 from .._model_base import rest_discriminator, rest_field
@@ -18,10 +18,6 @@ if sys.version_info >= (3, 8):
     from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
 else:
     from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from .. import models as _models
 
 
 class Snake(_model_base.Model):

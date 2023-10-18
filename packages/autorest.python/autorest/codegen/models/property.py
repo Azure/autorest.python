@@ -7,6 +7,7 @@ from typing import Any, Dict, Optional, TYPE_CHECKING, List
 
 from .base import BaseModel
 from .constant_type import ConstantType
+from .enum_type import EnumType
 from .base import BaseType
 from .imports import FileImport, ImportType
 from .utils import add_to_description, add_to_pylint_disable
@@ -140,7 +141,10 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         return retval or None
 
     def imports(self, **kwargs) -> FileImport:
-        file_import = self.type.imports(**kwargs, relative_path="..", model_typing=True)
+        file_import = FileImport()
+        if self.is_discriminator and isinstance(self.type, EnumType):
+            return file_import
+        file_import.merge(self.type.imports(**kwargs, relative_path="..", model_typing=True))
         if self.optional and self.client_default_value is None:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
         if self.code_model.options["models_mode"] == "dpg":
