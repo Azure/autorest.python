@@ -89,15 +89,15 @@ def update_constant(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def update_enum_value(
-    yaml_data: Dict[str, Any], parentEnum: Dict[str, Any]
+    yaml_data: Dict[str, Any], enumType: Dict[str, Any]
 ) -> Dict[str, Any]:
     return {
         "name": yaml_data["language"]["default"]["name"],
         "type": "enumvalue",
         "value": yaml_data["value"],
         "description": yaml_data["language"]["default"]["description"],
-        "parentEnum": parentEnum,
-        "valueType": parentEnum["valueType"],
+        "enumType": enumType,
+        "valueType": enumType["valueType"],
     }
 
 

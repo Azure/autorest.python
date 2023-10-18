@@ -83,8 +83,7 @@ export function getType(
         case "duration":
             return emitDurationOrDateType(type);
         case "enumvalue":
-            const parentEnum = emitEnum(type.parentEnum);
-            return emitEnumMember(type, parentEnum);
+            return emitEnumMember(type, emitEnum(type.enumType));
         case "bytes":
         case "boolean":
         case "date":
@@ -276,14 +275,14 @@ function enumName(name: string): string {
     return camelToSnakeCase(name).toUpperCase();
 }
 
-function emitEnumMember(type: SdkEnumValueType, parentEnum: Record<string, any>): Record<string, any> {
+function emitEnumMember(type: SdkEnumValueType, enumType: Record<string, any>): Record<string, any> {
     return {
         name: enumName(type.name),
         value: type.value,
         description: type.description,
-        parentEnum: parentEnum,
+        enumType,
         type: type.kind,
-        valueType: parentEnum["valueType"],
+        valueType: enumType["valueType"],
     };
 }
 

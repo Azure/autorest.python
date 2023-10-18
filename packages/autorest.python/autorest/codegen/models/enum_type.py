@@ -24,13 +24,13 @@ class EnumValue(BaseType):
         self,
         yaml_data: Dict[str, Any],
         code_model: "CodeModel",
-        parent_enum: "EnumType",
+        enum_type: "EnumType",
         value_type: BaseType,
     ) -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.name: str = self.yaml_data["name"]
         self.value: str = self.yaml_data["value"]
-        self.parent_enum = parent_enum
+        self.enum_type = enum_type
         self.value_type = value_type
 
     def description(self, *, is_operation_file: bool) -> str:
@@ -38,13 +38,13 @@ class EnumValue(BaseType):
 
     def type_annotation(self, **kwargs: Any) -> str:
         """The python type used for type annotation"""
-        return f"Literal[{self.parent_enum.name}.{self.name}]"
+        return f"Literal[{self.enum_type.name}.{self.name}]"
 
     def get_declaration(self, value=None):
-        return self.parent_enum.name + "." + self.name
+        return self.enum_type.name + "." + self.name
 
     def docstring_text(self, **kwargs: Any) -> str:
-        return self.parent_enum.name + "." + self.name
+        return self.enum_type.name + "." + self.name
 
     def docstring_type(self, **kwargs: Any) -> str:
         """The python type used for RST syntax input and type annotation."""
@@ -80,7 +80,7 @@ class EnumValue(BaseType):
         file_import.merge(self.value_type.imports(**kwargs))
         file_import.add_literal_import()
         file_import.add_submodule_import(
-            "._enums", self.parent_enum.name, ImportType.LOCAL, TypingSection.REGULAR
+            "._enums", self.enum_type.name, ImportType.LOCAL, TypingSection.REGULAR
         )
 
         return file_import
@@ -99,13 +99,13 @@ class EnumValue(BaseType):
         """
         from . import build_type
 
-        parent_enum = cast(
-            EnumType, code_model.lookup_type(id(yaml_data["parentEnum"]))
+        enum_type = cast(
+            EnumType, code_model.lookup_type(id(yaml_data["enumType"]))
         )
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
-            parent_enum=parent_enum,
+            enum_type=enum_type,
             value_type=build_type(yaml_data["valueType"], code_model),
         )
 
