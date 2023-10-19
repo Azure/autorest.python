@@ -176,23 +176,31 @@ class TokenCredentialType(
     def type_description(self) -> str:
         return "TokenCredential"
 
+    @property
+    def import_credential(self) -> str:
+        self.code_model.import_core_name(same_module_name="credential")
+
+    @property
+    def import_credential_async(self) -> str:
+        self.code_model.import_core_name(module_name="credential", azure_module_name="credential_async")
+
     def docstring_type(self, **kwargs: Any) -> str:
         if kwargs.get("async_mode"):
-            return "~azure.core.credentials_async.AsyncTokenCredential"
-        return "~azure.core.credentials.TokenCredential"
+            return f"~{self.import_credential_async}.AsyncTokenCredential"
+        return f"~{self.import_credential}.TokenCredential"
 
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
         if kwargs.get("async_mode"):
             file_import.add_submodule_import(
-                "azure.core.credentials_async",
+                self.import_credential_async,
                 "AsyncTokenCredential",
                 ImportType.AZURECORE,
                 typing_section=TypingSection.TYPING,
             )
         else:
             file_import.add_submodule_import(
-                "azure.core.credentials",
+                self.import_credential,
                 "TokenCredential",
                 ImportType.AZURECORE,
                 typing_section=TypingSection.TYPING,

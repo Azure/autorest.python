@@ -377,9 +377,11 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             "ResourceExistsError",
             "ResourceNotModifiedError",
         ]
+        import_exception = self.code_model.import_core_name(same_module_name="exceptions")
+        import_rest = self.code_model.import_core_name(same_module_name="rest")
         for error in errors:
             file_import.add_submodule_import(
-                "azure.core.exceptions", error, ImportType.AZURECORE
+                import_exception, error, ImportType.AZURECORE
             )
         if self.code_model.options["azure_arm"]:
             file_import.add_submodule_import(
@@ -404,7 +406,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             )
         if self.has_etag:
             file_import.add_submodule_import(
-                "azure.core.exceptions", "ResourceModifiedError", ImportType.AZURECORE
+                import_exception, "ResourceModifiedError", ImportType.AZURECORE
             )
             if not async_mode:
                 file_import.add_submodule_import(
@@ -429,13 +431,13 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         else:
             if async_mode:
                 file_import.add_submodule_import(
-                    "azure.core.rest",
+                    import_rest,
                     "AsyncHttpResponse",
                     ImportType.AZURECORE,
                 )
             else:
                 file_import.add_submodule_import(
-                    "azure.core.rest", "HttpResponse", ImportType.AZURECORE
+                    import_rest, "HttpResponse", ImportType.AZURECORE
                 )
         if (
             self.code_model.options["builders_visibility"] == "embedded"
@@ -446,7 +448,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             "azure.core.pipeline", "PipelineResponse", ImportType.AZURECORE
         )
         file_import.add_submodule_import(
-            "azure.core.rest", "HttpRequest", ImportType.AZURECORE
+            import_rest, "HttpRequest", ImportType.AZURECORE
         )
         file_import.add_submodule_import(
             "typing", "Callable", ImportType.STDLIB, TypingSection.CONDITIONAL

@@ -243,7 +243,7 @@ class ClientSerializer:
         return retval
 
     def _rest_request_example(self, async_mode: bool) -> List[str]:
-        retval = [">>> from azure.core.rest import HttpRequest"]
+        retval = [f">>> from {self.import_core_rest} import HttpRequest"]
         retval.append('>>> request = HttpRequest("GET", "https://www.example.org/")')
         retval.append("<HttpRequest [GET], url: 'https://www.example.org/'>")
         retval.extend(self._example_make_call(async_mode))
@@ -262,7 +262,7 @@ class ClientSerializer:
         )
         retval.append("")
         retval.append(":param request: The network request you want to make. Required.")
-        retval.append(":type request: ~azure.core.rest.HttpRequest")
+        retval.append(f":type request: ~{self.import_core_rest}.HttpRequest")
         retval.append(
             ":keyword bool stream: Whether the response payload will be streamed. Defaults to False."
         )
@@ -270,7 +270,7 @@ class ClientSerializer:
             ":return: The response of your network call. Does not do error handling on your response."
         )
         http_response = "AsyncHttpResponse" if async_mode else "HttpResponse"
-        retval.append(f":rtype: ~azure.core.rest.{http_response}")
+        retval.append(f":rtype: ~{self.import_core_rest}.{http_response}")
         retval.append('"""')
         return retval
 
@@ -278,6 +278,10 @@ class ClientSerializer:
         return self.parameter_serializer.serialize_path(
             self.client.parameters.path, "self._serialize"
         )
+    
+    @property
+    def import_core_rest(self) -> str:
+        return self.client.import_core_name(same_module_name="rest")
 
 
 class ConfigSerializer:

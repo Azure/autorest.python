@@ -290,3 +290,15 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
         ):
             return True
         return False
+
+    def import_core_name(self, **kwargs: Any) -> str:
+        same_module_name = kwargs.pop("same_module_name", "")
+        if self.options["unbranded"]:
+            core_name = "corehttp"
+            module_name = kwargs.pop("module_name", same_module_name)
+        else:
+            core_name = "azure.core"
+            module_name = kwargs.pop("azure_module_name", same_module_name)
+        if module_name:
+            return f"{core_name}.{module_name}"
+        return core_name

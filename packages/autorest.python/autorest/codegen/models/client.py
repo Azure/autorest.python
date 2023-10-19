@@ -54,6 +54,10 @@ class _ClientConfigBase(Generic[ParameterListType], BaseModel):
         return self.yaml_data["name"]
 
 
+    @property
+    def polices_module(self) -> str:
+        return self.code_model.import_core_name(azure_module_name="pipeline", module_name="runtime")
+        
 class Client(_ClientConfigBase[ClientGlobalParameterList]):
     """Model representing our service client"""
 
@@ -206,7 +210,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             )
         else:
             file_import.add_submodule_import(
-                "azure.core", self.pipeline_class(async_mode), ImportType.AZURECORE
+                self.code_model.import_core_name(), self.pipeline_class(async_mode), ImportType.AZURECORE
             )
 
         for gp in self.parameters:
@@ -231,7 +235,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             TypingSection.REGULAR,
         )
         file_import.add_submodule_import(
-            "azure.core.pipeline", "policies", ImportType.AZURECORE
+            self.polices_module, "policies", ImportType.AZURECORE
         )
         if self.code_model.options["azure_arm"]:
             async_prefix = "Async" if async_mode else ""
@@ -291,23 +295,24 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
 
     def imports(self, async_mode: bool) -> FileImport:
         file_import = self._imports_shared(async_mode)
+        import_module = self.code_model.import_core_name(same_module_name="rest")
         if async_mode:
             file_import.add_submodule_import("typing", "Awaitable", ImportType.STDLIB)
             file_import.add_submodule_import(
-                "azure.core.rest",
+                import_module,
                 "AsyncHttpResponse",
                 ImportType.AZURECORE,
                 TypingSection.CONDITIONAL,
             )
         else:
             file_import.add_submodule_import(
-                "azure.core.rest",
+                import_module,
                 "HttpResponse",
                 ImportType.AZURECORE,
                 TypingSection.CONDITIONAL,
             )
         file_import.add_submodule_import(
-            "azure.core.rest",
+            import_module,
             "HttpRequest",
             ImportType.AZURECORE,
             TypingSection.CONDITIONAL,
@@ -408,7 +413,7 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
     def _imports_shared(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
         file_import.add_submodule_import(
-            "azure.core.pipeline", "policies", ImportType.AZURECORE
+            self.polices_module, "policies", ImportType.AZURECORE
         )
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL

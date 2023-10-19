@@ -160,7 +160,7 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
         elif any(p.is_api_version for p in self.client.parameters):
             file_import.add_import("urllib.parse", ImportType.STDLIB)
             file_import.add_submodule_import(
-                "azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE
+                self.code_model.import_core_name(same_module_name="utils"), "case_insensitive_dict", ImportType.AZURECORE
             )
         if self.code_model.options["models_mode"] == "dpg":
             relative_path = "..." if async_mode else ".."

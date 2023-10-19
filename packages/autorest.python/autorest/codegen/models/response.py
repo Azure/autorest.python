@@ -200,7 +200,7 @@ class PagingResponse(Response):
         async_mode = kwargs.get("async_mode")
         if async_mode:
             file_import.add_submodule_import(
-                "azure.core.async_paging", "AsyncList", ImportType.AZURECORE
+                self.code_model.import_core_name(module_name="paging", azure_module_name="async_paging"), "AsyncList", ImportType.AZURECORE
             )
 
         return file_import

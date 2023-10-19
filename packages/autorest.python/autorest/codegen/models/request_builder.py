@@ -72,13 +72,18 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
 
     def response_docstring_text(self, **kwargs) -> str:
         return (
-            "Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's "
+            f"Returns an :class:`~{self.import_core_rest}.HttpRequest` that you will pass to the client's "
             + "`send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to "
             + "incorporate this response into your code flow."
         )
 
+    @property
+    def import_core_rest(self) -> str:
+        return self.code_model.import_core_name(same_module_name='rest')
+
+
     def response_docstring_type(self, **kwargs) -> str:
-        return "~azure.core.rest.HttpRequest"
+        return f"~{self.import_core_rest}.HttpRequest"
 
     def imports(self) -> FileImport:
         file_import = FileImport()
@@ -98,14 +103,14 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
             )
 
         file_import.add_submodule_import(
-            "azure.core.rest",
+            self.code_model.import_core_name(same_module_name="rest"),
             "HttpRequest",
             ImportType.AZURECORE,
         )
 
         if self.parameters.headers or self.parameters.query:
             file_import.add_submodule_import(
-                "azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE
+                self.code_model.import_core_name(same_module_name="utils")), "case_insensitive_dict", ImportType.AZURECORE
             )
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
