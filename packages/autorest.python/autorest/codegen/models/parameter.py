@@ -271,7 +271,7 @@ class BodyParameter(_ParameterBase):
     @property
     def has_json_model_type(self) -> bool:
         if isinstance(self.type, CombinedType):
-            return self.type.json_subtype is not None
+            return self.type.target_model_subtype((JSONModelType,)) is not None
         return isinstance(self.type, JSONModelType)
 
     @classmethod
