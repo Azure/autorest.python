@@ -184,9 +184,9 @@ def _serialize_json_model_body(
     )
     model_type = cast(ModelType, body_parameter.type)
     if isinstance(model_type, CombinedType) and model_type.target_model_subtype(
-        [JSONModelType]
+        (JSONModelType,)
     ):
-        model_type = model_type.target_model_subtype([JSONModelType])
+        model_type = model_type.target_model_subtype((JSONModelType,))
     retval.append(f"    {body_parameter.client_name} = {{{parameter_string}}}")
     retval.append(f"    {body_parameter.client_name} =  {{")
     retval.append(
