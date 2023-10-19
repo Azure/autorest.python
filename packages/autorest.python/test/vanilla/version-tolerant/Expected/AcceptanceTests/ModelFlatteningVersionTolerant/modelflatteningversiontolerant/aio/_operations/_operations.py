@@ -178,9 +178,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         # pylint: disable=line-too-long
         """Get External Resource as an Array.
 
-        # pylint: disable=line-too-long
         .. seealso::
-        # pylint: disable=line-too-long
            - http://tempuri.org
 
         :return: list of JSON object
@@ -450,9 +448,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         # pylint: disable=line-too-long
         """Put External Resource as a Dictionary.
 
-        # pylint: disable=line-too-long
         .. seealso::
-        # pylint: disable=line-too-long
            - http://tempuri.org
 
         :param resource_dictionary: External Resource as a Dictionary to put. Default value is None.
@@ -582,9 +578,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         # pylint: disable=line-too-long
         """Get External Resource as a Dictionary.
 
-        # pylint: disable=line-too-long
         .. seealso::
-        # pylint: disable=line-too-long
            - http://tempuri.org
 
         :return: dict mapping str to JSON object
@@ -664,9 +658,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         # pylint: disable=line-too-long
         """Put External Resource as a ResourceCollection.
 
-        # pylint: disable=line-too-long
         .. seealso::
-        # pylint: disable=line-too-long
            - http://tempuri.org
 
         :param resource_complex_object: External Resource as a ResourceCollection to put. Default value
@@ -776,9 +768,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         # pylint: disable=line-too-long
         """Put External Resource as a ResourceCollection.
 
-        # pylint: disable=line-too-long
         .. seealso::
-        # pylint: disable=line-too-long
            - http://tempuri.org
 
         :param resource_complex_object: External Resource as a ResourceCollection to put. Is either a
@@ -915,9 +905,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         # pylint: disable=line-too-long
         """Get External Resource as a ResourceCollection.
 
-        # pylint: disable=line-too-long
         .. seealso::
-        # pylint: disable=line-too-long
            - http://tempuri.org
 
         :return: JSON object
@@ -1042,9 +1030,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         # pylint: disable=line-too-long
         """Put Simple Product with client flattening true on the model.
 
-        # pylint: disable=line-too-long
         .. seealso::
-        # pylint: disable=line-too-long
            - http://tempuri.org
 
         :param simple_body_product: Simple body product to put. Default value is None.
@@ -1103,9 +1089,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         # pylint: disable=line-too-long
         """Put Simple Product with client flattening true on the model.
 
-        # pylint: disable=line-too-long
         .. seealso::
-        # pylint: disable=line-too-long
            - http://tempuri.org
 
         :param simple_body_product: Simple body product to put. Default value is None.
@@ -1144,9 +1128,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         # pylint: disable=line-too-long
         """Put Simple Product with client flattening true on the model.
 
-        # pylint: disable=line-too-long
         .. seealso::
-        # pylint: disable=line-too-long
            - http://tempuri.org
 
         :param simple_body_product: Simple body product to put. Is either a JSON type or a IO type.
@@ -1262,9 +1244,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         # pylint: disable=line-too-long
         """Put Flattened Simple Product with client flattening true on the parameter.
 
-        # pylint: disable=line-too-long
         .. seealso::
-        # pylint: disable=line-too-long
            - http://tempuri.org
 
         :param simple_body_product: Simple body product to post. Default value is None.
@@ -1323,9 +1303,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         # pylint: disable=line-too-long
         """Put Flattened Simple Product with client flattening true on the parameter.
 
-        # pylint: disable=line-too-long
         .. seealso::
-        # pylint: disable=line-too-long
            - http://tempuri.org
 
         :param simple_body_product: Simple body product to post. Default value is None.
@@ -1366,9 +1344,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         # pylint: disable=line-too-long
         """Put Flattened Simple Product with client flattening true on the parameter.
 
-        # pylint: disable=line-too-long
         .. seealso::
-        # pylint: disable=line-too-long
            - http://tempuri.org
 
         :param simple_body_product: Simple body product to post. Is either a JSON type or a IO type.
@@ -1489,9 +1465,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         # pylint: disable=line-too-long
         """Put Simple Product with client flattening true on the model.
 
-        # pylint: disable=line-too-long
         .. seealso::
-        # pylint: disable=line-too-long
            - http://tempuri.org
 
         :param name: Product name with value 'groupproduct'. Required.
@@ -1557,9 +1531,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         # pylint: disable=line-too-long
         """Put Simple Product with client flattening true on the model.
 
-        # pylint: disable=line-too-long
         .. seealso::
-        # pylint: disable=line-too-long
            - http://tempuri.org
 
         :param name: Product name with value 'groupproduct'. Required.
@@ -1602,9 +1574,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         # pylint: disable=line-too-long
         """Put Simple Product with client flattening true on the model.
 
-        # pylint: disable=line-too-long
         .. seealso::
-        # pylint: disable=line-too-long
            - http://tempuri.org
 
         :param name: Product name with value 'groupproduct'. Required.

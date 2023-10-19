@@ -72,7 +72,6 @@ class QuestionAnsweringProjectsOperations:
         # pylint: disable=line-too-long
         """Gets all the QnAs of a project.
 
-        # pylint: disable=line-too-long
         Gets all the QnAs of a project.
 
         :param project_name: The name of the project to use. Required.
@@ -329,7 +328,6 @@ class QuestionAnsweringProjectsOperations:
         # pylint: disable=line-too-long
         """Updates the QnAs of a project.
 
-        # pylint: disable=line-too-long
         Updates the QnAs of a project.
 
         :param project_name: The name of the project to use. Required.
@@ -512,7 +510,6 @@ class QuestionAnsweringProjectsOperations:
         # pylint: disable=line-too-long
         """Updates the QnAs of a project.
 
-        # pylint: disable=line-too-long
         Updates the QnAs of a project.
 
         :param project_name: The name of the project to use. Required.
@@ -635,7 +632,6 @@ class QuestionAnsweringProjectsOperations:
         # pylint: disable=line-too-long
         """Updates the QnAs of a project.
 
-        # pylint: disable=line-too-long
         Updates the QnAs of a project.
 
         :param project_name: The name of the project to use. Required.
