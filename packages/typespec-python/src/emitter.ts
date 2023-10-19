@@ -66,6 +66,7 @@ interface HttpServerParameter {
 const defaultOptions = {
     "package-version": "1.0.0b1",
     "generate-packaging-files": true,
+    "unbranded": false,
 };
 
 export function getModelsMode(context: SdkContext) {
