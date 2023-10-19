@@ -262,17 +262,17 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_union_send_int_request(
+        _request = build_union_send_int_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -284,7 +284,7 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def send_int_array(  # pylint: disable=inconsistent-return-statements
@@ -394,17 +394,17 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_union_send_int_array_request(
+        _request = build_union_send_int_array_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -416,7 +416,7 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def send_first_named_union_value(  # pylint: disable=inconsistent-return-statements
@@ -532,17 +532,17 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_union_send_first_named_union_value_request(
+        _request = build_union_send_first_named_union_value_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -554,7 +554,7 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def send_second_named_union_value(  # pylint: disable=inconsistent-return-statements
@@ -670,17 +670,17 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_union_send_second_named_union_value_request(
+        _request = build_union_send_second_named_union_value_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -692,7 +692,7 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def receive_string(self, **kwargs: Any) -> _models.ModelWithSimpleUnionPropertyInResponse:
@@ -726,15 +726,15 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
 
         cls: ClsType[_models.ModelWithSimpleUnionPropertyInResponse] = kwargs.pop("cls", None)
 
-        request = build_union_receive_string_request(
+        _request = build_union_receive_string_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -787,15 +787,15 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
 
         cls: ClsType[_models.ModelWithSimpleUnionPropertyInResponse] = kwargs.pop("cls", None)
 
-        request = build_union_receive_int_array_request(
+        _request = build_union_receive_int_array_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -851,15 +851,15 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
 
         cls: ClsType[_models.ModelWithNamedUnionPropertyInResponse] = kwargs.pop("cls", None)
 
-        request = build_union_receive_first_named_union_value_request(
+        _request = build_union_receive_first_named_union_value_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -915,15 +915,15 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
 
         cls: ClsType[_models.ModelWithNamedUnionPropertyInResponse] = kwargs.pop("cls", None)
 
-        request = build_union_receive_second_named_union_value_request(
+        _request = build_union_receive_second_named_union_value_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

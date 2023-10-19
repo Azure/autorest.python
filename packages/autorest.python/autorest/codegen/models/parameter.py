@@ -92,6 +92,9 @@ class _ParameterBase(
         )
         self.hide_in_method: bool = self.yaml_data.get("hideInMethod", False)
 
+    def get_declaration(self, value: Any = None) -> Any:
+        return self.type.get_declaration(value)
+
     @property
     def hide_in_operation_signature(self) -> bool:
         return False
@@ -115,7 +118,7 @@ class _ParameterBase(
         if self.optional and isinstance(self.type, ConstantType):
             base_description = add_to_description(
                 base_description,
-                f"Known values are {self.type.get_declaration()} and None.",
+                f"Known values are {self.get_declaration()} and None.",
             )
         if not (self.optional or self.client_default_value):
             base_description = add_to_description(base_description, "Required.")
@@ -141,7 +144,7 @@ class _ParameterBase(
         """Declaration of parameter's client default value"""
         if self.client_default_value is None:
             return None
-        return self.type.get_declaration(self.client_default_value)
+        return self.get_declaration(self.client_default_value)
 
     def type_annotation(self, **kwargs: Any) -> str:
         kwargs["is_operation_file"] = True

@@ -58,7 +58,7 @@ class ClientAClientOperationsMixin(ClientAClientMixinABC):
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_client_a_renamed_one_request(
+        _request = build_client_a_renamed_one_request(
             headers=_headers,
             params=_params,
         )
@@ -66,11 +66,11 @@ class ClientAClientOperationsMixin(ClientAClientMixinABC):
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "client": self._serialize.url("self._config.client", self._config.client, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -82,7 +82,7 @@ class ClientAClientOperationsMixin(ClientAClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def renamed_three(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -107,7 +107,7 @@ class ClientAClientOperationsMixin(ClientAClientMixinABC):
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_client_a_renamed_three_request(
+        _request = build_client_a_renamed_three_request(
             headers=_headers,
             params=_params,
         )
@@ -115,11 +115,11 @@ class ClientAClientOperationsMixin(ClientAClientMixinABC):
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "client": self._serialize.url("self._config.client", self._config.client, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -131,7 +131,7 @@ class ClientAClientOperationsMixin(ClientAClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def renamed_five(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -156,7 +156,7 @@ class ClientAClientOperationsMixin(ClientAClientMixinABC):
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_client_a_renamed_five_request(
+        _request = build_client_a_renamed_five_request(
             headers=_headers,
             params=_params,
         )
@@ -164,11 +164,11 @@ class ClientAClientOperationsMixin(ClientAClientMixinABC):
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "client": self._serialize.url("self._config.client", self._config.client, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -180,7 +180,7 @@ class ClientAClientOperationsMixin(ClientAClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class ClientBClientOperationsMixin(ClientBClientMixinABC):
@@ -207,7 +207,7 @@ class ClientBClientOperationsMixin(ClientBClientMixinABC):
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_client_b_renamed_two_request(
+        _request = build_client_b_renamed_two_request(
             headers=_headers,
             params=_params,
         )
@@ -215,11 +215,11 @@ class ClientBClientOperationsMixin(ClientBClientMixinABC):
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "client": self._serialize.url("self._config.client", self._config.client, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -231,7 +231,7 @@ class ClientBClientOperationsMixin(ClientBClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def renamed_four(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -256,7 +256,7 @@ class ClientBClientOperationsMixin(ClientBClientMixinABC):
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_client_b_renamed_four_request(
+        _request = build_client_b_renamed_four_request(
             headers=_headers,
             params=_params,
         )
@@ -264,11 +264,11 @@ class ClientBClientOperationsMixin(ClientBClientMixinABC):
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "client": self._serialize.url("self._config.client", self._config.client, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -280,7 +280,7 @@ class ClientBClientOperationsMixin(ClientBClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def renamed_six(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -305,7 +305,7 @@ class ClientBClientOperationsMixin(ClientBClientMixinABC):
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_client_b_renamed_six_request(
+        _request = build_client_b_renamed_six_request(
             headers=_headers,
             params=_params,
         )
@@ -313,11 +313,11 @@ class ClientBClientOperationsMixin(ClientBClientMixinABC):
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "client": self._serialize.url("self._config.client", self._config.client, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -329,4 +329,4 @@ class ClientBClientOperationsMixin(ClientBClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

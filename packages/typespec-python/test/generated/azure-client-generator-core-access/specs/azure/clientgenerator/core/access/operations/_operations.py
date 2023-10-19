@@ -263,16 +263,16 @@ class PublicOperationOperations:
 
         cls: ClsType[_models.NoDecoratorModelInPublic] = kwargs.pop("cls", None)
 
-        request = build_public_operation_no_decorator_in_public_request(
+        _request = build_public_operation_no_decorator_in_public_request(
             name=name,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -327,16 +327,16 @@ class PublicOperationOperations:
 
         cls: ClsType[_models.PublicDecoratorModelInPublic] = kwargs.pop("cls", None)
 
-        request = build_public_operation_public_decorator_in_public_request(
+        _request = build_public_operation_public_decorator_in_public_request(
             name=name,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -413,16 +413,16 @@ class InternalOperationOperations:
             "cls", None
         )
 
-        request = build_internal_operation_no_decorator_in_internal_request(
+        _request = build_internal_operation_no_decorator_in_internal_request(
             name=name,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -483,16 +483,16 @@ class InternalOperationOperations:
             "cls", None
         )
 
-        request = build_internal_operation_internal_decorator_in_internal_request(
+        _request = build_internal_operation_internal_decorator_in_internal_request(
             name=name,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -549,16 +549,16 @@ class InternalOperationOperations:
 
         cls: ClsType[_models.PublicDecoratorModelInInternal] = kwargs.pop("cls", None)
 
-        request = build_internal_operation_public_decorator_in_internal_request(
+        _request = build_internal_operation_public_decorator_in_internal_request(
             name=name,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -630,16 +630,16 @@ class SharedModelInOperationOperations:
 
         cls: ClsType[_models.SharedModel] = kwargs.pop("cls", None)
 
-        request = build_shared_model_in_operation_public_request(
+        _request = build_shared_model_in_operation_public_request(
             name=name,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -693,16 +693,16 @@ class SharedModelInOperationOperations:
 
         cls: ClsType[_models.SharedModel] = kwargs.pop("cls", None)
 
-        request = build_shared_model_in_operation_internal_request(
+        _request = build_shared_model_in_operation_internal_request(
             name=name,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -788,16 +788,16 @@ class RelativeModelInOperationOperations:
 
         cls: ClsType[_models._models.OuterModel] = kwargs.pop("cls", None)  # pylint: disable=protected-access
 
-        request = build_relative_model_in_operation_operation_request(
+        _request = build_relative_model_in_operation_operation_request(
             name=name,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -867,16 +867,16 @@ class RelativeModelInOperationOperations:
 
         cls: ClsType[_models._models.AbstractModel] = kwargs.pop("cls", None)  # pylint: disable=protected-access
 
-        request = build_relative_model_in_operation_discriminator_request(
+        _request = build_relative_model_in_operation_discriminator_request(
             kind=kind,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

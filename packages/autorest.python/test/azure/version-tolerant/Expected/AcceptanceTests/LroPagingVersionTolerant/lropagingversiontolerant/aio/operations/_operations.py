@@ -200,7 +200,7 @@ class QuestionAnsweringProjectsOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_question_answering_projects_get_qnas_request(
+                _request = build_question_answering_projects_get_qnas_request(
                     project_name=project_name,
                     source=source,
                     top=top,
@@ -210,7 +210,7 @@ class QuestionAnsweringProjectsOperations:
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -222,12 +222,12 @@ class QuestionAnsweringProjectsOperations:
                     }
                 )
                 _next_request_params["api-version"] = self._config.api_version
-                request = HttpRequest(
+                _request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
-            return request
+            return _request
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -237,11 +237,11 @@ class QuestionAnsweringProjectsOperations:
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -280,7 +280,7 @@ class QuestionAnsweringProjectsOperations:
         else:
             _json = body
 
-        request = build_question_answering_projects_update_qnas_request(
+        _request = build_question_answering_projects_update_qnas_request(
             project_name=project_name,
             content_type=content_type,
             api_version=self._config.api_version,
@@ -289,11 +289,11 @@ class QuestionAnsweringProjectsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -318,9 +318,9 @@ class QuestionAnsweringProjectsOperations:
             )
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def begin_update_qnas(
@@ -776,7 +776,7 @@ class QuestionAnsweringProjectsOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_question_answering_projects_update_qnas_request(
+                _request = build_question_answering_projects_update_qnas_request(
                     project_name=project_name,
                     content_type=content_type,
                     api_version=self._config.api_version,
@@ -785,7 +785,7 @@ class QuestionAnsweringProjectsOperations:
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -797,12 +797,12 @@ class QuestionAnsweringProjectsOperations:
                     }
                 )
                 _next_request_params["api-version"] = self._config.api_version
-                request = HttpRequest(
+                _request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
-            return request
+            return _request
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -812,11 +812,11 @@ class QuestionAnsweringProjectsOperations:
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 

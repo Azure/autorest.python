@@ -127,19 +127,19 @@ class PetsOperations:
         else:
             _json = self._serialize.body(create_parameters, "PetAPTrue")
 
-        request = build_create_ap_true_request(
+        _request = build_create_ap_true_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -152,9 +152,9 @@ class PetsOperations:
         deserialized = self._deserialize("PetAPTrue", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def create_cat_ap_true(
@@ -228,19 +228,19 @@ class PetsOperations:
         else:
             _json = self._serialize.body(create_parameters, "CatAPTrue")
 
-        request = build_create_cat_ap_true_request(
+        _request = build_create_cat_ap_true_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -253,9 +253,9 @@ class PetsOperations:
         deserialized = self._deserialize("CatAPTrue", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def create_ap_object(
@@ -329,19 +329,19 @@ class PetsOperations:
         else:
             _json = self._serialize.body(create_parameters, "PetAPObject")
 
-        request = build_create_ap_object_request(
+        _request = build_create_ap_object_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -354,9 +354,9 @@ class PetsOperations:
         deserialized = self._deserialize("PetAPObject", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def create_ap_string(
@@ -430,19 +430,19 @@ class PetsOperations:
         else:
             _json = self._serialize.body(create_parameters, "PetAPString")
 
-        request = build_create_ap_string_request(
+        _request = build_create_ap_string_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -455,9 +455,9 @@ class PetsOperations:
         deserialized = self._deserialize("PetAPString", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def create_ap_in_properties(
@@ -531,19 +531,19 @@ class PetsOperations:
         else:
             _json = self._serialize.body(create_parameters, "PetAPInProperties")
 
-        request = build_create_ap_in_properties_request(
+        _request = build_create_ap_in_properties_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -556,9 +556,9 @@ class PetsOperations:
         deserialized = self._deserialize("PetAPInProperties", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def create_ap_in_properties_with_ap_string(
@@ -637,19 +637,19 @@ class PetsOperations:
         else:
             _json = self._serialize.body(create_parameters, "PetAPInPropertiesWithAPString")
 
-        request = build_create_ap_in_properties_with_ap_string_request(
+        _request = build_create_ap_in_properties_with_ap_string_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -662,6 +662,6 @@ class PetsOperations:
         deserialized = self._deserialize("PetAPInPropertiesWithAPString", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore

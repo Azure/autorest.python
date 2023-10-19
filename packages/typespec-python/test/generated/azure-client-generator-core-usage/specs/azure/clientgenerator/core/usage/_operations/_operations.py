@@ -202,17 +202,17 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_usage_input_to_input_output_request(
+        _request = build_usage_input_to_input_output_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -224,7 +224,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def output_to_input_output(self, **kwargs: Any) -> _models.OutputModel:
@@ -263,15 +263,15 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
 
         cls: ClsType[_models.OutputModel] = kwargs.pop("cls", None)
 
-        request = build_usage_output_to_input_output_request(
+        _request = build_usage_output_to_input_output_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

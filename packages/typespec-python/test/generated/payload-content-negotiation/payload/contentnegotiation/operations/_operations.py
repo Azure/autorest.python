@@ -133,16 +133,16 @@ class SameBodyOperations:
         accept: Literal["image/png"] = kwargs.pop("accept", _headers.pop("accept", "image/png"))
         cls: ClsType[bytes] = kwargs.pop("cls", None)
 
-        request = build_same_body_get_avatar_as_png_request(
+        _request = build_same_body_get_avatar_as_png_request(
             accept=accept,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -190,16 +190,16 @@ class SameBodyOperations:
         accept: Literal["image/jpeg"] = kwargs.pop("accept", _headers.pop("accept", "image/jpeg"))
         cls: ClsType[bytes] = kwargs.pop("cls", None)
 
-        request = build_same_body_get_avatar_as_jpeg_request(
+        _request = build_same_body_get_avatar_as_jpeg_request(
             accept=accept,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -265,16 +265,16 @@ class DifferentBodyOperations:
         accept: Literal["image/png"] = kwargs.pop("accept", _headers.pop("accept", "image/png"))
         cls: ClsType[bytes] = kwargs.pop("cls", None)
 
-        request = build_different_body_get_avatar_as_png_request(
+        _request = build_different_body_get_avatar_as_png_request(
             accept=accept,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -330,16 +330,16 @@ class DifferentBodyOperations:
         accept: Literal["application/json"] = kwargs.pop("accept", _headers.pop("accept", "application/json"))
         cls: ClsType[_models.PngImageAsJson] = kwargs.pop("cls", None)
 
-        request = build_different_body_get_avatar_as_json_request(
+        _request = build_different_body_get_avatar_as_json_request(
             accept=accept,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

@@ -313,19 +313,19 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             else:
                 _json = None
 
-        request = build_put_array_request(
+        _request = build_put_array_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -336,7 +336,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_array(self, **kwargs: Any) -> List[_models.FlattenedProduct]:
@@ -363,16 +363,16 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
         cls: ClsType[List[_models.FlattenedProduct]] = kwargs.pop("cls", None)
 
-        request = build_get_array_request(
+        _request = build_get_array_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -385,9 +385,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         deserialized = self._deserialize("[FlattenedProduct]", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
@@ -481,19 +481,19 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             else:
                 _json = None
 
-        request = build_put_wrapped_array_request(
+        _request = build_put_wrapped_array_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -504,7 +504,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_wrapped_array(self, **kwargs: Any) -> List[_models.ProductWrapper]:
@@ -532,16 +532,16 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
         cls: ClsType[List[_models.ProductWrapper]] = kwargs.pop("cls", None)
 
-        request = build_get_wrapped_array_request(
+        _request = build_get_wrapped_array_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -554,9 +554,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         deserialized = self._deserialize("[ProductWrapper]", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     def put_dictionary(  # pylint: disable=inconsistent-return-statements
@@ -647,19 +647,19 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             else:
                 _json = None
 
-        request = build_put_dictionary_request(
+        _request = build_put_dictionary_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -670,7 +670,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_dictionary(self, **kwargs: Any) -> Dict[str, _models.FlattenedProduct]:
@@ -697,16 +697,16 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
         cls: ClsType[Dict[str, _models.FlattenedProduct]] = kwargs.pop("cls", None)
 
-        request = build_get_dictionary_request(
+        _request = build_get_dictionary_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -719,9 +719,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         deserialized = self._deserialize("{FlattenedProduct}", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     def put_resource_collection(  # pylint: disable=inconsistent-return-statements
@@ -814,19 +814,19 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             else:
                 _json = None
 
-        request = build_put_resource_collection_request(
+        _request = build_put_resource_collection_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -837,7 +837,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_resource_collection(self, **kwargs: Any) -> _models.ResourceCollection:
@@ -864,16 +864,16 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
         cls: ClsType[_models.ResourceCollection] = kwargs.pop("cls", None)
 
-        request = build_get_resource_collection_request(
+        _request = build_get_resource_collection_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -886,9 +886,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         deserialized = self._deserialize("ResourceCollection", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     def put_simple_product(
@@ -979,19 +979,19 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
             else:
                 _json = None
 
-        request = build_put_simple_product_request(
+        _request = build_put_simple_product_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1004,9 +1004,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         deserialized = self._deserialize("SimpleProduct", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def post_flattened_simple_product(
@@ -1071,18 +1071,18 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         else:
             _json = None
 
-        request = build_post_flattened_simple_product_request(
+        _request = build_post_flattened_simple_product_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1095,9 +1095,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         deserialized = self._deserialize("SimpleProduct", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def put_simple_product_with_grouping(
@@ -1159,19 +1159,19 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         else:
             _json = None
 
-        request = build_put_simple_product_with_grouping_request(
+        _request = build_put_simple_product_with_grouping_request(
             name=_name,
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1184,6 +1184,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         deserialized = self._deserialize("SimpleProduct", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
