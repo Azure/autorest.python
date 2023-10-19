@@ -28,6 +28,7 @@ azure-core==1.28.0
 -e ./generated/typetest-dictionary
 -e ./generated/typetest-enum-extensible
 -e ./generated/typetest-enum-fixed
+-e ./generated/typetest-model-enumdiscriminator
 -e ./generated/typetest-model-nesteddiscriminator
 -e ./generated/typetest-model-notdiscriminated
 -e ./generated/typetest-model-singlediscriminator

@@ -8,7 +8,7 @@
 import copy
 from typing import Callable, Dict, Any, List, Optional
 
-from .._utils import to_snake_case
+from .._utils import to_snake_case, update_enum_value
 from .helpers import (
     add_redefined_builtin_info,
     pad_builtin_namespaces,
@@ -264,11 +264,12 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                     ).upper()
                     if value["name"] != padded_name:
                         values_to_add.append(
-                            {
-                                "description": value["description"],
-                                "name": padded_name,
-                                "value": value["value"],
-                            }
+                            update_enum_value(
+                                name=padded_name,
+                                value=value["value"],
+                                description=value["description"],
+                                enum_type=value["enumType"],
+                            )
                         )
                 type["values"].extend(values_to_add)
 
