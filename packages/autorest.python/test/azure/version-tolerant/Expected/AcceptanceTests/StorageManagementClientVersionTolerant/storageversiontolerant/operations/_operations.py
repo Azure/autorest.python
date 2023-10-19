@@ -468,7 +468,7 @@ class StorageAccountsOperations:
         else:
             _json = account_name
 
-        request = build_storage_accounts_check_name_availability_request(
+        _request = build_storage_accounts_check_name_availability_request(
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             api_version=self._config.api_version,
@@ -477,11 +477,11 @@ class StorageAccountsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -498,9 +498,9 @@ class StorageAccountsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     def _create_initial(
         self, resource_group_name: str, account_name: str, parameters: Union[JSON, IO], **kwargs: Any
@@ -527,7 +527,7 @@ class StorageAccountsOperations:
         else:
             _json = parameters
 
-        request = build_storage_accounts_create_request(
+        _request = build_storage_accounts_create_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
@@ -538,11 +538,11 @@ class StorageAccountsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -561,9 +561,9 @@ class StorageAccountsOperations:
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     def begin_create(
@@ -994,7 +994,7 @@ class StorageAccountsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_storage_accounts_delete_request(
+        _request = build_storage_accounts_delete_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
@@ -1002,11 +1002,11 @@ class StorageAccountsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1018,7 +1018,7 @@ class StorageAccountsOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_properties(self, resource_group_name: str, account_name: str, **kwargs: Any) -> JSON:
@@ -1120,7 +1120,7 @@ class StorageAccountsOperations:
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_storage_accounts_get_properties_request(
+        _request = build_storage_accounts_get_properties_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
@@ -1128,11 +1128,11 @@ class StorageAccountsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1149,9 +1149,9 @@ class StorageAccountsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @overload
     def update(
@@ -1534,7 +1534,7 @@ class StorageAccountsOperations:
         else:
             _json = parameters
 
-        request = build_storage_accounts_update_request(
+        _request = build_storage_accounts_update_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
@@ -1545,11 +1545,11 @@ class StorageAccountsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1566,9 +1566,9 @@ class StorageAccountsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace
     def list_keys(self, resource_group_name: str, account_name: str, **kwargs: Any) -> JSON:
@@ -1605,7 +1605,7 @@ class StorageAccountsOperations:
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_storage_accounts_list_keys_request(
+        _request = build_storage_accounts_list_keys_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
@@ -1613,11 +1613,11 @@ class StorageAccountsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1634,9 +1634,9 @@ class StorageAccountsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace
     def list(self, **kwargs: Any) -> Iterable[JSON]:
@@ -1733,13 +1733,13 @@ class StorageAccountsOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_storage_accounts_list_request(
+                _request = build_storage_accounts_list_request(
                     subscription_id=self._config.subscription_id,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -1751,12 +1751,12 @@ class StorageAccountsOperations:
                     }
                 )
                 _next_request_params["api-version"] = self._config.api_version
-                request = HttpRequest(
+                _request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
-            return request
+            return _request
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -1766,11 +1766,11 @@ class StorageAccountsOperations:
             return None, iter(list_of_elem)
 
         def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -1882,14 +1882,14 @@ class StorageAccountsOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_storage_accounts_list_by_resource_group_request(
+                _request = build_storage_accounts_list_by_resource_group_request(
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -1901,12 +1901,12 @@ class StorageAccountsOperations:
                     }
                 )
                 _next_request_params["api-version"] = self._config.api_version
-                request = HttpRequest(
+                _request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
-            return request
+            return _request
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -1916,11 +1916,11 @@ class StorageAccountsOperations:
             return None, iter(list_of_elem)
 
         def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -2074,7 +2074,7 @@ class StorageAccountsOperations:
         else:
             _json = regenerate_key
 
-        request = build_storage_accounts_regenerate_key_request(
+        _request = build_storage_accounts_regenerate_key_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
@@ -2085,11 +2085,11 @@ class StorageAccountsOperations:
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2106,9 +2106,9 @@ class StorageAccountsOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
 
 class UsageOperations:
@@ -2173,17 +2173,17 @@ class UsageOperations:
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_usage_list_request(
+        _request = build_usage_list_request(
             subscription_id=self._config.subscription_id,
             api_version=self._config.api_version,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2200,6 +2200,6 @@ class UsageOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore

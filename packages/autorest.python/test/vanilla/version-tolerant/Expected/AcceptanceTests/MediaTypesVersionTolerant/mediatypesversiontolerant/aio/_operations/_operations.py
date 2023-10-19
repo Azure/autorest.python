@@ -141,18 +141,18 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
                 _json = None
             content_type = content_type or "application/json"
 
-        request = build_media_types_analyze_body_request(
+        _request = build_media_types_analyze_body_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -169,9 +169,9 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, cast(str, deserialized), {})  # type: ignore
 
-        return cast(str, deserialized)
+        return cast(str, deserialized)  # type: ignore
 
     @overload
     async def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
@@ -270,18 +270,18 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
                 _json = None
             content_type = content_type or "application/json"
 
-        request = build_media_types_analyze_body_no_accept_header_request(
+        _request = build_media_types_analyze_body_no_accept_header_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -293,7 +293,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def content_type_with_encoding(self, input: Optional[str] = None, **kwargs: Any) -> str:
@@ -324,17 +324,17 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
         else:
             _content = None
 
-        request = build_media_types_content_type_with_encoding_request(
+        _request = build_media_types_content_type_with_encoding_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -351,9 +351,9 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, cast(str, deserialized), {})  # type: ignore
 
-        return cast(str, deserialized)
+        return cast(str, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def binary_body_with_two_content_types(self, message: IO, **kwargs: Any) -> str:
@@ -382,17 +382,17 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
 
         _content = message
 
-        request = build_media_types_binary_body_with_two_content_types_request(
+        _request = build_media_types_binary_body_with_two_content_types_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -409,9 +409,9 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, cast(str, deserialized), {})  # type: ignore
 
-        return cast(str, deserialized)
+        return cast(str, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def binary_body_with_three_content_types(self, message: IO, **kwargs: Any) -> str:
@@ -441,17 +441,17 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
 
         _content = message
 
-        request = build_media_types_binary_body_with_three_content_types_request(
+        _request = build_media_types_binary_body_with_three_content_types_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -468,9 +468,9 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, cast(str, deserialized), {})  # type: ignore
 
-        return cast(str, deserialized)
+        return cast(str, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def put_text_and_json_body(self, message: str, **kwargs: Any) -> str:
@@ -498,17 +498,17 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
 
         _content = message
 
-        request = build_media_types_put_text_and_json_body_request(
+        _request = build_media_types_put_text_and_json_body_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -525,6 +525,6 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, cast(str, deserialized), {})  # type: ignore
 
-        return cast(str, deserialized)
+        return cast(str, deserialized)  # type: ignore

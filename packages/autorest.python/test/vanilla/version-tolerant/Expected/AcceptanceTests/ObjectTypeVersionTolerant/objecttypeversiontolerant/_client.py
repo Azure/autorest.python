@@ -72,7 +72,7 @@ class ObjectTypeClient(ObjectTypeClientOperationsMixin):  # pylint: disable=clie
 
         request_copy = deepcopy(request)
         request_copy.url = self._client.format_url(request_copy.url)
-        return self._client.send_request(request_copy, **kwargs)
+        return self._client.send_request(request_copy, **kwargs)  # type: ignore
 
     def close(self) -> None:
         self._client.close()

@@ -320,16 +320,16 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_query_default_request(
+        _request = build_query_default_request(
             value=value,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -341,7 +341,7 @@ class QueryOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def rfc3339(  # pylint: disable=inconsistent-return-statements
@@ -370,16 +370,16 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_query_rfc3339_request(
+        _request = build_query_rfc3339_request(
             value=value,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -391,7 +391,7 @@ class QueryOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def rfc7231(  # pylint: disable=inconsistent-return-statements
@@ -420,16 +420,16 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_query_rfc7231_request(
+        _request = build_query_rfc7231_request(
             value=value,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -441,7 +441,7 @@ class QueryOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def unix_timestamp(  # pylint: disable=inconsistent-return-statements
@@ -470,16 +470,16 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_query_unix_timestamp_request(
+        _request = build_query_unix_timestamp_request(
             value=value,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -491,7 +491,7 @@ class QueryOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def unix_timestamp_array(  # pylint: disable=inconsistent-return-statements
@@ -520,16 +520,16 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_query_unix_timestamp_array_request(
+        _request = build_query_unix_timestamp_array_request(
             value=value,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -541,7 +541,7 @@ class QueryOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class PropertyOperations:
@@ -653,17 +653,17 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_property_default_request(
+        _request = build_property_default_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -776,17 +776,17 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_property_rfc3339_request(
+        _request = build_property_rfc3339_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -899,17 +899,17 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_property_rfc7231_request(
+        _request = build_property_rfc7231_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1026,17 +1026,17 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_property_unix_timestamp_request(
+        _request = build_property_unix_timestamp_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1154,17 +1154,17 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_property_unix_timestamp_array_request(
+        _request = build_property_unix_timestamp_array_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1230,16 +1230,16 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_header_default_request(
+        _request = build_header_default_request(
             value=value,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1251,7 +1251,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def rfc3339(  # pylint: disable=inconsistent-return-statements
@@ -1280,16 +1280,16 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_header_rfc3339_request(
+        _request = build_header_rfc3339_request(
             value=value,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1301,7 +1301,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def rfc7231(  # pylint: disable=inconsistent-return-statements
@@ -1330,16 +1330,16 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_header_rfc7231_request(
+        _request = build_header_rfc7231_request(
             value=value,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1351,7 +1351,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def unix_timestamp(  # pylint: disable=inconsistent-return-statements
@@ -1380,16 +1380,16 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_header_unix_timestamp_request(
+        _request = build_header_unix_timestamp_request(
             value=value,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1401,7 +1401,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def unix_timestamp_array(  # pylint: disable=inconsistent-return-statements
@@ -1430,16 +1430,16 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_header_unix_timestamp_array_request(
+        _request = build_header_unix_timestamp_array_request(
             value=value,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1451,7 +1451,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class ResponseHeaderOperations:
@@ -1494,15 +1494,15 @@ class ResponseHeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_response_header_default_request(
+        _request = build_response_header_default_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1517,7 +1517,7 @@ class ResponseHeaderOperations:
         response_headers["value"] = self._deserialize("rfc-1123", response.headers.get("value"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def rfc3339(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1542,15 +1542,15 @@ class ResponseHeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_response_header_rfc3339_request(
+        _request = build_response_header_rfc3339_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1565,7 +1565,7 @@ class ResponseHeaderOperations:
         response_headers["value"] = self._deserialize("iso-8601", response.headers.get("value"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def rfc7231(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1590,15 +1590,15 @@ class ResponseHeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_response_header_rfc7231_request(
+        _request = build_response_header_rfc7231_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1613,7 +1613,7 @@ class ResponseHeaderOperations:
         response_headers["value"] = self._deserialize("rfc-1123", response.headers.get("value"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
     def unix_timestamp(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1638,15 +1638,15 @@ class ResponseHeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_response_header_unix_timestamp_request(
+        _request = build_response_header_unix_timestamp_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1661,4 +1661,4 @@ class ResponseHeaderOperations:
         response_headers["value"] = self._deserialize("unix-time", response.headers.get("value"))
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore

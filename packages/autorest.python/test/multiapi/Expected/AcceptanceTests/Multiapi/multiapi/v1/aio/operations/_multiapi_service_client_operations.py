@@ -81,19 +81,19 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_test_one_request(
+        _request = build_test_one_request(
             id=id,
             message=message,
             api_version=api_version,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -104,7 +104,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     async def _test_lro_initial(
         self, product: Optional[Union[_models.Product, IO]] = None, **kwargs: Any
@@ -134,19 +134,19 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             else:
                 _json = None
 
-        request = build_test_lro_request(
+        _request = build_test_lro_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -161,9 +161,9 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             deserialized = self._deserialize("Product", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def begin_test_lro(
@@ -261,7 +261,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         def get_long_running_output(pipeline_response):
             deserialized = self._deserialize("Product", pipeline_response)
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
 
         if polling is True:
@@ -304,19 +304,19 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             _maxresults = test_lro_and_paging_options.maxresults
             _timeout = test_lro_and_paging_options.timeout
 
-        request = build_test_lro_and_paging_request(
+        _request = build_test_lro_and_paging_request(
             client_request_id=client_request_id,
             maxresults=_maxresults,
             timeout=_timeout,  # type: ignore
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -328,9 +328,9 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         deserialized = self._deserialize("PagingResult", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def begin_test_lro_and_paging(
@@ -381,15 +381,15 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
                     _maxresults = test_lro_and_paging_options.maxresults
                     _timeout = test_lro_and_paging_options.timeout
 
-                request = build_test_lro_and_paging_request(
+                _request = build_test_lro_and_paging_request(
                     client_request_id=client_request_id,
                     maxresults=_maxresults,
                     timeout=_timeout,  # type: ignore
                     headers=_headers,
                     params=_params,
                 )
-                request = _convert_request(request)
-                request.url = self._client.format_url(request.url)
+                _request = _convert_request(_request)
+                _request.url = self._client.format_url(_request.url)
 
             else:
                 # make call to next link with the client's api-version
@@ -401,13 +401,13 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
                     }
                 )
                 _next_request_params["api-version"] = self._config.api_version
-                request = HttpRequest(
+                _request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )
-                request = _convert_request(request)
-                request.url = self._client.format_url(request.url)
-                request.method = "GET"
-            return request
+                _request = _convert_request(_request)
+                _request.url = self._client.format_url(_request.url)
+                _request.method = "GET"
+            return _request
 
         async def extract_data(pipeline_response):
             deserialized = self._deserialize("PagingResult", pipeline_response)
@@ -417,11 +417,11 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             return deserialized.next_link or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -497,18 +497,18 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_test_different_calls_request(
+        _request = build_test_different_calls_request(
             greeting_in_english=greeting_in_english,
             api_version=api_version,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -519,4 +519,4 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

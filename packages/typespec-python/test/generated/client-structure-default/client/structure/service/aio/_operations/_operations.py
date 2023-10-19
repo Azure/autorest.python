@@ -58,7 +58,7 @@ class ServiceClientOperationsMixin(ServiceClientMixinABC):
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_service_one_request(
+        _request = build_service_one_request(
             headers=_headers,
             params=_params,
         )
@@ -66,11 +66,11 @@ class ServiceClientOperationsMixin(ServiceClientMixinABC):
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "client": self._serialize.url("self._config.client", self._config.client, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -82,7 +82,7 @@ class ServiceClientOperationsMixin(ServiceClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def two(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -107,7 +107,7 @@ class ServiceClientOperationsMixin(ServiceClientMixinABC):
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_service_two_request(
+        _request = build_service_two_request(
             headers=_headers,
             params=_params,
         )
@@ -115,11 +115,11 @@ class ServiceClientOperationsMixin(ServiceClientMixinABC):
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "client": self._serialize.url("self._config.client", self._config.client, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -131,7 +131,7 @@ class ServiceClientOperationsMixin(ServiceClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def three(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -156,7 +156,7 @@ class ServiceClientOperationsMixin(ServiceClientMixinABC):
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_service_three_request(
+        _request = build_service_three_request(
             headers=_headers,
             params=_params,
         )
@@ -164,11 +164,11 @@ class ServiceClientOperationsMixin(ServiceClientMixinABC):
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "client": self._serialize.url("self._config.client", self._config.client, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -180,7 +180,7 @@ class ServiceClientOperationsMixin(ServiceClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def four(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -205,7 +205,7 @@ class ServiceClientOperationsMixin(ServiceClientMixinABC):
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_service_four_request(
+        _request = build_service_four_request(
             headers=_headers,
             params=_params,
         )
@@ -213,11 +213,11 @@ class ServiceClientOperationsMixin(ServiceClientMixinABC):
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "client": self._serialize.url("self._config.client", self._config.client, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -229,7 +229,7 @@ class ServiceClientOperationsMixin(ServiceClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def five(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -254,7 +254,7 @@ class ServiceClientOperationsMixin(ServiceClientMixinABC):
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_service_five_request(
+        _request = build_service_five_request(
             headers=_headers,
             params=_params,
         )
@@ -262,11 +262,11 @@ class ServiceClientOperationsMixin(ServiceClientMixinABC):
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "client": self._serialize.url("self._config.client", self._config.client, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -278,7 +278,7 @@ class ServiceClientOperationsMixin(ServiceClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def six(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -303,7 +303,7 @@ class ServiceClientOperationsMixin(ServiceClientMixinABC):
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_service_six_request(
+        _request = build_service_six_request(
             headers=_headers,
             params=_params,
         )
@@ -311,11 +311,11 @@ class ServiceClientOperationsMixin(ServiceClientMixinABC):
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "client": self._serialize.url("self._config.client", self._config.client, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -327,4 +327,4 @@ class ServiceClientOperationsMixin(ServiceClientMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

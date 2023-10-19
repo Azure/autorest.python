@@ -1268,17 +1268,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_and_request(
+        _request = build_models_with_and_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1290,7 +1290,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def with_as(  # pylint: disable=inconsistent-return-statements
@@ -1384,17 +1384,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_as_request(
+        _request = build_models_with_as_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1406,7 +1406,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def with_assert(  # pylint: disable=inconsistent-return-statements
@@ -1500,17 +1500,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_assert_request(
+        _request = build_models_with_assert_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1522,7 +1522,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def with_async(  # pylint: disable=inconsistent-return-statements
@@ -1616,17 +1616,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_async_request(
+        _request = build_models_with_async_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1638,7 +1638,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def with_await(  # pylint: disable=inconsistent-return-statements
@@ -1732,17 +1732,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_await_request(
+        _request = build_models_with_await_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1754,7 +1754,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def with_break(  # pylint: disable=inconsistent-return-statements
@@ -1848,17 +1848,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_break_request(
+        _request = build_models_with_break_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1870,7 +1870,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def with_class(  # pylint: disable=inconsistent-return-statements
@@ -1964,17 +1964,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_class_request(
+        _request = build_models_with_class_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1986,7 +1986,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def with_constructor(  # pylint: disable=inconsistent-return-statements
@@ -2080,17 +2080,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_constructor_request(
+        _request = build_models_with_constructor_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2102,7 +2102,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def with_continue(  # pylint: disable=inconsistent-return-statements
@@ -2196,17 +2196,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_continue_request(
+        _request = build_models_with_continue_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2218,7 +2218,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def with_def(  # pylint: disable=inconsistent-return-statements
@@ -2312,17 +2312,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_def_request(
+        _request = build_models_with_def_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2334,7 +2334,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def with_del(  # pylint: disable=inconsistent-return-statements
@@ -2428,17 +2428,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_del_request(
+        _request = build_models_with_del_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2450,7 +2450,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def with_elif(  # pylint: disable=inconsistent-return-statements
@@ -2544,17 +2544,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_elif_request(
+        _request = build_models_with_elif_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2566,7 +2566,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def with_else(  # pylint: disable=inconsistent-return-statements
@@ -2660,17 +2660,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_else_request(
+        _request = build_models_with_else_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2682,7 +2682,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def with_except(  # pylint: disable=inconsistent-return-statements
@@ -2776,17 +2776,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_except_request(
+        _request = build_models_with_except_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2798,7 +2798,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def with_exec(  # pylint: disable=inconsistent-return-statements
@@ -2892,17 +2892,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_exec_request(
+        _request = build_models_with_exec_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2914,7 +2914,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def with_finally(  # pylint: disable=inconsistent-return-statements
@@ -3008,17 +3008,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_finally_request(
+        _request = build_models_with_finally_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3030,7 +3030,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def with_for(  # pylint: disable=inconsistent-return-statements
@@ -3124,17 +3124,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_for_request(
+        _request = build_models_with_for_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3146,7 +3146,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def with_from(  # pylint: disable=inconsistent-return-statements
@@ -3240,17 +3240,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_from_request(
+        _request = build_models_with_from_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3262,7 +3262,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def with_global(  # pylint: disable=inconsistent-return-statements
@@ -3356,17 +3356,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_global_request(
+        _request = build_models_with_global_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3378,7 +3378,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def with_if(  # pylint: disable=inconsistent-return-statements
@@ -3472,17 +3472,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_if_request(
+        _request = build_models_with_if_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3494,7 +3494,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def with_import(  # pylint: disable=inconsistent-return-statements
@@ -3588,17 +3588,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_import_request(
+        _request = build_models_with_import_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3610,7 +3610,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def with_in(  # pylint: disable=inconsistent-return-statements
@@ -3704,17 +3704,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_in_request(
+        _request = build_models_with_in_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3726,7 +3726,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def with_is(  # pylint: disable=inconsistent-return-statements
@@ -3820,17 +3820,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_is_request(
+        _request = build_models_with_is_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3842,7 +3842,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def with_lambda(  # pylint: disable=inconsistent-return-statements
@@ -3936,17 +3936,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_lambda_request(
+        _request = build_models_with_lambda_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3958,7 +3958,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def with_not(  # pylint: disable=inconsistent-return-statements
@@ -4052,17 +4052,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_not_request(
+        _request = build_models_with_not_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4074,7 +4074,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def with_or(  # pylint: disable=inconsistent-return-statements
@@ -4168,17 +4168,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_or_request(
+        _request = build_models_with_or_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4190,7 +4190,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def with_pass(  # pylint: disable=inconsistent-return-statements
@@ -4284,17 +4284,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_pass_request(
+        _request = build_models_with_pass_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4306,7 +4306,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def with_raise(  # pylint: disable=inconsistent-return-statements
@@ -4400,17 +4400,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_raise_request(
+        _request = build_models_with_raise_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4422,7 +4422,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def with_return(  # pylint: disable=inconsistent-return-statements
@@ -4516,17 +4516,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_return_request(
+        _request = build_models_with_return_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4538,7 +4538,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def with_try(  # pylint: disable=inconsistent-return-statements
@@ -4632,17 +4632,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_try_request(
+        _request = build_models_with_try_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4654,7 +4654,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def with_while(  # pylint: disable=inconsistent-return-statements
@@ -4748,17 +4748,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_while_request(
+        _request = build_models_with_while_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4770,7 +4770,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def with_with(  # pylint: disable=inconsistent-return-statements
@@ -4864,17 +4864,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_with_request(
+        _request = build_models_with_with_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -4886,7 +4886,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def with_yield(  # pylint: disable=inconsistent-return-statements
@@ -4980,17 +4980,17 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_models_with_yield_request(
+        _request = build_models_with_yield_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5002,7 +5002,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class ModelPropertiesOperations:
@@ -5114,17 +5114,17 @@ class ModelPropertiesOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_model_properties_same_as_model_request(
+        _request = build_model_properties_same_as_model_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5136,7 +5136,7 @@ class ModelPropertiesOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class Operations:  # pylint: disable=too-many-public-methods
@@ -5179,15 +5179,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_and_method_request(
+        _request = build_operations_and_method_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5199,7 +5199,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def as_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -5224,15 +5224,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_as_method_request(
+        _request = build_operations_as_method_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5244,7 +5244,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def assert_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -5269,15 +5269,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_assert_method_request(
+        _request = build_operations_assert_method_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5289,7 +5289,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def async_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -5314,15 +5314,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_async_method_request(
+        _request = build_operations_async_method_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5334,7 +5334,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def await_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -5359,15 +5359,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_await_method_request(
+        _request = build_operations_await_method_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5379,7 +5379,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def break_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -5404,15 +5404,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_break_method_request(
+        _request = build_operations_break_method_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5424,7 +5424,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def class_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -5449,15 +5449,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_class_method_request(
+        _request = build_operations_class_method_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5469,7 +5469,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def constructor(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -5494,15 +5494,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_constructor_request(
+        _request = build_operations_constructor_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5514,7 +5514,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def continue_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -5539,15 +5539,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_continue_method_request(
+        _request = build_operations_continue_method_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5559,7 +5559,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def def_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -5584,15 +5584,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_def_method_request(
+        _request = build_operations_def_method_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5604,7 +5604,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def del_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -5629,15 +5629,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_del_method_request(
+        _request = build_operations_del_method_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5649,7 +5649,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def elif_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -5674,15 +5674,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_elif_method_request(
+        _request = build_operations_elif_method_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5694,7 +5694,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def else_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -5719,15 +5719,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_else_method_request(
+        _request = build_operations_else_method_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5739,7 +5739,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def except_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -5764,15 +5764,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_except_method_request(
+        _request = build_operations_except_method_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5784,7 +5784,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def exec_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -5809,15 +5809,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_exec_method_request(
+        _request = build_operations_exec_method_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5829,7 +5829,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def finally_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -5854,15 +5854,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_finally_method_request(
+        _request = build_operations_finally_method_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5874,7 +5874,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def for_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -5899,15 +5899,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_for_method_request(
+        _request = build_operations_for_method_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5919,7 +5919,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def from_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -5944,15 +5944,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_from_method_request(
+        _request = build_operations_from_method_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -5964,7 +5964,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def global_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -5989,15 +5989,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_global_method_request(
+        _request = build_operations_global_method_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -6009,7 +6009,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def if_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -6034,15 +6034,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_if_method_request(
+        _request = build_operations_if_method_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -6054,7 +6054,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def import_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -6079,15 +6079,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_import_method_request(
+        _request = build_operations_import_method_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -6099,7 +6099,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def in_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -6124,15 +6124,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_in_method_request(
+        _request = build_operations_in_method_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -6144,7 +6144,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def is_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -6169,15 +6169,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_is_method_request(
+        _request = build_operations_is_method_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -6189,7 +6189,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def lambda_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -6214,15 +6214,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_lambda_method_request(
+        _request = build_operations_lambda_method_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -6234,7 +6234,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def not_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -6259,15 +6259,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_not_method_request(
+        _request = build_operations_not_method_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -6279,7 +6279,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def or_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -6304,15 +6304,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_or_method_request(
+        _request = build_operations_or_method_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -6324,7 +6324,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def pass_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -6349,15 +6349,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_pass_method_request(
+        _request = build_operations_pass_method_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -6369,7 +6369,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def raise_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -6394,15 +6394,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_raise_method_request(
+        _request = build_operations_raise_method_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -6414,7 +6414,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def return_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -6439,15 +6439,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_return_method_request(
+        _request = build_operations_return_method_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -6459,7 +6459,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def try_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -6484,15 +6484,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_try_method_request(
+        _request = build_operations_try_method_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -6504,7 +6504,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def while_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -6529,15 +6529,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_while_method_request(
+        _request = build_operations_while_method_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -6549,7 +6549,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -6574,15 +6574,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_with_method_request(
+        _request = build_operations_with_method_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -6594,7 +6594,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def yield_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -6619,15 +6619,15 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_operations_yield_method_request(
+        _request = build_operations_yield_method_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -6639,7 +6639,7 @@ class Operations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class ParametersOperations:  # pylint: disable=too-many-public-methods
@@ -6684,16 +6684,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_and_request(
+        _request = build_parameters_with_and_request(
             and_parameter=and_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -6705,7 +6705,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_as(self, *, as_parameter: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -6732,16 +6732,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_as_request(
+        _request = build_parameters_with_as_request(
             as_parameter=as_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -6753,7 +6753,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_assert(  # pylint: disable=inconsistent-return-statements
@@ -6782,16 +6782,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_assert_request(
+        _request = build_parameters_with_assert_request(
             assert_parameter=assert_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -6803,7 +6803,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_async(  # pylint: disable=inconsistent-return-statements
@@ -6832,16 +6832,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_async_request(
+        _request = build_parameters_with_async_request(
             async_parameter=async_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -6853,7 +6853,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_await(  # pylint: disable=inconsistent-return-statements
@@ -6882,16 +6882,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_await_request(
+        _request = build_parameters_with_await_request(
             await_parameter=await_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -6903,7 +6903,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_break(  # pylint: disable=inconsistent-return-statements
@@ -6932,16 +6932,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_break_request(
+        _request = build_parameters_with_break_request(
             break_parameter=break_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -6953,7 +6953,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_class(  # pylint: disable=inconsistent-return-statements
@@ -6982,16 +6982,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_class_request(
+        _request = build_parameters_with_class_request(
             class_parameter=class_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -7003,7 +7003,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_constructor(  # pylint: disable=inconsistent-return-statements
@@ -7032,16 +7032,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_constructor_request(
+        _request = build_parameters_with_constructor_request(
             constructor=constructor,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -7053,7 +7053,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_continue(  # pylint: disable=inconsistent-return-statements
@@ -7082,16 +7082,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_continue_request(
+        _request = build_parameters_with_continue_request(
             continue_parameter=continue_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -7103,7 +7103,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_def(self, *, def_parameter: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -7130,16 +7130,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_def_request(
+        _request = build_parameters_with_def_request(
             def_parameter=def_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -7151,7 +7151,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_del(self, *, del_parameter: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -7178,16 +7178,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_del_request(
+        _request = build_parameters_with_del_request(
             del_parameter=del_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -7199,7 +7199,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_elif(  # pylint: disable=inconsistent-return-statements
@@ -7228,16 +7228,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_elif_request(
+        _request = build_parameters_with_elif_request(
             elif_parameter=elif_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -7249,7 +7249,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_else(  # pylint: disable=inconsistent-return-statements
@@ -7278,16 +7278,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_else_request(
+        _request = build_parameters_with_else_request(
             else_parameter=else_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -7299,7 +7299,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_except(  # pylint: disable=inconsistent-return-statements
@@ -7328,16 +7328,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_except_request(
+        _request = build_parameters_with_except_request(
             except_parameter=except_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -7349,7 +7349,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_exec(  # pylint: disable=inconsistent-return-statements
@@ -7378,16 +7378,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_exec_request(
+        _request = build_parameters_with_exec_request(
             exec_parameter=exec_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -7399,7 +7399,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_finally(  # pylint: disable=inconsistent-return-statements
@@ -7428,16 +7428,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_finally_request(
+        _request = build_parameters_with_finally_request(
             finally_parameter=finally_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -7449,7 +7449,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_for(self, *, for_parameter: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -7476,16 +7476,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_for_request(
+        _request = build_parameters_with_for_request(
             for_parameter=for_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -7497,7 +7497,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_from(  # pylint: disable=inconsistent-return-statements
@@ -7526,16 +7526,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_from_request(
+        _request = build_parameters_with_from_request(
             from_parameter=from_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -7547,7 +7547,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_global(  # pylint: disable=inconsistent-return-statements
@@ -7576,16 +7576,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_global_request(
+        _request = build_parameters_with_global_request(
             global_parameter=global_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -7597,7 +7597,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_if(self, *, if_parameter: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -7624,16 +7624,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_if_request(
+        _request = build_parameters_with_if_request(
             if_parameter=if_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -7645,7 +7645,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_import(  # pylint: disable=inconsistent-return-statements
@@ -7674,16 +7674,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_import_request(
+        _request = build_parameters_with_import_request(
             import_parameter=import_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -7695,7 +7695,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_in(self, *, in_parameter: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -7722,16 +7722,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_in_request(
+        _request = build_parameters_with_in_request(
             in_parameter=in_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -7743,7 +7743,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_is(self, *, is_parameter: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -7770,16 +7770,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_is_request(
+        _request = build_parameters_with_is_request(
             is_parameter=is_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -7791,7 +7791,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_lambda(  # pylint: disable=inconsistent-return-statements
@@ -7820,16 +7820,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_lambda_request(
+        _request = build_parameters_with_lambda_request(
             lambda_parameter=lambda_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -7841,7 +7841,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_not(self, *, not_parameter: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -7868,16 +7868,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_not_request(
+        _request = build_parameters_with_not_request(
             not_parameter=not_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -7889,7 +7889,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_or(self, *, or_parameter: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -7916,16 +7916,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_or_request(
+        _request = build_parameters_with_or_request(
             or_parameter=or_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -7937,7 +7937,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_pass(  # pylint: disable=inconsistent-return-statements
@@ -7966,16 +7966,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_pass_request(
+        _request = build_parameters_with_pass_request(
             pass_parameter=pass_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -7987,7 +7987,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_raise(  # pylint: disable=inconsistent-return-statements
@@ -8016,16 +8016,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_raise_request(
+        _request = build_parameters_with_raise_request(
             raise_parameter=raise_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -8037,7 +8037,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_return(  # pylint: disable=inconsistent-return-statements
@@ -8066,16 +8066,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_return_request(
+        _request = build_parameters_with_return_request(
             return_parameter=return_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -8087,7 +8087,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_try(self, *, try_parameter: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -8114,16 +8114,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_try_request(
+        _request = build_parameters_with_try_request(
             try_parameter=try_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -8135,7 +8135,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_while(  # pylint: disable=inconsistent-return-statements
@@ -8164,16 +8164,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_while_request(
+        _request = build_parameters_with_while_request(
             while_parameter=while_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -8185,7 +8185,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_with(  # pylint: disable=inconsistent-return-statements
@@ -8214,16 +8214,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_with_request(
+        _request = build_parameters_with_with_request(
             with_parameter=with_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -8235,7 +8235,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_yield(  # pylint: disable=inconsistent-return-statements
@@ -8264,16 +8264,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_yield_request(
+        _request = build_parameters_with_yield_request(
             yield_parameter=yield_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -8285,7 +8285,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def with_cancellation_token(  # pylint: disable=inconsistent-return-statements
@@ -8314,16 +8314,16 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_parameters_with_cancellation_token_request(
+        _request = build_parameters_with_cancellation_token_request(
             cancellation_token=cancellation_token,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -8335,4 +8335,4 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

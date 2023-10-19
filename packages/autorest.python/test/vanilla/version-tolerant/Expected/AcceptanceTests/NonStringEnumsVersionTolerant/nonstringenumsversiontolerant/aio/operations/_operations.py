@@ -79,17 +79,17 @@ class IntOperations:
         else:
             _json = None
 
-        request = build_int_put_request(
+        _request = build_int_put_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -106,9 +106,9 @@ class IntOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, cast(str, deserialized), {})  # type: ignore
 
-        return cast(str, deserialized)
+        return cast(str, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def get(self, **kwargs: Any) -> int:
@@ -131,15 +131,15 @@ class IntOperations:
 
         cls: ClsType[int] = kwargs.pop("cls", None)
 
-        request = build_int_get_request(
+        _request = build_int_get_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -156,9 +156,9 @@ class IntOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(int, deserialized), {})
+            return cls(pipeline_response, cast(int, deserialized), {})  # type: ignore
 
-        return cast(int, deserialized)
+        return cast(int, deserialized)  # type: ignore
 
 
 class FloatOperations:
@@ -208,17 +208,17 @@ class FloatOperations:
         else:
             _json = None
 
-        request = build_float_put_request(
+        _request = build_float_put_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -235,9 +235,9 @@ class FloatOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(str, deserialized), {})
+            return cls(pipeline_response, cast(str, deserialized), {})  # type: ignore
 
-        return cast(str, deserialized)
+        return cast(str, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def get(self, **kwargs: Any) -> float:
@@ -260,15 +260,15 @@ class FloatOperations:
 
         cls: ClsType[float] = kwargs.pop("cls", None)
 
-        request = build_float_get_request(
+        _request = build_float_get_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -285,6 +285,6 @@ class FloatOperations:
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(float, deserialized), {})
+            return cls(pipeline_response, cast(float, deserialized), {})  # type: ignore
 
-        return cast(float, deserialized)
+        return cast(float, deserialized)  # type: ignore

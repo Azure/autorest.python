@@ -8,6 +8,19 @@ import re
 import argparse
 
 
+def update_enum_value(
+    name: str, value: Any, description: str, enum_type: Dict[str, Any]
+) -> Dict[str, Any]:
+    return {
+        "name": name,
+        "type": "enumvalue",
+        "value": value,
+        "description": description,
+        "enumType": enum_type,
+        "valueType": enum_type["valueType"],
+    }
+
+
 def to_snake_case(name: str) -> str:
     def replace_upper_characters(m) -> str:
         match_str = m.group().lower()

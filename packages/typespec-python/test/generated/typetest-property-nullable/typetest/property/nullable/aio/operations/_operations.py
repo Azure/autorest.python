@@ -102,15 +102,15 @@ class StringOperations:
 
         cls: ClsType[_models.StringProperty] = kwargs.pop("cls", None)
 
-        request = build_string_get_non_null_request(
+        _request = build_string_get_non_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -154,15 +154,15 @@ class StringOperations:
 
         cls: ClsType[_models.StringProperty] = kwargs.pop("cls", None)
 
-        request = build_string_get_null_request(
+        _request = build_string_get_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -274,17 +274,17 @@ class StringOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_string_patch_non_null_request(
+        _request = build_string_patch_non_null_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -296,7 +296,7 @@ class StringOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def patch_null(  # pylint: disable=inconsistent-return-statements
@@ -389,17 +389,17 @@ class StringOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_string_patch_null_request(
+        _request = build_string_patch_null_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -411,7 +411,7 @@ class StringOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class BytesOperations:
@@ -454,15 +454,15 @@ class BytesOperations:
 
         cls: ClsType[_models.BytesProperty] = kwargs.pop("cls", None)
 
-        request = build_bytes_get_non_null_request(
+        _request = build_bytes_get_non_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -506,15 +506,15 @@ class BytesOperations:
 
         cls: ClsType[_models.BytesProperty] = kwargs.pop("cls", None)
 
-        request = build_bytes_get_null_request(
+        _request = build_bytes_get_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -626,17 +626,17 @@ class BytesOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_bytes_patch_non_null_request(
+        _request = build_bytes_patch_non_null_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -648,7 +648,7 @@ class BytesOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def patch_null(  # pylint: disable=inconsistent-return-statements
@@ -741,17 +741,17 @@ class BytesOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_bytes_patch_null_request(
+        _request = build_bytes_patch_null_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -763,7 +763,7 @@ class BytesOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class DatetimeOperations:
@@ -806,15 +806,15 @@ class DatetimeOperations:
 
         cls: ClsType[_models.DatetimeProperty] = kwargs.pop("cls", None)
 
-        request = build_datetime_get_non_null_request(
+        _request = build_datetime_get_non_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -858,15 +858,15 @@ class DatetimeOperations:
 
         cls: ClsType[_models.DatetimeProperty] = kwargs.pop("cls", None)
 
-        request = build_datetime_get_null_request(
+        _request = build_datetime_get_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -978,17 +978,17 @@ class DatetimeOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_datetime_patch_non_null_request(
+        _request = build_datetime_patch_non_null_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1000,7 +1000,7 @@ class DatetimeOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def patch_null(  # pylint: disable=inconsistent-return-statements
@@ -1093,17 +1093,17 @@ class DatetimeOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_datetime_patch_null_request(
+        _request = build_datetime_patch_null_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1115,7 +1115,7 @@ class DatetimeOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class DurationOperations:
@@ -1158,15 +1158,15 @@ class DurationOperations:
 
         cls: ClsType[_models.DurationProperty] = kwargs.pop("cls", None)
 
-        request = build_duration_get_non_null_request(
+        _request = build_duration_get_non_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1210,15 +1210,15 @@ class DurationOperations:
 
         cls: ClsType[_models.DurationProperty] = kwargs.pop("cls", None)
 
-        request = build_duration_get_null_request(
+        _request = build_duration_get_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1330,17 +1330,17 @@ class DurationOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_duration_patch_non_null_request(
+        _request = build_duration_patch_non_null_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1352,7 +1352,7 @@ class DurationOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def patch_null(  # pylint: disable=inconsistent-return-statements
@@ -1445,17 +1445,17 @@ class DurationOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_duration_patch_null_request(
+        _request = build_duration_patch_null_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1467,7 +1467,7 @@ class DurationOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class CollectionsByteOperations:
@@ -1510,15 +1510,15 @@ class CollectionsByteOperations:
 
         cls: ClsType[_models.CollectionsByteProperty] = kwargs.pop("cls", None)
 
-        request = build_collections_byte_get_non_null_request(
+        _request = build_collections_byte_get_non_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1562,15 +1562,15 @@ class CollectionsByteOperations:
 
         cls: ClsType[_models.CollectionsByteProperty] = kwargs.pop("cls", None)
 
-        request = build_collections_byte_get_null_request(
+        _request = build_collections_byte_get_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1686,17 +1686,17 @@ class CollectionsByteOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_collections_byte_patch_non_null_request(
+        _request = build_collections_byte_patch_non_null_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1708,7 +1708,7 @@ class CollectionsByteOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def patch_null(  # pylint: disable=inconsistent-return-statements
@@ -1805,17 +1805,17 @@ class CollectionsByteOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_collections_byte_patch_null_request(
+        _request = build_collections_byte_patch_null_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1827,7 +1827,7 @@ class CollectionsByteOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class CollectionsModelOperations:
@@ -1871,15 +1871,15 @@ class CollectionsModelOperations:
 
         cls: ClsType[_models.CollectionsModelProperty] = kwargs.pop("cls", None)
 
-        request = build_collections_model_get_non_null_request(
+        _request = build_collections_model_get_non_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1924,15 +1924,15 @@ class CollectionsModelOperations:
 
         cls: ClsType[_models.CollectionsModelProperty] = kwargs.pop("cls", None)
 
-        request = build_collections_model_get_null_request(
+        _request = build_collections_model_get_null_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2048,17 +2048,17 @@ class CollectionsModelOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_collections_model_patch_non_null_request(
+        _request = build_collections_model_patch_non_null_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2070,7 +2070,7 @@ class CollectionsModelOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     async def patch_null(  # pylint: disable=inconsistent-return-statements
@@ -2167,17 +2167,17 @@ class CollectionsModelOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_collections_model_patch_null_request(
+        _request = build_collections_model_patch_null_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2189,4 +2189,4 @@ class CollectionsModelOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

@@ -181,18 +181,18 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
 
         _content = content
 
-        request = build_operation_with_content_param_request(
+        _request = build_operation_with_content_param_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -204,9 +204,9 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def operation_with_json_param(self, json: Any, **kwargs: Any) -> JSON:
@@ -235,18 +235,18 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
 
         _json = self._serialize.body(json, "object")
 
-        request = build_operation_with_json_param_request(
+        _request = build_operation_with_json_param_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -258,9 +258,9 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def operation_with_data_param(self, data: str, world: str, **kwargs: Any) -> JSON:
@@ -297,18 +297,18 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
             "world": world,
         }
 
-        request = build_operation_with_data_param_request(
+        _request = build_operation_with_data_param_request(
             content_type=content_type,
             data=_data,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -320,9 +320,9 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def operation_with_files_param(self, files: IO, file_name: str, **kwargs: Any) -> JSON:
@@ -357,18 +357,18 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
             "fileName": file_name,
         }
 
-        request = build_operation_with_files_param_request(
+        _request = build_operation_with_files_param_request(
             content_type=content_type,
             files=_files,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request, _files)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request, _files)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -380,9 +380,9 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def operation_with_url(
@@ -417,19 +417,19 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_operation_with_url_request(
+        _request = build_operation_with_url_request(
             url=url,
             header_parameters=header_parameters,
             query_parameters=query_parameters,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -441,9 +441,9 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def reserved_enum(self, enum_parameter: Union[str, _models.MyEnum], **kwargs: Any) -> JSON:
@@ -470,17 +470,17 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_reserved_enum_request(
+        _request = build_reserved_enum_request(
             enum_parameter=enum_parameter,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -492,6 +492,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         deserialized = self._deserialize("object", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
