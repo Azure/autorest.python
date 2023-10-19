@@ -90,6 +90,7 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
             "Can not set --unbranded=true and --tracing=true at the same time."
         )
 
+
 _LOGGER = logging.getLogger(__name__)
 
 
