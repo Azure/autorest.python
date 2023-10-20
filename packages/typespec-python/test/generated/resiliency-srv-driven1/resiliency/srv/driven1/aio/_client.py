@@ -10,6 +10,7 @@ from copy import deepcopy
 from typing import Any, Awaitable
 
 from azure.core import AsyncPipelineClient
+from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
@@ -23,6 +24,8 @@ class ResiliencyServiceDrivenClient(
     """Test that we can grow up a service spec and service deployment into a multi-versioned service
     with full client support.
 
+    :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
+    :type endpoint: str
     :param service_deployment_version: Pass in either 'v1' or 'v2'. This represents a version of
      the service deployment in history. 'v1' is for the deployment when the service had only one api
      version. 'v2' is for the deployment when the service had api-versions 'v1' and 'v2'. Required.
@@ -34,13 +37,30 @@ class ResiliencyServiceDrivenClient(
     """
 
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
-        self, service_deployment_version: str, **kwargs: Any
+        self, endpoint: str, service_deployment_version: str, **kwargs: Any
     ) -> None:
-        _endpoint = "http://localhost:3000/resiliency/service-driven/client:v1/service:{serviceDeploymentVersion}/api-version:{apiVersion}"  # pylint: disable=line-too-long
+        _endpoint = "{endpoint}/resiliency/service-driven/client:v1/service:{serviceDeploymentVersion}/api-version:{apiVersion}"  # pylint: disable=line-too-long
         self._config = ResiliencyServiceDrivenClientConfiguration(
-            service_deployment_version=service_deployment_version, **kwargs
+            endpoint=endpoint, service_deployment_version=service_deployment_version, **kwargs
         )
-        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=_endpoint, config=self._config, **kwargs)
+        _policies = kwargs.pop("policies", None)
+        if _policies is None:
+            _policies = [
+                policies.RequestIdPolicy(**kwargs),
+                self._config.headers_policy,
+                self._config.user_agent_policy,
+                self._config.proxy_policy,
+                policies.ContentDecodePolicy(**kwargs),
+                self._config.redirect_policy,
+                self._config.retry_policy,
+                self._config.authentication_policy,
+                self._config.custom_hook_policy,
+                self._config.logging_policy,
+                policies.DistributedTracingPolicy(**kwargs),
+                policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
+                self._config.http_logging_policy,
+            ]
+        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=_endpoint, policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
@@ -66,6 +86,7 @@ class ResiliencyServiceDrivenClient(
 
         request_copy = deepcopy(request)
         path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "serviceDeploymentVersion": self._serialize.url(
                 "self._config.service_deployment_version",
                 self._config.service_deployment_version,
@@ -78,7 +99,7 @@ class ResiliencyServiceDrivenClient(
         }
 
         request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
-        return self._client.send_request(request_copy, **kwargs)
+        return self._client.send_request(request_copy, **kwargs)  # type: ignore
 
     async def close(self) -> None:
         await self._client.close()

@@ -3,14 +3,13 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import List, cast
+from typing import List
 from abc import ABC, abstractmethod
 
 from jinja2 import Environment
-from ..models import ModelType, CodeModel, Property
+from ..models import ModelType, CodeModel, Property, ConstantType, EnumValue
 from ..models.imports import FileImport, TypingSection, MsrestImportType, ImportType
 from .import_serializer import FileImportSerializer
-from ..models.constant_type import ConstantType
 
 
 def _documentation_string(
@@ -260,14 +259,14 @@ class DpgModelSerializer(_ModelSerializer):
             args.append(f"visibility=[{v_list}]")
         if prop.client_default_value is not None:
             args.append(f"default={prop.client_default_value_declaration}")
-        if hasattr(prop.type, "format") and prop.type.format:  # type: ignore
-            args.append(f'format="{prop.type.format}"')  # type: ignore
+        if hasattr(prop.type, "encode") and prop.type.encode:  # type: ignore
+            args.append(f'format="{prop.type.encode}"')  # type: ignore
 
         field = "rest_discriminator" if prop.is_discriminator else "rest_field"
         type_ignore = (
             prop.is_discriminator
-            and prop.is_discriminator
-            and cast(ConstantType, prop.type).value
+            and isinstance(prop.type, (ConstantType, EnumValue))
+            and prop.type.value
         )
         return (
             f"{prop.client_name}: {prop.type_annotation()} ="
@@ -280,7 +279,7 @@ class DpgModelSerializer(_ModelSerializer):
             if prop.constant or prop.is_discriminator:
                 init_args.append(
                     f"self.{prop.client_name}: {prop.type_annotation()} = "
-                    f"{cast(ConstantType, prop.type).get_declaration()}"
+                    f"{prop.get_declaration()}"
                 )
         return init_args
 

@@ -28,16 +28,16 @@ PLUGIN = (PLUGIN_DIR / "dist/src/index.js").as_posix()
 CADL_RANCH_DIR = PLUGIN_DIR / Path("node_modules/@azure-tools/cadl-ranch-specs/http")
 LOCAL_SPECIFICATION_DIR = PLUGIN_DIR / Path("test/specification")
 ALL_SPECIFICATION_DIRS = [CADL_RANCH_DIR, LOCAL_SPECIFICATION_DIR]
-SKIP_FOLDERS = ["type/model/inheritance/enum-discriminator"]
+SKIP_FOLDERS = []
 EMITTER_OPTIONS = {
     "resiliency/srv-driven/old.tsp": {
         "package-name": "resiliency-srv-driven1",
-        "package-mode": "dataplane",
+        "package-mode": "azure-dataplane",
         "package-pprint-name": "ResiliencySrvDriven1",
     },
     "resiliency/srv-driven": {
         "package-name": "resiliency-srv-driven2",
-        "package-mode": "dataplane",
+        "package-mode": "azure-dataplane",
         "package-pprint-name": "ResiliencySrvDriven2",
     },
     "authentication/http/custom": {
@@ -86,6 +86,9 @@ EMITTER_OPTIONS = {
     },
     "type/property/optionality": {
         "package-name": "typetest-property-optional",
+    },
+    "type/scalar": {
+        "package-name": "typetest-scalar",
     },
     "type/property/value-types": {
         "package-name": "typetest-property-valuetypes",

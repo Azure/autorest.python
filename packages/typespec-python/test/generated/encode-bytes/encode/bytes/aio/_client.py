@@ -10,11 +10,18 @@ from copy import deepcopy
 from typing import Any, Awaitable
 
 from azure.core import AsyncPipelineClient
+from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
 from ._configuration import BytesClientConfiguration
-from .operations import HeaderOperations, PropertyOperations, QueryOperations
+from .operations import (
+    HeaderOperations,
+    PropertyOperations,
+    QueryOperations,
+    RequestBodyOperations,
+    ResponseBodyOperations,
+)
 
 
 class BytesClient:  # pylint: disable=client-accepts-api-version-keyword
@@ -26,6 +33,10 @@ class BytesClient:  # pylint: disable=client-accepts-api-version-keyword
     :vartype property: encode.bytes.aio.operations.PropertyOperations
     :ivar header: HeaderOperations operations
     :vartype header: encode.bytes.aio.operations.HeaderOperations
+    :ivar request_body: RequestBodyOperations operations
+    :vartype request_body: encode.bytes.aio.operations.RequestBodyOperations
+    :ivar response_body: ResponseBodyOperations operations
+    :vartype response_body: encode.bytes.aio.operations.ResponseBodyOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -34,7 +45,24 @@ class BytesClient:  # pylint: disable=client-accepts-api-version-keyword
         self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = BytesClientConfiguration(**kwargs)
-        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=endpoint, config=self._config, **kwargs)
+        _policies = kwargs.pop("policies", None)
+        if _policies is None:
+            _policies = [
+                policies.RequestIdPolicy(**kwargs),
+                self._config.headers_policy,
+                self._config.user_agent_policy,
+                self._config.proxy_policy,
+                policies.ContentDecodePolicy(**kwargs),
+                self._config.redirect_policy,
+                self._config.retry_policy,
+                self._config.authentication_policy,
+                self._config.custom_hook_policy,
+                self._config.logging_policy,
+                policies.DistributedTracingPolicy(**kwargs),
+                policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
+                self._config.http_logging_policy,
+            ]
+        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=endpoint, policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
@@ -42,6 +70,8 @@ class BytesClient:  # pylint: disable=client-accepts-api-version-keyword
         self.query = QueryOperations(self._client, self._config, self._serialize, self._deserialize)
         self.property = PropertyOperations(self._client, self._config, self._serialize, self._deserialize)
         self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.request_body = RequestBodyOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.response_body = ResponseBodyOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, **kwargs: Any) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
@@ -63,7 +93,7 @@ class BytesClient:  # pylint: disable=client-accepts-api-version-keyword
 
         request_copy = deepcopy(request)
         request_copy.url = self._client.format_url(request_copy.url)
-        return self._client.send_request(request_copy, **kwargs)
+        return self._client.send_request(request_copy, **kwargs)  # type: ignore
 
     async def close(self) -> None:
         await self._client.close()

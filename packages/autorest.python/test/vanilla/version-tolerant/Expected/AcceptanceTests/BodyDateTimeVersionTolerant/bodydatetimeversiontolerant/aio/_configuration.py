@@ -8,15 +8,12 @@
 
 from typing import Any
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from .._version import VERSION
 
 
-class AutoRestDateTimeTestServiceConfiguration(  # pylint: disable=too-many-instance-attributes,name-too-long
-    Configuration
-):
+class AutoRestDateTimeTestServiceConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for AutoRestDateTimeTestService.
 
     Note that all parameters used to create this instance are saved as instance
@@ -24,9 +21,9 @@ class AutoRestDateTimeTestServiceConfiguration(  # pylint: disable=too-many-inst
     """
 
     def __init__(self, **kwargs: Any) -> None:
-        super(AutoRestDateTimeTestServiceConfiguration, self).__init__(**kwargs)
 
         kwargs.setdefault("sdk_moniker", "autorestdatetimetestservice/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

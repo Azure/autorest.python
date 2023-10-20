@@ -10,14 +10,13 @@
 # --------------------------------------------------------------------------
 from typing import Any
 
-from azure.core.configuration import Configuration
 from azure.core.credentials import AzureKeyCredential
 from azure.core.pipeline import policies
 from azure.mgmt.core.policies import ARMChallengeAuthenticationPolicy, ARMHttpLoggingPolicy
 
 from ._version import VERSION
 
-class MultiapiServiceClientConfiguration(Configuration):
+class MultiapiServiceClientConfiguration:
     """Configuration for MultiapiServiceClient.
 
     Note that all parameters used to create this instance are saved as instance
@@ -34,10 +33,10 @@ class MultiapiServiceClientConfiguration(Configuration):
     ):
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
-        super(MultiapiServiceClientConfiguration, self).__init__(**kwargs)
 
         self.credential = credential
         kwargs.setdefault('sdk_moniker', 'multiapicredentialdefaultpolicy/{}'.format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(

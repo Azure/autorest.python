@@ -8,20 +8,19 @@
 
 from typing import Any
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from .._version import VERSION
 
 
-class ResiliencyServiceDrivenClientConfiguration(  # pylint: disable=too-many-instance-attributes,name-too-long
-    Configuration
-):
+class ResiliencyServiceDrivenClientConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for ResiliencyServiceDrivenClient.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
+    :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
+    :type endpoint: str
     :param service_deployment_version: Pass in either 'v1' or 'v2'. This represents a version of
      the service deployment in history. 'v1' is for the deployment when the service had only one api
      version. 'v2' is for the deployment when the service had api-versions 'v1' and 'v2'. Required.
@@ -32,16 +31,19 @@ class ResiliencyServiceDrivenClientConfiguration(  # pylint: disable=too-many-in
     :paramtype api_version: str
     """
 
-    def __init__(self, service_deployment_version: str, **kwargs: Any) -> None:
-        super(ResiliencyServiceDrivenClientConfiguration, self).__init__(**kwargs)
+    def __init__(self, endpoint: str, service_deployment_version: str, **kwargs: Any) -> None:
         api_version: str = kwargs.pop("api_version", "v1")
 
+        if endpoint is None:
+            raise ValueError("Parameter 'endpoint' must not be None.")
         if service_deployment_version is None:
             raise ValueError("Parameter 'service_deployment_version' must not be None.")
 
+        self.endpoint = endpoint
         self.service_deployment_version = service_deployment_version
         self.api_version = api_version
         kwargs.setdefault("sdk_moniker", "resiliency-srv-driven1/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

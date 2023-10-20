@@ -23,22 +23,11 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-
-import unittest
-import subprocess
-import sys
-import isodate
-import tempfile
-import json
 from uuid import uuid4
-from datetime import date, datetime, timedelta
-import os
-from os.path import dirname, pardir, join, realpath
 
 import pytest
 
 from subscriptionidapiversion import MicrosoftAzureTestUrl
-from subscriptionidapiversion.models import SampleResourceGroup
 
 class TestAzureUrl(object):
 

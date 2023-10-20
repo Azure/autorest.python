@@ -11,6 +11,7 @@ from typing import Any, TYPE_CHECKING
 
 from azure.core import PipelineClient
 from azure.core.credentials import AzureKeyCredential
+from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import SecurityAadSwaggerCredentialFlagConfiguration
@@ -35,7 +36,24 @@ class SecurityAadSwaggerCredentialFlag(
 
     def __init__(self, credential: AzureKeyCredential, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = SecurityAadSwaggerCredentialFlagConfiguration(credential=credential, **kwargs)
-        self._client: PipelineClient = PipelineClient(base_url=base_url, config=self._config, **kwargs)
+        _policies = kwargs.pop("policies", None)
+        if _policies is None:
+            _policies = [
+                policies.RequestIdPolicy(**kwargs),
+                self._config.headers_policy,
+                self._config.user_agent_policy,
+                self._config.proxy_policy,
+                policies.ContentDecodePolicy(**kwargs),
+                self._config.redirect_policy,
+                self._config.retry_policy,
+                self._config.authentication_policy,
+                self._config.custom_hook_policy,
+                self._config.logging_policy,
+                policies.DistributedTracingPolicy(**kwargs),
+                policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
+                self._config.http_logging_policy,
+            ]
+        self._client: PipelineClient = PipelineClient(base_url=base_url, policies=_policies, **kwargs)
 
         client_models: Dict[str, Any] = {}
         self._serialize = Serializer(client_models)
@@ -62,7 +80,7 @@ class SecurityAadSwaggerCredentialFlag(
 
         request_copy = deepcopy(request)
         request_copy.url = self._client.format_url(request_copy.url)
-        return self._client.send_request(request_copy, **kwargs)
+        return self._client.send_request(request_copy, **kwargs)  # type: ignore
 
     def close(self) -> None:
         self._client.close()

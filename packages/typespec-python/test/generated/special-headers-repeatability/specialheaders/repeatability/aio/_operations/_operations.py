@@ -51,15 +51,15 @@ class RepeatabilityClientOperationsMixin(RepeatabilityClientMixinABC):
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_repeatability_immediate_success_request(
+        _request = build_repeatability_immediate_success_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -76,4 +76,4 @@ class RepeatabilityClientOperationsMixin(RepeatabilityClientMixinABC):
         )
 
         if cls:
-            return cls(pipeline_response, None, response_headers)
+            return cls(pipeline_response, None, response_headers)  # type: ignore

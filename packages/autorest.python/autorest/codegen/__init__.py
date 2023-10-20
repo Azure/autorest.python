@@ -13,7 +13,7 @@ from .. import Plugin, PluginAutorest
 from .._utils import parse_args
 from .models.code_model import CodeModel
 from .serializers import JinjaSerializer, JinjaSerializerAutorest
-from ._utils import DEFAULT_HEADER_TEXT
+from ._utils import DEFAULT_HEADER_TEXT, VALID_PACKAGE_MODE, TYPESPEC_PACKAGE_MODE
 
 
 def _default_pprint(package_name: str) -> str:
@@ -55,11 +55,17 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
 
     if options["package_mode"]:
         if (
-            options["package_mode"] not in ("mgmtplane", "dataplane")
-            and not Path(options["package_mode"]).exists()
-        ):
+            (
+                options["package_mode"] not in TYPESPEC_PACKAGE_MODE
+                and options["from_typespec"]
+            )
+            or (
+                options["package_mode"] not in VALID_PACKAGE_MODE
+                and not options["from_typespec"]
+            )
+        ) and not Path(options["package_mode"]).exists():
             raise ValueError(
-                "--package-mode can only be 'mgmtplane' or 'dataplane' or directory which contains template files"
+                f"--package-mode can only be {' or '.join(TYPESPEC_PACKAGE_MODE)} or directory which contains template files"  # pylint: disable=line-too-long
             )
 
     if options["multiapi"] and options["version_tolerant"]:
@@ -77,6 +83,11 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
         _LOGGER.warning(
             "You are generating with options that would not allow the SDK to be shipped as an official Azure SDK. "
             "Please read https://aka.ms/azsdk/dpcodegen for more details."
+        )
+
+    if options["unbranded"] and options["tracing"]:
+        raise ValueError(
+            "Can not set --unbranded=true and --tracing=true at the same time."
         )
 
 
@@ -131,6 +142,7 @@ class CodeGenerator(Plugin):
             models_mode_default = "dpg"
 
         package_name = self.options.get("package-name")
+        unbranded = self.options.get("unbranded", False)
         options: Dict[str, Any] = {
             "azure_arm": azure_arm,
             "head_as_boolean": self.options.get("head-as-boolean", True),
@@ -142,7 +154,7 @@ class CodeGenerator(Plugin):
             "package_name": package_name,
             "package_version": self.options.get("package-version"),
             "client_side_validation": self.options.get("client-side-validation", False),
-            "tracing": self.options.get("tracing", show_operations),
+            "tracing": self.options.get("tracing", show_operations and not unbranded),
             "multiapi": self.options.get("multiapi", False),
             "polymorphic_examples": self.options.get("polymorphic-examples", 5),
             "models_mode": self.options.get("models-mode", models_mode_default).lower(),
@@ -170,6 +182,8 @@ class CodeGenerator(Plugin):
             ),
             "generate_sample": self.options.get("generate-sample", False),
             "default_api_version": self.options.get("default-api-version"),
+            "from_typespec": self.options.get("from-typespec", False),
+            "unbranded": unbranded,
         }
 
         if options["builders_visibility"] is None:

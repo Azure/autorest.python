@@ -8,7 +8,6 @@
 
 from typing import Any, TYPE_CHECKING
 
-from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from ._version import VERSION
@@ -18,7 +17,7 @@ if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
 
 
-class MixedApiVersionClientConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes,name-too-long
+class MixedApiVersionClientConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for MixedApiVersionClient.
 
     Note that all parameters used to create this instance are saved as instance
@@ -32,7 +31,6 @@ class MixedApiVersionClientConfiguration(Configuration):  # pylint: disable=too-
     """
 
     def __init__(self, credential: "TokenCredential", subscription_id: str, **kwargs: Any) -> None:
-        super(MixedApiVersionClientConfiguration, self).__init__(**kwargs)
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
         if subscription_id is None:
@@ -42,6 +40,7 @@ class MixedApiVersionClientConfiguration(Configuration):  # pylint: disable=too-
         self.subscription_id = subscription_id
         self.credential_scopes = kwargs.pop("credential_scopes", [])
         kwargs.setdefault("sdk_moniker", "mixedapiversion/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:

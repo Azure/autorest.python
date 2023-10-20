@@ -160,17 +160,17 @@ class ApiVersionLocalOperations:
         api_version: Literal["2.0"] = kwargs.pop("api_version", _params.pop("api-version", "2.0"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_method_local_valid_request(
+        _request = build_get_method_local_valid_request(
             api_version=api_version,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -181,7 +181,7 @@ class ApiVersionLocalOperations:
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_method_local_null(  # pylint: disable=inconsistent-return-statements
@@ -210,17 +210,17 @@ class ApiVersionLocalOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_method_local_null_request(
+        _request = build_get_method_local_null_request(
             api_version=api_version,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -231,7 +231,7 @@ class ApiVersionLocalOperations:
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_path_local_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -259,17 +259,17 @@ class ApiVersionLocalOperations:
         api_version: Literal["2.0"] = kwargs.pop("api_version", _params.pop("api-version", "2.0"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_path_local_valid_request(
+        _request = build_get_path_local_valid_request(
             api_version=api_version,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -280,7 +280,7 @@ class ApiVersionLocalOperations:
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_swagger_local_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -309,17 +309,17 @@ class ApiVersionLocalOperations:
         api_version: Literal["2.0"] = kwargs.pop("api_version", _params.pop("api-version", "2.0"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_get_swagger_local_valid_request(
+        _request = build_get_swagger_local_valid_request(
             api_version=api_version,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -330,4 +330,4 @@ class ApiVersionLocalOperations:
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

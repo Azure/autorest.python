@@ -67,15 +67,15 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        request = build_error_with_secrets_create_secret_request(
+        _request = build_error_with_secrets_create_secret_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -92,9 +92,9 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})
+            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)
+        return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace_async
     async def get_error_with_secrets(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -117,15 +117,15 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_error_with_secrets_get_error_with_secrets_request(
+        _request = build_error_with_secrets_get_error_with_secrets_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -137,4 +137,4 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

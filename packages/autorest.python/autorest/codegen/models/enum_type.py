@@ -3,17 +3,16 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, TYPE_CHECKING, Optional
+from typing import Any, Dict, List, TYPE_CHECKING, Optional, cast
 
 from .base import BaseType
 from .imports import FileImport, ImportType, TypingSection
-from .base import BaseModel
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
 
 
-class EnumValue(BaseModel):
+class EnumValue(BaseType):
     """Model containing necessary information for a single value of an enum.
 
     :param str name: The name of this enum value
@@ -21,11 +20,70 @@ class EnumValue(BaseModel):
     :param str description: Optional. The description for this enum value
     """
 
-    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
+    def __init__(
+        self,
+        yaml_data: Dict[str, Any],
+        code_model: "CodeModel",
+        enum_type: "EnumType",
+        value_type: BaseType,
+    ) -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.name: str = self.yaml_data["name"]
         self.value: str = self.yaml_data["value"]
-        self.description: Optional[str] = self.yaml_data.get("description")
+        self.enum_type = enum_type
+        self.value_type = value_type
+
+    def description(self, *, is_operation_file: bool) -> str:
+        return self.yaml_data.get("description", "")
+
+    def type_annotation(self, **kwargs: Any) -> str:
+        """The python type used for type annotation"""
+        return f"Literal[{self.enum_type.name}.{self.name}]"
+
+    def get_declaration(self, value=None):
+        return self.enum_type.name + "." + self.name
+
+    def docstring_text(self, **kwargs: Any) -> str:
+        return self.enum_type.name + "." + self.name
+
+    def docstring_type(self, **kwargs: Any) -> str:
+        """The python type used for RST syntax input and type annotation."""
+
+        type_annotation = self.value_type.type_annotation(**kwargs)
+        enum_type_annotation = f"{self.code_model.namespace}.models.{self.name}"
+        return f"{type_annotation} or ~{enum_type_annotation}"
+
+    def get_json_template_representation(
+        self,
+        *,
+        optional: bool = True,
+        client_default_value_declaration: Optional[str] = None,
+        description: Optional[str] = None,
+    ) -> Any:
+        # for better display effect, use the only value instead of var type
+        return self.value_type.get_json_template_representation(
+            optional=optional,
+            client_default_value_declaration=client_default_value_declaration,
+            description=description,
+        )
+
+    @property
+    def serialization_type(self) -> str:
+        return self.value_type.serialization_type
+
+    @property
+    def instance_check_template(self) -> str:
+        return self.value_type.instance_check_template
+
+    def imports(self, **kwargs: Any) -> FileImport:
+        file_import = FileImport()
+        file_import.merge(self.value_type.imports(**kwargs))
+        file_import.add_literal_import()
+        file_import.add_submodule_import(
+            "._enums", self.enum_type.name, ImportType.LOCAL, TypingSection.REGULAR
+        )
+
+        return file_import
 
     @classmethod
     def from_yaml(
@@ -39,9 +97,14 @@ class EnumValue(BaseModel):
         :return: A created EnumValue
         :rtype: ~autorest.models.EnumValue
         """
+        from . import build_type
+
+        enum_type = cast(EnumType, code_model.lookup_type(id(yaml_data["enumType"])))
         return cls(
             yaml_data=yaml_data,
             code_model=code_model,
+            enum_type=enum_type,
+            value_type=build_type(yaml_data["valueType"], code_model),
         )
 
 
@@ -68,6 +131,7 @@ class EnumType(BaseType):
         self.name: str = yaml_data["name"][0].upper() + yaml_data["name"][1:]
         self.values = values
         self.value_type = value_type
+        self.internal: bool = self.yaml_data.get("internal", False)
 
     def __lt__(self, other):
         return self.name.lower() < other.name.lower()
@@ -149,27 +213,19 @@ class EnumType(BaseType):
     def instance_check_template(self) -> str:
         return self.value_type.instance_check_template
 
+    def fill_instance_from_yaml(
+        self, yaml_data: Dict[str, Any], code_model: "CodeModel"
+    ) -> None:
+        for value in yaml_data["values"]:
+            self.values.append(EnumValue.from_yaml(value, code_model))
+
     @classmethod
     def from_yaml(
         cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
     ) -> "EnumType":
-        """Constructs an EnumType from yaml data.
-
-        :param yaml_data: the yaml data from which we will construct this schema
-        :type yaml_data: dict[str, Any]
-
-        :return: A created EnumType
-        :rtype: ~autorest.models.EnumType
-        """
-        from . import build_type
-
-        return cls(
-            yaml_data=yaml_data,
-            code_model=code_model,
-            value_type=build_type(yaml_data["valueType"], code_model),
-            values=[
-                EnumValue.from_yaml(value, code_model) for value in yaml_data["values"]
-            ],
+        raise ValueError(
+            "You shouldn't call from_yaml for EnumType to avoid recursion. "
+            "Please initial a blank EnumType, then call .fill_instance_from_yaml on the created type."
         )
 
     def imports(self, **kwargs: Any) -> FileImport:

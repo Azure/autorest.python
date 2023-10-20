@@ -97,7 +97,7 @@ class ParameterGroupingOperations:
             _query = parameter_grouping_post_required_parameters.query
         _json = self._serialize.body(_body, "int")
 
-        request = build_post_required_request(
+        _request = build_post_required_request(
             path=_path,
             custom_header=_custom_header,
             query=_query,
@@ -106,12 +106,12 @@ class ParameterGroupingOperations:
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -122,7 +122,7 @@ class ParameterGroupingOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_optional(  # pylint: disable=inconsistent-return-statements
@@ -159,18 +159,18 @@ class ParameterGroupingOperations:
             _custom_header = parameter_grouping_post_optional_parameters.custom_header
             _query = parameter_grouping_post_optional_parameters.query
 
-        request = build_post_optional_request(
+        _request = build_post_optional_request(
             custom_header=_custom_header,
             query=_query,  # type: ignore
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -181,7 +181,7 @@ class ParameterGroupingOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_reserved_words(  # pylint: disable=inconsistent-return-statements
@@ -221,18 +221,18 @@ class ParameterGroupingOperations:
             _accept_parameter = parameter_grouping_post_reserved_words_parameters.accept
             _from_parameter = parameter_grouping_post_reserved_words_parameters.from_property
 
-        request = build_post_reserved_words_request(
+        _request = build_post_reserved_words_request(
             from_parameter=_from_parameter,
             accept_parameter=_accept_parameter,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -243,7 +243,7 @@ class ParameterGroupingOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_multi_param_groups(  # pylint: disable=inconsistent-return-statements
@@ -291,7 +291,7 @@ class ParameterGroupingOperations:
             _header_two = parameter_grouping_post_multi_param_groups_second_param_group.header_two
             _query_two = parameter_grouping_post_multi_param_groups_second_param_group.query_two
 
-        request = build_post_multi_param_groups_request(
+        _request = build_post_multi_param_groups_request(
             header_one=_header_one,
             query_one=_query_one,  # type: ignore
             header_two=_header_two,
@@ -299,12 +299,12 @@ class ParameterGroupingOperations:
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -315,7 +315,7 @@ class ParameterGroupingOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def post_shared_parameter_group_object(  # pylint: disable=inconsistent-return-statements
@@ -349,18 +349,18 @@ class ParameterGroupingOperations:
             _header_one = first_parameter_group.header_one
             _query_one = first_parameter_group.query_one
 
-        request = build_post_shared_parameter_group_object_request(
+        _request = build_post_shared_parameter_group_object_request(
             header_one=_header_one,
             query_one=_query_one,  # type: ignore
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -371,7 +371,7 @@ class ParameterGroupingOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def group_with_constant(  # pylint: disable=inconsistent-return-statements
@@ -406,18 +406,18 @@ class ParameterGroupingOperations:
             _grouped_constant = grouper.grouped_constant
             _grouped_parameter = grouper.grouped_parameter
 
-        request = build_group_with_constant_request(
+        _request = build_group_with_constant_request(
             grouped_constant=_grouped_constant,  # type: ignore
             grouped_parameter=_grouped_parameter,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -428,4 +428,4 @@ class ParameterGroupingOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

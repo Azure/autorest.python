@@ -94,11 +94,12 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_resiliency_service_driven_from_none_request(
+        _request = build_resiliency_service_driven_from_none_request(
             headers=_headers,
             params=_params,
         )
         path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "serviceDeploymentVersion": self._serialize.url(
                 "self._config.service_deployment_version",
                 self._config.service_deployment_version,
@@ -109,11 +110,11 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
                 "self._config.api_version", self._config.api_version, "str", skip_quote=True
             ),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -125,7 +126,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
         return 200 <= response.status_code <= 299
 
     @distributed_trace
@@ -156,12 +157,13 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_resiliency_service_driven_from_one_required_request(
+        _request = build_resiliency_service_driven_from_one_required_request(
             parameter=parameter,
             headers=_headers,
             params=_params,
         )
         path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "serviceDeploymentVersion": self._serialize.url(
                 "self._config.service_deployment_version",
                 self._config.service_deployment_version,
@@ -172,11 +174,11 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
                 "self._config.api_version", self._config.api_version, "str", skip_quote=True
             ),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -188,7 +190,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def from_one_optional(  # pylint: disable=inconsistent-return-statements
@@ -218,12 +220,13 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_resiliency_service_driven_from_one_optional_request(
+        _request = build_resiliency_service_driven_from_one_optional_request(
             parameter=parameter,
             headers=_headers,
             params=_params,
         )
         path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "serviceDeploymentVersion": self._serialize.url(
                 "self._config.service_deployment_version",
                 self._config.service_deployment_version,
@@ -234,11 +237,11 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
                 "self._config.api_version", self._config.api_version, "str", skip_quote=True
             ),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -250,4 +253,4 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

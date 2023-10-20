@@ -43,7 +43,9 @@ class CombinedType(BaseType):
         If list: '[str]'
         If dict: '{str}'
         """
-        raise ValueError("Shouldn't get serialization type of a combinedtype")
+        if not all(t for t in self.types if t.type == "constant"):
+            raise ValueError("Shouldn't get serialization type of a combinedtype")
+        return self.types[0].serialization_type
 
     @property
     def client_default_value(self) -> Any:

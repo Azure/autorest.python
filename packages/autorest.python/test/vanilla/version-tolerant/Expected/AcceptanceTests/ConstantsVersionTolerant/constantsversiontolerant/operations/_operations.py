@@ -337,16 +337,16 @@ class ContantsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_contants_put_no_model_as_string_no_required_two_value_no_default_request(
+        _request = build_contants_put_no_model_as_string_no_required_two_value_no_default_request(
             input=input,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -358,7 +358,7 @@ class ContantsOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put_no_model_as_string_no_required_two_value_default(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -387,16 +387,16 @@ class ContantsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_contants_put_no_model_as_string_no_required_two_value_default_request(
+        _request = build_contants_put_no_model_as_string_no_required_two_value_default_request(
             input=input,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -408,7 +408,7 @@ class ContantsOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put_no_model_as_string_no_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -437,16 +437,16 @@ class ContantsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_contants_put_no_model_as_string_no_required_one_value_no_default_request(
+        _request = build_contants_put_no_model_as_string_no_required_one_value_no_default_request(
             input=input,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -458,7 +458,7 @@ class ContantsOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put_no_model_as_string_no_required_one_value_default(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -487,16 +487,16 @@ class ContantsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_contants_put_no_model_as_string_no_required_one_value_default_request(
+        _request = build_contants_put_no_model_as_string_no_required_one_value_default_request(
             input=input,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -508,7 +508,7 @@ class ContantsOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put_no_model_as_string_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -537,16 +537,16 @@ class ContantsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_contants_put_no_model_as_string_required_two_value_no_default_request(
+        _request = build_contants_put_no_model_as_string_required_two_value_no_default_request(
             input=input,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -558,7 +558,7 @@ class ContantsOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put_no_model_as_string_required_two_value_default(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -587,16 +587,16 @@ class ContantsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_contants_put_no_model_as_string_required_two_value_default_request(
+        _request = build_contants_put_no_model_as_string_required_two_value_default_request(
             input=input,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -608,7 +608,7 @@ class ContantsOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put_no_model_as_string_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -639,16 +639,16 @@ class ContantsOperations:
         input: Literal["value1"] = kwargs.pop("input", _params.pop("input", "value1"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_contants_put_no_model_as_string_required_one_value_no_default_request(
+        _request = build_contants_put_no_model_as_string_required_one_value_no_default_request(
             input=input,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -660,7 +660,7 @@ class ContantsOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put_no_model_as_string_required_one_value_default(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -691,16 +691,16 @@ class ContantsOperations:
         input: Literal["value1"] = kwargs.pop("input", _params.pop("input", "value1"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_contants_put_no_model_as_string_required_one_value_default_request(
+        _request = build_contants_put_no_model_as_string_required_one_value_default_request(
             input=input,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -712,7 +712,7 @@ class ContantsOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put_model_as_string_no_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -741,16 +741,16 @@ class ContantsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_contants_put_model_as_string_no_required_two_value_no_default_request(
+        _request = build_contants_put_model_as_string_no_required_two_value_no_default_request(
             input=input,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -762,7 +762,7 @@ class ContantsOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put_model_as_string_no_required_two_value_default(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -791,16 +791,16 @@ class ContantsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_contants_put_model_as_string_no_required_two_value_default_request(
+        _request = build_contants_put_model_as_string_no_required_two_value_default_request(
             input=input,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -812,7 +812,7 @@ class ContantsOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put_model_as_string_no_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -841,16 +841,16 @@ class ContantsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_contants_put_model_as_string_no_required_one_value_no_default_request(
+        _request = build_contants_put_model_as_string_no_required_one_value_no_default_request(
             input=input,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -862,7 +862,7 @@ class ContantsOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put_model_as_string_no_required_one_value_default(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -891,16 +891,16 @@ class ContantsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_contants_put_model_as_string_no_required_one_value_default_request(
+        _request = build_contants_put_model_as_string_no_required_one_value_default_request(
             input=input,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -912,7 +912,7 @@ class ContantsOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put_model_as_string_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -941,16 +941,16 @@ class ContantsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_contants_put_model_as_string_required_two_value_no_default_request(
+        _request = build_contants_put_model_as_string_required_two_value_no_default_request(
             input=input,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -962,7 +962,7 @@ class ContantsOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put_model_as_string_required_two_value_default(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -991,16 +991,16 @@ class ContantsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_contants_put_model_as_string_required_two_value_default_request(
+        _request = build_contants_put_model_as_string_required_two_value_default_request(
             input=input,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1012,7 +1012,7 @@ class ContantsOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put_model_as_string_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -1041,16 +1041,16 @@ class ContantsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_contants_put_model_as_string_required_one_value_no_default_request(
+        _request = build_contants_put_model_as_string_required_one_value_no_default_request(
             input=input,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1062,7 +1062,7 @@ class ContantsOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put_model_as_string_required_one_value_default(  # pylint: disable=inconsistent-return-statements,name-too-long
@@ -1091,16 +1091,16 @@ class ContantsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_contants_put_model_as_string_required_one_value_default_request(
+        _request = build_contants_put_model_as_string_required_one_value_default_request(
             input=input,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1112,7 +1112,7 @@ class ContantsOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put_client_constants(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1136,18 +1136,18 @@ class ContantsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_contants_put_client_constants_request(
+        _request = build_contants_put_client_constants_request(
             header_constant=self._config.header_constant,
             query_constant=self._config.query_constant,
             path_constant=self._config.path_constant,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1159,4 +1159,4 @@ class ContantsOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

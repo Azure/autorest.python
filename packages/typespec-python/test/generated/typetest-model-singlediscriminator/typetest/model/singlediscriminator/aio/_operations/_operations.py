@@ -70,15 +70,15 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
 
         cls: ClsType[_models.Bird] = kwargs.pop("cls", None)
 
-        request = build_single_discriminator_get_model_request(
+        _request = build_single_discriminator_get_model_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -191,17 +191,17 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_single_discriminator_put_model_request(
+        _request = build_single_discriminator_put_model_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -213,7 +213,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_recursive_model(self, **kwargs: Any) -> _models.Bird:
@@ -238,15 +238,15 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
 
         cls: ClsType[_models.Bird] = kwargs.pop("cls", None)
 
-        request = build_single_discriminator_get_recursive_model_request(
+        _request = build_single_discriminator_get_recursive_model_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -359,17 +359,17 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         else:
             _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        request = build_single_discriminator_put_recursive_model_request(
+        _request = build_single_discriminator_put_recursive_model_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -381,7 +381,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
     async def get_missing_discriminator(self, **kwargs: Any) -> _models.Bird:
@@ -406,15 +406,15 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
 
         cls: ClsType[_models.Bird] = kwargs.pop("cls", None)
 
-        request = build_single_discriminator_get_missing_discriminator_request(
+        _request = build_single_discriminator_get_missing_discriminator_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -458,15 +458,15 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
 
         cls: ClsType[_models.Bird] = kwargs.pop("cls", None)
 
-        request = build_single_discriminator_get_wrong_discriminator_request(
+        _request = build_single_discriminator_get_wrong_discriminator_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -510,15 +510,15 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
 
         cls: ClsType[_models.Dinosaur] = kwargs.pop("cls", None)
 
-        request = build_single_discriminator_get_legacy_model_request(
+        _request = build_single_discriminator_get_legacy_model_request(
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

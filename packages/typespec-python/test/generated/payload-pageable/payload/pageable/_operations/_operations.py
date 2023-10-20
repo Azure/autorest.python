@@ -34,18 +34,23 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_pageable_list_request(**kwargs: Any) -> HttpRequest:
+def build_pageable_list_request(*, maxpagesize: Optional[int] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/payload/pageable"
 
+    # Construct parameters
+    if maxpagesize is not None:
+        _params["maxpagesize"] = _SERIALIZER.query("maxpagesize", maxpagesize, "int")
+
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 class PageableClientOperationsMixin(PageableClientMixinABC):
@@ -60,6 +65,7 @@ class PageableClientOperationsMixin(PageableClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
+        maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[List[_models.User]] = kwargs.pop("cls", None)
 
         error_map = {
@@ -73,17 +79,18 @@ class PageableClientOperationsMixin(PageableClientMixinABC):
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_pageable_list_request(
+                _request = build_pageable_list_request(
+                    maxpagesize=maxpagesize,
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
-                request = HttpRequest("GET", next_link)
-                request.url = self._client.format_url(request.url)
+                _request = HttpRequest("GET", next_link)
+                _request.url = self._client.format_url(_request.url)
 
-            return request
+            return _request
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -93,11 +100,11 @@ class PageableClientOperationsMixin(PageableClientMixinABC):
             return deserialized.get("nextLink") or None, iter(list_of_elem)
 
         def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
