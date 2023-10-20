@@ -240,6 +240,11 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
         serializer = GeneralSerializer(self.code_model, env, async_mode=False)
         params = self.code_model.options["package_configuration"] or {}
         for template_name in package_files:
+            if (
+                self.code_model.options["unbranded"]
+                and template_name == "dev_requirements.txt.jinja2"
+            ):
+                continue
             file = template_name.replace(".jinja2", "")
             output_name = root_of_sdk / file
             if not self.read_file(output_name) or file in _REGENERATE_FILES:

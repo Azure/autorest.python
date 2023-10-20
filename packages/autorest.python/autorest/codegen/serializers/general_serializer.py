@@ -16,14 +16,6 @@ from ..models import (
 )
 from .client_serializer import ClientSerializer, ConfigSerializer
 
-_PACKAGE_MODE_FILES = [
-    "CHANGELOG.md.jinja2",
-    "dev_requirements.txt.jinja2",
-    "LICENSE.jinja2",
-    "MANIFEST.in.jinja2",
-    "README.md.jinja2",
-]
-
 
 class GeneralSerializer:
     """General serializer for SDK root level files"""

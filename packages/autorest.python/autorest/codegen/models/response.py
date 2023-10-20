@@ -277,9 +277,7 @@ class LROResponse(Response):
         async_mode = kwargs["async_mode"]
         poller_import_path = ".".join(self.get_poller_path(async_mode).split(".")[:-1])
         poller = self.get_poller(async_mode)
-        file_import.add_submodule_import(
-            poller_import_path, poller, ImportType.SDKCORE
-        )
+        file_import.add_submodule_import(poller_import_path, poller, ImportType.SDKCORE)
         return file_import
 
     def imports(self, **kwargs: Any) -> FileImport:

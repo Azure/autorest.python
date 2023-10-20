@@ -123,7 +123,16 @@ class CodeGenerator(Plugin):
     def _build_code_model_options(self) -> Dict[str, Any]:
         """Build en options dict from the user input while running autorest."""
         azure_arm = self.options.get("azure-arm", False)
-        license_header = self.options.get("header-text", DEFAULT_HEADER_TEXT)
+        unbranded = self.options.get("unbranded", False)
+        company_name = self.options.get(
+            "company-name", "Microsoft" if not unbranded else ""
+        )
+        license_header = self.options.get(
+            "header-text",
+            ""
+            if unbranded and not company_name
+            else DEFAULT_HEADER_TEXT.format(company_name=company_name),
+        )
         if license_header:
             license_header = license_header.replace("\n", "\n# ")
             license_header = (
@@ -142,7 +151,6 @@ class CodeGenerator(Plugin):
             models_mode_default = "dpg"
 
         package_name = self.options.get("package-name")
-        unbranded = self.options.get("unbranded", False)
         options: Dict[str, Any] = {
             "azure_arm": azure_arm,
             "head_as_boolean": self.options.get("head-as-boolean", True),
@@ -184,7 +192,7 @@ class CodeGenerator(Plugin):
             "default_api_version": self.options.get("default-api-version"),
             "from_typespec": self.options.get("from-typespec", False),
             "unbranded": unbranded,
-            "company_name": self.options.get("company-name", "Microsoft"),
+            "company_name": company_name,
         }
 
         if options["builders_visibility"] is None:
@@ -223,6 +231,10 @@ class CodeGenerator(Plugin):
             self.remove_cloud_errors(yaml_data)
 
         code_model = CodeModel(yaml_data=yaml_data, options=options)
+        if options["unbranded"] and any(
+            client.has_lro_operations for client in code_model.clients
+        ):
+            raise ValueError("Do not support LRO when --unbranded=true")
         serializer = self.get_serializer(code_model)
         serializer.serialize()
 

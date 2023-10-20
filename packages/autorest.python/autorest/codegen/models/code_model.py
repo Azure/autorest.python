@@ -76,10 +76,6 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
         self.named_unions: List[CombinedType] = [
             t for t in self.types_map.values() if isinstance(t, CombinedType) and t.name
         ]
-        if options["unbranded"] and any(
-            client.has_lro_operations for client in self.clients
-        ):
-            raise ValueError("Do not support LRO when --unbraded=true")
 
     @property
     def has_etag(self) -> bool:
