@@ -191,7 +191,7 @@ def regenerate(c, name=None, debug=False):
 @task
 def regenerate_unittests(c):
     shutil.copyfile(
-        "../autorest.python/autorest/codegen/templates/model_base.py.jinja2",
+        "test/generated/special-words/specialwords/_model_base.py",
         "test/unittests/generated/model_base.py"
     )
 
