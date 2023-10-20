@@ -624,7 +624,7 @@ class AzureCoreType(PrimitiveType):
 
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = FileImport()
-        file_import.add_submodule_import("azure.core", self.name, ImportType.AZURECORE)
+        file_import.add_submodule_import("azure.core", self.name, ImportType.SDKCORE)
         return file_import
 
     @property

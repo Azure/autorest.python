@@ -100,14 +100,14 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
         file_import.add_submodule_import(
             self.code_model.import_core_rest,
             "HttpRequest",
-            ImportType.AZURECORE,
+            ImportType.SDKCORE,
         )
 
         if self.parameters.headers or self.parameters.query:
             file_import.add_submodule_import(
                 self.code_model.import_core_utils,
                 "case_insensitive_dict",
-                ImportType.AZURECORE,
+                ImportType.SDKCORE,
             )
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL

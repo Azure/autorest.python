@@ -106,7 +106,7 @@ class GeneralSerializer:
             file_import.add_submodule_import(
                 "azure.core.pipeline.transport",
                 "HttpRequest",
-                ImportType.AZURECORE,
+                ImportType.SDKCORE,
             )
 
         if self.code_model.need_mixin_abc:
@@ -118,7 +118,7 @@ class GeneralSerializer:
             file_import.add_submodule_import(
                 self.code_model.import_core,
                 f"{'Async' if self.async_mode else ''}PipelineClient",
-                ImportType.AZURECORE,
+                ImportType.SDKCORE,
                 TypingSection.TYPING,
             )
             file_import.add_msrest_import(
@@ -138,7 +138,7 @@ class GeneralSerializer:
             file_import.add_submodule_import(
                 self.code_model.import_core,
                 "MatchConditions",
-                ImportType.AZURECORE,
+                ImportType.SDKCORE,
             )
 
         return template.render(

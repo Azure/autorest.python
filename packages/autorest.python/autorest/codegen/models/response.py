@@ -198,7 +198,7 @@ class PagingResponse(Response):
         pager_import_path = ".".join(self.get_pager_path(async_mode).split(".")[:-1])
         pager = self.get_pager(async_mode)
 
-        file_import.add_submodule_import(pager_import_path, pager, ImportType.AZURECORE)
+        file_import.add_submodule_import(pager_import_path, pager, ImportType.SDKCORE)
         return file_import
 
     def imports(self, **kwargs: Any) -> FileImport:
@@ -208,7 +208,7 @@ class PagingResponse(Response):
             file_import.add_submodule_import(
                 self.code_model.import_core_paging_async,
                 "AsyncList",
-                ImportType.AZURECORE,
+                ImportType.SDKCORE,
             )
 
         return file_import
@@ -278,7 +278,7 @@ class LROResponse(Response):
         poller_import_path = ".".join(self.get_poller_path(async_mode).split(".")[:-1])
         poller = self.get_poller(async_mode)
         file_import.add_submodule_import(
-            poller_import_path, poller, ImportType.AZURECORE
+            poller_import_path, poller, ImportType.SDKCORE
         )
         return file_import
 
@@ -293,7 +293,7 @@ class LROResponse(Response):
         file_import.add_submodule_import(
             default_polling_method_import_path,
             default_polling_method,
-            ImportType.AZURECORE,
+            ImportType.SDKCORE,
         )
         default_no_polling_method_import_path = ".".join(
             self.get_no_polling_method_path(async_mode).split(".")[:-1]
@@ -302,7 +302,7 @@ class LROResponse(Response):
         file_import.add_submodule_import(
             default_no_polling_method_import_path,
             default_no_polling_method,
-            ImportType.AZURECORE,
+            ImportType.SDKCORE,
         )
 
         base_polling_method_import_path = ".".join(
@@ -310,7 +310,7 @@ class LROResponse(Response):
         )
         base_polling_method = self.get_base_polling_method(async_mode)
         file_import.add_submodule_import(
-            base_polling_method_import_path, base_polling_method, ImportType.AZURECORE
+            base_polling_method_import_path, base_polling_method, ImportType.SDKCORE
         )
         return file_import
 

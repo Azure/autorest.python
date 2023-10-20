@@ -202,13 +202,13 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         )
         if self.code_model.options["azure_arm"]:
             file_import.add_submodule_import(
-                "azure.mgmt.core", self.pipeline_class(async_mode), ImportType.AZURECORE
+                "azure.mgmt.core", self.pipeline_class(async_mode), ImportType.SDKCORE
             )
         else:
             file_import.add_submodule_import(
                 self.code_model.import_core,
                 self.pipeline_class(async_mode),
-                ImportType.AZURECORE,
+                ImportType.SDKCORE,
             )
 
         for gp in self.parameters:
@@ -233,14 +233,14 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             TypingSection.REGULAR,
         )
         file_import.add_submodule_import(
-            self.code_model.import_core_pipeline, "policies", ImportType.AZURECORE
+            self.code_model.import_core_pipeline, "policies", ImportType.SDKCORE
         )
         if self.code_model.options["azure_arm"]:
             async_prefix = "Async" if async_mode else ""
             file_import.add_submodule_import(
                 "azure.mgmt.core.policies",
                 f"{async_prefix}ARMAutoResourceProviderRegistrationPolicy",
-                ImportType.AZURECORE,
+                ImportType.SDKCORE,
             )
         return file_import
 
@@ -307,20 +307,20 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             file_import.add_submodule_import(
                 self.code_model.import_core_rest,
                 "AsyncHttpResponse",
-                ImportType.AZURECORE,
+                ImportType.SDKCORE,
                 TypingSection.CONDITIONAL,
             )
         else:
             file_import.add_submodule_import(
                 self.code_model.import_core_rest,
                 "HttpResponse",
-                ImportType.AZURECORE,
+                ImportType.SDKCORE,
                 TypingSection.CONDITIONAL,
             )
         file_import.add_submodule_import(
             self.code_model.import_core_rest,
             "HttpRequest",
-            ImportType.AZURECORE,
+            ImportType.SDKCORE,
             TypingSection.CONDITIONAL,
         )
         for og in self.operation_groups:
@@ -360,15 +360,15 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         except StopIteration:
             pass
         file_import.add_submodule_import(
-            "azure.profiles", "KnownProfiles", import_type=ImportType.AZURECORE
+            "azure.profiles", "KnownProfiles", import_type=ImportType.SDKCORE
         )
         file_import.add_submodule_import(
-            "azure.profiles", "ProfileDefinition", import_type=ImportType.AZURECORE
+            "azure.profiles", "ProfileDefinition", import_type=ImportType.SDKCORE
         )
         file_import.add_submodule_import(
             "azure.profiles.multiapiclient",
             "MultiApiClientMixin",
-            import_type=ImportType.AZURECORE,
+            import_type=ImportType.SDKCORE,
         )
         return file_import
 
@@ -419,7 +419,7 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
     def _imports_shared(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
         file_import.add_submodule_import(
-            self.code_model.import_core_pipeline, "policies", ImportType.AZURECORE
+            self.code_model.import_core_pipeline, "policies", ImportType.SDKCORE
         )
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
@@ -435,10 +435,10 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
                 else "ARMChallengeAuthenticationPolicy"
             )
             file_import.add_submodule_import(
-                "azure.mgmt.core.policies", "ARMHttpLoggingPolicy", ImportType.AZURECORE
+                "azure.mgmt.core.policies", "ARMHttpLoggingPolicy", ImportType.SDKCORE
             )
             file_import.add_submodule_import(
-                "azure.mgmt.core.policies", policy, ImportType.AZURECORE
+                "azure.mgmt.core.policies", policy, ImportType.SDKCORE
             )
 
         return file_import

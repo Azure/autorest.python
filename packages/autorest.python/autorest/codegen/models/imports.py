@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 class ImportType(str, Enum):
     STDLIB = "stdlib"
     THIRDPARTY = "thirdparty"
-    AZURECORE = "azurecore"
+    SDKCORE = "sdkcore"
     LOCAL = "local"
     BYVERSION = "by_version"
 
@@ -280,7 +280,7 @@ class FileImport:
         if code_model.options["client_side_validation"]:
             if msrest_import_type == MsrestImportType.Module:
                 self.add_import(
-                    "msrest.serialization", ImportType.AZURECORE, typing_section
+                    "msrest.serialization", ImportType.SDKCORE, typing_section
                 )
             else:
                 self.add_submodule_import(

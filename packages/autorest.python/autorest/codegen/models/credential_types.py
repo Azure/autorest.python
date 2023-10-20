@@ -189,14 +189,14 @@ class TokenCredentialType(
             file_import.add_submodule_import(
                 self.code_model.import_core_credentials_async,
                 "AsyncTokenCredential",
-                ImportType.AZURECORE,
+                ImportType.SDKCORE,
                 typing_section=TypingSection.TYPING,
             )
         else:
             file_import.add_submodule_import(
                 self.code_model.import_core_credentials,
                 "TokenCredential",
-                ImportType.AZURECORE,
+                ImportType.SDKCORE,
                 typing_section=TypingSection.TYPING,
             )
         return file_import
@@ -227,7 +227,7 @@ class AzureKeyCredentialType(
         file_import.add_submodule_import(
             "azure.core.credentials",
             "AzureKeyCredential",
-            ImportType.AZURECORE,
+            ImportType.SDKCORE,
             typing_section=TypingSection.CONDITIONAL,
         )
         return file_import

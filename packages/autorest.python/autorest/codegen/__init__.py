@@ -184,6 +184,7 @@ class CodeGenerator(Plugin):
             "default_api_version": self.options.get("default-api-version"),
             "from_typespec": self.options.get("from-typespec", False),
             "unbranded": unbranded,
+            "company_name": self.options.get("company-name", "Microsoft"),
         }
 
         if options["builders_visibility"] is None:

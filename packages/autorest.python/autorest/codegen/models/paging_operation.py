@@ -156,7 +156,7 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
             file_import.add_submodule_import(
                 "azure.core.tracing.decorator",
                 "distributed_trace",
-                ImportType.AZURECORE,
+                ImportType.SDKCORE,
             )
         if self.next_request_builder:
             file_import.merge(
@@ -167,7 +167,7 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
             file_import.add_submodule_import(
                 self.code_model.import_core_utils,
                 "case_insensitive_dict",
-                ImportType.AZURECORE,
+                ImportType.SDKCORE,
             )
         if self.code_model.options["models_mode"] == "dpg":
             relative_path = "..." if async_mode else ".."

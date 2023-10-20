@@ -127,7 +127,7 @@ class LROOperationBase(OperationBase[LROResponseType]):
             file_import.add_submodule_import(
                 "azure.core.tracing.decorator_async",
                 "distributed_trace_async",
-                ImportType.AZURECORE,
+                ImportType.SDKCORE,
             )
         if (
             self.code_model.options["models_mode"] == "dpg"
