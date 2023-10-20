@@ -8,7 +8,7 @@ from typing import Any, Dict, TYPE_CHECKING, TypeVar, Generic, Union, List, Opti
 from .base import BaseModel
 from .parameter_list import ClientGlobalParameterList, ConfigGlobalParameterList
 from .imports import FileImport, ImportType, TypingSection, MsrestImportType
-from .utils import add_to_pylint_disable, NAME_LENGTH_LIMIT
+from .utils import add_to_pylint_disable, NAME_LENGTH_LIMIT, is_lro_operation
 from .operation_group import OperationGroup
 from .request_builder import (
     RequestBuilder,
@@ -250,10 +250,19 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         return any(o for o in self.operation_groups if o.is_mixin)
 
     @property
-    def has_public_lro_operations(self) -> bool:
+    def has_lro_operations(self) -> bool:
         """Are there any LRO operations in this SDK?"""
         return any(
-            operation.operation_type in ("lro", "lropaging") and not operation.internal
+            is_lro_operation(operation.operation_type)
+            for operation_group in self.operation_groups
+            for operation in operation_group.operations
+        )
+
+    @property
+    def has_public_lro_operations(self) -> bool:
+        """Are there any public LRO operations in this SDK?"""
+        return any(
+            is_lro_operation(operation.operation_type) and not operation.internal
             for operation_group in self.operation_groups
             for operation in operation_group.operations
         )
