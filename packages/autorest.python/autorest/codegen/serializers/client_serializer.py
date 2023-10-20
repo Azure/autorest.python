@@ -249,7 +249,9 @@ class ClientSerializer:
         return retval
 
     def _rest_request_example(self, async_mode: bool) -> List[str]:
-        retval = [f">>> from {self.client.code_model.import_core_rest} import HttpRequest"]
+        retval = [
+            f">>> from {self.client.code_model.import_core_rest} import HttpRequest"
+        ]
         retval.append('>>> request = HttpRequest("GET", "https://www.example.org/")')
         retval.append("<HttpRequest [GET], url: 'https://www.example.org/'>")
         retval.extend(self._example_make_call(async_mode))

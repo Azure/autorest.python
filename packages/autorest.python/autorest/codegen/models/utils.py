@@ -22,5 +22,6 @@ def add_to_pylint_disable(curr_str: str, entry: str) -> str:
         return f"{curr_str},{entry}"
     return f"  # pylint: disable={entry}"
 
-def is_lro_operation(operation_type: str)-> bool:
+
+def is_lro_operation(operation_type: str) -> bool:
     return operation_type in ("lro", "lro-paging")
