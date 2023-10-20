@@ -24,7 +24,7 @@ with open(os.path.join(package_folder_path, "_version.py"), "r") as fd:
 
 if not version:
     raise RuntimeError("Cannot find version information")
-{% set description = "\"{{ company_name }} {} Client Library for Python\".format(PACKAGE_PPRINT_NAME)" %}
+{% set description = "\"" + company_name + " {} Client Library for Python\".format(PACKAGE_PPRINT_NAME)" %}
 {% set author_email = "azpysdkhelp@microsoft.com" %}
 {% set url = "https://github.com/Azure/azure-sdk-for-python/tree/main/sdk" %}
 {% else %}
