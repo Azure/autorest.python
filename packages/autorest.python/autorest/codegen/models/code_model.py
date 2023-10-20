@@ -310,7 +310,7 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
     @property
     def import_core_credentials_async(self) -> str:
         return (
-            self.import_core + "credentials_async"
+            self.import_core + ".credentials_async"
             if not self.options["unbranded"]
             else ".credentials"
         )
@@ -322,7 +322,7 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
     @property
     def import_core_paging_async(self) -> str:
         return (
-            self.import_core + "async_paging"
+            self.import_core + ".async_paging"
             if not self.options["unbranded"]
             else ".paging"
         )

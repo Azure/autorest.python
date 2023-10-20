@@ -129,7 +129,7 @@ class ClientSerializer:
             [
                 "_policies = kwargs.pop('policies', None)",
                 "if _policies is None:",
-                f'    _policies = [{",".join(policies)}]',  # pylint: disable=line-too-long
+                f'    _policies = [{",".join(policies)}]',
                 f"self._client: {pipeline_client_name} = {pipeline_client_name}("
                 f"{', '.join(f'{k}={v}' for k, v in params.items())}, **kwargs)",
             ]

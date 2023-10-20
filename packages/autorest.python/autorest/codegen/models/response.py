@@ -163,8 +163,8 @@ class PagingResponse(Response):
             or f"{self.code_model.import_core_paging}.ItemPaged"
         )
         self.pager_async: str = (
-            self.yaml_data["pagerAsync"]
-            or f"{self.code_model.import_core_credentials_async}.AsyncItemPaged"
+            self.yaml_data.get("pagerAsync")
+            or f"{self.code_model.import_core_paging_async}.AsyncItemPaged"
         )
 
     def get_polymorphic_subtypes(self, polymorphic_subtypes: List["ModelType"]) -> None:

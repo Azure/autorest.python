@@ -64,8 +64,8 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
             yaml_data.get("pagerSync") or f"{code_model.import_core_paging}.ItemPaged"
         )
         self.pager_async: str = (
-            yaml_data["pagerAsync"]
-            or f"{code_model.import_core_credentials_async}.AsyncItemPaged"
+            yaml_data.get("pagerAsync")
+            or f"{code_model.import_core_paging_async}.AsyncItemPaged"
         )
 
     def _get_attr_name(self, wire_name: str) -> str:
