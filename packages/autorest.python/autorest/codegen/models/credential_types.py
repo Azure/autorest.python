@@ -178,7 +178,9 @@ class TokenCredentialType(
 
     def docstring_type(self, **kwargs: Any) -> str:
         if kwargs.get("async_mode"):
-            return f"~{self.code_model.import_core_credentials_async}.AsyncTokenCredential"
+            return (
+                f"~{self.code_model.import_core_credentials_async}.AsyncTokenCredential"
+            )
         return f"~{self.code_model.import_core_credentials}.TokenCredential"
 
     def imports(self, **kwargs: Any) -> FileImport:

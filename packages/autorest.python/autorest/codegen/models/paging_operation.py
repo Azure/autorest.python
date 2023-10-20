@@ -60,8 +60,13 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
             else None
         )
         self.override_success_response_to_200 = override_success_response_to_200
-        self.pager_sync: str = yaml_data.get("pagerSync") or f"{code_model.import_core_paging}.ItemPaged"
-        self.pager_async: str = yaml_data["pagerAsync"] or f"{code_model.import_core_credentials_async}.AsyncItemPaged"
+        self.pager_sync: str = (
+            yaml_data.get("pagerSync") or f"{code_model.import_core_paging}.ItemPaged"
+        )
+        self.pager_async: str = (
+            yaml_data["pagerAsync"]
+            or f"{code_model.import_core_credentials_async}.AsyncItemPaged"
+        )
 
     def _get_attr_name(self, wire_name: str) -> str:
         response_type = self.responses[0].type
@@ -160,7 +165,9 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
         elif any(p.is_api_version for p in self.client.parameters):
             file_import.add_import("urllib.parse", ImportType.STDLIB)
             file_import.add_submodule_import(
-                self.code_model.import_core_utils, "case_insensitive_dict", ImportType.AZURECORE
+                self.code_model.import_core_utils,
+                "case_insensitive_dict",
+                ImportType.AZURECORE,
             )
         if self.code_model.options["models_mode"] == "dpg":
             relative_path = "..." if async_mode else ".."

@@ -392,7 +392,9 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             self.parameters.kwargs_to_pop, ParameterLocation.QUERY  # type: ignore
         ):
             file_import.add_submodule_import(
-                self.code_model.import_core_utils, "case_insensitive_dict", ImportType.AZURECORE
+                self.code_model.import_core_utils,
+                "case_insensitive_dict",
+                ImportType.AZURECORE,
             )
         if self.deprecated:
             file_import.add_import("warnings", ImportType.STDLIB)
@@ -404,7 +406,9 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             )
         if self.has_etag:
             file_import.add_submodule_import(
-                self.code_model.import_core_exceptions, "ResourceModifiedError", ImportType.AZURECORE
+                self.code_model.import_core_exceptions,
+                "ResourceModifiedError",
+                ImportType.AZURECORE,
             )
             if not async_mode:
                 file_import.add_submodule_import(
@@ -435,7 +439,9 @@ class OperationBase(  # pylint: disable=too-many-public-methods
                 )
             else:
                 file_import.add_submodule_import(
-                    self.code_model.import_core_rest, "HttpResponse", ImportType.AZURECORE
+                    self.code_model.import_core_rest,
+                    "HttpResponse",
+                    ImportType.AZURECORE,
                 )
         if (
             self.code_model.options["builders_visibility"] == "embedded"
@@ -443,7 +449,9 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         ):
             file_import.merge(self.request_builder.imports())
         file_import.add_submodule_import(
-            self.code_model.import_core_pipeline, "PipelineResponse", ImportType.AZURECORE
+            self.code_model.import_core_pipeline,
+            "PipelineResponse",
+            ImportType.AZURECORE,
         )
         file_import.add_submodule_import(
             self.code_model.import_core_rest, "HttpRequest", ImportType.AZURECORE

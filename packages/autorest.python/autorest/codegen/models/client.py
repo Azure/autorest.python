@@ -54,7 +54,6 @@ class _ClientConfigBase(Generic[ParameterListType], BaseModel):
         return self.yaml_data["name"]
 
 
-        
 class Client(_ClientConfigBase[ClientGlobalParameterList]):
     """Model representing our service client"""
 
@@ -207,7 +206,9 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             )
         else:
             file_import.add_submodule_import(
-                self.code_model.import_core, self.pipeline_class(async_mode), ImportType.AZURECORE
+                self.code_model.import_core,
+                self.pipeline_class(async_mode),
+                ImportType.AZURECORE,
             )
 
         for gp in self.parameters:

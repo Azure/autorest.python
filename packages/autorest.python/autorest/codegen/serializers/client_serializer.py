@@ -119,7 +119,12 @@ class ClientSerializer:
             result.append(
                 f'kwargs["request_id_header_name"] = "{self.client.request_id_header_name}"'
             )
-        policies = build_policies(self.client.code_model.options["azure_arm"], async_mode, self.client.code_model.options["unbranded"], self.client.code_model.options["tracing"])
+        policies = build_policies(
+            self.client.code_model.options["azure_arm"],
+            async_mode,
+            self.client.code_model.options["unbranded"],
+            self.client.code_model.options["tracing"],
+        )
         result.extend(
             [
                 "_policies = kwargs.pop('policies', None)",
@@ -244,7 +249,7 @@ class ClientSerializer:
         return retval
 
     def _rest_request_example(self, async_mode: bool) -> List[str]:
-        retval = [f">>> from {self.import_core_rest} import HttpRequest"]
+        retval = [f">>> from {self.client.code_model.import_core_rest} import HttpRequest"]
         retval.append('>>> request = HttpRequest("GET", "https://www.example.org/")')
         retval.append("<HttpRequest [GET], url: 'https://www.example.org/'>")
         retval.extend(self._example_make_call(async_mode))
@@ -263,7 +268,9 @@ class ClientSerializer:
         )
         retval.append("")
         retval.append(":param request: The network request you want to make. Required.")
-        retval.append(f":type request: ~{self.client.code_model.import_core_rest}.HttpRequest")
+        retval.append(
+            f":type request: ~{self.client.code_model.import_core_rest}.HttpRequest"
+        )
         retval.append(
             ":keyword bool stream: Whether the response payload will be streamed. Defaults to False."
         )
@@ -271,7 +278,9 @@ class ClientSerializer:
             ":return: The response of your network call. Does not do error handling on your response."
         )
         http_response = "AsyncHttpResponse" if async_mode else "HttpResponse"
-        retval.append(f":rtype: ~{self.client.code_model.import_core_rest}.{http_response}")
+        retval.append(
+            f":rtype: ~{self.client.code_model.import_core_rest}.{http_response}"
+        )
         retval.append('"""')
         return retval
 
@@ -279,7 +288,8 @@ class ClientSerializer:
         return self.parameter_serializer.serialize_path(
             self.client.parameters.path, "self._serialize"
         )
-    
+
+
 class ConfigSerializer:
     def __init__(self, client: Client) -> None:
         self.client = client
