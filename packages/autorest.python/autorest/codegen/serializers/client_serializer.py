@@ -262,7 +262,7 @@ class ClientSerializer:
         )
         retval.append("")
         retval.append(":param request: The network request you want to make. Required.")
-        retval.append(f":type request: ~{self.import_core_rest}.HttpRequest")
+        retval.append(f":type request: ~{self.client.code_model.import_core_rest}.HttpRequest")
         retval.append(
             ":keyword bool stream: Whether the response payload will be streamed. Defaults to False."
         )
@@ -270,7 +270,7 @@ class ClientSerializer:
             ":return: The response of your network call. Does not do error handling on your response."
         )
         http_response = "AsyncHttpResponse" if async_mode else "HttpResponse"
-        retval.append(f":rtype: ~{self.import_core_rest}.{http_response}")
+        retval.append(f":rtype: ~{self.client.code_model.import_core_rest}.{http_response}")
         retval.append('"""')
         return retval
 
@@ -279,11 +279,6 @@ class ClientSerializer:
             self.client.parameters.path, "self._serialize"
         )
     
-    @property
-    def import_core_rest(self) -> str:
-        return self.client.import_core_name(same_module_name="rest")
-
-
 class ConfigSerializer:
     def __init__(self, client: Client) -> None:
         self.client = client

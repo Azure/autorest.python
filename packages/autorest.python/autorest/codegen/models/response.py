@@ -158,6 +158,8 @@ class PagingResponse(Response):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         self.item_type = self.code_model.lookup_type(id(self.yaml_data["itemType"]))
+        self.pager_sync: str = self.yaml_data.get("pagerSync") or f"{self.code_model.import_core_paging}.ItemPaged"
+        self.pager_async: str = self.yaml_data["pagerAsync"] or f"{self.code_model.import_core_credentials_async}.AsyncItemPaged"
 
     def get_polymorphic_subtypes(self, polymorphic_subtypes: List["ModelType"]) -> None:
         return self.item_type.get_polymorphic_subtypes(polymorphic_subtypes)
@@ -166,9 +168,7 @@ class PagingResponse(Response):
         return self.item_type.get_json_template_representation()
 
     def get_pager_path(self, async_mode: bool) -> str:
-        return (
-            self.yaml_data["pagerAsync"] if async_mode else self.yaml_data["pagerSync"]
-        )
+        return self.pager_async if async_mode else self.pager_sync
 
     def get_pager(self, async_mode: bool) -> str:
         return self.get_pager_path(async_mode).split(".")[-1]
@@ -200,7 +200,7 @@ class PagingResponse(Response):
         async_mode = kwargs.get("async_mode")
         if async_mode:
             file_import.add_submodule_import(
-                self.code_model.import_core_name(module_name="paging", azure_module_name="async_paging"), "AsyncList", ImportType.AZURECORE
+                self.code_model.import_core_paging_async, "AsyncList", ImportType.AZURECORE
             )
 
         return file_import

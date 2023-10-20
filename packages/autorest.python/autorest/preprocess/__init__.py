@@ -160,10 +160,6 @@ def update_operation_group_class_name(
 
 def update_paging_response(yaml_data: Dict[str, Any]) -> None:
     yaml_data["discriminator"] = "paging"
-    yaml_data["pagerSync"] = yaml_data.get("pagerSync") or "azure.core.paging.ItemPaged"
-    yaml_data["pagerAsync"] = (
-        yaml_data.get("pagerAsync") or "azure.core.async_paging.AsyncItemPaged"
-    )
 
 
 HEADERS_HIDE_IN_METHOD = (
@@ -489,10 +485,6 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         item_type: Optional[Dict[str, Any]] = None,
     ) -> None:
         self.update_operation(code_model, yaml_data, is_overload=is_overload)
-        if not yaml_data.get("pagerSync"):
-            yaml_data["pagerSync"] = "azure.core.paging.ItemPaged"
-        if not yaml_data.get("pagerAsync"):
-            yaml_data["pagerAsync"] = "azure.core.async_paging.AsyncItemPaged"
         item_type = item_type or yaml_data["itemType"]["elementType"]
         if yaml_data.get("nextOperation"):
             yaml_data["nextOperation"]["groupName"] = self.pad_reserved_words(

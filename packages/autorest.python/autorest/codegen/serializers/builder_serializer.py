@@ -483,13 +483,12 @@ class RequestBuilderSerializer(
         return False
 
     def response_docstring(self, builder: RequestBuilderType) -> List[str]:
-        import_rest = builder.import_core_name(same_module_name="rest")
         response_str = (
-            f":return: Returns an :class:`~{import_rest}.HttpRequest` that you will pass to the client's "
+            f":return: Returns an :class:`~{builder.code_model.import_core_rest}.HttpRequest` that you will pass to the client's "
             + "`send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to "
             + "incorporate this response into your code flow."
         )
-        rtype_str = f":rtype: ~{import_rest}.HttpRequest"
+        rtype_str = f":rtype: ~{builder.code_model.import_core_rest}.HttpRequest"
         return [response_str, rtype_str]
 
     def pop_kwargs_from_signature(self, builder: RequestBuilderType) -> List[str]:
@@ -724,7 +723,7 @@ class _OperationSerializer(
         return [
             response_str,
             rtype_str,
-            f":raises ~{builder.import_core_name(same_module_name='exceptions')}.HttpResponseError:",
+            f":raises ~{builder.code_model.import_core_exceptions}.HttpResponseError:",
         ]
 
     def _serialize_body_parameter(self, builder: OperationType) -> List[str]:

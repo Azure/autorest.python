@@ -377,11 +377,9 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             "ResourceExistsError",
             "ResourceNotModifiedError",
         ]
-        import_exception = self.code_model.import_core_name(same_module_name="exceptions")
-        import_rest = self.code_model.import_core_name(same_module_name="rest")
         for error in errors:
             file_import.add_submodule_import(
-                import_exception, error, ImportType.AZURECORE
+                self.code_model.import_core_exceptions, error, ImportType.AZURECORE
             )
         if self.code_model.options["azure_arm"]:
             file_import.add_submodule_import(
@@ -394,7 +392,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             self.parameters.kwargs_to_pop, ParameterLocation.QUERY  # type: ignore
         ):
             file_import.add_submodule_import(
-                "azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE
+                self.code_model.import_core_utils, "case_insensitive_dict", ImportType.AZURECORE
             )
         if self.deprecated:
             file_import.add_import("warnings", ImportType.STDLIB)
@@ -406,7 +404,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             )
         if self.has_etag:
             file_import.add_submodule_import(
-                import_exception, "ResourceModifiedError", ImportType.AZURECORE
+                self.code_model.import_core_exceptions, "ResourceModifiedError", ImportType.AZURECORE
             )
             if not async_mode:
                 file_import.add_submodule_import(
@@ -431,13 +429,13 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         else:
             if async_mode:
                 file_import.add_submodule_import(
-                    import_rest,
+                    self.code_model.import_core_rest,
                     "AsyncHttpResponse",
                     ImportType.AZURECORE,
                 )
             else:
                 file_import.add_submodule_import(
-                    import_rest, "HttpResponse", ImportType.AZURECORE
+                    self.code_model.import_core_rest, "HttpResponse", ImportType.AZURECORE
                 )
         if (
             self.code_model.options["builders_visibility"] == "embedded"
@@ -445,10 +443,10 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         ):
             file_import.merge(self.request_builder.imports())
         file_import.add_submodule_import(
-            "azure.core.pipeline", "PipelineResponse", ImportType.AZURECORE
+            self.code_model.import_core_pipeline, "PipelineResponse", ImportType.AZURECORE
         )
         file_import.add_submodule_import(
-            import_rest, "HttpRequest", ImportType.AZURECORE
+            self.code_model.import_core_rest, "HttpRequest", ImportType.AZURECORE
         )
         file_import.add_submodule_import(
             "typing", "Callable", ImportType.STDLIB, TypingSection.CONDITIONAL

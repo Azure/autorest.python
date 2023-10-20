@@ -102,7 +102,6 @@ class GeneralSerializer:
 
         # configure imports
         file_import = FileImport()
-        import_core = self.code_model.import_core_name()
         if self.code_model.need_request_converter:
             file_import.add_submodule_import(
                 "azure.core.pipeline.transport",
@@ -117,7 +116,7 @@ class GeneralSerializer:
                 ImportType.STDLIB,
             )
             file_import.add_submodule_import(
-                import_core,
+                self.code_model.import_core,
                 f"{'Async' if self.async_mode else ''}PipelineClient",
                 ImportType.AZURECORE,
                 TypingSection.TYPING,
@@ -137,7 +136,7 @@ class GeneralSerializer:
         if self.code_model.has_etag:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
             file_import.add_submodule_import(
-                import_core,
+                self.code_model.import_core,
                 "MatchConditions",
                 ImportType.AZURECORE,
             )

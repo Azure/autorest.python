@@ -120,7 +120,7 @@ KNOWN_TYPES: Dict[str, Dict[str, Any]] = {
 JSON_REGEXP = re.compile(r"^(application|text)/(.+\+)?json$")
 
 
-def build_policies(is_arm: bool, async_mode: bool) -> List[str]:
+def build_policies(is_arm: bool, async_mode: bool, tracing: bool = True) -> List[str]:
     async_prefix = "Async" if async_mode else ""
     policies = [
         "policies.RequestIdPolicy(**kwargs)",
@@ -136,7 +136,7 @@ def build_policies(is_arm: bool, async_mode: bool) -> List[str]:
         "self._config.authentication_policy",
         "self._config.custom_hook_policy",
         "self._config.logging_policy",
-        "policies.DistributedTracingPolicy(**kwargs)",
+        "policies.DistributedTracingPolicy(**kwargs)" if tracing else None,
         "policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None",
         "self._config.http_logging_policy",
     ]

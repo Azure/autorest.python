@@ -77,11 +77,6 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
             + "incorporate this response into your code flow."
         )
 
-    @property
-    def import_core_rest(self) -> str:
-        return self.code_model.import_core_name(same_module_name='rest')
-
-
     def response_docstring_type(self, **kwargs) -> str:
         return f"~{self.import_core_rest}.HttpRequest"
 
@@ -103,14 +98,14 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
             )
 
         file_import.add_submodule_import(
-            self.code_model.import_core_name(same_module_name="rest"),
+            self.code_model.import_core_rest,
             "HttpRequest",
             ImportType.AZURECORE,
         )
 
         if self.parameters.headers or self.parameters.query:
             file_import.add_submodule_import(
-                self.code_model.import_core_name(same_module_name="utils")), "case_insensitive_dict", ImportType.AZURECORE
+                self.code_model.import_core_utils, "case_insensitive_dict", ImportType.AZURECORE
             )
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
