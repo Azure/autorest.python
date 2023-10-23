@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, Any, cast
+from typing import Dict, Any
 from pathlib import Path
 import yaml
 
@@ -94,6 +94,63 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
 _LOGGER = logging.getLogger(__name__)
 
 
+class OptionsRetriever:
+    def __init__(self, options: Dict[str, Any]) -> None:
+        self.options = options
+
+    @property
+    def azure_arm(self) -> bool:
+        return self.options.get("azure-arm", False)
+
+    @property
+    def unbranded(self) -> bool:
+        return self.options.get("unbranded", False)
+
+    @property
+    def company_name(self) -> bool:
+        return self.options.get(
+            "company-name", "Microsoft" if not self.unbranded else ""
+        )
+
+    @property
+    def license_header(self) -> str:
+        license_header = self.options.get(
+            "header-text",
+            ""
+            if self.unbranded and not self.company_name
+            else DEFAULT_HEADER_TEXT.format(company_name=self.company_name),
+        )
+        if license_header:
+            license_header = license_header.replace("\n", "\n# ")
+            license_header = (
+                "# --------------------------------------------------------------------------\n# "
+                + license_header
+            )
+            license_header += "\n# --------------------------------------------------------------------------"
+        return license_header
+
+    @property
+    def low_level_client(self) -> bool:
+        return self.options.get("low-level-client", False)
+
+    @property
+    def version_tolerant(self) -> bool:
+        return self.options.get("version-tolerant", True)
+
+    @property
+    def show_operations(self) -> bool:
+        return self.options.get("show-operations", not self.low_level_client)
+
+    @property
+    def models_mode_default(self) -> str:
+        models_mode_default = (
+            "none" if self.low_level_client or self.version_tolerant else "msrest"
+        )
+        if self.options.get("cadl_file") is not None:
+            models_mode_default = "dpg"
+        return models_mode_default
+
+
 class CodeGenerator(Plugin):
     @staticmethod
     def remove_cloud_errors(yaml_data: Dict[str, Any]) -> None:
@@ -122,39 +179,13 @@ class CodeGenerator(Plugin):
 
     def _build_code_model_options(self) -> Dict[str, Any]:
         """Build en options dict from the user input while running autorest."""
-        azure_arm = self.options.get("azure-arm", False)
-        unbranded = self.options.get("unbranded", False)
-        company_name = self.options.get(
-            "company-name", "Microsoft" if not unbranded else ""
-        )
-        license_header = self.options.get(
-            "header-text",
-            ""
-            if unbranded and not company_name
-            else DEFAULT_HEADER_TEXT.format(company_name=company_name),
-        )
-        if license_header:
-            license_header = license_header.replace("\n", "\n# ")
-            license_header = (
-                "# --------------------------------------------------------------------------\n# "
-                + license_header
-            )
-            license_header += "\n# --------------------------------------------------------------------------"
 
-        low_level_client = cast(bool, self.options.get("low-level-client", False))
-        version_tolerant = cast(bool, self.options.get("version-tolerant", True))
-        show_operations = self.options.get("show-operations", not low_level_client)
-        models_mode_default = (
-            "none" if low_level_client or version_tolerant else "msrest"
-        )
-        if self.options.get("cadl_file") is not None:
-            models_mode_default = "dpg"
-
+        options_retriever = OptionsRetriever(self.options)
         package_name = self.options.get("package-name")
         options: Dict[str, Any] = {
-            "azure_arm": azure_arm,
+            "azure_arm": options_retriever.azure_arm,
             "head_as_boolean": self.options.get("head-as-boolean", True),
-            "license_header": license_header,
+            "license_header": options_retriever.license_header,
             "keep_version_file": self.options.get("keep-version-file", False),
             "no_async": self.options.get("no-async", False),
             "no_namespace_folders": self.options.get("no-namespace-folders", False),
@@ -162,23 +193,31 @@ class CodeGenerator(Plugin):
             "package_name": package_name,
             "package_version": self.options.get("package-version"),
             "client_side_validation": self.options.get("client-side-validation", False),
-            "tracing": self.options.get("tracing", show_operations and not unbranded),
+            "tracing": self.options.get(
+                "tracing",
+                options_retriever.show_operations and not options_retriever.unbranded,
+            ),
             "multiapi": self.options.get("multiapi", False),
             "polymorphic_examples": self.options.get("polymorphic-examples", 5),
-            "models_mode": self.options.get("models-mode", models_mode_default).lower(),
+            "models_mode": self.options.get(
+                "models-mode", options_retriever.models_mode_default
+            ).lower(),
             "builders_visibility": self.options.get("builders-visibility"),
-            "show_operations": show_operations,
+            "show_operations": options_retriever.show_operations,
             "show_send_request": self.options.get(
-                "show-send-request", low_level_client or version_tolerant
+                "show-send-request",
+                options_retriever.low_level_client
+                or options_retriever.version_tolerant,
             ),
             "only_path_and_body_params_positional": self.options.get(
                 "only-path-and-body-params-positional",
-                low_level_client or version_tolerant,
+                options_retriever.low_level_client
+                or options_retriever.version_tolerant,
             ),
-            "version_tolerant": version_tolerant,
-            "low_level_client": low_level_client,
+            "version_tolerant": options_retriever.version_tolerant,
+            "low_level_client": options_retriever.low_level_client,
             "combine_operation_files": self.options.get(
-                "combine-operation-files", version_tolerant
+                "combine-operation-files", options_retriever.version_tolerant
             ),
             "package_mode": self.options.get("package-mode"),
             "package_pprint_name": self.options.get("package-pprint-name")
@@ -186,18 +225,19 @@ class CodeGenerator(Plugin):
             "package_configuration": self.options.get("package-configuration"),
             "default_optional_constants_to_none": self.options.get(
                 "default-optional-constants-to-none",
-                low_level_client or version_tolerant,
+                options_retriever.low_level_client
+                or options_retriever.version_tolerant,
             ),
             "generate_sample": self.options.get("generate-sample", False),
             "default_api_version": self.options.get("default-api-version"),
             "from_typespec": self.options.get("from-typespec", False),
-            "unbranded": unbranded,
-            "company_name": company_name,
+            "unbranded": options_retriever.unbranded,
+            "company_name": options_retriever.company_name,
         }
 
         if options["builders_visibility"] is None:
             options["builders_visibility"] = (
-                "public" if low_level_client else "embedded"
+                "public" if options_retriever.low_level_client else "embedded"
             )
         else:
             options["builders_visibility"] = options["builders_visibility"].lower()
@@ -209,7 +249,7 @@ class CodeGenerator(Plugin):
             options["models_mode"] = False
 
         # Force some options in ARM MODE:
-        if azure_arm:
+        if options_retriever.azure_arm:
             options["head_as_boolean"] = True
         return options
 
