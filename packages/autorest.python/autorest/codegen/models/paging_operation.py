@@ -144,7 +144,7 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
 
     def imports(self, async_mode: bool, **kwargs: Any) -> FileImport:
         if self.abstract:
-            return FileImport()
+            return FileImport(self.code_model)
         file_import = self._imports_shared(async_mode, **kwargs)
         file_import.merge(super().imports(async_mode, **kwargs))
         if self.code_model.options["tracing"] and self.want_tracing:

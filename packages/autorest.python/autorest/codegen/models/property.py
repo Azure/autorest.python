@@ -147,7 +147,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         return retval or None
 
     def imports(self, **kwargs) -> FileImport:
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         if self.is_discriminator and isinstance(self.type, EnumType):
             return file_import
         file_import.merge(

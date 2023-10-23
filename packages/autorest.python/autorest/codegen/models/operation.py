@@ -230,7 +230,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
     def _imports_shared(
         self, async_mode: bool, **kwargs: Any  # pylint: disable=unused-argument
     ) -> FileImport:
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
@@ -254,7 +254,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
 
     def imports_for_multiapi(self, async_mode: bool, **kwargs: Any) -> FileImport:
         if self.abstract:
-            return FileImport()
+            return FileImport(self.code_model)
         file_import = self._imports_shared(async_mode, **kwargs)
         for param in self.parameters.method:
             file_import.merge(
@@ -308,7 +308,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         async_mode: bool,
     ) -> FileImport:
         """Helper method to get a request builder import."""
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         if self.code_model.options["builders_visibility"] != "embedded":
             group_name = request_builder.group_name
             rest_import_path = "..." if async_mode else ".."
@@ -338,7 +338,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         self, async_mode: bool, **kwargs: Any
     ) -> FileImport:
         if self.abstract:
-            return FileImport()
+            return FileImport(self.code_model)
         file_import = self._imports_shared(async_mode, **kwargs)
 
         for param in self.parameters.method:

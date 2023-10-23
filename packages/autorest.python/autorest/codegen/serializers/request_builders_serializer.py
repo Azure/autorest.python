@@ -26,7 +26,7 @@ class RequestBuildersSerializer:
 
     @property
     def imports(self) -> FileImport:
-        file_import = FileImport()
+        file_import = FileImport(code_model=self.code_model)
         for request_builder in self.request_builders:
             if request_builder.group_name == self.group_name:
                 file_import.merge(request_builder.imports())

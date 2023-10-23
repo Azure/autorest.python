@@ -85,7 +85,7 @@ class GeneralSerializer:
     def serialize_service_client_file(self, clients: List[Client]) -> str:
         template = self.env.get_template("client_container.py.jinja2")
 
-        imports = FileImport()
+        imports = FileImport(self.code_model)
         for client in clients:
             imports.merge(client.imports(self.async_mode))
 
@@ -101,7 +101,7 @@ class GeneralSerializer:
         template = self.env.get_template("vendor.py.jinja2")
 
         # configure imports
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         if self.code_model.need_request_converter:
             file_import.add_submodule_import(
                 "azure.core.pipeline.transport",
@@ -122,10 +122,9 @@ class GeneralSerializer:
                 TypingSection.TYPING,
             )
             file_import.add_msrest_import(
-                self.code_model,
-                ".." if self.async_mode else ".",
-                MsrestImportType.SerializerDeserializer,
-                TypingSection.TYPING,
+                relative_path=".." if self.async_mode else ".",
+                msrest_import_type=MsrestImportType.SerializerDeserializer,
+                typing_section=TypingSection.TYPING,
             )
             for client in clients:
                 file_import.add_submodule_import(
@@ -152,7 +151,7 @@ class GeneralSerializer:
 
     def serialize_config_file(self, clients: List[Client]) -> str:
         template = self.env.get_template("config_container.py.jinja2")
-        imports = FileImport()
+        imports = FileImport(self.code_model)
         for client in self.code_model.clients:
             imports.merge(client.config.imports(self.async_mode))
         return template.render(
