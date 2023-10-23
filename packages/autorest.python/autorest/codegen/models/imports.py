@@ -89,7 +89,7 @@ class TypeDefinition:
 
 class FileImport:
     def __init__(self, code_model: "CodeModel") -> None:
-        self.imports = []
+        self.imports: List[ImportModel] = []
         self.code_model = code_model
         # has sync and async type definitions
         self.type_definitions: Dict[str, TypeDefinition] = {}

@@ -398,9 +398,8 @@ class DatetimeType(PrimitiveType):
     def instance_check_template(self) -> str:
         return "isinstance({}, datetime.datetime)"
 
-    @staticmethod
-    def imports_for_sample() -> FileImport:
-        file_import = super(DatetimeType, DatetimeType).imports_for_sample()
+    def imports_for_sample(self) -> FileImport:
+        file_import = super().imports_for_sample()
         file_import.add_import("isodate", ImportType.STDLIB)
         return file_import
 
@@ -442,9 +441,8 @@ class TimeType(PrimitiveType):
     def instance_check_template(self) -> str:
         return "isinstance({}, datetime.time)"
 
-    @staticmethod
-    def imports_for_sample() -> FileImport:
-        file_import = super(TimeType, TimeType).imports_for_sample()
+    def imports_for_sample(self) -> FileImport:
+        file_import = super().imports_for_sample()
         file_import.add_import("isodate", ImportType.STDLIB)
         return file_import
 
@@ -490,9 +488,8 @@ class UnixTimeType(PrimitiveType):
     def instance_check_template(self) -> str:
         return "isinstance({}, datetime.time)"
 
-    @staticmethod
-    def imports_for_sample() -> FileImport:
-        file_import = super(UnixTimeType, UnixTimeType).imports_for_sample()
+    def imports_for_sample(self) -> FileImport:
+        file_import = super().imports_for_sample()
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
 
@@ -534,9 +531,8 @@ class DateType(PrimitiveType):
     def instance_check_template(self) -> str:
         return "isinstance({}, datetime.date)"
 
-    @staticmethod
-    def imports_for_sample() -> FileImport:
-        file_import = super(DateType, DateType).imports_for_sample()
+    def imports_for_sample(self) -> FileImport:
+        file_import = super().imports_for_sample()
         file_import.add_import("isodate", ImportType.STDLIB)
         return file_import
 
@@ -578,9 +574,8 @@ class DurationType(PrimitiveType):
     def instance_check_template(self) -> str:
         return "isinstance({}, datetime.timedelta)"
 
-    @staticmethod
-    def imports_for_sample() -> FileImport:
-        file_import = super(DurationType, DurationType).imports_for_sample()
+    def imports_for_sample(self) -> FileImport:
+        file_import = super().imports_for_sample()
         file_import.add_import("isodate", ImportType.STDLIB)
         return file_import
 
