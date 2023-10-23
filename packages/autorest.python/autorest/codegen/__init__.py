@@ -232,7 +232,7 @@ class CodeGenerator(Plugin):
 
         code_model = CodeModel(yaml_data=yaml_data, options=options)
         if options["unbranded"] and any(
-            client.has_lro_operations for client in code_model.clients
+            client.lro_operations for client in code_model.clients
         ):
             raise ValueError("Do not support LRO when --unbranded=true")
         serializer = self.get_serializer(code_model)

@@ -88,10 +88,13 @@ class TypeDefinition:
 
 
 class FileImport:
-    def __init__(self, imports: Optional[List[ImportModel]] = None) -> None:
+    def __init__(
+        self, imports: Optional[List[ImportModel]] = None, *, unbranded: bool = False
+    ) -> None:
         self.imports = imports or []
         # has sync and async type definitions
         self.type_definitions: Dict[str, TypeDefinition] = {}
+        self.unbranded = unbranded
 
     def _append_import(self, import_model: ImportModel) -> None:
         if not any(
