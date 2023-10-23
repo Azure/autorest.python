@@ -85,6 +85,11 @@ def _validate_code_model_options(options: Dict[str, Any]) -> None:
             "Please read https://aka.ms/azsdk/dpcodegen for more details."
         )
 
+    if options["unbranded"] and options["tracing"]:
+        raise ValueError(
+            "Can not set --unbranded=true and --tracing=true at the same time."
+        )
+
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -137,6 +142,7 @@ class CodeGenerator(Plugin):
             models_mode_default = "dpg"
 
         package_name = self.options.get("package-name")
+        unbranded = self.options.get("unbranded", False)
         options: Dict[str, Any] = {
             "azure_arm": azure_arm,
             "head_as_boolean": self.options.get("head-as-boolean", True),
@@ -148,7 +154,7 @@ class CodeGenerator(Plugin):
             "package_name": package_name,
             "package_version": self.options.get("package-version"),
             "client_side_validation": self.options.get("client-side-validation", False),
-            "tracing": self.options.get("tracing", show_operations),
+            "tracing": self.options.get("tracing", show_operations and not unbranded),
             "multiapi": self.options.get("multiapi", False),
             "polymorphic_examples": self.options.get("polymorphic-examples", 5),
             "models_mode": self.options.get("models-mode", models_mode_default).lower(),
@@ -177,6 +183,7 @@ class CodeGenerator(Plugin):
             "generate_sample": self.options.get("generate-sample", False),
             "default_api_version": self.options.get("default-api-version"),
             "from_typespec": self.options.get("from-typespec", False),
+            "unbranded": unbranded,
         }
 
         if options["builders_visibility"] is None:
