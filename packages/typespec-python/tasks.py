@@ -93,6 +93,9 @@ EMITTER_OPTIONS = {
     "type/property/value-types": {
         "package-name": "typetest-property-valuetypes",
     },
+    "type/property/additional-properties": {
+        "package-name": "typetest-property-additionalproperties",
+    },
     "type/union": {
         "package-name": "typetest-union",
     },
