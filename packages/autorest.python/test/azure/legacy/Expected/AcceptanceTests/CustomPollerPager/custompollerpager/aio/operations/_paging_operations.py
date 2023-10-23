@@ -1777,13 +1777,15 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncCustomPoller.from_continuation_token(
+            return AsyncCustomPoller[AsyncIterable["_models.Product"]].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncCustomPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncCustomPoller[AsyncIterable["_models.Product"]](
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+        )
 
     @distributed_trace
     def append_api_version(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:
