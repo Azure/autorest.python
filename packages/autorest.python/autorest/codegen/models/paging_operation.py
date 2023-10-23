@@ -61,11 +61,12 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
         )
         self.override_success_response_to_200 = override_success_response_to_200
         self.pager_sync: str = (
-            yaml_data.get("pagerSync") or f"{code_model.import_core_paging}.ItemPaged"
+            yaml_data.get("pagerSync")
+            or f"{self.init_file_import().import_core_paging}.ItemPaged"
         )
         self.pager_async: str = (
             yaml_data.get("pagerAsync")
-            or f"{code_model.import_core_paging_async}.AsyncItemPaged"
+            or f"{self.init_file_import().import_core_paging_async}.AsyncItemPaged"
         )
 
     def _get_attr_name(self, wire_name: str) -> str:

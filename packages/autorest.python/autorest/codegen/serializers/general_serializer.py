@@ -59,7 +59,7 @@ class GeneralSerializer(BaseSerializer):
         }
         params.update(self.code_model.options)
         params.update(kwargs)
-        return template.render(**params)
+        return template.render(file_import=self.init_file_import(), **params)
 
     def serialize_pkgutil_init_file(self) -> str:
         template = self.env.get_template("pkgutil_init.py.jinja2")
@@ -167,7 +167,9 @@ class GeneralSerializer(BaseSerializer):
 
     def serialize_model_base_file(self) -> str:
         template = self.env.get_template("model_base.py.jinja2")
-        return template.render(code_model=self.code_model)
+        return template.render(
+            code_model=self.code_model, file_import=self.init_file_import()
+        )
 
     def serialize_validation_file(self) -> str:
         template = self.env.get_template("validation.py.jinja2")

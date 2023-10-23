@@ -250,7 +250,7 @@ class ClientSerializer:
 
     def _rest_request_example(self, async_mode: bool) -> List[str]:
         retval = [
-            f">>> from {self.client.code_model.import_core_rest} import HttpRequest"
+            f">>> from {self.client.init_file_import().import_core_rest} import HttpRequest"
         ]
         retval.append('>>> request = HttpRequest("GET", "https://www.example.org/")')
         retval.append("<HttpRequest [GET], url: 'https://www.example.org/'>")
@@ -271,7 +271,7 @@ class ClientSerializer:
         retval.append("")
         retval.append(":param request: The network request you want to make. Required.")
         retval.append(
-            f":type request: ~{self.client.code_model.import_core_rest}.HttpRequest"
+            f":type request: ~{self.client.init_file_import().import_core_rest}.HttpRequest"
         )
         retval.append(
             ":keyword bool stream: Whether the response payload will be streamed. Defaults to False."
@@ -281,7 +281,7 @@ class ClientSerializer:
         )
         http_response = "AsyncHttpResponse" if async_mode else "HttpResponse"
         retval.append(
-            f":rtype: ~{self.client.code_model.import_core_rest}.{http_response}"
+            f":rtype: ~{self.client.init_file_import().import_core_rest}.{http_response}"
         )
         retval.append('"""')
         return retval
