@@ -8,21 +8,20 @@ from jinja2 import Environment
 from .import_serializer import FileImportSerializer, TypingSection
 from ..models.imports import MsrestImportType
 from ..models import (
-    FileImport,
     ImportType,
     CodeModel,
     TokenCredentialType,
     Client,
 )
 from .client_serializer import ClientSerializer, ConfigSerializer
+from .base_serializer import BaseSerializer
 
 
-class GeneralSerializer:
+class GeneralSerializer(BaseSerializer):
     """General serializer for SDK root level files"""
 
     def __init__(self, code_model: CodeModel, env: Environment, async_mode: bool):
-        self.code_model = code_model
-        self.env = env
+        super().__init__(code_model, env)
         self.async_mode = async_mode
 
     def serialize_setup_file(self) -> str:
@@ -77,7 +76,7 @@ class GeneralSerializer:
     def serialize_service_client_file(self, clients: List[Client]) -> str:
         template = self.env.get_template("client_container.py.jinja2")
 
-        imports = FileImport()
+        imports = self.init_file_import()
         for client in clients:
             imports.merge(client.imports(self.async_mode))
 
@@ -93,7 +92,7 @@ class GeneralSerializer:
         template = self.env.get_template("vendor.py.jinja2")
 
         # configure imports
-        file_import = FileImport()
+        file_import = self.init_file_import()
         if self.code_model.need_request_converter:
             file_import.add_submodule_import(
                 "azure.core.pipeline.transport",
@@ -108,7 +107,7 @@ class GeneralSerializer:
                 ImportType.STDLIB,
             )
             file_import.add_submodule_import(
-                self.code_model.import_core,
+                file_import.import_core,
                 f"{'Async' if self.async_mode else ''}PipelineClient",
                 ImportType.SDKCORE,
                 TypingSection.TYPING,
@@ -128,7 +127,7 @@ class GeneralSerializer:
         if self.code_model.has_etag:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
             file_import.add_submodule_import(
-                self.code_model.import_core,
+                file_import.import_core,
                 "MatchConditions",
                 ImportType.SDKCORE,
             )
@@ -144,7 +143,7 @@ class GeneralSerializer:
 
     def serialize_config_file(self, clients: List[Client]) -> str:
         template = self.env.get_template("config_container.py.jinja2")
-        imports = FileImport()
+        imports = self.init_file_import()
         for client in self.code_model.clients:
             imports.merge(client.config.imports(self.async_mode))
         return template.render(
@@ -162,8 +161,8 @@ class GeneralSerializer:
     def serialize_serialization_file(self) -> str:
         template = self.env.get_template("serialization.py.jinja2")
         return template.render(
-            import_core_exceptions=self.code_model.import_core_exceptions,
-            import_core_serialization=self.code_model.import_core_serialization,
+            import_core_exceptions=self.init_file_import().import_core_exceptions,
+            import_core_serialization=self.init_file_import().import_core_serialization,
         )
 
     def serialize_model_base_file(self) -> str:

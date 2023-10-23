@@ -149,7 +149,7 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
 
     def imports(self, async_mode: bool, **kwargs: Any) -> FileImport:
         if self.abstract:
-            return FileImport()
+            return self.init_file_import()
         file_import = self._imports_shared(async_mode, **kwargs)
         file_import.merge(super().imports(async_mode, **kwargs))
         if self.code_model.options["tracing"] and self.want_tracing:
@@ -165,7 +165,7 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
         elif any(p.is_api_version for p in self.client.parameters):
             file_import.add_import("urllib.parse", ImportType.STDLIB)
             file_import.add_submodule_import(
-                self.code_model.import_core_utils,
+                file_import.import_core_utils,
                 "case_insensitive_dict",
                 ImportType.SDKCORE,
             )

@@ -178,23 +178,21 @@ class TokenCredentialType(
 
     def docstring_type(self, **kwargs: Any) -> str:
         if kwargs.get("async_mode"):
-            return (
-                f"~{self.code_model.import_core_credentials_async}.AsyncTokenCredential"
-            )
-        return f"~{self.code_model.import_core_credentials}.TokenCredential"
+            return f"~{self.init_file_import().import_core_credentials_async}.AsyncTokenCredential"
+        return f"~{self.init_file_import().import_core_credentials}.TokenCredential"
 
     def imports(self, **kwargs: Any) -> FileImport:
-        file_import = FileImport()
+        file_import = self.init_file_import()
         if kwargs.get("async_mode"):
             file_import.add_submodule_import(
-                self.code_model.import_core_credentials_async,
+                file_import.import_core_credentials_async,
                 "AsyncTokenCredential",
                 ImportType.SDKCORE,
                 typing_section=TypingSection.TYPING,
             )
         else:
             file_import.add_submodule_import(
-                self.code_model.import_core_credentials,
+                file_import.import_core_credentials,
                 "TokenCredential",
                 ImportType.SDKCORE,
                 typing_section=TypingSection.TYPING,
@@ -223,7 +221,7 @@ class AzureKeyCredentialType(
         return "isinstance({}, AzureKeyCredential)"
 
     def imports(self, **kwargs: Any) -> FileImport:  # pylint: disable=unused-argument
-        file_import = FileImport()
+        file_import = self.init_file_import()
         file_import.add_submodule_import(
             "azure.core.credentials",
             "AzureKeyCredential",

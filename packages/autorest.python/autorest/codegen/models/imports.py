@@ -314,3 +314,51 @@ class FileImport:
                         ImportType.LOCAL,
                         typing_section,
                     )
+
+    @property
+    def import_core(self) -> str:
+        return "azure.core" if not self.unbranded else "corehttp"
+
+    @property
+    def import_core_exceptions(self) -> str:
+        return f"{self.import_core}.exceptions"
+
+    @property
+    def import_core_rest(self) -> str:
+        return f"{self.import_core}.rest"
+
+    @property
+    def import_core_credentials(self) -> str:
+        return f"{self.import_core}.credentials"
+
+    @property
+    def import_core_credentials_async(self) -> str:
+        return (
+            self.import_core + ".credentials_async"
+            if not self.unbranded
+            else ".credentials"
+        )
+
+    @property
+    def import_core_paging(self) -> str:
+        return f"{self.import_core}.paging"
+
+    @property
+    def import_core_paging_async(self) -> str:
+        return self.import_core + ".async_paging" if not self.unbranded else ".paging"
+
+    @property
+    def import_core_utils(self) -> str:
+        return f"{self.import_core}.utils"
+
+    @property
+    def import_core_case_insensitive_enum(self) -> str:
+        return self.import_core + "" if not self.unbranded else ".utils"
+
+    @property
+    def import_core_pipeline(self) -> str:
+        return self.import_core + ".pipeline" if not self.unbranded else ".runtime"
+
+    @property
+    def import_core_serialization(self) -> str:
+        return f"{self.import_core}.serialization"

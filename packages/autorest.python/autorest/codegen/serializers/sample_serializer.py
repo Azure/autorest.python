@@ -10,11 +10,12 @@ from jinja2 import Environment
 
 from autorest.codegen.models.credential_types import AzureKeyCredentialType
 from autorest.codegen.models.credential_types import TokenCredentialType
-from autorest.codegen.models.imports import FileImport, ImportType
+from autorest.codegen.models.imports import ImportType
 from autorest.codegen.models.operation import OperationBase
 from autorest.codegen.models.operation_group import OperationGroup
 from autorest.codegen.models.parameter import Parameter, BodyParameter
 from autorest.codegen.serializers.import_serializer import FileImportSerializer
+from autorest.codegen.serializers.base_serializer import BaseSerializer
 from ..models import CodeModel
 from .utils import get_namespace_config, get_namespace_from_package_name
 from ..._utils import to_snake_case
@@ -22,7 +23,7 @@ from ..._utils import to_snake_case
 _LOGGER = logging.getLogger(__name__)
 
 
-class SampleSerializer:
+class SampleSerializer(BaseSerializer):
     def __init__(
         self,
         code_model: CodeModel,
@@ -32,8 +33,7 @@ class SampleSerializer:
         sample: Dict[str, Any],
         file_name: str,
     ) -> None:
-        self.code_model = code_model
-        self.env = env
+        super().__init__(code_model, env)
         self.operation_group = operation_group
         self.operation = operation
         self.sample = sample
@@ -43,7 +43,7 @@ class SampleSerializer:
         }
 
     def _imports(self) -> FileImportSerializer:
-        imports = FileImport()
+        imports = self.init_file_import()
         namespace_from_package_name = get_namespace_from_package_name(
             self.code_model.options["package_name"]
         )

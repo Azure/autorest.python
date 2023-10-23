@@ -8,7 +8,7 @@ from typing import Any, Dict, TYPE_CHECKING, TypeVar, Generic, Union, List, Opti
 from .base import BaseModel
 from .parameter_list import ClientGlobalParameterList, ConfigGlobalParameterList
 from .imports import FileImport, ImportType, TypingSection, MsrestImportType
-from .utils import add_to_pylint_disable, NAME_LENGTH_LIMIT, is_lro_operation
+from .utils import add_to_pylint_disable, NAME_LENGTH_LIMIT
 from .operation_group import OperationGroup
 from .request_builder import (
     RequestBuilder,
@@ -195,7 +195,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             raise KeyError(f"No operation with id {operation_id} found.") from exc
 
     def _imports_shared(self, async_mode: bool) -> FileImport:
-        file_import = FileImport()
+        file_import = self.init_file_import()
 
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
@@ -206,7 +206,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             )
         else:
             file_import.add_submodule_import(
-                self.code_model.import_core,
+                file_import.import_core,
                 self.pipeline_class(async_mode),
                 ImportType.SDKCORE,
             )
@@ -233,7 +233,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             TypingSection.REGULAR,
         )
         file_import.add_submodule_import(
-            self.code_model.import_core_pipeline, "policies", ImportType.SDKCORE
+            file_import.import_core_pipeline, "policies", ImportType.SDKCORE
         )
         if self.code_model.options["azure_arm"]:
             async_prefix = "Async" if async_mode else ""
@@ -250,22 +250,19 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         return any(o for o in self.operation_groups if o.is_mixin)
 
     @property
-    def has_lro_operations(self) -> bool:
-        """Are there any LRO operations in this SDK?"""
-        return any(
-            is_lro_operation(operation.operation_type)
+    def lro_operations(self) -> List["OperationType"]:
+        """all LRO operations in this SDK?"""
+        return [
+            operation
             for operation_group in self.operation_groups
             for operation in operation_group.operations
-        )
+            if operation.operation_type in ("lro", "lropaging")
+        ]
 
     @property
     def has_public_lro_operations(self) -> bool:
         """Are there any public LRO operations in this SDK?"""
-        return any(
-            is_lro_operation(operation.operation_type) and not operation.internal
-            for operation_group in self.operation_groups
-            for operation in operation_group.operations
-        )
+        return any(not operation.internal for operation in self.lro_operations)
 
     @property
     def has_operations(self) -> bool:
@@ -305,20 +302,20 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         if async_mode:
             file_import.add_submodule_import("typing", "Awaitable", ImportType.STDLIB)
             file_import.add_submodule_import(
-                self.code_model.import_core_rest,
+                file_import.import_core_rest,
                 "AsyncHttpResponse",
                 ImportType.SDKCORE,
                 TypingSection.CONDITIONAL,
             )
         else:
             file_import.add_submodule_import(
-                self.code_model.import_core_rest,
+                file_import.import_core_rest,
                 "HttpResponse",
                 ImportType.SDKCORE,
                 TypingSection.CONDITIONAL,
             )
         file_import.add_submodule_import(
-            self.code_model.import_core_rest,
+            file_import.import_core_rest,
             "HttpRequest",
             ImportType.SDKCORE,
             TypingSection.CONDITIONAL,
@@ -417,9 +414,9 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
         return f"{super().name}Configuration"
 
     def _imports_shared(self, async_mode: bool) -> FileImport:
-        file_import = FileImport()
+        file_import = self.init_file_import()
         file_import.add_submodule_import(
-            self.code_model.import_core_pipeline, "policies", ImportType.SDKCORE
+            file_import.import_core_pipeline, "policies", ImportType.SDKCORE
         )
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
