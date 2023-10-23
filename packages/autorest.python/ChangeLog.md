@@ -1,6 +1,6 @@
 # Release
 
-## 2023-10-xx - 6.9.4
+## 2023-10-23 - 6.9.4
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -11,6 +11,10 @@
 | `msrest` dep of generated code (If generating legacy code)              | `0.7.1`     |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
 | `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`     |
+
+**Bug Fixes**
+
+- Make generated code `pyright-next` compatible. Thanks @kristapratico for the contribution! #2149
 
 **Other Changes**
 

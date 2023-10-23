@@ -1,5 +1,29 @@
 # Release
 
+## 2023-10-23 - 0.15.5
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.49.0`      |
+| `@typespec/http`                                                        | `0.49.0`      |
+| `@typespec/rest`                                                        | `0.49.0`      |
+| `@typespec/versioning`                                                  | `0.49.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.35.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.35.0`      |
+| `azure-core` dep of generated code                                      | `1.28.0`      |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**Bug Fixes**
+
+- Make generated code `pyright-next` compatible. Thanks @kristapratico for the contribution! #2149
+
+**Other Changes**
+
+- Code changes to internal `FileImport` model. Should have no impact on generated code #2204
+
 ## 2023-10-18 - 0.15.4
 
 | Library                                                                 | Min Version   |
