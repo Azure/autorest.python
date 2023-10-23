@@ -76,7 +76,7 @@ class EnumValue(BaseType):
         return self.value_type.instance_check_template
 
     def imports(self, **kwargs: Any) -> FileImport:
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         file_import.merge(self.value_type.imports(**kwargs))
         file_import.add_literal_import()
         file_import.add_submodule_import(
@@ -230,7 +230,7 @@ class EnumType(BaseType):
 
     def imports(self, **kwargs: Any) -> FileImport:
         operation = kwargs.pop("operation", False)
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         if self.code_model.options["models_mode"]:
             file_import.add_submodule_import(
                 "typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL

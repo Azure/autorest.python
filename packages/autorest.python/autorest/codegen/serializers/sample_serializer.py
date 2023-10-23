@@ -43,7 +43,7 @@ class SampleSerializer:
         }
 
     def _imports(self) -> FileImportSerializer:
-        imports = FileImport()
+        imports = FileImport(self.code_model)
         namespace_from_package_name = get_namespace_from_package_name(
             self.code_model.options["package_name"]
         )

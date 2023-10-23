@@ -195,7 +195,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             raise KeyError(f"No operation with id {operation_id} found.") from exc
 
     def _imports_shared(self, async_mode: bool) -> FileImport:
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
 
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
@@ -225,10 +225,9 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             ImportType.LOCAL,
         )
         file_import.add_msrest_import(
-            self.code_model,
-            ".." if async_mode else ".",
-            MsrestImportType.SerializerDeserializer,
-            TypingSection.REGULAR,
+            relative_path=".." if async_mode else ".",
+            msrest_import_type=MsrestImportType.SerializerDeserializer,
+            typing_section=TypingSection.REGULAR,
         )
         file_import.add_submodule_import(
             "azure.core.pipeline", "policies", ImportType.AZURECORE
@@ -406,7 +405,7 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
         return f"{super().name}Configuration"
 
     def _imports_shared(self, async_mode: bool) -> FileImport:
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         file_import.add_submodule_import(
             "azure.core.pipeline", "policies", ImportType.AZURECORE
         )

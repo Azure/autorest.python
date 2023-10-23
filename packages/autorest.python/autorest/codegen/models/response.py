@@ -108,7 +108,7 @@ class Response(BaseModel):
         return self.type.docstring_type(**kwargs) if self.type else "None"
 
     def _imports_shared(self, **kwargs: Any) -> FileImport:
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         if self.type:
             file_import.merge(self.type.imports(**kwargs))
         if self.nullable:

@@ -57,7 +57,7 @@ class OperationGroupsSerializer:
             if self.operation_group
             else [og for client in self.clients for og in client.operation_groups]
         )
-        imports = FileImport()
+        imports = FileImport(code_model=self.code_model)
         for operation_group in operation_groups:
             imports.merge(
                 operation_group.imports(

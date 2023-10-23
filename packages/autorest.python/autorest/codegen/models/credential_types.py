@@ -182,7 +182,7 @@ class TokenCredentialType(
         return "~azure.core.credentials.TokenCredential"
 
     def imports(self, **kwargs: Any) -> FileImport:
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         if kwargs.get("async_mode"):
             file_import.add_submodule_import(
                 "azure.core.credentials_async",
@@ -221,7 +221,7 @@ class AzureKeyCredentialType(
         return "isinstance({}, AzureKeyCredential)"
 
     def imports(self, **kwargs: Any) -> FileImport:  # pylint: disable=unused-argument
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         file_import.add_submodule_import(
             "azure.core.credentials",
             "AzureKeyCredential",

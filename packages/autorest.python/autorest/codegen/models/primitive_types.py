@@ -107,7 +107,7 @@ class BinaryType(PrimitiveType):
         from .combined_type import CombinedType
         from .operation import OperationBase
 
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         file_import.add_submodule_import("typing", "IO", ImportType.STDLIB)
         operation = kwargs.get("operation")
         if (
@@ -145,7 +145,7 @@ class BinaryIteratorType(PrimitiveType):
         return self.get_declaration("Iterator[bytes]")
 
     def imports(self, **kwargs: Any) -> FileImport:
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         iterator = "AsyncIterator" if kwargs.get("async_mode") else "Iterator"
         file_import.add_submodule_import("typing", iterator, ImportType.STDLIB)
         return file_import
@@ -171,7 +171,7 @@ class AnyType(PrimitiveType):
         return self.get_declaration({})
 
     def imports(self, **kwargs: Any) -> FileImport:
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
@@ -204,7 +204,7 @@ class AnyObjectType(PrimitiveType):
         return "isinstance({}, MutableMapping)"
 
     def imports(self, **kwargs: Any) -> FileImport:
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         file_import.define_mutable_mapping_type()
         return file_import
 
@@ -386,7 +386,7 @@ class DatetimeType(PrimitiveType):
         return f'"{value}"'
 
     def imports(self, **kwargs: Any) -> FileImport:
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
 
@@ -430,7 +430,7 @@ class TimeType(PrimitiveType):
         return f'"{value}"'
 
     def imports(self, **kwargs: Any) -> FileImport:
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
 
@@ -478,7 +478,7 @@ class UnixTimeType(PrimitiveType):
         return f'"{value}"'
 
     def imports(self, **kwargs: Any) -> FileImport:
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
 
@@ -522,7 +522,7 @@ class DateType(PrimitiveType):
         return f'"{value}"'
 
     def imports(self, **kwargs: Any) -> FileImport:
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
 
@@ -566,7 +566,7 @@ class DurationType(PrimitiveType):
         return f'"{value}"'
 
     def imports(self, **kwargs: Any) -> FileImport:
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
 
@@ -623,7 +623,7 @@ class AzureCoreType(PrimitiveType):
         return self.name
 
     def imports(self, **kwargs: Any) -> FileImport:
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         file_import.add_submodule_import("azure.core", self.name, ImportType.AZURECORE)
         return file_import
 
