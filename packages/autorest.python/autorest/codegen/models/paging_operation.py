@@ -60,8 +60,14 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
             else None
         )
         self.override_success_response_to_200 = override_success_response_to_200
-        self.pager_sync: str = yaml_data["pagerSync"]
-        self.pager_async: str = yaml_data["pagerAsync"]
+        self.pager_sync: str = (
+            yaml_data.get("pagerSync")
+            or f"{self.init_file_import().import_core_paging}.ItemPaged"
+        )
+        self.pager_async: str = (
+            yaml_data.get("pagerAsync")
+            or f"{self.init_file_import().import_core_paging_async}.AsyncItemPaged"
+        )
 
     def _get_attr_name(self, wire_name: str) -> str:
         response_type = self.responses[0].type
@@ -144,14 +150,14 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
 
     def imports(self, async_mode: bool, **kwargs: Any) -> FileImport:
         if self.abstract:
-            return FileImport(self.code_model)
+            return self.init_file_import()
         file_import = self._imports_shared(async_mode, **kwargs)
         file_import.merge(super().imports(async_mode, **kwargs))
         if self.code_model.options["tracing"] and self.want_tracing:
             file_import.add_submodule_import(
                 "azure.core.tracing.decorator",
                 "distributed_trace",
-                ImportType.AZURECORE,
+                ImportType.SDKCORE,
             )
         if self.next_request_builder:
             file_import.merge(
@@ -160,7 +166,9 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
         elif any(p.is_api_version for p in self.client.parameters):
             file_import.add_import("urllib.parse", ImportType.STDLIB)
             file_import.add_submodule_import(
-                "azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE
+                file_import.import_core_utils,
+                "case_insensitive_dict",
+                ImportType.SDKCORE,
             )
         if self.code_model.options["models_mode"] == "dpg":
             relative_path = "..." if async_mode else ".."

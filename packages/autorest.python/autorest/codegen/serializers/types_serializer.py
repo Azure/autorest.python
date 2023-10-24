@@ -3,19 +3,14 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from jinja2 import Environment
-from ..models import CodeModel
 from ..models.imports import FileImport, ImportType
 from .import_serializer import FileImportSerializer
+from .base_serializer import BaseSerializer
 
 
-class TypesSerializer:
-    def __init__(self, code_model: CodeModel, env: Environment) -> None:
-        self.code_model = code_model
-        self.env = env
-
+class TypesSerializer(BaseSerializer):
     def imports(self) -> FileImport:
-        file_import = FileImport(code_model=self.code_model)
+        file_import = self.init_file_import()
         if self.code_model.named_unions:
             file_import.add_submodule_import(
                 "typing",

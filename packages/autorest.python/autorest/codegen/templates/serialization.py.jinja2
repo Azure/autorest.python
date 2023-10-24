@@ -63,8 +63,8 @@ import xml.etree.ElementTree as ET
 
 import isodate  # type: ignore
 
-from azure.core.exceptions import DeserializationError, SerializationError, raise_with_traceback
-from azure.core.serialization import NULL as AzureCoreNull
+from {{ import_core_exceptions }} import DeserializationError, SerializationError, raise_with_traceback
+from {{ import_core_serialization }} import NULL as AzureCoreNull
 
 _BOM = codecs.BOM_UTF8.decode(encoding="utf-8")
 

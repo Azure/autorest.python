@@ -108,7 +108,7 @@ class Response(BaseModel):
         return self.type.docstring_type(**kwargs) if self.type else "None"
 
     def _imports_shared(self, **kwargs: Any) -> FileImport:
-        file_import = FileImport(self.code_model)
+        file_import = self.init_file_import()
         if self.type:
             file_import.merge(self.type.imports(**kwargs))
         if self.nullable:
@@ -158,6 +158,14 @@ class PagingResponse(Response):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         self.item_type = self.code_model.lookup_type(id(self.yaml_data["itemType"]))
+        self.pager_sync: str = (
+            self.yaml_data.get("pagerSync")
+            or f"{self.init_file_import().import_core_paging}.ItemPaged"
+        )
+        self.pager_async: str = (
+            self.yaml_data.get("pagerAsync")
+            or f"{self.init_file_import().import_core_paging_async}.AsyncItemPaged"
+        )
 
     def get_polymorphic_subtypes(self, polymorphic_subtypes: List["ModelType"]) -> None:
         return self.item_type.get_polymorphic_subtypes(polymorphic_subtypes)
@@ -166,9 +174,7 @@ class PagingResponse(Response):
         return self.item_type.get_json_template_representation()
 
     def get_pager_path(self, async_mode: bool) -> str:
-        return (
-            self.yaml_data["pagerAsync"] if async_mode else self.yaml_data["pagerSync"]
-        )
+        return self.pager_async if async_mode else self.pager_sync
 
     def get_pager(self, async_mode: bool) -> str:
         return self.get_pager_path(async_mode).split(".")[-1]
@@ -192,7 +198,7 @@ class PagingResponse(Response):
         pager_import_path = ".".join(self.get_pager_path(async_mode).split(".")[:-1])
         pager = self.get_pager(async_mode)
 
-        file_import.add_submodule_import(pager_import_path, pager, ImportType.AZURECORE)
+        file_import.add_submodule_import(pager_import_path, pager, ImportType.SDKCORE)
         return file_import
 
     def imports(self, **kwargs: Any) -> FileImport:
@@ -200,7 +206,9 @@ class PagingResponse(Response):
         async_mode = kwargs.get("async_mode")
         if async_mode:
             file_import.add_submodule_import(
-                "azure.core.async_paging", "AsyncList", ImportType.AZURECORE
+                file_import.import_core_paging_async,
+                "AsyncList",
+                ImportType.SDKCORE,
             )
 
         return file_import
@@ -269,9 +277,7 @@ class LROResponse(Response):
         async_mode = kwargs["async_mode"]
         poller_import_path = ".".join(self.get_poller_path(async_mode).split(".")[:-1])
         poller = self.get_poller(async_mode)
-        file_import.add_submodule_import(
-            poller_import_path, poller, ImportType.AZURECORE
-        )
+        file_import.add_submodule_import(poller_import_path, poller, ImportType.SDKCORE)
         return file_import
 
     def imports(self, **kwargs: Any) -> FileImport:
@@ -285,7 +291,7 @@ class LROResponse(Response):
         file_import.add_submodule_import(
             default_polling_method_import_path,
             default_polling_method,
-            ImportType.AZURECORE,
+            ImportType.SDKCORE,
         )
         default_no_polling_method_import_path = ".".join(
             self.get_no_polling_method_path(async_mode).split(".")[:-1]
@@ -294,7 +300,7 @@ class LROResponse(Response):
         file_import.add_submodule_import(
             default_no_polling_method_import_path,
             default_no_polling_method,
-            ImportType.AZURECORE,
+            ImportType.SDKCORE,
         )
 
         base_polling_method_import_path = ".".join(
@@ -302,7 +308,7 @@ class LROResponse(Response):
         )
         base_polling_method = self.get_base_polling_method(async_mode)
         file_import.add_submodule_import(
-            base_polling_method_import_path, base_polling_method, ImportType.AZURECORE
+            base_polling_method_import_path, base_polling_method, ImportType.SDKCORE
         )
         return file_import
 

@@ -124,7 +124,7 @@ class ConstantType(BaseType):
         )
 
     def _imports_shared(self, **kwargs: Any):
-        file_import = FileImport(self.code_model)
+        file_import = self.init_file_import()
         file_import.merge(self.value_type.imports(**kwargs))
         return file_import
 

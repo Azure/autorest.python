@@ -230,7 +230,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
     def _imports_shared(
         self, async_mode: bool, **kwargs: Any  # pylint: disable=unused-argument
     ) -> FileImport:
-        file_import = FileImport(self.code_model)
+        file_import = self.init_file_import()
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
@@ -308,7 +308,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         async_mode: bool,
     ) -> FileImport:
         """Helper method to get a request builder import."""
-        file_import = FileImport(self.code_model)
+        file_import = self.init_file_import()
         if self.code_model.options["builders_visibility"] != "embedded":
             group_name = request_builder.group_name
             rest_import_path = "..." if async_mode else ".."
@@ -338,7 +338,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         self, async_mode: bool, **kwargs: Any
     ) -> FileImport:
         if self.abstract:
-            return FileImport(self.code_model)
+            return self.init_file_import()
         file_import = self._imports_shared(async_mode, **kwargs)
 
         for param in self.parameters.method:
@@ -379,11 +379,11 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         ]
         for error in errors:
             file_import.add_submodule_import(
-                "azure.core.exceptions", error, ImportType.AZURECORE
+                file_import.import_core_exceptions, error, ImportType.SDKCORE
             )
         if self.code_model.options["azure_arm"]:
             file_import.add_submodule_import(
-                "azure.mgmt.core.exceptions", "ARMErrorFormat", ImportType.AZURECORE
+                "azure.mgmt.core.exceptions", "ARMErrorFormat", ImportType.SDKCORE
             )
 
         if self.has_kwargs_to_pop_with_default(
@@ -392,7 +392,9 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             self.parameters.kwargs_to_pop, ParameterLocation.QUERY  # type: ignore
         ):
             file_import.add_submodule_import(
-                "azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE
+                file_import.import_core_utils,
+                "case_insensitive_dict",
+                ImportType.SDKCORE,
             )
         if self.deprecated:
             file_import.add_import("warnings", ImportType.STDLIB)
@@ -404,7 +406,9 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             )
         if self.has_etag:
             file_import.add_submodule_import(
-                "azure.core.exceptions", "ResourceModifiedError", ImportType.AZURECORE
+                file_import.import_core_exceptions,
+                "ResourceModifiedError",
+                ImportType.SDKCORE,
             )
             if not async_mode:
                 file_import.add_submodule_import(
@@ -418,24 +422,26 @@ class OperationBase(  # pylint: disable=too-many-public-methods
                 file_import.add_submodule_import(
                     "azure.core.pipeline.transport",
                     "AsyncHttpResponse",
-                    ImportType.AZURECORE,
+                    ImportType.SDKCORE,
                 )
             else:
                 file_import.add_submodule_import(
                     "azure.core.pipeline.transport",
                     "HttpResponse",
-                    ImportType.AZURECORE,
+                    ImportType.SDKCORE,
                 )
         else:
             if async_mode:
                 file_import.add_submodule_import(
-                    "azure.core.rest",
+                    file_import.import_core_rest,
                     "AsyncHttpResponse",
-                    ImportType.AZURECORE,
+                    ImportType.SDKCORE,
                 )
             else:
                 file_import.add_submodule_import(
-                    "azure.core.rest", "HttpResponse", ImportType.AZURECORE
+                    file_import.import_core_rest,
+                    "HttpResponse",
+                    ImportType.SDKCORE,
                 )
         if (
             self.code_model.options["builders_visibility"] == "embedded"
@@ -443,10 +449,12 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         ):
             file_import.merge(self.request_builder.imports())
         file_import.add_submodule_import(
-            "azure.core.pipeline", "PipelineResponse", ImportType.AZURECORE
+            file_import.import_core_pipeline,
+            "PipelineResponse",
+            ImportType.SDKCORE,
         )
         file_import.add_submodule_import(
-            "azure.core.rest", "HttpRequest", ImportType.AZURECORE
+            file_import.import_core_rest, "HttpRequest", ImportType.SDKCORE
         )
         file_import.add_submodule_import(
             "typing", "Callable", ImportType.STDLIB, TypingSection.CONDITIONAL
@@ -464,7 +472,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             file_import.add_submodule_import(
                 "azure.core.tracing.decorator",
                 "distributed_trace",
-                ImportType.AZURECORE,
+                ImportType.SDKCORE,
             )
         file_import.merge(
             self.get_request_builder_import(self.request_builder, async_mode)
@@ -556,7 +564,7 @@ class Operation(OperationBase[Response]):
             file_import.add_submodule_import(
                 "azure.core.tracing.decorator_async",
                 "distributed_trace_async",
-                ImportType.AZURECORE,
+                ImportType.SDKCORE,
             )
         if (
             self.has_response_body

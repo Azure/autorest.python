@@ -10,6 +10,7 @@ export interface PythonEmitterOptions {
     "models-mode"?: string;
     "unbranded"?: boolean;
     "tracing"?: boolean;
+    "company-name"?: string;
     "debug"?: boolean;
 }
 
@@ -26,6 +27,7 @@ const EmitterOptionsSchema: JSONSchemaType<PythonEmitterOptions> = {
         "models-mode": { type: "string", nullable: true },
         "unbranded": { type: "boolean", nullable: true },
         "tracing": { type: "boolean", nullable: true },
+        "company-name": { type: "string", nullable: true },
         "debug": { type: "boolean", nullable: true },
     },
     required: [],

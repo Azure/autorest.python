@@ -1,3 +1,4 @@
+{% if not code_model.options["unbranded"] %}
 {% if package_mode == "mgmtplane" -%}
 # Microsoft Azure SDK for Python
 
@@ -66,7 +67,7 @@ Use the returned token credential to authenticate the client:
 ```python
 >>> from {{ namespace }} import {{ client_name }}
 >>> from azure.identity import DefaultAzureCredential
->>> from azure.core.exceptions import HttpResponseError
+>>> from {{ file_import.import_core_exceptions }} import HttpResponseError
 
 >>> client = {{ client_name }}(endpoint='<endpoint>', credential=DefaultAzureCredential())
 >>> try:
@@ -102,4 +103,5 @@ additional questions or comments.
 [default_azure_credential]: https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/identity/azure-identity#defaultazurecredential
 [pip]: https://pypi.org/project/pip/
 [azure_sub]: https://azure.microsoft.com/free/
+{% endif %}
 {% endif %}

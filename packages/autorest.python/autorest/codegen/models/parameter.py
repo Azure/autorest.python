@@ -168,7 +168,7 @@ class _ParameterBase(
         return self.type.serialization_type
 
     def _imports_shared(self, async_mode: bool, **_: Any) -> FileImport:
-        file_import = FileImport(self.code_model)
+        file_import = self.init_file_import()
         if self.optional and self.client_default_value is None:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
         if self.added_on:

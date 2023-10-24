@@ -11,7 +11,7 @@ from ..utils import convert_list_to_tuple
 class ImportType(str, Enum):
     STDLIB = "stdlib"
     THIRDPARTY = "thirdparty"
-    AZURECORE = "azurecore"
+    SDKCORE = "sdkcore"
     LOCAL = "local"
     BYVERSION = "by_version"
 
