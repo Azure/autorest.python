@@ -25,6 +25,8 @@ _LOGGER = logging.getLogger(__name__)
 
 class OptionsRetriever:
     OPTIONS_TO_DEFAULT = {
+        "azure-arm": False,
+        "unbranded": False,
         "no-async": False,
         "low-level-client": False,
         "version-tolerant": True,
@@ -40,6 +42,10 @@ class OptionsRetriever:
 
     def __init__(self, options: Dict[str, Any]) -> None:
         self.options = options
+
+    def __getattr__(self, prop: str) -> Any:
+        key = prop.replace("_", "-")
+        return self.options.get(key, self.OPTIONS_TO_DEFAULT.get(key))
 
     @property
     def company_name(self) -> bool:
@@ -144,11 +150,7 @@ class OptionsRetriever:
     def head_as_boolean(self) -> bool:
         head_as_boolean = self.options.get("head-as-boolean", True)
         # Force some options in ARM MODE
-        return True if self.options_retriever.azure_arm else head_as_boolean
-
-    def __getattribute__(self, prop: str) -> Any:
-        key = prop.replace("_", "-")
-        return self.options.get(key, self.OPTIONS_TO_DEFAULT.get(key))
+        return True if self.azure_arm else head_as_boolean
 
 
 class CodeGenerator(Plugin):
