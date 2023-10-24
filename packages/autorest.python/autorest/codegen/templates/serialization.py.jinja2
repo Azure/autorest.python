@@ -828,7 +828,7 @@ class Serializer(object):
 
         except (ValueError, TypeError) as err:
             msg = "Unable to serialize value: {!r} as type: {!r}."
-            raise SerializationError(msg.format(data, data_type) from err
+            raise SerializationError(msg.format(data, data_type)) from err
         else:
             return self._serialize(data, **kwargs)
 
