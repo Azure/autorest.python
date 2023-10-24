@@ -18,4 +18,4 @@ class BaseSerializer:
         self.env = env
 
     def init_file_import(self) -> FileImport:
-        return FileImport(self.code_model.options["unbranded"])
+        return FileImport(self.code_model)

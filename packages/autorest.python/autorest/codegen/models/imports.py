@@ -315,7 +315,7 @@ class FileImport:
 
     @property
     def import_core(self) -> str:
-        return "azure.core" if not self.unbranded else "corehttp"
+        return "azure.core" if not self.code_model.options["unbranded"] else "corehttp"
 
     @property
     def import_core_exceptions(self) -> str:
@@ -333,7 +333,7 @@ class FileImport:
     def import_core_credentials_async(self) -> str:
         return (
             self.import_core + ".credentials_async"
-            if not self.unbranded
+            if not self.code_model.options["unbranded"]
             else ".credentials"
         )
 
@@ -343,7 +343,11 @@ class FileImport:
 
     @property
     def import_core_paging_async(self) -> str:
-        return self.import_core + ".async_paging" if not self.unbranded else ".paging"
+        return (
+            self.import_core + ".async_paging"
+            if not self.code_model.options["unbranded"]
+            else ".paging"
+        )
 
     @property
     def import_core_utils(self) -> str:
@@ -351,11 +355,19 @@ class FileImport:
 
     @property
     def import_core_case_insensitive_enum(self) -> str:
-        return self.import_core + "" if not self.unbranded else ".utils"
+        return (
+            self.import_core + ""
+            if not self.code_model.options["unbranded"]
+            else ".utils"
+        )
 
     @property
     def import_core_pipeline(self) -> str:
-        return self.import_core + ".pipeline" if not self.unbranded else ".runtime"
+        return (
+            self.import_core + ".pipeline"
+            if not self.code_model.options["unbranded"]
+            else ".runtime"
+        )
 
     @property
     def import_core_serialization(self) -> str:
