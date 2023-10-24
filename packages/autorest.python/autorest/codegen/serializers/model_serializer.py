@@ -131,7 +131,9 @@ class MsrestModelSerializer(_ModelSerializer):
     def imports(self) -> FileImport:
         file_import = self.init_file_import()
         file_import.add_msrest_import(
-            self.code_model, "..", MsrestImportType.Module, TypingSection.REGULAR
+            relative_path="..",
+            msrest_import_type=MsrestImportType.Module,
+            typing_section=TypingSection.REGULAR,
         )
         for model in self.code_model.model_types:
             file_import.merge(model.imports(is_operation_file=False))

@@ -76,7 +76,11 @@ class GeneralSerializer(BaseSerializer):
     def serialize_service_client_file(self, clients: List[Client]) -> str:
         template = self.env.get_template("client_container.py.jinja2")
 
+<<<<<<< HEAD
         imports = self.init_file_import()
+=======
+        imports = FileImport(self.code_model)
+>>>>>>> 80997f62097f3c77258f52748389d46f06f8298e
         for client in clients:
             imports.merge(client.imports(self.async_mode))
 
@@ -92,7 +96,11 @@ class GeneralSerializer(BaseSerializer):
         template = self.env.get_template("vendor.py.jinja2")
 
         # configure imports
+<<<<<<< HEAD
         file_import = self.init_file_import()
+=======
+        file_import = FileImport(self.code_model)
+>>>>>>> 80997f62097f3c77258f52748389d46f06f8298e
         if self.code_model.need_request_converter:
             file_import.add_submodule_import(
                 "azure.core.pipeline.transport",
@@ -113,10 +121,9 @@ class GeneralSerializer(BaseSerializer):
                 TypingSection.TYPING,
             )
             file_import.add_msrest_import(
-                self.code_model,
-                ".." if self.async_mode else ".",
-                MsrestImportType.SerializerDeserializer,
-                TypingSection.TYPING,
+                relative_path=".." if self.async_mode else ".",
+                msrest_import_type=MsrestImportType.SerializerDeserializer,
+                typing_section=TypingSection.TYPING,
             )
             for client in clients:
                 file_import.add_submodule_import(
@@ -143,7 +150,11 @@ class GeneralSerializer(BaseSerializer):
 
     def serialize_config_file(self, clients: List[Client]) -> str:
         template = self.env.get_template("config_container.py.jinja2")
+<<<<<<< HEAD
         imports = self.init_file_import()
+=======
+        imports = FileImport(self.code_model)
+>>>>>>> 80997f62097f3c77258f52748389d46f06f8298e
         for client in self.code_model.clients:
             imports.merge(client.config.imports(self.async_mode))
         return template.render(

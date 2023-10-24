@@ -230,7 +230,11 @@ class EnumType(BaseType):
 
     def imports(self, **kwargs: Any) -> FileImport:
         operation = kwargs.pop("operation", False)
+<<<<<<< HEAD
         file_import = self.init_file_import()
+=======
+        file_import = FileImport(self.code_model)
+>>>>>>> 80997f62097f3c77258f52748389d46f06f8298e
         if self.code_model.options["models_mode"]:
             file_import.add_submodule_import(
                 "typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL

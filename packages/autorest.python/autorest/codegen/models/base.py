@@ -32,7 +32,7 @@ class BaseModel:
         return f"<{self.__class__.__name__}>"
 
     def init_file_import(self) -> FileImport:
-        return FileImport(self.code_model.options["unbranded"])
+        return FileImport(self.code_model)
 
 
 class BaseType(BaseModel, ABC):  # pylint: disable=too-many-public-methods
@@ -57,7 +57,7 @@ class BaseType(BaseModel, ABC):  # pylint: disable=too-many-public-methods
 
     def imports(self, **kwargs) -> FileImport:  # pylint: disable=unused-argument
         return self.init_file_import()
-
+    
     def imports_for_multiapi(self, **kwargs: Any) -> FileImport:
         return self.imports(**kwargs)
 

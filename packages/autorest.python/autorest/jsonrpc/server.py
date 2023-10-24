@@ -3,12 +3,14 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+import typing
 import contextlib
 import os
 import sys
 import logging
 
 from jsonrpc import dispatcher, JSONRPCResponseManager
+from jsonrpc.jsonrpc2 import JSONRPC20Response
 
 from .stdstream import read_message, write_message
 
@@ -99,7 +101,9 @@ def main() -> None:
         _LOGGER.debug("Trying to read")
         message = read_message()
 
-        response = JSONRPCResponseManager.handle(message, dispatcher).json
+        response = typing.cast(
+            JSONRPC20Response, JSONRPCResponseManager.handle(message, dispatcher)
+        ).json
         _LOGGER.debug("Produced: %s", response)
         write_message(response)
         _LOGGER.debug("Message processed")

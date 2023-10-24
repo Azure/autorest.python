@@ -196,7 +196,6 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
 
     def _imports_shared(self, async_mode: bool) -> FileImport:
         file_import = self.init_file_import()
-
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
@@ -227,10 +226,9 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             ImportType.LOCAL,
         )
         file_import.add_msrest_import(
-            self.code_model,
-            ".." if async_mode else ".",
-            MsrestImportType.SerializerDeserializer,
-            TypingSection.REGULAR,
+            relative_path=".." if async_mode else ".",
+            msrest_import_type=MsrestImportType.SerializerDeserializer,
+            typing_section=TypingSection.REGULAR,
         )
         file_import.add_submodule_import(
             file_import.import_core_pipeline, "policies", ImportType.SDKCORE

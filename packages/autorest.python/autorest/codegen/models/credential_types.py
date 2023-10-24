@@ -221,7 +221,11 @@ class AzureKeyCredentialType(
         return "isinstance({}, AzureKeyCredential)"
 
     def imports(self, **kwargs: Any) -> FileImport:  # pylint: disable=unused-argument
+<<<<<<< HEAD
         file_import = self.init_file_import()
+=======
+        file_import = FileImport(self.code_model)
+>>>>>>> 80997f62097f3c77258f52748389d46f06f8298e
         file_import.add_submodule_import(
             "azure.core.credentials",
             "AzureKeyCredential",

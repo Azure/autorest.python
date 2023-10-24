@@ -254,7 +254,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
 
     def imports_for_multiapi(self, async_mode: bool, **kwargs: Any) -> FileImport:
         if self.abstract:
-            return self.init_file_import()
+            return FileImport(self.code_model)
         file_import = self._imports_shared(async_mode, **kwargs)
         for param in self.parameters.method:
             file_import.merge(

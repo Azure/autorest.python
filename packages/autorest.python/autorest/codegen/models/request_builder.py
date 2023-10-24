@@ -113,15 +113,14 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
         )
         file_import.add_msrest_import(
-            self.code_model,
-            "..."
+            relative_path="..."
             if (
                 not self.code_model.options["builders_visibility"] == "embedded"
                 and self.group_name
             )
             else "..",
-            MsrestImportType.Serializer,
-            TypingSection.REGULAR,
+            msrest_import_type=MsrestImportType.Serializer,
+            typing_section=TypingSection.REGULAR,
         )
         if (
             self.overloads

@@ -120,6 +120,8 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
             )
         if self.description(is_operation_file=True):
             description = self.description(is_operation_file=True)
+        # make sure there is no \n otherwise the json template will be invalid
+        description = (description or "").replace("\n", " ")
         return self.type.get_json_template_representation(
             optional=self.optional,
             client_default_value_declaration=client_default_value_declaration,
