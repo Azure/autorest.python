@@ -122,7 +122,7 @@ TEST_CONFIG = [
     },
     # {
     #     "generated_sub_folder": "unbranded",
-    #     "special_flags": {"unbranded": True},
+    #     "special_flags": {"unbranded": "true"},
     # }
 ]
 
@@ -172,10 +172,12 @@ def _add_options(
         )
     emitter_configs = []
     for options in result:
+        emitter_option = ""
         for item in [options, special_flags]:
             for k, v in item.items():
-                emitter_configs.append(f"@azure-tools/typespec-python.{k}={v}")
-    return [" --option ".join(emitter_configs)]
+                emitter_option += f" --option @azure-tools/typespec-python.{k}={v}"
+        emitter_configs.append(emitter_option)
+    return emitter_configs
 
 
 def _entry_file_name(path: Path) -> Path:
@@ -223,7 +225,7 @@ def _regenerate(c, test_config, name=None, debug=False):
             (generated_folder / pacakge_name).mkdir(parents=True, exist_ok=True)
     _run_cadl(
         [
-            f"tsp compile {_entry_file_name(spec)} --emit={PLUGIN_DIR} --option {option}"
+            f"tsp compile {_entry_file_name(spec)} --emit={PLUGIN_DIR} {option}"
             for spec in specs
             for option in _add_options(
                 spec, specification_dirs, generated_folder, special_flags, debug
