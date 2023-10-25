@@ -10,7 +10,7 @@ from multiprocessing import Pool
 from colorama import init, Fore
 from invoke import task, run
 import shutil
-from typing import Dict, List
+from typing import Dict, List, Any
 import copy
 
 #######################################################
@@ -26,8 +26,7 @@ init()
 PLUGIN_DIR = Path(os.path.dirname(__file__))
 PLUGIN = (PLUGIN_DIR / "dist/src/index.js").as_posix()
 CADL_RANCH_DIR = PLUGIN_DIR / Path("node_modules/@azure-tools/cadl-ranch-specs/http")
-LOCAL_SPECIFICATION_DIR = PLUGIN_DIR / Path("test/specification")
-ALL_SPECIFICATION_DIRS = [CADL_RANCH_DIR, LOCAL_SPECIFICATION_DIR]
+LOCAL_SPECIFICATION_DIR = PLUGIN_DIR / Path("test/azure/specification")
 SKIP_FOLDERS = []
 EMITTER_OPTIONS = {
     "resiliency/srv-driven/old.tsp": {
@@ -117,36 +116,49 @@ EMITTER_OPTIONS = {
     ]
 }
 
-def _package_name_folder(spec: Path) -> str:
-    for item in ALL_SPECIFICATION_DIRS:
+TEST_CONFIG = [
+    {
+        "generated_folder": "azure",
+    },
+    # {
+    #     "generated_folder": "unbranded",
+    #     "special_flags": {"unbranded": True},
+    # }
+]
+
+def _package_name_folder(spec: Path, specification_dirs: List[Path]) -> str:
+    for item in specification_dirs:
         if item.as_posix() in spec.as_posix():
             return spec.relative_to(item).as_posix()
     raise ValueError(f"Cannot find package name for {spec}")
 
-def _default_package_name(spec: Path) -> str:
-    return _package_name_folder(spec).replace("/", "-")
+def _default_package_name(spec: Path, specification_dirs: List[Path]) -> str:
+    return _package_name_folder(spec, specification_dirs).replace("/", "-")
 
-def _get_emitter_option(spec: Path) -> List[Dict[str, str]]:
-    name = _package_name_folder(spec)
+def _get_emitter_option(spec: Path, specification_dirs: List[Path]) -> List[Dict[str, str]]:
+    name = _package_name_folder(spec, specification_dirs)
     result = EMITTER_OPTIONS.get(name, [])
     if isinstance(result, dict):
         return [result]
     return result
 
 
-def _add_options(spec: Path, debug=False) -> List[str]:
+def _add_options(spec: Path, specification_dirs: List[Path], generated_foder: Path, special_flags: Dict[str, Any], debug=False) -> List[str]:
     # if debug:
     #   options["debug"] = "true"
     result = []
-    for config in _get_emitter_option(spec):
+    for config in _get_emitter_option(spec, specification_dirs):
         config_copy = copy.copy(config)
-        config_copy["emitter-output-dir"] = f"{PLUGIN_DIR}/test/generated/{config['package-name']}"
+        config_copy["emitter-output-dir"] = f"{generated_foder}/{config['package-name']}"
         result.append(config_copy)
     if not result:
-        result.append({"emitter-output-dir": f"{PLUGIN_DIR}/test/generated/{_default_package_name(spec)}"})
-    return [" --option ".join(
-        [f"@azure-tools/typespec-python.{k}={v} " for k, v in options.items()]
-    ) for options in result]
+        result.append({"emitter-output-dir": f"{generated_foder}/{_default_package_name(spec, specification_dirs)}"})
+    emitter_configs = []
+    for options in result:
+        for item in [options, special_flags]:
+           for k, v in item.items():
+                emitter_configs.append(f"@azure-tools/typespec-python.{k}={v}")
+    return [" --option ".join(emitter_configs)]
 
 
 def _entry_file_name(path: Path) -> Path:
@@ -154,14 +166,20 @@ def _entry_file_name(path: Path) -> Path:
         return path
     return (path / "client.tsp") if (path / "client.tsp").exists() else (path / "main.tsp")
 
-def all_specification_folders() -> List[Path]:
-    return [s for item in ALL_SPECIFICATION_DIRS for s in item.glob("**/*") if s.is_dir()]
+def all_specification_folders(specification_dirs: List[Path]) -> List[Path]:
+    return [s for item in specification_dirs for s in item.glob("**/*") if s.is_dir()]
 
-@task
-def regenerate(c, name=None, debug=False):
+def _regenerate(c, test_config, name=None, debug=False):
+    generated_sub_folder = test_config['generated_sub_folder']
+    local_specification_folder = Path(f"test/{generated_sub_folder}/specification")
+    specification_dirs = [CADL_RANCH_DIR, local_specification_folder] if local_specification_folder.exists() else [CADL_RANCH_DIR]
+    skip_folders = test_config.get("skip_folders", [])
+    special_flags = test_config.get("special_flags", {})
+    generated_folder = Path(f"{PLUGIN_DIR}/test/generated/{generated_sub_folder}")
+
     specs = [
-        s for s in all_specification_folders()
-        if any(f for f in s.iterdir() if f.name == "main.tsp") and not any(item in s.as_posix() for item in SKIP_FOLDERS)
+        s for s in all_specification_folders(specification_dirs)
+        if any(f for f in s.iterdir() if f.name == "main.tsp") and not any(item in s.as_posix() for item in skip_folders)
     ]
     if name:
         specs = [s for s in specs if name.lower() in str(s)]
@@ -169,25 +187,30 @@ def regenerate(c, name=None, debug=False):
         specs.extend(
             [
                 s / "old.tsp"
-                for s in CADL_RANCH_DIR.glob("**/*")
+                for s in all_specification_folders(specification_dirs)
                 if s.is_dir() and any(f for f in s.iterdir() if f.name == "old.tsp")
             ]
         )
     for spec in specs:
-        for pacakge_name in _get_package_names(spec):
-            Path(f"{PLUGIN_DIR}/test/generated/{pacakge_name}").mkdir(
+        for pacakge_name in _get_package_names(spec, specification_dirs):
+            (generated_folder / pacakge_name).mkdir(
                 parents=True, exist_ok=True
             )
     _run_cadl(
         [
             f"tsp compile {_entry_file_name(spec)} --emit={PLUGIN_DIR} --option {option}"
-            for spec in specs for option in _add_options(spec, debug)
+            for spec in specs for option in _add_options(spec, specification_dirs, generated_folder, special_flags,  debug)
         ]
     )
 
     regenerate_unittests(c)
 
+@task
+def regenerate(c, name=None, debug=False):
+    for config in TEST_CONFIG:
+        _regenerate(c, config, name, debug)
 
+    
 @task
 def regenerate_unittests(c):
     shutil.copyfile(
@@ -196,10 +219,10 @@ def regenerate_unittests(c):
     )
 
 
-def _get_package_names(spec: Path) -> List[str]:
-    result = [config["package-name"] for config in _get_emitter_option(spec)]
+def _get_package_names(spec: Path, specification_dirs: List[Path]) -> List[str]:
+    result = [config["package-name"] for config in _get_emitter_option(spec, specification_dirs)]
     if not result:
-        result.append(_default_package_name(spec))
+        result.append(_default_package_name(spec, specification_dirs))
     return result
 
 
