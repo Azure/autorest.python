@@ -113,18 +113,19 @@ EMITTER_OPTIONS = {
     "mgmt/sphere": [
         {"package-name": "azure-mgmt-spheredpg", "models-mode": "dpg"},
         {"package-name": "azure-mgmt-spheremsrest"},
-    ]
+    ],
 }
 
 TEST_CONFIG = [
     {
-        "generated_folder": "azure",
+        "generated_sub_folder": "azure",
     },
     # {
-    #     "generated_folder": "unbranded",
+    #     "generated_sub_folder": "unbranded",
     #     "special_flags": {"unbranded": True},
     # }
 ]
+
 
 def _package_name_folder(spec: Path, specification_dirs: List[Path]) -> str:
     for item in specification_dirs:
@@ -132,10 +133,14 @@ def _package_name_folder(spec: Path, specification_dirs: List[Path]) -> str:
             return spec.relative_to(item).as_posix()
     raise ValueError(f"Cannot find package name for {spec}")
 
+
 def _default_package_name(spec: Path, specification_dirs: List[Path]) -> str:
     return _package_name_folder(spec, specification_dirs).replace("/", "-")
 
-def _get_emitter_option(spec: Path, specification_dirs: List[Path]) -> List[Dict[str, str]]:
+
+def _get_emitter_option(
+    spec: Path, specification_dirs: List[Path]
+) -> List[Dict[str, str]]:
     name = _package_name_folder(spec, specification_dirs)
     result = EMITTER_OPTIONS.get(name, [])
     if isinstance(result, dict):
@@ -143,20 +148,32 @@ def _get_emitter_option(spec: Path, specification_dirs: List[Path]) -> List[Dict
     return result
 
 
-def _add_options(spec: Path, specification_dirs: List[Path], generated_foder: Path, special_flags: Dict[str, Any], debug=False) -> List[str]:
+def _add_options(
+    spec: Path,
+    specification_dirs: List[Path],
+    generated_foder: Path,
+    special_flags: Dict[str, Any],
+    debug=False,
+) -> List[str]:
     # if debug:
     #   options["debug"] = "true"
     result = []
     for config in _get_emitter_option(spec, specification_dirs):
         config_copy = copy.copy(config)
-        config_copy["emitter-output-dir"] = f"{generated_foder}/{config['package-name']}"
+        config_copy[
+            "emitter-output-dir"
+        ] = f"{generated_foder}/{config['package-name']}"
         result.append(config_copy)
     if not result:
-        result.append({"emitter-output-dir": f"{generated_foder}/{_default_package_name(spec, specification_dirs)}"})
+        result.append(
+            {
+                "emitter-output-dir": f"{generated_foder}/{_default_package_name(spec, specification_dirs)}"
+            }
+        )
     emitter_configs = []
     for options in result:
         for item in [options, special_flags]:
-           for k, v in item.items():
+            for k, v in item.items():
                 emitter_configs.append(f"@azure-tools/typespec-python.{k}={v}")
     return [" --option ".join(emitter_configs)]
 
@@ -164,22 +181,32 @@ def _add_options(spec: Path, specification_dirs: List[Path], generated_foder: Pa
 def _entry_file_name(path: Path) -> Path:
     if path.is_file():
         return path
-    return (path / "client.tsp") if (path / "client.tsp").exists() else (path / "main.tsp")
+    return (
+        (path / "client.tsp") if (path / "client.tsp").exists() else (path / "main.tsp")
+    )
+
 
 def all_specification_folders(specification_dirs: List[Path]) -> List[Path]:
     return [s for item in specification_dirs for s in item.glob("**/*") if s.is_dir()]
 
+
 def _regenerate(c, test_config, name=None, debug=False):
-    generated_sub_folder = test_config['generated_sub_folder']
+    generated_sub_folder = test_config["generated_sub_folder"]
     local_specification_folder = Path(f"test/{generated_sub_folder}/specification")
-    specification_dirs = [CADL_RANCH_DIR, local_specification_folder] if local_specification_folder.exists() else [CADL_RANCH_DIR]
+    specification_dirs = (
+        [CADL_RANCH_DIR, local_specification_folder]
+        if local_specification_folder.exists()
+        else [CADL_RANCH_DIR]
+    )
     skip_folders = test_config.get("skip_folders", [])
     special_flags = test_config.get("special_flags", {})
-    generated_folder = Path(f"{PLUGIN_DIR}/test/generated/{generated_sub_folder}")
+    generated_folder = Path(f"{PLUGIN_DIR}/test/{generated_sub_folder}/generated")
 
     specs = [
-        s for s in all_specification_folders(specification_dirs)
-        if any(f for f in s.iterdir() if f.name == "main.tsp") and not any(item in s.as_posix() for item in skip_folders)
+        s
+        for s in all_specification_folders(specification_dirs)
+        if any(f for f in s.iterdir() if f.name == "main.tsp")
+        and not any(item in s.as_posix() for item in skip_folders)
     ]
     if name:
         specs = [s for s in specs if name.lower() in str(s)]
@@ -193,34 +220,38 @@ def _regenerate(c, test_config, name=None, debug=False):
         )
     for spec in specs:
         for pacakge_name in _get_package_names(spec, specification_dirs):
-            (generated_folder / pacakge_name).mkdir(
-                parents=True, exist_ok=True
-            )
+            (generated_folder / pacakge_name).mkdir(parents=True, exist_ok=True)
     _run_cadl(
         [
             f"tsp compile {_entry_file_name(spec)} --emit={PLUGIN_DIR} --option {option}"
-            for spec in specs for option in _add_options(spec, specification_dirs, generated_folder, special_flags,  debug)
+            for spec in specs
+            for option in _add_options(
+                spec, specification_dirs, generated_folder, special_flags, debug
+            )
         ]
     )
 
-    regenerate_unittests(c)
 
 @task
 def regenerate(c, name=None, debug=False):
     for config in TEST_CONFIG:
         _regenerate(c, config, name, debug)
+    regenerate_unittests(c)
 
-    
+
 @task
 def regenerate_unittests(c):
     shutil.copyfile(
-        "test/generated/special-words/specialwords/_model_base.py",
-        "test/unittests/generated/model_base.py"
+        "test/azure/generated/special-words/specialwords/_model_base.py",
+        "test/azure/unittests/generated/model_base.py",
     )
 
 
 def _get_package_names(spec: Path, specification_dirs: List[Path]) -> List[str]:
-    result = [config["package-name"] for config in _get_emitter_option(spec, specification_dirs)]
+    result = [
+        config["package-name"]
+        for config in _get_emitter_option(spec, specification_dirs)
+    ]
     if not result:
         result.append(_default_package_name(spec, specification_dirs))
     return result
