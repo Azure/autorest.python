@@ -232,17 +232,17 @@ def _regenerate(
 
 @task
 def regenerate_azure(c, name=None, debug=False):
-    _regenerate(c, name=None, debug=False)
+    _regenerate(c, name, debug)
 
 
 @task
 def regenerate_unbranded(c, name=None, debug=False):
     skip_folders = ["azure/", "mgmt/sphere", "special-headers/client-request-id"]
-    special_flags = ({"unbranded": "true"},)
+    special_flags = {"unbranded": "true", "company-name": "Unbranded"}
     _regenerate(
         c,
-        name=None,
-        debug=False,
+        name=name,
+        debug=debug,
         generated_sub_folder="unbranded",
         skip_folders=skip_folders,
         special_flags=special_flags,
