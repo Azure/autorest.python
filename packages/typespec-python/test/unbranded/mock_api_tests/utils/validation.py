@@ -25,4 +25,3 @@ def validate_format(value: str, format: Format):
         assert _VALID_RFC7231.match(value)
     else:
         raise ValueError("Unknown format")
-
