@@ -26,7 +26,7 @@ if TYPE_CHECKING:
 class _CredentialPolicyBaseType:
     """Base class for our different credential policy types.
 
-    Inherited by our BearerTokenCredentialPolicy and AzureKeyCredentialPolicy types.
+    Inherited by our BearerTokenCredentialPolicy and KeyCredentialPolicy types.
     """
 
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
@@ -71,7 +71,7 @@ class ARMChallengeAuthenticationPolicyType(BearerTokenCredentialPolicyType):
         return f"{policy_name}(self.credential, *self.credential_scopes, **kwargs)"
 
 
-class AzureKeyCredentialPolicyType(_CredentialPolicyBaseType):
+class KeyCredentialPolicyType(_CredentialPolicyBaseType):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
@@ -83,16 +83,26 @@ class AzureKeyCredentialPolicyType(_CredentialPolicyBaseType):
         self.key = key
         self.scheme = scheme
 
+    @property
+    def credential_name(self) -> str:
+        return (
+            "AzureKeyCredential"
+            if not self.code_model.options["unbranded"]
+            else "ServiceKeyCredential"
+        )
+
     def call(self, async_mode: bool) -> str:
         params = f'"{self.key}", '
         if self.scheme:
             params += f'prefix="{self.scheme}", '
-        return f"policies.AzureKeyCredentialPolicy(self.credential, {params}**kwargs)"
+        return (
+            f"policies.{self.credential_name}Policy(self.credential, {params}**kwargs)"
+        )
 
     @classmethod
     def from_yaml(
         cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
-    ) -> "AzureKeyCredentialPolicyType":
+    ) -> "KeyCredentialPolicyType":
         return cls(
             yaml_data, code_model, yaml_data["key"], yaml_data.get("scheme", None)
         )
@@ -103,7 +113,7 @@ CredentialPolicyType = TypeVar(
     bound=Union[
         BearerTokenCredentialPolicyType,
         ARMChallengeAuthenticationPolicyType,
-        AzureKeyCredentialPolicyType,
+        KeyCredentialPolicyType,
     ],
 )
 
@@ -111,7 +121,7 @@ CredentialPolicyType = TypeVar(
 class CredentialType(
     Generic[CredentialPolicyType], BaseType
 ):  # pylint:disable=abstract-method
-    """Store info about the type of the credential. Can be either an AzureKeyCredential or a TokenCredential"""
+    """Store info about the type of the credential. Can be either an KeyCredential or a TokenCredential"""
 
     def __init__(
         self,
@@ -204,27 +214,27 @@ class TokenCredentialType(
         return "hasattr({}, 'get_token')"
 
 
-class AzureKeyCredentialType(
+class KeyCredentialType(
     # pylint: disable=unsubscriptable-object
-    CredentialType[AzureKeyCredentialPolicyType]
+    CredentialType[KeyCredentialPolicyType]
 ):
-    """Type for an AzureKeyCredential"""
+    """Type for an KeyCredential"""
 
     def docstring_type(self, **kwargs: Any) -> str:  # pylint: disable=unused-argument
-        return "~azure.core.credentials.AzureKeyCredential"
+        return f"~{self.init_file_import().import_core}.credentials.{self.policy.credential_name}"
 
     def type_annotation(self, **kwargs: Any) -> str:  # pylint: disable=unused-argument
-        return "AzureKeyCredential"
+        return self.policy.credential_name
 
     @property
     def instance_check_template(self) -> str:
-        return "isinstance({}, AzureKeyCredential)"
+        return "isinstance({}, " + f"{self.policy.credential_name})"
 
     def imports(self, **kwargs: Any) -> FileImport:  # pylint: disable=unused-argument
         file_import = self.init_file_import()
         file_import.add_submodule_import(
-            "azure.core.credentials",
-            "AzureKeyCredential",
+            f"{file_import.import_core}.credentials",
+            self.policy.credential_name,
             ImportType.SDKCORE,
             typing_section=TypingSection.CONDITIONAL,
         )

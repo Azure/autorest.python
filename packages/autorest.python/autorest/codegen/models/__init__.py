@@ -28,7 +28,7 @@ from .primitive_types import (
     BooleanType,
     AnyObjectType,
     UnixTimeType,
-    AzureCoreType,
+    SdkCoreType,
 )
 from .enum_type import EnumType, EnumValue
 from .base import BaseType
@@ -67,15 +67,15 @@ from .request_builder_parameter import (
 )
 from .credential_types import (
     TokenCredentialType,
-    AzureKeyCredentialType,
+    KeyCredentialType,
     ARMChallengeAuthenticationPolicyType,
     BearerTokenCredentialPolicyType,
-    AzureKeyCredentialPolicyType,
+    KeyCredentialPolicyType,
     CredentialType,
 )
 
 __all__ = [
-    "AzureKeyCredentialPolicyType",
+    "KeyCredentialPolicyType",
     "AnyType",
     "BaseModel",
     "BaseType",
@@ -140,14 +140,14 @@ TYPE_TO_OBJECT = {
     "boolean": BooleanType,
     "combined": CombinedType,
     "OAuth2": TokenCredentialType,
-    "Key": AzureKeyCredentialType,
+    "Key": KeyCredentialType,
     "ARMChallengeAuthenticationPolicy": ARMChallengeAuthenticationPolicyType,
     "BearerTokenCredentialPolicy": BearerTokenCredentialPolicyType,
-    "AzureKeyCredentialPolicy": AzureKeyCredentialPolicyType,
+    "KeyCredentialPolicy": KeyCredentialPolicyType,
     "any-object": AnyObjectType,
     "unixtime": UnixTimeType,
     "credential": StringType,
-    "azurecore": AzureCoreType,
+    "sdkcore": SdkCoreType,
 }
 _LOGGER = logging.getLogger(__name__)
 

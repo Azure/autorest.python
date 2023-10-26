@@ -606,20 +606,24 @@ class ByteArraySchema(PrimitiveType):
         return "isinstance({}, bytes)"
 
 
-class AzureCoreType(PrimitiveType):
+class SdkCoreType(PrimitiveType):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.name = yaml_data.get("name", "")
 
     def docstring_type(self, **kwargs: Any) -> str:
-        return "~azure.core." + self.type_annotation(**kwargs)
+        return f"~{self.init_file_import().import_core}" + self.type_annotation(
+            **kwargs
+        )
 
     def type_annotation(self, **kwargs: Any) -> str:
         return self.name
 
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = self.init_file_import()
-        file_import.add_submodule_import("azure.core", self.name, ImportType.SDKCORE)
+        file_import.add_submodule_import(
+            file_import.import_core, self.name, ImportType.SDKCORE
+        )
         return file_import
 
     @property

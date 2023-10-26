@@ -140,7 +140,7 @@ function emitCredential(auth: HttpAuth): Record<string, any> {
         credential_type = {
             type: "Key",
             policy: {
-                type: "AzureKeyCredentialPolicy",
+                type: "KeyCredentialPolicy",
                 key: auth.name,
             },
         };
@@ -148,7 +148,7 @@ function emitCredential(auth: HttpAuth): Record<string, any> {
         credential_type = {
             type: "Key",
             policy: {
-                type: "AzureKeyCredentialPolicy",
+                type: "KeyCredentialPolicy",
                 key: "Authorization",
                 scheme: auth.scheme,
             },

@@ -126,7 +126,7 @@ class LROOperationBase(OperationBase[LROResponseType]):
         file_import = super().imports(async_mode, **kwargs)
         if self.abstract:
             return file_import
-        if async_mode:
+        if async_mode and self.code_model.options["tracing"] and self.want_tracing:
             file_import.add_submodule_import(
                 "azure.core.tracing.decorator_async",
                 "distributed_trace_async",

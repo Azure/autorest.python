@@ -27,7 +27,6 @@ PLUGIN_DIR = Path(os.path.dirname(__file__))
 PLUGIN = (PLUGIN_DIR / "dist/src/index.js").as_posix()
 CADL_RANCH_DIR = PLUGIN_DIR / Path("node_modules/@azure-tools/cadl-ranch-specs/http")
 LOCAL_SPECIFICATION_DIR = PLUGIN_DIR / Path("test/azure/specification")
-SKIP_FOLDERS = []
 EMITTER_OPTIONS = {
     "resiliency/srv-driven/old.tsp": {
         "package-name": "resiliency-srv-driven1",
@@ -117,13 +116,14 @@ EMITTER_OPTIONS = {
 }
 
 TEST_CONFIG = [
-    {
-        "generated_sub_folder": "azure",
-    },
     # {
-    #     "generated_sub_folder": "unbranded",
-    #     "special_flags": {"unbranded": "true"},
-    # }
+    #     "generated_sub_folder": "azure",
+    # },
+    {
+        "generated_sub_folder": "unbranded",
+        "special_flags": {"unbranded": "true"},
+        "skip_folders": ["azure"]
+    }
 ]
 
 
@@ -208,7 +208,7 @@ def _regenerate(c, test_config, name=None, debug=False):
         s
         for s in all_specification_folders(specification_dirs)
         if any(f for f in s.iterdir() if f.name == "main.tsp")
-        and not any(item in s.as_posix() for item in skip_folders)
+        and not any(_package_name_folder(s, specification_dirs).startswith(item) for item in skip_folders)
     ]
     if name:
         specs = [s for s in specs if name.lower() in str(s)]

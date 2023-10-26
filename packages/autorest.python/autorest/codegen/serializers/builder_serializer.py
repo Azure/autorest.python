@@ -426,6 +426,12 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
             builder.parameters.path, self.serializer_name
         )
 
+    @property
+    def pipeline_name(self) -> str:
+        if not self.code_model.options["unbranded"]:
+            return "_pipeline"
+        return "pipeline"
+
 
 ############################## REQUEST BUILDERS ##############################
 
@@ -644,7 +650,7 @@ class _OperationSerializer(
         )
         return [
             f"_stream = {stream_value}",
-            f"pipeline_response: PipelineResponse = {self._call_method}self._client._pipeline.run(  "
+            f"pipeline_response: PipelineResponse = {self._call_method}self._client.{self.pipeline_name}.run(  "
             + f"{'# type: ignore' if type_ignore else ''} # pylint: disable=protected-access",
             "    _request,",
             "    stream=_stream,",
@@ -1055,7 +1061,7 @@ class _OperationSerializer(
                 "deserialized = {}".format(
                     "response.iter_bytes()"
                     if self.code_model.options["version_tolerant"]
-                    else "response.stream_download(self._client._pipeline)"
+                    else f"response.stream_download(self._client.{self.pipeline_name})"
                 )
             )
         elif response.type:

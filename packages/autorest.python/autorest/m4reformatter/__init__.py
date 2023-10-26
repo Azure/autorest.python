@@ -41,7 +41,7 @@ def get_body_parameter(yaml_data: Dict[str, Any]) -> Dict[str, Any]:
 def get_azure_key_credential(key: str) -> Dict[str, Any]:
     retval = {
         "type": KEY_TYPE,
-        "policy": {"type": "AzureKeyCredentialPolicy", "key": key},
+        "policy": {"type": "KeyCredentialPolicy", "key": key},
     }
     update_type(retval)
     return retval

@@ -87,7 +87,7 @@ class TypeDefinition:
         self.async_definition = async_definition
 
 
-class FileImport:
+class FileImport:  # pylint: disable=too-many-public-methods
     def __init__(self, code_model: "CodeModel") -> None:
         self.imports: List[ImportModel] = []
         self.code_model = code_model
@@ -331,8 +331,8 @@ class FileImport:
 
     @property
     def import_core_credentials_async(self) -> str:
-        return (
-            self.import_core + ".credentials_async"
+        return self.import_core + (
+            ".credentials_async"
             if not self.code_model.options["unbranded"]
             else ".credentials"
         )
@@ -343,10 +343,8 @@ class FileImport:
 
     @property
     def import_core_paging_async(self) -> str:
-        return (
-            self.import_core + ".async_paging"
-            if not self.code_model.options["unbranded"]
-            else ".paging"
+        return self.import_core + (
+            ".async_paging" if not self.code_model.options["unbranded"] else ".paging"
         )
 
     @property
@@ -355,20 +353,30 @@ class FileImport:
 
     @property
     def import_core_case_insensitive_enum(self) -> str:
-        return (
-            self.import_core + ""
-            if not self.code_model.options["unbranded"]
-            else ".utils"
+        return self.import_core + (
+            "" if not self.code_model.options["unbranded"] else ".utils"
         )
 
     @property
     def import_core_pipeline(self) -> str:
-        return (
-            self.import_core + ".pipeline"
+        return self.import_core + (
+            ".pipeline"
             if not self.code_model.options["unbranded"]
-            else ".runtime"
+            else ".runtime.pipeline"
+        )
+
+    @property
+    def import_core_policies(self) -> str:
+        return self.import_core + (
+            ".pipeline" if not self.code_model.options["unbranded"] else ".runtime"
         )
 
     @property
     def import_core_serialization(self) -> str:
         return f"{self.import_core}.serialization"
+
+    @property
+    def import_core_pipeline_client(self) -> str:
+        return self.import_core + (
+            "" if not self.code_model.options["unbranded"] else ".runtime"
+        )
