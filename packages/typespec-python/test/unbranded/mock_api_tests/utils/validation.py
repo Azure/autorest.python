@@ -25,19 +25,3 @@ def validate_format(value: str, format: Format):
         assert _VALID_RFC7231.match(value)
     else:
         raise ValueError("Unknown format")
-
-
-async def iter_bytes_to_bytes_async(data: Iterator[bytes]) -> bytes:
-    return b"".join([chunk async for chunk in data])
-
-
-def iter_bytes_to_bytes(data: Iterator[bytes]) -> bytes:
-    return b"".join(list(data))
-
-def check_stream_function(func, expected):
-    assert expected == iter_bytes_to_bytes(func(stream=True))
-    assert expected == func()
-
-async def check_stream_function_async(func, expected):
-    assert expected == await iter_bytes_to_bytes_async(await func(stream=True))
-    assert expected == await func()

@@ -14,7 +14,6 @@ from encode.bytes.models import (
     Base64BytesProperty,
     Base64urlArrayBytesProperty,
 )
-from ..utils.validation import check_stream_function_async
 
 
 FILE_FOLDER = Path(__file__).parent.parent
@@ -121,5 +120,5 @@ async def test_response_body(client: BytesClient, png_data: bytes):
     # assert expected == await client.response_body.default()
     # assert expected == await client.response_body.base64()
     # assert expected == await client.response_body.base64url()
-    await check_stream_function_async(client.response_body.octet_stream, png_data)
-    await check_stream_function_async(client.response_body.custom_content_type, png_data)
+    assert await client.response_body.octet_stream() == png_data
+    assert await client.response_body.custom_content_type() == png_data

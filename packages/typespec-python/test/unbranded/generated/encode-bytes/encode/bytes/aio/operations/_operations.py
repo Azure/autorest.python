@@ -1382,7 +1382,7 @@ class ResponseBodyOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        response.read()
+        await response.read()
         deserialized = response.content
 
         if cls:
@@ -1431,7 +1431,7 @@ class ResponseBodyOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        response.read()
+        await response.read()
         deserialized = response.content
 
         if cls:

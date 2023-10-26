@@ -1058,7 +1058,7 @@ class _OperationSerializer(
         deserialize_code: List[str] = []
         if builder.has_stream_response:
             if isinstance(response.type, ByteArraySchema):
-                retval.append("response.read()")
+                retval.append(f"{'await ' if self.async_mode else ''}response.read()")
                 deserialized = "response.content"
             else:
                 deserialized = (
