@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from azure.core.exceptions import HttpResponseError
+from corehttp.exceptions import HttpResponseError
 from typetest.enum.fixed import FixedClient, models
 
 @pytest.fixture

@@ -7,7 +7,7 @@ import json
 import pytest
 from typetest.property.nullable.aio import NullableClient
 from typetest.property.nullable import models
-from azure.core.serialization import NULL
+from corehttp.serialization import NULL
 from typetest.property.nullable._model_base import (  # pylint: disable=protected-access
     AzureJSONEncoder,
 )

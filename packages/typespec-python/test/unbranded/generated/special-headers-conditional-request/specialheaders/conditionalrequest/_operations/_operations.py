@@ -3,7 +3,7 @@
 
 from typing import Any, Callable, Dict, Optional, TypeVar
 
-from azure.core import MatchConditions
+from corehttp import MatchConditions
 from corehttp.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -75,7 +75,7 @@ class ConditionalRequestClientOperationsMixin(ConditionalRequestClientMixinABC):
          None.
         :paramtype etag: str
         :keyword match_condition: The match condition to use upon the etag. Default value is None.
-        :paramtype match_condition: ~azure.core.MatchConditions
+        :paramtype match_condition: ~corehttpMatchConditions
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: None
@@ -134,7 +134,7 @@ class ConditionalRequestClientOperationsMixin(ConditionalRequestClientMixinABC):
          None.
         :paramtype etag: str
         :keyword match_condition: The match condition to use upon the etag. Default value is None.
-        :paramtype match_condition: ~azure.core.MatchConditions
+        :paramtype match_condition: ~corehttpMatchConditions
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
         :return: None

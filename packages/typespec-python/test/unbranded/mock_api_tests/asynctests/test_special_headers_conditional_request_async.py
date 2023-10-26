@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from azure.core import MatchConditions
+from corehttp import MatchConditions
 from specialheaders.conditionalrequest.aio import ConditionalRequestClient
 
 @pytest.fixture

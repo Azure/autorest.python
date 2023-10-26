@@ -3,12 +3,10 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from azure.core.pipeline import PipelineRequest
-
 from .utils.validation import validate_format, Format
 
 
-def check_repeatability_header(request: PipelineRequest):
+def check_repeatability_header(request):
     validate_format(
         request.http_request.headers["Repeatability-Request-ID"], Format.UUID
     )
@@ -17,6 +15,6 @@ def check_repeatability_header(request: PipelineRequest):
     )
 
 
-def check_client_request_id_header(request: PipelineRequest, header: str, checked: dict):
+def check_client_request_id_header(request, header: str, checked: dict):
     validate_format(request.http_request.headers[header], Format.UUID)
     checked[header] = request.http_request.headers[header]

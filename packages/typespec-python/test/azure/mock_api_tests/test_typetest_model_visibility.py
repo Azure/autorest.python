@@ -4,7 +4,6 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from azure.core.pipeline import PipelineRequest
 
 from typetest.model.visibility import VisibilityClient, models
 
@@ -15,7 +14,7 @@ def client():
         yield client
 
 
-def check_no_read_prop(request: PipelineRequest):
+def check_no_read_prop(request):
     assert "will_be_ignored" not in request.http_request.body
 
 

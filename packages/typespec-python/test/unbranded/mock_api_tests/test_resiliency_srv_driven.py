@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from azure.core.rest import HttpRequest
+from corehttp.rest import HttpRequest
 from resiliency.srv.driven1 import ResiliencyServiceDrivenClient as V1Client
 from resiliency.srv.driven2 import ResiliencyServiceDrivenClient as V2Client
 

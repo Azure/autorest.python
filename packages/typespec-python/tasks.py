@@ -116,13 +116,13 @@ EMITTER_OPTIONS = {
 }
 
 TEST_CONFIG = [
-    # {
-    #     "generated_sub_folder": "azure",
-    # },
+    {
+        "generated_sub_folder": "azure",
+    },
     {
         "generated_sub_folder": "unbranded",
         "special_flags": {"unbranded": "true"},
-        "skip_folders": ["azure"]
+        "skip_folders": ["azure/", "mgmt/sphere", "special-headers/client-request-id"],
     }
 ]
 
@@ -208,7 +208,10 @@ def _regenerate(c, test_config, name=None, debug=False):
         s
         for s in all_specification_folders(specification_dirs)
         if any(f for f in s.iterdir() if f.name == "main.tsp")
-        and not any(_package_name_folder(s, specification_dirs).startswith(item) for item in skip_folders)
+        and not any(
+            _package_name_folder(s, specification_dirs).startswith(item)
+            for item in skip_folders
+        )
     ]
     if name:
         specs = [s for s in specs if name.lower() in str(s)]
@@ -239,6 +242,7 @@ def regenerate(c, name=None, debug=False):
     for config in TEST_CONFIG:
         _regenerate(c, config, name, debug)
     regenerate_unittests(c)
+    regenerate_test_file(c)
 
 
 @task
@@ -247,6 +251,54 @@ def regenerate_unittests(c):
         "test/azure/generated/special-words/specialwords/_model_base.py",
         "test/azure/unittests/generated/model_base.py",
     )
+
+
+@task
+def regenerate_test_file(c):
+    source_folder = Path("test/azure/mock_api_tests")
+    target_folder = Path("test/unbranded/mock_api_tests")
+    skip_test_files = [
+        "conftest.py",
+        # azure test case
+        "test_azure_client_generator_core_access.py",
+        "test_azure_client_generator_core_usage.py",
+        "test_azure_core_basic.py",
+        "test_azure_core_traits.py",
+        # LRO
+        "test_lro_rpc_legacy.py",
+        "test_lro_rpc.py",
+        "test_lro_standard.py",
+        # ARM 
+        "test_mgmt_models_mode.py",
+        # RequestId Policy
+        "test_special_headers_client_request_id.py",
+        # Customhook Policy
+        "test_special_headers_repeatability.py",
+        "test_typetest_model_visibility.py",
+        # corehttp don't support ODataV4Format
+        "test_stream.py"
+    ]
+    source_test_files = [
+        item
+        for item in source_folder.glob("**/*")
+        if item.is_file()
+        and "__pycache__" not in item.parts
+        and ".pytest_cache" not in item.parts
+    ]
+    for source_file in source_test_files:
+        if source_file.name.replace("_async", "") in skip_test_files:
+            continue
+        target_file = target_folder / source_file.relative_to(source_folder)
+        target_file.parent.mkdir(parents=True, exist_ok=True)
+        if source_file.suffix != ".py":
+            shutil.copyfile(source_file, target_file)
+        else:
+            with open(source_file, "r", encoding="utf-8") as f_in:
+                content = f_in.read()
+            content = content.replace("azure.core", "corehttp")
+            content = content.replace("AzureKeyCredential", "ServiceKeyCredential")
+            with open(target_file, "w", encoding="utf-8") as f_out:
+                f_out.write(content)
 
 
 def _get_package_names(spec: Path, specification_dirs: List[Path]) -> List[str]:

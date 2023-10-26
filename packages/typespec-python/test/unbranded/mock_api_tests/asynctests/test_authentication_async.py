@@ -4,8 +4,8 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from azure.core.credentials import AzureKeyCredential, AccessToken
-from azure.core.exceptions import HttpResponseError
+from corehttp.credentials import ServiceKeyCredential, AccessToken
+from corehttp.exceptions import HttpResponseError
 from authentication.apikey.aio import ApiKeyClient
 from authentication.http.custom.aio import CustomClient
 from authentication.oauth2.aio import OAuth2Client
@@ -20,7 +20,7 @@ async def api_key_client():
     client = None
 
     def _build_client(client_type):
-        client = client_type(AzureKeyCredential("valid-key"))
+        client = client_type(ServiceKeyCredential("valid-key"))
         return client
 
     yield _build_client
@@ -60,7 +60,7 @@ async def http_custom_client():
     client = None
 
     def _build_client():
-        client = CustomClient(AzureKeyCredential("valid-key"))
+        client = CustomClient(ServiceKeyCredential("valid-key"))
         return client
 
     yield _build_client

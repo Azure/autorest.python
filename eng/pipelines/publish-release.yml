@@ -50,6 +50,11 @@ steps:
           tox run -e ci
       displayName: Execute Typespec Azure Tests
       workingDirectory: $(Build.SourcesDirectory)/packages/typespec-python/
+    - script: |
+          cd test/unbranded
+          tox run -e ci
+      displayName: Execute Typespec Unbranded Tests
+      workingDirectory: $(Build.SourcesDirectory)/packages/typespec-python/
 
     - script: |
           pnpm config set //registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)
