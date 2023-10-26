@@ -8,7 +8,7 @@ import logging
 from typing import Dict, Any, Union, Tuple
 from jinja2 import Environment
 
-from autorest.codegen.models.credential_types import AzureKeyCredentialType
+from autorest.codegen.models.credential_types import KeyCredentialType
 from autorest.codegen.models.credential_types import TokenCredentialType
 from autorest.codegen.models.imports import ImportType
 from autorest.codegen.models.operation import OperationBase
@@ -63,10 +63,12 @@ class SampleSerializer(BaseSerializer):
             imports.add_submodule_import(
                 "azure.identity", "DefaultAzureCredential", ImportType.THIRDPARTY
             )
-        elif isinstance(credential_type, AzureKeyCredentialType):
+        elif isinstance(credential_type, KeyCredentialType):
             imports.add_import("os", ImportType.STDLIB)
             imports.add_submodule_import(
-                "azure.core.credentials", "AzureKeyCredential", ImportType.THIRDPARTY
+                f"{imports.import_core}.credentials",
+                "AzureKeyCredential",
+                ImportType.THIRDPARTY,
             )
         for param in self.operation.parameters.positional:
             if (
@@ -83,7 +85,7 @@ class SampleSerializer(BaseSerializer):
         credential_type = getattr(self.code_model.clients[0].credential, "type", None)
         if isinstance(credential_type, TokenCredentialType):
             special_param.update({"credential": "DefaultAzureCredential()"})
-        elif isinstance(credential_type, AzureKeyCredentialType):
+        elif isinstance(credential_type, KeyCredentialType):
             special_param.update(
                 {"credential": 'AzureKeyCredential(key=os.getenv("AZURE_KEY"))'}
             )

@@ -89,14 +89,13 @@ setup(
         {% else %}
         "isodate<1.0.0,>=0.6.1",
         {% endif %}
-        {% if azure_arm and not unbranded %}
+        {% if unbranded %}
+        "corehttp",
+        {% elif azure_arm %}
         "azure-mgmt-core<2.0.0,>=1.3.2",
         {% else %}
         "azure-core<2.0.0,>=1.28.0",
         {% endif %}
-        {% if unbranded %}
-        "corehttp<1.0.0,>=1.0.0b1,
-        {% endif  %}
         {% if code_model.need_typing_extensions %}
         "typing-extensions>=4.3.0; python_version<'3.8.0'",
         {% endif %}

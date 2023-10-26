@@ -180,7 +180,7 @@ HEADERS_CONVERT_IN_METHOD = {
         "wireName": "match-condition",
         "description": "The match condition to use upon the etag.",
         "type": {
-            "type": "azurecore",
+            "type": "sdkcore",
             "name": "MatchConditions",
         },
     },

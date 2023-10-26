@@ -111,8 +111,11 @@ class ClientSerializer:
     def initialize_pipeline_client(self, async_mode: bool) -> List[str]:
         result = []
         pipeline_client_name = self.client.pipeline_class(async_mode)
+        endpoint_name = (
+            "endpoint" if self.client.code_model.options["unbranded"] else "base_url"
+        )
         params = {
-            "base_url": self.host_variable_name,
+            endpoint_name: self.host_variable_name,
             "policies": "_policies",
         }
         if not self.client.code_model.is_legacy and self.client.request_id_header_name:

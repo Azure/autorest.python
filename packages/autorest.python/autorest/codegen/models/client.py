@@ -205,7 +205,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             )
         else:
             file_import.add_submodule_import(
-                file_import.import_core,
+                file_import.import_core_pipeline_client,
                 self.pipeline_class(async_mode),
                 ImportType.SDKCORE,
             )
@@ -231,7 +231,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             typing_section=TypingSection.REGULAR,
         )
         file_import.add_submodule_import(
-            file_import.import_core_pipeline, "policies", ImportType.SDKCORE
+            file_import.import_core_policies, "policies", ImportType.SDKCORE
         )
         if self.code_model.options["azure_arm"]:
             async_prefix = "Async" if async_mode else ""
@@ -414,7 +414,7 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
     def _imports_shared(self, async_mode: bool) -> FileImport:
         file_import = self.init_file_import()
         file_import.add_submodule_import(
-            file_import.import_core_pipeline, "policies", ImportType.SDKCORE
+            file_import.import_core_policies, "policies", ImportType.SDKCORE
         )
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
