@@ -1058,6 +1058,7 @@ class _OperationSerializer(
         deserialize_code: List[str] = []
         if response.is_stream_response:
             if isinstance(response.type, ByteArraySchema):
+                retval.append("response.read()")
                 deserialized = "response.content"
             else:
                 deserialized = (
@@ -1101,7 +1102,7 @@ class _OperationSerializer(
                 deserialize_code.append("else:")
                 deserialize_code.append("    deserialized = None")
         if len(deserialize_code) > 0:
-            if builder.expose_stream_keyword:
+            if builder.expose_stream_keyword and not builder.has_stream_response:
                 retval.append("if _stream:")
                 retval.append("    deserialized = response.iter_bytes()")
                 retval.append("else:")
