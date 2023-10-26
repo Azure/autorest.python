@@ -20,6 +20,7 @@ import {
     HttpOperationResponse,
     HttpServer,
     HttpOperation,
+    HttpStatusCodeRange,
 } from "@typespec/http";
 import { getAddedOnVersions } from "@typespec/versioning";
 import {
@@ -65,10 +66,11 @@ interface HttpServerParameter {
 const defaultOptions = {
     "package-version": "1.0.0b1",
     "generate-packaging-files": true,
+    "unbranded": false,
 };
 
 export function getModelsMode(context: SdkContext) {
-    const specifiedModelsMode = context.program.getOption("models-mode");
+    const specifiedModelsMode = context.emitContext.options["models-mode"];
     if (specifiedModelsMode) return specifiedModelsMode;
     if (context.arm) return "msrest";
     return "dpg";
@@ -99,7 +101,7 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
         ...context.options,
     };
 
-    const sdkContext = createSdkContext(context);
+    const sdkContext = createSdkContext(context, "@azure-tools/typespec-python");
     const clients = listClients(sdkContext);
     const root = await resolveModuleRoot(program, "@autorest/python", dirname(fileURLToPath(import.meta.url)));
     const outputDir = context.emitterOutputDir;
@@ -407,10 +409,6 @@ function isAzureCoreModel(t: Type): boolean {
     );
 }
 
-function hasDefaultStatusCode(response: HttpOperationResponse): boolean {
-    return response.statusCode === "*";
-}
-
 function getBodyFromResponse(context: SdkContext, response: HttpOperationResponse): Type | undefined {
     let body: Type | undefined = undefined;
     for (const innerResponse of response.responses) {
@@ -422,6 +420,13 @@ function getBodyFromResponse(context: SdkContext, response: HttpOperationRespons
         body = getEffectivePayloadType(context, body);
     }
     return body;
+}
+
+function isHttpStatusCode(statusCodes: any): statusCodes is HttpStatusCodeRange {
+    if (typeof statusCodes !== "object") {
+        return false;
+    }
+    return "start" in statusCodes;
 }
 
 function getContentTypesFromResponse(context: SdkContext, response: HttpOperationResponse): string[] {
@@ -440,15 +445,10 @@ function emitResponse(context: SdkContext, response: HttpOperationResponse): Rec
     if (body) {
         if (body.kind === "Model") {
             if (body && body.decorators.find((d) => d.decorator.name === "$pagedResult")) {
-                const modelsMode = getModelsMode(context);
-                if (modelsMode === "msrest") {
+                if (getModelsMode(context) === "msrest") {
                     type = getType(context, body);
                 } else {
                     type = getType(context, Array.from(body.properties.values())[0]);
-                }
-                if (modelsMode !== "msrest") {
-                } else {
-                    type = getType(context, body);
                 }
             } else if (body && !isAzureCoreModel(body)) {
                 type = getType(context, body);
@@ -457,12 +457,15 @@ function emitResponse(context: SdkContext, response: HttpOperationResponse): Rec
             type = getType(context, body);
         }
     }
-    const statusCodes = [];
-    if (hasDefaultStatusCode(response)) {
+    const statusCodes: ("default" | number)[] = [];
+    if (response.statusCodes === "*") {
         statusCodes.push("default");
+    } else if (isHttpStatusCode(response.statusCodes)) {
+        statusCodes.push(response.statusCodes.start);
     } else {
-        statusCodes.push(parseInt(response.statusCode));
+        statusCodes.push(response.statusCodes);
     }
+
     const contentTypes = getContentTypesFromResponse(context, response);
     return {
         headers: emitResponseHeaders(context, response),
@@ -645,7 +648,7 @@ function emitBasicOperation(
         addAcceptParameter(context, operation, parameters);
         if (isErrorModel(context.program, response.type)) {
             // * is valid status code in cadl but invalid for autorest.python
-            if (response.statusCode === "*") {
+            if (response.statusCodes === "*") {
                 exceptions.push(emittedResponse);
             }
         } else {
@@ -693,7 +696,7 @@ function emitBasicOperation(
             wantTracing: true,
             exposeStreamKeyword: true,
             abstract: isAbstract(httpOperation),
-            internal: isInternal(context, operation) || getAccess(context, operation) === "internal",
+            internal: isInternal(context, operation) || getAccess(context, operation) === "internal", // eslint-disable-line deprecation/deprecation
         },
     ];
 }

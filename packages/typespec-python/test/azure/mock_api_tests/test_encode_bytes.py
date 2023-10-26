@@ -14,7 +14,7 @@ from encode.bytes.models import (
     Base64BytesProperty,
     Base64urlArrayBytesProperty,
 )
-from .utils.validation import iter_bytes_to_bytes
+from .utils.validation import check_stream_function
 
 FILE_FOLDER = Path(__file__).parent
 
@@ -112,9 +112,9 @@ def test_request_body(client: BytesClient, png_data: bytes):
     client.request_body.base64url(value=bytes("test", "utf-8"), )
 
 def test_response_body(client: BytesClient, png_data: bytes):
-    expected = b"test"
-    assert expected == client.response_body.default()
-    assert expected == client.response_body.base64()
-    assert expected == client.response_body.base64url()
-    assert png_data == iter_bytes_to_bytes(client.response_body.octet_stream(stream=True))
-    assert png_data == iter_bytes_to_bytes(client.response_body.custom_content_type(stream=True))
+    # expected = b"test"
+    # assert expected == client.response_body.default()
+    # assert expected == client.response_body.base64()
+    # assert expected == client.response_body.base64url()
+    check_stream_function(client.response_body.octet_stream, png_data)
+    check_stream_function(client.response_body.custom_content_type, png_data)

@@ -154,7 +154,7 @@ class SameBodyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(bytes, response.json())
+            deserialized = response.content
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -210,7 +210,7 @@ class SameBodyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(bytes, response.json())
+            deserialized = response.content
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -284,7 +284,7 @@ class DifferentBodyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(bytes, response.json())
+            deserialized = response.content
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

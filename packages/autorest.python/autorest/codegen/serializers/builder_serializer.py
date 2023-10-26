@@ -1076,20 +1076,20 @@ class _OperationSerializer(
                 deserialize_code.append("    pipeline_response")
                 deserialize_code.append(")")
             elif self.code_model.options["models_mode"] == "dpg":
-                rest_filed = (
-                    f', rf=_RestField(format="{response.type.encode}")'
-                    if response.need_rest_field
-                    and isinstance(response.type, ByteArraySchema)
-                    else ""
-                )
-                deserialize_code.append("deserialized = _deserialize(")
-                deserialize_code.append(
-                    f"    {response.type.type_annotation(is_operation_file=True)},{pylint_disable}"
-                )
-                deserialize_code.append(
-                    f"    response.json(){response.result_property}{rest_filed}"
-                )
-                deserialize_code.append(")")
+                if (
+                    response.default_content_type == "application/json"
+                    or builder.parameters.accept_header == "application/json"
+                ):
+                    deserialize_code.append("deserialized = _deserialize(")
+                    deserialize_code.append(
+                        f"    {response.type.type_annotation(is_operation_file=True)},{pylint_disable}"
+                    )
+                    deserialize_code.append(
+                        f"    response.json(){response.result_property}"
+                    )
+                    deserialize_code.append(")")
+                else:
+                    deserialize_code.append("deserialized = response.content")
             else:
                 deserialized_value = (
                     "ET.fromstring(response.text())"

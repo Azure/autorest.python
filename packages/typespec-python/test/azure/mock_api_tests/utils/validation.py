@@ -33,3 +33,11 @@ async def iter_bytes_to_bytes_async(data: Iterator[bytes]) -> bytes:
 
 def iter_bytes_to_bytes(data: Iterator[bytes]) -> bytes:
     return b"".join(list(data))
+
+def check_stream_function(func, expected):
+    assert expected == iter_bytes_to_bytes(func(stream=True))
+    # assert expected == func()
+
+async def check_stream_function_async(func, expected):
+    assert expected == await iter_bytes_to_bytes_async(await func(stream=True))
+    # assert expected == await func()

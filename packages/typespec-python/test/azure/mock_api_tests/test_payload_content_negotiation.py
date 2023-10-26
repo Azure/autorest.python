@@ -9,7 +9,7 @@ import pytest
 from pathlib import Path
 from payload.contentnegotiation import ContentNegotiationClient
 from payload.contentnegotiation.models import PngImageAsJson
-from .utils.validation import iter_bytes_to_bytes
+from .utils.validation import check_stream_function
 
 FILE_FOLDER = Path(__file__).parent
 
@@ -29,16 +29,13 @@ def jpg_data() -> bytes:
         return file_in.read()
 
 def test_get_avatar_as_png(client: ContentNegotiationClient, png_data: bytes):
-    result = client.same_body.get_avatar_as_png(stream=True)
-    assert iter_bytes_to_bytes(result) == png_data
+    check_stream_function(client.same_body.get_avatar_as_png, png_data)
 
 def test_get_avatar_as_jpeg(client: ContentNegotiationClient, jpg_data: bytes):
-    result = client.same_body.get_avatar_as_jpeg(stream=True)
-    assert iter_bytes_to_bytes(result) == jpg_data
+    check_stream_function(client.same_body.get_avatar_as_jpeg, jpg_data)
 
 def test_different_body_get_avatar_as_png(client: ContentNegotiationClient, png_data: bytes):
-    result = client.different_body.get_avatar_as_png(stream=True)
-    assert iter_bytes_to_bytes(result) == png_data
+    check_stream_function(client.different_body.get_avatar_as_png, png_data)
 
 def test_different_body_get_avatar_as_json(client: ContentNegotiationClient, png_data: bytes):
     result = client.different_body.get_avatar_as_json()
