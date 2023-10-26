@@ -1,5 +1,25 @@
 # Release
 
+## 2023-10-26 - 0.15.7
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.49.0`      |
+| `@typespec/http`                                                        | `0.49.0`      |
+| `@typespec/rest`                                                        | `0.49.0`      |
+| `@typespec/versioning`                                                  | `0.49.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.35.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.36.0-dev.5`|
+| `azure-core` dep of generated code                                      | `1.28.0`      |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**Bug Fixes**
+
+- Correctly return response content when response type is bytes #2217
+
 ## 2023-10-25 - 0.15.6
 
 | Library                                                                 | Min Version   |
