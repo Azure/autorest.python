@@ -341,6 +341,7 @@ class _ParameterList(
 class ParameterList(_ParameterList):
     """ParameterList is the parameter list for Operation classes"""
 
+
 class _RequestBuilderParameterList(
     _ParameterListBase[  # pylint: disable=unsubscriptable-object
         RequestBuilderParameter, RequestBuilderBodyParameterType

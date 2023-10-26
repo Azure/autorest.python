@@ -644,7 +644,7 @@ class _OperationSerializer(
     def make_pipeline_call(self, builder: OperationType) -> List[str]:
         type_ignore = self.async_mode and builder.group_name == ""  # is in a mixin
         stream_value = (
-            'kwargs.pop("stream", False)'
+            f'kwargs.pop("stream", {builder.has_stream_response})'
             if builder.expose_stream_keyword
             else builder.has_stream_response
         )
@@ -1060,7 +1060,11 @@ class _OperationSerializer(
             if isinstance(response.type, ByteArraySchema):
                 deserialized = "response.content"
             else:
-                deserialized = "response.iter_bytes()" if self.code_model.options["version_tolerant"] else f"response.stream_download(self._client.{self.pipeline_name})"
+                deserialized = (
+                    "response.iter_bytes()"
+                    if self.code_model.options["version_tolerant"]
+                    else f"response.stream_download(self._client.{self.pipeline_name})"
+                )
             deserialize_code.append(f"deserialized = {deserialized}")
         elif response.type:
             pylint_disable = ""
