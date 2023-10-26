@@ -1056,7 +1056,7 @@ class _OperationSerializer(
         if response.headers:
             retval.append("")
         deserialize_code: List[str] = []
-        if response.is_stream_response:
+        if builder.has_stream_response:
             if isinstance(response.type, ByteArraySchema):
                 retval.append("response.read()")
                 deserialized = "response.content"
@@ -1079,7 +1079,7 @@ class _OperationSerializer(
                 deserialize_code.append("    pipeline_response")
                 deserialize_code.append(")")
             elif self.code_model.options["models_mode"] == "dpg":
-                if response.is_stream_response:
+                if builder.has_stream_response:
                     deserialize_code.append("deserialized = response.content")
                 else:
                     deserialize_code.append("deserialized = _deserialize(")

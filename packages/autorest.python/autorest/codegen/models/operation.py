@@ -514,7 +514,17 @@ class OperationBase(  # pylint: disable=too-many-public-methods
 
     @property
     def has_stream_response(self) -> bool:
-        return any(r.is_stream_response for r in self.responses)
+        any_stream_responses = any(r.is_stream_response for r in self.responses)
+        try:
+            accept_header = next(
+                h for h in self.parameters.headers if h.wire_name.lower() == "accept"
+            )
+            return (
+                any_stream_responses
+                and accept_header.client_default_value != "application/json"
+            )
+        except StopIteration:
+            return any_stream_responses
 
     @classmethod
     def get_request_builder(cls, yaml_data: Dict[str, Any], client: "Client"):
