@@ -9,7 +9,6 @@ import pytest
 from pathlib import Path
 from payload.contentnegotiation.aio import ContentNegotiationClient
 from payload.contentnegotiation.models import PngImageAsJson
-from ..utils.validation import check_stream_function_async
 
 FILE_FOLDER = Path(__file__).parent.parent
 
@@ -30,15 +29,15 @@ def jpg_data() -> bytes:
 
 @pytest.mark.asyncio
 async def test_get_avatar_as_png(client: ContentNegotiationClient, png_data: bytes):
-    await check_stream_function_async(client.same_body.get_avatar_as_png, png_data)
+    assert await client.same_body.get_avatar_as_png() == png_data
 
 @pytest.mark.asyncio
 async def test_get_avatar_as_jpeg(client: ContentNegotiationClient, jpg_data: bytes):
-    await check_stream_function_async(client.same_body.get_avatar_as_jpeg, jpg_data)
+    assert await client.same_body.get_avatar_as_jpeg() == jpg_data
 
 @pytest.mark.asyncio
 async def test_different_body_get_avatar_as_png(client: ContentNegotiationClient, png_data: bytes):
-    await check_stream_function_async(client.different_body.get_avatar_as_png, png_data)
+    assert await client.different_body.get_avatar_as_png() == png_data
 
 @pytest.mark.asyncio
 async def test_different_body_get_avatar_as_json(client: ContentNegotiationClient, png_data: bytes):
