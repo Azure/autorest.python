@@ -81,10 +81,12 @@ class Response(BaseModel):
     @property
     def is_stream_response(self) -> bool:
         """Is the response expected to be streamable, like a download."""
-        return isinstance(self.type, BinaryIteratorType) or (
+        retval = isinstance(self.type, BinaryIteratorType) or (
             isinstance(self.type, ByteArraySchema)
+            and bool(self.default_content_type)
             and self.default_content_type != "application/json"
         )
+        return retval
 
     @property
     def serialization_type(self) -> str:
