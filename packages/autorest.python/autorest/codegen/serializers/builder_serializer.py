@@ -1057,13 +1057,11 @@ class _OperationSerializer(
             retval.append("")
         deserialize_code: List[str] = []
         if response.is_stream_response:
-            deserialize_code.append(
-                "deserialized = {}".format(
-                    "response.iter_bytes()"
-                    if self.code_model.options["version_tolerant"]
-                    else f"response.stream_download(self._client.{self.pipeline_name})"
-                )
-            )
+            if isinstance(response.type, ByteArraySchema):
+                deserialized = "response.content"
+            else:
+                deserialized = "response.iter_bytes()" if self.code_model.options["version_tolerant"] else f"response.stream_download(self._client.{self.pipeline_name})"
+            deserialize_code.append(f"deserialized = {deserialized}")
         elif response.type:
             pylint_disable = ""
             if isinstance(response.type, ModelType) and response.type.internal:
@@ -1076,10 +1074,9 @@ class _OperationSerializer(
                 deserialize_code.append("    pipeline_response")
                 deserialize_code.append(")")
             elif self.code_model.options["models_mode"] == "dpg":
-                if (
-                    response.default_content_type == "application/json"
-                    or builder.parameters.accept_header == "application/json"
-                ):
+                if response.is_stream_response:
+                    deserialize_code.append("deserialized = response.content")
+                else:
                     deserialize_code.append("deserialized = _deserialize(")
                     deserialize_code.append(
                         f"    {response.type.type_annotation(is_operation_file=True)},{pylint_disable}"
@@ -1088,8 +1085,7 @@ class _OperationSerializer(
                         f"    response.json(){response.result_property}"
                     )
                     deserialize_code.append(")")
-                else:
-                    deserialize_code.append("deserialized = response.content")
+
             else:
                 deserialized_value = (
                     "ET.fromstring(response.text())"

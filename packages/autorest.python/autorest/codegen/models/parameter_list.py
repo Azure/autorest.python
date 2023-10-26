@@ -341,14 +341,6 @@ class _ParameterList(
 class ParameterList(_ParameterList):
     """ParameterList is the parameter list for Operation classes"""
 
-    @property
-    def accept_header(self) -> str:
-        for header in self.headers:
-            if header.wire_name.lower() == "accept":
-                return header.client_default_value
-        return ""
-
-
 class _RequestBuilderParameterList(
     _ParameterListBase[  # pylint: disable=unsubscriptable-object
         RequestBuilderParameter, RequestBuilderBodyParameterType
