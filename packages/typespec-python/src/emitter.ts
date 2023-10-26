@@ -429,6 +429,16 @@ function isHttpStatusCode(statusCodes: any): statusCodes is HttpStatusCodeRange 
     return "start" in statusCodes;
 }
 
+function getContentTypesFromResponse(context: SdkContext, response: HttpOperationResponse): string[] {
+    let contentTypes: string[] = [];
+    for (const innerResponse of response.responses) {
+        if (innerResponse.body) {
+            contentTypes = contentTypes.concat(innerResponse.body.contentTypes);
+        }
+    }
+    return contentTypes;
+}
+
 function emitResponse(context: SdkContext, response: HttpOperationResponse): Record<string, any> {
     let type = undefined;
     const body = getBodyFromResponse(context, response);
@@ -456,12 +466,18 @@ function emitResponse(context: SdkContext, response: HttpOperationResponse): Rec
         statusCodes.push(response.statusCodes);
     }
 
+    const contentTypes = getContentTypesFromResponse(context, response);
     return {
         headers: emitResponseHeaders(context, response),
         statusCodes: statusCodes,
         addedOn: getAddedOnVersion(context, response.type),
         discriminator: "basic",
         type: type,
+        contentTypes: contentTypes,
+        defaultContentType:
+            contentTypes.length > 0 && !contentTypes.includes("application/json")
+                ? contentTypes[0]
+                : "application/json",
     };
 }
 

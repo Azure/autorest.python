@@ -8,7 +8,7 @@ from typing import Dict, Optional, List, Any, TYPE_CHECKING, Union
 from .base import BaseModel
 from .base import BaseType
 from .imports import FileImport, ImportType, TypingSection
-from .primitive_types import BinaryType, BinaryIteratorType
+from .primitive_types import BinaryType, BinaryIteratorType, ByteArraySchema
 from .dictionary_type import DictionaryType
 from .list_type import ListType
 from .model_type import ModelType
@@ -58,6 +58,7 @@ class Response(BaseModel):
         self.headers = headers or []
         self.type = type
         self.nullable = yaml_data.get("nullable")
+        self.default_content_type = yaml_data.get("defaultContentType")
 
     @property
     def result_property(self) -> str:
@@ -80,7 +81,12 @@ class Response(BaseModel):
     @property
     def is_stream_response(self) -> bool:
         """Is the response expected to be streamable, like a download."""
-        return isinstance(self.type, BinaryIteratorType)
+        retval = isinstance(self.type, BinaryIteratorType) or (
+            isinstance(self.type, ByteArraySchema)
+            and bool(self.default_content_type)
+            and self.default_content_type != "application/json"
+        )
+        return retval
 
     @property
     def serialization_type(self) -> str:
