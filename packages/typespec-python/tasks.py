@@ -115,17 +115,6 @@ EMITTER_OPTIONS = {
     ],
 }
 
-TEST_CONFIG = [
-    {
-        "generated_sub_folder": "azure",
-    },
-    {
-        "generated_sub_folder": "unbranded",
-        "special_flags": {"unbranded": "true"},
-        "skip_folders": ["azure/", "mgmt/sphere", "special-headers/client-request-id"],
-    }
-]
-
 
 def _package_name_folder(spec: Path, specification_dirs: List[Path]) -> str:
     for item in specification_dirs:
@@ -192,16 +181,20 @@ def all_specification_folders(specification_dirs: List[Path]) -> List[Path]:
     return [s for item in specification_dirs for s in item.glob("**/*") if s.is_dir()]
 
 
-def _regenerate(c, test_config, name=None, debug=False):
-    generated_sub_folder = test_config["generated_sub_folder"]
+def _regenerate(
+    c,
+    name=None,
+    debug=False,
+    generated_sub_folder="azure",
+    skip_folders=[],
+    special_flags={},
+):
     local_specification_folder = Path(f"test/{generated_sub_folder}/specification")
     specification_dirs = (
         [CADL_RANCH_DIR, local_specification_folder]
         if local_specification_folder.exists()
         else [CADL_RANCH_DIR]
     )
-    skip_folders = test_config.get("skip_folders", [])
-    special_flags = test_config.get("special_flags", {})
     generated_folder = Path(f"{PLUGIN_DIR}/test/{generated_sub_folder}/generated")
 
     specs = [
@@ -238,9 +231,28 @@ def _regenerate(c, test_config, name=None, debug=False):
 
 
 @task
+def regenerate_azure(c, name=None, debug=False):
+    _regenerate(c, name=None, debug=False)
+
+
+@task
+def regenerate_unbranded(c, name=None, debug=False):
+    skip_folders = ["azure/", "mgmt/sphere", "special-headers/client-request-id"]
+    special_flags = ({"unbranded": "true"},)
+    _regenerate(
+        c,
+        name=None,
+        debug=False,
+        generated_sub_folder="unbranded",
+        skip_folders=skip_folders,
+        special_flags=special_flags,
+    )
+
+
+@task
 def regenerate(c, name=None, debug=False):
-    for config in TEST_CONFIG:
-        _regenerate(c, config, name, debug)
+    regenerate_azure(c, name, debug)
+    regenerate_unbranded(c, name, debug)
     regenerate_unittests(c)
     regenerate_test_file(c)
 
@@ -268,7 +280,7 @@ def regenerate_test_file(c):
         "test_lro_rpc_legacy.py",
         "test_lro_rpc.py",
         "test_lro_standard.py",
-        # ARM 
+        # ARM
         "test_mgmt_models_mode.py",
         # RequestId Policy
         "test_special_headers_client_request_id.py",
@@ -276,7 +288,7 @@ def regenerate_test_file(c):
         "test_special_headers_repeatability.py",
         "test_typetest_model_visibility.py",
         # corehttp don't support ODataV4Format
-        "test_stream.py"
+        "test_stream.py",
     ]
     source_test_files = [
         item
