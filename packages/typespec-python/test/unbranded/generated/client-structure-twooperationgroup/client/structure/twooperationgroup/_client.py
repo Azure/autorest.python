@@ -57,7 +57,7 @@ class TwoOperationGroupClient:  # pylint: disable=client-accepts-api-version-key
         self.group1 = Group1Operations(self._client, self._config, self._serialize, self._deserialize)
         self.group2 = Group2Operations(self._client, self._config, self._serialize, self._deserialize)
 
-    def send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
+    def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from corehttp.rest import HttpRequest
@@ -82,7 +82,7 @@ class TwoOperationGroupClient:  # pylint: disable=client-accepts-api-version-key
         }
 
         request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
-        return self._client.send_request(request_copy, **kwargs)  # type: ignore
+        return self._client.send_request(request_copy, stream=stream, **kwargs)  # type: ignore
 
     def close(self) -> None:
         self._client.close()
