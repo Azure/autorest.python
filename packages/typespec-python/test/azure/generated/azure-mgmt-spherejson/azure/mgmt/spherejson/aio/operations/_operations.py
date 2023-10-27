@@ -4148,88 +4148,6 @@ class DeviceGroupsOperations:
         catalog_name: str,
         product_name: str,
         device_group_name: str,
-        *,
-        content_type: str = "application/json",
-        properties: Optional[JSON] = None,
-        **kwargs: Any
-    ) -> Optional[JSON]:
-        """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
-        for product or device group name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword properties: Default value is None.
-        :paramtype properties: JSON
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: JSON object or None
-        :rtype: JSON or None
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-
-    @overload
-    async def update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
         properties: IO,
         *,
         content_type: str = "application/json",
@@ -4312,9 +4230,7 @@ class DeviceGroupsOperations:
         catalog_name: str,
         product_name: str,
         device_group_name: str,
-        properties: Union[JSON, IO] = _Unset,
-        *,
-        properties: Optional[JSON] = None,
+        properties: Union[JSON, IO],
         **kwargs: Any
     ) -> Optional[JSON]:
         """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
@@ -4332,8 +4248,6 @@ class DeviceGroupsOperations:
         :param properties: The resource properties to be updated. Is either a JSON type or a IO type.
          Required.
         :type properties: JSON or IO
-        :keyword properties: Default value is None.
-        :paramtype properties: JSON
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -4419,9 +4333,6 @@ class DeviceGroupsOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[Optional[JSON]] = kwargs.pop("cls", None)
 
-        if properties is _Unset:
-            properties = {"properties": properties}
-            properties = {k: v for k, v in properties.items() if v is not None}
         content_type = content_type or "application/json"
         _json = None
         _content = None
@@ -7636,89 +7547,6 @@ class DevicesOperations:
         product_name: str,
         device_group_name: str,
         device_name: str,
-        *,
-        content_type: str = "application/json",
-        properties: Optional[JSON] = None,
-        **kwargs: Any
-    ) -> Optional[JSON]:
-        """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
-        a device to the catalog level.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :param device_group_name: Name of device group. Required.
-        :type device_group_name: str
-        :param device_name: Device name. Required.
-        :type device_name: str
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword properties: Default value is None.
-        :paramtype properties: JSON
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: JSON object or None
-        :rtype: JSON or None
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "chipSku": "str",  # Optional. SKU of the chip.
-                        "deviceId": "str",  # Optional. Device ID.
-                        "lastAvailableOsVersion": "str",  # Optional. OS version available
-                          for installation when update requested.
-                        "lastInstalledOsVersion": "str",  # Optional. OS version running on
-                          device when update requested.
-                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update requested and new OS version available.
-                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update was last requested.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-
-    @overload
-    async def update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        device_group_name: str,
-        device_name: str,
         properties: IO,
         *,
         content_type: str = "application/json",
@@ -7802,9 +7630,7 @@ class DevicesOperations:
         product_name: str,
         device_group_name: str,
         device_name: str,
-        properties: Union[JSON, IO] = _Unset,
-        *,
-        properties: Optional[JSON] = None,
+        properties: Union[JSON, IO],
         **kwargs: Any
     ) -> Optional[JSON]:
         """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
@@ -7824,8 +7650,6 @@ class DevicesOperations:
         :param properties: The resource properties to be updated. Is either a JSON type or a IO type.
          Required.
         :type properties: JSON or IO
-        :keyword properties: Default value is None.
-        :paramtype properties: JSON
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -7900,9 +7724,6 @@ class DevicesOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[Optional[JSON]] = kwargs.pop("cls", None)
 
-        if properties is _Unset:
-            properties = {"properties": properties}
-            properties = {k: v for k, v in properties.items() if v is not None}
         content_type = content_type or "application/json"
         _json = None
         _content = None
@@ -9045,74 +8866,6 @@ class ProductsOperations:
         resource_group_name: str,
         catalog_name: str,
         product_name: str,
-        *,
-        content_type: str = "application/json",
-        properties: Optional[JSON] = None,
-        **kwargs: Any
-    ) -> Optional[JSON]:
-        """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
-        product name.
-
-        :param resource_group_name: The name of the resource group. The name is case insensitive.
-         Required.
-        :type resource_group_name: str
-        :param catalog_name: Name of catalog. Required.
-        :type catalog_name: str
-        :param product_name: Name of product. Required.
-        :type product_name: str
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword properties: Default value is None.
-        :paramtype properties: JSON
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: JSON object or None
-        :rtype: JSON or None
-        :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "id": "str",  # Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                      Required.
-                    "type": "str",  # The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
-                      Required.
-                    "properties": {
-                        "description": "str",  # Description of the product. Required.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                    }
-                }
-        """
-
-    @overload
-    async def update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
         properties: IO,
         *,
         content_type: str = "application/json",
@@ -9177,14 +8930,7 @@ class ProductsOperations:
 
     @distributed_trace_async
     async def update(
-        self,
-        resource_group_name: str,
-        catalog_name: str,
-        product_name: str,
-        properties: Union[JSON, IO] = _Unset,
-        *,
-        properties: Optional[JSON] = None,
-        **kwargs: Any
+        self, resource_group_name: str, catalog_name: str, product_name: str, properties: Union[JSON, IO], **kwargs: Any
     ) -> Optional[JSON]:
         """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name.
@@ -9199,8 +8945,6 @@ class ProductsOperations:
         :param properties: The resource properties to be updated. Is either a JSON type or a IO type.
          Required.
         :type properties: JSON or IO
-        :keyword properties: Default value is None.
-        :paramtype properties: JSON
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -9266,9 +9010,6 @@ class ProductsOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[Optional[JSON]] = kwargs.pop("cls", None)
 
-        if properties is _Unset:
-            properties = {"properties": properties}
-            properties = {k: v for k, v in properties.items() if v is not None}
         content_type = content_type or "application/json"
         _json = None
         _content = None

@@ -614,8 +614,12 @@ function addAcceptParameter(context: SdkContext, operation: Operation, parameter
     }
 }
 
-function hasDuplicatedSignature(parameters: Record<string, any>[], properties: Record<string, any>[]): boolean {
-    const methodSignaures: Record<string, any>[] = [];
+function hasDuplicatedSignature(
+    parameters: Record<string, any>[],
+    bodyParameter: Record<string, any>,
+    properties: Record<string, any>[],
+): boolean {
+    const methodSignaures: Record<string, any>[] = [bodyParameter.wireName];
     for (const p of parameters) {
         if (p.implementation === "Method" && p.location === "path") {
             methodSignaures.push(p.wireName);
@@ -683,7 +687,7 @@ function emitBasicOperation(
         if (
             bodyParameter.type.type === "model" &&
             bodyParameter.type.base === "json" &&
-            !hasDuplicatedSignature(parameters, bodyParameter.type.properties)
+            !hasDuplicatedSignature(parameters, bodyParameter, bodyParameter.type.properties)
         ) {
             bodyParameter["propertyToParameterName"] = {};
             if (!isOverload) {

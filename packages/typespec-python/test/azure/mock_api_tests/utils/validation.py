@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import re
-from typing import Iterator
+from typing import List
 
 _VALID_UUID = re.compile(r"^[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}$")
 _VALID_RFC7231 = re.compile(
@@ -25,3 +25,10 @@ def validate_format(value: str, format: Format):
         assert _VALID_RFC7231.match(value)
     else:
         raise ValueError("Unknown format")
+
+def overload_count(source_code: List[str], func_name: str)->int:
+    idx = 0
+    for i in range(len(source_code)-1):
+        if "@overload" in source_code[i] and f"def {func_name}(" in source_code[i+1]:
+            idx += 1
+    return idx
