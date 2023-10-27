@@ -8,13 +8,14 @@ import logging
 from typing import Dict, Any, Union, Tuple
 from jinja2 import Environment
 
-from autorest.codegen.models.credential_types import AzureKeyCredentialType
+from autorest.codegen.models.credential_types import KeyCredentialType
 from autorest.codegen.models.credential_types import TokenCredentialType
-from autorest.codegen.models.imports import FileImport, ImportType
+from autorest.codegen.models.imports import ImportType
 from autorest.codegen.models.operation import OperationBase
 from autorest.codegen.models.operation_group import OperationGroup
 from autorest.codegen.models.parameter import Parameter, BodyParameter
 from autorest.codegen.serializers.import_serializer import FileImportSerializer
+from autorest.codegen.serializers.base_serializer import BaseSerializer
 from ..models import CodeModel
 from .utils import get_namespace_config, get_namespace_from_package_name
 from ..._utils import to_snake_case
@@ -22,7 +23,7 @@ from ..._utils import to_snake_case
 _LOGGER = logging.getLogger(__name__)
 
 
-class SampleSerializer:
+class SampleSerializer(BaseSerializer):
     def __init__(
         self,
         code_model: CodeModel,
@@ -32,8 +33,7 @@ class SampleSerializer:
         sample: Dict[str, Any],
         file_name: str,
     ) -> None:
-        self.code_model = code_model
-        self.env = env
+        super().__init__(code_model, env)
         self.operation_group = operation_group
         self.operation = operation
         self.sample = sample
@@ -43,7 +43,7 @@ class SampleSerializer:
         }
 
     def _imports(self) -> FileImportSerializer:
-        imports = FileImport()
+        imports = self.init_file_import()
         namespace_from_package_name = get_namespace_from_package_name(
             self.code_model.options["package_name"]
         )
@@ -63,10 +63,12 @@ class SampleSerializer:
             imports.add_submodule_import(
                 "azure.identity", "DefaultAzureCredential", ImportType.THIRDPARTY
             )
-        elif isinstance(credential_type, AzureKeyCredentialType):
+        elif isinstance(credential_type, KeyCredentialType):
             imports.add_import("os", ImportType.STDLIB)
             imports.add_submodule_import(
-                "azure.core.credentials", "AzureKeyCredential", ImportType.THIRDPARTY
+                f"{imports.import_core}.credentials",
+                "AzureKeyCredential",
+                ImportType.THIRDPARTY,
             )
         for param in self.operation.parameters.positional:
             if (
@@ -83,7 +85,7 @@ class SampleSerializer:
         credential_type = getattr(self.code_model.clients[0].credential, "type", None)
         if isinstance(credential_type, TokenCredentialType):
             special_param.update({"credential": "DefaultAzureCredential()"})
-        elif isinstance(credential_type, AzureKeyCredentialType):
+        elif isinstance(credential_type, KeyCredentialType):
             special_param.update(
                 {"credential": 'AzureKeyCredential(key=os.getenv("AZURE_KEY"))'}
             )

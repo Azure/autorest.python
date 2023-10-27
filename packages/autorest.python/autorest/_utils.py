@@ -121,7 +121,7 @@ JSON_REGEXP = re.compile(r"^(application|text)/(.+\+)?json$")
 
 
 def build_policies(
-    is_arm: bool, async_mode: bool, unbranded: bool = False
+    is_arm: bool, async_mode: bool, unbranded: bool = False, tracing: bool = True
 ) -> List[str]:
     if not unbranded:
         # for Azure
@@ -140,7 +140,7 @@ def build_policies(
             "self._config.authentication_policy",
             "self._config.custom_hook_policy",
             "self._config.logging_policy",
-            "policies.DistributedTracingPolicy(**kwargs)",
+            "policies.DistributedTracingPolicy(**kwargs)" if tracing else None,
             "policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None",
             "self._config.http_logging_policy",
         ]

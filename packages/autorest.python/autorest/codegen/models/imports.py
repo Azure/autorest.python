@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 class ImportType(str, Enum):
     STDLIB = "stdlib"
     THIRDPARTY = "thirdparty"
-    AZURECORE = "azurecore"
+    SDKCORE = "sdkcore"
     LOCAL = "local"
     BYVERSION = "by_version"
 
@@ -87,9 +87,10 @@ class TypeDefinition:
         self.async_definition = async_definition
 
 
-class FileImport:
-    def __init__(self, imports: Optional[List[ImportModel]] = None) -> None:
-        self.imports = imports or []
+class FileImport:  # pylint: disable=too-many-public-methods
+    def __init__(self, code_model: "CodeModel") -> None:
+        self.imports: List[ImportModel] = []
+        self.code_model = code_model
         # has sync and async type definitions
         self.type_definitions: Dict[str, TypeDefinition] = {}
 
@@ -272,15 +273,15 @@ class FileImport:
 
     def add_msrest_import(
         self,
-        code_model: "CodeModel",
+        *,
         relative_path: str,
         msrest_import_type: MsrestImportType,
         typing_section: TypingSection,
     ):
-        if code_model.options["client_side_validation"]:
+        if self.code_model.options["client_side_validation"]:
             if msrest_import_type == MsrestImportType.Module:
                 self.add_import(
-                    "msrest.serialization", ImportType.AZURECORE, typing_section
+                    "msrest.serialization", ImportType.SDKCORE, typing_section
                 )
             else:
                 self.add_submodule_import(
@@ -291,7 +292,7 @@ class FileImport:
                         "msrest", "Deserializer", ImportType.THIRDPARTY, typing_section
                     )
         else:
-            if code_model.options["multiapi"]:
+            if self.code_model.options["multiapi"]:
                 relative_path += "."
             if msrest_import_type == MsrestImportType.Module:
                 self.add_submodule_import(
@@ -311,3 +312,71 @@ class FileImport:
                         ImportType.LOCAL,
                         typing_section,
                     )
+
+    @property
+    def import_core(self) -> str:
+        return "azure.core" if not self.code_model.options["unbranded"] else "corehttp"
+
+    @property
+    def import_core_exceptions(self) -> str:
+        return f"{self.import_core}.exceptions"
+
+    @property
+    def import_core_rest(self) -> str:
+        return f"{self.import_core}.rest"
+
+    @property
+    def import_core_credentials(self) -> str:
+        return f"{self.import_core}.credentials"
+
+    @property
+    def import_core_credentials_async(self) -> str:
+        return self.import_core + (
+            ".credentials_async"
+            if not self.code_model.options["unbranded"]
+            else ".credentials"
+        )
+
+    @property
+    def import_core_paging(self) -> str:
+        return f"{self.import_core}.paging"
+
+    @property
+    def import_core_paging_async(self) -> str:
+        return self.import_core + (
+            ".async_paging" if not self.code_model.options["unbranded"] else ".paging"
+        )
+
+    @property
+    def import_core_utils(self) -> str:
+        return f"{self.import_core}.utils"
+
+    @property
+    def import_core_case_insensitive_enum(self) -> str:
+        return self.import_core + (
+            "" if not self.code_model.options["unbranded"] else ".utils"
+        )
+
+    @property
+    def import_core_pipeline(self) -> str:
+        return self.import_core + (
+            ".pipeline"
+            if not self.code_model.options["unbranded"]
+            else ".runtime.pipeline"
+        )
+
+    @property
+    def import_core_policies(self) -> str:
+        return self.import_core + (
+            ".pipeline" if not self.code_model.options["unbranded"] else ".runtime"
+        )
+
+    @property
+    def import_core_serialization(self) -> str:
+        return f"{self.import_core}.serialization"
+
+    @property
+    def import_core_pipeline_client(self) -> str:
+        return self.import_core + (
+            "" if not self.code_model.options["unbranded"] else ".runtime"
+        )

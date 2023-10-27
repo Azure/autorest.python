@@ -195,18 +195,19 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             raise KeyError(f"No operation with id {operation_id} found.") from exc
 
     def _imports_shared(self, async_mode: bool) -> FileImport:
-        file_import = FileImport()
-
+        file_import = self.init_file_import()
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
         if self.code_model.options["azure_arm"]:
             file_import.add_submodule_import(
-                "azure.mgmt.core", self.pipeline_class(async_mode), ImportType.AZURECORE
+                "azure.mgmt.core", self.pipeline_class(async_mode), ImportType.SDKCORE
             )
         else:
             file_import.add_submodule_import(
-                "azure.core", self.pipeline_class(async_mode), ImportType.AZURECORE
+                file_import.import_core_pipeline_client,
+                self.pipeline_class(async_mode),
+                ImportType.SDKCORE,
             )
 
         for gp in self.parameters:
@@ -225,20 +226,19 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             ImportType.LOCAL,
         )
         file_import.add_msrest_import(
-            self.code_model,
-            ".." if async_mode else ".",
-            MsrestImportType.SerializerDeserializer,
-            TypingSection.REGULAR,
+            relative_path=".." if async_mode else ".",
+            msrest_import_type=MsrestImportType.SerializerDeserializer,
+            typing_section=TypingSection.REGULAR,
         )
         file_import.add_submodule_import(
-            "azure.core.pipeline", "policies", ImportType.AZURECORE
+            file_import.import_core_policies, "policies", ImportType.SDKCORE
         )
         if self.code_model.options["azure_arm"]:
             async_prefix = "Async" if async_mode else ""
             file_import.add_submodule_import(
                 "azure.mgmt.core.policies",
                 f"{async_prefix}ARMAutoResourceProviderRegistrationPolicy",
-                ImportType.AZURECORE,
+                ImportType.SDKCORE,
             )
         return file_import
 
@@ -248,13 +248,19 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         return any(o for o in self.operation_groups if o.is_mixin)
 
     @property
-    def has_public_lro_operations(self) -> bool:
-        """Are there any LRO operations in this SDK?"""
-        return any(
-            operation.operation_type in ("lro", "lropaging") and not operation.internal
+    def lro_operations(self) -> List["OperationType"]:
+        """all LRO operations in this SDK?"""
+        return [
+            operation
             for operation_group in self.operation_groups
             for operation in operation_group.operations
-        )
+            if operation.operation_type in ("lro", "lropaging")
+        ]
+
+    @property
+    def has_public_lro_operations(self) -> bool:
+        """Are there any public LRO operations in this SDK?"""
+        return any(not operation.internal for operation in self.lro_operations)
 
     @property
     def has_operations(self) -> bool:
@@ -294,22 +300,22 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         if async_mode:
             file_import.add_submodule_import("typing", "Awaitable", ImportType.STDLIB)
             file_import.add_submodule_import(
-                "azure.core.rest",
+                file_import.import_core_rest,
                 "AsyncHttpResponse",
-                ImportType.AZURECORE,
+                ImportType.SDKCORE,
                 TypingSection.CONDITIONAL,
             )
         else:
             file_import.add_submodule_import(
-                "azure.core.rest",
+                file_import.import_core_rest,
                 "HttpResponse",
-                ImportType.AZURECORE,
+                ImportType.SDKCORE,
                 TypingSection.CONDITIONAL,
             )
         file_import.add_submodule_import(
-            "azure.core.rest",
+            file_import.import_core_rest,
             "HttpRequest",
-            ImportType.AZURECORE,
+            ImportType.SDKCORE,
             TypingSection.CONDITIONAL,
         )
         for og in self.operation_groups:
@@ -349,15 +355,15 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         except StopIteration:
             pass
         file_import.add_submodule_import(
-            "azure.profiles", "KnownProfiles", import_type=ImportType.AZURECORE
+            "azure.profiles", "KnownProfiles", import_type=ImportType.SDKCORE
         )
         file_import.add_submodule_import(
-            "azure.profiles", "ProfileDefinition", import_type=ImportType.AZURECORE
+            "azure.profiles", "ProfileDefinition", import_type=ImportType.SDKCORE
         )
         file_import.add_submodule_import(
             "azure.profiles.multiapiclient",
             "MultiApiClientMixin",
-            import_type=ImportType.AZURECORE,
+            import_type=ImportType.SDKCORE,
         )
         return file_import
 
@@ -406,9 +412,9 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
         return f"{super().name}Configuration"
 
     def _imports_shared(self, async_mode: bool) -> FileImport:
-        file_import = FileImport()
+        file_import = self.init_file_import()
         file_import.add_submodule_import(
-            "azure.core.pipeline", "policies", ImportType.AZURECORE
+            file_import.import_core_policies, "policies", ImportType.SDKCORE
         )
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
@@ -424,10 +430,10 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
                 else "ARMChallengeAuthenticationPolicy"
             )
             file_import.add_submodule_import(
-                "azure.mgmt.core.policies", "ARMHttpLoggingPolicy", ImportType.AZURECORE
+                "azure.mgmt.core.policies", "ARMHttpLoggingPolicy", ImportType.SDKCORE
             )
             file_import.add_submodule_import(
-                "azure.mgmt.core.policies", policy, ImportType.AZURECORE
+                "azure.mgmt.core.policies", policy, ImportType.SDKCORE
             )
 
         return file_import

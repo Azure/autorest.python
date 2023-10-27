@@ -604,13 +604,15 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[_models.Product].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[_models.Product](
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+        )
 
 
     @api_version_validation(
@@ -745,13 +747,15 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller.from_continuation_token(
+            return AsyncLROPoller[AsyncIterable["_models.Product"]].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncLROPoller[AsyncIterable["_models.Product"]](
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+        )
 
 
     @api_version_validation(

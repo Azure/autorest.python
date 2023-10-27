@@ -120,6 +120,8 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
             )
         if self.description(is_operation_file=True):
             description = self.description(is_operation_file=True)
+        # make sure there is no \n otherwise the json template will be invalid
+        description = (description or "").replace("\n", " ")
         return self.type.get_json_template_representation(
             optional=self.optional,
             client_default_value_declaration=client_default_value_declaration,
@@ -145,7 +147,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         return retval or None
 
     def imports(self, **kwargs) -> FileImport:
-        file_import = FileImport()
+        file_import = self.init_file_import()
         if self.is_discriminator and isinstance(self.type, EnumType):
             return file_import
         file_import.merge(

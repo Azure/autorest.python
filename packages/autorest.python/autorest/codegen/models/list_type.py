@@ -146,7 +146,7 @@ class ListType(BaseType):
         )
 
     def imports(self, **kwargs: Any) -> FileImport:
-        file_import = FileImport()
+        file_import = self.init_file_import()
         if not (
             self.code_model.options["version_tolerant"]
             and self.element_type.is_xml

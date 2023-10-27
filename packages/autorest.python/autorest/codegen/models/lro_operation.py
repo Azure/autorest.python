@@ -104,6 +104,9 @@ class LROOperationBase(OperationBase[LROResponseType]):
         """We don't want the poller to show up in ClsType, so we call super() on resposne type annotation"""
         return f"ClsType[{Response.type_annotation(self.responses[0], async_mode=async_mode)}]"
 
+    def get_poller_with_response_type(self, async_mode: bool) -> str:
+        return self.response_type_annotation(async_mode=async_mode)
+
     def get_poller(self, async_mode: bool) -> str:
         return self.responses[0].get_poller(async_mode)
 
@@ -123,11 +126,11 @@ class LROOperationBase(OperationBase[LROResponseType]):
         file_import = super().imports(async_mode, **kwargs)
         if self.abstract:
             return file_import
-        if async_mode:
+        if async_mode and self.code_model.options["tracing"] and self.want_tracing:
             file_import.add_submodule_import(
                 "azure.core.tracing.decorator_async",
                 "distributed_trace_async",
-                ImportType.AZURECORE,
+                ImportType.SDKCORE,
             )
         if (
             self.code_model.options["models_mode"] == "dpg"

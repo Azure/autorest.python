@@ -6,10 +6,10 @@
 from typing import List
 from abc import ABC, abstractmethod
 
-from jinja2 import Environment
-from ..models import ModelType, CodeModel, Property, ConstantType, EnumValue
+from ..models import ModelType, Property, ConstantType, EnumValue
 from ..models.imports import FileImport, TypingSection, MsrestImportType, ImportType
 from .import_serializer import FileImportSerializer
+from .base_serializer import BaseSerializer
 
 
 def _documentation_string(
@@ -28,11 +28,7 @@ def _documentation_string(
     return retval
 
 
-class _ModelSerializer(ABC):
-    def __init__(self, code_model: CodeModel, env: Environment) -> None:
-        self.code_model = code_model
-        self.env = env
-
+class _ModelSerializer(BaseSerializer, ABC):
     @abstractmethod
     def imports(self) -> FileImport:
         ...
@@ -133,9 +129,11 @@ class _ModelSerializer(ABC):
 
 class MsrestModelSerializer(_ModelSerializer):
     def imports(self) -> FileImport:
-        file_import = FileImport()
+        file_import = self.init_file_import()
         file_import.add_msrest_import(
-            self.code_model, "..", MsrestImportType.Module, TypingSection.REGULAR
+            relative_path="..",
+            msrest_import_type=MsrestImportType.Module,
+            typing_section=TypingSection.REGULAR,
         )
         for model in self.code_model.model_types:
             file_import.merge(model.imports(is_operation_file=False))
@@ -200,7 +198,7 @@ class MsrestModelSerializer(_ModelSerializer):
 
 class DpgModelSerializer(_ModelSerializer):
     def imports(self) -> FileImport:
-        file_import = FileImport()
+        file_import = self.init_file_import()
         file_import.add_submodule_import(
             "..",
             "_model_base",

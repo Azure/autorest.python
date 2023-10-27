@@ -31,6 +31,9 @@ class BaseModel:
     def __repr__(self):
         return f"<{self.__class__.__name__}>"
 
+    def init_file_import(self) -> FileImport:
+        return FileImport(self.code_model)
+
 
 class BaseType(BaseModel, ABC):  # pylint: disable=too-many-public-methods
     """This is the base class for all types.
@@ -53,14 +56,13 @@ class BaseType(BaseModel, ABC):  # pylint: disable=too-many-public-methods
         return cls(yaml_data=yaml_data, code_model=code_model)
 
     def imports(self, **kwargs) -> FileImport:  # pylint: disable=unused-argument
-        return FileImport()
+        return self.init_file_import()
 
     def imports_for_multiapi(self, **kwargs: Any) -> FileImport:
         return self.imports(**kwargs)
 
-    @staticmethod
-    def imports_for_sample() -> FileImport:
-        return FileImport()
+    def imports_for_sample(self) -> FileImport:
+        return self.init_file_import()
 
     @staticmethod
     def serialize_sample_value(value: Any) -> str:

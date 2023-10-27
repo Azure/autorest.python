@@ -149,7 +149,10 @@ class MultiAPISerializer(ReaderAndWriter):  # pylint: disable=abstract-method
             )
             self.write_file(
                 Path("_serialization.py"),
-                codegen_env.get_template("serialization.py.jinja2").render(),
+                codegen_env.get_template("serialization.py.jinja2").render(
+                    import_core_exceptions="azure.core.exceptions",
+                    import_core_serialization="azure.core.serialization",
+                ),
             )
 
 

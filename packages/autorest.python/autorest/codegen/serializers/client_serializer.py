@@ -111,19 +111,28 @@ class ClientSerializer:
     def initialize_pipeline_client(self, async_mode: bool) -> List[str]:
         result = []
         pipeline_client_name = self.client.pipeline_class(async_mode)
+        endpoint_name = (
+            "endpoint" if self.client.code_model.options["unbranded"] else "base_url"
+        )
         params = {
-            "base_url": self.host_variable_name,
+            endpoint_name: self.host_variable_name,
             "policies": "_policies",
         }
         if not self.client.code_model.is_legacy and self.client.request_id_header_name:
             result.append(
                 f'kwargs["request_id_header_name"] = "{self.client.request_id_header_name}"'
             )
+        policies = build_policies(
+            self.client.code_model.options["azure_arm"],
+            async_mode,
+            self.client.code_model.options["unbranded"],
+            self.client.code_model.options["tracing"],
+        )
         result.extend(
             [
                 "_policies = kwargs.pop('policies', None)",
                 "if _policies is None:",
-                f'    _policies = [{",".join(build_policies(self.client.code_model.options["azure_arm"], async_mode, self.client.code_model.options["unbranded"]))}]',  # pylint: disable=line-too-long
+                f'    _policies = [{",".join(policies)}]',
                 f"self._client: {pipeline_client_name} = {pipeline_client_name}("
                 f"{', '.join(f'{k}={v}' for k, v in params.items())}, **kwargs)",
             ]
@@ -243,7 +252,9 @@ class ClientSerializer:
         return retval
 
     def _rest_request_example(self, async_mode: bool) -> List[str]:
-        retval = [">>> from azure.core.rest import HttpRequest"]
+        retval = [
+            f">>> from {self.client.init_file_import().import_core_rest} import HttpRequest"
+        ]
         retval.append('>>> request = HttpRequest("GET", "https://www.example.org/")')
         retval.append("<HttpRequest [GET], url: 'https://www.example.org/'>")
         retval.extend(self._example_make_call(async_mode))
@@ -262,7 +273,9 @@ class ClientSerializer:
         )
         retval.append("")
         retval.append(":param request: The network request you want to make. Required.")
-        retval.append(":type request: ~azure.core.rest.HttpRequest")
+        retval.append(
+            f":type request: ~{self.client.init_file_import().import_core_rest}.HttpRequest"
+        )
         retval.append(
             ":keyword bool stream: Whether the response payload will be streamed. Defaults to False."
         )
@@ -270,7 +283,9 @@ class ClientSerializer:
             ":return: The response of your network call. Does not do error handling on your response."
         )
         http_response = "AsyncHttpResponse" if async_mode else "HttpResponse"
-        retval.append(f":rtype: ~azure.core.rest.{http_response}")
+        retval.append(
+            f":rtype: ~{self.client.init_file_import().import_core_rest}.{http_response}"
+        )
         retval.append('"""')
         return retval
 

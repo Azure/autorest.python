@@ -25,7 +25,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._model_base import AzureJSONEncoder, _deserialize
+from ..._model_base import AzureJSONEncoder, _RestField, _deserialize
 from ...operations._operations import (
     build_header_base64_request,
     build_header_base64url_array_request,
@@ -102,16 +102,16 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_default_request(
+        request = build_query_default_request(
             value=value,
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -123,7 +123,7 @@ class QueryOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})  # type: ignore
+            return cls(pipeline_response, None, {})
 
     @distributed_trace_async
     async def base64(self, *, value: bytes, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -150,16 +150,16 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_base64_request(
+        request = build_query_base64_request(
             value=value,
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -171,7 +171,7 @@ class QueryOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})  # type: ignore
+            return cls(pipeline_response, None, {})
 
     @distributed_trace_async
     async def base64url(self, *, value: bytes, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -198,16 +198,16 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_base64url_request(
+        request = build_query_base64url_request(
             value=value,
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -219,7 +219,7 @@ class QueryOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})  # type: ignore
+            return cls(pipeline_response, None, {})
 
     @distributed_trace_async
     async def base64url_array(  # pylint: disable=inconsistent-return-statements
@@ -248,16 +248,16 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_base64url_array_request(
+        request = build_query_base64url_array_request(
             value=value,
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -269,7 +269,7 @@ class QueryOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})  # type: ignore
+            return cls(pipeline_response, None, {})
 
 
 class PropertyOperations:
@@ -381,17 +381,17 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_default_request(
+        request = build_property_default_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -504,17 +504,17 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_base64_request(
+        request = build_property_base64_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -627,17 +627,17 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_base64url_request(
+        request = build_property_base64url_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -754,17 +754,17 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_base64url_array_request(
+        request = build_property_base64url_array_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -828,16 +828,16 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_default_request(
+        request = build_header_default_request(
             value=value,
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -849,7 +849,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})  # type: ignore
+            return cls(pipeline_response, None, {})
 
     @distributed_trace_async
     async def base64(self, *, value: bytes, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -876,16 +876,16 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_base64_request(
+        request = build_header_base64_request(
             value=value,
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -897,7 +897,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})  # type: ignore
+            return cls(pipeline_response, None, {})
 
     @distributed_trace_async
     async def base64url(self, *, value: bytes, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -924,16 +924,16 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_base64url_request(
+        request = build_header_base64url_request(
             value=value,
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -945,7 +945,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})  # type: ignore
+            return cls(pipeline_response, None, {})
 
     @distributed_trace_async
     async def base64url_array(  # pylint: disable=inconsistent-return-statements
@@ -974,16 +974,16 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_base64url_array_request(
+        request = build_header_base64url_array_request(
             value=value,
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -995,7 +995,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})  # type: ignore
+            return cls(pipeline_response, None, {})
 
 
 class RequestBodyOperations:
@@ -1046,17 +1046,17 @@ class RequestBodyOperations:
 
         _content = json.dumps(value, cls=AzureJSONEncoder, exclude_readonly=True, format="base64")  # type: ignore
 
-        _request = build_request_body_default_request(
+        request = build_request_body_default_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1068,7 +1068,7 @@ class RequestBodyOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})  # type: ignore
+            return cls(pipeline_response, None, {})
 
     @distributed_trace_async
     async def octet_stream(self, value: bytes, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1100,17 +1100,17 @@ class RequestBodyOperations:
 
         _content = value
 
-        _request = build_request_body_octet_stream_request(
+        request = build_request_body_octet_stream_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1122,7 +1122,7 @@ class RequestBodyOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})  # type: ignore
+            return cls(pipeline_response, None, {})
 
     @distributed_trace_async
     async def custom_content_type(  # pylint: disable=inconsistent-return-statements
@@ -1156,17 +1156,17 @@ class RequestBodyOperations:
 
         _content = value
 
-        _request = build_request_body_custom_content_type_request(
+        request = build_request_body_custom_content_type_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1178,7 +1178,7 @@ class RequestBodyOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})  # type: ignore
+            return cls(pipeline_response, None, {})
 
     @distributed_trace_async
     async def base64(self, value: bytes, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1211,17 +1211,17 @@ class RequestBodyOperations:
 
         _content = json.dumps(value, cls=AzureJSONEncoder, exclude_readonly=True, format="base64")  # type: ignore
 
-        _request = build_request_body_base64_request(
+        request = build_request_body_base64_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1233,7 +1233,7 @@ class RequestBodyOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})  # type: ignore
+            return cls(pipeline_response, None, {})
 
     @distributed_trace_async
     async def base64url(self, value: bytes, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1266,17 +1266,17 @@ class RequestBodyOperations:
 
         _content = json.dumps(value, cls=AzureJSONEncoder, exclude_readonly=True, format="base64url")  # type: ignore
 
-        _request = build_request_body_base64url_request(
+        request = build_request_body_base64url_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1288,7 +1288,7 @@ class RequestBodyOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})  # type: ignore
+            return cls(pipeline_response, None, {})
 
 
 class ResponseBodyOperations:
@@ -1331,15 +1331,15 @@ class ResponseBodyOperations:
 
         cls: ClsType[bytes] = kwargs.pop("cls", None)
 
-        _request = build_response_body_default_request(
+        request = build_response_body_default_request(
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1353,7 +1353,7 @@ class ResponseBodyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(bytes, response.json())
+            deserialized = _deserialize(bytes, response.json(), rf=_RestField(format="base64"))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1383,15 +1383,15 @@ class ResponseBodyOperations:
 
         cls: ClsType[bytes] = kwargs.pop("cls", None)
 
-        _request = build_response_body_octet_stream_request(
+        request = build_response_body_octet_stream_request(
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1435,15 +1435,15 @@ class ResponseBodyOperations:
 
         cls: ClsType[bytes] = kwargs.pop("cls", None)
 
-        _request = build_response_body_custom_content_type_request(
+        request = build_response_body_custom_content_type_request(
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1487,15 +1487,15 @@ class ResponseBodyOperations:
 
         cls: ClsType[bytes] = kwargs.pop("cls", None)
 
-        _request = build_response_body_base64_request(
+        request = build_response_body_base64_request(
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1509,7 +1509,7 @@ class ResponseBodyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(bytes, response.json())
+            deserialized = _deserialize(bytes, response.json(), rf=_RestField(format="base64"))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1539,15 +1539,15 @@ class ResponseBodyOperations:
 
         cls: ClsType[bytes] = kwargs.pop("cls", None)
 
-        _request = build_response_body_base64url_request(
+        request = build_response_body_base64url_request(
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        request.url = self._client.format_url(request.url)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+            request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1561,7 +1561,7 @@ class ResponseBodyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(bytes, response.json())
+            deserialized = _deserialize(bytes, response.json(), rf=_RestField(format="base64url"))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

@@ -426,6 +426,12 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
             builder.parameters.path, self.serializer_name
         )
 
+    @property
+    def pipeline_name(self) -> str:
+        if not self.code_model.options["unbranded"]:
+            return "_pipeline"
+        return "pipeline"
+
 
 ############################## REQUEST BUILDERS ##############################
 
@@ -483,12 +489,13 @@ class RequestBuilderSerializer(
         return False
 
     def response_docstring(self, builder: RequestBuilderType) -> List[str]:
+        import_core_rest = builder.init_file_import().import_core_rest
         response_str = (
-            ":return: Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's "
+            f":return: Returns an :class:`~{import_core_rest}.HttpRequest` that you will pass to the client's "
             + "`send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to "
             + "incorporate this response into your code flow."
         )
-        rtype_str = ":rtype: ~azure.core.rest.HttpRequest"
+        rtype_str = f":rtype: ~{import_core_rest}.HttpRequest"
         return [response_str, rtype_str]
 
     def pop_kwargs_from_signature(self, builder: RequestBuilderType) -> List[str]:
@@ -637,13 +644,13 @@ class _OperationSerializer(
     def make_pipeline_call(self, builder: OperationType) -> List[str]:
         type_ignore = self.async_mode and builder.group_name == ""  # is in a mixin
         stream_value = (
-            'kwargs.pop("stream", False)'
+            f'kwargs.pop("stream", {builder.has_stream_response})'
             if builder.expose_stream_keyword
             else builder.has_stream_response
         )
         return [
             f"_stream = {stream_value}",
-            f"pipeline_response: PipelineResponse = {self._call_method}self._client._pipeline.run(  "
+            f"pipeline_response: PipelineResponse = {self._call_method}self._client.{self.pipeline_name}.run(  "
             + f"{'# type: ignore' if type_ignore else ''} # pylint: disable=protected-access",
             "    _request,",
             "    stream=_stream,",
@@ -723,7 +730,7 @@ class _OperationSerializer(
         return [
             response_str,
             rtype_str,
-            ":raises ~azure.core.exceptions.HttpResponseError:",
+            f":raises ~{builder.init_file_import().import_core_exceptions}.HttpResponseError:",
         ]
 
     def _serialize_body_parameter(self, builder: OperationType) -> List[str]:
@@ -1049,14 +1056,17 @@ class _OperationSerializer(
         if response.headers:
             retval.append("")
         deserialize_code: List[str] = []
-        if response.is_stream_response:
-            deserialize_code.append(
-                "deserialized = {}".format(
+        if builder.has_stream_response:
+            if isinstance(response.type, ByteArraySchema):
+                retval.append(f"{'await ' if self.async_mode else ''}response.read()")
+                deserialized = "response.content"
+            else:
+                deserialized = (
                     "response.iter_bytes()"
                     if self.code_model.options["version_tolerant"]
-                    else "response.stream_download(self._client._pipeline)"
+                    else f"response.stream_download(self._client.{self.pipeline_name})"
                 )
-            )
+            deserialize_code.append(f"deserialized = {deserialized}")
         elif response.type:
             pylint_disable = ""
             if isinstance(response.type, ModelType) and response.type.internal:
@@ -1069,14 +1079,18 @@ class _OperationSerializer(
                 deserialize_code.append("    pipeline_response")
                 deserialize_code.append(")")
             elif self.code_model.options["models_mode"] == "dpg":
-                deserialize_code.append("deserialized = _deserialize(")
-                deserialize_code.append(
-                    f"    {response.type.type_annotation(is_operation_file=True)},{pylint_disable}"
-                )
-                deserialize_code.append(
-                    f"    response.json(){response.result_property}"
-                )
-                deserialize_code.append(")")
+                if builder.has_stream_response:
+                    deserialize_code.append("deserialized = response.content")
+                else:
+                    deserialize_code.append("deserialized = _deserialize(")
+                    deserialize_code.append(
+                        f"    {response.type.type_annotation(is_operation_file=True)},{pylint_disable}"
+                    )
+                    deserialize_code.append(
+                        f"    response.json(){response.result_property}"
+                    )
+                    deserialize_code.append(")")
+
             else:
                 deserialized_value = (
                     "ET.fromstring(response.text())"
@@ -1088,7 +1102,7 @@ class _OperationSerializer(
                 deserialize_code.append("else:")
                 deserialize_code.append("    deserialized = None")
         if len(deserialize_code) > 0:
-            if builder.expose_stream_keyword:
+            if builder.expose_stream_keyword and not builder.has_stream_response:
                 retval.append("if _stream:")
                 retval.append("    deserialized = response.iter_bytes()")
                 retval.append("else:")
@@ -1565,7 +1579,7 @@ class _LROOperationSerializer(_OperationSerializer[LROOperationType]):
         retval.append("else: polling_method = polling")
         retval.append("if cont_token:")
         retval.append(
-            f"    return {builder.get_poller(self.async_mode)}.from_continuation_token("
+            f"    return {builder.get_poller_with_response_type(self.async_mode)}.from_continuation_token("
         )
         retval.append("        polling_method=polling_method,")
         retval.append("        continuation_token=cont_token,")
@@ -1573,9 +1587,12 @@ class _LROOperationSerializer(_OperationSerializer[LROOperationType]):
         retval.append("        deserialization_callback=get_long_running_output")
         retval.append("    )")
         retval.append(
-            f"return {builder.get_poller(self.async_mode)}"
-            "(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore"
+            f"return {builder.get_poller_with_response_type(self.async_mode)}("
         )
+        retval.append(
+            "    self._client, raw_result, get_long_running_output, polling_method  # type: ignore"
+        )
+        retval.append("    )")
         return retval
 
     def get_long_running_output(self, builder: LROOperationType) -> List[str]:

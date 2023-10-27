@@ -72,16 +72,16 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
 
     def response_docstring_text(self, **kwargs) -> str:
         return (
-            "Returns an :class:`~azure.core.rest.HttpRequest` that you will pass to the client's "
+            f"Returns an :class:`~{self.response_docstring_type()}` that you will pass to the client's "
             + "`send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to "
             + "incorporate this response into your code flow."
         )
 
     def response_docstring_type(self, **kwargs) -> str:
-        return "~azure.core.rest.HttpRequest"
+        return f"~{self.init_file_import().import_core_rest}.HttpRequest"
 
     def imports(self) -> FileImport:
-        file_import = FileImport()
+        file_import = self.init_file_import()
         relative_path = ".."
         if (
             not self.code_model.options["builders_visibility"] == "embedded"
@@ -98,28 +98,29 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
             )
 
         file_import.add_submodule_import(
-            "azure.core.rest",
+            file_import.import_core_rest,
             "HttpRequest",
-            ImportType.AZURECORE,
+            ImportType.SDKCORE,
         )
 
         if self.parameters.headers or self.parameters.query:
             file_import.add_submodule_import(
-                "azure.core.utils", "case_insensitive_dict", ImportType.AZURECORE
+                file_import.import_core_utils,
+                "case_insensitive_dict",
+                ImportType.SDKCORE,
             )
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, typing_section=TypingSection.CONDITIONAL
         )
         file_import.add_msrest_import(
-            self.code_model,
-            "..."
+            relative_path="..."
             if (
                 not self.code_model.options["builders_visibility"] == "embedded"
                 and self.group_name
             )
             else "..",
-            MsrestImportType.Serializer,
-            TypingSection.REGULAR,
+            msrest_import_type=MsrestImportType.Serializer,
+            typing_section=TypingSection.REGULAR,
         )
         if (
             self.overloads

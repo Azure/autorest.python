@@ -268,7 +268,7 @@ class JSONModelType(ModelType):
         return "isinstance({}, MutableMapping)"
 
     def imports(self, **kwargs: Any) -> FileImport:
-        file_import = FileImport()
+        file_import = self.init_file_import()
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
