@@ -19,6 +19,8 @@
 **Bug Fixes**
 
 - Allow tsp generation to support `models-mode: none` #2220
+- Fix duplicate JSON overloads when generating without models #2221
+- Fix pytyped in setup.py #2222
 
 ## 2023-10-26 - 0.15.7
 

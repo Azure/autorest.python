@@ -58,7 +58,7 @@ setup(
     ),
     include_package_data=True,
     package_data={
-        "pytyped": ["py.typed"],
+        "typetest.enum.extensible": ["py.typed"],
     },
     install_requires=[
         "isodate<1.0.0,>=0.6.1",
