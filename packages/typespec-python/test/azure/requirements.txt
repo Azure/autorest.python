@@ -55,3 +55,4 @@ azure-core==1.28.0
 -e ./generated/payload-pageable
 -e ./generated/azure-mgmt-spheremsrest
 -e ./generated/azure-mgmt-spheredpg
+-e ./generated/azure-mgmt-spherejson

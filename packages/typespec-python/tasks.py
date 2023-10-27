@@ -110,6 +110,7 @@ EMITTER_OPTIONS = {
         "package-name": "client-structure-twooperationgroup",
     },
     "mgmt/sphere": [
+        {"package-name": "azure-mgmt-spherejson", "models-mode": "none"},
         {"package-name": "azure-mgmt-spheredpg", "models-mode": "dpg"},
         {"package-name": "azure-mgmt-spheremsrest"},
     ],
