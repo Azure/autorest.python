@@ -192,7 +192,7 @@ class ClientSerializer:
 
     def _send_request_signature(self) -> str:
         send_request_signature = [
-            "request: HttpRequest,"
+            "request: HttpRequest, stream: bool = False,"
         ] + self.client.parameters.method_signature_kwargs
         return self.parameter_serializer.serialize_method(
             function_def="def",
