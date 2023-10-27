@@ -69,9 +69,15 @@ const defaultOptions = {
     "unbranded": false,
 };
 
-export function getModelsMode(context: SdkContext) {
+export function getModelsMode(context: SdkContext): "msrest" | "dpg" | "none" {
     const specifiedModelsMode = context.emitContext.options["models-mode"];
-    if (specifiedModelsMode) return specifiedModelsMode;
+    if (specifiedModelsMode) {
+        const modelModes = ["msrest", "dpg", "none"];
+        if (modelModes.includes(specifiedModelsMode)) {
+            return specifiedModelsMode;
+        }
+        throw new Error(`Need to specify models mode with the following values: ${modelModes.join(", ")}`);
+    }
     if (context.arm) return "msrest";
     return "dpg";
 }
