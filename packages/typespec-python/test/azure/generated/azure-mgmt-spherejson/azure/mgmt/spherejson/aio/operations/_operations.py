@@ -2265,6 +2265,9 @@ class CatalogsOperations:
             304: ResourceNotModifiedError,
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
+        if parameters is _Unset:
+            parameters = {"devicegroupname": device_group_name}
+            parameters = {k: v for k, v in parameters.items() if v is not None}
         content_type = content_type or "application/json"
         _json = None
         _content = None
@@ -2275,9 +2278,6 @@ class CatalogsOperations:
 
         def prepare_request(next_link=None):
             if not next_link:
-                if parameters is _Unset:
-                    parameters = {"devicegroupname": device_group_name}
-                    parameters = {k: v for k, v in parameters.items() if v is not None}
 
                 _request = build_catalogs_list_device_groups_request(
                     resource_group_name=resource_group_name,
