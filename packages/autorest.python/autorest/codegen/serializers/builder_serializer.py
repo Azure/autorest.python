@@ -34,7 +34,6 @@ from ..models import (
     ByteArraySchema,
 )
 from .parameter_serializer import ParameterSerializer, PopKwargType
-from ..models.parameter_list import ParameterType
 from . import utils
 
 T = TypeVar("T")
@@ -156,10 +155,12 @@ def _serialize_flattened_body(body_parameter: BodyParameter) -> List[str]:
     return retval
 
 
-def _serialize_json_model_body(
-    body_parameter: BodyParameter, parameters: List[ParameterType]
-) -> List[str]:
+def _serialize_json_model_body(builder_parameters: ParameterListType) -> List[str]:
     retval: List[str] = []
+    if not is_json_model_type(builder_parameters):
+        return retval
+    body_parameter = builder_parameters.body_parameter
+    parameters = builder_parameters.parameters
     if not body_parameter.property_to_parameter_name:
         raise ValueError(
             "This method can't be called if the operation doesn't need parameter flattening"
@@ -189,23 +190,6 @@ def _serialize_json_model_body(
         f"        k: v for k, v in {body_parameter.client_name}.items() if v is not None"
     )
     retval.append("    }")
-    return retval
-
-
-def _serialize_body(builder: OperationType) -> List[str]:
-    retval = []
-    if builder.parameters.grouped:
-        # request builders don't allow grouped parameters, so we group them before making the call
-        retval.extend(_serialize_grouped_body(builder))
-    if builder.parameters.has_body and builder.parameters.body_parameter.flattened:
-        # unflatten before passing to request builder as well
-        retval.extend(_serialize_flattened_body(builder.parameters.body_parameter))
-    if is_json_model_type(builder.parameters):
-        retval.extend(
-            _serialize_json_model_body(
-                builder.parameters.body_parameter, builder.parameters.parameters
-            )
-        )
     return retval
 
 
@@ -1022,8 +1006,14 @@ class _OperationSerializer(
         is_paging: bool = False,
     ) -> List[str]:
         retval = []
+        if builder.parameters.grouped:
+            # request builders don't allow grouped parameters, so we group them before making the call
+            retval.extend(_serialize_grouped_body(builder))
+        if builder.parameters.has_body and builder.parameters.body_parameter.flattened:
+            # unflatten before passing to request builder as well
+            retval.extend(_serialize_flattened_body(builder.parameters.body_parameter))
         if not is_paging:
-            retval.extend(_serialize_body(builder))
+            retval.extend(_serialize_json_model_body(builder.parameters))
         if builder.overloads:
             if not is_paging:
                 # we are only dealing with two overloads. If there are three, we generate an abstract operation
@@ -1377,7 +1367,7 @@ class _PagingOperationSerializer(
         return retval
 
     def _prepare_request_callback(self, builder: PagingOperationType) -> List[str]:
-        retval = _serialize_body(builder)
+        retval = _serialize_json_model_body(builder.parameters)
         retval.extend(self._initialize_overloads(builder))
         retval.append("def prepare_request(next_link=None):")
         retval.append("    if not next_link:")
