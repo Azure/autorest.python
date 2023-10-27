@@ -644,7 +644,7 @@ class _OperationSerializer(
     def make_pipeline_call(self, builder: OperationType) -> List[str]:
         type_ignore = self.async_mode and builder.group_name == ""  # is in a mixin
         stream_value = (
-            'kwargs.pop("stream", False)'
+            f'kwargs.pop("stream", {builder.has_stream_response})'
             if builder.expose_stream_keyword
             else builder.has_stream_response
         )
@@ -1056,14 +1056,17 @@ class _OperationSerializer(
         if response.headers:
             retval.append("")
         deserialize_code: List[str] = []
-        if response.is_stream_response:
-            deserialize_code.append(
-                "deserialized = {}".format(
+        if builder.has_stream_response:
+            if isinstance(response.type, ByteArraySchema):
+                retval.append(f"{'await ' if self.async_mode else ''}response.read()")
+                deserialized = "response.content"
+            else:
+                deserialized = (
                     "response.iter_bytes()"
                     if self.code_model.options["version_tolerant"]
                     else f"response.stream_download(self._client.{self.pipeline_name})"
                 )
-            )
+            deserialize_code.append(f"deserialized = {deserialized}")
         elif response.type:
             pylint_disable = ""
             if isinstance(response.type, ModelType) and response.type.internal:
@@ -1076,14 +1079,18 @@ class _OperationSerializer(
                 deserialize_code.append("    pipeline_response")
                 deserialize_code.append(")")
             elif self.code_model.options["models_mode"] == "dpg":
-                deserialize_code.append("deserialized = _deserialize(")
-                deserialize_code.append(
-                    f"    {response.type.type_annotation(is_operation_file=True)},{pylint_disable}"
-                )
-                deserialize_code.append(
-                    f"    response.json(){response.result_property}"
-                )
-                deserialize_code.append(")")
+                if builder.has_stream_response:
+                    deserialize_code.append("deserialized = response.content")
+                else:
+                    deserialize_code.append("deserialized = _deserialize(")
+                    deserialize_code.append(
+                        f"    {response.type.type_annotation(is_operation_file=True)},{pylint_disable}"
+                    )
+                    deserialize_code.append(
+                        f"    response.json(){response.result_property}"
+                    )
+                    deserialize_code.append(")")
+
             else:
                 deserialized_value = (
                     "ET.fromstring(response.text())"
@@ -1095,7 +1102,7 @@ class _OperationSerializer(
                 deserialize_code.append("else:")
                 deserialize_code.append("    deserialized = None")
         if len(deserialize_code) > 0:
-            if builder.expose_stream_keyword:
+            if builder.expose_stream_keyword and not builder.has_stream_response:
                 retval.append("if _stream:")
                 retval.append("    deserialized = response.iter_bytes()")
                 retval.append("else:")
