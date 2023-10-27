@@ -20,29 +20,6 @@ from .. import YamlUpdatePlugin, YamlUpdatePluginAutorest
 from .._utils import parse_args, get_body_type_for_description, JSON_REGEXP, KNOWN_TYPES
 
 
-def add_body_param_type(
-    code_model: Dict[str, Any],
-    body_parameter: Dict[str, Any],
-):
-    if (
-        body_parameter
-        and body_parameter["type"]["type"] in ("model", "dict", "list")
-        and any(
-            ct for ct in body_parameter.get("contentTypes", []) if JSON_REGEXP.match(ct)
-        )
-        and not body_parameter["type"].get("xmlMetadata")
-        and not any(t for t in ["flattened", "groupedBy"] if body_parameter.get(t))
-    ):
-        origin_type = body_parameter["type"]["type"]
-        is_dpg_model = body_parameter["type"].get("base") == "dpg"
-        body_parameter["type"] = {
-            "type": "combined",
-            "types": [body_parameter["type"], KNOWN_TYPES["binary"]],
-        }
-        if origin_type == "model" and is_dpg_model:
-            body_parameter["type"]["types"].insert(1, KNOWN_TYPES["any-object"])
-        code_model["types"].append(body_parameter["type"])
-
 
 def update_overload_section(
     overload: Dict[str, Any],
@@ -215,6 +192,30 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
     @property
     def is_cadl(self) -> bool:
         return self.options.get("cadl_file", False)
+
+    def add_body_param_type(
+        self,
+        code_model: Dict[str, Any],
+        body_parameter: Dict[str, Any],
+    ):
+        if (
+            body_parameter
+            and body_parameter["type"]["type"] in ("model", "dict", "list")
+            and any(
+                ct for ct in body_parameter.get("contentTypes", []) if JSON_REGEXP.match(ct)
+            )
+            and not body_parameter["type"].get("xmlMetadata")
+            and not any(t for t in ["flattened", "groupedBy"] if body_parameter.get(t))
+        ):
+            origin_type = body_parameter["type"]["type"]
+            is_dpg_model = body_parameter["type"].get("base") == "dpg"
+            body_parameter["type"] = {
+                "type": "combined",
+                "types": [body_parameter["type"], KNOWN_TYPES["binary"]],
+            }
+            if origin_type == "model" and is_dpg_model and self.models_mode == "dpg":
+                body_parameter["type"]["types"].insert(1, KNOWN_TYPES["any-object"])
+            code_model["types"].append(body_parameter["type"])
 
     def pad_reserved_words(self, name: str, pad_type: PadType):
         # we want to pad hidden variables as well
@@ -413,7 +414,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             response["discriminator"] = "operation"
         if body_parameter and not is_overload:
             # if we have a JSON body, we add a binary overload
-            add_body_param_type(code_model, body_parameter)
+            self.add_body_param_type(code_model, body_parameter)
             add_overloads_for_body_param(yaml_data)
 
     def _update_lro_operation_helper(self, yaml_data: Dict[str, Any]) -> None:
