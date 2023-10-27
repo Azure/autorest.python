@@ -68,7 +68,7 @@ class MultiapiServiceClient:  # pylint: disable=client-accepts-api-version-keywo
             self._client, self._config, self._serialize, self._deserialize, "0.0.0"
         )
 
-    def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
+    def _send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest
@@ -88,7 +88,7 @@ class MultiapiServiceClient:  # pylint: disable=client-accepts-api-version-keywo
 
         request_copy = deepcopy(request)
         request_copy.url = self._client.format_url(request_copy.url)
-        return self._client.send_request(request_copy, **kwargs)  # type: ignore
+        return self._client.send_request(request_copy, stream=stream, **kwargs)  # type: ignore
 
     def close(self) -> None:
         self._client.close()

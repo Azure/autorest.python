@@ -69,7 +69,7 @@ class AutoRestSwaggerConstantService:  # pylint: disable=client-accepts-api-vers
         self._serialize.client_side_validation = False
         self.contants = ContantsOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def _send_request(self, request: HttpRequest, **kwargs: Any) -> HttpResponse:
+    def _send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest
@@ -89,7 +89,7 @@ class AutoRestSwaggerConstantService:  # pylint: disable=client-accepts-api-vers
 
         request_copy = deepcopy(request)
         request_copy.url = self._client.format_url(request_copy.url)
-        return self._client.send_request(request_copy, **kwargs)  # type: ignore
+        return self._client.send_request(request_copy, stream=stream, **kwargs)  # type: ignore
 
     def close(self) -> None:
         self._client.close()
