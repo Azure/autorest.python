@@ -20,7 +20,6 @@ from .. import YamlUpdatePlugin, YamlUpdatePluginAutorest
 from .._utils import parse_args, get_body_type_for_description, JSON_REGEXP, KNOWN_TYPES
 
 
-
 def update_overload_section(
     overload: Dict[str, Any],
     yaml_data: Dict[str, Any],
@@ -202,7 +201,9 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             body_parameter
             and body_parameter["type"]["type"] in ("model", "dict", "list")
             and any(
-                ct for ct in body_parameter.get("contentTypes", []) if JSON_REGEXP.match(ct)
+                ct
+                for ct in body_parameter.get("contentTypes", [])
+                if JSON_REGEXP.match(ct)
             )
             and not body_parameter["type"].get("xmlMetadata")
             and not any(t for t in ["flattened", "groupedBy"] if body_parameter.get(t))
