@@ -77,7 +77,7 @@ setup(
     ),
     include_package_data=True,
     package_data={
-        'pytyped': ['py.typed'],
+        '{{ code_model.namespace }}': ['py.typed'],
     },
     {% else %}
     packages=find_packages(),
