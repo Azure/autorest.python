@@ -358,7 +358,7 @@ function emitFlattenedParameter(
         isApiVersion: bodyParameter["isApiVersion"],
         location: "other",
         optional: property["optional"],
-        wireName: null,
+        wireName: property.wireName,
         skipUrlEncoding: false,
         type: property["type"],
         defaultToUnsetSentinel: true,
@@ -614,6 +614,21 @@ function addAcceptParameter(context: SdkContext, operation: Operation, parameter
     }
 }
 
+function hasDuplicatedSignature(parameters: Record<string, any>[], properties: Record<string, any>[]): boolean {
+    const methodSignaures: Record<string, any>[] = [];
+    for (const p of parameters) {
+        if (p.implementation === "Method" && p.location === "path") {
+            methodSignaures.push(p.wireName);
+        }
+    }
+    for (const p of properties) {
+        if (methodSignaures.includes(p.wireName)) {
+            return true;
+        }
+    }
+    return false;
+}
+
 function emitBasicOperation(
     context: SdkContext,
     operation: Operation,
@@ -664,7 +679,12 @@ function emitBasicOperation(
         if (parameters.filter((e) => e.wireName.toLowerCase() === "content-type").length === 0) {
             parameters.push(emitContentTypeParameter(bodyParameter, isOverload, isOverriden));
         }
-        if (bodyParameter.type.type === "model" && bodyParameter.type.base === "json") {
+
+        if (
+            bodyParameter.type.type === "model" &&
+            bodyParameter.type.base === "json" &&
+            !hasDuplicatedSignature(parameters, bodyParameter.type.properties)
+        ) {
             bodyParameter["propertyToParameterName"] = {};
             if (!isOverload) {
                 bodyParameter.defaultToUnsetSentinel = true;

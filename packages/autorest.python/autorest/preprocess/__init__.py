@@ -121,7 +121,11 @@ def add_overloads_for_body_param(yaml_data: Dict[str, Any]) -> None:
         ):
             continue
         yaml_data["overloads"].append(add_overload(yaml_data, body_type))
-        if body_type.get("type") == "model" and body_type.get("base") == "json":
+        if (
+            body_type.get("type") == "model"
+            and body_type.get("base") == "json"
+            and body_parameter.get("defaultToUnsetSentinel")
+        ):
             yaml_data["overloads"].append(
                 add_overload(yaml_data, body_type, for_flatten_params=True)
             )

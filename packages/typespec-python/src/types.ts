@@ -213,6 +213,7 @@ function emitModel(context: SdkContext, type: SdkModelType): Record<string, any>
     if (typesMap.has(type)) {
         return typesMap.get(type)!;
     }
+    const modelsMode = getModelsMode(context);
     const newValue = {
         type: type.kind,
         name: type.name,
@@ -222,7 +223,7 @@ function emitModel(context: SdkContext, type: SdkModelType): Record<string, any>
         discriminatedSubtypes: {} as Record<string, Record<string, any>>,
         properties: new Array<Record<string, any>>(),
         snakeCaseName: type.name ? camelToSnakeCase(type.name) : type.name,
-        base: type.name === "" ? "json" : getModelsMode(context) === "msrest" ? "msrest" : "dpg",
+        base: type.name === "" ? "json" : ["msrest", "dpg"].includes(modelsMode) ? modelsMode : "json",
         internal: type.access === "internal",
     };
 

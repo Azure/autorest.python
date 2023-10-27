@@ -381,7 +381,10 @@ class Parameter(_ParameterBase):
     ) -> ParameterMethodLocation:
         if not self.in_method_signature:
             raise ValueError(f"Parameter '{self.client_name}' is not in the method.")
-        if self.code_model.options["models_mode"] == "dpg" and self.in_flattened_body:
+        if (
+            self.code_model.options["models_mode"] in ("dpg", False)
+            and self.in_flattened_body
+        ):
             return ParameterMethodLocation.KEYWORD_ONLY
         if self.grouper:
             return ParameterMethodLocation.POSITIONAL
