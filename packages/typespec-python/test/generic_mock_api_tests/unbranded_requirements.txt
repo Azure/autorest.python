@@ -1,0 +1,48 @@
+aiohttp;python_full_version>="3.5.2"
+requests==2.28.2
+pytest
+pytest-asyncio==0.14.0;python_full_version>="3.5.2"
+corehttp==1.0.0b1
+-e ../unbranded/generated/authentication-api-key
+-e ../unbranded/generated/authentication-http-custom
+-e ../unbranded/generated/authentication-oauth2
+-e ../unbranded/generated/authentication-union
+-e ../unbranded/generated/encode-duration
+-e ../unbranded/generated/parameters-collection-format
+-e ../unbranded/generated/parameters-spread
+-e ../unbranded/generated/projection-projected-name
+-e ../unbranded/generated/resiliency-srv-driven1
+-e ../unbranded/generated/resiliency-srv-driven2
+-e ../unbranded/generated/server-path-multiple
+-e ../unbranded/generated/server-path-single
+-e ../unbranded/generated/special-words
+-e ../unbranded/generated/typetest-array
+-e ../unbranded/generated/typetest-dictionary
+-e ../unbranded/generated/typetest-enum-extensible
+-e ../unbranded/generated/typetest-enum-fixed
+-e ../unbranded/generated/typetest-model-enumdiscriminator
+-e ../unbranded/generated/typetest-model-nesteddiscriminator
+-e ../unbranded/generated/typetest-model-notdiscriminated
+-e ../unbranded/generated/typetest-model-singlediscriminator
+-e ../unbranded/generated/typetest-model-usage
+-e ../unbranded/generated/typetest-model-visibility
+-e ../unbranded/generated/typetest-property-nullable
+-e ../unbranded/generated/typetest-property-optional
+-e ../unbranded/generated/typetest-property-valuetypes
+-e ../unbranded/generated/typetest-scalar
+-e ../unbranded/generated/typetest-union
+-e ../unbranded/generated/typetest-model-empty
+-e ../unbranded/generated/headasbooleantrue
+-e ../unbranded/generated/headasbooleanfalse
+-e ../unbranded/generated/parameters-body-optionality
+-e ../unbranded/generated/special-headers-repeatability
+-e ../unbranded/generated/special-headers-conditional-request
+-e ../unbranded/generated/encode-datetime
+-e ../unbranded/generated/encode-bytes
+-e ../unbranded/generated/client-structure-default
+-e ../unbranded/generated/client-structure-multiclient
+-e ../unbranded/generated/client-structure-renamedoperation
+-e ../unbranded/generated/client-structure-twooperationgroup
+-e ../unbranded/generated/payload-content-negotiation
+-e ../unbranded/generated/payload-pageable
+

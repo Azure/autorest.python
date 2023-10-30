@@ -10,7 +10,7 @@ from multiprocessing import Pool
 from colorama import init, Fore
 from invoke import task, run
 import shutil
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Optional, Literal
 import copy
 
 #######################################################
@@ -116,21 +116,21 @@ EMITTER_OPTIONS = {
 }
 
 
-def _package_name_folder(spec: Path, specification_dirs: List[Path]) -> str:
-    for item in specification_dirs:
+def _package_name_folder(spec: Path, category: Literal["azure", "unbranded"]) -> str:
+    for item in _get_specification_dirs(category):
         if item.as_posix() in spec.as_posix():
             return spec.relative_to(item).as_posix()
     raise ValueError(f"Cannot find package name for {spec}")
 
 
-def _default_package_name(spec: Path, specification_dirs: List[Path]) -> str:
-    return _package_name_folder(spec, specification_dirs).replace("/", "-")
+def _default_package_name(spec: Path, category: Literal["azure", "unbranded"]) -> str:
+    return _package_name_folder(spec, category).replace("/", "-")
 
 
 def _get_emitter_option(
-    spec: Path, specification_dirs: List[Path]
+    spec: Path, category: Literal["azure", "unbranded"]
 ) -> List[Dict[str, str]]:
-    name = _package_name_folder(spec, specification_dirs)
+    name = _package_name_folder(spec, category)
     result = EMITTER_OPTIONS.get(name, [])
     if isinstance(result, dict):
         return [result]
@@ -139,7 +139,7 @@ def _get_emitter_option(
 
 def _add_options(
     spec: Path,
-    specification_dirs: List[Path],
+    category: Literal["azure", "unbranded"],
     generated_foder: Path,
     special_flags: Dict[str, Any],
     debug=False,
@@ -147,7 +147,7 @@ def _add_options(
     # if debug:
     #   options["debug"] = "true"
     result = []
-    for config in _get_emitter_option(spec, specification_dirs):
+    for config in _get_emitter_option(spec, category):
         config_copy = copy.copy(config)
         config_copy[
             "emitter-output-dir"
@@ -156,7 +156,7 @@ def _add_options(
     if not result:
         result.append(
             {
-                "emitter-output-dir": f"{generated_foder}/{_default_package_name(spec, specification_dirs)}"
+                "emitter-output-dir": f"{generated_foder}/{_default_package_name(spec, category)}"
             }
         )
     emitter_configs = []
@@ -176,55 +176,48 @@ def _entry_file_name(path: Path) -> Path:
         (path / "client.tsp") if (path / "client.tsp").exists() else (path / "main.tsp")
     )
 
-
-def all_specification_folders(specification_dirs: List[Path]) -> List[Path]:
-    return [s for item in specification_dirs for s in item.glob("**/*") if s.is_dir()]
-
-
-def _regenerate(
-    c,
-    name=None,
-    debug=False,
-    generated_sub_folder="azure",
-    skip_folders=[],
-    special_flags={},
-):
-    local_specification_folder = Path(f"test/{generated_sub_folder}/specification")
-    specification_dirs = (
+def _get_specification_dirs(category: Literal["azure", "unbranded"]) -> List[Path]:
+    # we should remove the need for this by removing our local definition of mgmt sphere
+    local_specification_folder = Path(f"test/{category}/specification")
+    return (
         [CADL_RANCH_DIR, local_specification_folder]
         if local_specification_folder.exists()
         else [CADL_RANCH_DIR]
     )
-    generated_folder = Path(f"{PLUGIN_DIR}/test/{generated_sub_folder}/generated")
 
-    specs = [
+def _all_specification_folders(category: Literal["azure", "unbranded"], filename: str = "main.tsp") -> List[Path]:
+
+    return [
         s
-        for s in all_specification_folders(specification_dirs)
-        if any(f for f in s.iterdir() if f.name == "main.tsp")
-        and not any(
-            _package_name_folder(s, specification_dirs).startswith(item)
-            for item in skip_folders
-        )
+        for item in _get_specification_dirs(category)
+        for s in item.glob("**/*")
+        if s.is_dir() and any(f for f in s.iterdir() if f.name == filename)
     ]
+
+def _regenerate(
+    c,
+    specs: List[Path],
+    category: Literal["azure", "unbranded"],
+    name: Optional[str] = None,
+    debug: bool = False,
+    special_flags={},
+):
+    generated_folder = Path(f"{PLUGIN_DIR}/test/{category}/generated")
     if name:
         specs = [s for s in specs if name.lower() in str(s)]
     if not name or name in "resiliency/srv-driven":
         specs.extend(
-            [
-                s / "old.tsp"
-                for s in all_specification_folders(specification_dirs)
-                if s.is_dir() and any(f for f in s.iterdir() if f.name == "old.tsp")
-            ]
+            _all_specification_folders(category, filename="old.tsp")
         )
     for spec in specs:
-        for pacakge_name in _get_package_names(spec, specification_dirs):
+        for pacakge_name in _get_package_names(spec, category):
             (generated_folder / pacakge_name).mkdir(parents=True, exist_ok=True)
     _run_cadl(
         [
             f"tsp compile {_entry_file_name(spec)} --emit={PLUGIN_DIR} {option}"
             for spec in specs
             for option in _add_options(
-                spec, specification_dirs, generated_folder, special_flags, debug
+                spec, category, generated_folder, special_flags, debug
             )
         ]
     )
@@ -232,19 +225,31 @@ def _regenerate(
 
 @task
 def regenerate_azure(c, name=None, debug=False):
-    _regenerate(c, name, debug)
+    _regenerate(
+        c,
+        _all_specification_folders("azure"),
+        "azure",
+        name,
+        debug
+    )
+
+
 
 
 @task
 def regenerate_unbranded(c, name=None, debug=False):
-    skip_folders = ["azure/", "mgmt/sphere", "special-headers/client-request-id"]
+    specs = [
+        s
+        for s in _all_specification_folders("unbranded")
+        if all(n for n in ["azure", "client-request-id"] if n not in str(s))
+    ]
     special_flags = {"unbranded": "true", "company-name": "Unbranded"}
     _regenerate(
         c,
+        specs,
+        "unbranded",
         name=name,
         debug=debug,
-        generated_sub_folder="unbranded",
-        skip_folders=skip_folders,
         special_flags=special_flags,
     )
 
@@ -313,13 +318,13 @@ def regenerate_test_file(c):
                 f_out.write(content)
 
 
-def _get_package_names(spec: Path, specification_dirs: List[Path]) -> List[str]:
+def _get_package_names(spec: Path, category: Literal["azure", "unbranded"]) -> List[str]:
     result = [
         config["package-name"]
-        for config in _get_emitter_option(spec, specification_dirs)
+        for config in _get_emitter_option(spec, category)
     ]
     if not result:
-        result.append(_default_package_name(spec, specification_dirs))
+        result.append(_default_package_name(spec, category))
     return result
 
 
