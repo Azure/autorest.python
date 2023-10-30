@@ -8,7 +8,6 @@ import functools
 import pytest
 
 from specialheaders.clientrequestid import ClientRequestIdClient
-from .test_header_utils import check_client_request_id_header
 
 
 @pytest.fixture
@@ -17,7 +16,7 @@ def client():
         yield client
 
 
-def test_get(client: ClientRequestIdClient):
+def test_get(client: ClientRequestIdClient, check_client_request_id_header):
     checked = {}
     result, resp = client.get(
         cls=lambda x, y, z: (y, x),

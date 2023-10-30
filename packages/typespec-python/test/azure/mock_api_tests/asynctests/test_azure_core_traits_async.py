@@ -11,7 +11,6 @@ from azure.core.exceptions import HttpResponseError
 from azure.core import MatchConditions
 from specs.azure.core.traits.aio import TraitsClient
 from specs.azure.core.traits.models import UserActionParam
-from ..test_header_utils import check_repeatability_header, check_client_request_id_header
 
 
 @pytest.fixture
@@ -21,7 +20,7 @@ async def client():
 
 
 @pytest.mark.asyncio
-async def test_get(client: TraitsClient):
+async def test_get(client: TraitsClient, check_client_request_id_header):
     async def assert_test_get(**kwargs):
         checked = {}
         result, header = await client.smoke_test(
@@ -51,7 +50,7 @@ async def test_get(client: TraitsClient):
         await assert_test_get()
 
 @pytest.mark.asyncio
-async def test_repeatable_action(client: TraitsClient):
+async def test_repeatable_action(client: TraitsClient, check_repeatability_header):
     result, header = await client.repeatable_action(
         id=1,
         body=UserActionParam(user_action_value="test"),

@@ -48,15 +48,19 @@ def validate_format(value: str, format: Literal["uuid", "rfc7231"]):
         raise ValueError("Unknown format")
 
 @pytest.fixture
-def check_repeatability_header(request):
-    validate_format(
-        request.http_request.headers["Repeatability-Request-ID"], "uuid"
-    )
-    validate_format(
-        request.http_request.headers["Repeatability-First-Sent"], "rfc7231"
-    )
+def check_repeatability_header():
+    def func(request):
+        validate_format(
+            request.http_request.headers["Repeatability-Request-ID"], "uuid"
+        )
+        validate_format(
+            request.http_request.headers["Repeatability-First-Sent"], "rfc7231"
+        )
+    return func
 
 @pytest.fixture
-def check_client_request_id_header(request, header: str, checked: dict):
-    validate_format(request.http_request.headers[header], "uuid")
-    checked[header] = request.http_request.headers[header]
+def check_client_request_id_header():
+    def func(request, header: str, checked: dict):
+        validate_format(request.http_request.headers[header], "uuid")
+        checked[header] = request.http_request.headers[header]
+    return func
