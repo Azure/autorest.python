@@ -1,5 +1,6 @@
 
-# _specs_ Azure.core.traits client library for Python
+
+# Specs Azure Core Traits client library for Python
 <!-- write necessary description of service -->
 
 ## Getting started
@@ -7,14 +8,14 @@
 ### Installating the package
 
 ```bash
-python -m pip install _specs_-azure.core.traits
+python -m pip install specs-azure-core-traits
 ```
 
 #### Prequisites
 
 - Python 3.7 or later is required to use this package.
 - You need an [Azure subscription][azure_sub] to use this package.
-- An existing _specs_ Azure.core.traits instance.
+- An existing Specs Azure Core Traits instance.
 
 ## Contributing
 
@@ -41,3 +42,4 @@ additional questions or comments.
 [default_azure_credential]: https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/identity/azure-identity#defaultazurecredential
 [pip]: https://pypi.org/project/pip/
 [azure_sub]: https://azure.microsoft.com/free/
+

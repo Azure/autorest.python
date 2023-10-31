@@ -1,6 +1,6 @@
 # --------------------------------------------------------------------------
 #
-# Copyright (c) Microsoft Corporation. All rights reserved.
+# Copyright (c) Unbranded Corporation. All rights reserved.
 #
 # The MIT License (MIT)
 #

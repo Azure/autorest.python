@@ -8,7 +8,6 @@ import functools
 import pytest
 
 from specialheaders.clientrequestid.aio import ClientRequestIdClient
-from ..test_header_utils import check_client_request_id_header
 
 
 @pytest.fixture
@@ -18,7 +17,7 @@ async def client():
 
 
 @pytest.mark.asyncio
-async def test_get(client: ClientRequestIdClient):
+async def test_get(client: ClientRequestIdClient, check_client_request_id_header):
     checked = {}
     result, resp = await client.get(
         cls=lambda x, y, z: (y, x),

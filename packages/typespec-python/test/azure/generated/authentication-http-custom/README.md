@@ -1,4 +1,5 @@
 
+
 # Authentication Http Custom client library for Python
 <!-- write necessary description of service -->
 
@@ -41,3 +42,4 @@ additional questions or comments.
 [default_azure_credential]: https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/identity/azure-identity#defaultazurecredential
 [pip]: https://pypi.org/project/pip/
 [azure_sub]: https://azure.microsoft.com/free/
+

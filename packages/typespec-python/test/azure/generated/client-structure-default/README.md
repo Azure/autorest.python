@@ -1,5 +1,6 @@
 
-# Client Structure.service client library for Python
+
+# Client Structure Service client library for Python
 <!-- write necessary description of service -->
 
 ## Getting started
@@ -7,14 +8,14 @@
 ### Installating the package
 
 ```bash
-python -m pip install client-structure.service
+python -m pip install client-structure-service
 ```
 
 #### Prequisites
 
 - Python 3.7 or later is required to use this package.
 - You need an [Azure subscription][azure_sub] to use this package.
-- An existing Client Structure.service instance.
+- An existing Client Structure Service instance.
 
 ## Contributing
 
@@ -41,3 +42,4 @@ additional questions or comments.
 [default_azure_credential]: https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/identity/azure-identity#defaultazurecredential
 [pip]: https://pypi.org/project/pip/
 [azure_sub]: https://azure.microsoft.com/free/
+

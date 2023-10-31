@@ -34,7 +34,6 @@ setup(
     long_description_content_type="text/markdown",
     license="MIT License",
     author="Unbranded Corporation",
-    author_email="azpysdkhelp@microsoft.com",
     classifiers=[
         "Development Status :: 4 - Beta",
         "Programming Language :: Python",

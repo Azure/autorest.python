@@ -3,8 +3,13 @@ parameters:
     package: "autorest.python"
 
 steps:
+    - ${{ if eq(parameters.folderName, 'typespec-python') }}:
+      - script: tox run -e ci-generic
+        displayName: Execute ${{ parameters.folderName }} generic tests - Python $(PythonVersion)
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}/test/${{ parameters.folderName }}
+
     - script: tox run -e ci
-      displayName: Execute ${{ parameters.folderName }} tests - Python $(PythonVersion)
+      displayName: Execute ${{ parameters.folderName }} specific tests - Python $(PythonVersion)
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}/test/${{ parameters.folderName }}
 
     - script: tox run -e lint
