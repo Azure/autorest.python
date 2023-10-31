@@ -13,6 +13,7 @@ from ..models import (
     RequestBuilder,
     OverloadedRequestBuilder,
     Client,
+    FileImport,
 )
 from .import_serializer import FileImportSerializer
 from .builder_serializer import (

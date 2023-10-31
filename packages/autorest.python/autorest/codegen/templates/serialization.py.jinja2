@@ -1,6 +1,6 @@
 # --------------------------------------------------------------------------
 #
-# Copyright (c) {{ company_name }} Corporation. All rights reserved.
+# Copyright (c) {{ code_model.options["company_name"] }} Corporation. All rights reserved.
 #
 # The MIT License (MIT)
 #
@@ -63,8 +63,8 @@ import xml.etree.ElementTree as ET
 
 import isodate  # type: ignore
 
-from {{ import_core_exceptions }} import DeserializationError, SerializationError
-from {{ import_core_serialization }} import NULL as AzureCoreNull
+from {{ code_model.core_library }}.exceptions import DeserializationError, SerializationError
+from {{ code_model.core_library }}.serialization import NULL as AzureCoreNull
 
 _BOM = codecs.BOM_UTF8.decode(encoding="utf-8")
 

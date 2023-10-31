@@ -107,7 +107,7 @@ class GeneralSerializer(BaseSerializer):
                 ImportType.STDLIB,
             )
             file_import.add_submodule_import(
-                "runtime" if self.code_model.optoins["unbranded"] else "",
+                "runtime" if self.code_model.options["unbranded"] else "",
                 f"{'Async' if self.async_mode else ''}PipelineClient",
                 ImportType.SDKCORE,
                 TypingSection.TYPING,
@@ -160,9 +160,7 @@ class GeneralSerializer(BaseSerializer):
     def serialize_serialization_file(self) -> str:
         template = self.env.get_template("serialization.py.jinja2")
         return template.render(
-            company_name=self.code_model.options["company_name"],
-            import_core_exceptions=FileImport(self.code_model).import_core_exceptions,
-            import_core_serialization=FileImport(self.code_model),
+            code_model=self.code_model,
         )
 
     def serialize_model_base_file(self) -> str:

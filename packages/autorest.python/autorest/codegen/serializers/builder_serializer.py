@@ -729,7 +729,7 @@ class _OperationSerializer(
         return [
             response_str,
             rtype_str,
-            f":raises ~{builder.FileImport(self.code_model).import_core_exceptions}.HttpResponseError:",
+            f":raises ~{self.code_model.core_library}.exceptions.HttpResponseError:",
         ]
 
     def _serialize_body_parameter(self, builder: OperationType) -> List[str]:

@@ -379,7 +379,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         ]
         for error in errors:
             file_import.add_submodule_import(
-                file_import.import_core_exceptions, error, ImportType.SDKCORE
+                "exceptions", error, ImportType.SDKCORE
             )
         if self.code_model.options["azure_arm"]:
             file_import.add_submodule_import(
@@ -449,7 +449,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         ):
             file_import.merge(self.request_builder.imports())
         file_import.add_submodule_import(
-            f"pipeline.{'runtime' if self.code_model.options['options'] else ''}",
+            f"pipeline.{'runtime' if self.code_model.options['unbranded'] else ''}",
             "PipelineResponse",
             ImportType.SDKCORE,
         )
