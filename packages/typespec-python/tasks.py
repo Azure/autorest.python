@@ -207,7 +207,7 @@ def _regenerate(
         specs = [s for s in specs if name.lower() in str(s)]
     if not name or name in "resiliency/srv-driven":
         specs.extend(
-            _all_specification_folders(category, filename="old.tsp")
+            s / "old.tsp" for s in _all_specification_folders(category, filename="old.tsp")
         )
     for spec in specs:
         for pacakge_name in _get_package_names(spec, category):
@@ -241,7 +241,7 @@ def regenerate_unbranded(c, name=None, debug=False):
     specs = [
         s
         for s in _all_specification_folders("unbranded")
-        if all(n for n in ["azure", "client-request-id"] if n not in str(s))
+        if all(n not in str(s.relative_to(CADL_RANCH_DIR)) for n in ["azure", "client-request-id"])
     ]
     special_flags = {"unbranded": "true", "company-name": "Unbranded"}
     _regenerate(
@@ -258,65 +258,6 @@ def regenerate_unbranded(c, name=None, debug=False):
 def regenerate(c, name=None, debug=False):
     regenerate_azure(c, name, debug)
     regenerate_unbranded(c, name, debug)
-    regenerate_unittests(c)
-    regenerate_test_file(c)
-
-
-@task
-def regenerate_unittests(c):
-    shutil.copyfile(
-        "test/azure/generated/special-words/specialwords/_model_base.py",
-        "test/azure/unittests/generated/model_base.py",
-    )
-
-
-@task
-def regenerate_test_file(c):
-    source_folder = Path("test/azure/mock_api_tests")
-    target_folder = Path("test/unbranded/mock_api_tests")
-    skip_test_files = [
-        "conftest.py",
-        # azure test case
-        "test_azure_client_generator_core_access.py",
-        "test_azure_client_generator_core_usage.py",
-        "test_azure_core_basic.py",
-        "test_azure_core_traits.py",
-        # LRO
-        "test_lro_rpc_legacy.py",
-        "test_lro_rpc.py",
-        "test_lro_standard.py",
-        # ARM
-        "test_mgmt_models_mode.py",
-        # RequestId Policy
-        "test_special_headers_client_request_id.py",
-        # Customhook Policy
-        "test_special_headers_repeatability.py",
-        "test_typetest_model_visibility.py",
-        # corehttp don't support ODataV4Format
-        "test_stream.py",
-    ]
-    source_test_files = [
-        item
-        for item in source_folder.glob("**/*")
-        if item.is_file()
-        and "__pycache__" not in item.parts
-        and ".pytest_cache" not in item.parts
-    ]
-    for source_file in source_test_files:
-        if source_file.name.replace("_async", "") in skip_test_files:
-            continue
-        target_file = target_folder / source_file.relative_to(source_folder)
-        target_file.parent.mkdir(parents=True, exist_ok=True)
-        if source_file.suffix != ".py":
-            shutil.copyfile(source_file, target_file)
-        else:
-            with open(source_file, "r", encoding="utf-8") as f_in:
-                content = f_in.read()
-            content = content.replace("azure.core", "corehttp")
-            content = content.replace("AzureKeyCredential", "ServiceKeyCredential")
-            with open(target_file, "w", encoding="utf-8") as f_out:
-                f_out.write(content)
-
 
 def _get_package_names(spec: Path, category: Literal["azure", "unbranded"]) -> List[str]:
     result = [

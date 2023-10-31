@@ -8,9 +8,8 @@ import datetime
 from typing import Any, Iterable, List, Literal, Dict, Mapping, Sequence, Set, Tuple, Optional, overload, Union
 import pytest
 import isodate
-from azure.core.serialization import NULL
 
-from generated.model_base import AzureJSONEncoder, Model, rest_field, _is_model, rest_discriminator
+from specialwords._model_base import AzureJSONEncoder, Model, rest_field, _is_model, rest_discriminator
 
 
 class BasicResource(Model):
@@ -3501,7 +3500,7 @@ def test_required_prop_not_passed():
         model["requiredProperty"]
 
 
-def test_null_serilization():
+def test_null_serilization(core_library):
     dict_response = {
         "name": "it's me!",
         "listOfMe": [
@@ -3528,7 +3527,7 @@ def test_null_serilization():
 
     assert model.as_dict() == dict_response
 
-    model.list_of_me = NULL
+    model.list_of_me = core_library.serialization.NULL
     model.dict_of_me = None
     model.list_of_dict_of_me = [
         {
@@ -3537,9 +3536,9 @@ def test_null_serilization():
             }
         }
     ]
-    model.dict_of_list_of_me["many mes"][0].list_of_me = NULL
+    model.dict_of_list_of_me["many mes"][0].list_of_me = core_library.serialization.NULL
     model.dict_of_list_of_me["many mes"][0].dict_of_me = None
-    model.list_of_dict_of_me[0]["me"].list_of_me = NULL
+    model.list_of_dict_of_me[0]["me"].list_of_me = core_library.serialization.NULL
     model.list_of_dict_of_me[0]["me"].dict_of_me = None
 
     assert json.loads(json.dumps(model, cls=AzureJSONEncoder)) == {
