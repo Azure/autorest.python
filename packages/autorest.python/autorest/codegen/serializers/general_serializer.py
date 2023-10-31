@@ -160,7 +160,7 @@ class GeneralSerializer(BaseSerializer):
     def serialize_serialization_file(self) -> str:
         template = self.env.get_template("serialization.py.jinja2")
         return template.render(
-            code_model=self.code_model,
+            company_name=self.code_model.options["company_name"],
             import_core_exceptions=self.init_file_import().import_core_exceptions,
             import_core_serialization=self.init_file_import().import_core_serialization,
         )

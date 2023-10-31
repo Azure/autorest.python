@@ -48,7 +48,7 @@ class OptionsRetriever:
         return self.options.get(key, self.OPTIONS_TO_DEFAULT.get(key))
 
     @property
-    def company_name(self) -> bool:
+    def company_name(self) -> str:
         return self.options.get(
             "company-name", "Microsoft" if not self.unbranded else ""
         )
