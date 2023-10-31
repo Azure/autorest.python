@@ -87,12 +87,13 @@ class TypeDefinition:
         self.async_definition = async_definition
 
 
-class FileImport:  # pylint: disable=too-many-public-methods
+class FileImport:
     def __init__(self, code_model: "CodeModel") -> None:
         self.imports: List[ImportModel] = []
         self.code_model = code_model
         # has sync and async type definitions
         self.type_definitions: Dict[str, TypeDefinition] = {}
+        self.core_library = self.code_model.core_library
 
     def _append_import(self, import_model: ImportModel) -> None:
         if not any(
@@ -142,6 +143,8 @@ class FileImport:  # pylint: disable=too-many-public-methods
         alias: Optional[str] = None,
     ) -> None:
         # Implementation detail: a regular import is just a "from" with no from
+        if import_type == ImportType.SDKCORE:
+            module_name = f"{self.code_model.core_library}.{module_name}"
         self._append_import(
             ImportModel(
                 typing_section=typing_section,
@@ -312,71 +315,3 @@ class FileImport:  # pylint: disable=too-many-public-methods
                         ImportType.LOCAL,
                         typing_section,
                     )
-
-    @property
-    def import_core(self) -> str:
-        return "azure.core" if not self.code_model.options["unbranded"] else "corehttp"
-
-    @property
-    def import_core_exceptions(self) -> str:
-        return f"{self.import_core}.exceptions"
-
-    @property
-    def import_core_rest(self) -> str:
-        return f"{self.import_core}.rest"
-
-    @property
-    def import_core_credentials(self) -> str:
-        return f"{self.import_core}.credentials"
-
-    @property
-    def import_core_credentials_async(self) -> str:
-        return self.import_core + (
-            ".credentials_async"
-            if not self.code_model.options["unbranded"]
-            else ".credentials"
-        )
-
-    @property
-    def import_core_paging(self) -> str:
-        return f"{self.import_core}.paging"
-
-    @property
-    def import_core_paging_async(self) -> str:
-        return self.import_core + (
-            ".async_paging" if not self.code_model.options["unbranded"] else ".paging"
-        )
-
-    @property
-    def import_core_utils(self) -> str:
-        return f"{self.import_core}.utils"
-
-    @property
-    def import_core_case_insensitive_enum(self) -> str:
-        return self.import_core + (
-            "" if not self.code_model.options["unbranded"] else ".utils"
-        )
-
-    @property
-    def import_core_pipeline(self) -> str:
-        return self.import_core + (
-            ".pipeline"
-            if not self.code_model.options["unbranded"]
-            else ".runtime.pipeline"
-        )
-
-    @property
-    def import_core_policies(self) -> str:
-        return self.import_core + (
-            ".pipeline" if not self.code_model.options["unbranded"] else ".runtime"
-        )
-
-    @property
-    def import_core_serialization(self) -> str:
-        return f"{self.import_core}.serialization"
-
-    @property
-    def import_core_pipeline_client(self) -> str:
-        return self.import_core + (
-            "" if not self.code_model.options["unbranded"] else ".runtime"
-        )

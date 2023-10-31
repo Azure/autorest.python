@@ -123,7 +123,7 @@ class DictionaryType(BaseType):
         )
 
     def imports(self, **kwargs: Any) -> FileImport:
-        file_import = self.init_file_import()
+        file_import = FileImport(self.code_model)
         file_import.add_submodule_import(
             "typing", "Dict", ImportType.STDLIB, TypingSection.CONDITIONAL
         )

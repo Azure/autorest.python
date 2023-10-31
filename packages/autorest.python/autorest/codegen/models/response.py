@@ -114,7 +114,7 @@ class Response(BaseModel):
         return self.type.docstring_type(**kwargs) if self.type else "None"
 
     def _imports_shared(self, **kwargs: Any) -> FileImport:
-        file_import = self.init_file_import()
+        file_import = FileImport(self.code_model)
         if self.type:
             file_import.merge(self.type.imports(**kwargs))
         if self.nullable:
@@ -166,11 +166,11 @@ class PagingResponse(Response):
         self.item_type = self.code_model.lookup_type(id(self.yaml_data["itemType"]))
         self.pager_sync: str = (
             self.yaml_data.get("pagerSync")
-            or f"{self.init_file_import().import_core_paging}.ItemPaged"
+            or f"{self.code_model.core_library}.paging.ItemPaged"
         )
         self.pager_async: str = (
             self.yaml_data.get("pagerAsync")
-            or f"{self.init_file_import().import_core_paging_async}.AsyncItemPaged"
+            or f"{self.code_model.core_library}.paging.AsyncItemPaged"
         )
 
     def get_polymorphic_subtypes(self, polymorphic_subtypes: List["ModelType"]) -> None:
@@ -212,7 +212,7 @@ class PagingResponse(Response):
         async_mode = kwargs.get("async_mode")
         if async_mode:
             file_import.add_submodule_import(
-                file_import.import_core_paging_async,
+                self.get_pager_path(async_mode),
                 "AsyncList",
                 ImportType.SDKCORE,
             )

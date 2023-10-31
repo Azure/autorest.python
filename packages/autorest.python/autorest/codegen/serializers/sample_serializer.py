@@ -43,7 +43,7 @@ class SampleSerializer(BaseSerializer):
         }
 
     def _imports(self) -> FileImportSerializer:
-        imports = self.init_file_import()
+        imports = FileImport(self.code_model)
         namespace_from_package_name = get_namespace_from_package_name(
             self.code_model.options["package_name"]
         )
@@ -66,7 +66,7 @@ class SampleSerializer(BaseSerializer):
         elif isinstance(credential_type, KeyCredentialType):
             imports.add_import("os", ImportType.STDLIB)
             imports.add_submodule_import(
-                f"{imports.import_core}.credentials",
+                f"credentials",
                 "AzureKeyCredential",
                 ImportType.THIRDPARTY,
             )

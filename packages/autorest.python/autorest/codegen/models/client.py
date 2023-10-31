@@ -195,7 +195,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             raise KeyError(f"No operation with id {operation_id} found.") from exc
 
     def _imports_shared(self, async_mode: bool) -> FileImport:
-        file_import = self.init_file_import()
+        file_import = FileImport(self.code_model)
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
@@ -205,7 +205,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             )
         else:
             file_import.add_submodule_import(
-                file_import.import_core_pipeline_client,
+                f"pipeline.{'runtime' if self.code_model.options['unbranded'] else ''}",
                 self.pipeline_class(async_mode),
                 ImportType.SDKCORE,
             )
@@ -231,7 +231,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             typing_section=TypingSection.REGULAR,
         )
         file_import.add_submodule_import(
-            file_import.import_core_policies, "policies", ImportType.SDKCORE
+            "runtime" if self.code_model.options["unbranded"] else "pipeline", "policies", ImportType.SDKCORE
         )
         if self.code_model.options["azure_arm"]:
             async_prefix = "Async" if async_mode else ""
@@ -300,20 +300,20 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         if async_mode:
             file_import.add_submodule_import("typing", "Awaitable", ImportType.STDLIB)
             file_import.add_submodule_import(
-                file_import.import_core_rest,
+                f"rest",
                 "AsyncHttpResponse",
                 ImportType.SDKCORE,
                 TypingSection.CONDITIONAL,
             )
         else:
             file_import.add_submodule_import(
-                file_import.import_core_rest,
+                "rest",
                 "HttpResponse",
                 ImportType.SDKCORE,
                 TypingSection.CONDITIONAL,
             )
         file_import.add_submodule_import(
-            file_import.import_core_rest,
+            "rest",
             "HttpRequest",
             ImportType.SDKCORE,
             TypingSection.CONDITIONAL,
@@ -412,9 +412,9 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
         return f"{super().name}Configuration"
 
     def _imports_shared(self, async_mode: bool) -> FileImport:
-        file_import = self.init_file_import()
+        file_import = FileImport(self.code_model)
         file_import.add_submodule_import(
-            file_import.import_core_policies, "policies", ImportType.SDKCORE
+            "runtime" if self.code_model.options["unbranded"] else "pipeline", "policies", ImportType.SDKCORE
         )
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
