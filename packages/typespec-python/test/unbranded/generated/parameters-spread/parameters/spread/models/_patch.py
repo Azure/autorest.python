@@ -1,5 +1,5 @@
 # ------------------------------------
-# Copyright (c) Microsoft Corporation.
+# Copyright (c) Unbranded Corporation.
 # Licensed under the MIT License.
 # ------------------------------------
 """Customize generated code here.

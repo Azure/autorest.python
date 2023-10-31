@@ -40,12 +40,12 @@ def test_sensitive_word():
             flag_microsfot = False
             with open(file, "r", encoding="utf-8") as f:
                 content = f.read().lower()
-            if not flag_azure and "azure" in content:
-                result_azure.append(folder.parts[0])
-                flag_azure = True
-            if not flag_microsfot and "microsoft" in content:
-                result_microsfot.append(folder.parts[0])
-                flag_microsfot = True
+                if not flag_azure and "azure" in content:
+                    result_azure.append(folder.parts[0])
+                    flag_azure = True
+                if not flag_microsfot and "microsoft" in content:
+                    result_microsfot.append(folder.parts[0])
+                    flag_microsfot = True
             if flag_azure and flag_microsfot:
                 break
     assert result_azure == []
