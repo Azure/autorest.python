@@ -726,7 +726,7 @@ function emitOperationGroups(context: SdkContext, client: SdkClient): Record<str
                 propertyName: name,
                 operations: operations,
             });
-        };
+        }
     }
 
     function emitOperationGroup(context: SdkContext, client: SdkClient | SdkSubClient, prefix: string = "") {
