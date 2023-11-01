@@ -182,6 +182,9 @@ class PagingResponse(Response):
     def get_json_template_representation(self) -> Any:
         return self.item_type.get_json_template_representation()
 
+    def get_pager_import_path(self, async_mode: bool) -> str:
+        return ".".join(self.get_pager_path(async_mode).split(".")[:-1])
+
     def get_pager_path(self, async_mode: bool) -> str:
         return self.pager_async if async_mode else self.pager_sync
 
@@ -204,24 +207,19 @@ class PagingResponse(Response):
     def _imports_shared(self, **kwargs: Any) -> FileImport:
         file_import = super()._imports_shared(**kwargs)
         async_mode = kwargs.get("async_mode", False)
-        pager_import_path = ".".join(self.get_pager_path(async_mode).split(".")[:-1])
         pager = self.get_pager(async_mode)
 
-        file_import.add_submodule_import(pager_import_path, pager, ImportType.SDKCORE)
+        file_import.add_submodule_import(
+            self.get_pager_import_path(async_mode), pager, ImportType.SDKCORE
+        )
         return file_import
 
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = self._imports_shared(**kwargs)
         async_mode = kwargs.get("async_mode")
         if async_mode:
-            pager = self.get_pager(async_mode)
-            subfolder = ".".join(
-                p
-                for p in self.get_pager_path(async_mode).split(".")
-                if not (p in self.code_model.core_library or p in pager)
-            )
             file_import.add_submodule_import(
-                subfolder,
+                self.get_pager_import_path(async_mode),
                 "AsyncList",
                 ImportType.SDKCORE,
             )
@@ -323,7 +321,9 @@ class LROResponse(Response):
         )
         base_polling_method = self.get_base_polling_method(async_mode)
         file_import.add_submodule_import(
-            base_polling_method_import_path, base_polling_method, ImportType.SDKCORE
+            base_polling_method_import_path,
+            base_polling_method,
+            ImportType.SDKCORE,
         )
         return file_import
 

@@ -18,7 +18,6 @@ class ImportType(str, Enum):
     STDLIB = "stdlib"
     THIRDPARTY = "thirdparty"
     SDKCORE = "sdkcore"
-    MGMTCORE = "mgmtcore"
     LOCAL = "local"
     BYVERSION = "by_version"
 
@@ -103,7 +102,13 @@ class FileImport:
     def _append_import(self, import_model: ImportModel) -> None:
         if import_model.import_type == ImportType.SDKCORE:
             mod_name = import_model.module_name
-            if self.code_model.core_library not in mod_name:
+            core_libraries = [
+                self.code_model.core_library,
+                "azure.mgmt.core",
+                "azure.profiles",
+            ]
+            if all(l not in mod_name for l in core_libraries):
+                # this is to make sure we don't tack on core libraries when we don't need to
                 import_model.module_name = (
                     f"{self.code_model.core_library}{'.' if mod_name else ''}{mod_name}"
                 )

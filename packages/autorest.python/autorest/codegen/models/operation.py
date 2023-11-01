@@ -381,7 +381,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             file_import.add_submodule_import("exceptions", error, ImportType.SDKCORE)
         if self.code_model.options["azure_arm"]:
             file_import.add_submodule_import(
-                "azure.mgmt.core.exceptions", "ARMErrorFormat", ImportType.MGMTCORE
+                "azure.mgmt.core.exceptions", "ARMErrorFormat", ImportType.SDKCORE
             )
 
         if self.has_kwargs_to_pop_with_default(

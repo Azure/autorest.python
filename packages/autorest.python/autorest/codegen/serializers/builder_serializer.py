@@ -428,9 +428,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
 
     @property
     def pipeline_name(self) -> str:
-        if not self.code_model.options["unbranded"]:
-            return "_pipeline"
-        return "pipeline"
+        return f"{'' if self.code_model.options['unbranded'] else '_'}pipeline"
 
 
 ############################## REQUEST BUILDERS ##############################

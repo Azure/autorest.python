@@ -201,7 +201,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         )
         if self.code_model.options["azure_arm"]:
             file_import.add_submodule_import(
-                "azure.mgmt.core", self.pipeline_class(async_mode), ImportType.MGMTCORE
+                "azure.mgmt.core", self.pipeline_class(async_mode), ImportType.SDKCORE
             )
         else:
             file_import.add_submodule_import(
@@ -240,7 +240,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             file_import.add_submodule_import(
                 "azure.mgmt.core.policies",
                 f"{async_prefix}ARMAutoResourceProviderRegistrationPolicy",
-                ImportType.MGMTCORE,
+                ImportType.SDKCORE,
             )
         return file_import
 
@@ -434,10 +434,10 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
                 else "ARMChallengeAuthenticationPolicy"
             )
             file_import.add_submodule_import(
-                "azure.mgmt.core.policies", "ARMHttpLoggingPolicy", ImportType.MGMTCORE
+                "azure.mgmt.core.policies", "ARMHttpLoggingPolicy", ImportType.SDKCORE
             )
             file_import.add_submodule_import(
-                "azure.mgmt.core.policies", policy, ImportType.MGMTCORE
+                "azure.mgmt.core.policies", policy, ImportType.SDKCORE
             )
 
         return file_import
