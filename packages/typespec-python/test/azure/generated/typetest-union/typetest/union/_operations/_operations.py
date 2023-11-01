@@ -25,7 +25,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._model_base import AzureJSONEncoder, _deserialize
+from .._model_base import SdkJSONEncoder, _deserialize
 from .._serialization import Serializer
 from .._vendor import UnionClientMixinABC
 
@@ -244,7 +244,7 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         if isinstance(input, (IOBase, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(input, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_union_send_int_request(
             content_type=content_type,
@@ -360,7 +360,7 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         if isinstance(input, (IOBase, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(input, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_union_send_int_array_request(
             content_type=content_type,
@@ -476,7 +476,7 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         if isinstance(input, (IOBase, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(input, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_union_send_first_named_union_value_request(
             content_type=content_type,
@@ -592,7 +592,7 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         if isinstance(input, (IOBase, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(input, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_union_send_second_named_union_value_request(
             content_type=content_type,

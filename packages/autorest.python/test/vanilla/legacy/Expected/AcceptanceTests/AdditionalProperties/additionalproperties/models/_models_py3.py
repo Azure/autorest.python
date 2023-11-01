@@ -17,7 +17,7 @@ class PetAPTrue(_serialization.Model):
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar additional_properties: Unmatched properties from the message are deserialized to this
      collection.
@@ -71,7 +71,7 @@ class CatAPTrue(PetAPTrue):
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar additional_properties: Unmatched properties from the message are deserialized to this
      collection.
@@ -154,7 +154,7 @@ class PetAPInProperties(_serialization.Model):
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar id: Required.
     :vartype id: int
@@ -206,7 +206,7 @@ class PetAPInPropertiesWithAPString(_serialization.Model):
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar additional_properties: Unmatched properties from the message are deserialized to this
      collection.
@@ -275,7 +275,7 @@ class PetAPObject(_serialization.Model):
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar additional_properties: Unmatched properties from the message are deserialized to this
      collection.
@@ -329,7 +329,7 @@ class PetAPString(_serialization.Model):
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar additional_properties: Unmatched properties from the message are deserialized to this
      collection.

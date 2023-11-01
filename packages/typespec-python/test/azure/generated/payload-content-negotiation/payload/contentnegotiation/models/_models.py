@@ -16,7 +16,7 @@ from .._model_base import rest_field
 class PngImageAsJson(_model_base.Model):
     """PngImageAsJson.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar content: Required.
     :vartype content: bytes

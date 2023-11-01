@@ -26,7 +26,7 @@ class Snake(_model_base.Model):
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     Cobra
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar kind: discriminator property. Required. "cobra"
     :vartype kind: str or ~typetest.model.enumdiscriminator.models.SnakeKind
@@ -62,7 +62,7 @@ class Snake(_model_base.Model):
 class Cobra(Snake, discriminator="cobra"):
     """Cobra model.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar length: Length of the snake. Required.
     :vartype length: int
@@ -99,7 +99,7 @@ class Dog(_model_base.Model):
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     Golden
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar kind: discriminator property. Required. "golden"
     :vartype kind: str or ~typetest.model.enumdiscriminator.models.DogKind
@@ -135,7 +135,7 @@ class Dog(_model_base.Model):
 class Golden(Dog, discriminator="golden"):
     """Golden dog model.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar weight: Weight of the dog. Required.
     :vartype weight: int

@@ -20,7 +20,7 @@ if TYPE_CHECKING:
 class InnerModel(_model_base.Model):
     """Array inner model.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar property: Required string property. Required.
     :vartype property: str

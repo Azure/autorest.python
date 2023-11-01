@@ -25,7 +25,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._model_base import AzureJSONEncoder, _deserialize
+from ..._model_base import SdkJSONEncoder, _deserialize
 from ..._operations._operations import (
     build_usage_input_and_output_request,
     build_usage_input_request,
@@ -133,7 +133,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         if isinstance(input, (IOBase, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(input, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_usage_input_request(
             content_type=content_type,
@@ -301,7 +301,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_usage_input_and_output_request(
             content_type=content_type,

@@ -22,7 +22,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ..._model_base import AzureJSONEncoder, _deserialize
+from ..._model_base import SdkJSONEncoder, _deserialize
 from ...operations._operations import (
     build_boolean_get_request,
     build_boolean_put_request,
@@ -134,7 +134,7 @@ class StringOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+        _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_string_put_request(
             content_type=content_type,
@@ -259,7 +259,7 @@ class BooleanOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+        _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_boolean_put_request(
             content_type=content_type,
@@ -384,7 +384,7 @@ class UnknownOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+        _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_unknown_put_request(
             content_type=content_type,

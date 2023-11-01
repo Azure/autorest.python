@@ -17,7 +17,7 @@ class Error(_serialization.Model):
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar status:
     :vartype status: int
@@ -54,7 +54,7 @@ class Error(_serialization.Model):
 class HeaderCustomNamedRequestIdParamGroupingParameters(_serialization.Model):
     """Parameter group.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar foo_client_request_id: The fooRequestId. Required.
     :vartype foo_client_request_id: str

@@ -24,7 +24,7 @@ from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._model_base import AzureJSONEncoder, _deserialize
+from ..._model_base import SdkJSONEncoder, _deserialize
 from ..._operations._operations import (
     build_empty_get_empty_request,
     build_empty_post_round_trip_empty_request,
@@ -131,7 +131,7 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         if isinstance(input, (IOBase, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(input, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_empty_put_empty_request(
             content_type=content_type,
@@ -297,7 +297,7 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_empty_post_round_trip_empty_request(
             content_type=content_type,

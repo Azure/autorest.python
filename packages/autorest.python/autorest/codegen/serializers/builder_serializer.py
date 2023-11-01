@@ -763,13 +763,13 @@ class _OperationSerializer(
             if hasattr(body_param.type, "encode") and body_param.type.encode:  # type: ignore
                 create_body_call = (
                     f"_{body_kwarg_name} = json.dumps({body_param.client_name}, "
-                    "cls=AzureJSONEncoder, exclude_readonly=True, "
+                    "cls=SdkJSONEncoder, exclude_readonly=True, "
                     f"format='{body_param.type.encode}')  # type: ignore"  # type: ignore
                 )
             else:
                 create_body_call = (
                     f"_{body_kwarg_name} = json.dumps({body_param.client_name}, "
-                    "cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore"
+                    "cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore"
                 )
         else:
             create_body_call = f"_{body_kwarg_name} = {body_param.client_name}"

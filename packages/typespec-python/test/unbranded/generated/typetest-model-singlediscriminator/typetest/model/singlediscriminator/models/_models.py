@@ -29,7 +29,7 @@ class Bird(_model_base.Model):
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     Eagle, Goose, SeaGull, Sparrow
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar kind: Required. Default value is None.
     :vartype kind: str
@@ -70,7 +70,7 @@ class Dinosaur(_model_base.Model):
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     TRex
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar size: Required.
     :vartype size: int
@@ -108,7 +108,7 @@ class Eagle(Bird, discriminator="eagle"):
     """The second level model in polymorphic single levels inheritance which contains references to
     other polymorphic instances.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar wingspan: Required.
     :vartype wingspan: int
@@ -154,7 +154,7 @@ class Eagle(Bird, discriminator="eagle"):
 class Goose(Bird, discriminator="goose"):
     """The second level model in polymorphic single level inheritance.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar wingspan: Required.
     :vartype wingspan: int
@@ -188,7 +188,7 @@ class Goose(Bird, discriminator="goose"):
 class SeaGull(Bird, discriminator="seagull"):
     """The second level model in polymorphic single level inheritance.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar wingspan: Required.
     :vartype wingspan: int
@@ -222,7 +222,7 @@ class SeaGull(Bird, discriminator="seagull"):
 class Sparrow(Bird, discriminator="sparrow"):
     """The second level model in polymorphic single level inheritance.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar wingspan: Required.
     :vartype wingspan: int
@@ -256,7 +256,7 @@ class Sparrow(Bird, discriminator="sparrow"):
 class TRex(Dinosaur, discriminator="t-rex"):
     """The second level legacy model in polymorphic single level inheritance.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar size: Required.
     :vartype size: int

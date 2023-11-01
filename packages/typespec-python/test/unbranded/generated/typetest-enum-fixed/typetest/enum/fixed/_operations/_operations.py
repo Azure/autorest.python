@@ -22,7 +22,7 @@ from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._model_base import AzureJSONEncoder, _deserialize
+from .._model_base import SdkJSONEncoder, _deserialize
 from .._serialization import Serializer
 from .._vendor import FixedClientMixinABC
 
@@ -158,7 +158,7 @@ class FixedClientOperationsMixin(FixedClientMixinABC):
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+        _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_fixed_put_known_value_request(
             content_type=content_type,
@@ -215,7 +215,7 @@ class FixedClientOperationsMixin(FixedClientMixinABC):
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+        _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_fixed_put_unknown_value_request(
             content_type=content_type,

@@ -16,7 +16,7 @@ from .._model_base import rest_field
 class BodyModel(_model_base.Model):
     """BodyModel.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str

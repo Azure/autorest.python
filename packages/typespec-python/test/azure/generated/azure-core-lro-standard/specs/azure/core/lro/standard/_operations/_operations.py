@@ -27,7 +27,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._model_base import AzureJSONEncoder, _deserialize
+from .._model_base import SdkJSONEncoder, _deserialize
 from .._serialization import Serializer
 from .._vendor import StandardClientMixinABC
 
@@ -140,7 +140,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         if isinstance(resource, (IOBase, bytes)):
             _content = resource
         else:
-            _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_standard_create_or_replace_request(
             name=name,

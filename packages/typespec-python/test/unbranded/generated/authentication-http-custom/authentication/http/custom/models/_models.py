@@ -16,7 +16,7 @@ from .._model_base import rest_field
 class InvalidAuth(_model_base.Model):
     """InvalidAuth.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar error: Required.
     :vartype error: str

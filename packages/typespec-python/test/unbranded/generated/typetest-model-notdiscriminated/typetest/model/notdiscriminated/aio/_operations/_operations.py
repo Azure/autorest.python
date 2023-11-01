@@ -24,7 +24,7 @@ from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._model_base import AzureJSONEncoder, _deserialize
+from ..._model_base import SdkJSONEncoder, _deserialize
 from ..._operations._operations import (
     build_not_discriminated_get_valid_request,
     build_not_discriminated_post_valid_request,
@@ -131,7 +131,7 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         if isinstance(input, (IOBase, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(input, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_not_discriminated_post_valid_request(
             content_type=content_type,
@@ -291,7 +291,7 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         if isinstance(input, (IOBase, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(input, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_not_discriminated_put_valid_request(
             content_type=content_type,

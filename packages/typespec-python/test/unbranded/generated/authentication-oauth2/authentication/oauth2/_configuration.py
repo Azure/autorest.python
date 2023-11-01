@@ -23,7 +23,7 @@ class OAuth2ClientConfiguration:  # pylint: disable=too-many-instance-attributes
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param credential: Credential needed for the client to connect to Azure. Required.
+    :param credential: Credential needed for the client to connect to cloud service. Required.
     :type credential: ~corehttp.credentials.TokenCredential
     """
 

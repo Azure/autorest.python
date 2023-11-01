@@ -25,7 +25,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._model_base import AzureJSONEncoder, _deserialize
+from ..._model_base import SdkJSONEncoder, _deserialize
 from ..._operations._operations import (
     build_enum_discriminator_get_extensible_model_missing_discriminator_request,
     build_enum_discriminator_get_extensible_model_request,
@@ -190,7 +190,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         if isinstance(input, (IOBase, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(input, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_enum_discriminator_put_extensible_model_request(
             content_type=content_type,
@@ -464,7 +464,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         if isinstance(input, (IOBase, bytes)):
             _content = input
         else:
-            _content = json.dumps(input, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(input, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_enum_discriminator_put_fixed_model_request(
             content_type=content_type,

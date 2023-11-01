@@ -16,7 +16,7 @@ from .._model_base import rest_field
 class GenerationOptions(_model_base.Model):
     """Options for the generation.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar prompt: Prompt. Required.
     :vartype prompt: str
@@ -47,7 +47,7 @@ class GenerationOptions(_model_base.Model):
 class GenerationResult(_model_base.Model):
     """Result of the generation.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar data: The data. Required.
     :vartype data: str
