@@ -3,7 +3,7 @@ parameters:
     package: "autorest.python"
 
 steps:
-    - ${{ if eq(parameters.folderName, 'typespec-python') }}:
+    - ${{ if eq(parameters.package, 'typespec-python') }}:
       - script: tox run -e ci-generic
         displayName: Execute ${{ parameters.folderName }} generic tests - Python $(PythonVersion)
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}/test/${{ parameters.folderName }}
