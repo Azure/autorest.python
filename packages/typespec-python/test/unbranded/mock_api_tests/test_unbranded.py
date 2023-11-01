@@ -41,7 +41,7 @@ def check_sensitive_word(folder: Path, word: str) -> str:
             f"powershell \"ls -r -Path {folder} | where fullname -notmatch '{skip_folders}' | Select-String -Pattern '{word}'\""
         ).replace("\\", "/")
     else:
-        skip_folder = "{" + ",".join(special_folders) + "}"
+        skip_folders = "{" + ",".join(special_folders) + "}"
         output = getoutput(f"grep -ri --exclude-dir={skip_folders} {word} {folder}")
 
     result = set()
