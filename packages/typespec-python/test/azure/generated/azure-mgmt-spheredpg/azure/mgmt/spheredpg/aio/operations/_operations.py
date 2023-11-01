@@ -30,7 +30,7 @@ from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
-from ..._model_base import AzureJSONEncoder, _deserialize
+from ..._model_base import SdkJSONEncoder, _deserialize
 from ...operations._operations import (
     build_catalogs_count_devices_request,
     build_catalogs_create_or_update_request,
@@ -388,7 +388,7 @@ class CatalogsOperations:
         if isinstance(resource, (IOBase, bytes)):
             _content = resource
         else:
-            _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_catalogs_create_or_update_request(
             resource_group_name=resource_group_name,
@@ -569,7 +569,7 @@ class CatalogsOperations:
         if isinstance(properties, (IOBase, bytes)):
             _content = properties
         else:
-            _content = json.dumps(properties, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(properties, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_catalogs_update_request(
             resource_group_name=resource_group_name,
@@ -1360,7 +1360,7 @@ class CatalogsOperations:
         if isinstance(parameters, (IOBase, bytes)):
             _content = parameters
         else:
-            _content = json.dumps(parameters, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(parameters, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -1756,7 +1756,7 @@ class ImagesOperations:
         if isinstance(resource, (IOBase, bytes)):
             _content = resource
         else:
-            _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_images_create_or_update_request(
             resource_group_name=resource_group_name,
@@ -2228,7 +2228,7 @@ class DeviceGroupsOperations:
         if isinstance(resource, (IOBase, bytes)):
             _content = resource
         else:
-            _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_device_groups_create_or_update_request(
             resource_group_name=resource_group_name,
@@ -2508,7 +2508,7 @@ class DeviceGroupsOperations:
         if isinstance(properties, (IOBase, bytes)):
             _content = properties
         else:
-            _content = json.dumps(properties, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(properties, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_device_groups_update_request(
             resource_group_name=resource_group_name,
@@ -2787,7 +2787,7 @@ class DeviceGroupsOperations:
         if isinstance(claim_devices_request, (IOBase, bytes)):
             _content = claim_devices_request
         else:
-            _content = json.dumps(claim_devices_request, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(claim_devices_request, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_device_groups_claim_devices_request(
             resource_group_name=resource_group_name,
@@ -3234,7 +3234,7 @@ class CertificatesOperations:
         if isinstance(parameters, (IOBase, bytes)):
             _content = parameters
         else:
-            _content = json.dumps(parameters, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(parameters, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_certificates_retrieve_proof_of_possession_nonce_request(
             resource_group_name=resource_group_name,
@@ -3661,7 +3661,7 @@ class DeploymentsOperations:
         if isinstance(resource, (IOBase, bytes)):
             _content = resource
         else:
-            _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_deployments_create_or_update_request(
             resource_group_name=resource_group_name,
@@ -4062,7 +4062,7 @@ class DevicesOperations:
         if isinstance(resource, (IOBase, bytes)):
             _content = resource
         else:
-            _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_devices_create_or_update_request(
             resource_group_name=resource_group_name,
@@ -4455,7 +4455,7 @@ class DevicesOperations:
         if isinstance(properties, (IOBase, bytes)):
             _content = properties
         else:
-            _content = json.dumps(properties, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(properties, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_devices_update_request(
             resource_group_name=resource_group_name,
@@ -4683,7 +4683,7 @@ class DevicesOperations:
         if isinstance(parameters, (IOBase, bytes)):
             _content = parameters
         else:
-            _content = json.dumps(parameters, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(parameters, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_devices_generate_capability_image_request(
             resource_group_name=resource_group_name,
@@ -5050,7 +5050,7 @@ class ProductsOperations:
         if isinstance(resource, (IOBase, bytes)):
             _content = resource
         else:
-            _content = json.dumps(resource, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_products_create_or_update_request(
             resource_group_name=resource_group_name,
@@ -5314,7 +5314,7 @@ class ProductsOperations:
         if isinstance(properties, (IOBase, bytes)):
             _content = properties
         else:
-            _content = json.dumps(properties, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(properties, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_products_update_request(
             resource_group_name=resource_group_name,

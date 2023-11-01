@@ -119,7 +119,7 @@ class ModelAsStringNoRequiredTwoValueNoDefault(_serialization.Model):
 class ModelAsStringRequiredOneValueDefault(_serialization.Model):
     """ModelAsStringRequiredOneValueDefault.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar parameter: "value1"
     :vartype parameter: str or ~constants.models.ModelAsStringRequiredOneValueDefaultEnum
@@ -147,7 +147,7 @@ class ModelAsStringRequiredOneValueDefault(_serialization.Model):
 class ModelAsStringRequiredOneValueNoDefault(_serialization.Model):
     """ModelAsStringRequiredOneValueNoDefault.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar parameter: Required. "value1"
     :vartype parameter: str or ~constants.models.ModelAsStringRequiredOneValueNoDefaultEnum
@@ -175,7 +175,7 @@ class ModelAsStringRequiredOneValueNoDefault(_serialization.Model):
 class ModelAsStringRequiredTwoValueDefault(_serialization.Model):
     """ModelAsStringRequiredTwoValueDefault.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar parameter: Known values are: "value1" and "value2".
     :vartype parameter: str or ~constants.models.ModelAsStringRequiredTwoValueDefaultEnum
@@ -203,7 +203,7 @@ class ModelAsStringRequiredTwoValueDefault(_serialization.Model):
 class ModelAsStringRequiredTwoValueNoDefault(_serialization.Model):
     """ModelAsStringRequiredTwoValueNoDefault.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar parameter: Required. Known values are: "value1" and "value2".
     :vartype parameter: str or ~constants.models.ModelAsStringRequiredTwoValueNoDefaultEnum
@@ -320,7 +320,7 @@ class NoModelAsStringRequiredOneValueDefault(_serialization.Model):
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar parameter: Default value is "value1".
     :vartype parameter: str
@@ -346,7 +346,7 @@ class NoModelAsStringRequiredOneValueNoDefault(_serialization.Model):
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar parameter: Required. Default value is "value1".
     :vartype parameter: str
@@ -370,7 +370,7 @@ class NoModelAsStringRequiredOneValueNoDefault(_serialization.Model):
 class NoModelAsStringRequiredTwoValueDefault(_serialization.Model):
     """NoModelAsStringRequiredTwoValueDefault.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar parameter: Known values are: "value1" and "value2".
     :vartype parameter: str or ~constants.models.NoModelAsStringRequiredTwoValueDefaultEnum
@@ -398,7 +398,7 @@ class NoModelAsStringRequiredTwoValueDefault(_serialization.Model):
 class NoModelAsStringRequiredTwoValueNoDefault(_serialization.Model):
     """NoModelAsStringRequiredTwoValueNoDefault.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar parameter: Required. Known values are: "value1" and "value2".
     :vartype parameter: str or ~constants.models.NoModelAsStringRequiredTwoValueNoDefaultEnum

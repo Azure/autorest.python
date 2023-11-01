@@ -16,7 +16,7 @@ from .._model_base import rest_field
 class Base64BytesProperty(_model_base.Model):
     """Base64BytesProperty.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar value: Required.
     :vartype value: bytes
@@ -47,7 +47,7 @@ class Base64BytesProperty(_model_base.Model):
 class Base64urlArrayBytesProperty(_model_base.Model):
     """Base64urlArrayBytesProperty.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar value: Required.
     :vartype value: list[bytes]
@@ -78,7 +78,7 @@ class Base64urlArrayBytesProperty(_model_base.Model):
 class Base64urlBytesProperty(_model_base.Model):
     """Base64urlBytesProperty.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar value: Required.
     :vartype value: bytes
@@ -109,7 +109,7 @@ class Base64urlBytesProperty(_model_base.Model):
 class DefaultBytesProperty(_model_base.Model):
     """DefaultBytesProperty.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar value: Required.
     :vartype value: bytes

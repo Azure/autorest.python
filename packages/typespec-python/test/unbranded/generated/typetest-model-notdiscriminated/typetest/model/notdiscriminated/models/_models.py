@@ -16,7 +16,7 @@ from .._model_base import rest_field
 class Pet(_model_base.Model):
     """This is base model for not-discriminated normal multiple levels inheritance.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -47,7 +47,7 @@ class Pet(_model_base.Model):
 class Cat(Pet):
     """The second level model in the normal multiple levels inheritance.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -81,7 +81,7 @@ class Cat(Pet):
 class Siamese(Cat):
     """The third level model in the normal multiple levels inheritance.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str

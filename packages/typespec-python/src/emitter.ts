@@ -822,7 +822,7 @@ function emitCredentialParam(context: SdkContext, namespace: Namespace): Record<
             return {
                 type: getType(context, type),
                 optional: false,
-                description: "Credential needed for the client to connect to Azure.",
+                description: "Credential needed for the client to connect to cloud service.",
                 clientName: "credential",
                 location: "other",
                 wireName: "credential",

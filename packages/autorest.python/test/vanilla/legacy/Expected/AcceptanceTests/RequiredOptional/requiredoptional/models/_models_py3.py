@@ -39,7 +39,7 @@ class ArrayOptionalWrapper(msrest.serialization.Model):
 class ArrayWrapper(msrest.serialization.Model):
     """ArrayWrapper.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar value: Required.
     :vartype value: list[str]
@@ -85,7 +85,7 @@ class ClassOptionalWrapper(msrest.serialization.Model):
 class ClassWrapper(msrest.serialization.Model):
     """ClassWrapper.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar value: Required.
     :vartype value: ~requiredoptional.models.Product
@@ -157,7 +157,7 @@ class IntOptionalWrapper(msrest.serialization.Model):
 class IntWrapper(msrest.serialization.Model):
     """IntWrapper.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar value: Required.
     :vartype value: int
@@ -183,7 +183,7 @@ class IntWrapper(msrest.serialization.Model):
 class Product(msrest.serialization.Model):
     """Product.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar id: Required.
     :vartype id: int
@@ -237,7 +237,7 @@ class StringOptionalWrapper(msrest.serialization.Model):
 class StringWrapper(msrest.serialization.Model):
     """StringWrapper.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar value: Required.
     :vartype value: str

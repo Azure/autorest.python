@@ -24,7 +24,7 @@ from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._model_base import AzureJSONEncoder, _deserialize
+from .._model_base import SdkJSONEncoder, _deserialize
 from .._serialization import Serializer
 
 if sys.version_info >= (3, 9):
@@ -655,7 +655,7 @@ class PropertyOperations:
         if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_property_default_request(
             content_type=content_type,
@@ -773,7 +773,7 @@ class PropertyOperations:
         if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_property_base64_request(
             content_type=content_type,
@@ -895,7 +895,7 @@ class PropertyOperations:
         if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_property_base64url_request(
             content_type=content_type,
@@ -1021,7 +1021,7 @@ class PropertyOperations:
         if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=AzureJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_property_base64url_array_request(
             content_type=content_type,
@@ -1308,7 +1308,7 @@ class RequestBodyOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = json.dumps(value, cls=AzureJSONEncoder, exclude_readonly=True, format="base64")  # type: ignore
+        _content = json.dumps(value, cls=SdkJSONEncoder, exclude_readonly=True, format="base64")  # type: ignore
 
         _request = build_request_body_default_request(
             content_type=content_type,
@@ -1470,7 +1470,7 @@ class RequestBodyOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = json.dumps(value, cls=AzureJSONEncoder, exclude_readonly=True, format="base64")  # type: ignore
+        _content = json.dumps(value, cls=SdkJSONEncoder, exclude_readonly=True, format="base64")  # type: ignore
 
         _request = build_request_body_base64_request(
             content_type=content_type,
@@ -1524,7 +1524,7 @@ class RequestBodyOperations:
         content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = json.dumps(value, cls=AzureJSONEncoder, exclude_readonly=True, format="base64url")  # type: ignore
+        _content = json.dumps(value, cls=SdkJSONEncoder, exclude_readonly=True, format="base64url")  # type: ignore
 
         _request = build_request_body_base64url_request(
             content_type=content_type,

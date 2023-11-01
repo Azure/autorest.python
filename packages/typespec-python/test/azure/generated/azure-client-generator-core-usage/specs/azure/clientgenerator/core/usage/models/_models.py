@@ -16,7 +16,7 @@ from .._model_base import rest_field
 class InputModel(_model_base.Model):
     """Usage override to roundtrip.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -48,7 +48,7 @@ class OrphanModel(_model_base.Model):
     """Not used anywhere, but access is override to public so still need to be generated and exported
     with serialization.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -79,7 +79,7 @@ class OrphanModel(_model_base.Model):
 class OutputModel(_model_base.Model):
     """Usage override to roundtrip.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
