@@ -23,7 +23,7 @@ JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 class BodyParameter(_model_base.Model):
     """This is a simple model.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str

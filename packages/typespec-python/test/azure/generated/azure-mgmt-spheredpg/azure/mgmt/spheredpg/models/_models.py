@@ -23,7 +23,7 @@ class ArmResource(_model_base.Model):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
@@ -53,7 +53,7 @@ class TrackedResourceBase(ArmResource):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
@@ -101,7 +101,7 @@ class Catalog(TrackedResourceBase):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
@@ -196,7 +196,7 @@ class ProxyResourceBase(ArmResource):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
@@ -216,7 +216,7 @@ class Certificate(ProxyResourceBase):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
@@ -313,7 +313,7 @@ class CertificateProperties(_model_base.Model):
 class ClaimDevicesRequest(_model_base.Model):
     """Request to the action call to bulk claim devices.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar device_identifiers: Device identifiers of the devices to be claimed. Required.
     :vartype device_identifiers: list[str]
@@ -344,7 +344,7 @@ class ClaimDevicesRequest(_model_base.Model):
 class CountElementsResponse(_model_base.Model):
     """Response of the count for elements.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar value: Number of children resources in parent resource. Required.
     :vartype value: int
@@ -375,7 +375,7 @@ class CountElementsResponse(_model_base.Model):
 class CountDeviceResponse(CountElementsResponse):
     """Response to the action call for count devices in a catalog.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar value: Number of children resources in parent resource. Required.
     :vartype value: int
@@ -405,7 +405,7 @@ class Deployment(ProxyResourceBase):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
@@ -498,7 +498,7 @@ class Device(ProxyResourceBase):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
@@ -541,7 +541,7 @@ class DeviceGroup(ProxyResourceBase):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
@@ -746,7 +746,7 @@ class DeviceGroupUpdateProperties(_model_base.Model):
 class DeviceInsight(_model_base.Model):
     """Device insight report.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar device_id: Device ID. Required.
     :vartype device_id: str
@@ -1010,7 +1010,7 @@ class ErrorResponse(_model_base.Model):
 class GenerateCapabilityImageRequest(_model_base.Model):
     """Request of the action to create a signed device capability image.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar capabilities: List of capabilities to create. Required.
     :vartype capabilities: list[str or ~azure.mgmt.spheredpg.models.CapabilityType]
@@ -1043,7 +1043,7 @@ class Image(ProxyResourceBase):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
@@ -1310,7 +1310,7 @@ class Product(ProxyResourceBase):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
@@ -1353,7 +1353,7 @@ class ProductProperties(_model_base.Model):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar description: Description of the product. Required.
     :vartype description: str
@@ -1449,7 +1449,7 @@ class ProductUpdateProperties(_model_base.Model):
 class ProofOfPossessionNonceRequest(_model_base.Model):
     """Request for the proof of possession nonce.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar proof_of_possession_nonce: The proof of possession nonce. Required.
     :vartype proof_of_possession_nonce: str

@@ -41,7 +41,7 @@ class Feline(_serialization.Model):
 class Pet(_serialization.Model):
     """Pet.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -67,7 +67,7 @@ class Pet(_serialization.Model):
 class Cat(Pet, Feline):
     """Cat.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar meows:
     :vartype meows: bool
@@ -145,7 +145,7 @@ class Error(_serialization.Model):
 class Horse(Pet):
     """Horse.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -176,7 +176,7 @@ class Horse(Pet):
 class Kitten(Cat):
     """Kitten.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar meows:
     :vartype meows: bool

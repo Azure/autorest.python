@@ -576,7 +576,7 @@ class Operation(OperationBase[Response]):
             relative_path = "..." if async_mode else ".."
             if self.parameters.has_body:
                 file_import.add_submodule_import(
-                    f"{relative_path}_model_base", "AzureJSONEncoder", ImportType.LOCAL
+                    f"{relative_path}_model_base", "SdkJSONEncoder", ImportType.LOCAL
                 )
                 file_import.add_import("json", ImportType.STDLIB)
             if self.default_error_deserialization or any(

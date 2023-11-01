@@ -167,7 +167,7 @@ class DurationProperty(_model_base.Model):
 class RequiredAndOptionalProperty(_model_base.Model):
     """Model with required and optional properties.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar optional_property: optional string property.
     :vartype optional_property: str

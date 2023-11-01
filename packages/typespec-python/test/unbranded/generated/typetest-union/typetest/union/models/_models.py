@@ -20,7 +20,7 @@ if TYPE_CHECKING:
 class BaseModel(_model_base.Model):
     """This is a base model.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -51,7 +51,7 @@ class BaseModel(_model_base.Model):
 class Model1(BaseModel):
     """The first one of the unioned model type.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -85,7 +85,7 @@ class Model1(BaseModel):
 class Model2(BaseModel):
     """The second one of the unioned model type.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -119,7 +119,7 @@ class Model2(BaseModel):
 class ModelWithNamedUnionProperty(_model_base.Model):
     """ModelWithNamedUnionProperty.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar named_union: Required. Is either a Model1 type or a Model2 type.
     :vartype named_union: ~typetest.union.models.Model1 or ~typetest.union.models.Model2
@@ -150,7 +150,7 @@ class ModelWithNamedUnionProperty(_model_base.Model):
 class ModelWithNamedUnionPropertyInResponse(_model_base.Model):
     """ModelWithNamedUnionPropertyInResponse.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar named_union: Required. Is either a Model1 type or a Model2 type.
     :vartype named_union: ~typetest.union.models.Model1 or ~typetest.union.models.Model2
@@ -181,7 +181,7 @@ class ModelWithNamedUnionPropertyInResponse(_model_base.Model):
 class ModelWithSimpleUnionProperty(_model_base.Model):
     """ModelWithSimpleUnionProperty.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar simple_union: Required. Is either a int type or a [int] type.
     :vartype simple_union: int or list[int]
@@ -212,7 +212,7 @@ class ModelWithSimpleUnionProperty(_model_base.Model):
 class ModelWithSimpleUnionPropertyInResponse(_model_base.Model):
     """ModelWithSimpleUnionPropertyInResponse.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar simple_union: Required. Is either a str type or a [int] type.
     :vartype simple_union: str or list[int]

@@ -27,7 +27,7 @@ class ChildProduct(msrest.serialization.Model):
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar const_property: Constant string. Required. Default value is "constant".
     :vartype const_property: str
@@ -60,7 +60,7 @@ class ConstantProduct(msrest.serialization.Model):
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar const_property: Constant string. Required. Default value is "constant".
     :vartype const_property: str
@@ -125,7 +125,7 @@ class Product(msrest.serialization.Model):
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar display_names: Non required array of unique items from 0 to 6 elements.
     :vartype display_names: list[str]

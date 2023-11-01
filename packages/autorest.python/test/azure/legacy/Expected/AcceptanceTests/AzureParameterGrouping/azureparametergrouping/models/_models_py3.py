@@ -157,7 +157,7 @@ class ParameterGroupingPostOptionalParameters(msrest.serialization.Model):
 class ParameterGroupingPostRequiredParameters(msrest.serialization.Model):
     """Parameter group.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar custom_header:
     :vartype custom_header: str

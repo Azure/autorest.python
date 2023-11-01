@@ -20,7 +20,7 @@ if TYPE_CHECKING:
 class Error(_model_base.Model):
     """The error object.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar code: One of a server-defined set of error codes. Required.
     :vartype code: str
@@ -72,7 +72,7 @@ class Error(_model_base.Model):
 class ErrorResponse(_model_base.Model):
     """A response containing error details.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar error: The error object. Required.
     :vartype error: ~azurecore.lro.rpclegacy.models.Error
@@ -139,7 +139,7 @@ class InnerError(_model_base.Model):
 class JobData(_model_base.Model):
     """Data of the job.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar comment: Comment. Required.
     :vartype comment: str
@@ -172,7 +172,7 @@ class JobResult(_model_base.Model):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar job_id: A processing job identifier. Required.
     :vartype job_id: str

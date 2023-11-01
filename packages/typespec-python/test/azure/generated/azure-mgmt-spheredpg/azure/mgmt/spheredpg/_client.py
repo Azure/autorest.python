@@ -51,7 +51,7 @@ class AzureSphereClient:  # pylint: disable=client-accepts-api-version-keyword,t
     :vartype devices: azure.mgmt.spheredpg.operations.DevicesOperations
     :ivar products: ProductsOperations operations
     :vartype products: azure.mgmt.spheredpg.operations.ProductsOperations
-    :param credential: Credential needed for the client to connect to Azure. Required.
+    :param credential: Credential needed for the client to connect to cloud service. Required.
     :type credential: ~azure.core.credentials.TokenCredential
     :param subscription_id: The ID of the target subscription. Required.
     :type subscription_id: str
