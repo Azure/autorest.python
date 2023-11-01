@@ -201,11 +201,11 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         )
         if self.code_model.options["azure_arm"]:
             file_import.add_submodule_import(
-                "azure.mgmt.core", self.pipeline_class(async_mode), ImportType.SDKCORE
+                "azure.mgmt.core", self.pipeline_class(async_mode), ImportType.MGMTCORE
             )
         else:
             file_import.add_submodule_import(
-                f"pipeline.{'runtime' if self.code_model.options['unbranded'] else ''}",
+                "runtime" if self.code_model.options["unbranded"] else "",
                 self.pipeline_class(async_mode),
                 ImportType.SDKCORE,
             )
@@ -231,14 +231,16 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
             typing_section=TypingSection.REGULAR,
         )
         file_import.add_submodule_import(
-            "runtime" if self.code_model.options["unbranded"] else "pipeline", "policies", ImportType.SDKCORE
+            "runtime" if self.code_model.options["unbranded"] else "pipeline",
+            "policies",
+            ImportType.SDKCORE,
         )
         if self.code_model.options["azure_arm"]:
             async_prefix = "Async" if async_mode else ""
             file_import.add_submodule_import(
                 "azure.mgmt.core.policies",
                 f"{async_prefix}ARMAutoResourceProviderRegistrationPolicy",
-                ImportType.SDKCORE,
+                ImportType.MGMTCORE,
             )
         return file_import
 
@@ -300,7 +302,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         if async_mode:
             file_import.add_submodule_import("typing", "Awaitable", ImportType.STDLIB)
             file_import.add_submodule_import(
-                f"rest",
+                "rest",
                 "AsyncHttpResponse",
                 ImportType.SDKCORE,
                 TypingSection.CONDITIONAL,
@@ -414,7 +416,9 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
     def _imports_shared(self, async_mode: bool) -> FileImport:
         file_import = FileImport(self.code_model)
         file_import.add_submodule_import(
-            "runtime" if self.code_model.options["unbranded"] else "pipeline", "policies", ImportType.SDKCORE
+            "runtime" if self.code_model.options["unbranded"] else "pipeline",
+            "policies",
+            ImportType.SDKCORE,
         )
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
@@ -430,10 +434,10 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
                 else "ARMChallengeAuthenticationPolicy"
             )
             file_import.add_submodule_import(
-                "azure.mgmt.core.policies", "ARMHttpLoggingPolicy", ImportType.SDKCORE
+                "azure.mgmt.core.policies", "ARMHttpLoggingPolicy", ImportType.MGMTCORE
             )
             file_import.add_submodule_import(
-                "azure.mgmt.core.policies", policy, ImportType.SDKCORE
+                "azure.mgmt.core.policies", policy, ImportType.MGMTCORE
             )
 
         return file_import

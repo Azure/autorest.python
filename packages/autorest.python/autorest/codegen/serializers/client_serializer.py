@@ -274,9 +274,7 @@ class ClientSerializer:
         )
         retval.append("")
         retval.append(":param request: The network request you want to make. Required.")
-        retval.append(
-            f":type request: ~{rest_library}.HttpRequest"
-        )
+        retval.append(f":type request: ~{rest_library}.HttpRequest")
         retval.append(
             ":keyword bool stream: Whether the response payload will be streamed. Defaults to False."
         )
@@ -284,9 +282,7 @@ class ClientSerializer:
             ":return: The response of your network call. Does not do error handling on your response."
         )
         http_response = "AsyncHttpResponse" if async_mode else "HttpResponse"
-        retval.append(
-            f":rtype: ~{rest_library}.{http_response}"
-        )
+        retval.append(f":rtype: ~{rest_library}.{http_response}")
         retval.append('"""')
         return retval
 

@@ -11,9 +11,14 @@ if TYPE_CHECKING:
 
 
 class ImportType(str, Enum):
+    """
+    Ordering of these enum matters. We order import groupings in a file based off of this ordering.
+    """
+
     STDLIB = "stdlib"
     THIRDPARTY = "thirdparty"
     SDKCORE = "sdkcore"
+    MGMTCORE = "mgmtcore"
     LOCAL = "local"
     BYVERSION = "by_version"
 
@@ -96,6 +101,12 @@ class FileImport:
         self.core_library = self.code_model.core_library
 
     def _append_import(self, import_model: ImportModel) -> None:
+        if import_model.import_type == ImportType.SDKCORE:
+            mod_name = import_model.module_name
+            if self.code_model.core_library not in mod_name:
+                import_model.module_name = (
+                    f"{self.code_model.core_library}{'.' if mod_name else ''}{mod_name}"
+                )
         if not any(
             i
             for i in self.imports
@@ -143,8 +154,6 @@ class FileImport:
         alias: Optional[str] = None,
     ) -> None:
         # Implementation detail: a regular import is just a "from" with no from
-        if import_type == ImportType.SDKCORE:
-            module_name = f"{self.code_model.core_library}.{module_name}"
         self._append_import(
             ImportModel(
                 typing_section=typing_section,

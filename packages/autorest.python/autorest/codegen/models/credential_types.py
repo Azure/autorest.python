@@ -85,7 +85,11 @@ class KeyCredentialPolicyType(_CredentialPolicyBaseType):
 
     @property
     def credential_name(self) -> str:
-        return "ServiceKeyCredential" if self.code_model.options["unbranded"] else "AzureKeyCredential"
+        return (
+            "ServiceKeyCredential"
+            if self.code_model.options["unbranded"]
+            else "AzureKeyCredential"
+        )
 
     def call(self, async_mode: bool) -> str:
         params = f'"{self.key}", '
@@ -184,7 +188,11 @@ class TokenCredentialType(
 
     @property
     def credentials_subfolder(self) -> str:
-        return "credentials" if self.code_model.options["unbranded"] else "credentials_async"
+        return (
+            "credentials"
+            if self.code_model.options["unbranded"]
+            else "credentials_async"
+        )
 
     def docstring_type(self, **kwargs: Any) -> str:
         if kwargs.get("async_mode"):
@@ -221,7 +229,9 @@ class KeyCredentialType(
     """Type for an KeyCredential"""
 
     def docstring_type(self, **kwargs: Any) -> str:  # pylint: disable=unused-argument
-        return f"~{self.code_model.core_library}.credentials.{self.policy.credential_name}"
+        return (
+            f"~{self.code_model.core_library}.credentials.{self.policy.credential_name}"
+        )
 
     def type_annotation(self, **kwargs: Any) -> str:  # pylint: disable=unused-argument
         return self.policy.credential_name
@@ -233,7 +243,7 @@ class KeyCredentialType(
     def imports(self, **kwargs: Any) -> FileImport:  # pylint: disable=unused-argument
         file_import = super().imports(**kwargs)
         file_import.add_submodule_import(
-            f"credentials",
+            "credentials",
             self.policy.credential_name,
             ImportType.SDKCORE,
             typing_section=TypingSection.CONDITIONAL,

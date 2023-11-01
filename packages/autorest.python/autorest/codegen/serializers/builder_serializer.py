@@ -489,12 +489,13 @@ class RequestBuilderSerializer(
         return False
 
     def response_docstring(self, builder: RequestBuilderType) -> List[str]:
+        request_full_path = f"{self.code_model.core_library}.rest.HttpRequest"
         response_str = (
-            f":return: Returns an :class:`~{self.code_model.core_library}.rest.HttpRequest` that you will pass to the client's "
+            f":return: Returns an :class:`~{request_full_path}` that you will pass to the client's "
             + "`send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to "
             + "incorporate this response into your code flow."
         )
-        rtype_str = f":rtype: ~{self.code_model.core_library}.rest.HttpRequest"
+        rtype_str = f":rtype: ~{request_full_path}"
         return [response_str, rtype_str]
 
     def pop_kwargs_from_signature(self, builder: RequestBuilderType) -> List[str]:

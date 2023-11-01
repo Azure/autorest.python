@@ -168,9 +168,12 @@ class PagingResponse(Response):
             self.yaml_data.get("pagerSync")
             or f"{self.code_model.core_library}.paging.ItemPaged"
         )
+        default_paging_submodule = (
+            f"{'' if self.code_model.options['unbranded'] else 'async_'}paging"
+        )
         self.pager_async: str = (
             self.yaml_data.get("pagerAsync")
-            or f"{self.code_model.core_library}.paging.AsyncItemPaged"
+            or f"{self.code_model.core_library}.{default_paging_submodule}.AsyncItemPaged"
         )
 
     def get_polymorphic_subtypes(self, polymorphic_subtypes: List["ModelType"]) -> None:
@@ -211,8 +214,14 @@ class PagingResponse(Response):
         file_import = self._imports_shared(**kwargs)
         async_mode = kwargs.get("async_mode")
         if async_mode:
+            pager = self.get_pager(async_mode)
+            subfolder = ".".join(
+                p
+                for p in self.get_pager_path(async_mode).split(".")
+                if not (p in self.code_model.core_library or p in pager)
+            )
             file_import.add_submodule_import(
-                self.get_pager_path(async_mode),
+                subfolder,
                 "AsyncList",
                 ImportType.SDKCORE,
             )

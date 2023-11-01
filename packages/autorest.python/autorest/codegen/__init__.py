@@ -49,9 +49,7 @@ class OptionsRetriever:
 
     @property
     def company_name(self) -> str:
-        return self.options.get(
-            "company-name", "" if self.unbranded else "Microsoft"
-        )
+        return self.options.get("company-name", "" if self.unbranded else "Microsoft")
 
     @property
     def license_header(self) -> str:

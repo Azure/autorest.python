@@ -9,6 +9,7 @@
 from typing import Any, TYPE_CHECKING
 
 from azure.core.pipeline import policies
+
 from azure.mgmt.core.policies import ARMChallengeAuthenticationPolicy, ARMHttpLoggingPolicy
 
 from ._version import VERSION

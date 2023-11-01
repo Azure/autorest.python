@@ -378,12 +378,10 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             "ResourceNotModifiedError",
         ]
         for error in errors:
-            file_import.add_submodule_import(
-                "exceptions", error, ImportType.SDKCORE
-            )
+            file_import.add_submodule_import("exceptions", error, ImportType.SDKCORE)
         if self.code_model.options["azure_arm"]:
             file_import.add_submodule_import(
-                "azure.mgmt.core.exceptions", "ARMErrorFormat", ImportType.SDKCORE
+                "azure.mgmt.core.exceptions", "ARMErrorFormat", ImportType.MGMTCORE
             )
 
         if self.has_kwargs_to_pop_with_default(
@@ -449,7 +447,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         ):
             file_import.merge(self.request_builder.imports())
         file_import.add_submodule_import(
-            f"pipeline.{'runtime' if self.code_model.options['unbranded'] else ''}",
+            f"{'runtime.' if self.code_model.options['unbranded'] else ''}pipeline",
             "PipelineResponse",
             ImportType.SDKCORE,
         )

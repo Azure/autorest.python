@@ -8,15 +8,19 @@ import logging
 from typing import Dict, Any, Union, Tuple
 from jinja2 import Environment
 
-from autorest.codegen.models.credential_types import KeyCredentialType
-from autorest.codegen.models.credential_types import TokenCredentialType
-from autorest.codegen.models.imports import ImportType
 from autorest.codegen.models.operation import OperationBase
-from autorest.codegen.models.operation_group import OperationGroup
-from autorest.codegen.models.parameter import Parameter, BodyParameter
-from autorest.codegen.serializers.import_serializer import FileImportSerializer
-from autorest.codegen.serializers.base_serializer import BaseSerializer
-from ..models import CodeModel
+from .import_serializer import FileImportSerializer
+from .base_serializer import BaseSerializer
+from ..models import (
+    CodeModel,
+    KeyCredentialType,
+    TokenCredentialType,
+    ImportType,
+    OperationGroup,
+    Parameter,
+    BodyParameter,
+    FileImport,
+)
 from .utils import get_namespace_config, get_namespace_from_package_name
 from ..._utils import to_snake_case
 
@@ -66,7 +70,7 @@ class SampleSerializer(BaseSerializer):
         elif isinstance(credential_type, KeyCredentialType):
             imports.add_import("os", ImportType.STDLIB)
             imports.add_submodule_import(
-                f"credentials",
+                "credentials",
                 "AzureKeyCredential",
                 ImportType.THIRDPARTY,
             )
