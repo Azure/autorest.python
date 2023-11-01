@@ -8,7 +8,7 @@ import pytest
 from typetest.property.nullable.aio import NullableClient
 from typetest.property.nullable import models
 from typetest.property.nullable._model_base import (  # pylint: disable=protected-access
-    AzureJSONEncoder,
+    SdkJSONEncoder,
 )
 
 
@@ -46,7 +46,7 @@ async def test(client, og_name, model, val, core_library):
     non_null_model = model(required_property="foo", nullable_property=val)
     non_model = model(required_property="foo", nullable_property=core_library.serialization.NULL)
     assert '{"requiredProperty": "foo", "nullableProperty": null}' == json.dumps(
-        non_model, cls=AzureJSONEncoder
+        non_model, cls=SdkJSONEncoder
     )
     assert await og_group.get_non_null() == non_null_model
     assert (await og_group.get_null())["nullableProperty"] is None
