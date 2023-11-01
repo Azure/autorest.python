@@ -25,6 +25,7 @@ import {
 import { getAddedOnVersions } from "@typespec/versioning";
 import {
     SdkClient,
+    SdkSubClient,
     listClients,
     listOperationGroups,
     listOperationsInOperationGroup,
@@ -39,6 +40,7 @@ import {
     getPropertyNames,
     getEffectivePayloadType,
     getAccess,
+    SdkOperationGroup,
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
@@ -108,10 +110,9 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     };
 
     const sdkContext = createSdkContext(context, "@azure-tools/typespec-python");
-    const clients = listClients(sdkContext);
     const root = await resolveModuleRoot(program, "@autorest/python", dirname(fileURLToPath(import.meta.url)));
     const outputDir = context.emitterOutputDir;
-    const yamlMap = emitCodeModel(sdkContext, clients);
+    const yamlMap = emitCodeModel(sdkContext);
     const yamlPath = await saveCodeModelAsYaml("typespec-python-yaml-map", yamlMap);
     addDefaultCalculatedOptions(sdkContext, resolvedOptions, yamlMap);
     const commandArgs = [
@@ -713,35 +714,35 @@ function capitalize(name: string): string {
 
 function emitOperationGroups(context: SdkContext, client: SdkClient): Record<string, any>[] {
     const operationGroups: Record<string, any>[] = [];
-    for (const operationGroup of listOperationGroups(context, client)) {
+
+    function addOperationGroup(name: string, operationGroup: SdkOperationGroup | SdkClient | SdkSubClient) {
         let operations: Record<string, any>[] = [];
-        const name = operationGroup.type.name;
         for (const operation of listOperationsInOperationGroup(context, operationGroup)) {
             operations = operations.concat(emitOperation(context, operation, name));
         }
-        operationGroups.push({
-            className: name,
-            propertyName: name,
-            operations: operations,
-        });
-    }
-    const clientOperations: Map<string, Record<string, any>> = new Map<string, Record<string, any>>();
-    for (const operation of listOperationsInOperationGroup(context, client)) {
-        const groupName = context.arm ? operation.interface?.name ?? "" : "";
-        const emittedOperation = emitOperation(context, operation, groupName);
-        if (!clientOperations.has(groupName)) {
-            clientOperations.set(groupName, {
-                className: groupName,
-                propertyName: groupName,
-                operations: [],
+        if (operations.length > 0) {
+            operationGroups.push({
+                className: name,
+                propertyName: name,
+                operations: operations,
             });
+        };
+    }
+
+    function emitOperationGroup(context: SdkContext, client: SdkClient | SdkSubClient, prefix: string = "") {
+        addOperationGroup(prefix, client);
+        for (const operationGroup of listOperationGroups(context, client)) {
+            addOperationGroup(prefix + operationGroup.type.name, operationGroup);
         }
-        const og = clientOperations.get(groupName) as Record<string, any>;
-        og.operations = og.operations.concat(emittedOperation);
+        if (client.subClients) {
+            for (const subClient of client.subClients) {
+                emitOperationGroup(context, subClient, prefix + subClient.type.name);
+            }
+        }
     }
-    for (const value of clientOperations.values()) {
-        operationGroups.push(value);
-    }
+
+    emitOperationGroup(context, client);
+
     return operationGroups;
 }
 
@@ -868,32 +869,25 @@ function getApiVersionParameter(context: SdkContext): Record<string, any> | void
     }
 }
 
-function emitClients(context: SdkContext, namespace: string, clients: SdkClient[]): Record<string, any>[] {
-    const retval: Record<string, any>[] = [];
-    for (const client of clients) {
-        if (getNamespace(context, client.name) !== namespace) {
-            continue;
-        }
-        const server = getServerHelper(context, client.service);
-        const emittedClient = {
-            name: client.name.split(".").at(-1),
-            description: getDocStr(context, client.type),
-            parameters: emitGlobalParameters(context, client.service),
-            operationGroups: emitOperationGroups(context, client),
-            url: server ? server.url : "",
-            apiVersions: [],
-            arm: client.arm,
-        };
-        const emittedApiVersionParam = getApiVersionParameter(context);
-        if (emittedApiVersionParam) {
-            emittedClient.parameters.push(emittedApiVersionParam);
-        }
-        if (subscriptionIdParam) {
-            emittedClient.parameters.push(subscriptionIdParam);
-        }
-        retval.push(emittedClient);
+function emitClient(context: SdkContext, client: SdkClient): Record<string, any> {
+    const server = getServerHelper(context, client.service);
+    const emittedClient = {
+        name: client.name.split(".").at(-1),
+        description: getDocStr(context, client.type),
+        parameters: emitGlobalParameters(context, client.service),
+        operationGroups: emitOperationGroups(context, client),
+        url: server ? server.url : "",
+        apiVersions: [],
+        arm: client.arm,
+    };
+    const emittedApiVersionParam = getApiVersionParameter(context);
+    if (emittedApiVersionParam) {
+        emittedClient.parameters.push(emittedApiVersionParam);
     }
-    return retval;
+    if (subscriptionIdParam) {
+        emittedClient.parameters.push(subscriptionIdParam);
+    }
+    return emittedClient;
 }
 
 function getServiceNamespace(context: SdkContext): Namespace {
@@ -909,15 +903,7 @@ function getNamespace(context: SdkContext, clientName: string): string {
     return removeUnderscoresFromNamespace(submodule);
 }
 
-function getNamespaces(context: SdkContext): Set<string> {
-    const namespaces = new Set<string>();
-    for (const client of listClients(context)) {
-        namespaces.add(getNamespace(context, client.name));
-    }
-    return namespaces;
-}
-
-function emitCodeModel(sdkContext: SdkContext, clients: SdkClient[]) {
+function emitCodeModel(sdkContext: SdkContext) {
     const clientNamespaceString = removeUnderscoresFromNamespace(getClientNamespaceString(sdkContext)?.toLowerCase());
     // Get types
     const codeModel: Record<string, any> = {
@@ -929,13 +915,16 @@ function emitCodeModel(sdkContext: SdkContext, clients: SdkClient[]) {
             getType(sdkContext, model);
         }
     }
-    for (const namespace of getNamespaces(sdkContext)) {
+
+    for (const client of listClients(sdkContext)) {
+        const namespace = getNamespace(sdkContext, client.name);
         if (namespace === clientNamespaceString) {
-            codeModel["clients"] = emitClients(sdkContext, namespace, clients);
+            codeModel["clients"] = [emitClient(sdkContext, client)];
         } else {
-            codeModel["subnamespaceToClients"][namespace] = emitClients(sdkContext, namespace, clients);
+            codeModel["subnamespaceToClients"][namespace] = [emitClient(sdkContext, client)];
         }
     }
+
     codeModel["types"] = [...typesMap.values(), ...Object.values(KnownTypes), ...simpleTypesMap.values()];
     return codeModel;
 }
