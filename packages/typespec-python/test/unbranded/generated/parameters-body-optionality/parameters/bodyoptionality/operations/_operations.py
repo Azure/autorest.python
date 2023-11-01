@@ -40,6 +40,34 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
+def build_body_optionality_required_explicit_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    # Construct URL
+    _url = "/parameters/body-optionality/required-explicit"
+
+    # Construct headers
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+
+
+def build_body_optionality_required_implicit_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    # Construct URL
+    _url = "/parameters/body-optionality/required-implicit"
+
+    # Construct headers
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+
+
 def build_optional_explicit_set_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -68,32 +96,236 @@ def build_optional_explicit_omit_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_body_optionality_required_explicit_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
+    @overload
+    def required_explicit(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.BodyModel, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """required_explicit.
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-    # Construct URL
-    _url = "/parameters/body-optionality/required-explicit"
+        :param body: Required.
+        :type body: ~parameters.bodyoptionality.models.BodyModel
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
 
-    # Construct headers
-    if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    @overload
+    def required_explicit(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """required_explicit.
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+        :param body: Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
 
+    @overload
+    def required_explicit(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """required_explicit.
 
-def build_body_optionality_required_implicit_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
 
-    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-    # Construct URL
-    _url = "/parameters/body-optionality/required-implicit"
+    def required_explicit(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.BodyModel, JSON, IO], **kwargs: Any
+    ) -> None:
+        """required_explicit.
 
-    # Construct headers
-    if content_type is not None:
-        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+        :param body: Is one of the following types: BodyModel, JSON, IO Required.
+        :type body: ~parameters.bodyoptionality.models.BodyModel or JSON or IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
-    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_body_optionality_required_explicit_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+    @overload
+    def required_implicit(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.BodyModel, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """required_implicit.
+
+        :param body: Required.
+        :type body: ~parameters.bodyoptionality.models.BodyModel
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def required_implicit(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """required_implicit.
+
+        :param body: Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def required_implicit(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """required_implicit.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    def required_implicit(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.BodyModel, JSON, IO], **kwargs: Any
+    ) -> None:
+        """required_implicit.
+
+        :param body: Is one of the following types: BodyModel, JSON, IO Required.
+        :type body: ~parameters.bodyoptionality.models.BodyModel or JSON or IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_body_optionality_required_implicit_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class OptionalExplicitOperations:
@@ -326,238 +558,6 @@ class OptionalExplicitOperations:
                 _content = None
 
         _request = build_optional_explicit_omit_request(
-            content_type=content_type,
-            content=_content,
-            headers=_headers,
-            params=_params,
-        )
-        _request.url = self._client.format_url(_request.url)
-
-        _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
-
-        response = pipeline_response.http_response
-
-        if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
-
-        if cls:
-            return cls(pipeline_response, None, {})  # type: ignore
-
-
-class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
-    @overload
-    def required_explicit(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.BodyModel, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """required_explicit.
-
-        :param body: Required.
-        :type body: ~parameters.bodyoptionality.models.BodyModel
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~corehttp.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def required_explicit(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """required_explicit.
-
-        :param body: Required.
-        :type body: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~corehttp.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def required_explicit(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """required_explicit.
-
-        :param body: Required.
-        :type body: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~corehttp.exceptions.HttpResponseError:
-        """
-
-    def required_explicit(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BodyModel, JSON, IO], **kwargs: Any
-    ) -> None:
-        """required_explicit.
-
-        :param body: Is one of the following types: BodyModel, JSON, IO Required.
-        :type body: ~parameters.bodyoptionality.models.BodyModel or JSON or IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~corehttp.exceptions.HttpResponseError:
-        """
-        error_map = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[None] = kwargs.pop("cls", None)
-
-        content_type = content_type or "application/json"
-        _content = None
-        if isinstance(body, (IOBase, bytes)):
-            _content = body
-        else:
-            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
-
-        _request = build_body_optionality_required_explicit_request(
-            content_type=content_type,
-            content=_content,
-            headers=_headers,
-            params=_params,
-        )
-        _request.url = self._client.format_url(_request.url)
-
-        _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
-
-        response = pipeline_response.http_response
-
-        if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
-
-        if cls:
-            return cls(pipeline_response, None, {})  # type: ignore
-
-    @overload
-    def required_implicit(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.BodyModel, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """required_implicit.
-
-        :param body: Required.
-        :type body: ~parameters.bodyoptionality.models.BodyModel
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~corehttp.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def required_implicit(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """required_implicit.
-
-        :param body: Required.
-        :type body: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~corehttp.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def required_implicit(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """required_implicit.
-
-        :param body: Required.
-        :type body: IO
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~corehttp.exceptions.HttpResponseError:
-        """
-
-    def required_implicit(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BodyModel, JSON, IO], **kwargs: Any
-    ) -> None:
-        """required_implicit.
-
-        :param body: Is one of the following types: BodyModel, JSON, IO Required.
-        :type body: ~parameters.bodyoptionality.models.BodyModel or JSON or IO
-        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
-         value is None.
-        :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
-        :return: None
-        :rtype: None
-        :raises ~corehttp.exceptions.HttpResponseError:
-        """
-        error_map = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
-        }
-        error_map.update(kwargs.pop("error_map", {}) or {})
-
-        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-        _params = kwargs.pop("params", {}) or {}
-
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[None] = kwargs.pop("cls", None)
-
-        content_type = content_type or "application/json"
-        _content = None
-        if isinstance(body, (IOBase, bytes)):
-            _content = body
-        else:
-            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
-
-        _request = build_body_optionality_required_implicit_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

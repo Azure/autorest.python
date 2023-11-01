@@ -919,8 +919,15 @@ function emitCodeModel(sdkContext: SdkContext) {
     for (const client of listClients(sdkContext)) {
         const namespace = getNamespace(sdkContext, client.name);
         if (namespace === clientNamespaceString) {
-            codeModel["clients"] = [emitClient(sdkContext, client)];
+            if (codeModel["clients"]) {
+                codeModel["clients"].push(emitClient(sdkContext, client));
+            } else {
+                codeModel["clients"] = [emitClient(sdkContext, client)];
+            }
         } else {
+            if (codeModel["subnamespaceToClients"][namespace]) {
+                codeModel["subnamespaceToClients"][namespace].push(emitClient(sdkContext, client));
+            }
             codeModel["subnamespaceToClients"][namespace] = [emitClient(sdkContext, client)];
         }
     }
