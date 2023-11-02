@@ -645,7 +645,7 @@ class _OperationSerializer(
         type_ignore = self.async_mode and builder.group_name == ""  # is in a mixin
         stream_value = (
             f'kwargs.pop("stream", {builder.has_stream_response})'
-            if builder.expose_stream_keyword
+            if builder.expose_stream_keyword and builder.has_response_body
             else builder.has_stream_response
         )
         return [

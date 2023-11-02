@@ -233,7 +233,7 @@ class ExtensibleClientOperationsMixin(ExtensibleClientMixinABC):
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -290,7 +290,7 @@ class ExtensibleClientOperationsMixin(ExtensibleClientMixinABC):
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
