@@ -819,7 +819,7 @@ function emitCredentialParam(context: SdkContext, namespace: Namespace): Record<
                     types: credential_types,
                 };
             }
-            const service = context.emitContext.options["unbranded"] ? "cloud service": "Azure"
+            const service = context.emitContext.options["unbranded"] ? "cloud service" : "Azure";
             return {
                 type: getType(context, type),
                 optional: false,
