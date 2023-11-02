@@ -1082,12 +1082,13 @@ class _OperationSerializer(
                 if builder.has_stream_response:
                     deserialize_code.append("deserialized = response.content")
                 else:
+                    format_filed = f', format="{response.type.encode}"' if response.need_format else ""
                     deserialize_code.append("deserialized = _deserialize(")
                     deserialize_code.append(
                         f"    {response.type.type_annotation(is_operation_file=True)},{pylint_disable}"
                     )
                     deserialize_code.append(
-                        f"    response.json(){response.result_property}"
+                        f"    response.json(){response.result_property}{format_filed}"
                     )
                     deserialize_code.append(")")
 
