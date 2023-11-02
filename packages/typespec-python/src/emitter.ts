@@ -819,10 +819,11 @@ function emitCredentialParam(context: SdkContext, namespace: Namespace): Record<
                     types: credential_types,
                 };
             }
+            const service = context.emitContext.options["unbranded"] ? "cloud service": "Azure"
             return {
                 type: getType(context, type),
                 optional: false,
-                description: "Credential needed for the client to connect to cloud service.",
+                description: `Credential needed for the client to connect to ${service}.`,
                 clientName: "credential",
                 location: "other",
                 wireName: "credential",
