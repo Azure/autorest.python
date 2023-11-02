@@ -648,7 +648,7 @@ class _OperationSerializer(
             if builder.expose_stream_keyword and builder.has_response_body
             else builder.has_stream_response
         )
-        retval = [
+        return [
             f"_stream = {stream_value}",
             f"pipeline_response: PipelineResponse = {self._call_method}self._client.{self.pipeline_name}.run(  "
             + f"{'# type: ignore' if type_ignore else ''} # pylint: disable=protected-access",
@@ -657,7 +657,6 @@ class _OperationSerializer(
             "    **kwargs",
             ")",
         ]
-        return [s for s in retval if s]
 
     @property
     def _function_def(self) -> str:
