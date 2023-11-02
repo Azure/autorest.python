@@ -9,7 +9,7 @@ from typing import Any, Iterable, List, Literal, Dict, Mapping, Sequence, Set, T
 import pytest
 import isodate
 
-from specialwords._model_base import AzureJSONEncoder, Model, rest_field, _is_model, rest_discriminator
+from specialwords._model_base import SdkJSONEncoder, Model, rest_field, _is_model, rest_discriminator
 
 
 class BasicResource(Model):
@@ -1901,7 +1901,7 @@ def test_readonly():
     model = ModelWithReadonly(value)
     assert model.as_dict(exclude_readonly=True) == {"normalProperty": "normal",
                                                     "innerModel": {"normalProperty": "normal"}}
-    assert json.loads(json.dumps(model, cls=AzureJSONEncoder)) == value
+    assert json.loads(json.dumps(model, cls=SdkJSONEncoder)) == value
     assert model == value
     assert model["readonlyProperty"] == model.readonly_property == "readonly"
     assert model["innerModel"]["readonlyProperty"] == model.inner_model.readonly_property == "readonly"
@@ -1925,7 +1925,7 @@ def test_readonly_set():
 
     assert model.as_dict(exclude_readonly=True) == {"normalProperty": "normal",
                                                     "innerModel": {"normalProperty": "normal"}}
-    assert json.loads(json.dumps(model, cls=AzureJSONEncoder)) == value
+    assert json.loads(json.dumps(model, cls=SdkJSONEncoder)) == value
 
     model["normalProperty"] = "setWithDict"
     model["readonlyProperty"] = "setWithDict"
@@ -1938,7 +1938,7 @@ def test_readonly_set():
     assert model.inner_model.readonly_property == model.inner_model["readonlyProperty"] == "setWithDict"
     assert model.as_dict(exclude_readonly=True) == {"normalProperty": "setWithDict",
                                                     "innerModel": {"normalProperty": "setWithDict"}}
-    assert json.loads(json.dumps(model, cls=AzureJSONEncoder)) == {
+    assert json.loads(json.dumps(model, cls=SdkJSONEncoder)) == {
         "normalProperty": "setWithDict",
         "readonlyProperty": "setWithDict",
         "innerModel": {
@@ -3523,7 +3523,7 @@ def test_null_serilization(core_library):
         "listOfDictOfMe": None
     }
     model = RecursiveModel(dict_response)
-    assert json.loads(json.dumps(model, cls=AzureJSONEncoder)) == dict_response
+    assert json.loads(json.dumps(model, cls=SdkJSONEncoder)) == dict_response
 
     assert model.as_dict() == dict_response
 
@@ -3541,7 +3541,7 @@ def test_null_serilization(core_library):
     model.list_of_dict_of_me[0]["me"].list_of_me = core_library.serialization.NULL
     model.list_of_dict_of_me[0]["me"].dict_of_me = None
 
-    assert json.loads(json.dumps(model, cls=AzureJSONEncoder)) == {
+    assert json.loads(json.dumps(model, cls=SdkJSONEncoder)) == {
         "name": "it's me!",
         "listOfMe": None,
         "dictOfListOfMe": {
@@ -3875,35 +3875,35 @@ def test_discriminator():
 
 
 def test_body_bytes_format():
-    assert json.dumps(bytes("test", "utf-8"), cls=AzureJSONEncoder) == '"dGVzdA=="'
-    assert json.dumps(bytearray("test", "utf-8"), cls=AzureJSONEncoder) == '"dGVzdA=="'
-    assert json.dumps(bytes("test", "utf-8"), cls=AzureJSONEncoder, format="base64") == '"dGVzdA=="'
-    assert json.dumps(bytes("test", "utf-8"), cls=AzureJSONEncoder, format="base64url") == '"dGVzdA"'
-    assert json.dumps(bytearray("test", "utf-8"), cls=AzureJSONEncoder, format="base64") == '"dGVzdA=="'
-    assert json.dumps(bytearray("test", "utf-8"), cls=AzureJSONEncoder, format="base64url") == '"dGVzdA"'
+    assert json.dumps(bytes("test", "utf-8"), cls=SdkJSONEncoder) == '"dGVzdA=="'
+    assert json.dumps(bytearray("test", "utf-8"), cls=SdkJSONEncoder) == '"dGVzdA=="'
+    assert json.dumps(bytes("test", "utf-8"), cls=SdkJSONEncoder, format="base64") == '"dGVzdA=="'
+    assert json.dumps(bytes("test", "utf-8"), cls=SdkJSONEncoder, format="base64url") == '"dGVzdA"'
+    assert json.dumps(bytearray("test", "utf-8"), cls=SdkJSONEncoder, format="base64") == '"dGVzdA=="'
+    assert json.dumps(bytearray("test", "utf-8"), cls=SdkJSONEncoder, format="base64url") == '"dGVzdA"'
 
     assert json.dumps([bytes("test", "utf-8"), bytes("test", "utf-8")],
-                      cls=AzureJSONEncoder) == '["dGVzdA==", "dGVzdA=="]'
+                      cls=SdkJSONEncoder) == '["dGVzdA==", "dGVzdA=="]'
     assert json.dumps([bytearray("test", "utf-8"), bytearray("test", "utf-8")],
-                      cls=AzureJSONEncoder) == '["dGVzdA==", "dGVzdA=="]'
-    assert json.dumps([bytes("test", "utf-8"), bytes("test", "utf-8")], cls=AzureJSONEncoder,
+                      cls=SdkJSONEncoder) == '["dGVzdA==", "dGVzdA=="]'
+    assert json.dumps([bytes("test", "utf-8"), bytes("test", "utf-8")], cls=SdkJSONEncoder,
                       format="base64") == '["dGVzdA==", "dGVzdA=="]'
-    assert json.dumps([bytes("test", "utf-8"), bytes("test", "utf-8")], cls=AzureJSONEncoder,
+    assert json.dumps([bytes("test", "utf-8"), bytes("test", "utf-8")], cls=SdkJSONEncoder,
                       format="base64url") == '["dGVzdA", "dGVzdA"]'
-    assert json.dumps([bytearray("test", "utf-8"), bytearray("test", "utf-8")], cls=AzureJSONEncoder,
+    assert json.dumps([bytearray("test", "utf-8"), bytearray("test", "utf-8")], cls=SdkJSONEncoder,
                       format="base64") == '["dGVzdA==", "dGVzdA=="]'
-    assert json.dumps([bytearray("test", "utf-8"), bytearray("test", "utf-8")], cls=AzureJSONEncoder,
+    assert json.dumps([bytearray("test", "utf-8"), bytearray("test", "utf-8")], cls=SdkJSONEncoder,
                       format="base64url") == '["dGVzdA", "dGVzdA"]'
 
     assert json.dumps({"a": bytes("test", "utf-8"), "b": bytes("test", "utf-8")},
-                      cls=AzureJSONEncoder) == '{"a": "dGVzdA==", "b": "dGVzdA=="}'
+                      cls=SdkJSONEncoder) == '{"a": "dGVzdA==", "b": "dGVzdA=="}'
     assert json.dumps({"a": bytearray("test", "utf-8"), "b": bytearray("test", "utf-8")},
-                      cls=AzureJSONEncoder) == '{"a": "dGVzdA==", "b": "dGVzdA=="}'
-    assert json.dumps({"a": bytes("test", "utf-8"), "b": bytes("test", "utf-8")}, cls=AzureJSONEncoder,
+                      cls=SdkJSONEncoder) == '{"a": "dGVzdA==", "b": "dGVzdA=="}'
+    assert json.dumps({"a": bytes("test", "utf-8"), "b": bytes("test", "utf-8")}, cls=SdkJSONEncoder,
                       format="base64") == '{"a": "dGVzdA==", "b": "dGVzdA=="}'
-    assert json.dumps({"a": bytes("test", "utf-8"), "b": bytes("test", "utf-8")}, cls=AzureJSONEncoder,
+    assert json.dumps({"a": bytes("test", "utf-8"), "b": bytes("test", "utf-8")}, cls=SdkJSONEncoder,
                       format="base64url") == '{"a": "dGVzdA", "b": "dGVzdA"}'
-    assert json.dumps({"a": bytearray("test", "utf-8"), "b": bytearray("test", "utf-8")}, cls=AzureJSONEncoder,
+    assert json.dumps({"a": bytearray("test", "utf-8"), "b": bytearray("test", "utf-8")}, cls=SdkJSONEncoder,
                       format="base64") == '{"a": "dGVzdA==", "b": "dGVzdA=="}'
-    assert json.dumps({"a": bytearray("test", "utf-8"), "b": bytearray("test", "utf-8")}, cls=AzureJSONEncoder,
+    assert json.dumps({"a": bytearray("test", "utf-8"), "b": bytearray("test", "utf-8")}, cls=SdkJSONEncoder,
                       format="base64url") == '{"a": "dGVzdA", "b": "dGVzdA"}'
