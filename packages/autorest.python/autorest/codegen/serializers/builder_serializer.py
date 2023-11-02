@@ -648,15 +648,16 @@ class _OperationSerializer(
             if builder.expose_stream_keyword
             else builder.has_stream_response
         )
-        return [
-            f"_stream = {stream_value}",
+        retval = [
+            f"_stream = {stream_value}" if builder.has_stream_response else "",
             f"pipeline_response: PipelineResponse = {self._call_method}self._client.{self.pipeline_name}.run(  "
             + f"{'# type: ignore' if type_ignore else ''} # pylint: disable=protected-access",
             "    _request,",
-            "    stream=_stream,",
+            "    stream=_stream," if builder.has_stream_response else "",
             "    **kwargs",
             ")",
         ]
+        return [s for s in retval if s]
 
     @property
     def _function_def(self) -> str:
@@ -1116,7 +1117,7 @@ class _OperationSerializer(
         retval = [
             f"if response.status_code not in {str(builder.success_status_codes)}:"
         ]
-        if not self.code_model.need_request_converter:
+        if not self.code_model.need_request_converter and builder.has_stream_response:
             retval.extend(
                 [
                     "    if _stream:",

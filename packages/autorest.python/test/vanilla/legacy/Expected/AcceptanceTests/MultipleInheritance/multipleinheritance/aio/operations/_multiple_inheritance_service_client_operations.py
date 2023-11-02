@@ -75,9 +75,8 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+            _request, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -171,9 +170,8 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+            _request, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -218,9 +216,8 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+            _request, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -274,9 +271,8 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+            _request, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -321,9 +317,8 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+            _request, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -417,9 +412,8 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+            _request, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -464,9 +458,8 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+            _request, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -562,9 +555,8 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+            _request, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -610,9 +602,8 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+            _request, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -711,9 +702,8 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+            _request, **kwargs
         )
 
         response = pipeline_response.http_response
