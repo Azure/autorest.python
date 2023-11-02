@@ -229,9 +229,8 @@ class PagingResponse(Response):
         file_import = self._imports_shared(**kwargs)
         async_mode = kwargs.get("async_mode")
         if async_mode:
-            pager_path = self.get_pager_import_path(async_mode)
             file_import.add_submodule_import(
-                "async_paging",
+                f"{'' if self.code_model.options['unbranded'] else 'async_'}paging",
                 "AsyncList",
                 ImportType.SDKCORE,
             )
