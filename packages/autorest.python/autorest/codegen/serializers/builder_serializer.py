@@ -649,11 +649,11 @@ class _OperationSerializer(
             else builder.has_stream_response
         )
         retval = [
-            f"_stream = {stream_value}" if builder.has_stream_response else "",
+            f"_stream = {stream_value}" if builder.has_response_body else "",
             f"pipeline_response: PipelineResponse = {self._call_method}self._client.{self.pipeline_name}.run(  "
             + f"{'# type: ignore' if type_ignore else ''} # pylint: disable=protected-access",
             "    _request,",
-            "    stream=_stream," if builder.has_stream_response else "",
+            "    stream=_stream," if builder.has_response_body else "",
             "    **kwargs",
             ")",
         ]
@@ -1117,7 +1117,7 @@ class _OperationSerializer(
         retval = [
             f"if response.status_code not in {str(builder.success_status_codes)}:"
         ]
-        if not self.code_model.need_request_converter and builder.has_stream_response:
+        if not self.code_model.need_request_converter and builder.has_response_body:
             retval.extend(
                 [
                     "    if _stream:",
