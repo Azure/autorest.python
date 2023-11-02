@@ -61,10 +61,6 @@ class Response(BaseModel):
         self.default_content_type = yaml_data.get("defaultContentType")
 
     @property
-    def need_format(self) -> bool:
-        return isinstance(self.type, ByteArraySchema) and self.default_content_type == "application/json"
-
-    @property
     def result_property(self) -> str:
         field = self.yaml_data.get("resultProperty")
         if field:
