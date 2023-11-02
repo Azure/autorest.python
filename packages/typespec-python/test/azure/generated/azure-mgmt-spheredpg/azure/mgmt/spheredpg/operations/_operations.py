@@ -25,7 +25,6 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
-
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models as _models

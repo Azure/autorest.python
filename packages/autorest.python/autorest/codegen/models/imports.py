@@ -104,8 +104,8 @@ class FileImport:
             mod_name = import_model.module_name
             core_libraries = [
                 self.code_model.core_library,
-                "azure.mgmt.core",
-                "azure.profiles",
+                "azure",
+                "msrest",
             ]
             if all(l not in mod_name for l in core_libraries):
                 # this is to make sure we don't tack on core libraries when we don't need to

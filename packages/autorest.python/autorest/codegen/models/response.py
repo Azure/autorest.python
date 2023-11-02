@@ -134,6 +134,16 @@ class Response(BaseModel):
     def imports_for_multiapi(self, **kwargs: Any) -> FileImport:
         return self._imports_shared(**kwargs)
 
+    def _get_import_type(self, input_path: str) -> ImportType:
+        # helper function to return imports for responses based off
+        # of whether we're importing from the core library, or users
+        # are customizing responses
+        return (
+            ImportType.SDKCORE
+            if self.code_model.core_library.split(".")[0] in input_path
+            else ImportType.THIRDPARTY
+        )
+
     @classmethod
     def from_yaml(
         cls, yaml_data: Dict[str, Any], code_model: "CodeModel"
@@ -208,9 +218,10 @@ class PagingResponse(Response):
         file_import = super()._imports_shared(**kwargs)
         async_mode = kwargs.get("async_mode", False)
         pager = self.get_pager(async_mode)
+        pager_path = self.get_pager_import_path(async_mode)
 
         file_import.add_submodule_import(
-            self.get_pager_import_path(async_mode), pager, ImportType.SDKCORE
+            pager_path, pager, self._get_import_type(pager_path)
         )
         return file_import
 
@@ -218,10 +229,11 @@ class PagingResponse(Response):
         file_import = self._imports_shared(**kwargs)
         async_mode = kwargs.get("async_mode")
         if async_mode:
+            pager_path = self.get_pager_import_path(async_mode)
             file_import.add_submodule_import(
-                self.get_pager_import_path(async_mode),
+                pager_path,
                 "AsyncList",
-                ImportType.SDKCORE,
+                self._get_import_type(pager_path),
             )
 
         return file_import
@@ -290,7 +302,9 @@ class LROResponse(Response):
         async_mode = kwargs["async_mode"]
         poller_import_path = ".".join(self.get_poller_path(async_mode).split(".")[:-1])
         poller = self.get_poller(async_mode)
-        file_import.add_submodule_import(poller_import_path, poller, ImportType.SDKCORE)
+        file_import.add_submodule_import(
+            poller_import_path, poller, self._get_import_type(poller_import_path)
+        )
         return file_import
 
     def imports(self, **kwargs: Any) -> FileImport:
@@ -304,7 +318,7 @@ class LROResponse(Response):
         file_import.add_submodule_import(
             default_polling_method_import_path,
             default_polling_method,
-            ImportType.SDKCORE,
+            self._get_import_type(default_polling_method_import_path),
         )
         default_no_polling_method_import_path = ".".join(
             self.get_no_polling_method_path(async_mode).split(".")[:-1]
@@ -313,7 +327,7 @@ class LROResponse(Response):
         file_import.add_submodule_import(
             default_no_polling_method_import_path,
             default_no_polling_method,
-            ImportType.SDKCORE,
+            self._get_import_type(default_no_polling_method_import_path),
         )
 
         base_polling_method_import_path = ".".join(
@@ -323,7 +337,7 @@ class LROResponse(Response):
         file_import.add_submodule_import(
             base_polling_method_import_path,
             base_polling_method,
-            ImportType.SDKCORE,
+            self._get_import_type(base_polling_method_import_path),
         )
         return file_import
 

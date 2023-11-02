@@ -26,7 +26,6 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
-
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models

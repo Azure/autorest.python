@@ -9,7 +9,6 @@
 from typing import Any, TYPE_CHECKING
 
 from azure.core.pipeline import policies
-
 from azure.mgmt.core.policies import ARMHttpLoggingPolicy, AsyncARMChallengeAuthenticationPolicy
 
 from .._version import VERSION
@@ -25,7 +24,7 @@ class AzureSphereClientConfiguration:  # pylint: disable=too-many-instance-attri
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param credential: Credential needed for the client to connect to cloud service. Required.
+    :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param subscription_id: The ID of the target subscription. Required.
     :type subscription_id: str

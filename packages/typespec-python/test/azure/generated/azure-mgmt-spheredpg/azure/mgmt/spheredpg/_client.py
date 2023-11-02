@@ -11,7 +11,6 @@ from typing import Any, TYPE_CHECKING
 
 from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
-
 from azure.mgmt.core import ARMPipelineClient
 from azure.mgmt.core.policies import ARMAutoResourceProviderRegistrationPolicy
 
@@ -52,7 +51,7 @@ class AzureSphereClient:  # pylint: disable=client-accepts-api-version-keyword,t
     :vartype devices: azure.mgmt.spheredpg.operations.DevicesOperations
     :ivar products: ProductsOperations operations
     :vartype products: azure.mgmt.spheredpg.operations.ProductsOperations
-    :param credential: Credential needed for the client to connect to cloud service. Required.
+    :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials.TokenCredential
     :param subscription_id: The ID of the target subscription. Required.
     :type subscription_id: str

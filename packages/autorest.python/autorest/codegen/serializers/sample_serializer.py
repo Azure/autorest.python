@@ -61,18 +61,18 @@ class SampleSerializer(BaseSerializer):
         ) > namespace_from_package_name.count("."):
             namespace = namespace_config
         client = self.code_model.clients[0]
-        imports.add_submodule_import(namespace, client.name, ImportType.THIRDPARTY)
+        imports.add_submodule_import(namespace, client.name, ImportType.LOCAL)
         credential_type = getattr(client.credential, "type", None)
         if isinstance(credential_type, TokenCredentialType):
             imports.add_submodule_import(
-                "azure.identity", "DefaultAzureCredential", ImportType.THIRDPARTY
+                "azure.identity", "DefaultAzureCredential", ImportType.SDKCORE
             )
         elif isinstance(credential_type, KeyCredentialType):
             imports.add_import("os", ImportType.STDLIB)
             imports.add_submodule_import(
                 "credentials",
                 "AzureKeyCredential",
-                ImportType.THIRDPARTY,
+                ImportType.SDKCORE,
             )
         for param in self.operation.parameters.positional:
             if (
