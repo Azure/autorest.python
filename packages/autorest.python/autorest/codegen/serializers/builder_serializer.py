@@ -645,15 +645,15 @@ class _OperationSerializer(
         type_ignore = self.async_mode and builder.group_name == ""  # is in a mixin
         stream_value = (
             f'kwargs.pop("stream", {builder.has_stream_response})'
-            if builder.expose_stream_keyword
+            if builder.expose_stream_keyword and builder.has_response_body
             else builder.has_stream_response
         )
         retval = [
-            f"_stream = {stream_value}" if builder.has_response_body else "",
+            f"_stream = {stream_value}",
             f"pipeline_response: PipelineResponse = {self._call_method}self._client.{self.pipeline_name}.run(  "
             + f"{'# type: ignore' if type_ignore else ''} # pylint: disable=protected-access",
             "    _request,",
-            "    stream=_stream," if builder.has_response_body else "",
+            "    stream=_stream,",
             "    **kwargs",
             ")",
         ]
@@ -1117,7 +1117,7 @@ class _OperationSerializer(
         retval = [
             f"if response.status_code not in {str(builder.success_status_codes)}:"
         ]
-        if not self.code_model.need_request_converter and builder.has_response_body:
+        if not self.code_model.need_request_converter:
             retval.extend(
                 [
                     "    if _stream:",

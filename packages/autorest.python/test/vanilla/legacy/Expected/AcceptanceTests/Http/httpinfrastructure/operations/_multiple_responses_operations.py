@@ -1286,7 +1286,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         _request.url = self._client.format_url(_request.url)
 
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, **kwargs
+            _request, stream=False, **kwargs
         )
 
         response = pipeline_response.http_response
