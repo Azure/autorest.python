@@ -612,7 +612,7 @@ class SdkCoreType(PrimitiveType):
         self.name = yaml_data.get("name", "")
 
     def docstring_type(self, **kwargs: Any) -> str:
-        return f"~{self.init_file_import().import_core}" + self.type_annotation(
+        return f"~{self.init_file_import().import_core}." + self.type_annotation(
             **kwargs
         )
 
