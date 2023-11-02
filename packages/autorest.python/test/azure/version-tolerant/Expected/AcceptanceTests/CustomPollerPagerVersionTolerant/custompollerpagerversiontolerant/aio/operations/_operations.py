@@ -11,7 +11,7 @@ import sys
 from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 import urllib.parse
 
-from custompollerpagerdefinitions.aio import AsyncCustomPager, AsyncCustomPoller, AsyncList
+from custompollerpagerdefinitions.aio import AsyncCustomPager, AsyncCustomPoller
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import (

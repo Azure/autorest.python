@@ -231,9 +231,9 @@ class PagingResponse(Response):
         if async_mode:
             pager_path = self.get_pager_import_path(async_mode)
             file_import.add_submodule_import(
-                pager_path,
+                "async_paging",
                 "AsyncList",
-                self._get_import_type(pager_path),
+                ImportType.SDKCORE,
             )
 
         return file_import
