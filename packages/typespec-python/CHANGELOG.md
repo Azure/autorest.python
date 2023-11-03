@@ -1,6 +1,6 @@
 # Release
 
-## 2023-11-02 - 0.15.9
+## 2023-11-03 - 0.15.9
 
 | Library                                                                 | Min Version   |
 | ----------------------------------------------------------------------- | ------------- |
@@ -16,8 +16,14 @@
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
 | `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
 
+**Bug Fixes**
+
+- Fix orphan enum usage override #2227
+
 **Other Changes**
 
+- Do not expose `stream` when no response #2234
+- Fix docstring for `match_condition` #2232
 - Bump min `@azure-tools/typespec-client-generator-core` dep to `0.36.0-dev.8` #2236
 
 ## 2023-10-27 - 0.15.8
