@@ -740,9 +740,12 @@ def _deserialize(
     value: typing.Any,
     module: typing.Optional[str] = None,
     rf: typing.Optional["_RestField"] = None,
+    format: typing.Optional[str] = None,
 ) -> typing.Any:
     if isinstance(value, PipelineResponse):
         value = value.http_response.json()
+    if rf is None and format:
+        rf = _RestField(format=format)
     deserializer = _get_deserialize_callable_from_annotation(deserializer, module, rf)
     return _deserialize_with_callable(deserializer, value)
 

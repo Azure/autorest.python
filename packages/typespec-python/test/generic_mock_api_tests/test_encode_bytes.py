@@ -110,9 +110,9 @@ def test_request_body(client: BytesClient, png_data: bytes):
     client.request_body.base64url(value=bytes("test", "utf-8"), )
 
 def test_response_body(client: BytesClient, png_data: bytes):
-    # expected = b"test"
-    # assert expected == client.response_body.default()
-    # assert expected == client.response_body.base64()
-    # assert expected == client.response_body.base64url()
+    expected = b"test"
+    assert expected == client.response_body.default()
+    assert expected == client.response_body.base64()
+    assert expected == client.response_body.base64url()
     assert client.response_body.octet_stream() == png_data
     assert client.response_body.custom_content_type() == png_data
