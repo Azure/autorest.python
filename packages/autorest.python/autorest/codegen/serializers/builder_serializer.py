@@ -428,9 +428,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
 
     @property
     def pipeline_name(self) -> str:
-        if not self.code_model.options["unbranded"]:
-            return "_pipeline"
-        return "pipeline"
+        return f"{'' if self.code_model.options['unbranded'] else '_'}pipeline"
 
 
 ############################## REQUEST BUILDERS ##############################
@@ -489,13 +487,13 @@ class RequestBuilderSerializer(
         return False
 
     def response_docstring(self, builder: RequestBuilderType) -> List[str]:
-        import_core_rest = builder.init_file_import().import_core_rest
+        request_full_path = f"{self.code_model.core_library}.rest.HttpRequest"
         response_str = (
-            f":return: Returns an :class:`~{import_core_rest}.HttpRequest` that you will pass to the client's "
+            f":return: Returns an :class:`~{request_full_path}` that you will pass to the client's "
             + "`send_request` method. See https://aka.ms/azsdk/dpcodegen/python/send_request for how to "
             + "incorporate this response into your code flow."
         )
-        rtype_str = f":rtype: ~{import_core_rest}.HttpRequest"
+        rtype_str = f":rtype: ~{request_full_path}"
         return [response_str, rtype_str]
 
     def pop_kwargs_from_signature(self, builder: RequestBuilderType) -> List[str]:
@@ -730,7 +728,7 @@ class _OperationSerializer(
         return [
             response_str,
             rtype_str,
-            f":raises ~{builder.init_file_import().import_core_exceptions}.HttpResponseError:",
+            f":raises ~{self.code_model.core_library}.exceptions.HttpResponseError:",
         ]
 
     def _serialize_body_parameter(self, builder: OperationType) -> List[str]:

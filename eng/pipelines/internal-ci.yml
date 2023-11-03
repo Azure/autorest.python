@@ -21,9 +21,16 @@ steps:
           installCadlRanch: true
           folderName: "typespec-python"
           regenerate: true
-    - script: tox run -e ci
-      displayName: Mock Api Tests
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/test
+
+    - script: |
+            tox run -e ci
+      displayName: Mock Api Tests for Unbranded
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/test/unbranded
+
+    - script: |
+            tox run -e ci
+      displayName: Mock Api Tests for Azure
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/test/azure
 
     - task: AzureCLI@2
       displayName: Upload scenario manifest

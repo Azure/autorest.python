@@ -19,10 +19,10 @@ import email
 from datetime import datetime, date, time, timedelta, timezone
 from json import JSONEncoder
 import isodate
-from {{ file_import.import_core_exceptions }} import DeserializationError
-from {{ file_import.import_core_case_insensitive_enum }} import CaseInsensitiveEnumMeta
-from {{ file_import.import_core_pipeline }} import PipelineResponse
-from {{ file_import.import_core_serialization }} import _Null
+from {{ code_model.core_library }}.exceptions import DeserializationError
+from {{ code_model.core_library }}{{ ".utils" if code_model.options["unbranded"] else "" }} import CaseInsensitiveEnumMeta
+from {{ code_model.core_library }}.{{ "runtime." if code_model.options["unbranded"] else "" }}pipeline import PipelineResponse
+from {{ code_model.core_library }}.serialization import _Null
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
