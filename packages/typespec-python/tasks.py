@@ -71,6 +71,9 @@ EMITTER_OPTIONS = {
     "type/model/inheritance/single-discriminator": {
         "package-name": "typetest-model-singlediscriminator",
     },
+    "type/model/inheritance/nested-property": {
+        "package-name": "typetest-model-nestedproperty",
+    },
     "type/model/usage": {
         "package-name": "typetest-model-usage",
     },
