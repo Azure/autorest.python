@@ -13,6 +13,7 @@ from ..models import (
     RequestBuilder,
     OverloadedRequestBuilder,
     Client,
+    FileImport,
 )
 from .import_serializer import FileImportSerializer
 from .builder_serializer import (
@@ -56,7 +57,7 @@ class OperationGroupsSerializer(BaseSerializer):
             if self.operation_group
             else [og for client in self.clients for og in client.operation_groups]
         )
-        imports = self.init_file_import()
+        imports = FileImport(self.code_model)
         for operation_group in operation_groups:
             imports.merge(
                 operation_group.imports(

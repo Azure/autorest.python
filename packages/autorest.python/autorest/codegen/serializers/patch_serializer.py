@@ -4,14 +4,14 @@
 # license information.
 # --------------------------------------------------------------------------
 from .import_serializer import FileImportSerializer
-from ..models import ImportType
+from ..models import ImportType, FileImport
 from .base_serializer import BaseSerializer
 
 
 class PatchSerializer(BaseSerializer):
     def serialize(self) -> str:
         template = self.env.get_template("patch.py.jinja2")
-        imports = self.init_file_import()
+        imports = FileImport(self.code_model)
         imports.add_submodule_import("typing", "List", ImportType.STDLIB)
         return template.render(
             code_model=self.code_model,

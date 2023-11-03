@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import List, Dict, Any, Set, Union
+from typing import List, Dict, Any, Set, Union, Literal
 
 from .base import BaseType
 from .enum_type import EnumType
@@ -201,6 +201,10 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
     def enums(self) -> List[EnumType]:
         """All of the enums"""
         return [t for t in self.types_map.values() if isinstance(t, EnumType)]
+
+    @property
+    def core_library(self) -> Literal["azure.core", "corehttp"]:
+        return "azure.core" if not self.options["unbranded"] else "corehttp"
 
     def _sort_model_types_helper(
         self,

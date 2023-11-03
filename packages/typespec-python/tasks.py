@@ -255,7 +255,18 @@ def regenerate_unbranded(c, name=None, debug=False):
 
 
 @task
-def regenerate(c, name=None, debug=False):
+def regenerate(
+    c,
+    name=None,
+    debug=False,
+    azure=False,
+    unbranded=False,
+):
+    if azure ^ unbranded:
+        # this means that only azure or only unbranded is true
+        if azure:
+            return regenerate_azure(c, name, debug)
+        return regenerate_unbranded(c, name, debug)
     regenerate_azure(c, name, debug)
     regenerate_unbranded(c, name, debug)
 

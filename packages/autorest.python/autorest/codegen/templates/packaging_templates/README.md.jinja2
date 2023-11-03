@@ -67,7 +67,7 @@ Use the returned token credential to authenticate the client:
 ```python
 >>> from {{ namespace }} import {{ client_name }}
 >>> from azure.identity import DefaultAzureCredential
->>> from {{ file_import.import_core_exceptions }} import HttpResponseError
+>>> from {{ code_model.core_library }}.exceptions import HttpResponseError
 
 >>> client = {{ client_name }}(endpoint='<endpoint>', credential=DefaultAzureCredential())
 >>> try:
