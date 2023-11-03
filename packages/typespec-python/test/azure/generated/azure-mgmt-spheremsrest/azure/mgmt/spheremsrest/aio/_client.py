@@ -52,7 +52,7 @@ class AzureSphereClient:  # pylint: disable=client-accepts-api-version-keyword,t
     :vartype devices: azure.mgmt.spheremsrest.aio.operations.DevicesOperations
     :ivar products: ProductsOperations operations
     :vartype products: azure.mgmt.spheremsrest.aio.operations.ProductsOperations
-    :param credential: Credential needed for the client to connect to cloud service. Required.
+    :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param subscription_id: The ID of the target subscription. Required.
     :type subscription_id: str

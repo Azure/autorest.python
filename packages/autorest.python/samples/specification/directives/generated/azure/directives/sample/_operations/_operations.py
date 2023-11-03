@@ -10,6 +10,8 @@ from io import IOBase
 import sys
 from typing import Any, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, cast, overload
 
+from my.library import CustomDefaultPollingMethod, CustomPager, CustomPoller
+
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -23,7 +25,6 @@ from azure.core.polling import NoPolling, PollingMethod
 from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
-from my.library import CustomDefaultPollingMethod, CustomPager, CustomPoller
 
 from .._serialization import Serializer
 from .._vendor import PollingPagingExampleMixinABC

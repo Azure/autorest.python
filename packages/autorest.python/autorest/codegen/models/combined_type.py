@@ -103,7 +103,7 @@ class CombinedType(BaseType):
         raise ValueError("You shouldn't do instance checks on a multiple type")
 
     def imports(self, **kwargs: Any) -> FileImport:
-        file_import = self.init_file_import()
+        file_import = FileImport(self.code_model)
         if self.name and not kwargs.get("is_types_file"):
             file_import.add_submodule_import(
                 kwargs.pop("relative_path"),

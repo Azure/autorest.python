@@ -8,15 +8,19 @@ import logging
 from typing import Dict, Any, Union, Tuple
 from jinja2 import Environment
 
-from autorest.codegen.models.credential_types import KeyCredentialType
-from autorest.codegen.models.credential_types import TokenCredentialType
-from autorest.codegen.models.imports import ImportType
 from autorest.codegen.models.operation import OperationBase
-from autorest.codegen.models.operation_group import OperationGroup
-from autorest.codegen.models.parameter import Parameter, BodyParameter
-from autorest.codegen.serializers.import_serializer import FileImportSerializer
-from autorest.codegen.serializers.base_serializer import BaseSerializer
-from ..models import CodeModel
+from .import_serializer import FileImportSerializer
+from .base_serializer import BaseSerializer
+from ..models import (
+    CodeModel,
+    KeyCredentialType,
+    TokenCredentialType,
+    ImportType,
+    OperationGroup,
+    Parameter,
+    BodyParameter,
+    FileImport,
+)
 from .utils import get_namespace_config, get_namespace_from_package_name
 from ..._utils import to_snake_case
 
@@ -43,7 +47,7 @@ class SampleSerializer(BaseSerializer):
         }
 
     def _imports(self) -> FileImportSerializer:
-        imports = self.init_file_import()
+        imports = FileImport(self.code_model)
         namespace_from_package_name = get_namespace_from_package_name(
             self.code_model.options["package_name"]
         )
@@ -57,18 +61,18 @@ class SampleSerializer(BaseSerializer):
         ) > namespace_from_package_name.count("."):
             namespace = namespace_config
         client = self.code_model.clients[0]
-        imports.add_submodule_import(namespace, client.name, ImportType.THIRDPARTY)
+        imports.add_submodule_import(namespace, client.name, ImportType.LOCAL)
         credential_type = getattr(client.credential, "type", None)
         if isinstance(credential_type, TokenCredentialType):
             imports.add_submodule_import(
-                "azure.identity", "DefaultAzureCredential", ImportType.THIRDPARTY
+                "azure.identity", "DefaultAzureCredential", ImportType.SDKCORE
             )
         elif isinstance(credential_type, KeyCredentialType):
             imports.add_import("os", ImportType.STDLIB)
             imports.add_submodule_import(
-                f"{imports.import_core}.credentials",
+                "credentials",
                 "AzureKeyCredential",
-                ImportType.THIRDPARTY,
+                ImportType.SDKCORE,
             )
         for param in self.operation.parameters.positional:
             if (

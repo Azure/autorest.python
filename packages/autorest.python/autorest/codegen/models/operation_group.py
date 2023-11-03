@@ -48,7 +48,7 @@ class OperationGroup(BaseModel):
         return ", ".join(base_classes)
 
     def imports_for_multiapi(self, async_mode: bool) -> FileImport:
-        file_import = self.init_file_import()
+        file_import = FileImport(self.code_model)
         relative_path = ".." if async_mode else "."
         for operation in self.operations:
             file_import.merge(
@@ -79,7 +79,7 @@ class OperationGroup(BaseModel):
         return any(o for o in self.operations if o.need_validation)
 
     def imports(self, async_mode: bool) -> FileImport:
-        file_import = self.init_file_import()
+        file_import = FileImport(self.code_model)
 
         relative_path = ("..." if async_mode else "..") + (
             "." if self.client.is_subclient else ""

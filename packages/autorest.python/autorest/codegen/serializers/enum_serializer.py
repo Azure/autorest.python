@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 
 from .base_serializer import BaseSerializer
+from ..models import FileImport
 
 
 class EnumSerializer(BaseSerializer):
@@ -12,5 +13,5 @@ class EnumSerializer(BaseSerializer):
         # Generate the enum file
         template = self.env.get_template("enum_container.py.jinja2")
         return template.render(
-            code_model=self.code_model, file_import=self.init_file_import()
+            code_model=self.code_model, file_import=FileImport(self.code_model)
         )

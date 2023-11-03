@@ -78,10 +78,10 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
         )
 
     def response_docstring_type(self, **kwargs) -> str:
-        return f"~{self.init_file_import().import_core_rest}.HttpRequest"
+        return f"~{self.code_model.core_library}.rest.HttpRequest"
 
     def imports(self) -> FileImport:
-        file_import = self.init_file_import()
+        file_import = FileImport(self.code_model)
         relative_path = ".."
         if (
             not self.code_model.options["builders_visibility"] == "embedded"
@@ -98,14 +98,14 @@ class RequestBuilderBase(BaseBuilder[ParameterListType]):
             )
 
         file_import.add_submodule_import(
-            file_import.import_core_rest,
+            "rest",
             "HttpRequest",
             ImportType.SDKCORE,
         )
 
         if self.parameters.headers or self.parameters.query:
             file_import.add_submodule_import(
-                file_import.import_core_utils,
+                "utils",
                 "case_insensitive_dict",
                 ImportType.SDKCORE,
             )
