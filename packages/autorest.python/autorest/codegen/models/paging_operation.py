@@ -62,11 +62,11 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
         self.override_success_response_to_200 = override_success_response_to_200
         self.pager_sync: str = (
             yaml_data.get("pagerSync")
-            or f"{self.init_file_import().import_core_paging}.ItemPaged"
+            or f"{self.code_model.core_library}.paging.ItemPaged"
         )
         self.pager_async: str = (
             yaml_data.get("pagerAsync")
-            or f"{self.init_file_import().import_core_paging_async}.AsyncItemPaged"
+            or f"{self.code_model.core_library}.paging.AsyncItemPaged"
         )
 
     def _get_attr_name(self, wire_name: str) -> str:
@@ -150,7 +150,7 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
 
     def imports(self, async_mode: bool, **kwargs: Any) -> FileImport:
         if self.abstract:
-            return self.init_file_import()
+            return FileImport(self.code_model)
         file_import = self._imports_shared(async_mode, **kwargs)
         file_import.merge(super().imports(async_mode, **kwargs))
         if self.code_model.options["tracing"] and self.want_tracing:
@@ -166,7 +166,7 @@ class PagingOperationBase(OperationBase[PagingResponseType]):
         elif any(p.is_api_version for p in self.client.parameters):
             file_import.add_import("urllib.parse", ImportType.STDLIB)
             file_import.add_submodule_import(
-                file_import.import_core_utils,
+                "utils",
                 "case_insensitive_dict",
                 ImportType.SDKCORE,
             )

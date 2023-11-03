@@ -10,6 +10,8 @@ import sys
 from typing import Any, Callable, Dict, Iterable, Optional, TypeVar, Union, cast
 import urllib.parse
 
+from custompollerpagerdefinitions import CustomPager, CustomPoller
+
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -27,7 +29,6 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
-from custompollerpagerdefinitions import CustomPager, CustomPoller
 
 from .. import models as _models
 from .._serialization import Serializer

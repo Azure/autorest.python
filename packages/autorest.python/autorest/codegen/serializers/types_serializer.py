@@ -10,7 +10,7 @@ from .base_serializer import BaseSerializer
 
 class TypesSerializer(BaseSerializer):
     def imports(self) -> FileImport:
-        file_import = self.init_file_import()
+        file_import = FileImport(self.code_model)
         if self.code_model.named_unions:
             file_import.add_submodule_import(
                 "typing",

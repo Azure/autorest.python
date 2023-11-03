@@ -86,9 +86,9 @@ class KeyCredentialPolicyType(_CredentialPolicyBaseType):
     @property
     def credential_name(self) -> str:
         return (
-            "AzureKeyCredential"
-            if not self.code_model.options["unbranded"]
-            else "ServiceKeyCredential"
+            "ServiceKeyCredential"
+            if self.code_model.options["unbranded"]
+            else "AzureKeyCredential"
         )
 
     def call(self, async_mode: bool) -> str:
@@ -186,23 +186,31 @@ class TokenCredentialType(
     def type_description(self) -> str:
         return "TokenCredential"
 
+    @property
+    def credentials_subfolder(self) -> str:
+        return (
+            "credentials"
+            if self.code_model.options["unbranded"]
+            else "credentials_async"
+        )
+
     def docstring_type(self, **kwargs: Any) -> str:
         if kwargs.get("async_mode"):
-            return f"~{self.init_file_import().import_core_credentials_async}.AsyncTokenCredential"
-        return f"~{self.init_file_import().import_core_credentials}.TokenCredential"
+            return f"~{self.code_model.core_library}.{self.credentials_subfolder}.AsyncTokenCredential"
+        return f"~{self.code_model.core_library}.credentials.TokenCredential"
 
     def imports(self, **kwargs: Any) -> FileImport:
-        file_import = self.init_file_import()
+        file_import = super().imports(**kwargs)
         if kwargs.get("async_mode"):
             file_import.add_submodule_import(
-                file_import.import_core_credentials_async,
+                self.credentials_subfolder,
                 "AsyncTokenCredential",
                 ImportType.SDKCORE,
                 typing_section=TypingSection.TYPING,
             )
         else:
             file_import.add_submodule_import(
-                file_import.import_core_credentials,
+                "credentials",
                 "TokenCredential",
                 ImportType.SDKCORE,
                 typing_section=TypingSection.TYPING,
@@ -221,7 +229,9 @@ class KeyCredentialType(
     """Type for an KeyCredential"""
 
     def docstring_type(self, **kwargs: Any) -> str:  # pylint: disable=unused-argument
-        return f"~{self.init_file_import().import_core}.credentials.{self.policy.credential_name}"
+        return (
+            f"~{self.code_model.core_library}.credentials.{self.policy.credential_name}"
+        )
 
     def type_annotation(self, **kwargs: Any) -> str:  # pylint: disable=unused-argument
         return self.policy.credential_name
@@ -231,9 +241,9 @@ class KeyCredentialType(
         return "isinstance({}, " + f"{self.policy.credential_name})"
 
     def imports(self, **kwargs: Any) -> FileImport:  # pylint: disable=unused-argument
-        file_import = self.init_file_import()
+        file_import = super().imports(**kwargs)
         file_import.add_submodule_import(
-            f"{file_import.import_core}.credentials",
+            "credentials",
             self.policy.credential_name,
             ImportType.SDKCORE,
             typing_section=TypingSection.CONDITIONAL,

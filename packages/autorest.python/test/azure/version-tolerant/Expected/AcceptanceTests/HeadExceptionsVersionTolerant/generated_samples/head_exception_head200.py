@@ -7,6 +7,7 @@
 # --------------------------------------------------------------------------
 
 from azure.identity import DefaultAzureCredential
+
 from headexceptionsversiontolerant import AutoRestHeadExceptionTestService
 
 """

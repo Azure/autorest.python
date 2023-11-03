@@ -230,7 +230,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
     def _imports_shared(
         self, async_mode: bool, **kwargs: Any  # pylint: disable=unused-argument
     ) -> FileImport:
-        file_import = self.init_file_import()
+        file_import = FileImport(self.code_model)
         file_import.add_submodule_import(
             "typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL
         )
@@ -308,7 +308,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         async_mode: bool,
     ) -> FileImport:
         """Helper method to get a request builder import."""
-        file_import = self.init_file_import()
+        file_import = FileImport(self.code_model)
         if self.code_model.options["builders_visibility"] != "embedded":
             group_name = request_builder.group_name
             rest_import_path = "..." if async_mode else ".."
@@ -338,7 +338,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         self, async_mode: bool, **kwargs: Any
     ) -> FileImport:
         if self.abstract:
-            return self.init_file_import()
+            return FileImport(self.code_model)
         file_import = self._imports_shared(async_mode, **kwargs)
 
         for param in self.parameters.method:
@@ -378,9 +378,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             "ResourceNotModifiedError",
         ]
         for error in errors:
-            file_import.add_submodule_import(
-                file_import.import_core_exceptions, error, ImportType.SDKCORE
-            )
+            file_import.add_submodule_import("exceptions", error, ImportType.SDKCORE)
         if self.code_model.options["azure_arm"]:
             file_import.add_submodule_import(
                 "azure.mgmt.core.exceptions", "ARMErrorFormat", ImportType.SDKCORE
@@ -392,7 +390,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             self.parameters.kwargs_to_pop, ParameterLocation.QUERY  # type: ignore
         ):
             file_import.add_submodule_import(
-                file_import.import_core_utils,
+                "utils",
                 "case_insensitive_dict",
                 ImportType.SDKCORE,
             )
@@ -406,7 +404,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods
             )
         if self.has_etag:
             file_import.add_submodule_import(
-                file_import.import_core_exceptions,
+                "exceptions",
                 "ResourceModifiedError",
                 ImportType.SDKCORE,
             )
@@ -433,13 +431,13 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         else:
             if async_mode:
                 file_import.add_submodule_import(
-                    file_import.import_core_rest,
+                    "rest",
                     "AsyncHttpResponse",
                     ImportType.SDKCORE,
                 )
             else:
                 file_import.add_submodule_import(
-                    file_import.import_core_rest,
+                    "rest",
                     "HttpResponse",
                     ImportType.SDKCORE,
                 )
@@ -449,13 +447,11 @@ class OperationBase(  # pylint: disable=too-many-public-methods
         ):
             file_import.merge(self.request_builder.imports())
         file_import.add_submodule_import(
-            file_import.import_core_pipeline,
+            f"{'runtime.' if self.code_model.options['unbranded'] else ''}pipeline",
             "PipelineResponse",
             ImportType.SDKCORE,
         )
-        file_import.add_submodule_import(
-            file_import.import_core_rest, "HttpRequest", ImportType.SDKCORE
-        )
+        file_import.add_submodule_import("rest", "HttpRequest", ImportType.SDKCORE)
         file_import.add_submodule_import(
             "typing", "Callable", ImportType.STDLIB, TypingSection.CONDITIONAL
         )

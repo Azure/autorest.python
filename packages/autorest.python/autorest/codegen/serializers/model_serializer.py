@@ -129,7 +129,7 @@ class _ModelSerializer(BaseSerializer, ABC):
 
 class MsrestModelSerializer(_ModelSerializer):
     def imports(self) -> FileImport:
-        file_import = self.init_file_import()
+        file_import = FileImport(self.code_model)
         file_import.add_msrest_import(
             relative_path="..",
             msrest_import_type=MsrestImportType.Module,
@@ -198,7 +198,7 @@ class MsrestModelSerializer(_ModelSerializer):
 
 class DpgModelSerializer(_ModelSerializer):
     def imports(self) -> FileImport:
-        file_import = self.init_file_import()
+        file_import = FileImport(self.code_model)
         file_import.add_submodule_import(
             "..",
             "_model_base",
