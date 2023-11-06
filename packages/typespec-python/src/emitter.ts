@@ -120,9 +120,18 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
         `--output-folder=${outputDir}`,
         `--cadl-file=${yamlPath}`,
     ];
+    if (resolvedOptions["packaging-files-config"]) {
+        const keyValuePairs = Object.entries(resolvedOptions["packaging-files-config"]).map(([key, value]) => {
+            return `${key}:${value}`;
+        });
+        commandArgs.push(`--packaging-files-config='${keyValuePairs.join('|')}'`);
+        resolvedOptions["packaging-files-config"] = undefined;
+    }
 
     for (const [key, value] of Object.entries(resolvedOptions)) {
-        commandArgs.push(`--${key}=${value}`);
+        if (value !== undefined) {
+            commandArgs.push(`--${key}=${value}`);
+        }
     }
     if (resolvedOptions.debug) {
         commandArgs.push("--debug");

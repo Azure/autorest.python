@@ -150,6 +150,29 @@ class OptionsRetriever:
         # Force some options in ARM MODE
         return True if self.azure_arm else head_as_boolean
 
+    @property
+    def package_mode(self) -> str:
+        return self.options.get("packaging-files-dir") or self.options.get(
+            "package-mode", ""
+        )
+
+    @property
+    def packaging_files_config(self) -> Dict[str, Any] | None:
+        packaging_files_config = self.options.get("packaging-files-config")
+        if packaging_files_config is None:
+            return None
+        # packaging-files-config is either a string or a dict
+        # if it's a string, we can split on the comma to get the dict
+        # otherwise we just return
+        try:
+            return {
+                k.strip(): v.strip()
+                for k, v in [i.split(":") for i in packaging_files_config.split("|")]
+            }
+        except AttributeError:
+            return packaging_files_config
+
+
 
 class CodeGenerator(Plugin):
     def __init__(self, *args, **kwargs: Any) -> None:
@@ -273,7 +296,6 @@ class CodeGenerator(Plugin):
                     break
 
     def _build_code_model_options(self) -> Dict[str, Any]:
-        """Build en options dict from the user input while running autorest."""
         flags = [
             "azure_arm",
             "head_as_boolean",
@@ -298,7 +320,7 @@ class CodeGenerator(Plugin):
             "combine_operation_files",
             "package_mode",
             "package_pprint_name",
-            "package_configuration",
+            "packaging_files_config",
             "default_optional_constants_to_none",
             "generate_sample",
             "default_api_version",
@@ -397,7 +419,7 @@ class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
             ),
             "package-mode": self._autorestapi.get_value("package-mode"),
             "package-pprint-name": self._autorestapi.get_value("package-pprint-name"),
-            "package-configuration": self._autorestapi.get_value(
+            "packaging-files-config": self._autorestapi.get_value(
                 "package-configuration"
             ),
             "default-optional-constants-to-none": self._autorestapi.get_boolean_value(
