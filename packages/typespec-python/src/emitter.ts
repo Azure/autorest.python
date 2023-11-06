@@ -124,7 +124,7 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
         const keyValuePairs = Object.entries(resolvedOptions["packaging-files-config"]).map(([key, value]) => {
             return `${key}:${value}`;
         });
-        commandArgs.push(`--packaging-files-config='${keyValuePairs.join('|')}'`);
+        commandArgs.push(`--packaging-files-config='${keyValuePairs.join("|")}'`);
         resolvedOptions["packaging-files-config"] = undefined;
     }
 
