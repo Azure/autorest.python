@@ -22,6 +22,10 @@
 - Correctly apply routes when defined on the resource. Fix was to bump min `@azure-tools/typespec-azure-core` version. #2243
 - Add dependency on `requests` when using `corehttp`. #2247
 
+**Other Changes**
+
+- Allow users to pass in a folder of template files and arguments to these templates with emitter configs `packaging-files-dir` and `packaging-files-config` #2248
+
 ## 2023-11-03 - 0.15.9
 
 | Library                                                                 | Min Version   |
