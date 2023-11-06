@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, Any, Union
+from typing import Dict, Any, Union, Optional
 from pathlib import Path
 import yaml
 
@@ -157,7 +157,7 @@ class OptionsRetriever:
         )
 
     @property
-    def packaging_files_config(self) -> Dict[str, Any] | None:
+    def packaging_files_config(self) -> Optional[Dict[str, Any]]:
         packaging_files_config = self.options.get("packaging-files-config")
         if packaging_files_config is None:
             return None
@@ -171,7 +171,6 @@ class OptionsRetriever:
             }
         except AttributeError:
             return packaging_files_config
-
 
 
 class CodeGenerator(Plugin):
