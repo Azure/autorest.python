@@ -203,6 +203,12 @@ function emitProperty(context: SdkContext, type: SdkBodyModelPropertyType): Reco
     };
 }
 
+function getDefaultModelName(): string {
+    // currently randomly generate a model bc all models should have names
+    // once we have anonymous model naming, we won't need this function anymore
+    return `Model${Math.random().toString().substring(2)}`;
+}
+
 function emitModel(context: SdkContext, type: SdkModelType): Record<string, any> {
     if (isEmptyModel(type)) {
         return {
@@ -215,7 +221,7 @@ function emitModel(context: SdkContext, type: SdkModelType): Record<string, any>
     }
     const newValue = {
         type: type.kind,
-        name: type.name,
+        name: type.name ? type.name : getDefaultModelName(),
         description: type.description,
         parents: type.baseModel ? [getType(context, type.baseModel)] : [],
         discriminatorValue: type.discriminatorValue,
@@ -252,7 +258,7 @@ function emitEnum(type: SdkEnumType): Record<string, any> {
     }
     const values: Record<string, any>[] = [];
     const newValue = {
-        name: type.name,
+        name: type.name ?? getDefaultModelName(),
         snakeCaseName: camelToSnakeCase(type.name),
         description: type.description || `Type of ${type.name}`,
         internal: type.access === "internal",
