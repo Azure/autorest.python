@@ -18,6 +18,7 @@ import typing
 import email
 from datetime import datetime, date, time, timedelta, timezone
 from json import JSONEncoder
+from typing import Any
 import isodate
 from azure.core.exceptions import DeserializationError
 from azure.core import CaseInsensitiveEnumMeta
@@ -559,6 +560,11 @@ class Model(_MyMutableMapping):
         if isinstance(v, dict):
             return {dk: Model._as_dict_value(dv, exclude_readonly=exclude_readonly) for dk, dv in v.items()}
         return v.as_dict(exclude_readonly=exclude_readonly) if hasattr(v, "as_dict") else v
+
+    def __getattr__(self, name):
+        if not hasattr(self, name) and hasattr(self, "properties"):
+            return getattr(self.properties, name)
+        return super().__getattr__(name)
 
 
 def _get_deserialize_callable_from_annotation(  # pylint: disable=R0911, R0915, R0912
