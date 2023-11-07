@@ -150,7 +150,7 @@ function emitCredential(auth: HttpAuth): Record<string, any> {
             policy: {
                 type: "KeyCredentialPolicy",
                 key: "Authorization",
-                scheme: auth.scheme,
+                scheme: auth.scheme[0].toUpperCase() + auth.scheme.slice(1),
             },
         };
     }
