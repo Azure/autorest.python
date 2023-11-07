@@ -22,6 +22,10 @@
 - HTTP auth prefix case sensitive. #2250
 - Remove base model flag of JSON for anonymous model. #2250
 
+**Other Changes**
+
+- Allow users to pass in a folder of template files and arguments to these templates with emitter configs `packaging-files-dir` and `packaging-files-config` #2248
+
 ## 2023-11-06 - 0.15.10
 
 | Library                                                                 | Min Version   |
