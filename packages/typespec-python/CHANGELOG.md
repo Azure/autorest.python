@@ -1,5 +1,26 @@
 # Release
 
+## 2023-11-07 - 0.15.12
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.50.0`      |
+| `@typespec/http`                                                        | `0.50.0`      |
+| `@typespec/rest`                                                        | `0.50.0`      |
+| `@typespec/versioning`                                                  | `0.50.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.36.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.36.0`      |
+| `azure-core` dep of generated code                                      | `1.28.0`      |
+| `corehttp` dep of generated code                                        | `1.0.0b1`     |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**Bug Fixes**
+
+- Bump `tsp` versions to `0.50.0`
+
 ## 2023-11-07 - 0.15.11
 
 | Library                                                                 | Min Version   |
