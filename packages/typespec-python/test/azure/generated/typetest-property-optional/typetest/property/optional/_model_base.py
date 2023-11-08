@@ -473,6 +473,18 @@ class Model(_MyMutableMapping):
         else:
             non_attr_kwargs = [k for k in kwargs if k not in self._attr_to_rest_field]
             if non_attr_kwargs:
+                if "properties" in self._attr_to_rest_field:
+                    properties_attr_dict = self._attr_to_rest_field["properties"]._type.args[0].args[0].__dict__
+                    properties_class = self._attr_to_rest_field["properties"]._type.args[0].args[0]
+                    properties_kwargs = {}
+                    for item in non_attr_kwargs:
+                        if item in properties_attr_dict:
+                            properties_kwargs[item] = kwargs[item]
+                    kwargs["properties"] = properties_class(**properties_kwargs)
+                    for item in properties_kwargs:
+                        kwargs.pop(item)
+                        non_attr_kwargs.remove(item)
+            if non_attr_kwargs:
                 # actual type errors only throw the first wrong keyword arg they see, so following that.
                 raise TypeError(f"{class_name}.__init__() got an unexpected keyword argument '{non_attr_kwargs[0]}'")
             dict_to_pass.update(
