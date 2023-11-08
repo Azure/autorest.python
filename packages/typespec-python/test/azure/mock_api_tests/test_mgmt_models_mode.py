@@ -29,3 +29,28 @@ def test_model_mode():
     from azure.mgmt.spheremsrest import _serialization
     from azure.mgmt.spheremsrest.models import ArmResource as ArmResourceMsrest
     assert isinstance(ArmResourceMsrest(id="", type=""), _serialization.Model)
+
+def test_dpg_model():
+    from azure.mgmt.spheredpg.models import Catalog, CatalogProperties
+    catalog = Catalog(location="eastus", tags={"hello": "world"}, properties=CatalogProperties(provisioning_state="Succeeded"))
+    assert catalog.location == "eastus"
+    assert catalog.tags == {"hello": "world"}
+    assert catalog.properties.provisioning_state == "Succeeded"
+    assert catalog.provisioning_state == "Succeeded"
+
+    catalog = Catalog()
+    assert catalog.location is None
+    assert catalog.tags is None
+    assert catalog.properties is None
+    assert catalog.provisioning_state is None
+
+    catalog = Catalog(provisioning_state="Succeeded")
+    assert catalog.provisioning_state == "Succeeded"
+    assert catalog.properties.provisioning_state == "Succeeded"
+
+    catalog.provisioning_state = "Failed"
+    assert catalog.properties.provisioning_state == "Failed"
+    
+    catalog.properties.provisioning_state = "Caceled"
+    assert catalog.provisioning_state == "Caceled"
+    
