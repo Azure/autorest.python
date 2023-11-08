@@ -12,13 +12,6 @@ from ._operations import DatetimeOperations
 from ._operations import DurationOperations
 from ._operations import CollectionsByteOperations
 from ._operations import CollectionsModelOperations
-from ._operations import StringLiteralOperations
-from ._operations import IntLiteralOperations
-from ._operations import FloatLiteralOperations
-from ._operations import BooleanLiteralOperations
-from ._operations import UnionStringLiteralOperations
-from ._operations import UnionIntLiteralOperations
-from ._operations import UnionFloatLiteralOperations
 from ._operations import RequiredAndOptionalOperations
 
 from ._patch import __all__ as _patch_all
@@ -32,13 +25,6 @@ __all__ = [
     "DurationOperations",
     "CollectionsByteOperations",
     "CollectionsModelOperations",
-    "StringLiteralOperations",
-    "IntLiteralOperations",
-    "FloatLiteralOperations",
-    "BooleanLiteralOperations",
-    "UnionStringLiteralOperations",
-    "UnionIntLiteralOperations",
-    "UnionFloatLiteralOperations",
     "RequiredAndOptionalOperations",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])

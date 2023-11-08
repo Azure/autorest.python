@@ -7,24 +7,18 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import sys
 from typing import Any, List, Mapping, TYPE_CHECKING, Union, overload
 
 from .. import _model_base
 from .._model_base import rest_field
 
-if sys.version_info >= (3, 8):
-    from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
-else:
-    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
-
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from .. import _types, models as _models
+    from .. import _types
 
 
-class Cat(_model_base.Model):
-    """Cat.
+class BaseModel(_model_base.Model):
+    """This is a base model.
 
     All required parameters must be populated in order to send to server.
 
@@ -54,23 +48,26 @@ class Cat(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class Dog(_model_base.Model):
-    """Dog.
+class Model1(BaseModel):
+    """The first one of the unioned model type.
 
     All required parameters must be populated in order to send to server.
 
-    :ivar bark: Required.
-    :vartype bark: str
+    :ivar name: Required.
+    :vartype name: str
+    :ivar prop1: Required.
+    :vartype prop1: int
     """
 
-    bark: str = rest_field()
+    prop1: int = rest_field()
     """Required."""
 
     @overload
     def __init__(
         self,
         *,
-        bark: str,
+        name: str,
+        prop1: int,
     ):
         ...
 
@@ -85,187 +82,26 @@ class Dog(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class EnumsOnlyCases(_model_base.Model):
-    """EnumsOnlyCases.
+class Model2(BaseModel):
+    """The second one of the unioned model type.
 
     All required parameters must be populated in order to send to server.
 
-    :ivar lr: This should be receive/send the left variant. Required. Is either a Union[str,
-     "_models.LR"] type or a Union[str, "_models.UD"] type.
-    :vartype lr: str or ~typetest.union.models.LR or str or ~typetest.union.models.UD
-    :ivar ud: This should be receive/send the up variant. Required. Is either a Union[str,
-     "_models.UD"] type or a Union[str, "_models.UD"] type.
-    :vartype ud: str or ~typetest.union.models.UD or str or ~typetest.union.models.UD
+    :ivar name: Required.
+    :vartype name: str
+    :ivar prop2: Required.
+    :vartype prop2: int
     """
 
-    lr: Union[str, "_models.LR", str, "_models.UD"] = rest_field()
-    """This should be receive/send the left variant. Required. Is either a Union[str, \"_models.LR\"]
-     type or a Union[str, \"_models.UD\"] type."""
-    ud: Union[str, "_models.UD", str, "_models.UD"] = rest_field()
-    """This should be receive/send the up variant. Required. Is either a Union[str, \"_models.UD\"]
-     type or a Union[str, \"_models.UD\"] type."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        lr: Union[str, "_models.LR", str, "_models.UD"],
-        ud: Union[str, "_models.UD", str, "_models.UD"],
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class GeneratedName1(_model_base.Model):
-    """GeneratedName1.
-
-    All required parameters must be populated in order to send to server.
-
-    :ivar prop: Required. Is one of the following types: Literal["a"], Literal["b"], Literal["c"]
-    :vartype prop: str or str or str
-    """
-
-    prop: Union[Literal["a"], Literal["b"], Literal["c"]] = rest_field()
-    """Required. Is one of the following types: Literal[\"a\"], Literal[\"b\"], Literal[\"c\"]"""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        prop: Union[Literal["a"], Literal["b"], Literal["c"]],
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class GeneratedName10(_model_base.Model):
-    """GeneratedName10.
-
-    All required parameters must be populated in order to send to server.
-
-    :ivar prop: Required. Is one of the following types: float, float, float
-    :vartype prop: float or float or float
-    """
-
-    prop: Union[float, float, float] = rest_field()
-    """Required. Is one of the following types: float, float, float"""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        prop: Union[float, float, float],
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class GeneratedName11(_model_base.Model):
-    """GeneratedName11.
-
-    All required parameters must be populated in order to send to server.
-
-    :ivar prop: Required. Is either a Cat type or a Dog type.
-    :vartype prop: ~typetest.union.models.Cat or ~typetest.union.models.Dog
-    """
-
-    prop: Union["_models.Cat", "_models.Dog"] = rest_field()
-    """Required. Is either a Cat type or a Dog type."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        prop: Union["_models.Cat", "_models.Dog"],
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class GeneratedName12(_model_base.Model):
-    """GeneratedName12.
-
-    All required parameters must be populated in order to send to server.
-
-    :ivar prop: Required. Is either a Cat type or a Dog type.
-    :vartype prop: ~typetest.union.models.Cat or ~typetest.union.models.Dog
-    """
-
-    prop: Union["_models.Cat", "_models.Dog"] = rest_field()
-    """Required. Is either a Cat type or a Dog type."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        prop: Union["_models.Cat", "_models.Dog"],
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class GeneratedName13(_model_base.Model):
-    """GeneratedName13.
-
-    All required parameters must be populated in order to send to server.
-
-    :ivar prop: Required.
-    :vartype prop: ~typetest.union.models.EnumsOnlyCases
-    """
-
-    prop: "_models.EnumsOnlyCases" = rest_field()
+    prop2: int = rest_field()
     """Required."""
 
     @overload
     def __init__(
         self,
         *,
-        prop: "_models.EnumsOnlyCases",
+        name: str,
+        prop2: int,
     ):
         ...
 
@@ -280,23 +116,23 @@ class GeneratedName13(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class GeneratedName14(_model_base.Model):
-    """GeneratedName14.
+class ModelWithNamedUnionProperty(_model_base.Model):
+    """ModelWithNamedUnionProperty.
 
     All required parameters must be populated in order to send to server.
 
-    :ivar prop: Required.
-    :vartype prop: ~typetest.union.models.EnumsOnlyCases
+    :ivar named_union: Required. Is either a Model1 type or a Model2 type.
+    :vartype named_union: ~typetest.union.models.Model1 or ~typetest.union.models.Model2
     """
 
-    prop: "_models.EnumsOnlyCases" = rest_field()
-    """Required."""
+    named_union: "_types.MyNamedUnion" = rest_field(name="namedUnion")
+    """Required. Is either a Model1 type or a Model2 type."""
 
     @overload
     def __init__(
         self,
         *,
-        prop: "_models.EnumsOnlyCases",
+        named_union: "_types.MyNamedUnion",
     ):
         ...
 
@@ -311,23 +147,23 @@ class GeneratedName14(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class GeneratedName15(_model_base.Model):
-    """GeneratedName15.
+class ModelWithNamedUnionPropertyInResponse(_model_base.Model):
+    """ModelWithNamedUnionPropertyInResponse.
 
     All required parameters must be populated in order to send to server.
 
-    :ivar prop: Required.
-    :vartype prop: ~typetest.union.models.StringAndArrayCases
+    :ivar named_union: Required. Is either a Model1 type or a Model2 type.
+    :vartype named_union: ~typetest.union.models.Model1 or ~typetest.union.models.Model2
     """
 
-    prop: "_models.StringAndArrayCases" = rest_field()
-    """Required."""
+    named_union: "_types.MyNamedUnion" = rest_field(name="namedUnion")
+    """Required. Is either a Model1 type or a Model2 type."""
 
     @overload
     def __init__(
         self,
         *,
-        prop: "_models.StringAndArrayCases",
+        named_union: "_types.MyNamedUnion",
     ):
         ...
 
@@ -342,23 +178,23 @@ class GeneratedName15(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class GeneratedName16(_model_base.Model):
-    """GeneratedName16.
+class ModelWithSimpleUnionProperty(_model_base.Model):
+    """ModelWithSimpleUnionProperty.
 
     All required parameters must be populated in order to send to server.
 
-    :ivar prop: Required.
-    :vartype prop: ~typetest.union.models.StringAndArrayCases
+    :ivar simple_union: Required. Is either a int type or a [int] type.
+    :vartype simple_union: int or list[int]
     """
 
-    prop: "_models.StringAndArrayCases" = rest_field()
-    """Required."""
+    simple_union: Union[int, List[int]] = rest_field(name="simpleUnion")
+    """Required. Is either a int type or a [int] type."""
 
     @overload
     def __init__(
         self,
         *,
-        prop: "_models.StringAndArrayCases",
+        simple_union: Union[int, List[int]],
     ):
         ...
 
@@ -373,514 +209,23 @@ class GeneratedName16(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class GeneratedName17(_model_base.Model):
-    """GeneratedName17.
+class ModelWithSimpleUnionPropertyInResponse(_model_base.Model):
+    """ModelWithSimpleUnionPropertyInResponse.
 
     All required parameters must be populated in order to send to server.
 
-    :ivar prop: Required.
-    :vartype prop: ~typetest.union.models.MixedLiteralsCases
+    :ivar simple_union: Required. Is either a str type or a [int] type.
+    :vartype simple_union: str or list[int]
     """
 
-    prop: "_models.MixedLiteralsCases" = rest_field()
-    """Required."""
+    simple_union: Union[str, List[int]] = rest_field(name="simpleUnion")
+    """Required. Is either a str type or a [int] type."""
 
     @overload
     def __init__(
         self,
         *,
-        prop: "_models.MixedLiteralsCases",
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class GeneratedName18(_model_base.Model):
-    """GeneratedName18.
-
-    All required parameters must be populated in order to send to server.
-
-    :ivar prop: Required.
-    :vartype prop: ~typetest.union.models.MixedLiteralsCases
-    """
-
-    prop: "_models.MixedLiteralsCases" = rest_field()
-    """Required."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        prop: "_models.MixedLiteralsCases",
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class GeneratedName19(_model_base.Model):
-    """GeneratedName19.
-
-    All required parameters must be populated in order to send to server.
-
-    :ivar prop: Required.
-    :vartype prop: ~typetest.union.models.MixedTypesCases
-    """
-
-    prop: "_models.MixedTypesCases" = rest_field()
-    """Required."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        prop: "_models.MixedTypesCases",
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class GeneratedName2(_model_base.Model):
-    """GeneratedName2.
-
-    All required parameters must be populated in order to send to server.
-
-    :ivar prop: Required. Is one of the following types: Literal["a"], Literal["b"], Literal["c"]
-    :vartype prop: str or str or str
-    """
-
-    prop: Union[Literal["a"], Literal["b"], Literal["c"]] = rest_field()
-    """Required. Is one of the following types: Literal[\"a\"], Literal[\"b\"], Literal[\"c\"]"""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        prop: Union[Literal["a"], Literal["b"], Literal["c"]],
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class GeneratedName20(_model_base.Model):
-    """GeneratedName20.
-
-    All required parameters must be populated in order to send to server.
-
-    :ivar prop: Required.
-    :vartype prop: ~typetest.union.models.MixedTypesCases
-    """
-
-    prop: "_models.MixedTypesCases" = rest_field()
-    """Required."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        prop: "_models.MixedTypesCases",
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class GeneratedName3(_model_base.Model):
-    """GeneratedName3.
-
-    All required parameters must be populated in order to send to server.
-
-    :ivar prop: Required. Is one of the following types: str, Literal["b"], Literal["c"]
-    :vartype prop: str or str or str
-    """
-
-    prop: Union[str, Literal["b"], Literal["c"]] = rest_field()
-    """Required. Is one of the following types: str, Literal[\"b\"], Literal[\"c\"]"""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        prop: Union[str, Literal["b"], Literal["c"]],
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class GeneratedName4(_model_base.Model):
-    """GeneratedName4.
-
-    All required parameters must be populated in order to send to server.
-
-    :ivar prop: Required. Is one of the following types: str, Literal["b"], Literal["c"]
-    :vartype prop: str or str or str
-    """
-
-    prop: Union[str, Literal["b"], Literal["c"]] = rest_field()
-    """Required. Is one of the following types: str, Literal[\"b\"], Literal[\"c\"]"""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        prop: Union[str, Literal["b"], Literal["c"]],
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class GeneratedName5(_model_base.Model):
-    """GeneratedName5.
-
-    All required parameters must be populated in order to send to server.
-
-    :ivar prop: Required. Is one of the following types: str, Literal["b"], Literal["c"]
-    :vartype prop: str or str or str
-    """
-
-    prop: "_types.StringExtensibleNamedUnion" = rest_field()
-    """Required. Is one of the following types: str, Literal[\"b\"], Literal[\"c\"]"""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        prop: "_types.StringExtensibleNamedUnion",
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class GeneratedName6(_model_base.Model):
-    """GeneratedName6.
-
-    All required parameters must be populated in order to send to server.
-
-    :ivar prop: Required. Is one of the following types: str, Literal["b"], Literal["c"]
-    :vartype prop: str or str or str
-    """
-
-    prop: "_types.StringExtensibleNamedUnion" = rest_field()
-    """Required. Is one of the following types: str, Literal[\"b\"], Literal[\"c\"]"""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        prop: "_types.StringExtensibleNamedUnion",
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class GeneratedName7(_model_base.Model):
-    """GeneratedName7.
-
-    All required parameters must be populated in order to send to server.
-
-    :ivar prop: Required. Is one of the following types: Literal[1], Literal[2], Literal[3]
-    :vartype prop: int or int or int
-    """
-
-    prop: Union[Literal[1], Literal[2], Literal[3]] = rest_field()
-    """Required. Is one of the following types: Literal[1], Literal[2], Literal[3]"""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        prop: Union[Literal[1], Literal[2], Literal[3]],
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class GeneratedName8(_model_base.Model):
-    """GeneratedName8.
-
-    All required parameters must be populated in order to send to server.
-
-    :ivar prop: Required. Is one of the following types: Literal[1], Literal[2], Literal[3]
-    :vartype prop: int or int or int
-    """
-
-    prop: Union[Literal[1], Literal[2], Literal[3]] = rest_field()
-    """Required. Is one of the following types: Literal[1], Literal[2], Literal[3]"""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        prop: Union[Literal[1], Literal[2], Literal[3]],
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class GeneratedName9(_model_base.Model):
-    """GeneratedName9.
-
-    All required parameters must be populated in order to send to server.
-
-    :ivar prop: Required. Is one of the following types: float, float, float
-    :vartype prop: float or float or float
-    """
-
-    prop: Union[float, float, float] = rest_field()
-    """Required. Is one of the following types: float, float, float"""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        prop: Union[float, float, float],
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class MixedLiteralsCases(_model_base.Model):
-    """MixedLiteralsCases.
-
-    All required parameters must be populated in order to send to server.
-
-    :ivar string_literal: This should be receive/send the "a" variant. Required. Is one of the
-     following types: Cat, Literal["a"], Literal[2], float, Literal[True]
-    :vartype string_literal: ~typetest.union.models.Cat or str or int or float or bool
-    :ivar int_literal: This should be receive/send the 2 variant. Required. Is one of the following
-     types: Cat, Literal["a"], Literal[2], float, Literal[True]
-    :vartype int_literal: ~typetest.union.models.Cat or str or int or float or bool
-    :ivar float_literal: This should be receive/send the 3.3 variant. Required. Is one of the
-     following types: Cat, Literal["a"], Literal[2], float, Literal[True]
-    :vartype float_literal: ~typetest.union.models.Cat or str or int or float or bool
-    :ivar boolean_literal: This should be receive/send the true variant. Required. Is one of the
-     following types: Cat, Literal["a"], Literal[2], float, Literal[True]
-    :vartype boolean_literal: ~typetest.union.models.Cat or str or int or float or bool
-    """
-
-    string_literal: Union["_models.Cat", Literal["a"], Literal[2], float, Literal[True]] = rest_field(
-        name="stringLiteral"
-    )
-    """This should be receive/send the \"a\" variant. Required. Is one of the following types: Cat,
-     Literal[\"a\"], Literal[2], float, Literal[True]"""
-    int_literal: Union["_models.Cat", Literal["a"], Literal[2], float, Literal[True]] = rest_field(name="intLiteral")
-    """This should be receive/send the 2 variant. Required. Is one of the following types: Cat,
-     Literal[\"a\"], Literal[2], float, Literal[True]"""
-    float_literal: Union["_models.Cat", Literal["a"], Literal[2], float, Literal[True]] = rest_field(
-        name="floatLiteral"
-    )
-    """This should be receive/send the 3.3 variant. Required. Is one of the following types: Cat,
-     Literal[\"a\"], Literal[2], float, Literal[True]"""
-    boolean_literal: Union["_models.Cat", Literal["a"], Literal[2], float, Literal[True]] = rest_field(
-        name="booleanLiteral"
-    )
-    """This should be receive/send the true variant. Required. Is one of the following types: Cat,
-     Literal[\"a\"], Literal[2], float, Literal[True]"""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        string_literal: Union["_models.Cat", Literal["a"], Literal[2], float, Literal[True]],
-        int_literal: Union["_models.Cat", Literal["a"], Literal[2], float, Literal[True]],
-        float_literal: Union["_models.Cat", Literal["a"], Literal[2], float, Literal[True]],
-        boolean_literal: Union["_models.Cat", Literal["a"], Literal[2], float, Literal[True]],
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class MixedTypesCases(_model_base.Model):
-    """MixedTypesCases.
-
-    All required parameters must be populated in order to send to server.
-
-    :ivar model: This should be receive/send the Cat variant. Required. Is one of the following
-     types: Cat, Literal["a"], int, bool
-    :vartype model: ~typetest.union.models.Cat or str or int or bool
-    :ivar literal: This should be receive/send the "a" variant. Required. Is one of the following
-     types: Cat, Literal["a"], int, bool
-    :vartype literal: ~typetest.union.models.Cat or str or int or bool
-    :ivar int: This should be receive/send the int variant. Required. Is one of the following
-     types: Cat, Literal["a"], int, bool
-    :vartype int: ~typetest.union.models.Cat or str or int or bool
-    :ivar boolean: This should be receive/send the boolean variant. Required. Is one of the
-     following types: Cat, Literal["a"], int, bool
-    :vartype boolean: ~typetest.union.models.Cat or str or int or bool
-    """
-
-    model: Union["_models.Cat", Literal["a"], int, bool] = rest_field()
-    """This should be receive/send the Cat variant. Required. Is one of the following types: Cat,
-     Literal[\"a\"], int, bool"""
-    literal: Union["_models.Cat", Literal["a"], int, bool] = rest_field()
-    """This should be receive/send the \"a\" variant. Required. Is one of the following types: Cat,
-     Literal[\"a\"], int, bool"""
-    int: Union["_models.Cat", Literal["a"], int, bool] = rest_field()
-    """This should be receive/send the int variant. Required. Is one of the following types: Cat,
-     Literal[\"a\"], int, bool"""
-    boolean: Union["_models.Cat", Literal["a"], int, bool] = rest_field()
-    """This should be receive/send the boolean variant. Required. Is one of the following types: Cat,
-     Literal[\"a\"], int, bool"""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        model: Union["_models.Cat", Literal["a"], int, bool],
-        literal: Union["_models.Cat", Literal["a"], int, bool],
-        int: Union["_models.Cat", Literal["a"], int, bool],
-        boolean: Union["_models.Cat", Literal["a"], int, bool],
-    ):
-        ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class StringAndArrayCases(_model_base.Model):
-    """StringAndArrayCases.
-
-    All required parameters must be populated in order to send to server.
-
-    :ivar string: This should be receive/send the string variant. Required.
-    :vartype string: str
-    :ivar array: This should be receive/send the array variant. Required.
-    :vartype array: list[str]
-    """
-
-    string: str = rest_field()
-    """This should be receive/send the string variant. Required."""
-    array: List[str] = rest_field()
-    """This should be receive/send the array variant. Required."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        string: str,
-        array: List[str],
+        simple_union: Union[str, List[int]],
     ):
         ...
 

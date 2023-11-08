@@ -18,7 +18,7 @@ from ._serialization import Deserializer, Serializer
 
 
 class UnionClient(UnionClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
-    """Describe scenarios for various combinations of unions.
+    """Test for type of union.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str

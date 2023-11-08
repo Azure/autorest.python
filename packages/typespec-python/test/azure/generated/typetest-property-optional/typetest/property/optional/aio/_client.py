@@ -16,20 +16,13 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from .._serialization import Deserializer, Serializer
 from ._configuration import OptionalClientConfiguration
 from .operations import (
-    BooleanLiteralOperations,
     BytesOperations,
     CollectionsByteOperations,
     CollectionsModelOperations,
     DatetimeOperations,
     DurationOperations,
-    FloatLiteralOperations,
-    IntLiteralOperations,
     RequiredAndOptionalOperations,
-    StringLiteralOperations,
     StringOperations,
-    UnionFloatLiteralOperations,
-    UnionIntLiteralOperations,
-    UnionStringLiteralOperations,
 )
 
 
@@ -49,22 +42,6 @@ class OptionalClient:  # pylint: disable=client-accepts-api-version-keyword,too-
     :ivar collections_model: CollectionsModelOperations operations
     :vartype collections_model:
      typetest.property.optional.aio.operations.CollectionsModelOperations
-    :ivar string_literal: StringLiteralOperations operations
-    :vartype string_literal: typetest.property.optional.aio.operations.StringLiteralOperations
-    :ivar int_literal: IntLiteralOperations operations
-    :vartype int_literal: typetest.property.optional.aio.operations.IntLiteralOperations
-    :ivar float_literal: FloatLiteralOperations operations
-    :vartype float_literal: typetest.property.optional.aio.operations.FloatLiteralOperations
-    :ivar boolean_literal: BooleanLiteralOperations operations
-    :vartype boolean_literal: typetest.property.optional.aio.operations.BooleanLiteralOperations
-    :ivar union_string_literal: UnionStringLiteralOperations operations
-    :vartype union_string_literal:
-     typetest.property.optional.aio.operations.UnionStringLiteralOperations
-    :ivar union_int_literal: UnionIntLiteralOperations operations
-    :vartype union_int_literal: typetest.property.optional.aio.operations.UnionIntLiteralOperations
-    :ivar union_float_literal: UnionFloatLiteralOperations operations
-    :vartype union_float_literal:
-     typetest.property.optional.aio.operations.UnionFloatLiteralOperations
     :ivar required_and_optional: RequiredAndOptionalOperations operations
     :vartype required_and_optional:
      typetest.property.optional.aio.operations.RequiredAndOptionalOperations
@@ -106,19 +83,6 @@ class OptionalClient:  # pylint: disable=client-accepts-api-version-keyword,too-
             self._client, self._config, self._serialize, self._deserialize
         )
         self.collections_model = CollectionsModelOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.string_literal = StringLiteralOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.int_literal = IntLiteralOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.float_literal = FloatLiteralOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.boolean_literal = BooleanLiteralOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.union_string_literal = UnionStringLiteralOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.union_int_literal = UnionIntLiteralOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.union_float_literal = UnionFloatLiteralOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
         self.required_and_optional = RequiredAndOptionalOperations(

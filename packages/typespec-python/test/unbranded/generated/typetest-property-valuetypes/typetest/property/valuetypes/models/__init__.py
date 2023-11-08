@@ -6,7 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._models import BooleanLiteralProperty
 from ._models import BooleanProperty
 from ._models import BytesProperty
 from ._models import CollectionsIntProperty
@@ -17,18 +16,12 @@ from ._models import DictionaryStringProperty
 from ._models import DurationProperty
 from ._models import EnumProperty
 from ._models import ExtensibleEnumProperty
-from ._models import FloatLiteralProperty
 from ._models import FloatProperty
 from ._models import InnerModel
-from ._models import IntLiteralProperty
 from ._models import IntProperty
 from ._models import ModelProperty
 from ._models import NeverProperty
-from ._models import StringLiteralProperty
 from ._models import StringProperty
-from ._models import UnionFloatLiteralProperty
-from ._models import UnionIntLiteralProperty
-from ._models import UnionStringLiteralProperty
 from ._models import UnknownArrayProperty
 from ._models import UnknownDictProperty
 from ._models import UnknownIntProperty
@@ -41,7 +34,6 @@ from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "BooleanLiteralProperty",
     "BooleanProperty",
     "BytesProperty",
     "CollectionsIntProperty",
@@ -52,18 +44,12 @@ __all__ = [
     "DurationProperty",
     "EnumProperty",
     "ExtensibleEnumProperty",
-    "FloatLiteralProperty",
     "FloatProperty",
     "InnerModel",
-    "IntLiteralProperty",
     "IntProperty",
     "ModelProperty",
     "NeverProperty",
-    "StringLiteralProperty",
     "StringProperty",
-    "UnionFloatLiteralProperty",
-    "UnionIntLiteralProperty",
-    "UnionStringLiteralProperty",
     "UnknownArrayProperty",
     "UnknownDictProperty",
     "UnknownIntProperty",
