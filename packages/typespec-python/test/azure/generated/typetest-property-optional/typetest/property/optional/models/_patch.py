@@ -31,12 +31,14 @@ class TestProperties(_model_base.Model):
 
 class Test(_model_base.Model):
     properties: Optional["TestProperties"] = rest_field()
+    id: Optional[str] = rest_field()
 
     @overload
     def __init__(
         self,
         *,
-        properties: Optional[List["TestProperties"]] = None,
+        properties: Optional["TestProperties"] = None,
+        id: Optional[str] = None,
     ):
         ...
 

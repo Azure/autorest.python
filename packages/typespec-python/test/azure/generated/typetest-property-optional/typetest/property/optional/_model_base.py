@@ -561,10 +561,19 @@ class Model(_MyMutableMapping):
             return {dk: Model._as_dict_value(dv, exclude_readonly=exclude_readonly) for dk, dv in v.items()}
         return v.as_dict(exclude_readonly=exclude_readonly) if hasattr(v, "as_dict") else v
 
-    def __getattr__(self, name):
-        if not hasattr(self, name) and hasattr(self, "properties"):
-            return getattr(self.properties, name)
-        return super().__getattr__(name)
+    def __getattr__(self, name: str):
+        if not name.startswith("__"):
+            try:
+                if self.properties is not None:
+                    return getattr(self.properties, name)
+                if name in self._attr_to_rest_field["properties"]._type.args[0].args[0].__dict__:
+                    return None
+            except AttributeError:
+                pass
+        try:
+            return super().__getattr__(name)
+        except AttributeError:
+            raise AttributeError(f"'{self.__class__.__name__}' object has no attribute '{name}'")
 
 
 def _get_deserialize_callable_from_annotation(  # pylint: disable=R0911, R0915, R0912
