@@ -1,5 +1,53 @@
 # Release
 
+## 2023-11-07 - 0.15.11
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.49.0`      |
+| `@typespec/http`                                                        | `0.49.0`      |
+| `@typespec/rest`                                                        | `0.49.0`      |
+| `@typespec/versioning`                                                  | `0.49.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.35.1`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.36.0-dev.8`|
+| `azure-core` dep of generated code                                      | `1.28.0`      |
+| `corehttp` dep of generated code                                        | `1.0.0b1`     |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**Bug Fixes**
+
+- HTTP auth prefix case sensitive. #2250
+- Remove base model flag of JSON for anonymous model. #2250
+
+**Other Changes**
+
+- Allow users to pass in a folder of template files and arguments to these templates with emitter configs `packaging-files-dir` and `packaging-files-config` #2248
+
+## 2023-11-06 - 0.15.10
+
+| Library                                                                 | Min Version   |
+| ----------------------------------------------------------------------- | ------------- |
+| `@typespec/compiler`                                                    | `0.49.0`      |
+| `@typespec/http`                                                        | `0.49.0`      |
+| `@typespec/rest`                                                        | `0.49.0`      |
+| `@typespec/versioning`                                                  | `0.49.0`      |
+| `@azure-tools/typespec-azure-core`                                      | `0.35.1`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.36.0-dev.8`|
+| `azure-core` dep of generated code                                      | `1.28.0`      |
+| `corehttp` dep of generated code                                        | `1.0.0b1`     |
+| `isodate` dep of generated code                                         | `0.6.1`       |
+| `msrest` dep of generated code (If generating legacy code)              | `0.7.1`       |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
+| `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**Bug Fixes**
+
+- Correctly apply routes when defined on the resource. Fix was to bump min `@azure-tools/typespec-azure-core` version. #2243
+- Add dependency on `requests` when using `corehttp`. #2247
+
 ## 2023-11-03 - 0.15.9
 
 | Library                                                                 | Min Version   |
