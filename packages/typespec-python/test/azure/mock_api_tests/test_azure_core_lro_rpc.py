@@ -14,5 +14,5 @@ def client():
 
 # cadl-ranch check api-version in poll request which is not supported by azure-core
 # def test_long_running_rpc(client: RpcClient):
-#     result = client.begin_long_running_rpc(models.GenerationOptions(prompt="text")).result()
+#     result = client.begin_long_running_rpc(models.GenerationOptions(prompt="text"), polling_interval=0).result()
 #     assert result == models.GenerationResult(data="text data")

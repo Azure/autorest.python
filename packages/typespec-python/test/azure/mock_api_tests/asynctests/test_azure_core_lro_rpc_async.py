@@ -16,5 +16,5 @@ async def client():
 # cadl-ranch check api-version in poll request which is not supported by azure-core
 # @pytest.mark.asyncio
 # async def test_long_running_rpc(client: RpcClient):
-#     result = await client.begin_long_running_rpc(models.GenerationOptions(prompt="text"))
+#     result = await client.begin_long_running_rpc(models.GenerationOptions(prompt="text"), polling_interval=0)
 #     assert (await result.result()) == models.GenerationResult(data="text data")
