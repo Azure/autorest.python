@@ -6,25 +6,68 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._models import BaseModel
-from ._models import Model1
-from ._models import Model2
-from ._models import ModelWithNamedUnionProperty
-from ._models import ModelWithNamedUnionPropertyInResponse
-from ._models import ModelWithSimpleUnionProperty
-from ._models import ModelWithSimpleUnionPropertyInResponse
+from ._models import Cat
+from ._models import Dog
+from ._models import EnumsOnlyCases
+from ._models import GeneratedName1
+from ._models import GeneratedName10
+from ._models import GeneratedName11
+from ._models import GeneratedName12
+from ._models import GeneratedName13
+from ._models import GeneratedName14
+from ._models import GeneratedName15
+from ._models import GeneratedName16
+from ._models import GeneratedName17
+from ._models import GeneratedName18
+from ._models import GeneratedName19
+from ._models import GeneratedName2
+from ._models import GeneratedName20
+from ._models import GeneratedName3
+from ._models import GeneratedName4
+from ._models import GeneratedName5
+from ._models import GeneratedName6
+from ._models import GeneratedName7
+from ._models import GeneratedName8
+from ._models import GeneratedName9
+from ._models import MixedLiteralsCases
+from ._models import MixedTypesCases
+from ._models import StringAndArrayCases
+
+from ._enums import LR
+from ._enums import UD
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "BaseModel",
-    "Model1",
-    "Model2",
-    "ModelWithNamedUnionProperty",
-    "ModelWithNamedUnionPropertyInResponse",
-    "ModelWithSimpleUnionProperty",
-    "ModelWithSimpleUnionPropertyInResponse",
+    "Cat",
+    "Dog",
+    "EnumsOnlyCases",
+    "GeneratedName1",
+    "GeneratedName10",
+    "GeneratedName11",
+    "GeneratedName12",
+    "GeneratedName13",
+    "GeneratedName14",
+    "GeneratedName15",
+    "GeneratedName16",
+    "GeneratedName17",
+    "GeneratedName18",
+    "GeneratedName19",
+    "GeneratedName2",
+    "GeneratedName20",
+    "GeneratedName3",
+    "GeneratedName4",
+    "GeneratedName5",
+    "GeneratedName6",
+    "GeneratedName7",
+    "GeneratedName8",
+    "GeneratedName9",
+    "MixedLiteralsCases",
+    "MixedTypesCases",
+    "StringAndArrayCases",
+    "LR",
+    "UD",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()

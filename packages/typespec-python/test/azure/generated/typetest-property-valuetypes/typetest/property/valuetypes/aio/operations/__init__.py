@@ -25,6 +25,13 @@ from ._operations import UnknownStringOperations
 from ._operations import UnknownIntOperations
 from ._operations import UnknownDictOperations
 from ._operations import UnknownArrayOperations
+from ._operations import StringLiteralOperations
+from ._operations import IntLiteralOperations
+from ._operations import FloatLiteralOperations
+from ._operations import BooleanLiteralOperations
+from ._operations import UnionStringLiteralOperations
+from ._operations import UnionIntLiteralOperations
+from ._operations import UnionFloatLiteralOperations
 
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
@@ -50,6 +57,13 @@ __all__ = [
     "UnknownIntOperations",
     "UnknownDictOperations",
     "UnknownArrayOperations",
+    "StringLiteralOperations",
+    "IntLiteralOperations",
+    "FloatLiteralOperations",
+    "BooleanLiteralOperations",
+    "UnionStringLiteralOperations",
+    "UnionIntLiteralOperations",
+    "UnionFloatLiteralOperations",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()

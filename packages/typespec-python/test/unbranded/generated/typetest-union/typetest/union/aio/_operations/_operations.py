@@ -25,16 +25,7 @@ from corehttp.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._model_base import SdkJSONEncoder, _deserialize
-from ..._operations._operations import (
-    build_union_receive_first_named_union_value_request,
-    build_union_receive_int_array_request,
-    build_union_receive_second_named_union_value_request,
-    build_union_receive_string_request,
-    build_union_send_first_named_union_value_request,
-    build_union_send_int_array_request,
-    build_union_send_int_request,
-    build_union_send_second_named_union_value_request,
-)
+from ..._operations._operations import build_union_get_request, build_union_send_request
 from .._vendor import UnionClientMixinABC
 
 if sys.version_info >= (3, 9):
@@ -47,14 +38,65 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class UnionClientOperationsMixin(UnionClientMixinABC):
-    @overload
-    async def send_int(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.ModelWithSimpleUnionProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """send_int.
+    async def get(self, **kwargs: Any) -> _models.GeneratedName1:
+        """get.
 
-        :param input: Required.
-        :type input: ~typetest.union.models.ModelWithSimpleUnionProperty
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: GeneratedName1. The GeneratedName1 is compatible with MutableMapping
+        :rtype: ~typetest.union.models.GeneratedName1
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.GeneratedName1] = kwargs.pop("cls", None)
+
+        _request = build_union_get_request(
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.GeneratedName1, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.GeneratedName2, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """send.
+
+        :param body: Required.
+        :type body: ~typetest.union.models.GeneratedName2
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -66,13 +108,13 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         """
 
     @overload
-    async def send_int(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """send_int.
+        """send.
 
-        :param input: Required.
-        :type input: JSON
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -84,13 +126,13 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         """
 
     @overload
-    async def send_int(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """send_int.
+        """send.
 
-        :param input: Required.
-        :type input: IO
+        :param body: Required.
+        :type body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -101,13 +143,13 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def send_int(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.ModelWithSimpleUnionProperty, JSON, IO], **kwargs: Any
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.GeneratedName2, JSON, IO], **kwargs: Any
     ) -> None:
-        """send_int.
+        """send.
 
-        :param input: Is one of the following types: ModelWithSimpleUnionProperty, JSON, IO Required.
-        :type input: ~typetest.union.models.ModelWithSimpleUnionProperty or JSON or IO
+        :param body: Is one of the following types: GeneratedName2, JSON, IO Required.
+        :type body: ~typetest.union.models.GeneratedName2 or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -133,12 +175,12 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
 
         content_type = content_type or "application/json"
         _content = None
-        if isinstance(input, (IOBase, bytes)):
-            _content = input
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
         else:
-            _content = json.dumps(input, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_union_send_int_request(
+        _request = build_union_send_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -153,7 +195,7 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [200]:
+        if response.status_code not in [204]:
             if _stream:
                 await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
@@ -162,14 +204,65 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    @overload
-    async def send_int_array(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.ModelWithSimpleUnionProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """send_int_array.
+    async def get(self, **kwargs: Any) -> _models.GeneratedName3:
+        """get.
 
-        :param input: Required.
-        :type input: ~typetest.union.models.ModelWithSimpleUnionProperty
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: GeneratedName3. The GeneratedName3 is compatible with MutableMapping
+        :rtype: ~typetest.union.models.GeneratedName3
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.GeneratedName3] = kwargs.pop("cls", None)
+
+        _request = build_union_get_request(
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.GeneratedName3, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.GeneratedName4, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """send.
+
+        :param body: Required.
+        :type body: ~typetest.union.models.GeneratedName4
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -181,13 +274,13 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         """
 
     @overload
-    async def send_int_array(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """send_int_array.
+        """send.
 
-        :param input: Required.
-        :type input: JSON
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -199,13 +292,13 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         """
 
     @overload
-    async def send_int_array(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """send_int_array.
+        """send.
 
-        :param input: Required.
-        :type input: IO
+        :param body: Required.
+        :type body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -216,13 +309,13 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def send_int_array(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.ModelWithSimpleUnionProperty, JSON, IO], **kwargs: Any
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.GeneratedName4, JSON, IO], **kwargs: Any
     ) -> None:
-        """send_int_array.
+        """send.
 
-        :param input: Is one of the following types: ModelWithSimpleUnionProperty, JSON, IO Required.
-        :type input: ~typetest.union.models.ModelWithSimpleUnionProperty or JSON or IO
+        :param body: Is one of the following types: GeneratedName4, JSON, IO Required.
+        :type body: ~typetest.union.models.GeneratedName4 or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -248,12 +341,12 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
 
         content_type = content_type or "application/json"
         _content = None
-        if isinstance(input, (IOBase, bytes)):
-            _content = input
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
         else:
-            _content = json.dumps(input, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_union_send_int_array_request(
+        _request = build_union_send_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -268,7 +361,7 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [200]:
+        if response.status_code not in [204]:
             if _stream:
                 await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
@@ -277,14 +370,65 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    @overload
-    async def send_first_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.ModelWithNamedUnionProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """send_first_named_union_value.
+    async def get(self, **kwargs: Any) -> _models.GeneratedName5:
+        """get.
 
-        :param input: Required.
-        :type input: ~typetest.union.models.ModelWithNamedUnionProperty
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: GeneratedName5. The GeneratedName5 is compatible with MutableMapping
+        :rtype: ~typetest.union.models.GeneratedName5
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.GeneratedName5] = kwargs.pop("cls", None)
+
+        _request = build_union_get_request(
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.GeneratedName5, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.GeneratedName6, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """send.
+
+        :param body: Required.
+        :type body: ~typetest.union.models.GeneratedName6
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -296,13 +440,13 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         """
 
     @overload
-    async def send_first_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """send_first_named_union_value.
+        """send.
 
-        :param input: Required.
-        :type input: JSON
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -314,13 +458,13 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         """
 
     @overload
-    async def send_first_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """send_first_named_union_value.
+        """send.
 
-        :param input: Required.
-        :type input: IO
+        :param body: Required.
+        :type body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -331,13 +475,13 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def send_first_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.ModelWithNamedUnionProperty, JSON, IO], **kwargs: Any
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.GeneratedName6, JSON, IO], **kwargs: Any
     ) -> None:
-        """send_first_named_union_value.
+        """send.
 
-        :param input: Is one of the following types: ModelWithNamedUnionProperty, JSON, IO Required.
-        :type input: ~typetest.union.models.ModelWithNamedUnionProperty or JSON or IO
+        :param body: Is one of the following types: GeneratedName6, JSON, IO Required.
+        :type body: ~typetest.union.models.GeneratedName6 or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -363,12 +507,12 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
 
         content_type = content_type or "application/json"
         _content = None
-        if isinstance(input, (IOBase, bytes)):
-            _content = input
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
         else:
-            _content = json.dumps(input, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_union_send_first_named_union_value_request(
+        _request = build_union_send_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -383,7 +527,7 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [200]:
+        if response.status_code not in [204]:
             if _stream:
                 await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
@@ -392,14 +536,65 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    @overload
-    async def send_second_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.ModelWithNamedUnionProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """send_second_named_union_value.
+    async def get(self, **kwargs: Any) -> _models.GeneratedName7:
+        """get.
 
-        :param input: Required.
-        :type input: ~typetest.union.models.ModelWithNamedUnionProperty
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: GeneratedName7. The GeneratedName7 is compatible with MutableMapping
+        :rtype: ~typetest.union.models.GeneratedName7
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.GeneratedName7] = kwargs.pop("cls", None)
+
+        _request = build_union_get_request(
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.GeneratedName7, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.GeneratedName8, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """send.
+
+        :param body: Required.
+        :type body: ~typetest.union.models.GeneratedName8
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -411,13 +606,13 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         """
 
     @overload
-    async def send_second_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """send_second_named_union_value.
+        """send.
 
-        :param input: Required.
-        :type input: JSON
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -429,13 +624,13 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         """
 
     @overload
-    async def send_second_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """send_second_named_union_value.
+        """send.
 
-        :param input: Required.
-        :type input: IO
+        :param body: Required.
+        :type body: IO
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -446,13 +641,13 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def send_second_named_union_value(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.ModelWithNamedUnionProperty, JSON, IO], **kwargs: Any
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.GeneratedName8, JSON, IO], **kwargs: Any
     ) -> None:
-        """send_second_named_union_value.
+        """send.
 
-        :param input: Is one of the following types: ModelWithNamedUnionProperty, JSON, IO Required.
-        :type input: ~typetest.union.models.ModelWithNamedUnionProperty or JSON or IO
+        :param body: Is one of the following types: GeneratedName8, JSON, IO Required.
+        :type body: ~typetest.union.models.GeneratedName8 or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -478,12 +673,12 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
 
         content_type = content_type or "application/json"
         _content = None
-        if isinstance(input, (IOBase, bytes)):
-            _content = input
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
         else:
-            _content = json.dumps(input, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_union_send_second_named_union_value_request(
+        _request = build_union_send_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -498,7 +693,7 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [200]:
+        if response.status_code not in [204]:
             if _stream:
                 await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
@@ -507,14 +702,13 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def receive_string(self, **kwargs: Any) -> _models.ModelWithSimpleUnionPropertyInResponse:
-        """receive_string.
+    async def get(self, **kwargs: Any) -> _models.GeneratedName9:
+        """get.
 
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ModelWithSimpleUnionPropertyInResponse. The ModelWithSimpleUnionPropertyInResponse is
-         compatible with MutableMapping
-        :rtype: ~typetest.union.models.ModelWithSimpleUnionPropertyInResponse
+        :return: GeneratedName9. The GeneratedName9 is compatible with MutableMapping
+        :rtype: ~typetest.union.models.GeneratedName9
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map = {
@@ -528,9 +722,9 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ModelWithSimpleUnionPropertyInResponse] = kwargs.pop("cls", None)
+        cls: ClsType[_models.GeneratedName9] = kwargs.pop("cls", None)
 
-        _request = build_union_receive_string_request(
+        _request = build_union_get_request(
             headers=_headers,
             params=_params,
         )
@@ -552,21 +746,135 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ModelWithSimpleUnionPropertyInResponse, response.json())
+            deserialized = _deserialize(_models.GeneratedName9, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
 
-    async def receive_int_array(self, **kwargs: Any) -> _models.ModelWithSimpleUnionPropertyInResponse:
-        """receive_int_array.
+    @overload
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.GeneratedName10, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """send.
+
+        :param body: Required.
+        :type body: ~typetest.union.models.GeneratedName10
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """send.
+
+        :param body: Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """send.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.GeneratedName10, JSON, IO], **kwargs: Any
+    ) -> None:
+        """send.
+
+        :param body: Is one of the following types: GeneratedName10, JSON, IO Required.
+        :type body: ~typetest.union.models.GeneratedName10 or JSON or IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_union_send_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = False
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+    async def get(self, **kwargs: Any) -> _models.GeneratedName11:
+        """get.
 
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ModelWithSimpleUnionPropertyInResponse. The ModelWithSimpleUnionPropertyInResponse is
-         compatible with MutableMapping
-        :rtype: ~typetest.union.models.ModelWithSimpleUnionPropertyInResponse
+        :return: GeneratedName11. The GeneratedName11 is compatible with MutableMapping
+        :rtype: ~typetest.union.models.GeneratedName11
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map = {
@@ -580,9 +888,9 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ModelWithSimpleUnionPropertyInResponse] = kwargs.pop("cls", None)
+        cls: ClsType[_models.GeneratedName11] = kwargs.pop("cls", None)
 
-        _request = build_union_receive_int_array_request(
+        _request = build_union_get_request(
             headers=_headers,
             params=_params,
         )
@@ -604,21 +912,135 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ModelWithSimpleUnionPropertyInResponse, response.json())
+            deserialized = _deserialize(_models.GeneratedName11, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
 
-    async def receive_first_named_union_value(self, **kwargs: Any) -> _models.ModelWithNamedUnionPropertyInResponse:
-        """receive_first_named_union_value.
+    @overload
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.GeneratedName12, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """send.
+
+        :param body: Required.
+        :type body: ~typetest.union.models.GeneratedName12
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """send.
+
+        :param body: Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """send.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.GeneratedName12, JSON, IO], **kwargs: Any
+    ) -> None:
+        """send.
+
+        :param body: Is one of the following types: GeneratedName12, JSON, IO Required.
+        :type body: ~typetest.union.models.GeneratedName12 or JSON or IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_union_send_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = False
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+    async def get(self, **kwargs: Any) -> _models.GeneratedName13:
+        """get.
 
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ModelWithNamedUnionPropertyInResponse. The ModelWithNamedUnionPropertyInResponse is
-         compatible with MutableMapping
-        :rtype: ~typetest.union.models.ModelWithNamedUnionPropertyInResponse
+        :return: GeneratedName13. The GeneratedName13 is compatible with MutableMapping
+        :rtype: ~typetest.union.models.GeneratedName13
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map = {
@@ -632,9 +1054,9 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ModelWithNamedUnionPropertyInResponse] = kwargs.pop("cls", None)
+        cls: ClsType[_models.GeneratedName13] = kwargs.pop("cls", None)
 
-        _request = build_union_receive_first_named_union_value_request(
+        _request = build_union_get_request(
             headers=_headers,
             params=_params,
         )
@@ -656,21 +1078,135 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ModelWithNamedUnionPropertyInResponse, response.json())
+            deserialized = _deserialize(_models.GeneratedName13, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
 
-    async def receive_second_named_union_value(self, **kwargs: Any) -> _models.ModelWithNamedUnionPropertyInResponse:
-        """receive_second_named_union_value.
+    @overload
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.GeneratedName14, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """send.
+
+        :param body: Required.
+        :type body: ~typetest.union.models.GeneratedName14
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """send.
+
+        :param body: Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """send.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.GeneratedName14, JSON, IO], **kwargs: Any
+    ) -> None:
+        """send.
+
+        :param body: Is one of the following types: GeneratedName14, JSON, IO Required.
+        :type body: ~typetest.union.models.GeneratedName14 or JSON or IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_union_send_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = False
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+    async def get(self, **kwargs: Any) -> _models.GeneratedName15:
+        """get.
 
         :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
          will have to context manage the returned stream.
-        :return: ModelWithNamedUnionPropertyInResponse. The ModelWithNamedUnionPropertyInResponse is
-         compatible with MutableMapping
-        :rtype: ~typetest.union.models.ModelWithNamedUnionPropertyInResponse
+        :return: GeneratedName15. The GeneratedName15 is compatible with MutableMapping
+        :rtype: ~typetest.union.models.GeneratedName15
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map = {
@@ -684,9 +1220,9 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.ModelWithNamedUnionPropertyInResponse] = kwargs.pop("cls", None)
+        cls: ClsType[_models.GeneratedName15] = kwargs.pop("cls", None)
 
-        _request = build_union_receive_second_named_union_value_request(
+        _request = build_union_get_request(
             headers=_headers,
             params=_params,
         )
@@ -708,9 +1244,456 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ModelWithNamedUnionPropertyInResponse, response.json())
+            deserialized = _deserialize(_models.GeneratedName15, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
+
+    @overload
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.GeneratedName16, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """send.
+
+        :param body: Required.
+        :type body: ~typetest.union.models.GeneratedName16
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """send.
+
+        :param body: Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """send.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.GeneratedName16, JSON, IO], **kwargs: Any
+    ) -> None:
+        """send.
+
+        :param body: Is one of the following types: GeneratedName16, JSON, IO Required.
+        :type body: ~typetest.union.models.GeneratedName16 or JSON or IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_union_send_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = False
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+    async def get(self, **kwargs: Any) -> _models.GeneratedName17:
+        """get.
+
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: GeneratedName17. The GeneratedName17 is compatible with MutableMapping
+        :rtype: ~typetest.union.models.GeneratedName17
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.GeneratedName17] = kwargs.pop("cls", None)
+
+        _request = build_union_get_request(
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.GeneratedName17, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.GeneratedName18, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """send.
+
+        :param body: Required.
+        :type body: ~typetest.union.models.GeneratedName18
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """send.
+
+        :param body: Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """send.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.GeneratedName18, JSON, IO], **kwargs: Any
+    ) -> None:
+        """send.
+
+        :param body: Is one of the following types: GeneratedName18, JSON, IO Required.
+        :type body: ~typetest.union.models.GeneratedName18 or JSON or IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_union_send_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = False
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+    async def get(self, **kwargs: Any) -> _models.GeneratedName19:
+        """get.
+
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: GeneratedName19. The GeneratedName19 is compatible with MutableMapping
+        :rtype: ~typetest.union.models.GeneratedName19
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.GeneratedName19] = kwargs.pop("cls", None)
+
+        _request = build_union_get_request(
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.GeneratedName19, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: _models.GeneratedName20, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """send.
+
+        :param body: Required.
+        :type body: ~typetest.union.models.GeneratedName20
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """send.
+
+        :param body: Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """send.
+
+        :param body: Required.
+        :type body: IO
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    async def send(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.GeneratedName20, JSON, IO], **kwargs: Any
+    ) -> None:
+        """send.
+
+        :param body: Is one of the following types: GeneratedName20, JSON, IO Required.
+        :type body: ~typetest.union.models.GeneratedName20 or JSON or IO
+        :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
+         value is None.
+        :paramtype content_type: str
+        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
+         will have to context manage the returned stream.
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+        error_map = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_union_send_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = False
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            if _stream:
+                await response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
