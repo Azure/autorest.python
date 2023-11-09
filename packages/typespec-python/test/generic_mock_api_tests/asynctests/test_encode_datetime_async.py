@@ -134,3 +134,4 @@ async def test_response_header(client: DatetimeClient):
     assert (await client.response_header.default(cls=cls))["value"] == datetime.datetime(2022, 8, 26, 14, 38, 0, tzinfo=datetime.timezone.utc)
     assert (await client.response_header.rfc3339(cls=cls))["value"] == datetime.datetime(2022, 8, 26, 18, 38, 0, tzinfo=datetime.timezone.utc)
     assert (await client.response_header.rfc7231(cls=cls))["value"] == datetime.datetime(2022, 8, 26, 14, 38, 0, tzinfo=datetime.timezone.utc)
+    assert (await client.response_header.unix_timestamp(cls=cls))["value"] == datetime.datetime(2023, 6, 12, 10, 47, 44, tzinfo=datetime.timezone.utc)
