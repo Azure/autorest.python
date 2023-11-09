@@ -26,6 +26,7 @@ async def test_parameter(client: SpecialWordsClient, special_words):
     for sw in special_words:
         suffix = "" if sw == "constructor" else "_parameter"
         await getattr(client.parameters, "with_" + sw)(**{sw + suffix: "ok"})
+    await client.parameters.with_cancellation_token(cancellation_token="ok")
 
 
 @pytest.mark.asyncio
