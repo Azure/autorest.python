@@ -77,8 +77,6 @@ class ServiceClientOperationsMixin(ServiceClientMixinABC):
     def one(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """one.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -126,8 +124,6 @@ class ServiceClientOperationsMixin(ServiceClientMixinABC):
     def two(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """two.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -175,8 +171,6 @@ class ServiceClientOperationsMixin(ServiceClientMixinABC):
     def three(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """three.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -224,8 +218,6 @@ class ServiceClientOperationsMixin(ServiceClientMixinABC):
     def four(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """four.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -273,8 +265,6 @@ class ServiceClientOperationsMixin(ServiceClientMixinABC):
     def five(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """five.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -322,8 +312,6 @@ class ServiceClientOperationsMixin(ServiceClientMixinABC):
     def six(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """six.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
