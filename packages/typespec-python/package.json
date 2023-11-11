@@ -14,7 +14,6 @@
         "url": "https://github.com/Azure/autorest.python/issues"
     },
     "keywords": [
-        "cadl",
         "typespec"
     ],
     "type": "module",
