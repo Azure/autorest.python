@@ -269,8 +269,6 @@ class QueryOperations:
 
         :keyword input: Required.
         :paramtype input: ~datetime.timedelta
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -318,8 +316,6 @@ class QueryOperations:
 
         :keyword input: Required.
         :paramtype input: ~datetime.timedelta
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -365,8 +361,6 @@ class QueryOperations:
 
         :keyword input: Required.
         :paramtype input: int
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -412,8 +406,6 @@ class QueryOperations:
 
         :keyword input: Required.
         :paramtype input: float
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -461,8 +453,6 @@ class QueryOperations:
 
         :keyword input: Required.
         :paramtype input: list[int]
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1169,8 +1159,6 @@ class HeaderOperations:
 
         :keyword duration: Required.
         :paramtype duration: ~datetime.timedelta
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1218,8 +1206,6 @@ class HeaderOperations:
 
         :keyword duration: Required.
         :paramtype duration: ~datetime.timedelta
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1267,8 +1253,6 @@ class HeaderOperations:
 
         :keyword duration: Required.
         :paramtype duration: list[~datetime.timedelta]
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1314,8 +1298,6 @@ class HeaderOperations:
 
         :keyword duration: Required.
         :paramtype duration: int
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1363,8 +1345,6 @@ class HeaderOperations:
 
         :keyword duration: Required.
         :paramtype duration: float
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:

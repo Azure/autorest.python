@@ -2064,8 +2064,6 @@ class CatalogsOperations:
         :type resource_group_name: str
         :param catalog_name: Name of catalog. Required.
         :type catalog_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3262,8 +3260,6 @@ class ImagesOperations:
         :type catalog_name: str
         :param image_name: Image name. Use .default for image creation. Required.
         :type image_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3738,8 +3734,6 @@ class DeviceGroupsOperations:
         :type product_name: str
         :param device_group_name: Name of device group. Required.
         :type device_group_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4099,8 +4093,6 @@ class DeviceGroupsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4135,8 +4127,6 @@ class DeviceGroupsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4171,8 +4161,6 @@ class DeviceGroupsOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -4206,8 +4194,6 @@ class DeviceGroupsOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5181,8 +5167,6 @@ class DeploymentsOperations:
         :param deployment_name: Deployment name. Use .default for deployment creation and to get the
          current deployment for the associated device group. Required.
         :type deployment_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -5672,8 +5656,6 @@ class DevicesOperations:
         :type device_group_name: str
         :param device_name: Device name. Required.
         :type device_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -6555,8 +6537,6 @@ class ProductsOperations:
         :type catalog_name: str
         :param product_name: Name of product. Required.
         :type product_name: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
