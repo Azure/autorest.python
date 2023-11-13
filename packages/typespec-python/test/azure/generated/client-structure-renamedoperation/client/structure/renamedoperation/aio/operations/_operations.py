@@ -55,8 +55,6 @@ class GroupOperations:
     async def renamed_two(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """renamed_two.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -104,8 +102,6 @@ class GroupOperations:
     async def renamed_four(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """renamed_four.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -153,8 +149,6 @@ class GroupOperations:
     async def renamed_six(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """renamed_six.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -204,8 +198,6 @@ class RenamedOperationClientOperationsMixin(RenamedOperationClientMixinABC):
     async def renamed_one(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """renamed_one.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -253,8 +245,6 @@ class RenamedOperationClientOperationsMixin(RenamedOperationClientMixinABC):
     async def renamed_three(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """renamed_three.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -302,8 +292,6 @@ class RenamedOperationClientOperationsMixin(RenamedOperationClientMixinABC):
     async def renamed_five(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """renamed_five.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
