@@ -8,14 +8,39 @@
 # --------------------------------------------------------------------------
 
 import datetime
+import sys
 from typing import Any, Dict, List, Mapping, TYPE_CHECKING, Union, overload
 
 from .. import _model_base
 from .._model_base import rest_field
 
+if sys.version_info >= (3, 8):
+    from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
+else:
+    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
+
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
+
+
+class BooleanLiteralProperty(_model_base.Model):
+    """Model with a boolean literal property.
+
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar property: Property. Required. Default value is True.
+    :vartype property: bool
+    """
+
+    property: Literal[True] = rest_field()
+    """Property. Required. Default value is True."""
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+        self.property: Literal[True] = True
 
 
 class BooleanProperty(_model_base.Model):
@@ -204,6 +229,68 @@ class DatetimeProperty(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
+class Decimal128Property(_model_base.Model):
+    """Model with a decimal128 property.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar property: Property. Required.
+    :vartype property: float
+    """
+
+    property: float = rest_field()
+    """Property. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        property: float,  # pylint: disable=redefined-builtin
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class DecimalProperty(_model_base.Model):
+    """Model with a decimal property.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar property: Property. Required.
+    :vartype property: float
+    """
+
+    property: float = rest_field()
+    """Property. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        property: float,  # pylint: disable=redefined-builtin
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
 class DictionaryStringProperty(_model_base.Model):
     """Model with dictionary string properties.
 
@@ -328,6 +415,25 @@ class ExtensibleEnumProperty(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
+class FloatLiteralProperty(_model_base.Model):
+    """Model with a float literal property.
+
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar property: Property. Required. Default value is 42.42.
+    :vartype property: float
+    """
+
+    property: float = rest_field()
+    """Property. Required. Default value is 42.42."""
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+        self.property: float = 42.42
+
+
 class FloatProperty(_model_base.Model):
     """Model with a float property.
 
@@ -388,6 +494,25 @@ class InnerModel(_model_base.Model):
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
+
+
+class IntLiteralProperty(_model_base.Model):
+    """Model with a int literal property.
+
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar property: Property. Required. Default value is 42.
+    :vartype property: int
+    """
+
+    property: Literal[42] = rest_field()
+    """Property. Required. Default value is 42."""
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+        self.property: Literal[42] = 42
 
 
 class IntProperty(_model_base.Model):
@@ -456,6 +581,25 @@ class NeverProperty(_model_base.Model):
     """Model with a property never. (This property should not be included)."""
 
 
+class StringLiteralProperty(_model_base.Model):
+    """Model with a string literal property.
+
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar property: Property. Required. Default value is "hello".
+    :vartype property: str
+    """
+
+    property: Literal["hello"] = rest_field()
+    """Property. Required. Default value is \"hello\"."""
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+        self.property: Literal["hello"] = "hello"
+
+
 class StringProperty(_model_base.Model):
     """Model with a string property.
 
@@ -473,6 +617,100 @@ class StringProperty(_model_base.Model):
         self,
         *,
         property: str,  # pylint: disable=redefined-builtin
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class UnionFloatLiteralProperty(_model_base.Model):
+    """Model with a union of float literal as property.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar property: Property. Required. Is either a float type or a float type.
+    :vartype property: float or float
+    """
+
+    property: Union[float, float] = rest_field()
+    """Property. Required. Is either a float type or a float type."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        property: Union[float, float],  # pylint: disable=redefined-builtin
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class UnionIntLiteralProperty(_model_base.Model):
+    """Model with a union of int literal as property.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar property: Property. Required. Is either a Literal[42] type or a Literal[43] type.
+    :vartype property: int or int
+    """
+
+    property: Union[Literal[42], Literal[43]] = rest_field()
+    """Property. Required. Is either a Literal[42] type or a Literal[43] type."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        property: Union[Literal[42], Literal[43]],  # pylint: disable=redefined-builtin
+    ):
+        ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class UnionStringLiteralProperty(_model_base.Model):
+    """Model with a union of string literal as property.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar property: Property. Required. Is either a Literal["hello"] type or a Literal["world"]
+     type.
+    :vartype property: str or str
+    """
+
+    property: Union[Literal["hello"], Literal["world"]] = rest_field()
+    """Property. Required. Is either a Literal[\"hello\"] type or a Literal[\"world\"] type."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        property: Union[Literal["hello"], Literal["world"]],  # pylint: disable=redefined-builtin
     ):
         ...
 

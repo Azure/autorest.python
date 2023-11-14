@@ -47,6 +47,9 @@ EMITTER_OPTIONS = {
     "type/array": {
         "package-name": "typetest-array",
     },
+    "type/basic": {
+        "package-name": "typetest-basic",
+    },
     "type/dictionary": {
         "package-name": "typetest-dictionary",
     },

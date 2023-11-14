@@ -93,6 +93,8 @@ export function getType(
         case "int64":
         case "float32":
         case "float64":
+        case "decimal":
+        case "decimal128":
         case "string":
         case "guid":
         case "url":
@@ -321,6 +323,8 @@ const sdkScalarKindToPythonKind: Record<string, string> = {
     int64: "integer",
     float32: "float",
     float64: "float",
+    decimal: "float",
+    decimal128: "float",
     guid: "string",
     url: "string",
     uuid: "string",
