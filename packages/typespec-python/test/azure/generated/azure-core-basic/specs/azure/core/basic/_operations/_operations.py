@@ -1094,8 +1094,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
         :param id: The user's id. Required.
         :type id: int
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
