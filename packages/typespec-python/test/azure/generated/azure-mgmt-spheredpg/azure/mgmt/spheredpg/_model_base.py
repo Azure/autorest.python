@@ -473,8 +473,8 @@ class Model(_MyMutableMapping):
             non_attr_kwargs = [k for k in kwargs if k not in self._attr_to_rest_field]
             if non_attr_kwargs:
                 if "properties" in self._attr_to_rest_field:
-                    properties_attr_dict = self._attr_to_rest_field["properties"]._type.args[0].args[0].__dict__
-                    properties_class = self._attr_to_rest_field["properties"]._type.args[0].args[0]
+                    properties_class = self._attr_to_rest_field["properties"]._class_type
+                    properties_attr_dict = getattr(properties_class, "__dict__", {})
                     properties_kwargs = {}
                     for item in non_attr_kwargs:
                         if item in properties_attr_dict:
@@ -573,30 +573,27 @@ class Model(_MyMutableMapping):
         return v.as_dict(exclude_readonly=exclude_readonly) if hasattr(v, "as_dict") else v
 
     def __getattr__(self, name: str) -> typing.Any:
-        if not name.startswith("__"):
-            try:
-                if self.properties is not None:
+        if not name.startswith("__") and name != "properties":
+            if "properties" in self._attr_to_rest_field:
+                if self.properties:
                     return getattr(self.properties, name)
-                if name in self._attr_to_rest_field["properties"]._type.args[0].args[0].__dict__:
+                class_type = self._attr_to_rest_field["properties"]._class_type
+                if name in getattr(class_type, "__dict__", {}):
                     return None
-            except AttributeError:
-                pass
         try:
             return super().__getattr__(name)
         except AttributeError:
             raise AttributeError(f"'{self.__class__.__name__}' object has no attribute '{name}'")
 
     def __setattr__(self, key: str, value: typing.Any) -> None:
-        try:
-            properties_attr_dict = self._attr_to_rest_field["properties"]._type.args[0].args[0].__dict__
+        if key != "properties" and "properties" in self._attr_to_rest_field:
+            class_type = self._attr_to_rest_field["properties"]._class_type
+            properties_attr_dict = getattr(class_type, "__dict__", {})
             if key in properties_attr_dict:
                 if getattr(self, "properties", None) is None:
-                    properties_class = self._attr_to_rest_field["properties"]._type.args[0].args[0]
-                    setattr(self, "properties", properties_class())
+                    setattr(self, "properties", class_type())
                 setattr(self.properties, key, value)
                 return
-        except (AttributeError, KeyError):
-            pass
         return super().__setattr__(key, value)
 
 
@@ -808,6 +805,11 @@ class _RestField:
         self._is_model = False
         self._default = default
         self._format = format
+
+    @property
+    def _class_type(self) -> typing.Any:
+        functools_args = getattr(self._type, "args", [None])
+        return getattr(functools_args[0], "args", [None])[0]
 
     @property
     def _rest_name(self) -> str:
