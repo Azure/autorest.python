@@ -1,6 +1,6 @@
 # Release
 
-## 2023-11-10 - 6.9.9
+## 2023-11-13 - 6.9.9
 
 | Library                                                                 | Min Version |
 | ----------------------------------------------------------------------- | ----------- |
@@ -14,7 +14,7 @@
 
 **Other Changes**
 
-- Hide `stream` in docstring if return type is None #2257
+- Hide `stream` in docstring if return type is `None` #2257
 
 ## 2023-11-06 - 6.9.8
 
