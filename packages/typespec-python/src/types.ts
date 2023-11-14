@@ -224,7 +224,7 @@ function emitModel(context: SdkContext, type: SdkModelType, fromBody: boolean): 
         discriminatedSubtypes: {} as Record<string, Record<string, any>>,
         properties: new Array<Record<string, any>>(),
         snakeCaseName: type.name ? camelToSnakeCase(type.name) : type.name,
-        base: (type.name === "" && fromBody) ? "json" : (getModelsMode(context) === "msrest" ? "msrest" : "dpg"),
+        base: type.name === "" && fromBody ? "json" : getModelsMode(context) === "msrest" ? "msrest" : "dpg",
         internal: type.access === "internal",
     };
 
