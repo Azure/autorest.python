@@ -573,7 +573,7 @@ class Model(_MyMutableMapping):
         return v.as_dict(exclude_readonly=exclude_readonly) if hasattr(v, "as_dict") else v
 
     def __getattr__(self, name: str) -> typing.Any:
-        if not name.startswith("__") and name != "properties":
+        if not name.startswith("__"):
             if "properties" in self._attr_to_rest_field:
                 if self.properties:
                     return getattr(self.properties, name)

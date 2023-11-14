@@ -591,7 +591,7 @@ class Model(_MyMutableMapping):
     {% if code_model.options["models_mode"] == "dpg" and code_model.options["azure_arm"] %}
 
     def __getattr__(self, name: str) -> typing.Any:
-        if not name.startswith("__") and name != "properties":
+        if not name.startswith("__"):
             if "properties" in self._attr_to_rest_field:
                 if self.properties:
                     return getattr(self.properties, name)
