@@ -582,8 +582,8 @@ class Model(_MyMutableMapping):
                     return None
         try:
             return super().__getattr__(name)
-        except AttributeError:
-            raise AttributeError(f"'{self.__class__.__name__}' object has no attribute '{name}'")
+        except AttributeError as err:
+            raise AttributeError(f"'{self.__class__.__name__}' object has no attribute '{name}'") from err
 
     def __setattr__(self, key: str, value: typing.Any) -> None:
         if key != "properties" and "properties" in self._attr_to_rest_field:
@@ -594,7 +594,7 @@ class Model(_MyMutableMapping):
                     setattr(self, "properties", class_type())
                 setattr(self.properties, key, value)
                 return
-        return super().__setattr__(key, value)
+        super().__setattr__(key, value)
 
 
 def _get_deserialize_callable_from_annotation(  # pylint: disable=R0911, R0915, R0912
