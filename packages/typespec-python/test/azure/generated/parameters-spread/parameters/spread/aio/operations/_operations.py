@@ -24,6 +24,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
+from ... import models as _models
 from ..._model_base import SdkJSONEncoder
 from ...operations._operations import (
     build_alias_spread_as_request_body_request,
@@ -37,9 +38,9 @@ if sys.version_info >= (3, 9):
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
-_Unset: Any = object()
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+_Unset: Any = object()
 
 
 class ModelOperations:
@@ -61,36 +62,28 @@ class ModelOperations:
 
     @overload
     async def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.BodyParameter, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_as_request_body.
 
         :param body: Required.
-        :type body: JSON
+        :type body: ~parameters.spread.models.BodyParameter
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"  # Required.
-                }
         """
 
     @overload
     async def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
-        self, *, name: str, content_type: str = "application/json", **kwargs: Any
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_as_request_body.
 
-        :keyword name: Required.
-        :paramtype name: str
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -117,28 +110,18 @@ class ModelOperations:
 
     @distributed_trace_async
     async def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[JSON, IO] = _Unset, *, name: str = _Unset, **kwargs: Any
+        self, body: Union[_models.BodyParameter, JSON, IO], **kwargs: Any
     ) -> None:
         """spread_as_request_body.
 
-        :param body: Is either a JSON type or a IO type. Required.
-        :type body: JSON or IO
-        :keyword name: Required.
-        :paramtype name: str
+        :param body: Is one of the following types: BodyParameter, JSON, IO Required.
+        :type body: ~parameters.spread.models.BodyParameter or JSON or IO
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"  # Required.
-                }
         """
         error_map = {
             401: ClientAuthenticationError,
@@ -154,11 +137,6 @@ class ModelOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if body is _Unset:
-            if name is _Unset:
-                raise TypeError("missing required argument: name")
-            body = {"name": name}
-            body = {k: v for k, v in body.items() if v is not None}
         content_type = content_type or "application/json"
         _content = None
         if isinstance(body, (IOBase, bytes)):

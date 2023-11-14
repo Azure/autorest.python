@@ -230,16 +230,10 @@ function getBodyType(context: SdkContext, route: HttpOperation): Record<string, 
             bodyModel = resourceType;
         }
     }
-    let result;
     if (bodyModel && bodyModel.kind === "Scalar") {
-        result = getType(context, route.parameters.body!.parameter!);
-    } else {
-        result = getType(context, bodyModel!);
+        return getType(context, route.parameters.body!.parameter!, true);
     }
-    if (bodyModel!.kind === "Model" && bodyModel!.name === "") {
-        result.base = "json";
-    }
-    return result;
+    return getType(context, bodyModel!, true);
 }
 
 function emitBodyParameter(context: SdkContext, httpOperation: HttpOperation): BodyParameter {

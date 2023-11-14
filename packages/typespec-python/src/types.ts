@@ -59,6 +59,7 @@ function getSimpleTypeResult(result: Record<string, any>): Record<string, any> {
 export function getType(
     context: SdkContext,
     type: CredentialType | CredentialTypeUnion | Type | SdkType,
+    fromBody = false,
 ): Record<string, any> {
     if (type.kind === "Credential") {
         return emitCredential(type.scheme);
@@ -69,7 +70,7 @@ export function getType(
 
     switch (type.kind) {
         case "model":
-            return emitModel(context, type);
+            return emitModel(context, type, fromBody);
         case "union":
             return emitUnion(context, type);
         case "enum":
@@ -107,7 +108,6 @@ export function getType(
         case "String":
         case "Number":
         case "Boolean":
-        case "Model":
         case "Intrinsic":
         case "Scalar":
         case "Enum":
@@ -115,6 +115,8 @@ export function getType(
         case "ModelProperty":
         case "UnionVariant":
             return getType(context, getClientType(context, type));
+        case "Model":
+            return getType(context, getClientType(context, type), fromBody);
         default:
             throw Error(`Not supported ${type.kind}`);
     }
@@ -203,7 +205,7 @@ function emitProperty(context: SdkContext, type: SdkBodyModelPropertyType): Reco
     };
 }
 
-function emitModel(context: SdkContext, type: SdkModelType): Record<string, any> {
+function emitModel(context: SdkContext, type: SdkModelType, fromBody: boolean): Record<string, any> {
     if (isEmptyModel(type)) {
         return {
             type: "any",
@@ -222,7 +224,7 @@ function emitModel(context: SdkContext, type: SdkModelType): Record<string, any>
         discriminatedSubtypes: {} as Record<string, Record<string, any>>,
         properties: new Array<Record<string, any>>(),
         snakeCaseName: type.name ? camelToSnakeCase(type.name) : type.name,
-        base: getModelsMode(context) === "msrest" ? "msrest" : "dpg",
+        base: (type.name === "" && fromBody) ? "json" : (getModelsMode(context) === "msrest" ? "msrest" : "dpg"),
         internal: type.access === "internal",
     };
 
