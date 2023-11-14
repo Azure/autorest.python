@@ -247,6 +247,7 @@ function emitBodyParameter(context: SdkContext, httpOperation: HttpOperation): B
     const type = getBodyType(context, httpOperation);
 
     if (type.type === "model" && type.name === "") {
+        type.base = "json";
         type.name = capitalize(httpOperation.operation.name) + "Request";
     }
 

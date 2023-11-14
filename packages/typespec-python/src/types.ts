@@ -22,7 +22,6 @@ import { getModelsMode } from "./emitter.js";
 
 export const typesMap = new Map<SdkType, Record<string, any>>();
 export const simpleTypesMap = new Map<string | null, Record<string, any>>();
-let anonymousModelCount = 0;
 
 export interface CredentialType {
     kind: "Credential";
@@ -204,12 +203,6 @@ function emitProperty(context: SdkContext, type: SdkBodyModelPropertyType): Reco
     };
 }
 
-function getDefaultModelName(context: SdkContext): string {
-    // currently randomly generate a model bc all models should have names
-    // once we have anonymous model naming, we won't need this function anymore
-    return `GeneratedName${++anonymousModelCount}`;
-}
-
 function emitModel(context: SdkContext, type: SdkModelType): Record<string, any> {
     if (isEmptyModel(type)) {
         return {
@@ -222,7 +215,7 @@ function emitModel(context: SdkContext, type: SdkModelType): Record<string, any>
     }
     const newValue = {
         type: type.kind,
-        name: type.name ? type.name : getDefaultModelName(context),
+        name: type.generatedName ?? type.name,
         description: type.description,
         parents: type.baseModel ? [getType(context, type.baseModel)] : [],
         discriminatorValue: type.discriminatorValue,
