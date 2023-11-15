@@ -28,14 +28,9 @@ def is_pipeline_build():
     return not not os.environ.get("TF_BUILD", "")
 
 def call(cmd:str, cwd=root_dir, suppress_failures=False, capture_output=False):
-    pipeline_build = is_pipeline_build()
-    
-    if cwd != root_dir:
-        print(f"From {cwd}:", flush=True)
-    if pipeline_build:
-        print(f"##[group]{cmd}", flush=True)
-    else:
-        print(f"> {cmd}", flush=True)
+    print("\n============================================================")
+    print(f"From {cwd}\n> {cmd}")
+    print("============================================================", flush=True)
 
     start_time = time.time()
 
@@ -55,35 +50,17 @@ def call(cmd:str, cwd=root_dir, suppress_failures=False, capture_output=False):
 
     elapsed_time = time.time() - start_time
 
-    if pipeline_build:
-        print(f"##[endgroup]{cmd}", flush=True)
-
-        if returncode != 0:
-            print(
-                f"##[error]Command failed ({elapsed_time:.3f}s), Exit code {returncode}: {cmd}\n",
-                flush=True,
-            )
-            if not suppress_failures:
-                sys.exit(returncode)
-        else:
-            print(
-                f"Command succeeded ({elapsed_time:.3f}s): {cmd}\n",
-                flush=True,
-            )
+    command_failed = returncode != 0 and not suppress_failures
+    
+    print("------------------------------------------------------------")
+    if command_failed:
+        print(f"##[error]Command failed: {cmd}")
     else:
-        if returncode != 0:
-            print(
-                f"\nCommand failed ({elapsed_time:.3f}s), Exit code {returncode}: {cmd}",
-                flush=True,
-            )
-            if not suppress_failures:
-                sys.exit(returncode)
-        else:
-            print(
-                f"\nCommand succeeded ({elapsed_time:.3f}s): {cmd}",
-                flush=True,
-            )
+        print(f"End: {cmd}")
+    print(f"Exit code {returncode}, Duration: {elapsed_time:.3f}s")
+    print("------------------------------------------------------------\n", flush=True)
 
-        print(f"\n{'='*os.get_terminal_size().columns}\n", flush=True)
+    if command_failed:
+        sys.exit(returncode)
 
     return process.stdout
