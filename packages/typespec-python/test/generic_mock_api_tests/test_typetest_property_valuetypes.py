@@ -34,6 +34,13 @@ def client():
         ("unknown_int", 42),
         ("unknown_dict", {'k1': 'hello', 'k2': 42}),
         ("unknown_array", ['hello', 'world']),
+        ("boolean_literal", True),
+        ("int_literal", 42),
+        ("string_literal", "hello"),
+        ("float_literal", 42.42),
+        ("union_string_literal", "world"),
+        ("union_float_literal", 43.43),
+        ("union_int_literal", 42),
     ]
 )
 def test_json(client, og_name, val):
@@ -64,6 +71,13 @@ def test_json(client, og_name, val):
         ("unknown_int", models.UnknownIntProperty, 42),
         ("unknown_dict", models.UnknownDictProperty, {'k1': 'hello', 'k2': 42}),
         ("unknown_array", models.UnknownArrayProperty, ['hello', 'world']),
+        ("boolean_literal", models.BooleanLiteralProperty, True),
+        ("int_literal", models.IntLiteralProperty, 42),
+        ("string_literal", models.StringLiteralProperty, "hello"),
+        ("float_literal", models.FloatLiteralProperty, 42.42),
+        ("union_string_literal", models.UnionStringLiteralProperty, "world"),
+        ("union_float_literal", models.UnionFloatLiteralProperty, 43.43),
+        ("union_int_literal", models.UnionIntLiteralProperty, 42),
     ]
 )
 def test_model(client, og_name, model, val):

@@ -23,6 +23,7 @@ def test_parameter(client: SpecialWordsClient, special_words):
     for sw in special_words:
         suffix = "" if sw == "constructor" else "_parameter"
         getattr(client.parameters, "with_" + sw)(**{sw + suffix: "ok"})
+    client.parameters.with_cancellation_token(cancellation_token="ok")
 
 
 def test_model(client: SpecialWordsClient, special_words):
