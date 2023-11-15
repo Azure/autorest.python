@@ -48,8 +48,8 @@ importers:
         specifier: '>=0.36.0 <1.0.0'
         version: 0.36.0(@typespec/compiler@0.50.0)(@typespec/http@0.50.0)(@typespec/rest@0.50.0)
       '@azure-tools/typespec-client-generator-core':
-        specifier: '>=0.36.0 <1.0.0'
-        version: 0.36.0(@typespec/compiler@0.50.0)(@typespec/http@0.50.0)(@typespec/rest@0.50.0)(@typespec/versioning@0.50.0)
+        specifier: '>=0.37.0-dev.3 <1.0.0'
+        version: 0.37.0-dev.3(@typespec/compiler@0.50.0)(@typespec/http@0.50.0)(@typespec/rest@0.50.0)(@typespec/versioning@0.50.0)
       '@typespec/compiler':
         specifier: '>=0.50.0 <1.0.0'
         version: 0.50.0
@@ -285,19 +285,21 @@ packages:
       '@typespec/versioning': 0.50.0(@typespec/compiler@0.50.0)
     dev: true
 
-  /@azure-tools/typespec-client-generator-core@0.36.0(@typespec/compiler@0.50.0)(@typespec/http@0.50.0)(@typespec/rest@0.50.0)(@typespec/versioning@0.50.0):
-    resolution: {integrity: sha512-l3DA2nkU3UqxT8fntIdd4QuUhosyRYNA+Ah1PiMvnNfjzFNjy1pTWiFZI7+P3bYR1MfDFCHAzq52Az371Ulu0w==}
+  /@azure-tools/typespec-client-generator-core@0.37.0-dev.3(@typespec/compiler@0.50.0)(@typespec/http@0.50.0)(@typespec/rest@0.50.0)(@typespec/versioning@0.50.0):
+    resolution: {integrity: sha512-jccHKDzIFdH9yXWvrnMFFzBxzJoAjHyNX9jR6Ewi+exA70mnJuyKwieNQnoSs9JVexmpJ6sJfJD74MLeoRvEew==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
-      '@typespec/compiler': ~0.50.0
-      '@typespec/http': ~0.50.0
-      '@typespec/rest': ~0.50.0
-      '@typespec/versioning': ~0.50.0
+      '@typespec/compiler': ~0.50.0 || >=0.51.0-dev <0.51.0
+      '@typespec/http': ~0.50.0 || >=0.51.0-dev <0.51.0
+      '@typespec/rest': ~0.50.0 || >=0.51.0-dev <0.51.0
+      '@typespec/versioning': ~0.50.0 || >=0.51.0-dev <0.51.0
     dependencies:
       '@typespec/compiler': 0.50.0
       '@typespec/http': 0.50.0(@typespec/compiler@0.50.0)
       '@typespec/rest': 0.50.0(@typespec/compiler@0.50.0)(@typespec/http@0.50.0)
       '@typespec/versioning': 0.50.0(@typespec/compiler@0.50.0)
+      change-case: 4.1.2
+      pluralize: 8.0.0
     dev: false
 
   /@azure/abort-controller@1.1.0:
@@ -3816,7 +3818,6 @@ packages:
   /pluralize@8.0.0:
     resolution: {integrity: sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==}
     engines: {node: '>=4'}
-    dev: true
 
   /prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
