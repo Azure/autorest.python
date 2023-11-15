@@ -3,6 +3,8 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+import decimal
+
 import pytest
 import datetime
 from typetest.property.valuetypes import ValueTypesClient, models
@@ -21,8 +23,8 @@ def client():
         ("bytes", "aGVsbG8sIHdvcmxkIQ=="),
         ("int", 42),
         ("float", 42.42),
-        ("decimal", 0.33333),
-        ("decimal128", 0.33333),
+        ("decimal", decimal.Decimal("0.33333")),
+        ("decimal128", decimal.Decimal("0.33333")),
         ("datetime", '2022-08-26T18:38:00Z'),
         ("duration", "P123DT22H14M12.011S"),
         ("enum", "ValueOne"),
@@ -59,8 +61,8 @@ def test_json(client, og_name, val):
         ("bytes", models.BytesProperty, b'hello, world!'),
         ("int", models.IntProperty, 42),
         ("float", models.FloatProperty, 42.42),
-        ("decimal", models.DecimalProperty, 0.33333),
-        ("decimal128", models.Decimal128Property, 0.33333),
+        ("decimal", models.DecimalProperty, decimal.Decimal("0.33333")),
+        ("decimal128", models.Decimal128Property, decimal.Decimal("0.33333")),
         ("enum", models.EnumProperty, models.InnerEnum.VALUE_ONE),
         ("extensible_enum", models.ExtensibleEnumProperty, "UnknownValue"),
         ("model", models.ModelProperty, models.InnerModel(property="hello")),

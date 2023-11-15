@@ -29,6 +29,7 @@ from .primitive_types import (
     AnyObjectType,
     UnixTimeType,
     SdkCoreType,
+    DecimalType,
 )
 from .enum_type import EnumType, EnumValue
 from .base import BaseType
@@ -124,6 +125,7 @@ __all__ = [
 TYPE_TO_OBJECT = {
     "integer": IntegerType,
     "float": FloatType,
+    "decimal": DecimalType,
     "string": StringType,
     "list": ListType,
     "dict": DictionaryType,

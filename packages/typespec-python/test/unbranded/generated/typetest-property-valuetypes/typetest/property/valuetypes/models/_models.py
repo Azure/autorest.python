@@ -8,6 +8,7 @@
 # --------------------------------------------------------------------------
 
 import datetime
+import decimal
 import sys
 from typing import Any, Dict, List, Mapping, TYPE_CHECKING, Union, overload
 
@@ -235,17 +236,17 @@ class Decimal128Property(_model_base.Model):
     All required parameters must be populated in order to send to server.
 
     :ivar property: Property. Required.
-    :vartype property: float
+    :vartype property: ~decimal.Decimal
     """
 
-    property: float = rest_field()
+    property: decimal.Decimal = rest_field()
     """Property. Required."""
 
     @overload
     def __init__(
         self,
         *,
-        property: float,  # pylint: disable=redefined-builtin
+        property: decimal.Decimal,  # pylint: disable=redefined-builtin
     ):
         ...
 
@@ -266,17 +267,17 @@ class DecimalProperty(_model_base.Model):
     All required parameters must be populated in order to send to server.
 
     :ivar property: Property. Required.
-    :vartype property: float
+    :vartype property: ~decimal.Decimal
     """
 
-    property: float = rest_field()
+    property: decimal.Decimal = rest_field()
     """Property. Required."""
 
     @overload
     def __init__(
         self,
         *,
-        property: float,  # pylint: disable=redefined-builtin
+        property: decimal.Decimal,  # pylint: disable=redefined-builtin
     ):
         ...
 

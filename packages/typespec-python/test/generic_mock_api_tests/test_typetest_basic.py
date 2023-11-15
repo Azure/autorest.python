@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+import decimal
 
 import pytest
 from typetest.basic import BasicClient
@@ -17,8 +18,8 @@ def client():
 @pytest.mark.parametrize(
     "og_name,val",
     [
-        ("decimal_type", 0.33333),
-        ("decimal128_type", 0.33333),
+        ("decimal_type", decimal.Decimal("0.33333")),
+        ("decimal128_type", decimal.Decimal("0.33333")),
     ],
 )
 def test_basic(client: BasicClient, og_name: str, val: dict):
