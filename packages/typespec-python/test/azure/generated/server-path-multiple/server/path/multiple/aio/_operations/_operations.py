@@ -35,8 +35,6 @@ class MultipleClientOperationsMixin(MultipleClientMixinABC):
     async def no_operation_params(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """no_operation_params.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -90,8 +88,6 @@ class MultipleClientOperationsMixin(MultipleClientMixinABC):
 
         :param keyword: Required.
         :type keyword: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

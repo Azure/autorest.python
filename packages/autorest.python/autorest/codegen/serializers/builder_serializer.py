@@ -677,7 +677,7 @@ class _OperationSerializer(
 
     def param_description(self, builder: OperationType) -> List[str]:
         description_list = super().param_description(builder)
-        if builder.expose_stream_keyword:
+        if builder.expose_stream_keyword and builder.has_response_body:
             description_list.append(
                 ":keyword bool stream: Whether to stream the response of this operation. "
                 "Defaults to False. You will have to context manage the returned stream."
