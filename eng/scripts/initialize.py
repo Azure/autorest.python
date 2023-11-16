@@ -25,8 +25,8 @@ def copy(src: Path, dest: Path) -> None:
 def main(update_to_latest_typespec: bool, build_artifacts_path: Path) -> None:
     # Install global dependencies
     call("npm install -g pnpm@8.3.1")
-    call("npm install -g autorest@3.6.3")
-    call("npm install -g @typespec/compiler@0.49.0")
+    call("npm install -g autorest")
+    call("npm install -g @typespec/compiler")
 
     if build_artifacts_path:
         # copy package.json and pnpm-lock.yaml from build artifacts
