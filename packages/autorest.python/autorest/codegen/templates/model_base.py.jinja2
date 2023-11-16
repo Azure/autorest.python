@@ -598,7 +598,7 @@ class Model(_MyMutableMapping):
                 class_type = self._attr_to_rest_field["properties"]._class_type
                 if name in getattr(class_type, "__dict__", {}):
                     return None
-        return super().__getattr__(name)  # type: ignore
+        raise AttributeError(f"'{self.__class__.__name__}' object has no attribute '{name}'")
 
     def __setattr__(self, key: str, value: typing.Any) -> None:
         if key != "properties" and "properties" in self._attr_to_rest_field:
