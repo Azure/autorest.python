@@ -34,11 +34,13 @@ import {
     createSdkContext,
     SdkContext,
     getLibraryName,
-    getAllModels,
     isInternal,
     getPropertyNames,
     getEffectivePayloadType,
     getAccess,
+    SdkClientType,
+    SdkHttpOperation,
+    SdkServiceOperation,
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
@@ -107,11 +109,10 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
         ...context.options,
     };
 
-    const sdkContext = createSdkContext(context, "@azure-tools/typespec-python");
-    const clients = listClients(sdkContext);
+    const sdkContext = createSdkContext<SdkHttpOperation>(context, "@azure-tools/typespec-python");
     const root = await resolveModuleRoot(program, "@autorest/python", dirname(fileURLToPath(import.meta.url)));
     const outputDir = context.emitterOutputDir;
-    const yamlMap = emitCodeModel(sdkContext, clients);
+    const yamlMap = emitCodeModel(sdkContext);
     const yamlPath = await saveCodeModelAsYaml("typespec-python-yaml-map", yamlMap);
     addDefaultCalculatedOptions(sdkContext, resolvedOptions, yamlMap);
     const commandArgs = [
@@ -720,7 +721,10 @@ function capitalize(name: string): string {
     return name[0].toUpperCase() + name.slice(1);
 }
 
-function emitOperationGroups(context: SdkContext, client: SdkClient): Record<string, any>[] {
+function emitOperationGroups<TServiceOperation extends SdkServiceOperation>(
+    context: SdkContext,
+    client: SdkClientType<TServiceOperation>,
+): Record<string, any>[] {
     const operationGroups: Record<string, any>[] = [];
     for (const operationGroup of listOperationGroups(context, client)) {
         let operations: Record<string, any>[] = [];
@@ -805,7 +809,12 @@ function emitServerParams(context: SdkContext, namespace: Namespace): Record<str
     }
 }
 
-function emitCredentialParam(context: SdkContext, namespace: Namespace): Record<string, any> | undefined {
+function emitCredentialParam<TServiceOperation extends SdkServiceOperation>(
+    context: SdkContext<TServiceOperation>,
+    client: SdkClientType<TServiceOperation>,
+): Record<string, any> | undefined {
+    const credParam = client.initialization?.properties.find((x) => x.nameInClient === "credential");
+
     const auth = getAuthentication(context.program, namespace);
     if (auth) {
         const credential_types: CredentialType[] = [];
@@ -878,72 +887,42 @@ function getApiVersionParameter(context: SdkContext): Record<string, any> | void
     }
 }
 
-function emitClients(context: SdkContext, namespace: string, clients: SdkClient[]): Record<string, any>[] {
-    const retval: Record<string, any>[] = [];
-    for (const client of clients) {
-        if (getNamespace(context, client.name) !== namespace) {
-            continue;
-        }
-        const server = getServerHelper(context, client.service);
-        const emittedClient = {
-            name: client.name.split(".").at(-1),
-            description: getDocStr(context, client.type),
-            parameters: emitGlobalParameters(context, client.service),
-            operationGroups: emitOperationGroups(context, client),
-            url: server ? server.url : "",
-            apiVersions: [],
-            arm: client.arm,
-        };
-        const emittedApiVersionParam = getApiVersionParameter(context);
-        if (emittedApiVersionParam) {
-            emittedClient.parameters.push(emittedApiVersionParam);
-        }
-        if (subscriptionIdParam) {
-            emittedClient.parameters.push(subscriptionIdParam);
-        }
-        retval.push(emittedClient);
-    }
-    return retval;
+function emitClient<TServiceOperation extends SdkServiceOperation>(
+    context: SdkContext<TServiceOperation>,
+    client: SdkClientType<TServiceOperation>,
+): Record<string, any> {
+    return {
+        name: client.name,
+        description: client.description,
+        parameters: client.initialization?.properties.map((x) => emitParameter(context, x)),
+        operationGroups: emitOperationGroups(context, client),
+        url: client.endpoint,
+        apiVersions: client.apiVersions,
+        arm: client.arm,
+    };
 }
 
-function getServiceNamespace(context: SdkContext): Namespace {
-    return listServices(context.program)[0].type;
-}
-
-function getNamespace(context: SdkContext, clientName: string): string {
-    // We get client namespaces from the client name. If there's a dot, we add that to the namespace
-    const submodule = clientName.split(".").slice(0, -1).join(".").toLowerCase();
-    if (!submodule) {
-        return removeUnderscoresFromNamespace(getClientNamespaceString(context)!.toLowerCase());
-    }
-    return removeUnderscoresFromNamespace(submodule);
-}
-
-function getNamespaces(context: SdkContext): Set<string> {
-    const namespaces = new Set<string>();
-    for (const client of listClients(context)) {
-        namespaces.add(getNamespace(context, client.name));
-    }
-    return namespaces;
-}
-
-function emitCodeModel(sdkContext: SdkContext, clients: SdkClient[]) {
-    const clientNamespaceString = removeUnderscoresFromNamespace(getClientNamespaceString(sdkContext)?.toLowerCase());
+function emitCodeModel<TServiceOperation extends SdkServiceOperation>(sdkContext: SdkContext<TServiceOperation>) {
     // Get types
+    const sdkPackage = sdkContext.sdkPackage;
     const codeModel: Record<string, any> = {
-        namespace: clientNamespaceString,
+        namespace: sdkPackage.rootNamespace,
+        clients: [],
         subnamespaceToClients: {},
     };
-    for (const model of getAllModels(sdkContext)) {
+    for (const model of sdkPackage.models) {
         if (model.name !== "") {
             getType(sdkContext, model);
         }
     }
-    for (const namespace of getNamespaces(sdkContext)) {
-        if (namespace === clientNamespaceString) {
-            codeModel["clients"] = emitClients(sdkContext, namespace, clients);
+    for (const sdkEnum of sdkPackage.enums) {
+        getType(sdkContext, sdkEnum);
+    }
+    for (const client of sdkPackage.clients) {
+        if (client.nameSpace === sdkPackage.rootNamespace) {
+            codeModel["clients"].push(emitClient(sdkContext, client));
         } else {
-            codeModel["subnamespaceToClients"][namespace] = emitClients(sdkContext, namespace, clients);
+            codeModel["subnamespaceToClients"][client.nameSpace] = emitClient(sdkContext, client);
         }
     }
     codeModel["types"] = [...typesMap.values(), ...Object.values(KnownTypes), ...simpleTypesMap.values()];

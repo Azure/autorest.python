@@ -15,6 +15,8 @@ import {
     SdkDatetimeType,
     SdkDurationType,
     getClientType,
+    SdkServiceOperation,
+    SdkCredentialType,
 } from "@azure-tools/typespec-client-generator-core";
 import { dump } from "js-yaml";
 import { camelToSnakeCase } from "./utils.js";
@@ -85,6 +87,8 @@ export function getType(
             return emitDurationOrDateType(type);
         case "enumvalue":
             return emitEnumMember(type, emitEnum(type.enumType));
+        case "credential":
+            return emitCredential(type);
         case "bytes":
         case "boolean":
         case "date":
@@ -105,26 +109,17 @@ export function getType(
             return emitBuiltInType(type);
         case "any":
             return KnownTypes.any;
-        case "String":
-        case "Number":
-        case "Boolean":
-        case "Intrinsic":
-        case "Scalar":
-        case "Enum":
-        case "Union":
-        case "ModelProperty":
-        case "UnionVariant":
-            return getType(context, getClientType(context, type));
-        case "Model":
-            return getType(context, getClientType(context, type), fromBody);
         default:
             throw Error(`Not supported ${type.kind}`);
     }
 }
 
-function emitCredential(auth: HttpAuth): Record<string, any> {
+function emitCredential(
+    credential: SdkCredentialType
+): Record<string, any> {
     let credential_type: Record<string, any> = {};
-    if (auth.type === "oauth2") {
+    const scheme = credential.scheme;
+    if (scheme.type === "oauth2") {
         credential_type = {
             type: "OAuth2",
             policy: {
@@ -132,27 +127,27 @@ function emitCredential(auth: HttpAuth): Record<string, any> {
                 credentialScopes: [],
             },
         };
-        for (const flow of auth.flows) {
+        for (const flow of scheme.flows) {
             for (const scope of flow.scopes) {
                 credential_type.policy.credentialScopes.push(scope.value);
             }
             credential_type.policy.credentialScopes.push();
         }
-    } else if (auth.type === "apiKey") {
+    } else if (scheme.type === "apiKey") {
         credential_type = {
             type: "Key",
             policy: {
                 type: "KeyCredentialPolicy",
-                key: auth.name,
+                key: scheme.name,
             },
         };
-    } else if (auth.type === "http") {
+    } else if (scheme.type === "http") {
         credential_type = {
             type: "Key",
             policy: {
                 type: "KeyCredentialPolicy",
                 key: "Authorization",
-                scheme: auth.scheme[0].toUpperCase() + auth.scheme.slice(1),
+                scheme: scheme.scheme[0].toUpperCase() + scheme.scheme.slice(1),
             },
         };
     }
