@@ -234,9 +234,11 @@ function emitModel(context: SdkContext, type: SdkModelType, fromBody: boolean): 
             newValue.properties.push(emitProperty(context, property));
             // type for base discriminator returned by TCGC changes from constant to string while
             // autorest treat all discriminator as constant type, so we need to change to constant type here
-            if (type.discriminatedSubtypes && property.discriminator && property.type.kind === "string") {
+            if (type.discriminatedSubtypes && property.discriminator) {
                 newValue.properties[newValue.properties.length - 1].isPolymorphic = true;
-                newValue.properties[newValue.properties.length - 1].type = getConstantType(null);
+                if (property.type.kind === "string") {
+                    newValue.properties[newValue.properties.length - 1].type = getConstantType(null);
+                }
             }
         }
     }

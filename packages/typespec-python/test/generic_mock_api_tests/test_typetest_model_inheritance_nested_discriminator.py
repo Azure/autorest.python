@@ -21,7 +21,7 @@ def valid_body():
 
 def test_get_model(client, valid_body):
     assert client.get_model() == valid_body
-
+    assert isinstance(client.get_model(), GoblinShark)
 
 def test_put_model(client, valid_body):
     client.put_model(valid_body)
@@ -60,6 +60,7 @@ def valid_recursive_body():
 
 def test_get_recursive_model(client, valid_recursive_body):
     assert valid_recursive_body == client.get_recursive_model()
+    assert isinstance(client.get_recursive_model(), Salmon)
 
 
 def test_put_recursive_model(client, valid_recursive_body):

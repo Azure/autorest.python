@@ -23,6 +23,7 @@ def valid_fixed_body():
 
 def test_get_extensible_model(client: EnumDiscriminatorClient, valid_body: models.Dog):
     assert client.get_extensible_model() == valid_body
+    assert isinstance(client.get_extensible_model(), models.Golden)
 
 def test_put_extensible_model(client: EnumDiscriminatorClient, valid_body: models.Dog):
     client.put_extensible_model(valid_body)
@@ -35,6 +36,7 @@ def test_get_extensible_model_wrong_discriminator(client: EnumDiscriminatorClien
 
 def test_get_fixed_model(client: EnumDiscriminatorClient, valid_fixed_body: models.Snake):
     assert client.get_fixed_model() == valid_fixed_body
+    assert isinstance(client.get_fixed_model(), models.Cobra)
 
 def test_put_fixed_model(client: EnumDiscriminatorClient, valid_fixed_body: models.Snake):
     client.put_fixed_model(valid_fixed_body)
