@@ -227,7 +227,12 @@ function getBodyType(context: SdkContext, route: HttpOperation): Record<string, 
             }
         }
         if (resourceType && bodyModel.name === "") {
-            bodyModel = resourceType;
+            const effectivePayloadType = getEffectivePayloadType(context, bodyModel);
+            if (effectivePayloadType.name !== "") {
+                bodyModel = effectivePayloadType;
+            } else {
+                bodyModel = resourceType;
+            }
         }
     }
     if (bodyModel && bodyModel.kind === "Scalar") {
