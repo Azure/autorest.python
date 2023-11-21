@@ -304,7 +304,9 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
                 return cls(pipeline_response, None, {})  # type: ignore
 
         if polling is True:
-            polling_method: PollingMethod = cast(PollingMethod, LROBasePolling(lro_delay, **kwargs))
+            polling_method: PollingMethod = cast(
+                PollingMethod, LROBasePolling(lro_delay, lro_options={"api_version": "2022-12-01-preview"}, **kwargs)
+            )
         elif polling is False:
             polling_method = cast(PollingMethod, NoPolling())
         else:

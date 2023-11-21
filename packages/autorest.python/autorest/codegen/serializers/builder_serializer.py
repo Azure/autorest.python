@@ -1551,11 +1551,28 @@ class _LROOperationSerializer(_OperationSerializer[LROOperationType]):
 
     def return_lro_poller(self, builder: LROOperationType) -> List[str]:
         retval = []
+        lro_options = (
+            {
+                "final-state-via": builder.lro_options["final-state-via"],
+            }
+            if builder.lro_options and "final-state-via" in builder.lro_options
+            else {}
+        )
+        if self.code_model.options["version_tolerant"]:
+            try:
+                api_version = next(
+                    p
+                    for p in builder.parameters.parameters
+                    if p.client_name == "api_version" and p.client_default_value
+                )
+                lro_options["api_version"] = api_version.client_default_value
+            except StopIteration:
+                pass
         lro_options_str = (
-            "lro_options={'final-state-via': '"
-            + builder.lro_options["final-state-via"]
-            + "'},"
-            if builder.lro_options
+            "lro_options={"
+            + ",".join([f"'{k}':'{v}'" for k, v in lro_options.items()])
+            + "},"
+            if lro_options
             else ""
         )
         path_format_arguments_str = ""
