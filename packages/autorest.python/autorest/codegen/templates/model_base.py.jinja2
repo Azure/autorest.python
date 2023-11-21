@@ -22,6 +22,7 @@ import isodate
 from {{ code_model.core_library }}.exceptions import DeserializationError
 from {{ code_model.core_library }}{{ ".utils" if code_model.options["unbranded"] else "" }} import CaseInsensitiveEnumMeta
 from {{ code_model.core_library }}.{{ "runtime." if code_model.options["unbranded"] else "" }}pipeline import PipelineResponse
+from {{ code_model.core_library }}.rest import HttpResponse, AsyncHttpResponse
 from {{ code_model.core_library }}.serialization import _Null
 
 if sys.version_info >= (3, 9):
@@ -751,13 +752,15 @@ def _deserialize_with_callable(
 
 def _deserialize(
     deserializer: typing.Any,
-    value: typing.Any,
+    value: typing.Union[PipelineResponse, HttpResponse, AsyncHttpResponse, typing.Any],
     module: typing.Optional[str] = None,
     rf: typing.Optional["_RestField"] = None,
     format: typing.Optional[str] = None,
 ) -> typing.Any:
     if isinstance(value, PipelineResponse):
-        value = value.http_response.json()
+        value = value.http_response
+    if isinstance(value, (HttpResponse, AsyncHttpResponse)):
+        value = value.json()
     if rf is None and format:
         rf = _RestField(format=format)
     deserializer = _get_deserialize_callable_from_annotation(deserializer, module, rf)
