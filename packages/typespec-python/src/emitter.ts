@@ -524,8 +524,12 @@ function addLroInformation(
     emittedOperation["initialOperation"] = initialOperation;
     emittedOperation["exposeStreamKeyword"] = false;
     const lroMeta = getLroMetadata(context.program, tspOperation);
-    if (!isAzureCoreModel(lroMeta!.logicalResult)) {
-        emittedOperation["responses"][0]["type"] = getType(context, lroMeta!.logicalResult);
+    let logicalResult = lroMeta!.logicalResult;
+    if (logicalResult.name === "") {
+        logicalResult = getEffectivePayloadType(context, logicalResult);
+    }
+    if (!isAzureCoreModel(logicalResult)) {
+        emittedOperation["responses"][0]["type"] = getType(context, logicalResult);
         if (lroMeta!.logicalPath) {
             emittedOperation["responses"][0]["resultProperty"] = lroMeta!.logicalPath;
         }
@@ -563,6 +567,7 @@ function getLroInitialOperation(
     initialOperation["exposeStreamKeyword"] = false;
     initialOperation["responses"].forEach((resp: Record<string, any>, index: number) => {
         if (
+            resp["type"] !== undefined &&
             getBodyFromResponse(
                 context,
                 ignoreDiagnostics(getHttpOperation(context.program, initialTspOperation)).responses[index],

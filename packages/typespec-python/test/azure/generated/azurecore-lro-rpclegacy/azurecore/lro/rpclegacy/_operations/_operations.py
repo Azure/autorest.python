@@ -146,7 +146,9 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
 
         return deserialized  # type: ignore
 
-    def _create_job_initial(self, body: Union[_models.JobData, JSON, IO], **kwargs: Any) -> JSON:
+    def _create_job_initial(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.JobData, JSON, IO], **kwargs: Any
+    ) -> None:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -159,7 +161,7 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[JSON] = kwargs.pop("cls", None)
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -193,17 +195,13 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
         response_headers = {}
         response_headers["Operation-Location"] = self._deserialize("str", response.headers.get("Operation-Location"))
 
-        deserialized = _deserialize(JSON, response.json())
-
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
-
-        return deserialized  # type: ignore
+            return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @overload
     def begin_create_job(
         self, body: _models.JobData, *, content_type: str = "application/json", **kwargs: Any
-    ) -> LROPoller[None]:
+    ) -> LROPoller[_models.JobResult]:
         """Creates a Job.
 
         :param body: Required.
@@ -218,13 +216,16 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of LROPoller that returns None
-        :rtype: ~azure.core.polling.LROPoller[None]
+        :return: An instance of LROPoller that returns JobResult. The JobResult is compatible with
+         MutableMapping
+        :rtype: ~azure.core.polling.LROPoller[~azurecore.lro.rpclegacy.models.JobResult]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
-    def begin_create_job(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> LROPoller[None]:
+    def begin_create_job(
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> LROPoller[_models.JobResult]:
         """Creates a Job.
 
         :param body: Required.
@@ -239,13 +240,16 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of LROPoller that returns None
-        :rtype: ~azure.core.polling.LROPoller[None]
+        :return: An instance of LROPoller that returns JobResult. The JobResult is compatible with
+         MutableMapping
+        :rtype: ~azure.core.polling.LROPoller[~azurecore.lro.rpclegacy.models.JobResult]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
-    def begin_create_job(self, body: IO, *, content_type: str = "application/json", **kwargs: Any) -> LROPoller[None]:
+    def begin_create_job(
+        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+    ) -> LROPoller[_models.JobResult]:
         """Creates a Job.
 
         :param body: Required.
@@ -260,13 +264,14 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of LROPoller that returns None
-        :rtype: ~azure.core.polling.LROPoller[None]
+        :return: An instance of LROPoller that returns JobResult. The JobResult is compatible with
+         MutableMapping
+        :rtype: ~azure.core.polling.LROPoller[~azurecore.lro.rpclegacy.models.JobResult]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace
-    def begin_create_job(self, body: Union[_models.JobData, JSON, IO], **kwargs: Any) -> LROPoller[None]:
+    def begin_create_job(self, body: Union[_models.JobData, JSON, IO], **kwargs: Any) -> LROPoller[_models.JobResult]:
         """Creates a Job.
 
         :param body: Is one of the following types: JobData, JSON, IO Required.
@@ -281,27 +286,36 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
          Retry-After header is present.
-        :return: An instance of LROPoller that returns None
-        :rtype: ~azure.core.polling.LROPoller[None]
+        :return: An instance of LROPoller that returns JobResult. The JobResult is compatible with
+         MutableMapping
+        :rtype: ~azure.core.polling.LROPoller[~azurecore.lro.rpclegacy.models.JobResult]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[_models.JobResult] = kwargs.pop("cls", None)
         polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = self._create_job_initial(
+            raw_result = self._create_job_initial(  # type: ignore
                 body=body, content_type=content_type, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
         kwargs.pop("error_map", None)
 
-        def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
+        def get_long_running_output(pipeline_response):
+            response_headers = {}
+            response = pipeline_response.http_response
+            response_headers["Operation-Location"] = self._deserialize(
+                "str", response.headers.get("Operation-Location")
+            )
+
+            deserialized = _deserialize(_models.JobResult, response.json())
             if cls:
-                return cls(pipeline_response, None, {})  # type: ignore
+                return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+            return deserialized
 
         if polling is True:
             polling_method: PollingMethod = cast(PollingMethod, LROBasePolling(lro_delay, **kwargs))
@@ -310,10 +324,12 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
         else:
             polling_method = polling
         if cont_token:
-            return LROPoller[None].from_continuation_token(
+            return LROPoller[_models.JobResult].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[_models.JobResult](
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+        )
