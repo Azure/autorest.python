@@ -19,7 +19,6 @@ corehttp==1.0.0b1
 -e ./generated/server-path-single
 -e ./generated/special-words
 -e ./generated/typetest-array
--e ./generated/typetest-basic
 -e ./generated/typetest-dictionary
 -e ./generated/typetest-enum-extensible
 -e ./generated/typetest-enum-fixed
