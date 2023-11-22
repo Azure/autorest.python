@@ -14,7 +14,6 @@ async def client():
         yield client
 
 
-# cadl-ranch check api-version in poll request which is not supported by azure-core
 @pytest.mark.asyncio
 async def test_begin_create_job(client: LegacyClient):
     result = await (
