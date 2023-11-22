@@ -567,7 +567,6 @@ function getLroInitialOperation(
     initialOperation["exposeStreamKeyword"] = false;
     initialOperation["responses"].forEach((resp: Record<string, any>, index: number) => {
         if (
-            resp["type"] !== undefined &&
             getBodyFromResponse(
                 context,
                 ignoreDiagnostics(getHttpOperation(context.program, initialTspOperation)).responses[index],

@@ -66,9 +66,7 @@ def build_rpc_long_running_rpc_request(**kwargs: Any) -> HttpRequest:
 
 
 class RpcClientOperationsMixin(RpcClientMixinABC):
-    def _long_running_rpc_initial(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.GenerationOptions, JSON, IO], **kwargs: Any
-    ) -> None:
+    def _long_running_rpc_initial(self, body: Union[_models.GenerationOptions, JSON, IO], **kwargs: Any) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -81,7 +79,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -115,8 +113,12 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
         response_headers = {}
         response_headers["Operation-Location"] = self._deserialize("str", response.headers.get("Operation-Location"))
 
+        deserialized = _deserialize(JSON, response.json()) if response.text() else {}
+
         if cls:
-            return cls(pipeline_response, None, response_headers)  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
 
     @overload
     def begin_long_running_rpc(
@@ -230,7 +232,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = self._long_running_rpc_initial(  # type: ignore
+            raw_result = self._long_running_rpc_initial(
                 body=body, content_type=content_type, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
         kwargs.pop("error_map", None)

@@ -98,14 +98,14 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
                 "str", response.headers.get("Operation-Location")
             )
 
-            deserialized = _deserialize(JSON, response.json())
+            deserialized = _deserialize(JSON, response.json()) if response.text() else {}
 
         if response.status_code == 201:
             response_headers["Operation-Location"] = self._deserialize(
                 "str", response.headers.get("Operation-Location")
             )
 
-            deserialized = _deserialize(JSON, response.json())
+            deserialized = _deserialize(JSON, response.json()) if response.text() else {}
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -272,7 +272,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
-    async def _delete_initial(self, name: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def _delete_initial(self, name: str, **kwargs: Any) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -284,7 +284,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         _request = build_standard_delete_request(
             name=name,
@@ -310,8 +310,12 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         response_headers = {}
         response_headers["Operation-Location"] = self._deserialize("str", response.headers.get("Operation-Location"))
 
+        deserialized = _deserialize(JSON, response.json()) if response.text() else {}
+
         if cls:
-            return cls(pipeline_response, None, response_headers)  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def begin_delete(self, name: str, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -340,7 +344,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = await self._delete_initial(  # type: ignore
+            raw_result = await self._delete_initial(
                 name=name, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
         kwargs.pop("error_map", None)
@@ -364,9 +368,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
             )
         return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    async def _export_initial(  # pylint: disable=inconsistent-return-statements
-        self, name: str, *, format: str, **kwargs: Any
-    ) -> None:
+    async def _export_initial(self, name: str, *, format: str, **kwargs: Any) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -378,7 +380,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         _request = build_standard_export_request(
             name=name,
@@ -405,8 +407,12 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         response_headers = {}
         response_headers["Operation-Location"] = self._deserialize("str", response.headers.get("Operation-Location"))
 
+        deserialized = _deserialize(JSON, response.json()) if response.text() else {}
+
         if cls:
-            return cls(pipeline_response, None, response_headers)  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def begin_export(self, name: str, *, format: str, **kwargs: Any) -> AsyncLROPoller[_models.ExportedUser]:
@@ -438,7 +444,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = await self._export_initial(  # type: ignore
+            raw_result = await self._export_initial(
                 name=name, format=format, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
         kwargs.pop("error_map", None)

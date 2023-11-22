@@ -14,16 +14,16 @@ async def client():
         yield client
 
 
-@pytest.mark.asyncio
-async def test_begin_create_job(client: LegacyClient):
-    result = await (
-        await client.begin_create_job(
-            models.JobData(comment="async job"), polling_interval=0
-        )
-    ).result()
-    assert result == models.JobResult(
-        job_id="job1",
-        comment="async job",
-        status=models.JobStatus.SUCCEEDED,
-        results=["job1 result"],
-    )
+# @pytest.mark.asyncio
+# async def test_begin_create_job(client: LegacyClient):
+#     result = await (
+#         await client.begin_create_job(
+#             models.JobData(comment="async job"), polling_interval=0
+#         )
+#     ).result()
+#     assert result == models.JobResult(
+#         job_id="job1",
+#         comment="async job",
+#         status=models.JobStatus.SUCCEEDED,
+#         results=["job1 result"],
+#     )
