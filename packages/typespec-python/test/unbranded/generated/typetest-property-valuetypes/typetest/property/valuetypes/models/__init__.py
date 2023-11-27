@@ -13,6 +13,8 @@ from ._models import CollectionsIntProperty
 from ._models import CollectionsModelProperty
 from ._models import CollectionsStringProperty
 from ._models import DatetimeProperty
+from ._models import Decimal128Property
+from ._models import DecimalProperty
 from ._models import DictionaryStringProperty
 from ._models import DurationProperty
 from ._models import EnumProperty
@@ -48,6 +50,8 @@ __all__ = [
     "CollectionsModelProperty",
     "CollectionsStringProperty",
     "DatetimeProperty",
+    "Decimal128Property",
+    "DecimalProperty",
     "DictionaryStringProperty",
     "DurationProperty",
     "EnumProperty",
