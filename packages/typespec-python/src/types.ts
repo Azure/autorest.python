@@ -217,11 +217,12 @@ function emitModel(context: SdkContext, type: SdkModelType, fromBody: boolean): 
     if (typesMap.has(type)) {
         return typesMap.get(type)!;
     }
+    const parents: Record<string, any>[] = [];
     const newValue = {
         type: type.kind,
         name: type.generatedName ?? type.name,
         description: type.description,
-        parents: type.baseModel ? [getType(context, type.baseModel)] : [],
+        parents: parents,
         discriminatorValue: type.discriminatorValue,
         discriminatedSubtypes: {} as Record<string, Record<string, any>>,
         properties: new Array<Record<string, any>>(),
@@ -231,6 +232,7 @@ function emitModel(context: SdkContext, type: SdkModelType, fromBody: boolean): 
     };
 
     typesMap.set(type, newValue);
+    newValue.parents = type.baseModel ? [getType(context, type.baseModel)] : newValue.parents;
     for (const property of type.properties.values()) {
         if (property.kind === "property") {
             newValue.properties.push(emitProperty(context, property));
