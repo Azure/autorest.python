@@ -14,8 +14,6 @@ import {
     SdkConstantType,
     SdkDatetimeType,
     SdkDurationType,
-    getClientType,
-    SdkServiceOperation,
     SdkCredentialType,
 } from "@azure-tools/typespec-client-generator-core";
 import { dump } from "js-yaml";

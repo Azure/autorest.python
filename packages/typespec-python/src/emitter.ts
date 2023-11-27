@@ -41,6 +41,11 @@ import {
     SdkClientType,
     SdkHttpOperation,
     SdkServiceOperation,
+    SdkMethodParameter,
+    SdkHttpParameter,
+    SdkEndpointParameter,
+    SdkCredentialParameter,
+    SdkParameter,
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import { resolveModuleRoot, saveCodeModelAsYaml } from "./external-process.js";
@@ -48,7 +53,7 @@ import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { execFileSync } from "child_process";
 import { PythonEmitterOptions } from "./lib.js";
-import { camelToSnakeCase, removeUnderscoresFromNamespace } from "./utils.js";
+import { camelToSnakeCase, getImplementation, removeUnderscoresFromNamespace } from "./utils.js";
 import {
     CredentialType,
     CredentialTypeUnion,
@@ -171,27 +176,12 @@ type ParamBase = {
     inOverload: boolean;
 };
 
-function emitParamBase(context: SdkContext, parameter: ModelProperty | Type): ParamBase {
-    let optional: boolean;
-    let name: string;
-    let description: string = "";
-    let addedOn: string | undefined;
-
-    if (parameter.kind === "ModelProperty") {
-        optional = parameter.optional;
-        name = getLibraryName(context, parameter);
-        description = getDocStr(context, parameter);
-        addedOn = getAddedOnVersion(context, parameter);
-    } else {
-        optional = false;
-        name = "body";
-    }
-
+function emitParamBase(context: SdkContext, parameter: SdkParameter): ParamBase {
     return {
-        optional,
-        description,
-        addedOn,
-        clientName: camelToSnakeCase(name),
+        optional: parameter.optional,
+        description: parameter.description || "",
+        addedOn: parameter.apiVersions.length > 0 ? parameter.apiVersions[0] : undefined,
+        clientName: camelToSnakeCase(parameter.nameInClient),
         inOverload: false,
     };
 }
@@ -278,11 +268,27 @@ function getDefaultApiVersionValue(context: SdkContext): string | undefined {
     return defaultApiVersion.value;
 }
 
-function emitParameter(
+function emitMethodParameter(
     context: SdkContext,
-    parameter: HttpOperationParameter | HttpServerParameter,
-    implementation: string,
+    parameter: SdkEndpointParameter | SdkCredentialParameter | SdkMethodParameter,
 ): Record<string, any> {
+    const base = {
+        ...emitParamBase(context, parameter),
+        implementation: getImplementation(parameter),
+        type: getType(context, parameter.type),
+        clientDefaultValue: parameter.clientDefaultValue,
+    };
+    if (parameter.kind === "endpoint") {
+        return {
+            ...base,
+            skipUrlEncoding: !parameter.urlEncode,
+            wireName: parameter.serializedName,
+        };
+    }
+    return base;
+}
+
+function emitParameter(context: SdkContext, parameter: SdkMethodParameter | SdkHttpParameter): Record<string, any> {
     const base = emitParamBase(context, parameter.param);
     base.clientName = camelToSnakeCase(getPropertyNames(context, parameter.param)[0]);
     let type = getType(context, parameter.param);
@@ -894,7 +900,7 @@ function emitClient<TServiceOperation extends SdkServiceOperation>(
     return {
         name: client.name,
         description: client.description,
-        parameters: client.initialization?.properties.map((x) => emitParameter(context, x)),
+        parameters: client.initialization?.properties.map((x) => emitMethodParameter(context, x)),
         operationGroups: emitOperationGroups(context, client),
         url: client.endpoint,
         apiVersions: client.apiVersions,

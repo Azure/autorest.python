@@ -1,3 +1,5 @@
+import { SdkParameter } from "@azure-tools/typespec-client-generator-core";
+
 export function camelToSnakeCase(name: string): string {
     if (!name) return name;
     const camelToSnakeCaseRe = (str: string) =>
@@ -12,4 +14,9 @@ export function camelToSnakeCase(name: string): string {
 export function removeUnderscoresFromNamespace(name?: string): string {
     // needed because of the _specs_ tests
     return (name || "").replace(/_/g, "");
+}
+
+export function getImplementation(parameter: SdkParameter): "client" | "method" {
+    if (parameter.onClient) return "client";
+    return "method";
 }
