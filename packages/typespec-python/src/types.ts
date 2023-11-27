@@ -22,7 +22,6 @@ import { getModelsMode } from "./emitter.js";
 
 export const typesMap = new Map<SdkType, Record<string, any>>();
 export const simpleTypesMap = new Map<string | null, Record<string, any>>();
-let anonymousModelCount = 0;
 
 export interface CredentialType {
     kind: "Credential";
@@ -60,6 +59,7 @@ function getSimpleTypeResult(result: Record<string, any>): Record<string, any> {
 export function getType(
     context: SdkContext,
     type: CredentialType | CredentialTypeUnion | Type | SdkType,
+    fromBody = false,
 ): Record<string, any> {
     if (type.kind === "Credential") {
         return emitCredential(type.scheme);
@@ -70,7 +70,7 @@ export function getType(
 
     switch (type.kind) {
         case "model":
-            return emitModel(context, type);
+            return emitModel(context, type, fromBody);
         case "union":
             return emitUnion(context, type);
         case "enum":
@@ -108,7 +108,6 @@ export function getType(
         case "String":
         case "Number":
         case "Boolean":
-        case "Model":
         case "Intrinsic":
         case "Scalar":
         case "Enum":
@@ -116,6 +115,8 @@ export function getType(
         case "ModelProperty":
         case "UnionVariant":
             return getType(context, getClientType(context, type));
+        case "Model":
+            return getType(context, getClientType(context, type), fromBody);
         default:
             throw Error(`Not supported ${type.kind}`);
     }
@@ -204,13 +205,7 @@ function emitProperty(context: SdkContext, type: SdkBodyModelPropertyType): Reco
     };
 }
 
-function getDefaultModelName(context: SdkContext): string {
-    // currently randomly generate a model bc all models should have names
-    // once we have anonymous model naming, we won't need this function anymore
-    return `GeneratedName${++anonymousModelCount}`;
-}
-
-function emitModel(context: SdkContext, type: SdkModelType): Record<string, any> {
+function emitModel(context: SdkContext, type: SdkModelType, fromBody: boolean): Record<string, any> {
     if (isEmptyModel(type)) {
         return {
             type: "any",
@@ -222,14 +217,14 @@ function emitModel(context: SdkContext, type: SdkModelType): Record<string, any>
     }
     const newValue = {
         type: type.kind,
-        name: type.name ? type.name : getDefaultModelName(context),
+        name: type.generatedName ?? type.name,
         description: type.description,
         parents: type.baseModel ? [getType(context, type.baseModel)] : [],
         discriminatorValue: type.discriminatorValue,
         discriminatedSubtypes: {} as Record<string, Record<string, any>>,
         properties: new Array<Record<string, any>>(),
         snakeCaseName: type.name ? camelToSnakeCase(type.name) : type.name,
-        base: getModelsMode(context) === "msrest" ? "msrest" : "dpg",
+        base: type.name === "" && fromBody ? "json" : getModelsMode(context) === "msrest" ? "msrest" : "dpg",
         internal: type.access === "internal",
     };
 
@@ -239,9 +234,11 @@ function emitModel(context: SdkContext, type: SdkModelType): Record<string, any>
             newValue.properties.push(emitProperty(context, property));
             // type for base discriminator returned by TCGC changes from constant to string while
             // autorest treat all discriminator as constant type, so we need to change to constant type here
-            if (type.discriminatedSubtypes && property.discriminator && property.type.kind === "string") {
+            if (type.discriminatedSubtypes && property.discriminator) {
                 newValue.properties[newValue.properties.length - 1].isPolymorphic = true;
-                newValue.properties[newValue.properties.length - 1].type = getConstantType(null);
+                if (property.type.kind === "string") {
+                    newValue.properties[newValue.properties.length - 1].type = getConstantType(null);
+                }
             }
         }
     }

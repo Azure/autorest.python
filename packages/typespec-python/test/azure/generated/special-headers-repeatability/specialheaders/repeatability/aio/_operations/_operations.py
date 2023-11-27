@@ -32,8 +32,6 @@ class RepeatabilityClientOperationsMixin(RepeatabilityClientMixinABC):
     async def immediate_success(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Check we recognize Repeatability-Request-ID and Repeatability-First-Sent.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

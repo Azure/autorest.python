@@ -16,6 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 from ._configuration import ValueTypesClientConfiguration
 from ._serialization import Deserializer, Serializer
 from .operations import (
+    BooleanLiteralOperations,
     BooleanOperations,
     BytesOperations,
     CollectionsIntOperations,
@@ -26,11 +27,17 @@ from .operations import (
     DurationOperations,
     EnumOperations,
     ExtensibleEnumOperations,
+    FloatLiteralOperations,
     FloatOperations,
+    IntLiteralOperations,
     IntOperations,
     ModelOperations,
     NeverOperations,
+    StringLiteralOperations,
     StringOperations,
+    UnionFloatLiteralOperations,
+    UnionIntLiteralOperations,
+    UnionStringLiteralOperations,
     UnknownArrayOperations,
     UnknownDictOperations,
     UnknownIntOperations,
@@ -80,6 +87,22 @@ class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,to
     :vartype unknown_dict: typetest.property.valuetypes.operations.UnknownDictOperations
     :ivar unknown_array: UnknownArrayOperations operations
     :vartype unknown_array: typetest.property.valuetypes.operations.UnknownArrayOperations
+    :ivar string_literal: StringLiteralOperations operations
+    :vartype string_literal: typetest.property.valuetypes.operations.StringLiteralOperations
+    :ivar int_literal: IntLiteralOperations operations
+    :vartype int_literal: typetest.property.valuetypes.operations.IntLiteralOperations
+    :ivar float_literal: FloatLiteralOperations operations
+    :vartype float_literal: typetest.property.valuetypes.operations.FloatLiteralOperations
+    :ivar boolean_literal: BooleanLiteralOperations operations
+    :vartype boolean_literal: typetest.property.valuetypes.operations.BooleanLiteralOperations
+    :ivar union_string_literal: UnionStringLiteralOperations operations
+    :vartype union_string_literal:
+     typetest.property.valuetypes.operations.UnionStringLiteralOperations
+    :ivar union_int_literal: UnionIntLiteralOperations operations
+    :vartype union_int_literal: typetest.property.valuetypes.operations.UnionIntLiteralOperations
+    :ivar union_float_literal: UnionFloatLiteralOperations operations
+    :vartype union_float_literal:
+     typetest.property.valuetypes.operations.UnionFloatLiteralOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -135,6 +158,19 @@ class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,to
         self.unknown_int = UnknownIntOperations(self._client, self._config, self._serialize, self._deserialize)
         self.unknown_dict = UnknownDictOperations(self._client, self._config, self._serialize, self._deserialize)
         self.unknown_array = UnknownArrayOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.string_literal = StringLiteralOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.int_literal = IntLiteralOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.float_literal = FloatLiteralOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.boolean_literal = BooleanLiteralOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.union_string_literal = UnionStringLiteralOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.union_int_literal = UnionIntLiteralOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.union_float_literal = UnionFloatLiteralOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
