@@ -238,7 +238,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
         else:
             return
         serializer = GeneralSerializer(self.code_model, env, async_mode=False)
-        params = self.code_model.options["package_configuration"] or {}
+        params = self.code_model.options["packaging_files_config"] or {}
         for template_name in package_files:
             if (
                 self.code_model.options["unbranded"]

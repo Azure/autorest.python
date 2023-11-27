@@ -5,6 +5,8 @@ export interface PythonEmitterOptions {
     "package-name"?: string;
     "output-dir"?: string;
     "generate-packaging-files"?: boolean;
+    "packaging-files-dir"?: string;
+    "packaging-files-config"?: object;
     "package-pprint-name"?: string;
     "head-as-boolean"?: boolean;
     "models-mode"?: string;
@@ -22,6 +24,8 @@ const EmitterOptionsSchema: JSONSchemaType<PythonEmitterOptions> = {
         "package-name": { type: "string", nullable: true },
         "output-dir": { type: "string", nullable: true },
         "generate-packaging-files": { type: "boolean", nullable: true },
+        "packaging-files-dir": { type: "string", nullable: true },
+        "packaging-files-config": { type: "object", nullable: true },
         "package-pprint-name": { type: "string", nullable: true },
         "head-as-boolean": { type: "boolean", nullable: true },
         "models-mode": { type: "string", nullable: true },

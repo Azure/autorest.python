@@ -39,8 +39,6 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
         """Test that currently accepts no parameters, will be updated in next spec to accept a new
         optional parameter as well.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: bool
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -102,8 +100,6 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
 
         :keyword parameter: I am a required parameter. Required.
         :paramtype parameter: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -165,8 +161,6 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
 
         :keyword parameter: I am an optional parameter. Default value is None.
         :paramtype parameter: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

@@ -81,8 +81,6 @@ class QueryOperations:
 
         :keyword value: Required.
         :paramtype value: bytes
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -128,8 +126,6 @@ class QueryOperations:
 
         :keyword value: Required.
         :paramtype value: bytes
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -175,8 +171,6 @@ class QueryOperations:
 
         :keyword value: Required.
         :paramtype value: bytes
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -224,8 +218,6 @@ class QueryOperations:
 
         :keyword value: Required.
         :paramtype value: list[bytes]
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -799,8 +791,6 @@ class HeaderOperations:
 
         :keyword value: Required.
         :paramtype value: bytes
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -846,8 +836,6 @@ class HeaderOperations:
 
         :keyword value: Required.
         :paramtype value: bytes
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -893,8 +881,6 @@ class HeaderOperations:
 
         :keyword value: Required.
         :paramtype value: bytes
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -942,8 +928,6 @@ class HeaderOperations:
 
         :keyword value: Required.
         :paramtype value: list[bytes]
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1010,8 +994,6 @@ class RequestBodyOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1063,8 +1045,6 @@ class RequestBodyOperations:
         :type value: bytes
         :keyword content_type: Default value is "application/octet-stream".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1118,8 +1098,6 @@ class RequestBodyOperations:
         :type value: bytes
         :keyword content_type: Default value is "image/png".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1172,8 +1150,6 @@ class RequestBodyOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1226,8 +1202,6 @@ class RequestBodyOperations:
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is "application/json".
         :paramtype content_type: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1334,7 +1308,7 @@ class ResponseBodyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(bytes, response.json())
+            deserialized = _deserialize(bytes, response.json(), format="base64")
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1483,7 +1457,7 @@ class ResponseBodyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(bytes, response.json())
+            deserialized = _deserialize(bytes, response.json(), format="base64")
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1534,7 +1508,7 @@ class ResponseBodyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(bytes, response.json())
+            deserialized = _deserialize(bytes, response.json(), format="base64url")
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
