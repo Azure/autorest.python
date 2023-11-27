@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 importers:
 
   .:
@@ -62,8 +58,8 @@ importers:
         specifier: ~0.9.0
         version: 0.9.0(@typespec/compiler@0.50.0)(@typespec/http@0.50.0)(@typespec/rest@0.50.0)(@typespec/versioning@0.50.0)
       '@azure-tools/cadl-ranch-specs':
-        specifier: ~0.26.0
-        version: 0.26.0(@azure-tools/cadl-ranch-expect@0.9.0)(@azure-tools/typespec-azure-core@0.36.0)(@typespec/compiler@0.50.0)(@typespec/http@0.50.0)(@typespec/rest@0.50.0)(@typespec/versioning@0.50.0)
+        specifier: ~0.26.2
+        version: 0.26.2(@azure-tools/cadl-ranch-expect@0.9.0)(@azure-tools/typespec-azure-core@0.36.0)(@typespec/compiler@0.50.0)(@typespec/http@0.50.0)(@typespec/rest@0.50.0)(@typespec/versioning@0.50.0)
       '@azure-tools/typespec-autorest':
         specifier: '>=0.36.0 <1.0.0'
         version: 0.36.0(@azure-tools/typespec-azure-core@0.36.0)(@typespec/compiler@0.50.0)(@typespec/http@0.50.0)(@typespec/openapi@0.50.0)(@typespec/rest@0.50.0)(@typespec/versioning@0.50.0)
@@ -228,8 +224,8 @@ packages:
       '@typespec/versioning': 0.50.0(@typespec/compiler@0.50.0)
     dev: true
 
-  /@azure-tools/cadl-ranch-specs@0.26.0(@azure-tools/cadl-ranch-expect@0.9.0)(@azure-tools/typespec-azure-core@0.36.0)(@typespec/compiler@0.50.0)(@typespec/http@0.50.0)(@typespec/rest@0.50.0)(@typespec/versioning@0.50.0):
-    resolution: {integrity: sha512-Yw5jYgWS7ntm4hHJUI6qrBYgDMQowKPRFFpO44L4mas0eYfBNap5LLMbgcnJoYlMh21MUOwuAPsd3Bbvt2SHBg==}
+  /@azure-tools/cadl-ranch-specs@0.26.2(@azure-tools/cadl-ranch-expect@0.9.0)(@azure-tools/typespec-azure-core@0.36.0)(@typespec/compiler@0.50.0)(@typespec/http@0.50.0)(@typespec/rest@0.50.0)(@typespec/versioning@0.50.0):
+    resolution: {integrity: sha512-752/7At1Fs51i4LOLByD6voV4cqf7cgIZuNZkqAROza8mFk+KVqEOTGdRM9JbMspTTUwDM+z5dx6dxN9ARhNnA==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       '@azure-tools/cadl-ranch-expect': ~0.9.0
@@ -538,6 +534,7 @@ packages:
   /@azure/msal-browser@2.38.1:
     resolution: {integrity: sha512-NROo7mLpw7aWtj8tWy9ZPz3WWiudwVAOIDZ1K3PPrjDAA4kFYayWlbZiJl1T1sD5Oqwa6FOtwzFSvuUj1CWp6Q==}
     engines: {node: '>=0.8.0'}
+    deprecated: A newer major version of this library is available. Please upgrade to the latest available version.
     dependencies:
       '@azure/msal-common': 13.2.1
     dev: true
@@ -550,6 +547,7 @@ packages:
   /@azure/msal-node@1.18.1:
     resolution: {integrity: sha512-B4kUOWJoN4vD8b3pGJ9Q9mIZhaDb8EnQM1aN0x1otlQgTfzDvEk6rWc6fy8uGdtXqcNddBtiXdc4oRiItroVkA==}
     engines: {node: 10 || 12 || 14 || 16 || 18}
+    deprecated: A newer major version of this library is available. Please upgrade to the latest available version.
     dependencies:
       '@azure/msal-common': 13.2.1
       jsonwebtoken: 9.0.1
@@ -5270,3 +5268,7 @@ packages:
   /zod@3.21.4:
     resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
     dev: true
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false

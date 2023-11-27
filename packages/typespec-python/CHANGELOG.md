@@ -1,6 +1,6 @@
 # Release
 
-## 2023-11-XX - 0.15.15
+## 2023-12-XX - 0.16.0
 
 | Library                                                                 | Min Version   |
 | ----------------------------------------------------------------------- | ------------- |
@@ -16,6 +16,10 @@
 | `msrest` dep of generated code (If generating legacy code)              | `0.7.1`       |
 | `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
 | `typing-extensions` dep of generated code (If generating with constants)| `4.0.1`       |
+
+**New Features**
+
+- Add decimal type support  #2269
 
 **Bug Fixes**
 
