@@ -24,6 +24,7 @@ def valid_fixed_body():
 @pytest.mark.asyncio
 async def test_get_extensible_model(client: EnumDiscriminatorClient, valid_body: models.Dog):
     assert await client.get_extensible_model() == valid_body
+    assert isinstance(await client.get_extensible_model(), models.Golden)
 
 @pytest.mark.asyncio
 async def test_put_extensible_model(client: EnumDiscriminatorClient, valid_body: models.Dog):
@@ -40,6 +41,7 @@ async def test_get_extensible_model_wrong_discriminator(client: EnumDiscriminato
 @pytest.mark.asyncio
 async def test_get_fixed_model(client: EnumDiscriminatorClient, valid_fixed_body: models.Snake):
     assert await client.get_fixed_model() == valid_fixed_body
+    assert isinstance(await client.get_fixed_model(), models.Cobra)
 
 @pytest.mark.asyncio
 async def test_put_fixed_model(client: EnumDiscriminatorClient, valid_fixed_body: models.Snake):

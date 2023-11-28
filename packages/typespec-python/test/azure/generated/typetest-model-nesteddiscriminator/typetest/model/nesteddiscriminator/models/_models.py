@@ -120,6 +120,7 @@ class GoblinShark(Shark, discriminator="goblin"):
     :vartype sharktype: str
     """
 
+    __mapping__: Dict[str, _model_base.Model] = {}
     sharktype: Literal["goblin"] = rest_discriminator(name="sharktype")  # type: ignore
     """Required. Default value is \"goblin\"."""
 
@@ -203,6 +204,7 @@ class SawShark(Shark, discriminator="saw"):
     :vartype sharktype: str
     """
 
+    __mapping__: Dict[str, _model_base.Model] = {}
     sharktype: Literal["saw"] = rest_discriminator(name="sharktype")  # type: ignore
     """Required. Default value is \"saw\"."""
 

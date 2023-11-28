@@ -7,18 +7,12 @@
 # --------------------------------------------------------------------------
 
 from ._models import BodyParameter
-from ._models import GeneratedName1
-from ._models import GeneratedName2
-from ._models import GeneratedName3
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
     "BodyParameter",
-    "GeneratedName1",
-    "GeneratedName2",
-    "GeneratedName3",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()

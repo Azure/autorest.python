@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 
 import sys
-from typing import Any, Mapping, overload
+from typing import Any, Dict, Mapping, overload
 
 from .. import _model_base
 from .._model_base import rest_discriminator, rest_field
@@ -34,6 +34,7 @@ class Snake(_model_base.Model):
     :vartype length: int
     """
 
+    __mapping__: Dict[str, _model_base.Model] = {}
     kind: Literal[None] = rest_discriminator(name="kind")
     """discriminator property. Required. \"cobra\""""
     length: int = rest_field()
@@ -107,6 +108,7 @@ class Dog(_model_base.Model):
     :vartype weight: int
     """
 
+    __mapping__: Dict[str, _model_base.Model] = {}
     kind: Literal[None] = rest_discriminator(name="kind")
     """discriminator property. Required. \"golden\""""
     weight: int = rest_field()

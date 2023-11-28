@@ -10,8 +10,9 @@ from io import IOBase
 import sys
 from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
-from my.library.aio import AsyncCustomDefaultPollingMethod, AsyncCustomPager, AsyncCustomPoller, AsyncList
+from my.library.aio import AsyncCustomDefaultPollingMethod, AsyncCustomPager, AsyncCustomPoller
 
+from azure.core.async_paging import AsyncList
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,

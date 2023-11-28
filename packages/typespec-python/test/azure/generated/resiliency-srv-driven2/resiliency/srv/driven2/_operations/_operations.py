@@ -99,8 +99,6 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
     def add_operation(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Added operation.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -161,8 +159,6 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
 
         :keyword new_parameter: I'm a new input optional parameter. Default value is None.
         :paramtype new_parameter: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: bool
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -230,8 +226,6 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
         :paramtype parameter: str
         :keyword new_parameter: I'm a new input optional parameter. Default value is None.
         :paramtype new_parameter: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -299,8 +293,6 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
         :paramtype parameter: str
         :keyword new_parameter: I'm a new input optional parameter. Default value is None.
         :paramtype new_parameter: str
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
