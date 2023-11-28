@@ -11,6 +11,8 @@ from ._operations import StringOperations
 from ._operations import BytesOperations
 from ._operations import IntOperations
 from ._operations import FloatOperations
+from ._operations import DecimalOperations
+from ._operations import Decimal128Operations
 from ._operations import DatetimeOperations
 from ._operations import DurationOperations
 from ._operations import EnumOperations
@@ -43,6 +45,8 @@ __all__ = [
     "BytesOperations",
     "IntOperations",
     "FloatOperations",
+    "DecimalOperations",
+    "Decimal128Operations",
     "DatetimeOperations",
     "DurationOperations",
     "EnumOperations",

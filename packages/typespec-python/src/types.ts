@@ -93,6 +93,8 @@ export function getType(
         case "int64":
         case "float32":
         case "float64":
+        case "decimal":
+        case "decimal128":
         case "string":
         case "guid":
         case "url":
@@ -215,11 +217,12 @@ function emitModel(context: SdkContext, type: SdkModelType, fromBody: boolean): 
     if (typesMap.has(type)) {
         return typesMap.get(type)!;
     }
+    const parents: Record<string, any>[] = [];
     const newValue = {
         type: type.kind,
         name: type.generatedName ?? type.name,
         description: type.description,
-        parents: type.baseModel ? [getType(context, type.baseModel)] : [],
+        parents: parents,
         discriminatorValue: type.discriminatorValue,
         discriminatedSubtypes: {} as Record<string, Record<string, any>>,
         properties: new Array<Record<string, any>>(),
@@ -229,14 +232,17 @@ function emitModel(context: SdkContext, type: SdkModelType, fromBody: boolean): 
     };
 
     typesMap.set(type, newValue);
+    newValue.parents = type.baseModel ? [getType(context, type.baseModel)] : newValue.parents;
     for (const property of type.properties.values()) {
         if (property.kind === "property") {
             newValue.properties.push(emitProperty(context, property));
             // type for base discriminator returned by TCGC changes from constant to string while
             // autorest treat all discriminator as constant type, so we need to change to constant type here
-            if (type.discriminatedSubtypes && property.discriminator && property.type.kind === "string") {
+            if (type.discriminatedSubtypes && property.discriminator) {
                 newValue.properties[newValue.properties.length - 1].isPolymorphic = true;
-                newValue.properties[newValue.properties.length - 1].type = getConstantType(null);
+                if (property.type.kind === "string") {
+                    newValue.properties[newValue.properties.length - 1].type = getConstantType(null);
+                }
             }
         }
     }
@@ -316,6 +322,8 @@ const sdkScalarKindToPythonKind: Record<string, string> = {
     int64: "integer",
     float32: "float",
     float64: "float",
+    decimal: "decimal",
+    decimal128: "decimal",
     guid: "string",
     url: "string",
     uuid: "string",
