@@ -1,6 +1,6 @@
 # Release
 
-## 2023-12-XX - 0.16.0
+## 2023-11-29 - 0.16.0
 
 | Library                                                                 | Min Version   |
 | ----------------------------------------------------------------------- | ------------- |
@@ -9,7 +9,7 @@
 | `@typespec/rest`                                                        | `0.50.0`      |
 | `@typespec/versioning`                                                  | `0.50.0`      |
 | `@azure-tools/typespec-azure-core`                                      | `0.36.0`      |
-| `@azure-tools/typespec-client-generator-core`                           | `0.36.0`      |
+| `@azure-tools/typespec-client-generator-core`                           | `0.36.1`      |
 | `azure-core` dep of generated code                                      | `1.28.0`      |
 | `corehttp` dep of generated code                                        | `1.0.0b1`     |
 | `isodate` dep of generated code                                         | `0.6.1`       |
