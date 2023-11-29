@@ -249,7 +249,7 @@ __all__ = ["ServiceClient"]
 
 ## Postprocessing (Optional)
 
-All of the code, linting, and intellisense between generated and handwritten code should work immediately. In some cases, to fix import issue reported by mypy, you will need to run our postprocessing step. To run this step, run
+All of the code, linting, and intellisense between generated and handwritten code should work immediately. In some cases, to correctly point mypy to pacthed code, you will need to run our postprocessing step. To run this step, run
 
 ```bash
 autorest --python --postprocess --output-folder=<path-to-root-of-sdk>
