@@ -1,6 +1,6 @@
 # coding=utf-8
 # --------------------------------------------------------------------------
-# Copyright (c) {{ code_model.options["company_name"] }} Corporation. All rights reserved.
+# Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
@@ -19,10 +19,10 @@ import email
 from datetime import datetime, date, time, timedelta, timezone
 from json import JSONEncoder
 import isodate
-from {{ code_model.core_library }}.exceptions import DeserializationError
-from {{ code_model.core_library }}{{ ".utils" if code_model.options["unbranded"] else "" }} import CaseInsensitiveEnumMeta
-from {{ code_model.core_library }}.{{ "runtime." if code_model.options["unbranded"] else "" }}pipeline import PipelineResponse
-from {{ code_model.core_library }}.serialization import _Null
+from azure.core.exceptions import DeserializationError
+from azure.core import CaseInsensitiveEnumMeta
+from azure.core.pipeline import PipelineResponse
+from azure.core.serialization import _Null
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -312,17 +312,9 @@ def _get_type_alias_type(module_name: str, alias_name: str):
 
 
 def _get_model(module_name: str, model_name: str):
-    models = {
-        k: v
-        for k, v in sys.modules[module_name].__dict__.items()
-        if isinstance(v, type)
-    }
+    models = {k: v for k, v in sys.modules[module_name].__dict__.items() if isinstance(v, type)}
     module_end = module_name.rsplit(".", 1)[0]
-    models.update({
-        k: v
-        for k, v in sys.modules[module_end].__dict__.items()
-        if isinstance(v, type)
-    })
+    models.update({k: v for k, v in sys.modules[module_end].__dict__.items() if isinstance(v, type)})
     if isinstance(model_name, str):
         model_name = model_name.split(".")[-1]
     if model_name not in models:
@@ -524,7 +516,9 @@ class Model(_MyMutableMapping):
     @classmethod
     def _get_discriminator(cls, exist_discriminators) -> typing.Optional[str]:
         for v in cls.__dict__.values():
-            if isinstance(v, _RestField) and v._is_discriminator and v._rest_name not in exist_discriminators:  # pylint: disable=protected-access
+            if (
+                isinstance(v, _RestField) and v._is_discriminator and v._rest_name not in exist_discriminators
+            ):  # pylint: disable=protected-access
                 return v._rest_name  # pylint: disable=protected-access
         return None
 
@@ -534,9 +528,7 @@ class Model(_MyMutableMapping):
             return cls(data)
         discriminator = cls._get_discriminator(exist_discriminators)
         exist_discriminators.append(discriminator)
-        mapped_cls = cls.__mapping__.get(
-            data.get(discriminator), cls
-        )  # pylint: disable=no-member
+        mapped_cls = cls.__mapping__.get(data.get(discriminator), cls)  # pylint: disable=no-member
         if mapped_cls == cls:
             return cls(data)
         return mapped_cls._deserialize(data, exist_discriminators)  # pylint: disable=protected-access
@@ -558,7 +550,6 @@ class Model(_MyMutableMapping):
             result[k] = Model._as_dict_value(v, exclude_readonly=exclude_readonly)
         return result
 
-{% if code_model.has_form_data %}
     def as_origin_dict(self, *, exclude_readonly: bool = False) -> typing.Dict[str, typing.Any]:
         """Return a dict that the value is the origin value instead of serialized value.
 
@@ -587,21 +578,14 @@ class Model(_MyMutableMapping):
             return {dk: Model._as_origin_dict_value(dv, exclude_readonly=exclude_readonly) for dk, dv in v.items()}
         return v.as_origin_dict(exclude_readonly=exclude_readonly) if hasattr(v, "as_origin_dict") else v
 
-{% endif  %}
     @staticmethod
     def _as_dict_value(v: typing.Any, exclude_readonly: bool = False) -> typing.Any:
         if v is None or isinstance(v, _Null):
             return None
         if isinstance(v, (list, tuple, set)):
-            return [
-                Model._as_dict_value(x, exclude_readonly=exclude_readonly)
-                for x in v
-            ]
+            return [Model._as_dict_value(x, exclude_readonly=exclude_readonly) for x in v]
         if isinstance(v, dict):
-            return {
-                dk: Model._as_dict_value(dv, exclude_readonly=exclude_readonly)
-                for dk, dv in v.items()
-            }
+            return {dk: Model._as_dict_value(dv, exclude_readonly=exclude_readonly) for dk, dv in v.items()}
         return v.as_dict(exclude_readonly=exclude_readonly) if hasattr(v, "as_dict") else v
 
 

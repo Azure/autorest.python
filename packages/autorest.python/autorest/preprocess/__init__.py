@@ -375,7 +375,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         wire_name_lower = (yaml_data.get("wireName") or "").lower()
         if (
             yaml_data["location"] == "header"
-            and wire_name_lower in HEADERS_HIDE_IN_METHOD
+            and (wire_name_lower in HEADERS_HIDE_IN_METHOD or yaml_data.get("clientDefaultValue") == "multipart/form-data")
         ):
             yaml_data["hideInMethod"] = True
         if (

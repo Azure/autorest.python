@@ -59,3 +59,4 @@ azure-core==1.28.0
 -e ./generated/client-structure-twooperationgroup
 -e ./generated/payload-content-negotiation
 -e ./generated/payload-pageable
+-e ./generated/payload-multipart

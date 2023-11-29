@@ -130,6 +130,11 @@ class GeneralSerializer(BaseSerializer):
                 "MatchConditions",
                 ImportType.SDKCORE,
             )
+        if self.code_model.has_form_data:
+            file_import.add_submodule_import("typing", "Union", ImportType.STDLIB)
+            file_import.add_submodule_import("io", "IOBase", ImportType.STDLIB)
+            file_import.add_submodule_import("io", "BytesIO", ImportType.STDLIB)
+            file_import.add_import("time", ImportType.STDLIB)
 
         return template.render(
             code_model=self.code_model,

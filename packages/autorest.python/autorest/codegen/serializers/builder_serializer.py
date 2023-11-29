@@ -536,8 +536,14 @@ class RequestBuilderSerializer(
         return retval
 
     def serialize_headers(self, builder: RequestBuilderType) -> List[str]:
-        retval = ["# Construct headers"]
+        retval = []
         for parameter in builder.parameters.headers:
+            if (
+                parameter.wire_name.lower() == "content-type"
+                and builder.parameters.body_parameter.default_content_type
+                == "multipart/form-data"
+            ):
+                continue
             retval.extend(
                 self.parameter_serializer.serialize_query_header(
                     parameter,
@@ -546,6 +552,8 @@ class RequestBuilderSerializer(
                     self.code_model.is_legacy,
                 )
             )
+        if retval:
+            retval.insert(0, "# Construct headers")
         return retval
 
     def serialize_query(self, builder: RequestBuilderType) -> List[str]:
@@ -736,8 +744,20 @@ class _OperationSerializer(
 
         This function serializes the body params that need to be serialized.
         """
-        retval: List[str] = []
         body_param = cast(BodyParameter, builder.parameters.body_parameter)
+        if (
+            self.code_model.options["version_tolerant"]
+            and body_param.default_content_type == "multipart/form-data"
+        ):
+            return [
+                f"if isinstance({body_param.client_name}, _model_base.Model):",
+                f"    _body = {body_param.client_name}.as_origin_dict()",
+                "else:",
+                f"    _body = {body_param.client_name}",
+                "_files = {k: multipart_form_data_file(v) for k, v in _body.items() if isinstance(v, (IOBase, bytes))}",
+                "_data = {k: v for k, v in _body.items() if not isinstance(v, (IOBase, bytes))}",
+            ]
+        retval: List[str] = []
         body_kwarg_name = builder.request_builder.parameters.body_parameter.client_name
         send_xml = builder.parameters.body_parameter.type.is_xml
         xml_serialization_ctxt = (
@@ -965,9 +985,16 @@ class _OperationSerializer(
             body_param = cast(
                 RequestBuilderBodyParameter, request_builder.parameters.body_parameter
             )
-            retval.append(
-                f"    {body_param.client_name}={body_param.name_in_high_level_operation},"
-            )
+            if (
+                request_builder.parameters.body_parameter.default_content_type
+                == "multipart/form-data"
+            ):
+                retval.append("    data=_data,")
+                retval.append("    files=_files,")
+            else:
+                retval.append(
+                    f"    {body_param.client_name}={body_param.name_in_high_level_operation},"
+                )
         retval.append("    headers=_headers,")
         retval.append("    params=_params,")
         retval.append(")")

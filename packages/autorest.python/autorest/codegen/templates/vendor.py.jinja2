@@ -65,3 +65,14 @@ def prep_if_none_match(etag: Optional[str], match_condition: Optional[MatchCondi
         return "*"
     return None
 {% endif %}
+{% if code_model.has_form_data %}
+class NamedBytesIO(BytesIO):
+    def __init__(self, name: str, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.name = name
+
+def multipart_form_data_file(file: Union[IOBase, bytes]) -> IOBase:
+    if isinstance(file, IOBase):
+        return file
+    return NamedBytesIO("auto_name_" + str(time.time()), file)
+{% endif %}
