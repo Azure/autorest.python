@@ -142,16 +142,16 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
-        request = build_dpg_get_model_request(
+        _request = build_dpg_get_model_request(
             mode=mode,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -165,9 +165,9 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         deserialized = self._deserialize("Product", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     def post_model(
@@ -252,7 +252,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         else:
             _json = self._serialize.body(input, "Input")
 
-        request = build_dpg_post_model_request(
+        _request = build_dpg_post_model_request(
             mode=mode,
             content_type=content_type,
             json=_json,
@@ -260,11 +260,11 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -278,9 +278,9 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         deserialized = self._deserialize("Product", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def get_pages(self, mode: str, **kwargs: Any) -> Iterable["_models.Product"]:
@@ -311,18 +311,18 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_dpg_get_pages_request(
+                _request = build_dpg_get_pages_request(
                     mode=mode,
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
-                request = HttpRequest("GET", next_link)
-                request.url = self._client.format_url(request.url)
+                _request = HttpRequest("GET", next_link)
+                _request.url = self._client.format_url(_request.url)
 
-            return request
+            return _request
 
         def extract_data(pipeline_response):
             deserialized = self._deserialize(
@@ -334,11 +334,11 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
             return deserialized.next_link or None, iter(list_of_elem)
 
         def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -366,16 +366,16 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
         cls: ClsType[_models.LROProduct] = kwargs.pop("cls", None)
 
-        request = build_dpg_lro_request(
+        _request = build_dpg_lro_request(
             mode=mode,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -389,9 +389,9 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         deserialized = self._deserialize("LROProduct", pipeline_response)
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def begin_lro(self, mode: str, **kwargs: Any) -> LROPoller[_models.LROProduct]:
@@ -427,7 +427,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         def get_long_running_output(pipeline_response):
             deserialized = self._deserialize("LROProduct", pipeline_response)
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
 
         if polling is True:
@@ -437,10 +437,12 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         else:
             polling_method = polling
         if cont_token:
-            return LROPoller.from_continuation_token(
+            return LROPoller[_models.LROProduct].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[_models.LROProduct](
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+        )

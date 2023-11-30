@@ -1,0 +1,93 @@
+trigger: none
+
+pr: none
+
+parameters:
+- name: UseTypeSpecNext
+  displayName: Use TypeSpec "next" version
+  type: boolean
+  default: true
+- name: RunUnitTests
+  displayName: Run unit tests
+  type: boolean
+  default: true
+- name: RunGenerationChecks
+  displayName: Run code generation checks
+  type: boolean
+  default: true
+
+resources:
+  repositories:
+    - repository: sdk-repository
+      type: github
+      endpoint: Azure
+      name: Azure/azure-sdk-for-python
+      ref: refs/heads/main
+    - repository: azure-sdk-tools
+      type: github
+      endpoint: Azure
+      name: Azure/azure-sdk-tools
+      ref: refs/heads/main
+
+variables:
+  PythonVersion: "3.10"
+
+pool:
+  name: azsdk-pool-mms-ubuntu-2004-general
+  vmImage: MMSUbuntu20.04
+
+extends:
+  template: eng/pipelines/templates/stages/archetype-autorest-preview.yml@azure-sdk-tools
+  parameters:
+    RegenerationJobCount: 1
+    BuildPrereleaseVersion: true
+    UseTypeSpecNext: ${{ parameters.UseTypeSpecNext }}
+    EmitterPackageJsonPath: packages/typespec-python/package.json
+    PublishInternal: true
+    Packages:
+    - name: generator
+      file: autorest-python-*.tgz
+      type: npm
+    - name: emitter
+      file: azure-tools-typespec-python-*.tgz
+      type: npm
+    TestMatrix:
+      ${{ if eq(parameters.RunUnitTests, 'true') }}:
+        Check_Code:
+          TestArguments: -CheckCode
+      ${{ if eq(parameters.RunGenerationChecks, 'true') }}:
+        Regenerate:
+          ${{ if eq(parameters.UseTypeSpecNext, true) }}:
+            TestArguments: -Regenerate
+          ${{ else }}:
+            TestArguments: -Regenerate -CheckChanges
+    PublishDependsOnTest: false
+    OnlyGenerateTypespec: ${{ parameters.UseTypeSpecNext }}
+    AutorestInitializationSteps:
+    - task: NodeTool@0
+      displayName: "Install Node.js 16.x"
+      inputs:
+          versionSpec: "16.x"
+    - task: UsePythonVersion@0
+      displayName: "Use Python 3.11"
+      inputs:
+          versionSpec: 3.11
+    SdkInitializationSteps:
+    - task: UsePythonVersion@0
+      displayName: "Use Python 3.9"
+      inputs:
+          versionSpec: 3.9
+    - script: |
+        echo "npm install -g @azure-tools/typespec-client-generator-cli"
+        npm install -g @azure-tools/typespec-client-generator-cli
+
+        echo "npm install -g autorest"
+        npm install -g autorest
+
+        echo "python -m pip install setuptools==58.3.0"
+        python -m pip install setuptools==58.3.0
+
+        echo "python -m pip install -r eng/ci_tools.txt"
+        python -m pip install -r eng/ci_tools.txt
+      displayName: 'Prep Environment'
+      workingDirectory: $(sdkRepositoryPath)

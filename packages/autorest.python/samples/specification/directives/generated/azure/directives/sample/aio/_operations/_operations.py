@@ -10,6 +10,8 @@ from io import IOBase
 import sys
 from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
+from my.library.aio import AsyncCustomDefaultPollingMethod, AsyncCustomPager, AsyncCustomPoller
+
 from azure.core.async_paging import AsyncList
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -25,7 +27,6 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
-from my.library.aio import AsyncCustomDefaultPollingMethod, AsyncCustomPager, AsyncCustomPoller
 
 from ..._operations._operations import (
     build_polling_paging_example_basic_paging_request,
@@ -71,18 +72,18 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
             else:
                 _json = None
 
-        request = build_polling_paging_example_basic_polling_request(
+        _request = build_polling_paging_example_basic_polling_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -101,9 +102,9 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
                 deserialized = None
 
         if cls:
-            return cls(pipeline_response, deserialized, {})
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @overload
     async def begin_basic_polling(
@@ -261,13 +262,15 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
         else:
             polling_method = polling
         if cont_token:
-            return AsyncCustomPoller.from_continuation_token(
+            return AsyncCustomPoller[JSON].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncCustomPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return AsyncCustomPoller[JSON](
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+        )
 
     @distributed_trace
     def basic_paging(self, **kwargs: Any) -> AsyncIterable[JSON]:
@@ -304,17 +307,17 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
         def prepare_request(next_link=None):
             if not next_link:
 
-                request = build_polling_paging_example_basic_paging_request(
+                _request = build_polling_paging_example_basic_paging_request(
                     headers=_headers,
                     params=_params,
                 )
-                request.url = self._client.format_url(request.url)
+                _request.url = self._client.format_url(_request.url)
 
             else:
-                request = HttpRequest("GET", next_link)
-                request.url = self._client.format_url(request.url)
+                _request = HttpRequest("GET", next_link)
+                _request.url = self._client.format_url(_request.url)
 
-            return request
+            return _request
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
@@ -324,11 +327,11 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
-            request = prepare_request(next_link)
+            _request = prepare_request(next_link)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                request, stream=_stream, **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 

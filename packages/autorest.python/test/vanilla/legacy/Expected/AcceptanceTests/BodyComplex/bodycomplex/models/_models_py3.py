@@ -206,7 +206,7 @@ class Fish(msrest.serialization.Model):
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     Salmon, Shark
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar fishtype: Required.
     :vartype fishtype: str
@@ -261,7 +261,7 @@ class Shark(Fish):
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     Cookiecuttershark, Goblinshark, Sawshark
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar fishtype: Required.
     :vartype fishtype: str
@@ -327,7 +327,7 @@ class Shark(Fish):
 class Cookiecuttershark(Shark):
     """Cookiecuttershark.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar fishtype: Required.
     :vartype fishtype: str
@@ -531,7 +531,7 @@ class DotFish(msrest.serialization.Model):
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     DotSalmon
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar fish_type: Required.
     :vartype fish_type: str
@@ -609,7 +609,7 @@ class DotFishMarket(msrest.serialization.Model):
 class DotSalmon(DotFish):
     """DotSalmon.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar fish_type: Required.
     :vartype fish_type: str
@@ -774,7 +774,7 @@ class FloatWrapper(msrest.serialization.Model):
 class Goblinshark(Shark):
     """Goblinshark.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar fishtype: Required.
     :vartype fishtype: str
@@ -903,7 +903,7 @@ class MyBaseType(msrest.serialization.Model):
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     MyDerivedType
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar kind: Required. "Kind1"
     :vartype kind: str or ~bodycomplex.models.MyKind
@@ -941,7 +941,7 @@ class MyBaseType(msrest.serialization.Model):
 class MyDerivedType(MyBaseType):
     """MyDerivedType.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar kind: Required. "Kind1"
     :vartype kind: str or ~bodycomplex.models.MyKind
@@ -1021,7 +1021,7 @@ class Salmon(Fish):
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     SmartSalmon
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar fishtype: Required.
     :vartype fishtype: str
@@ -1084,7 +1084,7 @@ class Salmon(Fish):
 class Sawshark(Shark):
     """Sawshark.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar fishtype: Required.
     :vartype fishtype: str
@@ -1200,7 +1200,7 @@ class Siamese(Cat):
 class SmartSalmon(Salmon):
     """SmartSalmon.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar fishtype: Required.
     :vartype fishtype: str

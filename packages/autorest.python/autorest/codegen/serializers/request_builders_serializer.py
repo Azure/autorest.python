@@ -10,23 +10,23 @@ from ..models import FileImport
 from .import_serializer import FileImportSerializer
 from ..models import CodeModel, RequestBuilderType
 from .builder_serializer import RequestBuilderSerializer
+from .base_serializer import BaseSerializer
 
 
-class RequestBuildersSerializer:
+class RequestBuildersSerializer(BaseSerializer):
     def __init__(
         self,
         code_model: CodeModel,
         env: Environment,
         request_builders: List[RequestBuilderType],
     ) -> None:
-        self.code_model = code_model
-        self.env = env
+        super().__init__(code_model, env)
         self.request_builders = request_builders
         self.group_name = request_builders[0].group_name
 
     @property
     def imports(self) -> FileImport:
-        file_import = FileImport()
+        file_import = FileImport(self.code_model)
         for request_builder in self.request_builders:
             if request_builder.group_name == self.group_name:
                 file_import.merge(request_builder.imports())

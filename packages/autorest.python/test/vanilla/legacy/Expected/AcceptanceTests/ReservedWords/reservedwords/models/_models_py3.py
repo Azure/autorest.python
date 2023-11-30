@@ -17,7 +17,7 @@ class PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwF
 ):
     """PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwFormUrlencodedSchema.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar data: Pass in 'hello'. Required.
     :vartype data: str
@@ -50,7 +50,7 @@ class PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwF
 class PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDataSchema(_serialization.Model):
     """PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDataSchema.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar files: Files to upload. Pass in list of input streams. Required.
     :vartype files: IO[bytes]

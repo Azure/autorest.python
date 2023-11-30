@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 class Pet(_serialization.Model):
     """Pet.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar name: name.
     :vartype name: str

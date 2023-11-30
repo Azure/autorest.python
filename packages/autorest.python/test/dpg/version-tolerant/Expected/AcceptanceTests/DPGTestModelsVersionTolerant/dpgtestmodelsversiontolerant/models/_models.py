@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 class Input(_serialization.Model):
     """Input.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar hello: Required.
     :vartype hello: str
@@ -45,7 +45,7 @@ class Input(_serialization.Model):
 class Product(_serialization.Model):
     """Product.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar received: Required. Known values are: "raw" and "model".
     :vartype received: str or ~dpgtestmodelsversiontolerant.models.ProductReceived
@@ -71,7 +71,7 @@ class Product(_serialization.Model):
 class LROProduct(Product):
     """LROProduct.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar received: Required. Known values are: "raw" and "model".
     :vartype received: str or ~dpgtestmodelsversiontolerant.models.ProductReceived

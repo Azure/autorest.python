@@ -7,6 +7,7 @@ from typing import Any, Dict, Optional, TYPE_CHECKING, List
 
 from .base import BaseModel
 from .constant_type import ConstantType
+from .enum_type import EnumType
 from .base import BaseType
 from .imports import FileImport, ImportType
 from .utils import add_to_description, add_to_pylint_disable
@@ -61,9 +62,9 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
     @property
     def client_default_value_declaration(self) -> str:
         if self.client_default_value is not None:
-            return self.type.get_declaration(self.client_default_value)
+            return self.get_declaration(self.client_default_value)
         if self.type.client_default_value is not None:
-            return self.type.get_declaration(self.type.client_default_value)
+            return self.get_declaration(self.type.client_default_value)
         return "None"
 
     @property
@@ -88,10 +89,23 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
     def msrest_deserialization_key(self) -> str:
         return self.type.msrest_deserialization_key
 
+    @property
+    def is_enum_discriminator(self) -> bool:
+        return self.is_discriminator and self.type.type == "enum"
+
     def type_annotation(self, *, is_operation_file: bool = False) -> str:
+        if self.is_enum_discriminator:
+            # here we are the enum discriminator property on the base model
+            return "Literal[None]"
         if self.optional and self.client_default_value is None:
             return f"Optional[{self.type.type_annotation(is_operation_file=is_operation_file)}]"
         return self.type.type_annotation(is_operation_file=is_operation_file)
+
+    def get_declaration(self, value: Any = None) -> Any:
+        if self.is_enum_discriminator:
+            # here we are the enum discriminator property on the base model
+            return None
+        return self.type.get_declaration(value)
 
     def get_json_template_representation(
         self,
@@ -101,11 +115,13 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         description: Optional[str] = None,
     ) -> Any:
         if self.client_default_value:
-            client_default_value_declaration = self.type.get_declaration(
+            client_default_value_declaration = self.get_declaration(
                 self.client_default_value
             )
         if self.description(is_operation_file=True):
             description = self.description(is_operation_file=True)
+        # make sure there is no \n otherwise the json template will be invalid
+        description = (description or "").replace("\n", " ")
         return self.type.get_json_template_representation(
             optional=self.optional,
             client_default_value_declaration=client_default_value_declaration,
@@ -131,7 +147,12 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         return retval or None
 
     def imports(self, **kwargs) -> FileImport:
-        file_import = self.type.imports(**kwargs, relative_path="..", model_typing=True)
+        file_import = FileImport(self.code_model)
+        if self.is_discriminator and isinstance(self.type, EnumType):
+            return file_import
+        file_import.merge(
+            self.type.imports(**kwargs, relative_path="..", model_typing=True)
+        )
         if self.optional and self.client_default_value is None:
             file_import.add_submodule_import("typing", "Optional", ImportType.STDLIB)
         if self.code_model.options["models_mode"] == "dpg":

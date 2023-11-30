@@ -8,14 +8,13 @@
 
 from typing import Any
 
-from azure.core.configuration import Configuration
 from azure.core.credentials import AzureKeyCredential
 from azure.core.pipeline import policies
 
 from .._version import VERSION
 
 
-class AutoRestHeadTestServiceConfiguration(Configuration):  # pylint: disable=too-many-instance-attributes,name-too-long
+class AutoRestHeadTestServiceConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for AutoRestHeadTestService.
 
     Note that all parameters used to create this instance are saved as instance
@@ -26,12 +25,12 @@ class AutoRestHeadTestServiceConfiguration(Configuration):  # pylint: disable=to
     """
 
     def __init__(self, credential: AzureKeyCredential, **kwargs: Any) -> None:
-        super(AutoRestHeadTestServiceConfiguration, self).__init__(**kwargs)
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
 
         self.credential = credential
         kwargs.setdefault("sdk_moniker", "key-credential-sample/{}".format(VERSION))
+        self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
     def _configure(self, **kwargs: Any) -> None:
@@ -40,9 +39,9 @@ class AutoRestHeadTestServiceConfiguration(Configuration):  # pylint: disable=to
         self.proxy_policy = kwargs.get("proxy_policy") or policies.ProxyPolicy(**kwargs)
         self.logging_policy = kwargs.get("logging_policy") or policies.NetworkTraceLoggingPolicy(**kwargs)
         self.http_logging_policy = kwargs.get("http_logging_policy") or policies.HttpLoggingPolicy(**kwargs)
-        self.retry_policy = kwargs.get("retry_policy") or policies.AsyncRetryPolicy(**kwargs)
         self.custom_hook_policy = kwargs.get("custom_hook_policy") or policies.CustomHookPolicy(**kwargs)
         self.redirect_policy = kwargs.get("redirect_policy") or policies.AsyncRedirectPolicy(**kwargs)
+        self.retry_policy = kwargs.get("retry_policy") or policies.AsyncRetryPolicy(**kwargs)
         self.authentication_policy = kwargs.get("authentication_policy")
         if self.credential and not self.authentication_policy:
             self.authentication_policy = policies.AzureKeyCredentialPolicy(

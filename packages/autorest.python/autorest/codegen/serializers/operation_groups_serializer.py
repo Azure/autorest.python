@@ -10,19 +10,20 @@ from jinja2 import Environment
 from ..models import (
     CodeModel,
     OperationGroup,
-    FileImport,
     RequestBuilder,
     OverloadedRequestBuilder,
     Client,
+    FileImport,
 )
 from .import_serializer import FileImportSerializer
 from .builder_serializer import (
     get_operation_serializer,
     RequestBuilderSerializer,
 )
+from .base_serializer import BaseSerializer
 
 
-class OperationGroupsSerializer:
+class OperationGroupsSerializer(BaseSerializer):
     def __init__(
         self,
         code_model: CodeModel,
@@ -31,9 +32,8 @@ class OperationGroupsSerializer:
         async_mode: bool,
         operation_group: Optional[OperationGroup] = None,
     ):
+        super().__init__(code_model, env)
         self.clients = clients
-        self.code_model = code_model
-        self.env = env
         self.async_mode = async_mode
         self.operation_group = operation_group
 
@@ -57,7 +57,7 @@ class OperationGroupsSerializer:
             if self.operation_group
             else [og for client in self.clients for og in client.operation_groups]
         )
-        imports = FileImport()
+        imports = FileImport(self.code_model)
         for operation_group in operation_groups:
             imports.merge(
                 operation_group.imports(

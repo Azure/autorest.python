@@ -10,7 +10,7 @@ from multiprocessing import Pool
 from colorama import init, Fore
 from invoke import task, run
 import shutil
-from typing import Dict, List
+from typing import Dict, List, Any, Optional, Literal
 import copy
 
 #######################################################
@@ -26,18 +26,16 @@ init()
 PLUGIN_DIR = Path(os.path.dirname(__file__))
 PLUGIN = (PLUGIN_DIR / "dist/src/index.js").as_posix()
 CADL_RANCH_DIR = PLUGIN_DIR / Path("node_modules/@azure-tools/cadl-ranch-specs/http")
-LOCAL_SPECIFICATION_DIR = PLUGIN_DIR / Path("test/specification")
-ALL_SPECIFICATION_DIRS = [CADL_RANCH_DIR, LOCAL_SPECIFICATION_DIR]
-SKIP_FOLDERS = ["type/model/inheritance/enum-discriminator"]
+LOCAL_SPECIFICATION_DIR = PLUGIN_DIR / Path("test/azure/specification")
 EMITTER_OPTIONS = {
     "resiliency/srv-driven/old.tsp": {
         "package-name": "resiliency-srv-driven1",
-        "package-mode": "dataplane",
+        "package-mode": "azure-dataplane",
         "package-pprint-name": "ResiliencySrvDriven1",
     },
     "resiliency/srv-driven": {
         "package-name": "resiliency-srv-driven2",
-        "package-mode": "dataplane",
+        "package-mode": "azure-dataplane",
         "package-pprint-name": "ResiliencySrvDriven2",
     },
     "authentication/http/custom": {
@@ -73,6 +71,9 @@ EMITTER_OPTIONS = {
     "type/model/inheritance/single-discriminator": {
         "package-name": "typetest-model-singlediscriminator",
     },
+    "type/model/inheritance/recursive": {
+        "package-name": "typetest-model-recursive",
+    },
     "type/model/usage": {
         "package-name": "typetest-model-usage",
     },
@@ -86,6 +87,12 @@ EMITTER_OPTIONS = {
     },
     "type/property/optionality": {
         "package-name": "typetest-property-optional",
+    },
+    "type/property/additional-properties": {
+        "package-name": "typetest-property-additionalproperties",
+    },
+    "type/scalar": {
+        "package-name": "typetest-scalar",
     },
     "type/property/value-types": {
         "package-name": "typetest-property-valuetypes",
@@ -111,92 +118,183 @@ EMITTER_OPTIONS = {
     "mgmt/sphere": [
         {"package-name": "azure-mgmt-spheredpg", "models-mode": "dpg"},
         {"package-name": "azure-mgmt-spheremsrest"},
-    ]
+    ],
 }
 
-def _package_name_folder(spec: Path) -> str:
-    for item in ALL_SPECIFICATION_DIRS:
+
+def _package_name_folder(spec: Path, category: Literal["azure", "unbranded"]) -> str:
+    for item in _get_specification_dirs(category):
         if item.as_posix() in spec.as_posix():
             return spec.relative_to(item).as_posix()
     raise ValueError(f"Cannot find package name for {spec}")
 
-def _default_package_name(spec: Path) -> str:
-    return _package_name_folder(spec).replace("/", "-")
 
-def _get_emitter_option(spec: Path) -> List[Dict[str, str]]:
-    name = _package_name_folder(spec)
+def _default_package_name(spec: Path, category: Literal["azure", "unbranded"]) -> str:
+    return _package_name_folder(spec, category).replace("/", "-")
+
+
+def _get_emitter_option(
+    spec: Path, category: Literal["azure", "unbranded"]
+) -> List[Dict[str, str]]:
+    name = _package_name_folder(spec, category)
     result = EMITTER_OPTIONS.get(name, [])
     if isinstance(result, dict):
         return [result]
     return result
 
 
-def _add_options(spec: Path, debug=False) -> List[str]:
+def _add_options(
+    spec: Path,
+    category: Literal["azure", "unbranded"],
+    generated_foder: Path,
+    special_flags: Dict[str, Any],
+    debug=False,
+) -> List[str]:
     # if debug:
     #   options["debug"] = "true"
     result = []
-    for config in _get_emitter_option(spec):
+    for config in _get_emitter_option(spec, category):
         config_copy = copy.copy(config)
-        config_copy["emitter-output-dir"] = f"{PLUGIN_DIR}/test/generated/{config['package-name']}"
+        config_copy[
+            "emitter-output-dir"
+        ] = f"{generated_foder}/{config['package-name']}"
         result.append(config_copy)
     if not result:
-        result.append({"emitter-output-dir": f"{PLUGIN_DIR}/test/generated/{_default_package_name(spec)}"})
-    return [" --option ".join(
-        [f"@azure-tools/typespec-python.{k}={v} " for k, v in options.items()]
-    ) for options in result]
+        result.append(
+            {
+                "emitter-output-dir": f"{generated_foder}/{_default_package_name(spec, category)}"
+            }
+        )
+    emitter_configs = []
+    for options in result:
+        emitter_option = ""
+        for item in [options, special_flags]:
+            for k, v in item.items():
+                emitter_option += f" --option @azure-tools/typespec-python.{k}={v}"
+        emitter_configs.append(emitter_option)
+    return emitter_configs
 
 
 def _entry_file_name(path: Path) -> Path:
     if path.is_file():
         return path
-    return (path / "client.tsp") if (path / "client.tsp").exists() else (path / "main.tsp")
+    return (
+        (path / "client.tsp") if (path / "client.tsp").exists() else (path / "main.tsp")
+    )
 
-def all_specification_folders() -> List[Path]:
-    return [s for item in ALL_SPECIFICATION_DIRS for s in item.glob("**/*") if s.is_dir()]
+def _get_specification_dirs(category: Literal["azure", "unbranded"]) -> List[Path]:
+    # we should remove the need for this by removing our local definition of mgmt sphere
+    local_specification_folder = Path(f"test/{category}/specification")
+    return (
+        [CADL_RANCH_DIR, local_specification_folder]
+        if local_specification_folder.exists()
+        else [CADL_RANCH_DIR]
+    )
 
-@task
-def regenerate(c, name=None, debug=False):
-    specs = [
-        s for s in all_specification_folders()
-        if any(f for f in s.iterdir() if f.name == "main.tsp") and not any(item in s.as_posix() for item in SKIP_FOLDERS)
+def _all_specification_folders(category: Literal["azure", "unbranded"], filename: str = "main.tsp") -> List[Path]:
+
+    return [
+        s
+        for item in _get_specification_dirs(category)
+        for s in item.glob("**/*")
+        if s.is_dir() and any(f for f in s.iterdir() if f.name == filename)
     ]
+
+def _regenerate(
+    c,
+    specs: List[Path],
+    category: Literal["azure", "unbranded"],
+    name: Optional[str] = None,
+    debug: bool = False,
+    special_flags={},
+):
+    generated_folder = Path(f"{PLUGIN_DIR}/test/{category}/generated")
     if name:
         specs = [s for s in specs if name.lower() in str(s)]
     if not name or name in "resiliency/srv-driven":
         specs.extend(
-            [
-                s / "old.tsp"
-                for s in CADL_RANCH_DIR.glob("**/*")
-                if s.is_dir() and any(f for f in s.iterdir() if f.name == "old.tsp")
-            ]
+            s / "old.tsp" for s in _all_specification_folders(category, filename="old.tsp")
         )
     for spec in specs:
-        for pacakge_name in _get_package_names(spec):
-            Path(f"{PLUGIN_DIR}/test/generated/{pacakge_name}").mkdir(
-                parents=True, exist_ok=True
-            )
+        for pacakge_name in _get_package_names(spec, category):
+            (generated_folder / pacakge_name).mkdir(parents=True, exist_ok=True)
     _run_cadl(
         [
-            f"tsp compile {_entry_file_name(spec)} --emit={PLUGIN_DIR} --option {option}"
-            for spec in specs for option in _add_options(spec, debug)
+            f"tsp compile {_entry_file_name(spec)} --emit={PLUGIN_DIR} {option}"
+            for spec in specs
+            for option in _add_options(
+                spec, category, generated_folder, special_flags, debug
+            )
         ]
     )
 
-    regenerate_unittests(c)
+
+def is_invalid_folder(s: Path, invalid_folders: List[str] = []) -> bool:
+    if "sphere" in str(s):
+        return False
+    invalid_folders = invalid_folders + ["type/union"]
+    return any(n in s.relative_to(CADL_RANCH_DIR).as_posix() for n in invalid_folders)
 
 
 @task
-def regenerate_unittests(c):
-    shutil.copyfile(
-        "../autorest.python/autorest/codegen/templates/model_base.py.jinja2",
-        "test/unittests/generated/model_base.py"
+def regenerate_azure(c, name=None, debug=False):
+    specs = [
+        s
+        for s in _all_specification_folders("azure")
+        if not is_invalid_folder(s)
+    ]
+    _regenerate(
+        c,
+        specs,
+        "azure",
+        name,
+        debug
     )
 
 
-def _get_package_names(spec: Path) -> List[str]:
-    result = [config["package-name"] for config in _get_emitter_option(spec)]
+
+
+@task
+def regenerate_unbranded(c, name=None, debug=False):
+    specs = [
+        s
+        for s in _all_specification_folders("unbranded")
+        if not is_invalid_folder(s, invalid_folders=["azure", "client-request-id"])
+    ]
+    special_flags = {"unbranded": "true", "company-name": "Unbranded"}
+    _regenerate(
+        c,
+        specs,
+        "unbranded",
+        name=name,
+        debug=debug,
+        special_flags=special_flags,
+    )
+
+
+@task
+def regenerate(
+    c,
+    name=None,
+    debug=False,
+    azure=False,
+    unbranded=False,
+):
+    if azure ^ unbranded:
+        # this means that only azure or only unbranded is true
+        if azure:
+            return regenerate_azure(c, name, debug)
+        return regenerate_unbranded(c, name, debug)
+    regenerate_azure(c, name, debug)
+    regenerate_unbranded(c, name, debug)
+
+def _get_package_names(spec: Path, category: Literal["azure", "unbranded"]) -> List[str]:
+    result = [
+        config["package-name"]
+        for config in _get_emitter_option(spec, category)
+    ]
     if not result:
-        result.append(_default_package_name(spec))
+        result.append(_default_package_name(spec, category))
     return result
 
 

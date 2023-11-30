@@ -41,7 +41,7 @@ class Error(_serialization.Model):
 class ModelTwo(_serialization.Model):
     """Only exists in api version 2.0.0.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar id: Required.
     :vartype id: int

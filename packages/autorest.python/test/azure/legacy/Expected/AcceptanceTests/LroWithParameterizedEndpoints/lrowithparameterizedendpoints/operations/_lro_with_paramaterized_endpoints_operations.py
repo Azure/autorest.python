@@ -95,20 +95,20 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
 
         cls: ClsType[Optional[str]] = kwargs.pop("cls", None)
 
-        request = build_poll_with_parameterized_endpoints_request(
+        _request = build_poll_with_parameterized_endpoints_request(
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
+        _request = _convert_request(_request)
         path_format_arguments = {
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -127,9 +127,9 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def begin_poll_with_parameterized_endpoints(self, account_name: str, **kwargs: Any) -> LROPoller[str]:
@@ -165,7 +165,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         def get_long_running_output(pipeline_response):
             deserialized = self._deserialize("str", pipeline_response)
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
 
         path_format_arguments = {
@@ -188,13 +188,13 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         else:
             polling_method = polling
         if cont_token:
-            return LROPoller.from_continuation_token(
+            return LROPoller[str].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[str](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     def _poll_with_constant_parameterized_endpoints_initial(  # pylint: disable=name-too-long
         self, account_name: str, **kwargs: Any
@@ -213,21 +213,21 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         constant_parameter: Literal["iAmConstant"] = kwargs.pop("constant_parameter", "iAmConstant")
         cls: ClsType[Optional[str]] = kwargs.pop("cls", None)
 
-        request = build_poll_with_constant_parameterized_endpoints_request(
+        _request = build_poll_with_constant_parameterized_endpoints_request(
             constant_parameter=constant_parameter,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
+        _request = _convert_request(_request)
         path_format_arguments = {
             "accountName": self._serialize.url("account_name", account_name, "str", skip_quote=True),
             "host": self._serialize.url("self._config.host", self._config.host, "str", skip_quote=True),
         }
-        request.url = self._client.format_url(request.url, **path_format_arguments)
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -246,9 +246,9 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
-            return cls(pipeline_response, deserialized, response_headers)
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
-        return deserialized
+        return deserialized  # type: ignore
 
     @distributed_trace
     def begin_poll_with_constant_parameterized_endpoints(  # pylint: disable=name-too-long
@@ -295,7 +295,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         def get_long_running_output(pipeline_response):
             deserialized = self._deserialize("str", pipeline_response)
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized
 
         path_format_arguments = {
@@ -312,10 +312,10 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         else:
             polling_method = polling
         if cont_token:
-            return LROPoller.from_continuation_token(
+            return LROPoller[str].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[str](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore

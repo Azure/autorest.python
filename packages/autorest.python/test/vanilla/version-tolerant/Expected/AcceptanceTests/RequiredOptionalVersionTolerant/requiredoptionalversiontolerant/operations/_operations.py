@@ -662,16 +662,16 @@ class ImplicitOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_implicit_get_required_path_request(
+        _request = build_implicit_get_required_path_request(
             path_parameter=path_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -683,7 +683,7 @@ class ImplicitOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put_optional_query(  # pylint: disable=inconsistent-return-statements
@@ -710,16 +710,16 @@ class ImplicitOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_implicit_put_optional_query_request(
+        _request = build_implicit_put_optional_query_request(
             query_parameter=query_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -731,7 +731,7 @@ class ImplicitOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put_optional_header(  # pylint: disable=inconsistent-return-statements
@@ -758,16 +758,16 @@ class ImplicitOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_implicit_put_optional_header_request(
+        _request = build_implicit_put_optional_header_request(
             query_parameter=query_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -779,7 +779,7 @@ class ImplicitOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put_optional_body(  # pylint: disable=inconsistent-return-statements
@@ -812,17 +812,17 @@ class ImplicitOperations:
         else:
             _content = None
 
-        request = build_implicit_put_optional_body_request(
+        _request = build_implicit_put_optional_body_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -834,7 +834,7 @@ class ImplicitOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put_optional_binary_body(  # pylint: disable=inconsistent-return-statements
@@ -864,17 +864,17 @@ class ImplicitOperations:
 
         _content = body_parameter
 
-        request = build_implicit_put_optional_binary_body_request(
+        _request = build_implicit_put_optional_binary_body_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -886,7 +886,7 @@ class ImplicitOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_required_global_path(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -909,16 +909,16 @@ class ImplicitOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_implicit_get_required_global_path_request(
+        _request = build_implicit_get_required_global_path_request(
             required_global_path=self._config.required_global_path,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -930,7 +930,7 @@ class ImplicitOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_required_global_query(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -953,16 +953,16 @@ class ImplicitOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_implicit_get_required_global_query_request(
+        _request = build_implicit_get_required_global_query_request(
             required_global_query=self._config.required_global_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -974,7 +974,7 @@ class ImplicitOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def get_optional_global_query(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -997,16 +997,16 @@ class ImplicitOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_implicit_get_optional_global_query_request(
+        _request = build_implicit_get_optional_global_query_request(
             optional_global_query=self._config.optional_global_query,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1018,7 +1018,7 @@ class ImplicitOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class ExplicitOperations:  # pylint: disable=too-many-public-methods
@@ -1066,17 +1066,17 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         _content = body_parameter
 
-        request = build_explicit_put_optional_binary_body_request(
+        _request = build_explicit_put_optional_binary_body_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1088,7 +1088,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def put_required_binary_body(  # pylint: disable=inconsistent-return-statements
@@ -1118,17 +1118,17 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         _content = body_parameter
 
-        request = build_explicit_put_required_binary_body_request(
+        _request = build_explicit_put_required_binary_body_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1140,7 +1140,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post_required_integer_parameter(  # pylint: disable=inconsistent-return-statements
@@ -1171,17 +1171,17 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         _json = body_parameter
 
-        request = build_explicit_post_required_integer_parameter_request(
+        _request = build_explicit_post_required_integer_parameter_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1193,7 +1193,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post_optional_integer_parameter(  # pylint: disable=inconsistent-return-statements
@@ -1226,17 +1226,17 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = None
 
-        request = build_explicit_post_optional_integer_parameter_request(
+        _request = build_explicit_post_optional_integer_parameter_request(
             content_type=content_type,
             json=_json,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1248,7 +1248,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def post_required_integer_property(  # pylint: disable=inconsistent-return-statements
@@ -1338,18 +1338,18 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = body_parameter
 
-        request = build_explicit_post_required_integer_property_request(
+        _request = build_explicit_post_required_integer_property_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1361,7 +1361,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def post_optional_integer_property(  # pylint: disable=inconsistent-return-statements
@@ -1451,18 +1451,18 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_explicit_post_optional_integer_property_request(
+        _request = build_explicit_post_optional_integer_property_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1474,7 +1474,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post_required_integer_header(  # pylint: disable=inconsistent-return-statements
@@ -1502,16 +1502,16 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_explicit_post_required_integer_header_request(
+        _request = build_explicit_post_required_integer_header_request(
             header_parameter=header_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1523,7 +1523,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post_optional_integer_header(  # pylint: disable=inconsistent-return-statements
@@ -1550,16 +1550,16 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_explicit_post_optional_integer_header_request(
+        _request = build_explicit_post_optional_integer_header_request(
             header_parameter=header_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1571,7 +1571,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post_required_string_parameter(  # pylint: disable=inconsistent-return-statements
@@ -1602,17 +1602,17 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         _content = body_parameter
 
-        request = build_explicit_post_required_string_parameter_request(
+        _request = build_explicit_post_required_string_parameter_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1624,7 +1624,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post_optional_string_parameter(  # pylint: disable=inconsistent-return-statements
@@ -1657,17 +1657,17 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = None
 
-        request = build_explicit_post_optional_string_parameter_request(
+        _request = build_explicit_post_optional_string_parameter_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1679,7 +1679,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def post_required_string_property(  # pylint: disable=inconsistent-return-statements
@@ -1769,18 +1769,18 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = body_parameter
 
-        request = build_explicit_post_required_string_property_request(
+        _request = build_explicit_post_required_string_property_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1792,7 +1792,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def post_optional_string_property(  # pylint: disable=inconsistent-return-statements
@@ -1882,18 +1882,18 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_explicit_post_optional_string_property_request(
+        _request = build_explicit_post_optional_string_property_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1905,7 +1905,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post_required_string_header(  # pylint: disable=inconsistent-return-statements
@@ -1933,16 +1933,16 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_explicit_post_required_string_header_request(
+        _request = build_explicit_post_required_string_header_request(
             header_parameter=header_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1954,7 +1954,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post_optional_string_header(  # pylint: disable=inconsistent-return-statements
@@ -1981,16 +1981,16 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_explicit_post_optional_string_header_request(
+        _request = build_explicit_post_optional_string_header_request(
             body_parameter=body_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2002,7 +2002,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def post_required_class_parameter(  # pylint: disable=inconsistent-return-statements
@@ -2094,18 +2094,18 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = body_parameter
 
-        request = build_explicit_post_required_class_parameter_request(
+        _request = build_explicit_post_required_class_parameter_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2117,7 +2117,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def post_optional_class_parameter(  # pylint: disable=inconsistent-return-statements
@@ -2209,18 +2209,18 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_explicit_post_optional_class_parameter_request(
+        _request = build_explicit_post_optional_class_parameter_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2232,7 +2232,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def post_required_class_property(  # pylint: disable=inconsistent-return-statements
@@ -2328,18 +2328,18 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = body_parameter
 
-        request = build_explicit_post_required_class_property_request(
+        _request = build_explicit_post_required_class_property_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2351,7 +2351,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def post_optional_class_property(  # pylint: disable=inconsistent-return-statements
@@ -2447,18 +2447,18 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_explicit_post_optional_class_property_request(
+        _request = build_explicit_post_optional_class_property_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2470,7 +2470,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def post_required_array_parameter(  # pylint: disable=inconsistent-return-statements
@@ -2552,18 +2552,18 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = body_parameter
 
-        request = build_explicit_post_required_array_parameter_request(
+        _request = build_explicit_post_required_array_parameter_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2575,7 +2575,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def post_optional_array_parameter(  # pylint: disable=inconsistent-return-statements
@@ -2657,18 +2657,18 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_explicit_post_optional_array_parameter_request(
+        _request = build_explicit_post_optional_array_parameter_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2680,7 +2680,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def post_required_array_property(  # pylint: disable=inconsistent-return-statements
@@ -2774,18 +2774,18 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = body_parameter
 
-        request = build_explicit_post_required_array_property_request(
+        _request = build_explicit_post_required_array_property_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2797,7 +2797,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
     def post_optional_array_property(  # pylint: disable=inconsistent-return-statements
@@ -2891,18 +2891,18 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             else:
                 _json = None
 
-        request = build_explicit_post_optional_array_property_request(
+        _request = build_explicit_post_optional_array_property_request(
             content_type=content_type,
             json=_json,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2914,7 +2914,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post_required_array_header(  # pylint: disable=inconsistent-return-statements
@@ -2942,16 +2942,16 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_explicit_post_required_array_header_request(
+        _request = build_explicit_post_required_array_header_request(
             header_parameter=header_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -2963,7 +2963,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
     def post_optional_array_header(  # pylint: disable=inconsistent-return-statements
@@ -2990,16 +2990,16 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        request = build_explicit_post_optional_array_header_request(
+        _request = build_explicit_post_optional_array_header_request(
             header_parameter=header_parameter,
             headers=_headers,
             params=_params,
         )
-        request.url = self._client.format_url(request.url)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -3011,4 +3011,4 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {})
+            return cls(pipeline_response, None, {})  # type: ignore

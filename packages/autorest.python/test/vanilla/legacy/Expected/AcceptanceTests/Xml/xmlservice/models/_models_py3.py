@@ -20,7 +20,7 @@ if TYPE_CHECKING:
 class AccessPolicy(_serialization.Model):
     """An Access policy.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar start: the date-time the policy is active. Required.
     :vartype start: ~datetime.datetime
@@ -128,7 +128,7 @@ class Banana(_serialization.Model):
 class Blob(_serialization.Model):
     """An Azure Storage blob.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -191,7 +191,7 @@ class Blob(_serialization.Model):
 class BlobPrefix(_serialization.Model):
     """BlobPrefix.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -217,7 +217,7 @@ class BlobPrefix(_serialization.Model):
 class BlobProperties(_serialization.Model):  # pylint: disable=too-many-instance-attributes
     """Properties of a blob.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar last_modified: Required.
     :vartype last_modified: ~datetime.datetime
@@ -517,7 +517,7 @@ class ComplexTypeWithMeta(_serialization.Model):
 class Container(_serialization.Model):
     """An Azure Storage container.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -563,7 +563,7 @@ class Container(_serialization.Model):
 class ContainerProperties(_serialization.Model):
     """Properties of a container.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar last_modified: Required.
     :vartype last_modified: ~datetime.datetime
@@ -635,7 +635,7 @@ class CorsRule(_serialization.Model):
     policy that prevents a web page from calling APIs in a different domain; CORS provides a secure
     way to allow one domain (the origin domain) to call APIs in another domain.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar allowed_origins: The origin domains that are permitted to make a request against the
      storage service via CORS. The origin domain is the domain from which the request originates.
@@ -781,7 +781,7 @@ class JSONOutput(_serialization.Model):
 class ListBlobsResponse(_serialization.Model):
     """An enumeration of blobs.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar service_endpoint:
     :vartype service_endpoint: str
@@ -868,7 +868,7 @@ class ListBlobsResponse(_serialization.Model):
 class ListContainersResponse(_serialization.Model):
     """An enumeration of containers.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar service_endpoint: Required.
     :vartype service_endpoint: str
@@ -938,7 +938,7 @@ class ListContainersResponse(_serialization.Model):
 class Logging(_serialization.Model):
     """Azure Analytics Logging settings.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar version: The version of Storage Analytics to configure. Required.
     :vartype version: str
@@ -1001,7 +1001,7 @@ class Logging(_serialization.Model):
 class Metrics(_serialization.Model):
     """Metrics.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar version: The version of Storage Analytics to configure.
     :vartype version: str
@@ -1122,7 +1122,7 @@ class ObjectWithXMsTextProperty(_serialization.Model):
 class RetentionPolicy(_serialization.Model):
     """the retention policy.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar enabled: Indicates whether a retention policy is enabled for the storage service.
      Required.
@@ -1223,7 +1223,7 @@ class RootWithRefAndNoMeta(_serialization.Model):
 class SignedIdentifier(_serialization.Model):
     """signed identifier.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar id: a unique id. Required.
     :vartype id: str

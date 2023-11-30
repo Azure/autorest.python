@@ -137,18 +137,18 @@ class FormdataOperations:
             "fileName": file_name,
         }
 
-        request = build_upload_file_request(
+        _request = build_upload_file_request(
             content_type=content_type,
             files=_files,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request, _files)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request, _files)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = True
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -192,18 +192,18 @@ class FormdataOperations:
 
         _content = file_content
 
-        request = build_upload_file_via_body_request(
+        _request = build_upload_file_via_body_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = True
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -250,18 +250,18 @@ class FormdataOperations:
             "fileContent": file_content,
         }
 
-        request = build_upload_files_request(
+        _request = build_upload_files_request(
             content_type=content_type,
             files=_files,
             headers=_headers,
             params=_params,
         )
-        request = _convert_request(request, _files)
-        request.url = self._client.format_url(request.url)
+        _request = _convert_request(_request, _files)
+        _request.url = self._client.format_url(_request.url)
 
         _stream = True
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            request, stream=_stream, **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response

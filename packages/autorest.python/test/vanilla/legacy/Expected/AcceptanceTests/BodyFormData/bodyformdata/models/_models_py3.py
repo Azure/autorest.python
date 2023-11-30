@@ -41,7 +41,7 @@ class Error(_serialization.Model):
 class Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema(_serialization.Model):
     """Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar file_content: File to upload. Required.
     :vartype file_content: IO[bytes]
@@ -75,7 +75,7 @@ class Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDat
 class Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema(_serialization.Model):
     """Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar file_content: Files to upload. Required.
     :vartype file_content: list[IO[bytes]]

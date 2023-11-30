@@ -43,7 +43,7 @@ class RefColorConstant(_serialization.Model):
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to Azure.
+    All required parameters must be populated in order to send to server.
 
     :ivar color_constant: Referenced Color Constant Description. Required. Default value is
      "green-color".
