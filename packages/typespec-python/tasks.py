@@ -71,6 +71,9 @@ EMITTER_OPTIONS = {
     "type/model/inheritance/single-discriminator": {
         "package-name": "typetest-model-singlediscriminator",
     },
+    "type/model/inheritance/recursive": {
+        "package-name": "typetest-model-recursive",
+    },
     "type/model/usage": {
         "package-name": "typetest-model-usage",
     },
