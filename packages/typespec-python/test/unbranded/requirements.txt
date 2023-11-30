@@ -32,6 +32,7 @@ corehttp==1.0.0b1
 -e ./generated/typetest-property-nullable
 -e ./generated/typetest-property-optional
 -e ./generated/typetest-property-valuetypes
+-e ./generated/typetest-property-additionalproperties
 -e ./generated/typetest-scalar
 -e ./generated/typetest-union
 -e ./generated/typetest-model-empty

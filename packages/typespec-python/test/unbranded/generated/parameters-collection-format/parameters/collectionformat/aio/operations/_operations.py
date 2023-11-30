@@ -56,8 +56,6 @@ class QueryOperations:
 
         :keyword colors: Possible values for colors are [blue,red,green]. Required.
         :paramtype colors: list[str]
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -103,8 +101,6 @@ class QueryOperations:
 
         :keyword colors: Possible values for colors are [blue,red,green]. Required.
         :paramtype colors: list[str]
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -150,8 +146,6 @@ class QueryOperations:
 
         :keyword colors: Possible values for colors are [blue,red,green]. Required.
         :paramtype colors: list[str]
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -199,8 +193,6 @@ class QueryOperations:
 
         :keyword colors: Possible values for colors are [blue,red,green]. Required.
         :paramtype colors: list[str]
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -246,8 +238,6 @@ class QueryOperations:
 
         :keyword colors: Possible values for colors are [blue,red,green]. Required.
         :paramtype colors: list[str]
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -311,8 +301,6 @@ class HeaderOperations:
 
         :keyword colors: Possible values for colors are [blue,red,green]. Required.
         :paramtype colors: list[str]
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:

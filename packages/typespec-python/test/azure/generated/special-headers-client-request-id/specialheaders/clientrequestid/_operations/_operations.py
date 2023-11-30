@@ -47,8 +47,6 @@ class ClientRequestIdClientOperationsMixin(ClientRequestIdClientMixinABC):
     def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Get operation with azure client request id header.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

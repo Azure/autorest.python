@@ -83,8 +83,6 @@ class QueryOperations:
 
         :keyword value: Required.
         :paramtype value: ~datetime.datetime
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -133,8 +131,6 @@ class QueryOperations:
 
         :keyword value: Required.
         :paramtype value: ~datetime.datetime
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -183,8 +179,6 @@ class QueryOperations:
 
         :keyword value: Required.
         :paramtype value: ~datetime.datetime
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -233,8 +227,6 @@ class QueryOperations:
 
         :keyword value: Required.
         :paramtype value: ~datetime.datetime
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -283,8 +275,6 @@ class QueryOperations:
 
         :keyword value: Required.
         :paramtype value: list[~datetime.datetime]
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -993,8 +983,6 @@ class HeaderOperations:
 
         :keyword value: Required.
         :paramtype value: ~datetime.datetime
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1043,8 +1031,6 @@ class HeaderOperations:
 
         :keyword value: Required.
         :paramtype value: ~datetime.datetime
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1093,8 +1079,6 @@ class HeaderOperations:
 
         :keyword value: Required.
         :paramtype value: ~datetime.datetime
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1143,8 +1127,6 @@ class HeaderOperations:
 
         :keyword value: Required.
         :paramtype value: ~datetime.datetime
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1193,8 +1175,6 @@ class HeaderOperations:
 
         :keyword value: Required.
         :paramtype value: list[~datetime.datetime]
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1257,8 +1237,6 @@ class ResponseHeaderOperations:
     async def default(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """default.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1305,8 +1283,6 @@ class ResponseHeaderOperations:
     async def rfc3339(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """rfc3339.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1353,8 +1329,6 @@ class ResponseHeaderOperations:
     async def rfc7231(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """rfc7231.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1401,8 +1375,6 @@ class ResponseHeaderOperations:
     async def unix_timestamp(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """unix_timestamp.
 
-        :keyword bool stream: Whether to stream the response of this operation. Defaults to False. You
-         will have to context manage the returned stream.
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

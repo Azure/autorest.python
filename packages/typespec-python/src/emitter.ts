@@ -120,9 +120,18 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
         `--output-folder=${outputDir}`,
         `--cadl-file=${yamlPath}`,
     ];
+    if (resolvedOptions["packaging-files-config"]) {
+        const keyValuePairs = Object.entries(resolvedOptions["packaging-files-config"]).map(([key, value]) => {
+            return `${key}:${value}`;
+        });
+        commandArgs.push(`--packaging-files-config='${keyValuePairs.join("|")}'`);
+        resolvedOptions["packaging-files-config"] = undefined;
+    }
 
     for (const [key, value] of Object.entries(resolvedOptions)) {
-        commandArgs.push(`--${key}=${value}`);
+        if (value !== undefined) {
+            commandArgs.push(`--${key}=${value}`);
+        }
     }
     if (resolvedOptions.debug) {
         commandArgs.push("--debug");
@@ -218,13 +227,18 @@ function getBodyType(context: SdkContext, route: HttpOperation): Record<string, 
             }
         }
         if (resourceType && bodyModel.name === "") {
-            bodyModel = resourceType;
+            const effectivePayloadType = getEffectivePayloadType(context, bodyModel);
+            if (effectivePayloadType.name !== "") {
+                bodyModel = effectivePayloadType;
+            } else {
+                bodyModel = resourceType;
+            }
         }
     }
     if (bodyModel && bodyModel.kind === "Scalar") {
-        return getType(context, route.parameters.body!.parameter!);
+        return getType(context, route.parameters.body!.parameter!, true);
     }
-    return getType(context, bodyModel!);
+    return getType(context, bodyModel!, true);
 }
 
 function emitBodyParameter(context: SdkContext, httpOperation: HttpOperation): BodyParameter {

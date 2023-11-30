@@ -677,7 +677,7 @@ class _OperationSerializer(
 
     def param_description(self, builder: OperationType) -> List[str]:
         description_list = super().param_description(builder)
-        if builder.expose_stream_keyword:
+        if builder.expose_stream_keyword and builder.has_response_body:
             description_list.append(
                 ":keyword bool stream: Whether to stream the response of this operation. "
                 "Defaults to False. You will have to context manage the returned stream."
@@ -1080,12 +1080,18 @@ class _OperationSerializer(
                 if builder.has_stream_response:
                     deserialize_code.append("deserialized = response.content")
                 else:
+                    format_filed = (
+                        f', format="{response.type.encode}"'
+                        if isinstance(response.type, ByteArraySchema)
+                        and response.default_content_type == "application/json"
+                        else ""
+                    )
                     deserialize_code.append("deserialized = _deserialize(")
                     deserialize_code.append(
                         f"    {response.type.type_annotation(is_operation_file=True)},{pylint_disable}"
                     )
                     deserialize_code.append(
-                        f"    response.json(){response.result_property}"
+                        f"    response.json(){response.result_property}{format_filed}"
                     )
                     deserialize_code.append(")")
 
