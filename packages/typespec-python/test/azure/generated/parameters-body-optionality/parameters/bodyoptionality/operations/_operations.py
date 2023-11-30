@@ -148,12 +148,12 @@ class OptionalExplicitOperations:
 
     @overload
     def set(  # pylint: disable=inconsistent-return-statements
-        self, body: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, body: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """set.
 
         :param body: Default value is None.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -164,12 +164,12 @@ class OptionalExplicitOperations:
 
     @distributed_trace
     def set(  # pylint: disable=inconsistent-return-statements
-        self, body: Optional[Union[_models.BodyModel, JSON, IO]] = None, **kwargs: Any
+        self, body: Optional[Union[_models.BodyModel, JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """set.
 
-        :param body: Is one of the following types: BodyModel, JSON, IO Default value is None.
-        :type body: ~parameters.bodyoptionality.models.BodyModel or JSON or IO
+        :param body: Is one of the following types: BodyModel, JSON, IO[bytes] Default value is None.
+        :type body: ~parameters.bodyoptionality.models.BodyModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -259,12 +259,12 @@ class OptionalExplicitOperations:
 
     @overload
     def omit(  # pylint: disable=inconsistent-return-statements
-        self, body: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, body: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """omit.
 
         :param body: Default value is None.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -275,12 +275,12 @@ class OptionalExplicitOperations:
 
     @distributed_trace
     def omit(  # pylint: disable=inconsistent-return-statements
-        self, body: Optional[Union[_models.BodyModel, JSON, IO]] = None, **kwargs: Any
+        self, body: Optional[Union[_models.BodyModel, JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """omit.
 
-        :param body: Is one of the following types: BodyModel, JSON, IO Default value is None.
-        :type body: ~parameters.bodyoptionality.models.BodyModel or JSON or IO
+        :param body: Is one of the following types: BodyModel, JSON, IO[bytes] Default value is None.
+        :type body: ~parameters.bodyoptionality.models.BodyModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -372,12 +372,12 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
 
     @overload
     def required_explicit(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """required_explicit.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -388,12 +388,12 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
 
     @distributed_trace
     def required_explicit(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BodyModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.BodyModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """required_explicit.
 
-        :param body: Is one of the following types: BodyModel, JSON, IO Required.
-        :type body: ~parameters.bodyoptionality.models.BodyModel or JSON or IO
+        :param body: Is one of the following types: BodyModel, JSON, IO[bytes] Required.
+        :type body: ~parameters.bodyoptionality.models.BodyModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -480,12 +480,12 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
 
     @overload
     def required_implicit(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """required_implicit.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -496,12 +496,12 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
 
     @distributed_trace
     def required_implicit(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BodyModel, JSON, IO], **kwargs: Any
+        self, body: Union[_models.BodyModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """required_implicit.
 
-        :param body: Is one of the following types: BodyModel, JSON, IO Required.
-        :type body: ~parameters.bodyoptionality.models.BodyModel or JSON or IO
+        :param body: Is one of the following types: BodyModel, JSON, IO[bytes] Required.
+        :type body: ~parameters.bodyoptionality.models.BodyModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str

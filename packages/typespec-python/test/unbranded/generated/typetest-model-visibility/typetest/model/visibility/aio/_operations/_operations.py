@@ -83,12 +83,12 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
 
     @overload
     async def get_model(
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.VisibilityModel:
         """get_model.
 
         :param input: Required.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -100,12 +100,12 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     async def get_model(
-        self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any
+        self, input: Union[_models.VisibilityModel, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.VisibilityModel:
         """get_model.
 
-        :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
-        :type input: ~typetest.model.visibility.models.VisibilityModel or JSON or IO
+        :param input: Is one of the following types: VisibilityModel, JSON, IO[bytes] Required.
+        :type input: ~typetest.model.visibility.models.VisibilityModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -198,11 +198,11 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @overload
-    async def head_model(self, input: IO, *, content_type: str = "application/json", **kwargs: Any) -> bool:
+    async def head_model(self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> bool:
         """head_model.
 
         :param input: Required.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -211,11 +211,11 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def head_model(self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any) -> bool:
+    async def head_model(self, input: Union[_models.VisibilityModel, JSON, IO[bytes]], **kwargs: Any) -> bool:
         """head_model.
 
-        :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
-        :type input: ~typetest.model.visibility.models.VisibilityModel or JSON or IO
+        :param input: Is one of the following types: VisibilityModel, JSON, IO[bytes] Required.
+        :type input: ~typetest.model.visibility.models.VisibilityModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -303,12 +303,12 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
 
     @overload
     async def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put_model.
 
         :param input: Required.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -318,12 +318,12 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     async def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any
+        self, input: Union[_models.VisibilityModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """put_model.
 
-        :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
-        :type input: ~typetest.model.visibility.models.VisibilityModel or JSON or IO
+        :param input: Is one of the following types: VisibilityModel, JSON, IO[bytes] Required.
+        :type input: ~typetest.model.visibility.models.VisibilityModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -410,12 +410,12 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
 
     @overload
     async def patch_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """patch_model.
 
         :param input: Required.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -425,12 +425,12 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     async def patch_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any
+        self, input: Union[_models.VisibilityModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """patch_model.
 
-        :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
-        :type input: ~typetest.model.visibility.models.VisibilityModel or JSON or IO
+        :param input: Is one of the following types: VisibilityModel, JSON, IO[bytes] Required.
+        :type input: ~typetest.model.visibility.models.VisibilityModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -517,12 +517,12 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
 
     @overload
     async def post_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """post_model.
 
         :param input: Required.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -532,12 +532,12 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     async def post_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any
+        self, input: Union[_models.VisibilityModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """post_model.
 
-        :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
-        :type input: ~typetest.model.visibility.models.VisibilityModel or JSON or IO
+        :param input: Is one of the following types: VisibilityModel, JSON, IO[bytes] Required.
+        :type input: ~typetest.model.visibility.models.VisibilityModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -624,12 +624,12 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
 
     @overload
     async def delete_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """delete_model.
 
         :param input: Required.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -639,12 +639,12 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     async def delete_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.VisibilityModel, JSON, IO], **kwargs: Any
+        self, input: Union[_models.VisibilityModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """delete_model.
 
-        :param input: Is one of the following types: VisibilityModel, JSON, IO Required.
-        :type input: ~typetest.model.visibility.models.VisibilityModel or JSON or IO
+        :param input: Is one of the following types: VisibilityModel, JSON, IO[bytes] Required.
+        :type input: ~typetest.model.visibility.models.VisibilityModel or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str

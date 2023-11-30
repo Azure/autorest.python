@@ -428,12 +428,12 @@ class Int32ValueOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -443,12 +443,12 @@ class Int32ValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, int], IO], **kwargs: Any
+        self, body: Union[Dict[str, int], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: int} type or a IO type. Required.
-        :type body: dict[str, int] or IO
+        :param body: Is either a {str: int} type or a IO[bytes] type. Required.
+        :type body: dict[str, int] or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -588,12 +588,12 @@ class Int64ValueOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -603,12 +603,12 @@ class Int64ValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, int], IO], **kwargs: Any
+        self, body: Union[Dict[str, int], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: int} type or a IO type. Required.
-        :type body: dict[str, int] or IO
+        :param body: Is either a {str: int} type or a IO[bytes] type. Required.
+        :type body: dict[str, int] or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -748,12 +748,12 @@ class BooleanValueOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -763,12 +763,12 @@ class BooleanValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, bool], IO], **kwargs: Any
+        self, body: Union[Dict[str, bool], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: bool} type or a IO type. Required.
-        :type body: dict[str, bool] or IO
+        :param body: Is either a {str: bool} type or a IO[bytes] type. Required.
+        :type body: dict[str, bool] or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -908,12 +908,12 @@ class StringValueOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -923,12 +923,12 @@ class StringValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, str], IO], **kwargs: Any
+        self, body: Union[Dict[str, str], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: str} type or a IO type. Required.
-        :type body: dict[str, str] or IO
+        :param body: Is either a {str: str} type or a IO[bytes] type. Required.
+        :type body: dict[str, str] or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1068,12 +1068,12 @@ class Float32ValueOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1083,12 +1083,12 @@ class Float32ValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, float], IO], **kwargs: Any
+        self, body: Union[Dict[str, float], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: float} type or a IO type. Required.
-        :type body: dict[str, float] or IO
+        :param body: Is either a {str: float} type or a IO[bytes] type. Required.
+        :type body: dict[str, float] or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1228,12 +1228,12 @@ class DatetimeValueOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1243,12 +1243,12 @@ class DatetimeValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, datetime.datetime], IO], **kwargs: Any
+        self, body: Union[Dict[str, datetime.datetime], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: datetime.datetime} type or a IO type. Required.
-        :type body: dict[str, ~datetime.datetime] or IO
+        :param body: Is either a {str: datetime.datetime} type or a IO[bytes] type. Required.
+        :type body: dict[str, ~datetime.datetime] or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1388,12 +1388,12 @@ class DurationValueOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1403,12 +1403,12 @@ class DurationValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, datetime.timedelta], IO], **kwargs: Any
+        self, body: Union[Dict[str, datetime.timedelta], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: datetime.timedelta} type or a IO type. Required.
-        :type body: dict[str, ~datetime.timedelta] or IO
+        :param body: Is either a {str: datetime.timedelta} type or a IO[bytes] type. Required.
+        :type body: dict[str, ~datetime.timedelta] or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1548,12 +1548,12 @@ class UnknownValueOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1563,12 +1563,12 @@ class UnknownValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, Any], IO], **kwargs: Any
+        self, body: Union[Dict[str, Any], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: Any} type or a IO type. Required.
-        :type body: dict[str, any] or IO
+        :param body: Is either a {str: Any} type or a IO[bytes] type. Required.
+        :type body: dict[str, any] or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1708,12 +1708,12 @@ class ModelValueOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1723,12 +1723,12 @@ class ModelValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, _models.InnerModel], IO], **kwargs: Any
+        self, body: Union[Dict[str, _models.InnerModel], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: InnerModel} type or a IO type. Required.
-        :type body: dict[str, ~typetest.dictionary.models.InnerModel] or IO
+        :param body: Is either a {str: InnerModel} type or a IO[bytes] type. Required.
+        :type body: dict[str, ~typetest.dictionary.models.InnerModel] or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -1868,12 +1868,12 @@ class RecursiveModelValueOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1883,12 +1883,12 @@ class RecursiveModelValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, _models.InnerModel], IO], **kwargs: Any
+        self, body: Union[Dict[str, _models.InnerModel], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: InnerModel} type or a IO type. Required.
-        :type body: dict[str, ~typetest.dictionary.models.InnerModel] or IO
+        :param body: Is either a {str: InnerModel} type or a IO[bytes] type. Required.
+        :type body: dict[str, ~typetest.dictionary.models.InnerModel] or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -2028,12 +2028,12 @@ class NullableFloatValueOperations:
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2043,12 +2043,12 @@ class NullableFloatValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[Dict[str, float], IO], **kwargs: Any
+        self, body: Union[Dict[str, float], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: float} type or a IO type. Required.
-        :type body: dict[str, float] or IO
+        :param body: Is either a {str: float} type or a IO[bytes] type. Required.
+        :type body: dict[str, float] or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str

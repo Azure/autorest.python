@@ -110,11 +110,11 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         """
 
     @overload
-    async def put_horse(self, horse: IO, *, content_type: str = "application/json", **kwargs: Any) -> str:
+    async def put_horse(self, horse: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> str:
         """Put a horse with name 'General' and isAShowHorse false.
 
         :param horse: Put a horse with name 'General' and isAShowHorse false. Required.
-        :type horse: IO
+        :type horse: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -125,12 +125,12 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         """
 
     @distributed_trace_async
-    async def put_horse(self, horse: Union[_models.Horse, IO], **kwargs: Any) -> str:
+    async def put_horse(self, horse: Union[_models.Horse, IO[bytes]], **kwargs: Any) -> str:
         """Put a horse with name 'General' and isAShowHorse false.
 
         :param horse: Put a horse with name 'General' and isAShowHorse false. Is either a Horse type or
-         a IO type. Required.
-        :type horse: ~multipleinheritance.models.Horse or IO
+         a IO[bytes] type. Required.
+        :type horse: ~multipleinheritance.models.Horse or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -356,11 +356,11 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         """
 
     @overload
-    async def put_feline(self, feline: IO, *, content_type: str = "application/json", **kwargs: Any) -> str:
+    async def put_feline(self, feline: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> str:
         """Put a feline who hisses and doesn't meow.
 
         :param feline: Put a feline who hisses and doesn't meow. Required.
-        :type feline: IO
+        :type feline: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -371,12 +371,12 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         """
 
     @distributed_trace_async
-    async def put_feline(self, feline: Union[_models.Feline, IO], **kwargs: Any) -> str:
+    async def put_feline(self, feline: Union[_models.Feline, IO[bytes]], **kwargs: Any) -> str:
         """Put a feline who hisses and doesn't meow.
 
-        :param feline: Put a feline who hisses and doesn't meow. Is either a Feline type or a IO type.
-         Required.
-        :type feline: ~multipleinheritance.models.Feline or IO
+        :param feline: Put a feline who hisses and doesn't meow. Is either a Feline type or a IO[bytes]
+         type. Required.
+        :type feline: ~multipleinheritance.models.Feline or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -500,12 +500,12 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         """
 
     @overload
-    async def put_cat(self, cat: IO, *, content_type: str = "application/json", **kwargs: Any) -> str:
+    async def put_cat(self, cat: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> str:
         """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
         :param cat: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
          Required.
-        :type cat: IO
+        :type cat: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -516,12 +516,12 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         """
 
     @distributed_trace_async
-    async def put_cat(self, cat: Union[_models.Cat, IO], **kwargs: Any) -> str:
+    async def put_cat(self, cat: Union[_models.Cat, IO[bytes]], **kwargs: Any) -> str:
         """Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true.
 
         :param cat: Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true. Is
-         either a Cat type or a IO type. Required.
-        :type cat: ~multipleinheritance.models.Cat or IO
+         either a Cat type or a IO[bytes] type. Required.
+        :type cat: ~multipleinheritance.models.Cat or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -647,13 +647,13 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         """
 
     @overload
-    async def put_kitten(self, kitten: IO, *, content_type: str = "application/json", **kwargs: Any) -> str:
+    async def put_kitten(self, kitten: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> str:
         """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
         true.
 
         :param kitten: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
          eatsMiceYet is true. Required.
-        :type kitten: IO
+        :type kitten: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -664,13 +664,13 @@ class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-t
         """
 
     @distributed_trace_async
-    async def put_kitten(self, kitten: Union[_models.Kitten, IO], **kwargs: Any) -> str:
+    async def put_kitten(self, kitten: Union[_models.Kitten, IO[bytes]], **kwargs: Any) -> str:
         """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
         true.
 
         :param kitten: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
-         eatsMiceYet is true. Is either a Kitten type or a IO type. Required.
-        :type kitten: ~multipleinheritance.models.Kitten or IO
+         eatsMiceYet is true. Is either a Kitten type or a IO[bytes] type. Required.
+        :type kitten: ~multipleinheritance.models.Kitten or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

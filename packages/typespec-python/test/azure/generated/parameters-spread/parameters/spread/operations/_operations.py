@@ -164,12 +164,12 @@ class ModelOperations:
 
     @overload
     def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_as_request_body.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -180,12 +180,12 @@ class ModelOperations:
 
     @distributed_trace
     def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BodyParameter, JSON, IO], **kwargs: Any
+        self, body: Union[_models.BodyParameter, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """spread_as_request_body.
 
-        :param body: Is one of the following types: BodyParameter, JSON, IO Required.
-        :type body: ~parameters.spread.models.BodyParameter or JSON or IO
+        :param body: Is one of the following types: BodyParameter, JSON, IO[bytes] Required.
+        :type body: ~parameters.spread.models.BodyParameter or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -298,12 +298,12 @@ class AliasOperations:
 
     @overload
     def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_as_request_body.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -314,12 +314,12 @@ class AliasOperations:
 
     @distributed_trace
     def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[JSON, IO] = _Unset, *, name: str = _Unset, **kwargs: Any
+        self, body: Union[JSON, IO[bytes]] = _Unset, *, name: str = _Unset, **kwargs: Any
     ) -> None:
         """spread_as_request_body.
 
-        :param body: Is either a JSON type or a IO type. Required.
-        :type body: JSON or IO
+        :param body: Is either a JSON type or a IO[bytes] type. Required.
+        :type body: JSON or IO[bytes]
         :keyword name: Required.
         :paramtype name: str
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
@@ -437,14 +437,14 @@ class AliasOperations:
 
     @overload
     def spread_as_request_parameter(  # pylint: disable=inconsistent-return-statements
-        self, id: str, body: IO, *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
+        self, id: str, body: IO[bytes], *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_as_request_parameter.
 
         :param id: Required.
         :type id: str
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword x_ms_test_header: Required.
         :paramtype x_ms_test_header: str
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
@@ -457,14 +457,20 @@ class AliasOperations:
 
     @distributed_trace
     def spread_as_request_parameter(  # pylint: disable=inconsistent-return-statements
-        self, id: str, body: Union[JSON, IO] = _Unset, *, x_ms_test_header: str, name: str = _Unset, **kwargs: Any
+        self,
+        id: str,
+        body: Union[JSON, IO[bytes]] = _Unset,
+        *,
+        x_ms_test_header: str,
+        name: str = _Unset,
+        **kwargs: Any
     ) -> None:
         """spread_as_request_parameter.
 
         :param id: Required.
         :type id: str
-        :param body: Is either a JSON type or a IO type. Required.
-        :type body: JSON or IO
+        :param body: Is either a JSON type or a IO[bytes] type. Required.
+        :type body: JSON or IO[bytes]
         :keyword x_ms_test_header: Required.
         :paramtype x_ms_test_header: str
         :keyword name: Required.
@@ -612,14 +618,14 @@ class AliasOperations:
 
     @overload
     def spread_with_multiple_parameters(  # pylint: disable=inconsistent-return-statements
-        self, id: str, body: IO, *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
+        self, id: str, body: IO[bytes], *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_with_multiple_parameters.
 
         :param id: Required.
         :type id: str
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword x_ms_test_header: Required.
         :paramtype x_ms_test_header: str
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
@@ -634,7 +640,7 @@ class AliasOperations:
     def spread_with_multiple_parameters(  # pylint: disable=inconsistent-return-statements
         self,
         id: str,
-        body: Union[JSON, IO] = _Unset,
+        body: Union[JSON, IO[bytes]] = _Unset,
         *,
         x_ms_test_header: str,
         prop1: str = _Unset,
@@ -649,8 +655,8 @@ class AliasOperations:
 
         :param id: Required.
         :type id: str
-        :param body: Is either a JSON type or a IO type. Required.
-        :type body: JSON or IO
+        :param body: Is either a JSON type or a IO[bytes] type. Required.
+        :type body: JSON or IO[bytes]
         :keyword x_ms_test_header: Required.
         :paramtype x_ms_test_header: str
         :keyword prop1: Required.

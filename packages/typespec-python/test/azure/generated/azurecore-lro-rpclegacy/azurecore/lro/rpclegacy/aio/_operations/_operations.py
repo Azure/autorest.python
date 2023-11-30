@@ -97,7 +97,7 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
 
         return deserialized  # type: ignore
 
-    async def _create_job_initial(self, body: Union[_models.JobData, JSON, IO], **kwargs: Any) -> JSON:
+    async def _create_job_initial(self, body: Union[_models.JobData, JSON, IO[bytes]], **kwargs: Any) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -199,12 +199,12 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
 
     @overload
     async def begin_create_job(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Creates a Job.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -221,11 +221,13 @@ class LegacyClientOperationsMixin(LegacyClientMixinABC):
         """
 
     @distributed_trace_async
-    async def begin_create_job(self, body: Union[_models.JobData, JSON, IO], **kwargs: Any) -> AsyncLROPoller[None]:
+    async def begin_create_job(
+        self, body: Union[_models.JobData, JSON, IO[bytes]], **kwargs: Any
+    ) -> AsyncLROPoller[None]:
         """Creates a Job.
 
-        :param body: Is one of the following types: JobData, JSON, IO Required.
-        :type body: ~azurecore.lro.rpclegacy.models.JobData or JSON or IO
+        :param body: Is one of the following types: JobData, JSON, IO[bytes] Required.
+        :type body: ~azurecore.lro.rpclegacy.models.JobData or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str

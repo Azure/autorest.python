@@ -203,7 +203,7 @@ class PolymorphicrecursiveOperations:
 
     @overload
     def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic and have recursive references.
 
@@ -260,7 +260,7 @@ class PolymorphicrecursiveOperations:
                  }
              ]
          }. Required.
-        :type complex_body: IO
+        :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -272,7 +272,7 @@ class PolymorphicrecursiveOperations:
 
     @distributed_trace
     def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.Fish, IO], **kwargs: Any
+        self, complex_body: Union[_models.Fish, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic and have recursive references.
 
@@ -328,8 +328,8 @@ class PolymorphicrecursiveOperations:
                      "age": 105
                  }
              ]
-         }. Is either a Fish type or a IO type. Required.
-        :type complex_body: ~bodycomplex.models.Fish or IO
+         }. Is either a Fish type or a IO[bytes] type. Required.
+        :type complex_body: ~bodycomplex.models.Fish or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str

@@ -132,12 +132,12 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
 
     @overload
     async def put_extensible_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Send model with extensible enum discriminator type.
 
         :param input: Dog to create. Required.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -147,12 +147,12 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         """
 
     async def put_extensible_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.Dog, JSON, IO], **kwargs: Any
+        self, input: Union[_models.Dog, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Send model with extensible enum discriminator type.
 
-        :param input: Dog to create. Is one of the following types: Dog, JSON, IO Required.
-        :type input: ~typetest.model.enumdiscriminator.models.Dog or JSON or IO
+        :param input: Dog to create. Is one of the following types: Dog, JSON, IO[bytes] Required.
+        :type input: ~typetest.model.enumdiscriminator.models.Dog or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str
@@ -394,12 +394,12 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
 
     @overload
     async def put_fixed_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Send model with fixed enum discriminator type.
 
         :param input: Snake to create. Required.
-        :type input: IO
+        :type input: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -409,12 +409,12 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         """
 
     async def put_fixed_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.Snake, JSON, IO], **kwargs: Any
+        self, input: Union[_models.Snake, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Send model with fixed enum discriminator type.
 
-        :param input: Snake to create. Is one of the following types: Snake, JSON, IO Required.
-        :type input: ~typetest.model.enumdiscriminator.models.Snake or JSON or IO
+        :param input: Snake to create. Is one of the following types: Snake, JSON, IO[bytes] Required.
+        :type input: ~typetest.model.enumdiscriminator.models.Snake or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str

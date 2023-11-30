@@ -66,7 +66,7 @@ def build_rpc_long_running_rpc_request(**kwargs: Any) -> HttpRequest:
 
 
 class RpcClientOperationsMixin(RpcClientMixinABC):
-    def _long_running_rpc_initial(self, body: Union[_models.GenerationOptions, JSON, IO], **kwargs: Any) -> JSON:
+    def _long_running_rpc_initial(self, body: Union[_models.GenerationOptions, JSON, IO[bytes]], **kwargs: Any) -> JSON:
         error_map = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -174,14 +174,14 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
 
     @overload
     def begin_long_running_rpc(
-        self, body: IO, *, content_type: str = "application/json", **kwargs: Any
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> LROPoller[_models.GenerationResult]:
         """Generate data.
 
         Generate data.
 
         :param body: Required.
-        :type body: IO
+        :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -200,14 +200,14 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
 
     @distributed_trace
     def begin_long_running_rpc(
-        self, body: Union[_models.GenerationOptions, JSON, IO], **kwargs: Any
+        self, body: Union[_models.GenerationOptions, JSON, IO[bytes]], **kwargs: Any
     ) -> LROPoller[_models.GenerationResult]:
         """Generate data.
 
         Generate data.
 
-        :param body: Is one of the following types: GenerationOptions, JSON, IO Required.
-        :type body: ~azurecore.lro.rpc.models.GenerationOptions or JSON or IO
+        :param body: Is one of the following types: GenerationOptions, JSON, IO[bytes] Required.
+        :type body: ~azurecore.lro.rpc.models.GenerationOptions or JSON or IO[bytes]
         :keyword content_type: Body parameter Content-Type. Known values are: application/json. Default
          value is None.
         :paramtype content_type: str

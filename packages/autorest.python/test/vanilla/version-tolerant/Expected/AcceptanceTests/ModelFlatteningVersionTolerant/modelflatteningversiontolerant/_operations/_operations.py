@@ -280,7 +280,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @overload
     def put_array(  # pylint: disable=inconsistent-return-statements
-        self, resource_array: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, resource_array: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put External Resource as an Array.
 
@@ -288,7 +288,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
            - http://tempuri.org
 
         :param resource_array: External Resource as an Array to put. Default value is None.
-        :type resource_array: IO
+        :type resource_array: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -299,16 +299,16 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @distributed_trace
     def put_array(  # pylint: disable=inconsistent-return-statements
-        self, resource_array: Optional[Union[List[JSON], IO]] = None, **kwargs: Any
+        self, resource_array: Optional[Union[List[JSON], IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """Put External Resource as an Array.
 
         .. seealso::
            - http://tempuri.org
 
-        :param resource_array: External Resource as an Array to put. Is either a [JSON] type or a IO
-         type. Default value is None.
-        :type resource_array: list[JSON] or IO
+        :param resource_array: External Resource as an Array to put. Is either a [JSON] type or a
+         IO[bytes] type. Default value is None.
+        :type resource_array: list[JSON] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -475,7 +475,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @overload
     def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
-        self, resource_array: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, resource_array: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
@@ -484,7 +484,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
            - http://tempuri.org
 
         :param resource_array: External Resource as an Array to put. Default value is None.
-        :type resource_array: IO
+        :type resource_array: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -495,7 +495,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @distributed_trace
     def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
-        self, resource_array: Optional[Union[List[JSON], IO]] = None, **kwargs: Any
+        self, resource_array: Optional[Union[List[JSON], IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
@@ -503,9 +503,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         .. seealso::
            - http://tempuri.org
 
-        :param resource_array: External Resource as an Array to put. Is either a [JSON] type or a IO
-         type. Default value is None.
-        :type resource_array: list[JSON] or IO
+        :param resource_array: External Resource as an Array to put. Is either a [JSON] type or a
+         IO[bytes] type. Default value is None.
+        :type resource_array: list[JSON] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -678,7 +678,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @overload
     def put_dictionary(  # pylint: disable=inconsistent-return-statements
-        self, resource_dictionary: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, resource_dictionary: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put External Resource as a Dictionary.
 
@@ -686,7 +686,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
            - http://tempuri.org
 
         :param resource_dictionary: External Resource as a Dictionary to put. Default value is None.
-        :type resource_dictionary: IO
+        :type resource_dictionary: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -697,7 +697,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @distributed_trace
     def put_dictionary(  # pylint: disable=inconsistent-return-statements
-        self, resource_dictionary: Optional[Union[Dict[str, JSON], IO]] = None, **kwargs: Any
+        self, resource_dictionary: Optional[Union[Dict[str, JSON], IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """Put External Resource as a Dictionary.
 
@@ -705,8 +705,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
            - http://tempuri.org
 
         :param resource_dictionary: External Resource as a Dictionary to put. Is either a {str: JSON}
-         type or a IO type. Default value is None.
-        :type resource_dictionary: dict[str, JSON] or IO
+         type or a IO[bytes] type. Default value is None.
+        :type resource_dictionary: dict[str, JSON] or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -932,7 +932,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @overload
     def put_resource_collection(  # pylint: disable=inconsistent-return-statements
-        self, resource_complex_object: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self,
+        resource_complex_object: Optional[IO[bytes]] = None,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any,
     ) -> None:
         """Put External Resource as a ResourceCollection.
 
@@ -941,7 +945,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
         :param resource_complex_object: External Resource as a ResourceCollection to put. Default value
          is None.
-        :type resource_complex_object: IO
+        :type resource_complex_object: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -952,7 +956,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @distributed_trace
     def put_resource_collection(  # pylint: disable=inconsistent-return-statements
-        self, resource_complex_object: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, resource_complex_object: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """Put External Resource as a ResourceCollection.
 
@@ -960,8 +964,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
            - http://tempuri.org
 
         :param resource_complex_object: External Resource as a ResourceCollection to put. Is either a
-         JSON type or a IO type. Default value is None.
-        :type resource_complex_object: JSON or IO
+         JSON type or a IO[bytes] type. Default value is None.
+        :type resource_complex_object: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1270,7 +1274,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @overload
     def put_simple_product(
-        self, simple_body_product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, simple_body_product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """Put Simple Product with client flattening true on the model.
 
@@ -1278,7 +1282,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
            - http://tempuri.org
 
         :param simple_body_product: Simple body product to put. Default value is None.
-        :type simple_body_product: IO
+        :type simple_body_product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1309,15 +1313,15 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         """
 
     @distributed_trace
-    def put_simple_product(self, simple_body_product: Optional[Union[JSON, IO]] = None, **kwargs: Any) -> JSON:
+    def put_simple_product(self, simple_body_product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any) -> JSON:
         """Put Simple Product with client flattening true on the model.
 
         .. seealso::
            - http://tempuri.org
 
-        :param simple_body_product: Simple body product to put. Is either a JSON type or a IO type.
-         Default value is None.
-        :type simple_body_product: JSON or IO
+        :param simple_body_product: Simple body product to put. Is either a JSON type or a IO[bytes]
+         type. Default value is None.
+        :type simple_body_product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1481,7 +1485,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @overload
     def post_flattened_simple_product(
-        self, simple_body_product: Optional[IO] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, simple_body_product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
         """Put Flattened Simple Product with client flattening true on the parameter.
 
@@ -1489,7 +1493,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
            - http://tempuri.org
 
         :param simple_body_product: Simple body product to post. Default value is None.
-        :type simple_body_product: IO
+        :type simple_body_product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1521,16 +1525,16 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @distributed_trace
     def post_flattened_simple_product(
-        self, simple_body_product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, simple_body_product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
         """Put Flattened Simple Product with client flattening true on the parameter.
 
         .. seealso::
            - http://tempuri.org
 
-        :param simple_body_product: Simple body product to post. Is either a JSON type or a IO type.
-         Default value is None.
-        :type simple_body_product: JSON or IO
+        :param simple_body_product: Simple body product to post. Is either a JSON type or a IO[bytes]
+         type. Default value is None.
+        :type simple_body_product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
@@ -1703,7 +1707,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
     def put_simple_product_with_grouping(
         self,
         name: str,
-        simple_body_product: Optional[IO] = None,
+        simple_body_product: Optional[IO[bytes]] = None,
         *,
         content_type: str = "application/json",
         **kwargs: Any,
@@ -1716,7 +1720,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :param name: Product name with value 'groupproduct'. Required.
         :type name: str
         :param simple_body_product: Simple body product to put. Default value is None.
-        :type simple_body_product: IO
+        :type simple_body_product: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1748,7 +1752,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
     @distributed_trace
     def put_simple_product_with_grouping(
-        self, name: str, simple_body_product: Optional[Union[JSON, IO]] = None, **kwargs: Any
+        self, name: str, simple_body_product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> JSON:
         """Put Simple Product with client flattening true on the model.
 
@@ -1757,9 +1761,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 
         :param name: Product name with value 'groupproduct'. Required.
         :type name: str
-        :param simple_body_product: Simple body product to put. Is either a JSON type or a IO type.
-         Default value is None.
-        :type simple_body_product: JSON or IO
+        :param simple_body_product: Simple body product to put. Is either a JSON type or a IO[bytes]
+         type. Default value is None.
+        :type simple_body_product: JSON or IO[bytes]
         :keyword content_type: Body Parameter content-type. Known values are: 'application/json'.
          Default value is None.
         :paramtype content_type: str
